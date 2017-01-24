@@ -1,0 +1,5 @@
+AvailableAppsResult #class
+ch.ivy.ws.addon.bo #namespace
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+availableApps java.util.List<String> #field
+users java.util.List<ch.ivyteam.ivy.security.IUser> #field

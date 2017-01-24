@@ -1,0 +1,11 @@
+ChecklistSubmitFormData #class
+test.ui.ChecklistSubmitForm #namespace
+Mitarbeiter String #field
+Manager String #field
+Personalnummer Number #field
+Checklist_id Number #field
+EntryDate Date #field
+steps List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier

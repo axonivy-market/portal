@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="icon" required="true" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="displayedSelectors" default="[]" required="true" />
+  <cc:attribute name="hiddenSelectorsInLargeScreen" default="[]" />
+  <cc:attribute name="hiddenSelectorsInMediumScreen" default="[]" />
+  <cc:attribute name="hiddenSelectorsInSmallScreen" default="[]" />
+  <cc:attribute name="fadeTime" default="500" />
+  <cc:attribute name="onstart" default="null"
+    shortDescription="Client side callback to execute before responsiveness execution." />
+  <cc:attribute name="oncomplete" default="null"
+    shortDescription="Client side callback to execute after responsiveness execution." />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="displayedSelectors" value="#{cc.attrs.displayedSelectors}" />
+  <c:set var="hiddenSelectorsInLargeScreen" value="#{cc.attrs.hiddenSelectorsInLargeScreen}" />
+  <c:set var="hiddenSelectorsInMediumScreen" value="#{cc.attrs.hiddenSelectorsInMediumScreen}" />
+  <c:set var="hiddenSelectorsInSmallScreen" value="#{cc.attrs.hiddenSelectorsInSmallScreen}" />
+  <c:set var="fadeTime" value="#{cc.attrs.fadeTime}" />
+  <c:set var="onstart" value="#{cc.attrs.onstart}" />
+  <c:set var="oncomplete" value="#{cc.attrs.oncomplete}" />
+
+  <a href="#" class="#{cc.attrs.icon} responsive-handle-button js-responsive-handle-button #{cc.attrs.styleClass}"
+     onclick="responsiveButton.apply({clickedLink: this, displayedSelectors: #{displayedSelectors}, hiddenSelectorsInLargeScreen: #{hiddenSelectorsInLargeScreen}, hiddenSelectorsInMediumScreen: #{hiddenSelectorsInMediumScreen}, hiddenSelectorsInSmallScreen: #{hiddenSelectorsInSmallScreen}, fadeTime: #{fadeTime}}, #{onstart}, #{oncomplete})" />
+</cc:implementation>
+</html>

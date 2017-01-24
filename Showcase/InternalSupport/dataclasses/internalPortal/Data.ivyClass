@@ -1,0 +1,6 @@
+Data #class
+internalPortal #namespace
+taskId Number #field
+taskId PERSISTENT #fieldModifier
+caseId Number #field
+caseId PERSISTENT #fieldModifier

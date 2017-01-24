@@ -1,0 +1,10 @@
+AuditDetailsFormData #class
+test.ui.AuditDetailsForm #namespace
+Mitarbeiter String #field
+Auditor String #field
+Termin Date #field
+compliant Boolean #field
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier
+steps List<String> #field
+steps PERSISTENT #fieldModifier

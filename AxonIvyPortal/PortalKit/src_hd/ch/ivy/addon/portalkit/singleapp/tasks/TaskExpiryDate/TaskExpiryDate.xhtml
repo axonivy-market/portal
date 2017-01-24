@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+  
+  <cc:interface componentType="IvyComponent">
+    <cc:attribute name="task" shortDescription="The task will be set expiry" />
+    <cc:attribute name="updateElement" shortDescription="The name of component will be updated after set expiryDate" />
+  </cc:interface>
+  
+  <cc:implementation>
+    <div id="#{cc.clientId}">
+      <h:form id="task-deadline-form">
+        <p:remoteCommand name="onHideTaskExpiryDateDialog" actionListener="#{logic.cancel}" process="@this"
+          update="task-deadline-form" />
+        <div>
+          <p:row>
+            <p:column>
+              <p:panel id="expiryDatePanel">
+                <p:panelGrid>
+                  <p:row>
+                    <p:column>
+                      <h:outputText
+                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskExpiryDateDialog/setDeadline')} " />
+                    </p:column>
+                    <p:column>
+                      <p:calendar id="task-deadline-input" value="#{cc.attrs.task.expiryTimestamp}" 
+                        pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+                    </p:column>
+                  </p:row>
+                </p:panelGrid>
+              </p:panel>
+            </p:column>
+          </p:row>
+        </div>
+        <div class="MarTop10 Fright">
+          <p:commandButton id="proceed-set-deadline-command" styleClass="portal-ok-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            actionListener="#{logic.saveExpiryDate(cc.attrs.task)}" process=":#{p:component('expiryDatePanel')}"
+            update="#{cc.attrs.updateElement}" oncomplete="PF('taskExpiryDateDialog').hide()" />
+          <p:spacer width="5px" />
+          <p:commandButton id="cancel-set-deadline-command"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/cancelButton')}"
+            actionListener="#{logic.cancel}" immediate="true" oncomplete="PF('taskExpiryDateDialog').hide()"
+            process="@this" styleClass="portal-cancel-button" />
+        </div>
+      </h:form>
+    </div>
+  </cc:implementation>
+</html>

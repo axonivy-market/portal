@@ -1,0 +1,10 @@
+IvyProcessStart #class
+ch.ivy.ws.addon.types #namespace
+description String #field
+fullRequestPath String #field
+fullUserFriendlyRequestPath String #field
+id Long #field
+name String #field
+startLink String #field
+applicationName String #field
+processElementId String #field

@@ -1,0 +1,106 @@
+@CHARSET "ISO-8859-1";
+.list-component {
+	font-size: 14px !important;
+}
+
+.ui-widget {
+	font-family: polorregular !important;
+	font-size: 14px !important;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+.ui-panel-titlebar {
+	border-bottom: 1px solid #dddddd !important;
+	background: white;
+	color: black;
+}
+.ui-panel {
+	padding: 0px !important;
+}
+
+.ui-widget-header a {
+	color: #34495e;
+}
+
+.ui-corner-all {
+	border-radius: 0px !important;
+	/*border: none;*/
+}
+
+.ui-datatable .ui-datatable-header {
+	border: 0px none !important;
+	text-align: left;
+	padding: 0;
+}
+
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {
+	border: none;
+}
+
+.ui-datatable .ui-datatable-data td {
+    border-style: solid;
+    border-width: 1px !important;
+}
+
+.ui-widget-header {
+	font-weight: normal;
+}
+
+label.ui-outputlabel {
+	width: 100%;
+	text-align: right;
+	display: block;
+	font-weight: bold;
+}
+
+.custom-date-only input {
+	width: 80px;
+}
+
+.ui-panelgrid td,
+.ui-panelgrid tr {
+	border-width: 0px !important;
+	margin: 0;
+}
+
+.ui-panelgrid-even,
+.ui-panelgrid-odd {
+	background: transparent !important;
+}
+
+.ui-datatable-header {
+	background: transparent;
+}
+
+.custom-align-right {
+	text-align: right;
+}
+.datePickerDialog label.ui-outputlabel {
+	text-align: left;
+}
+.datePickerDialog{
+	text-align: left;
+}
+.datePickerDialogCalendar input{
+	width: 40%;
+}
+.datePickerTitle{
+	font-weight: bold;
+}
+
+.settingGrid label.ui-outputlabel {
+	width: 250px;
+	margin-right: 10px;
+}
+
+.ui-dialog .ui-dialog-title {
+	font-size:25px !important;
+}

@@ -1,0 +1,3 @@
+Data #class
+ch.ivy.ws.addon #namespace
+processStarts List<ch.ivy.ws.addon.types.IvyProcessStart> #field

@@ -1,0 +1,7 @@
+{
+  /RICH_DIALOG *
+  /PROCESS {
+    /Functional-Processes.DefaultUserProcess "Functional Processes/DefaultUserProcessOverride"
+    /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"
+  }
+}

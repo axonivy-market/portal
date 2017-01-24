@@ -1,0 +1,11 @@
+SecurityServiceData #class
+ch.ivy.ws.addon #namespace
+application String #field
+applications List<String> #field
+errors List<ch.ivy.ws.addon.WSException> #field
+ivyRole ch.ivy.ws.addon.types.IvyRole #field
+ivyRoles List<ch.ivy.ws.addon.types.IvyRole> #field
+ivyUser ch.ivy.ws.addon.types.IvyUser #field
+ivyUsers List<ch.ivy.ws.addon.types.IvyUser> #field
+task ch.ivyteam.ivy.workflow.ITask #field
+taskId Long #field

@@ -1,0 +1,8 @@
+AbstractSynchronizingConfigurationData #class
+ch.ivy.add.portalkit #namespace
+businessEntities List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> #field
+businessEntity ch.ivy.addon.portalkit.persistence.domain.BusinessEntity #field
+customPropertyPairs List<ch.ivy.ws.addon.CustomPropertyPair> #field
+propertyKeyToBeDeleted String #field
+keyPrefixToBeDeleted String #field
+propertyKeysToBeDeleted List<String> #field

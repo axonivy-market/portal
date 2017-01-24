@@ -1,0 +1,6 @@
+ServerServiceIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+externalPath String #field
