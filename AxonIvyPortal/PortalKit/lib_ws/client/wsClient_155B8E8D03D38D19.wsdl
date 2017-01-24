@@ -1,0 +1,109 @@
+<?xml version="1.0" ?><wsdl:definitions name="ServerServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="getExternalHost" type="tns:getExternalHost"></xs:element>
+<xs:element name="getExternalHostResponse" type="tns:getExternalHostResponse"></xs:element>
+<xs:complexType name="getExternalHost">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getExternalHostResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getExternalHostResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getExternalHostResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="erros" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="externalHost" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsException">
+    <xs:complexContent>
+      <xs:extension base="tns:exception">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="errorDateTime" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="errorType" type="tns:wsErrorType"></xs:element>
+          <xs:element minOccurs="0" name="exception" type="tns:exception"></xs:element>
+          <xs:element minOccurs="0" name="helpText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="helpTextData" nillable="true" type="xs:anyType"></xs:element>
+          <xs:element minOccurs="0" name="server" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userTextData" nillable="true" type="xs:anyType"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="exception">
+    <xs:complexContent>
+      <xs:extension base="tns:throwable">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="stackTraceElement">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="dateTime">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="wsErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INFO"></xs:enumeration>
+      <xs:enumeration value="WARNING"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getExternalHostResponse">
+    <wsdl:part element="tns:getExternalHostResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExternalHost">
+    <wsdl:part element="tns:getExternalHost" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServerService">
+    <wsdl:operation name="getExternalHost">
+      <wsdl:input message="tns:getExternalHost" name="getExternalHost">
+    </wsdl:input>
+      <wsdl:output message="tns:getExternalHostResponse" name="getExternalHostResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServerServiceServiceSoapBinding" type="tns:ServerService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getExternalHost">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getExternalHost">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getExternalHostResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServerServiceService">
+    <wsdl:port binding="tns:ServerServiceServiceSoapBinding" name="ServerServicePort">
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/155B8D3292AB7784"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

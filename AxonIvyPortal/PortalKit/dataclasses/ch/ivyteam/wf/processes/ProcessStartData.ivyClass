@@ -1,0 +1,16 @@
+ProcessStartData #class
+ch.ivyteam.wf.processes #namespace
+applications List<ch.ivy.ws.addon.IvyApplication> #field
+apps List<String> #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+errorWs ch.ivy.ws.addon.WsException #field
+ivyProcessStarts List<ch.ivy.ws.addon.IvyProcessStart> #field
+listIterator java.util.ListIterator #field
+portalConfig ch.ivy.addon.portalkit.bo.PortalConfiguration #field
+processStarts List<ch.ivyteam.ivy.workflow.IProcessStart> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+tempErrors List<ch.ivy.ws.addon.WsException> #field
+processSearchCriteria ch.ivy.ws.addon.ProcessSearchCriteria #field
+language String #field
+isMultiServer Boolean #field

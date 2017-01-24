@@ -1,0 +1,4 @@
+SecurityMemberData #class
+ch.ivyteam.wf.processes #namespace
+ivyRoles List<ch.ivy.ws.addon.IvyRole> #field
+ivyUsers List<ch.ivy.ws.addon.IvyUser> #field

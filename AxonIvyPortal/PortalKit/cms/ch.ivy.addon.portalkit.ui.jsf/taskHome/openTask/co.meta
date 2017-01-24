@@ -1,0 +1,3 @@
+co: name={openTask} description={} changed={2016-12-21 15:21:08 CET} changedby={t} visualorder={0} guid={14C97F695412FEAA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CA152401DAFC9E} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 05:13:53 CEST} validto={} changed={2015-04-10 05:22:00 CEST} changedby={Johannees} properties={} id={}
+val: guid={14C97F695715A536} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:08 CET} validto={} changed={2016-12-21 15:21:08 CET} changedby={t} properties={} id={}

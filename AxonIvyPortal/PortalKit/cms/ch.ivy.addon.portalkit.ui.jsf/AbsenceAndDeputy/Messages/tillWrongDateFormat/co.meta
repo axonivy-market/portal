@@ -1,0 +1,3 @@
+co: name={tillWrongDateFormat} description={} changed={2016-12-21 15:20:43 CET} changedby={t} visualorder={0} guid={14F45130E7429CD0} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14F45130E794F10F} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:43 CET} validto={} changed={2016-12-21 15:20:43 CET} changedby={t} properties={} id={}
+val: guid={14F45133D4DC221F} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:43 CET} validto={} changed={2016-12-21 15:20:43 CET} changedby={t} properties={} id={}

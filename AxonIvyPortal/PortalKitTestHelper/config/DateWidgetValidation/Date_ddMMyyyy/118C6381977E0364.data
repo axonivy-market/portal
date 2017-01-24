@@ -1,0 +1,1 @@
+{/description "Date format \"default\" (01.01.2007)"/validationMessage "Invalid date format (example 01.01.2007)"/validationState "Error"/datatypeConfig {/formatString "dd.MM.yyyy"/format "default"}}

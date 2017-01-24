@@ -1,0 +1,3 @@
+co: name={defaultEmptyMessages} description={} changed={2016-12-21 15:21:04 CET} changedby={t} visualorder={0} guid={15239BB8D97D842A} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
+val: guid={15239BB8D9F4FADF} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:04 CET} validto={} changed={2016-12-21 15:21:04 CET} changedby={t} properties={} id={}
+val: guid={15307EECDED61DE6} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:04 CET} validto={} changed={2016-12-21 15:21:04 CET} changedby={t} properties={} id={}

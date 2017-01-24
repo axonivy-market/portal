@@ -1,0 +1,3 @@
+co: name={uploadFileExists} description={} changed={2015-11-20 15:55:34 CET} changedby={t} visualorder={0} guid={1511A321A7454EE9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1511A321A7CA99AB} datatype={} isdefault={true} langid={en} description={} validfrom={2015-11-18 11:44:29 CET} validto={} changed={2015-11-19 08:37:02 CET} changedby={ntttai} properties={} id={}
+val: guid={1512564B0FE35DF0} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:34 CET} validto={} changed={2015-11-20 15:55:34 CET} changedby={t} properties={} id={}

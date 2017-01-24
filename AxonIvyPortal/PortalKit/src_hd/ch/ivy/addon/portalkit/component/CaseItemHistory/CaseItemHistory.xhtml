@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" type="ch.ivy.addon.portalkit.bo.RemoteCase" />
+  <cc:attribute name="styleClass" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="case" value="#{cc.attrs.case}" />
+  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-history-column #{cc.attrs.styleClass}">
+    <p:scrollPanel styleClass="case-details-history-scrollpanel" mode="native" id="case-histories">
+      <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
+      <h:outputText id="empty-note-message" styleClass="empty-note-message" rendered="#{empty data.histories}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noHistories')}" />
+      <ui:repeat var="history" value="#{data.histories}">
+        <div class="history-author author truncate-author FontBold">
+          <i class="fa fa-check-circle" jsf:id="done-task"
+            jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" /> <i
+            class="fa fa-exclamation-circle" jsf:id="destroyed-task"
+            jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" /> <i
+            class="fa fa-exclamation-circle" jsf:id="zombie-task"
+            jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" /> <i
+            class="fa fa-pencil-square-o" jsf:rendered="#{history.type eq 'NOTE'}" />
+          <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/on')} " />
+          <h:outputText value="#{history.timestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+          <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/via')} " />
+          <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="user-full-name"
+            username="#{history.involvedUsername}" fullname="#{history.involvedFullname}" />
+
+          <p:tooltip for="done-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone')}"
+            trackMouse="true" />
+          <p:tooltip for="destroyed-task"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed')}" trackMouse="true" />
+          <p:tooltip for="zombie-task"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie')}" trackMouse="true" />
+        </div>
+        <div class="truncate-note history-note u-italic-font">
+          <p:commandLink
+            value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
+            id="task-name" actionListener="#{logic.openPortalTasks}" rendered="#{history.type eq 'TASK'}">
+            <f:attribute name="taskId" value="#{history.id}" />
+          </p:commandLink>
+          <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
+            <p:commandLink id="note-content" value="#{history.content}" rendered="#{history.type eq 'NOTE'}"
+              oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
+              update="@widgetVar(view-note-dialog)" />
+          </h:panelGroup>
+        </div>
+        <div class="note-separator" />
+      </ui:repeat>
+    </p:scrollPanel>
+
+    <h:panelGroup layout="block" styleClass="case-details-note-add">
+      <p:commandLink id="add-note-command" styleClass="case-details-document-add-link" 
+        onclick="PF('add-note-dialog-#{case.id}').show()" actionListener="#{data.setRemoteCase(case)}">
+        <span class="fa fa-plus-circle case-details-note-add-link-icon" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" />
+      </p:commandLink>
+    </h:panelGroup>
+  </div>
+
+  <p:dialog id="view-note-dialog" widgetVar="view-note-dialog" closeOnEscape="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/note')}" width="40%" appendTo="@(body)"
+    modal="true" resizable="false" dynamic="true">
+      <h:panelGroup layout="block">
+        <h:outputText value="#{data.fullNote}" />
+      </h:panelGroup>
+      <f:facet name="footer">
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+          onclick="PF('view-note-dialog').hide()" />
+      </f:facet>
+  </p:dialog>
+
+  <p:dialog id="add-note-dialog-#{case.id}" widgetVar="add-note-dialog-#{case.id}" dynamic="true" closable="true"
+    closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}"
+    showEffect="fade" resizable="false" modal="true" width="40%" appendTo="@(body)">
+    <h:form id="add-note-form">
+      <h:panelGroup layout="block">
+        <p:messages id="create-note-msg" for="note-content" />
+        <p:inputTextarea id="note-content" value="#{data.noteContent}" required="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNoteHelpText')}"
+          styleClass="note-content-textarea" autoResize="false" />
+      </h:panelGroup>
+      <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
+        <p:commandButton styleClass="add-new-note-save-command portal-ok-button" id="save-add-note-command"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
+          update="note-content create-note-msg :#{cc.clientId}:case-histories"
+          actionListener="#{logic.createNote()}"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();}" />
+        <p:commandButton id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this" styleClass="portal-cancel-button"
+          onsuccess="PF('add-note-dialog-#{case.id}').hide()" update="note-content create-note-msg" />
+      </h:panelGroup>
+    </h:form>
+  </p:dialog>
+</cc:implementation>
+</html>

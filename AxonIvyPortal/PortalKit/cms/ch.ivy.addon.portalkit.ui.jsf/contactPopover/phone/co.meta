@@ -1,0 +1,3 @@
+co: name={phone} description={} changed={2015-11-20 15:55:34 CET} changedby={t} visualorder={0} guid={14D328DF9C5CEAA7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1512564AE6E88DBD} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:34 CET} validto={} changed={2015-11-20 15:55:34 CET} changedby={t} properties={} id={}
+val: guid={14D328DF9D95ED2B} datatype={} isdefault={true} langid={en} description={} validfrom={2015-05-08 10:04:34 CEST} validto={} changed={2015-05-08 10:46:33 CEST} changedby={lptchi} properties={} id={}

@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <h:form id="documents-container">
+    <p:dataTable id="document-table" value="#{data.caseDocuments}" var="document"
+      emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" styleClass="MarTop5">
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}">
+        <h:outputText value="#{document.name}" title="#{document.name}" />
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}">
+        <h:outputText value="#{document.size}" title="#{document.size}" />
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="TexAlCenter">
+        <h:outputText value="#{document.modifiedDate}" title="#{document.modifiedDate}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+      </p:column>
+
+      <p:column styleClass="Fs14 TexAlCenter"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseTreeTable/actions')}">
+        <p:commandLink id="document-download" styleClass="fa fa-download MarRight10" immediate="true" ajax="false"
+          actionListener="#{logic.downloadFile(document.name)}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
+          <p:fileDownload value="#{data.downloadFile}" />
+        </p:commandLink>
+        <p:commandLink id="document-delete" styleClass="fa fa-trash-o"
+          actionListener="#{logic.deleteFile(document.name)}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}">
+        </p:commandLink>
+      </p:column>
+    </p:dataTable>
+
+    <div class="MarTop10">
+      <p:messages id="uploading-file-message" for="choose-uploading-file" closable="true" />
+      <p:fileUpload id="choose-uploading-file" mode="advanced" dragDropSupport="true" multiple="true"
+        update="#{p:component('document-table')} uploading-file-message" fileUploadListener="#{logic.submitUpload}" 
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}"
+        uploadLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/upload')}"
+        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+    </div>
+  </h:form>
+
+  <p:confirmDialog id="delete-file-confirmation"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmDeleteMessage')}" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" severity="alert"
+    widgetVar="deleteFileConfirmation">
+    <p:commandButton id="confirm-delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}"
+      styleClass="Fs14 portal-ok-button" actionListener="#{logic.submitDelete}" oncomplete="PF('deleteFileConfirmation').hide();"
+      update="#{p:component('document-table')}" />
+    <p:commandButton styleClass="Fs14 portal-cancel-button" id="reject-delete-file"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/no')}" onclick="PF('deleteFileConfirmation').hide()"
+      type="button" />
+  </p:confirmDialog>
+
+</cc:implementation>
+</html>

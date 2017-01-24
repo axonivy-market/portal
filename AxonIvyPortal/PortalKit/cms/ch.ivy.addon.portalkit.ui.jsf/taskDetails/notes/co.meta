@@ -1,0 +1,3 @@
+co: name={notes} description={} changed={2016-03-09 05:10:37 CET} changedby={ntttai} visualorder={0} guid={150EA96FE62DDB7E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={150EA96FE696BBCF} datatype={} isdefault={true} langid={en} description={} validfrom={2015-11-09 05:52:55 CET} validto={} changed={2016-03-09 05:10:24 CET} changedby={ntttai} properties={} id={}
+val: guid={150EA971FC347427} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-09 05:52:59 CET} validto={} changed={2015-11-09 11:46:36 CET} changedby={tntanh} properties={} id={}

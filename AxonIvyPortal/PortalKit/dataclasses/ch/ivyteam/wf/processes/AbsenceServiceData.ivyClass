@@ -1,0 +1,17 @@
+AbsenceServiceData #class
+ch.ivyteam.wf.processes #namespace
+absenceApplications java.util.List<ch.ivy.addon.portalkit.bo.ServerApplication> #field
+absences List<ch.ivy.ws.addon.IvyAbsence> #field
+absencesGroupedByUserNames List<ch.ivy.ws.addon.Absence> #field
+applications List<ch.ivy.ws.addon.IvyApplication> #field
+apps List<String> #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+servers List<ch.ivy.addon.portalkit.persistence.domain.Server> #field
+listIterator java.util.ListIterator #field
+remoteAbsences List<ch.ivy.addon.portalkit.bo.RemoteAbsence> #field
+remoteAbsencesInput List<ch.ivy.addon.portalkit.bo.RemoteAbsence> #field
+remoteApplicationUsers List<ch.ivy.addon.portalkit.bo.RemoteApplicationUser> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+tempErrors List<ch.ivy.ws.addon.WsException> #field
+username String #field

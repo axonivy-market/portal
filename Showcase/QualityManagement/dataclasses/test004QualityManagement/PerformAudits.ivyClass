@@ -1,0 +1,16 @@
+PerformAudits #class
+test004QualityManagement #namespace
+Mitarbeiter String #field
+Mitarbeiter PERSISTENT #fieldModifier
+Auditor String #field
+Auditor PERSISTENT #fieldModifier
+Termin Date #field
+Termin PERSISTENT #fieldModifier
+compliant Boolean #field
+compliant PERSISTENT #fieldModifier
+ReportID Number #field
+ReportID PERSISTENT #fieldModifier
+steps List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier

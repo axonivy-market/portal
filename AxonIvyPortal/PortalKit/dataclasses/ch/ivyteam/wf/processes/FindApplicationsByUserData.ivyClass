@@ -1,0 +1,6 @@
+FindApplicationsByUserData #class
+ch.ivyteam.wf.processes #namespace
+username String #field
+apps List<String> #field
+applications List<ch.ivy.addon.portalkit.persistence.domain.Application> #field
+thirdPartyApplications List<ch.ivy.addon.portalkit.persistence.domain.Application> #field

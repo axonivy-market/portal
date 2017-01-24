@@ -1,0 +1,3 @@
+co: name={requestTabTitle} description={} changed={2015-04-14 06:38:54 CEST} changedby={Johannes} visualorder={0} guid={14C92E3D53A5CCC6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CB6390B39F54E5} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-14 06:38:49 CEST} validto={} changed={2015-04-14 06:38:54 CEST} changedby={Johannes} properties={} id={}
+val: guid={14C92E3D53F37D96} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-07 09:59:07 CEST} validto={} changed={2015-04-07 10:00:22 CEST} changedby={Ngqhuy} properties={} id={}

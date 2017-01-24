@@ -1,0 +1,176 @@
+<?xml version="1.0" ?><wsdl:definitions name="ApplicationServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="getAllApplications" type="tns:getAllApplications"></xs:element>
+<xs:element name="getAllApplicationsResponse" type="tns:getAllApplicationsResponse"></xs:element>
+<xs:element name="getApplicationsByAppNames" type="tns:getApplicationsByAppNames"></xs:element>
+<xs:element name="getApplicationsByAppNamesResponse" type="tns:getApplicationsByAppNamesResponse"></xs:element>
+<xs:complexType name="getApplicationsByAppNames">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applicationNames" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getApplicationsByAppNamesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getApplicationsByAppNamesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getApplicationsByAppNamesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" nillable="true" type="tns:ivyApplication"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyApplication">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="isActive" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="compositeObject">
+    <xs:complexContent>
+      <xs:extension base="tns:nestedObject">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="nestedObject">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsException">
+    <xs:complexContent>
+      <xs:extension base="tns:exception">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="errorDateTime" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="errorType" type="tns:wsErrorType"></xs:element>
+          <xs:element minOccurs="0" name="exception" type="tns:exception"></xs:element>
+          <xs:element minOccurs="0" name="helpText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="helpTextData" nillable="true" type="xs:anyType"></xs:element>
+          <xs:element minOccurs="0" name="server" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userTextData" nillable="true" type="xs:anyType"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="exception">
+    <xs:complexContent>
+      <xs:extension base="tns:throwable">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="stackTraceElement">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="dateTime">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllApplications">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllApplicationsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getAllApplicationsResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllApplicationsResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" nillable="true" type="tns:ivyApplication"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="wsErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INFO"></xs:enumeration>
+      <xs:enumeration value="WARNING"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getApplicationsByAppNames">
+    <wsdl:part element="tns:getApplicationsByAppNames" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllApplications">
+    <wsdl:part element="tns:getAllApplications" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllApplicationsResponse">
+    <wsdl:part element="tns:getAllApplicationsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApplicationsByAppNamesResponse">
+    <wsdl:part element="tns:getApplicationsByAppNamesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ApplicationService">
+    <wsdl:operation name="getApplicationsByAppNames">
+      <wsdl:input message="tns:getApplicationsByAppNames" name="getApplicationsByAppNames">
+    </wsdl:input>
+      <wsdl:output message="tns:getApplicationsByAppNamesResponse" name="getApplicationsByAppNamesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllApplications">
+      <wsdl:input message="tns:getAllApplications" name="getAllApplications">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllApplicationsResponse" name="getAllApplicationsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ApplicationServiceServiceSoapBinding" type="tns:ApplicationService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getApplicationsByAppNames">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getApplicationsByAppNames">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getApplicationsByAppNamesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllApplications">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAllApplications">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAllApplicationsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ApplicationServiceService">
+    <wsdl:port binding="tns:ApplicationServiceServiceSoapBinding" name="ApplicationServicePort">
+      <soap:address location="http://aavn-ws-80:8081/ivy/ws/designer/PortalConnector/154F054217050170"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

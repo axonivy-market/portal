@@ -1,0 +1,3 @@
+co: name={typeMessage} description={} changed={2016-12-21 15:20:56 CET} changedby={t} visualorder={0} guid={1533BAC77BE4FF5C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1533BADBD376EDFF} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:56 CET} validto={} changed={2016-12-21 15:20:56 CET} changedby={t} properties={} id={}
+val: guid={1533BAC77C21E0F2} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:56 CET} validto={} changed={2016-12-21 15:20:56 CET} changedby={t} properties={} id={}

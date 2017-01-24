@@ -1,0 +1,18 @@
+TaskItemDocumentsData #class
+ch.ivy.addon.portalkit.component.TaskItemDocuments #namespace
+document ch.ivy.ws.addon.IvyDocument #field
+document PERSISTENT #fieldModifier
+documents List<ch.ivy.ws.addon.IvyDocument> #field
+documents PERSISTENT #fieldModifier
+documentId Long #field
+documentId PERSISTENT #fieldModifier
+documentFile org.primefaces.model.StreamedContent #field
+documentFile PERSISTENT #fieldModifier
+documentContent javax.activation.DataHandler #field
+documentContent PERSISTENT #fieldModifier
+documentUploadEvent org.primefaces.event.FileUploadEvent #field
+documentUploadEvent PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+task ch.ivy.addon.portalkit.bo.RemoteTask #field
+task PERSISTENT #fieldModifier

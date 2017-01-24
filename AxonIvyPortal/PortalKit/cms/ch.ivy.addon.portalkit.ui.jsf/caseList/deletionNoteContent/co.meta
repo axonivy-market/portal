@@ -1,0 +1,3 @@
+co: name={deletionNoteContent} description={} changed={2016-12-21 15:20:54 CET} changedby={t} visualorder={0} guid={1557B11101E4173F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15921C19E01936FC} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:54 CET} validto={} changed={2016-12-21 15:20:54 CET} changedby={t} properties={} id={}
+val: guid={1557B11102A865E8} datatype={} isdefault={true} langid={en} description={} validfrom={2016-06-23 04:22:43 CEST} validto={} changed={2016-06-23 04:22:58 CEST} changedby={lvcthanh} properties={} id={}

@@ -1,0 +1,21 @@
+<project name="portalkit_patch" default="patch_webservice_jar" basedir=".">
+	<description>
+		Adds some patched classes to the web service jar.
+		Run this file if any of the following web services are re-generated:
+		- Case Service
+	</description>
+
+	<target name="patch_webservice_jar">
+		<fileset id="dirs" dir="lib_ws/client" includes="wsClient_146B9AACE506491D.jar" />
+		<property name="ws_jar" refid="dirs" />
+
+		<echo>Updating web service jar file lib_ws/client/${ws_jar}</echo>
+		<jar destfile="lib_ws/client/${ws_jar}" update="true">
+			<fileset dir="classes" includes="ch/ivy/ws/addon/DownloadDocumentResult*" />
+		</jar>
+
+		<jar destfile="lib_ws/client/${ws_jar}" update="true">
+			<fileset dir="src" includes="ch/ivy/ws/addon/DownloadDocumentResult*" />
+		</jar>
+	</target>
+</project>

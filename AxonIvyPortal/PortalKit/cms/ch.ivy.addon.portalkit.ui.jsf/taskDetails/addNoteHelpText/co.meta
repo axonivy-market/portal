@@ -1,0 +1,3 @@
+co: name={addNoteHelpText} description={} changed={2016-12-21 15:21:08 CET} changedby={t} visualorder={0} guid={150EB8613CBEFD0E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={150EB8613CF2016E} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:08 CET} validto={} changed={2016-12-21 15:21:08 CET} changedby={t} properties={} id={}
+val: guid={150EB864E708C938} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:07 CET} validto={} changed={2016-12-21 15:21:07 CET} changedby={t} properties={} id={}

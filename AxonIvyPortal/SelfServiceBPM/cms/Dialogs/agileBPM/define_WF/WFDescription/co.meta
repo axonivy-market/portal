@@ -1,0 +1,3 @@
+co: name={WFDescription} description={} changed={2016-03-04 10:33:26 CET} changedby={dre} visualorder={0} guid={1446351B6EFBE930} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15340F97FFB97946} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:33:26 CET} validto={} changed={2016-03-04 10:33:26 CET} changedby={dre} properties={} id={}
+val: guid={1446351B6FFB9BC3} datatype={} isdefault={true} langid={en} description={} validfrom={2014-02-24 10:55:03 CET} validto={} changed={2014-02-24 10:55:03 CET} changedby={} properties={} id={}

@@ -1,0 +1,3 @@
+co: name={confirmDeleteMessage} description={} changed={2016-12-21 15:20:54 CET} changedby={t} visualorder={0} guid={14C5907D00017F16} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CB6148180AEF38} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:54 CET} validto={} changed={2016-12-21 15:20:54 CET} changedby={t} properties={} id={}
+val: guid={14C5907D0067985B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:54 CET} validto={} changed={2016-12-21 15:20:54 CET} changedby={t} properties={} id={}

@@ -1,0 +1,3 @@
+co: name={iconSelectionDialogHeader} description={} changed={2016-12-21 15:21:02 CET} changedby={t} visualorder={0} guid={14FEF852878DCD82} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14FF3FBBE0D10820} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:02 CET} validto={} changed={2016-12-21 15:21:02 CET} changedby={t} properties={} id={}
+val: guid={14FEF85287FE0185} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:02 CET} validto={} changed={2016-12-21 15:21:02 CET} changedby={t} properties={} id={}

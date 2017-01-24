@@ -1,0 +1,219 @@
+<?xml version="1.0" ?><wsdl:definitions name="PortalDataServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="addOrUpdate" type="tns:addOrUpdate"></xs:element>
+<xs:element name="addOrUpdateResponse" type="tns:addOrUpdateResponse"></xs:element>
+<xs:element name="delete" type="tns:delete"></xs:element>
+<xs:element name="deleteByPrefix" type="tns:deleteByPrefix"></xs:element>
+<xs:element name="deleteByPrefixResponse" type="tns:deleteByPrefixResponse"></xs:element>
+<xs:element name="deleteManyProperties" type="tns:deleteManyProperties"></xs:element>
+<xs:element name="deleteManyPropertiesResponse" type="tns:deleteManyPropertiesResponse"></xs:element>
+<xs:element name="deleteResponse" type="tns:deleteResponse"></xs:element>
+<xs:complexType name="addOrUpdate">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="customPropertyPairs" type="tns:customPropertyPair"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="customPropertyPair">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="key" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addOrUpdateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:addOrUpdateResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addOrUpdateResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="status" type="tns:returnedStatus"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="delete">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="propertyKeyToBeDeleted" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:deleteResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="returnedStatus" type="tns:returnedStatus"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteByPrefix">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="keyPrefixToBeDeleted" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteByPrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:deleteByPrefixResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteByPrefixResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="returnedStatus" type="tns:returnedStatus"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteManyProperties">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="propertyKeysToBeDeleted" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteManyPropertiesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:deleteManyPropertiesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteManyPropertiesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="returnedStatus" type="tns:returnedStatus"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="returnedStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESSFUL"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="delete">
+    <wsdl:part element="tns:delete" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteManyProperties">
+    <wsdl:part element="tns:deleteManyProperties" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addOrUpdate">
+    <wsdl:part element="tns:addOrUpdate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part element="tns:deleteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addOrUpdateResponse">
+    <wsdl:part element="tns:addOrUpdateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteByPrefix">
+    <wsdl:part element="tns:deleteByPrefix" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteByPrefixResponse">
+    <wsdl:part element="tns:deleteByPrefixResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteManyPropertiesResponse">
+    <wsdl:part element="tns:deleteManyPropertiesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PortalDataService">
+    <wsdl:operation name="addOrUpdate">
+      <wsdl:input message="tns:addOrUpdate" name="addOrUpdate">
+    </wsdl:input>
+      <wsdl:output message="tns:addOrUpdateResponse" name="addOrUpdateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input message="tns:delete" name="delete">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteResponse" name="deleteResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteByPrefix">
+      <wsdl:input message="tns:deleteByPrefix" name="deleteByPrefix">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteByPrefixResponse" name="deleteByPrefixResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteManyProperties">
+      <wsdl:input message="tns:deleteManyProperties" name="deleteManyProperties">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteManyPropertiesResponse" name="deleteManyPropertiesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PortalDataServiceServiceSoapBinding" type="tns:PortalDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="addOrUpdate">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="addOrUpdate">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="addOrUpdateResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="delete">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteByPrefix">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="deleteByPrefix">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteByPrefixResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteManyProperties">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="deleteManyProperties">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteManyPropertiesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PortalDataServiceService">
+    <wsdl:port binding="tns:PortalDataServiceServiceSoapBinding" name="PortalDataServicePort">
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/150374D567D113F5"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

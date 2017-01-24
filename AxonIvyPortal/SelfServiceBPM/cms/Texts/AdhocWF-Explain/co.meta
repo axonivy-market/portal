@@ -1,0 +1,3 @@
+co: name={AdhocWF-Explain} description={} changed={2016-03-04 10:39:49 CET} changedby={dre} visualorder={0} guid={142E61EDD52422D5} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
+val: guid={142E61EDD61D1E1E} datatype={} isdefault={true} langid={en} description={} validfrom={2013-12-12 10:24:11 CET} validto={} changed={2015-09-28 12:08:27 CEST} changedby={bb} properties={} id={}
+val: guid={15340FF57422F628} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:39:43 CET} validto={} changed={2016-03-04 10:39:49 CET} changedby={dre} properties={} id={}

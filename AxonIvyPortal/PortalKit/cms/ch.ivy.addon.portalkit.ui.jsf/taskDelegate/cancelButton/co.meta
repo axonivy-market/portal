@@ -1,0 +1,3 @@
+co: name={cancelButton} description={} changed={2015-04-10 11:51:31 CEST} changedby={Johannes} visualorder={0} guid={14C5A626519C673D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CA2BDD37EA61E9} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 11:51:26 CEST} validto={} changed={2015-04-10 11:51:31 CEST} changedby={Johannes} properties={} id={}
+val: guid={14C5A626521BBBB2} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-27 09:39:00 CET} validto={} changed={2015-03-27 09:39:05 CET} changedby={ndloc} properties={} id={}

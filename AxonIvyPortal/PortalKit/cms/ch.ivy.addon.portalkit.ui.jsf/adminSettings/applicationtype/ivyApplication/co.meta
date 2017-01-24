@@ -1,0 +1,3 @@
+co: name={ivyApplication} description={} changed={2016-12-21 15:20:47 CET} changedby={t} visualorder={0} guid={150F4AF029660F94} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={150F4AF02981B41A} datatype={} isdefault={true} langid={en} description={} validfrom={2015-06-11 05:54:49 CEST} validto={} changed={2015-11-11 04:55:21 CET} changedby={lvcthanh} properties={} id={}
+val: guid={15125648981BC38D} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:47 CET} validto={} changed={2016-12-21 15:20:47 CET} changedby={t} properties={} id={}

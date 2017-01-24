@@ -1,0 +1,7 @@
+ProcessStartServiceData #class
+ch.ivy.ws.addon #namespace
+errors List<ch.ivy.ws.addon.WSException> #field
+language String #field
+processSearchCriteria ch.ivy.ws.addon.service.ProcessSearchCriteria #field
+processStarts List<ch.ivy.ws.addon.types.IvyProcessStart> #field
+isUrlBuiltFromSystemProperties Boolean #field

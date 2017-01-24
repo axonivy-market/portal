@@ -1,0 +1,8 @@
+Data #class
+ch.ivy.add.portalkit #namespace
+apps List<String> #field
+tasks List<ch.ivy.ws.addon.IvyTask> #field
+error ch.ivy.ws.addon.WsException #field
+taskList List<ch.ivyteam.ivy.workflow.ITask> #field
+caseId Number #field
+spParameters String #field

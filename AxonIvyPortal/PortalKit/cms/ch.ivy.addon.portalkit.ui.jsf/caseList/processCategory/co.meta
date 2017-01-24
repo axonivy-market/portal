@@ -1,0 +1,3 @@
+co: name={processCategory} description={} changed={2014-07-24 09:03:56 GMT} changedby={tauser} visualorder={0} guid={14758ED1D6E4B429} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={147679CD1A4FB76B} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-24 09:03:47 GMT} validto={} changed={2014-07-24 09:03:56 GMT} changedby={tauser} properties={} id={}
+val: guid={14758ED1D71D594C} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 12:37:20 GMT} validto={} changed={2014-07-21 12:37:45 GMT} changedby={roman} properties={} id={}

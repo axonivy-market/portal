@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+  <h1>Create tasks</h1>
+  <h:form>
+    <p:panelGrid columns="2">
+      <p:outputLabel value="Number of categories" />
+      <p:inputText value="#{data.numOfCats}" />
+      <p:outputLabel value="Number of sub categories" />
+      <p:inputText value="#{data.numOfSubCats}" />
+      <p:outputLabel value="Number of cases per sub catetory" />
+      <p:inputText value="#{data.numOfCasesPerSubCat}" />
+    </p:panelGrid>
+    <p:panelGrid columns="1">
+      <h:outputText
+        value="*** Note that each case has 10 tasks. So the number of tasks will be created = number of categories * number of sub categories * number of cases per sub category * 10" />
+      <p:commandButton value="Create tasks" actionListener="#{logic.close}" />
+    </p:panelGrid>
+  </h:form>
+</h:body>
+</html>

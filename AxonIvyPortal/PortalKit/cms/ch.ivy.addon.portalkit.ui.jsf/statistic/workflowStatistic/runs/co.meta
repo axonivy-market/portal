@@ -1,0 +1,3 @@
+co: name={runs} description={} changed={2015-07-22 11:46:58 CEST} changedby={maonguyen} visualorder={0} guid={14EAA4898FAEAE02} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14EAA48990CB3785} datatype={} isdefault={true} langid={en} description={} validfrom={2014-02-25 10:01:49 CET} validto={} changed={2015-07-20 09:06:01 CEST} changedby={maonguyen} properties={} id={}
+val: guid={14EAA4898FD2EAA9} datatype={} isdefault={false} langid={de} description={} validfrom={2014-02-25 10:01:58 CET} validto={} changed={2015-07-20 09:06:01 CEST} changedby={maonguyen} properties={} id={}

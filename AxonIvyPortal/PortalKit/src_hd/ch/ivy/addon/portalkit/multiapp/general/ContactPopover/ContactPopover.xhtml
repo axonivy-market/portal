@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="contact" type="ch.ivy.addon.portalkit.bo.Contact"
+    shortDescription="contact data to display email, phone, mobile and so on" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/contactPopover/contact')}</h3>
+    <p:panelGrid styleClass="contact-popover-container">
+      <p:row styleClass="Black">
+        <p:column>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/contactPopover/email')}" />
+        </p:column>
+        <p:column>
+          <h:outputText id="email" value="-/-"
+            rendered="#{(cc.attrs.contact == null || cc.attrs.contact.email == null || cc.attrs.contact.email == '')}" />
+          <ui:fragment
+            rendered="#{(cc.attrs.contact != null and cc.attrs.contact.email != null and cc.attrs.contact.email != '')}">
+            <a href="mailto:#{cc.attrs.contact.email}">#{cc.attrs.contact.email}</a>
+          </ui:fragment>
+        </p:column>
+      </p:row>
+
+      <p:row
+        rendered="#{!(cc.attrs.contact == null || cc.attrs.contact.mobilePhone == null || cc.attrs.contact.mobilePhone == '')}">
+        <p:column>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/contactPopover/phone')}" />
+        </p:column>
+        <p:column>
+          <h:outputText id="phone-number" value="#{cc.attrs.contact.phone}" />
+        </p:column>
+      </p:row>
+
+      <p:row
+        rendered="#{!(cc.attrs.contact == null || cc.attrs.contact.mobilePhone == null || cc.attrs.contact.mobilePhone == '')}">
+        <p:column>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/contactPopover/mobilephone')}" />
+        </p:column>
+        <p:column>
+          <h:outputText id="mobile-phone-number" value="#{cc.attrs.contact.mobilePhone}" />
+        </p:column>
+      </p:row>
+    </p:panelGrid>
+  </div>
+</cc:implementation>
+</html>

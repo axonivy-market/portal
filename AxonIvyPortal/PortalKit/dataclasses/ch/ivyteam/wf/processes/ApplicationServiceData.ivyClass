@@ -1,0 +1,6 @@
+ApplicationServiceData #class
+ch.ivyteam.wf.processes #namespace
+endpoint String #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+applications List<ch.ivy.ws.addon.IvyApplication> #field
+errors List<ch.ivy.ws.addon.WsException> #field

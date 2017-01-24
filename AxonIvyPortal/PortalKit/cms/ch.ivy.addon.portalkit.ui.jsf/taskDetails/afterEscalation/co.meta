@@ -1,0 +1,3 @@
+co: name={afterEscalation} description={} changed={2015-11-09 11:43:37 CET} changedby={tntanh} visualorder={0} guid={150EAA1062440635} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={150EAA1062B456D5} datatype={} isdefault={true} langid={en} description={} validfrom={2015-11-09 06:03:52 CET} validto={} changed={2015-11-09 06:03:52 CET} changedby={tntanh} properties={} id={}
+val: guid={150EB017D0675F11} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-09 07:49:12 CET} validto={} changed={2015-11-09 11:43:37 CET} changedby={tntanh} properties={} id={}

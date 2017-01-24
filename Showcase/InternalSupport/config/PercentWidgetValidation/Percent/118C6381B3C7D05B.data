@@ -1,0 +1,1 @@
+{/description "Percent"/validationMessage "Invalid input (expected percentage)"/validationState "Error"/datatypeConfig {/fractionDigits "0"/format "percent"}}

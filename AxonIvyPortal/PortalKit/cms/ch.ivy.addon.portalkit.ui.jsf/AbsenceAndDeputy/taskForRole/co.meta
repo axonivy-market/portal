@@ -1,0 +1,3 @@
+co: name={taskForRole} description={} changed={2016-10-20 04:31:04 CEST} changedby={lttung} visualorder={0} guid={14BE7CC0E168056E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CA26322442CC6B} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:12:22 CEST} validto={} changed={2016-10-20 04:31:04 CEST} changedby={lttung} properties={} id={}
+val: guid={14BE7CC0E1B6B735} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-05 03:38:04 CET} validto={} changed={2016-10-20 04:31:04 CEST} changedby={lttung} properties={} id={}

@@ -1,0 +1,3 @@
+co: name={dialogHeader} description={} changed={2016-12-21 15:20:48 CET} changedby={t} visualorder={0} guid={1510F0206EBF31DB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1510F0206EE58A16} datatype={} isdefault={true} langid={en} description={} validfrom={2015-11-16 05:53:37 CET} validto={} changed={2016-01-22 14:09:27 CET} changedby={t} properties={} id={}
+val: guid={15125648D98F9D36} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:48 CET} validto={} changed={2016-12-21 15:20:48 CET} changedby={t} properties={} id={}

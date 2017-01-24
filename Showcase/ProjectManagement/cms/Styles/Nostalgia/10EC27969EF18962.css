@@ -1,0 +1,146 @@
+BODY {
+  SCROLLBAR-FACE-COLOR: #E8E8E8;
+  SCROLLBAR-SHADOW-COLOR: #BBBBBB;
+  SCROLLBAR-3DLIGHT-COLOR: #FFFFFF;
+  SCROLLBAR-TRACK-COLOR: #E8E8E8;
+  SCROLLBAR-DARKSHADOW-COLOR: #000000;  
+  font-family: Arial, Verdana, sans-serif;
+}
+
+H1 {
+  color: #669933;
+  border-width: 2px 0px 0px 0px;
+  border-style: solid;
+  border-color: #669933;
+}
+
+H2 {
+  color: black;
+  margin: 10px 0px 0px 10px;
+}
+
+H3 {
+  color: black;
+  margin: 8px 0px 0px 20px;
+}
+
+H4 {
+  color: black;
+  margin: 6px 0px 0px 30px;
+}
+
+H5 {
+  color: black;
+  margin: 4px 00px 0px 40px;
+}
+
+H6 {
+  color: black;
+  margin: 2px 0px 0px 50px;
+}
+
+TABLE.data
+{
+  background-color: #EEEEEE;
+  border-style: none;
+}
+
+TD.data {
+  SCROLLBAR-FACE-COLOR: #E8E8E8;
+  SCROLLBAR-SHADOW-COLOR: #BBBBBB;
+  SCROLLBAR-3DLIGHT-COLOR: #FFFFFF;
+  SCROLLBAR-TRACK-COLOR: #E8E8E8;
+  SCROLLBAR-DARKSHADOW-COLOR: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 10pt;
+  border-style: none;
+}
+
+TH.data {
+  scrollbar-face-color: #e8e8e8;
+  scrollbar-shadow-color: #bbbbbb;
+  scrollbar-3dlight-color: #ffffff;
+  scrollbar-track-color: #e8e8e8;
+  scrollbar-darkshadow-color: #000000;
+  font-family: arial, verdana, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  background-color: #669933;
+  color: #e8e8e8;
+  border-style: none;  
+}
+
+SELECT {
+	FONT-SIZE: 9pt;
+	FONT-FAMILY: Arial, Verdana, sans-serif;
+	border-width: 1px;
+	border-style: grofe;
+	border-color: #BBBBBB;
+	background-color: #E8E8E8;
+}
+
+SELECT:focus {
+	FONT-SIZE: 9pt;
+	FONT-FAMILY: Arial, Verdana, sans-serif;
+	border-width: 1px;
+	border-style: grofe;
+	border-color: #BBBBBB;
+	background-color: #FFFFFF;
+}
+
+TEXTAREA {
+	FONT-SIZE: 10pt;
+	FONT-FAMILY: Arial, Verdana, sans-serif;
+	border-width: 1px;
+	border-style: grofe;
+	border-color: #BBBBBB;
+	background-color: #E8E8E8;
+}
+
+TEXTAREA:focus {
+	FONT-SIZE: 10pt;
+	FONT-FAMILY: Arial, Verdana, sans-serif;
+	border-width: 1px;
+	border-style: grofe;
+	border-color: #BBBBBB;
+	background-color: #FFFFFF;
+}
+
+INPUT:focus {
+	FONT-SIZE: 10pt; 
+	FONT-FAMILY: Arial, Verdana, sans-serif;
+	border-width: 1px;
+	border-style: grofe;
+	border-color: #BBBBBB;
+	background-color: #FFFFFF;
+}
+
+INPUT {
+	FONT-SIZE: 10pt; 
+	FONT-FAMILY: Arial, Verdana, sans-serif;
+	border-width: 1px;
+	border-style: grofe;
+	border-color: #BBBBBB;
+	background-color: #E8E8E8;
+}
+
+A:link {
+  text-decoration: none;
+  color: #669933;
+}
+
+A:visited {
+  text-decoration: none;
+  color: #669933;
+}
+
+A:active {
+  text-decoration: underline;
+  color: #669933;
+}
+
+A:hover {
+  text-decoration: underline;
+  color: #668844;
+}
+

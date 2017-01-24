@@ -1,0 +1,1 @@
+{/description "Max text length 255 characters"/validationMessage "Invalid input (maximum text length is 255 characters)"/datatypeConfig {/maxLength "255"/validationExpression "[\\D\\d]*"/inputFilterExpression "[\\D\\d]*"}}

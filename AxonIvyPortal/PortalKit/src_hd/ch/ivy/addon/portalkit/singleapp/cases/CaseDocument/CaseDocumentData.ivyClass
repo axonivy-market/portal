@@ -1,0 +1,14 @@
+CaseDocumentData #class
+ch.ivy.addon.portalkit.singleapp.cases.CaseDocument #namespace
+selectedFile org.primefaces.model.UploadedFile #field
+selectedFile PERSISTENT #fieldModifier
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+caseDocuments List<ch.ivy.addon.portalkit.vo.DocumentVO> #field
+caseDocuments PERSISTENT #fieldModifier
+downloadFile org.primefaces.model.StreamedContent #field
+downloadFile PERSISTENT #fieldModifier
+selectedFilePath String #field
+selectedFilePath PERSISTENT #fieldModifier
+uploadingFileExists Boolean #field
+uploadingFileExists PERSISTENT #fieldModifier

@@ -1,0 +1,1 @@
+{/value "0 0 5 * * ?"/description "Cron expression define the time to reload application users into table cache.\nEx. expression for at 5AM every day  is \'0 0 5 * * ?\'\nRefer to http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger\nPlease restart Ivy Server after change this variable."/environments * }

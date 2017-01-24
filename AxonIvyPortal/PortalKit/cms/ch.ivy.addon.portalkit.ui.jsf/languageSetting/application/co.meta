@@ -1,0 +1,3 @@
+co: name={application} description={} changed={2015-04-10 10:53:52 CEST} changedby={Johannes} visualorder={0} guid={14C01BEAE601D5DB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CA2890B4371633} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:53:34 CEST} validto={} changed={2015-04-10 10:53:52 CEST} changedby={Johannes} properties={} id={}
+val: guid={14C01BEAE6ACFEE6} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-10 04:33:35 CET} validto={} changed={2015-03-10 04:33:41 CET} changedby={Ngqhuy} properties={} id={}

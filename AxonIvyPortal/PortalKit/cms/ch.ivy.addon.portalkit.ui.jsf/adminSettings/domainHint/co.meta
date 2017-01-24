@@ -1,0 +1,3 @@
+co: name={domainHint} description={} changed={2016-12-21 15:20:48 CET} changedby={t} visualorder={0} guid={1556D2288DBD13D6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1556D2288E1BA438} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:48 CET} validto={} changed={2016-12-21 15:20:48 CET} changedby={t} properties={} id={}
+val: guid={1556D232B4A43206} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:48 CET} validto={} changed={2016-12-21 15:20:48 CET} changedby={t} properties={} id={}

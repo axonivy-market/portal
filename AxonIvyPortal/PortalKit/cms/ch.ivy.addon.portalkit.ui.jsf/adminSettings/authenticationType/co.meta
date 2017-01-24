@@ -1,0 +1,3 @@
+co: name={authenticationType} description={} changed={2016-10-04 12:51:23 CEST} changedby={t} visualorder={0} guid={155346D93B2C0CFA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={155346D93B973730} datatype={} isdefault={true} langid={en} description={} validfrom={2016-06-09 11:10:44 CEST} validto={} changed={2016-06-09 11:10:44 CEST} changedby={lttung} properties={} id={}
+val: guid={155347A41AC23BD0} datatype={} isdefault={false} langid={de} description={} validfrom={2016-06-09 11:24:35 CEST} validto={} changed={2016-10-04 12:51:23 CEST} changedby={t} properties={} id={}

@@ -1,0 +1,3 @@
+co: name={externalHost} description={} changed={2016-12-21 15:20:49 CET} changedby={t} visualorder={0} guid={155BA0329EBAD2E2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={155BA0329F0A01A9} datatype={} isdefault={true} langid={en} description={} validfrom={2016-07-05 09:41:57 CEST} validto={} changed={2016-07-05 09:43:37 CEST} changedby={lvcthanh} properties={} id={}
+val: guid={155BA697F72CD7E1} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:49 CET} validto={} changed={2016-12-21 15:20:49 CET} changedby={t} properties={} id={}

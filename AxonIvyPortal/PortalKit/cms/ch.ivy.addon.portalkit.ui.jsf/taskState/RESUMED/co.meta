@@ -1,0 +1,3 @@
+co: name={RESUMED} description={} changed={2015-04-23 11:14:34 CEST} changedby={nqtinh} visualorder={0} guid={14C5970721CDE4DE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CE58EA96E216D2} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-23 11:14:19 CEST} validto={} changed={2015-04-23 11:14:34 CEST} changedby={nqtinh} properties={} id={}
+val: guid={14C5970721E46FD7} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-27 05:11:01 CET} validto={} changed={2015-04-23 11:14:12 CEST} changedby={nqtinh} properties={} id={}

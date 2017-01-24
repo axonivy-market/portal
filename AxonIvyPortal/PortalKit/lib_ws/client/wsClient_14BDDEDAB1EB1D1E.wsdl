@@ -1,0 +1,504 @@
+<?xml version="1.0" ?><wsdl:definitions name="UserServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="findUserSetting" type="tns:findUserSetting"></xs:element>
+<xs:element name="findUserSettingResponse" type="tns:findUserSettingResponse"></xs:element>
+<xs:element name="getEmailSetttings" type="tns:getEmailSetttings"></xs:element>
+<xs:element name="getEmailSetttingsResponse" type="tns:getEmailSetttingsResponse"></xs:element>
+<xs:element name="getLanguagesSettings" type="tns:getLanguagesSettings"></xs:element>
+<xs:element name="getLanguagesSettingsResponse" type="tns:getLanguagesSettingsResponse"></xs:element>
+<xs:element name="getSubstitutes" type="tns:getSubstitutes"></xs:element>
+<xs:element name="getSubstitutesResponse" type="tns:getSubstitutesResponse"></xs:element>
+<xs:element name="saveUserSetting" type="tns:saveUserSetting"></xs:element>
+<xs:element name="saveUserSettingResponse" type="tns:saveUserSettingResponse"></xs:element>
+<xs:element name="setEMailSettings" type="tns:setEMailSettings"></xs:element>
+<xs:element name="setEMailSettingsResponse" type="tns:setEMailSettingsResponse"></xs:element>
+<xs:element name="setLanguagesSettings" type="tns:setLanguagesSettings"></xs:element>
+<xs:element name="setLanguagesSettingsResponse" type="tns:setLanguagesSettingsResponse"></xs:element>
+<xs:element name="setSubstitutes" type="tns:setSubstitutes"></xs:element>
+<xs:element name="setSubstitutesResponse" type="tns:setSubstitutesResponse"></xs:element>
+<xs:complexType name="findUserSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findUserSettingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findUserSettingResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findUserSettingResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="userSetting" type="tns:ivyUserSetting"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsException">
+    <xs:complexContent>
+      <xs:extension base="tns:exception">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="errorDateTime" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="errorType" type="tns:wsErrorType"></xs:element>
+          <xs:element minOccurs="0" name="exception" type="tns:exception"></xs:element>
+          <xs:element minOccurs="0" name="helpText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="helpTextData" nillable="true" type="xs:anyType"></xs:element>
+          <xs:element minOccurs="0" name="server" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userTextData" nillable="true" type="xs:anyType"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="exception">
+    <xs:complexContent>
+      <xs:extension base="tns:throwable">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="stackTraceElement">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyUserSetting">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="emailNotificationDisabled" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnFriday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnMonday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnSaturday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnSunday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnThursday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnTuesday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnWednesday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendOnNewWorkTasks" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="useUserEmailSettings" type="xs:boolean"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="compositeObject">
+    <xs:complexContent>
+      <xs:extension base="tns:nestedObject">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="nestedObject">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="dateTime">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setSubstitutes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="substitutes" type="tns:ivySubstitute"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivySubstitute">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="forThisRole" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="mySubstitute" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="roleDisplayName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="setSubstitutesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setLanguagesSettings">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="settings" type="tns:ivyLanguageSetting"></xs:element>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyLanguageSetting">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="supportedLanguages" nillable="true" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userLanguage" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="setLanguagesSettingsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getLanguagesSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="serverId" type="xs:long"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getLanguagesSettingsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getLanguagesSettingsResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getLanguagesSettingsResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="settings" nillable="true" type="tns:ivyLanguageSetting"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getEmailSetttings">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getEmailSetttingsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getEmailSetttingsResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getEmailSetttingsResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="settings" nillable="true" type="tns:ivyEmailSetting"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyEmailSetting">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customMailsDisabled" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailNotificationDisabled" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnFriday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnMonday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnSaturday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnSunday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnThursday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnTuesday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnWednesday" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="emailSendOnNewWorkTasks" type="xs:boolean"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="saveUserSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userSetting" type="tns:ivyUserSetting"></xs:element>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="saveUserSettingResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSubstitutes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSubstitutesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getSubstitutesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSubstitutesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applicationUsers" nillable="true" type="tns:ivyUser"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="substitutes" nillable="true" type="tns:ivySubstitute"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyUser">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="application" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="displayName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="memberName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="setEMailSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="settings" type="tns:ivyEmailSetting"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setEMailSettingsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="wsErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INFO"></xs:enumeration>
+      <xs:enumeration value="WARNING"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="setLanguagesSettingsResponse">
+    <wsdl:part element="tns:setLanguagesSettingsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLanguagesSettingsResponse">
+    <wsdl:part element="tns:getLanguagesSettingsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setLanguagesSettings">
+    <wsdl:part element="tns:setLanguagesSettings" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLanguagesSettings">
+    <wsdl:part element="tns:getLanguagesSettings" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUserSettingResponse">
+    <wsdl:part element="tns:findUserSettingResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmailSetttings">
+    <wsdl:part element="tns:getEmailSetttings" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveUserSetting">
+    <wsdl:part element="tns:saveUserSetting" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmailSetttingsResponse">
+    <wsdl:part element="tns:getEmailSetttingsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubstitutes">
+    <wsdl:part element="tns:getSubstitutes" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubstitutesResponse">
+    <wsdl:part element="tns:getSubstitutesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setEMailSettingsResponse">
+    <wsdl:part element="tns:setEMailSettingsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveUserSettingResponse">
+    <wsdl:part element="tns:saveUserSettingResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setSubstitutesResponse">
+    <wsdl:part element="tns:setSubstitutesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUserSetting">
+    <wsdl:part element="tns:findUserSetting" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setSubstitutes">
+    <wsdl:part element="tns:setSubstitutes" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setEMailSettings">
+    <wsdl:part element="tns:setEMailSettings" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserService">
+    <wsdl:operation name="findUserSetting">
+      <wsdl:input message="tns:findUserSetting" name="findUserSetting">
+    </wsdl:input>
+      <wsdl:output message="tns:findUserSettingResponse" name="findUserSettingResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setSubstitutes">
+      <wsdl:input message="tns:setSubstitutes" name="setSubstitutes">
+    </wsdl:input>
+      <wsdl:output message="tns:setSubstitutesResponse" name="setSubstitutesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setLanguagesSettings">
+      <wsdl:input message="tns:setLanguagesSettings" name="setLanguagesSettings">
+    </wsdl:input>
+      <wsdl:output message="tns:setLanguagesSettingsResponse" name="setLanguagesSettingsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLanguagesSettings">
+      <wsdl:input message="tns:getLanguagesSettings" name="getLanguagesSettings">
+    </wsdl:input>
+      <wsdl:output message="tns:getLanguagesSettingsResponse" name="getLanguagesSettingsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEmailSetttings">
+      <wsdl:input message="tns:getEmailSetttings" name="getEmailSetttings">
+    </wsdl:input>
+      <wsdl:output message="tns:getEmailSetttingsResponse" name="getEmailSetttingsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="saveUserSetting">
+      <wsdl:input message="tns:saveUserSetting" name="saveUserSetting">
+    </wsdl:input>
+      <wsdl:output message="tns:saveUserSettingResponse" name="saveUserSettingResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSubstitutes">
+      <wsdl:input message="tns:getSubstitutes" name="getSubstitutes">
+    </wsdl:input>
+      <wsdl:output message="tns:getSubstitutesResponse" name="getSubstitutesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setEMailSettings">
+      <wsdl:input message="tns:setEMailSettings" name="setEMailSettings">
+    </wsdl:input>
+      <wsdl:output message="tns:setEMailSettingsResponse" name="setEMailSettingsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserServiceServiceSoapBinding" type="tns:UserService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="findUserSetting">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findUserSetting">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findUserSettingResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setSubstitutes">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="setSubstitutes">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setSubstitutesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setLanguagesSettings">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="setLanguagesSettings">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setLanguagesSettingsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLanguagesSettings">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLanguagesSettings">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLanguagesSettingsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEmailSetttings">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getEmailSetttings">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getEmailSetttingsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="saveUserSetting">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="saveUserSetting">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="saveUserSettingResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSubstitutes">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getSubstitutes">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getSubstitutesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setEMailSettings">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="setEMailSettings">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setEMailSettingsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserServiceService">
+    <wsdl:port binding="tns:UserServiceServiceSoapBinding" name="UserServicePort">
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/138D76541AF4C4CF"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
