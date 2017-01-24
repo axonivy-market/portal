@@ -1,0 +1,6 @@
+{
+  /RICH_DIALOG *
+  /PROCESS {
+    /Functional-Processes.Navigator "Functional Processes/NavigatorOverride"
+  }
+}

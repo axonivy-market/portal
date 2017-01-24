@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="pageTitle">Cockpit</ui:define>
+    <ui:define name="pageContent">
+      <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
+      <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
+      <c:set var="displayStatisticWidget" value="#{not empty displayStatisticWidget ? displayStatisticWidget : true}" />
+
+      <div class="js-dashboard-default-widget-container dashboard-container">
+
+        <ui:insert name="processWidget">
+	        <div class="js-dashboard-main-content-1st-col dashboard-main-content-1st-col layout-col" jsf:rendered="#{displayProcessWidget}">
+	            <h:panelGroup layout="block" styleClass="js-process-widget" >
+	              <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true"
+	                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader')}" showBackButton="true"
+	                onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchProcessWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
+	                onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchProcessWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)" />
+	            </h:panelGroup>
+	        </div>
+        </ui:insert>
+
+        <ui:insert name="taskWidget">
+	        <div class="js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col" jsf:rendered="#{displayTaskWidget}">
+	          <ui:param name="useOverride" value="false" />
+	          <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{tasks}"
+	            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}"
+	            onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
+	            onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)">
+	
+	            <ui:fragment rendered="#{not useOverride}">
+	              <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="description" task="#{task}" 
+	                descriptionComponentToUpdate="#{p:component('description-cell')}" />
+	              <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-info" task="#{task}"
+	                priorityComponentToUpdate="#{p:component('priority-cell')}"
+	                componentToUpdate="#{p:component('task-details-notes')}" />
+	              <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" />
+	            <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}" />
+	      		<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
+	                <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-info-circle js-data-column-responsive-button"
+	                  displayedSelectors="['#task-data']" hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
+	                <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-document-column-responsive-button"
+	                  displayedSelectors="['#task-document']" hiddenSelectorsInMediumScreen="['.task-details .replaced']"
+	                  hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
+	                <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-align-left js-note-column-responsive-button"
+	                  displayedSelectors="['#task-note']" hiddenSelectorsInMediumScreen="['.task-details .replaced']"
+	                  hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
+	                <h:outputScript library="js" name="task-detail-default-responsiveness.js" />
+              	</ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+	            </ui:fragment>
+	            
+	            
+	
+	            <ui:fragment rendered="#{useOverride}">
+	              <ui:insert name="taskBody">
+	              </ui:insert>
+	            </ui:fragment>
+	          </ic:ch.ivy.addon.portalkit.component.TaskWidget>
+	        </div>
+        </ui:insert>
+
+        <ui:insert name="statisticWidget">
+	        <div class="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col" jsf:rendered="#{displayStatisticWidget}">
+	            <h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">
+	              <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
+	                priorityStatistic="#{statistic.priorityStatistic}" expiryStatistic="#{statistic.expiryStatistic}"
+	                onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchStatisticWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
+	                onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchStatisticWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)" />
+	            </h:panelGroup>
+	        </div>
+        </ui:insert>
+      </div>
+      
+      <div class="js-custom-widget-container simple-container">
+        <div class="js-simple-main-col">
+        	<ui:insert name="customWidget">
+        		
+	      	</ui:insert>
+        </div>
+      </div>
+
+    </ui:define>
+
+    <ui:define name="footer">
+      <script type="text/javascript">
+        var dashboardLargeScreen = new DashboardLargeScreen();
+        var dashboardMediumScreen = new DashboardMediumScreen();
+        var dashboardSmallScreen = new DashboardSmallScreen();
+        var portalDashboardToolkit = PortalDashboardToolkit();
+        var responsiveToolkit = ResponsiveToolkit(dashboardLargeScreen, dashboardMediumScreen,
+            dashboardSmallScreen);
+        $(function() {
+          Portal.init(responsiveToolkit);
+        });
+      </script>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

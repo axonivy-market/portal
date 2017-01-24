@@ -1,0 +1,21 @@
+AddOrUpdateWSCallingData #class
+ch.ivy.add.portalkit.synchronization #namespace
+customPropertyPairs List<ch.ivy.ws.addon.CustomPropertyPair> #field
+customPropertyPairs PERSISTENT #fieldModifier
+endpoint String #field
+message String #field
+returnedStatus ch.ivy.ws.addon.ReturnedStatus #field
+serverURL String #field
+serverURL PERSISTENT #fieldModifier
+retryTime Integer #field
+retryTime PERSISTENT #fieldModifier
+authenticationType ch.ivy.addon.portalkit.enums.WSAuthenticationType #field
+authenticationType PERSISTENT #fieldModifier
+username String #field
+username PERSISTENT #fieldModifier
+password String #field
+password PERSISTENT #fieldModifier
+host String #field
+host PERSISTENT #fieldModifier
+domain String #field
+domain PERSISTENT #fieldModifier

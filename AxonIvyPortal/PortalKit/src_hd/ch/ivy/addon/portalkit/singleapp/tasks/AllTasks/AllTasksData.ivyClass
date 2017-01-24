@@ -1,0 +1,12 @@
+AllTasksData #class
+ch.ivy.addon.portalkit.singleapp.tasks.AllTasks #namespace
+tasks List<ch.ivy.add.portalkit.admin.Task> #field
+tasks PERSISTENT #fieldModifier
+selectedTask ch.ivyteam.ivy.workflow.ITask #field
+selectedTask PERSISTENT #fieldModifier
+filteredTasks List<ch.ivy.add.portalkit.admin.Task> #field
+filteredTasks PERSISTENT #fieldModifier
+propertierFilter ch.ivyteam.ivy.workflow.IPropertyFilter #field
+propertierFilter PERSISTENT #fieldModifier
+isFilterMode Boolean #field
+isFilterMode PERSISTENT #fieldModifier

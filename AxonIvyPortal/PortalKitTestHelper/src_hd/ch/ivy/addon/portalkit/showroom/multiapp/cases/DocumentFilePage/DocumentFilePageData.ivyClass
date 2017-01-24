@@ -1,0 +1,4 @@
+DocumentFilePageData #class
+ch.ivy.addon.portalkit.showroom.multiapp.cases.DocumentFilePage #namespace
+caseId Number #field
+caseId PERSISTENT #fieldModifier

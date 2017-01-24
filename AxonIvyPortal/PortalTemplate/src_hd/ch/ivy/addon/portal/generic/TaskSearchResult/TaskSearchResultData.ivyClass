@@ -1,0 +1,4 @@
+TaskSearchResultData #class
+ch.ivy.addon.portal.generic.TaskSearchResult #namespace
+view ch.ivy.addon.portal.generic.view.TaskView #field
+view PERSISTENT #fieldModifier

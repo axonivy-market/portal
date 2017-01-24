@@ -1,0 +1,16 @@
+TaskDelegateData #class
+ch.ivy.addon.portalkit.singleapp.tasks.TaskDelegate #namespace
+isUser Boolean #field
+isUser PERSISTENT #fieldModifier
+selectedUser ch.ivyteam.ivy.security.IUser #field
+selectedUser PERSISTENT #fieldModifier
+selectedRole ch.ivyteam.ivy.security.IRole #field
+selectedRole PERSISTENT #fieldModifier
+itask ch.ivyteam.ivy.workflow.ITask #field
+itask PERSISTENT #fieldModifier
+disabledDelegateButton Boolean #field
+disabledDelegateButton PERSISTENT #fieldModifier
+roles List<ch.ivyteam.ivy.security.IRole> #field
+roles PERSISTENT #fieldModifier
+users List<ch.ivyteam.ivy.security.IUser> #field
+users PERSISTENT #fieldModifier

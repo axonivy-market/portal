@@ -1,0 +1,26 @@
+ProcessLeaves #class
+internaltest #namespace
+Mitarbeiter String #field
+Mitarbeiter PERSISTENT #fieldModifier
+Von Date #field
+Von PERSISTENT #fieldModifier
+Bis Date #field
+Bis PERSISTENT #fieldModifier
+Art String #field
+Art PERSISTENT #fieldModifier
+beantragt Boolean #field
+beantragt PERSISTENT #fieldModifier
+genehmigt Boolean #field
+genehmigt PERSISTENT #fieldModifier
+Ablehnungsgrund String #field
+Ablehnungsgrund PERSISTENT #fieldModifier
+AnzahlTage Number #field
+AnzahlTage PERSISTENT #fieldModifier
+Resturlaubstage Number #field
+Resturlaubstage PERSISTENT #fieldModifier
+Vertretung String #field
+Vertretung PERSISTENT #fieldModifier
+storniert Boolean #field
+storniert PERSISTENT #fieldModifier
+processState internalPortal.ProcessStatus #field
+processState PERSISTENT #fieldModifier

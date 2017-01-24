@@ -1,0 +1,5 @@
+Absence #class
+ch.ivy.ws.addon.types #namespace
+absences java.util.List<ch.ivy.ws.addon.types.IvyAbsence> #field
+userName String #field
+userFullName String #field

@@ -1,0 +1,6 @@
+IsAliveServiceData #class
+ch.ivy.ws.addon #namespace
+isAlive Boolean #field
+applicationList List<ch.ivy.ws.addon.types.IvyApplication> #field
+apps List<String> #field
+errors List<ch.ivy.ws.addon.WSException> #field

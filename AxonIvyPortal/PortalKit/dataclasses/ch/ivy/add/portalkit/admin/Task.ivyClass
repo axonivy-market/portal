@@ -1,0 +1,10 @@
+Task #class
+ch.ivy.add.portalkit.admin #namespace
+id Number #field
+caseId Number #field
+description String #field
+caseDescription String #field
+createdOn java.util.Date #field
+state String #field
+activator ch.ivyteam.ivy.security.ISecurityMember #field
+ivyTask ch.ivyteam.ivy.workflow.ITask #field

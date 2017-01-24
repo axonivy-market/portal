@@ -1,0 +1,5 @@
+{
+  /PROCESS {
+    /Functional-Processes.CaseHistoryCustomTaskFilter "Functional Processes/CaseHistoryCustomTaskFilterOverride"
+  }
+}

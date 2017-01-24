@@ -1,0 +1,15 @@
+GlobalSearchData #class
+ch.ivy.addon.portal.generic #namespace
+cases List<ch.ivy.addon.portalkit.bo.RemoteCase> #field
+caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
+keyword String #field
+processes List<ch.ivyteam.ivy.workflow.IProcessStart> #field
+processSearchCriteria ch.ivy.ws.addon.ProcessSearchCriteria #field
+tasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+username String #field
+language String #field
+serverId Long #field
+serverId 'the id of the selected server' #fieldComment
+applicationName String #field
+applicationName 'the name of the selected application' #fieldComment

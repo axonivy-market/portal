@@ -1,0 +1,5 @@
+ApplicationServiceData #class
+ch.ivy.ws.addon #namespace
+applications List<ch.ivy.ws.addon.types.IvyApplication> #field
+errors List<ch.ivy.ws.addon.WSException> #field
+applicationNames List<String> #field

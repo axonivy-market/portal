@@ -1,0 +1,36 @@
+AbsencesAndDeputyData #class
+ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy #namespace
+absences List<ch.ivy.addon.portalkit.bo.RemoteAbsence> #field
+absences PERSISTENT #fieldModifier
+absencesApplications java.util.List<ch.ivy.addon.portalkit.bo.ServerApplication> #field
+absencesApplications PERSISTENT #fieldModifier
+absencesToUpdate List<ch.ivy.addon.portalkit.bo.RemoteAbsence> #field
+backupAbsence ch.ivy.addon.portalkit.bo.RemoteAbsence #field
+backupAbsence PERSISTENT #fieldModifier
+errorLink String #field
+errorLink PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+isLoadDeputy Boolean #field
+isSupervisor Boolean #field
+ivyUsers List<ch.ivy.addon.portalkit.bo.RemoteApplicationUser> #field
+ivyUsers PERSISTENT #fieldModifier
+queryAutoComplete String #field
+remoteUsers List<ch.ivy.addon.portalkit.bo.RemoteUser> #field
+selectedAbsence ch.ivy.addon.portalkit.bo.RemoteAbsence #field
+selectedAbsence PERSISTENT #fieldModifier
+substituteRoot org.primefaces.model.TreeNode #field
+substituteRoot PERSISTENT #fieldModifier
+substitutes List<ch.ivy.addon.portalkit.bo.RemoteSubstitute> #field
+substitutes PERSISTENT #fieldModifier
+userName String #field
+userNames java.util.Set<String> #field
+validationError Boolean #field
+absenceInThePastShown Boolean #field
+absenceInThePastShown PERSISTENT #fieldModifier
+selectedUser ch.ivy.addon.portalkit.bo.RemoteUser #field
+selectedUser PERSISTENT #fieldModifier
+userFullName String #field
+userFullName PERSISTENT #fieldModifier
+displayedAbsences List<ch.ivy.addon.portalkit.bo.RemoteAbsence> #field
+displayedAbsences PERSISTENT #fieldModifier

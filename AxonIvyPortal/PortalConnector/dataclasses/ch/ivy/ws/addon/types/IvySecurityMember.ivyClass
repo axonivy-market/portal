@@ -1,0 +1,6 @@
+IvySecurityMember #class
+ch.ivy.ws.addon.types #namespace
+id java.lang.Long #field
+memberName String #field
+displayName String #field
+application String #field

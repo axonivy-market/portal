@@ -1,0 +1,7 @@
+SynchronizingTriggerProcessData #class
+ch.ivy.add.portalkit.synchronization #namespace
+customPropertyPairs List<ch.ivy.ws.addon.CustomPropertyPair> #field
+key String #field
+keyPrefix String #field
+keys List<String> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field

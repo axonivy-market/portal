@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="portalconnectordocumentation.installation">
+	<title>Installation</title>
+	<sect1 xml:id="portalconnectordocumentation.installation.portalconnectorinstallationassystemapplication">
+		<title>Portal connector installation as system application</title>
+		<para>
+			Setting rescanning of system application.
+		</para>
+		<itemizedlist>
+			<listitem>
+				<para>
+					In <code>YOUR_ENGINE_NAME_FOLDER/bin</code> make copy of <code>Example.ilc</code> file.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Rename it to <code>AxonIvyEngine.ilc</code> or <code>AxonIvyEngineService.ilc</code> if engine running as service.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Find line <code>#ivy.vm.additional.options=</code> and replace it by <code>ivy.vm.additional.options=-Dch.ivyteam.ivy.engine.rescanApplications=true</code>.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Restart ivy engine.
+				</para>
+			</listitem>
+		</itemizedlist>
+		<para>
+			With this new parameter engine will always check folder with system applications.
+		</para>
+		<mediaobject>
+			<imageobject>
+				<imagedata fileref="images/Installation/Install.png" />
+			</imageobject>
+		</mediaobject>
+		<para>
+			Update Portal Connector of system application.
+			<itemizedlist>
+				<listitem>
+					<para>
+						Export Portal Connector from workspace as <code>.zip</code> file.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						On engine extract all files from <code>.zip</code> to <code>YOUR_ENGINE_NAME_FOLDER/applications/System/PortalConnector/1/</code>.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Restart ivy engine.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect1>
+</chapter>

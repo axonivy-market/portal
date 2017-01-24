@@ -1,0 +1,6 @@
+PortalData #class
+test004QualityManagement #namespace
+taskId Number #field
+taskId PERSISTENT #fieldModifier
+caseId Number #field
+caseId PERSISTENT #fieldModifier

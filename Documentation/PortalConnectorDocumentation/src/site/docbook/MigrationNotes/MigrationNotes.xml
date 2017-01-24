@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="portalconnectordocumentation.migrationnotes">
+	<title>Migration notes</title>
+	<sect1 xml:id="portalconnectordocumentation.migrationnotes.migrationnotes">
+		<title>Migration notes</title>
+		<para>
+			<code>Portal connector</code> is now integrated to Ivy engine as system application. No installation or conversion of <code>Portal connector</code>
+			<code>5.0</code> is needed.
+		</para>
+		<para>
+			The <code>Portal connector</code> works only with the same ivy Engine with it was bundled with.
+		</para>
+		<para>
+			Open url : <code>your engine/ivy/info/index.jsp?showSystemApp=true</code> to check for available web services.
+		</para>
+		
+		<sect2>
+			<title>Migrate 6.x (x &lt; 5) ... 6.5</title>
+			<para>Params: serverId, serverUrl, isNoConfigurationServer are removed, isUrlBuiltFromSystemProperties is added in ProcessStartService (findProcessesStartsByCriteria) and TaskService (findTasksByCriteria, delegateTask, parkTask, resetTask)</para>
+			<para>Param: serverId is removed in CaseService (findProcessesStartsByCriteria)</para>
+		</sect2>
+	</sect1>
+</chapter>

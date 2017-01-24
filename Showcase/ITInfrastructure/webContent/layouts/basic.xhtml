@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:head>
+	<title><ui:insert name="title">Xpert.ivy | Html Dialog</ui:insert></title>
+	<h:outputStylesheet library="ivy-webcontent" name="layouts/styles/basic.css" />
+	<link rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.ico']}" type="image/x-icon" />
+</h:head>
+<h:body>
+	<div id="page">
+
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="/layouts/includes/header.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div id="content">
+			<ui:insert name="content">
+				default content
+			</ui:insert>
+		</div>
+
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="/layouts/includes/footer.xhtml" />
+			</ui:insert>
+		</div>
+
+	</div>
+</h:body>
+</html>

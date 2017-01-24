@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<ui:composition>
+  <ui:include src="ColumnHeader.xhtml">
+    <ui:param name="id" value="priority-column-header" />
+    <ui:param name="styleClass" value="priority-column-header TexAlCenter" />
+    <ui:param name="componentToBeUpdated" value="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+    <ui:param name="sortType" value="#{masterDataBean.getSortTypePriority()}" />
+    <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/priority')}" />
+  </ui:include>
+
+  <ui:include src="ColumnHeader.xhtml">
+    <ui:param name="id" value="name-column-header" />
+    <ui:param name="styleClass" value="name-column-header" />
+    <ui:param name="componentToBeUpdated" value="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+    <ui:param name="sortType" value="#{masterDataBean.getSortTypeName()}" />
+    <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/nameAndDescription')}" />
+  </ui:include>
+
+  <ui:include src="ColumnHeader.xhtml">
+    <ui:param name="id" value="responsible-column-header" />
+    <ui:param name="styleClass" value="responsible-column-header js-responsible-column-header hidden-sm" />
+    <ui:param name="componentToBeUpdated" value="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+    <ui:param name="sortType" value="#{masterDataBean.sortTypeActivator}" />
+    <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}" />
+  </ui:include>
+
+  <ui:include src="ColumnHeader.xhtml">
+    <ui:param name="id" value="id-column-header" />
+    <ui:param name="styleClass" value="id-column-header js-id-column-header TexAlCenter" />
+    <ui:param name="componentToBeUpdated" value="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+    <ui:param name="sortType" value="#{masterDataBean.sortTypeId}" />
+    <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}" />
+  </ui:include>
+
+  <ui:include src="ColumnHeader.xhtml">
+    <ui:param name="id" value="create-column-header" />
+    <ui:param name="styleClass" value="create-column-header js-create-column-header TexAlCenter" />
+    <ui:param name="componentToBeUpdated" value="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+    <ui:param name="sortType" value="#{masterDataBean.sortTypeCreationTime}" />
+    <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}" />
+  </ui:include>
+  
+  <ui:include src="ColumnHeader.xhtml">
+    <ui:param name="id" value="expiry-column-header" />
+    <ui:param name="styleClass" value="expiry-column-header js-expiry-column-header TexAlCenter" />
+    <ui:param name="componentToBeUpdated" value="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+    <ui:param name="sortType" value="#{masterDataBean.sortTypeExpiryTime}" />
+    <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}" />
+  </ui:include>
+  
+    <ui:include src="ColumnHeader.xhtml">
+    <ui:param name="id" value="state-column-header" />
+    <ui:param name="styleClass" value="state-column-header TexAlCenter" />
+    <ui:param name="componentToBeUpdated" value="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+    <ui:param name="sortType" value="#{masterDataBean.sortTypeState}" />
+    <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/state')}" />
+  </ui:include>
+</ui:composition>
+</html>

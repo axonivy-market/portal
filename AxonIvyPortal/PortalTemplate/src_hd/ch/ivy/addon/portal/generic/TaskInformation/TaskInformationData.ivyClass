@@ -1,0 +1,8 @@
+TaskInformationData #class
+ch.ivy.addon.portal.generic.TaskInformation #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+taskId java.lang.Long #field
+taskId PERSISTENT #fieldModifier
+taskNotFound Boolean #field
+taskNotFound PERSISTENT #fieldModifier

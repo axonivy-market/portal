@@ -1,0 +1,10 @@
+IvySubstitute #class
+ch.ivy.ws.addon.types #namespace
+appName String #field
+forThisRole String #field
+forThisRole 'this is empty in case of substitute for personally assigned tasks' #fieldComment
+mySubstitute String #field
+mySubstitute 'this is empty, if there is no substitute for this role' #fieldComment
+description String #field
+roleDisplayName String #field
+roleDisplayName 'Display name of Role in case substitute is for role' #fieldComment

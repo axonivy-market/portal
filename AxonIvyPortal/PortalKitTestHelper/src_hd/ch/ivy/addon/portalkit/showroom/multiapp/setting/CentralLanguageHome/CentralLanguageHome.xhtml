@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<h:body>
+	<ui:composition template="/layouts/basic.xhtml">
+		<ui:define name="content">
+			<h:form>				
+				   <p:commandButton value="Setting Menu" id="dynaButton" title="Setting" style="display:inline"/>			  
+				   <p:menu style="margin-right:50px" overlay="true" trigger="dynaButton" my="left top" at="left bottom">				   
+				            <p:menuitem value="Language Setting" onclick="loadLanguageSetting()" oncomplete="PF('languageDialogVar').show();"/>				            	    				            
+				   </p:menu>
+			</h:form>
+			
+			<p:dialog width="40%" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}"	id="languageSetting" widgetVar="languageDialogVar"
+					modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+					appendTo="@(body)">		
+					<h:form>						
+					  <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage startMethod="start" dialogWidgetVar="languageDialogVar" />
+					</h:form>  					
+			</p:dialog>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

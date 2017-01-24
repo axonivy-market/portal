@@ -1,0 +1,9 @@
+PortalDataServiceData #class
+ch.ivy.ws.protaldata #namespace
+customPropertyPairs List<ch.ivy.ws.portaldata.model.CustomPropertyPair> #field
+message String #field
+returnedStatus ch.ivy.ws.addon.ReturnedStatus #field
+propertyKeyToBeDelete String #field
+keyPrefixToBeDeleted String #field
+keyPrefixesToBeDeleted List<String> #field
+propertyKeysToBeDeleted List<String> #field
