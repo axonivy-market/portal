@@ -1,0 +1,3 @@
+co: name={uploadFailed} description={} changed={2016-12-21 15:21:01 CET} changedby={t} visualorder={0} guid={14E94E8114A80489} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1512564AFF5A3AC5} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:00 CET} validto={} changed={2016-12-21 15:21:00 CET} changedby={t} properties={} id={}
+val: guid={14E94E811608B32C} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:01 CET} validto={} changed={2016-12-21 15:21:01 CET} changedby={t} properties={} id={}

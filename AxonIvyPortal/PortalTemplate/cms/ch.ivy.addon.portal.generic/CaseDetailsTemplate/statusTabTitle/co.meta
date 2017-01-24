@@ -1,0 +1,3 @@
+co: name={statusTabTitle} description={} changed={2016-03-30 09:05:35 CEST} changedby={t} visualorder={0} guid={14C92E4CD9BC38DA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14C92E4CDA011F78} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-07 10:00:10 CEST} validto={} changed={2016-03-28 09:11:57 CEST} changedby={ntttai} properties={} id={}
+val: guid={14CB638E90CD40F1} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-14 06:38:41 CEST} validto={} changed={2016-03-30 09:05:35 CEST} changedby={t} properties={} id={}

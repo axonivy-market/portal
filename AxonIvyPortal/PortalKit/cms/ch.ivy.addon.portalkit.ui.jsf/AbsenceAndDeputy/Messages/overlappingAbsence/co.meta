@@ -1,0 +1,3 @@
+co: name={overlappingAbsence} description={} changed={2016-12-21 15:20:43 CET} changedby={t} visualorder={0} guid={151244B98978C285} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={151244B98A27D300} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:43 CET} validto={} changed={2016-12-21 15:20:43 CET} changedby={t} properties={} id={}
+val: guid={1533A87847A68547} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:43 CET} validto={} changed={2016-12-21 15:20:43 CET} changedby={t} properties={} id={}

@@ -1,0 +1,20 @@
+equipNewUser #class
+test002ITInfrastructure #namespace
+Mitarbeiter String #field
+Mitarbeiter PERSISTENT #fieldModifier
+Manager String #field
+Manager PERSISTENT #fieldModifier
+Equipment String #field
+Equipment PERSISTENT #fieldModifier
+Durchwahl Number #field
+Durchwahl PERSISTENT #fieldModifier
+Approved Boolean #field
+Approved PERSISTENT #fieldModifier
+Delivered Boolean #field
+Delivered PERSISTENT #fieldModifier
+Lieferant String #field
+Lieferant PERSISTENT #fieldModifier
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier
+steps List<String> #field
+steps PERSISTENT #fieldModifier

@@ -1,0 +1,3 @@
+co: name={enhancedFilter} description={} changed={2014-07-17 09:25:02 GMT} changedby={roman} visualorder={0} guid={147439F7A20DFB15} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14743A09D5214620} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-17 09:21:45 GMT} validto={} changed={2014-07-17 09:25:02 GMT} changedby={roman} properties={} id={}
+val: guid={147439F7A2478D79} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-17 09:20:30 GMT} validto={} changed={2014-07-17 09:21:45 GMT} changedby={roman} properties={} id={}

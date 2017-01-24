@@ -1,0 +1,18 @@
+EmailSettingData #class
+ch.ivy.addon.portalkit.multiapp.settings.EmailSetting #namespace
+settingForAllApp Boolean #field
+settingForAllApp PERSISTENT #fieldModifier
+dailySummaryList List<ch.ivy.addon.portalkit.enums.RemoteWeekDay> #field
+dailySummaryList PERSISTENT #fieldModifier
+user String #field
+user PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+generalEmailSetting ch.ivy.addon.portalkit.bo.RemoteEmailSetting #field
+generalEmailSetting PERSISTENT #fieldModifier
+remoteEmailSettings List<ch.ivy.addon.portalkit.bo.RemoteEmailSetting> #field
+remoteEmailSettings PERSISTENT #fieldModifier
+emptySetting Boolean #field
+emptySetting PERSISTENT #fieldModifier
+errorLink String #field
+errorLink PERSISTENT #fieldModifier

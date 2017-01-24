@@ -1,0 +1,286 @@
+<?xml version="1.0" ?><wsdl:definitions name="SecurityServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="findAllRoles" type="tns:findAllRoles"></xs:element>
+<xs:element name="findAllRolesResponse" type="tns:findAllRolesResponse"></xs:element>
+<xs:element name="findAllUsers" type="tns:findAllUsers"></xs:element>
+<xs:element name="findAllUsersResponse" type="tns:findAllUsersResponse"></xs:element>
+<xs:element name="findSecurityMembersToDelegate" type="tns:findSecurityMembersToDelegate"></xs:element>
+<xs:element name="findSecurityMembersToDelegateResponse" type="tns:findSecurityMembersToDelegateResponse"></xs:element>
+<xs:element name="findUsersByRoleId" type="tns:findUsersByRoleId"></xs:element>
+<xs:element name="findUsersByRoleIdResponse" type="tns:findUsersByRoleIdResponse"></xs:element>
+<xs:complexType name="findUsersByRoleId">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="app" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findUsersByRoleIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findUsersByRoleIdResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findUsersByRoleIdResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="users" nillable="true" type="tns:ivyUser"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsException">
+    <xs:complexContent>
+      <xs:extension base="tns:exception">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="errorDateTime" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="errorType" type="tns:wsErrorType"></xs:element>
+          <xs:element minOccurs="0" name="exception" type="tns:exception"></xs:element>
+          <xs:element minOccurs="0" name="helpText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="helpTextData" nillable="true" type="xs:anyType"></xs:element>
+          <xs:element minOccurs="0" name="server" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userTextData" nillable="true" type="xs:anyType"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="exception">
+    <xs:complexContent>
+      <xs:extension base="tns:throwable">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="stackTraceElement">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyUser">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="application" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="displayName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="memberName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="compositeObject">
+    <xs:complexContent>
+      <xs:extension base="tns:nestedObject">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="nestedObject">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="dateTime">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findAllUsers">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findAllUsersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findAllUsersResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findAllUsersResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="users" nillable="true" type="tns:ivyUser"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findAllRoles">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findAllRolesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findAllRolesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findAllRolesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="tns:ivyRole"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyRole">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="application" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="displayName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="isUser" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="memberName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="findSecurityMembersToDelegate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="taskID" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findSecurityMembersToDelegateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findSecurityMembersToDelegateResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findSecurityMembersToDelegateResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="tns:ivyRole"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="users" nillable="true" type="tns:ivyUser"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="wsErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INFO"></xs:enumeration>
+      <xs:enumeration value="WARNING"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="findAllUsersResponse">
+    <wsdl:part element="tns:findAllUsersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllUsers">
+    <wsdl:part element="tns:findAllUsers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllRoles">
+    <wsdl:part element="tns:findAllRoles" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findSecurityMembersToDelegate">
+    <wsdl:part element="tns:findSecurityMembersToDelegate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUsersByRoleIdResponse">
+    <wsdl:part element="tns:findUsersByRoleIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUsersByRoleId">
+    <wsdl:part element="tns:findUsersByRoleId" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllRolesResponse">
+    <wsdl:part element="tns:findAllRolesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findSecurityMembersToDelegateResponse">
+    <wsdl:part element="tns:findSecurityMembersToDelegateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SecurityService">
+    <wsdl:operation name="findUsersByRoleId">
+      <wsdl:input message="tns:findUsersByRoleId" name="findUsersByRoleId">
+    </wsdl:input>
+      <wsdl:output message="tns:findUsersByRoleIdResponse" name="findUsersByRoleIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllUsers">
+      <wsdl:input message="tns:findAllUsers" name="findAllUsers">
+    </wsdl:input>
+      <wsdl:output message="tns:findAllUsersResponse" name="findAllUsersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllRoles">
+      <wsdl:input message="tns:findAllRoles" name="findAllRoles">
+    </wsdl:input>
+      <wsdl:output message="tns:findAllRolesResponse" name="findAllRolesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findSecurityMembersToDelegate">
+      <wsdl:input message="tns:findSecurityMembersToDelegate" name="findSecurityMembersToDelegate">
+    </wsdl:input>
+      <wsdl:output message="tns:findSecurityMembersToDelegateResponse" name="findSecurityMembersToDelegateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SecurityServiceServiceSoapBinding" type="tns:SecurityService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="findUsersByRoleId">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findUsersByRoleId">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findUsersByRoleIdResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllUsers">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findAllUsers">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findAllUsersResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllRoles">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findAllRoles">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findAllRolesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findSecurityMembersToDelegate">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findSecurityMembersToDelegate">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findSecurityMembersToDelegateResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SecurityServiceService">
+    <wsdl:port binding="tns:SecurityServiceServiceSoapBinding" name="SecurityServicePort">
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/138056017E3F98C2"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

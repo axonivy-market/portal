@@ -1,0 +1,3 @@
+co: name={rejectionReason} description={} changed={2015-04-22 10:27:11 CEST} changedby={ptanh} visualorder={0} guid={14CE03BFFDE1E84E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CE03C92F6C23A2} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-22 10:26:44 CEST} validto={} changed={2015-04-22 10:26:48 CEST} changedby={ptanh} properties={} id={}
+val: guid={14CE03BFFE1FBC3D} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-22 10:26:10 CEST} validto={} changed={2015-04-22 10:27:11 CEST} changedby={ptanh} properties={} id={}

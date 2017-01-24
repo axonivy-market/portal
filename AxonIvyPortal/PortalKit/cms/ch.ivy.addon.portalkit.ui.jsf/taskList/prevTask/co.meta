@@ -1,0 +1,3 @@
+co: name={prevTask} description={} changed={2015-04-10 12:12:46 CEST} changedby={Johannes} visualorder={0} guid={1475D7EAB80FE02C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1475D7EAB846010E} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-22 11:54:48 CEST} validto={} changed={2014-07-22 11:54:56 CEST} changedby={roman} properties={} id={}
+val: guid={1475D7ECC891FF99} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-22 11:54:56 CEST} validto={} changed={2015-04-10 12:12:46 CEST} changedby={Johannes} properties={} id={}

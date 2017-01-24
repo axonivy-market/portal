@@ -1,0 +1,3 @@
+co: name={serverAddress} description={} changed={2014-08-01 09:36:14 GMT} changedby={roman} visualorder={0} guid={14790ECC20724F2A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14790ECE53E33B26} datatype={} isdefault={false} langid={de} description={} validfrom={2014-08-01 09:35:50 GMT} validto={} changed={2014-08-01 09:36:14 GMT} changedby={roman} properties={} id={}
+val: guid={14790ECC20B1FD69} datatype={} isdefault={true} langid={en} description={} validfrom={2014-08-01 09:35:41 GMT} validto={} changed={2014-08-01 09:35:50 GMT} changedby={roman} properties={} id={}

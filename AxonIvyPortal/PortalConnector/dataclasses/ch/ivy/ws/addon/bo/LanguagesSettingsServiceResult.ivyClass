@@ -1,0 +1,4 @@
+LanguagesSettingsServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+settings java.util.List<ch.ivy.ws.addon.types.IvyLanguageSetting> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field

@@ -1,0 +1,3 @@
+co: name={forAllApps} description={} changed={2016-12-21 15:21:01 CET} changedby={t} visualorder={0} guid={14BD8B44806AD823} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CA26B797E6BB68} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:01 CET} validto={} changed={2016-12-21 15:21:01 CET} changedby={t} properties={} id={}
+val: guid={14BD8B44812AF604} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-02 05:17:48 CET} validto={} changed={2015-03-02 05:26:22 CET} changedby={maonguyen} properties={} id={}

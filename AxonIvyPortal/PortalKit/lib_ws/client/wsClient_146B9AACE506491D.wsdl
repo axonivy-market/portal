@@ -1,0 +1,798 @@
+<?xml version="1.0" ?><wsdl:definitions name="CaseServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="countCasesByCriteria" type="tns:countCasesByCriteria"></xs:element>
+<xs:element name="countCasesByCriteriaResponse" type="tns:countCasesByCriteriaResponse"></xs:element>
+<xs:element name="createNote" type="tns:createNote"></xs:element>
+<xs:element name="createNoteResponse" type="tns:createNoteResponse"></xs:element>
+<xs:element name="destroyCase" type="tns:destroyCase"></xs:element>
+<xs:element name="destroyCaseResponse" type="tns:destroyCaseResponse"></xs:element>
+<xs:element name="downloadDocument" type="tns:downloadDocument"></xs:element>
+<xs:element name="downloadDocumentResponse" type="tns:downloadDocumentResponse"></xs:element>
+<xs:element name="findCase" type="tns:findCase"></xs:element>
+<xs:element name="findCaseResponse" type="tns:findCaseResponse"></xs:element>
+<xs:element name="findCasesByCriteria" type="tns:findCasesByCriteria"></xs:element>
+<xs:element name="findCasesByCriteriaResponse" type="tns:findCasesByCriteriaResponse"></xs:element>
+<xs:element name="findDocuments" type="tns:findDocuments"></xs:element>
+<xs:element name="findDocumentsResponse" type="tns:findDocumentsResponse"></xs:element>
+<xs:element name="findNotes" type="tns:findNotes"></xs:element>
+<xs:element name="findNotesResponse" type="tns:findNotesResponse"></xs:element>
+<xs:element name="getAddtionalProperties" type="tns:getAddtionalProperties"></xs:element>
+<xs:element name="getAddtionalPropertiesResponse" type="tns:getAddtionalPropertiesResponse"></xs:element>
+<xs:element name="removeDocument" type="tns:removeDocument"></xs:element>
+<xs:element name="removeDocumentResponse" type="tns:removeDocumentResponse"></xs:element>
+<xs:element name="saveCase" type="tns:saveCase"></xs:element>
+<xs:element name="saveCaseResponse" type="tns:saveCaseResponse"></xs:element>
+<xs:element name="setAdditionalProperties" type="tns:setAdditionalProperties"></xs:element>
+<xs:element name="setAdditionalPropertiesResponse" type="tns:setAdditionalPropertiesResponse"></xs:element>
+<xs:element name="uploadDocument" type="tns:uploadDocument"></xs:element>
+<xs:element name="uploadDocumentResponse" type="tns:uploadDocumentResponse"></xs:element>
+<xs:complexType name="setAdditionalProperties">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseId" type="xs:long"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalProperties" type="tns:ivyAdditionalProperty"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyAdditionalProperty">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="compositeObject">
+    <xs:complexContent>
+      <xs:extension base="tns:nestedObject">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="nestedObject">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setAdditionalPropertiesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsException">
+    <xs:complexContent>
+      <xs:extension base="tns:exception">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="errorDateTime" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="errorType" type="tns:wsErrorType"></xs:element>
+          <xs:element minOccurs="0" name="exception" type="tns:exception"></xs:element>
+          <xs:element minOccurs="0" name="helpText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="helpTextData" nillable="true" type="xs:anyType"></xs:element>
+          <xs:element minOccurs="0" name="server" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userTextData" nillable="true" type="xs:anyType"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="exception">
+    <xs:complexContent>
+      <xs:extension base="tns:throwable">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="stackTraceElement">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="dateTime">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findNotes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findNotesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findNotesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findNotesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="notes" nillable="true" type="tns:ivyNote"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyNote">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="creationTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="creatorFullName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="creatorUserName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="createNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createNoteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:createNoteResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createNoteResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="note" type="tns:ivyNote"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCaseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findCaseResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCaseResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="ivyCase" type="tns:ivyCase"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyCase">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="applicationName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessCorrespondentId" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="businessCreatorUser" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessMainContactDocumentDatabaseCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessMainContactFolderId" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessMainContactId" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="businessMainContactName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessMainContactType" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessMilestoneTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="businessObjectCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessObjectDocumentDatabaseCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessObjectFolderId" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessObjectName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessPriority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessStartTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="canChangeDescription" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canChangeName" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canDestroy" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="creatorFullName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="creatorUserName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField1" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField2" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField3" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField4" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField5" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField1" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField2" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField3" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField4" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField5" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField1" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField2" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField3" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField4" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField5" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="endTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyNotes" nillable="true" type="tns:ivyNote"></xs:element>
+          <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="priority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="processCategoryCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="processCategoryName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="processCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="processModelName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="processModelVersionNumber" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="processName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="startTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="state" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="subTypeCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="subTypeName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="typeCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="typeName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="getAddtionalProperties">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAddtionalPropertiesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getAddtionalPropertiesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAddtionalPropertiesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="addtionalProperties" nillable="true" type="tns:ivyAdditionalProperty"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="countCasesByCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="caseSearchCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseId" type="xs:long"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="excludedStates" nillable="true" type="tns:caseState"></xs:element>
+      <xs:element name="ignoreInvolvedUser" type="xs:boolean"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="includedStates" nillable="true" type="tns:caseState"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="involvedApplications" nillable="true" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="keyword" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="sortedField" type="tns:caseSortedField"></xs:element>
+      <xs:element name="sortingDescending" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="taskId" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="countCasesByCriteriaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:countCasesByCriteriaResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="countCasesByCriteriaResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseCount" type="xs:long"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCasesByCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="startIndex" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="count" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCasesByCriteriaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findCasesByCriteriaResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCasesByCriteriaResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyCases" nillable="true" type="tns:ivyCase"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="uploadDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseID" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="documentName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="documentContent" type="xs:base64Binary"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="uploadDocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:uploadDocumentResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="uploadDocumentResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="document" type="tns:ivyDocument"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyDocument">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contentType" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="creation" type="tns:modificationInfo"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="lastModification" type="tns:modificationInfo"></xs:element>
+          <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="path" type="tns:path"></xs:element>
+          <xs:element minOccurs="0" name="size" type="xs:long"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="modificationInfo">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="path">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseID" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="documentId" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeDocumentResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findDocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findDocumentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findDocumentsResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findDocumentsResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="documents" nillable="true" type="tns:ivyDocument"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseID" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="documentId" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadDocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:downloadDocumentResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadDocumentResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentContent" type="xs:base64Binary"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="destroyCase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="destroyCaseResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="saveCase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ivyCase" type="tns:ivyCase"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="saveCaseResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="error" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="wsErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INFO"></xs:enumeration>
+      <xs:enumeration value="WARNING"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="caseState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CREATED"></xs:enumeration>
+      <xs:enumeration value="RUNNING"></xs:enumeration>
+      <xs:enumeration value="DONE"></xs:enumeration>
+      <xs:enumeration value="DESTROYED"></xs:enumeration>
+      <xs:enumeration value="ZOMBIE"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="caseSortedField">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NAME"></xs:enumeration>
+      <xs:enumeration value="CREATOR"></xs:enumeration>
+      <xs:enumeration value="ID"></xs:enumeration>
+      <xs:enumeration value="START_TIME"></xs:enumeration>
+      <xs:enumeration value="END_TIME"></xs:enumeration>
+      <xs:enumeration value="PM"></xs:enumeration>
+      <xs:enumeration value="PMV"></xs:enumeration>
+      <xs:enumeration value="STATE"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="createNoteResponse">
+    <wsdl:part element="tns:createNoteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="countCasesByCriteriaResponse">
+    <wsdl:part element="tns:countCasesByCriteriaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findNotes">
+    <wsdl:part element="tns:findNotes" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCase">
+    <wsdl:part element="tns:findCase" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findDocumentsResponse">
+    <wsdl:part element="tns:findDocumentsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadDocumentResponse">
+    <wsdl:part element="tns:downloadDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAddtionalPropertiesResponse">
+    <wsdl:part element="tns:getAddtionalPropertiesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAddtionalProperties">
+    <wsdl:part element="tns:getAddtionalProperties" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="countCasesByCriteria">
+    <wsdl:part element="tns:countCasesByCriteria" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="uploadDocument">
+    <wsdl:part element="tns:uploadDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="destroyCaseResponse">
+    <wsdl:part element="tns:destroyCaseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeDocument">
+    <wsdl:part element="tns:removeDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setAdditionalPropertiesResponse">
+    <wsdl:part element="tns:setAdditionalPropertiesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCaseResponse">
+    <wsdl:part element="tns:findCaseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadDocument">
+    <wsdl:part element="tns:downloadDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveCaseResponse">
+    <wsdl:part element="tns:saveCaseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveCase">
+    <wsdl:part element="tns:saveCase" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findNotesResponse">
+    <wsdl:part element="tns:findNotesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setAdditionalProperties">
+    <wsdl:part element="tns:setAdditionalProperties" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeDocumentResponse">
+    <wsdl:part element="tns:removeDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCasesByCriteriaResponse">
+    <wsdl:part element="tns:findCasesByCriteriaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createNote">
+    <wsdl:part element="tns:createNote" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCasesByCriteria">
+    <wsdl:part element="tns:findCasesByCriteria" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findDocuments">
+    <wsdl:part element="tns:findDocuments" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="uploadDocumentResponse">
+    <wsdl:part element="tns:uploadDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="destroyCase">
+    <wsdl:part element="tns:destroyCase" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CaseService">
+    <wsdl:operation name="setAdditionalProperties">
+      <wsdl:input message="tns:setAdditionalProperties" name="setAdditionalProperties">
+    </wsdl:input>
+      <wsdl:output message="tns:setAdditionalPropertiesResponse" name="setAdditionalPropertiesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findNotes">
+      <wsdl:input message="tns:findNotes" name="findNotes">
+    </wsdl:input>
+      <wsdl:output message="tns:findNotesResponse" name="findNotesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createNote">
+      <wsdl:input message="tns:createNote" name="createNote">
+    </wsdl:input>
+      <wsdl:output message="tns:createNoteResponse" name="createNoteResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCase">
+      <wsdl:input message="tns:findCase" name="findCase">
+    </wsdl:input>
+      <wsdl:output message="tns:findCaseResponse" name="findCaseResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAddtionalProperties">
+      <wsdl:input message="tns:getAddtionalProperties" name="getAddtionalProperties">
+    </wsdl:input>
+      <wsdl:output message="tns:getAddtionalPropertiesResponse" name="getAddtionalPropertiesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="countCasesByCriteria">
+      <wsdl:input message="tns:countCasesByCriteria" name="countCasesByCriteria">
+    </wsdl:input>
+      <wsdl:output message="tns:countCasesByCriteriaResponse" name="countCasesByCriteriaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCasesByCriteria">
+      <wsdl:input message="tns:findCasesByCriteria" name="findCasesByCriteria">
+    </wsdl:input>
+      <wsdl:output message="tns:findCasesByCriteriaResponse" name="findCasesByCriteriaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="uploadDocument">
+      <wsdl:input message="tns:uploadDocument" name="uploadDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:uploadDocumentResponse" name="uploadDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeDocument">
+      <wsdl:input message="tns:removeDocument" name="removeDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:removeDocumentResponse" name="removeDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findDocuments">
+      <wsdl:input message="tns:findDocuments" name="findDocuments">
+    </wsdl:input>
+      <wsdl:output message="tns:findDocumentsResponse" name="findDocumentsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadDocument">
+      <wsdl:input message="tns:downloadDocument" name="downloadDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:downloadDocumentResponse" name="downloadDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="destroyCase">
+      <wsdl:input message="tns:destroyCase" name="destroyCase">
+    </wsdl:input>
+      <wsdl:output message="tns:destroyCaseResponse" name="destroyCaseResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="saveCase">
+      <wsdl:input message="tns:saveCase" name="saveCase">
+    </wsdl:input>
+      <wsdl:output message="tns:saveCaseResponse" name="saveCaseResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CaseServiceServiceSoapBinding" type="tns:CaseService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="setAdditionalProperties">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="setAdditionalProperties">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setAdditionalPropertiesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findNotes">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findNotes">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findNotesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createNote">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createNote">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createNoteResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCase">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findCase">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findCaseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAddtionalProperties">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAddtionalProperties">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAddtionalPropertiesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="countCasesByCriteria">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="countCasesByCriteria">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="countCasesByCriteriaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCasesByCriteria">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findCasesByCriteria">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findCasesByCriteriaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="uploadDocument">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="uploadDocument">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="uploadDocumentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeDocument">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="removeDocument">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="removeDocumentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findDocuments">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findDocuments">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findDocumentsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadDocument">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="downloadDocument">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="downloadDocumentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="destroyCase">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="destroyCase">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="destroyCaseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="saveCase">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="saveCase">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="saveCaseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CaseServiceService">
+    <wsdl:port binding="tns:CaseServiceServiceSoapBinding" name="CaseServicePort">
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD8C8C617F9"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,92 @@
+
+#taskTreeForm .ui-tree {
+	float : left;
+	width: 20% !important;
+	min-height: 500px;
+	margin-right: 20px;
+}
+
+#taskTreeForm .ui-panel {
+	margin: 0px 10px !important;
+	float : left;
+	width: 70% !important;
+	min-height: 500px;
+}
+
+
+#caseTreeForm .ui-tree {
+	width: 20% !important;
+	float : left;
+	min-height: 500px;
+	margin-right: 20px;
+}
+
+
+#caseTreeForm .ui-panel {
+	margin: 0px 10px !important;
+	float : left;
+	width: 70% !important;
+	min-height: 500px;
+}
+/* begin application case list */
+ .fa {
+  font-family: 'FontAwesome' !important;
+}
+.deleteCase {
+	display: inline-block;
+	font-size: 12px !important;
+	margin-left: 40px;
+	margin-top: 0px;
+	color: #f21c0a !important;
+}
+
+.editCase {
+	display: inline-block;
+	font-size: 12px !important;
+	margin-top: 0px;
+	color: #f21c0a !important;
+}
+
+.deleteCase.fa-trash-o:before {
+	display: block;
+	font-size: 14px;
+	margin-bottom: 1px;
+}
+
+div[id*='caseTable'] table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+	background-color: transparent !important;
+	border-spacing: 0;
+	border-collapse: collapse;
+	color: #666;
+	overflow-x: scroll;
+}
+
+.idColumn>input {
+	width: 70px !important;
+}
+
+.titleColumn>input {
+	width: 175px !important;
+}
+
+.creatorColumn>input {
+	width: 135px !important;
+}
+
+.descriptionColumn>input {
+	width: 200px !important;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+	float: right;
+}
+
+.creatorColumn .fa-info-circle:before {
+	content: "\f05a";
+	float: right;
+	margin-left: 5px;
+}
+/* end application case list */

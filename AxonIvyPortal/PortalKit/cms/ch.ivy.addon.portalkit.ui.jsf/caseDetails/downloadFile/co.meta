@@ -1,0 +1,3 @@
+co: name={downloadFile} description={} changed={2016-12-21 15:20:53 CET} changedby={t} visualorder={0} guid={1534FFCCD2ABF06C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1534FFCCD379B428} datatype={} isdefault={true} langid={en} description={} validfrom={2016-03-07 08:31:21 CET} validto={} changed={2016-03-07 08:42:17 CET} changedby={hvu} properties={} id={}
+val: guid={1534FFF5C85E9B77} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:53 CET} validto={} changed={2016-12-21 15:20:53 CET} changedby={t} properties={} id={}

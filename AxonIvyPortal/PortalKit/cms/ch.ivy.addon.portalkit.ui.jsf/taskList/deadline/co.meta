@@ -1,0 +1,3 @@
+co: name={deadline} description={} changed={2015-04-10 04:42:46 CEST} changedby={Johannees} visualorder={0} guid={14B6C7B230162F57} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14B6C7B230EA340F} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-09 04:56:24 CET} validto={} changed={2015-04-10 04:42:46 CEST} changedby={Johannees} properties={} id={}
+val: guid={14CA1337BCCAD54D} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 04:40:42 CEST} validto={} changed={2015-04-10 04:40:48 CEST} changedby={Johannees} properties={} id={}

@@ -1,0 +1,10 @@
+CaseTableTestData #class
+ch.ivy.addon.portalkit.showroom.singleapp.cases.CaseTableTest #namespace
+isRunningCase Boolean #field
+isRunningCase PERSISTENT #fieldModifier
+isFisnishedCase Boolean #field
+isFisnishedCase PERSISTENT #fieldModifier
+isIPropertyFilterCase Boolean #field
+isIPropertyFilterCase PERSISTENT #fieldModifier
+propertyFilter ch.ivyteam.ivy.workflow.IPropertyFilter #field
+propertyFilter PERSISTENT #fieldModifier

@@ -1,0 +1,3 @@
+co: name={chooseApp} description={} changed={2016-12-21 15:20:57 CET} changedby={t} visualorder={0} guid={14758DCA6E4B30B1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={147679DF4F6E1559} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:57 CET} validto={} changed={2016-12-21 15:20:57 CET} changedby={t} properties={} id={}
+val: guid={14758DCA6E8F9D69} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:15:05 CEST} validto={} changed={2014-07-21 14:19:21 CEST} changedby={roman} properties={} id={}

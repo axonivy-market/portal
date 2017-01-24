@@ -1,0 +1,233 @@
+<?xml version="1.0" ?><wsdl:definitions name="AbsenceServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="getAbsences" type="tns:getAbsences"></xs:element>
+<xs:element name="getAbsencesOfAllUsers" type="tns:getAbsencesOfAllUsers"></xs:element>
+<xs:element name="getAbsencesOfAllUsersResponse" type="tns:getAbsencesOfAllUsersResponse"></xs:element>
+<xs:element name="getAbsencesResponse" type="tns:getAbsencesResponse"></xs:element>
+<xs:element name="setAbsences" type="tns:setAbsences"></xs:element>
+<xs:element name="setAbsencesResponse" type="tns:setAbsencesResponse"></xs:element>
+<xs:complexType name="setAbsences">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applicationNames" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="absencesToUpdate" type="tns:ivyAbsence"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyAbsence">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="startDateInclusive" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="stopDateInclusive" type="xs:dateTime"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="compositeObject">
+    <xs:complexContent>
+      <xs:extension base="tns:nestedObject">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="nestedObject">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setAbsencesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsException">
+    <xs:complexContent>
+      <xs:extension base="tns:exception">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="errorDateTime" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="errorType" type="tns:wsErrorType"></xs:element>
+          <xs:element minOccurs="0" name="exception" type="tns:exception"></xs:element>
+          <xs:element minOccurs="0" name="helpText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="helpTextData" nillable="true" type="xs:anyType"></xs:element>
+          <xs:element minOccurs="0" name="server" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userTextData" nillable="true" type="xs:anyType"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="exception">
+    <xs:complexContent>
+      <xs:extension base="tns:throwable">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="stackTraceElement">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="dateTime">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAbsencesOfAllUsers">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applicationNames" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAbsencesOfAllUsersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getAbsencesOfAllUsersResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAbsencesOfAllUsersResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="absences" nillable="true" type="tns:absence"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="absence">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="absences" nillable="true" type="tns:ivyAbsence"></xs:element>
+          <xs:element minOccurs="0" name="userFullName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="getAbsences">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applicationNames" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAbsencesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getAbsencesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAbsencesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="absences" nillable="true" type="tns:absence"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="wsErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INFO"></xs:enumeration>
+      <xs:enumeration value="WARNING"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="setAbsences">
+    <wsdl:part element="tns:setAbsences" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAbsencesOfAllUsersResponse">
+    <wsdl:part element="tns:getAbsencesOfAllUsersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAbsencesOfAllUsers">
+    <wsdl:part element="tns:getAbsencesOfAllUsers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAbsences">
+    <wsdl:part element="tns:getAbsences" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAbsencesResponse">
+    <wsdl:part element="tns:getAbsencesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setAbsencesResponse">
+    <wsdl:part element="tns:setAbsencesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AbsenceService">
+    <wsdl:operation name="setAbsences">
+      <wsdl:input message="tns:setAbsences" name="setAbsences">
+    </wsdl:input>
+      <wsdl:output message="tns:setAbsencesResponse" name="setAbsencesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAbsencesOfAllUsers">
+      <wsdl:input message="tns:getAbsencesOfAllUsers" name="getAbsencesOfAllUsers">
+    </wsdl:input>
+      <wsdl:output message="tns:getAbsencesOfAllUsersResponse" name="getAbsencesOfAllUsersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAbsences">
+      <wsdl:input message="tns:getAbsences" name="getAbsences">
+    </wsdl:input>
+      <wsdl:output message="tns:getAbsencesResponse" name="getAbsencesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbsenceServiceServiceSoapBinding" type="tns:AbsenceService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="setAbsences">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="setAbsences">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setAbsencesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAbsencesOfAllUsers">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAbsencesOfAllUsers">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAbsencesOfAllUsersResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAbsences">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAbsences">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAbsencesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbsenceServiceService">
+    <wsdl:port binding="tns:AbsenceServiceServiceSoapBinding" name="AbsenceServicePort">
+      <soap:address location="http://127.0.0.1:8081/ivy/ws/designer/PortalConnector/14EFD6DC6E4A27E6"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

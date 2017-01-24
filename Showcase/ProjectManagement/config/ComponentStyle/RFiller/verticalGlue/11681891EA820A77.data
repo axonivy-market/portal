@@ -1,0 +1,11 @@
+#Tue Nov 27 15:50:10 CET 2007
+maximumSizeHeight=32000
+anchor=CENTER
+minimumSizeWidth=5
+preferredSizeHeight=5
+weightY=1
+maximumSizeWidth=5
+usePreferredSizeAsExactSize=false
+fill=VERTICAL
+preferredSizeWidth=5
+minimumSizeHeight=5

@@ -1,0 +1,3 @@
+co: name={logOut} description={} changed={2015-04-10 08:19:08 CEST} changedby={Johannees} visualorder={0} guid={14C4A0BF30C850C8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CA1FB293865F53} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 08:18:54 CEST} validto={} changed={2015-04-10 08:19:08 CEST} changedby={Johannees} properties={} id={}
+val: guid={14C4A0BF313EA491} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-24 05:30:39 CET} validto={} changed={2015-04-10 08:18:54 CEST} changedby={Johannees} properties={} id={}

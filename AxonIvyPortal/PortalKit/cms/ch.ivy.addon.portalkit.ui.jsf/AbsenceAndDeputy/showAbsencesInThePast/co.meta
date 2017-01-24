@@ -1,0 +1,3 @@
+co: name={showAbsencesInThePast} description={} changed={2016-03-07 15:20:38 CET} changedby={dre} visualorder={0} guid={151F7006E7C10831} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={151F7006EDE8D169} datatype={} isdefault={true} langid={en} description={} validfrom={2015-12-31 08:46:19 CET} validto={} changed={2016-01-07 11:15:13 CET} changedby={lttung} properties={} id={}
+val: guid={151F7006EAF5004B} datatype={} isdefault={false} langid={de} description={} validfrom={2015-12-31 08:46:19 CET} validto={} changed={2016-03-07 15:20:38 CET} changedby={dre} properties={} id={}

@@ -1,0 +1,8 @@
+CaseDef #class
+selfServiceBPM #namespace
+subject String #field
+subject PERSISTENT #fieldModifier
+description String #field
+description PERSISTENT #fieldModifier
+kind String #field
+kind PERSISTENT #fieldModifier

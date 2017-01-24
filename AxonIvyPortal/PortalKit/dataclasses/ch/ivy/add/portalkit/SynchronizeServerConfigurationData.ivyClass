@@ -1,0 +1,4 @@
+SynchronizeServerConfigurationData #class
+ch.ivy.add.portalkit #namespace
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+customPropertyPairs List<ch.ivy.ws.addon.CustomPropertyPair> #field

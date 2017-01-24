@@ -1,0 +1,9 @@
+SecurityServiceIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+applicationNames List<String> #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+roles List<ch.ivy.ws.addon.IvyRole> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+taskId Long #field
+users List<ch.ivy.ws.addon.IvyUser> #field

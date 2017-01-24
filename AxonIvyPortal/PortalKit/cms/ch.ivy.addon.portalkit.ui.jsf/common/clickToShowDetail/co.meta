@@ -1,0 +1,3 @@
+co: name={clickToShowDetail} description={} changed={2016-03-07 15:19:03 CET} changedby={dre} visualorder={0} guid={14C97DD4561C0C61} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14C97DD45667EC3D} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-08 09:10:03 CEST} validto={} changed={2016-03-07 15:19:03 CET} changedby={dre} properties={} id={}
+val: guid={14CA2AEB8743D6E5} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 11:32:58 CEST} validto={} changed={2016-03-07 15:18:58 CET} changedby={dre} properties={} id={}

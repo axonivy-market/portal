@@ -1,0 +1,9 @@
+DeliverandConfigureEquipmentData #class
+test002ITInfrastructure.DeliverandConfigureEquipment #namespace
+Mitarbeiter String #field
+Manager String #field
+Equipment String #field
+Durchwahl Number #field
+Approved Boolean #field
+Delivered Boolean #field
+Lieferant String #field

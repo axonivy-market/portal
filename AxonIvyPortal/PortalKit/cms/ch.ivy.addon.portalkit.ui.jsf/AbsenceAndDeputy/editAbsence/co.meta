@@ -1,0 +1,3 @@
+co: name={editAbsence} description={} changed={2016-12-21 15:20:43 CET} changedby={t} visualorder={0} guid={14BD968B6745C3E8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14BD968B67954A3C} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:43 CET} validto={} changed={2016-12-21 15:20:43 CET} changedby={t} properties={} id={}
+val: guid={14CA25F4F1043D60} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:07:56 CEST} validto={} changed={2015-04-10 10:08:17 CEST} changedby={Johannes} properties={} id={}

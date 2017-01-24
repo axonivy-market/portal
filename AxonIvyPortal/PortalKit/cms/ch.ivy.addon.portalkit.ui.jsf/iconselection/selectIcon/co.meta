@@ -1,0 +1,3 @@
+co: name={selectIcon} description={} changed={2016-11-24 08:18:07 CET} changedby={chnam} visualorder={0} guid={14FEF807DA8B3FB4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14FEF807DB1A90DC} datatype={} isdefault={true} langid={en} description={} validfrom={2015-09-21 12:43:39 CEST} validto={} changed={2016-10-19 03:53:40 CEST} changedby={anhnguyenhoang} properties={} id={}
+val: guid={14FF3FBE06D8A685} datatype={} isdefault={false} langid={de} description={} validfrom={2015-09-22 09:36:52 CEST} validto={} changed={2016-11-24 08:18:07 CET} changedby={chnam} properties={} id={}

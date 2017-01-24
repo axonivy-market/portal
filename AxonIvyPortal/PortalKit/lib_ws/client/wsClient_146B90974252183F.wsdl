@@ -1,0 +1,938 @@
+<?xml version="1.0" ?><wsdl:definitions name="TaskServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="analyzeExpiryStatistic" type="tns:analyzeExpiryStatistic"></xs:element>
+<xs:element name="analyzeExpiryStatisticResponse" type="tns:analyzeExpiryStatisticResponse"></xs:element>
+<xs:element name="analyzePriorityStatistic" type="tns:analyzePriorityStatistic"></xs:element>
+<xs:element name="analyzePriorityStatisticResponse" type="tns:analyzePriorityStatisticResponse"></xs:element>
+<xs:element name="canUserResumeTask" type="tns:canUserResumeTask"></xs:element>
+<xs:element name="canUserResumeTaskResponse" type="tns:canUserResumeTaskResponse"></xs:element>
+<xs:element name="countTasksByCriteria" type="tns:countTasksByCriteria"></xs:element>
+<xs:element name="countTasksByCriteriaResponse" type="tns:countTasksByCriteriaResponse"></xs:element>
+<xs:element name="createTaskNote" type="tns:createTaskNote"></xs:element>
+<xs:element name="createTaskNoteResponse" type="tns:createTaskNoteResponse"></xs:element>
+<xs:element name="delegateTask" type="tns:delegateTask"></xs:element>
+<xs:element name="delegateTaskResponse" type="tns:delegateTaskResponse"></xs:element>
+<xs:element name="findCategories" type="tns:findCategories"></xs:element>
+<xs:element name="findCategoriesResponse" type="tns:findCategoriesResponse"></xs:element>
+<xs:element name="findGroupTaskCategories" type="tns:findGroupTaskCategories"></xs:element>
+<xs:element name="findGroupTaskCategoriesResponse" type="tns:findGroupTaskCategoriesResponse"></xs:element>
+<xs:element name="findPersonalTaskCategories" type="tns:findPersonalTaskCategories"></xs:element>
+<xs:element name="findPersonalTaskCategoriesResponse" type="tns:findPersonalTaskCategoriesResponse"></xs:element>
+<xs:element name="findTaskNotes" type="tns:findTaskNotes"></xs:element>
+<xs:element name="findTaskNotesResponse" type="tns:findTaskNotesResponse"></xs:element>
+<xs:element name="findTasksByCriteria" type="tns:findTasksByCriteria"></xs:element>
+<xs:element name="findTasksByCriteriaResponse" type="tns:findTasksByCriteriaResponse"></xs:element>
+<xs:element name="parkTask" type="tns:parkTask"></xs:element>
+<xs:element name="parkTaskResponse" type="tns:parkTaskResponse"></xs:element>
+<xs:element name="resetTask" type="tns:resetTask"></xs:element>
+<xs:element name="resetTaskResponse" type="tns:resetTaskResponse"></xs:element>
+<xs:element name="save" type="tns:save"></xs:element>
+<xs:element name="saveResponse" type="tns:saveResponse"></xs:element>
+<xs:complexType name="analyzePriorityStatistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzePriorityStatisticResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:analyzePriorityStatisticResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzePriorityStatisticResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="priorityStatistic" type="tns:priorityStatistic"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsException">
+    <xs:complexContent>
+      <xs:extension base="tns:exception">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="errorDateTime" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="errorType" type="tns:wsErrorType"></xs:element>
+          <xs:element minOccurs="0" name="exception" type="tns:exception"></xs:element>
+          <xs:element minOccurs="0" name="helpText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="helpTextData" nillable="true" type="xs:anyType"></xs:element>
+          <xs:element minOccurs="0" name="server" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userTextData" nillable="true" type="xs:anyType"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="exception">
+    <xs:complexContent>
+      <xs:extension base="tns:throwable">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="stackTraceElement">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="priorityStatistic">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exception" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="high" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="low" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="normal" type="xs:long"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="compositeObject">
+    <xs:complexContent>
+      <xs:extension base="tns:nestedObject">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="nestedObject">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType final="extension restriction" name="dateTime">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createTaskNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createTaskNoteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:createTaskNoteResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createTaskNoteResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="note" type="tns:ivyNote"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyNote">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="creationTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="creatorFullName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="creatorUserName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="parkTask">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="isUrlBuiltFromSystemProperties" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="parkTaskResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:parkTaskResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="parkTaskResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="error" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="ivyTask" type="tns:ivyTask"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivyTask">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="activatorFullName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="activatorName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="applicationName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessCreatorUser" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="businessMileStoneTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="canChangeDescription" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canChangeName" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canChangePriority" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canDelegate" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canPark" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canReset" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canResume" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessCorrespondentId" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessCreatorUser" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessMainContactDocumentDatabaseCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessMainContactFolderId" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessMainContactId" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessMainContactName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessMainContactType" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessMilestoneTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessObjectCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessObjectDocumentDatabaseCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessObjectFolderId" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessObjectName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessPriority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseBusinessStartTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseCreatorUserName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomDecimalField1" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomDecimalField2" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomDecimalField3" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomDecimalField4" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomDecimalField5" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomTimestampField1" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomTimestampField2" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomTimestampField3" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomTimestampField4" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomTimestampField5" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomVarCharField1" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomVarCharField2" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomVarCharField3" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomVarCharField4" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseCustomVarCharField5" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseDescription" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseEndTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseId" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="caseName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="casePriority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseProcessCategoryCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseProcessCategoryName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseProcessCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseProcessName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseShowDetailLink" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseStartTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseState" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseSubTypeCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseSubTypeName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseTypeCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseTypeName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField1" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField2" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField3" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField4" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customDecimalField5" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField1" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField2" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField3" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField4" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customTimestampField5" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField1" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField2" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField3" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField4" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="customVarCharField5" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="delayTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="displayDescriptionTemplate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="displayNameTemplate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="expireActivatorFullName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="expireActivatorName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="expirePriority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="expireTaskStartElementPid" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="expireTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="fullRequestPath" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="isExpired" type="xs:boolean"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyNotes" nillable="true" type="tns:ivyNote"></xs:element>
+          <xs:element minOccurs="0" name="kindCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="kindName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="originalActivatorFullName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="originalActivatorName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="originalPriority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="priority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="startTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="state" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="workerFullName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="workerUserName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="findGroupTaskCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findGroupTaskCategoriesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findGroupTaskCategoriesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findGroupTaskCategoriesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzeExpiryStatistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzeExpiryStatisticResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:analyzeExpiryStatisticResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzeExpiryStatisticResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="expiryStatistic" type="tns:expiryStatistic"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="expiryStatistic">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="in2Days" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="in3Days" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="today" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="tomorrow" type="xs:long"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="findPersonalTaskCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findPersonalTaskCategoriesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findPersonalTaskCategoriesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findPersonalTaskCategoriesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCategoriesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findCategoriesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCategoriesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="resetTask">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="isUrlBuiltFromSystemProperties" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="currentUserName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="resetTaskResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:resetTaskResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="resetTaskResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="ivyTask" type="tns:ivyTask"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="delegateTask">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="isUrlBuiltFromSystemProperties" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="ivySecurityMember" type="tns:ivySecurityMember"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ivySecurityMember">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="application" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="displayName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="memberName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="delegateTaskResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:delegateTaskResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="delegateTaskResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="ivyTask" type="tns:ivyTask"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findTaskNotes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findTaskNotesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findTaskNotesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findTaskNotesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyNotes" nillable="true" type="tns:ivyNote"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="save">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="task" type="tns:ivyTask"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="saveResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findTasksByCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="isUrlBuiltFromSystemProperties" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="startIndex" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="count" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="taskSearchCriteria" type="tns:taskSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="taskSearchCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseId" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="category" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="excludedStates" nillable="true" type="tns:taskState"></xs:element>
+      <xs:element name="ignoreInvolvedUser" type="xs:boolean"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="includedStates" nillable="true" type="tns:taskState"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="involvedApplications" nillable="true" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="keyword" type="xs:string"></xs:element>
+      <xs:element name="sortDescending" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="sortType" type="tns:sortType"></xs:element>
+      <xs:element minOccurs="0" name="taskAssigneeType" type="tns:taskAssigneeType"></xs:element>
+      <xs:element minOccurs="0" name="taskId" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findTasksByCriteriaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findTasksByCriteriaResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findTasksByCriteriaResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="allIvyTasks" nillable="true" type="tns:ivyTask"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyTasks" nillable="true" type="tns:ivyTask"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="canUserResumeTask">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="canUserResumeTaskResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:canUserResumeTaskResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="canUserResumeTaskResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="canUserResumeTask" type="xs:boolean"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="workerUserName" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="countTasksByCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="taskSearchCriteria" type="tns:taskSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="countTasksByCriteriaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:countTasksByCriteriaResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="countTasksByCriteriaResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="taskCount" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="wsErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INFO"></xs:enumeration>
+      <xs:enumeration value="WARNING"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="taskState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CREATED"></xs:enumeration>
+      <xs:enumeration value="READY_FOR_JOIN"></xs:enumeration>
+      <xs:enumeration value="JOINING"></xs:enumeration>
+      <xs:enumeration value="DELAYED"></xs:enumeration>
+      <xs:enumeration value="SUSPENDED"></xs:enumeration>
+      <xs:enumeration value="RESUMED"></xs:enumeration>
+      <xs:enumeration value="DONE"></xs:enumeration>
+      <xs:enumeration value="DESTROYED"></xs:enumeration>
+      <xs:enumeration value="PARKED"></xs:enumeration>
+      <xs:enumeration value="UNASSIGNED"></xs:enumeration>
+      <xs:enumeration value="FAILED"></xs:enumeration>
+      <xs:enumeration value="JOIN_FAILED"></xs:enumeration>
+      <xs:enumeration value="WAITING_FOR_INTERMEDIATE_EVENT"></xs:enumeration>
+      <xs:enumeration value="ZOMBIE"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="sortType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PRIORITY"></xs:enumeration>
+      <xs:enumeration value="NAME"></xs:enumeration>
+      <xs:enumeration value="ACTIVATOR"></xs:enumeration>
+      <xs:enumeration value="ID"></xs:enumeration>
+      <xs:enumeration value="CREATION_TIME"></xs:enumeration>
+      <xs:enumeration value="EXPIRY_TIME"></xs:enumeration>
+      <xs:enumeration value="STATE"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="taskAssigneeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ALL"></xs:enumeration>
+      <xs:enumeration value="ROLE"></xs:enumeration>
+      <xs:enumeration value="USER"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="saveResponse">
+    <wsdl:part element="tns:saveResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createTaskNote">
+    <wsdl:part element="tns:createTaskNote" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canUserResumeTaskResponse">
+    <wsdl:part element="tns:canUserResumeTaskResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="analyzeExpiryStatistic">
+    <wsdl:part element="tns:analyzeExpiryStatistic" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createTaskNoteResponse">
+    <wsdl:part element="tns:createTaskNoteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delegateTask">
+    <wsdl:part element="tns:delegateTask" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delegateTaskResponse">
+    <wsdl:part element="tns:delegateTaskResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetTaskResponse">
+    <wsdl:part element="tns:resetTaskResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="parkTaskResponse">
+    <wsdl:part element="tns:parkTaskResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canUserResumeTask">
+    <wsdl:part element="tns:canUserResumeTask" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findTasksByCriteriaResponse">
+    <wsdl:part element="tns:findTasksByCriteriaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findPersonalTaskCategoriesResponse">
+    <wsdl:part element="tns:findPersonalTaskCategoriesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="countTasksByCriteria">
+    <wsdl:part element="tns:countTasksByCriteria" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="analyzePriorityStatistic">
+    <wsdl:part element="tns:analyzePriorityStatistic" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="parkTask">
+    <wsdl:part element="tns:parkTask" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findGroupTaskCategories">
+    <wsdl:part element="tns:findGroupTaskCategories" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCategoriesResponse">
+    <wsdl:part element="tns:findCategoriesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findPersonalTaskCategories">
+    <wsdl:part element="tns:findPersonalTaskCategories" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findGroupTaskCategoriesResponse">
+    <wsdl:part element="tns:findGroupTaskCategoriesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCategories">
+    <wsdl:part element="tns:findCategories" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetTask">
+    <wsdl:part element="tns:resetTask" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="countTasksByCriteriaResponse">
+    <wsdl:part element="tns:countTasksByCriteriaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findTaskNotes">
+    <wsdl:part element="tns:findTaskNotes" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="save">
+    <wsdl:part element="tns:save" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findTasksByCriteria">
+    <wsdl:part element="tns:findTasksByCriteria" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="analyzeExpiryStatisticResponse">
+    <wsdl:part element="tns:analyzeExpiryStatisticResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findTaskNotesResponse">
+    <wsdl:part element="tns:findTaskNotesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="analyzePriorityStatisticResponse">
+    <wsdl:part element="tns:analyzePriorityStatisticResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TaskService">
+    <wsdl:operation name="analyzePriorityStatistic">
+      <wsdl:input message="tns:analyzePriorityStatistic" name="analyzePriorityStatistic">
+    </wsdl:input>
+      <wsdl:output message="tns:analyzePriorityStatisticResponse" name="analyzePriorityStatisticResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createTaskNote">
+      <wsdl:input message="tns:createTaskNote" name="createTaskNote">
+    </wsdl:input>
+      <wsdl:output message="tns:createTaskNoteResponse" name="createTaskNoteResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="parkTask">
+      <wsdl:input message="tns:parkTask" name="parkTask">
+    </wsdl:input>
+      <wsdl:output message="tns:parkTaskResponse" name="parkTaskResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findGroupTaskCategories">
+      <wsdl:input message="tns:findGroupTaskCategories" name="findGroupTaskCategories">
+    </wsdl:input>
+      <wsdl:output message="tns:findGroupTaskCategoriesResponse" name="findGroupTaskCategoriesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="analyzeExpiryStatistic">
+      <wsdl:input message="tns:analyzeExpiryStatistic" name="analyzeExpiryStatistic">
+    </wsdl:input>
+      <wsdl:output message="tns:analyzeExpiryStatisticResponse" name="analyzeExpiryStatisticResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findPersonalTaskCategories">
+      <wsdl:input message="tns:findPersonalTaskCategories" name="findPersonalTaskCategories">
+    </wsdl:input>
+      <wsdl:output message="tns:findPersonalTaskCategoriesResponse" name="findPersonalTaskCategoriesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCategories">
+      <wsdl:input message="tns:findCategories" name="findCategories">
+    </wsdl:input>
+      <wsdl:output message="tns:findCategoriesResponse" name="findCategoriesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resetTask">
+      <wsdl:input message="tns:resetTask" name="resetTask">
+    </wsdl:input>
+      <wsdl:output message="tns:resetTaskResponse" name="resetTaskResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delegateTask">
+      <wsdl:input message="tns:delegateTask" name="delegateTask">
+    </wsdl:input>
+      <wsdl:output message="tns:delegateTaskResponse" name="delegateTaskResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findTaskNotes">
+      <wsdl:input message="tns:findTaskNotes" name="findTaskNotes">
+    </wsdl:input>
+      <wsdl:output message="tns:findTaskNotesResponse" name="findTaskNotesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="save">
+      <wsdl:input message="tns:save" name="save">
+    </wsdl:input>
+      <wsdl:output message="tns:saveResponse" name="saveResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findTasksByCriteria">
+      <wsdl:input message="tns:findTasksByCriteria" name="findTasksByCriteria">
+    </wsdl:input>
+      <wsdl:output message="tns:findTasksByCriteriaResponse" name="findTasksByCriteriaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="canUserResumeTask">
+      <wsdl:input message="tns:canUserResumeTask" name="canUserResumeTask">
+    </wsdl:input>
+      <wsdl:output message="tns:canUserResumeTaskResponse" name="canUserResumeTaskResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="countTasksByCriteria">
+      <wsdl:input message="tns:countTasksByCriteria" name="countTasksByCriteria">
+    </wsdl:input>
+      <wsdl:output message="tns:countTasksByCriteriaResponse" name="countTasksByCriteriaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TaskServiceServiceSoapBinding" type="tns:TaskService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="analyzePriorityStatistic">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="analyzePriorityStatistic">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="analyzePriorityStatisticResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createTaskNote">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createTaskNote">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createTaskNoteResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="parkTask">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="parkTask">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="parkTaskResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findGroupTaskCategories">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findGroupTaskCategories">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findGroupTaskCategoriesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="analyzeExpiryStatistic">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="analyzeExpiryStatistic">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="analyzeExpiryStatisticResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findPersonalTaskCategories">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findPersonalTaskCategories">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findPersonalTaskCategoriesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCategories">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findCategories">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findCategoriesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resetTask">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="resetTask">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="resetTaskResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delegateTask">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="delegateTask">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="delegateTaskResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findTaskNotes">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findTaskNotes">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findTaskNotesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="save">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="save">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="saveResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findTasksByCriteria">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findTasksByCriteria">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findTasksByCriteriaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="canUserResumeTask">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="canUserResumeTask">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="canUserResumeTaskResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="countTasksByCriteria">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="countTasksByCriteria">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="countTasksByCriteriaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TaskServiceService">
+    <wsdl:port binding="tns:TaskServiceServiceSoapBinding" name="TaskServicePort">
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/1380566F9095B9C4"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

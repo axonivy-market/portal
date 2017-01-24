@@ -1,0 +1,3 @@
+co: name={taskInforDialogTitle} description={} changed={2016-12-21 15:21:10 CET} changedby={t} visualorder={0} guid={14CBBD4EB3241D54} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CBBD9ED894FD89} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:10 CET} validto={} changed={2016-12-21 15:21:10 CET} changedby={t} properties={} id={}
+val: guid={14CBBD4EB47303C3} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:10 CET} validto={} changed={2016-12-21 15:21:10 CET} changedby={t} properties={} id={}

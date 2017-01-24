@@ -1,0 +1,3 @@
+co: name={taskNotes} description={} changed={2016-03-04 04:34:11 CET} changedby={dhtlong} visualorder={0} guid={14CD4F048EA2FD25} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1533FB0961B23FFA} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 04:34:05 CET} validto={} changed={2016-03-04 04:34:11 CET} changedby={dhtlong} properties={} id={}
+val: guid={14CD4F048F51198C} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-20 05:47:39 CEST} validto={} changed={2015-04-20 05:47:59 CEST} changedby={ptanh} properties={} id={}

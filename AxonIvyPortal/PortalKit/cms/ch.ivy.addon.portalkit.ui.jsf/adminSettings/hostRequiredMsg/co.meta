@@ -1,0 +1,3 @@
+co: name={hostRequiredMsg} description={} changed={2016-12-21 15:20:50 CET} changedby={t} visualorder={0} guid={15539ED5387AADA8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15539ED538A5FC38} datatype={} isdefault={true} langid={en} description={} validfrom={2016-06-10 12:48:22 CEST} validto={} changed={2016-06-10 12:48:22 CEST} changedby={lttung} properties={} id={}
+val: guid={15539EE8C15E009E} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:50 CET} validto={} changed={2016-12-21 15:20:50 CET} changedby={t} properties={} id={}

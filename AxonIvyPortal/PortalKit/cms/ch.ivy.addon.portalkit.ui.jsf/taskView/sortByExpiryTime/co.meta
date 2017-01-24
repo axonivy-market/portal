@@ -1,0 +1,3 @@
+co: name={sortByExpiryTime} description={} changed={2015-09-22 06:53:13 CEST} changedby={ntttai} visualorder={0} guid={14FF34EAED4953AE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14FF34FABE61DEC4} datatype={} isdefault={false} langid={de} description={} validfrom={2015-09-22 06:28:46 CEST} validto={} changed={2015-09-22 06:28:49 CEST} changedby={ntttai} properties={} id={}
+val: guid={14FF34EAEDCD74D9} datatype={} isdefault={true} langid={en} description={} validfrom={2015-09-22 06:27:44 CEST} validto={} changed={2015-09-22 06:53:13 CEST} changedby={ntttai} properties={} id={}

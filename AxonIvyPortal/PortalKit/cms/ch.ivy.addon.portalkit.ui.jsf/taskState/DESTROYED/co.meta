@@ -1,0 +1,3 @@
+co: name={DESTROYED} description={} changed={2015-04-23 11:11:25 CEST} changedby={nqtinh} visualorder={0} guid={14CE58B37D332E61} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CE58BC61C74FC9} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-23 11:10:59 CEST} validto={} changed={2015-04-23 11:11:24 CEST} changedby={nqtinh} properties={} id={}
+val: guid={14CE58B37D7616FC} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-23 11:10:48 CEST} validto={} changed={2015-04-23 11:10:56 CEST} changedby={nqtinh} properties={} id={}

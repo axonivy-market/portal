@@ -1,0 +1,13 @@
+approveLeaveData #class
+internaltest.ui.approveLeave #namespace
+Mitarbeiter String #field
+Von Date #field
+Bis Date #field
+beantragt Boolean #field
+genehmigt Boolean #field
+Ablehnungsgrund String #field
+Vertretung String #field
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier
+steps List<String> #field
+steps PERSISTENT #fieldModifier

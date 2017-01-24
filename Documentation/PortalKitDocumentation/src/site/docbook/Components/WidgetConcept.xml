@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.components.concept">
+	<title>Widget concept</title>
+	<sect2 xml:id="axonivyportal.components.concept.beforebeginning">
+		<title>Before beginning</title>
+		<para>
+			This guide assumes that you are already familiar with concepts inherent in JSF programming and in Ivy development.
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.introduction">
+		<title>Introduction</title>
+		<para>
+			This document provides a high-level explanation of how to develop a Portal widget. The ability to use Portal services and styles can be particularly useful to developers who wish to do one or more of the following:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Create their own widgets for Portal which have a consistent look and feel with the existing widgets.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Reuse existing portal services to create their own widgets which can manipulate Portal data, such as: cases, tasks, process starts, users,...
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.howitis">
+		<title>How it is</title>
+		<para>
+			This section introduces the Html Dialog Component and Portal services, predefined styles used in building a widget, and goes on to describe the process of designing and implementing.
+		</para>
+		<para>
+			Portal widgets should be implemented using the <emphasis role="bold">Html Dialog Component</emphasis> technology from Axon.ivy and follow the famous model-view-controller pattern.
+		</para>
+		<para>
+			Furthermore, to have a clean architecture and avoid a lot of headaches going forward, we suggest that you should separate your widget into layers like below:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Entities
+					</para>
+					<para>
+						Entities are the business objects of the widget. They encapsulate the most general and high-level rules. They are the least likely to change when something external changes. (e.g.: by a change to page navigation, or security).
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Use Cases
+					</para>
+					<para>
+						Use case are widget specific business rules. This layer encapsulates and implements all of the use case of the widget. Changes in this layer should not affect the entities. This layer should not be affected by changes to externalities such as the Portal services, the UI, or any of the common frameworks.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Interfaces Adapters
+					</para>
+					<para>
+						Interfaces Adapters are set of adapters that convert data from the format most convenient for the use cases and entities, to the format most convenient for some external agency such as the database or the web. Similarly, data is converted, in this layer, from the form most convenient for entities and use case, into the form most convenient for whatever persistence framework is being used. (The presenters, views, and controllers all belong in here. The models are likely just data structures that are passed from the controllers to the use case, and then back from the use cases to the presenters and views.) 
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Frameworks and Drivers
+					</para>
+					<para>
+						This layer is generally composed of frameworks and tools such as the database, the web framework, Portal services, etc. This layer is where all the details go. The Web is a detail. The Portal services are detail. We keep these thing on the outside where they can do little harm.
+					</para>
+				</listitem>
+			</itemizedlist>
+			<tip>
+				<para>
+					There's no rule that says you must always have just the four layers above. However, you should always apply that the source code dependencies point from mechanisms to policies:
+				</para>
+				<para>
+					Frameworks and Drivers > Interfaces Adapters > User Cases > Entities
+				</para>
+				<para>
+					By doing so, you will create a widget that is intrinsically testable, independent of frameworks, independent of UI, independent of database, and independent of any external agency. When any of the external parts of the system become obsolete, like the database, or the web framework, you can replace those obsolete elements with a minimum of fuss.
+				</para>
+			</tip>
+		</para>					
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.maintechnologyandconcept">
+		<title>Main technology and concept</title>
+		<para>
+			You should have an understanding of the following technology and concept as you build your widget:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Managed Beans: in Html Dialog Component it is possible to communicate with normal Java Objects by using Managed Beans.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						User Dialog Concept: an Html Dialog Component follows the model-view-controller pattern of the User Dialog Concept.
+						<itemizedlist>
+							<listitem>
+								<para>
+									Model is a data class whose data fields can be bound to widget properties of the view via the special object data.
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+									Controller is implemented by a series of UI processes that can be mapped to events on the view such as mouse clicks. Axon.ivy provides the keyword logic to call an event process or a method process in the logic.
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+									View of an Html Dialog is defined with the means of an XHTML document.
+								</para>
+							</listitem>
+						</itemizedlist>
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.services">
+		<title>Services</title>
+		<para>
+			There are separate services for working with each type of data:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Application Services: set of services for getting information about applications.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Absence Services: set of services for manipulating the user's absence.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Case Services: set of services for working with cases and related data, such as: additional properties, notes,...
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Task Services: set of services for working with tasks.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Process Start Services: set of services for querying process starts from the Portal system.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Security Services: set of services for querying users and roles.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						User Setting Services: set of services for manipulating the user settings and related data, such as: email settings, language settings.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Portal Configuration Services: set of services for controlling the Portal configuration. 
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.builtinwidgets">
+		<title>Built-in widgets</title>
+		<para>
+			Portal comes with some useful widgets:
+			<orderedlist>
+				<listitem>
+					<para>
+						Task widget
+					</para>
+					<para>
+						Below is the sample how the task widget being use in the default template:
+						<para><code>&lt;ui:define name="taskWidget"&gt;</code></para>
+						<para><code>&lt;ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" tasks="#{logic.getTasksOfSessionUser()}" ... /&gt;</code></para>
+						<para><code>&lt;/ui:define&gt;</code></para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Process widget
+					</para>
+					<para>
+						Below is the sample how the process widget being use in the default template:
+						<para><code>&lt;ui:define name="processWidget"&gt;</code></para>
+						<para><code>&lt;ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true" ... .&gt;</code></para>
+						<para><code>&lt;/ui:define&gt;</code></para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Statistic widget
+					</para>
+					<para>
+						Below is the sample how the statistic widget being use in the default template:
+						<para><code>&lt;ui:define name="statisticWidget"&gt;</code></para>
+						<para><code>&lt;ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" ... &gt;</code></para>						
+						<para><code>...</code></para>
+						<para><code>&lt;/ic:ch.ivy.addon.portalkit.component.StatisticWidget&gt;</code></para>
+						<para><code>&lt;/ui:define&gt;</code></para>
+					</para>
+				</listitem>
+			</orderedlist>
+		</para>
+		<para>
+			Portal setup these widget with the default settings for you, but you can always re-define them in order to match with your needs. Moreover, if you want to turn off a built-in widget, you can simply leave its ui:define container empty like this:
+			<para><code>&lt;ui:define name="taskWidget"&gt;</code></para>
+			<para><code>&lt;!-- leave it empty --&gt;</code></para>
+			<para><code>&lt;/ui:define&gt;</code></para>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.predefinedstyles">
+		<title>Predefined styles</title>
+		<para>
+			There are separate common styles are predefined to ensure every Portal widget has a consistent structure and appearance:
+			<para><code>&lt;div class="widget"&gt;</code></para>
+			<para><code>&lt;div class="widget-header"&gt;</code></para>
+			<para><code>&lt;ul class="widget-header-menu"&gt;</code></para>
+			<para><code>&lt;li class=&quot;widget-header-menu-item&quot;&gt;...&lt;/li&gt;</code></para>
+			<para><code>&lt;li class=&quot;widget-header-menu-item&quot;&gt;...&lt;/li&gt;</code></para>
+			<para><code>&lt;li class=&quot;widget-header-menu-item&quot;&gt;...&lt;/li&gt;</code></para>
+			<para><code>...</code></para>
+			<para><code>&lt;/ul&gt;</code></para>
+			<para><code>...</code></para>
+			<para><code>&lt;/div&gt;</code></para>
+			<para><code>&lt;div class="widget-content"&gt;</code></para>
+			<para><code>&lt;div class="widget-content-list"&gt;</code></para>
+			<para><code>&lt;div class=&quot;widget-content-list-item&quot;&gt;...&lt;/div&gt;</code></para>
+			<para><code>&lt;div class=&quot;widget-content-list-item&quot;&gt;...&lt;/div&gt;</code></para>
+			<para><code>&lt;div class=&quot;widget-content-list-item&quot;&gt;...&lt;/div&gt;</code></para>
+			<para><code>...</code></para>
+			<para><code>&lt;/div&gt;</code></para>
+			<para><code>&lt;/div&gt;</code></para>
+			<para><code>&lt;div class="widdget-footer"&gt;</code></para>
+			<para><code>...</code></para>
+			<para><code>&lt;/div&gt;</code></para>
+			<para><code>&lt;/div&gt;</code></para>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.flow">
+		<title>Flow</title>
+		<para>
+			The general flow for developing a widget for portal is as follows:
+			<orderedlist>
+				<listitem>
+					<para>
+						Design your widget, deciding which parts to implement in Ivy component, and which parts to implement as pure JSF.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Create an Html Dialog Component.
+					</para>
+					<para>
+						The following code fragment defines an example Html Dialog component:
+						<para><code>&lt;cc:interface componentType="IvyComponent"&gt;</code></para>
+						<para><code>&lt;cc:attribute name="caption" /&gt;</code></para>
+						<para><code>&lt;/cc:interface&gt;</code></para>
+						<para><code>&lt;cc:implementation&gt;</code></para>
+						<para><code>...</code></para>
+						<para><code>&lt;/cc:implementation&gt;</code></para>
+					</para>
+					<para>
+						A component could be inserted with the ic tag.
+						<para><code>&lt;ic:my.namespace.ComponentName ... /&gt;</code></para>
+					</para>
+					<para>
+						For more information, see the Html Dialog Component section in Axon.ivy Designer - Help: <emphasis role="bold">Designer Guide > User Interface > User Dialogs > Html Dialogs</emphasis>
+					</para>
+				</listitem>
+				<listitem>
+					If you are writing a widget, which manipulates task, case,... consider using Portal built-in services.
+				</listitem>
+				<listitem>
+					Optionally, your widgets can have their own configuration. There are separate methods for manipulating widget configuration:
+					<itemizedlist>
+						<listitem>
+							<para>
+								You can initiate or update your widget configuration by passing an JSON object to <code>saveSettings()</code>.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								You can load your widget configuration by calling <code>loadSettings()</code>.
+							</para>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+			</orderedlist>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.integration">
+		<title>Integration</title>
+		<para>
+			The general flow for integrating a widget into Portal homepage is as follows:
+			<orderedlist>
+				<listitem>
+					<para>
+						Create a new home page which uses the <code>DefaultHomePageTemplate.xhtml</code> template. By doing this, your new home page will inherit the widget from the previous home page and has a place holder for your own widgets. Your custom home page should look like below:
+						<para><code>&lt;ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"</code></para>
+						<para><code>xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"</code></para>
+						<para><code>xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"&gt;</code></para>
+						<para><code>&lt;ui:define name="customWidget"&gt;</code></para>
+						<para><code>...</code></para>
+						<para><code>&lt;/ui:define&gt;</code></para>
+						<para><code>&lt;/ui:composition&gt;</code></para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Create a new process start for the new home page. Now you will use this process start as the entry point of your portal instead of the default one. To let portal know about your new portal home, you have to go to the portal settings and set the portal home url to the new one.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						 In your new home page, place your widget inside the customWidget section.
+						 <para><code>&lt;ui:define name="customWidget"&gt;</code></para>
+						 <para><code>&lt;ic:my.namespace.ComponentName ... /&gt;</code></para>
+						 <para><code>...</code></para>
+						 <para><code>&lt;/ui:define&gt;</code></para>
+					</para>
+				</listitem>
+			</orderedlist>
+		</para>
+		<para>
+			For more details, visit <link linkend="axonivyportal.customization.portalhome" endterm="axonivyportal.customization.portalhome.title" />.
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.concept.exceptionhandling">
+		<title>Exception handling</title>
+		<para>
+			Portal separates exception into 2 types: ajax and non-ajax exception.
+		</para>
+		<para>
+			Portal handle non-ajax exception for you. You do not need to do anything for this type of exception.
+		</para>
+		<para>
+			Portal also handle ajax exception for you as default, but you can implement your own exception handler by using the Primefaces built-in exception handler: <code>p:ajaxExceptionHandler</code>.
+		</para>
+	</sect2>
+</sect1>

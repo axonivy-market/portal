@@ -1,0 +1,3 @@
+co: name={externalHostTooltip} description={} changed={2016-12-21 15:20:49 CET} changedby={t} visualorder={0} guid={155C39C495843CBD} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={155C39C4975CC0B4} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:49 CET} validto={} changed={2016-12-21 15:20:49 CET} changedby={t} properties={} id={}
+val: guid={155C39C97345278E} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:49 CET} validto={} changed={2016-12-21 15:20:49 CET} changedby={t} properties={} id={}

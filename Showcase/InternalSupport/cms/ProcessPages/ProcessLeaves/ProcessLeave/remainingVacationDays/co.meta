@@ -1,0 +1,3 @@
+co: name={remainingVacationDays} description={} changed={2015-04-22 10:46:19 CEST} changedby={ptanh} visualorder={0} guid={14CE04C973DE67AB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CE04E7052E53E8} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-22 10:46:00 CEST} validto={} changed={2015-04-22 10:46:19 CEST} changedby={ptanh} properties={} id={}
+val: guid={14CE04C97475EBD0} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-22 10:44:18 CEST} validto={} changed={2015-04-22 10:46:19 CEST} changedby={ptanh} properties={} id={}

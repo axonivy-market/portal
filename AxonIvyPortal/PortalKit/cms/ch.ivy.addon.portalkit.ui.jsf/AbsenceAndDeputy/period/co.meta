@@ -1,0 +1,3 @@
+co: name={period} description={} changed={2015-08-10 06:43:12 CEST} changedby={hvu} visualorder={0} guid={14BD8C0D1A6354FE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14BD8C0D1ABACE0F} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-02 05:31:30 CET} validto={} changed={2015-03-02 05:31:32 CET} changedby={nqtinh} properties={} id={}
+val: guid={14CA26293AFBADFC} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:11:46 CEST} validto={} changed={2015-04-10 10:11:51 CEST} changedby={Johannes} properties={} id={}

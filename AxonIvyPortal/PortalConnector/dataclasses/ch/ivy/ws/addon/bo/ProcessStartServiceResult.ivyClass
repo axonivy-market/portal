@@ -1,0 +1,4 @@
+ProcessStartServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+processStarts java.util.List<ch.ivy.ws.addon.types.IvyProcessStart> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field

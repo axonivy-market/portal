@@ -1,0 +1,3 @@
+co: name={passwordRequiredMsg} description={} changed={2016-12-21 15:20:50 CET} changedby={t} visualorder={0} guid={155346F891493EF9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={155346F8917E56D8} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:50 CET} validto={} changed={2016-12-21 15:20:50 CET} changedby={t} properties={} id={}
+val: guid={155347BDEC0CE414} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:50 CET} validto={} changed={2016-12-21 15:20:50 CET} changedby={t} properties={} id={}

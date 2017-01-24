@@ -1,0 +1,3 @@
+co: name={EXCEPTION} description={} changed={2016-04-21 04:56:32 CEST} changedby={dhtlong} visualorder={0} guid={15436BEBE2A1C063} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15436BEBE32E07ED} datatype={} isdefault={true} langid={en} description={} validfrom={2016-04-21 04:55:50 CEST} validto={} changed={2016-04-21 04:55:50 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15436BF60A8CF042} datatype={} isdefault={false} langid={de} description={} validfrom={2016-04-21 04:55:58 CEST} validto={} changed={2016-04-21 04:56:32 CEST} changedby={dhtlong} properties={} id={}

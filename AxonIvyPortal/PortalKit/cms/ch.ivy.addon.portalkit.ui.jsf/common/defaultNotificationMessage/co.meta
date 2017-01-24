@@ -1,0 +1,3 @@
+co: name={defaultNotificationMessage} description={} changed={2016-12-21 15:20:57 CET} changedby={t} visualorder={0} guid={15268CBABD7AC972} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15921C1AA468D0DC} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:57 CET} validto={} changed={2016-12-21 15:20:57 CET} changedby={t} properties={} id={}
+val: guid={15268CBABE0EB0A5} datatype={} isdefault={true} langid={en} description={} validfrom={2016-01-22 11:05:24 CET} validto={} changed={2016-03-22 11:44:59 CET} changedby={t} properties={} id={}

@@ -1,0 +1,3 @@
+co: name={nextCase} description={} changed={2015-04-14 06:01:11 CEST} changedby={Johannes} visualorder={0} guid={1475D6E7B8F11215} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1475D6E7B98D9186} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-22 11:37:07 CEST} validto={} changed={2014-07-22 11:37:32 CEST} changedby={roman} properties={} id={}
+val: guid={1475D6EDED36F74C} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-22 11:37:32 CEST} validto={} changed={2015-04-14 06:01:11 CEST} changedby={Johannes} properties={} id={}
