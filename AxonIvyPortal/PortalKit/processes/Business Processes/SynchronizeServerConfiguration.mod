@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jan 19 17:57:04 ICT 2017]
-1503C0F82FA8D5F4 3.18 #module
+[>Created: Tue Jan 24 10:35:25 ICT 2017]
+1503C0F82FA8D5F4 3.19 #module
 >Proto >Proto Collection #zClass
 Sn0 SynchronizeServerConfiguration Big #zClass
 Sn0 B #cInfo
@@ -44,30 +44,20 @@ Sn0 f0 requestEnabled false #txt
 Sn0 f0 triggerEnabled true #txt
 Sn0 f0 callSignature add(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
 Sn0 f0 persist false #txt
-Sn0 f0 taskData 'TaskTriggered.ROL=SYSTEM
+Sn0 f0 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigDescription")%>
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigDescription")%>
-TaskTriggered.EXROL=Everybody
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigurationTaskName")%>' #txt
-Sn0 f0 caseData 'case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigDescription")%>
-case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>' #txt
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigurationTaskName")%>
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXROL=Everybody' #txt
+Sn0 f0 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=false' #txt
 Sn0 f0 showInStartList 1 #txt
-Sn0 f0 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName\")%>"));
-ivy.case.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeServerProcess/AddServerConfigDescription\")%>"));
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeServerProcess/AddServerConfigurationTaskName\")%>"));
-taskUpdDef.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeServerProcess/AddServerConfigDescription\")%>"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Sn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -177,30 +167,20 @@ Sn0 f6 requestEnabled false #txt
 Sn0 f6 triggerEnabled true #txt
 Sn0 f6 callSignature delete(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
 Sn0 f6 persist false #txt
-Sn0 f6 taskData 'TaskTriggered.ROL=SYSTEM
+Sn0 f6 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription")%>
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription")%>
-TaskTriggered.EXROL=Everybody
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationTaskName")%>' #txt
-Sn0 f6 caseData 'case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription")%>
-case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>' #txt
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationTaskName")%>
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXROL=Everybody' #txt
+Sn0 f6 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=false' #txt
 Sn0 f6 showInStartList 1 #txt
-Sn0 f6 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName\")%>"));
-ivy.case.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription\")%>"));
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationTaskName\")%>"));
-taskUpdDef.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription\")%>"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Sn0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

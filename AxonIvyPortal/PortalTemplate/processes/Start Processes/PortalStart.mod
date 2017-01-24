@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Oct 11 15:32:14 ICT 2016]
-1549F58C18A6C562 3.18 #module
+[>Created: Tue Jan 24 11:02:36 ICT 2017]
+1549F58C18A6C562 3.19 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
 Pt0 B #cInfo
@@ -44,23 +44,18 @@ Pt0 f0 requestEnabled true #txt
 Pt0 f0 triggerEnabled false #txt
 Pt0 f0 callSignature PortalStart(String,String) #txt
 Pt0 f0 persist false #txt
-Pt0 f0 startName <%=ivy.cms.co("/Processes/portalHome")%> #txt
+Pt0 f0 startName '<%=ivy.cms.co("/Processes/Cases/PortalCategory")%>: <%=ivy.cms.co("/Processes/portalHome")%>' #txt
+Pt0 f0 startDescription 'This is an internal process to display portal home' #txt
 Pt0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
+Pt0 f0 caseData 'case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=false' #txt
 Pt0 f0 showInStartList 1 #txt
-Pt0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -326,16 +321,8 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
+Pt0 f10 caseData businessCase.attach=false #txt
 Pt0 f10 showInStartList 0 #txt
-Pt0 f10 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

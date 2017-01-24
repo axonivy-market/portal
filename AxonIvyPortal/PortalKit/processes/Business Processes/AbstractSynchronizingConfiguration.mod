@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jan 19 18:12:33 ICT 2017]
-150406C1AFBE566B 3.18 #module
+[>Created: Tue Jan 24 10:34:14 ICT 2017]
+150406C1AFBE566B 3.19 #module
 >Proto >Proto Collection #zClass
 An0 AbstractSynchronizingConfiguration Big #zClass
 An0 B #cInfo
@@ -62,30 +62,20 @@ An0 f0 requestEnabled false #txt
 An0 f0 triggerEnabled true #txt
 An0 f0 callSignature addOrUpdateOne(ch.ivy.addon.portalkit.persistence.domain.BusinessEntity) #txt
 An0 f0 persist false #txt
-An0 f0 taskData 'TaskTriggered.ROL=SYSTEM
+An0 f0 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntityDescription")%>
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntityDescription")%>
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+TaskTriggered.ROL=SYSTEM
 TaskTriggered.EXROL=Everybody' #txt
-An0 f0 caseData 'case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntityDescription")%>
-case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>' #txt
+An0 f0 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntityDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=false' #txt
 An0 f0 showInStartList 1 #txt
-An0 f0 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-ivy.case.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntityDescription\")%>"));
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-taskUpdDef.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntityDescription\")%>"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 An0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -161,30 +151,20 @@ An0 f12 requestEnabled false #txt
 An0 f12 triggerEnabled true #txt
 An0 f12 callSignature addOrUpdateMany(List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity>) #txt
 An0 f12 persist false #txt
-An0 f12 taskData 'TaskTriggered.ROL=SYSTEM
+An0 f12 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntitiesDescription")%>
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
-TaskTriggered.EXROL=Everybody
-TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntitiesDescription")%>' #txt
-An0 f12 caseData 'case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntitiesDescription")%>
-case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>' #txt
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXROL=Everybody' #txt
+An0 f12 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntitiesDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=false' #txt
 An0 f12 showInStartList 1 #txt
-An0 f12 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-ivy.case.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntitiesDescription\")%>"));
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-taskUpdDef.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntitiesDescription\")%>"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 An0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -269,30 +249,20 @@ An0 f21 requestEnabled false #txt
 An0 f21 triggerEnabled true #txt
 An0 f21 callSignature delete(ch.ivy.addon.portalkit.persistence.domain.BusinessEntity) #txt
 An0 f21 persist false #txt
-An0 f21 taskData 'TaskTriggered.ROL=SYSTEM
+An0 f21 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityDescription")%>
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityDescription")%>
-TaskTriggered.EXROL=Everybody
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>' #txt
-An0 f21 caseData 'case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityDescription")%>
-case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>' #txt
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXROL=Everybody' #txt
+An0 f21 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=false' #txt
 An0 f21 showInStartList 1 #txt
-An0 f21 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-ivy.case.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityDescription\")%>"));
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-taskUpdDef.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityDescription\")%>"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 An0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -370,30 +340,20 @@ An0 f27 requestEnabled false #txt
 An0 f27 triggerEnabled true #txt
 An0 f27 callSignature deleteByPropertyPrefix(String) #txt
 An0 f27 persist false #txt
-An0 f27 taskData 'TaskTriggered.ROL=SYSTEM
+An0 f27 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeletePropertyOfServerByPrefixDescription")%>
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
-TaskTriggered.EXROL=Everybody
-TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeletePropertyOfServerByPrefixDescription")%>' #txt
-An0 f27 caseData 'case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityByPrefixDescription")%>
-case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>' #txt
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXROL=Everybody' #txt
+An0 f27 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityByPrefixDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=false' #txt
 An0 f27 showInStartList 1 #txt
-An0 f27 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-ivy.case.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntityByPrefixDescription\")%>"));
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-taskUpdDef.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/DeletePropertyOfServerByPrefixDescription\")%>"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 An0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -451,30 +411,20 @@ An0 f11 requestEnabled false #txt
 An0 f11 triggerEnabled true #txt
 An0 f11 callSignature deleteManyProperties(List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity>) #txt
 An0 f11 persist false #txt
-An0 f11 taskData 'TaskTriggered.ROL=SYSTEM
+An0 f11 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntitiesDescription")%>
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
-TaskTriggered.EXROL=Everybody
-TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntitiesDescription")%>' #txt
-An0 f11 caseData 'case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntitiesDescription")%>
-case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>' #txt
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXROL=Everybody' #txt
+An0 f11 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntitiesDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=false' #txt
 An0 f11 showInStartList 1 #txt
-An0 f11 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-ivy.case.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntitiesDescription\")%>"));
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName\")%>"));
-taskUpdDef.setDescription(engine.expandMacros("<%=ivy.cms.co(\"/Processes/Cases/SynchronizeDataProcess/DeleteBusinessEntitiesDescription\")%>"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 An0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
