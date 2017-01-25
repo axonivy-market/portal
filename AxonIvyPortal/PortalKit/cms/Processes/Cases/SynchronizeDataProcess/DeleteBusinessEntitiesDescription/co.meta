@@ -1,2 +1,2 @@
-co: name={DeleteBusinessEntitiesDescription} description={} changed={2017-01-25 12:26:37 CET} changedby={t} visualorder={0} guid={159B6437DD09412E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={159B6437DE013D63} datatype={} isdefault={true} langid={en} description={} validfrom={2017-01-19 11:26:33 CET} validto={} changed={2017-01-25 12:26:37 CET} changedby={t} properties={} id={}
+co: name={DeleteBusinessEntitiesDescription} description={} changed={2017-01-25 12:52:38 CET} changedby={t} visualorder={0} guid={159B6437DD09412E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={159B6437DE013D63} datatype={} isdefault={true} langid={en} description={} validfrom={2017-01-19 11:26:33 CET} validto={} changed={2017-01-25 12:52:38 CET} changedby={t} properties={} id={}
