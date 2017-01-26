@@ -117,7 +117,7 @@
       trackMouse="true" />
    <p:tooltip for="noExpiryAvailable expiryLabel"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}"
-      trackMouse="true" rendered="#{!taskBean.isEnableExpiryInput(task)}"/>
+      trackMouse="true" rendered="#{taskBean.isNotDone(task) and !taskBean.isEnableExpiryInput(task)}"/>
   </div>
 
 </cc:implementation>
