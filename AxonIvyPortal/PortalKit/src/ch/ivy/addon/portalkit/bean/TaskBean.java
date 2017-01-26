@@ -463,9 +463,10 @@ public class TaskBean {
   }
   
   public Boolean isEnableExpiryInput(ITask task){
-	  if(task.getExpiryActivator() != null || ( task.getExpiryTaskStartElementPid() != null && !task.getExpiryTaskStartElementPid().isEmpty())){
+	  if(task.getExpiryActivator() != null ||  !StringUtils.isBlank(task.getExpiryTaskStartElementPid())){
 		  return true;
 	  }
+	  
 	  return false;
   }
 }
