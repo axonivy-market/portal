@@ -26,7 +26,7 @@
     	<ui:repeat id="tasks" var="task" value="#{data.relatedTasks}">
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content">
             <i class="fa #{taskBean.getStateIcon(task.state)} related-task-list-item-status" />
-            <p:commandLink id="task-name" value="#{task.name}" actionListener="#{logic.openPortalTasks}" styleClass="related-task">
+            <p:commandLink id="task-name" value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" actionListener="#{logic.openPortalTasks}" styleClass="related-task">
               <f:attribute name="taskId" value="#{task.id}" />
             </p:commandLink>
           </h:panelGroup>
