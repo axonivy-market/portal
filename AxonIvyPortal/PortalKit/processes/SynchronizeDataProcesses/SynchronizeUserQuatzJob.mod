@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Fri Nov 13 16:27:10 ICT 2015]
-150FFE7ECE139751 3.18 #module
+[>Created: Thu Jan 26 16:39:45 ICT 2017]
+150FFE7ECE139751 3.19 #module
 >Proto >Proto Collection #zClass
 Sb0 SynchronizeUserQuatzJob Big #zClass
 Sb0 B #cInfo
@@ -68,6 +68,7 @@ Sb0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>eventStarterbyQuatzScheduler</name>
         <nameStyle>28,7
 </nameStyle>
+        <desc>&lt;%=ivy.cms.co("/Processes/Cases/SynchronizeUserQuatzJob/eventStartedbyQuatzSchedulerDescription")%&gt;</desc>
     </language>
 </elementInfo>
 ' #txt
