@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jan 24 18:26:44 ICT 2017]
+[>Created: Thu Jan 26 08:22:23 ICT 2017]
 1549F58C18A6C562 3.19 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -46,15 +46,15 @@ Pt0 f0 callSignature PortalStart(String,String) #txt
 Pt0 f0 persist false #txt
 Pt0 f0 startName <%=ivy.cms.co("/Processes/portalHome")%> #txt
 Pt0 f0 taskData 'TaskTriggered.ROL=Everybody
-TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.EXTYPE=0
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.EXROL=Everybody
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>' #txt
 Pt0 f0 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>
-case.description=This is an internal process to display portal home
+case.description=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 businessCase.attach=false' #txt
 Pt0 f0 showInStartList 1 #txt
