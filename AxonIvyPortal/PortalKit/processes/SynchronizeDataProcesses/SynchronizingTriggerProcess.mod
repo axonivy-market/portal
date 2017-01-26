@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jan 24 10:32:41 ICT 2017]
+[>Created: Thu Jan 26 16:13:22 ICT 2017]
 1503C5419245E19B 3.19 #module
 >Proto >Proto Collection #zClass
 Ae0 SynchronizingTriggerProcess Big #zClass
@@ -269,6 +269,7 @@ TaskTriggered.ROL=SYSTEM
 TaskTriggered.EXROL=Everybody' #txt
 Ae0 f16 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeletePropertiesOfServerDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 businessCase.attach=false' #txt
 Ae0 f16 showInStartList 1 #txt
 Ae0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
