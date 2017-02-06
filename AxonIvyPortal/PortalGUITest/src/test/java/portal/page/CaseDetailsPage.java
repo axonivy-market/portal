@@ -43,7 +43,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void addNote(String content) {
     onClickHistoryIcon();
-    caseItem.findElement(By.cssSelector("#a[id$='add-note-command']")).click();
+    caseItem.findElement(By.cssSelector("a[id$='add-note-command']")).click();
     waitAjaxIndicatorDisappear();
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
