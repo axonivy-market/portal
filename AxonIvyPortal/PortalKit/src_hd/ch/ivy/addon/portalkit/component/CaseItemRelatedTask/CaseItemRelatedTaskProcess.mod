@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Jan 26 16:14:45 ICT 2017]
+[>Created: Mon Feb 06 17:30:54 ICT 2017]
 153358BE9219FD4C 3.19 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
@@ -111,7 +111,6 @@ includedStates.add(TaskState.SUSPENDED);
 includedStates.add(TaskState.RESUMED);
 includedStates.add(TaskState.PARKED);
 includedStates.add(TaskState.UNASSIGNED);
-includedStates.add(TaskState.DONE);
 
 out.taskSearchCriteria.caseId = in.remoteCase.id;
 out.taskSearchCriteria.includedStates = includedStates;
