@@ -25,6 +25,8 @@
             jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" /> <i
             class="fa fa-exclamation-circle" jsf:id="zombie-task"
             jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" /> <i
+            class="fa fa-exclamation-circle" jsf:id="created-task"
+            jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" /> <i
             class="fa fa-pencil-square-o" jsf:rendered="#{history.type eq 'NOTE'}" />
           <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/on')} " />
           <h:outputText value="#{history.timestamp}">
@@ -40,11 +42,13 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed')}" trackMouse="true" />
           <p:tooltip for="zombie-task"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie')}" trackMouse="true" />
+          <p:tooltip for="created-task"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated')}" trackMouse="true" />
         </div>
         <div class="truncate-note history-note u-italic-font">
           <p:commandLink
             value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
-            id="task-name" actionListener="#{logic.openPortalTasks}" rendered="#{history.type eq 'TASK'}">
+            id="task-name" actionListener="#{logic.openPortalTasks}" rendered="#{history.type eq 'TASK'}" disabled="#{history.taskState.toString() eq 'CREATED'}">
             <f:attribute name="taskId" value="#{history.id}" />
           </p:commandLink>
           <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">

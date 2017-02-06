@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Fri Dec 30 17:17:44 ICT 2016]
-153362B0AC312EFB 3.18 #module
+[>Created: Mon Feb 06 16:59:39 ICT 2017]
+153362B0AC312EFB 3.19 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -352,6 +352,7 @@ List<TaskState> includedStates = [];
 includedStates.add(TaskState.DONE);
 includedStates.add(TaskState.DESTROYED);
 includedStates.add(TaskState.ZOMBIE);
+includedStates.add(TaskState.CREATED);
 
 out.taskSearchCriteria.caseId = in.remoteCase.id;
 out.taskSearchCriteria.includedStates = includedStates;' #txt
