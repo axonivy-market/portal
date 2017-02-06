@@ -38,12 +38,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public int countTasks() {
-    return caseItem.findElements(By.cssSelector("a[id$='task-name']")).size();
+    return caseItem.findElements(By.cssSelector("div[id$='related-tasks'] a[id$='task-name']")).size();
   }
 
   public void addNote(String content) {
     onClickHistoryIcon();
-    caseItem.findElement(By.cssSelector("a[id$='add-note-command']")).click();
+    caseItem.findElement(By.cssSelector("#a[id$='add-note-command']")).click();
     waitAjaxIndicatorDisappear();
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
