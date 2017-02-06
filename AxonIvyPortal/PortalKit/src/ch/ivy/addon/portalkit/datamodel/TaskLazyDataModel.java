@@ -166,7 +166,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private TaskSearchCriteria buildCriteria() {
     TaskSearchCriteria crit = new TaskSearchCriteria();
     crit.setInvolvedUsername(Ivy.session().getSessionUserName());
-    crit.setIncludedStates(new TaskState[] {TaskState.SUSPENDED, TaskState.PARKED, TaskState.RESUMED, TaskState.DONE});
+    crit.setIncludedStates(new TaskState[] {TaskState.SUSPENDED, TaskState.PARKED, TaskState.RESUMED});
     return crit;
   }
 
