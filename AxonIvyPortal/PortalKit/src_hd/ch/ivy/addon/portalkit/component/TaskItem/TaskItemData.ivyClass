@@ -38,3 +38,5 @@ oldName String #field
 oldName PERSISTENT #fieldModifier
 IsValidStatesToReset Boolean #field
 IsValidStatesToReset PERSISTENT #fieldModifier
+delegateComment String #field
+delegateComment PERSISTENT #fieldModifier
