@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Jan 16 09:30:33 ICT 2017]
-150CB86EFC2F2972 3.18 #module
+[>Created: Tue Feb 07 18:43:08 ICT 2017]
+150CB86EFC2F2972 3.19 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
 Ts0 RD #cInfo
@@ -38,8 +38,6 @@ Ts0 @PushWFArc f11 '' #zField
 Ts0 @PushWFArc f25 '' #zField
 Ts0 @PushWFArc f41 '' #zField
 Ts0 @PushWFArc f43 '' #zField
-Ts0 @PushWFArc f59 '' #zField
-Ts0 @PushWFArc f42 '' #zField
 Ts0 @PushWFArc f24 '' #zField
 Ts0 @PushWFArc f19 '' #zField
 Ts0 @PushWFArc f52 '' #zField
@@ -105,6 +103,14 @@ Ts0 @PushWFArc f83 '' #zField
 Ts0 @GridStep f84 '' #zField
 Ts0 @PushWFArc f85 '' #zField
 Ts0 @PushWFArc f82 '' #zField
+Ts0 @GridStep f86 '' #zField
+Ts0 @CallSub f88 '' #zField
+Ts0 @GridStep f89 '' #zField
+Ts0 @PushWFArc f90 '' #zField
+Ts0 @PushWFArc f91 '' #zField
+Ts0 @PushWFArc f93 '' #zField
+Ts0 @PushWFArc f42 '' #zField
+Ts0 @PushWFArc f59 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f0 guid 150CB86EFDA88218 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -214,7 +220,7 @@ Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f8 526 564 36 24 20 -2 #rect
 Ts0 f8 @|StepIcon #fIcon
 Ts0 f15 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f15 534 870 20 20 13 0 #rect
+Ts0 f15 534 1150 20 20 13 0 #rect
 Ts0 f15 @|RichDialogProcessEndIcon #fIcon
 Ts0 f40 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -407,23 +413,6 @@ Ts0 f43 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f43 558 768 672 812 #arcP
 Ts0 f43 1 672 768 #addKink
 Ts0 f43 1 0.3269230769230769 16 0 #arcLabel
-Ts0 f59 expr out #txt
-Ts0 f59 672 836 554 880 #arcP
-Ts0 f59 1 672 880 #addKink
-Ts0 f59 1 0.07754185619092568 0 0 #arcLabel
-Ts0 f42 expr in #txt
-Ts0 f42 outCond in.canUserResumeTask #txt
-Ts0 f42 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>YES</name>
-        <nameStyle>3,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f42 544 782 544 870 #arcP
-Ts0 f42 0 0.3630952380952381 18 0 #arcLabel
 Ts0 f24 expr out #txt
 Ts0 f24 320 331 320 372 #arcP
 Ts0 f19 expr out #txt
@@ -1028,6 +1017,111 @@ Ts0 f85 expr out #txt
 Ts0 f85 544 330 544 372 #arcP
 Ts0 f82 expr out #txt
 Ts0 f82 544 396 544 434 #arcP
+Ts0 f86 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f86 actionTable 'out=in;
+' #txt
+Ts0 f86 actionCode 'import java.util.Arrays;
+import ch.ivyteam.ivy.environment.Ivy;
+
+String newResponsibleName;
+String oldResponsibleName;
+
+oldResponsibleName = in.selectedTask.activatorFullName;
+if (in.#selectedUser != null) {
+	newResponsibleName = in.#selectedUser.#displayName;
+} else if (in.#selectedRole != null) {
+	newResponsibleName = in.#selectedRole.#displayName;
+}
+
+List<Object> params = Arrays.asList(in.selectedTask.id, oldResponsibleName, newResponsibleName);
+in.delegateComment = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", params);' #txt
+Ts0 f86 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set content for delegate comment</name>
+        <nameStyle>32,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f86 526 868 36 24 20 -2 #rect
+Ts0 f86 @|StepIcon #fIcon
+Ts0 f88 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f88 processCall MultiPortal/CaseService:createNote(ch.ivy.addon.portalkit.persistence.domain.Server,Long,String,String) #txt
+Ts0 f88 doCall true #txt
+Ts0 f88 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId,java.lang.String username,java.lang.String content> param;
+' #txt
+Ts0 f88 requestMappingAction 'param.server=in.selectedTask.#applicationRegister.#server;
+param.caseId=in.selectedTask.case.getId();
+param.username=ivy.session.getSessionUserName();
+param.content=in.delegateComment;
+' #txt
+Ts0 f88 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f88 responseMappingAction 'out=in;
+' #txt
+Ts0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create note service</name>
+        <nameStyle>19,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f88 526 964 36 24 20 -2 #rect
+Ts0 f88 @|CallSubIcon #fIcon
+Ts0 f89 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f89 actionTable 'out=in;
+' #txt
+Ts0 f89 actionCode 'import ch.ivy.ws.addon.WsException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+if (!in.errors.isEmpty()) {
+	for (WsException error : in.errors) {
+		FacesContext.getCurrentInstance().addMessage("note-content", new FacesMessage(FacesMessage.SEVERITY_ERROR, error.userText, null));
+	}
+	FacesContext.getCurrentInstance().validationFailed();
+}' #txt
+Ts0 f89 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f89 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show errors if any</name>
+        <nameStyle>18,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f89 526 1044 36 24 20 -2 #rect
+Ts0 f89 @|StepIcon #fIcon
+Ts0 f90 expr out #txt
+Ts0 f90 544 892 544 964 #arcP
+Ts0 f91 expr out #txt
+Ts0 f91 544 988 544 1044 #arcP
+Ts0 f93 expr in #txt
+Ts0 f93 outCond in.canUserResumeTask #txt
+Ts0 f93 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f93 544 782 544 868 #arcP
+Ts0 f93 0 0.3630952380952381 18 0 #arcLabel
+Ts0 f42 expr out #txt
+Ts0 f42 672 836 562 880 #arcP
+Ts0 f42 1 672 880 #addKink
+Ts0 f42 1 0.07754185619092568 0 0 #arcLabel
+Ts0 f59 expr out #txt
+Ts0 f59 544 1068 544 1150 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -1051,11 +1145,6 @@ Ts0 f20 mainOut f52 tail #connect
 Ts0 f52 head f51 mainIn #connect
 Ts0 f51 mainOut f19 tail #connect
 Ts0 f19 head f13 mainIn #connect
-Ts0 f26 mainOut f59 tail #connect
-Ts0 f59 head f15 mainIn #connect
-Ts0 f40 out f42 tail #connect
-Ts0 f42 head f15 mainIn #connect
-Ts0 f40 out f43 tail #connect
 Ts0 f16 mainOut f9 tail #connect
 Ts0 f9 head f6 mainIn #connect
 Ts0 f6 mainOut f18 tail #connect
@@ -1112,3 +1201,14 @@ Ts0 f14 mainOut f85 tail #connect
 Ts0 f85 head f84 mainIn #connect
 Ts0 f84 mainOut f82 tail #connect
 Ts0 f82 head f75 in #connect
+Ts0 f86 mainOut f90 tail #connect
+Ts0 f90 head f88 mainIn #connect
+Ts0 f88 mainOut f91 tail #connect
+Ts0 f91 head f89 mainIn #connect
+Ts0 f40 out f93 tail #connect
+Ts0 f93 head f86 mainIn #connect
+Ts0 f40 out f43 tail #connect
+Ts0 f26 mainOut f42 tail #connect
+Ts0 f42 head f86 mainIn #connect
+Ts0 f89 mainOut f59 tail #connect
+Ts0 f59 head f15 mainIn #connect
