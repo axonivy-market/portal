@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Fri Oct 28 15:54:12 ICT 2016]
-1543D9E65076619B 3.18 #module
+[>Created: Tue Feb 07 14:33:56 ICT 2017]
+1543D9E65076619B 3.19 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -166,6 +166,7 @@ Nr0 f14 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 Nr0 f14 actionTable 'out=in;
 ' #txt
 Nr0 f14 actionCode 'import ch.ivy.ws.addon.SortType;
+import ch.ivy.ws.addon.TaskState;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
@@ -179,6 +180,7 @@ TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setCaseId(in.caseId.id());
 dataModel.setIgnoreInvolvedUser(true);
 dataModel.setSortType(SortType.PRIORITY, false);
+dataModel.getCriteria().addIncludedStates(TaskState.DONE);
 
 in.taskView = TaskView.create()
 											.category(category)
