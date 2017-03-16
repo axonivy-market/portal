@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.hiddenrole">
+	<title>Hidden role</title>
+	<sect2 xml:id="axonivyportal.customization.hiddenrole.introduction">
+		<title>Introduction</title>
+		<para>
+			This function is designed for technical roles in the system that won't display anywhere, cannot delegate task or set substitute.
+		</para>
+		<para>
+			Differences between hidden roles and normal roles:
+		</para>
+		<itemizedlist>
+			<listitem>
+				<para>Cannot set substitute.</para>
+			</listitem>
+			<listitem>
+				<para>Cannot set as delegator for a task.</para>
+			</listitem>
+		</itemizedlist>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.hiddenrole.usage">
+		<title>Usage</title>
+		<itemizedlist>
+			<listitem>
+				<para>
+					To marked a role as hidden role, just simply set value for property <emphasis role="strong">HIDE</emphasis> of that role. For example:
+				</para>
+				<para>
+					<code>import ch.ivy.addon.portalkit.util.RoleUtils</code>
+				</para>
+				<para>
+					<code>IRole yourRole = new IRole();</code>
+				</para>
+				<para>
+					<code>RoleUtils.setRoleProperty(yourRole, "HIDE", "yourValue");</code>
+				</para>
+			</listitem>
+			<listitem>
+				<para>Role <code>AXONIVY_PORTAL_ADMIN</code> is marked as a hidden role by default.</para>
+			</listitem>
+		</itemizedlist>
+	</sect2>
+</sect1>
