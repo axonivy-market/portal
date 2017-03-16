@@ -30,6 +30,7 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
   private static final String SYSTEM_USER = "SYSTEM";
   private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
   private static final String HIDE_USERS_IN_DELEGATION = "HIDE_USERS_IN_DELEGATION";
+  private static final String HIDE = "HIDE";
 
   @Override
   public SecurityServiceResult findAllRoles(final List<String> apps) throws WSException {
@@ -144,7 +145,7 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
             if (role.getProperty(HIDE_USERS_IN_DELEGATION) != null) {
               users.removeAll(role.getUsers());
             }
-            if (role.getProperty(HIDE_IN_DELEGATION) != null) {
+            if (role.getProperty(HIDE_IN_DELEGATION) != null || role.getProperty(HIDE) != null) {
               continue;
             }
             ivyRoles.add(roleTransformer.transform(role, null));
