@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -35,5 +36,13 @@ public class PermissionBean {
       Ivy.log().error(e.getMessage());
       return false;
     }
+  }
+
+  /**
+   * Set default hidden roles
+   * 
+   */
+  public void setDefaultHiddenRoles() {
+    RoleUtils.setDefaultHiddenRoles();
   }
 }

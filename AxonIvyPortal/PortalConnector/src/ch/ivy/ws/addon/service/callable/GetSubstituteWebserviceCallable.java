@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toSet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
@@ -22,6 +23,7 @@ public final class GetSubstituteWebserviceCallable implements Callable<Substitut
 
   private static final String ROLE_EVERYBODY = "Everybody";
   private static final String SYSTEM_USERNAME = "SYSTEM";
+  private static final String HIDE = "HIDE";
   private final String username;
   private final List<String> availableApps;
 
@@ -75,7 +77,7 @@ public final class GetSubstituteWebserviceCallable implements Callable<Substitut
     List<IvySubstitute> ivySubstitutes = IvySubstituteTransformer.transform(user.getSubstitutes(), application);
 
     Set<String> existRoles = ivySubstitutes.stream().map(IvySubstitute::getForThisRole).collect(toSet());
-    List<IRole> iRoles = getAllRoles(user).stream().filter((role) -> !existRoles.contains(role.getName()))
+    List<IRole> iRoles = getAllRoles(user).stream().filter((role) -> !existRoles.contains(role.getName()) && Objects.isNull(role.getProperty(HIDE)))
         .collect(toList());
     
 
