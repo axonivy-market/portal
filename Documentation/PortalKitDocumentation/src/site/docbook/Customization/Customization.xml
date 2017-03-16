@@ -8,4 +8,5 @@
 	<xi:include href="TaskDetails.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="CaseItem.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="DefaultUserProcess.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="HiddenRole.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
