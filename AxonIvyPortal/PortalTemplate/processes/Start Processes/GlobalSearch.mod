@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Mar 22 14:38:52 ICT 2017]
+[>Created: Thu Mar 23 14:37:56 ICT 2017]
 1508F2CD9F746207 3.20 #module
 >Proto >Proto Collection #zClass
 Sk0 GlobalSearch Big #zClass
@@ -226,7 +226,7 @@ Sk0 f19 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 Sk0 f19 actionTable 'out=in;
 ' #txt
 Sk0 f19 actionCode 'import ch.ivy.addon.portalkit.service.TaskQueryService;
-import ch.ivy.addon.portalkit.support.TaskJsonQueryCriteria;
+import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivyteam.ivy.workflow.TaskState;
 import java.util.Arrays;
 
@@ -237,10 +237,10 @@ states.add(TaskState.SUSPENDED);
 states.add(TaskState.RESUMED);
 states.add(TaskState.PARKED);
 
-TaskJsonQueryCriteria jsonQueryCriteria = new TaskJsonQueryCriteria();
-jsonQueryCriteria.keyword = in.keyword;
-jsonQueryCriteria.includedStates = states;
-out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(jsonQueryCriteria).asJson();
+TaskQueryCriteria queryCriteria = new TaskQueryCriteria();
+queryCriteria.keyword = in.keyword;
+queryCriteria.includedStates = states;
+out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
 
 if (in.#applicationName is initialized) {
 	List<String> involvedApplications = Arrays.asList(in.applicationName);
