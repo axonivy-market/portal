@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jan 03 11:00:59 ICT 2017]
-1380566F9095B9C4 3.18 #module
+[>Created: Wed Mar 22 17:11:56 ICT 2017]
+1380566F9095B9C4 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 WS #cInfo
@@ -129,15 +129,6 @@ Te0 f9 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f9 callSignature parkTask(Boolean,String,Long) #txt
 Te0 f9 useUserDefinedException false #txt
 Te0 f9 taskData TaskTriggered.PRI=2 #txt
-Te0 f9 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f9 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -168,15 +159,6 @@ Te0 f13 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f13 callSignature delegateTask(Boolean,ch.ivy.ws.addon.types.IvySecurityMember,Long) #txt
 Te0 f13 useUserDefinedException false #txt
 Te0 f13 taskData TaskTriggered.PRI=2 #txt
-Te0 f13 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f13 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -235,15 +217,6 @@ Te0 f19 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f19 callSignature createTaskNote(String,String,Long) #txt
 Te0 f19 useUserDefinedException false #txt
 Te0 f19 taskData TaskTriggered.PRI=2 #txt
-Te0 f19 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f19 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -327,15 +300,6 @@ Te0 f25 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f25 callSignature findTaskNotes(Long) #txt
 Te0 f25 useUserDefinedException false #txt
 Te0 f25 taskData TaskTriggered.PRI=2 #txt
-Te0 f25 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f25 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -369,15 +333,6 @@ Te0 f38 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f38 callSignature resetTask(Boolean,String,Long) #txt
 Te0 f38 useUserDefinedException false #txt
 Te0 f38 taskData TaskTriggered.PRI=2 #txt
-Te0 f38 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f38 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -465,15 +420,6 @@ Te0 f44 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f44 callSignature findTasksByCriteria(Boolean,Integer,Integer,ch.ivy.ws.addon.service.TaskSearchCriteria) #txt
 Te0 f44 useUserDefinedException false #txt
 Te0 f44 taskData TaskTriggered.PRI=2 #txt
-Te0 f44 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f44 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -504,15 +450,6 @@ Te0 f48 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f48 callSignature canUserResumeTask(Long,String) #txt
 Te0 f48 useUserDefinedException false #txt
 Te0 f48 taskData TaskTriggered.PRI=2 #txt
-Te0 f48 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f48 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -654,15 +591,6 @@ Te0 f28 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f28 callSignature countTasksByCriteria(ch.ivy.ws.addon.service.TaskSearchCriteria) #txt
 Te0 f28 useUserDefinedException false #txt
 Te0 f28 taskData TaskTriggered.PRI=2 #txt
-Te0 f28 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f28 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -724,15 +652,6 @@ Te0 f10 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f10 callSignature findCategories(String,List<String>) #txt
 Te0 f10 useUserDefinedException false #txt
 Te0 f10 taskData TaskTriggered.PRI=2 #txt
-Te0 f10 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f10 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -793,15 +712,6 @@ Te0 f49 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f49 callSignature analyzePriorityStatistic(String,List<String>) #txt
 Te0 f49 useUserDefinedException false #txt
 Te0 f49 taskData TaskTriggered.PRI=2 #txt
-Te0 f49 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f49 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -863,15 +773,6 @@ Te0 f56 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f56 callSignature analyzeExpiryStatistic(String,List<String>) #txt
 Te0 f56 useUserDefinedException false #txt
 Te0 f56 taskData TaskTriggered.PRI=2 #txt
-Te0 f56 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f56 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1045,15 +946,6 @@ Te0 f62 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f62 callSignature save(ch.ivy.ws.addon.types.IvyTask) #txt
 Te0 f62 useUserDefinedException false #txt
 Te0 f62 taskData TaskTriggered.PRI=2 #txt
-Te0 f62 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f62 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1137,15 +1029,6 @@ Te0 f67 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f67 callSignature findGroupTaskCategories(String,List<String>) #txt
 Te0 f67 useUserDefinedException false #txt
 Te0 f67 taskData TaskTriggered.PRI=2 #txt
-Te0 f67 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f67 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1203,15 +1086,6 @@ Te0 f70 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 Te0 f70 callSignature findPersonalTaskCategories(String,List<String>) #txt
 Te0 f70 useUserDefinedException false #txt
 Te0 f70 taskData TaskTriggered.PRI=2 #txt
-Te0 f70 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Te0 f70 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

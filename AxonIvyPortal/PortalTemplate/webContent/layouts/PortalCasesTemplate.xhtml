@@ -8,13 +8,6 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="caseView" value="#{data.caseView}" />
 
-    <!--
-      - The ui:param `useOverride` is for pages uses this template to decide
-      whether the customContent should be shown
-      - Default to `false`.
-    -->
-    <ui:param name="useOverride" value="false"></ui:param>
-
     <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}</ui:define>
     <ui:define name="pageContent">
       <div class="js-case-default-widget-container case-default-widget-container">

@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jan 03 10:04:04 ICT 2017]
-15035F535EFB1618 3.18 #module
+[>Created: Thu Mar 23 10:55:34 ICT 2017]
+15035F535EFB1618 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
 Ts0 RD #cInfo
@@ -27,7 +27,6 @@ Ts0 @RichDialogProcessStart f82 '' #zField
 Ts0 @RichDialogProcessEnd f83 '' #zField
 Ts0 @PushWFArc f84 '' #zField
 Ts0 @RichDialogMethodStart f85 '' #zField
-Ts0 @PushWFArc f86 '' #zField
 Ts0 @GridStep f91 '' #zField
 Ts0 @PushWFArc f90 '' #zField
 Ts0 @GridStep f93 '' #zField
@@ -46,10 +45,9 @@ Ts0 @CallSub f69 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 Ts0 @PushWFArc f7 '' #zField
-Ts0 @RichDialogMethodStart f4 '' #zField
-Ts0 @GridStep f6 '' #zField
-Ts0 @PushWFArc f8 '' #zField
+Ts0 @GridStep f4 '' #zField
 Ts0 @PushWFArc f5 '' #zField
+Ts0 @PushWFArc f6 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -138,10 +136,10 @@ Ts0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f82 61 341 22 22 14 0 #rect
 Ts0 f82 @|RichDialogProcessStartIcon #fIcon
 Ts0 f83 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f83 61 453 22 22 14 0 #rect
+Ts0 f83 61 437 22 22 14 0 #rect
 Ts0 f83 @|RichDialogProcessEndIcon #fIcon
 Ts0 f84 expr out #txt
-Ts0 f84 72 363 72 453 #arcP
+Ts0 f84 72 363 72 437 #arcP
 Ts0 f85 guid 153E0E71EF8532C3 #txt
 Ts0 f85 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f85 method init(Boolean,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
@@ -149,29 +147,11 @@ Ts0 f85 disableUIEvents false #txt
 Ts0 f85 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f85 inActionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-
-if(!out.modeInitialized) {
+Ts0 f85 inParameterMapAction 'out.dataModel=param.#dataModel;
+' #txt
+Ts0 f85 inActionCode 'if(!out.modeInitialized) {
 	out.compactMode = param.compactMode;
 	out.modeInitialized = true;
-}
-
-if(!out.#dataModel is initialized) {
-	if(param.#dataModel is initialized) {
-		out.dataModel = param.dataModel;
-	} else {
-		out.dataModel = new TaskLazyDataModel();	
-		Long serverId = SecurityServiceUtils.getServerIdFromSession();
-		if (#serverId is initialized) {
-			out.dataModel.setServerId(serverId);
-		}
-		
-		String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-		if (#applicationName is initialized) {
-			out.dataModel.setInvolvedApplications(applicationName);
-		}
-	}
 }' #txt
 Ts0 f85 outParameterDecl '<> result;
 ' #txt
@@ -187,17 +167,13 @@ dataModel)</name>
 ' #txt
 Ts0 f85 165 341 22 22 6 7 #rect
 Ts0 f85 @|RichDialogMethodStartIcon #fIcon
-Ts0 f86 expr out #txt
-Ts0 f86 176 363 83 464 #arcP
-Ts0 f86 1 176 464 #addKink
-Ts0 f86 1 0.1310558335856218 0 0 #arcLabel
 Ts0 f91 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f91 actionTable 'out=in;
 ' #txt
-Ts0 f91 actionCode 'import ch.ivy.ws.addon.SortType;
+Ts0 f91 actionCode 'import ch.ivy.addon.portalkit.enums.TaskSortField;
 
-in.dataModel.setSortType(SortType.PRIORITY, false);
+in.dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 ' #txt
 Ts0 f91 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -213,16 +189,16 @@ filtered tasks</name>
 Ts0 f91 446 396 36 24 20 -7 #rect
 Ts0 f91 @|StepIcon #fIcon
 Ts0 f90 expr out #txt
-Ts0 f90 464 420 83 464 #arcP
-Ts0 f90 1 464 464 #addKink
+Ts0 f90 464 420 83 448 #arcP
+Ts0 f90 1 464 448 #addKink
 Ts0 f90 1 0.38811073544256947 0 0 #arcLabel
 Ts0 f93 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f93 actionTable 'out=in;
 ' #txt
-Ts0 f93 actionCode 'import ch.ivy.ws.addon.SortType;
+Ts0 f93 actionCode 'import ch.ivy.addon.portalkit.enums.TaskSortField;
 
-in.dataModel.setSortType(SortType.EXPIRY_TIME, false);
+in.dataModel.setSortField(TaskSortField.EXPIRY_TIME.toString(), false);
 ' #txt
 Ts0 f93 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -238,8 +214,8 @@ filtered tasks</name>
 Ts0 f93 302 396 36 24 20 -7 #rect
 Ts0 f93 @|StepIcon #fIcon
 Ts0 f89 expr out #txt
-Ts0 f89 320 420 83 464 #arcP
-Ts0 f89 1 320 464 #addKink
+Ts0 f89 320 420 83 448 #arcP
+Ts0 f89 1 320 448 #addKink
 Ts0 f89 1 0.33600930498506193 0 0 #arcLabel
 Ts0 f95 guid 153E111F9FCD9D31 #txt
 Ts0 f95 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -402,54 +378,39 @@ Ts0 f2 expr out #txt
 Ts0 f2 752 172 752 245 #arcP
 Ts0 f7 expr out #txt
 Ts0 f7 752 75 752 148 #arcP
-Ts0 f4 guid 15731C686FFBD1F8 #txt
+Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f4 actionTable 'out=in;
+' #txt
+Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+import javax.faces.context.FacesContext;
+
+if (!out.#dataModel is initialized) {
+	FacesContext context = FacesContext.getCurrentInstance();
+	TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskWidgetBean}", TaskWidgetBean.class) as TaskWidgetBean;
+	out.dataModel = taskWidgetBean.dataModel;
+}' #txt
+Ts0 f4 security system #txt
 Ts0 f4 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f4 method sort(ch.ivy.ws.addon.SortType,Boolean) #txt
-Ts0 f4 disableUIEvents false #txt
-Ts0 f4 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.ws.addon.SortType sortType,java.lang.Boolean sortDescending> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f4 inParameterMapAction 'out.sortDescending=param.sortDescending;
-out.sortType=param.sortType;
-' #txt
-Ts0 f4 outParameterDecl '<> result;
-' #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>sort(SortType,Boolean)</name>
-        <nameStyle>22,5,7
+        <name>init dataModel
+if empty</name>
+        <nameStyle>23
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f4 629 341 22 22 14 0 #rect
-Ts0 f4 @|RichDialogMethodStartIcon #fIcon
-Ts0 f6 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
-' #txt
-Ts0 f6 actionTable 'out=in;
-' #txt
-Ts0 f6 actionCode 'in.dataModel.setSortType(in.sortType, in.sortDescending);' #txt
-Ts0 f6 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>sort tasks
-by type</name>
-        <nameStyle>18
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f6 622 404 36 24 20 -2 #rect
-Ts0 f6 @|StepIcon #fIcon
-Ts0 f8 expr out #txt
-Ts0 f8 640 363 640 404 #arcP
-Ts0 f8 0 0.40933572710951527 0 0 #arcLabel
+Ts0 f4 158 396 36 24 20 -2 #rect
+Ts0 f4 @|StepIcon #fIcon
 Ts0 f5 expr out #txt
-Ts0 f5 640 428 83 464 #arcP
-Ts0 f5 1 640 464 #addKink
-Ts0 f5 1 0.40933572710951527 0 0 #arcLabel
+Ts0 f5 176 363 176 396 #arcP
+Ts0 f5 0 0.1310558335856218 0 0 #arcLabel
+Ts0 f6 expr out #txt
+Ts0 f6 176 420 83 448 #arcP
+Ts0 f6 1 176 448 #addKink
+Ts0 f6 1 0.1310558335856218 0 0 #arcLabel
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -462,8 +423,6 @@ Ts0 f60 mainOut f44 tail #connect
 Ts0 f44 head f38 mainIn #connect
 Ts0 f82 mainOut f84 tail #connect
 Ts0 f84 head f83 mainIn #connect
-Ts0 f85 mainOut f86 tail #connect
-Ts0 f86 head f83 mainIn #connect
 Ts0 f91 mainOut f90 tail #connect
 Ts0 f90 head f83 mainIn #connect
 Ts0 f93 mainOut f89 tail #connect
@@ -480,7 +439,7 @@ Ts0 f69 mainOut f2 tail #connect
 Ts0 f2 head f67 mainIn #connect
 Ts0 f68 mainOut f7 tail #connect
 Ts0 f7 head f69 mainIn #connect
-Ts0 f4 mainOut f8 tail #connect
-Ts0 f8 head f6 mainIn #connect
-Ts0 f6 mainOut f5 tail #connect
-Ts0 f5 head f83 mainIn #connect
+Ts0 f85 mainOut f5 tail #connect
+Ts0 f5 head f4 mainIn #connect
+Ts0 f4 mainOut f6 tail #connect
+Ts0 f6 head f83 mainIn #connect

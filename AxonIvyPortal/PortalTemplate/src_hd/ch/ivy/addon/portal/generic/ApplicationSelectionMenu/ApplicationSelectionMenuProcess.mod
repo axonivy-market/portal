@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Nov 02 19:11:49 ICT 2016]
-156A1AA176DE2A21 3.18 #module
+[>Created: Wed Mar 22 13:36:57 ICT 2017]
+156A1AA176DE2A21 3.20 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
 As0 RD #cInfo
@@ -565,20 +565,20 @@ As0 f21 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.Applica
 ' #txt
 As0 f21 actionTable 'out=in;
 ' #txt
-As0 f21 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+As0 f21 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portal.generic.view.TaskView;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
 
-
 Long serverId = SecurityServiceUtils.getServerIdFromSession();
 if (#serverId is initialized) {
 	dataModel.setServerId(serverId);
 }
 
-dataModel.setTaskAssigneeType(ch.ivy.ws.addon.TaskAssigneeType.ALL);
+dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
 if (#applicationName is initialized) {

@@ -85,22 +85,6 @@
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
-    <method>
-        <name>sort</name>
-        <description></description>
-        <inputParameter>
-            <name>sortType</name>
-            <description></description>
-            <parameterType>ch.ivy.ws.addon.SortType</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>sortDescending</name>
-            <description></description>
-            <parameterType>Boolean</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

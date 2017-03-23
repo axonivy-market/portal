@@ -6,14 +6,14 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 
 <ui:composition>
-  <p:commandLink styleClass="#{data.dataModel.sortType eq masterDataBean.getSortTypePriority() ? 'is-selected' : ''}" id="priority-sort-command"
+  <p:commandLink styleClass="#{data.dataModel.sortField eq masterDataBean.getTaskSortFieldPriority() ? 'is-selected' : ''}" id="priority-sort-command"
     update="#{cc.attrs.componentToUpdateWhenInCompactMode} task-view-container task-widget-sort-menu"
     oncomplete="taskWidget.setupScrollbar()">
     <f:actionListener binding="#{logic.sortByPriority()}" />
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByPriority')}" />
   </p:commandLink>
   <p:spacer width="20" />
-  <p:commandLink styleClass="#{data.dataModel.sortType eq masterDataBean.getSortTypeExpiryTime() ? 'is-selected' : ''}" id="expiry-sort-command"
+  <p:commandLink styleClass="#{data.dataModel.sortField eq masterDataBean.getTaskSortFieldExpiryTime() ? 'is-selected' : ''}" id="expiry-sort-command"
     update="#{cc.attrs.componentToUpdateWhenInCompactMode} task-view-container task-widget-sort-menu"
     oncomplete="taskWidget.setupScrollbar()">
     <f:actionListener binding="#{logic.sortByExpiry()}" />

@@ -15,8 +15,6 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.bo.AvailableAppsResult;
 import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.bo.TaskServiceResult;
-import ch.ivy.ws.addon.enums.SortType;
-import ch.ivy.ws.addon.enums.TaskAssigneeType;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
 import ch.ivy.ws.addon.transformer.IvyTaskTransformer;
 import ch.ivy.ws.addon.types.IvyApplication;
@@ -275,7 +273,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            if (taskSearchCriteria.isEmpty()) {
+            if (taskSearchCriteria.isEmpty() && StringUtils.isBlank(taskSearchCriteria.getJsonQuery())) {
               return result(noErrors());
             }
 
@@ -298,12 +296,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     task.getApplication()));
                 ivyTask.setCanChangeDescription(hasPermissionToChangeDescription(involvedUsername, task));
                 ivyTask.setCanChangeName(hasPermissionToChangeName(involvedUsername, task));
-                if (taskSearchCriteria.hasTaskId()) {
+                if (taskSearchCriteria.isQueryByTaskId()) {
                   ivyTasks.add(ivyTask);
-                } else {
-                  if (canUserResumeTask) {
-                    ivyTasks.add(ivyTask);
-                  }
+                } else if (canUserResumeTask) {
+                  ivyTasks.add(ivyTask);
                 }
 
                 if (taskSearchCriteria.isIgnoreInvolvedUser()) {
@@ -496,34 +492,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   private TaskQuery createTaskQuery(TaskSearchCriteria taskSearchCriteria) throws Exception {
-    TaskQuery finalQuery = TaskQuery.create();
-
-    if (taskSearchCriteria.hasExcludedStates()) {
-      finalQuery.where().and(queryForExcludedStates(taskSearchCriteria.getExcludedStates()));
-    }
-
-    if (taskSearchCriteria.hasIncludedStates()) {
-      finalQuery.where().and(queryForStates(taskSearchCriteria.getIncludedStates()));
-    }
-
-    if (taskSearchCriteria.hasTaskId()) {
-      finalQuery.where().and(queryForTaskId(taskSearchCriteria.getTaskId()));
-      return finalQuery;
-    }
-
-    if (taskSearchCriteria.hasCaseId()) {
-      finalQuery.where().and().caseId().isEqual(taskSearchCriteria.getCaseId());
-    }
-
-    if (taskSearchCriteria.hasKeyword()) {
-      finalQuery.where().and(queryForKeyword(taskSearchCriteria.getKeyword()));
-    }
-
-    if (taskSearchCriteria.getTaskAssigneeType() == TaskAssigneeType.ROLE) {
-      finalQuery.where().and().activatorRoleId().isNotNull();
-    } else if (taskSearchCriteria.getTaskAssigneeType() == TaskAssigneeType.USER) {
-      finalQuery.where().and().activatorUserId().isNotNull();
-    }
+    TaskQuery finalQuery = TaskQuery.fromJson(taskSearchCriteria.getJsonQuery());
 
     if (taskSearchCriteria.hasInvolvedUsername() && !taskSearchCriteria.isIgnoreInvolvedUser()) {
       List<String> involvedApplications = taskSearchCriteria.getInvolvedApplications();
@@ -536,108 +505,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     } else if (taskSearchCriteria.hasInvolvedApplications()) {
       finalQuery.where().and(queryForInvolvedApplications(taskSearchCriteria.getInvolvedApplications()));
     }
-
-    if (taskSearchCriteria.hasCategory()) {
-      finalQuery.where().and(queryForCategory(taskSearchCriteria.getCategory()));
-    }
-    TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
-    finalQuery = appender.appendSorting(taskSearchCriteria).toQuery();
-
+    
     return finalQuery;
-  }
-
-  private static class TaskSortingQueryAppender {
-
-    private TaskQuery query;
-
-    public TaskSortingQueryAppender(TaskQuery query) {
-      this.query = query;
-    }
-
-    public TaskQuery toQuery() {
-      return query;
-    }
-
-    public TaskSortingQueryAppender appendSorting(TaskSearchCriteria criteria) {
-      appendSortByPriorityIfSet(criteria);
-      appendSortByNameIfSet(criteria);
-      appendSortByActivatorIfSet(criteria);
-      appendSortByIdIfSet(criteria);
-      appendSortByCreationDateIfSet(criteria);
-      appendSortByExpiryDateIfSet(criteria);
-      appendSortByStateIfSet(criteria);
-      return this;
-    }
-
-    private void appendSortByPriorityIfSet(TaskSearchCriteria criteria) {
-      if (criteria.getSortType() == SortType.PRIORITY) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().priority().descending();
-        } else {
-          query.orderBy().priority();
-        }
-      }
-    }
-
-    private void appendSortByNameIfSet(TaskSearchCriteria criteria) {
-      if (criteria.getSortType() == SortType.NAME) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().name().descending();
-        } else {
-          query.orderBy().name();
-        }
-      }
-    }
-
-    private void appendSortByActivatorIfSet(TaskSearchCriteria criteria) {
-      if (criteria.getSortType() == SortType.ACTIVATOR) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().activatorName().descending();
-        } else {
-          query.orderBy().activatorName();
-        }
-      }
-    }
-
-    private void appendSortByIdIfSet(TaskSearchCriteria criteria) {
-      if (criteria.getSortType() == SortType.ID) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().taskId().descending();
-        } else {
-          query.orderBy().taskId();
-        }
-      }
-    }
-
-    private void appendSortByCreationDateIfSet(TaskSearchCriteria criteria) {
-      if (criteria.getSortType() == SortType.CREATION_TIME) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().startTimestamp().descending();
-        } else {
-          query.orderBy().startTimestamp();
-        }
-      }
-    }
-
-    private void appendSortByExpiryDateIfSet(TaskSearchCriteria criteria) {
-      if (criteria.getSortType() == SortType.EXPIRY_TIME) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().expiryTimestamp().descending();
-        } else {
-          query.orderBy().expiryTimestamp();
-        }
-      }
-    }
-
-    private void appendSortByStateIfSet(TaskSearchCriteria criteria) {
-      if (criteria.getSortType() == SortType.STATE) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().state().descending();
-        } else {
-          query.orderBy().state();
-        }
-      }
-    }
   }
 
   @Override
@@ -843,29 +712,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     return taskQuery;
   }
 
-  private TaskQuery queryForKeyword(String keyword) {
-    String containingKeyword = String.format("%%%s%%", keyword);
-    TaskQuery filterByKeywordQuery =
-        TaskQuery.create().where().or().name().isLike(containingKeyword).or().description().isLike(containingKeyword)
-            .or().customVarCharField1().isLike(containingKeyword).or().customVarCharField2().isLike(containingKeyword)
-            .or().customVarCharField3().isLike(containingKeyword).or().customVarCharField4().isLike(containingKeyword)
-            .or().customVarCharField5().isLike(containingKeyword);
-
-    try {
-      long idKeyword = Long.parseLong(keyword);
-      filterByKeywordQuery.where().or().taskId().isEqual(idKeyword);
-    } catch (NumberFormatException e) {
-    }
-    return filterByKeywordQuery;
-  }
-
-  private TaskQuery queryForCategory(String keyword) {
-    String startingWithCategory = String.format("%s%%", keyword);
-    TaskQuery filterByKeywordQuery = TaskQuery.create().where().customVarCharField5().isLike(startingWithCategory);
-
-    return filterByKeywordQuery;
-  }
-
   private TaskQuery queryForStates(List<TaskState> states) {
     TaskQuery stateFieldQuery = TaskQuery.create();
 
@@ -879,24 +725,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       }
     }
     return stateFieldQuery;
-  }
-
-  private TaskQuery queryForExcludedStates(List<TaskState> excludedStates) {
-    TaskQuery stateFieldQuery = TaskQuery.create();
-
-    if (excludedStates == null || excludedStates.isEmpty()) {
-      return stateFieldQuery;
-    }
-
-    excludedStates.forEach(excludedState -> stateFieldQuery.where().and().state().isNotEqual(excludedState));
-
-    return stateFieldQuery;
-  }
-
-  private TaskQuery queryForTaskId(Long taskId) {
-    TaskQuery query = TaskQuery.create();
-    query.where().taskId().isEqual(taskId);
-    return query;
   }
 
   private TaskQuery queryForExpiry(Date date) {
