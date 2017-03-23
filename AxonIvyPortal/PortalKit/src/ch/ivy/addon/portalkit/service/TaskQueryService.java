@@ -4,7 +4,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.support.TaskJsonQueryCriteria;
+import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -20,8 +20,8 @@ public class TaskQueryService {
     return service;
   }
   
-  public TaskQuery createQuery(TaskJsonQueryCriteria criteria) {
-    TaskQuery finalQuery = TaskQuery.create();
+  public TaskQuery createQuery(TaskQueryCriteria criteria) {
+    TaskQuery finalQuery = criteria.getTaskQuery() != null ? TaskQuery.fromJson(criteria.getTaskQuery().asJson()) : TaskQuery.create();
 
     if (criteria.hasIncludedStates()) {
       finalQuery.where().and(queryForStates(criteria.getIncludedStates()));
@@ -49,9 +49,9 @@ public class TaskQueryService {
     if (criteria.hasCategory()) {
       finalQuery.where().and(queryForCategory(criteria.getCategory()));
     }
+    
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
     finalQuery = appender.appendSorting(criteria).toQuery();
-
     return finalQuery;
   }
 
@@ -99,7 +99,7 @@ public class TaskQueryService {
     return query;
   }
 
-  private static class TaskSortingQueryAppender {
+  private class TaskSortingQueryAppender {
 
     private TaskQuery query;
 
@@ -111,7 +111,7 @@ public class TaskQueryService {
       return query;
     }
 
-    public TaskSortingQueryAppender appendSorting(TaskJsonQueryCriteria criteria) {
+    public TaskSortingQueryAppender appendSorting(TaskQueryCriteria criteria) {
       appendSortByPriorityIfSet(criteria);
       appendSortByNameIfSet(criteria);
       appendSortByActivatorIfSet(criteria);
@@ -122,7 +122,7 @@ public class TaskQueryService {
       return this;
     }
 
-    private void appendSortByPriorityIfSet(TaskJsonQueryCriteria criteria) {
+    private void appendSortByPriorityIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.PRIORITY.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().priority().descending();
@@ -132,7 +132,7 @@ public class TaskQueryService {
       }
     }
 
-    private void appendSortByNameIfSet(TaskJsonQueryCriteria criteria) {
+    private void appendSortByNameIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.NAME.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().name().descending();
@@ -142,7 +142,7 @@ public class TaskQueryService {
       }
     }
 
-    private void appendSortByActivatorIfSet(TaskJsonQueryCriteria criteria) {
+    private void appendSortByActivatorIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().activatorName().descending();
@@ -152,7 +152,7 @@ public class TaskQueryService {
       }
     }
 
-    private void appendSortByIdIfSet(TaskJsonQueryCriteria criteria) {
+    private void appendSortByIdIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.ID.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().taskId().descending();
@@ -162,7 +162,7 @@ public class TaskQueryService {
       }
     }
 
-    private void appendSortByCreationDateIfSet(TaskJsonQueryCriteria criteria) {
+    private void appendSortByCreationDateIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().startTimestamp().descending();
@@ -172,7 +172,7 @@ public class TaskQueryService {
       }
     }
 
-    private void appendSortByExpiryDateIfSet(TaskJsonQueryCriteria criteria) {
+    private void appendSortByExpiryDateIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().expiryTimestamp().descending();
@@ -182,7 +182,7 @@ public class TaskQueryService {
       }
     }
 
-    private void appendSortByStateIfSet(TaskJsonQueryCriteria criteria) {
+    private void appendSortByStateIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().state().descending();

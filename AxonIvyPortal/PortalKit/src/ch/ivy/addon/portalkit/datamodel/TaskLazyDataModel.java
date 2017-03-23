@@ -18,11 +18,11 @@ import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
-import ch.ivy.addon.portalkit.support.TaskJsonQueryCriteria;
+import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
-
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
@@ -35,8 +35,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected int rowIndex;
   protected TaskSearchCriteria searchCriteria;
-  protected TaskJsonQueryCriteria jsonQueryCriteria;
+  protected TaskQueryCriteria queryCriteria;
   protected Long serverId;
+  protected Comparator<RemoteTask> comparator;
 
   public TaskLazyDataModel() {
     super();
@@ -44,7 +45,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     displayedTaskMap = new HashMap<>();
     notDisplayedTaskMap = new HashMap<>();
     searchCriteria = buildCriteria();
-    jsonQueryCriteria = buildJsonQueryCriteria();
+    queryCriteria = buildJsonQueryCriteria();
   }
 
   @Override
@@ -53,7 +54,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     if (first == 0) {
       initializedDataModel(searchCriteria);
     }
-    
+
     List<RemoteTask> foundTasks = findTasks(first, pageSize, searchCriteria);
     putTasksToNotDisplayedTaskMap(foundTasks);
     List<RemoteTask> notDisplayedTasks = sortTasksInNotDisplayedTaskMap();
@@ -90,7 +91,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     data.clear();
     displayedTaskMap.clear();
     notDisplayedTaskMap.clear();
-    buildJsonQueryToSearchCriteria();
+    buildQueryToSearchCriteria();
     setRowCount(getTaskCount(criteria));
   }
 
@@ -115,22 +116,24 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected List<RemoteTask> sortTasksInNotDisplayedTaskMap() {
     List<RemoteTask> notDisplayedTasks = new ArrayList<>();
     notDisplayedTasks.addAll(notDisplayedTaskMap.values());
-    Comparator<RemoteTask> comparator = comparator(RemoteTask::getId);
-    if (TaskSortField.PRIORITY.toString().equalsIgnoreCase(jsonQueryCriteria.getSortField())) {
+    comparator = comparator(RemoteTask::getId);
+    if (TaskSortField.PRIORITY.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getPriority);
-    } else if (TaskSortField.NAME.toString().equalsIgnoreCase(jsonQueryCriteria.getSortField())) {
+    } else if (TaskSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparatorString(RemoteTask::getName);
-    } else if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(jsonQueryCriteria.getSortField())) {
+    } else if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparatorString(activatorName());
-    } else if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(jsonQueryCriteria.getSortField())) {
+    } else if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getStartTimestamp);
-    } else if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(jsonQueryCriteria.getSortField())) {
+    } else if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getExpiryTimestamp);
-    } else if (TaskSortField.STATE.toString().equalsIgnoreCase(jsonQueryCriteria.getSortField())) {
+    } else if (TaskSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getState);
+    } else {
+      extendSortTasksInNotDisplayedTaskMap();
     }
 
-    if (jsonQueryCriteria.isSortDescending()) {
+    if (queryCriteria.isSortDescending()) {
       comparator = comparator.reversed();
     }
 
@@ -176,13 +179,17 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return criteria;
   }
 
-  protected TaskJsonQueryCriteria buildJsonQueryCriteria() {
-    TaskJsonQueryCriteria jsonQuerycriteria = new TaskJsonQueryCriteria();
+  protected TaskQueryCriteria buildJsonQueryCriteria() {
+    TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
     jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.PARKED,
         TaskState.RESUMED)));
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
     return jsonQuerycriteria;
+  }
+
+  protected TaskQuery buildTaskQuery() {
+    return TaskQuery.create();
   }
 
   @Override
@@ -207,33 +214,33 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setSortField(String sortField, boolean sortDescending) {
-    jsonQueryCriteria.setSortField(sortField);
-    jsonQueryCriteria.setSortDescending(sortDescending);
+    queryCriteria.setSortField(sortField);
+    queryCriteria.setSortDescending(sortDescending);
   }
 
   public void setKeyword(String keyword) {
-    jsonQueryCriteria.setKeyword(keyword.trim());
+    queryCriteria.setKeyword(keyword.trim());
   }
 
   public void setCategory(String category) {
-    jsonQueryCriteria.setCategory(category);
+    queryCriteria.setCategory(category);
   }
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
     if (ignoreInvolvedUser) {
-      jsonQueryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+      queryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
     }
     searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
   }
 
   public void setTaskId(Long taskId) {
-    jsonQueryCriteria.setTaskId(taskId);
-    jsonQueryCriteria.setIncludedStates(new ArrayList<>());
+    queryCriteria.setTaskId(taskId);
+    queryCriteria.setIncludedStates(new ArrayList<>());
     searchCriteria.setQueryByTaskId(true);
   }
 
   public void setCaseId(Long caseId) {
-    jsonQueryCriteria.setCaseId(caseId);
+    queryCriteria.setCaseId(caseId);
   }
 
   public void setServerId(Long serverId) {
@@ -245,22 +252,28 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setTaskAssigneeType(TaskAssigneeType assigneeType) {
-    jsonQueryCriteria.setTaskAssigneeType(assigneeType);
+    queryCriteria.setTaskAssigneeType(assigneeType);
   }
 
   public String getSortField() {
-    return jsonQueryCriteria.getSortField();
+    return queryCriteria.getSortField();
   }
 
   public boolean isSortDescending() {
-    return jsonQueryCriteria.isSortDescending();
+    return queryCriteria.isSortDescending();
   }
 
   public void addIncludedStates(List<TaskState> includedStates) {
-    this.jsonQueryCriteria.addIncludedStates(includedStates);
+    this.queryCriteria.addIncludedStates(includedStates);
   }
 
-  protected void buildJsonQueryToSearchCriteria() {
-    searchCriteria.setJsonQuery(TaskQueryService.service().createQuery(jsonQueryCriteria).asJson());
+  protected void buildQueryToSearchCriteria() {
+    queryCriteria.setTaskQuery(buildTaskQuery());
+    extendQueryBeforeBuild();
+    searchCriteria.setJsonQuery(TaskQueryService.service().createQuery(queryCriteria).asJson());
   }
+  
+  protected void extendQueryBeforeBuild() {}
+  
+  protected void extendSortTasksInNotDisplayedTaskMap() {}
 }

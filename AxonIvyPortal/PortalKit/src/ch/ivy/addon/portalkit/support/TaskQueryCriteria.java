@@ -8,8 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
-public class TaskJsonQueryCriteria {
+public class TaskQueryCriteria {
 
   private String involvedUsername;
   private List<String> involvedApplications;
@@ -21,6 +22,8 @@ public class TaskJsonQueryCriteria {
   private String sortField;
   private boolean sortDescending;
   private TaskAssigneeType taskAssigneeType;
+  
+  private TaskQuery taskQuery;
 
   public String getInvolvedUsername() {
     return involvedUsername;
@@ -107,6 +110,14 @@ public class TaskJsonQueryCriteria {
 
   public void setTaskAssigneeType(TaskAssigneeType taskAssigneeType) {
     this.taskAssigneeType = taskAssigneeType;
+  }
+  
+  public TaskQuery getTaskQuery() {
+    return taskQuery;
+  }
+
+  public void setTaskQuery(TaskQuery taskQuery) {
+    this.taskQuery = taskQuery;
   }
   
   public boolean hasIncludedStates() {
