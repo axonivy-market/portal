@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jan 26 16:13:49 ICT 2017]
-1549F58C18A6C562 3.19 #module
+[>Created: Wed Mar 22 13:38:49 ICT 2017]
+1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
 Pt0 B #cInfo
@@ -258,7 +258,7 @@ Pt0 f15 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f15 actionTable 'out=in;
 ' #txt
-Pt0 f15 actionCode 'import ch.ivy.ws.addon.SortType;
+Pt0 f15 actionCode 'import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
@@ -269,7 +269,7 @@ import java.util.Arrays;
 
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setIgnoreInvolvedUser(true);
-dataModel.setSortType(SortType.PRIORITY, false);
+dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 
 Map taskInfo = GsonConverter.getGson().fromJson(in.parameters,Map.class) as Map;
 long taskId = Long.parseLong(taskInfo.get("taskId") as String);

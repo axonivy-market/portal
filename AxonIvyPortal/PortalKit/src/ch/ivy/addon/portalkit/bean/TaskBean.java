@@ -339,12 +339,12 @@ public class TaskBean {
   }
   
   public boolean canChangeOriginalPriority(RemoteTask task) {
-	return isNotDone(task) && task.canChangePriority();
+    return isNotDone(task) && task.canChangePriority();
   }
   
   public boolean isNotDone(RemoteTask task) {
-	  EnumSet<TaskState> taskStages = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED);
-	  return taskStages.contains(task.getState());
+    EnumSet<TaskState> taskStages = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED);
+    return taskStages.contains(task.getState());
   }
   
   public boolean isDone(RemoteTask task) {
@@ -399,11 +399,11 @@ public class TaskBean {
   	return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
   
-  public String getUserFriendlyTaskState(ITask task) {
-    if (task == null) {
+  public String getUserFriendlyTaskState(TaskState state) {
+    if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (task.getState()) {
+    switch (state) {
       case SUSPENDED:
       case UNASSIGNED:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/task/taskState/open");
@@ -462,11 +462,11 @@ public class TaskBean {
     return StringUtils.isNotEmpty(caseName) ? caseName : "#" + iCase.getId();
   }
   
-  public Boolean isEnableExpiryInput(ITask task){
-	  if(task.getExpiryActivator() != null ||  !StringUtils.isBlank(task.getExpiryTaskStartElementPid())){
-		  return true;
-	  }
-	  
-	  return false;
+  public Boolean isEnableExpiryInput(ITask task) {
+    if (task.getExpiryActivator() != null || !StringUtils.isBlank(task.getExpiryTaskStartElementPid())) {
+      return true;
+    }
+
+    return false;
   }
 }

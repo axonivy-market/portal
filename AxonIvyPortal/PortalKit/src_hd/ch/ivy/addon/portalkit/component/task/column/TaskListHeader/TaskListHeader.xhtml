@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" />
+  <cc:attribute name="componentToUpdateWhenInExpandedMode" />
+</cc:interface>
+
+<cc:implementation>
+  <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
+    componentId="priority-column-header" styleClass="priority-column-header TexAlCenter"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/priority')}"
+    sortField="#{masterDataBean.taskSortFieldPriority}"
+    componentToBeUpdated="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+
+  <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
+    componentId="name-column-header" styleClass="name-column-header"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/nameAndDescription')}"
+    sortField="#{masterDataBean.taskSortFieldName}"
+    componentToBeUpdated="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+
+  <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
+    componentId="responsible-column-header"
+    styleClass="responsible-column-header js-responsible-column-header hidden-sm"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}"
+    sortField="#{masterDataBean.taskSortFieldActivator}"
+    componentToBeUpdated="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+
+  <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
+    componentId="id-column-header" styleClass="id-column-header js-id-column-header TexAlCenter"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}"
+    sortField="#{masterDataBean.taskSortFieldId}" componentToBeUpdated="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+
+  <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
+    componentId="create-column-header" styleClass="create-column-header js-create-column-header TexAlCenter"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}"
+    sortField="#{masterDataBean.taskSortFieldCreationTime}"
+    componentToBeUpdated="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+
+  <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
+    componentId="expiry-column-header" styleClass="expiry-column-header js-expiry-column-header TexAlCenter"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}"
+    sortField="#{masterDataBean.taskSortFieldExpiryTime}"
+    componentToBeUpdated="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+
+  <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
+    componentId="state-column-header" styleClass="state-column-header TexAlCenter"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/state')}"
+    sortField="#{masterDataBean.taskSortFieldState}"
+    componentToBeUpdated="#{cc.attrs.componentToUpdateWhenInExpandedMode}" />
+</cc:implementation>
+</html>
