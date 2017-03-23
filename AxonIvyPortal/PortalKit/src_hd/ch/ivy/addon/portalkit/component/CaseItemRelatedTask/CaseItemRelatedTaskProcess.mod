@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Mar 22 14:38:29 ICT 2017]
+[>Created: Thu Mar 23 14:37:35 ICT 2017]
 153358BE9219FD4C 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
@@ -105,7 +105,7 @@ Cs0 f3 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItem
 Cs0 f3 actionTable 'out=in;
 ' #txt
 Cs0 f3 actionCode 'import ch.ivy.addon.portalkit.service.TaskQueryService;
-import ch.ivy.addon.portalkit.support.TaskJsonQueryCriteria;
+import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 List<TaskState> includedStates = [];
@@ -114,10 +114,10 @@ includedStates.add(TaskState.RESUMED);
 includedStates.add(TaskState.PARKED);
 includedStates.add(TaskState.UNASSIGNED);
 
-TaskJsonQueryCriteria jsonQueryCriteria = new TaskJsonQueryCriteria();
-jsonQueryCriteria.caseId = in.remoteCase.id;
-jsonQueryCriteria.includedStates = includedStates;
-out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(jsonQueryCriteria).asJson();
+TaskQueryCriteria queryCriteria = new TaskQueryCriteria();
+queryCriteria.caseId = in.remoteCase.id;
+queryCriteria.includedStates = includedStates;
+out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
 ' #txt
 Cs0 f3 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
