@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Oct 05 17:28:29 ICT 2016]
-156F869FC3FCD1D9 3.18 #module
+[>Created: Wed Mar 22 13:50:51 ICT 2017]
+156F869FC3FCD1D9 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
 Ps0 RD #cInfo
@@ -164,7 +164,7 @@ Ps0 f13 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuDat
 ' #txt
 Ps0 f13 actionTable 'out=in;
 ' #txt
-Ps0 f13 actionCode 'import ch.ivy.ws.addon.TaskAssigneeType;
+Ps0 f13 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portal.generic.common.TreeNodeType;
 import ch.ivy.addon.portalkit.util.MenuUtils;
 import ch.ivy.addon.portalkit.bean.MenuStateBean;

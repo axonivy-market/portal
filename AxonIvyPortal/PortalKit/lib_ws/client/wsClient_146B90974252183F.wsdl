@@ -421,18 +421,11 @@
   </xs:complexType>
 <xs:complexType name="taskSearchCriteria">
     <xs:sequence>
-      <xs:element minOccurs="0" name="caseId" type="xs:long"></xs:element>
-      <xs:element minOccurs="0" name="category" type="xs:string"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="excludedStates" nillable="true" type="tns:taskState"></xs:element>
       <xs:element name="ignoreInvolvedUser" type="xs:boolean"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="includedStates" nillable="true" type="tns:taskState"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="involvedApplications" nillable="true" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="keyword" type="xs:string"></xs:element>
-      <xs:element name="sortDescending" type="xs:boolean"></xs:element>
-      <xs:element minOccurs="0" name="sortType" type="tns:sortType"></xs:element>
-      <xs:element minOccurs="0" name="taskAssigneeType" type="tns:taskAssigneeType"></xs:element>
-      <xs:element minOccurs="0" name="taskId" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
+      <xs:element name="queryByTaskId" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="findTasksByCriteriaResponse">
@@ -486,42 +479,6 @@
       <xs:enumeration value="INFO"></xs:enumeration>
       <xs:enumeration value="WARNING"></xs:enumeration>
       <xs:enumeration value="ERROR"></xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-<xs:simpleType name="taskState">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="CREATED"></xs:enumeration>
-      <xs:enumeration value="READY_FOR_JOIN"></xs:enumeration>
-      <xs:enumeration value="JOINING"></xs:enumeration>
-      <xs:enumeration value="DELAYED"></xs:enumeration>
-      <xs:enumeration value="SUSPENDED"></xs:enumeration>
-      <xs:enumeration value="RESUMED"></xs:enumeration>
-      <xs:enumeration value="DONE"></xs:enumeration>
-      <xs:enumeration value="DESTROYED"></xs:enumeration>
-      <xs:enumeration value="PARKED"></xs:enumeration>
-      <xs:enumeration value="UNASSIGNED"></xs:enumeration>
-      <xs:enumeration value="FAILED"></xs:enumeration>
-      <xs:enumeration value="JOIN_FAILED"></xs:enumeration>
-      <xs:enumeration value="WAITING_FOR_INTERMEDIATE_EVENT"></xs:enumeration>
-      <xs:enumeration value="ZOMBIE"></xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-<xs:simpleType name="sortType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="PRIORITY"></xs:enumeration>
-      <xs:enumeration value="NAME"></xs:enumeration>
-      <xs:enumeration value="ACTIVATOR"></xs:enumeration>
-      <xs:enumeration value="ID"></xs:enumeration>
-      <xs:enumeration value="CREATION_TIME"></xs:enumeration>
-      <xs:enumeration value="EXPIRY_TIME"></xs:enumeration>
-      <xs:enumeration value="STATE"></xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-<xs:simpleType name="taskAssigneeType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="ALL"></xs:enumeration>
-      <xs:enumeration value="ROLE"></xs:enumeration>
-      <xs:enumeration value="USER"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

@@ -6,9 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import ch.ivy.addon.portalkit.enums.ApplicationType;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.enums.WSAuthenticationType;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
-import ch.ivy.ws.addon.SortType;
 
 @ManagedBean
 @SessionScoped
@@ -28,31 +28,31 @@ public class MasterDataBean implements Serializable {
     return WSAuthenticationType.values();
   }
   
-  public SortType getSortTypePriority() {
-    return SortType.PRIORITY;
+  public String getTaskSortFieldPriority() {
+    return TaskSortField.PRIORITY.toString();
   }
   
-  public SortType getSortTypeName() {
-    return SortType.NAME;
+  public String getTaskSortFieldName() {
+    return TaskSortField.NAME.toString();
   }
   
-  public SortType getSortTypeActivator() {
-    return SortType.ACTIVATOR;
+  public String getTaskSortFieldActivator() {
+    return TaskSortField.ACTIVATOR.toString();
   }
   
-  public SortType getSortTypeId() {
-    return SortType.ID;
+  public String getTaskSortFieldId() {
+    return TaskSortField.ID.toString();
   }
   
-  public SortType getSortTypeCreationTime() {
-    return SortType.CREATION_TIME;
+  public String getTaskSortFieldCreationTime() {
+    return TaskSortField.CREATION_TIME.toString();
   }
   
-  public SortType getSortTypeExpiryTime() {
-    return SortType.EXPIRY_TIME;
+  public String getTaskSortFieldExpiryTime() {
+    return TaskSortField.EXPIRY_TIME.toString();
   }
   
-  public SortType getSortTypeState() {
-    return SortType.STATE;
+  public String getTaskSortFieldState() {
+    return TaskSortField.STATE.toString();
   }
 }
