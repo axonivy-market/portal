@@ -16,7 +16,7 @@
       </p:commandLink>
       <p:commandLink id="task-delegate-command" disabled="#{!(task.canDelegate or task.state eq 'UNASSIGNED')}" styleClass="task-command"
         actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();"
-        oncomplete="PF('task-delegate-dialog').show()" update="#{p:component('task-delegate-dialog')} state-tooltip">
+        oncomplete="PF('task-delegate-dialog').show()" update="#{p:component('task-delegate-dialog')} @parent">
         <span class="action-icon tmi-box-arrow-right" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" />
       </p:commandLink>

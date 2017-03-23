@@ -24,6 +24,8 @@
   <cc:attribute name="selectedTaskServerId" />
   <cc:attribute name="showHeaderToolbar" />
   <cc:attribute name="noTaskFoundMessage" />
+  
+  <cc:facet name="taskListHeader" shortDescription="Header of task list" />
 </cc:interface>
 
 <cc:implementation>
@@ -72,7 +74,7 @@
         <ui:include src="CompactSortMenu.xhtml" />
       </h:panelGroup>
       <h:panelGroup rendered="#{!data.compactMode}">
-        <ui:include src="FullSortMenu.xhtml" />
+        <cc:renderFacet name="taskListHeader" />
       </h:panelGroup>
     </h:panelGroup>
 
@@ -84,7 +86,8 @@
           <ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}"
             isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}"
             compactMode="#{data.compactMode}" componentToUpdate="#{p:component('task-details-notes')}">
-            <cc:insertChildren />
+            <cc:insertFacet name="taskHeader" />
+            <cc:insertFacet name="taskBody" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
         <p:outputLabel styleClass="no-task-message" value="#{noTaskFoundMessage}"

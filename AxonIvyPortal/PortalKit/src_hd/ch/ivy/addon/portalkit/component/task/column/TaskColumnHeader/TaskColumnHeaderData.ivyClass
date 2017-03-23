@@ -1,0 +1,8 @@
+TaskColumnHeaderData #class
+ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader #namespace
+field String #field
+field PERSISTENT #fieldModifier
+isDescending Boolean #field
+isDescending PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier

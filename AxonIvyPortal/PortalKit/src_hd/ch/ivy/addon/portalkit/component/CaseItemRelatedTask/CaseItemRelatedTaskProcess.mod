@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Feb 06 17:30:54 ICT 2017]
-153358BE9219FD4C 3.19 #module
+[>Created: Wed Mar 22 14:38:29 ICT 2017]
+153358BE9219FD4C 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
 Cs0 RD #cInfo
@@ -104,7 +104,9 @@ Cs0 f3 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItem
 ' #txt
 Cs0 f3 actionTable 'out=in;
 ' #txt
-Cs0 f3 actionCode 'import ch.ivy.ws.addon.TaskState;
+Cs0 f3 actionCode 'import ch.ivy.addon.portalkit.service.TaskQueryService;
+import ch.ivy.addon.portalkit.support.TaskJsonQueryCriteria;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 List<TaskState> includedStates = [];
 includedStates.add(TaskState.SUSPENDED);
@@ -112,8 +114,10 @@ includedStates.add(TaskState.RESUMED);
 includedStates.add(TaskState.PARKED);
 includedStates.add(TaskState.UNASSIGNED);
 
-out.taskSearchCriteria.caseId = in.remoteCase.id;
-out.taskSearchCriteria.includedStates = includedStates;
+TaskJsonQueryCriteria jsonQueryCriteria = new TaskJsonQueryCriteria();
+jsonQueryCriteria.caseId = in.remoteCase.id;
+jsonQueryCriteria.includedStates = includedStates;
+out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(jsonQueryCriteria).asJson();
 ' #txt
 Cs0 f3 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

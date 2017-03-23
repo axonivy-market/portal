@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Feb 07 14:33:56 ICT 2017]
-1543D9E65076619B 3.19 #module
+[>Created: Wed Mar 22 13:50:03 ICT 2017]
+1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -165,8 +165,8 @@ Nr0 f14 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f14 actionTable 'out=in;
 ' #txt
-Nr0 f14 actionCode 'import ch.ivy.ws.addon.SortType;
-import ch.ivy.ws.addon.TaskState;
+Nr0 f14 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
@@ -179,8 +179,8 @@ String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTit
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setCaseId(in.caseId.id());
 dataModel.setIgnoreInvolvedUser(true);
-dataModel.setSortType(SortType.PRIORITY, false);
-dataModel.getCriteria().addIncludedStates(TaskState.DONE);
+dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
+dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
 
 in.taskView = TaskView.create()
 											.category(category)

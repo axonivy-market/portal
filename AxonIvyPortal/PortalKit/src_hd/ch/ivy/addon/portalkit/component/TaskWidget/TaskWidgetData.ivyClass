@@ -20,8 +20,8 @@ tasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
 tasks PERSISTENT #fieldModifier
 taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
 taskSearchCriteria PERSISTENT #fieldModifier
-sortType ch.ivy.ws.addon.SortType #field
-sortType PERSISTENT #fieldModifier
+sortField String #field
+sortField PERSISTENT #fieldModifier
 sortDescending Boolean #field
 sortDescending PERSISTENT #fieldModifier
 serverId Long #field

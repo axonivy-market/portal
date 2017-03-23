@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jan 03 13:35:28 ICT 2017]
-1508F2CD9F746207 3.18 #module
+[>Created: Wed Mar 22 14:38:52 ICT 2017]
+1508F2CD9F746207 3.20 #module
 >Proto >Proto Collection #zClass
 Sk0 GlobalSearch Big #zClass
 Sk0 B #cInfo
@@ -225,8 +225,10 @@ Sk0 f19 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Sk0 f19 actionTable 'out=in;
 ' #txt
-Sk0 f19 actionCode 'import java.util.Arrays;
-import ch.ivy.ws.addon.TaskState;
+Sk0 f19 actionCode 'import ch.ivy.addon.portalkit.service.TaskQueryService;
+import ch.ivy.addon.portalkit.support.TaskJsonQueryCriteria;
+import ch.ivyteam.ivy.workflow.TaskState;
+import java.util.Arrays;
 
 in.taskSearchCriteria.involvedUsername = in.username;
 
@@ -234,13 +236,15 @@ List<TaskState> states = new List<TaskState>();
 states.add(TaskState.SUSPENDED);
 states.add(TaskState.RESUMED);
 states.add(TaskState.PARKED);
-in.taskSearchCriteria.includedStates = states;
 
-in.taskSearchCriteria.keyword = in.keyword;
+TaskJsonQueryCriteria jsonQueryCriteria = new TaskJsonQueryCriteria();
+jsonQueryCriteria.keyword = in.keyword;
+jsonQueryCriteria.includedStates = states;
+out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(jsonQueryCriteria).asJson();
 
 if (in.#applicationName is initialized) {
 	List<String> involvedApplications = Arrays.asList(in.applicationName);
-	in.taskSearchCriteria.involvedApplications = involvedApplications;
+	out.taskSearchCriteria.involvedApplications = involvedApplications;
 }' #txt
 Sk0 f19 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Sk0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
