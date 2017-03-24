@@ -90,7 +90,7 @@ public class TaskView {
   }
 
   private final String pageTitle;
-  private final TaskLazyDataModel dataModel;
+  private TaskLazyDataModel dataModel;
   private final String keyword;
   private final long remoteTaskId;
   private final long serverId;
@@ -131,6 +131,10 @@ public class TaskView {
 
   public TaskLazyDataModel getDataModel() {
     return dataModel;
+  }
+  
+  public void setDataModel(TaskLazyDataModel dataModel) {
+    this.dataModel = dataModel;
   }
 
   public String getKeyword() {

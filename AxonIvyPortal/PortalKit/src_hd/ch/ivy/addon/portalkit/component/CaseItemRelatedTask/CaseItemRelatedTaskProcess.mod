@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Mar 23 14:37:35 ICT 2017]
+[>Created: Fri Mar 24 14:48:59 ICT 2017]
 153358BE9219FD4C 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
@@ -117,6 +117,7 @@ includedStates.add(TaskState.UNASSIGNED);
 TaskQueryCriteria queryCriteria = new TaskQueryCriteria();
 queryCriteria.caseId = in.remoteCase.id;
 queryCriteria.includedStates = includedStates;
+queryCriteria.newQueryCreated = true;
 out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
 ' #txt
 Cs0 f3 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
