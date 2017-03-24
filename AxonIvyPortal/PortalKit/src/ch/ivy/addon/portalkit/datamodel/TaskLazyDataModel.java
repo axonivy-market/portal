@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -26,10 +27,11 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
+  private static final long serialVersionUID = -6615871274830927272L;
+  
   protected static final String TASK_WIDGET_COMPONENT_ID = "task-widget";
   protected static final int BUFFER_LOAD = 10;
-  protected static final long serialVersionUID = 1L;
-  protected final List<RemoteTask> data;
+  protected List<RemoteTask> data;
   protected Map<String, RemoteTask> displayedTaskMap;
   protected Map<String, RemoteTask> notDisplayedTaskMap;
 
@@ -45,9 +47,21 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     displayedTaskMap = new HashMap<>();
     notDisplayedTaskMap = new HashMap<>();
     searchCriteria = buildCriteria();
-    queryCriteria = buildJsonQueryCriteria();
-  }
+    queryCriteria = buildQueryCriteria();
+    comparator = comparator(RemoteTask::getId);
 
+    autoInitForNoAppConfiguration();
+  }
+  
+  public static <T extends TaskLazyDataModel> T newInstance(TaskLazyDataModel source, Class<T> toClass)
+      throws InstantiationException, IllegalAccessException {
+    T instance = toClass.newInstance();
+    instance.setSearchCriteria(source.getSearchCriteria());
+    instance.setQueryCriteria(source.getQueryCriteria());
+    instance.setServerId(source.getServerId());
+    return instance;
+  }
+  
   @Override
   public List<RemoteTask> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
@@ -179,7 +193,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return criteria;
   }
 
-  protected TaskQueryCriteria buildJsonQueryCriteria() {
+  protected TaskQueryCriteria buildQueryCriteria() {
     TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
     jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.PARKED,
         TaskState.RESUMED)));
@@ -267,13 +281,42 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.queryCriteria.addIncludedStates(includedStates);
   }
 
-  protected void buildQueryToSearchCriteria() {
-    queryCriteria.setTaskQuery(buildTaskQuery());
-    extendQueryBeforeBuild();
-    searchCriteria.setJsonQuery(TaskQueryService.service().createQuery(queryCriteria).asJson());
+  public void setSearchCriteria(TaskSearchCriteria searchCriteria) {
+    this.searchCriteria = searchCriteria;
+  }
+
+  public void setQueryCriteria(TaskQueryCriteria queryCriteria) {
+    this.queryCriteria = queryCriteria;
+  }
+
+  public TaskSearchCriteria getSearchCriteria() {
+    return searchCriteria;
+  }
+
+  public TaskQueryCriteria getQueryCriteria() {
+    return queryCriteria;
+  }
+
+  public Long getServerId() {
+    return serverId;
   }
   
-  protected void extendQueryBeforeBuild() {}
-  
+  protected void buildQueryToSearchCriteria() {
+    queryCriteria.setTaskQuery(buildTaskQuery());
+    searchCriteria.setJsonQuery(TaskQueryService.service().createQuery(queryCriteria).asJson());
+  }
+
   protected void extendSortTasksInNotDisplayedTaskMap() {}
+
+  private void autoInitForNoAppConfiguration() {
+    Long serverId = SecurityServiceUtils.getServerIdFromSession();
+    if (serverId != null) {
+      setServerId(serverId);
+    }
+
+    String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
+    if (StringUtils.isNotBlank(applicationName)) {
+      setInvolvedApplications(applicationName);
+    }
+  }
 }
