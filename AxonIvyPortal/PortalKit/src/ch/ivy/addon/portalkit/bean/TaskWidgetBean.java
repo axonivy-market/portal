@@ -5,10 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang3.StringUtils;
-
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 @ManagedBean
 @ViewScoped
@@ -22,15 +19,6 @@ public class TaskWidgetBean implements Serializable {
   public TaskWidgetBean() {
     expandedTaskId = -1L;
     dataModel = new TaskLazyDataModel(); 
-    Long serverId = SecurityServiceUtils.getServerIdFromSession();
-    if (serverId != null) {
-      dataModel.setServerId(serverId);
-    }
-    
-    String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-    if (StringUtils.isNotBlank(applicationName)) {
-      dataModel.setInvolvedApplications(applicationName);
-    }
   }
 
   public Long getExpandedTaskId() {

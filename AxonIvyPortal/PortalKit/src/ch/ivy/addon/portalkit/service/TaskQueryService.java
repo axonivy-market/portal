@@ -10,18 +10,23 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskQueryService {
-  
+
   private static TaskQueryService service = new TaskQueryService();
-  
-  private TaskQueryService() {
-  }
-  
+
+  private TaskQueryService() {}
+
   public static TaskQueryService service() {
     return service;
   }
-  
+
   public TaskQuery createQuery(TaskQueryCriteria criteria) {
-    TaskQuery finalQuery = criteria.getTaskQuery() != null ? TaskQuery.fromJson(criteria.getTaskQuery().asJson()) : TaskQuery.create();
+    TaskQuery finalQuery = TaskQuery.create();
+    criteria.setNewQueryCreated(criteria.isNewQueryCreated() || criteria.getTaskQuery() == null || criteria.hasTaskId()
+        || criteria.hasCaseId());
+    
+    if (!criteria.isNewQueryCreated()) {
+      finalQuery = TaskQuery.fromJson(criteria.getTaskQuery().asJson());
+    }
 
     if (criteria.hasIncludedStates()) {
       finalQuery.where().and(queryForStates(criteria.getIncludedStates()));
@@ -49,7 +54,7 @@ public class TaskQueryService {
     if (criteria.hasCategory()) {
       finalQuery.where().and(queryForCategory(criteria.getCategory()));
     }
-    
+
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
     finalQuery = appender.appendSorting(criteria).toQuery();
     return finalQuery;

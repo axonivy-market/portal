@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Oct 12 11:51:54 ICT 2016]
-15498A84F89ACDE7 3.18 #module
+[>Created: Fri Mar 24 15:01:31 ICT 2017]
+15498A84F89ACDE7 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskSearchResultProcess Big #zClass
 Ts0 RD #cInfo
@@ -116,7 +116,8 @@ Ts0 f23 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResul
 Ts0 f23 actionTable 'out=in;
 ' #txt
 Ts0 f23 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
-MenuUtils.clearMenuState();' #txt
+MenuUtils.clearMenuState();
+in.view.dataModel.queryCriteria.newQueryCreated = true;' #txt
 Ts0 f23 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
 Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

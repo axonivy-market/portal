@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Mar 23 14:37:56 ICT 2017]
+[>Created: Fri Mar 24 14:52:53 ICT 2017]
 1508F2CD9F746207 3.20 #module
 >Proto >Proto Collection #zClass
 Sk0 GlobalSearch Big #zClass
@@ -240,6 +240,7 @@ states.add(TaskState.PARKED);
 TaskQueryCriteria queryCriteria = new TaskQueryCriteria();
 queryCriteria.keyword = in.keyword;
 queryCriteria.includedStates = states;
+queryCriteria.newQueryCreated = true;
 out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
 
 if (in.#applicationName is initialized) {
