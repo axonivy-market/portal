@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Mar 22 13:38:49 ICT 2017]
+[>Created: Fri Mar 24 14:47:59 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -268,22 +268,13 @@ import org.primefaces.extensions.util.json.GsonConverter;
 import java.util.Arrays;
 
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
+dataModel.getQueryCriteria().setNewQueryCreated(true);
 dataModel.setIgnoreInvolvedUser(true);
 dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 
 Map taskInfo = GsonConverter.getGson().fromJson(in.parameters,Map.class) as Map;
 long taskId = Long.parseLong(taskInfo.get("taskId") as String);
 dataModel.setTaskId(taskId);
-
-Long serverId = SecurityServiceUtils.getServerIdFromSession();
-if (#serverId is initialized) {
-	dataModel.setServerId(serverId);
-}
-
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	dataModel.setInvolvedApplications(applicationName);
-}
 
 String pageTitle = ivy.cms.co("/Labels/Task");
 MainMenuNode category = new MainMenuNode();

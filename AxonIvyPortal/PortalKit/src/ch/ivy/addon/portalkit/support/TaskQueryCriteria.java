@@ -24,6 +24,7 @@ public class TaskQueryCriteria {
   private TaskAssigneeType taskAssigneeType;
   
   private TaskQuery taskQuery;
+  private boolean isNewQueryCreated = false;
 
   public String getInvolvedUsername() {
     return involvedUsername;
@@ -119,7 +120,15 @@ public class TaskQueryCriteria {
   public void setTaskQuery(TaskQuery taskQuery) {
     this.taskQuery = taskQuery;
   }
-  
+
+  public boolean isNewQueryCreated() {
+    return isNewQueryCreated;
+  }
+
+  public void setNewQueryCreated(boolean isNewQueryCreated) {
+    this.isNewQueryCreated = isNewQueryCreated;
+  }
+
   public boolean hasIncludedStates() {
     return CollectionUtils.isNotEmpty(includedStates);
   }
