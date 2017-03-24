@@ -53,6 +53,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     autoInitForNoAppConfiguration();
   }
   
+  /**
+   * Creates a new instance which extends from TaskLazyDataModel, and copy its properties from source.
+   * 
+   * @param source
+   * @param toClass
+   * @return
+   * @throws InstantiationException
+   * @throws IllegalAccessException
+   */
   public static <T extends TaskLazyDataModel> T newInstance(TaskLazyDataModel source, Class<T> toClass)
       throws InstantiationException, IllegalAccessException {
     T instance = toClass.newInstance();
@@ -87,6 +96,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
   }
 
+  /**
+   * Calls the findTasks logic of TaskWidget Html dialog to find tasks.
+   * 
+   * @param first
+   * @param pageSize
+   * @param criteria
+   * @return
+   */
   protected List<RemoteTask> findTasks(int first, int pageSize, TaskSearchCriteria criteria) {
     IvyComponentLogicCaller<List<RemoteTask>> findTaskCaller = new IvyComponentLogicCaller<>();
     int startIndex = first - BUFFER_LOAD;
@@ -101,7 +118,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return tasks;
   }
 
-  protected void initializedDataModel(TaskSearchCriteria criteria) {
+  private void initializedDataModel(TaskSearchCriteria criteria) {
     data.clear();
     displayedTaskMap.clear();
     notDisplayedTaskMap.clear();
@@ -109,7 +126,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     setRowCount(getTaskCount(criteria));
   }
 
-  protected List<RemoteTask> getDisplayedTasks(List<RemoteTask> notDisplayedTasks, int pageSize) {
+  private List<RemoteTask> getDisplayedTasks(List<RemoteTask> notDisplayedTasks, int pageSize) {
     int displayedTaskCount = notDisplayedTasks.size() > pageSize ? pageSize : notDisplayedTasks.size();
     List<RemoteTask> displayedTasks = notDisplayedTasks.subList(0, displayedTaskCount);
     for (RemoteTask task : displayedTasks) {
@@ -118,7 +135,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return displayedTasks;
   }
 
-  protected void putTasksToNotDisplayedTaskMap(List<RemoteTask> tasks) {
+  private void putTasksToNotDisplayedTaskMap(List<RemoteTask> tasks) {
     for (RemoteTask task : tasks) {
       String keyOfTask = keyOfTask(task);
       if (!displayedTaskMap.containsKey(keyOfTask) && !notDisplayedTaskMap.containsKey(keyOfTask)) {
@@ -127,7 +144,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
   }
 
-  protected List<RemoteTask> sortTasksInNotDisplayedTaskMap() {
+  private List<RemoteTask> sortTasksInNotDisplayedTaskMap() {
     List<RemoteTask> notDisplayedTasks = new ArrayList<>();
     notDisplayedTasks.addAll(notDisplayedTaskMap.values());
     comparator = comparator(RemoteTask::getId);
@@ -179,6 +196,12 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return keyOfTask;
   }
 
+  /**
+   * Calls the countTasks logic of TaskWidget Html dialog to count the number of found tasks.
+   * 
+   * @param criteria
+   * @return
+   */
   protected int getTaskCount(TaskSearchCriteria criteria) {
     IvyComponentLogicCaller<Long> countTaskCaller = new IvyComponentLogicCaller<>();
     Long taskCount =
@@ -187,12 +210,22 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return taskCount.intValue();
   }
 
+  /**
+   * Initializes TaskSearchCriteria
+   * 
+   * @return
+   */
   protected TaskSearchCriteria buildCriteria() {
     TaskSearchCriteria criteria = new TaskSearchCriteria();
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     return criteria;
   }
 
+  /**
+   * Initializes TaskQueryCriteria
+   * 
+   * @return
+   */
   protected TaskQueryCriteria buildQueryCriteria() {
     TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
     jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.PARKED,
@@ -202,6 +235,29 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return jsonQuerycriteria;
   }
 
+  /**
+   * <p>
+   * Your customized data model need to override this method to build your own TaskQuery. If your customized task list has new
+   * columns/fields, please add sort query for these fields and override the "extendSortTasksInNotDisplayedTaskMap" method.
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * import ch.ivyteam.ivy.workflow.query.TaskQuery;
+   * 
+   * TaskQuery taskQuery = TaskQuery.create().customVarCharField1().isEqual("Hello World");
+   * 
+   * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
+   *   if (queryCriteria.isSortDescending()) {
+   *     taskQuery.orderBy().customVarCharField5().descending();
+   *   } else {
+   *     taskQuery.orderBy().customVarCharField5();
+   *   }
+   * }
+   * </pre></code>
+   * </p>
+   * 
+   * @return
+   */
   protected TaskQuery buildTaskQuery() {
     return TaskQuery.create();
   }
@@ -301,11 +357,34 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return serverId;
   }
   
+  /**
+   * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
+   */
   protected void buildQueryToSearchCriteria() {
     queryCriteria.setTaskQuery(buildTaskQuery());
     searchCriteria.setJsonQuery(TaskQueryService.service().createQuery(queryCriteria).asJson());
   }
 
+  /**
+   * <p>
+   * Your customized data model need to override this method if your customized task list has new
+   * columns/fields.
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * import ch.ivy.addon.portalkit.bo.RemoteTask;
+   * 
+   * // The value of queryCriteria.getSortField() is defined in the TaskColumnHeader Portal component when you use it to add new column headers.
+   * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
+   * 
+   *   // comparatorString(...): String, comparator(...): others.
+   *   comparator = comparatorString(RemoteTask::getCustomVarCharField5);
+   * }
+   * </pre></code>
+   * </p>
+   * 
+   * @return
+   */
   protected void extendSortTasksInNotDisplayedTaskMap() {}
 
   private void autoInitForNoAppConfiguration() {
