@@ -7,7 +7,7 @@
 	</para>
 	<orderedlist>
 		<listitem>
-			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: <code>TaskHeader</code> and <code>TaskListHeader</code> and <code>TaskBody</code></para>
+			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: TaskHeader and TaskListHeader and TaskBody</para>
 		</listitem>
 		<listitem>
 			<para><link linkend="axonivyportal.customization.taskwidget.howtooverridetasklazydatamodel">Data query</link>: TaskLazyDataModel (build your own TaskQuery)</para>
@@ -210,7 +210,7 @@
 					<para>In case there are new columns, you should override the <code>extendSortTasksInNotDisplayedTaskMap</code> method and follow its java doc</para>
 				</listitem>
 				<listitem>
-					<para>In your customized portal home HTMLDialog, the customized data model should be passed as a param to template and components (refer to <code>PortalTasks.xhtml</code>)</para>
+					<para>In your customized portal home HTMLDialog, the customized data model should be passed as a param to template and components (refer to <code>PortalHome.xhtml</code>)</para>
 				</listitem>
 				<listitem>
 					<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a param to components (refer to <code>PortalTasks.xhtml</code>) and in OpenPortalTasksOverride callable process, use the script from note element with your data model class</para>
