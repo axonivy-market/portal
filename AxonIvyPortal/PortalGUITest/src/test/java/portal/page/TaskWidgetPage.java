@@ -113,7 +113,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public TaskState getTaskState(int taskId) {
-    WebElement stateCell = findElementById("task-widget:task-list-scroller:" + taskId + ":task-item:state-cell");
+    WebElement stateCell = findElementById("task-widget:task-list-scroller:" + taskId + ":task-item:task-state-component:task-state");
     if (stateCell != null) {
       String stateClass = stateCell.findElement(By.className("fa")).getAttribute("class"); 
       return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
@@ -189,7 +189,7 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 	
 	public void changeNameOfTask(int index, String name) {
-	  String taskNameId = String.format("task-widget:task-list-scroller:%d:task-item:task-name-edit-form:task-name-inplace_display", index);
+	  String taskNameId = String.format("task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_display", index);
 		WebElement taskName = findElementById(taskNameId);
 		taskName.click();
 		String taskNameInputId = String.format("task-widget:task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index);
@@ -204,7 +204,7 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 	
 	 public String getNameOfTaskAt(int index) {
-	   String taskNameId = String.format("task-widget:task-list-scroller:%d:task-item:task-name-edit-form:task-name-inplace_display", index);
+	   String taskNameId = String.format("task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_display", index);
 	   waitForElementDisplayed(By.id(taskNameId), true);
 	   WebElement taskName = findElementById(taskNameId);
 	   return taskName.getText();
