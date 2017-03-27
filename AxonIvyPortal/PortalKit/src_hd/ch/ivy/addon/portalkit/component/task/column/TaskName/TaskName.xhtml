@@ -7,20 +7,22 @@
   <cc:attribute name="descriptionId" default="task-description" />
   <cc:attribute name="nameStyleClass" />
   <cc:attribute name="descriptionStyleClass" />
-  <cc:attribute name="isExpanded" default="false" />
   <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.RemoteTask" />
+  <cc:attribute name="isSelected" type="Boolean" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="isSelected" value="#{taskWidgetBean.expandedTaskId == -1 and cc.attrs.isSelected}" />
+  <c:set var="isExpanded" value="#{task.id eq taskWidgetBean.expandedTaskId or isSelected}" />
 
   <h:outputText id="#{cc.attrs.nameId}" styleClass="name-cell js-name-cell #{cc.attrs.nameStyleClass}"
     value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
-    rendered="#{!cc.attrs.isExpanded or taskBean.isDone(task)}" />
+    rendered="#{!isExpanded or taskBean.isDone(task)}" />
   <p:tooltip for="task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}" />
   <span class="name-cell" onclick="if('#{task.canChangeName}'=='true') {event.stopPropagation()}"> <h:form
       id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;">
-      <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{cc.attrs.isExpanded and taskBean.isNotDone(task)}"
+      <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{isExpanded and taskBean.isNotDone(task)}"
         disabled="#{!task.canChangeName}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         widgetVar="#{cc.attrs.nameId}-inplace" styleClass="name-cell js-name-cell #{cc.attrs.nameStyleClass}"
