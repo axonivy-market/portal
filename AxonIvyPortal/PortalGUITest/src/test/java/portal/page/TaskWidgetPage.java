@@ -192,12 +192,12 @@ public class TaskWidgetPage extends TemplatePage {
 	  String taskNameId = String.format("task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_display", index);
 		WebElement taskName = findElementById(taskNameId);
 		taskName.click();
-		String taskNameInputId = String.format("task-widget:task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index);
+		String taskNameInputId = String.format("task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-input", index);
 		WebElement taskNameInput = findElementById(taskNameInputId);
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
 		taskNameInput.sendKeys(name);
-    WebElement editor = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-name-edit-form:task-name-inplace_content", index));
+    WebElement editor = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_content", index));
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
     waitAjaxIndicatorDisappear();
