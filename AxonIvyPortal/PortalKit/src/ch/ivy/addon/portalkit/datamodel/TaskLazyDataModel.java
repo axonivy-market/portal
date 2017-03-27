@@ -237,8 +237,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * Your customized data model need to override this method to build your own TaskQuery. If your customized task list has new
-   * columns/fields, please add sort query for these fields and override the "extendSortTasksInNotDisplayedTaskMap" method.
+   * Your customized data model needs to override this method to build your own TaskQuery. If your customized task list has new
+   * columns/fields, please add sort query for these fields and also override the "extendSortTasksInNotDisplayedTaskMap" method.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
@@ -367,7 +367,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * Your customized data model need to override this method if your customized task list has new
+   * Your customized data model needs to override this method if your customized task list has new
    * columns/fields.
    * </p>
    * <p>
