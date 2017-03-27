@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.taskdetails">
-	<title>Task details</title>	
-	<sect2 xml:id="axonivyportal.customization.taskdetails.howtoovveridetaskdetails">
-		<title>How to override task details</title>
+	<title>Task widget</title>	
+	<para>TaskWidget is a built-in component of Portal which contains the tasks users can interact with.
+	In order to show needed task's information, Portal supports overriding concept for TaskWidget. 
+	Each TaskWidget contains 2 parts:
+	</para>
+	<orderedlist>
+		<listitem>
+			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: <code>TaskHeader</code> and <code>TaskListHeader</code> and <code>TaskBody</code></para>
+		</listitem>
+		<listitem>
+			<para><link linkend="axonivyportal.customization.taskwidget.howtooverridetasklazydatamodel">Data query</link>: TaskLazyDataModel (build your own TaskQuery)</para>
+		</listitem>
+	</orderedlist>
+	<important>
+		In case task widget's UI is customized to have new columns, you should also override data query to make the new columns' sort work. 
+	</important>
+	<tip>
 		<para>
-			Task details are used in many places including TaskWidget in Homepage, Task list page, Task search result, Related tasks of a case, History tasks of a case, task information of sharing link.
+			<orderedlist>
+				<listitem>
+					<para>Task header customization does not support responsive design, smaller resolutions (iPad, etc.)</para>
+				</listitem>
+				<listitem>
+					<para>Additional properties cannot be displayed right now as a column</para>
+				</listitem>
+				<listitem>
+					<para>Task header's buttons cannot be modified (they stay where they are)</para>
+				</listitem>
+			</orderedlist>
+		</para>
+	</tip>
+	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverideui">
+		<title>How to override task widget's UI</title>
+		<para>
 			<orderedlist>
 				<listitem>
 					<para>
@@ -21,55 +50,19 @@
 						Open <code>Admin settings</code> dialog, select <code>Settings</code> tab and add new setting (global variable) with <code>HOMEPAGE_URL</code> as key and your home page link as value.
 					</para>
 					<para>
-						For example: <code>http://localhost:8081/ivy/pro/Portal/MyCustomCaseDetails/01548075757CBCAA/PortalStart.ivp</code>. By default the portal home link is <code>http://localhost:8081/ivy/pro/Portal/PortalTemplate/1549F58C18A6C562/PortalStart.ivp</code> and overridden by the new specified link.
+						For example: <code>http://localhost:8081/ivy/pro/Portal/MyCustomTaskWidget/01548075757CBCAA/PortalStart.ivp</code>. By default the portal home link is <code>http://localhost:8081/ivy/pro/Portal/PortalTemplate/1549F58C18A6C562/PortalStart.ivp</code> and overridden by the new specified link.
 					</para>
 				</listitem>
 				<listitem>
 					<para>
-						Override Task details in task widget at home page.
+						Override Task widget at home page.
 						<itemizedlist>
 							<listitem>
 								<para>
-									Introduce a new HTMLPage which uses template <code>/layouts/DefaultHomePageTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). The <code>DefaultHomePageTemplate.xhtml</code> is designed for default portal home page which contents default components: ProcessList, TaskList, Statistic. In this page, there is a placeholder (<code>taskBody</code>) to custom task details of TaskList widget at home page. The effect only takes place when the <code>ui:param</code> named <code>useOverride</code> is set to <code>true</code>. Clients can set this parameter to a value expression for flexibility.
-								</para>
-								<para>
-									For example:
-									<para>
-										<code>&lt;ui:composition template="/layouts/DefaultHomePageTemplate.xhtml"&gt;</code>
-									</para>
-									<para>
-										<code>&lt;ui:param name="useOverride" value="true" /&gt;</code>
-									</para>
-									<para>
-										<code>&lt;ui:define name="taskBody"&gt;</code>
-									</para>
-									<para>
-										<code>This is the customized content of the task: #{task.getId()}</code>
-									</para>
-									<para>
-										<code>&lt;ui:fragment rendered="#{task.getCustomVarCharField1().equals('I am a custom task')}"&gt;</code>
-									</para>
-									<para>
-										<code>&lt;h:outputText value="I'm a secret task so I'm displayed differently" /&gt;</code>
-									</para>
-									<para>
-										<code>&lt;/ui:fragment&gt;</code>
-									</para>
-									<para>
-										<code>&lt;ui:fragment rendered="#{task.getCustomVarCharField1().equals('I am another custom task')}"&gt;</code>
-									</para>
-									<para>
-										<code>&lt;!-- Put your secret content here --&gt;</code>
-									</para>
-									<para>
-										<code>&lt;/ui:fragment&gt;</code>
-									</para>
-									<para>
-										<code>&lt;/ui:define&gt;</code>
-									</para>
-									<para>
-										<code>&lt;/ui:composition&gt;</code>
-									</para>									
+									Introduce a new HTMLDialog which uses template <code>/layouts/DefaultHomePageTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override task details's responsiveness). You can take a look at <code>PortalHome.xhtml</code> to see how to customize it.
+									<tip>
+										<para>Highly recommend to copy the <code>PortalHome</code> HTMLDialog in PortalTemplate and change the copied one's view.</para>
+									</tip>
 								</para>
 							</listitem>
 							<listitem>
@@ -82,50 +75,14 @@
 				</listitem>
 				<listitem>
 					<para>
-						Override Task details in other places: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
+						Override Task widget in other places: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
 						<itemizedlist>
 							<listitem>
 								<para>
-									It is the same way with custom task detail at home page. You should create a new HTMLDialog which uses template <code>/layouts/PortalTasksTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). The template also provide a placeholder (<code>taskBody</code>) to custom your task details. The effect only takes place when the <code>ui:param</code> named <code>useOverride</code> is set to <code>true</code>. Clients can set this parameter to a value expression for flexibility.
-								</para>
-								<para>
-									For example:
-									<para>
-										<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
-									</para>
-									<para>
-										<code>&lt;ui:param name="useOverride" value="true" /&gt;</code>
-									</para>
-									<para>
-										<code>&lt;ui:define name="taskBody"&gt;</code>
-									</para>
-									<para>
-										<code>This is the customized content of the task: #{task.getId()}</code>
-									</para>
-									<para>
-										<code>&lt;ui:fragment rendered="#{task.getCustomVarCharField1().equals('I am a custom task')}"&gt;</code>
-									</para>
-									<para>
-										<code>&lt;h:outputText value="I'm a secret task so I'm displayed differently" /&gt;</code>
-									</para>
-									<para>
-										<code>&lt;/ui:fragment&gt;</code>
-									</para>
-									<para>
-										<code>&lt;ui:fragment rendered="#{task.getCustomVarCharField1().equals('I am another custom task')}"&gt;</code>
-									</para>
-									<para>
-										<code>&lt;!-- Put your secret content here --&gt;</code>
-									</para>
-									<para>
-										<code>&lt;/ui:fragment&gt;</code>
-									</para>
-									<para>
-										<code>&lt;/ui:define&gt;</code>
-									</para>
-									<para>
-										<code>&lt;/ui:composition&gt;</code>
-									</para>
+									It is the same way as home page. You should introduce a new HTMLDialog which uses template <code>/layouts/PortalTasksTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). You can take a look at <code>PortalTasks.xhtml</code> to see how to customize it.
+									<tip>
+										<para>Highly recommend to copy the <code>PortalTasks</code> HTMLDialog in PortalTemplate and change the copied one's view.</para>
+									</tip>
 								</para>
 							</listitem>
 							<listitem>
@@ -136,7 +93,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						If you need to apply the responsiveness behavior of Portal, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
+						If you need to apply the responsiveness behavior of Portal for task details, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
 						<itemizedlist>
 							<listitem>
 								<para>
@@ -232,6 +189,31 @@
 							</imageobject>
 						</mediaobject>
 					</para>
+				</listitem>
+			</orderedlist>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverridedataquery">
+		<title>How to override task widget's data query</title>
+		<para>
+			<orderedlist>
+				<listitem>
+					<para>Introduce the HTMLDialogs mentioned in <link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI override</link> in your project</para>
+				</listitem>
+				<listitem>
+					<para>Introduce a java class extends TaskLazyDataModel</para>
+				</listitem>
+				<listitem>
+					<para>Override the <code>buildTaskQuery</code> method and return your new task query (see java doc)</para>
+				</listitem>
+				<listitem>
+					<para>In case there are new columns, you should override the <code>extendSortTasksInNotDisplayedTaskMap</code> method and follow its java doc</para>
+				</listitem>
+				<listitem>
+					<para>In your customized portal home HTMLDialog, the customized data model should be passed as a param to template and components (refer to <code>PortalTasks.xhtml</code>)</para>
+				</listitem>
+				<listitem>
+					<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a param to components (refer to <code>PortalTasks.xhtml</code>) and in OpenPortalTasksOverride callable process, use the script from note element with your data model class</para>
 				</listitem>
 			</orderedlist>
 		</para>
