@@ -5,7 +5,7 @@ public enum TaskState {
   OPEN, IN_PROGRESS, RESERVED, DONE;
   
   public static TaskState fromClass(String stateClass) {
-    switch (stateClass) {
+    switch (stateClass.trim()) {
       case "task-state-open":
         return OPEN;
 
