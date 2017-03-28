@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Mar 21 11:08:43 ICT 2017]
+[>Created: Tue Mar 28 18:23:40 ICT 2017]
 150CB86EFC2F2972 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
@@ -547,6 +547,7 @@ Ts0 f73 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemDa
 Ts0 f73 responseMappingAction 'out=in;
 out.canUserResumeTask=result.canUserResumeTask;
 out.errors=result.errors;
+out.workerUserName=result.workerUserName;
 ' #txt
 Ts0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -570,7 +571,6 @@ Ts0 f79 actionCode 'import java.util.Arrays;
 import org.primefaces.context.RequestContext;
 
 in.isAnotherUserWorkingMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/isAnotherUserWorking", Arrays.asList(in.selectedTask.name, in.selectedTask.id, in.workerUserName));
-//RequestContext.getCurrentInstance().update("is-another-user-working-message").openDialog("is-another-user-working-dialog");
 RequestContext.getCurrentInstance().update("is-another-user-working-message").execute("PF(''is-another-user-working-dialog'').show()");' #txt
 Ts0 f79 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
