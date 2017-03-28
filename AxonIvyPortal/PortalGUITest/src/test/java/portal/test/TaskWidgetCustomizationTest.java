@@ -12,6 +12,10 @@ import portal.page.TaskWidgetPage;
 
 public class TaskWidgetCustomizationTest extends BaseTest {
 
+  private static final String CUSTOM_VARCHAR_FIELD5_COLUMN_ID = "custom-varchar-field5";
+  private static final String STATE_COLUMN_NAME = "State";
+  private static final String CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER = "CustomVarcharField5";
+
   @Before
   public void setup() {
     super.setup();
@@ -27,9 +31,9 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertFalse(taskWidgetPage.isTaskListColumnExist("State"));
-    assertTrue(taskWidgetPage.isTaskListColumnExist("CustomVarcharField5"));
-    assertTrue("Other Leave/Maternity".equals(taskWidgetPage.getTaskListCellValue(0, "custom-varchar-field5")));
+    assertFalse(taskWidgetPage.isTaskListColumnExist(STATE_COLUMN_NAME));
+    assertTrue(taskWidgetPage.isTaskListColumnExist(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER));
+    assertTrue("Other Leave/Maternity".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
   }
 
   @Test
@@ -37,9 +41,9 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertFalse(taskWidgetPage.isTaskListColumnExist("State"));
-    assertTrue(taskWidgetPage.isTaskListColumnExist("CustomVarcharField5"));
-    assertTrue("Other Leave/Maternity".equals(taskWidgetPage.getTaskListCellValue(0, "custom-varchar-field5")));
+    assertFalse(taskWidgetPage.isTaskListColumnExist(STATE_COLUMN_NAME));
+    assertTrue(taskWidgetPage.isTaskListColumnExist(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER));
+    assertTrue("Other Leave/Maternity".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
   }
 
   @Test
@@ -47,13 +51,13 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.sortTaskListByColumn("CustomVarcharField5");
+    taskWidgetPage.sortTaskListByColumn(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Other Leave/Maternity".equals(taskWidgetPage.getTaskListCellValue(0, "custom-varchar-field5")));
+    assertTrue("Other Leave/Maternity".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
 
-    taskWidgetPage.sortTaskListByColumn("CustomVarcharField5");
+    taskWidgetPage.sortTaskListByColumn(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Other Leave/Sick/Long".equals(taskWidgetPage.getTaskListCellValue(0, "custom-varchar-field5")));
+    assertTrue("Other Leave/Sick/Long".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
   }
 
   @Test
@@ -61,12 +65,12 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.sortTaskListByColumn("CustomVarcharField5");
+    taskWidgetPage.sortTaskListByColumn(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Annual Leave".equals(taskWidgetPage.getTaskListCellValue(0, "custom-varchar-field5")));
+    assertTrue("Annual Leave".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
 
-    taskWidgetPage.sortTaskListByColumn("CustomVarcharField5");
+    taskWidgetPage.sortTaskListByColumn(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Other Leave/Sick/Long".equals(taskWidgetPage.getTaskListCellValue(0, "custom-varchar-field5")));
+    assertTrue("Other Leave/Sick/Long".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
   }
 }
