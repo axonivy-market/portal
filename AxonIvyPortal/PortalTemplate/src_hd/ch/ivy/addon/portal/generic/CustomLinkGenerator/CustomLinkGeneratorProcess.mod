@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Oct 24 11:48:31 ICT 2016]
-14BEEC80DFF38FB5 3.18 #module
+[>Created: Tue Mar 28 18:26:03 ICT 2017]
+14BEEC80DFF38FB5 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomLinkGeneratorProcess Big #zClass
 Cs0 RD #cInfo
@@ -561,16 +561,6 @@ if(in.selectedNode.type.equals(TreeNodeType.TASKS)) {
 } else {
 	dataModel.setCategory(categoryMenu.category);
 	dataModel.setIgnoreInvolvedUser(categoryMenu.rootNodeAllTask);
-}
-
-Long serverId = SecurityServiceUtils.getServerIdFromSession();
-if (#serverId is initialized) {
-	dataModel.setServerId(serverId);
-}
-
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	dataModel.setInvolvedApplications(applicationName);
 }
 
 in.taskView = TaskView.create().category(categoryMenu).dataModel(dataModel).pageTitle(categoryMenu.value).createNewTaskView();' #txt
