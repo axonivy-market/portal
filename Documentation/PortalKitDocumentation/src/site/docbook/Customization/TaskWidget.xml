@@ -10,7 +10,7 @@
 			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: TaskHeader and TaskListHeader and TaskBody</para>
 		</listitem>
 		<listitem>
-			<para><link linkend="axonivyportal.customization.taskwidget.howtooverridetasklazydatamodel">Data query</link>: TaskLazyDataModel (build your own TaskQuery)</para>
+			<para><link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery">Data query</link>: TaskLazyDataModel (build your own TaskQuery)</para>
 		</listitem>
 	</orderedlist>
 	<important>
