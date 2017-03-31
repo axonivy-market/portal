@@ -169,6 +169,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     crit.setIncludedStates(new CaseState[] { CaseState.CREATED, CaseState.RUNNING });
     crit.setSortedField(CaseSortedField.ID);
     crit.setSortingDescending(true);
+    crit.setBusinessCase(true);
     return crit;
   }
 

@@ -18,6 +18,8 @@ public class CaseSearchCriteria {
   private boolean ignoreInvolvedUser;
   private CaseSortedField sortedField;
   private boolean isSortingDescending;
+  private boolean isBusinessCase;
+  private boolean isTechnicalCase;
 
   public boolean isEmpty() {
     return !hasInvolvedUsername() && !hasInvolvedApplications() && !hasKeyword() && !hasExcludedStates()
@@ -132,4 +134,19 @@ public class CaseSearchCriteria {
     this.isSortingDescending = isSortingDescending;
   }
 
+  public boolean isBusinessCase() {
+    return isBusinessCase;
+  }
+
+  public void setBusinessCase(boolean isBusinessCase) {
+    this.isBusinessCase = isBusinessCase;
+  }
+
+  public boolean isTechnicalCase() {
+    return isTechnicalCase;
+  }
+
+  public void setTechnicalCase(boolean isTechnicalCase) {
+    this.isTechnicalCase = isTechnicalCase;
+  }
 }
