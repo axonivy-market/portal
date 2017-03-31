@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jan 24 10:35:25 ICT 2017]
-1503C0F82FA8D5F4 3.19 #module
+[>Created: Thu Mar 30 16:46:15 ICT 2017]
+1503C0F82FA8D5F4 3.20 #module
 >Proto >Proto Collection #zClass
 Sn0 SynchronizeServerConfiguration Big #zClass
 Sn0 B #cInfo
@@ -56,7 +56,7 @@ TaskTriggered.EXROL=Everybody' #txt
 Sn0 f0 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigDescription")%>
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-businessCase.attach=false' #txt
+businessCase.attach=true' #txt
 Sn0 f0 showInStartList 1 #txt
 Sn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -179,7 +179,7 @@ TaskTriggered.EXROL=Everybody' #txt
 Sn0 f6 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription")%>
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-businessCase.attach=false' #txt
+businessCase.attach=true' #txt
 Sn0 f6 showInStartList 1 #txt
 Sn0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

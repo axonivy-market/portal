@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Mar 24 14:52:53 ICT 2017]
+[>Created: Thu Mar 30 16:39:40 ICT 2017]
 1508F2CD9F746207 3.20 #module
 >Proto >Proto Collection #zClass
 Sk0 GlobalSearch Big #zClass
@@ -198,6 +198,8 @@ states.add(CaseState.ZOMBIE);
 in.caseSearchCriteria.excludedStates = states;
 
 in.caseSearchCriteria.keyword = in.keyword;
+
+in.caseSearchCriteria.businessCase = true;
 
 if (in.#applicationName is initialized) {
 	List<String> involvedApplications = Arrays.asList(in.applicationName);
