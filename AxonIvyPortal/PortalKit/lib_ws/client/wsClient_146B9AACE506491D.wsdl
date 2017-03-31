@@ -240,6 +240,7 @@
   </xs:complexType>
 <xs:complexType name="caseSearchCriteria">
     <xs:sequence>
+      <xs:element name="businessCase" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="caseId" type="xs:long"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="excludedStates" nillable="true" type="tns:caseState"></xs:element>
       <xs:element name="ignoreInvolvedUser" type="xs:boolean"></xs:element>
@@ -250,6 +251,7 @@
       <xs:element minOccurs="0" name="sortedField" type="tns:caseSortedField"></xs:element>
       <xs:element name="sortingDescending" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="taskId" type="xs:long"></xs:element>
+      <xs:element name="technicalCase" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="countCasesByCriteriaResponse">

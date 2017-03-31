@@ -156,7 +156,7 @@ public class IvyTaskTransformer {
     // Add case object
     if (addCaseToTask) {
       IvyCaseTransformer caseTransformer = new IvyCaseTransformer();
-      IvyCase c = caseTransformer.transform(t.getCase());
+      IvyCase c = caseTransformer.transform(t.getCase().getBusinessCase());
       result.setCaseBusinessCorrespondentId(c.getBusinessCorrespondentId());
       result.setCaseBusinessCreatorUser(c.getBusinessCreatorUser());
       result.setCaseBusinessMainContactDocumentDatabaseCode(c.getBusinessMainContactDocumentDatabaseCode());
