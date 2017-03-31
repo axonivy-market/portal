@@ -665,6 +665,12 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     if (caseSearchCriteria.hasTaskId()) {
       finalQuery.where().and().tasks(TaskQuery.create().where().taskId().isEqual(caseSearchCriteria.getTaskId()));
     }
+    
+    if (caseSearchCriteria.isBusinessCase()) {
+      finalQuery.where().and().isBusinessCase();
+    } else if (caseSearchCriteria.isTechnicalCase()) {
+      finalQuery.where().and().isNotBusinessCase();
+    }
 
     if (caseSearchCriteria.hasInvolvedUsername() && !caseSearchCriteria.isIgnoreInvolvedUser()) {
       List<String> involvedApplications = caseSearchCriteria.getInvolvedApplications();

@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jan 26 16:13:22 ICT 2017]
-1503C5419245E19B 3.19 #module
+[>Created: Thu Mar 30 16:46:46 ICT 2017]
+1503C5419245E19B 3.20 #module
 >Proto >Proto Collection #zClass
 Ae0 SynchronizingTriggerProcess Big #zClass
 Ae0 B #cInfo
@@ -59,7 +59,7 @@ TaskTriggered.EXROL=Everybody' #txt
 Ae0 f0 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdatePropertyOfServerDescription")%>
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-businessCase.attach=false' #txt
+businessCase.attach=true' #txt
 Ae0 f0 showInStartList 1 #txt
 Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -131,7 +131,7 @@ TaskTriggered.EXROL=Everybody' #txt
 Ae0 f5 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeletePropertyOfServerDescription")%>
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-businessCase.attach=false' #txt
+businessCase.attach=true' #txt
 Ae0 f5 showInStartList 1 #txt
 Ae0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -170,7 +170,7 @@ TaskTriggered.EXROL=Everybody' #txt
 Ae0 f6 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeletePropertyOfServerByPrefixDescription")%>
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-businessCase.attach=false' #txt
+businessCase.attach=true' #txt
 Ae0 f6 showInStartList 1 #txt
 Ae0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -270,7 +270,7 @@ TaskTriggered.EXROL=Everybody' #txt
 Ae0 f16 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/DeletePropertiesOfServerDescription")%>
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-businessCase.attach=false' #txt
+businessCase.attach=true' #txt
 Ae0 f16 showInStartList 1 #txt
 Ae0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
