@@ -28,6 +28,7 @@ public class BaseTest extends SeleneseTestBase {
   }
   
   protected String createTestingTasksUrl = "internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp";
+  protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
