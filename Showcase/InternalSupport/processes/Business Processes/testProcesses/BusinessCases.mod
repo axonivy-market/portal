@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Mar 31 10:30:10 ICT 2017]
+[>Created: Fri Mar 31 13:52:24 ICT 2017]
 15B1EA24CCF377E8 3.20 #module
 >Proto >Proto Collection #zClass
 Be0 BusinessCases Big #zClass
@@ -155,7 +155,7 @@ Be0 f2 actionDecl 'internaltest.Data out;
 ' #txt
 Be0 f2 actionTable 'out=in;
 ' #txt
-Be0 f2 actionCode 'out.caseName = "TECH: Update checkin time of case " +  ivy.case.getBusinessCase().getId();
+Be0 f2 actionCode 'out.caseName = "TECH: Update checkin time";
 out.taskName = "Update checkin time of case " +  ivy.case.getBusinessCase().getId();' #txt
 Be0 f2 type internaltest.Data #txt
 Be0 f2 270 148 36 24 20 -2 #rect
