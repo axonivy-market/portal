@@ -81,4 +81,9 @@ public class CasePage extends TemplatePage {
         findElementById(selectedCaseElement.getAttribute("id") + ":case-header:case-name-edit-inplace");
     return selectedCaseNameElement.getText();
   }
+  
+  public boolean isCaseDisplayed(String name) {
+    List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");
+    return caseNameElements.stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
+  }
 }
