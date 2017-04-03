@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jan 03 11:08:05 ICT 2017]
-14E8BC51CC56193A 3.18 #module
+[>Created: Mon Apr 03 14:17:17 ICT 2017]
+14E8BC51CC56193A 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskServiceIntegrator Big #zClass
 Te0 B #cInfo
@@ -1005,9 +1005,10 @@ Te0 f83 expr out #txt
 Te0 f83 2944 268 2797 352 #arcP
 Te0 f83 1 2944 352 #addKink
 Te0 f83 1 0.0711164247508674 0 0 #arcLabel
-Te0 f85 inParamDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f85 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f85 inParamTable 'out.applicationNames=param.apps;
 out.endpoint=param.endpoint;
+out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskCategoryRequester=param.userName;
 ' #txt
@@ -1018,7 +1019,7 @@ result.errors=in.errors;
 ' #txt
 Te0 f85 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
-Te0 f85 callSignature findCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f85 callSignature findCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f85 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1059,12 +1060,14 @@ Te0 f88 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findCategories
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f88 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f88 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f88 returningObjectList '[wsResponse]' #txt
@@ -1092,12 +1095,14 @@ Te0 f89 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=findCategories
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f89 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f89 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f89 returningObjectList '[wsResponse]' #txt
@@ -1128,9 +1133,10 @@ Te0 f94 expr out #txt
 Te0 f94 1408 684 1261 768 #arcP
 Te0 f94 1 1408 768 #addKink
 Te0 f94 1 0.3353862987498499 0 0 #arcLabel
-Te0 f90 inParamDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f90 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f90 inParamTable 'out.applicationNames=param.apps;
 out.endpoint=param.endpoint;
+out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskStatisticRequester=param.userName;
 ' #txt
@@ -1141,7 +1147,7 @@ result.errors=in.errors;
 ' #txt
 Te0 f90 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
-Te0 f90 callSignature analyzePriorityStatistic(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f90 callSignature analyzePriorityStatistic(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f90 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1170,12 +1176,14 @@ Te0 f96 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=analyzePriorityStatistic
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
 Te0 f96 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f96 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f96 returningObjectList '[wsResponse]' #txt
@@ -1203,12 +1211,14 @@ Te0 f103 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=analyzePriorityStatistic
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
 Te0 f103 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f103 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f103 returningObjectList '[wsResponse]' #txt
@@ -1265,12 +1275,14 @@ Te0 f111 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=analyzeExpiryStatistic
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
 Te0 f111 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f111 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f111 returningObjectList '[wsResponse]' #txt
@@ -1298,12 +1310,14 @@ Te0 f112 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=analyzeExpiryStatistic
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
 Te0 f112 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f112 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f112 returningObjectList '[wsResponse]' #txt
@@ -1318,9 +1332,10 @@ Te0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f112 2414 660 36 24 20 -2 #rect
 Te0 f112 @|WebServiceIcon #fIcon
-Te0 f113 inParamDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f113 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f113 inParamTable 'out.applicationNames=param.apps;
 out.endpoint=param.endpoint;
+out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskStatisticRequester=param.userName;
 ' #txt
@@ -1331,7 +1346,7 @@ result.errors=in.errors;
 ' #txt
 Te0 f113 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
-Te0 f113 callSignature analyzeExpiryStatistic(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f113 callSignature analyzeExpiryStatistic(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f113 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2025,12 +2040,14 @@ Te0 f101 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findCategories
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f101 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f101 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f101 returningObjectList '[wsResponse]' #txt
@@ -2073,12 +2090,14 @@ Te0 f110 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=analyzePriorityStatistic
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
 Te0 f110 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f110 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f110 returningObjectList '[wsResponse]' #txt
@@ -2121,12 +2140,14 @@ Te0 f120 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=analyzeExpiryStatistic
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
 Te0 f120 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f120 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f120 returningObjectList '[wsResponse]' #txt
@@ -2167,12 +2188,14 @@ Te0 f72 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findPersonalTaskCategories
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f72 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f72 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f72 returningObjectList '[wsResponse]' #txt
@@ -2203,12 +2226,14 @@ Te0 f142 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findPersonalTaskCategories
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f142 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f142 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f142 returningObjectList '[wsResponse]' #txt
@@ -2223,9 +2248,10 @@ Te0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f142 1230 1036 36 24 20 -2 #rect
 Te0 f142 @|WebServiceIcon #fIcon
-Te0 f163 inParamDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f163 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f163 inParamTable 'out.applicationNames=param.apps;
 out.endpoint=param.endpoint;
+out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskCategoryRequester=param.userName;
 ' #txt
@@ -2236,12 +2262,14 @@ result.errors=in.errors;
 ' #txt
 Te0 f163 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
-Te0 f163 callSignature findPersonalCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f163 callSignature findPersonalCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f163 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f163 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>findPersonalCategories(String,List&lt;String&gt;,Server,String)</name>
+        <nameStyle>57,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2272,12 +2300,14 @@ Te0 f165 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=findPersonalTaskCategories
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f165 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f165 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f165 returningObjectList '[wsResponse]' #txt
@@ -2336,12 +2366,14 @@ Te0 f173 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findGroupTaskCategories
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f173 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f173 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f173 returningObjectList '[wsResponse]' #txt
@@ -2372,12 +2404,14 @@ Te0 f175 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findGroupTaskCategories
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f175 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f175 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f175 returningObjectList '[wsResponse]' #txt
@@ -2392,9 +2426,10 @@ Te0 f175 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f175 1766 1020 36 24 20 -2 #rect
 Te0 f175 @|WebServiceIcon #fIcon
-Te0 f176 inParamDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f176 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f176 inParamTable 'out.applicationNames=param.apps;
 out.endpoint=param.endpoint;
+out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskCategoryRequester=param.userName;
 ' #txt
@@ -2405,12 +2440,14 @@ result.errors=in.errors;
 ' #txt
 Te0 f176 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
-Te0 f176 callSignature findGroupCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f176 callSignature findGroupCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f176 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>findGroupCategories(String,List&lt;String&gt;,Server,String)</name>
+        <nameStyle>54,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2441,12 +2478,14 @@ Te0 f178 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=findGroupTaskCategories
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f178 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f178 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f178 returningObjectList '[wsResponse]' #txt

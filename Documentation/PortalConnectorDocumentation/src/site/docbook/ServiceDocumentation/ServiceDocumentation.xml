@@ -845,6 +845,9 @@
 							</entry>
 							<entry>
 								<para>
+									jsonQuery (String)
+								</para>
+								<para>
 									userName (String)
 								</para>
 								<para>
@@ -872,6 +875,9 @@
 								</para>
 							</entry>
 							<entry>
+								<para>
+									jsonQuery (String)
+								</para>
 								<para>
 									userName (String)
 								</para>
@@ -1081,6 +1087,9 @@
 							</entry>
 							<entry>
 								<para>
+									jsonQuery (String)
+								</para>
+								<para>
 									userName (String)
 								</para>
 								<para>
@@ -1109,6 +1118,9 @@
 							</entry>
 							<entry>
 								<para>
+									jsonQuery (String)
+								</para>
+								<para>
 									userName (String)
 								</para>
 								<para>
@@ -1136,6 +1148,9 @@
 								</para>
 							</entry>
 							<entry>
+								<para>
+									jsonQuery (String)
+								</para>
 								<para>
 									userName (String)
 								</para>

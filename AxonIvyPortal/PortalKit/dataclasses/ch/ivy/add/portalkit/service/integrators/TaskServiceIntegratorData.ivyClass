@@ -27,3 +27,5 @@ taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
 taskStatisticRequester String #field
 workerUserName String #field
 isUrlBuiltFromSystemProperties Boolean #field
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment

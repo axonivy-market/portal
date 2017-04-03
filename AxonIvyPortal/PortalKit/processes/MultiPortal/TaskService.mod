@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jan 05 16:17:00 ICT 2017]
-146C8E81DE07F973 3.18 #module
+[>Created: Mon Apr 03 14:20:46 ICT 2017]
+146C8E81DE07F973 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 B #cInfo
@@ -1364,9 +1364,10 @@ of server</name>
 ' #txt
 Te0 f12 1806 356 36 24 20 -2 #rect
 Te0 f12 @|CallSubIcon #fIcon
-Te0 f59 inParamDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
+Te0 f59 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
 Te0 f59 inParamTable 'out.apps=param.apps;
 out.hasNoSelectedApp=param.apps.isEmpty();
+out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
@@ -1377,14 +1378,12 @@ result.errors=in.errors;
 ' #txt
 Te0 f59 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
-Te0 f59 callSignature findCategories(String,List<String>,Long) #txt
+Te0 f59 callSignature findCategories(String,String,List<String>,Long) #txt
 Te0 f59 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findCategories(String,List&lt;String&gt;,Long)</name>
-        <nameStyle>40,5,7
-</nameStyle>
+        <name>findCategories(String,String,List&lt;String&gt;,Long)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -1481,11 +1480,12 @@ Te0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Te0 f111 1806 420 36 24 21 -7 #rect
 Te0 f111 @|StepIcon #fIcon
 Te0 f112 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f112 processCall ServiceIntegrators/TaskServiceIntegrator:findCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f112 processCall ServiceIntegrators/TaskServiceIntegrator:findCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f112 doCall true #txt
-Te0 f112 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+Te0 f112 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
 ' #txt
-Te0 f112 requestMappingAction 'param.userName=in.userName;
+Te0 f112 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.userName=in.userName;
 param.apps=in.apps;
 param.server=in.server;
 param.endpoint=in.endpoint;
@@ -1661,11 +1661,12 @@ Te0 f138 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Te0 f138 2846 228 36 24 20 -2 #rect
 Te0 f138 @|StepIcon #fIcon
 Te0 f139 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f139 processCall ServiceIntegrators/TaskServiceIntegrator:analyzePriorityStatistic(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f139 processCall ServiceIntegrators/TaskServiceIntegrator:analyzePriorityStatistic(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f139 doCall true #txt
-Te0 f139 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+Te0 f139 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
 ' #txt
-Te0 f139 requestMappingAction 'param.userName=in.userName;
+Te0 f139 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.userName=in.userName;
 param.apps=in.apps;
 param.server=in.server;
 param.endpoint=in.endpoint;
@@ -1753,9 +1754,10 @@ Te0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f142 2846 420 36 24 21 -7 #rect
 Te0 f142 @|StepIcon #fIcon
-Te0 f143 inParamDecl '<List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;' #txt
+Te0 f143 inParamDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;' #txt
 Te0 f143 inParamTable 'out.apps=param.apps;
 out.hasNoSelectedApp=param.apps.isEmpty();
+out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
@@ -1766,14 +1768,12 @@ result.errors=in.errors;
 ' #txt
 Te0 f143 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
-Te0 f143 callSignature analyzePriorityStatistic(List<String>,Long,String) #txt
+Te0 f143 callSignature analyzePriorityStatistic(String,List<String>,Long,String) #txt
 Te0 f143 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f143 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>analyzePriorityStatistic(List&lt;String&gt;,Long,String)</name>
-        <nameStyle>50,5,7
-</nameStyle>
+        <name>analyzePriorityStatistic(String,List&lt;String&gt;,Long,String)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -1973,9 +1973,10 @@ Te0 f195 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f195 3206 420 36 24 21 -18 #rect
 Te0 f195 @|StepIcon #fIcon
-Te0 f196 inParamDecl '<List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;' #txt
+Te0 f196 inParamDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;' #txt
 Te0 f196 inParamTable 'out.apps=param.apps;
 out.hasNoSelectedApp=param.apps.isEmpty();
+out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
@@ -1986,25 +1987,24 @@ result.errors=in.errors;
 ' #txt
 Te0 f196 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
-Te0 f196 callSignature analyzeExpiryStatistic(List<String>,Long,String) #txt
+Te0 f196 callSignature analyzeExpiryStatistic(String,List<String>,Long,String) #txt
 Te0 f196 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f196 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>analyzeExpiryStatistic(List&lt;String&gt;,Long,String)</name>
-        <nameStyle>48,5,7
-</nameStyle>
+        <name>analyzeExpiryStatistic(String,List&lt;String&gt;,Long,String)</name>
     </language>
 </elementInfo>
 ' #txt
 Te0 f196 3211 51 26 26 -50 -39 #rect
 Te0 f196 @|StartSubIcon #fIcon
 Te0 f197 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f197 processCall ServiceIntegrators/TaskServiceIntegrator:analyzeExpiryStatistic(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f197 processCall ServiceIntegrators/TaskServiceIntegrator:analyzeExpiryStatistic(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f197 doCall true #txt
-Te0 f197 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+Te0 f197 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
 ' #txt
-Te0 f197 requestMappingAction 'param.userName=in.userName;
+Te0 f197 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.userName=in.userName;
 param.apps=in.apps;
 param.server=in.server;
 param.endpoint=in.endpoint;
@@ -2588,11 +2588,12 @@ Te0 f124 1 0.4930555555555556 0 0 #arcLabel
 Te0 f86 expr out #txt
 Te0 f86 3224 572 3224 596 #arcP
 Te0 f128 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f128 processCall ServiceIntegrators/TaskServiceIntegrator:findPersonalCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f128 processCall ServiceIntegrators/TaskServiceIntegrator:findPersonalCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f128 doCall true #txt
-Te0 f128 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+Te0 f128 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
 ' #txt
-Te0 f128 requestMappingAction 'param.userName=in.userName;
+Te0 f128 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.userName=in.userName;
 param.apps=in.apps;
 param.server=in.server;
 param.endpoint=in.endpoint;
@@ -2704,9 +2705,10 @@ Te0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f158 2130 282 28 28 14 0 #rect
 Te0 f158 @|AlternativeIcon #fIcon
-Te0 f161 inParamDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
+Te0 f161 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
 Te0 f161 inParamTable 'out.apps=param.apps;
 out.hasNoSelectedApp=param.apps.isEmpty();
+out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
@@ -2717,12 +2719,12 @@ result.errors=in.errors;
 ' #txt
 Te0 f161 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
-Te0 f161 callSignature findPersonalCategories(String,List<String>,Long) #txt
+Te0 f161 callSignature findPersonalCategories(String,String,List<String>,Long) #txt
 Te0 f161 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f161 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findPersonalCategories(String,List&lt;String&gt;,Long)</name>
+        <name>findPersonalCategories(String,String,List&lt;String&gt;,Long)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -2896,11 +2898,12 @@ Te0 f219 1 2099 296 #addKink
 Te0 f219 2 2099 536 #addKink
 Te0 f219 1 0.4930555555555556 0 0 #arcLabel
 Te0 f220 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f220 processCall ServiceIntegrators/TaskServiceIntegrator:findGroupCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f220 processCall ServiceIntegrators/TaskServiceIntegrator:findGroupCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f220 doCall true #txt
-Te0 f220 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+Te0 f220 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
 ' #txt
-Te0 f220 requestMappingAction 'param.userName=in.userName;
+Te0 f220 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.userName=in.userName;
 param.apps=in.apps;
 param.server=in.server;
 param.endpoint=in.endpoint;
@@ -3012,9 +3015,10 @@ Te0 f224 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f224 2410 274 28 28 14 0 #rect
 Te0 f224 @|AlternativeIcon #fIcon
-Te0 f225 inParamDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
+Te0 f225 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
 Te0 f225 inParamTable 'out.apps=param.apps;
 out.hasNoSelectedApp=param.apps.isEmpty();
+out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
@@ -3025,12 +3029,12 @@ result.errors=in.errors;
 ' #txt
 Te0 f225 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
-Te0 f225 callSignature findGroupCategories(String,List<String>,Long) #txt
+Te0 f225 callSignature findGroupCategories(String,String,List<String>,Long) #txt
 Te0 f225 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findGroupCategories(String,List&lt;String&gt;,Long)</name>
+        <name>findGroupCategories(String,String,List&lt;String&gt;,Long)</name>
     </language>
 </elementInfo>
 ' #txt
