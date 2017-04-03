@@ -23,8 +23,9 @@
           <p:ajax event="save" listener="#{logic.updateTaskDescription(task)}"
             update="task-description-form #{cc.attrs.descriptionComponentToUpdate}" process="task-description-form" />
           <p:ajax event="cancel" resetValues="true" />
-          <p:inputTextarea id="task-description-input" rows="7" styleClass="task-detail-description-input"
-            value="#{task.description}" autoResize="false" />
+<!--           <p:inputTextarea id="task-description-input" rows="7" styleClass="task-detail-description-input" -->
+<!--             value="#{task.description}" autoResize="false" /> -->
+<p:editor styleClass="task-detail-description-input" value="#{task.description}" />
         </p:inplace>
       </div>
     </h:form>

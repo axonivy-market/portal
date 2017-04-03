@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Mar 22 17:11:56 ICT 2017]
+[>Created: Mon Apr 03 14:10:50 ICT 2017]
 1380566F9095B9C4 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
@@ -620,7 +620,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findCategories(in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
 	in.categories = tsResult.getCategories();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
@@ -638,9 +638,10 @@ Te0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f4 366 124 36 24 20 -2 #rect
 Te0 f4 @|StepIcon #fIcon
-Te0 f10 inParamDecl '<java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f10 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f10 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
+out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
 Te0 f10 outParamDecl '<java.util.List<java.lang.String> categories,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
@@ -649,7 +650,7 @@ result.errors=in.errors;
 ' #txt
 Te0 f10 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f10 callSignature findCategories(String,List<String>) #txt
+Te0 f10 callSignature findCategories(String,String,List<String>) #txt
 Te0 f10 useUserDefinedException false #txt
 Te0 f10 taskData TaskTriggered.PRI=2 #txt
 Te0 f10 type ch.ivy.ws.addon.TaskServiceData #txt
@@ -680,7 +681,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().analyzePriorityStatistic(in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().analyzePriorityStatistic(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
 	in.priorityStatistic = tsResult.getPriorityStatistic();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
@@ -698,9 +699,10 @@ Te0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f45 2302 124 36 24 20 -2 #rect
 Te0 f45 @|StepIcon #fIcon
-Te0 f49 inParamDecl '<java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f49 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f49 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
+out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
 Te0 f49 outParamDecl '<ch.ivy.ws.addon.types.PriorityStatistic priorityStatistic,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
@@ -709,16 +711,14 @@ result.errors=in.errors;
 ' #txt
 Te0 f49 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f49 callSignature analyzePriorityStatistic(String,List<String>) #txt
+Te0 f49 callSignature analyzePriorityStatistic(String,String,List<String>) #txt
 Te0 f49 useUserDefinedException false #txt
 Te0 f49 taskData TaskTriggered.PRI=2 #txt
 Te0 f49 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>analyzePriorityStatistic(String,List&lt;String&gt;)</name>
-        <nameStyle>45,5,7
-</nameStyle>
+        <name>analyzePriorityStatistic(String,String,List&lt;String&gt;)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -741,7 +741,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try {
-	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.today());
+	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.today());
 	in.expireToday = result.getNumberOfExpiryTasks();
 	in.errors.addAll(result.getErrors());
 }catch(WSException e){
@@ -760,26 +760,26 @@ today</name>
 ' #txt
 Te0 f54 2462 180 36 24 20 -2 #rect
 Te0 f54 @|StepIcon #fIcon
-Te0 f56 inParamDecl '<java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f56 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f56 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
+out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
-Te0 f56 outParamDecl '<ch.ivy.ws.addon.types.ExpiryStatistic expiryStatistic,List<ch.ivy.ws.addon.WSException> errors> result;' #txt
+Te0 f56 outParamDecl '<ch.ivy.ws.addon.types.ExpiryStatistic expiryStatistic,List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
 Te0 f56 outParamTable 'result.expiryStatistic=in.expiryStatistic;
 result.errors=in.errors;
 ' #txt
 Te0 f56 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f56 callSignature analyzeExpiryStatistic(String,List<String>) #txt
+Te0 f56 callSignature analyzeExpiryStatistic(String,String,List<String>) #txt
 Te0 f56 useUserDefinedException false #txt
 Te0 f56 taskData TaskTriggered.PRI=2 #txt
 Te0 f56 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>analyzeExpiryStatistic(String,List&lt;String&gt;)</name>
-        <nameStyle>43,5,7
-</nameStyle>
+        <name>analyzeExpiryStatistic(String,String,List&lt;String&gt;)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -836,7 +836,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try {
-	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 1));
+	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 1));
 	in.expireTomorrow = result.getNumberOfExpiryTasks();
 	in.errors = result.getErrors();
 }catch(WSException e){
@@ -867,7 +867,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try {
-	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 2));
+	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 2));
 	in.expireIn2Days = result.getNumberOfExpiryTasks();
 	in.errors.addAll(result.getErrors());
 }catch(WSException e){
@@ -898,7 +898,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try {
-	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 3));
+	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 3));
 	in.expireIn3Days = result.getNumberOfExpiryTasks();
 	in.errors.addAll(result.getErrors());
 }catch(WSException e){
@@ -996,7 +996,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findGroupTaskCategories(in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findGroupTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
 	in.categories = tsResult.getCategories();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
@@ -1015,9 +1015,10 @@ Categories</name>
 ' #txt
 Te0 f66 662 124 36 24 20 -2 #rect
 Te0 f66 @|StepIcon #fIcon
-Te0 f67 inParamDecl '<java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f67 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f67 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
+out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
 Te0 f67 outParamDecl '<java.util.List<java.lang.String> categories,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
@@ -1026,7 +1027,7 @@ result.errors=in.errors;
 ' #txt
 Te0 f67 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f67 callSignature findGroupTaskCategories(String,List<String>) #txt
+Te0 f67 callSignature findGroupTaskCategories(String,String,List<String>) #txt
 Te0 f67 useUserDefinedException false #txt
 Te0 f67 taskData TaskTriggered.PRI=2 #txt
 Te0 f67 type ch.ivy.ws.addon.TaskServiceData #txt
@@ -1053,7 +1054,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findPersonalTaskCategories(in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findPersonalTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
 	in.categories = tsResult.getCategories();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
@@ -1072,9 +1073,10 @@ Categories</name>
 ' #txt
 Te0 f69 510 124 36 24 20 -2 #rect
 Te0 f69 @|StepIcon #fIcon
-Te0 f70 inParamDecl '<java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f70 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f70 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
+out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
 Te0 f70 outParamDecl '<java.util.List<java.lang.String> categories,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
@@ -1083,7 +1085,7 @@ result.errors=in.errors;
 ' #txt
 Te0 f70 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f70 callSignature findPersonalTaskCategories(String,List<String>) #txt
+Te0 f70 callSignature findPersonalTaskCategories(String,String,List<String>) #txt
 Te0 f70 useUserDefinedException false #txt
 Te0 f70 taskData TaskTriggered.PRI=2 #txt
 Te0 f70 type ch.ivy.ws.addon.TaskServiceData #txt

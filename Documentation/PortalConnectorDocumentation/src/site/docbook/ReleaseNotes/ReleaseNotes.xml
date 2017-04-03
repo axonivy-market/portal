@@ -63,6 +63,14 @@
 	<sect1 xml:id="portalconnectordocumentation.releasenotes.changes">
 		<title>Changes</title>
 		<sect2>
+			<title>Changes in 6.6</title>
+			<itemizedlist>
+				<listitem>
+					<para>Param: JsonQuery is added to TaskService for TaskQuery customization</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+		<sect2>
 			<title>Changes in 6.5</title>
 			<itemizedlist>
 				<listitem>

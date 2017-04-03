@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Fri Sep 16 21:37:41 ICT 2016]
-14EB4D799BBF04C8 3.18 #module
+[>Created: Mon Apr 03 14:22:46 ICT 2017]
+14EB4D799BBF04C8 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalDashBoardProcess Big #zClass
 Ps0 RD #cInfo
@@ -28,9 +28,11 @@ Ps0 @SJArc f22 '' #zField
 Ps0 @PushWFArc f3 '' #zField
 Ps0 @GridStep f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
-Ps0 @PushWFArc f2 '' #zField
 Ps0 @RichDialogInitStart f6 '' #zField
 Ps0 @PushWFArc f7 '' #zField
+Ps0 @CallSub f8 '' #zField
+Ps0 @PushWFArc f10 '' #zField
+Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 PortalDashBoardProcess #zField
 Ps0 f0 guid 14EB4D799DA15883 #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
@@ -53,14 +55,15 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f0 101 53 22 22 -16 12 #rect
 Ps0 f0 @|RichDialogInitStartIcon #fIcon
 Ps0 f1 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
-Ps0 f1 621 53 22 22 14 0 #rect
+Ps0 f1 693 53 22 22 14 0 #rect
 Ps0 f1 @|RichDialogProcessEndIcon #fIcon
 Ps0 f9 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
-Ps0 f9 processCall MultiPortal/TaskService:analyzePriorityStatistic(List<String>,Long,String) #txt
+Ps0 f9 processCall MultiPortal/TaskService:analyzePriorityStatistic(String,List<String>,Long,String) #txt
 Ps0 f9 doCall true #txt
-Ps0 f9 requestActionDecl '<List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
+Ps0 f9 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
 ' #txt
-Ps0 f9 requestMappingAction 'param.apps=in.involvedApplications;
+Ps0 f9 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.apps=in.involvedApplications;
 param.serverId=in.serverId;
 param.userName=ivy.session.getSessionUserName();
 ' #txt
@@ -78,14 +81,15 @@ Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f9 422 52 36 24 -41 14 #rect
+Ps0 f9 494 52 36 24 -41 14 #rect
 Ps0 f9 @|CallSubIcon #fIcon
 Ps0 f12 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
-Ps0 f12 processCall MultiPortal/TaskService:analyzeExpiryStatistic(List<String>,Long,String) #txt
+Ps0 f12 processCall MultiPortal/TaskService:analyzeExpiryStatistic(String,List<String>,Long,String) #txt
 Ps0 f12 doCall true #txt
-Ps0 f12 requestActionDecl '<List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
+Ps0 f12 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
 ' #txt
-Ps0 f12 requestMappingAction 'param.apps=in.involvedApplications;
+Ps0 f12 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.apps=in.involvedApplications;
 param.serverId=in.serverId;
 param.userName=ivy.session.getSessionUserName();
 ' #txt
@@ -103,7 +107,7 @@ Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f12 422 132 36 24 20 -2 #rect
+Ps0 f12 494 132 36 24 20 -2 #rect
 Ps0 f12 @|CallSubIcon #fIcon
 Ps0 f20 actionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out;
 ' #txt
@@ -111,7 +115,7 @@ Ps0 f20 actionTable 'out=in1;
 out.statistic.expiryStatistic=in2.statistic.expiryStatistic;
 out.statistic.priorityStatistic=in1.statistic.priorityStatistic;
 ' #txt
-Ps0 f20 522 50 28 28 14 0 #rect
+Ps0 f20 594 50 28 28 14 0 #rect
 Ps0 f20 @|JoinIcon #fIcon
 Ps0 f18 actionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out1;
 ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out2;
@@ -120,26 +124,26 @@ Ps0 f18 actionTable 'out1=in;
 out2=in;
 ' #txt
 Ps0 f18 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
-Ps0 f18 330 50 28 28 14 0 #rect
+Ps0 f18 402 50 28 28 14 0 #rect
 Ps0 f18 @|ThreadIcon #fIcon
 Ps0 f11 expr out1 #txt
-Ps0 f11 358 64 422 64 #arcP
+Ps0 f11 430 64 494 64 #arcP
 Ps0 f13 expr out #txt
 Ps0 f13 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 Ps0 f13 var in1 #txt
-Ps0 f13 458 64 522 64 #arcP
+Ps0 f13 530 64 594 64 #arcP
 Ps0 f21 expr out2 #txt
-Ps0 f21 344 78 422 144 #arcP
-Ps0 f21 1 344 144 #addKink
+Ps0 f21 416 78 494 144 #arcP
+Ps0 f21 1 416 144 #addKink
 Ps0 f21 0 0.996371915539765 0 0 #arcLabel
 Ps0 f22 expr out #txt
 Ps0 f22 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 Ps0 f22 var in2 #txt
-Ps0 f22 458 144 536 78 #arcP
-Ps0 f22 1 536 144 #addKink
+Ps0 f22 530 144 608 78 #arcP
+Ps0 f22 1 608 144 #addKink
 Ps0 f22 0 0.9757858781220886 0 0 #arcLabel
 Ps0 f3 expr out #txt
-Ps0 f3 550 64 621 64 #arcP
+Ps0 f3 622 64 693 64 #arcP
 Ps0 f4 actionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out;
 ' #txt
 Ps0 f4 actionTable 'out=in;
@@ -165,8 +169,6 @@ Ps0 f4 206 52 36 24 -47 19 #rect
 Ps0 f4 @|StepIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 123 64 206 64 #arcP
-Ps0 f2 expr out #txt
-Ps0 f2 242 64 330 64 #arcP
 Ps0 f6 guid 157336D81FC73158 #txt
 Ps0 f6 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 Ps0 f6 method startWithMenuState(String) #txt
@@ -191,6 +193,29 @@ Ps0 f6 101 133 22 22 -73 13 #rect
 Ps0 f6 @|RichDialogInitStartIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 120 137 207 76 #arcP
+Ps0 f8 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
+Ps0 f8 processCall 'Functional Processes/BuildTaskJsonQuery:buildTaskJsonQuery()' #txt
+Ps0 f8 doCall true #txt
+Ps0 f8 requestActionDecl '<> param;
+' #txt
+Ps0 f8 responseActionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out;
+' #txt
+Ps0 f8 responseMappingAction 'out=in;
+out.jsonQuery=result.jsonQuery;
+' #txt
+Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>BuildTaskJsonQuery</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f8 310 52 36 24 -51 18 #rect
+Ps0 f8 @|CallSubIcon #fIcon
+Ps0 f10 expr out #txt
+Ps0 f10 242 64 310 64 #arcP
+Ps0 f2 expr out #txt
+Ps0 f2 346 64 402 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -219,7 +244,9 @@ Ps0 f20 mainOut f3 tail #connect
 Ps0 f3 head f1 mainIn #connect
 Ps0 f0 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
-Ps0 f4 mainOut f2 tail #connect
-Ps0 f2 head f18 in #connect
 Ps0 f6 mainOut f7 tail #connect
 Ps0 f7 head f4 mainIn #connect
+Ps0 f4 mainOut f10 tail #connect
+Ps0 f10 head f8 mainIn #connect
+Ps0 f8 mainOut f2 tail #connect
+Ps0 f2 head f18 in #connect

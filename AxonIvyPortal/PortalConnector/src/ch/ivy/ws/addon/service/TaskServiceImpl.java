@@ -338,12 +338,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult findCategories(final String username, List<String> apps) throws WSException {
+  public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery taskQuery = TaskQuery.create();
+            TaskQuery taskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -369,12 +369,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult findPersonalTaskCategories(final String username, List<String> apps) throws WSException {
+  public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery taskQuery = TaskQuery.create();
+            TaskQuery taskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
             AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                 .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
@@ -397,12 +397,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult findGroupTaskCategories(final String username, List<String> apps) throws WSException {
+  public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery taskQuery = TaskQuery.create();
+            TaskQuery taskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
             AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                 .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
@@ -425,12 +425,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult analyzePriorityStatistic(final String username, List<String> apps) throws WSException {
+  public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery priorityQuery = TaskQuery.create();
+            TaskQuery priorityQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               priorityQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -466,13 +466,13 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public NumberOfExpiryTasks countExpiryTasksByDate(final String username, List<String> apps, Date expiryDate)
+  public NumberOfExpiryTasks countExpiryTasksByDate(String jsonQuery, final String username, List<String> apps, Date expiryDate)
       throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery expiryQuery = TaskQuery.create();
+            TaskQuery expiryQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               expiryQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
