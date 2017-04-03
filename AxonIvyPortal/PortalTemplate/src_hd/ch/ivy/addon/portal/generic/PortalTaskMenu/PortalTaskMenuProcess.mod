@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Mar 22 13:50:51 ICT 2017]
+[>Created: Mon Apr 03 14:44:57 ICT 2017]
 156F869FC3FCD1D9 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
@@ -36,13 +36,15 @@ Ps0 @PushWFArc f27 '' #zField
 Ps0 @PushWFArc f6 '' #zField
 Ps0 @CallSub f8 '' #zField
 Ps0 @Alternative f10 '' #zField
-Ps0 @PushWFArc f14 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 Ps0 @PushWFArc f20 '' #zField
 Ps0 @Alternative f22 '' #zField
 Ps0 @PushWFArc f23 '' #zField
 Ps0 @PushWFArc f11 '' #zField
 Ps0 @PushWFArc f24 '' #zField
+Ps0 @CallSub f25 '' #zField
+Ps0 @PushWFArc f26 '' #zField
+Ps0 @PushWFArc f14 '' #zField
 >Proto Ps0 Ps0 PortalTaskMenuProcess #zField
 Ps0 f0 guid 156F869FC6B3D9ED #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
@@ -86,14 +88,15 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f3 45 189 22 22 -52 13 #rect
 Ps0 f3 @|RichDialogMethodStartIcon #fIcon
 Ps0 f4 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f4 883 187 26 26 0 12 #rect
+Ps0 f4 1011 187 26 26 0 12 #rect
 Ps0 f4 @|RichDialogProcessEndIcon #fIcon
 Ps0 f16 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f16 processCall MultiPortal/TaskService:findPersonalCategories(String,List<String>,Long) #txt
+Ps0 f16 processCall MultiPortal/TaskService:findPersonalCategories(String,String,List<String>,Long) #txt
 Ps0 f16 doCall true #txt
-Ps0 f16 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
+Ps0 f16 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
 ' #txt
-Ps0 f16 requestMappingAction 'param.userName=in.loginUser;
+Ps0 f16 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.userName=in.loginUser;
 param.apps=in.involvedApplications;
 param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
 ' #txt
@@ -113,7 +116,7 @@ my tasks</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f16 694 188 36 24 -49 14 #rect
+Ps0 f16 822 188 36 24 -49 14 #rect
 Ps0 f16 @|CallSubIcon #fIcon
 Ps0 f9 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
 ' #txt
@@ -135,11 +138,12 @@ Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f9 304 176 128 48 -45 -8 #rect
 Ps0 f9 @|StepIcon #fIcon
 Ps0 f21 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f21 processCall MultiPortal/TaskService:findCategories(String,List<String>,Long) #txt
+Ps0 f21 processCall MultiPortal/TaskService:findCategories(String,String,List<String>,Long) #txt
 Ps0 f21 doCall true #txt
-Ps0 f21 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
+Ps0 f21 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
 ' #txt
-Ps0 f21 requestMappingAction 'param.apps=in.involvedApplications;
+Ps0 f21 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.apps=in.involvedApplications;
 param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
 ' #txt
 Ps0 f21 responseActionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
@@ -158,7 +162,7 @@ all tasks of all users</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f21 550 140 36 24 -55 14 #rect
+Ps0 f21 678 140 36 24 -55 14 #rect
 Ps0 f21 @|CallSubIcon #fIcon
 Ps0 f13 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
 ' #txt
@@ -193,16 +197,6 @@ if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 } else {
   dataModel.setTaskAssigneeType(TaskAssigneeType.ROLE);
   dataModel.setIgnoreInvolvedUser(false);
-}
-
-Long serverId = SecurityServiceUtils.getServerIdFromSession();
-if (#serverId is initialized) {
-	dataModel.setServerId(serverId);
-}
-
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	dataModel.setInvolvedApplications(applicationName);
 }
 
 in.taskView = TaskView.create().category(categoryMenu).dataModel(dataModel).pageTitle(categoryMenu.value).createNewTaskView();' #txt
@@ -289,11 +283,12 @@ Ps0 f15 67 200 120 200 #arcP
 Ps0 f17 expr out #txt
 Ps0 f17 280 200 304 200 #arcP
 Ps0 f19 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f19 processCall MultiPortal/TaskService:findGroupCategories(String,List<String>,Long) #txt
+Ps0 f19 processCall MultiPortal/TaskService:findGroupCategories(String,String,List<String>,Long) #txt
 Ps0 f19 doCall true #txt
-Ps0 f19 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
+Ps0 f19 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
 ' #txt
-Ps0 f19 requestMappingAction 'param.userName=in.loginUser;
+Ps0 f19 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.userName=in.loginUser;
 param.apps=in.involvedApplications;
 param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
 ' #txt
@@ -313,19 +308,20 @@ group tasks</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f19 798 188 36 24 -49 14 #rect
+Ps0 f19 926 188 36 24 -49 14 #rect
 Ps0 f19 @|CallSubIcon #fIcon
 Ps0 f27 expr out #txt
-Ps0 f27 730 200 798 200 #arcP
+Ps0 f27 858 200 926 200 #arcP
 Ps0 f27 0 0.6115088733370625 0 0 #arcLabel
 Ps0 f6 expr out #txt
-Ps0 f6 834 200 883 200 #arcP
+Ps0 f6 962 200 1011 200 #arcP
 Ps0 f8 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f8 processCall MultiPortal/TaskService:findCategories(String,List<String>,Long) #txt
+Ps0 f8 processCall MultiPortal/TaskService:findCategories(String,String,List<String>,Long) #txt
 Ps0 f8 doCall true #txt
-Ps0 f8 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
+Ps0 f8 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
 ' #txt
-Ps0 f8 requestMappingAction 'param.userName=in.loginUser;
+Ps0 f8 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.userName=in.loginUser;
 param.apps=in.involvedApplications;
 param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
 ' #txt
@@ -345,35 +341,56 @@ all tasks of current user</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f8 550 236 36 24 -64 14 #rect
+Ps0 f8 678 236 36 24 -64 14 #rect
 Ps0 f8 @|CallSubIcon #fIcon
 Ps0 f10 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f10 466 186 28 28 14 0 #rect
+Ps0 f10 594 186 28 28 14 0 #rect
 Ps0 f10 @|AlternativeIcon #fIcon
-Ps0 f14 expr out #txt
-Ps0 f14 432 200 466 200 #arcP
 Ps0 f5 expr in #txt
 Ps0 f5 outCond in.hasReadAllTasksPermisson #txt
-Ps0 f5 480 186 550 152 #arcP
-Ps0 f5 1 480 152 #addKink
+Ps0 f5 608 186 678 152 #arcP
+Ps0 f5 1 608 152 #addKink
 Ps0 f5 1 0.0989409665044952 0 0 #arcLabel
 Ps0 f20 expr in #txt
-Ps0 f20 480 214 550 248 #arcP
-Ps0 f20 1 480 248 #addKink
+Ps0 f20 608 214 678 248 #arcP
+Ps0 f20 1 608 248 #addKink
 Ps0 f20 1 0.05066689691311281 0 0 #arcLabel
 Ps0 f22 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f22 642 186 28 28 14 0 #rect
+Ps0 f22 770 186 28 28 14 0 #rect
 Ps0 f22 @|AlternativeIcon #fIcon
 Ps0 f23 expr out #txt
-Ps0 f23 586 152 656 186 #arcP
-Ps0 f23 1 656 152 #addKink
+Ps0 f23 714 152 784 186 #arcP
+Ps0 f23 1 784 152 #addKink
 Ps0 f23 0 0.9065519332699279 0 0 #arcLabel
 Ps0 f11 expr in #txt
-Ps0 f11 670 200 694 200 #arcP
+Ps0 f11 798 200 822 200 #arcP
 Ps0 f24 expr out #txt
-Ps0 f24 586 248 656 214 #arcP
-Ps0 f24 1 656 248 #addKink
+Ps0 f24 714 248 784 214 #arcP
+Ps0 f24 1 784 248 #addKink
 Ps0 f24 0 0.9493331030868872 0 0 #arcLabel
+Ps0 f25 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
+Ps0 f25 processCall 'Functional Processes/BuildTaskJsonQuery:buildTaskJsonQuery()' #txt
+Ps0 f25 doCall true #txt
+Ps0 f25 requestActionDecl '<> param;
+' #txt
+Ps0 f25 responseActionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
+' #txt
+Ps0 f25 responseMappingAction 'out=in;
+out.jsonQuery=result.jsonQuery;
+' #txt
+Ps0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>BuildTaskJsonQuery</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f25 492 188 36 24 -51 18 #rect
+Ps0 f25 @|CallSubIcon #fIcon
+Ps0 f26 expr out #txt
+Ps0 f26 432 200 492 200 #arcP
+Ps0 f14 expr out #txt
+Ps0 f14 528 200 594 200 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -392,8 +409,6 @@ Ps0 f16 mainOut f27 tail #connect
 Ps0 f27 head f19 mainIn #connect
 Ps0 f19 mainOut f6 tail #connect
 Ps0 f6 head f4 mainIn #connect
-Ps0 f9 mainOut f14 tail #connect
-Ps0 f14 head f10 in #connect
 Ps0 f10 out f5 tail #connect
 Ps0 f5 head f21 mainIn #connect
 Ps0 f10 out f20 tail #connect
@@ -404,3 +419,7 @@ Ps0 f22 out f11 tail #connect
 Ps0 f11 head f16 mainIn #connect
 Ps0 f8 mainOut f24 tail #connect
 Ps0 f24 head f22 in #connect
+Ps0 f9 mainOut f26 tail #connect
+Ps0 f26 head f25 mainIn #connect
+Ps0 f25 mainOut f14 tail #connect
+Ps0 f14 head f10 in #connect

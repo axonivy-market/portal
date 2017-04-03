@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jul 05 09:53:22 ICT 2016]
-1521B28EE98E8444 3.18 #module
+[>Created: Mon Apr 03 14:27:40 ICT 2017]
+1521B28EE98E8444 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 StatisticWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -47,6 +47,8 @@ Cs0 @PushWFArc f16 '' #zField
 Cs0 @PushWFArc f30 '' #zField
 Cs0 @GridStep f31 '' #zField
 Cs0 @PushWFArc f32 '' #zField
+Cs0 @CallSub f33 '' #zField
+Cs0 @PushWFArc f34 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 1522EF563D511214 #txt
@@ -97,7 +99,7 @@ Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f8 782 596 36 24 20 -2 #rect
+Cs0 f8 782 660 36 24 20 -2 #rect
 Cs0 f8 @|StepIcon #fIcon
 Cs0 f3 guid 1523035B9C068DDB #txt
 Cs0 f3 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
@@ -176,7 +178,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f6 789 85 22 22 14 0 #rect
 Cs0 f6 @|RichDialogMethodStartIcon #fIcon
 Cs0 f7 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
-Cs0 f7 789 661 22 22 14 0 #rect
+Cs0 f7 789 725 22 22 14 0 #rect
 Cs0 f7 @|RichDialogProcessEndIcon #fIcon
 Cs0 f10 expr out #txt
 Cs0 f10 96 107 96 221 #arcP
@@ -195,10 +197,10 @@ Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f11 782 468 36 24 20 -2 #rect
+Cs0 f11 782 532 36 24 20 -2 #rect
 Cs0 f11 @|StepIcon #fIcon
 Cs0 f2 expr out #txt
-Cs0 f2 800 620 800 661 #arcP
+Cs0 f2 800 684 800 725 #arcP
 Cs0 f15 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -209,24 +211,25 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f15 786 530 28 28 14 0 #rect
+Cs0 f15 786 594 28 28 14 0 #rect
 Cs0 f15 @|AlternativeIcon #fIcon
 Cs0 f17 expr out #txt
-Cs0 f17 800 492 800 530 #arcP
+Cs0 f17 800 556 800 594 #arcP
 Cs0 f18 expr in #txt
 Cs0 f18 outCond in.hasStatistic #txt
-Cs0 f18 800 558 800 596 #arcP
+Cs0 f18 800 622 800 660 #arcP
 Cs0 f9 expr in #txt
-Cs0 f9 786 544 789 672 #arcP
-Cs0 f9 1 736 544 #addKink
-Cs0 f9 2 736 672 #addKink
+Cs0 f9 786 608 789 736 #arcP
+Cs0 f9 1 736 608 #addKink
+Cs0 f9 2 736 736 #addKink
 Cs0 f9 1 0.51171875 0 0 #arcLabel
 Cs0 f19 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
-Cs0 f19 processCall MultiPortal/TaskService:analyzeExpiryStatistic(List<String>,Long,String) #txt
+Cs0 f19 processCall MultiPortal/TaskService:analyzeExpiryStatistic(String,List<String>,Long,String) #txt
 Cs0 f19 doCall true #txt
-Cs0 f19 requestActionDecl '<List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
+Cs0 f19 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
 ' #txt
-Cs0 f19 requestMappingAction 'param.apps=in.involvedApplications;
+Cs0 f19 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.apps=in.involvedApplications;
 param.serverId=in.serverId;
 param.userName=ivy.session.getSessionUserName();
 ' #txt
@@ -244,14 +247,15 @@ Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f19 686 340 36 24 20 -2 #rect
+Cs0 f19 686 404 36 24 20 -2 #rect
 Cs0 f19 @|CallSubIcon #fIcon
 Cs0 f20 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
-Cs0 f20 processCall MultiPortal/TaskService:analyzePriorityStatistic(List<String>,Long,String) #txt
+Cs0 f20 processCall MultiPortal/TaskService:analyzePriorityStatistic(String,List<String>,Long,String) #txt
 Cs0 f20 doCall true #txt
-Cs0 f20 requestActionDecl '<List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
+Cs0 f20 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
 ' #txt
-Cs0 f20 requestMappingAction 'param.apps=in.involvedApplications;
+Cs0 f20 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.apps=in.involvedApplications;
 param.serverId=in.serverId;
 param.userName=ivy.session.getSessionUserName();
 ' #txt
@@ -269,7 +273,7 @@ Cs0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f20 878 340 36 24 -41 14 #rect
+Cs0 f20 878 404 36 24 -41 14 #rect
 Cs0 f20 @|CallSubIcon #fIcon
 Cs0 f21 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
 ' #txt
@@ -277,7 +281,7 @@ Cs0 f21 actionTable 'out=in1;
 out.expiryStatistic=in2.expiryStatistic;
 out.priorityStatistic=in1.priorityStatistic;
 ' #txt
-Cs0 f21 786 402 28 28 14 0 #rect
+Cs0 f21 786 466 28 28 14 0 #rect
 Cs0 f21 @|JoinIcon #fIcon
 Cs0 f22 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out1;
 ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out2;
@@ -286,27 +290,27 @@ Cs0 f22 actionTable 'out1=in;
 out2=in;
 ' #txt
 Cs0 f22 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
-Cs0 f22 786 274 28 28 14 0 #rect
+Cs0 f22 786 338 28 28 14 0 #rect
 Cs0 f22 @|ThreadIcon #fIcon
 Cs0 f23 expr out1 #txt
-Cs0 f23 814 288 896 340 #arcP
-Cs0 f23 1 896 288 #addKink
+Cs0 f23 814 352 896 404 #arcP
+Cs0 f23 1 896 352 #addKink
 Cs0 f23 0 0.8119307153972276 0 0 #arcLabel
 Cs0 f24 expr out #txt
 Cs0 f24 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f24 var in1 #txt
-Cs0 f24 896 364 814 416 #arcP
-Cs0 f24 1 896 416 #addKink
+Cs0 f24 896 428 814 480 #arcP
+Cs0 f24 1 896 480 #addKink
 Cs0 f24 1 0.008702834448251838 0 0 #arcLabel
 Cs0 f25 expr out2 #txt
-Cs0 f25 786 288 704 340 #arcP
-Cs0 f25 1 704 288 #addKink
+Cs0 f25 786 352 704 404 #arcP
+Cs0 f25 1 704 352 #addKink
 Cs0 f25 1 0.18903366574067884 0 0 #arcLabel
 Cs0 f26 expr out #txt
 Cs0 f26 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f26 var in2 #txt
-Cs0 f26 704 364 786 416 #arcP
-Cs0 f26 1 704 416 #addKink
+Cs0 f26 704 428 786 480 #arcP
+Cs0 f26 1 704 480 #addKink
 Cs0 f26 1 0.21092866635369523 0 0 #arcLabel
 Cs0 f27 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -323,7 +327,7 @@ Cs0 f27 @|AlternativeIcon #fIcon
 Cs0 f28 expr out #txt
 Cs0 f28 800 107 800 146 #arcP
 Cs0 f16 expr out #txt
-Cs0 f16 800 430 800 468 #arcP
+Cs0 f16 800 494 800 532 #arcP
 Cs0 f16 0 0.19011418837928204 0 0 #arcLabel
 Cs0 f30 expr in #txt
 Cs0 f30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -335,9 +339,9 @@ Cs0 f30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f30 814 160 818 480 #arcP
+Cs0 f30 814 160 818 544 #arcP
 Cs0 f30 1 960 160 #addKink
-Cs0 f30 2 960 480 #addKink
+Cs0 f30 2 960 544 #addKink
 Cs0 f30 1 0.484375 9 0 #arcLabel
 Cs0 f31 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
 ' #txt
@@ -375,9 +379,28 @@ Cs0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f32 800 174 800 212 #arcP
 Cs0 f32 0 0.4444444444444444 -14 0 #arcLabel
+Cs0 f33 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f33 processCall 'Functional Processes/BuildTaskJsonQuery:buildTaskJsonQuery()' #txt
+Cs0 f33 doCall true #txt
+Cs0 f33 responseActionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f33 responseMappingAction 'out=in;
+out.jsonQuery=result.jsonQuery;
+' #txt
+Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>BuildTaskJsonQuery</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f33 783 275 36 24 10 15 #rect
+Cs0 f33 @|CallSubIcon #fIcon
+Cs0 f34 expr out #txt
+Cs0 f34 800 236 801 275 #arcP
+Cs0 f34 0 0.4444444444444444 -13 0 #arcLabel
 Cs0 f29 expr out #txt
-Cs0 f29 800 236 800 274 #arcP
-Cs0 f29 0 0.4444444444444444 -14 0 #arcLabel
+Cs0 f29 801 299 800 338 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -412,5 +435,7 @@ Cs0 f30 head f11 mainIn #connect
 Cs0 f27 out f32 tail #connect
 Cs0 f32 head f31 mainIn #connect
 Cs0 f27 out f30 tail #connect
-Cs0 f31 mainOut f29 tail #connect
+Cs0 f31 mainOut f34 tail #connect
+Cs0 f34 head f33 mainIn #connect
+Cs0 f33 mainOut f29 tail #connect
 Cs0 f29 head f22 in #connect

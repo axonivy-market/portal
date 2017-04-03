@@ -31,6 +31,7 @@
 <xs:element name="saveResponse" type="tns:saveResponse"></xs:element>
 <xs:complexType name="analyzePriorityStatistic">
     <xs:sequence>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
@@ -259,6 +260,7 @@
   </xs:complexType>
 <xs:complexType name="findGroupTaskCategories">
     <xs:sequence>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
@@ -276,6 +278,7 @@
   </xs:complexType>
 <xs:complexType name="analyzeExpiryStatistic">
     <xs:sequence>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
@@ -305,6 +308,7 @@
   </xs:complexType>
 <xs:complexType name="findPersonalTaskCategories">
     <xs:sequence>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
@@ -322,6 +326,7 @@
   </xs:complexType>
 <xs:complexType name="findCategories">
     <xs:sequence>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
