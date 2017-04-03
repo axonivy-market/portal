@@ -20,3 +20,6 @@ involvedApplications List<String> #field
 involvedApplications PERSISTENT #fieldModifier
 groupTaskCategories java.util.List<String> #field
 groupTaskCategories PERSISTENT #fieldModifier
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment
+jsonQuery PERSISTENT #fieldModifier

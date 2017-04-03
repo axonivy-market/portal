@@ -76,16 +76,16 @@ public interface ITaskService {
 
   public TaskServiceResult countTasksByCriteria(TaskSearchCriteria taskSearchCriteria) throws WSException;
 
-  public TaskServiceResult findCategories(final String username, List<String> apps) throws WSException;
+  public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps) throws WSException;
 
-  public TaskServiceResult analyzePriorityStatistic(final String username, List<String> apps) throws WSException;
+  public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
 
-  public NumberOfExpiryTasks countExpiryTasksByDate(final String username, List<String> apps, Date date)
+  public NumberOfExpiryTasks countExpiryTasksByDate(String jsonQuery, final String username, List<String> apps, Date date)
       throws WSException;
 
-  TaskServiceResult findPersonalTaskCategories(String username, List<String> apps) throws WSException;
+  TaskServiceResult findPersonalTaskCategories(String jsonQuery, String username, List<String> apps) throws WSException;
 
-  TaskServiceResult findGroupTaskCategories(String username, List<String> apps) throws WSException;
+  TaskServiceResult findGroupTaskCategories(String jsonQuery, String username, List<String> apps) throws WSException;
 
 
 }

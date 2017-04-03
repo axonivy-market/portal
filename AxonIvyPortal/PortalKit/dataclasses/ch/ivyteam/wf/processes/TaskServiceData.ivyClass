@@ -38,3 +38,5 @@ hasNoSelectedApp Boolean #field
 isMultiServer Boolean #field
 serverId Long #field
 task ch.ivy.addon.portalkit.bo.RemoteTask #field
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment

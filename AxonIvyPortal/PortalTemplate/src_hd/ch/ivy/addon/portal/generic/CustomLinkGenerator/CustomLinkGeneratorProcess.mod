@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Mar 28 18:26:03 ICT 2017]
+[>Created: Mon Apr 03 14:43:32 ICT 2017]
 14BEEC80DFF38FB5 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomLinkGeneratorProcess Big #zClass
@@ -32,7 +32,6 @@ Cs0 @PushWFArc f12 '' #zField
 Cs0 @PushWFArc f10 '' #zField
 Cs0 @CallSub f15 '' #zField
 Cs0 @Alternative f14 '' #zField
-Cs0 @PushWFArc f19 '' #zField
 Cs0 @RichDialogInitStart f18 '' #zField
 Cs0 @RichDialogMethodStart f0 '' #zField
 Cs0 @PushWFArc f24 '' #zField
@@ -57,6 +56,7 @@ Cs0 @CallSub f38 '' #zField
 Cs0 @GridStep f13 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f39 '' #zField
+Cs0 @PushWFArc f19 '' #zField
 >Proto Cs0 Cs0 CustomLinkGeneratorProcess #zField
 Cs0 f1 type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
 Cs0 f1 819 275 26 26 0 12 #rect
@@ -236,9 +236,9 @@ Cs0 f12 107 616 190 616 #arcP
 Cs0 f10 expr out #txt
 Cs0 f10 226 616 274 616 #arcP
 Cs0 f15 type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
-Cs0 f15 processCall MultiPortal/TaskService:findCategories(String,List<String>,Long) #txt
+Cs0 f15 processCall MultiPortal/TaskService:findCategories(String,String,List<String>,Long) #txt
 Cs0 f15 doCall true #txt
-Cs0 f15 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
+Cs0 f15 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
 ' #txt
 Cs0 f15 requestMappingAction 'param.userName=in.currentUser;
 param.apps=[ch.ivy.addon.portalkit.util.SecurityServiceUtils.getApplicationNameFromSession()];
@@ -274,8 +274,6 @@ Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f14 434 274 28 28 14 0 #rect
 Cs0 f14 @|AlternativeIcon #fIcon
-Cs0 f19 expr out #txt
-Cs0 f19 400 288 434 288 #arcP
 Cs0 f18 guid 1530867F9FF75447 #txt
 Cs0 f18 type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
 Cs0 f18 method start() #txt
@@ -406,9 +404,9 @@ Cs0 f34 642 96 768 146 #arcP
 Cs0 f34 1 768 96 #addKink
 Cs0 f34 0 0.6966392519253586 0 0 #arcLabel
 Cs0 f21 type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
-Cs0 f21 processCall MultiPortal/TaskService:findCategories(String,List<String>,Long) #txt
+Cs0 f21 processCall MultiPortal/TaskService:findCategories(String,String,List<String>,Long) #txt
 Cs0 f21 doCall true #txt
-Cs0 f21 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
+Cs0 f21 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
 ' #txt
 Cs0 f21 requestMappingAction 'param.apps=[ch.ivy.addon.portalkit.util.SecurityServiceUtils.getApplicationNameFromSession()];
 param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
@@ -432,9 +430,9 @@ all tasks</name>
 Cs0 f21 606 84 36 24 -49 14 #rect
 Cs0 f21 @|CallSubIcon #fIcon
 Cs0 f16 type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
-Cs0 f16 processCall MultiPortal/TaskService:findCategories(String,List<String>,Long) #txt
+Cs0 f16 processCall MultiPortal/TaskService:findCategories(String,String,List<String>,Long) #txt
 Cs0 f16 doCall true #txt
-Cs0 f16 requestActionDecl '<java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
+Cs0 f16 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;
 ' #txt
 Cs0 f16 requestMappingAction 'param.userName=in.currentUser;
 param.apps=[ch.ivy.addon.portalkit.util.SecurityServiceUtils.getApplicationNameFromSession()];
@@ -586,6 +584,8 @@ Cs0 f29 1 0.3451086956521739 0 0 #arcLabel
 Cs0 f39 expr out #txt
 Cs0 f39 450 552 512 552 #arcP
 Cs0 f39 1 0.3451086956521739 0 0 #arcLabel
+Cs0 f19 expr out #txt
+Cs0 f19 400 288 434 288 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect

@@ -30,3 +30,6 @@ serverId PERSISTENT #fieldModifier
 involvedApplications List<String> #field
 involvedApplications 'the name of the selected app' #fieldComment
 involvedApplications PERSISTENT #fieldModifier
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment
+jsonQuery PERSISTENT #fieldModifier

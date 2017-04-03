@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -237,20 +238,16 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * Your customized data model needs to override this method to build your own TaskQuery. If your customized task list has new
-   * columns/fields, please add sort query for these fields and also override the "extendSortTasksInNotDisplayedTaskMap" method.
+   * If your customized task list has new columns/fields, please get TaskQuery in queryCriteria and extend the sort query for these fields and
+   * also override the "extendSortTasksInNotDisplayedTaskMap" method.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
-   * import ch.ivyteam.ivy.workflow.query.TaskQuery;
-   * 
-   * TaskQuery taskQuery = TaskQuery.create().customVarCharField1().isEqual("Hello World");
-   * 
    * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
    *   if (queryCriteria.isSortDescending()) {
-   *     taskQuery.orderBy().customVarCharField5().descending();
+   *     queryCriteria.getTaskQuery().orderBy().customVarCharField5().descending();
    *   } else {
-   *     taskQuery.orderBy().customVarCharField5();
+   *     queryCriteria.getTaskQuery().orderBy().customVarCharField5();
    *   }
    * }
    * </pre></code>
@@ -258,8 +255,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * 
    * @return
    */
-  protected TaskQuery buildTaskQuery() {
-    return TaskQuery.create();
+  protected void extendSort() {
   }
 
   @Override
@@ -361,7 +357,12 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
    */
   protected void buildQueryToSearchCriteria() {
-    queryCriteria.setTaskQuery(buildTaskQuery());
+    String jsonQuery =
+        SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()").call()
+            .get("jsonQuery", String.class);
+    TaskQuery customizedTaskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+    queryCriteria.setTaskQuery(customizedTaskQuery);
+    extendSort();
     searchCriteria.setJsonQuery(TaskQueryService.service().createQuery(queryCriteria).asJson());
   }
 

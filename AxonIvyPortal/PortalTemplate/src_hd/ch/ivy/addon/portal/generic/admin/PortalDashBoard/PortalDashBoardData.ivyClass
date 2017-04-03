@@ -8,3 +8,6 @@ involvedApplications List<String> #field
 involvedApplications PERSISTENT #fieldModifier
 menuState String #field
 menuState PERSISTENT #fieldModifier
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment
+jsonQuery PERSISTENT #fieldModifier
