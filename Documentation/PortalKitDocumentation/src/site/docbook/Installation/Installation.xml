@@ -488,6 +488,7 @@
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
 			<sect2>
 				<title>Changes in 6.6 (Jakobshorn)</title>
+				<para>Task description in task widget and case description in case widget are displayed as HTML. It means users can use HTML to format the descriptions.</para>
 				<para>Task widget's customization is extended with task header and task data query.</para>
 			</sect2>
 			<itemizedlist>
