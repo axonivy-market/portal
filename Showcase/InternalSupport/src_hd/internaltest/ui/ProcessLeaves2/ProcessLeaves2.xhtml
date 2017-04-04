@@ -10,7 +10,7 @@
 	<ui:composition template="/layouts/TaskTemplate.xhtml">
 		<ui:param name="businessMainContactFolderId"
 			value="#{ivy.case.businessMainContactFolderId}" />
-		<ui:param name="caseId" value="#{ivy.case.id}" />
+		<ui:param name="caseId" value="#{ivy.case.getBusinessCase().getId()}" />
 		<ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
 		<ui:param name="steps" value="#{data.steps}" />
 		<ui:param name="homeLink"
