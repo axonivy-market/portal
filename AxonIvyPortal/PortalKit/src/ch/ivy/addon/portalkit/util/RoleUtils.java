@@ -33,8 +33,8 @@ public final class RoleUtils {
   }
 
   private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
-  private static final String HIDE = "HIDE";
   private static final String[] DEFAULT_HIDDEN_ROLES = {"AXONIVY_PORTAL_ADMIN"};
+  public static final String HIDE = "HIDE";
 
   /**
    * Get all roles of current Ivy Application
@@ -46,7 +46,7 @@ public final class RoleUtils {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IRole>>() {
         public List<IRole> call() throws Exception {
-          ISecurityContext security = Ivy.session().getSecurityContext();
+          ISecurityContext security = Ivy.wf().getSecurityContext();
           List<IRole> roles = security.getRoles();
           return roles;
         }
@@ -71,7 +71,7 @@ public final class RoleUtils {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IRole>() {
         public IRole call() throws Exception {
-          ISecurityContext security = Ivy.session().getSecurityContext();
+          ISecurityContext security = Ivy.wf().getSecurityContext();
           return security.findRole(name);
         }
       });
@@ -275,7 +275,7 @@ public final class RoleUtils {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
         public Void call() throws Exception {
           @SuppressWarnings("unused")
-          ISecurityContext security = Ivy.session().getSecurityContext();
+          ISecurityContext security = Ivy.wf().getSecurityContext();
           role.setProperty(key, value);
           return null;
         }
@@ -301,7 +301,7 @@ public final class RoleUtils {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
         public Void call() throws Exception {
           @SuppressWarnings("unused")
-          ISecurityContext security = Ivy.session().getSecurityContext();
+          ISecurityContext security = Ivy.wf().getSecurityContext();
           role.removeProperty(key);
           return null;
         }

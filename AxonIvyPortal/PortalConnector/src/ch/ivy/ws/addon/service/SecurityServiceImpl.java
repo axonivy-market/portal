@@ -28,8 +28,6 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class SecurityServiceImpl extends AbstractService implements ISecurityService {
 
   private static final String SYSTEM_USER = "SYSTEM";
-  private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
-  private static final String HIDE_USERS_IN_DELEGATION = "HIDE_USERS_IN_DELEGATION";
   private static final String HIDE = "HIDE";
 
   @Override
@@ -68,7 +66,6 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
         public SecurityServiceResult call() throws Exception {
           IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
           SecurityServiceResult result = new SecurityServiceResult();
-          IvyUserTransformer transformer = new IvyUserTransformer();
           ch.ivyteam.ivy.scripting.objects.List<IvyUser> members =
               ch.ivyteam.ivy.scripting.objects.List.create(IvyUser.class);
 
@@ -76,7 +73,7 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
             if (apps.contains(application.getName())) {
               for (IUser user : application.getSecurityContext().getUsers()) {
                 if (!user.getName().equalsIgnoreCase(SYSTEM_USER)) {
-                  members.add(transformer.transform(user, application));
+                  members.add(IvyUserTransformer.transform(user, application));
                 }
               }
             }
@@ -108,9 +105,8 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
               IRole role = i.getSecurityContext().findRole(roleId);
               if (role != null) {
                 List<IUser> users = role.getAllUsers();
-                IvyUserTransformer transformer = new IvyUserTransformer();
                 for (IUser r : users) {
-                  members.add(transformer.transform(r, i));
+                  members.add(IvyUserTransformer.transform(r, i));
                 }
                 result.setIvyUsers(members);
               }
@@ -131,7 +127,6 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
         @Override
         public SecurityServiceResult call() throws Exception {
           SecurityServiceResult result = new SecurityServiceResult();
-          IvyUserTransformer userTransformer = new IvyUserTransformer();
           IvyRoleTransformer roleTransformer = new IvyRoleTransformer();
 
           ch.ivyteam.ivy.scripting.objects.List<IvyUser> ivyUsers =
@@ -142,10 +137,7 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
           ISecurityContext securityContext = task.getApplication().getSecurityContext();
           List<IUser> users = securityContext.getUsers();
           for (IRole role : securityContext.getRoles()) {
-            if (role.getProperty(HIDE_USERS_IN_DELEGATION) != null) {
-              users.removeAll(role.getUsers());
-            }
-            if (role.getProperty(HIDE_IN_DELEGATION) != null || role.getProperty(HIDE) != null) {
+            if (role.getProperty(HIDE) != null) {
               continue;
             }
             ivyRoles.add(roleTransformer.transform(role, null));
@@ -153,7 +145,7 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
 
           for (IUser user : users) {
             if (!SYSTEM_USER.equals(user.getName())) {
-              ivyUsers.add(userTransformer.transform(user, null));
+              ivyUsers.add(IvyUserTransformer.transform(user, null));
             }
           }
           Collections.sort(ivyUsers, new IvyUserDisplayNameComparator());

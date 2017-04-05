@@ -379,6 +379,22 @@
 			</table>
 		</sect2>
 		<sect2>
+			<title>Hide technical stuffs</title>
+			<sect3>
+				<title>Hide technical roles</title>
+				<para>
+					A technical role is the role which is not displayed anywhere (e.g. delegate, absence management). AXONIVY_PORTAL_ADMIN is a technical role by default.
+				</para>
+				<para>
+					To mark a role as a technical role, set the <emphasis role="strong">HIDE</emphasis> property with any value to the role.
+				</para>
+				<tip>
+					<para>Use the utility method of Portal to set property:</para>
+					<para>ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.util.HIDE, [ANY_VALUE])</para>
+				</tip>
+			</sect3>
+		</sect2>
+		<sect2>
 			<title>Email settings</title>
 			<sect3>
 				<title>Task notification mail</title>
@@ -488,32 +504,41 @@
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
 			<sect2>
 				<title>Changes in 6.6 (Jakobshorn)</title>
-				<para>Task description in task widget and case description in case widget are displayed as HTML. It means users can use HTML to format the descriptions.</para>
-				<para>Task widget's customization is extended with task header and task data query.</para>
+				<itemizedlist>
+					<listitem>
+						<para>Task widget's customization is extended with task header and task data query.</para>
+					</listitem>
+					<listitem>
+						<para>Hide technical roles (the HIDE property is set), so that they are not displayed anywhere (e.g. delegate, absence mgmt). The default hidden role is AXONIVY_PORTAL_ADMIN</para>
+					</listitem>
+				</itemizedlist>
 			</sect2>
-			<itemizedlist>
-				<listitem>
-					<para>
-						Portal has 2 level menu with animation.  
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						All components such as button, text field ...have been re-styled, not applied Modena's styles.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Portal supports responsiveness with 3 screen widths: 1920, 1366 and 1024.
-						Please refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness" endterm="axonivyportal.components.layouttemplates.reponsiveness.title" /> for more details.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Some customizations are not supported in this release: main menu, case header.
-					</para>
-				</listitem>
-			</itemizedlist>
+			<sect2>
+				<title>Changes in 6.0 (Säntis)</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							Portal has 2 level menu with animation.  
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							All components such as button, text field ...have been re-styled, not applied Modena's styles.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Portal supports responsiveness with 3 screen widths: 1920, 1366 and 1024.
+							Please refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness" endterm="axonivyportal.components.layouttemplates.reponsiveness.title" /> for more details.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Some customizations are not supported in this release: main menu, case header.
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
 		</para>
 	</sect1>
 </chapter>
