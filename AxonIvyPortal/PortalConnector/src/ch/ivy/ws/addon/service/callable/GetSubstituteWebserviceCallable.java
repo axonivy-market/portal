@@ -40,7 +40,7 @@ public final class GetSubstituteWebserviceCallable implements Callable<Substitut
     List<IApplication> iApplications = getAvailableIApplicationsAndContainsUser();
 
     iApplications.forEach(application -> {
-      substitutesOfAllApplication.addAll(getSubStituteOfUserOnApp(application));
+      substitutesOfAllApplication.addAll(getSubstituteOfUserOnApp(application));
       userOfAllApplication.addAll(getAllUserOnApp(application));
     });
 
@@ -71,7 +71,7 @@ public final class GetSubstituteWebserviceCallable implements Callable<Substitut
     return serviceResult;
   }
 
-  private List<IvySubstitute> getSubStituteOfUserOnApp(IApplication application) {
+  private List<IvySubstitute> getSubstituteOfUserOnApp(IApplication application) {
     IUser user = application.getSecurityContext().findUser(username);
 
     List<IvySubstitute> ivySubstitutes = IvySubstituteTransformer.transform(user.getSubstitutes(), application);
