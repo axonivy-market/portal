@@ -311,6 +311,11 @@
 			</listitem>
 			<listitem>
 				<para>
+					User cannot set deputies for hidden roles.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
 					All the items will be saved after click Save button.
 				</para>
 			</listitem>
