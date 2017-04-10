@@ -172,7 +172,7 @@
 									<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
 							</para>
 							<para>
-									<code>&lt;ui:param name="useOverride" value="true" /&gt;</code>
+									<code>&lt;ui:param name="useOverrideBody" value="true" /&gt;</code>
 							</para>
 							<para>
 									<code>&lt;ui:define name="taskBody"&gt;</code>
