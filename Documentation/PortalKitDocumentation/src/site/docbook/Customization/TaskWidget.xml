@@ -96,7 +96,7 @@
 								<para>Introduce a java class extends TaskLazyDataModel</para>
 							</listitem>
 							<listitem>
-								<para>Override the <code>extendSort</code> method, the <code>extendSortTasksInNotDisplayedTaskMap</code> method and extend the sort function for the added columns (see java doc)</para>
+								<para>Override the <code>extendSort</code> method, the <code>extendSortTasksInNotDisplayedTaskMap</code> method and extend the sort function for the added columns (see the methods' Javadoc comments)</para>
 							</listitem>
 							<listitem>
 								<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
