@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 03 15:14:02 ICT 2017]
+[>Created: Wed Apr 12 08:58:03 ICT 2017]
 15B32B518F94CCBD 3.20 #module
 >Proto >Proto Collection #zClass
 By0 BuildTaskJsonQuery Big #zClass
@@ -60,13 +60,13 @@ By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>HINT: build your task query and convert it to json string
 
-out.jsonQuery = TaskQuery.create().where().customVarCharField5.isLike("%HELLO WORLD%").asJson();</name>
-        <nameStyle>155
+out.jsonQuery = TaskQuery.create().where().customVarCharField5().isLike("%HELLO WORLD%").asJson();</name>
+        <nameStyle>157
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-By0 f5 152 194 592 60 -289 -24 #rect
+By0 f5 152 194 592 60 -293 -24 #rect
 By0 f5 @|IBIcon #fIcon
 By0 f6 152 224 82 224 #arcP
 >Proto By0 .type ch.ivy.add.portalkit.BuildTaskJsonQueryData #txt
