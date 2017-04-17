@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed May 18 09:28:21 ICT 2016]
-1470062B2127AF92 3.18 #module
+[>Created: Mon Apr 17 13:52:55 ICT 2017]
+1470062B2127AF92 3.19 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessLeaves Big #zClass
 Ps0 B #cInfo
@@ -116,19 +116,6 @@ TaskTriggered.EXROL=Everybody' #txt
 Ps0 f0 caseData 'case.name=Process Leave Management Case
 processCategory.code=HolidayRequested' #txt
 Ps0 f0 showInStartList 1 #txt
-Ps0 f0 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("Process Leave Management Case"));
-ivy.case.setProcessCategory(engine.expandMacros("HolidayRequested"), engine.expandMacros(""));
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("Leave Request"));
-taskUpdDef.setDescription(engine.expandMacros("Employees Leave Request."));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -331,11 +318,6 @@ Ps0 f14 actionDecl 'internaltest.ProcessLeaves out;
 ' #txt
 Ps0 f14 actionTable 'out=in1;
 ' #txt
-Ps0 f14 taskAction 'import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-' #txt
 Ps0 f14 type internaltest.ProcessLeaves #txt
 Ps0 f14 template "" #txt
 Ps0 f14 330 626 28 28 14 0 #rect
@@ -397,15 +379,6 @@ type.code=
 type.name=
 ' #txt
 Ps0 f17 showInStartList 0 #txt
-Ps0 f17 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ps0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -536,7 +509,8 @@ Ct2 f5 actionTable 'out=in1;
 ' #txt
 Ct2 f5 outTypes "internaltest.ProcessLeaves","internaltest.ProcessLeaves" #txt
 Ct2 f5 outLinks "TaskA.ivp","TaskB.ivp" #txt
-Ct2 f5 taskData 'TaskA.DESC=<u><i>Manager approves Request by checking application and signing approve checkbox</i></u>
+Ct2 f5 taskData 'TaskA.CATEGORY=CategoryDemo/ApprovedByCREATOR
+TaskA.DESC=<u><i>Manager approves Request by checking application and signing approve checkbox</i></u>
 TaskA.EXP=new Duration("1D")
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
@@ -549,7 +523,7 @@ TaskA.TYPE=0
 TaskA.customFields.varchar.1=in1.Mitarbeiter
 TaskA.customFields.varchar.2=in1.Von.toString()
 TaskA.customFields.varchar.3=in1.Bis.toString()
-TaskA.customFields.varchar.5="CategoryDemo/ApprovedByCREATOR"
+TaskB.CATEGORY=CategoryDemo/ApprovedByManager
 TaskB.DESC=Manager approves Request by checking application and signing approve checkbox
 TaskB.EXP=new Duration("3D")
 TaskB.EXPRI=2
@@ -559,40 +533,7 @@ TaskB.NAM=Approve Leave Request for Manager
 TaskB.PRI=2
 TaskB.ROL=Manager
 TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-TaskB.customFields.varchar.5="CategoryDemo/ApprovedByManager"' #txt
-Ct2 f5 taskAction 'import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Approve Leave Request for creator"));
-taskDef.setDescription(engine.expandMacros("<u><i>Manager approves Request by checking application and signing approve checkbox</i></u>"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("CREATOR");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryPeriod(1000 * (new Duration("1D")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1(in1.Mitarbeiter);
-taskDef.setCustomVarCharField2(in1.Von.toString());
-taskDef.setCustomVarCharField3(in1.Bis.toString());
-taskDef.setCustomVarCharField5("CategoryDemo/ApprovedByCREATOR");
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskB.ivp");
-taskDef.setName(engine.expandMacros("Approve Leave Request for Manager"));
-taskDef.setDescription(engine.expandMacros("Manager approves Request by checking application and signing approve checkbox"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Manager");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryPeriod(1000 * (new Duration("3D")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField5("CategoryDemo/ApprovedByManager");
-taskDefinitions.add(taskDef);
-' #txt
+TaskB.TYPE=0' #txt
 Ct2 f5 type internaltest.ProcessLeaves #txt
 Ct2 f5 template "/ProcessPages/portalHome.ivc" #txt
 Ct2 f5 210 98 28 28 14 0 #rect
@@ -737,26 +678,6 @@ TaskA.customFields.decimal.2=in1.Bis.toNumber()
 TaskA.customFields.decimal.3=in1.Bis.toNumber()-in1.Von.toNumber()
 TaskA.customFields.varchar.1=in1.Mitarbeiter
 TaskA.customFields.varchar.5="CategoryDemo/BookByHR"' #txt
-Ct3 f12 taskAction 'ivy.case.setName(engine.expandMacros("Leavers Request"));
-import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Book Remaining Leave Entitlement"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Human Ressources");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1(in1.Mitarbeiter);
-taskDef.setCustomDecimalField1(in1.Von.toNumber());
-taskDef.setCustomDecimalField2(in1.Bis.toNumber());
-taskDef.setCustomDecimalField3(in1.Bis.toNumber()-in1.Von.toNumber());
-taskDef.setCustomVarCharField5("CategoryDemo/BookByHR");
-taskDefinitions.add(taskDef);
-' #txt
 Ct3 f12 type internaltest.ProcessLeaves #txt
 Ct3 f12 template "/ProcessPages/portalHome.ivc" #txt
 Ct3 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
