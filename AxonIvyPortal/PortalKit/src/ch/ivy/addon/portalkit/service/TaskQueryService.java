@@ -78,7 +78,7 @@ public class TaskQueryService {
 
   private TaskQuery queryForCategory(String keyword) {
     String startingWithCategory = String.format("%s%%", keyword);
-    TaskQuery filterByKeywordQuery = TaskQuery.create().where().customVarCharField5().isLike(startingWithCategory);
+    TaskQuery filterByKeywordQuery = TaskQuery.create().where().category().isLike(startingWithCategory);
 
     return filterByKeywordQuery;
   }
