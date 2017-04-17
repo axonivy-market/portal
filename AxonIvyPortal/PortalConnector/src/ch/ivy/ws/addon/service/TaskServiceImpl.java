@@ -355,12 +355,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().customVarCharField5().isNotNull().groupBy().customVarCharField5();
+            taskQuery.where().and().category().isNotNull().groupBy().category();
             Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
             List<String> categories = new ArrayList<>();
-            String customVarCharField5Column = recordSet.getKeys().get(0);
+            String categoryColumn = recordSet.getKeys().get(0);
             recordSet.getRecords().forEach(
-                record -> categories.add(record.getField(customVarCharField5Column).toString()));
+                record -> categories.add(record.getField(categoryColumn).toString()));
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -383,12 +383,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().customVarCharField5().isNotNull().groupBy().customVarCharField5();
+            taskQuery.where().and().category().isNotNull().groupBy().category();
             Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
             List<String> categories = new ArrayList<>();
-            String customVarCharField5Column = recordSet.getKeys().get(0);
+            String categoryColumn = recordSet.getKeys().get(0);
             recordSet.getRecords().forEach(
-                record -> categories.add(record.getField(customVarCharField5Column).toString()));
+                record -> categories.add(record.getField(categoryColumn).toString()));
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -411,12 +411,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().customVarCharField5().isNotNull().groupBy().customVarCharField5();
+            taskQuery.where().and().category().isNotNull().groupBy().category();
             Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
             List<String> categories = new ArrayList<>();
-            String customVarCharField5Column = recordSet.getKeys().get(0);
+            String categoryColumn = recordSet.getKeys().get(0);
             recordSet.getRecords().forEach(
-                record -> categories.add(record.getField(customVarCharField5Column).toString()));
+                record -> categories.add(record.getField(categoryColumn).toString()));
             return result(categories, errors);
           });
     } catch (Exception e) {

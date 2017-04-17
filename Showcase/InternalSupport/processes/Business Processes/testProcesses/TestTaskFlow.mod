@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jan 19 15:15:03 ICT 2017]
-14B2FC03D2E87141 3.18 #module
+[>Created: Mon Apr 17 16:44:42 ICT 2017]
+14B2FC03D2E87141 3.19 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -86,24 +86,6 @@ process.name=Publication Requested
 processCategory.code=pubRequested
 processCategory.name=Publication Requested' #txt
 Tt0 f5 showInStartList 1 #txt
-Tt0 f5 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("Leave Request"));
-ivy.case.setDescription(engine.expandMacros("Leave Request Description"));
-ivy.case.setProcessCategory(engine.expandMacros("pubRequested"), engine.expandMacros("Publication Requested"));
-ivy.case.setProcess(engine.expandMacros("pubRequested"), engine.expandMacros("Publication Requested"));
-ivy.case.setCustomVarCharField1("Leave Request CustomVarCharField1");
-ivy.case.setCustomVarCharField2("Leave Request CustomVarCharField2");
-ivy.case.setCustomVarCharField3("Leave Request CustomVarCharField3");
-ivy.case.setCustomVarCharField4("Leave Request CustomVarCharField4");
-ivy.case.setCustomVarCharField5("Leave Request CustomVarCharField5");
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -122,7 +104,8 @@ Tt0 f7 actionTable 'out=in1;
 ' #txt
 Tt0 f7 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Tt0 f7 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f7 taskData 'TaskA.DESC=Annual Leave Request Description
+Tt0 f7 taskData 'TaskA.CATEGORY=<%\=ivy.cms.co("/Categories/annualLeaveCategory/name")%>
+TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
@@ -136,7 +119,7 @@ TaskA.customFields.varchar.1="Annual CustomVarCharField1"
 TaskA.customFields.varchar.2="Annual CustomVarCharField2"
 TaskA.customFields.varchar.3="Annual CustomVarCharField3"
 TaskA.customFields.varchar.4="Annual CustomVarCharField4"
-TaskA.customFields.varchar.5="Annual Leave"
+TaskB.CATEGORY=<%\=ivy.cms.co("/Categories/longSickCategory/name")%>
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
 TaskB.EXPRI=2
@@ -151,7 +134,7 @@ TaskB.customFields.varchar.1="Sick CustomVarCharField1"
 TaskB.customFields.varchar.2="Sick CustomVarCharField2"
 TaskB.customFields.varchar.3="Sick CustomVarCharField3"
 TaskB.customFields.varchar.4="Sick CustomVarCharField4"
-TaskB.customFields.varchar.5="Other Leave/Sick/Long"
+TaskC.CATEGORY=<%\=ivy.cms.co("/Categories/maternityLeave/name")%>
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
 TaskC.EXPRI=2
@@ -165,61 +148,7 @@ TaskC.TYPE=0
 TaskC.customFields.varchar.1="Maternity CustomVarCharField1"
 TaskC.customFields.varchar.2="Maternity CustomVarCharField2"
 TaskC.customFields.varchar.3="Maternity CustomVarCharField3"
-TaskC.customFields.varchar.4="Maternity CustomVarCharField4"
-TaskC.customFields.varchar.5="Other Leave/Maternity"' #txt
-Tt0 f7 taskAction 'import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Annual Leave Request"));
-taskDef.setDescription(engine.expandMacros("Annual Leave Request Description"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("#" + "demo");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryPeriod(1000 * (new Duration("3H")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1("Annual CustomVarCharField1");
-taskDef.setCustomVarCharField2("Annual CustomVarCharField2");
-taskDef.setCustomVarCharField3("Annual CustomVarCharField3");
-taskDef.setCustomVarCharField4("Annual CustomVarCharField4");
-taskDef.setCustomVarCharField5("Annual Leave");
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskB.ivp");
-taskDef.setName(engine.expandMacros("Sick Leave Request"));
-taskDef.setDescription(engine.expandMacros("Sick Leave Request Description"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(1));
-taskDef.setExpiryPeriod(1000 * (new Duration("1D")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1("Sick CustomVarCharField1");
-taskDef.setCustomVarCharField2("Sick CustomVarCharField2");
-taskDef.setCustomVarCharField3("Sick CustomVarCharField3");
-taskDef.setCustomVarCharField4("Sick CustomVarCharField4");
-taskDef.setCustomVarCharField5("Other Leave/Sick/Long");
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskC.ivp");
-taskDef.setName(engine.expandMacros("Maternity Leave Request"));
-taskDef.setDescription(engine.expandMacros("Maternity Leave Request Description"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(3));
-taskDef.setExpiryPeriod(1000 * (new Duration("2D")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1("Maternity CustomVarCharField1");
-taskDef.setCustomVarCharField2("Maternity CustomVarCharField2");
-taskDef.setCustomVarCharField3("Maternity CustomVarCharField3");
-taskDef.setCustomVarCharField4("Maternity CustomVarCharField4");
-taskDef.setCustomVarCharField5("Other Leave/Maternity");
-taskDefinitions.add(taskDef);
-' #txt
+TaskC.customFields.varchar.4="Maternity CustomVarCharField4"' #txt
 Tt0 f7 type internaltest.Data #txt
 Tt0 f7 template "/ProcessPages/portalHome.ivc" #txt
 Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -374,15 +303,6 @@ type.code=
 type.name=
 ' #txt
 Tt0 f0 showInStartList 1 #txt
-Tt0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -418,25 +338,6 @@ TaskA.PRI=in1.taskPriority.intValue()
 TaskA.ROL=ivy.session.getSessionUserName()
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
-Tt0 f23 taskAction 'ivy.case.setName(engine.expandMacros("SupportTicket"));
-ivy.case.setProcessCategory(engine.expandMacros("Ticket Category Code"), engine.expandMacros("Ticket Category Name"));
-ivy.case.setProcess(engine.expandMacros("Ticket Process Code"), engine.expandMacros("Ticket Process Name"));
-import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("SupportTicket"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("#" + ivy.session.getSessionUserName());
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(in1.taskPriority.intValue()));
-taskDef.setExpiryPeriod(1000 * (new Duration("3H")).toNumber());
-taskDef.setExpiryActivator(null);
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryStartTaskElementPid("14B2FC03D2E87141-f38-buffer");
-taskDefinitions.add(taskDef);
-' #txt
 Tt0 f23 type internaltest.Data #txt
 Tt0 f23 template "/ProcessPages/portalHome.ivc" #txt
 Tt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -514,22 +415,6 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Tt0 f8 taskAction 'ivy.case.setName(engine.expandMacros("Österreich Resource with ID 1212"));
-import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Österreich Resource with ID 1212"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryPeriod(1000 * (new Duration("1D")).toNumber());
-taskDef.setExpiryActivator(null);
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-' #txt
 Tt0 f8 type internaltest.Data #txt
 Tt0 f8 template "" #txt
 Tt0 f8 1059 155 26 26 13 0 #rect
@@ -557,15 +442,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Tt0 f6 showInStartList 1 #txt
-Tt0 f6 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Tt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -684,59 +560,6 @@ TaskC.customFields.varchar.2="Maternity CustomVarCharField2"
 TaskC.customFields.varchar.3="Maternity CustomVarCharField3"
 TaskC.customFields.varchar.4="Maternity CustomVarCharField4"
 TaskC.customFields.varchar.5="Other Leave/Maternity"' #txt
-Tt0 f27 taskAction 'import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Annual Leave Request"));
-taskDef.setDescription(engine.expandMacros("Annual Leave Request Description"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("#" + "demoNotExisted");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryPeriod(1000 * (new Duration("3H")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1("Annual CustomVarCharField1");
-taskDef.setCustomVarCharField2("Annual CustomVarCharField2");
-taskDef.setCustomVarCharField3("Annual CustomVarCharField3");
-taskDef.setCustomVarCharField4("Annual CustomVarCharField4");
-taskDef.setCustomVarCharField5("Annual Leave");
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskB.ivp");
-taskDef.setName(engine.expandMacros("Sick Leave Request"));
-taskDef.setDescription(engine.expandMacros("Sick Leave Request Description"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(1));
-taskDef.setExpiryPeriod(1000 * (new Duration("1D")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1("Sick CustomVarCharField1");
-taskDef.setCustomVarCharField2("Sick CustomVarCharField2");
-taskDef.setCustomVarCharField3("Sick CustomVarCharField3");
-taskDef.setCustomVarCharField4("Sick CustomVarCharField4");
-taskDef.setCustomVarCharField5("Other Leave/Sick/Long");
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskC.ivp");
-taskDef.setName(engine.expandMacros("Maternity Leave Request"));
-taskDef.setDescription(engine.expandMacros("Maternity Leave Request Description"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(3));
-taskDef.setExpiryPeriod(1000 * (new Duration("2D")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1("Maternity CustomVarCharField1");
-taskDef.setCustomVarCharField2("Maternity CustomVarCharField2");
-taskDef.setCustomVarCharField3("Maternity CustomVarCharField3");
-taskDef.setCustomVarCharField4("Maternity CustomVarCharField4");
-taskDef.setCustomVarCharField5("Other Leave/Maternity");
-taskDefinitions.add(taskDef);
-' #txt
 Tt0 f27 type internaltest.Data #txt
 Tt0 f27 template "/ProcessPages/portalHome.ivc" #txt
 Tt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -806,24 +629,6 @@ process.name=Publication Requested
 processCategory.code=pubRequested
 processCategory.name=Publication Requested' #txt
 Tt0 f29 showInStartList 1 #txt
-Tt0 f29 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("Leave Request Test For IVYPORTAL-3369"));
-ivy.case.setDescription(engine.expandMacros("Leave Request Description"));
-ivy.case.setProcessCategory(engine.expandMacros("pubRequested"), engine.expandMacros("Publication Requested"));
-ivy.case.setProcess(engine.expandMacros("pubRequested"), engine.expandMacros("Publication Requested"));
-ivy.case.setCustomVarCharField1("Leave Request CustomVarCharField1");
-ivy.case.setCustomVarCharField2("Leave Request CustomVarCharField2");
-ivy.case.setCustomVarCharField3("Leave Request CustomVarCharField3");
-ivy.case.setCustomVarCharField4("Leave Request CustomVarCharField4");
-ivy.case.setCustomVarCharField5("Leave Request CustomVarCharField5");
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Tt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -926,25 +731,6 @@ TaskA.PRI=in1.taskPriority.intValue()
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Tt0 f41 taskAction 'ivy.case.setName(engine.expandMacros("SupportTicket"));
-ivy.case.setProcessCategory(engine.expandMacros("Ticket Category Code"), engine.expandMacros("Ticket Category Name"));
-ivy.case.setProcess(engine.expandMacros("Ticket Process Code"), engine.expandMacros("Ticket Process Name"));
-import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("SupportTicket"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(in1.taskPriority.intValue()));
-taskDef.setExpiryPeriod(1000 * (new Duration("1D")).toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryStartTaskElementPid("14B2FC03D2E87141-f38-buffer");
-taskDefinitions.add(taskDef);
-' #txt
 Tt0 f41 type internaltest.Data #txt
 Tt0 f41 template "/ProcessPages/portalHome.ivc" #txt
 Tt0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
