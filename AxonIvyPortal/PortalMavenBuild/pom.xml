@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalMavenBuild</artifactId>
-  <version>7.0.0.0-SNAPSHOT</version>
+  <version>6.5.136.0</version>
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
@@ -19,7 +19,7 @@
 
   <properties>
     <svn.revision.number>${SVN_REVISION}</svn.revision.number>
-    <ivy.engine.version>6.5.0</ivy.engine.version>
+    <ivy.engine.version>6.5.1</ivy.engine.version>
     <powermock.version>1.6.6</powermock.version>
   </properties>
 
