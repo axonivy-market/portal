@@ -54,3 +54,4 @@ ivyNotes java.util.List<ch.ivy.ws.addon.types.IvyNote> #field
 canDestroy Boolean #field
 canChangeDescription Boolean #field
 canChangeName Boolean #field
+isBusinessCase Boolean #field

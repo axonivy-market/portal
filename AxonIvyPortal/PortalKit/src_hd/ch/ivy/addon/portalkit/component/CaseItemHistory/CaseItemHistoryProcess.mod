@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Mar 24 14:52:10 ICT 2017]
+[>Created: Tue Apr 18 11:46:36 ICT 2017]
 153362B0AC312EFB 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
@@ -360,6 +360,7 @@ TaskQueryCriteria queryCriteria = new TaskQueryCriteria();
 queryCriteria.caseId = in.remoteCase.id;
 queryCriteria.includedStates = includedStates;
 queryCriteria.newQueryCreated = true;
+queryCriteria.setQueryByBusinessCaseId(in.remoteCase.isBusinessCase());
 out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();' #txt
 Cs0 f8 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -403,7 +404,7 @@ Cs0 f11 doCall true #txt
 Cs0 f11 requestActionDecl '<java.lang.Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,java.lang.String caseName> param;
 ' #txt
 Cs0 f11 requestMappingAction 'param.taskId=in.taskId;
-param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.inServer(in.remoteCase.server.id).caseId(in.remoteCase.id).build();
+param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.inServer(in.remoteCase.server.id).caseId(in.remoteCase.id).isBusinessCase(in.remoteCase.isBusinessCase()).build();
 param.caseName=in.remoteCase.name;
 ' #txt
 Cs0 f11 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;

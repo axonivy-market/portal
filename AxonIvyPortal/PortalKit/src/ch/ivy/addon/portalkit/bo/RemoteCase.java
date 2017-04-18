@@ -109,6 +109,7 @@ public class RemoteCase implements ICase {
   private boolean canDestroy;
   private boolean canChangeDescription;
   private boolean canChangeName;
+  private boolean isBusinessCase;
 
   @Override
   @PublicAPI(IvyScriptVisibility.ADVANCED)
@@ -1055,8 +1056,11 @@ public class RemoteCase implements ICase {
 	
 	@Override
 	public boolean isBusinessCase() throws PersistencyException {
-		// TODO Auto-generated method stub
-		return false;
+		return isBusinessCase;
+	}
+	
+	public void setBusinessCase(boolean isBusinessCase) {
+		this.isBusinessCase = isBusinessCase;
 	}
 	
 	@Override

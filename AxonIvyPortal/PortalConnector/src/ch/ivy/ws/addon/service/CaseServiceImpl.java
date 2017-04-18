@@ -669,7 +669,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     if (caseSearchCriteria.isBusinessCase()) {
       finalQuery.where().and().isBusinessCase();
     } else if (caseSearchCriteria.isTechnicalCase()) {
-      finalQuery.where().and().isNotBusinessCase();
+      finalQuery.where().and().isNotBusinessCase().and().businessCaseId().isEqual(caseSearchCriteria.getBusinessCaseId());
     }
 
     if (caseSearchCriteria.hasInvolvedUsername() && !caseSearchCriteria.isIgnoreInvolvedUser()) {
