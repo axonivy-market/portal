@@ -20,6 +20,7 @@ public class CaseSearchCriteria {
   private boolean isSortingDescending;
   private boolean isBusinessCase;
   private boolean isTechnicalCase;
+  private Long businessCaseId;
 
   public boolean isEmpty() {
     return !hasInvolvedUsername() && !hasInvolvedApplications() && !hasKeyword() && !hasExcludedStates()
@@ -149,4 +150,13 @@ public class CaseSearchCriteria {
   public void setTechnicalCase(boolean isTechnicalCase) {
     this.isTechnicalCase = isTechnicalCase;
   }
+
+  public Long getBusinessCaseId() {
+	return businessCaseId;
+  }
+
+  public void setBusinessCaseId(Long businessCaseId) {
+	this.businessCaseId = businessCaseId;
+  }
+  
 }

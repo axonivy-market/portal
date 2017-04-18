@@ -25,6 +25,7 @@ public class TaskQueryCriteria {
   
   private TaskQuery taskQuery;
   private boolean isNewQueryCreated = false;
+  private boolean isQueryByBusinessCaseId = false;
 
   public String getInvolvedUsername() {
     return involvedUsername;
@@ -156,4 +157,13 @@ public class TaskQueryCriteria {
   public boolean hasCategory() {
     return StringUtils.isNotEmpty(category);
   }
+
+  public boolean isQueryByBusinessCaseId() {
+	return isQueryByBusinessCaseId;
+  }
+
+  public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
+	this.isQueryByBusinessCaseId = isQueryByBusinessCaseId;
+  }
+  
 }

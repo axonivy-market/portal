@@ -313,6 +313,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.serverId = serverId;
   }
 
+  public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId){
+	  queryCriteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
+  }
+  
   public void setInvolvedApplications(String... involvedApplications) {
     searchCriteria.setInvolvedApplications(involvedApplications);
   }
