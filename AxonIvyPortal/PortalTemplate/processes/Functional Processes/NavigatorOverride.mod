@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Mar 22 13:50:03 ICT 2017]
+[>Created: Tue Apr 18 11:03:13 ICT 2017]
 1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
@@ -181,6 +181,7 @@ dataModel.setCaseId(in.caseId.id());
 dataModel.setIgnoreInvolvedUser(true);
 dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
+dataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
 
 in.taskView = TaskView.create()
 											.category(category)

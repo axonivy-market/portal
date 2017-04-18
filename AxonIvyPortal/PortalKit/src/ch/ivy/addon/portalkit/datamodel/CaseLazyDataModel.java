@@ -153,7 +153,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   }
 
   private GlobalCaseId globalCaseId(RemoteCase oneCase) {
-    return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId());
+    return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId(), oneCase.isBusinessCase());
   }
 
   private int getCaseCount(CaseSearchCriteria criteria) {
