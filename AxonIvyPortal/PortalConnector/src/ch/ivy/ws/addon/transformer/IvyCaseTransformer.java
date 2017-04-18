@@ -103,6 +103,7 @@ public class IvyCaseTransformer {
     result.setProcessModelName(c.getProcessModel().getName());
     result.setProcessModelVersionNumber(c.getProcessModelVersion().getVersionNumber());
     result.setIvyNotes(new IvyNoteTransformer().transform(c.getNotes()));
+    result.setIsBusinessCase(c.isBusinessCase());
     return result;
   }
 

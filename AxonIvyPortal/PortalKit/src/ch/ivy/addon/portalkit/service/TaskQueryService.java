@@ -38,7 +38,12 @@ public class TaskQueryService {
     }
 
     if (criteria.hasCaseId()) {
-      finalQuery.where().and().caseId().isEqual(criteria.getCaseId());
+      if(criteria.isQueryByBusinessCaseId()){
+    	  finalQuery.where().and().businessCaseId().isEqual(criteria.getCaseId());
+      }
+      else {
+    	  finalQuery.where().and().caseId().isEqual(criteria.getCaseId());
+      }
     }
 
     if (criteria.hasKeyword()) {

@@ -119,6 +119,7 @@ public class RemoteCaseMapper {
     result.setCanDestroy(ivyCase.getCanDestroy());
     result.setCanChangeDescription(ivyCase.getCanChangeDescription());
     result.setCanChangeName(ivyCase.getCanChangeName());
+    result.setBusinessCase(ivyCase.getIsBusinessCase());
     
     return result;
 
@@ -266,6 +267,7 @@ public class RemoteCaseMapper {
 
     remoteCase.setDescription(ivyCase.getDescription());
     remoteCase.setName(ivyCase.getName());
+    remoteCase.setBusinessCase(ivyCase.isBusinessCase());
 
 
     try {

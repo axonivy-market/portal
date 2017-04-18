@@ -12,3 +12,11 @@ caseName String #field
 caseName PERSISTENT #fieldModifier
 caseId ch.ivy.addon.portalkit.dto.GlobalCaseId #field
 caseId PERSISTENT #fieldModifier
+technicalCases List<ch.ivy.addon.portalkit.bo.RemoteCase> #field
+technicalCases PERSISTENT #fieldModifier
+caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
+caseSearchCriteria PERSISTENT #fieldModifier
+selectedCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+selectedCase PERSISTENT #fieldModifier
+selectedGlobalCaseId ch.ivy.addon.portalkit.dto.GlobalCaseId #field
+selectedGlobalCaseId PERSISTENT #fieldModifier

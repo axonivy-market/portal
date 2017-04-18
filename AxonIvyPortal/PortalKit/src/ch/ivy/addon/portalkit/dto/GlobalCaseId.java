@@ -5,14 +5,20 @@ public class GlobalCaseId {
   public static class Builder {
     private long serverId;
     private long caseId;
+    private boolean isBusinessCase;
 
     public Builder caseId(long id) {
       this.caseId = id;
       return this;
     }
-
+    
+    public Builder isBusinessCase(boolean isBusinessCase) {
+    	this.isBusinessCase = isBusinessCase;
+    	return this;
+    }
+    
     public GlobalCaseId build() {
-      return new GlobalCaseId(serverId, caseId);
+      return new GlobalCaseId(serverId, caseId, isBusinessCase);
     }
   }
 
@@ -23,15 +29,17 @@ public class GlobalCaseId {
   }
 
   public static GlobalCaseId createDefaultInstance() {
-    return new GlobalCaseId(-1, -1);
+    return new GlobalCaseId(-1, -1, false);
   }
 
   private long serverId;
   private long caseId;
+  private boolean isBusinessCase;
 
-  public GlobalCaseId(long serverId, long caseId) {
+  public GlobalCaseId(long serverId, long caseId, boolean isBusinessCase) {
     this.serverId = serverId;
     this.caseId = caseId;
+    this.isBusinessCase = isBusinessCase;
   }
 
   public long id() {
@@ -40,6 +48,10 @@ public class GlobalCaseId {
 
   public long serverId() {
     return serverId;
+  }
+  
+  public boolean isBusinessCase(){
+	  return isBusinessCase;
   }
   
   @Override
