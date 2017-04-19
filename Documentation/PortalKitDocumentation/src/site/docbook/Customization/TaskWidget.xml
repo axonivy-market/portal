@@ -216,7 +216,7 @@
 		</para>
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.taskwidget.customtaskdelegate">
-		<title>Custom task delegate list</title>
+		<title>Custom task delegate</title>
 		<para>
 			Portal allows to customize the list of users and roles that a task can be delegated to. This can be done following these steps:
 		</para>
@@ -233,7 +233,7 @@
 				</mediaobject>
 			</listitem>
 			<listitem>
-				<para>The subprocess data contains the current log in user <code>in.currentUser</code> and the current task to be delegated <code>in.task</code>. The lists <code>in.users</code> and <code>in.roles</code> contains all possible users and roles that the task can be delegated to. Modify those two to have your own delegate list.</para> 
+				<para>The callable subprocess data contains the current user <code>in.currentUser</code> and the current task to be delegated <code>in.task</code>. The lists <code>in.users</code> and <code>in.roles</code> contain all possible users and roles that the task can be delegated to. Modify those two to have your own delegate list.</para> 
 			</listitem>
 		</orderedlist>
 	</sect2>
