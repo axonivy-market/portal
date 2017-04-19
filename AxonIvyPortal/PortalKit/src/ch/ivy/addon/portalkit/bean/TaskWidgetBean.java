@@ -16,6 +16,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.util.HTMLDetector;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -73,6 +74,6 @@ public class TaskWidgetBean implements Serializable {
   }
 
   private boolean containsHTML(String text) {
-    return Optional.ofNullable(text).map(t -> t.matches(".*<.*>.*")).orElse(false);
+    return Optional.ofNullable(text).map(t -> HTMLDetector.isHtml(t)).orElse(false);
   }
 }
