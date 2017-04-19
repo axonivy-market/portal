@@ -215,4 +215,26 @@
 			Override the <code>BuildTaskJsonQuery</code> callable process of PortalKit and build your own query to effect the data of task widget, task categories and statistic widget.
 		</para>
 	</sect2>
+	<sect2 xml:id="axonivyportal.customization.taskwidget.customtaskdelegate">
+		<title>Custom task delegate list</title>
+		<para>
+			Portal allows to customize the list of users and roles that a task can be delegated to. This can be done following these steps:
+		</para>
+		<orderedlist>
+			<listitem>
+				<para>Introduce a Axon.ivy project which has <code>PortalTemplate</code> as a required library and its own <code>PortalStart</code> process. Refer to step 1, 2, 3, 4 in <link linkend="axonivyportal.customization.taskwidget.howtooverideui">override task widget's UI</link> guide.</para>
+			</listitem>
+			<listitem>
+				<para>In your project, override the callable subprocess <code>CalculateTaskDelegate</code></para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/TaskWidget/CalculateTaskDelegate.png" />
+					</imageobject>
+				</mediaobject>
+			</listitem>
+			<listitem>
+				<para>The subprocess data contains the current log in user <code>in.currentUser</code> and the current task to be delegated <code>in.task</code>. The lists <code>in.users</code> and <code>in.roles</code> contains all possible users and roles that the task can be delegated to. Modify those two to have your own delegate list.</para> 
+			</listitem>
+		</orderedlist>
+	</sect2>
 </sect1>
