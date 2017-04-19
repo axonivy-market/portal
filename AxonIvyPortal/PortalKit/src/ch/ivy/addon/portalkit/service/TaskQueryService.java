@@ -39,7 +39,7 @@ public class TaskQueryService {
 
     if (criteria.hasCaseId()) {
       if(criteria.isQueryByBusinessCaseId()){
-    	  finalQuery.where().and().businessCaseId().isEqual(criteria.getCaseId());
+    	  finalQuery.where().and(TaskQuery.create().where().businessCaseId().isEqual(criteria.getCaseId()).or().caseId().isEqual(criteria.getCaseId()));
       }
       else {
     	  finalQuery.where().and().caseId().isEqual(criteria.getCaseId());
