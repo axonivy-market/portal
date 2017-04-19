@@ -2224,6 +2224,15 @@ a.compact-task-start-link:hover {
   width: 75%;
 }
 
+#task-description .scroll-panel.OvAuto li {
+  list-style-type: inherit;
+}
+#task-description .ui-inplace-display.ui-state-highlight {
+  color: rgba(0,0,0,0.6);
+  padding: inherit;
+  border: inherit!important;
+  border-radius: inherit;
+}
 .note-separator {
   border-bottom: solid 1px rgba(0,0,0,0.1);
   width: 100%;
