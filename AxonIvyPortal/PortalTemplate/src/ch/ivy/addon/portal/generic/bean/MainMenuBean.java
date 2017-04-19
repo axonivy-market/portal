@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
+import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -122,8 +123,8 @@ public class MainMenuBean implements Serializable {
 
   private void addTasksMenuItem(CustomLinkGeneratorData data) {
     PortalConfig portalConfig = data.getPortalConfig();
-    List<String> myTaskCategories = data.getMyTaskCategories();
-    List<String> allTaskCategories = data.getAllTaskCategories();
+    List<CategoryData> myTaskCategories = data.getMyTaskCategories();
+    List<CategoryData> allTaskCategories = data.getAllTaskCategories();
     if (portalConfig.getHideShowTaskMenuItem() == null || portalConfig.getHideShowTaskMenuItem()) {
       return;
     }
@@ -135,7 +136,7 @@ public class MainMenuBean implements Serializable {
     rootNode.getChildren().add(taskNode);
   }
 
-  private DefaultTreeNode buildPersonalTaskTree(List<String> myTaskCategories) {
+  private DefaultTreeNode buildPersonalTaskTree(List<CategoryData> myTaskCategories) {
     DefaultTreeNode taskNode = buildTaskMenuItem(myTaskCategories, false);
     List<TreeNode> childrenNodes =
         TaskTreeUtils.convertTaskListToTree(myTaskCategories, TreeNodeType.TASKS, false).getChildren();
@@ -143,7 +144,7 @@ public class MainMenuBean implements Serializable {
     return taskNode;
   }
 
-  private DefaultTreeNode buildAdministratorTaskTree(List<String> myTaskCategories, List<String> allTaskCategories) {
+  private DefaultTreeNode buildAdministratorTaskTree(List<CategoryData> myTaskCategories, List<CategoryData> allTaskCategories) {
     DefaultTreeNode personalTaskNode =
         buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/CustomLinkGenerator/myTasks"), myTaskCategories,
             TreeNodeType.TASKS_MY_TASKS);
@@ -155,7 +156,7 @@ public class MainMenuBean implements Serializable {
     return taskNode;
   }
 
-  private DefaultTreeNode buildTaskMenuItem(List<String> categories, boolean isAllTaskNode) {
+  private DefaultTreeNode buildTaskMenuItem(List<CategoryData> categories, boolean isAllTaskNode) {
     TaskNode tasksMenuItem = new TaskNode();
     tasksMenuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portal.generic/CustomLinkGenerator/tasks"));
     tasksMenuItem.setMenuKind(MenuKind.TASK);
@@ -167,7 +168,7 @@ public class MainMenuBean implements Serializable {
     return taskNode;
   }
 
-  private DefaultTreeNode buildTaskTree(String nodeDisplayName, List<String> categories, String firstCategory) {
+  private DefaultTreeNode buildTaskTree(String nodeDisplayName, List<CategoryData> categories, String firstCategory) {
     TaskNode taskMenuItem = new TaskNode();
     taskMenuItem.setValue(nodeDisplayName);
     taskMenuItem.setMenuKind(MenuKind.TASK);

@@ -14,9 +14,9 @@ selectedNode org.primefaces.model.DefaultTreeNode #field
 selectedNode PERSISTENT #fieldModifier
 hasReadAllCasesPermission Boolean #field
 hasReadAllCasesPermission PERSISTENT #fieldModifier
-myTaskCategories List<String> #field
+myTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 myTaskCategories PERSISTENT #fieldModifier
-allTaskCategories List<String> #field
+allTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 allTaskCategories PERSISTENT #fieldModifier
 caseView ch.ivy.addon.portal.generic.view.CaseView #field
 caseView PERSISTENT #fieldModifier
