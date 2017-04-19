@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 17 16:44:42 ICT 2017]
+[>Created: Wed Apr 19 10:34:19 ICT 2017]
 14B2FC03D2E87141 3.19 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -104,7 +104,7 @@ Tt0 f7 actionTable 'out=in1;
 ' #txt
 Tt0 f7 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Tt0 f7 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f7 taskData 'TaskA.CATEGORY=<%\=ivy.cms.co("/Categories/annualLeaveCategory/name")%>
+Tt0 f7 taskData 'TaskA.CATEGORY=AnnualLeave
 TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
@@ -119,7 +119,7 @@ TaskA.customFields.varchar.1="Annual CustomVarCharField1"
 TaskA.customFields.varchar.2="Annual CustomVarCharField2"
 TaskA.customFields.varchar.3="Annual CustomVarCharField3"
 TaskA.customFields.varchar.4="Annual CustomVarCharField4"
-TaskB.CATEGORY=<%\=ivy.cms.co("/Categories/longSickCategory/name")%>
+TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
 TaskB.EXPRI=2
@@ -134,7 +134,7 @@ TaskB.customFields.varchar.1="Sick CustomVarCharField1"
 TaskB.customFields.varchar.2="Sick CustomVarCharField2"
 TaskB.customFields.varchar.3="Sick CustomVarCharField3"
 TaskB.customFields.varchar.4="Sick CustomVarCharField4"
-TaskC.CATEGORY=<%\=ivy.cms.co("/Categories/maternityLeave/name")%>
+TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
 TaskC.EXPRI=2
