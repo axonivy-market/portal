@@ -40,3 +40,5 @@ IsValidStatesToReset Boolean #field
 IsValidStatesToReset PERSISTENT #fieldModifier
 delegateComment String #field
 delegateComment PERSISTENT #fieldModifier
+canDelegateTask Boolean #field
+canDelegateTask PERSISTENT #fieldModifier
