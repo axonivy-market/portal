@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 19 10:20:32 ICT 2017]
+[>Created: Wed Apr 19 13:48:34 ICT 2017]
 15B8089000CE1FF7 3.20 #module
 >Proto >Proto Collection #zClass
 Ce0 CalculateTaskDelegate Big #zClass
@@ -18,6 +18,8 @@ Ce0 @EndSub f1 '' #zField
 Ce0 @GridStep f3 '' #zField
 Ce0 @PushWFArc f4 '' #zField
 Ce0 @PushWFArc f2 '' #zField
+Ce0 @InfoButton f7 '' #zField
+Ce0 @AnnotationArc f5 '' #zField
 >Proto Ce0 Ce0 CalculateTaskDelegate #zField
 Ce0 f0 inParamDecl '<ch.ivyteam.wf.processes.SecurityMemberData possibleTaskDelegates,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ce0 f0 inParamTable 'out.currentUser=param.currentUser;
@@ -62,12 +64,29 @@ Ce0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f3 46 196 36 24 20 -2 #rect
+Ce0 f3 46 196 36 24 5 19 #rect
 Ce0 f3 @|StepIcon #fIcon
 Ce0 f4 expr out #txt
 Ce0 f4 64 109 64 196 #arcP
 Ce0 f2 expr out #txt
 Ce0 f2 64 220 64 339 #arcP
+Ce0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Return your own list of users &amp; roles to delegate task to
+
+if ("portaladmin".equalsIgnoreCase(in.currentUser.getDisplayName()) &amp;&amp; "System task".equalsIgnoreCase(in.task.getName())) {
+  in.users = new ArrayList();
+  in.roles = new ArrayList();
+}</name>
+        <nameStyle>244,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f7 144 151 720 108 -351 -48 #rect
+Ce0 f7 @|IBIcon #fIcon
+Ce0 f5 144 205 82 208 #arcP
 >Proto Ce0 .type ch.ivy.add.portalkit.CaculateTaskDelegateData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 0 0 32 24 18 0 #rect
@@ -76,3 +95,5 @@ Ce0 f0 mainOut f4 tail #connect
 Ce0 f4 head f3 mainIn #connect
 Ce0 f3 mainOut f2 tail #connect
 Ce0 f2 head f1 mainIn #connect
+Ce0 f7 ao f5 tail #connect
+Ce0 f5 head f3 @CG|ai #connect
