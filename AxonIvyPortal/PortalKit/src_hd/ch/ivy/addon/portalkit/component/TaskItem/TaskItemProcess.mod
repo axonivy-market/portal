@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Mar 28 18:23:40 ICT 2017]
+[>Created: Wed Apr 19 10:23:55 ICT 2017]
 150CB86EFC2F2972 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
@@ -39,7 +39,6 @@ Ts0 @PushWFArc f25 '' #zField
 Ts0 @PushWFArc f41 '' #zField
 Ts0 @PushWFArc f43 '' #zField
 Ts0 @PushWFArc f24 '' #zField
-Ts0 @PushWFArc f19 '' #zField
 Ts0 @PushWFArc f52 '' #zField
 Ts0 @GridStep f6 '' #zField
 Ts0 @RichDialogProcessStart f16 '' #zField
@@ -91,6 +90,11 @@ Ts0 @PushWFArc f91 '' #zField
 Ts0 @PushWFArc f93 '' #zField
 Ts0 @PushWFArc f42 '' #zField
 Ts0 @PushWFArc f59 '' #zField
+Ts0 @CallSub f37 '' #zField
+Ts0 @PushWFArc f38 '' #zField
+Ts0 @GridStep f44 '' #zField
+Ts0 @PushWFArc f53 '' #zField
+Ts0 @PushWFArc f19 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f0 guid 150CB86EFDA88218 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -263,7 +267,7 @@ Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f23 526 628 36 24 20 -2 #rect
 Ts0 f23 @|CallSubIcon #fIcon
 Ts0 f13 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f13 309 501 22 22 14 0 #rect
+Ts0 f13 309 629 22 22 14 0 #rect
 Ts0 f13 @|RichDialogProcessEndIcon #fIcon
 Ts0 f51 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f51 processCall MultiPortal/SecurityService:findSecurityMembersToDelegateBy(Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -395,8 +399,6 @@ Ts0 f43 1 672 768 #addKink
 Ts0 f43 1 0.3269230769230769 16 0 #arcLabel
 Ts0 f24 expr out #txt
 Ts0 f24 320 331 320 372 #arcP
-Ts0 f19 expr out #txt
-Ts0 f19 320 460 320 501 #arcP
 Ts0 f52 expr out #txt
 Ts0 f52 320 396 320 436 #arcP
 Ts0 f6 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
@@ -894,6 +896,65 @@ Ts0 f42 1 672 880 #addKink
 Ts0 f42 1 0.07754185619092568 0 0 #arcLabel
 Ts0 f59 expr out #txt
 Ts0 f59 544 1068 544 1150 #arcP
+Ts0 f37 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f37 processCall 'Functional Processes/CalculateTaskDelegate:call(ch.ivyteam.wf.processes.SecurityMemberData,ch.ivyteam.ivy.security.ISecurityMember,ch.ivyteam.ivy.workflow.ITask)' #txt
+Ts0 f37 doCall true #txt
+Ts0 f37 requestActionDecl '<ch.ivyteam.wf.processes.SecurityMemberData possibleTaskDelegates,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivyteam.ivy.workflow.ITask task> param;
+' #txt
+Ts0 f37 requestMappingAction 'param.possibleTaskDelegates=in.securityMemberData;
+param.currentUser=ivy.session.getSessionUser();
+param.task=in.selectedTask;
+' #txt
+Ts0 f37 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f37 responseMappingAction 'out=in;
+out.securityMemberData.ivyRoles=result.roles;
+out.securityMemberData.ivyUsers=result.users;
+' #txt
+Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Calculate task delegates</name>
+        <nameStyle>24,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f37 302 500 36 24 20 -2 #rect
+Ts0 f37 @|CallSubIcon #fIcon
+Ts0 f38 expr out #txt
+Ts0 f38 320 460 320 500 #arcP
+Ts0 f44 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f44 actionTable 'out=in;
+' #txt
+Ts0 f44 actionCode 'in.canDelegateTask = !(in.securityMemberData.ivyRoles.isEmpty() && in.securityMemberData.ivyUsers.isEmpty());
+if(in.canDelegateTask) {
+	in.canDelegateTask = true;
+	if(in.securityMemberData.ivyRoles.isEmpty()) {
+		in.isUserDelegated = true;
+	}
+	if(in.securityMemberData.ivyUsers.isEmpty()) {
+		in.isUserDelegated = false;
+	}
+}
+' #txt
+Ts0 f44 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check if can delegate task</name>
+        <nameStyle>26,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f44 302 564 36 24 20 -2 #rect
+Ts0 f44 @|StepIcon #fIcon
+Ts0 f53 expr out #txt
+Ts0 f53 320 524 320 564 #arcP
+Ts0 f19 expr out #txt
+Ts0 f19 320 588 320 629 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -915,8 +976,6 @@ Ts0 f41 head f40 in #connect
 Ts0 f43 head f26 mainIn #connect
 Ts0 f20 mainOut f52 tail #connect
 Ts0 f52 head f51 mainIn #connect
-Ts0 f51 mainOut f19 tail #connect
-Ts0 f19 head f13 mainIn #connect
 Ts0 f16 mainOut f9 tail #connect
 Ts0 f9 head f6 mainIn #connect
 Ts0 f6 mainOut f18 tail #connect
@@ -968,3 +1027,9 @@ Ts0 f26 mainOut f42 tail #connect
 Ts0 f42 head f86 mainIn #connect
 Ts0 f89 mainOut f59 tail #connect
 Ts0 f59 head f15 mainIn #connect
+Ts0 f51 mainOut f38 tail #connect
+Ts0 f38 head f37 mainIn #connect
+Ts0 f37 mainOut f53 tail #connect
+Ts0 f53 head f44 mainIn #connect
+Ts0 f44 mainOut f19 tail #connect
+Ts0 f19 head f13 mainIn #connect
