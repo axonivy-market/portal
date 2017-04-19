@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Apr 03 14:44:57 ICT 2017]
-156F869FC3FCD1D9 3.20 #module
+[>Created: Wed Apr 19 15:45:39 ICT 2017]
+156F869FC3FCD1D9 3.19 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
 Ps0 RD #cInfo
@@ -185,7 +185,7 @@ in.selectedMenuItem = in.selectedNode.getData() as MainMenuNode;
 TaskNode categoryMenu = in.selectedMenuItem as TaskNode;
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 
-dataModel.setCategory(categoryMenu.category);
+dataModel.setCategory(categoryMenu.categoryRawPath);
 
 if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 	dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
