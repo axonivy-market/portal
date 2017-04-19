@@ -279,7 +279,6 @@ public class TaskWidgetPage extends TemplatePage {
         "task-widget:task-list-scroller:%d:task-item:description:task-description-form:task-description-input", index)));
   }
 
-
   public boolean isTaskListColumnExist(String columnHeaderText) {
     WebElement taskListHeader = findElementById("task-widget:task-widget-sort-menu");
     for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
@@ -303,5 +302,18 @@ public class TaskWidgetPage extends TemplatePage {
   public String getTaskListCellValue(int index, String columnId) {
     WebElement cell = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s", index, columnId));
     return cell.getText();
+  }
+  
+  public void openTaskDelegateDialog(int index) {
+    WebElement delegateButton = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-delegate-command", index));
+    delegateButton.click();
+  }
+  
+  public boolean isDelegateTypeSelectAvailable() {
+    return isElementPresent(By.id("task-widget:task-list-scroller:0:task-item:task-delegate-form:activator-panel"));
+  }
+  
+  public boolean isDelegateListSelectionAvailable() {
+    return isElementPresent(By.id("task-widget:task-list-scroller:0:task-item:task-delegate-form:select-delegate-panel"));
   }
 }
