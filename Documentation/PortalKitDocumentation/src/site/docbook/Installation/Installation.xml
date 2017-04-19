@@ -434,6 +434,24 @@
 			This document informs you in detail about incompatibilities that were introduced between Portal versions and tells you what needs to be done to made your existing Portal working with current Axon.ivy engine.
 		</para>
 		<sect2>
+			<title>Migrate 6.x to 7.0</title>
+			<sect3>
+				<title>SQL conversion</title>
+				<para>From Portal <code>7.0</code>, we use standard axon.ivy Task Category field to store task category.</para>
+				<para>If you have queries which referring to task category, plese replace <code>customVarCharField5()</code> part with <code>category()</code> part</para>
+				<para>Example to create a task query which task category is a select condition.</para>
+				<screen>private TaskQuery queryForCategory(String keyword) {
+		String startingWithCategory = String.format("%s%%", keyword);
+		TaskQuery filterByKeywordQuery = TaskQuery.create().where().category().isLike(startingWithCategory);
+	
+		return filterByKeywordQuery;
+	}</screen>
+				<para>After upgrade to Portal <code>7.0</code>, please run below SQL script to migrate data.</para>
+				<screen>update IWA_Task set category = COALESCE(customvarcharfield5, ' ')
+update IWA_Task set customvarcharfield5 = NULL</screen>
+			</sect3>
+		</sect2>
+		<sect2>
 			<title>Migrate 6.4 or 6.5 to 6.6</title>
 			<para>Task header is supported to be customized. The <code>useOverride</code> param, which is used to override the task item's body, is changed to <code>useOverrideBody</code></para>
 		</sect2>

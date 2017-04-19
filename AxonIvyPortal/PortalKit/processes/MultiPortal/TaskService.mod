@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Apr 03 14:20:46 ICT 2017]
-146C8E81DE07F973 3.20 #module
+[>Created: Wed Apr 19 14:06:37 ICT 2017]
+146C8E81DE07F973 3.19 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 B #cInfo
@@ -1371,7 +1371,7 @@ out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
-Te0 f59 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f59 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f59 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
@@ -1384,6 +1384,8 @@ Te0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>findCategories(String,String,List&lt;String&gt;,Long)</name>
+        <nameStyle>47,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2712,7 +2714,7 @@ out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
-Te0 f161 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f161 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f161 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
@@ -2725,6 +2727,8 @@ Te0 f161 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>findPersonalCategories(String,String,List&lt;String&gt;,Long)</name>
+        <nameStyle>55,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -3022,7 +3026,7 @@ out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
-Te0 f225 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f225 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f225 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
@@ -3035,6 +3039,8 @@ Te0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>findGroupCategories(String,String,List&lt;String&gt;,Long)</name>
+        <nameStyle>52,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
