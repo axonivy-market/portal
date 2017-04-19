@@ -10,7 +10,7 @@ import portal.page.LoginPage;
 import portal.page.TaskWidgetPage;
 
 public class TaskDescriptionChangeTest extends BaseTest {
-  
+
   @Before
   public void setup() {
     super.setup();
@@ -27,14 +27,29 @@ public class TaskDescriptionChangeTest extends BaseTest {
   public void testChangeTaskDescription() {
     login(TestAccount.ADMIN_USER);
     int firstTask = 0;
-    String newDescription = "new Description";
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(firstTask);
-    taskWidgetPage.changeDescriptionOfTask(firstTask, newDescription);
-    assertEquals(taskWidgetPage.getDescriptionOfTaskAt(firstTask), newDescription);
+    testChangeTaskDescription(firstTask, "Hello World!", "Hello World!", "Hello World!", taskWidgetPage);
+    testChangeTaskDescription(
+        firstTask,
+        "<b>HTML</b> description could contain malicious script <script>alert('Attacking')</script> but it will be sanitized.",
+        "HTML description could contain malicious script but it will be sanitized.",
+        "TODO [Task description is in HTML, show more details to see it]", taskWidgetPage);
+    testChangeTaskDescription(firstTask, "", "[Task description not available]", "[Task description not available]",
+        taskWidgetPage);
+    testChangeTaskDescription(firstTask, "And you can change description if it is empty",
+        "And you can change description if it is empty", "And you can change description if it is empty",
+        taskWidgetPage);
   }
-  
+
+  private void testChangeTaskDescription(int firstTask, String newDescription, String shownDescriptionInDetails,
+      String shownDescriptionInHeader, TaskWidgetPage taskWidgetPage) {
+    taskWidgetPage.changeDescriptionOfTask(firstTask, newDescription);
+    assertEquals(taskWidgetPage.getDescriptionOfTaskAt(firstTask), shownDescriptionInDetails);
+    assertEquals(taskWidgetPage.getDescriptionInHeaderOfTaskAt(firstTask), shownDescriptionInHeader);
+  }
+
   @Test
   public void testUserWithoutPermissionCannotChangeTaskName() {
     login(TestAccount.DEMO_USER);
@@ -44,5 +59,5 @@ public class TaskDescriptionChangeTest extends BaseTest {
     taskWidgetPage.openTaskDetails(firstTask);
     assertFalse(taskWidgetPage.isTaskNameChangeComponentPresented(firstTask));
   }
-  
+
 }

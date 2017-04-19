@@ -2229,6 +2229,7 @@ a.compact-task-start-link:hover {
 }
 #task-description .ui-inplace-display.ui-state-highlight {
   color: rgba(0,0,0,0.6);
+  background-color: inherit;
   padding: inherit;
   border: inherit!important;
   border-radius: inherit;
