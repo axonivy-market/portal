@@ -36,6 +36,6 @@
     </h:form>
   </span>
   <h:outputText id="#{cc.attrs.descriptionId}" styleClass="description-cell js-description-cell #{cc.attrs.descriptionStyleClass}"
-    value="#{task.description}" />
+    value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" />
 </cc:implementation>
 </html>
