@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 19 15:37:29 ICT 2017]
+[>Created: Wed Apr 19 17:27:14 ICT 2017]
 15B853F6C874E6ED 3.20 #module
 >Proto >Proto Collection #zClass
 Ce0 CalculateTaskDelegate Big #zClass
@@ -54,8 +54,9 @@ Ce0 f3 actionDecl 'internaltest.CalculateTaskDelegateOverrideData out;
 ' #txt
 Ce0 f3 actionTable 'out=in;
 ' #txt
-Ce0 f3 actionCode 'import java.util.ArrayList;
-if ("portaladmin".equalsIgnoreCase(in.currentUser.getDisplayName())) {
+Ce0 f3 actionCode 'import ch.ivyteam.ivy.security.IUser;
+import java.util.ArrayList;
+if ("#portaladmin".equalsIgnoreCase(in.currentUser.getMemberName())) {
 	if ("Maternity Leave Request".equalsIgnoreCase(in.task.getName())) {
 		in.users = new ArrayList();
 	}
