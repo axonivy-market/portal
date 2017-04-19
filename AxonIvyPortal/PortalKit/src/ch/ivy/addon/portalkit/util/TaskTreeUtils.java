@@ -10,7 +10,6 @@ import org.primefaces.util.TreeUtils;
 import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.ws.addon.CategoryData;
-import ch.ivyteam.ivy.environment.Ivy;
 
 
 /**
