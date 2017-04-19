@@ -274,6 +274,14 @@ public class TaskWidgetPage extends TemplatePage {
     return taskName.getText();
   }
 
+  public String getDescriptionInHeaderOfTaskAt(int index) {
+    String taskNameId =
+        String.format("task-widget:task-list-scroller:%d:task-item:task-name-component:task-description", index);
+    waitForElementDisplayed(By.id(taskNameId), true);
+    WebElement taskName = findElementById(taskNameId);
+    return taskName.getText();
+  }
+
   public boolean isTaskDescriptionChangeComponentPresented(int index) {
     return isElementPresent(By.id(String.format(
         "task-widget:task-list-scroller:%d:task-item:description:task-description-form:task-description-input", index)));
