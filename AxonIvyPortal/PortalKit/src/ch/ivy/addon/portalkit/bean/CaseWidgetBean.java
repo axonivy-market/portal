@@ -1,12 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static org.owasp.html.Sanitizers.BLOCKS;
-import static org.owasp.html.Sanitizers.FORMATTING;
-import static org.owasp.html.Sanitizers.IMAGES;
-import static org.owasp.html.Sanitizers.LINKS;
-import static org.owasp.html.Sanitizers.STYLES;
-import static org.owasp.html.Sanitizers.TABLES;
-
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -47,7 +40,4 @@ public class CaseWidgetBean implements Serializable {
     this.deletingCase = deletingCase;
   }
 
-  public String sanitizeHTML(String html) {
-    return BLOCKS.and(FORMATTING).and(LINKS).and(STYLES).and(IMAGES).and(TABLES).sanitize(html);
-  }
 }
