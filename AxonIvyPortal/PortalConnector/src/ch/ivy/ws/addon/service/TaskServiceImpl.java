@@ -367,6 +367,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
                 categoryData.setRawPath(category.getRawPath());
                 categories.add(categoryData);
+                Ivy.log().debug("TASK CATEGORY: {0}, {1}", categoryData.getPath(), categoryData.getRawPath());
               });
 
             return result(categories, errors);
