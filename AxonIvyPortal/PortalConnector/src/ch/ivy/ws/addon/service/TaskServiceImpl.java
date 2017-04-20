@@ -362,14 +362,14 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
-            Ivy.log().debug("TASK QUERY: {0}", taskQuery);
-            Ivy.log().debug("NUMBER OF CATEGORIES: {0}", categories.size());
+            Ivy.log().warn("TASK QUERY: {0}", taskQuery);
+            Ivy.log().warn("NUMBER OF CATEGORIES: {0}", categories.size());
             categoryTree.getAllChildren().forEach(category -> {
                 CategoryData categoryData = new CategoryData();
                 categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
                 categoryData.setRawPath(category.getRawPath());
                 categories.add(categoryData);
-                Ivy.log().debug("TASK CATEGORY: {0}, {1}", categoryData.getPath(), categoryData.getRawPath());
+                Ivy.log().warn("TASK CATEGORY: {0}, {1}", categoryData.getPath(), categoryData.getRawPath());
               });
 
             return result(categories, errors);
