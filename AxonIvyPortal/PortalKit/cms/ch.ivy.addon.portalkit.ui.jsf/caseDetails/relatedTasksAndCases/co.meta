@@ -1,0 +1,3 @@
+co: name={relatedTasksAndCases} description={} changed={2017-04-20 10:01:59 CEST} changedby={ldnam} visualorder={0} guid={15B8A60D294B36FE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15B8A60D29FCB553} datatype={} isdefault={true} langid={en} description={} validfrom={2017-04-20 10:00:52 CEST} validto={} changed={2017-04-20 10:00:52 CEST} changedby={ldnam} properties={} id={}
+val: guid={15B8A61CD341DBB8} datatype={} isdefault={false} langid={de} description={} validfrom={2017-04-20 10:01:12 CEST} validto={} changed={2017-04-20 10:01:59 CEST} changedby={ldnam} properties={} id={}

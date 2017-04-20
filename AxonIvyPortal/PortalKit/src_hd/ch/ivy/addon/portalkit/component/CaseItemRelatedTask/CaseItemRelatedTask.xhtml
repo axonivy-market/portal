@@ -13,12 +13,12 @@
 <cc:implementation>
   <f:event listener="#{logic.initDatas(cc.attrs.case)}" type="preRenderComponent"/>
   <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-related-task-column #{cc.attrs.styleClass}">
-    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasks')}</div>
+    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasksAndCases')}</div>
     <div class="Separator" />
     
     <h:panelGrid rendered="#{empty data.relatedTasks and empty data.technicalCases}" columns="1" columnClasses="case-details-data-2nd-column" rowClasses="case-details-row-space">
         <div class="grid-item-content-list-item">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasks')}" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasksAndCases')}" />
         </div>
     </h:panelGrid>
     
@@ -36,7 +36,6 @@
         <ui:repeat id="technicalCases" var="technicalCase" value="#{data.technicalCases}">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content">
            <i class="fa fa-folder-open-o fa-fw related-task-list-item-status" />
-           <!-- 	<i class="#{caseBean.getCaseStateIcon(technicalCase.state)} fa-fw related-task-list-item-status" /> -->
             <p:commandLink id="case-name" value="#{empty technicalCase.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/caseNameNotAvailable') : technicalCase.name}" actionListener="#{logic.navigateToRelatedCase}" styleClass="related-task">
               <f:attribute name="selectedCase" value="#{technicalCase}" />
             </p:commandLink>
