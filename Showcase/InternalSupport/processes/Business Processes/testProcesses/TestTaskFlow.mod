@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Apr 19 10:34:19 ICT 2017]
-14B2FC03D2E87141 3.19 #module
+[>Created: Thu Apr 20 11:26:39 ICT 2017]
+14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -119,6 +119,7 @@ TaskA.customFields.varchar.1="Annual CustomVarCharField1"
 TaskA.customFields.varchar.2="Annual CustomVarCharField2"
 TaskA.customFields.varchar.3="Annual CustomVarCharField3"
 TaskA.customFields.varchar.4="Annual CustomVarCharField4"
+TaskA.customFields.varchar.5="Annual Leave"
 TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
@@ -134,6 +135,7 @@ TaskB.customFields.varchar.1="Sick CustomVarCharField1"
 TaskB.customFields.varchar.2="Sick CustomVarCharField2"
 TaskB.customFields.varchar.3="Sick CustomVarCharField3"
 TaskB.customFields.varchar.4="Sick CustomVarCharField4"
+TaskB.customFields.varchar.5="Other Leave/Sick/Long"
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -148,7 +150,8 @@ TaskC.TYPE=0
 TaskC.customFields.varchar.1="Maternity CustomVarCharField1"
 TaskC.customFields.varchar.2="Maternity CustomVarCharField2"
 TaskC.customFields.varchar.3="Maternity CustomVarCharField3"
-TaskC.customFields.varchar.4="Maternity CustomVarCharField4"' #txt
+TaskC.customFields.varchar.4="Maternity CustomVarCharField4"
+TaskC.customFields.varchar.5="Other Leave/Maternity"' #txt
 Tt0 f7 type internaltest.Data #txt
 Tt0 f7 template "/ProcessPages/portalHome.ivc" #txt
 Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
