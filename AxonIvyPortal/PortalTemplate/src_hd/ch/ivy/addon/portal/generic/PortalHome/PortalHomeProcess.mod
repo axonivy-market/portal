@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon May 16 18:21:52 ICT 2016]
-14BEF201D2E3FF7D 3.18 #module
+[>Created: Thu Apr 20 15:36:45 ICT 2017]
+14BEF201D2E3FF7D 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalHomeProcess Big #zClass
 Ps0 RD #cInfo
@@ -21,10 +21,12 @@ Ps0 @PushWFArc f11 '' #zField
 >Proto Ps0 Ps0 PortalHomeProcess #zField
 Ps0 f0 guid 14BEF201D4239EF7 #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
-Ps0 f0 method start() #txt
+Ps0 f0 method start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portal.generic.view.TaskView taskView> param = methodEvent.getInputArguments();
+' #txt
+Ps0 f0 inParameterMapAction 'out.taskView=param.taskView;
 ' #txt
 Ps0 f0 outParameterDecl '<> result;
 ' #txt

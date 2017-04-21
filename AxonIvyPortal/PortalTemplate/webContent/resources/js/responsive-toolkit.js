@@ -833,13 +833,14 @@ function PortalDashboardToolkit() {
 	  }
 
 	  function switchTaskListContainerClass(mode) {
+	    compactWidgetContainerClass = 'js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col';
 	    if (isCompactMode(mode)) {
 	      $('.task-list-container').switchClass('task-list-container js-task-list-container', 'dashboard-container', 0).attr('style', '');
 	      $('.js-task-list-main-col').attr('style', '');
 	      $('.js-expansed-mode').switchClass('js-task-list-main-col', compactWidgetContainerClass, 0);
 	    }else {
 	      $('.dashboard-container').switchClass('dashboard-container', 'task-list-container js-task-list-container', 0).attr('style', '');
-		  $('.js-expansed-mode').switchClass(compactWidgetContainerClass, 'js-task-list-main-col', 0);
+	      $('.js-expansed-mode').switchClass(compactWidgetContainerClass, 'js-task-list-main-col', 0);
 	    }
 	  }
 

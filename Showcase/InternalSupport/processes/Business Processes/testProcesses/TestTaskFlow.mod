@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Apr 20 11:26:39 ICT 2017]
+[>Created: Fri Apr 21 17:06:56 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -25,10 +25,6 @@ Tt0 @TaskSwitch f23 '' #zField
 Tt0 @PushWFArc f25 '' #zField
 Tt0 @GridStep f1 '' #zField
 Tt0 @PushWFArc f2 '' #zField
-Tt0 @EndRequest f20 '' #zField
-Tt0 @PushWFArc f18 '' #zField
-Tt0 @PushWFArc f17 '' #zField
-Tt0 @PushWFArc f19 '' #zField
 Tt0 @TkArc f4 '' #zField
 Tt0 @TaskSwitchSimple f8 '' #zField
 Tt0 @EndTask f10 '' #zField
@@ -56,6 +52,10 @@ Tt0 @EndTask f42 '' #zField
 Tt0 @TkArc f43 '' #zField
 Tt0 @PushWFArc f44 '' #zField
 Tt0 @TkArc f3 '' #zField
+Tt0 @EndTask f45 '' #zField
+Tt0 @PushWFArc f17 '' #zField
+Tt0 @PushWFArc f18 '' #zField
+Tt0 @PushWFArc f19 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -384,20 +384,6 @@ Tt0 f1 526 180 36 24 20 -2 #rect
 Tt0 f1 @|StepIcon #fIcon
 Tt0 f2 expr out #txt
 Tt0 f2 544 77 544 180 #arcP
-Tt0 f20 type internaltest.Data #txt
-Tt0 f20 template "/ProcessPages/portalHome.ivc" #txt
-Tt0 f20 187 451 26 26 14 0 #rect
-Tt0 f20 @|EndRequestIcon #fIcon
-Tt0 f18 expr out #txt
-Tt0 f18 72 308 187 464 #arcP
-Tt0 f18 1 72 464 #addKink
-Tt0 f18 1 0.032798207405834785 0 0 #arcLabel
-Tt0 f17 expr out #txt
-Tt0 f17 336 308 213 464 #arcP
-Tt0 f17 1 336 464 #addKink
-Tt0 f17 1 0.03785109119051796 0 0 #arcLabel
-Tt0 f19 expr out #txt
-Tt0 f19 200 308 200 451 #arcP
 Tt0 f4 expr out #txt
 Tt0 f4 type internaltest.Data #txt
 Tt0 f4 var in1 #txt
@@ -763,6 +749,19 @@ Tt0 f3 type internaltest.Data #txt
 Tt0 f3 var in1 #txt
 Tt0 f3 template /ProcessPages/portalHome.ivc #txt
 Tt0 f3 544 204 544 274 #arcP
+Tt0 f45 type internaltest.Data #txt
+Tt0 f45 187 403 26 26 14 0 #rect
+Tt0 f45 @|EndIcon #fIcon
+Tt0 f17 expr out #txt
+Tt0 f17 200 308 200 403 #arcP
+Tt0 f18 expr out #txt
+Tt0 f18 72 308 187 416 #arcP
+Tt0 f18 1 72 416 #addKink
+Tt0 f18 1 0.040404381211362396 0 0 #arcLabel
+Tt0 f19 expr out #txt
+Tt0 f19 336 308 213 416 #arcP
+Tt0 f19 1 336 416 #addKink
+Tt0 f19 1 0.07231812892046431 0 0 #arcLabel
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -784,12 +783,6 @@ Tt0 f7 out f14 tail #connect
 Tt0 f14 head f11 mainIn #connect
 Tt0 f7 out f15 tail #connect
 Tt0 f15 head f12 mainIn #connect
-Tt0 f12 mainOut f17 tail #connect
-Tt0 f17 head f20 mainIn #connect
-Tt0 f11 mainOut f19 tail #connect
-Tt0 f19 head f20 mainIn #connect
-Tt0 f9 mainOut f18 tail #connect
-Tt0 f18 head f20 mainIn #connect
 Tt0 f23 out f25 tail #connect
 Tt0 f25 head f22 mainIn #connect
 Tt0 f0 mainOut f2 tail #connect
@@ -822,3 +815,9 @@ Tt0 f39 mainOut f43 tail #connect
 Tt0 f43 head f41 in #connect
 Tt0 f41 out f44 tail #connect
 Tt0 f44 head f42 mainIn #connect
+Tt0 f11 mainOut f17 tail #connect
+Tt0 f17 head f45 mainIn #connect
+Tt0 f9 mainOut f18 tail #connect
+Tt0 f18 head f45 mainIn #connect
+Tt0 f12 mainOut f19 tail #connect
+Tt0 f19 head f45 mainIn #connect

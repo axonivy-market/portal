@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Apr 18 11:03:13 ICT 2017]
+[>Created: Fri Apr 21 16:42:16 ICT 2017]
 1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
@@ -165,7 +165,10 @@ Nr0 f14 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f14 actionTable 'out=in;
 ' #txt
-Nr0 f14 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+Nr0 f14 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
@@ -175,6 +178,10 @@ import java.util.Arrays;
 
 MainMenuNode category = new MainMenuNode();
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_CASE_ID.toString(), in.caseId.id());
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_CASE_NAME.toString(), in.caseName);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_SERVER_ID.toString(), in.caseId.serverId());
 
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setCaseId(in.caseId.id());

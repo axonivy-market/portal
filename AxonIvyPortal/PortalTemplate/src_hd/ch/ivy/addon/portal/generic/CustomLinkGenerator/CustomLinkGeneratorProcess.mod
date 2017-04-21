@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 03 14:43:32 ICT 2017]
+[>Created: Wed Apr 19 16:56:40 ICT 2017]
 14BEEC80DFF38FB5 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomLinkGeneratorProcess Big #zClass
@@ -55,8 +55,10 @@ Cs0 @PushWFArc f41 '' #zField
 Cs0 @CallSub f38 '' #zField
 Cs0 @GridStep f13 '' #zField
 Cs0 @PushWFArc f29 '' #zField
-Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f19 '' #zField
+Cs0 @GridStep f40 '' #zField
+Cs0 @PushWFArc f42 '' #zField
+Cs0 @PushWFArc f39 '' #zField
 >Proto Cs0 Cs0 CustomLinkGeneratorProcess #zField
 Cs0 f1 type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
 Cs0 f1 819 275 26 26 0 12 #rect
@@ -531,7 +533,7 @@ Cs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f38 512 528 128 48 -48 -12 #rect
+Cs0 f38 664 526 128 48 -48 -12 #rect
 Cs0 f38 @|CallSubIcon #fIcon
 Cs0 f13 actionDecl 'ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData out;
 ' #txt
@@ -573,19 +575,43 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f13 414 540 36 24 -47 14 #rect
+Cs0 f13 414 538 36 24 -47 14 #rect
 Cs0 f13 @|StepIcon #fIcon
 Cs0 f29 expr in #txt
 Cs0 f29 outCond ch.ivy.addon.portalkit.enums.MenuKind.TASK.equals(in.selectedMenuItem.menuKind) #txt
-Cs0 f29 302 616 414 552 #arcP
+Cs0 f29 302 616 414 550 #arcP
 Cs0 f29 1 352 616 #addKink
-Cs0 f29 2 352 552 #addKink
+Cs0 f29 2 352 550 #addKink
 Cs0 f29 1 0.3451086956521739 0 0 #arcLabel
-Cs0 f39 expr out #txt
-Cs0 f39 450 552 512 552 #arcP
-Cs0 f39 1 0.3451086956521739 0 0 #arcLabel
 Cs0 f19 expr out #txt
 Cs0 f19 400 288 434 288 #arcP
+Cs0 f40 actionDecl 'ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData out;
+' #txt
+Cs0 f40 actionTable 'out=in;
+' #txt
+Cs0 f40 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);' #txt
+Cs0 f40 type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
+Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Store the last page
+to session</name>
+        <nameStyle>30
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f40 498 528 128 44 -45 -16 #rect
+Cs0 f40 @|StepIcon #fIcon
+Cs0 f42 expr out #txt
+Cs0 f42 450 550 498 550 #arcP
+Cs0 f42 0 0.3451086956521739 0 0 #arcLabel
+Cs0 f39 expr out #txt
+Cs0 f39 626 550 664 550 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.CustomLinkGenerator.CustomLinkGeneratorData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -630,5 +656,7 @@ Cs0 f29 head f13 mainIn #connect
 Cs0 f28 out f37 tail #connect
 Cs0 f28 out f33 tail #connect
 Cs0 f28 out f7 tail #connect
-Cs0 f13 mainOut f39 tail #connect
+Cs0 f13 mainOut f42 tail #connect
+Cs0 f42 head f40 mainIn #connect
+Cs0 f40 mainOut f39 tail #connect
 Cs0 f39 head f38 mainIn #connect

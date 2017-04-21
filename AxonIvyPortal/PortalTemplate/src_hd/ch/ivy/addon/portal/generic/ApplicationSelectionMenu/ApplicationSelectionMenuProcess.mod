@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Mar 24 14:46:06 ICT 2017]
+[>Created: Wed Apr 19 16:54:56 ICT 2017]
 156A1AA176DE2A21 3.20 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
@@ -56,8 +56,10 @@ As0 @GridStep f21 '' #zField
 As0 @RichDialogProcessStart f39 '' #zField
 As0 @CallSub f40 '' #zField
 As0 @PushWFArc f41 '' #zField
-As0 @PushWFArc f42 '' #zField
 As0 @PushWFArc f45 '' #zField
+As0 @GridStep f16 '' #zField
+As0 @PushWFArc f43 '' #zField
+As0 @PushWFArc f42 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f0 guid 14AF0B1C8DE6C030 #txt
 As0 f0 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -624,14 +626,38 @@ As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f40 1572 188 104 56 -48 -12 #rect
+As0 f40 1572 252 104 56 -48 -12 #rect
 As0 f40 @|CallSubIcon #fIcon
 As0 f41 expr out #txt
 As0 f41 1624 83 1624 124 #arcP
-As0 f42 expr out #txt
-As0 f42 1624 148 1624 188 #arcP
 As0 f45 expr in #txt
 As0 f45 736 142 736 204 #arcP
+As0 f16 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f16 actionTable 'out=in;
+' #txt
+As0 f16 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);' #txt
+As0 f16 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Store the last page
+to session</name>
+        <nameStyle>30
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f16 1560 186 128 44 -45 -16 #rect
+As0 f16 @|StepIcon #fIcon
+As0 f43 expr out #txt
+As0 f43 1624 148 1624 186 #arcP
+As0 f42 expr out #txt
+As0 f42 1624 230 1624 252 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -690,7 +716,9 @@ As0 f20 mainOut f38 tail #connect
 As0 f38 head f36 mainIn #connect
 As0 f39 mainOut f41 tail #connect
 As0 f41 head f21 mainIn #connect
-As0 f21 mainOut f42 tail #connect
-As0 f42 head f40 mainIn #connect
 As0 f5 out f45 tail #connect
 As0 f45 head f28 mainIn #connect
+As0 f21 mainOut f43 tail #connect
+As0 f43 head f16 mainIn #connect
+As0 f16 mainOut f42 tail #connect
+As0 f42 head f40 mainIn #connect

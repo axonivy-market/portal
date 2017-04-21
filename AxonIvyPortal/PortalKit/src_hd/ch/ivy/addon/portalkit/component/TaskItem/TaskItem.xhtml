@@ -10,6 +10,7 @@
   <cc:attribute name="compactMode" type="Boolean" />
   <cc:attribute name="isSelected" type="Boolean" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="onTaskStartCallback" />
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
   <cc:facet name="taskBody" shortDescription="Body content of a task item" />
 </cc:interface>
@@ -26,8 +27,8 @@
   </h:panelGroup>
 
   <h:panelGroup id="task-start" layout="block" rendered="#{!compactMode}"
-    class="#{rowIndex % 2 == 0 ? 'task-even-row' : 'task-odd-row'} full-mode task-start-list-item js-task-start-list-item #{isExpanded ? 'show-task-details-mode' : ''}">
-    <h:panelGroup id="task-info" class="task-start-link js-task-start-link" layout="block">
+    styleClass="#{rowIndex % 2 == 0 ? 'task-even-row' : 'task-odd-row'} full-mode task-start-list-item js-task-start-list-item #{isExpanded ? 'show-task-details-mode' : ''}">
+    <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block">
     
       <p:ajax event="click" delay="100" listener="#{taskWidgetBean.setExpandedTaskId(task.id, isExpanded)}"
         update="task-start @(.show-task-details-mode)" oncomplete="taskWidget.setupScrollbar(); taskListToolKit.responsive();" />
@@ -57,7 +58,7 @@
     <h:panelGroup styleClass="Fs14">
       <h:form id="reset-task-form">
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" styleClass="portal-ok-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onsuccess="#{cc.attrs.onTaskStartCallback}" />
         <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
       </h:form>
