@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Apr 19 15:45:39 ICT 2017]
-156F869FC3FCD1D9 3.19 #module
+[>Created: Fri Apr 21 14:03:25 ICT 2017]
+156F869FC3FCD1D9 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
 Ps0 RD #cInfo
@@ -25,7 +25,6 @@ Ps0 @GridStep f9 '' #zField
 Ps0 @CallSub f21 '' #zField
 Ps0 @GridStep f13 '' #zField
 Ps0 @CallSub f38 '' #zField
-Ps0 @PushWFArc f39 '' #zField
 Ps0 @RichDialogProcessStart f12 '' #zField
 Ps0 @PushWFArc f18 '' #zField
 Ps0 @GridStep f7 '' #zField
@@ -45,6 +44,9 @@ Ps0 @PushWFArc f24 '' #zField
 Ps0 @CallSub f25 '' #zField
 Ps0 @PushWFArc f26 '' #zField
 Ps0 @PushWFArc f14 '' #zField
+Ps0 @GridStep f28 '' #zField
+Ps0 @PushWFArc f29 '' #zField
+Ps0 @PushWFArc f30 '' #zField
 >Proto Ps0 Ps0 PortalTaskMenuProcess #zField
 Ps0 f0 guid 156F869FC6B3D9ED #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
@@ -233,11 +235,8 @@ Ps0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f38 312 280 128 48 -48 -12 #rect
+Ps0 f38 440 280 128 48 -48 -12 #rect
 Ps0 f38 @|CallSubIcon #fIcon
-Ps0 f39 expr out #txt
-Ps0 f39 226 304 312 304 #arcP
-Ps0 f39 0 0.24467500942153303 0 0 #arcLabel
 Ps0 f12 guid 156FDAF210A2DE69 #txt
 Ps0 f12 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f12 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
@@ -391,14 +390,41 @@ Ps0 f26 expr out #txt
 Ps0 f26 432 200 492 200 #arcP
 Ps0 f14 expr out #txt
 Ps0 f14 528 200 594 200 #arcP
+Ps0 f28 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
+' #txt
+Ps0 f28 actionTable 'out=in;
+' #txt
+Ps0 f28 actionCode 'import ch.ivy.addon.portalkit.bo.TaskNode;
+import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_CATEGORY.toString(), in.selectedMenuItem as TaskNode);' #txt
+Ps0 f28 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
+Ps0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Store the last page
+to session</name>
+        <nameStyle>30
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f28 277 282 128 44 -45 -16 #rect
+Ps0 f28 @|StepIcon #fIcon
+Ps0 f29 expr out #txt
+Ps0 f29 226 304 277 304 #arcP
+Ps0 f29 0 0.24467500942153303 0 0 #arcLabel
+Ps0 f30 expr out #txt
+Ps0 f30 405 304 440 304 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
-Ps0 f13 mainOut f39 tail #connect
-Ps0 f39 head f38 mainIn #connect
 Ps0 f12 mainOut f18 tail #connect
 Ps0 f18 head f13 mainIn #connect
 Ps0 f3 mainOut f15 tail #connect
@@ -423,3 +449,7 @@ Ps0 f9 mainOut f26 tail #connect
 Ps0 f26 head f25 mainIn #connect
 Ps0 f25 mainOut f14 tail #connect
 Ps0 f14 head f10 in #connect
+Ps0 f13 mainOut f29 tail #connect
+Ps0 f29 head f28 mainIn #connect
+Ps0 f28 mainOut f30 tail #connect
+Ps0 f30 head f38 mainIn #connect

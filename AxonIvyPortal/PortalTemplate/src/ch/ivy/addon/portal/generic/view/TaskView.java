@@ -21,6 +21,7 @@ public class TaskView {
     private boolean hideTaskFilter = Boolean.FALSE;
     private boolean showHeaderToolbar = Boolean.TRUE;
     private String noTaskFoundMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask");
+    private boolean compactMode = Boolean.TRUE;
 
     private MainMenuNode category;
 
@@ -83,6 +84,11 @@ public class TaskView {
       this.noTaskFoundMessage = noTaskFoundMessage;
       return this;
     }
+    
+    public Builder compactMode(boolean compactMode) {
+      this.compactMode = compactMode;
+      return this;
+    }
 
     public TaskView createNewTaskView() {
       return new TaskView(this);
@@ -101,6 +107,7 @@ public class TaskView {
   private final boolean hideTaskFilter;
   private final boolean showHeaderToolbar;
   private final String noTaskFoundMessage;
+  private final boolean compactMode;
 
   private TaskView(Builder builder) {
     pageTitle = builder.pageTitle;
@@ -115,6 +122,7 @@ public class TaskView {
     hideTaskFilter = builder.hideTaskFilter;
     showHeaderToolbar = builder.showHeaderToolbar;
     noTaskFoundMessage = builder.noTaskFoundMessage;
+    compactMode = builder.compactMode;
   }
 
   public String getNoTaskFoundMessage() {
@@ -172,4 +180,9 @@ public class TaskView {
   public boolean isShowHeaderToolbar() {
     return showHeaderToolbar;
   }
+
+  public boolean isCompactMode() {
+    return compactMode;
+  }
+  
 }
