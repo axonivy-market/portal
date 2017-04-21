@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 03 14:27:40 ICT 2017]
+[>Created: Fri Apr 21 11:02:57 ICT 2017]
 1521B28EE98E8444 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 StatisticWidgetProcess Big #zClass
@@ -84,7 +84,8 @@ Cs0 f8 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWid
 ' #txt
 Cs0 f8 actionTable 'out=in;
 ' #txt
-Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartModel;
+Cs0 f8 actionCode 'import org.primefaces.model.chart.PieChartModel;
+import ch.ivy.addon.portalkit.statistics.StatisticChartModel;
 
 StatisticChartModel statisticCharModel = new StatisticChartModel(in.priorityStatistic, in.expiryStatistic);
 in.priorityPieModel = statisticCharModel.createPriorityPieChart(in.lowPriorityColor, in.normalPriorityColor, in.highPriorityColor, in.exceptionPriorityColor);

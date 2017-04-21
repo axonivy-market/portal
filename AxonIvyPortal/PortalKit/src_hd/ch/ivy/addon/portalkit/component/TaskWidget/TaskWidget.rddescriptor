@@ -6,22 +6,6 @@
         <description></description>
     </method>
     <method>
-        <name>init</name>
-        <description></description>
-        <inputParameter>
-            <name>compactMode</name>
-            <description></description>
-            <parameterType>Boolean</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>dataModel</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
         <name>sortByPriority</name>
         <description></description>
     </method>
@@ -85,9 +69,31 @@
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
+    <method>
+        <name>storeConfiguration</name>
+        <description></description>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
+        <inputParameter>
+            <name>keyword</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>compactMode</name>
+            <description></description>
+            <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>dataModel</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>

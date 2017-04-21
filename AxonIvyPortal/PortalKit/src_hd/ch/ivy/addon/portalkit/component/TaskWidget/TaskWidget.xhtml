@@ -32,7 +32,6 @@
   <c:set var="showHeaderToolbar" value="#{cc.attrs.showHeaderToolbar eq null ? 'true' : cc.attrs.showHeaderToolbar}" />
   <c:set var="noTaskFoundMessage"
     value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
-  <f:event listener="#{logic.init(cc.attrs.compactMode, cc.attrs.dataModel)}" type="preRenderComponent" />
   <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
 
@@ -44,7 +43,7 @@
           <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" />
         </span>
         <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{showHeaderToolbar}">
-          <ui:fragment rendered="#{cc.attrs.compactMode}">
+          <ui:fragment>
             <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
               update="task-view task-widget-sort-menu task-widget-header #{data.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
               oncomplete="taskWidget.setupScrollbar(); #{data.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; taskWidget.setupHeader()">
@@ -83,7 +82,7 @@
         <p:dataScroller id="task-list-scroller" value="#{data.dataModel}" var="task" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex"
           styleClass="task-start-list js-task-start-list #{data.compactMode ? 'compact-mode' : ''}">
-          <ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}"
+          <ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}" onTaskStartCallback="onTaskStartCallBack()"
             isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}"
             compactMode="#{data.compactMode}" componentToUpdate="#{p:component('task-details-notes')}">
             <cc:insertFacet name="taskHeader" />
@@ -95,6 +94,10 @@
       </h:panelGroup>
     </h:panelGroup>
   </div>
+  
+  <h:form>
+    <p:remoteCommand actionListener="#{logic.storeConfiguration()}" name="onTaskStartCallBack" />
+  </h:form>
 
   <script type="text/javascript">
 	var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");
