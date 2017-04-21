@@ -37,11 +37,11 @@ public class TaskWidgetBean implements Serializable {
     return expandedTaskId;
   }
 
-  public void setExpandedTaskId(Long expandedCaseId, boolean alreadyExpanded) {
+  public void setExpandedTaskId(Long expandedTaskId, boolean alreadyExpanded) {
     if (alreadyExpanded) {
       this.expandedTaskId = 0L;
     } else {
-      this.expandedTaskId = expandedCaseId;
+      this.expandedTaskId = expandedTaskId;
     }
   }
 

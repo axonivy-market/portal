@@ -7,30 +7,37 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="taskView" value="#{data.taskView}" />
+  
     <ui:define name="pageTitle">Cockpit</ui:define>
     <ui:define name="pageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
       <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
       <c:set var="displayStatisticWidget" value="#{not empty displayStatisticWidget ? displayStatisticWidget : true}" />
 
-      <div class="js-dashboard-default-widget-container dashboard-container">
+      <h:panelGroup layout="block"
+        styleClass="js-dashboard-default-widget-container #{taskView.compactMode ? 'dashboard-container' : 'task-list-container js-task-list-container'}">
 
         <ui:insert name="processWidget">
-	        <div class="js-dashboard-main-content-1st-col dashboard-main-content-1st-col layout-col" jsf:rendered="#{displayProcessWidget}">
-	            <h:panelGroup layout="block" styleClass="js-process-widget" >
-	              <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true"
-	                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader')}" showBackButton="true"
-	                onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchProcessWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
-	                onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchProcessWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)" />
-	            </h:panelGroup>
-	        </div>
+          <h:panelGroup layout="block"
+            styleClass="js-dashboard-main-content-1st-col dashboard-main-content-1st-col layout-col #{!taskView.compactMode ? 'u-hidden' : ''}"
+            rendered="#{displayProcessWidget}">
+            <h:panelGroup layout="block" styleClass="js-process-widget">
+              <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader')}" showBackButton="true"
+                onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchProcessWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
+                onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchProcessWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)" />
+            </h:panelGroup>
+          </h:panelGroup>
         </ui:insert>
 
         <ui:insert name="taskWidget">
-          <div class="js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col"
-            jsf:rendered="#{displayTaskWidget}">
-            <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{tasks}"
+          <h:panelGroup layout="block"
+            styleClass="#{taskView.compactMode ? 'js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col' : 'js-expansed-mode js-task-list-main-col'}"
+            rendered="#{displayTaskWidget}">
+            <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{taskView.dataModel}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}"
+              keyword="#{taskView.keyword}" compactMode="#{taskView.compactMode}"
               onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
               onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)">
 
@@ -41,10 +48,11 @@
                 </ui:fragment>
 
                 <ui:fragment rendered="#{not useOverrideListHeader}">
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader id="task-list-header-component" dataModel="#{tasks}" />
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader id="task-list-header-component"
+                    dataModel="#{taskView.dataModel}" />
                 </ui:fragment>
               </f:facet>
-              
+
               <f:facet name="taskHeader">
                 <ui:fragment rendered="#{useOverrideHeader}">
                   <ui:insert name="taskHeader">
@@ -52,18 +60,20 @@
                 </ui:fragment>
 
                 <ui:fragment rendered="#{not useOverrideHeader}">
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component" priority="#{task.priority}" />
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
+                    priority="#{task.priority}" />
                   <div class="task-start-info">
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" />
                   </div>
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" userName="#{task.activatorUserName}"
-                    fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component"
+                    userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}" />
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" componentId="creation-time"
-                    value="#{task.startTimestamp}" styleClass="js-create-cell" />
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" componentId="expiry-time"
-                    value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" state="#{task.state}" />
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component"
+                    componentId="creation-time" value="#{task.startTimestamp}" styleClass="js-create-cell" />
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component"
+                    componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
+                    state="#{task.state}" />
                 </ui:fragment>
               </f:facet>
 
@@ -81,7 +91,8 @@
                     componentToUpdate="#{p:component('task-details-notes')}" />
                   <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" />
                   <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}" />
-                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer id="responsiveness-container" styleClass="hidden-lg">
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer id="responsiveness-container"
+                    styleClass="hidden-lg">
                     <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
                       icon="fa fa-info-circle js-data-column-responsive-button" displayedSelectors="['#task-data']"
                       hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
@@ -98,21 +109,23 @@
                 </ui:fragment>
               </f:facet>
             </ic:ch.ivy.addon.portalkit.component.TaskWidget>
-          </div>
+          </h:panelGroup>
         </ui:insert>
 
         <ui:insert name="statisticWidget">
-	        <div class="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col" jsf:rendered="#{displayStatisticWidget}">
-	            <h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">
-	              <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
-	                priorityStatistic="#{statistic.priorityStatistic}" expiryStatistic="#{statistic.expiryStatistic}"
-	                onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchStatisticWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
-	                onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchStatisticWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)" />
-	            </h:panelGroup>
-	        </div>
+          <h:panelGroup layout="block"
+            styleClass="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col #{!taskView.compactMode ? 'u-hidden' : ''}"
+            rendered="#{displayStatisticWidget}">
+            <h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">
+              <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
+                priorityStatistic="#{statistic.priorityStatistic}" expiryStatistic="#{statistic.expiryStatistic}"
+                onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchStatisticWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
+                onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchStatisticWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)" />
+            </h:panelGroup>
+          </h:panelGroup>
         </ui:insert>
-      </div>
-      
+      </h:panelGroup>
+
       <div class="js-custom-widget-container simple-container">
         <div class="js-simple-main-col">
         	<ui:insert name="customWidget">

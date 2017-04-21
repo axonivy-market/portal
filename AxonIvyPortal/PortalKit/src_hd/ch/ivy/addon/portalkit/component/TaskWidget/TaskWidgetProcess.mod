@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Mar 23 10:55:34 ICT 2017]
+[>Created: Fri Apr 21 16:39:29 ICT 2017]
 15035F535EFB1618 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
@@ -17,7 +17,6 @@ Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @RichDialogInitStart f0 '' #zField
 Ts0 @RichDialogProcessEnd f1 '' #zField
-Ts0 @PushWFArc f3 '' #zField
 Ts0 @RichDialogMethodStart f37 '' #zField
 Ts0 @RichDialogProcessEnd f38 '' #zField
 Ts0 @GridStep f60 '' #zField
@@ -26,7 +25,6 @@ Ts0 @PushWFArc f44 '' #zField
 Ts0 @RichDialogProcessStart f82 '' #zField
 Ts0 @RichDialogProcessEnd f83 '' #zField
 Ts0 @PushWFArc f84 '' #zField
-Ts0 @RichDialogMethodStart f85 '' #zField
 Ts0 @GridStep f91 '' #zField
 Ts0 @PushWFArc f90 '' #zField
 Ts0 @GridStep f93 '' #zField
@@ -45,23 +43,40 @@ Ts0 @CallSub f69 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 Ts0 @PushWFArc f7 '' #zField
-Ts0 @GridStep f4 '' #zField
-Ts0 @PushWFArc f5 '' #zField
-Ts0 @PushWFArc f6 '' #zField
+Ts0 @RichDialogMethodStart f8 '' #zField
+Ts0 @GridStep f10 '' #zField
+Ts0 @PushWFArc f11 '' #zField
+Ts0 @PushWFArc f12 '' #zField
+Ts0 @PushWFArc f3 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f0 method start() #txt
+Ts0 f0 method start(String,Boolean,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
 Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+<java.lang.String keyword,java.lang.Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
 ' #txt
+Ts0 f0 inParameterMapAction 'out.compactMode=param.#compactMode is initialized ? param.compactMode : true;
+out.keyword=param.#keyword;
+' #txt
+Ts0 f0 inActionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+import javax.faces.context.FacesContext;
+
+if (!param.#dataModel is initialized) {
+	FacesContext context = FacesContext.getCurrentInstance();
+	TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskWidgetBean}", TaskWidgetBean.class) as TaskWidgetBean;
+	out.dataModel = taskWidgetBean.dataModel;
+} else {
+	out.dataModel = param.dataModel;
+}' #txt
 Ts0 f0 outParameterDecl '<> result;
 ' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
+        <nameStyle>7,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -70,8 +85,6 @@ Ts0 f0 @|RichDialogInitStartIcon #fIcon
 Ts0 f1 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f1 61 181 22 22 14 0 #rect
 Ts0 f1 @|RichDialogProcessEndIcon #fIcon
-Ts0 f3 expr out #txt
-Ts0 f3 72 75 72 181 #arcP
 Ts0 f37 guid 152ED6485874C117 #txt
 Ts0 f37 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f37 method filter() #txt
@@ -140,33 +153,6 @@ Ts0 f83 61 437 22 22 14 0 #rect
 Ts0 f83 @|RichDialogProcessEndIcon #fIcon
 Ts0 f84 expr out #txt
 Ts0 f84 72 363 72 437 #arcP
-Ts0 f85 guid 153E0E71EF8532C3 #txt
-Ts0 f85 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f85 method init(Boolean,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
-Ts0 f85 disableUIEvents false #txt
-Ts0 f85 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f85 inParameterMapAction 'out.dataModel=param.#dataModel;
-' #txt
-Ts0 f85 inActionCode 'if(!out.modeInitialized) {
-	out.compactMode = param.compactMode;
-	out.modeInitialized = true;
-}' #txt
-Ts0 f85 outParameterDecl '<> result;
-' #txt
-Ts0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>init(isCompactMode,
-dataModel)</name>
-        <nameStyle>30,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f85 165 341 22 22 6 7 #rect
-Ts0 f85 @|RichDialogMethodStartIcon #fIcon
 Ts0 f91 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f91 actionTable 'out=in;
@@ -378,45 +364,59 @@ Ts0 f2 expr out #txt
 Ts0 f2 752 172 752 245 #arcP
 Ts0 f7 expr out #txt
 Ts0 f7 752 75 752 148 #arcP
-Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+Ts0 f8 guid 15B8AD1D7AD576DC #txt
+Ts0 f8 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f8 method storeConfiguration() #txt
+Ts0 f8 disableUIEvents false #txt
+Ts0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f4 actionTable 'out=in;
+Ts0 f8 outParameterDecl '<> result;
 ' #txt
-Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
-import javax.faces.context.FacesContext;
-
-if (!out.#dataModel is initialized) {
-	FacesContext context = FacesContext.getCurrentInstance();
-	TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskWidgetBean}", TaskWidgetBean.class) as TaskWidgetBean;
-	out.dataModel = taskWidgetBean.dataModel;
-}' #txt
-Ts0 f4 security system #txt
-Ts0 f4 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>init dataModel
-if empty</name>
-        <nameStyle>23
+        <name>storeConfiguration()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f8 629 341 22 22 14 0 #rect
+Ts0 f8 @|RichDialogMethodStartIcon #fIcon
+Ts0 f10 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f10 actionTable 'out=in;
+' #txt
+Ts0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString(), in.dataModel);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_COMPACT_MODE.toString(), in.compactMode);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_KEYWORD.toString(), in.keyword);' #txt
+Ts0 f10 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>store task
+list''s configuration</name>
+        <nameStyle>31
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f4 158 396 36 24 20 -2 #rect
-Ts0 f4 @|StepIcon #fIcon
-Ts0 f5 expr out #txt
-Ts0 f5 176 363 176 396 #arcP
-Ts0 f5 0 0.1310558335856218 0 0 #arcLabel
-Ts0 f6 expr out #txt
-Ts0 f6 176 420 83 448 #arcP
-Ts0 f6 1 176 448 #addKink
-Ts0 f6 1 0.1310558335856218 0 0 #arcLabel
+Ts0 f10 622 396 36 24 20 -2 #rect
+Ts0 f10 @|StepIcon #fIcon
+Ts0 f11 expr out #txt
+Ts0 f11 640 363 640 396 #arcP
+Ts0 f12 expr out #txt
+Ts0 f12 640 420 83 448 #arcP
+Ts0 f12 1 640 448 #addKink
+Ts0 f12 1 0.4606959193892842 0 0 #arcLabel
+Ts0 f3 expr out #txt
+Ts0 f3 72 75 72 181 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
-Ts0 f0 mainOut f3 tail #connect
-Ts0 f3 head f1 mainIn #connect
 Ts0 f37 mainOut f61 tail #connect
 Ts0 f61 head f60 mainIn #connect
 Ts0 f60 mainOut f44 tail #connect
@@ -439,7 +439,9 @@ Ts0 f69 mainOut f2 tail #connect
 Ts0 f2 head f67 mainIn #connect
 Ts0 f68 mainOut f7 tail #connect
 Ts0 f7 head f69 mainIn #connect
-Ts0 f85 mainOut f5 tail #connect
-Ts0 f5 head f4 mainIn #connect
-Ts0 f4 mainOut f6 tail #connect
-Ts0 f6 head f83 mainIn #connect
+Ts0 f8 mainOut f11 tail #connect
+Ts0 f11 head f10 mainIn #connect
+Ts0 f10 mainOut f12 tail #connect
+Ts0 f12 head f83 mainIn #connect
+Ts0 f0 mainOut f3 tail #connect
+Ts0 f3 head f1 mainIn #connect

@@ -30,7 +30,7 @@
         value="#{task.state eq 'PARKED'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/freeReservationTaskTooltip'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTaskTooltip')}"
         styleClass="task-command-tooltip" />
       <p:commandLink id="task-start-command" rendered="#{task.state != 'RESUMED'}" disabled="#{!task.canResume}"
-        styleClass="task-command" actionListener="#{logic.openTask(task)}" onstart="event.stopPropagation();">
+        styleClass="task-command" actionListener="#{logic.openTask(task)}" onstart="event.stopPropagation();" onsuccess="#{cc.attrs.onTaskStartCallback}">
         <span class="action-icon tmi-chevorn-right" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
       </p:commandLink>
