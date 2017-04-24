@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Apr 21 17:03:35 ICT 2017]
+[>Created: Mon Apr 24 10:30:07 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -273,19 +273,13 @@ import java.util.Arrays;
 
 if (in.#dataModel is initialized) {
 	TaskNode taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
-	Long caseId = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CASE_ID.toString()) as Long;
-	boolean canLinkBackToCaseDetail = #caseId is initialized; 
-	String caseName = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CASE_NAME.toString()) as String;
-	Long serverId = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_SERVER_ID.toString()) as Long;
+	boolean canLinkBackToCaseDetail = in.#dataModel.#queryCriteria.#caseId is initialized; 
 	
 	in.taskView = TaskView.create().category(taskCategory).dataModel(in.dataModel)
 												.canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false)
-												.remoteTaskId(in.selectedTaskId).caseId(caseId).caseName(caseName).serverId(serverId).keyword(in.keyword).createNewTaskView();
+												.remoteTaskId(in.selectedTaskId).createNewTaskView();
 	
 	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CATEGORY.toString());
-	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CASE_ID.toString());
-	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CASE_NAME.toString());
-	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_SERVER_ID.toString());
 } else {
 	TaskLazyDataModel dataModel = new TaskLazyDataModel();
 	dataModel.getQueryCriteria().setNewQueryCreated(true);
@@ -361,22 +355,18 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-boolean isTaskStarted = task.getStartProcessData() is initialized;
+boolean isTaskStarted = #task is initialized ? task.getStartProcessData() is initialized : false;
 
 if (isTaskStarted && SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) is initialized) {
 	in.portalPage = SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) as PortalPage;
 	in.dataModel = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString()) as TaskLazyDataModel;
-	in.keyword = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_KEYWORD.toString()) as String;
-	in.compactMode = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_COMPACT_MODE.toString()) as Boolean;
+	
+	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.LAST_PAGE.toString());
+	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString());
 } else {
 	in.portalPage = PortalPage.HOME_PAGE;
-	in.dataModel = new TaskLazyDataModel();
-}
-
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.LAST_PAGE.toString());
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString());
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_KEYWORD.toString());
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_COMPACT_MODE.toString());' #txt
+	SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), in.portalPage);
+}' #txt
 Pt0 f4 security system #txt
 Pt0 f4 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -428,9 +418,15 @@ Pt0 f22 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f22 actionTable 'out=in;
 ' #txt
-Pt0 f22 actionCode 'import ch.ivy.addon.portal.generic.view.TaskView;
+Pt0 f22 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portal.generic.view.TaskView;
 
-in.taskView = TaskView.create().dataModel(in.dataModel).keyword(in.#keyword).compactMode(in.#compactMode is initialized ? in.compactMode : true).showHeaderToolbar(true).noTaskFoundMessage("").createNewTaskView();
+if (!in.#dataModel is initialized) {
+	in.dataModel = new TaskLazyDataModel();
+	in.dataModel.compactMode = true;
+}
+
+in.taskView = TaskView.create().dataModel(in.dataModel).showHeaderToolbar(true).noTaskFoundMessage("").createNewTaskView();
 ' #txt
 Pt0 f22 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

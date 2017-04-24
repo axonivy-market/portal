@@ -41,6 +41,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected TaskQueryCriteria queryCriteria;
   protected Long serverId;
   protected Comparator<RemoteTask> comparator;
+  
+  protected boolean compactMode;
+  protected String caseName;
 
   public TaskLazyDataModel() {
     super();
@@ -69,6 +72,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     instance.setSearchCriteria(source.getSearchCriteria());
     instance.setQueryCriteria(source.getQueryCriteria());
     instance.setServerId(source.getServerId());
+    instance.setCompactMode(source.isCompactMode());
+    instance.setCaseName(source.getCaseName());
     return instance;
   }
   
@@ -357,6 +362,22 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return serverId;
   }
   
+  public boolean isCompactMode() {
+    return compactMode;
+  }
+
+  public void setCompactMode(boolean compactMode) {
+    this.compactMode = compactMode;
+  }
+
+  public String getCaseName() {
+    return caseName;
+  }
+
+  public void setCaseName(String caseName) {
+    this.caseName = caseName;
+  }
+
   /**
    * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
    */
