@@ -358,7 +358,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().category().isNotNull().groupBy().category();
+            taskQuery.where().and().category().isNotNull();
             Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
             Ivy.log().warn("NUMBER OF RECORDS: {0}", recordSet.size());
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
@@ -395,7 +395,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().category().isNotNull().groupBy().category();
+            taskQuery.where().and().category().isNotNull();
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
@@ -428,7 +428,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().category().isNotNull().groupBy().category();
+            taskQuery.where().and().category().isNotNull();
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
