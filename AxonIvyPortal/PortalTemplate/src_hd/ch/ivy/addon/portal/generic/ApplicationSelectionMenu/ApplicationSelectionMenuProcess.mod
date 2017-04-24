@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 10:25:31 ICT 2017]
+[>Created: Mon Apr 24 17:27:45 ICT 2017]
 156A1AA176DE2A21 3.20 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
@@ -24,7 +24,6 @@ As0 @PushWFArc f3 '' #zField
 As0 @GridStep f14 '' #zField
 As0 @RichDialogProcessEnd f26 '' #zField
 As0 @GridStep f28 '' #zField
-As0 @PushWFArc f27 '' #zField
 As0 @Alternative f5 '' #zField
 As0 @RichDialogProcessStart f29 '' #zField
 As0 @RichDialogProcessStart f12 '' #zField
@@ -38,16 +37,10 @@ As0 @RichDialogProcessStart f13 '' #zField
 As0 @RichDialogProcessStart f25 '' #zField
 As0 @RichDialog f33 '' #zField
 As0 @RichDialog f32 '' #zField
-As0 @PushWFArc f34 '' #zField
-As0 @PushWFArc f30 '' #zField
-As0 @PushWFArc f15 '' #zField
-As0 @PushWFArc f17 '' #zField
-As0 @ErrorBoundaryEvent Et0 ErrorBoundaryEvent #zField
 As0 @RichDialogProcessStart f18 '' #zField
 As0 @GridStep f24 '' #zField
 As0 @PushWFArc f31 '' #zField
 As0 @CallSub f56 '' #zField
-As0 @PushWFArc f35 '' #zField
 As0 @GridStep f36 '' #zField
 As0 @PushWFArc f37 '' #zField
 As0 @PushWFArc f2 '' #zField
@@ -56,10 +49,24 @@ As0 @GridStep f21 '' #zField
 As0 @RichDialogProcessStart f39 '' #zField
 As0 @CallSub f40 '' #zField
 As0 @PushWFArc f41 '' #zField
-As0 @PushWFArc f45 '' #zField
 As0 @GridStep f16 '' #zField
 As0 @PushWFArc f43 '' #zField
 As0 @PushWFArc f42 '' #zField
+As0 @PushWFArc f30 '' #zField
+As0 @PushWFArc f15 '' #zField
+As0 @PushWFArc f27 '' #zField
+As0 @GridStep f44 '' #zField
+As0 @PushWFArc f46 '' #zField
+As0 @PushWFArc f45 '' #zField
+As0 @GridStep f47 '' #zField
+As0 @PushWFArc f48 '' #zField
+As0 @PushWFArc f17 '' #zField
+As0 @GridStep f49 '' #zField
+As0 @PushWFArc f50 '' #zField
+As0 @PushWFArc f34 '' #zField
+As0 @GridStep f51 '' #zField
+As0 @PushWFArc f52 '' #zField
+As0 @PushWFArc f35 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f0 guid 14AF0B1C8DE6C030 #txt
 As0 f0 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -248,7 +255,7 @@ As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f14 494 116 36 24 20 -2 #rect
 As0 f14 @|StepIcon #fIcon
 As0 f26 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f26 725 293 22 22 14 0 #rect
+As0 f26 725 333 22 22 14 0 #rect
 As0 f26 @|RichDialogProcessEndIcon #fIcon
 As0 f28 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -268,10 +275,8 @@ selected app</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f28 718 204 36 24 20 -2 #rect
+As0 f28 718 244 36 24 20 -2 #rect
 As0 f28 @|StepIcon #fIcon
-As0 f27 expr out #txt
-As0 f27 736 228 736 293 #arcP
 As0 f5 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -381,7 +386,7 @@ As0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f25 1181 53 22 22 14 0 #rect
+As0 f25 1301 53 22 22 14 0 #rect
 As0 f25 @|RichDialogProcessStartIcon #fIcon
 As0 f33 targetWindow NEW:card: #txt
 As0 f33 targetDisplay TOP #txt
@@ -408,7 +413,7 @@ As0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f33 1020 108 72 40 -22 -8 #rect
+As0 f33 1020 200 72 40 -22 -8 #rect
 As0 f33 @|RichDialogIcon #fIcon
 As0 f32 targetWindow NEW:card: #txt
 As0 f32 targetDisplay TOP #txt
@@ -435,28 +440,8 @@ As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f32 1152 108 80 40 -27 -8 #rect
+As0 f32 1272 204 80 40 -27 -8 #rect
 As0 f32 @|RichDialogIcon #fIcon
-As0 f34 expr out #txt
-As0 f34 1192 75 1192 108 #arcP
-As0 f30 expr out #txt
-As0 f30 1192 148 746 300 #arcP
-As0 f30 1 1192 160 #addKink
-As0 f30 1 0.44378206904513473 0 0 #arcLabel
-As0 f15 expr out #txt
-As0 f15 1056 148 746 299 #arcP
-As0 f15 1 1056 176 #addKink
-As0 f15 1 0.40824443746900757 0 0 #arcLabel
-As0 f17 expr out #txt
-As0 f17 1056 75 1056 108 #arcP
-As0 Et0 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
-' #txt
-As0 Et0 actionTable 'out=in;
-' #txt
-As0 Et0 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 Et0 attachedToRef 156A1AA176DE2A21-f32 #txt
-As0 Et0 1195 145 26 26 14 0 #rect
-As0 Et0 @|ErrorBoundaryEventIcon #fIcon
 As0 f18 guid 156DAB14114D1261 #txt
 As0 f18 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f18 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
@@ -472,7 +457,7 @@ As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f18 1333 53 22 22 14 0 #rect
+As0 f18 1557 53 22 22 14 0 #rect
 As0 f18 @|RichDialogProcessStartIcon #fIcon
 As0 f24 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -507,10 +492,10 @@ As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f24 1326 116 36 24 20 -2 #rect
+As0 f24 1550 116 36 24 20 -2 #rect
 As0 f24 @|StepIcon #fIcon
 As0 f31 expr out #txt
-As0 f31 1344 75 1344 116 #arcP
+As0 f31 1568 75 1568 116 #arcP
 As0 f56 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f56 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
 As0 f56 doCall true #txt
@@ -531,10 +516,8 @@ As0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f56 1288 184 112 48 -49 -12 #rect
+As0 f56 1512 264 112 48 -49 -12 #rect
 As0 f56 @|CallSubIcon #fIcon
-As0 f35 expr out #txt
-As0 f35 1344 140 1344 184 #arcP
 As0 f36 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f36 actionTable 'out=in;
@@ -587,7 +570,7 @@ As0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f21 1606 124 36 24 20 -2 #rect
+As0 f21 1774 116 36 24 20 -2 #rect
 As0 f21 @|StepIcon #fIcon
 As0 f39 guid 15731420EB6AD172 #txt
 As0 f39 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -604,7 +587,7 @@ As0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f39 1613 61 22 22 14 0 #rect
+As0 f39 1781 53 22 22 14 0 #rect
 As0 f39 @|RichDialogProcessStartIcon #fIcon
 As0 f40 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f40 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
@@ -626,12 +609,10 @@ As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f40 1572 252 104 56 -48 -12 #rect
+As0 f40 1740 244 104 56 -48 -12 #rect
 As0 f40 @|CallSubIcon #fIcon
 As0 f41 expr out #txt
-As0 f41 1624 83 1624 124 #arcP
-As0 f45 expr in #txt
-As0 f45 736 142 736 204 #arcP
+As0 f41 1792 75 1792 116 #arcP
 As0 f16 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f16 actionTable 'out=in;
@@ -645,19 +626,129 @@ As0 f16 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSel
 As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Store the last page
-to session</name>
-        <nameStyle>30
+        <name>Store the last page 
+as Portal Task to session</name>
+        <nameStyle>46
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-As0 f16 1560 186 128 44 -45 -16 #rect
+As0 f16 1712 178 160 44 -62 -16 #rect
 As0 f16 @|StepIcon #fIcon
 As0 f43 expr out #txt
-As0 f43 1624 148 1624 186 #arcP
+As0 f43 1792 140 1792 178 #arcP
 As0 f42 expr out #txt
-As0 f42 1624 230 1624 252 #arcP
+As0 f42 1792 222 1792 244 #arcP
+As0 f30 expr out #txt
+As0 f30 1312 244 746 342 #arcP
+As0 f30 1 1312 288 #addKink
+As0 f30 1 0.3471706142897276 0 0 #arcLabel
+As0 f15 expr out #txt
+As0 f15 1056 240 746 342 #arcP
+As0 f15 1 1056 288 #addKink
+As0 f15 1 0.27170293393496797 0 0 #arcLabel
+As0 f27 expr out #txt
+As0 f27 736 268 736 333 #arcP
+As0 f44 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f44 actionTable 'out=in;
+' #txt
+As0 f44 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.LAST_PAGE.toString());' #txt
+As0 f44 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Remove the session
+attribute of last page</name>
+        <nameStyle>41
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f44 718 180 36 24 20 -2 #rect
+As0 f44 @|StepIcon #fIcon
+As0 f46 expr in #txt
+As0 f46 736 142 736 180 #arcP
+As0 f45 expr out #txt
+As0 f45 736 204 736 244 #arcP
+As0 f47 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f47 actionTable 'out=in;
+' #txt
+As0 f47 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.LAST_PAGE.toString());' #txt
+As0 f47 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Remove the session
+attribute of last page</name>
+        <nameStyle>41
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f47 1038 116 36 24 20 -2 #rect
+As0 f47 @|StepIcon #fIcon
+As0 f48 expr out #txt
+As0 f48 1056 75 1056 116 #arcP
+As0 f17 expr out #txt
+As0 f17 1056 140 1056 200 #arcP
+As0 f49 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f49 actionTable 'out=in;
+' #txt
+As0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.LAST_PAGE.toString());' #txt
+As0 f49 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Remove the session
+attribute of last page</name>
+        <nameStyle>41
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f49 1294 116 36 24 20 -2 #rect
+As0 f49 @|StepIcon #fIcon
+As0 f50 expr out #txt
+As0 f50 1312 75 1312 116 #arcP
+As0 f34 expr out #txt
+As0 f34 1312 140 1312 204 #arcP
+As0 f51 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f51 actionTable 'out=in;
+' #txt
+As0 f51 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.LAST_PAGE.toString());' #txt
+As0 f51 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Remove the session
+attribute of last page</name>
+        <nameStyle>41
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f51 1550 186 36 24 20 -2 #rect
+As0 f51 @|StepIcon #fIcon
+As0 f52 expr out #txt
+As0 f52 1568 140 1568 186 #arcP
+As0 f35 expr out #txt
+As0 f35 1568 210 1568 264 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -696,18 +787,12 @@ As0 f10 mainOut f8 tail #connect
 As0 f8 head f5 in #connect
 As0 f29 mainOut f11 tail #connect
 As0 f11 head f5 in #connect
-As0 f25 mainOut f34 tail #connect
-As0 f34 head f32 mainIn #connect
 As0 f32 mainOut f30 tail #connect
 As0 f30 head f26 mainIn #connect
 As0 f33 mainOut f15 tail #connect
 As0 f15 head f26 mainIn #connect
-As0 f13 mainOut f17 tail #connect
-As0 f17 head f33 mainIn #connect
 As0 f18 mainOut f31 tail #connect
 As0 f31 head f24 mainIn #connect
-As0 f24 mainOut f35 tail #connect
-As0 f35 head f56 mainIn #connect
 As0 f9 mainOut f37 tail #connect
 As0 f37 head f36 mainIn #connect
 As0 f36 mainOut f2 tail #connect
@@ -716,9 +801,23 @@ As0 f20 mainOut f38 tail #connect
 As0 f38 head f36 mainIn #connect
 As0 f39 mainOut f41 tail #connect
 As0 f41 head f21 mainIn #connect
-As0 f5 out f45 tail #connect
-As0 f45 head f28 mainIn #connect
 As0 f21 mainOut f43 tail #connect
 As0 f43 head f16 mainIn #connect
 As0 f16 mainOut f42 tail #connect
 As0 f42 head f40 mainIn #connect
+As0 f5 out f46 tail #connect
+As0 f46 head f44 mainIn #connect
+As0 f44 mainOut f45 tail #connect
+As0 f45 head f28 mainIn #connect
+As0 f13 mainOut f48 tail #connect
+As0 f48 head f47 mainIn #connect
+As0 f47 mainOut f17 tail #connect
+As0 f17 head f33 mainIn #connect
+As0 f25 mainOut f50 tail #connect
+As0 f50 head f49 mainIn #connect
+As0 f49 mainOut f34 tail #connect
+As0 f34 head f32 mainIn #connect
+As0 f24 mainOut f52 tail #connect
+As0 f52 head f51 mainIn #connect
+As0 f51 mainOut f35 tail #connect
+As0 f35 head f56 mainIn #connect
