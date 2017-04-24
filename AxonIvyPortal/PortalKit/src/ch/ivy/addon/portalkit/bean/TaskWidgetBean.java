@@ -31,6 +31,7 @@ public class TaskWidgetBean implements Serializable {
   public TaskWidgetBean() {
     expandedTaskId = -1L;
     dataModel = new TaskLazyDataModel();
+    dataModel.setCompactMode(true);
   }
 
   public Long getExpandedTaskId() {

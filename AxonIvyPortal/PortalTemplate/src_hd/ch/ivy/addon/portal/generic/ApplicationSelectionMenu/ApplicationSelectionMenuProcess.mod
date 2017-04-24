@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 19 16:54:56 ICT 2017]
+[>Created: Mon Apr 24 10:25:31 ICT 2017]
 156A1AA176DE2A21 3.20 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
@@ -575,7 +575,7 @@ TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
 dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
-in.taskView = TaskView.create().dataModel(dataModel).noTaskFoundMessage("").createNewTaskView();
+in.taskView = TaskView.create().dataModel(dataModel).noTaskFoundMessage("").showHeaderToolbar(false).createNewTaskView();
 ' #txt
 As0 f21 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

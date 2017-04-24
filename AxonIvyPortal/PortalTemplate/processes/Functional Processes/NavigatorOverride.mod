@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Apr 21 16:42:16 ICT 2017]
+[>Created: Mon Apr 24 10:33:10 ICT 2017]
 1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
@@ -179,9 +179,6 @@ import java.util.Arrays;
 MainMenuNode category = new MainMenuNode();
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
 SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_CASE_ID.toString(), in.caseId.id());
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_CASE_NAME.toString(), in.caseName);
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_SERVER_ID.toString(), in.caseId.serverId());
 
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setCaseId(in.caseId.id());
@@ -189,15 +186,15 @@ dataModel.setIgnoreInvolvedUser(true);
 dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
 dataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
+dataModel.setServerId(in.caseId.serverId());
+dataModel.setCaseName(in.caseName);
 
 in.taskView = TaskView.create()
 											.category(category)
 											.canLinkBackCaseDetail(true)
-											.serverId(in.caseId.serverId())
-											.caseId(in.caseId.id())
-											.caseName(in.caseName)
 											.remoteTaskId(in.taskId)
 											.pageTitle(pageTitle)
+											.showHeaderToolbar(false)
 											.dataModel(dataModel).createNewTaskView();' #txt
 Nr0 f14 security system #txt
 Nr0 f14 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
