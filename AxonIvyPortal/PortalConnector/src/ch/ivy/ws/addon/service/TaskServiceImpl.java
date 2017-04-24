@@ -360,10 +360,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
             Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
+            Ivy.log().warn("TASK QUERY BEFORE GET CATEGORY: {0}", taskQuery);
             Ivy.log().warn("NUMBER OF RECORDS: {0}", recordSet.size());
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
-            Ivy.log().warn("TASK QUERY: {0}", taskQuery);
+            Ivy.log().warn("TASK QUERY AFTER GET CATEGORY: {0}", taskQuery);
             Ivy.log().warn("NUMBER OF CATEGORIES: {0}", categories.size());
             categoryTree.getAllChildren().forEach(category -> {
                 CategoryData categoryData = new CategoryData();
