@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 10:30:07 ICT 2017]
+[>Created: Mon Apr 24 17:39:11 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -358,10 +358,9 @@ ITask task = ivy.wf.findTask(in.endedTaskId);
 boolean isTaskStarted = #task is initialized ? task.getStartProcessData() is initialized : false;
 
 if (isTaskStarted && SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) is initialized) {
-	in.portalPage = SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) as PortalPage;
 	in.dataModel = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString()) as TaskLazyDataModel;
+	in.portalPage = in.#dataModel is initialized ? in.portalPage = SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) as PortalPage : PortalPage.HOME_PAGE;
 	
-	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.LAST_PAGE.toString());
 	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString());
 } else {
 	in.portalPage = PortalPage.HOME_PAGE;
