@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Apr 21 17:06:56 ICT 2017]
+[>Created: Mon Apr 24 09:48:01 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -36,13 +36,9 @@ Tt0 @RichDialog f26 '' #zField
 Tt0 @TaskSwitch f27 '' #zField
 Tt0 @RichDialog f28 '' #zField
 Tt0 @StartRequest f29 '' #zField
-Tt0 @EndRequest f30 '' #zField
 Tt0 @PushWFArc f31 '' #zField
-Tt0 @PushWFArc f32 '' #zField
-Tt0 @PushWFArc f33 '' #zField
 Tt0 @TkArc f34 '' #zField
 Tt0 @PushWFArc f35 '' #zField
-Tt0 @PushWFArc f36 '' #zField
 Tt0 @PushWFArc f37 '' #zField
 Tt0 @ProcessException f38 '' #zField
 Tt0 @GridStep f39 '' #zField
@@ -56,6 +52,10 @@ Tt0 @EndTask f45 '' #zField
 Tt0 @PushWFArc f17 '' #zField
 Tt0 @PushWFArc f18 '' #zField
 Tt0 @PushWFArc f19 '' #zField
+Tt0 @EndTask f20 '' #zField
+Tt0 @PushWFArc f46 '' #zField
+Tt0 @PushWFArc f36 '' #zField
+Tt0 @PushWFArc f33 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -153,7 +153,7 @@ TaskC.customFields.varchar.3="Maternity CustomVarCharField3"
 TaskC.customFields.varchar.4="Maternity CustomVarCharField4"
 TaskC.customFields.varchar.5="Other Leave/Maternity"' #txt
 Tt0 f7 type internaltest.Data #txt
-Tt0 f7 template "/ProcessPages/portalHome.ivc" #txt
+Tt0 f7 template "" #txt
 Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -327,11 +327,11 @@ Tt0 f23 actionTable 'out=in1;
 ' #txt
 Tt0 f23 outTypes "internaltest.Data" #txt
 Tt0 f23 outLinks "TaskA.ivp" #txt
-Tt0 f23 caseData 'case.name=SupportTicket
-process.code=Ticket Process Code
-process.name=Ticket Process Name
+Tt0 f23 caseData 'processCategory.name=Ticket Category Name
 processCategory.code=Ticket Category Code
-processCategory.name=Ticket Category Name' #txt
+case.name=SupportTicket
+process.name=Ticket Category Name
+process.code=Ticket Category Code' #txt
 Tt0 f23 taskData 'TaskA.EXC=14B2FC03D2E87141-f38-buffer
 TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
@@ -342,7 +342,7 @@ TaskA.ROL=ivy.session.getSessionUserName()
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Tt0 f23 type internaltest.Data #txt
-Tt0 f23 template "/ProcessPages/portalHome.ivc" #txt
+Tt0 f23 template "" #txt
 Tt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -387,7 +387,6 @@ Tt0 f2 544 77 544 180 #arcP
 Tt0 f4 expr out #txt
 Tt0 f4 type internaltest.Data #txt
 Tt0 f4 var in1 #txt
-Tt0 f4 template /ProcessPages/portalHome.ivc #txt
 Tt0 f4 200 77 200 178 #arcP
 Tt0 f8 actionDecl 'internaltest.Data out;
 ' #txt
@@ -550,7 +549,7 @@ TaskC.customFields.varchar.3="Maternity CustomVarCharField3"
 TaskC.customFields.varchar.4="Maternity CustomVarCharField4"
 TaskC.customFields.varchar.5="Other Leave/Maternity"' #txt
 Tt0 f27 type internaltest.Data #txt
-Tt0 f27 template "/ProcessPages/portalHome.ivc" #txt
+Tt0 f27 template "" #txt
 Tt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -630,33 +629,18 @@ Tt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Tt0 f29 @C|.responsibility Everybody #txt
 Tt0 f29 1497 39 26 26 14 0 #rect
 Tt0 f29 @|StartRequestIcon #fIcon
-Tt0 f30 type internaltest.Data #txt
-Tt0 f30 template "/ProcessPages/portalHome.ivc" #txt
-Tt0 f30 1497 439 26 26 14 0 #rect
-Tt0 f30 @|EndRequestIcon #fIcon
 Tt0 f31 expr data #txt
 Tt0 f31 outCond ivp=="TaskC.ivp" #txt
 Tt0 f31 1524 180 1646 272 #arcP
 Tt0 f31 1 1646 180 #addKink
 Tt0 f31 0 0.8643692094953389 0 0 #arcLabel
-Tt0 f32 expr out #txt
-Tt0 f32 1646 296 1523 452 #arcP
-Tt0 f32 1 1646 452 #addKink
-Tt0 f32 1 0.03785109119051796 0 0 #arcLabel
-Tt0 f33 expr out #txt
-Tt0 f33 1382 296 1497 452 #arcP
-Tt0 f33 1 1382 452 #addKink
-Tt0 f33 1 0.032798207405834785 0 0 #arcLabel
 Tt0 f34 expr out #txt
 Tt0 f34 type internaltest.Data #txt
 Tt0 f34 var in1 #txt
-Tt0 f34 template /ProcessPages/portalHome.ivc #txt
 Tt0 f34 1510 65 1510 166 #arcP
 Tt0 f35 expr data #txt
 Tt0 f35 outCond ivp=="TaskB.ivp" #txt
 Tt0 f35 1510 194 1510 272 #arcP
-Tt0 f36 expr out #txt
-Tt0 f36 1510 296 1510 439 #arcP
 Tt0 f37 expr data #txt
 Tt0 f37 outCond ivp=="TaskA.ivp" #txt
 Tt0 f37 1496 180 1382 272 #arcP
@@ -705,11 +689,11 @@ Tt0 f41 actionTable 'out=in1;
 ' #txt
 Tt0 f41 outTypes "internaltest.Data" #txt
 Tt0 f41 outLinks "TaskA.ivp" #txt
-Tt0 f41 caseData 'case.name=SupportTicket
-process.code=Ticket Process Code
-process.name=Ticket Process Name
+Tt0 f41 caseData 'processCategory.name=Ticket Category Name
 processCategory.code=Ticket Category Code
-processCategory.name=Ticket Category Name' #txt
+case.name=SupportTicket
+process.name=Ticket Category Name
+process.code=Ticket Category Code' #txt
 Tt0 f41 taskData 'TaskA.EXC=14B2FC03D2E87141-f38-buffer
 TaskA.EXP=new Duration("1D")
 TaskA.EXPRI=2
@@ -721,7 +705,7 @@ TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f41 type internaltest.Data #txt
-Tt0 f41 template "/ProcessPages/portalHome.ivc" #txt
+Tt0 f41 template "" #txt
 Tt0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -739,7 +723,6 @@ Tt0 f42 @|EndIcon #fIcon
 Tt0 f43 expr out #txt
 Tt0 f43 type internaltest.Data #txt
 Tt0 f43 var in1 #txt
-Tt0 f43 template /ProcessPages/portalHome.ivc #txt
 Tt0 f43 800 212 800 275 #arcP
 Tt0 f44 expr data #txt
 Tt0 f44 outCond ivp=="TaskA.ivp" #txt
@@ -747,7 +730,6 @@ Tt0 f44 800 301 800 403 #arcP
 Tt0 f3 expr out #txt
 Tt0 f3 type internaltest.Data #txt
 Tt0 f3 var in1 #txt
-Tt0 f3 template /ProcessPages/portalHome.ivc #txt
 Tt0 f3 544 204 544 274 #arcP
 Tt0 f45 type internaltest.Data #txt
 Tt0 f45 187 403 26 26 14 0 #rect
@@ -762,6 +744,19 @@ Tt0 f19 expr out #txt
 Tt0 f19 336 308 213 416 #arcP
 Tt0 f19 1 336 416 #addKink
 Tt0 f19 1 0.07231812892046431 0 0 #arcLabel
+Tt0 f20 type internaltest.Data #txt
+Tt0 f20 1497 403 26 26 14 0 #rect
+Tt0 f20 @|EndIcon #fIcon
+Tt0 f46 expr out #txt
+Tt0 f46 1510 296 1510 403 #arcP
+Tt0 f36 expr out #txt
+Tt0 f36 1382 296 1497 416 #arcP
+Tt0 f36 1 1382 416 #addKink
+Tt0 f36 1 0.032798207405834785 0 0 #arcLabel
+Tt0 f33 expr out #txt
+Tt0 f33 1646 296 1523 416 #arcP
+Tt0 f33 1 1646 416 #addKink
+Tt0 f33 1 0.03785109119051796 0 0 #arcLabel
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -801,12 +796,6 @@ Tt0 f27 out f35 tail #connect
 Tt0 f35 head f28 mainIn #connect
 Tt0 f27 out f31 tail #connect
 Tt0 f31 head f24 mainIn #connect
-Tt0 f24 mainOut f32 tail #connect
-Tt0 f32 head f30 mainIn #connect
-Tt0 f28 mainOut f36 tail #connect
-Tt0 f36 head f30 mainIn #connect
-Tt0 f26 mainOut f33 tail #connect
-Tt0 f33 head f30 mainIn #connect
 Tt0 f29 mainOut f34 tail #connect
 Tt0 f34 head f27 in #connect
 Tt0 f38 mainOut f40 tail #connect
@@ -821,3 +810,9 @@ Tt0 f9 mainOut f18 tail #connect
 Tt0 f18 head f45 mainIn #connect
 Tt0 f12 mainOut f19 tail #connect
 Tt0 f19 head f45 mainIn #connect
+Tt0 f28 mainOut f46 tail #connect
+Tt0 f46 head f20 mainIn #connect
+Tt0 f26 mainOut f36 tail #connect
+Tt0 f36 head f20 mainIn #connect
+Tt0 f24 mainOut f33 tail #connect
+Tt0 f33 head f20 mainIn #connect
