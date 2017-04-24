@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 10:01:44 ICT 2017]
+[>Created: Mon Apr 24 10:51:51 ICT 2017]
 15B9DE75323C55DA 3.20 #module
 >Proto >Proto Collection #zClass
 Sl0 SetDefaultProcessesToPortal Big #zClass
@@ -28,11 +28,22 @@ Sl0 f0 guid 15B9DE7532A2CBC0 #txt
 Sl0 f0 requestEnabled true #txt
 Sl0 f0 triggerEnabled false #txt
 Sl0 f0 callSignature start() #txt
+Sl0 f0 persist false #txt
+Sl0 f0 startName 'DefaultEndPage of Portal is displayed whenever a Task or Process ends' #txt
+Sl0 f0 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
 Sl0 f0 caseData businessCase.attach=true #txt
+Sl0 f0 showInStartList 1 #txt
 Sl0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
+        <nameStyle>9,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
