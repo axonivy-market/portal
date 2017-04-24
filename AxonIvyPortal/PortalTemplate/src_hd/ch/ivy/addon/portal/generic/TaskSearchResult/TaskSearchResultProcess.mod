@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 19 16:55:50 ICT 2017]
+[>Created: Mon Apr 24 10:32:16 ICT 2017]
 15498A84F89ACDE7 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskSearchResultProcess Big #zClass
@@ -98,10 +98,10 @@ MainMenuNode category = new MainMenuNode();
 category.value = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/task"), keyword));
 String pageTitle = category.value;
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
-
+dataModel.setServerId(foundTask.applicationRegister.serverId);
 dataModel.setKeyword(keyword);
 
-out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(keyword).remoteTaskId(foundTask.getId()).serverId(foundTask.applicationRegister.serverId).dataModel(dataModel).createNewTaskView();' #txt
+out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(keyword).remoteTaskId(foundTask.getId()).dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
