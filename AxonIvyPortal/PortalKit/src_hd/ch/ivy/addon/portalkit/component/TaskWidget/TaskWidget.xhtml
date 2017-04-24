@@ -38,25 +38,25 @@
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
     <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header"
       layout="block">
-      <div class="widget-header-main #{data.compactMode ? '' : 'mod-expanded-mode'}">
+      <div class="widget-header-main #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}">
         <span class="widget-header-main-title task-widget-header-content-title"> <cc:renderFacet name="title" />
           <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" />
         </span>
         <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{showHeaderToolbar}">
           <ui:fragment>
             <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
-              update="task-view task-widget-sort-menu task-widget-header #{data.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
-              oncomplete="taskWidget.setupScrollbar(); #{data.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; taskWidget.setupHeader()">
-              <i class="fa fa-angle-left" jsf:rendered="#{!data.compactMode}" />
+              update="task-view task-widget-sort-menu task-widget-header #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
+              oncomplete="taskWidget.setupScrollbar(); #{data.dataModel.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; taskWidget.setupHeader()">
+              <i class="fa fa-angle-left" jsf:rendered="#{!data.dataModel.compactMode}" />
               <p:spacer width="5" />
               <h:outputText id="switch-mode-command-value"
-                value="#{data.compactMode ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/showFullTaskList') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/backToOverview')}" />
+                value="#{data.dataModel.compactMode ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/showFullTaskList') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/backToOverview')}" />
             </p:commandLink>
           </ui:fragment>
         </h:panelGroup>
       </div>
       <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter}"
-        styleClass="widget-header-content-filter #{data.compactMode ? '' : 'mod-expanded-mode'}" id="filter-view">
+        styleClass="widget-header-content-filter #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}" id="filter-view">
         <h:form id="filter-form" onsubmit="return false;">
           <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
             icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
@@ -68,11 +68,11 @@
 
 
     <h:panelGroup id="task-widget-sort-menu" layout="block"
-      styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.compactMode ? 'full-mode' : ''}">
-      <h:panelGroup rendered="#{data.compactMode}">
+      styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : ''}">
+      <h:panelGroup rendered="#{data.dataModel.compactMode}">
         <ui:include src="CompactSortMenu.xhtml" />
       </h:panelGroup>
-      <h:panelGroup rendered="#{!data.compactMode}">
+      <h:panelGroup rendered="#{!data.dataModel.compactMode}">
         <cc:renderFacet name="taskListHeader" />
       </h:panelGroup>
     </h:panelGroup>
@@ -81,10 +81,10 @@
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
         <p:dataScroller id="task-list-scroller" value="#{data.dataModel}" var="task" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex"
-          styleClass="task-start-list js-task-start-list #{data.compactMode ? 'compact-mode' : ''}">
+          styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''}">
           <ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}" onTaskStartCallback="onTaskStartCallBack()"
             isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}"
-            compactMode="#{data.compactMode}" componentToUpdate="#{p:component('task-details-notes')}">
+            compactMode="#{data.dataModel.compactMode}" componentToUpdate="#{p:component('task-details-notes')}">
             <cc:insertFacet name="taskHeader" />
             <cc:insertFacet name="taskBody" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
@@ -104,7 +104,7 @@
     var taskListToolKit = TaskListToolKit();
     $(function(){
       //restore widget mode on page load
-      if("#{cc.attrs.compactMode}" === "true" &amp;&amp; "#{data.compactMode}" === "false" &amp;&amp; "#{cc.attrs.onSwitchToExpandedModeCompletedCallback}") {
+      if("#{cc.attrs.compactMode}" === "true" &amp;&amp; "#{data.dataModel.compactMode}" === "false" &amp;&amp; "#{cc.attrs.onSwitchToExpandedModeCompletedCallback}") {
         #{cc.attrs.onSwitchToExpandedModeCompletedCallback};
       }
       taskWidget.setupScrollbar();

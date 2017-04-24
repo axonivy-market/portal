@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Apr 21 16:39:29 ICT 2017]
+[>Created: Mon Apr 24 10:14:20 ICT 2017]
 15035F535EFB1618 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
@@ -56,8 +56,7 @@ Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String keyword,java.lang.Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f0 inParameterMapAction 'out.compactMode=param.#compactMode is initialized ? param.compactMode : true;
-out.keyword=param.#keyword;
+Ts0 f0 inParameterMapAction 'out.keyword=param.#keyword;
 ' #txt
 Ts0 f0 inActionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import javax.faces.context.FacesContext;
@@ -135,8 +134,8 @@ Ts0 f82 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f82 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f82 actionTable 'out=in;
-out.compactMode=!in.compactMode;
 ' #txt
+Ts0 f82 actionCode 'out.dataModel.compactMode = !out.dataModel.compactMode;' #txt
 Ts0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -389,9 +388,7 @@ Ts0 f10 actionTable 'out=in;
 Ts0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString(), in.dataModel);
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_COMPACT_MODE.toString(), in.compactMode);
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_KEYWORD.toString(), in.keyword);' #txt
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString(), in.dataModel);' #txt
 Ts0 f10 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
