@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Apr 21 14:03:25 ICT 2017]
+[>Created: Tue Apr 25 17:16:29 ICT 2017]
 156F869FC3FCD1D9 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
@@ -201,7 +201,7 @@ if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
   dataModel.setIgnoreInvolvedUser(false);
 }
 
-in.taskView = TaskView.create().category(categoryMenu).dataModel(dataModel).pageTitle(categoryMenu.value).createNewTaskView();' #txt
+in.taskView = TaskView.create().category(categoryMenu).dataModel(dataModel).pageTitle(categoryMenu.value).showHeaderToolbar(false).createNewTaskView();' #txt
 Ps0 f13 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

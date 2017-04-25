@@ -45,7 +45,7 @@
         <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{showHeaderToolbar}">
           <ui:fragment>
             <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
-              update="#{p:component('statistics-widget')} task-view task-widget-sort-menu task-widget-header #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
+              update="task-view task-widget-sort-menu task-widget-header #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
               onsuccess="#{data.dataModel.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; " 
               oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
               <i class="fa fa-angle-left" jsf:rendered="#{!data.dataModel.compactMode}" />

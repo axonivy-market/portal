@@ -39,7 +39,8 @@
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}"
               keyword="#{taskView.dataModel.queryCriteria.keyword}" compactMode="#{taskView.dataModel.compactMode}"
               onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
-              onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)">
+              onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)"
+              componentToUpdateWhenInCompactMode="#{displayStatisticWidget ? 'statistic-widget-container' : ''}">
 
               <f:facet name="taskListHeader">
                 <ui:fragment rendered="#{useOverrideListHeader}">
