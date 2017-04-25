@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jan 26 17:08:29 ICT 2017]
-150FFE7ECE139751 3.19 #module
+[>Created: Tue Apr 25 17:19:42 ICT 2017]
+150FFE7ECE139751 3.20 #module
 >Proto >Proto Collection #zClass
 Sb0 SynchronizeUserQuatzJob Big #zClass
 Sb0 B #cInfo
@@ -25,7 +25,16 @@ Sb0 f7 actionDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
 Sb0 f7 actionTable 'out=in;
 ' #txt
-Sb0 f7 actionCode 'ivy.log.info("Start to synchronize Application User Cache by user " + ivy.session.getSessionUserName());' #txt
+Sb0 f7 actionCode 'import ch.ivy.addon.portalkit.service.UserSynchronizationService;
+UserSynchronizationService service = new UserSynchronizationService();
+
+if (service.isCurrentApplicationAllowedToSynchUser()) {
+	ivy.log.info("Start to synchronize Application User Cache by user " + ivy.session.getSessionUserName());
+} else {
+	ivy.log.info("Current application is not allowed to synchronize users because it is not the first configured application.");
+}
+
+' #txt
 Sb0 f7 type ch.ivy.add.portalkit.Data #txt
 Sb0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
