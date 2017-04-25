@@ -24,7 +24,7 @@
   <cc:attribute name="selectedTaskServerId" />
   <cc:attribute name="showHeaderToolbar" />
   <cc:attribute name="noTaskFoundMessage" />
-  
+
   <cc:facet name="taskListHeader" shortDescription="Header of task list" />
 </cc:interface>
 
@@ -45,8 +45,9 @@
         <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{showHeaderToolbar}">
           <ui:fragment>
             <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
-              update="task-view task-widget-sort-menu task-widget-header #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
-              oncomplete="taskWidget.setupScrollbar(); #{data.dataModel.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; taskWidget.setupHeader()">
+              update="#{p:component('statistics-widget')} task-view task-widget-sort-menu task-widget-header #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
+              onsuccess="#{data.dataModel.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; " 
+              oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
               <i class="fa fa-angle-left" jsf:rendered="#{!data.dataModel.compactMode}" />
               <p:spacer width="5" />
               <h:outputText id="switch-mode-command-value"
@@ -56,7 +57,8 @@
         </h:panelGroup>
       </div>
       <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter}"
-        styleClass="widget-header-content-filter #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}" id="filter-view">
+        styleClass="widget-header-content-filter #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}"
+        id="filter-view">
         <h:form id="filter-form" onsubmit="return false;">
           <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
             icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
@@ -82,7 +84,8 @@
         <p:dataScroller id="task-list-scroller" value="#{data.dataModel}" var="task" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex"
           styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''}">
-          <ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}" onTaskStartCallback="onTaskStartCallBack()"
+          <ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}"
+            onTaskStartCallback="onTaskStartCallBack()"
             isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}"
             compactMode="#{data.dataModel.compactMode}" componentToUpdate="#{p:component('task-details-notes')}">
             <cc:insertFacet name="taskHeader" />
@@ -94,7 +97,7 @@
       </h:panelGroup>
     </h:panelGroup>
   </div>
-  
+
   <h:form>
     <p:remoteCommand actionListener="#{logic.storeConfiguration()}" name="onTaskStartCallBack" />
   </h:form>
