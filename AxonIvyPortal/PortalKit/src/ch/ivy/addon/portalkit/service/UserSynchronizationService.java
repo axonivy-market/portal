@@ -21,7 +21,7 @@ public class UserSynchronizationService {
    *         Admin Settings, {@link Application#getMenuOrdinal()} {@code = 1} , return true<br>
    *         , else return false.
    */
-  public boolean isCurrentApplicationAllowedToSynchUser() {
+  public static boolean isCurrentApplicationAllowedToSynchUser() {
     List<Server> registerServers = new ServerDao().findAll();
     if (CollectionUtils.isEmpty(registerServers)) {
       return true;
