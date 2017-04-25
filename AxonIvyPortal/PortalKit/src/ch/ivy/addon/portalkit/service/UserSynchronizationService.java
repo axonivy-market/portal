@@ -11,7 +11,6 @@ import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UserSynchronizationService {
-  private static final int FIRST_CONFIGURED_APPLICATION = 1;
 
   /**
    * Helps prevent multi-application synchronizing users, only 1 application is allowed to synchronize users. <br>
@@ -26,13 +25,17 @@ public class UserSynchronizationService {
     if (CollectionUtils.isEmpty(registerServers)) {
       return true;
     }
+
     ServerWorkingOnDetector detector = new ServerWorkingOnDetector();
     Server workingOnServer = detector.getServerWorkingOn();
     ApplicationDao applicationDao = new ApplicationDao();
+    int firstMenuOrdinal =
+        applicationDao.findAllIvyApplications().stream().mapToInt(app -> app.getMenuOrdinal().intValue()).min()
+            .orElse(0);
     List<Application> applications =
         applicationDao.findByNameAndServerId(Ivy.request().getApplication().getName(), workingOnServer.getId());
     for (Application application : applications) {
-      if (application.getMenuOrdinal() == FIRST_CONFIGURED_APPLICATION) {
+      if (application.getMenuOrdinal() == firstMenuOrdinal) {
         return true;
       }
     }
