@@ -67,17 +67,14 @@
 	<sect2 xml:id="axonivyportal.customization.portalhome.advancedusage">
 		<title>Advanced usage</title>
 		<para>
-			The <code>DefaultHomePageTemplate.xhtml</code> template supports some customizations.			
+			The <code>DefaultHomePageTemplate.xhtml</code> template supports some customizations.
 		</para>
 		<sect3 xml:id="axonivyportal.customization.portalhome.advancedusage.displayyourowntasksandstatisticsdata">
-			<title>Display your own tasks and statistics data</title>
+			<title>Display your statistics data</title>
 			<para>
-				The template has two parameters: <code>tasks</code>, <code>statistic</code> to display the data of tasks and statistic. Their default values are the tasks which the session user can work on.
+				The template has a parameter: <code>statistic</code> to display the statistic data. Their default values are the tasks which the session user can work on.
 				<para>
 					<code>&lt;ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" ... &gt;</code>
-				</para>
-				<para>
-					<code>&lt;ui:param name="tasks" value="#{logic.getTasks()}" /&gt; &lt;!-- A method returns TaskLazyDataModel --&gt;</code>
 				</para>
 				<para>
 					<code>&lt;ui:param name="statistic" value="#{logic.getStatistic()}" /&gt; &lt;!-- A method returns StatisticData --&gt;</code>
