@@ -358,7 +358,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().category().isNotNull();
+            taskQuery.where().and().category().isNotNull().and().category().isNotEqual("");
             Ivy.log().warn("TASK QUERY BEFORE GET CATEGORY: {0}", taskQuery);
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
@@ -368,7 +368,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
                 categoryData.setRawPath(category.getRawPath());
                 categories.add(categoryData);
-                Ivy.log().warn("TASK CATEGORY: {0}, {1}", categoryData.getPath(), categoryData.getRawPath());
               });
             
             Ivy.log().warn("NUMBER OF CATEGORIES: {0}", categories.size());
