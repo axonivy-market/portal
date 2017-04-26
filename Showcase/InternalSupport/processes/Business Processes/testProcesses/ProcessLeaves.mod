@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 26 10:32:11 ICT 2017]
+[>Created: Wed Apr 26 09:36:46 ICT 2017]
 1470062B2127AF92 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessLeaves Big #zClass
@@ -100,8 +100,7 @@ Ps0 f0 triggerEnabled false #txt
 Ps0 f0 callSignature LeaveRequest() #txt
 Ps0 f0 persist false #txt
 Ps0 f0 startName 'Employee Leave Request' #txt
-Ps0 f0 startDescription '<u><i>Urlaubsantrag erstellen und genehmigen
-</i></u>
+Ps0 f0 startDescription '<u><i>Urlaubsantrag erstellen und genehmigen</i></u>
 ' #txt
 Ps0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
@@ -444,7 +443,8 @@ Ct2 f5 actionTable 'out=in1;
 ' #txt
 Ct2 f5 outTypes "internaltest.ProcessLeaves","internaltest.ProcessLeaves" #txt
 Ct2 f5 outLinks "TaskA.ivp","TaskB.ivp" #txt
-Ct2 f5 taskData 'TaskA.DESC=<u><i>Manager approves Request by checking application and signing approve checkbox</i></u>
+Ct2 f5 taskData 'TaskA.CATEGORY=CategoryDemo/ApprovedByCREATOR
+TaskA.DESC=<u><i>Manager approves Request by checking application and signing approve checkbox</i></u>
 TaskA.EXP=new Duration("1D")
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
@@ -457,7 +457,7 @@ TaskA.TYPE=0
 TaskA.customFields.varchar.1=in1.Mitarbeiter
 TaskA.customFields.varchar.2=in1.Von.toString()
 TaskA.customFields.varchar.3=in1.Bis.toString()
-TaskA.customFields.varchar.5="CategoryDemo/ApprovedByCREATOR"
+TaskB.CATEGORY=CategoryDemo/ApprovedByManager
 TaskB.DESC=Manager approves Request by checking application and signing approve checkbox
 TaskB.EXP=new Duration("3D")
 TaskB.EXPRI=2
@@ -467,8 +467,7 @@ TaskB.NAM=Approve Leave Request for Manager
 TaskB.PRI=2
 TaskB.ROL=Manager
 TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-TaskB.customFields.varchar.5="CategoryDemo/ApprovedByManager"' #txt
+TaskB.TYPE=0' #txt
 Ct2 f5 type internaltest.ProcessLeaves #txt
 Ct2 f5 template "/ProcessPages/portalHome.ivc" #txt
 Ct2 f5 210 98 28 28 14 0 #rect
