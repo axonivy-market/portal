@@ -359,9 +359,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
-            Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
             Ivy.log().warn("TASK QUERY BEFORE GET CATEGORY: {0}", taskQuery);
-            Ivy.log().warn("NUMBER OF RECORDS: {0}", recordSet.size());
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             Ivy.log().warn("TASK QUERY AFTER GET CATEGORY: {0}", taskQuery);
@@ -372,7 +370,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 categories.add(categoryData);
                 Ivy.log().warn("TASK CATEGORY: {0}, {1}", categoryData.getPath(), categoryData.getRawPath());
               });
+            
             Ivy.log().warn("NUMBER OF CATEGORIES: {0}", categories.size());
+            Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
+            Ivy.log().warn("NUMBER OF RECORDS: {0}", recordSet.size());
             return result(categories, errors);
           });
     } catch (Exception e) {
