@@ -7,6 +7,6 @@ tasks java.util.List<ch.ivy.ws.addon.types.IvyTask> #field
 allTasks java.util.List<ch.ivy.ws.addon.types.IvyTask> #field
 workerUserName String #field
 taskCount Long #field
-categories java.util.List<String> #field
+categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 priorityStatistic ch.ivy.ws.addon.types.PriorityStatistic #field
 expiryStatistic ch.ivy.ws.addon.types.ExpiryStatistic #field
