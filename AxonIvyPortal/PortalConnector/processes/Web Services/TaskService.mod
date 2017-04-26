@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Apr 19 13:55:59 ICT 2017]
-1380566F9095B9C4 3.19 #module
+[>Created: Wed Apr 26 11:27:39 ICT 2017]
+1380566F9095B9C4 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 WS #cInfo
@@ -620,7 +620,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, in.language);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
 	in.categories = tsResult.getCategories();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
@@ -638,20 +638,19 @@ Te0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f4 366 124 36 24 20 -2 #rect
 Te0 f4 @|StepIcon #fIcon
-Te0 f10 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
-Te0 f10 inParamTable 'out.language=param.language;
-out.taskSearchCriteria.involvedApplications=param.apps;
+Te0 f10 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f10 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
 out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
-Te0 f10 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
+Te0 f10 outParamDecl '<java.util.List<java.lang.String> categories,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
 Te0 f10 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f10 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f10 callSignature findCategories(String,String,String,List<String>) #txt
+Te0 f10 callSignature findCategories(String,String,List<String>) #txt
 Te0 f10 useUserDefinedException false #txt
 Te0 f10 taskData TaskTriggered.PRI=2 #txt
 Te0 f10 type ch.ivy.ws.addon.TaskServiceData #txt
@@ -997,7 +996,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findGroupTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, in.language);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findGroupTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
 	in.categories = tsResult.getCategories();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
@@ -1016,20 +1015,19 @@ Categories</name>
 ' #txt
 Te0 f66 662 124 36 24 20 -2 #rect
 Te0 f66 @|StepIcon #fIcon
-Te0 f67 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
-Te0 f67 inParamTable 'out.language=param.language;
-out.taskSearchCriteria.involvedApplications=param.apps;
+Te0 f67 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f67 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
 out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
-Te0 f67 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
+Te0 f67 outParamDecl '<java.util.List<java.lang.String> categories,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
 Te0 f67 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f67 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f67 callSignature findGroupTaskCategories(String,String,String,List<String>) #txt
+Te0 f67 callSignature findGroupTaskCategories(String,String,List<String>) #txt
 Te0 f67 useUserDefinedException false #txt
 Te0 f67 taskData TaskTriggered.PRI=2 #txt
 Te0 f67 type ch.ivy.ws.addon.TaskServiceData #txt
@@ -1056,7 +1054,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findPersonalTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, in.language);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findPersonalTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications);
 	in.categories = tsResult.getCategories();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
@@ -1075,20 +1073,19 @@ Categories</name>
 ' #txt
 Te0 f69 510 124 36 24 20 -2 #rect
 Te0 f69 @|StepIcon #fIcon
-Te0 f70 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
-Te0 f70 inParamTable 'out.language=param.language;
-out.taskSearchCriteria.involvedApplications=param.apps;
+Te0 f70 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f70 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
 out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
-Te0 f70 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
+Te0 f70 outParamDecl '<java.util.List<java.lang.String> categories,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
 Te0 f70 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f70 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f70 callSignature findPersonalTaskCategories(String,String,String,List<String>) #txt
+Te0 f70 callSignature findPersonalTaskCategories(String,String,List<String>) #txt
 Te0 f70 useUserDefinedException false #txt
 Te0 f70 taskData TaskTriggered.PRI=2 #txt
 Te0 f70 type ch.ivy.ws.addon.TaskServiceData #txt
