@@ -1,4 +1,4 @@
 PortalHomeData #class
 internalPortal.PortalHome #namespace
-dataModel ch.internalsupport.CustomizedTaskLazyDataModel #field
-dataModel PERSISTENT #fieldModifier
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskView PERSISTENT #fieldModifier
