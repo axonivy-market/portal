@@ -529,6 +529,9 @@ update IWA_Task set customvarcharfield5 = NULL</screen>
 					<listitem>
 						<para>Hide technical roles (the HIDE property is set), so that they are not displayed anywhere (e.g. delegate, absence mgmt). The default hidden role is AXONIVY_PORTAL_ADMIN</para>
 					</listitem>
+					<listitem>
+						<para>Task delegate customization is supported</para>
+					</listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
