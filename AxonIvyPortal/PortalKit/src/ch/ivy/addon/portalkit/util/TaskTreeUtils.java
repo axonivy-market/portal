@@ -9,7 +9,6 @@ import org.primefaces.util.TreeUtils;
 
 import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.ivy.ws.addon.CategoryData;
 
 
 /**
@@ -27,25 +26,15 @@ public class TaskTreeUtils {
    * @param categories list category of user
    * @return TreeNode : The Tree after convert
    */
-  public static TreeNode convertTaskListToTree(List<CategoryData> categories, String firstCategory, boolean isRootAllTask) {
+  public static TreeNode convertTaskListToTree(List<String> categories, String firstCategory, boolean isRootAllTask) {
     TreeNode taskRootNode = new DefaultTreeNode();
     TreeNode navigatorNode = taskRootNode;
-    for (CategoryData category : categories) {
-      String categoryPath = category.getPath();
-      String[] nodeNames = categoryPath.split(DELIMITER);
-
-      String categoryRawPath = category.getRawPath();
-      String[] nodePaths = category.getRawPath().split(DELIMITER);
-
-      for (int i=0; i<nodeNames.length; i++) {
-        String nodeName = nodeNames[i];
-        String categoryName = categoryPath.substring(0, categoryPath.indexOf(nodeName) + nodeName.length());
-
-        String nodePath = nodePaths[i];
-        String rawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(nodePath) + nodePath.length());
-
-        String nodeType = firstCategory + DELIMITER + categoryName.replaceAll(" ", "_");
-        navigatorNode = buildTaskCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllTask);
+    for (String structure : categories) {
+      String[] nodeNames = structure.split(DELIMITER);
+      for (String nodeName : nodeNames) {
+        String category = structure.substring(0, structure.indexOf(nodeName) + nodeName.length());
+        String nodeType = firstCategory + DELIMITER + category.replaceAll(" ", "_");
+        navigatorNode = buildTaskCategoryNode(navigatorNode, nodeName, nodeType, category, isRootAllTask);
       }
       navigatorNode = taskRootNode;
     }
@@ -73,7 +62,7 @@ public class TaskTreeUtils {
    * @return TreeNode : Tree node after add node
    */
   private static TreeNode buildTaskCategoryNode(TreeNode navigatorNode, String newNodeName, String nodeType,
-      String category, String rawPath, boolean isRootAllTask) {
+      String category, boolean isRootAllTask) {
     List<TreeNode> childNodes = navigatorNode.getChildren();
     for (TreeNode childNode : childNodes) {
       TaskNode childNodeData = (TaskNode) childNode.getData();
@@ -87,7 +76,6 @@ public class TaskTreeUtils {
     newNodeData.setValue(newNodeName);
     newNodeData.setMenuKind(MenuKind.TASK);
     newNodeData.setCategory(category);
-    newNodeData.setCategoryRawPath(rawPath);
     newNodeData.setRootNodeAllTask(isRootAllTask);
     newNodeData.setFirstCategoryNode(false);
     TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, navigatorNode);
