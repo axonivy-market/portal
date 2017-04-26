@@ -20,7 +20,7 @@ startIndex Integer #field
 count Integer #field
 taskCount Long #field
 taskCount 'result of counting number of tasks' #fieldComment
-categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+categories List<String> #field
 priorityStatistic ch.ivy.ws.addon.types.PriorityStatistic #field
 expiryStatistic ch.ivy.ws.addon.types.ExpiryStatistic #field
 expireToday Long #field
@@ -28,4 +28,3 @@ expireTomorrow Long #field
 expireIn2Days Long #field
 expireIn3Days Long #field
 isUrlBuiltFromSystemProperties Boolean #field
-language String #field

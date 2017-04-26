@@ -4,7 +4,7 @@ allTasks List<ch.ivy.ws.addon.IvyTask> #field
 applicationNames List<String> #field
 canUserResumeTask Boolean #field
 caseId Long #field
-categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+categories List<String> #field
 count Integer #field
 endpoint String #field
 errors List<ch.ivy.ws.addon.WsException> #field
@@ -29,4 +29,3 @@ workerUserName String #field
 isUrlBuiltFromSystemProperties Boolean #field
 jsonQuery String #field
 jsonQuery 'Customized TaskQuery' #fieldComment
-language String #field
