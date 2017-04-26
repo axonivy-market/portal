@@ -5,6 +5,8 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
 <h:body>
   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+    <ui:param name="dataModel" value="#{logic.getDataModel()}" />
+    
     <!-- IF UNCOMMENT, PLEASE CORRECT OR REMOVE <!- ... -> -->
     <!--
     <ui:param name="useOverrideListHeader" value="true" />
@@ -13,8 +15,8 @@
 
     <ui:define name="taskListHeader">
       <!- use the TaskListHeader component to keep default columns, and add a new one with TaskColumnHeader. ->
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="task-custom" sortField="customVarcharField5" value="CustomVarcharField5" />
     </ui:define>
 
