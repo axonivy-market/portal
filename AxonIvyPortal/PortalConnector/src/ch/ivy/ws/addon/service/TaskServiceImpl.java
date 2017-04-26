@@ -346,19 +346,19 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery taskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+            TaskQuery taskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                   .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
             } else {
-              taskQuery.where().and(queryForInvolvedApplications(apps));
+              taskQuery.where().and(queryForInvolvedApplications(apps)); 
             }
             taskQuery.where()
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().category().isNotNull().orderBy().category().ascending();
+            taskQuery.where().and().category().isNotNull();
             Ivy.log().warn("TASK QUERY BEFORE GET CATEGORY: {0}", taskQuery);
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
