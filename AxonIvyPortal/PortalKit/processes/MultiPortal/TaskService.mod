@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Apr 26 10:30:31 ICT 2017]
-146C8E81DE07F973 3.20 #module
+[>Created: Wed Apr 19 14:06:37 ICT 2017]
+146C8E81DE07F973 3.19 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 B #cInfo
@@ -1371,7 +1371,7 @@ out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
-Te0 f59 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f59 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f59 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
@@ -1495,6 +1495,7 @@ param.endpoint=in.endpoint;
 Te0 f112 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
 Te0 f112 responseMappingAction 'out=in;
+out.categories=in.categories.addAll(result.categories);
 out.tempErrors=result.errors;
 ' #txt
 Te0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2713,7 +2714,7 @@ out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
-Te0 f161 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f161 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f161 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
@@ -3025,7 +3026,7 @@ out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
-Te0 f225 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f225 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f225 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;

@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Callable;
 
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.ws.addon.CategoryData;
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.WsServiceFactory;
@@ -38,6 +40,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -338,7 +341,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps) throws WSException {
+  public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
@@ -355,12 +358,21 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().customVarCharField5().isNotNull().groupBy().customVarCharField5();
+            taskQuery.where().and().category().isNotNull();
             Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
-            List<String> categories = new ArrayList<>();
-            String customVarCharField5Column = recordSet.getKeys().get(0);
-            recordSet.getRecords().forEach(
-                record -> categories.add(record.getField(customVarCharField5Column).toString()));
+            Ivy.log().warn("TASK QUERY BEFORE GET CATEGORY: {0}", taskQuery);
+            Ivy.log().warn("NUMBER OF RECORDS: {0}", recordSet.size());
+            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
+            List<CategoryData> categories = new ArrayList<>();
+            Ivy.log().warn("TASK QUERY AFTER GET CATEGORY: {0}", taskQuery);
+            categoryTree.getAllChildren().forEach(category -> {
+                CategoryData categoryData = new CategoryData();
+                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+                categoryData.setRawPath(category.getRawPath());
+                categories.add(categoryData);
+                Ivy.log().warn("TASK CATEGORY: {0}, {1}", categoryData.getPath(), categoryData.getRawPath());
+              });
+            Ivy.log().warn("NUMBER OF CATEGORIES: {0}", categories.size());
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -369,7 +381,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps) throws WSException {
+  public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
@@ -383,12 +395,17 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().customVarCharField5().isNotNull().groupBy().customVarCharField5();
-            Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
-            List<String> categories = new ArrayList<>();
-            String customVarCharField5Column = recordSet.getKeys().get(0);
-            recordSet.getRecords().forEach(
-                record -> categories.add(record.getField(customVarCharField5Column).toString()));
+            taskQuery.where().and().category().isNotNull();
+
+            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
+            List<CategoryData> categories = new ArrayList<>();
+            categoryTree.getAllChildren().forEach(category -> {
+                CategoryData categoryData = new CategoryData();
+                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+                categoryData.setRawPath(category.getRawPath());
+                categories.add(categoryData);
+              });
+
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -397,7 +414,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps) throws WSException {
+  public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
@@ -411,12 +428,17 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
-            taskQuery.where().and().customVarCharField5().isNotNull().groupBy().customVarCharField5();
-            Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
-            List<String> categories = new ArrayList<>();
-            String customVarCharField5Column = recordSet.getKeys().get(0);
-            recordSet.getRecords().forEach(
-                record -> categories.add(record.getField(customVarCharField5Column).toString()));
+            taskQuery.where().and().category().isNotNull();
+
+            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
+            List<CategoryData> categories = new ArrayList<>();
+            categoryTree.getAllChildren().forEach(category -> {
+                CategoryData categoryData = new CategoryData();
+                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+                categoryData.setRawPath(category.getRawPath());
+                categories.add(categoryData);
+              });
+
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -668,7 +690,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     return result;
   }
 
-  private TaskServiceResult result(List<String> categories, List<WSException> errors) {
+  private TaskServiceResult result(List<CategoryData> categories, List<WSException> errors) {
     TaskServiceResult result = new TaskServiceResult();
     result.setCategories(categories);
     result.setErrors(errors);
