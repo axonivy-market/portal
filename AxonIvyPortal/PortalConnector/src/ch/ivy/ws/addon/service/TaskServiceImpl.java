@@ -340,13 +340,18 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
+  @SuppressWarnings("static-access")
   @Override
   public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery taskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+            if (StringUtils.isNotBlank(jsonQuery)) {
+              taskQuery.fromJson(jsonQuery);
+            }
+
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -359,20 +364,14 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
-            Ivy.log().warn("TASK QUERY BEFORE GET CATEGORY: {0}", taskQuery);
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
-            Ivy.log().warn("TASK QUERY AFTER GET CATEGORY: {0}", taskQuery);
             categoryTree.getAllChildren().forEach(category -> {
                 CategoryData categoryData = new CategoryData();
                 categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
                 categoryData.setRawPath(category.getRawPath());
                 categories.add(categoryData);
               });
-            
-            Ivy.log().warn("NUMBER OF CATEGORIES: {0}", categoryTree.getAllChildren().size());
-            Recordset recordSet = taskQueryExecutor().getRecordset(taskQuery);
-            Ivy.log().warn("NUMBER OF RECORDS: {0}", recordSet.size());
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -380,13 +379,18 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
+  @SuppressWarnings("static-access")
   @Override
   public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery taskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+            if (StringUtils.isNotBlank(jsonQuery)) {
+              taskQuery = taskQuery.fromJson(jsonQuery);
+            }
+
             AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                 .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
@@ -413,13 +417,18 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
+  @SuppressWarnings("static-access")
   @Override
   public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery taskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+            if (StringUtils.isNotBlank(jsonQuery)) {
+              taskQuery = taskQuery.fromJson(jsonQuery);
+            }
+
             AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                 .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
