@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 26 17:43:41 ICT 2017]
+[>Created: Wed Apr 26 17:59:04 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -63,6 +63,13 @@ Tt0 @EndTask f48 '' #zField
 Tt0 @TkArc f49 '' #zField
 Tt0 @PushWFArc f50 '' #zField
 Tt0 @PushWFArc f51 '' #zField
+Tt0 @StartRequest f52 '' #zField
+Tt0 @EndTask f53 '' #zField
+Tt0 @EndTask f54 '' #zField
+Tt0 @TaskSwitch f55 '' #zField
+Tt0 @TkArc f56 '' #zField
+Tt0 @PushWFArc f57 '' #zField
+Tt0 @PushWFArc f58 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -774,6 +781,7 @@ Tt0 f30 requestEnabled true #txt
 Tt0 f30 triggerEnabled false #txt
 Tt0 f30 callSignature CategoriedPersonalRequest() #txt
 Tt0 f30 persist false #txt
+Tt0 f30 startName 'Categoried Personal Request' #txt
 Tt0 f30 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
@@ -806,18 +814,18 @@ TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=Request raise salary
 TaskA.PRI=2
-TaskA.ROL=Everybody
+TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=0
+TaskA.TYPE=3
 TaskB.CATEGORY=PersonalRequest/Vacation
 TaskB.EXPRI=2
 TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
 TaskB.NAM=Request vacation
 TaskB.PRI=2
-TaskB.ROL=Everybody
+TaskB.ROL="demo"
 TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0' #txt
+TaskB.TYPE=3' #txt
 Tt0 f32 type internaltest.Data #txt
 Tt0 f32 template "" #txt
 Tt0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -851,6 +859,94 @@ Tt0 f51 outCond ivp=="TaskB.ivp" #txt
 Tt0 f51 206 576 248 691 #arcP
 Tt0 f51 1 248 576 #addKink
 Tt0 f51 1 0.2720598431815405 0 0 #arcLabel
+Tt0 f52 outLink CreateOldCategoriedRequest.ivp #txt
+Tt0 f52 type internaltest.Data #txt
+Tt0 f52 inParamDecl '<> param;' #txt
+Tt0 f52 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f52 guid 15BA9E72484AE98C #txt
+Tt0 f52 requestEnabled true #txt
+Tt0 f52 triggerEnabled false #txt
+Tt0 f52 callSignature CreateOldCategoriedRequest() #txt
+Tt0 f52 persist false #txt
+Tt0 f52 startName 'Create Old Categoried Request' #txt
+Tt0 f52 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f52 caseData businessCase.attach=true #txt
+Tt0 f52 showInStartList 1 #txt
+Tt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CreateOldCategoriedRequest.ivp</name>
+        <nameStyle>30,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f52 @C|.responsibility Everybody #txt
+Tt0 f52 179 803 26 26 14 0 #rect
+Tt0 f52 @|StartRequestIcon #fIcon
+Tt0 f53 type internaltest.Data #txt
+Tt0 f53 115 979 26 26 14 0 #rect
+Tt0 f53 @|EndIcon #fIcon
+Tt0 f54 type internaltest.Data #txt
+Tt0 f54 243 979 26 26 14 0 #rect
+Tt0 f54 @|EndIcon #fIcon
+Tt0 f55 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f55 actionTable 'out=in1;
+' #txt
+Tt0 f55 outTypes "internaltest.Data","internaltest.Data" #txt
+Tt0 f55 outLinks "TaskA.ivp","TaskB.ivp" #txt
+Tt0 f55 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Request Change CPU
+TaskA.PRI=2
+TaskA.ROL="demo"
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=3
+TaskA.customFields.varchar.5="ICT Support/Request/Change Hardware"
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Request install new software
+TaskB.PRI=2
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0
+TaskB.customFields.varchar.5="ICT Support/Request/Install Software"' #txt
+Tt0 f55 type internaltest.Data #txt
+Tt0 f55 template "" #txt
+Tt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create old categoried requests</name>
+        <nameStyle>30,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f55 178 850 28 28 14 0 #rect
+Tt0 f55 @|TaskSwitchIcon #fIcon
+Tt0 f56 expr out #txt
+Tt0 f56 type internaltest.Data #txt
+Tt0 f56 var in1 #txt
+Tt0 f56 192 829 192 850 #arcP
+Tt0 f57 expr data #txt
+Tt0 f57 outCond ivp=="TaskA.ivp" #txt
+Tt0 f57 178 864 128 979 #arcP
+Tt0 f57 1 128 864 #addKink
+Tt0 f57 1 0.1567553612281148 0 0 #arcLabel
+Tt0 f58 expr data #txt
+Tt0 f58 outCond ivp=="TaskB.ivp" #txt
+Tt0 f58 206 864 256 979 #arcP
+Tt0 f58 1 256 864 #addKink
+Tt0 f58 1 0.1571087239093166 0 0 #arcLabel
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -916,3 +1012,9 @@ Tt0 f32 out f50 tail #connect
 Tt0 f50 head f47 mainIn #connect
 Tt0 f32 out f51 tail #connect
 Tt0 f51 head f48 mainIn #connect
+Tt0 f52 mainOut f56 tail #connect
+Tt0 f56 head f55 in #connect
+Tt0 f55 out f57 tail #connect
+Tt0 f57 head f53 mainIn #connect
+Tt0 f55 out f58 tail #connect
+Tt0 f58 head f54 mainIn #connect

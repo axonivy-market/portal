@@ -449,6 +449,23 @@
 					<para>PortalHome: The <code>taskView</code> parameter is added to the start method.</para>
 				</listitem>
 			</itemizedlist>
+      <sect3>
+				<title>SQL conversion</title>
+				<para>From Portal <code>7.0</code>, we use standard axon.ivy Task Category field to store task category.</para>
+				<para>To migrate task categories, please deploy <link xlink:href="documents/MigrateTaskCategorySample.iar">MigrateTaskCategorySample.iar</link> to your server and run <code>MigrateTaskCategory</code> process to:</para>
+				<orderedlist>
+					<listitem>
+						<para>Migrate data from column <code>customVarCharField5</code> to <code>category</code> for all tasks on server.</para>
+					</listitem>
+					<listitem>
+						<para>Delete leftover data in <code>customVarCharField5</code> of all tasks on server.</para>
+					</listitem>
+					<listitem>
+						<para>Create CMS entries for categories on every applications on server.</para>
+					</listitem>
+				</orderedlist>
+				<para>If you have queries which referring to task category, plese replace <code>customVarCharField5()</code> part with <code>category()</code> part.</para>
+			</sect3>
 		</sect2>
 		<sect2>
 			<title>Migrate 6.4 or 6.5 to 6.6</title>
