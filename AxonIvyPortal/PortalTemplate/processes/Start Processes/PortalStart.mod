@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 26 10:44:48 ICT 2017]
+[>Created: Wed Apr 26 17:58:06 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -388,25 +388,38 @@ Pt0 f20 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f20 actionTable 'out=in;
 ' #txt
-Pt0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Pt0 f20 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivyteam.ivy.workflow.StandardProcessType;
+
+GlobalSettingService service = new GlobalSettingService();
+String isDefaultEndPageToPortal = service.findGlobalSettingValue(GlobalVariable.DEFAULT_END_PAGE_TO_PORTAL);
+
+if (#isDefaultEndPageToPortal is initialized || isDefaultEndPageToPortal.toBoolean()) {
+	String defaultProcessLibraryName = "ch.ivyteam.ivy.project.portal:portalTemplate";
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, defaultProcessLibraryName);
+}
 
 SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), in.portalPage);' #txt
+Pt0 f20 security system #txt
 Pt0 f20 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Store the last page
-to session</name>
-        <nameStyle>30
+        <name>Set default end page to 
+Portal and store the 
+last page to session</name>
+        <nameStyle>67
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f20 120 130 128 44 -45 -16 #rect
+Pt0 f20 104 122 160 60 -60 -24 #rect
 Pt0 f20 @|StepIcon #fIcon
 Pt0 f21 expr out #txt
-Pt0 f21 248 152 276 152 #arcP
+Pt0 f21 264 152 276 152 #arcP
 Pt0 f21 0 0.37297345905809204 6 -17 #arcLabel
 Pt0 f19 expr out #txt
 Pt0 f19 666 440 734 440 #arcP
@@ -459,7 +472,7 @@ Pt0 f6 expr out #txt
 Pt0 f6 626 152 774 152 #arcP
 Pt0 f6 0 0.37297345905809204 0 -17 #arcLabel
 Pt0 f14 expr out #txt
-Pt0 f14 77 152 120 152 #arcP
+Pt0 f14 77 152 104 152 #arcP
 Pt0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
