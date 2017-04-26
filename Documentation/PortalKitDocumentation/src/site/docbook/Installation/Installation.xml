@@ -179,6 +179,11 @@
 							<entry>TRUE/FALSE</entry>
 							<entry>Set to <code>TRUE</code> to hide hours and minutes next to date.</entry>
 						</row>
+						<row>
+							<entry>DEFAULT_END_PAGE_TO_PORTAL</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>To navigate to the same task list after a task is finished, the default end page of Portal needs to be set (no configuration for this variable or its value is TRUE). If it is set to FALSE, you also need to set another default end page (by AdminUi). If record is not set, the default end page is from Portal by default.</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
@@ -519,6 +524,9 @@
 				<itemizedlist>
 					<listitem>
 						<para>Task delegate customization is supported</para>
+					</listitem>
+					<listitem>
+						<para>The same task list is displayed before and after a task. Refer to Global settings to remove this feature.</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
