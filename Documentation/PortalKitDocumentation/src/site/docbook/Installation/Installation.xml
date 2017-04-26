@@ -435,7 +435,7 @@
 		</para>
 		<sect2>
 			<title>Migrate 6.x to 7.0</title>
-			<para>If you copy the <code>PortalStart</code> process or the <code>PortalHome</code> HTMLDialog, please adapt the changes:</para>
+			<para>If you copy the <code>PortalStart</code> process or the <code>PortalHome</code> HTMLDialog for customizations, please adapt the changes:</para>
 			<itemizedlist>
 				<listitem>
 					<para>PortalStart: some new ivy scripts are added to handle the navigation back to the same page before starting a task.</para>
