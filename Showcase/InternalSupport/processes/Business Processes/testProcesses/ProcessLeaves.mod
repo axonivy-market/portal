@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Apr 17 13:52:55 ICT 2017]
-1470062B2127AF92 3.19 #module
+[>Created: Wed Apr 26 09:36:46 ICT 2017]
+1470062B2127AF92 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessLeaves Big #zClass
 Ps0 B #cInfo
@@ -41,9 +41,6 @@ Ps0 @PushWFArc f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 Ps0 @TaskSwitchSimple f14 '' #zField
 Ps0 @TkArc f19 '' #zField
-Ps0 @EndRequest f18 '' #zField
-Ps0 @StartRequest f17 '' #zField
-Ps0 @PushWFArc f20 '' #zField
 >Proto Ps0 Ps0 ProcessLeaves #zField
 Ct1 @TextInP .resExport .resExport #zField
 Ct1 @TextInP .type .type #zField
@@ -327,72 +324,6 @@ Ps0 f19 var in1 #txt
 Ps0 f19 327 568 330 640 #arcP
 Ps0 f19 1 327 640 #addKink
 Ps0 f19 1 0.9581297872967439 0 0 #arcLabel
-Ps0 f18 type internaltest.ProcessLeaves #txt
-Ps0 f18 template "/ProcessPages/portalHome.ivc" #txt
-Ps0 f18 667 435 26 26 14 0 #rect
-Ps0 f18 @|EndRequestIcon #fIcon
-Ps0 f17 outLink DefaultEndPage.ivp #txt
-Ps0 f17 type internaltest.ProcessLeaves #txt
-Ps0 f17 inParamDecl '<java.lang.Number endedTaskId> param;' #txt
-Ps0 f17 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
-Ps0 f17 guid 14CF8FD122833A60 #txt
-Ps0 f17 requestEnabled true #txt
-Ps0 f17 triggerEnabled false #txt
-Ps0 f17 callSignature DefaultEndPage(Number) #txt
-Ps0 f17 persist false #txt
-Ps0 f17 taskData '#
-#Tue May 05 14:29:18 ICT 2015
-TaskTriggered.ROL=Everybody
-TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody
-' #txt
-Ps0 f17 caseData '#
-#Tue May 05 14:29:18 ICT 2015
-businessCalendarName=
-businessCreator.user=
-businessMilestone.timestamp=
-businessObject.code=
-businessObject.docDb.code=
-businessObject.folder.id=
-businessObject.name=
-businessPriority=
-businessStart.timestamp=
-case.description=
-case.name=
-correspondent.id=
-mainContact.docDb.code=
-mainContact.folder.id=
-mainContact.id=
-mainContact.name=
-mainContact.type=
-process.code=
-process.name=
-processCategory.code=
-processCategory.name=
-subType.code=
-subType.name=
-type.code=
-type.name=
-' #txt
-Ps0 f17 showInStartList 0 #txt
-Ps0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>DefaultEndPage.ivp</name>
-        <nameStyle>18,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f17 @C|.responsibility Everybody #txt
-Ps0 f17 667 187 26 26 14 0 #rect
-Ps0 f17 @|StartRequestIcon #fIcon
-Ps0 f20 expr out #txt
-Ps0 f20 680 213 680 435 #arcP
 >Proto Ps0 .type internaltest.ProcessLeaves #txt
 >Proto Ps0 .processKind NORMAL #txt
 >Proto Ps0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -401,17 +332,20 @@ Ps0 f20 680 213 680 435 #arcP
         <swimlaneLabel>Employee</swimlaneLabel>
         <swimlaneLabel>HR</swimlaneLabel>
         <swimlaneLabel>Manager</swimlaneLabel>
-        <swimlaneLabel>DefaultEndPage</swimlaneLabel>
     </language>
     <swimlaneOrientation>true</swimlaneOrientation>
     <swimlaneSize>264</swimlaneSize>
     <swimlaneSize>168</swimlaneSize>
     <swimlaneSize>192</swimlaneSize>
-    <swimlaneSize>192</swimlaneSize>
-    <swimlaneColor>-2621541</swimlaneColor>
-    <swimlaneColor>-103</swimlaneColor>
-    <swimlaneColor>-26215</swimlaneColor>
-    <swimlaneColor>-1</swimlaneColor>
+    <swimlaneColor gradient="true">-2621541</swimlaneColor>
+    <swimlaneColor gradient="true">-103</swimlaneColor>
+    <swimlaneColor gradient="true">-26215</swimlaneColor>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
 </elementInfo>
 ' #txt
 >Proto Ps0 0 0 32 24 18 0 #rect
@@ -726,8 +660,6 @@ Ps0 f34 mainOut f5 tail #connect
 Ps0 f5 head f3 mainIn #connect
 Ps0 3b0 g1 f19 tail #connect
 Ps0 f19 head f14 in #connect
-Ps0 f17 mainOut f20 tail #connect
-Ps0 f20 head f18 mainIn #connect
 Ct1 g0 m f0 tail #connect
 Ct1 f0 head f1 mainIn #connect
 Ct1 g2 m f2 tail #connect
