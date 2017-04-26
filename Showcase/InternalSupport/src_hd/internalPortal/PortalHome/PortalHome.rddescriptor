@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>getDataModel</name>
-        <description></description>
-        <outputParameter>
-            <name>dataModel</name>
-            <description></description>
-            <parameterType>ch.internalsupport.CustomizedTaskLazyDataModel</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
+        <inputParameter>
+            <name>taskView</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portal.generic.view.TaskView</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>
