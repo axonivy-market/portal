@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 09:48:01 ICT 2017]
+[>Created: Wed Apr 26 17:43:41 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -56,6 +56,13 @@ Tt0 @EndTask f20 '' #zField
 Tt0 @PushWFArc f46 '' #zField
 Tt0 @PushWFArc f36 '' #zField
 Tt0 @PushWFArc f33 '' #zField
+Tt0 @StartRequest f30 '' #zField
+Tt0 @TaskSwitch f32 '' #zField
+Tt0 @EndTask f47 '' #zField
+Tt0 @EndTask f48 '' #zField
+Tt0 @TkArc f49 '' #zField
+Tt0 @PushWFArc f50 '' #zField
+Tt0 @PushWFArc f51 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -757,6 +764,93 @@ Tt0 f33 expr out #txt
 Tt0 f33 1646 296 1523 416 #arcP
 Tt0 f33 1 1646 416 #addKink
 Tt0 f33 1 0.03785109119051796 0 0 #arcLabel
+Tt0 f30 outLink CategoriedPersonalRequest.ivp #txt
+Tt0 f30 type internaltest.Data #txt
+Tt0 f30 inParamDecl '<> param;' #txt
+Tt0 f30 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f30 guid 15BA9D83D90F4C85 #txt
+Tt0 f30 requestEnabled true #txt
+Tt0 f30 triggerEnabled false #txt
+Tt0 f30 callSignature CategoriedPersonalRequest() #txt
+Tt0 f30 persist false #txt
+Tt0 f30 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f30 caseData businessCase.attach=true #txt
+Tt0 f30 showInStartList 1 #txt
+Tt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CategoriedPersonalRequest.ivp</name>
+        <nameStyle>29,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f30 @C|.responsibility Everybody #txt
+Tt0 f30 179 499 26 26 14 0 #rect
+Tt0 f30 @|StartRequestIcon #fIcon
+Tt0 f32 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f32 actionTable 'out=in1;
+' #txt
+Tt0 f32 outTypes "internaltest.Data","internaltest.Data" #txt
+Tt0 f32 outLinks "TaskA.ivp","TaskB.ivp" #txt
+Tt0 f32 taskData 'TaskA.CATEGORY=PersonalRequest/RaiseSalary
+TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Request raise salary
+TaskA.PRI=2
+TaskA.ROL=Everybody
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0
+TaskB.CATEGORY=PersonalRequest/Vacation
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Request vacation
+TaskB.PRI=2
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0' #txt
+Tt0 f32 type internaltest.Data #txt
+Tt0 f32 template "" #txt
+Tt0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create personal tasks</name>
+        <nameStyle>21,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f32 178 562 28 28 14 0 #rect
+Tt0 f32 @|TaskSwitchIcon #fIcon
+Tt0 f47 type internaltest.Data #txt
+Tt0 f47 123 691 26 26 14 0 #rect
+Tt0 f47 @|EndIcon #fIcon
+Tt0 f48 type internaltest.Data #txt
+Tt0 f48 235 691 26 26 14 0 #rect
+Tt0 f48 @|EndIcon #fIcon
+Tt0 f49 expr out #txt
+Tt0 f49 type internaltest.Data #txt
+Tt0 f49 var in1 #txt
+Tt0 f49 192 525 192 562 #arcP
+Tt0 f50 expr data #txt
+Tt0 f50 outCond ivp=="TaskA.ivp" #txt
+Tt0 f50 178 576 136 691 #arcP
+Tt0 f50 1 136 576 #addKink
+Tt0 f50 1 0.3322287372200468 0 0 #arcLabel
+Tt0 f51 expr data #txt
+Tt0 f51 outCond ivp=="TaskB.ivp" #txt
+Tt0 f51 206 576 248 691 #arcP
+Tt0 f51 1 248 576 #addKink
+Tt0 f51 1 0.2720598431815405 0 0 #arcLabel
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -816,3 +910,9 @@ Tt0 f26 mainOut f36 tail #connect
 Tt0 f36 head f20 mainIn #connect
 Tt0 f24 mainOut f33 tail #connect
 Tt0 f33 head f20 mainIn #connect
+Tt0 f30 mainOut f49 tail #connect
+Tt0 f49 head f32 in #connect
+Tt0 f32 out f50 tail #connect
+Tt0 f50 head f47 mainIn #connect
+Tt0 f32 out f51 tail #connect
+Tt0 f51 head f48 mainIn #connect
