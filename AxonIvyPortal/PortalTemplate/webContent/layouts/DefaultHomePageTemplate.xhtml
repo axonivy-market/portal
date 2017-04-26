@@ -7,8 +7,6 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:param name="taskView" value="#{data.taskView}" />
-  
     <ui:define name="pageTitle">Cockpit</ui:define>
     <ui:define name="pageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
@@ -16,11 +14,11 @@
       <c:set var="displayStatisticWidget" value="#{not empty displayStatisticWidget ? displayStatisticWidget : true}" />
 
       <h:panelGroup layout="block"
-        styleClass="js-dashboard-default-widget-container #{taskView.dataModel.compactMode ? 'dashboard-container' : 'task-list-container js-task-list-container'}">
+        styleClass="js-dashboard-default-widget-container #{dataModel.compactMode ? 'dashboard-container' : 'task-list-container js-task-list-container'}">
 
         <ui:insert name="processWidget">
           <h:panelGroup layout="block"
-            styleClass="js-dashboard-main-content-1st-col dashboard-main-content-1st-col layout-col #{!taskView.dataModel.compactMode ? 'u-hidden' : ''}"
+            styleClass="js-dashboard-main-content-1st-col dashboard-main-content-1st-col layout-col #{!dataModel.compactMode ? 'u-hidden' : ''}"
             rendered="#{displayProcessWidget}">
             <h:panelGroup layout="block" styleClass="js-process-widget">
               <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true"
@@ -33,11 +31,11 @@
 
         <ui:insert name="taskWidget">
           <h:panelGroup layout="block"
-            styleClass="#{taskView.dataModel.compactMode ? 'js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col' : 'js-expansed-mode js-task-list-main-col'}"
+            styleClass="#{dataModel.compactMode ? 'js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col' : 'js-expansed-mode js-task-list-main-col'}"
             rendered="#{displayTaskWidget}">
-            <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{taskView.dataModel}"
+            <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}"
-              keyword="#{taskView.dataModel.queryCriteria.keyword}" compactMode="#{taskView.dataModel.compactMode}"
+              keyword="#{dataModel.queryCriteria.keyword}" compactMode="#{dataModel.compactMode}"
               onSwitchToCompactModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToCompactMode(responsiveToolkit.updateLayoutWithoutAnimation)"
               onSwitchToExpandedModeCompletedCallback="portalDashboardToolkit.switchTaskWidgetToExpandedMode(responsiveToolkit.updateLayoutWithoutAnimation)"
               componentToUpdateWhenInCompactMode="#{displayStatisticWidget ? 'statistic-widget-container' : ''}">
@@ -50,7 +48,7 @@
 
                 <ui:fragment rendered="#{not useOverrideListHeader}">
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader id="task-list-header-component"
-                    dataModel="#{taskView.dataModel}" />
+                    dataModel="#{dataModel}" />
                 </ui:fragment>
               </f:facet>
 
@@ -115,7 +113,7 @@
 
         <ui:insert name="statisticWidget">
           <h:panelGroup layout="block"
-            styleClass="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col #{!taskView.dataModel.compactMode ? 'u-hidden' : ''}"
+            styleClass="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col #{!dataModel.compactMode ? 'u-hidden' : ''}"
             rendered="#{displayStatisticWidget}">
             <h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">
               <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
