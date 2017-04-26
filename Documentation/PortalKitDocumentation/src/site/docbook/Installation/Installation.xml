@@ -435,21 +435,15 @@
 		</para>
 		<sect2>
 			<title>Migrate 6.x to 7.0</title>
-			<sect3>
-				<title>SQL conversion</title>
-				<para>From Portal <code>7.0</code>, we use standard axon.ivy Task Category field to store task category.</para>
-				<para>If you have queries which referring to task category, plese replace <code>customVarCharField5()</code> part with <code>category()</code> part</para>
-				<para>Example to create a task query which task category is a select condition.</para>
-				<screen>private TaskQuery queryForCategory(String keyword) {
-		String startingWithCategory = String.format("%s%%", keyword);
-		TaskQuery filterByKeywordQuery = TaskQuery.create().where().category().isLike(startingWithCategory);
-	
-		return filterByKeywordQuery;
-	}</screen>
-				<para>After upgrade to Portal <code>7.0</code>, please run below SQL script to migrate data.</para>
-				<screen>update IWA_Task set category = COALESCE(customvarcharfield5, ' ')
-update IWA_Task set customvarcharfield5 = NULL</screen>
-			</sect3>
+			<para>If you copy the <code>PortalStart</code> process or the <code>PortalHome</code> HTMLDialog, please adapt the changes:</para>
+			<itemizedlist>
+				<listitem>
+					<para>PortalStart: some new ivy scripts are added to handle the navigation back to the same page before starting a task.</para>
+				</listitem>
+				<listitem>
+					<para>PortalHome: The <code>taskView</code> parameter is added to the start method.</para>
+				</listitem>
+			</itemizedlist>
 		</sect2>
 		<sect2>
 			<title>Migrate 6.4 or 6.5 to 6.6</title>
@@ -521,6 +515,14 @@ update IWA_Task set customvarcharfield5 = NULL</screen>
 		<para>
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
 			<sect2>
+				<title>Changes in 7.0 (Jakobshorn)</title>
+				<itemizedlist>
+					<listitem>
+						<para>Task delegate customization is supported</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
+			<sect2>
 				<title>Changes in 6.6 (Jakobshorn)</title>
 				<itemizedlist>
 					<listitem>
@@ -528,9 +530,6 @@ update IWA_Task set customvarcharfield5 = NULL</screen>
 					</listitem>
 					<listitem>
 						<para>Hide technical roles (the HIDE property is set), so that they are not displayed anywhere (e.g. delegate, absence mgmt). The default hidden role is AXONIVY_PORTAL_ADMIN</para>
-					</listitem>
-					<listitem>
-						<para>Task delegate customization is supported</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
