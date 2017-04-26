@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 17:39:11 ICT 2017]
+[>Created: Wed Apr 26 10:44:48 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -36,6 +36,8 @@ Pt0 @GridStep f22 '' #zField
 Pt0 @PushWFArc f23 '' #zField
 Pt0 @PushWFArc f6 '' #zField
 Pt0 @PushWFArc f14 '' #zField
+Pt0 @InfoButton f16 '' #zField
+Pt0 @AnnotationArc f24 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -438,7 +440,7 @@ list''s configuration</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f22 654 140 36 24 20 -2 #rect
+Pt0 f22 590 140 36 24 20 -2 #rect
 Pt0 f22 @|StepIcon #fIcon
 Pt0 f23 expr in #txt
 Pt0 f23 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.HOME_PAGE, in.portalPage) || java.util.Objects.isNull(in.portalPage)' #txt
@@ -451,13 +453,31 @@ Pt0 f23 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f23 304 152 654 152 #arcP
+Pt0 f23 304 152 590 152 #arcP
 Pt0 f23 0 0.37297345905809204 0 -17 #arcLabel
 Pt0 f6 expr out #txt
-Pt0 f6 690 152 774 152 #arcP
+Pt0 f6 626 152 774 152 #arcP
 Pt0 f6 0 0.37297345905809204 0 -17 #arcLabel
 Pt0 f14 expr out #txt
 Pt0 f14 77 152 120 152 #arcP
+Pt0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NOTE: IF THERE IS A CUSTOMIZED DATA MODEL, PLEASE REPLACE THE SCRIPT
+
+in.dataModel = new TaskLazyDataModel();
+BY
+in.dataModel = new &lt;CUSTOMIZED_DATA_MODEL&gt;();</name>
+        <nameStyle>158
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f16 936 50 480 92 -230 -40 #rect
+Pt0 f16 @|IBIcon #fIcon
+Pt0 f24 936 96 608 140 #arcP
+Pt0 f24 1 608 96 #addKink
+Pt0 f24 0 0.5846569396557643 0 0 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -484,3 +504,5 @@ Pt0 f22 mainOut f6 tail #connect
 Pt0 f6 head f3 mainIn #connect
 Pt0 f0 mainOut f14 tail #connect
 Pt0 f14 head f20 mainIn #connect
+Pt0 f16 ao f24 tail #connect
+Pt0 f24 head f22 @CG|ai #connect
