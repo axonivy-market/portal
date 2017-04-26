@@ -260,6 +260,7 @@
   </xs:complexType>
 <xs:complexType name="findGroupTaskCategories">
     <xs:sequence>
+      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
@@ -272,9 +273,19 @@
   </xs:complexType>
 <xs:complexType name="findGroupTaskCategoriesResult">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="categoryData">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="path" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="rawPath" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 <xs:complexType name="analyzeExpiryStatistic">
     <xs:sequence>
@@ -308,6 +319,7 @@
   </xs:complexType>
 <xs:complexType name="findPersonalTaskCategories">
     <xs:sequence>
+      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
@@ -320,12 +332,13 @@
   </xs:complexType>
 <xs:complexType name="findPersonalTaskCategoriesResult">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="findCategories">
     <xs:sequence>
+      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
@@ -338,7 +351,7 @@
   </xs:complexType>
 <xs:complexType name="findCategoriesResult">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>

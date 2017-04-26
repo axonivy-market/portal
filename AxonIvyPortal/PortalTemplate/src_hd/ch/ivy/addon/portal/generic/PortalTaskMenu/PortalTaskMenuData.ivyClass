@@ -4,9 +4,9 @@ loginUser String #field
 loginUser PERSISTENT #fieldModifier
 hasReadAllTasksPermisson Boolean #field
 hasReadAllTasksPermisson PERSISTENT #fieldModifier
-myTaskCategories List<String> #field
+myTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 myTaskCategories PERSISTENT #fieldModifier
-allTaskCategories List<String> #field
+allTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 allTaskCategories PERSISTENT #fieldModifier
 errors List<ch.ivy.ws.addon.WsException> #field
 errors PERSISTENT #fieldModifier
@@ -18,7 +18,7 @@ selectedNode org.primefaces.model.DefaultTreeNode #field
 selectedNode PERSISTENT #fieldModifier
 involvedApplications List<String> #field
 involvedApplications PERSISTENT #fieldModifier
-groupTaskCategories List<String> #field
+groupTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 groupTaskCategories PERSISTENT #fieldModifier
 jsonQuery String #field
 jsonQuery 'Customized TaskQuery' #fieldComment

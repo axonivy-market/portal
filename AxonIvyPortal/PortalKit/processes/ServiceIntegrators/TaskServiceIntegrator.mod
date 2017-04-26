@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Apr 26 10:42:29 ICT 2017]
-14E8BC51CC56193A 3.20 #module
+[>Created: Wed Apr 19 13:59:10 ICT 2017]
+14E8BC51CC56193A 3.19 #module
 >Proto >Proto Collection #zClass
 Te0 TaskServiceIntegrator Big #zClass
 Te0 B #cInfo
@@ -138,7 +138,6 @@ Te0 @WSElement f156 '' #zField
 Te0 @PushWFArc f157 '' #zField
 Te0 @PushWFArc f53 '' #zField
 Te0 @PushWFArc f158 '' #zField
-Te0 @PushWFArc f159 '' #zField
 Te0 @WSElement f101 '' #zField
 Te0 @PushWFArc f143 '' #zField
 Te0 @PushWFArc f93 '' #zField
@@ -162,7 +161,6 @@ Te0 @WSElement f165 '' #zField
 Te0 @PushWFArc f166 '' #zField
 Te0 @PushWFArc f167 '' #zField
 Te0 @PushWFArc f168 '' #zField
-Te0 @PushWFArc f169 '' #zField
 Te0 @PushWFArc f170 '' #zField
 Te0 @PushWFArc f171 '' #zField
 Te0 @PushWFArc f172 '' #zField
@@ -175,7 +173,6 @@ Te0 @WSElement f178 '' #zField
 Te0 @PushWFArc f179 '' #zField
 Te0 @PushWFArc f180 '' #zField
 Te0 @PushWFArc f181 '' #zField
-Te0 @PushWFArc f182 '' #zField
 Te0 @PushWFArc f183 '' #zField
 Te0 @PushWFArc f184 '' #zField
 Te0 @PushWFArc f185 '' #zField
@@ -185,6 +182,15 @@ Te0 @PushWFArc f15 '' #zField
 Te0 @PushWFArc f50 '' #zField
 Te0 @PushWFArc f28 '' #zField
 Te0 @PushWFArc f38 '' #zField
+Te0 @GridStep f3 '' #zField
+Te0 @PushWFArc f6 '' #zField
+Te0 @PushWFArc f65 '' #zField
+Te0 @GridStep f70 '' #zField
+Te0 @PushWFArc f76 '' #zField
+Te0 @PushWFArc f77 '' #zField
+Te0 @GridStep f104 '' #zField
+Te0 @PushWFArc f149 '' #zField
+Te0 @PushWFArc f151 '' #zField
 >Proto Te0 Te0 TaskServiceIntegrator #zField
 Te0 f7 .resExport export #txt
 Te0 f7 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -1012,7 +1018,7 @@ out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskCategoryRequester=param.userName;
 ' #txt
-Te0 f85 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f85 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f85 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
@@ -1033,7 +1039,7 @@ Te0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Te0 f85 1235 467 26 26 14 0 #rect
 Te0 f85 @|StartSubIcon #fIcon
 Te0 f86 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f86 1235 755 26 26 14 0 #rect
+Te0 f86 1235 787 26 26 14 0 #rect
 Te0 f86 @|EndSubIcon #fIcon
 Te0 f87 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1045,7 +1051,7 @@ Te0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f87 1234 562 28 28 14 -22 #rect
+Te0 f87 1234 594 28 28 14 -22 #rect
 Te0 f87 @|AlternativeIcon #fIcon
 Te0 f88 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f88 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -1067,7 +1073,7 @@ KEY_OPERATION=findCategories
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.language__@@__String__@@__in.language"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f88 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f88 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f88 returningObjectList '[wsResponse]' #txt
@@ -1080,7 +1086,7 @@ Te0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f88 1230 660 36 24 20 -2 #rect
+Te0 f88 1230 692 36 24 20 -2 #rect
 Te0 f88 @|WebServiceIcon #fIcon
 Te0 f89 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f89 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -1102,7 +1108,7 @@ KEY_OPERATION=findCategories
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.language__@@__String__@@__in.language"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f89 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f89 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f89 returningObjectList '[wsResponse]' #txt
@@ -1115,7 +1121,7 @@ Te0 f89 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f89 1390 660 36 24 20 -2 #rect
+Te0 f89 1390 692 36 24 20 -2 #rect
 Te0 f89 @|WebServiceIcon #fIcon
 Te0 f91 expr in #txt
 Te0 f91 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
@@ -1126,12 +1132,12 @@ Te0 f91 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f91 1248 590 1248 660 #arcP
+Te0 f91 1248 622 1248 692 #arcP
 Te0 f92 expr out #txt
-Te0 f92 1248 684 1248 755 #arcP
+Te0 f92 1248 716 1248 787 #arcP
 Te0 f94 expr out #txt
-Te0 f94 1408 684 1261 768 #arcP
-Te0 f94 1 1408 768 #addKink
+Te0 f94 1408 716 1261 800 #arcP
+Te0 f94 1 1408 800 #addKink
 Te0 f94 1 0.3353862987498499 0 0 #arcLabel
 Te0 f90 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f90 inParamTable 'out.applicationNames=param.apps;
@@ -2025,8 +2031,6 @@ Te0 f158 expr in #txt
 Te0 f158 750 608 896 692 #arcP
 Te0 f158 1 896 608 #addKink
 Te0 f158 0 0.7875410210393261 0 0 #arcLabel
-Te0 f159 expr out #txt
-Te0 f159 1248 493 1248 562 #arcP
 Te0 f101 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f101 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
@@ -2047,7 +2051,7 @@ KEY_OPERATION=findCategories
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.language__@@__String__@@__in.language"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f101 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f101 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f101 returningObjectList '[wsResponse]' #txt
@@ -2060,20 +2064,20 @@ Te0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f101 1070 660 36 24 20 -2 #rect
+Te0 f101 1070 692 36 24 20 -2 #rect
 Te0 f101 @|WebServiceIcon #fIcon
 Te0 f143 expr in #txt
 Te0 f143 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
-Te0 f143 1234 576 1088 660 #arcP
-Te0 f143 1 1088 576 #addKink
+Te0 f143 1234 608 1088 692 #arcP
+Te0 f143 1 1088 608 #addKink
 Te0 f143 0 0.7954957451949382 0 0 #arcLabel
 Te0 f93 expr out #txt
-Te0 f93 1088 684 1235 768 #arcP
-Te0 f93 1 1088 768 #addKink
+Te0 f93 1088 716 1235 800 #arcP
+Te0 f93 1 1088 800 #addKink
 Te0 f93 1 0.20679742620065877 0 0 #arcLabel
 Te0 f144 expr in #txt
-Te0 f144 1262 576 1408 660 #arcP
-Te0 f144 1 1408 576 #addKink
+Te0 f144 1262 608 1408 692 #arcP
+Te0 f144 1 1408 608 #addKink
 Te0 f144 0 0.7875410210393261 0 0 #arcLabel
 Te0 f160 expr out #txt
 Te0 f160 1760 493 1760 562 #arcP
@@ -2195,7 +2199,7 @@ KEY_OPERATION=findPersonalTaskCategories
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.language__@@__String__@@__in.language"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f72 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f72 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f72 returningObjectList '[wsResponse]' #txt
@@ -2208,10 +2212,10 @@ Te0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f72 1070 1036 36 24 20 -2 #rect
+Te0 f72 1070 1068 36 24 20 -2 #rect
 Te0 f72 @|WebServiceIcon #fIcon
 Te0 f141 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f141 1235 1131 26 26 14 0 #rect
+Te0 f141 1235 1163 26 26 14 0 #rect
 Te0 f141 @|EndSubIcon #fIcon
 Te0 f142 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f142 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -2233,7 +2237,7 @@ KEY_OPERATION=findPersonalTaskCategories
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.language__@@__String__@@__in.language"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f142 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f142 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f142 returningObjectList '[wsResponse]' #txt
@@ -2246,7 +2250,7 @@ Te0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f142 1230 1036 36 24 20 -2 #rect
+Te0 f142 1230 1068 36 24 20 -2 #rect
 Te0 f142 @|WebServiceIcon #fIcon
 Te0 f163 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f163 inParamTable 'out.applicationNames=param.apps;
@@ -2255,7 +2259,7 @@ out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskCategoryRequester=param.userName;
 ' #txt
-Te0 f163 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f163 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f163 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
@@ -2285,7 +2289,7 @@ Te0 f164 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f164 1234 938 28 28 14 -22 #rect
+Te0 f164 1234 970 28 28 14 -22 #rect
 Te0 f164 @|AlternativeIcon #fIcon
 Te0 f165 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f165 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -2307,7 +2311,7 @@ KEY_OPERATION=findPersonalTaskCategories
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.language__@@__String__@@__in.language"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f165 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f165 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f165 returningObjectList '[wsResponse]' #txt
@@ -2320,7 +2324,7 @@ Te0 f165 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f165 1390 1036 36 24 20 -2 #rect
+Te0 f165 1390 1068 36 24 20 -2 #rect
 Te0 f165 @|WebServiceIcon #fIcon
 Te0 f166 expr in #txt
 Te0 f166 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
@@ -2331,27 +2335,25 @@ Te0 f166 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f166 1248 966 1248 1036 #arcP
+Te0 f166 1248 998 1248 1068 #arcP
 Te0 f167 expr out #txt
-Te0 f167 1248 1060 1248 1131 #arcP
+Te0 f167 1248 1092 1248 1163 #arcP
 Te0 f168 expr out #txt
-Te0 f168 1408 1060 1261 1144 #arcP
-Te0 f168 1 1408 1144 #addKink
+Te0 f168 1408 1092 1261 1176 #arcP
+Te0 f168 1 1408 1176 #addKink
 Te0 f168 1 0.3307129966491883 0 0 #arcLabel
-Te0 f169 expr out #txt
-Te0 f169 1248 869 1248 938 #arcP
 Te0 f170 expr in #txt
 Te0 f170 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
-Te0 f170 1234 952 1088 1036 #arcP
-Te0 f170 1 1088 952 #addKink
+Te0 f170 1234 984 1088 1068 #arcP
+Te0 f170 1 1088 984 #addKink
 Te0 f170 0 0.8205772000292113 0 0 #arcLabel
 Te0 f171 expr out #txt
-Te0 f171 1088 1060 1235 1144 #arcP
-Te0 f171 1 1088 1144 #addKink
+Te0 f171 1088 1092 1235 1176 #arcP
+Te0 f171 1 1088 1176 #addKink
 Te0 f171 1 0.1992377706230372 0 0 #arcLabel
 Te0 f172 expr in #txt
-Te0 f172 1262 952 1408 1036 #arcP
-Te0 f172 1 1408 952 #addKink
+Te0 f172 1262 984 1408 1068 #arcP
+Te0 f172 1 1408 984 #addKink
 Te0 f172 0 0.7875410210393261 0 0 #arcLabel
 Te0 f173 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f173 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -2373,7 +2375,7 @@ KEY_OPERATION=findGroupTaskCategories
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.language__@@__String__@@__in.language"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f173 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f173 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f173 returningObjectList '[wsResponse]' #txt
@@ -2386,10 +2388,10 @@ Te0 f173 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f173 1606 1020 36 24 20 -2 #rect
+Te0 f173 1606 1052 36 24 20 -2 #rect
 Te0 f173 @|WebServiceIcon #fIcon
 Te0 f174 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f174 1771 1115 26 26 14 0 #rect
+Te0 f174 1771 1147 26 26 14 0 #rect
 Te0 f174 @|EndSubIcon #fIcon
 Te0 f175 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f175 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -2411,7 +2413,7 @@ KEY_OPERATION=findGroupTaskCategories
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.language__@@__String__@@__in.language"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f175 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f175 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f175 returningObjectList '[wsResponse]' #txt
@@ -2424,7 +2426,7 @@ Te0 f175 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f175 1766 1020 36 24 20 -2 #rect
+Te0 f175 1766 1052 36 24 20 -2 #rect
 Te0 f175 @|WebServiceIcon #fIcon
 Te0 f176 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f176 inParamTable 'out.applicationNames=param.apps;
@@ -2433,7 +2435,7 @@ out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskCategoryRequester=param.userName;
 ' #txt
-Te0 f176 outParamDecl '<List<java.lang.String> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f176 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f176 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
@@ -2463,7 +2465,7 @@ Te0 f177 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f177 1770 922 28 28 14 -22 #rect
+Te0 f177 1770 954 28 28 14 -22 #rect
 Te0 f177 @|AlternativeIcon #fIcon
 Te0 f178 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f178 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -2485,7 +2487,7 @@ KEY_OPERATION=findGroupTaskCategories
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.language__@@__String__@@__in.language"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
 Te0 f178 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f178 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f178 returningObjectList '[wsResponse]' #txt
@@ -2498,7 +2500,7 @@ Te0 f178 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f178 1926 1020 36 24 20 -2 #rect
+Te0 f178 1926 1052 36 24 20 -2 #rect
 Te0 f178 @|WebServiceIcon #fIcon
 Te0 f179 expr in #txt
 Te0 f179 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
@@ -2509,27 +2511,25 @@ Te0 f179 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f179 1784 950 1784 1020 #arcP
+Te0 f179 1784 982 1784 1052 #arcP
 Te0 f180 expr out #txt
-Te0 f180 1784 1044 1784 1115 #arcP
+Te0 f180 1784 1076 1784 1147 #arcP
 Te0 f181 expr out #txt
-Te0 f181 1944 1044 1797 1128 #arcP
-Te0 f181 1 1944 1128 #addKink
+Te0 f181 1944 1076 1797 1160 #arcP
+Te0 f181 1 1944 1160 #addKink
 Te0 f181 1 0.3353862987498499 0 0 #arcLabel
-Te0 f182 expr out #txt
-Te0 f182 1784 853 1784 922 #arcP
 Te0 f183 expr in #txt
 Te0 f183 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
-Te0 f183 1770 936 1624 1020 #arcP
-Te0 f183 1 1624 936 #addKink
+Te0 f183 1770 968 1624 1052 #arcP
+Te0 f183 1 1624 968 #addKink
 Te0 f183 0 0.7954957451949382 0 0 #arcLabel
 Te0 f184 expr out #txt
-Te0 f184 1624 1044 1771 1128 #arcP
-Te0 f184 1 1624 1128 #addKink
+Te0 f184 1624 1076 1771 1160 #arcP
+Te0 f184 1 1624 1160 #addKink
 Te0 f184 1 0.20679742620065877 0 0 #arcLabel
 Te0 f185 expr in #txt
-Te0 f185 1798 936 1944 1020 #arcP
-Te0 f185 1 1944 936 #addKink
+Te0 f185 1798 968 1944 1052 #arcP
+Te0 f185 1 1944 968 #addKink
 Te0 f185 0 0.7875410210393261 0 0 #arcLabel
 Te0 f186 expr out #txt
 Te0 f186 256 493 256 532 #arcP
@@ -2543,6 +2543,90 @@ Te0 f28 expr out #txt
 Te0 f28 1760 77 1760 146 #arcP
 Te0 f38 expr out #txt
 Te0 f38 256 77 256 146 #arcP
+Te0 f3 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f3 actionTable 'out=in;
+' #txt
+Te0 f3 actionCode 'import java.util.Locale;
+
+Locale emailLanguage = ivy.cms.getDefaultLanguage();
+if (ivy.session.getSessionUser().getEMailLanguage() != null) {
+	emailLanguage = ivy.session.getSessionUser().getEMailLanguage();
+}
+
+in.language = emailLanguage.toLanguageTag();' #txt
+Te0 f3 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get user language</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f3 1230 532 36 24 20 -2 #rect
+Te0 f3 @|StepIcon #fIcon
+Te0 f6 expr out #txt
+Te0 f6 1248 493 1248 532 #arcP
+Te0 f65 expr out #txt
+Te0 f65 1248 556 1248 594 #arcP
+Te0 f70 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f70 actionTable 'out=in;
+' #txt
+Te0 f70 actionCode 'import java.util.Locale;
+
+Locale emailLanguage = ivy.cms.getDefaultLanguage();
+if (ivy.session.getSessionUser().getEMailLanguage() != null) {
+	emailLanguage = ivy.session.getSessionUser().getEMailLanguage();
+}
+
+in.language = emailLanguage.toLanguageTag();' #txt
+Te0 f70 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get user language</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f70 1230 908 36 24 20 -2 #rect
+Te0 f70 @|StepIcon #fIcon
+Te0 f76 expr out #txt
+Te0 f76 1248 869 1248 908 #arcP
+Te0 f77 expr out #txt
+Te0 f77 1248 932 1248 970 #arcP
+Te0 f104 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f104 actionTable 'out=in;
+' #txt
+Te0 f104 actionCode 'import java.util.Locale;
+
+Locale emailLanguage = ivy.cms.getDefaultLanguage();
+if (ivy.session.getSessionUser().getEMailLanguage() != null) {
+	emailLanguage = ivy.session.getSessionUser().getEMailLanguage();
+}
+
+in.language = emailLanguage.toLanguageTag();' #txt
+Te0 f104 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get user language</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f104 1766 892 36 24 20 -2 #rect
+Te0 f104 @|StepIcon #fIcon
+Te0 f149 expr out #txt
+Te0 f149 1784 853 1784 892 #arcP
+Te0 f151 expr out #txt
+Te0 f151 1784 916 1784 954 #arcP
 >Proto Te0 .type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 0 0 32 24 18 0 #rect
@@ -2669,8 +2753,6 @@ Te0 f156 mainOut f53 tail #connect
 Te0 f53 head f48 mainIn #connect
 Te0 f47 out f158 tail #connect
 Te0 f158 head f46 mainIn #connect
-Te0 f85 mainOut f159 tail #connect
-Te0 f159 head f87 in #connect
 Te0 f87 out f143 tail #connect
 Te0 f143 head f101 mainIn #connect
 Te0 f101 mainOut f93 tail #connect
@@ -2699,8 +2781,6 @@ Te0 f142 mainOut f167 tail #connect
 Te0 f167 head f141 mainIn #connect
 Te0 f165 mainOut f168 tail #connect
 Te0 f168 head f141 mainIn #connect
-Te0 f163 mainOut f169 tail #connect
-Te0 f169 head f164 in #connect
 Te0 f164 out f170 tail #connect
 Te0 f170 head f72 mainIn #connect
 Te0 f72 mainOut f171 tail #connect
@@ -2713,8 +2793,6 @@ Te0 f175 mainOut f180 tail #connect
 Te0 f180 head f174 mainIn #connect
 Te0 f178 mainOut f181 tail #connect
 Te0 f181 head f174 mainIn #connect
-Te0 f176 mainOut f182 tail #connect
-Te0 f182 head f177 in #connect
 Te0 f177 out f183 tail #connect
 Te0 f183 head f173 mainIn #connect
 Te0 f173 mainOut f184 tail #connect
@@ -2733,3 +2811,15 @@ Te0 f26 mainOut f28 tail #connect
 Te0 f28 head f25 in #connect
 Te0 f0 mainOut f38 tail #connect
 Te0 f38 head f5 in #connect
+Te0 f85 mainOut f6 tail #connect
+Te0 f6 head f3 mainIn #connect
+Te0 f3 mainOut f65 tail #connect
+Te0 f65 head f87 in #connect
+Te0 f163 mainOut f76 tail #connect
+Te0 f76 head f70 mainIn #connect
+Te0 f70 mainOut f77 tail #connect
+Te0 f77 head f164 in #connect
+Te0 f176 mainOut f149 tail #connect
+Te0 f149 head f104 mainIn #connect
+Te0 f104 mainOut f151 tail #connect
+Te0 f151 head f177 in #connect
