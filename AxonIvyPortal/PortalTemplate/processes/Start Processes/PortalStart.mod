@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 26 17:58:06 ICT 2017]
+[>Created: Thu Apr 27 11:50:22 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -349,7 +349,8 @@ Pt0 f4 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f4 actionTable 'out=in;
 ' #txt
-Pt0 f4 actionCode 'import ch.ivy.addon.portalkit.bo.TaskNode;
+Pt0 f4 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
@@ -357,7 +358,8 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-boolean isTaskStarted = #task is initialized ? task.getStartProcessData() is initialized : false;
+ICase case = task.getCase();
+boolean isTaskStarted = #task is initialized ? (task.getStartProcessData() is initialized) || (!task.getStartProcessData() is initialized && case.getCreatorTask() is initialized && case.getFirstTask().equals(task)) : false;
 
 if (isTaskStarted && SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) is initialized) {
 	in.dataModel = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString()) as TaskLazyDataModel;
