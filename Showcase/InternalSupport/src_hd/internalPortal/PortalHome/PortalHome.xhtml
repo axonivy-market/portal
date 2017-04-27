@@ -5,42 +5,44 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
 <h:body>
   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+    <ui:param name="dataModel" value="#{logic.getDataModel()}" />
+    
     <ui:param name="useOverrideListHeader" value="true" />
     <ui:param name="useOverrideHeader" value="true" />
     
     <ui:define name="taskListHeader">
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="priority-column-header" styleClass="priority-column-header TexAlCenter"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/priority')}"
         sortField="#{masterDataBean.taskSortFieldPriority}" />
 
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="name-column-header" styleClass="name-column-header"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/nameAndDescription')}"
         sortField="#{masterDataBean.taskSortFieldName}" />
 
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="responsible-column-header"
         styleClass="responsible-column-header js-responsible-column-header hidden-sm"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}"
         sortField="#{masterDataBean.taskSortFieldActivator}" />
 
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="id-column-header" styleClass="id-column-header js-id-column-header TexAlCenter"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}"
         sortField="#{masterDataBean.taskSortFieldId}" />
 
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="create-column-header" styleClass="create-column-header js-create-column-header TexAlCenter"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}"
         sortField="#{masterDataBean.taskSortFieldCreationTime}" />
 
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
         componentId="expiry-column-header" styleClass="expiry-column-header js-expiry-column-header TexAlCenter"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}"
         sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
 
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}" componentId="task-custom"
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}" componentId="task-custom"
         sortField="customVarcharField5" value="CustomVarcharField5" styleClass="state-column-header TexAlCenter" />
 
     </ui:define>
