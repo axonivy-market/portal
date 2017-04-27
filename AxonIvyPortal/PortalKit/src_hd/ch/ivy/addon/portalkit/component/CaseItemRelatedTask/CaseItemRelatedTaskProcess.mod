@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Apr 18 11:06:52 ICT 2017]
+[>Created: Thu Apr 27 11:36:52 ICT 2017]
 153358BE9219FD4C 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
@@ -38,13 +38,18 @@ Cs0 @GridStep f15 '' #zField
 Cs0 @GridStep f16 '' #zField
 Cs0 @PushWFArc f3 '' #zField
 Cs0 @PushWFArc f14 '' #zField
-Cs0 @PushWFArc f7 '' #zField
 Cs0 @Join f17 '' #zField
-Cs0 @SJArc f18 '' #zField
 Cs0 @PushWFArc f20 '' #zField
 Cs0 @PushWFArc f10 '' #zField
 Cs0 @PushWFArc f9 '' #zField
 Cs0 @SJArc f19 '' #zField
+Cs0 @Alternative f21 '' #zField
+Cs0 @PushWFArc f22 '' #zField
+Cs0 @PushWFArc f7 '' #zField
+Cs0 @Alternative f24 '' #zField
+Cs0 @PushWFArc f25 '' #zField
+Cs0 @SJArc f18 '' #zField
+Cs0 @PushWFArc f26 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 153358BE9322E3ED #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
@@ -65,7 +70,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f0 53 85 22 22 14 0 #rect
 Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f1 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
-Cs0 f1 53 357 22 22 14 0 #rect
+Cs0 f1 53 453 22 22 14 0 #rect
 Cs0 f1 @|RichDialogProcessEndIcon #fIcon
 Cs0 f66 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f66 processCall MultiPortal/TaskService:findTasksByCriteria(Long,ch.ivy.ws.addon.TaskSearchCriteria,Integer,Integer) #txt
@@ -115,7 +120,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f6 245 85 22 22 14 0 #rect
 Cs0 f6 @|RichDialogMethodStartIcon #fIcon
 Cs0 f8 expr out #txt
-Cs0 f8 64 107 64 357 #arcP
+Cs0 f8 64 107 64 453 #arcP
 Cs0 f2 guid 15498D4175D375D1 #txt
 Cs0 f2 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f2 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
@@ -210,7 +215,7 @@ technical cases</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f12 238 276 36 24 -120 -20 #rect
+Cs0 f12 238 324 36 24 -120 -20 #rect
 Cs0 f12 @|CallSubIcon #fIcon
 Cs0 f71 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f71 processCall 'Functional Processes/Navigator:viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
@@ -367,22 +372,16 @@ Cs0 f14 expr out2 #txt
 Cs0 f14 270 152 349 196 #arcP
 Cs0 f14 1 349 152 #addKink
 Cs0 f14 0 0.826023128828962 0 0 #arcLabel
-Cs0 f7 expr out #txt
-Cs0 f7 256 219 256 276 #arcP
 Cs0 f17 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
 ' #txt
 Cs0 f17 actionTable 'out=in1;
 out.relatedTasks=in2.relatedTasks;
 out.technicalCases=in1.technicalCases;
 ' #txt
-Cs0 f17 242 354 28 28 14 0 #rect
+Cs0 f17 242 450 28 28 14 0 #rect
 Cs0 f17 @|JoinIcon #fIcon
-Cs0 f18 expr out #txt
-Cs0 f18 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
-Cs0 f18 var in1 #txt
-Cs0 f18 256 300 256 354 #arcP
 Cs0 f20 expr out #txt
-Cs0 f20 242 368 75 368 #arcP
+Cs0 f20 242 464 75 464 #arcP
 Cs0 f10 expr out #txt
 Cs0 f10 349 220 349 276 #arcP
 Cs0 f9 expr out1 #txt
@@ -390,9 +389,31 @@ Cs0 f9 256 166 256 195 #arcP
 Cs0 f19 expr out #txt
 Cs0 f19 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f19 var in2 #txt
-Cs0 f19 349 300 270 368 #arcP
-Cs0 f19 1 349 368 #addKink
+Cs0 f19 349 300 270 464 #arcP
+Cs0 f19 1 349 464 #addKink
 Cs0 f19 1 0.2728286559589661 0 0 #arcLabel
+Cs0 f21 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f21 242 258 28 28 14 0 #rect
+Cs0 f21 @|AlternativeIcon #fIcon
+Cs0 f22 expr out #txt
+Cs0 f22 256 219 256 258 #arcP
+Cs0 f7 expr in #txt
+Cs0 f7 outCond in.remoteCase.isBusinessCase() #txt
+Cs0 f7 256 286 256 324 #arcP
+Cs0 f24 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f24 242 386 28 28 14 0 #rect
+Cs0 f24 @|AlternativeIcon #fIcon
+Cs0 f25 expr out #txt
+Cs0 f25 256 348 256 386 #arcP
+Cs0 f18 expr in #txt
+Cs0 f18 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f18 var in1 #txt
+Cs0 f18 256 414 256 450 #arcP
+Cs0 f26 expr in #txt
+Cs0 f26 242 272 242 400 #arcP
+Cs0 f26 1 208 272 #addKink
+Cs0 f26 2 208 400 #addKink
+Cs0 f26 1 0.5 0 0 #arcLabel
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -415,13 +436,19 @@ Cs0 f13 out f9 tail #connect
 Cs0 f9 head f15 mainIn #connect
 Cs0 f13 out f14 tail #connect
 Cs0 f14 head f16 mainIn #connect
-Cs0 f15 mainOut f7 tail #connect
-Cs0 f7 head f12 mainIn #connect
 Cs0 f16 mainOut f10 tail #connect
 Cs0 f10 head f66 mainIn #connect
-Cs0 f12 mainOut f18 tail #connect
-Cs0 f18 head f17 in #connect
 Cs0 f66 mainOut f19 tail #connect
 Cs0 f19 head f17 in #connect
 Cs0 f17 mainOut f20 tail #connect
 Cs0 f20 head f1 mainIn #connect
+Cs0 f15 mainOut f22 tail #connect
+Cs0 f22 head f21 in #connect
+Cs0 f21 out f7 tail #connect
+Cs0 f7 head f12 mainIn #connect
+Cs0 f12 mainOut f25 tail #connect
+Cs0 f25 head f24 in #connect
+Cs0 f24 out f18 tail #connect
+Cs0 f18 head f17 in #connect
+Cs0 f21 out f26 tail #connect
+Cs0 f26 head f24 in #connect
