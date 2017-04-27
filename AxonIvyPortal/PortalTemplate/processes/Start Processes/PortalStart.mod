@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Apr 27 11:50:22 ICT 2017]
+[>Created: Thu Apr 27 11:59:41 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -358,8 +358,11 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-ICase case = task.getCase();
-boolean isTaskStarted = #task is initialized ? (task.getStartProcessData() is initialized) || (!task.getStartProcessData() is initialized && case.getCreatorTask() is initialized && case.getFirstTask().equals(task)) : false;
+boolean isTaskStarted = false;
+if (#task is initialized) {
+	ICase case = task.getCase();
+	isTaskStarted = (task.getStartProcessData() is initialized) || (!task.getStartProcessData() is initialized && case.getCreatorTask() is initialized && case.getFirstTask().equals(task));
+}
 
 if (isTaskStarted && SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) is initialized) {
 	in.dataModel = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString()) as TaskLazyDataModel;
