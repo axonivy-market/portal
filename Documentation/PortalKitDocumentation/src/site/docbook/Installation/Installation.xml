@@ -452,16 +452,16 @@
       <sect3>
 				<title>SQL conversion</title>
 				<para>From Portal <code>7.0</code>, we use standard axon.ivy Task Category field to store task category.</para>
-				<para>To migrate task categories, please deploy <link xlink:href="documents/MigrateTaskCategorySample.iar">MigrateTaskCategorySample.iar</link> to your server and run <code>MigrateTaskCategory</code> process to:</para>
+				<para>To migrate task categories, please deploy <link xlink:href="documents/MigrateTaskCategorySample.iar">MigrateTaskCategorySample.iar</link> to your application and run <code>MigrateTaskCategory</code> process to:</para>
 				<orderedlist>
 					<listitem>
-						<para>Migrate data from column <code>customVarCharField5</code> to <code>category</code> for all tasks on server.</para>
+						<para>Migrate data from column <code>customVarCharField5</code> to <code>category</code> for all tasks in the application.</para>
 					</listitem>
 					<listitem>
-						<para>Delete leftover data in <code>customVarCharField5</code> of all tasks on server.</para>
+						<para>Delete leftover data in <code>customVarCharField5</code> of all tasks in the application.</para>
 					</listitem>
 					<listitem>
-						<para>Create CMS entries for categories on every applications on server.</para>
+						<para>Create CMS entries for task categories in the application.</para>
 					</listitem>
 				</orderedlist>
 				<para>If you have queries which referring to task category, plese replace <code>customVarCharField5()</code> part with <code>category()</code> part.</para>
