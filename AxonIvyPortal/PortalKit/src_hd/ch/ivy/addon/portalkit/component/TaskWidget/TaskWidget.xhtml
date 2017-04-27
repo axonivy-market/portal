@@ -99,7 +99,7 @@
   </div>
 
   <h:form>
-    <p:remoteCommand actionListener="#{logic.storeConfiguration()}" name="onTaskStartCallBack" />
+    <p:remoteCommand actionListener="#{logic.storeConfiguration()}" name="onTaskStartCallBack" async="true" />
   </h:form>
 
   <script type="text/javascript">
