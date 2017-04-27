@@ -58,7 +58,7 @@
     <h:panelGroup styleClass="Fs14">
       <h:form id="reset-task-form">
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" styleClass="portal-ok-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onsuccess="#{cc.attrs.onTaskStartCallback}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onstart="#{cc.attrs.onTaskStartCallback}" />
         <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
       </h:form>
