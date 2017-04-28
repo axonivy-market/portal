@@ -4,6 +4,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,6 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
-import edu.emory.mathcs.backport.java.util.Arrays;
 
 /**
  * Provide the utilities related to role
