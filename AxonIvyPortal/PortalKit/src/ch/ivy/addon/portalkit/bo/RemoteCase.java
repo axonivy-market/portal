@@ -1087,4 +1087,10 @@ public class RemoteCase implements ICase {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public IBusinessCase ensureBusinessCase() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
