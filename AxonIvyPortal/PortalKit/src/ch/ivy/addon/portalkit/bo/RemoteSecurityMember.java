@@ -100,6 +100,12 @@ public class RemoteSecurityMember implements ISecurityMember{
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+
+	@Override
+	public String getName() throws PersistencyException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
