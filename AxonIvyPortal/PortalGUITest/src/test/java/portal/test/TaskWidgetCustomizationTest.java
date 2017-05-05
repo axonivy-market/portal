@@ -21,7 +21,6 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     super.setup();
     createTestingTasks();
     redirectToRelativeLink(HomePage.INTERNAL_SUPPORT_HOME_PAGE_URL);
-
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
   }
@@ -53,11 +52,11 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     taskWidgetPage.waitAjaxIndicatorDisappear();
     taskWidgetPage.sortTaskListByColumn(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Other Leave/Maternity".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
+    assertTrue("Other Leave/Sick/Long".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
 
     taskWidgetPage.sortTaskListByColumn(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Other Leave/Sick/Long".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
+    assertTrue("Other Leave/Maternity".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
   }
 
   @Test
