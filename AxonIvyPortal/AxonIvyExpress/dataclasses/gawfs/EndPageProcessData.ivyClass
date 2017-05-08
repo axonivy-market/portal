@@ -1,0 +1,8 @@
+EndPageProcessData #class
+gawfs #namespace
+taskId Integer #field
+taskId PERSISTENT #fieldModifier
+caseId Integer #field
+caseId PERSISTENT #fieldModifier
+caseType String #field
+caseType PERSISTENT #fieldModifier
