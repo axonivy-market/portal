@@ -1,0 +1,6 @@
+CaseDetailsData #class
+gawfs #namespace
+executePredefinedWorkflowData gawfs.ExecutePredefinedWorkflowData #field
+executePredefinedWorkflowData PERSISTENT #fieldModifier
+caseId Number #field
+caseId PERSISTENT #fieldModifier

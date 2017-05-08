@@ -1,0 +1,4 @@
+WfSecondReviewFormData #class
+de.eon.gawfs.workflowExecution.WfSecondReviewForm #namespace
+executePredefinedWorkflowData gawfs.ExecutePredefinedWorkflowData #field
+executePredefinedWorkflowData PERSISTENT #fieldModifier

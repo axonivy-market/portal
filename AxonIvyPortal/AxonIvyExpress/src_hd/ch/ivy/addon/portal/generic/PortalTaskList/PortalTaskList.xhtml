@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/GenericAppPortalTwoColumn.xhtml">
+		<ui:define name="PageTitle">Portal Task List</ui:define>
+		
+		<!-- TASK TREE -->
+		<ui:define name="taskTree">
+			<f:facet name="taskTreeFacet">
+				<ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskTree id="task-menu"
+					startMethod="start" treeNode="#{data.taskTree}"
+					adminTreeNode="#{data.adminTaskTree}"
+					onItemSelect="#{logic.onTaskNodeSelect}"
+					selectedTaskNode = "#{data.selectedTaskTreeNode}"
+					updateElement=":#{p:component('PortalContentPanel')}">
+				</ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskTree>
+			</f:facet>
+		</ui:define>
+
+		<!-- PORTAL CONTENT -->
+		<ui:define name="PortalContent">
+		<h:panelGroup layout="block" id="PortalContentPanel"
+				styleClass="portalContentInside">
+			<ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskTable taskLazyDataModel="#{data.taskLazyDataModel}"
+				varcharField1Header="#{data.portalListsConfig.taskCustomVarcharField1Header}" varcharField2Header="#{data.portalListsConfig.taskCustomVarcharField2Header}"
+				varcharField3Header="#{data.portalListsConfig.taskCustomVarcharField3Header}" varcharField4Header="#{data.portalListsConfig.taskCustomVarcharField4Header}"
+				varcharField5Header="#{data.portalListsConfig.taskCustomVarcharField5Header}" homeLink="#{data.homeLink}">
+			</ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskTable>
+		</h:panelGroup>		
+		</ui:define>
+		
+	</ui:composition>
+</h:body>
+</html>
