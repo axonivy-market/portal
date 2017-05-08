@@ -1,0 +1,4 @@
+CustomPortalListsConfigOverrideData #class
+gawfs #namespace
+portalListsConfig ch.ivy.addon.portal.generic.PortalListsConfig #field
+portalListsConfig PERSISTENT #fieldModifier

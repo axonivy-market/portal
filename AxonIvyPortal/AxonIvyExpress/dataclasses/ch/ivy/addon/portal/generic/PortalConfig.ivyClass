@@ -1,0 +1,10 @@
+PortalConfig #class
+ch.ivy.addon.portal.generic #namespace
+customLinkList List<ch.ivy.addon.portal.generic.CustomPortalLink> #field
+homeLink String #field
+hideCreateNewMenuItem Boolean #field
+hideDashboardMenuItem Boolean #field
+hideShowTaskMenuItem Boolean #field
+hideShowCaseMenuItem Boolean #field
+portalHomeLink ch.ivy.addon.portal.generic.CustomPortalLink #field
+portalHomeLink PERSISTENT #fieldModifier

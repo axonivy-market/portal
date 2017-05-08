@@ -1,0 +1,30 @@
+PortalTaskListData #class
+ch.ivy.addon.portal.generic.PortalTaskList #namespace
+customTasks List<ch.ivy.addon.portalkit.bo.CustomTask> #field
+customTasks PERSISTENT #fieldModifier
+selectedTask ch.ivy.addon.portalkit.bo.CustomTask #field
+selectedTask PERSISTENT #fieldModifier
+taskInformationVisible boolean #field
+taskInformationVisible PERSISTENT #fieldModifier
+startTask ch.ivyteam.ivy.workflow.ITask #field
+startTask PERSISTENT #fieldModifier
+startTaskId Number #field
+startTaskId PERSISTENT #fieldModifier
+taskTree org.primefaces.model.TreeNode #field
+taskTree PERSISTENT #fieldModifier
+selectedTaskTreeNode org.primefaces.model.TreeNode #field
+selectedTaskTreeNode PERSISTENT #fieldModifier
+homeLink String #field
+homeLink PERSISTENT #fieldModifier
+taskNotFound boolean #field
+isTaskSearchMode boolean #field
+adminTaskTree org.primefaces.model.TreeNode #field
+adminTaskTree PERSISTENT #fieldModifier
+hasAdministratorWorkflowPermisson Boolean #field
+hasAdministratorWorkflowPermisson PERSISTENT #fieldModifier
+taskLazyDataModel org.primefaces.model.LazyDataModel #field
+taskLazyDataModel PERSISTENT #fieldModifier
+tasks List<ch.ivy.add.portalkit.admin.Task> #field
+tasks PERSISTENT #fieldModifier
+portalListsConfig ch.ivy.addon.portal.generic.PortalListsConfig #field
+portalListsConfig PERSISTENT #fieldModifier

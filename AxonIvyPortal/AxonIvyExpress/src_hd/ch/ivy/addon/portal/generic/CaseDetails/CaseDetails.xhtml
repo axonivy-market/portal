@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/GenericCaseViewBase.xhtml">
+	
+		<ui:param name="caseId" value="#{data.caseDetailsData.caseId}" />
+<!-- 	<ui:param name="task" value="#{ivy.task}" /> -->
+<!-- 	<ui:param name="caseName" value="#{ivy.case.name}" /> -->
+		<ui:param name="showCommentFunction" value="true" />
+		<ui:param name="showDocumentTab" value="false" />
+		<ui:param name="showCaseFormTab" value="true" />
+		<ui:param name="showCaseStatusInfoTab" value="true" />
+		<ui:param name="showHistoryTab" value="true" />
+		<ui:param name="showCaseFormTab" value="false" />
+		
+		
+<!-- 		<ui:param name="steps" value="#{data.data.steps}" /> -->
+<!-- 		<ui:param name="actualStepIndex" value="2" /> -->
+
+		<ui:define name="caseName">
+			<h3 id="workflowinfo" style="border-bottom: none">#{data.thisCase.name}</h3>
+			<div style="font-size: 17px; padding-left: 13px;">
+			<i class="fa fa-check-square-o" aria-hidden="true"></i>
+				#{data.thisCase.description}
+			</div>
+		
+<!-- 		    <span class="fa fa-pencil"></span> -->
+<!-- 		    <h:outputText title="#{caseName} (##{caseId})" style="margin-left:5px" value="#{caseName}" /> -->
+    	</ui:define>
+
+	
+		<ui:define name="title">Case Details</ui:define>
+
+		<ui:define name="leftButtons">
+			<p:commandButton actionListener="#{logic.close}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+				icon="fa fa-undo" styleClass="buttonDelegate" />
+			<br />
+		</ui:define>
+
+
+		<!-- 		<ui:define name="PortalContent"> -->
+<!-- 			<h3> -->
+<!-- 				<i class="fa fa-plug" aria-hidden="true"></i> Case-Details -->
+<!-- 			</h3> -->
+
+			<h:form id="form">
+				<h:panelGrid columns="1" style="width: 100%">
+					<f:facet name="header">
+						<p:messages></p:messages>
+					</f:facet>
+					
+<!-- 					<p:outputPanel style="text-align: right">  -->
+<!-- 						<p:commandButton actionListener="#{logic.close}" value="Zurück!" icon="fa fa-undo"  styleClass="buttonDelegate"/> -->
+<!-- 					</p:outputPanel> -->
+		
+				</h:panelGrid>
+			</h:form>
+
+<!-- 		</ui:define> -->
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,4 @@
+caseDetailsTempData #class
+de.eon.gawfs.portal.caseDetailsTemp #namespace
+caseDetailsData gawfs.CaseDetailsData #field
+caseDetailsData PERSISTENT #fieldModifier
