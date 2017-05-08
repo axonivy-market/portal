@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/GenericAppPortalBase.xhtml">
+		<style>
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+</style>
+		<ui:define name="PageTitle">Portal Case List</ui:define>
+		
+		<!-- CASE TREE -->
+		<ui:define name="caseTree">
+			<f:facet name="caseTreeFacet">
+				<ic:ch.ivy.addon.portalkit.singleapp.cases.CaseTree
+					id="case-menu" startMethod="start"
+					isAdmin="#{data.isAdmin}"
+					caseTreeNode="#{data.userCaseTree}"
+					adminCaseTreeNode="#{data.adminCaseTree}"
+					onItemSelect="#{logic.onCaseNodeSelect}"
+					selectedCaseNode = "#{data.selectedCaseNode}"
+					updateElement=":#{p:component('caseTablePanel')}" />
+			</f:facet>
+		</ui:define>
+		
+		<!-- PORTAL CONTENT -->
+		<ui:define name="PortalContent">
+			<h:panelGroup layout="block" id="caseTablePanel">
+				<h:form id="case-view-form">
+					<ic:ch.ivy.addon.portalkit.singleapp.cases.CaseTable
+						startMethod="startForCaseTree" caseLazyDataModel="#{data.caseLazyDataModel}" varcharField1Header="#{data.portalListsConfig.caseCustomVarcharField1Header}" 
+						varcharField2Header="#{data.portalListsConfig.caseCustomVarcharField2Header}" varcharField3Header="#{data.portalListsConfig.caseCustomVarcharField3Header}" 
+						varcharField4Header="#{data.portalListsConfig.caseCustomVarcharField4Header}" varcharField5Header="#{data.portalListsConfig.caseCustomVarcharField5Header}"
+						id="all-cases-view-container" />
+				</h:form>
+			</h:panelGroup>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

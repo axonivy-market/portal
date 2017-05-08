@@ -1,0 +1,86 @@
+LdapPerson #class
+de.eon.components.bo #namespace
+departmentNumber String #field
+departmentNumber 'long version of department; e.g. Workflow Solutions Germany' #fieldComment
+departmentNumber PERSISTENT #fieldModifier
+employeeType de.eon.components.EmployeeType #field
+employeeType 'intern or extern' #fieldComment
+employeeType PERSISTENT #fieldModifier
+eonBUshort String #field
+eonBUshort 'short version of business unit; e.g. EOI' #fieldComment
+eonBUshort PERSISTENT #fieldModifier
+eonBusinessUnit String #field
+eonBusinessUnit 'long version of business unit; e.g. E.ON IT GmbH' #fieldComment
+eonBusinessUnit PERSISTENT #fieldModifier
+eonBusinessUnitID String #field
+eonBusinessUnitID 'id of business unit; e.g. 2240' #fieldComment
+eonBusinessUnitID PERSISTENT #fieldModifier
+eonCostCenter String #field
+eonCostCenter 'cost center; e.g. HR$C123456789' #fieldComment
+eonCostCenter PERSISTENT #fieldModifier
+eonDepartmentID String #field
+eonDepartmentID 'id of department; e.g. 50029514' #fieldComment
+eonDepartmentID PERSISTENT #fieldModifier
+eonDepartmentNumberShort String #field
+eonDepartmentNumberShort 'short version of department; e.g. DO_CF3-C' #fieldComment
+eonDepartmentNumberShort PERSISTENT #fieldModifier
+eonGender de.eon.components.GenderType #field
+eonGender 'male or female' #fieldComment
+eonGender PERSISTENT #fieldModifier
+eonOfficeL String #field
+eonOfficeL city #fieldComment
+eonOfficeL PERSISTENT #fieldModifier
+eonOfficePostalCode String #field
+eonOfficePostalCode 'postal code' #fieldComment
+eonOfficePostalCode PERSISTENT #fieldModifier
+eonOfficeStreet String #field
+eonOfficeStreet street #fieldComment
+eonOfficeStreet PERSISTENT #fieldModifier
+eonOrganization String #field
+eonOrganization 'long version of organization; e.g. E.ON AG' #fieldComment
+eonOrganization PERSISTENT #fieldModifier
+eonOrganizationID String #field
+eonOrganizationID 'id of organization; e.g. 11' #fieldComment
+eonOrganizationID PERSISTENT #fieldModifier
+eonPreferredLanguage String #field
+eonPreferredLanguage 'logon language' #fieldComment
+eonPreferredLanguage PERSISTENT #fieldModifier
+givenName String #field
+givenName 'first name' #fieldComment
+givenName PERSISTENT #fieldModifier
+kid String #field
+kid uid #fieldComment
+kid PERSISTENT #fieldModifier
+mail String #field
+mail 'email adress' #fieldComment
+mail PERSISTENT #fieldModifier
+mobile String #field
+mobile 'mobile number' #fieldComment
+mobile PERSISTENT #fieldModifier
+roomNumber String #field
+roomNumber 'room number' #fieldComment
+roomNumber PERSISTENT #fieldModifier
+sn String #field
+sn surname #fieldComment
+sn PERSISTENT #fieldModifier
+telephoneNumber String #field
+telephoneNumber 'phone number' #fieldComment
+telephoneNumber PERSISTENT #fieldModifier
+title String #field
+title 'job title; e.g. Consultant' #fieldComment
+title PERSISTENT #fieldModifier
+personTitle String #field
+personTitle 'person title, e.g. Dr.' #fieldComment
+personTitle PERSISTENT #fieldModifier
+eonTitle String #field
+eonTitle 'eon title, e.g. Dr.' #fieldComment
+eonTitle PERSISTENT #fieldModifier
+eonPrimPhone String #field
+eonPrimPhone 'person primary phone number' #fieldComment
+eonPrimPhone PERSISTENT #fieldModifier
+eonPrimMobile String #field
+eonPrimMobile 'person primary mobile phone number' #fieldComment
+eonPrimMobile PERSISTENT #fieldModifier
+eonOfficecountry String #field
+eonOfficecountry 'eon country' #fieldComment
+eonOfficecountry PERSISTENT #fieldModifier

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userConfig>
+    <user>
+        <username>Role1</username>
+        <role>AXONIVY_PORTAL_ADMIN</role>
+        <role>GAWFS_ADMIN</role>
+        <role>GAWFS_CREATOR</role>
+        <role>GAWFS_USER</role>
+        <role>GAWFS_ROLEADMIN</role>
+    </user>
+    <user>
+        <username>Role2</username>
+        <role>GAWFS_USER</role>
+        <role>GAWFS_CREATOR</role>
+        <role>GAWFS_ADMIN</role>
+    </user>
+</userConfig>
