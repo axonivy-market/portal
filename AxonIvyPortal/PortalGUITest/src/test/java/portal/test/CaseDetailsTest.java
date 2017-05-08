@@ -57,7 +57,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testHistoryAuthorIsUserFullName() {
     detailsPage.addNote("Sample case note");
-    assertEquals("Portal Demo User", detailsPage.getHistoryAuthor());
+    assertEquals("demo", detailsPage.getHistoryAuthor());
   }
   
   @Test
