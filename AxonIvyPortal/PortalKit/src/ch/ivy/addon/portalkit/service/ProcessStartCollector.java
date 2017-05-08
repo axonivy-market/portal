@@ -61,6 +61,22 @@ public class ProcessStartCollector {
       }
     });
   }
+  
+  public String findExpressLink() throws Exception {
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
+      @Override
+      public String call() throws Exception {
+        ProcessStartCollector collector = new ProcessStartCollector(application);
+        IProcessStart process =
+            collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CreateWorkflow/AxonIvyExpress.ivp");
+        if (process != null) {
+          return RequestUriFactory.createProcessStartUri(
+              ServerFactory.getServer().getApplicationConfigurationManager(), process).toString();
+        }
+        return StringUtils.EMPTY;
+      }
+    });
+  }
 
   private boolean isActive(IProcessModelVersion processModelVersion) {
     return processModelVersion != null && ActivityState.ACTIVE.equals(processModelVersion.getActivityState());

@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Jan 04 09:16:52 ICT 2017]
-1538898FE5F1C3BA 3.18 #module
+[>Created: Mon May 08 13:43:54 ICT 2017]
+1538898FE5F1C3BA 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -56,7 +56,14 @@ acmProcess.setLink(collector.findACMLink());
 acmProcess.setProcessName("Ad hoc Processes");
 acmProcess.setIcon("fa-code-fork");
 
-in.defaultUserProcesses.add(acmProcess);' #txt
+in.defaultUserProcesses.add(acmProcess);
+
+UserProcess expressProcess = new UserProcess();
+expressProcess.setLink(collector.findExpressLink());
+expressProcess.setProcessName("Axon.ivy Express");
+expressProcess.setIcon("fa-code-fork");
+
+in.defaultUserProcesses.add(expressProcess);' #txt
 Ds0 f3 type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
