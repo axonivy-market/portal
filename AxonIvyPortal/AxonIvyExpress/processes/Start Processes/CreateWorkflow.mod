@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Fri Mar 24 09:04:44 CET 2017]
-15798655494F25E1 3.18 #module
+[>Created: Mon May 08 16:57:31 ICT 2017]
+15798655494F25E1 3.20 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
 cw0 B #cInfo
@@ -23,7 +23,7 @@ cw0 @GridStep f7 '' #zField
 cw0 @PushWFArc f8 '' #zField
 cw0 @PushWFArc f2 '' #zField
 >Proto cw0 cw0 CreateWorkflow #zField
-cw0 f0 outLink CreateNewWorkflow.ivp #txt
+cw0 f0 outLink AxonIvyExpress.ivp #txt
 cw0 f0 type gawfs.createWorkflowData #txt
 cw0 f0 inParamDecl '<> param;' #txt
 cw0 f0 actionDecl 'gawfs.createWorkflowData out;
@@ -31,9 +31,9 @@ cw0 f0 actionDecl 'gawfs.createWorkflowData out;
 cw0 f0 guid 15798655499443C8 #txt
 cw0 f0 requestEnabled true #txt
 cw0 f0 triggerEnabled false #txt
-cw0 f0 callSignature CreateNewWorkflow() #txt
+cw0 f0 callSignature AxonIvyExpress() #txt
 cw0 f0 persist false #txt
-cw0 f0 startName 'Create new Workflow' #txt
+cw0 f0 startName 'Axon.ivy Express' #txt
 cw0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
@@ -42,35 +42,22 @@ TaskTriggered.PRI=2
 TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!
 TaskTriggered.NAM=Workflow Eigenschaften
 TaskTriggered.EXROL=Everybody' #txt
-cw0 f0 caseData 'case.description=Erstellen eines neuen Prozesses\!
-case.name=Neuen Prozess erstellen
-customFields.varchar.1="CREATE_WF"' #txt
+cw0 f0 caseData 'case.name=Neuen Prozess erstellen
+case.description=Erstellen eines neuen Prozesses\!
+customFields.varchar.1="CREATE_WF"
+businessCase.attach=false' #txt
 cw0 f0 showInStartList 1 #txt
-cw0 f0 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("Neuen Prozess erstellen"));
-ivy.case.setDescription(engine.expandMacros("Erstellen eines neuen Prozesses!"));
-ivy.case.setCustomVarCharField1("CREATE_WF");
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("Workflow Eigenschaften"));
-taskUpdDef.setDescription(engine.expandMacros("Bitte definieren Sie die Workfloweigenschaften!"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 cw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>CreateNewWorkflow.ivp</name>
-        <nameStyle>21,5,7
+        <name>AxonIvyExpress.ivp</name>
+        <nameStyle>18,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 cw0 f0 @C|.responsibility GAWFS_CREATOR #txt
-cw0 f0 81 49 30 30 -65 17 #rect
+cw0 f0 81 49 30 30 -51 17 #rect
 cw0 f0 @|StartRequestIcon #fIcon
 cw0 f1 type gawfs.createWorkflowData #txt
 cw0 f1 657 49 30 30 0 15 #rect
@@ -111,20 +98,6 @@ TaskA.PRI=2
 TaskA.ROL=SYSTEM
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
-cw0 f5 taskAction 'import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("New Process saved!"));
-taskDef.setAutoStartTask(true);
-taskDef.setActivator("SYSTEM");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-' #txt
 cw0 f5 type gawfs.createWorkflowData #txt
 cw0 f5 template "" #txt
 cw0 f5 401 49 30 30 0 16 #rect
