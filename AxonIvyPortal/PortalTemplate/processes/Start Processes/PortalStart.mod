@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Apr 27 11:59:41 ICT 2017]
+[>Created: Fri Apr 28 15:51:13 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -361,7 +361,7 @@ ITask task = ivy.wf.findTask(in.endedTaskId);
 boolean isTaskStarted = false;
 if (#task is initialized) {
 	ICase case = task.getCase();
-	isTaskStarted = (task.getStartProcessData() is initialized) || (!task.getStartProcessData() is initialized && case.getCreatorTask() is initialized && case.getFirstTask().equals(task));
+	isTaskStarted = (task.getStartProcessData() is initialized) || (!task.getStartProcessData() is initialized && case.getCreatorTask() is initialized);
 }
 
 if (isTaskStarted && SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) is initialized) {
