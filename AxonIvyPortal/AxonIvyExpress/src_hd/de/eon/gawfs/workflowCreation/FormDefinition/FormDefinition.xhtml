@@ -495,13 +495,13 @@
 					</p:dataGrid>
 				</p:fieldset>
 
-				<p:outputPanel style="text-align:center">
+				<p:outputPanel styleClass="u-text-align-center">
 					<br />
-					<h:outputLink id="dragDropIcon" value="" style="color: #656565">
+					<h:panelGroup id="dragDropIcon" styleClass="u-cursor-pointer">
 						<i class="fa fa-hand-o-up fa-2x"></i>
 						<i class="fa fa-arrow-circle-o-down fa-2x"></i>
 
-					</h:outputLink>
+					</h:panelGroup>
 
 					<p:tooltip id="dragDropIconTooltip" for="dragDropIcon"
 						value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/DragAndDropTooltip')}"
