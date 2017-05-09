@@ -8,7 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 
-		<ui:composition template="/layouts/gawfs_execution_template.xhtml">
+		<ui:composition template="/layouts/TaskTemplate.xhtml">
 		<ui:param name="caseId" value="#{ivy.case.id}" />
 		<ui:param name="task" value="#{ivy.task}" />
 		<ui:param name="steps"
@@ -17,9 +17,7 @@
 			value="#{data.executePredefinedWorkflowData.actualStepIndex}" />
 		<ui:param name="taskName" value="#{ivy.task.name}" />
 		<ui:param name="showDocumentTab" value="false" />
-
-
-
+		<ui:param name="showCaseStatusInfoTab" value="true" />
 
 		<ui:define name="title"></ui:define>
 		<ui:define name="taskForm">
