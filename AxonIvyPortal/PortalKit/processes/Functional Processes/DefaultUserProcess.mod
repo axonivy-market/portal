@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon May 08 13:43:54 ICT 2017]
+[>Created: Tue May 09 10:15:13 ICT 2017]
 1538898FE5F1C3BA 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
@@ -53,7 +53,7 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
 UserProcess acmProcess = new UserProcess();
 acmProcess.setLink(collector.findACMLink());
-acmProcess.setProcessName("Ad hoc Processes");
+acmProcess.setProcessName("Axon.ivy Selfservice");
 acmProcess.setIcon("fa-code-fork");
 
 in.defaultUserProcesses.add(acmProcess);
