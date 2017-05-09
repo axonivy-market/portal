@@ -85,7 +85,7 @@
   width: 14px;
   height: 14px;
   padding: 13px;
-  position: initial;
+  position: static;
   line-height: 14px;
   background-size: 14px 14px !important;
   overflow: initial;
@@ -96,7 +96,7 @@
   height: 14px;
   line-height: 14px;
   min-width: 97px;
-  position: initial;
+  position: static;
 }
 
 .ui-widget.ui-button-text-icon-left .ui-button-text {
