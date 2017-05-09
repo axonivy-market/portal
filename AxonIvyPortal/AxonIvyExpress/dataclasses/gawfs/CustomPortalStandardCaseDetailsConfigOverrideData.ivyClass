@@ -1,4 +1,0 @@
-CustomPortalStandardCaseDetailsConfigOverrideData #class
-gawfs #namespace
-portalCaseListData ch.ivy.addon.portal.generic.PortalCaseList.PortalCaseListData #field
-portalCaseListData PERSISTENT #fieldModifier
