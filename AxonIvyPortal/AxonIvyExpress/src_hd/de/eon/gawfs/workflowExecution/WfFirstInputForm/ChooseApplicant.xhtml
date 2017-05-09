@@ -29,7 +29,6 @@
 						<h:outputText
 							value="#{u.getDisplayName().length() ne 0 ? u.getDisplayName() : u.getMemberName()}" />
 					</p:column>
-<!-- 					<p:ajax update="userListForm" listener="#{logic.updateApplicant}" /> -->
 				</p:selectOneMenu>
 		
  			<p:spacer height="60"></p:spacer>
@@ -37,13 +36,11 @@
 			<p:outputPanel style="text-align: right">
 			
 				<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/chooseApplicant/Save')}"
-				process="case-information:form:applicantFieldSet userSelection" 
-				update="case-information:form:applicantFieldSet"			
+				process="form:applicantFieldSet userSelection" 
+				update="form:applicantFieldSet"			
 				actionListener="#{logic.updateApplicant}" icon="fa fa-check"
-				oncomplete="PF('chooseApplicant').hide();"></p:commandButton>
+				oncomplete="PF('chooseApplicant').hide();" />
 			</p:outputPanel>
-			<!-- 				</h:panelGrid> -->
-			<!-- 			</h:panelGrid> -->
 		</h:form>
 	</p:panel>
 </h:body>
