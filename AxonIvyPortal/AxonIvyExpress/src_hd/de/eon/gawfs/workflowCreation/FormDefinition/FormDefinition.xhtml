@@ -8,21 +8,21 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 
-		<ui:composition template="/layouts/gawfs_creation_template.xhtml">
+		<ui:composition template="/layouts/TaskTemplate.xhtml">
 		<ui:param name="caseId" value="#{ivy.case.id}" />
 		<ui:param name="task" value="#{ivy.task}" />
 		<ui:param name="caseName" value="#{ivy.case.name}" />
 		<ui:param name="showCommentFunction" value="false" />
 		<ui:param name="showDocumentTab" value="false" />
 		<ui:param name="showCaseFormTab" value="true" />
-		<ui:param name="showCaseStatusInfoTab" value="false" />
+		<ui:param name="showCaseStatusInfoTab" value="true" />
 		<ui:param name="showHistoryTab" value="false" />
 		<ui:param name="steps" value="#{data.data.steps}" />
 		<ui:param name="actualStepIndex" value="2" />
 
 
 		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
-		<ui:define name="caseForm">
+		<ui:define name="taskForm">
 
 			<h:form id="form">
 				<!-- createFormelementTabs -->
@@ -96,8 +96,8 @@
 											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
 												actionListener="#{logic.createInputField()}" styleClass="buttonDelegate"
 												icon="fa fa-arrow-down"
-												update="case-information:form:availableFormelements case-information:form:createTabs"
-												process="case-information:form:createTabs:createInputFieldTab" />
+												update="form:availableFormelements form:createTabs"
+												process="form:createTabs:createInputFieldTab" />
 										</p:column>
 									</p:row>
 
@@ -159,8 +159,8 @@
 											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}" styleClass="buttonDelegate"
 												actionListener="#{logic.createInputTextArea}"
 												icon="fa fa-arrow-down"
-												update="case-information:form:availableFormelements case-information:form:createTabs"
-												process="case-information:form:createTabs:createInputAreaTab" />
+												update="form:availableFormelements form:createTabs"
+												process="form:createTabs:createInputAreaTab" />
 										</p:column>
 									</p:row>
 								</p:panelGrid>
@@ -213,8 +213,8 @@
 													<p:spacer width="14" height="16" />
 													<p:commandButton icon="fa fa-trash-o fa-2x" title="" styleClass="buttonDelegate" style="padding-right: 8px;"													
 														actionListener="#{data.createManyCheckboxTab.deleteOption(option)}"
-														process="case-information:form:createTabs:ManyCheckboxOptions"
-														update="case-information:form:createTabs:ManyCheckboxOptions"
+														process="form:createTabs:ManyCheckboxOptions"
+														update="form:createTabs:ManyCheckboxOptions"
 														immediate="true">
 
 													</p:commandButton>
@@ -224,8 +224,8 @@
 													<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AddCheckboxField')}" styleClass="buttonDelegate"
 														icon="ui-icon-plus"
 														actionListener="#{data.createManyCheckboxTab.addOption()}"
-														update="case-information:form:createTabs:ManyCheckboxOptions"
-														process="case-information:form:createTabs:ManyCheckboxOptions" />
+														update="form:createTabs:ManyCheckboxOptions"
+														process="form:createTabs:ManyCheckboxOptions" />
 												</f:facet>
 											</p:dataTable>
 										</p:column>
@@ -256,8 +256,8 @@
 											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}" 
 												actionListener="#{logic.createManyCheckbox}" styleClass="buttonDelegate"
 												icon="fa fa-arrow-down"
-												update="case-information:form:availableFormelements case-information:form:createTabs case-information:form:createTabs:ManyCheckboxOptions"
-												process="case-information:form:createTabs:createManyCheckboxTab case-information:form:createTabs:ManyCheckboxOptions" />
+												update="form:availableFormelements form:createTabs form:createTabs:ManyCheckboxOptions"
+												process="form:createTabs:createManyCheckboxTab form:createTabs:ManyCheckboxOptions" />
 
 										</p:column>
 									</p:row>
@@ -313,8 +313,8 @@
 													<p:spacer width="14" height="16" />
 													<p:commandButton icon="fa fa-trash-o" title="" styleClass="buttonDelegate" style="padding-right: 8px;"
 														actionListener="#{data.createOneRadioTab.deleteOption(option)}"
-														process="case-information:form:createTabs:OneRadioOptions"
-														update="case-information:form:createTabs:OneRadioOptions"
+														process="form:createTabs:OneRadioOptions"
+														update="form:createTabs:OneRadioOptions"
 														immediate="true">
 
 													</p:commandButton>
@@ -324,8 +324,8 @@
 													<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AddOptionboxField')}" styleClass="buttonDelegate"
 														icon="ui-icon-plus"
 														actionListener="#{data.createOneRadioTab.addOption()}"
-														update="case-information:form:createTabs:OneRadioOptions"
-														process="case-information:form:createTabs:OneRadioOptions" />
+														update="form:createTabs:OneRadioOptions"
+														process="form:createTabs:OneRadioOptions" />
 												</f:facet>
 											</p:dataTable>
 										</p:column>
@@ -353,8 +353,8 @@
 											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
 												actionListener="#{logic.createOneRadio}" styleClass="buttonDelegate"
 												icon="fa fa-arrow-down"
-												update="case-information:form:availableFormelements case-information:form:createTabs"
-												process="case-information:form:createTabs:createOneRadioTab" />
+												update="form:availableFormelements form:createTabs"
+												process="form:createTabs:createOneRadioTab" />
 
 										</p:column>
 									</p:row>
@@ -438,8 +438,8 @@
 											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
 												actionListener="#{logic.createFileUpload}" styleClass="buttonDelegate"
 												icon="fa fa-arrow-down"
-												update="case-information:form:availableFormelements case-information:form:createTabs"
-												process="case-information:form:createTabs:createFileUploadTab" />
+												update="form:availableFormelements form:createTabs"
+												process="form:createTabs:createFileUploadTab" />
 										</p:column>
 									</p:row>
 								</p:panelGrid>
@@ -480,8 +480,8 @@
 									<p:column style="border: none; text-align: right">
 										<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate"
 											actionListener="#{data.dragAndDropController.deleteFormelement(formelement)}"
-											process="case-information:form:availableFormelements" style="padding-right: 8px;"
-											update="case-information:form:availableFormelements">
+											process="form:availableFormelements" style="padding-right: 8px;"
+											update="form:availableFormelements">
 										</p:commandButton>
 
 									</p:column>
@@ -550,8 +550,8 @@
 													<p:column style="border: none; text-align: right">
 														<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate"
 															actionListener="#{data.dragAndDropController.resetFormelementHeader(formelement)}"
-															process="case-information:form:selectedFormelementsHeader" style="padding-right: 8px;"
-															update="case-information:form">
+															process="form:selectedFormelementsHeader" style="padding-right: 8px;"
+															update="form">
 
 														</p:commandButton>
 
@@ -565,11 +565,11 @@
 
 									<p:droppable for="selectedFormelementsHeaderFieldSet"
 										tolerance="pointer" activeStyleClass="ui-state-highlight"
-										datasource="case-information:form:availableFormelements" onDrop="handleDrop">
+										datasource="form:availableFormelements" onDrop="handleDrop">
 
 										<p:ajax
 											listener="#{data.dragAndDropController.onFieldDropHeader}"
-											update="case-information:form:selectedFormelementsHeaderPanel case-information:form:availableFormelements case-information:form:dynaFormFieldSet" />
+											update="form:selectedFormelementsHeaderPanel form:availableFormelements form:dynaFormFieldSet" />
 									</p:droppable>
 
 
@@ -614,7 +614,7 @@
 													<p:column style="border: none; text-align: right">
 														<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate" style="padding-right: 8px;"
 															actionListener="#{data.dragAndDropController.resetFormelementLeftPanel(formelement)}"
-															process="case-information:form:selectedFormelementsLeftPanel" update="case-information:form">
+															process="form:selectedFormelementsLeftPanel" update="form">
 
 														</p:commandButton>
 
@@ -629,11 +629,11 @@
 
 									<p:droppable for="selectedFormelementsLeftPanelFieldSet"
 										tolerance="pointer" activeStyleClass="ui-state-highlight"
-										datasource="case-information:form:availableFormelements" onDrop="handleDrop">
+										datasource="form:availableFormelements" onDrop="handleDrop">
 
 										<p:ajax
 											listener="#{data.dragAndDropController.onFieldDropLeftPanel}"
-											update="case-information:form:selectedFormelementsLeftPanelPanel case-information:form:availableFormelements case-information:form:dynaFormFieldSet" />
+											update="form:selectedFormelementsLeftPanelPanel form:availableFormelements form:dynaFormFieldSet" />
 									</p:droppable>
 
 
@@ -677,7 +677,7 @@
 													<p:column style="border: none; text-align: right">
 														<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate" style="padding-right: 8px;"
 															actionListener="#{data.dragAndDropController.resetFormelementRightPanel(formelement)}"
-															process="case-information:form:selectedFormelementsRightPanel" update="case-information:form">
+															process="form:selectedFormelementsRightPanel" update="form">
 
 														</p:commandButton>
 
@@ -691,11 +691,11 @@
 
 									<p:droppable for="selectedFormelementsRightPanelFieldSet"
 										tolerance="pointer" activeStyleClass="ui-state-highlight"
-										datasource="case-information:form:availableFormelements" onDrop="handleDrop">
+										datasource="form:availableFormelements" onDrop="handleDrop">
 
 										<p:ajax
 											listener="#{data.dragAndDropController.onFieldDropRightPanel}"
-											update="case-information:form:selectedFormelementsRightPanelPanel case-information:form:availableFormelements case-information:form:dynaFormFieldSet" />
+											update="form:selectedFormelementsRightPanelPanel form:availableFormelements form:dynaFormFieldSet" />
 									</p:droppable>
 								</p:outputPanel>
 							</p:column>
@@ -743,7 +743,7 @@
 													<p:column style="border: none; text-align: right">
 														<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate" style="padding-right: 8px;"
 															actionListener="#{data.dragAndDropController.resetFormelementFooter(formelement)}"
-															process="case-information:form:selectedFormelementsFooter" update="case-information:form">
+															process="form:selectedFormelementsFooter" update="form">
 
 														</p:commandButton>
 
@@ -757,11 +757,11 @@
 
 									<p:droppable for="selectedFormelementsFooterFieldSet"
 										tolerance="pointer" activeStyleClass="ui-state-highlight"
-										datasource="case-information:form:availableFormelements" onDrop="handleDrop">
+										datasource="form:availableFormelements" onDrop="handleDrop">
 
 										<p:ajax
 											listener="#{data.dragAndDropController.onFieldDropFooter}"
-											update="case-information:form:selectedFormelementsFooterPanel case-information:form:availableFormelements case-information:form:dynaFormFieldSet" />
+											update="form:selectedFormelementsFooterPanel form:availableFormelements form:dynaFormFieldSet" />
 									</p:droppable>
 
 								</p:outputPanel>
@@ -843,16 +843,16 @@
 				</p:fieldset>
 				<br/>
 				<p:outputPanel style="text-align: right">
-					<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Back')}" icon="fa fa-arrow-left" update="case-information:form:selectedFormelementsField" styleClass="buttonDelegate" process="case-information:form:selectedFormelementsField" actionListener="#{logic.back}"/>
+					<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Back')}" icon="fa fa-arrow-left" update="form:selectedFormelementsField" styleClass="buttonDelegate" process="form:selectedFormelementsField" actionListener="#{logic.back}"/>
 					
 					<p:spacer width="20px"></p:spacer>
 					<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Abort')}" 
-						actionListener="#{logic.cancel}" styleClass="buttonDelegate" icon="fa fa-times" update="case-information:form:selectedFormelementsField" process="case-information:form:selectedFormelementsField"/>
+						actionListener="#{logic.cancel}" styleClass="buttonDelegate" icon="fa fa-times" update="form:selectedFormelementsField" process="form:selectedFormelementsField"/>
 					<p:spacer width="20px"></p:spacer>
 					
-					<p:commandButton  value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save"  styleClass="buttonDelegate" update="case-information:form:selectedFormelementsField" process="case-information:form:selectedFormelementsField" actionListener="#{logic.close}"/>
+					<p:commandButton  value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save"  styleClass="buttonDelegate" update="form:selectedFormelementsField" process="form:selectedFormelementsField" actionListener="#{logic.close}"/>
 					<p:spacer width="20px" rendered="#{data.data.processType eq 'AHWF'}"></p:spacer>
-					<p:commandButton rendered="#{data.data.processType eq 'AHWF'}" icon="fa fa-check"  styleClass="buttonDelegate" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}" update="case-information:form:selectedFormelementsField" process="case-information:form:selectedFormelementsField" actionListener="#{logic.directExecution}"/>
+					<p:commandButton rendered="#{data.data.processType eq 'AHWF'}" icon="fa fa-check"  styleClass="buttonDelegate" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}" update="form:selectedFormelementsField" process="form:selectedFormelementsField" actionListener="#{logic.directExecution}"/>
 					
 				</p:outputPanel>
 				
