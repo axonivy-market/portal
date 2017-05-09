@@ -76,15 +76,16 @@ public class LdapUtility {
 	 */
 	public static LdapPerson getPerson(String kid) {
 		
-		if(Ivy.wf().getApplication().getName().equalsIgnoreCase("designer")){
+		/*if(Ivy.wf().getApplication().getName().equalsIgnoreCase("designer")){
 			if (kid.equals("T1234")) {
 				return null;
 			}
 			return DesignerLdapPerson();
-		}
+		}*/
+		return DesignerLdapPerson();
 
 		// Prepare Environment
-		Hashtable<String, String> env = new Hashtable<String, String>();
+		/*Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY,
 				"com.sun.jndi.ldap.LdapCtxFactory");
 		
@@ -147,7 +148,7 @@ public class LdapUtility {
 				}
 			}
 		}
-		return person;
+		return person;*/
 	}
 	
 	private static LdapPerson DesignerLdapPerson() {
