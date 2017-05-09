@@ -8,10 +8,10 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 
-		<ui:composition template="/layouts/gawfs_execution_template.xhtml">
+		<ui:composition template="/layouts/TaskTemplate.xhtml">
 		<ui:param name="caseId" value="#{ivy.case.id}" />
 		<ui:param name="showDocumentTab" value="false" />
-
+		<ui:param name="showCaseStatusInfoTab" value="true" />
 		<ui:param name="task" value="#{ivy.task}" />
 		<ui:param name="taskName" value="#{ivy.task.name}" />
 		<ui:param name="steps"
@@ -39,8 +39,8 @@
 									<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/as3rdPerson')}"
 										itemValue="1" />
 									<p:ajax listener="#{logic.setApplicant}"
-										process="case-information:form:applicantFieldSet"
-										update="case-information:form:applicantFieldSet" />
+										process="form:applicantFieldSet"
+										update="form:applicantFieldSet" />
 								</p:selectOneRadio>
 
 								<h:panelGrid columns="5" cellpadding="5" style="margin-left:-17px">
@@ -62,8 +62,8 @@
 										required="#{param['form:save']!=null}">
 										<p:ajax event="mousedown" listener="#{logic.setApplicant}"
 											oncomplete="PF('chooseApplicant').show();"
-											process="case-information:form:applicantFieldSet"
-											update="case-information:form:applicantFieldSet" />
+											process="form:applicantFieldSet"
+											update="form:applicantFieldSet" />
 									</p:inputText>
 								</h:panelGrid>
 
