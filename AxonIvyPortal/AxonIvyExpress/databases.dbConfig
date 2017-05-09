@@ -1,4 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<databaseconfigs>
-    <databaseconfig name="localDB" url="jdbc:mysql://localhost/eongawfs" driver="com.mysql.jdbc.Driver" user="root" password="\u008A\u008B\u00C1\u00AC\u0079\u00F5\u009A\u0033\u0075\u0087\u005F\u0019\u0063\u00BA\u0050\u0054\u0076\u00D6\u009E\u0081\u0040\u0039\u00C4\u005D\u006E\u0045\u000E\u000F\u0075\u0063\u002D\u0065"/>
-</databaseconfigs>
+<databaseconfigs/>
