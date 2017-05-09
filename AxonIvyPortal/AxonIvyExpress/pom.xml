@@ -2,8 +2,13 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>ch.ivyteam.ivy.project.portal</groupId>
+    <artifactId>portalMavenBuild</artifactId>
+    <version>7.0.0.0-SNAPSHOT</version>
+  </parent>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
-  <artifactId>express</artifactId>
+  <artifactId>axonIvyExpress</artifactId>
   <version>7.0.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <dependencies>
@@ -14,14 +19,4 @@
       <type>iar</type>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>com.axonivy.ivy.ci</groupId>
-        <artifactId>project-build-plugin</artifactId>
-        <version>6.2.0</version>
-        <extensions>true</extensions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
