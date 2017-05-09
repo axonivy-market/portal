@@ -9,85 +9,42 @@
 <h:body>
 	<p:panel>
 		<h:form id="userListForm" style="width:500px;">
-		
-		
-				<p:selectOneMenu id="userSelection" value="#{data.selectedRoleOrUser}"
-					var="u" scrollHeight="200" filter="true" filterMatchMode="contains"
-					converter="ivy.ListItem"
-					style="width:400px;">
-					
-					<f:selectItems value="#{data.AvailableRolesAndUsers}" var="role"
-						itemValue="#{role}"
-						itemLabel="#{role.getDisplayName().length() ne 0 ? role.getDisplayName() : role.getMemberName()}" />
-					<p:column>
-						<p:outputPanel rendered="#{u.user}">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</p:outputPanel>
-						<p:outputPanel rendered="#{!u.user}">
-							<i class="fa fa-users" aria-hidden="true"></i>
-						</p:outputPanel>
-					</p:column>
-					
-					<p:column>
-						<h:outputText
-							value="#{u.getDisplayName().length() ne 0 ? u.getDisplayName() : u.getMemberName()}" />
-					</p:column>
-					<p:ajax update="userListForm" listener="#{logic.updateAssignement}" />
-				</p:selectOneMenu>
-		
-		
-		
-		
-<!-- 			<p:dataTable id="radioDT" var="role" value="#{data.AvailRolesList}" -->
-<!-- 				selection="#{data.selectedRole}" rowKey="#{role.name}" emptyMessage="Keine passende Rolle gefunden"> -->
-<!-- 				<f:facet name="header"> -->
-<!--             		Verfügbare Rollen: -->
-<!--         		</f:facet> -->
-<!-- 				<p:column selectionMode="single"  -->
-<!-- 					style="width:16px;text-align:center" /> -->
-<!-- 				<p:column headerText="Rolle" filterBy="#{role.name}" filterMatchMode="startsWith"> -->
-<!-- 					<h:outputText value="#{role.name}" /> -->
-<!-- 				</p:column> -->
-<!-- 			</p:dataTable> -->
+			<p:selectOneMenu id="userSelection"
+				value="#{data.selectedRoleOrUser}" var="u" scrollHeight="200"
+				filter="true" filterMatchMode="contains" converter="ivy.ListItem"
+				style="width:400px;">
 
-			<!-- 			<h:panelGrid columns="2"> -->
-			<!-- 				<p:selectManyMenu id="userSelection" value="#{data.userSelection}" -->
-			<!-- 					var="u" showCheckbox="true" scrollHeight="200" filter="true" -->
-			<!-- 					filterMatchMode="contains" converter="ivy.ListItem" -->
-			<!-- 					style="width:200px;"> -->
-			<!-- 					<f:selectItems value="#{data.userList}" var="user" -->
-			<!-- 						itemValue="#{user}" -->
-			<!-- 						itemLabel="#{user.getDisplayName().length() ne 0 ? user.getDisplayName() : user.getName()}" /> -->
-			<!-- 					<p:column> -->
-			<!-- 						<h:outputText -->
-			<!-- 							value="#{u.getDisplayName().length() ne 0 ? u.getDisplayName() : u.getName()}" /> -->
-			<!-- 					</p:column> -->
-			<!-- 					<p:ajax update="userListForm" listener="#{logic.updateUserList}" /> -->
-			<!-- 				</p:selectManyMenu> -->
-			<!-- 				<h:panelGrid columns="1" cellspacing="4"> -->
-			<!-- 					<p:outputLabel value="Comma separated list of users:"></p:outputLabel> -->
-			<!-- 					<p:inputText id="dataUser" value="#{data.user}" size="50"> -->
-			<!-- 						<p:focus for="dataUser"></p:focus> -->
-			<!-- 					</p:inputText> -->
-			<!-- 					<p:spacer height="10"></p:spacer> -->
+				<f:selectItems value="#{data.AvailableRolesAndUsers}" var="role"
+					itemValue="#{role}"
+					itemLabel="#{role.getDisplayName().length() ne 0 ? role.getDisplayName() : role.getMemberName()}" />
+				<p:column>
+					<p:outputPanel rendered="#{u.user}">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</p:outputPanel>
+					<p:outputPanel rendered="#{!u.user}">
+						<i class="fa fa-users" aria-hidden="true"></i>
+					</p:outputPanel>
+				</p:column>
 
-			<!-- 					<h:graphicImage id="portrait" library="ivy-webcontent" -->
-			<!-- 							name="user/group.jpg" -->
-			<!-- 							title="WF User" styleClass="circularGroupImg" rendered="#{data.user.indexOf(',') gt 0}"/> -->
-			<!-- 					<pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(data.user).getEMailAddress()}" size="60" notFound="mm" style="border-radius:30px" rendered="#{data.user.indexOf(',') le 0}"/>										 -->
+				<p:column>
+					<h:outputText
+						value="#{u.getDisplayName().length() ne 0 ? u.getDisplayName() : u.getMemberName()}" />
+				</p:column>
+				<p:ajax update="userListForm" listener="#{logic.updateAssignement}" />
+			</p:selectOneMenu>
 
- 			<p:spacer height="60"></p:spacer>
-			
+
+			<p:spacer height="60"></p:spacer>
+
 			<p:outputPanel style="text-align: right">
-			
-				<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssigne/Save')}"
-				process="case-information:form:processFlowField" 
-				update="case-information:form:processFlowField"			
-				actionListener="#{logic.updateAssignement}" icon="fa fa-check"
-				oncomplete="PF('chooseAssignee').hide();"></p:commandButton>
+
+				<p:commandButton
+					value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssigne/Save')}"
+					process="form:processFlowField"
+					update="form:processFlowField"
+					actionListener="#{logic.updateAssignement}" icon="fa fa-check"
+					oncomplete="PF('chooseAssignee').hide();" /> 
 			</p:outputPanel>
-			<!-- 				</h:panelGrid> -->
-			<!-- 			</h:panelGrid> -->
 		</h:form>
 	</p:panel>
 </h:body>
