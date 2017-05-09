@@ -173,6 +173,26 @@
 }
 /* =================== END RADIO BUTTON ====================== */
 
+/* =================== SPINNER BUTTON ====================== */
+.ui-widget.ui-button.ui-spinner-button  {
+  min-width: 0;
+  height: 16px;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+}
+
+.ui-spinner .ui-spinner-button .ui-button-text {
+  height: 0px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.pe-dynaform-cell[colspan] input.ui-spinner-input {
+  width: inherit;
+}
+/* =================== END SPINNER BUTTONS ====================== */
+
 /* =================== CHECKBOX ====================== */
 .ui-selectmanycheckbox label, .ui-selectmanycheckbox label.ui-state-disabled {
   font-size: 1.2rem;
@@ -386,6 +406,10 @@
   position: absolute;
   left: 10px;
   top: 10px;
+}
+
+.pe-dynaform-cell[colspan] input.hasDatepicker {
+  width: 128px;
 }
 /* =================== END CALENDAR ====================== */
 
