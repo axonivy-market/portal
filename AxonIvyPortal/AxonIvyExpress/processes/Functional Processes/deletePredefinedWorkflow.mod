@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Nov 28 15:14:49 PST 2016]
-15797F0F040DE913 3.18 #module
+[>Created: Wed May 10 11:43:13 ICT 2017]
+15797F0F040DE913 3.20 #module
 >Proto >Proto Collection #zClass
 dw0 deletePredefinedWorkflow Big #zClass
 dw0 B #cInfo
@@ -51,17 +51,17 @@ dw0 f3 actionDecl 'gawfs.deletePredefinedWorkflowData out;
 dw0 f3 actionTable 'out=in;
 ' #txt
 dw0 f3 actionCode '// delete all products
-Integer deletedWorkflows = ivy.persistence.eonGAWFS
+Integer deletedWorkflows = ivy.persistence.GAWFS
 .createQuery("delete from Workflow w where w.id = :workflowID")
 .setParameter( "workflowID", in.workflowID )
 .executeUpdate();
 
-Integer deletedTaskdef = ivy.persistence.eonGAWFS
+Integer deletedTaskdef = ivy.persistence.GAWFS
 .createQuery("delete from TaskDefp t where t.processID = :workflowID")
 .setParameter( "workflowID", in.workflowID )
 .executeUpdate();
 
-Integer deletedFormelements = ivy.persistence.eonGAWFS
+Integer deletedFormelements = ivy.persistence.GAWFS
 .createQuery("delete from Formelement f where f.processID = :workflowID")
 .setParameter( "workflowID", in.workflowID )
 .executeUpdate();
