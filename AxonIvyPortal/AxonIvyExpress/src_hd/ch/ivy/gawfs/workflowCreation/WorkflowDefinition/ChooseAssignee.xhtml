@@ -7,10 +7,9 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
-	<p:panel>
 		<h:form id="userListForm" style="width:500px;">
 			<p:selectOneMenu id="userSelection"
-				value="#{data.selectedRoleOrUser}" var="u" scrollHeight="200"
+				value="#{data.selectedRoleOrUser}" var="u"
 				filter="true" filterMatchMode="contains" converter="ivy.ListItem"
 				style="width:400px;">
 
@@ -41,12 +40,11 @@
 				<p:commandButton
 					value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssigne/Save')}"
 					process="form:processFlowField"
-					update="form:processFlowField"
+					update="form:processFlowField" styleClass="portal-ok-button"
 					actionListener="#{logic.updateAssignement}" icon="fa fa-check"
 					oncomplete="PF('chooseAssignee').hide();" /> 
 			</p:outputPanel>
 		</h:form>
-	</p:panel>
 </h:body>
 
 </html>
