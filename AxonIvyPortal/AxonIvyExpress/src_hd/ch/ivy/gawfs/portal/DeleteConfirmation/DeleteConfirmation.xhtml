@@ -36,9 +36,9 @@
 				
 			</h:form>
 			
-			<p:commandButton actionListener="#{logic.closeCancel}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="form" icon="fa-trash-o" />
+			<p:commandButton actionListener="#{logic.closeCancel}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="form" icon="fa fa-trash-o" styleClass="portal-cancel-button" />
 			<p:spacer width="30px" />
-			<p:commandButton actionListener="#{logic.closeDelete}" value="#{ivy.cms.co('/Dialogs/DeleteConfirmation/DeleteButton')}" update="form" icon="fa-times" />
+			<p:commandButton actionListener="#{logic.closeDelete}" value="#{ivy.cms.co('/Dialogs/DeleteConfirmation/DeleteButton')}" update="form" icon="fa fa-times" styleClass="portal-ok-button" />
 			
 		</ui:define>
 	</ui:composition>
