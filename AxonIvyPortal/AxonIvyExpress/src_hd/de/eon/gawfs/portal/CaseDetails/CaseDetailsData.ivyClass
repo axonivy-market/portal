@@ -1,4 +1,0 @@
-CaseDetailsData #class
-de.eon.gawfs.portal.CaseDetails #namespace
-executePredefinedWorkflowData gawfs.ExecutePredefinedWorkflowData #field
-executePredefinedWorkflowData PERSISTENT #fieldModifier
