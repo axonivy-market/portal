@@ -116,20 +116,20 @@
 
 							</p:column>
 							<f:facet name="footer">
-								<p:commandButton style="float:right; margin-right:5px"
-									styleClass="buttonDelegate"
-									onclick="PF('addUserToGroup').show();"
-									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/mainDIalog/CreateNewGroup')}"
-									icon="ui-icon-plus"
-									update=":groupDetailsForm:groupDetail, :groupDetailsForm:addConfirmButton">
-									<f:setPropertyActionListener value=""
-										target="#{data.actualGroup}" />
-									<f:setPropertyActionListener value="true"
-										target="#{data.isNew}" />
-									<f:setPropertyActionListener value="#{data.emptyUsers}"
-										target="#{data.actualUsers}" />
-								</p:commandButton>
-
+                                <h:panelGroup layout="block" style="text-align: right;">
+    								<p:commandButton styleClass="buttonDelegate"
+    									onclick="PF('addUserToGroup').show();"
+    									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/mainDIalog/CreateNewGroup')}"
+    									icon="fa fa-plus"
+    									update=":groupDetailsForm:groupDetail, :groupDetailsForm:addConfirmButton">
+    									<f:setPropertyActionListener value=""
+    										target="#{data.actualGroup}" />
+    									<f:setPropertyActionListener value="true"
+    										target="#{data.isNew}" />
+    									<f:setPropertyActionListener value="#{data.emptyUsers}"
+    										target="#{data.actualUsers}" />
+    								</p:commandButton>
+                                </h:panelGroup>
 							</f:facet>
 
 						</p:dataTable>
@@ -148,7 +148,7 @@
 				<h:form id="groupDetailsForm">
 					<p:outputPanel id="groupDetail">
 						<h:message for="Name" />
-						<p:panelGrid id="panel4" columns="2" styleClass="groupDetailsList">
+						<h:panelGrid id="panel4" columns="2" styleClass="groupDetailsList">
 
 							<p:outputLabel for="Name"
 								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/GroupName')} *"
@@ -162,7 +162,7 @@
 							<p:outputLabel
 								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/GroupMembers')}"></p:outputLabel>
 
-							<p:panelGrid columns="2" style="float:right">
+							<h:panelGrid columns="2" style="float:right">
 								<p:commandButton onclick="PF('userSelection').show();"
 									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/AddUser')}"
 									icon="fa fa-plus" />
@@ -172,9 +172,9 @@
 									icon="fa fa-minus" update=":userRemovalForm:userRemovals">
 									<!-- <f:setPropertyActionListener value="test" target="#{data.removeKID}" /> -->
 								</p:commandButton>
-							</p:panelGrid>
-						</p:panelGrid>
-						<p:panelGrid columns="1">
+							</h:panelGrid>
+						</h:panelGrid>
+						<h:panelGrid columns="1">
 							<p:selectOneListbox value="#{data.removeKID}"
 								style="min-width:470px; text-align:left; height: 200px !important; overflow-y: scroll;"
 								converter="ivy.ListItem" styleClass="groupDetailsList">
@@ -183,8 +183,8 @@
 									itemValue="#{c.name}" itemLabel="#{c.getDisplayName()}" />
 							</p:selectOneListbox>
 							<br />
-						</p:panelGrid>
-						<p:panelGrid columns="2" style="float:right; margin-right: 15px;">
+						</h:panelGrid>
+						<h:panelGrid columns="2" style="float:right; margin-right: 15px;">
 							<p:commandButton
 								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Cancel')}"
 								onclick="PF('addUserToGroup').hide();"
@@ -204,7 +204,7 @@
 								disabled="#{!(data.actualUsers.size() > 0)}"
 								id="addConfirmButton">
 							</p:commandButton>
-						</p:panelGrid>
+						</h:panelGrid>
 					</p:outputPanel>
 				</h:form>
 			</p:dialog>
@@ -218,7 +218,7 @@
 				<h:form id="groupDeleteForm">
 					<p:outputPanel id="groupDelete">
 						<h:message for="Name" />
-						<p:panelGrid id="panel4" columns="2" styleClass="groupDetailsList">
+						<h:panelGrid id="panel4" columns="2" styleClass="groupDetailsList">
 
 							<p:outputLabel for="Name"
 								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/DeleteDialog/GroupName')}"
@@ -232,8 +232,8 @@
 							<p:outputLabel
 								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/DeleteDialog/GroupMembers')}"></p:outputLabel>
 
-						</p:panelGrid>
-						<p:panelGrid columns="1">
+						</h:panelGrid>
+						<h:panelGrid columns="1">
 							<p:selectOneListbox value="#{data.removeKID}"
 								styleClass="userList"
 								style="width:369px; height: 200px !important;"
@@ -242,8 +242,8 @@
 									itemValue="#{c.name}" itemLabel="#{c.getDisplayName()}" />
 							</p:selectOneListbox>
 							<br />
-						</p:panelGrid>
-						<p:panelGrid columns="2" style="float:right">
+						</h:panelGrid>
+						<h:panelGrid columns="2" style="float:right">
 							<p:commandButton value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Cancel')}"
 								onclick="PF('deleteGroup').hide();"
 								styleClass="ui-confirmdialog-no">
@@ -252,7 +252,7 @@
 								onclick="PF('deleteGroup').hide();"
 								actionListener="#{logic.deleteRole(data.actualGroup)}"
 								update=":form:groupList" styleClass="ui-confirmdialog-yes" />
-						</p:panelGrid>
+						</h:panelGrid>
 					</p:outputPanel>
 				</h:form>
 			</p:dialog>
@@ -273,12 +273,12 @@
 							itemLabel="#{c.getDisplayName()}" />
 					</p:selectOneListbox>
 
-					<p:panelGrid columns="2" style="float:right">
+					<h:panelGrid columns="2" style="float:right">
 
-						<p:panelGrid />
-						<p:panelGrid />
-						<p:panelGrid />
-						<p:panelGrid />
+						<h:panelGrid />
+						<h:panelGrid />
+						<h:panelGrid />
+						<h:panelGrid />
 
 						<p:commandButton
 							value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Cancel')}"
@@ -296,7 +296,7 @@
 							update=":groupDetailsForm:groupDetail">
 						</p:commandButton>
 
-					</p:panelGrid>
+					</h:panelGrid>
 				</h:form>
 			</p:dialog>
 			<!-- Code for userSelection ends here  -->
@@ -316,12 +316,12 @@
 								itemValue="#{c.name}" itemLabel="#{c.getDisplayName()}" />
 						</p:selectOneListbox>
 
-						<p:panelGrid columns="2" style="float:right">
+						<h:panelGrid columns="2" style="float:right">
 
-							<p:panelGrid />
-							<p:panelGrid />
-							<p:panelGrid />
-							<p:panelGrid />
+							<h:panelGrid />
+							<h:panelGrid />
+							<h:panelGrid />
+							<h:panelGrid />
 
 							<p:commandButton
 								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Cancel')}"
@@ -334,7 +334,7 @@
 								update=":groupDetailsForm:groupDetail">
 							</p:commandButton>
 
-						</p:panelGrid>
+						</h:panelGrid>
 					</p:outputPanel>
 				</h:form>
 			</p:dialog>
@@ -345,7 +345,7 @@
 				header="#{ivy.cms.co('/de.eon.aifa.ui/Button/backToRequestor')}"
 				modal="true" appendToBody="true" appendTo="@(body)">
 				<h:form id="addNoteRequestorForm">
-					<p:panelGrid style="width: 100%;">
+					<h:panelGrid style="width: 100%;">
 						<p:row>
 							<p:column>
 								<p:outputLabel for="caseNote"
@@ -357,7 +357,7 @@
 									value="#{data.inputString}" />
 							</p:column>
 						</p:row>
-					</p:panelGrid>
+					</h:panelGrid>
 					<div class="button-bar">
 						<p:commandButton
 							value="#{ivy.cms.co('/de.eon.components.ui/Buttons/ok')}"
