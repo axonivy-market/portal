@@ -88,7 +88,7 @@ dw0 f2 expr out #txt
 dw0 f2 592 64 665 64 #arcP
 dw0 f5 targetWindow NEW:card: #txt
 dw0 f5 targetDisplay TOP #txt
-dw0 f5 richDialogId de.eon.gawfs.portal.DeleteConfirmation #txt
+dw0 f5 richDialogId ch.ivy.gawfs.portal.DeleteConfirmation #txt
 dw0 f5 startMethod start(gawfs.DevLoadWorkflowsData) #txt
 dw0 f5 type gawfs.deletePredefinedWorkflowData #txt
 dw0 f5 requestActionDecl '<gawfs.DevLoadWorkflowsData devLoadWorkflowsData> param;' #txt
