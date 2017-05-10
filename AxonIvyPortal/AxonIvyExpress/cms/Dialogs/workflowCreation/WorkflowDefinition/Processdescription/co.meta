@@ -1,2 +1,3 @@
-co: name={Processdescription} description={} changed={2016-11-25 06:06:29 CET} changedby={marce} visualorder={0} guid={15899CBCBED113DE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15899CBCBF273CAA} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:43:39 CET} validto={} changed={2016-11-25 06:06:29 CET} changedby={marce} properties={} id={}
+co: name={Processdescription} description={} changed={2017-05-10 03:58:34 CEST} changedby={ldnam} visualorder={0} guid={15899CBCBED113DE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15899CBCBF273CAA} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:43:39 CET} validto={} changed={2017-05-10 03:58:34 CEST} changedby={ldnam} properties={} id={}
+val: guid={15BF0144F0AD38D9} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 03:58:31 CEST} validto={} changed={2017-05-10 03:58:34 CEST} changedby={ldnam} properties={} id={}

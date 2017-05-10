@@ -1,2 +1,3 @@
-co: name={invalidFileMessage} description={} changed={2016-11-04 22:03:53 CET} changedby={marce} visualorder={0} guid={1583127AD17B6C0D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1583127AD207E582} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-04 22:03:53 CET} validto={} changed={2016-11-04 22:03:53 CET} changedby={marce} properties={} id={}
+co: name={invalidFileMessage} description={} changed={2017-05-09 12:51:58 CEST} changedby={ldnam} visualorder={0} guid={1583127AD17B6C0D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15BECD64A8343189} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:51:53 CEST} validto={} changed={2017-05-09 12:51:58 CEST} changedby={ldnam} properties={} id={}
+val: guid={1583127AD207E582} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-04 22:03:53 CET} validto={} changed={2017-05-09 12:51:58 CEST} changedby={ldnam} properties={} id={}
