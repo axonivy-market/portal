@@ -104,7 +104,7 @@
 						</pe:dynaFormControl>
 
 						<pe:dynaFormControl type="OneRadio" for="oneRadio">					
-							<p:dataList value="#{dynaData.value}" var="checkItem" type="definition" emptyMessage="keine Auswahl">
+							<p:dataList value="#{dynaData.value}" var="checkItem" type="definition" emptyMessage="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/NoSelection')}">
 						        <i class="fa fa-dot-circle-o" aria-hidden="true"></i> #{checkItem}
 						    </p:dataList>
 						</pe:dynaFormControl>
