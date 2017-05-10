@@ -170,12 +170,12 @@
 								<p:commandButton onclick="PF('userRemoval').show();"
 									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/RemoveUser')}"
 									icon="fa fa-minus" update=":userRemovalForm:userRemovals">
-									<!-- <f:setPropertyActionListener value="test" target="#{data.removeKID}" /> -->
+									<!-- <f:setPropertyActionListener value="test" target="#{data.removeUserId}" /> -->
 								</p:commandButton>
 							</h:panelGrid>
 						</h:panelGrid>
 						<h:panelGrid columns="1">
-							<p:selectOneListbox value="#{data.removeKID}"
+							<p:selectOneListbox value="#{data.removeUserId}"
 								style="min-width:470px; text-align:left; height: 200px !important; overflow-y: scroll;"
 								converter="ivy.ListItem" styleClass="groupDetailsList">
 								<!-- <f:selectItem itemLabel="User"></f:selectItem> -->
@@ -234,7 +234,7 @@
 
 						</h:panelGrid>
 						<h:panelGrid columns="1">
-							<p:selectOneListbox value="#{data.removeKID}"
+							<p:selectOneListbox value="#{data.removeUserId}"
 								styleClass="userList"
 								style="width:369px; height: 200px !important;"
 								converter="ivy.ListItem">
@@ -264,7 +264,7 @@
 				widgetVar="userSelection" modal="true" appendToBody="true"
 				appendTo="@(body)" resizable="false">
 				<h:form id="userSelectionForm">
-					<p:selectOneListbox value="#{data.actualKID}" styleClass="userList"
+					<p:selectOneListbox value="#{data.actualUserId}" styleClass="userList"
 						style="width:300px; height: 257px !important;" filter="true"
 						filterMatchMode="contains">
 						<!-- 					<f:selectItem itemValue="UserA" itemLabel="User"></f:selectItem> -->
@@ -308,7 +308,7 @@
 				appendTo="@(body)" minHeight="20">
 				<h:form id="userRemovalForm">
 					<p:outputPanel id="userRemovals">
-						<p:selectOneListbox value="#{data.removeKID}"
+						<p:selectOneListbox value="#{data.removeUserId}"
 							styleClass="userList"
 							style="width:300px; height: 257px !important;" filter="true"
 							filterMatchMode="contains">

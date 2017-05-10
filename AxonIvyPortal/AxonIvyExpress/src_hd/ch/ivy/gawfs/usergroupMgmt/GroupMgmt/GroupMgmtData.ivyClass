@@ -10,8 +10,8 @@ inputString String #field
 actualGroup String #field
 actualUsers List<ch.ivyteam.ivy.security.IUser> #field
 actualUser ch.ivyteam.ivy.security.IUser #field
-actualKID String #field
-removeKID String #field
+actualUserId String #field
+removeUserId String #field
 changed Boolean #field
 emptyUsers List<ch.ivyteam.ivy.security.IUser> #field
 emptyUsers 'empty list for initialization' #fieldComment

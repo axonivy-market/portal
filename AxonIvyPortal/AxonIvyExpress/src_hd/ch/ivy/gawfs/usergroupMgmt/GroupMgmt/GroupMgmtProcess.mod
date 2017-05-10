@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 10:52:07 ICT 2017]
+[>Created: Wed May 10 15:28:43 ICT 2017]
 15AD21F4FF17E906 3.20 #module
 >Proto >Proto Collection #zClass
 as0 GroupMgmtProcess Big #zClass
@@ -433,11 +433,11 @@ as0 f29 actionDecl 'ch.ivy.gawfs.usergroupMgmt.GroupMgmt.GroupMgmtData out;
 ' #txt
 as0 f29 actionTable 'out=in;
 ' #txt
-as0 f29 actionCode 'in.actualUser = ivy.wf.getSecurityContext().findUser(in.actualKID);
+as0 f29 actionCode 'in.actualUser = ivy.wf.getSecurityContext().findUser(in.actualUserId);
 if (in.#actualUser is initialized && in.actualUser.getName().length()>0) {
 	if (!in.actualUsers.contains(in.actualUser)) {
 		in.actualUsers.add(in.actualUser);
-		in.removeKID = in.actualKID;
+		in.removeUserId = in.actualUserId;
 		in.changed = true;
 	}
 }
@@ -465,7 +465,7 @@ as0 f31 actionDecl 'ch.ivy.gawfs.usergroupMgmt.GroupMgmt.GroupMgmtData out;
 ' #txt
 as0 f31 actionTable 'out=in;
 ' #txt
-as0 f31 actionCode 'in.actualUser = ivy.wf.getSecurityContext().findUser(in.removeKID);
+as0 f31 actionCode 'in.actualUser = ivy.wf.getSecurityContext().findUser(in.removeUserId);
 if (in.#actualUser is initialized && in.actualUser.getName().length()>0) {
 	if (in.actualUsers.contains(in.actualUser)) {
 		in.actualUsers.remove(in.actualUser);
