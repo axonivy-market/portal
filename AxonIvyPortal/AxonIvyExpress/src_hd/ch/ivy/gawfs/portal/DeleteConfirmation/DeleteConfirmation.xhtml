@@ -7,8 +7,8 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
-	<ui:composition template="/layouts/BasicTemplate.xhtml">de_eon_gawfs_core_endpage
-		<ui:define name="title">GAWFSPortalHome</ui:define>
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/DeleteConfirmation/PageTitle')}</ui:define>
 		<ui:define name="simplePageContent">
 
 			
@@ -18,11 +18,11 @@
 						<p:messages></p:messages>
 					</f:facet>
 					<h3>
-						<i class="fa fa-trash-o" aria-hidden="true"></i> Prozess löschen?
+						<i class="fa fa-trash-o" aria-hidden="true"></i> #{ivy.cms.co('/Dialogs/DeleteConfirmation/DeleteConfirmationTitle')}
 					</h3>
 					
 
-					<h:outputText value="Sind sie sicher das Sie folgenden Prozess löschen wollen?" style="font-size:22px;  font-weight: 500;"></h:outputText>
+					<h:outputText value="#{ivy.cms.co('/Dialogs/DeleteConfirmation/DeleteConfirmationContent')}" style="font-size:22px;  font-weight: 500;"></h:outputText>
 					<br/>
 
 
@@ -36,9 +36,9 @@
 				
 			</h:form>
 			
-			<p:commandButton actionListener="#{logic.closeCancel}" value="Abbrechen!" update="form" icon="fa-trash-o" />
+			<p:commandButton actionListener="#{logic.closeCancel}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="form" icon="fa-trash-o" />
 			<p:spacer width="30px" />
-			<p:commandButton actionListener="#{logic.closeDelete}" value="Prozess löschen!" update="form" icon="fa-times" />
+			<p:commandButton actionListener="#{logic.closeDelete}" value="#{ivy.cms.co('/Dialogs/DeleteConfirmation/DeleteButton')}" update="form" icon="fa-times" />
 			
 		</ui:define>
 	</ui:composition>

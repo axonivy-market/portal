@@ -8,7 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
-		<ui:define name="title">GAWFS Portal Home</ui:define>
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/GAWFSPortalHome/PageTitle')}</ui:define>
 		<ui:define name="simplePageContent">
 
 			<h3>
@@ -50,13 +50,12 @@
 						<p:row>
 							<p:column style="width: 60%; vertical-align: top;">
 								<h3>
-									<i class="fa fa-fire" aria-hidden="true"></i> Verfügbare
-									Prozesse:
+									<i class="fa fa-fire" aria-hidden="true"></i> #{ivy.cms.co('/Dialogs/GAWFSPortalHome/AvailableProcess')}
 								</h3>
 
 
 								<p:dataGrid id="availableWorkflows" var="workflow"
-									emptyMessage="Keine Workflows vorhanden!" 
+									emptyMessage="#{ivy.cms.co('/Dialogs/GAWFSPortalHome/NoWorkflowAvailable')}" 
 									value="#{data.workflows}" style="border: none; width: 100%;"
 									columns="1" layout="grid">
 									
@@ -151,7 +150,7 @@
 							<p:column style="width: 40%; vertical-align: top;">
 							
 								<h3>
-									<i class="fa fa-fire" aria-hidden="true"></i> Prozessübersicht:
+									<i class="fa fa-fire" aria-hidden="true"></i> #{ivy.cms.co('/Dialogs/GAWFSPortalHome/NoWorkflowAvailable')}
 								</h3>
 
 
