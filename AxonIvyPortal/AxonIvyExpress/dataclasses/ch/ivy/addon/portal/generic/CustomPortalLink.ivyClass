@@ -1,8 +1,0 @@
-CustomPortalLink #class
-ch.ivy.addon.portal.generic #namespace
-displayName String #field
-displayName PERSISTENT #fieldModifier
-url String #field
-url PERSISTENT #fieldModifier
-icon String #field
-icon PERSISTENT #fieldModifier
