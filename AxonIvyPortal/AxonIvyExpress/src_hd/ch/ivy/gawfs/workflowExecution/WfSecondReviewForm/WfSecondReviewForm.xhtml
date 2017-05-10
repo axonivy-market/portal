@@ -155,13 +155,13 @@
 				
 				<div class="case-view-footer" style="text-align: right; padding-top: 5px; background-color: #fff;">
 						<div style="float: left">
-							<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" update="form" icon="fa fa-undo" actionListener="#{logic.cancel}" styleClass="buttonDelegate" style="margin-right:20px"/>
+							<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" update="form" icon="fa fa-undo" actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" style="margin-right:20px"/>
 
 						</div>
 
 						<div style="float: right;">
-							<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/refuse')}" update="form" icon="fa fa-times" actionListener="#{logic.closeDeny}" styleClass="buttonDelegate" style="margin-right:20px"/>
-							<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/approve')}" update="form" icon="fa fa-check"  actionListener="#{logic.closeApprove}" styleClass="buttonDelegate"/>
+							<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/refuse')}" update="form" icon="fa fa-times" actionListener="#{logic.closeDeny}" styleClass="buttonDelegate portal-ok-button" style="margin-right:20px"/>
+							<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/approve')}" update="form" icon="fa fa-check"  actionListener="#{logic.closeApprove}" styleClass="buttonDelegate portal-ok-button"/>
 						</div>
 
 				</div>
