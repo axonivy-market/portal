@@ -1,0 +1,4 @@
+WfFinalReviewData #class
+ch.ivy.gawfs.workflowExecution.WfFinalReview #namespace
+executePredefinedWorkflowData gawfs.ExecutePredefinedWorkflowData #field
+executePredefinedWorkflowData PERSISTENT #fieldModifier

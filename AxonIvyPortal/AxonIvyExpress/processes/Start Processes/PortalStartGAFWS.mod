@@ -62,7 +62,7 @@ Pt0 f1 497 49 30 30 0 15 #rect
 Pt0 f1 @|EndIcon #fIcon
 Pt0 f3 targetWindow NEW:card: #txt
 Pt0 f3 targetDisplay TOP #txt
-Pt0 f3 richDialogId de.eon.gawfs.portal.GAWFSPortalHome #txt
+Pt0 f3 richDialogId ch.ivy.gawfs.portal.GAWFSPortalHome #txt
 Pt0 f3 startMethod start(gawfs.DevLoadWorkflowsData) #txt
 Pt0 f3 type gawfs.PortalStartData #txt
 Pt0 f3 requestActionDecl '<gawfs.DevLoadWorkflowsData devLoadWorkflowsData> param;' #txt

@@ -63,7 +63,7 @@ Ms0 f1 401 49 30 30 0 15 #rect
 Ms0 f1 @|EndIcon #fIcon
 Ms0 f3 targetWindow NEW:card: #txt
 Ms0 f3 targetDisplay TOP #txt
-Ms0 f3 richDialogId de.eon.gawfs.usergroupMgmt.GroupMgmt #txt
+Ms0 f3 richDialogId ch.ivy.gawfs.usergroupMgmt.GroupMgmt #txt
 Ms0 f3 startMethod start() #txt
 Ms0 f3 type gawfs.ManageUsergroupsData #txt
 Ms0 f3 requestActionDecl '<> param;' #txt

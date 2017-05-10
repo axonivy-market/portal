@@ -68,7 +68,7 @@ ee0 f1 649 49 30 30 0 15 #rect
 ee0 f1 @|EndIcon #fIcon
 ee0 f5 targetWindow NEW:card: #txt
 ee0 f5 targetDisplay TOP #txt
-ee0 f5 richDialogId de.eon.gawfs.portal.GAWFSPortalHome #txt
+ee0 f5 richDialogId ch.ivy.gawfs.portal.GAWFSPortalHome #txt
 ee0 f5 startMethod start(gawfs.DevLoadWorkflowsData) #txt
 ee0 f5 type gawfs.EndPageProcessData #txt
 ee0 f5 requestActionDecl '<gawfs.DevLoadWorkflowsData devLoadWorkflowsData> param;' #txt
@@ -99,7 +99,7 @@ ee0 f4 expr out #txt
 ee0 f4 111 64 216 64 #arcP
 ee0 f3 targetWindow NEW:card: #txt
 ee0 f3 targetDisplay TOP #txt
-ee0 f3 richDialogId de.eon.gawfs.portal.GAWFSEndPage #txt
+ee0 f3 richDialogId ch.ivy.gawfs.portal.GAWFSEndPage #txt
 ee0 f3 startMethod start(gawfs.EndPageProcessData) #txt
 ee0 f3 type gawfs.EndPageProcessData #txt
 ee0 f3 requestActionDecl '<gawfs.EndPageProcessData endPageProcessData> param;' #txt

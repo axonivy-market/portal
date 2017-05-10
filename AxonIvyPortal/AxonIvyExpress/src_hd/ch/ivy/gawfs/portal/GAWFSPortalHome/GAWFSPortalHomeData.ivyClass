@@ -1,0 +1,8 @@
+GAWFSPortalHomeData #class
+ch.ivy.gawfs.portal.GAWFSPortalHome #namespace
+devLoadWorkflowsData gawfs.DevLoadWorkflowsData #field
+devLoadWorkflowsData PERSISTENT #fieldModifier
+workflows List<gawfs.AvailWorkflow> #field
+workflows PERSISTENT #fieldModifier
+barChartProcesses org.primefaces.model.chart.BarChartModel #field
+barChartProcesses PERSISTENT #fieldModifier

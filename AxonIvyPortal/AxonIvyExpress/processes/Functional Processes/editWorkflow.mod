@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Mar 27 17:41:07 CEST 2017]
-15791C23B125821B 3.18 #module
+[>Created: Wed May 10 10:58:28 ICT 2017]
+15791C23B125821B 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
 ew0 B #cInfo
@@ -146,7 +146,7 @@ ew0 f5 312 138 112 44 -25 -8 #rect
 ew0 f5 @|StepIcon #fIcon
 ew0 f7 targetWindow NEW:card: #txt
 ew0 f7 targetDisplay TOP #txt
-ew0 f7 richDialogId de.eon.gawfs.workflowCreation.WorkflowDefinition #txt
+ew0 f7 richDialogId ch.ivy.gawfs.workflowCreation.WorkflowDefinition #txt
 ew0 f7 startMethod start(gawfs.Data) #txt
 ew0 f7 type gawfs.Data #txt
 ew0 f7 requestActionDecl '<gawfs.Data data> param;' #txt
@@ -178,7 +178,7 @@ ew0 f9 actionTable 'out=in;
 ew0 f9 actionCode 'import gawfs.TaskDefp;
 import gawfs.TaskDef;
 import gawfs.Workflow;
-import de.eon.gawfs.Formelement;
+import ch.ivy.gawfs.Formelement;
 
 //Product product = ivy.persistence.<persistence unit>
 //.find(Product.class, 1) as Product;
@@ -307,7 +307,7 @@ ew0 f9 1272 138 208 44 -96 -8 #rect
 ew0 f9 @|StepIcon #fIcon
 ew0 f3 targetWindow NEW:card: #txt
 ew0 f3 targetDisplay TOP #txt
-ew0 f3 richDialogId de.eon.gawfs.workflowCreation.FormDefinition #txt
+ew0 f3 richDialogId ch.ivy.gawfs.workflowCreation.FormDefinition #txt
 ew0 f3 startMethod start(gawfs.Data) #txt
 ew0 f3 type gawfs.Data #txt
 ew0 f3 requestActionDecl '<gawfs.Data data> param;' #txt
@@ -373,9 +373,9 @@ for AHWF</name>
 ew0 f18 1096 144 32 32 -33 -49 #rect
 ew0 f18 @|AlternativeIcon #fIcon
 ew0 f20 type gawfs.Data #txt
-ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,String,de.eon.gawfs.DragAndDropController,de.eon.gawfs.DynaFormController,Integer)' #txt
+ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,String,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,Integer)' #txt
 ew0 f20 doCall true #txt
-ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,de.eon.gawfs.DragAndDropController dragAndDropController,de.eon.gawfs.DynaFormController dynaFormController,java.lang.Integer processID> param;
+ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.Integer processID> param;
 ' #txt
 ew0 f20 requestMappingAction 'param.definedTasks=in.definedTasks;
 param.processName=in.processName;
@@ -444,9 +444,9 @@ ew0 f24 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f24 actionTable 'out=in;
 ' #txt
-ew0 f24 actionCode 'import de.eon.gawfs.FormelementOption;
-import de.eon.gawfs.DynaFormController;
-import de.eon.gawfs.DragAndDropController;
+ew0 f24 actionCode 'import ch.ivy.gawfs.FormelementOption;
+import ch.ivy.gawfs.DynaFormController;
+import ch.ivy.gawfs.DragAndDropController;
 
 in.dragAndDropController = new DragAndDropController();
 
@@ -480,7 +480,7 @@ ew0 f26 actionTable 'out=in;
 ew0 f26 actionCode 'import gawfs.TaskDefp;
 import gawfs.TaskDef;
 import gawfs.Workflow;
-import de.eon.gawfs.Formelement;
+import ch.ivy.gawfs.Formelement;
 
 
 //save workflowdescription
@@ -736,9 +736,9 @@ Ct0 f27 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f27 actionTable 'out=in;
 ' #txt
-Ct0 f27 actionCode 'import de.eon.gawfs.FormelementOption;
-import de.eon.gawfs.DynaFormController;
-import de.eon.gawfs.DragAndDropController;
+Ct0 f27 actionCode 'import ch.ivy.gawfs.FormelementOption;
+import ch.ivy.gawfs.DynaFormController;
+import ch.ivy.gawfs.DragAndDropController;
 
 in.dragAndDropController = new DragAndDropController();
 
@@ -771,7 +771,7 @@ List<Formelement> formelements = ivy.persistence.eonGAWFS
 .getResultList();
 
 for(Formelement element: formelements){
-	de.eon.gawfs.Formelement formelement;
+	ch.ivy.gawfs.Formelement formelement;
 	
 	formelement.id = element.elementID;
 	formelement.intSetting = element.intSetting;
@@ -822,7 +822,7 @@ Ct0 f25 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f25 actionTable 'out=in;
 ' #txt
-Ct0 f25 actionCode 'import de.eon.gawfs.Helper;
+Ct0 f25 actionCode 'import ch.ivy.gawfs.Helper;
 import ch.ivyteam.ivy.security.IUser;
 import gawfs.TaskDef;
 import gawfs.TaskDefp;

@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Mar 23 09:01:41 CET 2017]
-15AD7BBD0A1EBF6E 3.18 #module
+[>Created: Wed May 10 09:55:58 ICT 2017]
+15AD7BBD0A1EBF6E 3.20 #module
 >Proto >Proto Collection #zClass
 Nt0 GAWFSNewTaskMailContent Big #zClass
 Nt0 B #cInfo
@@ -22,12 +22,12 @@ Nt0 @EndTask f6 '' #zField
 Nt0 @PushWFArc f7 '' #zField
 >Proto Nt0 Nt0 GAWFSNewTaskMailContent #zField
 Nt0 f0 outLink MailNotification_NewTask.ivp #txt
-Nt0 f0 type de.eon.components.NewTaskMailContent #txt
+Nt0 f0 type ch.ivy.components.NewTaskMailContent #txt
 Nt0 f0 inParamDecl '<java.lang.Number notificationTaskId,java.lang.Number notificationUserId> param;' #txt
 Nt0 f0 inParamTable 'out.task=ivy.wf.findTask(param.notificationTaskId.longValue());
 out.user=ivy.wf.getSecurityContext().findUser(param.notificationUserId);
 ' #txt
-Nt0 f0 actionDecl 'de.eon.components.NewTaskMailContent out;
+Nt0 f0 actionDecl 'ch.ivy.components.NewTaskMailContent out;
 ' #txt
 Nt0 f0 guid 129CB772CF9658F0 #txt
 Nt0 f0 requestEnabled true #txt
@@ -72,15 +72,6 @@ type.code=
 type.name=
 ' #txt
 Nt0 f0 showInStartList 0 #txt
-Nt0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Nt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -94,19 +85,19 @@ Nt0 f0 @C|.responsibility Everybody #txt
 Nt0 f0 155 35 26 26 14 0 #rect
 Nt0 f0 @|StartRequestIcon #fIcon
 Nt0 f0 -256|-1|-16777216 #nodeStyle
-Nt0 f1 type de.eon.components.NewTaskMailContent #txt
+Nt0 f1 type ch.ivy.components.NewTaskMailContent #txt
 Nt0 f1 template "/ProcessPages/NewTaskMailContent/NewTaskMailContent.ivc" #txt
 Nt0 f1 155 251 26 26 14 0 #rect
 Nt0 f1 @|EndRequestIcon #fIcon
-Nt0 f10 actionDecl 'de.eon.components.NewTaskMailContent out;
+Nt0 f10 actionDecl 'ch.ivy.components.NewTaskMailContent out;
 ' #txt
 Nt0 f10 actionTable 'out=in;
 ' #txt
 Nt0 f10 actionCode 'String tmp = ivy.html.taskstartref(in.task);
 tmp = tmp.substring(tmp.indexOf("/ivy")+1);
 
-in.taskStartLink = ivy.var.de_eon_servername_for_mail + tmp;' #txt
-Nt0 f10 type de.eon.components.NewTaskMailContent #txt
+in.taskStartLink = ivy.var.servername_for_mail + tmp;' #txt
+Nt0 f10 type ch.ivy.components.NewTaskMailContent #txt
 Nt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -122,7 +113,7 @@ Nt0 f10 150 188 36 24 27 -17 #rect
 Nt0 f10 @|StepIcon #fIcon
 Nt0 f2 expr out #txt
 Nt0 f2 168 212 168 251 #arcP
-Nt0 f3 type de.eon.components.NewTaskMailContent #txt
+Nt0 f3 type ch.ivy.components.NewTaskMailContent #txt
 Nt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -142,7 +133,7 @@ Nt0 f4 168 61 168 80 #arcP
 Nt0 f5 expr in #txt
 Nt0 f5 outCond 'in.task.getCustomVarCharField1() !="INIT_WF"' #txt
 Nt0 f5 168 112 168 188 #arcP
-Nt0 f6 type de.eon.components.NewTaskMailContent #txt
+Nt0 f6 type ch.ivy.components.NewTaskMailContent #txt
 Nt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -156,7 +147,7 @@ Nt0 f6 377 81 30 30 -22 22 #rect
 Nt0 f6 @|EndIcon #fIcon
 Nt0 f7 expr in #txt
 Nt0 f7 184 96 377 96 #arcP
->Proto Nt0 .type de.eon.components.NewTaskMailContent #txt
+>Proto Nt0 .type ch.ivy.components.NewTaskMailContent #txt
 >Proto Nt0 .processKind NORMAL #txt
 >Proto Nt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
