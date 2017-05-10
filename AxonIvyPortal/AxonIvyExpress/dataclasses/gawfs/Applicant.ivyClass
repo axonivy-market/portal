@@ -4,14 +4,10 @@ firstname String #field
 firstname PERSISTENT #fieldModifier
 lastname String #field
 lastname PERSISTENT #fieldModifier
-kid String #field
-kid PERSISTENT #fieldModifier
 mail String #field
 mail PERSISTENT #fieldModifier
 phone String #field
 phone PERSISTENT #fieldModifier
-department String #field
-department PERSISTENT #fieldModifier
 username String #field
 username PERSISTENT #fieldModifier
 userid Integer #field

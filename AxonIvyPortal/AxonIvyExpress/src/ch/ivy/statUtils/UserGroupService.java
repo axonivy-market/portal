@@ -409,7 +409,6 @@ public class UserGroupService {
     public static class SortName implements Comparator<IUser>{
     	@Override
     	public int compare(IUser a1, IUser a2) {
-    		//return a1.getName().compareToIgnoreCase(a2.getName()); //KID
     		return a1.getDisplayName().compareToIgnoreCase(a2.getDisplayName()); //Namen
     	}
     }
