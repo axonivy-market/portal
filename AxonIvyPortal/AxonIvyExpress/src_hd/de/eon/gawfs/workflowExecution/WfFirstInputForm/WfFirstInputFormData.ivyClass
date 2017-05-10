@@ -1,9 +1,0 @@
-WfFirstInputFormData #class
-de.eon.gawfs.workflowExecution.WfFirstInputForm #namespace
-executePredefinedWorkflowData gawfs.ExecutePredefinedWorkflowData #field
-executePredefinedWorkflowData PERSISTENT #fieldModifier
-assignementType Integer #field
-assignementType '0=Self 1=s.o.else' #fieldComment
-assignementType PERSISTENT #fieldModifier
-availUsers List<ch.ivyteam.ivy.security.IUser> #field
-availUsers PERSISTENT #fieldModifier

@@ -1,0 +1,5 @@
+LdapPersonFilter #class
+ch.ivy.components.bo #namespace
+firstname String #field
+surname String #field
+kid String #field

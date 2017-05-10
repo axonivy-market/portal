@@ -14,9 +14,9 @@ workflowDescription String #field
 workflowDescription PERSISTENT #fieldModifier
 workflowType String #field
 workflowType PERSISTENT #fieldModifier
-dynaFormController de.eon.gawfs.DynaFormController #field
+dynaFormController ch.ivy.gawfs.DynaFormController #field
 dynaFormController PERSISTENT #fieldModifier
-dragAndDropController de.eon.gawfs.DragAndDropController #field
+dragAndDropController ch.ivy.gawfs.DragAndDropController #field
 dragAndDropController PERSISTENT #fieldModifier
 nextTask gawfs.TaskDef #field
 nextTask PERSISTENT #fieldModifier

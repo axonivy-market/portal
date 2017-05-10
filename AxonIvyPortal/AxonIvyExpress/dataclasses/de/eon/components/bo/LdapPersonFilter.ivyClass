@@ -1,8 +1,0 @@
-LdapPersonFilter #class
-de.eon.components.bo #namespace
-firstname String #field
-firstname PERSISTENT #fieldModifier
-surname String #field
-surname PERSISTENT #fieldModifier
-kid String #field
-kid PERSISTENT #fieldModifier

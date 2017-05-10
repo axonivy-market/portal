@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Mar 20 16:18:59 CET 2017]
-158251DEA92CD8C2 3.18 #module
+[>Created: Wed May 10 09:54:31 ICT 2017]
+158251DEA92CD8C2 3.20 #module
 >Proto >Proto Collection #zClass
 On0 OverrideDefaultEndPageConfiguration Big #zClass
 On0 B #cInfo
@@ -39,15 +39,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 On0 f0 showInStartList 0 #txt
-On0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 On0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -67,15 +58,11 @@ On0 f1 actionTable 'out=in;
 On0 f1 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
 
 //set taskid to 0 to go to default tasklist without selecting a task!
-String corporateHome = ivy.html.startref(ivy.var.de_eon_gawfs_core_endpage)+"?taskIdentifier=0"; //+in.taskId;
-
-
-corporateHome = ivy.html.startref(ivy.var.de_eon_gawfs_core_endpage)+ "?taskIdentifier=" + in.taskId;
+String corporateHome = ivy.html.startref(ivy.var.gawfs_core_endpage)+ "?taskIdentifier=" + in.taskId;
 
 ivy.log.info("Homepage URL:"+corporateHome);
 ivy.session.setAttribute("taskListURL", corporateHome);
 
-//http://localhost:8082/ivy/pro/designer/GAWFS/1576E76B009E23DD/start.ivp
 ' #txt
 On0 f1 type gawfs.Data #txt
 On0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

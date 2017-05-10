@@ -1,0 +1,22 @@
+LdapPerson #class
+ch.ivy.components.bo #namespace
+departmentNumber String #field
+departmentNumber 'long version of department; e.g. Workflow Solutions Germany' #fieldComment
+givenName String #field
+givenName 'first name' #fieldComment
+kid String #field
+kid uid #fieldComment
+mail String #field
+mail 'email adress' #fieldComment
+mobile String #field
+mobile 'mobile number' #fieldComment
+roomNumber String #field
+roomNumber 'room number' #fieldComment
+sn String #field
+sn surname #fieldComment
+telephoneNumber String #field
+telephoneNumber 'phone number' #fieldComment
+title String #field
+title 'job title; e.g. Consultant' #fieldComment
+personTitle String #field
+personTitle 'person title, e.g. Dr.' #fieldComment

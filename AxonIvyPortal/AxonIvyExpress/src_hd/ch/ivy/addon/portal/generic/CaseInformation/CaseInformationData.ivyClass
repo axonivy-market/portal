@@ -1,0 +1,8 @@
+CaseInformationData #class
+ch.ivy.addon.portal.generic.CaseInformation #namespace
+casex ch.ivyteam.ivy.workflow.ICase #field
+casex PERSISTENT #fieldModifier
+caseId java.lang.Long #field
+caseId PERSISTENT #fieldModifier
+statisticDetailLinkUsed String #field
+statisticDetailLinkUsed PERSISTENT #fieldModifier

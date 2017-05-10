@@ -23,9 +23,9 @@ taskRepository gawfs.TaskDefp #field
 taskRepository PERSISTENT #fieldModifier
 formelementRepository gawfs.Formelement #field
 formelementRepository PERSISTENT #fieldModifier
-dragAndDropController de.eon.gawfs.DragAndDropController #field
+dragAndDropController ch.ivy.gawfs.DragAndDropController #field
 dragAndDropController PERSISTENT #fieldModifier
-dynaFormController de.eon.gawfs.DynaFormController #field
+dynaFormController ch.ivy.gawfs.DynaFormController #field
 dynaFormController PERSISTENT #fieldModifier
 backFlag Boolean #field
 backFlag PERSISTENT #fieldModifier
