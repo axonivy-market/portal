@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 10:51:31 ICT 2017]
+[>Created: Wed May 10 11:30:27 ICT 2017]
 1580345221FA4CE0 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 GAWFSPortalHomeProcess Big #zClass
@@ -200,12 +200,12 @@ ivy.log.debug("STATT:" + finishedProcesses + " / " + runningProcesses );
 in.barChartProcesses = new BarChartModel();
          
 ChartSeries runningProcessesSeries = new ChartSeries();
-runningProcessesSeries.setLabel("Laufende Prozesse");
-runningProcessesSeries.set("Seit Einführung", runningProcesses);
+runningProcessesSeries.setLabel(ivy.cms.co("/Dialogs/GAWFSPortalHome/RunningProcesses"));
+runningProcessesSeries.set(ivy.cms.co("/Dialogs/GAWFSPortalHome/SinceTheIntroduction"), runningProcesses);
 
 ChartSeries finishedProcessesSeries = new ChartSeries();
-finishedProcessesSeries.setLabel("Abgeschlossene Prozesse");
-finishedProcessesSeries.set("Seit Einführung", finishedProcesses);
+finishedProcessesSeries.setLabel(ivy.cms.co("/Dialogs/GAWFSPortalHome/CompletedProcesses"));
+finishedProcessesSeries.set(ivy.cms.co("/Dialogs/GAWFSPortalHome/SinceTheIntroduction"), finishedProcesses);
 in.barChartProcesses.addSeries(runningProcessesSeries);
 in.barChartProcesses.addSeries(finishedProcessesSeries);
 in.barChartProcesses.setLegendPosition("ne");
