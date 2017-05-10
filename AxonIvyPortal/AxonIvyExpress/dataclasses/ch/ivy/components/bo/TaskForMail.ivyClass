@@ -1,0 +1,16 @@
+TaskForMail #class
+ch.ivy.components.bo #namespace
+priority ch.ivyteam.ivy.workflow.WorkflowPriority #field
+priority PERSISTENT #fieldModifier
+state ch.ivyteam.ivy.workflow.TaskState #field
+state PERSISTENT #fieldModifier
+name String #field
+name PERSISTENT #fieldModifier
+activator ch.ivyteam.ivy.security.ISecurityMember #field
+activator PERSISTENT #fieldModifier
+startTimestamp DateTime #field
+startTimestamp PERSISTENT #fieldModifier
+expiryTimestamp DateTime #field
+expiryTimestamp PERSISTENT #fieldModifier
+startLink String #field
+startLink PERSISTENT #fieldModifier

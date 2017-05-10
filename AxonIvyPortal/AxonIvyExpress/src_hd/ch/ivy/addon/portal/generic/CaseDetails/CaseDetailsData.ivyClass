@@ -1,0 +1,8 @@
+CaseDetailsData #class
+ch.ivy.addon.portal.generic.CaseDetails #namespace
+caseDetailsData ch.ivy.addon.portal.generic.CaseDetailsData #field
+caseDetailsData PERSISTENT #fieldModifier
+thisCase ch.ivyteam.ivy.workflow.ICase #field
+thisCase PERSISTENT #fieldModifier
+thisTask ch.ivyteam.ivy.workflow.ICase #field
+thisTask PERSISTENT #fieldModifier
