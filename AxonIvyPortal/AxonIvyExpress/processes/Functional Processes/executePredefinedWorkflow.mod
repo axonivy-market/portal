@@ -600,7 +600,7 @@ Bk0 f3 actionTable 'out=in;
 ' #txt
 Bk0 f3 actionCode 'import java.lang.reflect.Array;
 import gawfs.Formelement;
-List<Formelement> formelements = ivy.persistence.eonGAWFS
+List<Formelement> formelements = ivy.persistence.GAWFS
 .createQuery("select f from Formelement f where f.processID = :processID")
 .setParameter("processID",in.workflowID)
 .getResultList();
@@ -660,7 +660,7 @@ import gawfs.Formelement;
 
 Helper helper = new Helper();
 
-List<TaskDefp> taskSteps = ivy.persistence.eonGAWFS
+List<TaskDefp> taskSteps = ivy.persistence.GAWFS
 .createQuery("select t from TaskDefp t where t.processID = :processID")
 .setParameter("processID",in.workflowID)
 .getResultList();
@@ -698,7 +698,7 @@ Bk0 f8 actionTable 'out=in;
 Bk0 f8 actionCode 'import gawfs.Workflow;
 import gawfs.Workflow;
 
-gawfs.Workflow workflow = ivy.persistence.eonGAWFS.find(gawfs.Workflow.class,in.workflowID) as gawfs.Workflow;
+gawfs.Workflow workflow = ivy.persistence.GAWFS.find(gawfs.Workflow.class,in.workflowID) as gawfs.Workflow;
 
 in.workflowDescription = workflow.processDescription;
 in.workflowName = workflow.processName;

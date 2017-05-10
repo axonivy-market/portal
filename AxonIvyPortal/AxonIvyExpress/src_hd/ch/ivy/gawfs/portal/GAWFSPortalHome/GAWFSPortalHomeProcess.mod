@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 11:30:27 ICT 2017]
+[>Created: Wed May 10 13:36:05 ICT 2017]
 1580345221FA4CE0 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 GAWFSPortalHomeProcess Big #zClass
@@ -84,10 +84,8 @@ import ch.ivyteam.ivy.security.IUser;
 import gawfs.AvailWorkflow;
 import gawfs.Workflow;
 
-
-
 // all workflows to display a selection
-List<Workflow> workflows = ivy.persistence.eonGAWFS
+List<Workflow> workflows = ivy.persistence.GAWFS
 .createQuery("select p from Workflow p order by p.processName")
 .getResultList();
 
@@ -108,8 +106,6 @@ for(Workflow wf: workflows){
 		wfx.ownerDetails = "Fachlicher Administrator: " + owner.getDisplayName() + "( not available )";
 	}
 	
-	
-	
 	wfx.processPermission = wf.processPermission;
 	IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wfx.processPermission);
 	
@@ -128,13 +124,7 @@ for(Workflow wf: workflows){
 	}else{
 		wfx.owner = false;
 	}
-	
-	//ivy.log.debug("1:" + ivy.session.hasRole(permittedRole, false));
-	//ivy.log.debug("2:" + ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("GAWFS_ADMIN"), false));
-	//ivy.log.debug("3:" + ivy.session.canActAsUser(owner));
-	
-	
-	
+
 	wfx.processStartLink = ivy.html.startref("Start Processes/GenericPredefinedWorkflowStart/GenericPredefinedProcessStart.ivp") + "?workflowID=" + wfx.id;
 	wfx.processDeleteLink = ivy.html.startref("Start Processes/GenericPredefinedWorkflowStart/GenericDeleteProcessStart.ivp") + "?workflowID=" + wfx.id;
 	wfx.processEditLink = ivy.html.startref("Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp") + "?workflowID=" + wfx.id;
@@ -149,14 +139,6 @@ for(Workflow wf: workflows){
 }
 
 
-//int workflowID = 17;
-//Workflow workflow = ivy.persistence.eonGAWFS
-//.find(Workflow.class, workflowID) as Workflow;
-
-//in.workflowDescription = workflow.processDescription;
-//in.workflowID = workflow.id;
-//in.workflowName = workflow.processName;
-//in.workflowType = workflow.processType;
 
 
 

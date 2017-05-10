@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Sat Oct 29 12:28:54 PDT 2016]
-15811D6A5CA25F9C 3.18 #module
+[>Created: Wed May 10 11:44:14 ICT 2017]
+15811D6A5CA25F9C 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 DeleteConfirmationProcess Big #zClass
 Gs0 RD #cInfo
@@ -79,7 +79,7 @@ Gs0 f8 actionTable 'out=in;
 Gs0 f8 actionCode 'import gawfs.Workflow;
 import gawfs.Workflow;
 
-gawfs.Workflow workflow = ivy.persistence.eonGAWFS.find(gawfs.Workflow.class,in.devLoadWorkflowsData.workflowID) as gawfs.Workflow;
+gawfs.Workflow workflow = ivy.persistence.GAWFS.find(gawfs.Workflow.class,in.devLoadWorkflowsData.workflowID) as gawfs.Workflow;
 
 in.devLoadWorkflowsData.workflowDescription = workflow.processDescription;
 in.devLoadWorkflowsData.workflowName = workflow.processName;
