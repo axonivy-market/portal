@@ -63,11 +63,11 @@
 										<p:column style="width:25%; border:none">
 											<p:selectOneMenu id="InputFieldType"
 												value="#{data.createInputFieldTab.type}" style="width:75%" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}">
-												<f:selectItem itemLabel="Textfeld"
+												<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputTypes/TextBox')}"
 													itemValue="InputFieldText" />
-												<f:selectItem itemLabel="Nummernfeld"
+												<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputTypes/NumberField')}"
 													itemValue="InputFieldNumber" />
-												<f:selectItem itemLabel="Datumsauswahl"
+												<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputTypes/DateSelection')}"
 													itemValue="InputFieldDate" />
 												<f:selectItems></f:selectItems>
 

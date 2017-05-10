@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 10:53:00 ICT 2017]
+[>Created: Wed May 10 17:14:55 ICT 2017]
 1574EBDBE9576CED 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
@@ -115,10 +115,10 @@ in.createInputFieldTab = new Formelement();
 in.createFileUploadTab = new Formelement();
 	in.createFileUploadTab.type="FileUpload";
 	in.createFileUploadTab.intSetting = 0; //initial value for number of files allowed
-	FormelementOption erlaubtesDateiformat1 = new FormelementOption("PDF (pdf)");
-	FormelementOption erlaubtesDateiformat2 = new FormelementOption("Word (doc/docx)");
-	FormelementOption erlaubtesDateiformat3 = new FormelementOption("Excel (xls/xlsx)");
-	FormelementOption erlaubtesDateiformat4 = new FormelementOption("Andere Dateiformate");
+	FormelementOption erlaubtesDateiformat1 = new FormelementOption(ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/UploadFileFormat/PDF"));
+	FormelementOption erlaubtesDateiformat2 = new FormelementOption(ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/UploadFileFormat/Word"));
+	FormelementOption erlaubtesDateiformat3 = new FormelementOption(ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/UploadFileFormat/Excel"));
+	FormelementOption erlaubtesDateiformat4 = new FormelementOption(ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/UploadFileFormat/OtherFormats"));
 	in.createFileUploadTab.addOption(erlaubtesDateiformat1);
 	in.createFileUploadTab.addOption(erlaubtesDateiformat2);
 	in.createFileUploadTab.addOption(erlaubtesDateiformat3);
@@ -312,8 +312,8 @@ in.dynaFormController = in.data.dynaFormController;
 in.dynaFormController.createForm();
 
 
-ivy.task.setName("Formulardefinition!");
-ivy.task.setDescription("Bitte definieren Sie das Formular!");' #txt
+ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/FormDefinition/TaskName"));
+ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/FormDefinition/TaskDescription"));' #txt
 Ds0 f11 security system #txt
 Ds0 f11 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

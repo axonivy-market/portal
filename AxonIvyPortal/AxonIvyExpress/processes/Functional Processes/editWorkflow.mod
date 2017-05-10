@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 10:58:28 ICT 2017]
+[>Created: Wed May 10 15:29:03 ICT 2017]
 15791C23B125821B 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
@@ -123,12 +123,10 @@ ew0 f5 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f5 actionTable 'out=in;
 ' #txt
-ew0 f5 actionCode 'in.steps.add("Start");
-in.steps.add("Workflow-
-eigenschaften");
-in.steps.add("Formular-
-definition");
-in.steps.add("Ende");
+ew0 f5 actionCode 'in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/StartStep"));
+in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep"));
+in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/FormDefinitionStep"));
+in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/EndStep"));
 
 in.directExecutionFlag = false;' #txt
 ew0 f5 security system #txt
