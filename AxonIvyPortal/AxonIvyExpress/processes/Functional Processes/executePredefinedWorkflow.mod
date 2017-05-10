@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 11:00:45 ICT 2017]
+[>Created: Wed May 10 15:02:53 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -370,11 +370,11 @@ ew0 f24 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ew0 f24 actionTable 'out=in;
 ' #txt
 ew0 f24 actionCode 'if(in.denied==true){
-	in.nextTask.subject = "Abgelehnt!";
-	in.nextTask.description = "abgelehnt";
+	in.nextTask.subject = ivy.cms.co("/Dialogs/Tasks/Declined/TaskName");
+	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Declined/TaskDescription");
 }else{
-	in.nextTask.subject = "Genehmigt!";
-	in.nextTask.description = "genehmigt";
+	in.nextTask.subject = ivy.cms.co("/Dialogs/Tasks/Approved/TaskName");
+	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Approved/TaskDescription");
 }
 
 
@@ -748,8 +748,8 @@ Bk0 f11 actionCode 'import ch.ivy.addon.portalkit.util.UrlHelper;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 
-ivy.task.setName("Prozess geladen.");
-ivy.task.setDescription("Prozess geladen.");
+ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
+ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskDescription"));
 
 
 ivy.case.setName(in.workflowName);
