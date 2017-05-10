@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Mar 27 17:40:25 CEST 2017]
-15788E435FBCCB49 3.18 #module
+[>Created: Wed May 10 18:45:40 ICT 2017]
+15788E435FBCCB49 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfSecondReviewFormProcess Big #zClass
 Ws0 RD #cInfo
@@ -125,7 +125,7 @@ Ws0 f10 actionDecl 'ch.ivy.gawfs.workflowExecution.WfSecondReviewForm.WfSecondRe
 ' #txt
 Ws0 f10 actionTable 'out=in;
 ' #txt
-Ws0 f10 actionCode 'String note = ivy.session.getSessionUserName() + ":Genehmigt!"; 
+Ws0 f10 actionCode 'String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/Tasks/Approved/TaskName"); 
 
 ivy.case.createNote(ivy.session, note);
 ' #txt
@@ -150,7 +150,7 @@ Ws0 f12 actionDecl 'ch.ivy.gawfs.workflowExecution.WfSecondReviewForm.WfSecondRe
 ' #txt
 Ws0 f12 actionTable 'out=in;
 ' #txt
-Ws0 f12 actionCode 'String note = ivy.session.getSessionUserName() + ":Abgelehnt!"; 
+Ws0 f12 actionCode 'String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/Tasks/Declined/TaskName"); 
 
 ivy.case.createNote(ivy.session, note);
 ' #txt
