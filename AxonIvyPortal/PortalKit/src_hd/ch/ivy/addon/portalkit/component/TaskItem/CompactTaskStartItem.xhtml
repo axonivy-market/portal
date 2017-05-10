@@ -11,10 +11,10 @@
     <div class="task-start-info">
       <h:outputText id="task-start-task-state" value="##{task.id} #{taskBean.getUserFriendlyTaskState(task.state)}"
         styleClass="task-start-info-header" />
-      <p:tooltip for="task-start-task-state" value="#{task.state}" trackMouse="true"/>
+      <p:tooltip for="task-start-task-state" value="#{task.state}" trackMouse="true" />
       <h:outputText id="task-start-task-name" styleClass="task-start-info-content u-truncate-text"
         value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
-      <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}"/>
+      <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}" />
       <h:panelGroup layout="block" styleClass="task-start-info-footer">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/create')}: " />
         <h:outputText value="#{task.startTimestamp}">
@@ -28,7 +28,10 @@
       </h:panelGroup>
     </div>
 
-    <span class="action-icon tmi-chevorn-right icon-compact-mode" />
+    <h:panelGroup id="open-task-icon" class="action-icon tmi-chevorn-right icon-compact-mode" />
+    <p:tooltip for="open-task-icon"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openTaskTooltip')}"
+      styleClass="task-command-tooltip" />
   </h:panelGroup>
 </ui:composition>
 </html>
