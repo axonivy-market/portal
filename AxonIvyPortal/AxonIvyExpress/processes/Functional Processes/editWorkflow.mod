@@ -185,13 +185,13 @@ import ch.ivy.gawfs.Formelement;
 
 //save workflowdescription
 
-	in.processRepository = ivy.persistence.eonGAWFS.find(Workflow.class, in.processID) as Workflow;
+	in.processRepository = ivy.persistence.GAWFS.find(Workflow.class, in.processID) as Workflow;
 	in.processRepository.processName = in.processName;
 	in.processRepository.processDescription = in.processDescription;
 	in.processRepository.processType = in.processType;
 	in.processRepository.processOwner = ivy.session.getSessionUser().getMemberName();
 	in.processRepository.processPermission = in.definedTasks.get(0).actor;
-	in.processRepository = ivy.persistence.eonGAWFS.merge(in.processRepository) as Workflow;
+	in.processRepository = ivy.persistence.GAWFS.merge(in.processRepository) as Workflow;
 
 
 
@@ -200,12 +200,12 @@ Integer processID = in.processRepository.id;
 in.processID = processID;
 
 //delete all other fields
-Integer deletedTaskdef = ivy.persistence.eonGAWFS
+Integer deletedTaskdef = ivy.persistence.GAWFS
 .createQuery("delete from TaskDefp t where t.processID = :workflowID")
 .setParameter( "workflowID", in.processID )
 .executeUpdate();
 
-Integer deletedFormelements = ivy.persistence.eonGAWFS
+Integer deletedFormelements = ivy.persistence.GAWFS
 .createQuery("delete from Formelement f where f.processID = :workflowID")
 .setParameter( "workflowID", in.processID)
 .executeUpdate();
@@ -228,7 +228,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
 		
 		x.optionsStr = e.getOptionsAsString();
 
-		ivy.persistence.eonGAWFS.persist(x);
+		ivy.persistence.GAWFS.persist(x);
 }
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
@@ -243,7 +243,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
 		x.processID = processID;
 		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsAsString());
 		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.eonGAWFS.persist(x);
+		ivy.persistence.GAWFS.persist(x);
 }
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
@@ -258,7 +258,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
 		x.processID = processID;
 		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsAsString());
 		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.eonGAWFS.persist(x);
+		ivy.persistence.GAWFS.persist(x);
 }
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
@@ -274,7 +274,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
 		ivy.log.debug("1OptionsString of:"+ e.label );
 		ivy.log.debug("2OptionsString of:"+ e.getOptionsAsString());
 		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.eonGAWFS.persist(x);
+		ivy.persistence.GAWFS.persist(x);
 }
 
 //save the taskdefinition with the order of the tasks
@@ -287,7 +287,7 @@ for (TaskDef t: in.definedTasks){
 		tp.untilDays = t.untilDays;
 		tp.processID = processID;
 		tp.taskCount = t.count;
-		ivy.persistence.eonGAWFS.persist(tp);
+		ivy.persistence.GAWFS.persist(tp);
 }
 
 ivy.log.debug("Process saved with the ProcessID" + in.processID);
@@ -492,7 +492,7 @@ in.processRepository.processType = in.processType;
 in.processRepository.processOwner = ivy.session.getSessionUser().getMemberName();
 in.processRepository.processPermission = in.definedTasks.get(0).actor;
 
-ivy.persistence.eonGAWFS.persist(in.processRepository);
+ivy.persistence.GAWFS.persist(in.processRepository);
 
 //get process ID to save with other values
 Integer processID = in.processRepository.id;
@@ -514,7 +514,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
 		
 		x.optionsStr = e.getOptionsAsString();
 
-		ivy.persistence.eonGAWFS.persist(x);
+		ivy.persistence.GAWFS.persist(x);
 }
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
@@ -528,7 +528,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
 		x.required = e.required;
 		x.processID = processID;
 		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.eonGAWFS.persist(x);
+		ivy.persistence.GAWFS.persist(x);
 }
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
@@ -542,7 +542,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
 		x.required = e.required;
 		x.processID = processID;
 		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.eonGAWFS.persist(x);
+		ivy.persistence.GAWFS.persist(x);
 }
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
@@ -556,7 +556,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
 		x.required = e.required;
 		x.processID = processID;
 		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.eonGAWFS.persist(x);
+		ivy.persistence.GAWFS.persist(x);
 }
 
 //save the taskdefinition with the order of the tasks
@@ -569,7 +569,7 @@ for (TaskDef t: in.definedTasks){
 		tp.untilDays = t.untilDays;
 		tp.processID = processID;
 		tp.taskCount = t.count;
-		ivy.persistence.eonGAWFS.persist(tp);
+		ivy.persistence.GAWFS.persist(tp);
 }
 
 ivy.log.debug("Process saved with the ProcessID" + in.processID);
@@ -765,7 +765,7 @@ Ct0 f28 actionTable 'out=in;
 ' #txt
 Ct0 f28 actionCode 'import java.lang.reflect.Array;
 import gawfs.Formelement;
-List<Formelement> formelements = ivy.persistence.eonGAWFS
+List<Formelement> formelements = ivy.persistence.GAWFS
 .createQuery("select f from Formelement f where f.processID = :processID")
 .setParameter("processID",in.processID)
 .getResultList();
@@ -830,7 +830,7 @@ import java.lang.reflect.Array;
 import gawfs.Formelement;
 
 
-List<TaskDefp> taskSteps = ivy.persistence.eonGAWFS
+List<TaskDefp> taskSteps = ivy.persistence.GAWFS
 .createQuery("select t from TaskDefp t where t.processID = :processID")
 .setParameter("processID",in.processID)
 .getResultList();
@@ -883,7 +883,7 @@ Ct0 f26 actionTable 'out=in;
 Ct0 f26 actionCode 'import gawfs.Workflow;
 import gawfs.Workflow;
 
-gawfs.Workflow workflow = ivy.persistence.eonGAWFS.find(gawfs.Workflow.class,in.processID) as gawfs.Workflow;
+gawfs.Workflow workflow = ivy.persistence.GAWFS.find(gawfs.Workflow.class,in.processID) as gawfs.Workflow;
 
 in.processDescription = workflow.processDescription;
 in.processName = workflow.processName;
