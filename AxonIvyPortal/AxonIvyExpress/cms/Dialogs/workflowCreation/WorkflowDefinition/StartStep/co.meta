@@ -1,0 +1,3 @@
+co: name={StartStep} description={} changed={2017-05-10 09:32:51 CEST} changedby={ldnam} visualorder={0} guid={15BF1461B2B87B64} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15BF1461B3AF5D70} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 09:32:35 CEST} validto={} changed={2017-05-10 09:32:51 CEST} changedby={ldnam} properties={} id={}
+val: guid={15BF1465806DB562} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 09:32:44 CEST} validto={} changed={2017-05-10 09:32:51 CEST} changedby={ldnam} properties={} id={}
