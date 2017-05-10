@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 10:53:14 ICT 2017]
+[>Created: Wed May 10 15:18:55 ICT 2017]
 1576FA61C4EDC8B1 3.20 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
@@ -103,8 +103,8 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivy.gawfs.Helper;
 import gawfs.TaskDef;
 
-ivy.task.setName("Workfloweigenschaften!");
-ivy.task.setDescription("Bitte definieren Sie die Workfloweigenschaften!");
+ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskName"));
+ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskDescription"));
 
 
 if(in.data.definedTasks.size()<1){
