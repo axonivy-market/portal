@@ -1,10 +1,2 @@
 Data #class
 ch.ivy.addon.portal.generic #namespace
-caseId Number #field
-caseId PERSISTENT #fieldModifier
-taskId String #field
-taskId PERSISTENT #fieldModifier
-url String #field
-url PERSISTENT #fieldModifier
-appName String #field
-appName PERSISTENT #fieldModifier

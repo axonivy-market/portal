@@ -1,4 +1,0 @@
-CaseDetailsData #class
-ch.ivy.addon.portal.generic #namespace
-caseId Number #field
-caseId PERSISTENT #fieldModifier
