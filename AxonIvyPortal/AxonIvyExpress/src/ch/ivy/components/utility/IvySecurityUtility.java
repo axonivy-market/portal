@@ -441,7 +441,7 @@ public class IvySecurityUtility {
 	}	
 	
 	/**
-	 * Transforms list of ivy users to list of ivy user names (KIDs) 
+	 * Transforms list of ivy users to list of ivy user names
 	 * @param List<IUser> users
 	 * @return List<String> usernames
 	 * @see IUser

@@ -18,15 +18,13 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import org.apache.commons.lang.StringUtils;
+
+import ch.ivy.components.bo.LdapPerson;
+import ch.ivy.components.bo.LdapPersonFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.jndi.IJndiSecuritySystemConstants;
-import ch.ivy.components.EmployeeType;
-import ch.ivy.components.GenderType;
-import ch.ivy.components.bo.LdapPerson;
-import ch.ivy.components.bo.LdapPersonFilter;
-
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Service class for the read query to the GDS with LDAP
