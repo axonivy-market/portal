@@ -244,7 +244,7 @@
 							<br />
 						</h:panelGrid>
 						<h:panelGrid columns="2" style="float:right">
-							<p:commandButton value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Cancel')}"
+							<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
 								onclick="PF('deleteGroup').hide();"
 								styleClass="ui-confirmdialog-no">
 							</p:commandButton>
@@ -281,7 +281,7 @@
 						<h:panelGrid />
 
 						<p:commandButton
-							value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Cancel')}"
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
 							onclick="PF('userSelection').hide();"
 							styleClass="ui-confirmdialog-no" />
 
@@ -324,7 +324,7 @@
 							<h:panelGrid />
 
 							<p:commandButton
-								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Cancel')}"
+								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
 								onclick="PF('userRemoval').hide();"
 								styleClass="ui-confirmdialog-no" />
 
@@ -364,7 +364,7 @@
 							icon="fa fa-check-circle-o" process="@form :form"
 							oncomplete="backWithCaseNote([{name:'enableValidation', value:'true'}])" />
 						<p:commandButton
-							value="#{ivy.cms.co('/de.eon.components.ui/Buttons/cancel')}"
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
 							icon="fa fa-ban" onclick="PF('addNoteRequestor').hide()" />
 					</div>
 				</h:form>
