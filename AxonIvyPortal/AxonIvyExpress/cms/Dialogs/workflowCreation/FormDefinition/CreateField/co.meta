@@ -1,2 +1,3 @@
-co: name={CreateField} description={} changed={2016-11-26 00:44:43 GMT} changedby={marce} visualorder={0} guid={1589E17653C7BA7E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1589E1765426CA0B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 00:44:43 GMT} validto={} changed={2016-11-26 00:44:43 GMT} changedby={marce} properties={} id={}
+co: name={CreateField} description={} changed={2017-05-09 13:01:46 CEST} changedby={ldnam} visualorder={0} guid={1589E17653C7BA7E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1589E1765426CA0B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-05-09 13:01:46 CEST} changedby={ldnam} properties={} id={}
+val: guid={15BECDF4199B96EC} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:01:44 CEST} validto={} changed={2017-05-09 13:01:46 CEST} changedby={ldnam} properties={} id={}
