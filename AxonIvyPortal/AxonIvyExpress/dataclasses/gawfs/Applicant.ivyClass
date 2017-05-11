@@ -1,15 +1,5 @@
 Applicant #class
 gawfs #namespace
-firstname String #field
-firstname PERSISTENT #fieldModifier
-lastname String #field
-lastname PERSISTENT #fieldModifier
-mail String #field
-mail PERSISTENT #fieldModifier
-phone String #field
-phone PERSISTENT #fieldModifier
-username String #field
-username PERSISTENT #fieldModifier
 userid Integer #field
 userid PERSISTENT #fieldModifier
 user ch.ivyteam.ivy.security.IUser #field
