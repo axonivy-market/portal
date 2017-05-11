@@ -1,0 +1,23 @@
+define_WFData #class
+ch.ivy.addon.portal.selfservice.define_WF #namespace
+definedTasks java.util.List<ch.ivy.add.portal.selfservice.TaskDef> #field
+caseInfo ch.ivy.add.portal.selfservice.CaseDef #field
+newTask ch.ivy.add.portal.selfservice.TaskDef #field
+newTask PERSISTENT #fieldModifier
+wfusers List<String> #field
+started DateTime #field
+started PERSISTENT #fieldModifier
+additionalTasks java.util.List<ch.ivy.add.portal.selfservice.TaskDef> #field
+additionalTasks PERSISTENT #fieldModifier
+errormsg String #field
+errormsg PERSISTENT #fieldModifier
+user String #field
+user PERSISTENT #fieldModifier
+editTask ch.ivy.add.portal.selfservice.TaskDef #field
+editTask PERSISTENT #fieldModifier
+userList List<ch.ivyteam.ivy.security.IUser> #field
+userList PERSISTENT #fieldModifier
+userSelection List<ch.ivyteam.ivy.security.IUser> #field
+userSelection PERSISTENT #fieldModifier
+taskDescription String #field
+taskDescription PERSISTENT #fieldModifier
