@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu May 11 12:08:25 ICT 2017]
+[>Created: Thu May 11 14:54:05 ICT 2017]
 157893EF862D1265 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFirstInputFormProcess Big #zClass
@@ -270,7 +270,9 @@ Ws0 f24 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInput
 ' #txt
 Ws0 f24 actionTable 'out=in;
 ' #txt
-Ws0 f24 actionCode 'import ch.ivyteam.ivy.workflow.CaseState;
+Ws0 f24 actionCode 'import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.request.RequestUriFactory;
+import ch.ivyteam.ivy.workflow.CaseState;
 import javax.servlet.http.HttpServletRequest;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -278,39 +280,28 @@ import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
  
 ivy.task.destroy();
 
-HttpServletRequest  req = FacesContext.getCurrentInstance().getExternalContext().getRequest() as HttpServletRequest;
- 
 IProcessStart processStart;
-for (IProcessStart start : ivy.session.getStartableProcessStarts())
-{
-  ivy.log.debug("Process-start Id:"+start.getName()+"/"+start.getProcessElementId());
-  if (start.getProcessElementId().equals("1576E76B009E23DD-f0")) { //Portal
-    processStart = start;
-    break;
-  }
+for (IProcessStart start : ivy.session.getStartableProcessStarts()) {
+	if (start.getProcessElementId().equals("1576E76B009E23DD-f0")) {
+  	processStart = start;
+		break;
+	}
 }
 
-String context = ivy.html.applicationHomeRef().substring(0,ivy.html.applicationHomeRef().indexOf("/",1));
-                
-String link = "http://"+req.getServerName() + ":"+ req.getServerPort() + context + "/pro/";
+String link = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
 if(processStart != null) {
-  ivy.log.debug("Case State Cancel:"+ivy.case.getState().name());
-  if (!ivy.case.getState().equals(CaseState.ZOMBIE) && !ivy.case.getState().equals(CaseState.CREATED)) {
-    link += processStart.getFullRequestPath()+"?taskIdentifier="+ivy.task.getId();
-  }
-  else {
-    link += processStart.getFullRequestPath();
+	if (!ivy.case.getState().equals(CaseState.ZOMBIE) && !ivy.case.getState().equals(CaseState.CREATED)) {
+  	link += "?taskIdentifier="+ivy.task.getId();
   }
 }
 
 if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
-                ivy.wf.deleteCompletedCase(ivy.case);
+	ivy.wf.deleteCompletedCase(ivy.case);
 }
 
 //redirect to portal
 //ivy.log.debug("Link to Portal found:"+link);
-FacesContext.getCurrentInstance().getExternalContext().redirect(link);
-' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(link);' #txt
 Ws0 f24 security system #txt
 Ws0 f24 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
 Ws0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
