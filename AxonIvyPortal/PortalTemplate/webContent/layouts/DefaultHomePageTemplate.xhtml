@@ -7,7 +7,6 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-  	<ui:param name="enablesChat" value="true" />
     <ui:define name="pageTitle">Cockpit</ui:define>
     <ui:define name="pageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
