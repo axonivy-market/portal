@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 09 15:06:11 ICT 2017]
+[>Created: Thu May 11 12:08:25 ICT 2017]
 157893EF862D1265 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFirstInputFormProcess Big #zClass
@@ -127,18 +127,12 @@ Ws0 f10 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInput
 ' #txt
 Ws0 f10 actionTable 'out=in;
 ' #txt
-Ws0 f10 actionCode '//import ch.ivy.components.bo.LdapPerson;
-//import de.eon.components.utility.LdapUtility;
-import ch.ivyteam.ivy.security.IUser;
-
-in.executePredefinedWorkflowData.applicant.user = ivy.session.getSessionUser();
-
+Ws0 f10 actionCode 'import ch.ivyteam.ivy.security.IUser;
 
 //inital soll der Antragssteller "im eigenen Namen" sein.
 in.assignementType = 0;
 
 //Get Users
-
 List users = ivy.wf.getSecurityContext().getUsers();
 in.availUsers.clear();
 
@@ -148,37 +142,12 @@ for(IUser user : users)
 	{
 		if(user.getUserToken().hasRole(ivy.request.getApplication().getSecurityContext().findRole("GAWFS_USER"), false) ){
 			out.availUsers.add(user);
-		}
-		
+		}		
 	}
 }
 
-IUser user;
-
-	in.executePredefinedWorkflowData.applicant.user = ivy.case.getCreatorUser();
-	/*LdapPerson ldp = LdapUtility.getPerson(in.executePredefinedWorkflowData.applicant.user.getName());
-	if (ldp is initialized && !ldp.kid.equalsIgnoreCase("D1111")) {
-		in.executePredefinedWorkflowData.applicant.firstname = ldp.givenName;
-		in.executePredefinedWorkflowData.applicant.lastname = ldp.sn;
-		in.executePredefinedWorkflowData.applicant.mail = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();
-		in.executePredefinedWorkflowData.applicant.phone = ldp.mobile;
-		in.executePredefinedWorkflowData.applicant.department = ldp.departmentNumber;
-		in.executePredefinedWorkflowData.applicant.kid = in.executePredefinedWorkflowData.applicant.user.getName();
-	}
-	else {
-		in.executePredefinedWorkflowData.applicant.firstname = in.executePredefinedWorkflowData.applicant.user.getFullName();
-		in.executePredefinedWorkflowData.applicant.lastname = in.executePredefinedWorkflowData.applicant.user.getDisplayName();
-		in.executePredefinedWorkflowData.applicant.mail = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();
-		in.executePredefinedWorkflowData.applicant.phone = "N/A";
-		in.executePredefinedWorkflowData.applicant.department = "N/A";
-		in.executePredefinedWorkflowData.applicant.kid = in.executePredefinedWorkflowData.applicant.user.getName();
-	}*/
-	
-	ivy.log.debug("Set applicant to: " + user.toString());
-
-
-
-ivy.log.debug("user;" + in.executePredefinedWorkflowData.applicant.toString());' #txt
+in.executePredefinedWorkflowData.applicant.user = ivy.case.getCreatorUser();
+' #txt
 Ws0 f10 security system #txt
 Ws0 f10 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
 Ws0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -218,38 +187,13 @@ Ws0 f14 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInput
 ' #txt
 Ws0 f14 actionTable 'out=in;
 ' #txt
-Ws0 f14 actionCode 'import ch.ivy.components.bo.LdapPerson;
-//import de.eon.components.utility.LdapUtility;
-import org.primefaces.context.RequestContext;
-import ch.ivyteam.ivy.security.IUser;
+Ws0 f14 actionCode 'import org.primefaces.context.RequestContext;
 
-IUser user;
 if(in.assignementType == 0){
 	in.executePredefinedWorkflowData.applicant.user = ivy.case.getCreatorUser();
-	/*LdapPerson ldp = LdapUtility.getPerson(in.executePredefinedWorkflowData.applicant.user.getName());
-	if (ldp is initialized && !ldp.kid.equalsIgnoreCase("D1111")) {
-		in.executePredefinedWorkflowData.applicant.firstname = ldp.givenName;
-		in.executePredefinedWorkflowData.applicant.lastname = ldp.sn;
-		in.executePredefinedWorkflowData.applicant.mail = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();
-		in.executePredefinedWorkflowData.applicant.phone = ldp.mobile;
-		in.executePredefinedWorkflowData.applicant.department = ldp.departmentNumber;
-		in.executePredefinedWorkflowData.applicant.kid = in.executePredefinedWorkflowData.applicant.user.getName();
-	}
-	else {
-		in.executePredefinedWorkflowData.applicant.firstname = in.executePredefinedWorkflowData.applicant.user.getFullName();
-		in.executePredefinedWorkflowData.applicant.lastname = in.executePredefinedWorkflowData.applicant.user.getDisplayName();
-		in.executePredefinedWorkflowData.applicant.mail = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();
-		in.executePredefinedWorkflowData.applicant.phone = "N/A";
-		in.executePredefinedWorkflowData.applicant.department = "N/A";
-		in.executePredefinedWorkflowData.applicant.kid = in.executePredefinedWorkflowData.applicant.user.getName();
-	}*/
-	
-	ivy.log.debug("Set applicant to: " + user.toString());
-
 }else{
 	RequestContext context = RequestContext.getCurrentInstance();
 	context.execute("PF(''chooseApplicant'').show();");
-	
 };
 ' #txt
 Ws0 f14 security system #txt
@@ -277,33 +221,10 @@ Ws0 f16 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInput
 ' #txt
 Ws0 f16 actionTable 'out=in;
 ' #txt
-Ws0 f16 actionCode '//import ch.ivy.components.bo.LdapPerson;
-//import de.eon.components.utility.LdapUtility;
-import org.primefaces.context.RequestContext;
+Ws0 f16 actionCode 'import org.primefaces.context.RequestContext;
 import ch.ivyteam.ivy.security.IUser;
 
-IUser user;
-
-ivy.log.debug("Set applicant to: " + user.toString());
 in.assignementType=1;
-
-/*LdapPerson ldp = LdapUtility.getPerson(in.executePredefinedWorkflowData.applicant.user.getName());
-if (ldp is initialized && !ldp.kid.equalsIgnoreCase("D1111")) {//not on designer
-	in.executePredefinedWorkflowData.applicant.firstname = ldp.givenName;
-	in.executePredefinedWorkflowData.applicant.lastname = ldp.sn;
-	in.executePredefinedWorkflowData.applicant.mail = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();
-	in.executePredefinedWorkflowData.applicant.phone = ldp.mobile;
-	in.executePredefinedWorkflowData.applicant.department = ldp.departmentNumber;
-	in.executePredefinedWorkflowData.applicant.kid = in.executePredefinedWorkflowData.applicant.user.getName();
-}
-else {
-	in.executePredefinedWorkflowData.applicant.firstname = in.executePredefinedWorkflowData.applicant.user.getFullName();
-	in.executePredefinedWorkflowData.applicant.lastname = in.executePredefinedWorkflowData.applicant.user.getDisplayName();
-	in.executePredefinedWorkflowData.applicant.mail = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();
-	in.executePredefinedWorkflowData.applicant.phone = "N/A";
-	in.executePredefinedWorkflowData.applicant.department = "N/A";
-	in.executePredefinedWorkflowData.applicant.kid = in.executePredefinedWorkflowData.applicant.user.getName();
-}*/
 ' #txt
 Ws0 f16 security system #txt
 Ws0 f16 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
@@ -356,35 +277,31 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
  
 ivy.task.destroy();
-//ivy.task.reset();
-
-
 
 HttpServletRequest  req = FacesContext.getCurrentInstance().getExternalContext().getRequest() as HttpServletRequest;
  
-                IProcessStart processStart;
-                for (IProcessStart start : ivy.session.getStartableProcessStarts())
-                {
-                               ivy.log.debug("Process-start Id:"+start.getName()+"/"+start.getProcessElementId());
-                               if (start.getProcessElementId().equals("1576E76B009E23DD-f0")) { //Portal
-                                               processStart = start;
-                                               break;
-                               }
-                }
+IProcessStart processStart;
+for (IProcessStart start : ivy.session.getStartableProcessStarts())
+{
+  ivy.log.debug("Process-start Id:"+start.getName()+"/"+start.getProcessElementId());
+  if (start.getProcessElementId().equals("1576E76B009E23DD-f0")) { //Portal
+    processStart = start;
+    break;
+  }
+}
 
 String context = ivy.html.applicationHomeRef().substring(0,ivy.html.applicationHomeRef().indexOf("/",1));
-//ivy.log.info("HomeRef:"+context);
                 
 String link = "http://"+req.getServerName() + ":"+ req.getServerPort() + context + "/pro/";
-                if(processStart != null) {
-                               ivy.log.debug("Case State Cancel:"+ivy.case.getState().name());
-                               if (!ivy.case.getState().equals(CaseState.ZOMBIE) && !ivy.case.getState().equals(CaseState.CREATED)) {
-                                               link += processStart.getFullRequestPath()+"?taskIdentifier="+ivy.task.getId();
-                               }
-                               else {
-                                               link += processStart.getFullRequestPath();
-                               }
-                }
+if(processStart != null) {
+  ivy.log.debug("Case State Cancel:"+ivy.case.getState().name());
+  if (!ivy.case.getState().equals(CaseState.ZOMBIE) && !ivy.case.getState().equals(CaseState.CREATED)) {
+    link += processStart.getFullRequestPath()+"?taskIdentifier="+ivy.task.getId();
+  }
+  else {
+    link += processStart.getFullRequestPath();
+  }
+}
 
 if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
                 ivy.wf.deleteCompletedCase(ivy.case);
