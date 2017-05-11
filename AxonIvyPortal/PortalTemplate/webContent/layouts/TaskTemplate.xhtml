@@ -41,6 +41,11 @@
         <ui:insert name="infoZone" />
 
         <div class="task-template-tasks-command">
+          <p:link id="start-ad-hoc" href="#"
+            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}">
+            <i class="fa fa-cogs fa-2x" />
+          </p:link>
+          <p:spacer width="5"/>
           <p:link id="copy-clipboard" href="#"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copyTooltip')}">
             <i class="fa fa-share-square-o fa-2x" />
