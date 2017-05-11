@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Nov 28 11:42:10 PST 2016]
-1576E76B009E23DD 3.18 #module
+[>Created: Thu May 11 14:39:06 ICT 2017]
+1576E76B009E23DD 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStartGAFWS Big #zClass
 Pt0 B #cInfo
@@ -29,22 +29,15 @@ Pt0 f0 requestEnabled true #txt
 Pt0 f0 triggerEnabled false #txt
 Pt0 f0 callSignature start() #txt
 Pt0 f0 persist false #txt
+Pt0 f0 startName AxonIvyExpressStart #txt
 Pt0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
+Pt0 f0 caseData businessCase.attach=false #txt
 Pt0 f0 showInStartList 1 #txt
-Pt0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
