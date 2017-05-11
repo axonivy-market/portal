@@ -24,7 +24,7 @@
           <c:forEach items="#{data.taskHistory}" var="histTask" varStatus="row">
             <h:panelGrid id="history-task-#{row.index}" columns="1" styleClass="flowpanel TexAlCenter">
               <p:outputLabel value="#{histTask.kind}" />
-              <h:graphicImage id="i#{row.index}" library="ivy-webcontent" name="user/group.jpg"
+              <h:graphicImage id="i#{row.index}" library="ivy-webcontent" name="images/user/group.jpg"
                 title="#{histTask.actor}" rendered="#{histTask.actor.indexOf(',') gt 0}" styleClass="circularGroupImg" />
               <pe:gravatar id="h#{row.index}"
                 value="#{ivy.wf.getSecurityContext().findUser(histTask.actor).getEMailAddress()}" size="60"
@@ -55,7 +55,7 @@
           </p:panel>
           <h:panelGrid id="current-task" columns="1" styleClass="flowpanelHot TexAlCenter">
             <p:outputLabel value="#{data.nextTask.kind}" />
-            <h:graphicImage library="ivy-webcontent" name="user/group.jpg"
+            <h:graphicImage library="ivy-webcontent" name="images/user/group.jpg"
               rendered="#{data.nextTask.actor.indexOf(',') gt 0}" styleClass="circularGroupImg">
             </h:graphicImage>
             <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(data.nextTask.actor).getEMailAddress()}"
@@ -90,10 +90,10 @@
                   actionListener="#{logic.deleteTask(defTask)}" update=":caseform:workflow" process=":caseform:workflow"
                   styleClass="acm-task-deletion-button" rendered="#{defTask.adhoc}" />
               </h:panelGroup>
-              <h:graphicImage library="ivy-webcontent" name="user/group.jpg"
+              <h:graphicImage library="ivy-webcontent" name="images/user/group.jpg"
                 rendered="#{defTask.actor.indexOf(',') gt 0}" title="#{defTask.actor}" styleClass="circularGroupImg">
               </h:graphicImage>
-              <h:graphicImage library="ivy-webcontent" name="user/SYSTEM.jpg" rendered="#{defTask.actor eq 'SYSTEM'}"
+              <h:graphicImage library="ivy-webcontent" name="images/user/SYSTEM.jpg" rendered="#{defTask.actor eq 'SYSTEM'}"
                 title="#{defTask.actor}" styleClass="circularImg">
               </h:graphicImage>
               <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(defTask.actor).getEMailAddress()}" size="60"
