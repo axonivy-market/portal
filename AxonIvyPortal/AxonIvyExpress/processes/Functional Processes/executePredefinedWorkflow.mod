@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 15:02:53 ICT 2017]
+[>Created: Thu May 11 13:41:47 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -902,7 +902,7 @@ Bk1 f9 actionTable 'out=in;
 ' #txt
 Bk1 f9 actionCode 'in.nextTask.actor = in.nextTask.actor.substring(1);' #txt
 Bk1 f9 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk1 f9 464 288 16 16 0 -8 #rect
+Bk1 f9 424 272 96 32 0 -8 #rect
 Bk1 f9 @|StepIcon #fIcon
 Bk1 f10 expr in #txt
 Bk1 f10 outCond 'in.nextTask.actor.startsWith("#")' #txt
@@ -915,7 +915,7 @@ Bk1 f10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk1 f10 336 216 472 288 #arcP
+Bk1 f10 336 216 472 272 #arcP
 Bk1 f10 1 472 216 #addKink
 Bk1 f10 1 0.4722222222222222 19 0 #arcLabel
 Bk1 f1 expr out #txt
