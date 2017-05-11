@@ -21,7 +21,7 @@
         </p:inputText>
         <p:spacer height="10" />
 
-        <h:graphicImage id="portrait" library="ivy-webcontent" name="user/group.jpg" title="WF User"
+        <h:graphicImage id="portrait" library="ivy-webcontent" name="images/user/group.jpg" title="WF User"
           styleClass="circularGroupImg" rendered="#{data.user.indexOf(',') gt 0}" />
         <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(data.user).getEMailAddress()}" size="60"
           notFound="mm" style="border-radius:30px" rendered="#{data.user.indexOf(',') le 0}" />

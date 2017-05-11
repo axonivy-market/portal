@@ -48,7 +48,7 @@
           <div class="Fleft">
             <p:panel styleClass="panel u-no-border MarTop10">
               <h:panelGrid columns="2" cellpadding="0" cellspacing="4" styleClass="flowpanel">
-                <h:graphicImage library="ivy-webcontent" name="user/group.jsp" height="60" title="#{data.newTask.actor}"
+                <h:graphicImage library="ivy-webcontent" name="images/user/group.jpg" height="60" title="#{data.newTask.actor}"
                   styleClass="circularGroupImg" rendered="#{data.newTask.actor.indexOf(',') gt 0}" />
                 <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(data.newTask.actor).getEMailAddress()}"
                   size="60" notFound="mm" style="border-radius:30px" rendered="#{data.newTask.actor.indexOf(',') le 0}" />
@@ -66,7 +66,7 @@
                 <h:panelGrid columns="2" cellpadding="0" cellspacing="0">
                   <h:graphicImage library="ivy-webcontent" name="images/flowA.png" height="36" title="Forward to: " />
                   <h:panelGrid columns="2" styleClass="flowpanel" cellpadding="0" cellspacing="4">
-                    <h:graphicImage library="ivy-webcontent" name="user/group.jpg" height="60"
+                    <h:graphicImage library="ivy-webcontent" name="images/user/group.jpg" height="60"
                       title="#{defineTask.actor}" styleClass="circularGroupImg"
                       rendered="#{defineTask.actor.indexOf(',') gt 0}">
                       <p:ajax event="mousedown" process="@this" listener="#{logic.initUserList(defineTask)}"
@@ -117,7 +117,7 @@
                 <h:panelGrid columns="2" cellpadding="0" cellspacing="0">
                   <h:graphicImage library="ivy-webcontent" name="images/flowA.png" height="36" title="Forward to: " />
                   <h:panelGrid columns="2" cellpadding="1" styleClass="flowpanel">
-                    <h:graphicImage library="ivy-webcontent" name="user/SYSTEM.jpg" height="68" title="#{adTask.actor}"
+                    <h:graphicImage library="ivy-webcontent" name="images/user/SYSTEM.jpg" height="68" title="#{adTask.actor}"
                       styleClass="circularImg" rendered="#{adTask.actor eq 'SYSTEM'}" />
                     <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(adTask.actor).getEMailAddress()}"
                       size="60" notFound="mm" style="border-radius:30px" rendered="#{adTask.actor ne 'SYSTEM'}" />
@@ -145,9 +145,6 @@
       </p:dialog>
     </ui:define>
 
-    <ui:define name="css">
-      <h:outputStylesheet library="ivy-webcontent" name="layouts/styles/portal_selfservice.css" />
-    </ui:define>
   </ui:composition>
 </h:body>
 </html>
