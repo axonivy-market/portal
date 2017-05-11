@@ -1,0 +1,3 @@
+co: name={TaskUser-Explain} description={} changed={2017-05-10 06:52:55 CEST} changedby={tntanh} visualorder={0} guid={15BF0B3EEE310568} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15BF0B3EEEE23784} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:36:44 CET} validto={} changed={2017-05-10 06:52:55 CEST} changedby={tntanh} properties={} id={}
+val: guid={15BF0B3EEE62C0D3} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-10 12:41:28 CET} validto={} changed={2017-05-10 06:52:55 CEST} changedby={tntanh} properties={} id={}
