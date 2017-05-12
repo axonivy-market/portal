@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.hideTechnicalStuffs">
+	<title>Hide technical stuffs</title>
+	<sect2>
+		<title>Hide technical roles</title>
+		<para>
+			A technical role is the role which is not displayed anywhere (e.g. delegate, absence management). AXONIVY_PORTAL_ADMIN
+			is a technical role by default.
+		</para>
+		<para>
+			To mark a role as a technical role, set the
+			<emphasis role="strong">HIDE</emphasis>
+			property with any value to the role.
+		</para>
+		<tip>
+			<para>Use the utility method of Portal to set property:</para>
+			<para>ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.util.HIDE, [ANY_VALUE])</para>
+		</tip>
+	</sect2>
+</sect1>

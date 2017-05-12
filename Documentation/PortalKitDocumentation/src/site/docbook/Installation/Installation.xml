@@ -384,22 +384,6 @@
 			</table>
 		</sect2>
 		<sect2>
-			<title>Hide technical stuffs</title>
-			<sect3>
-				<title>Hide technical roles</title>
-				<para>
-					A technical role is the role which is not displayed anywhere (e.g. delegate, absence management). AXONIVY_PORTAL_ADMIN is a technical role by default.
-				</para>
-				<para>
-					To mark a role as a technical role, set the <emphasis role="strong">HIDE</emphasis> property with any value to the role.
-				</para>
-				<tip>
-					<para>Use the utility method of Portal to set property:</para>
-					<para>ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.util.HIDE, [ANY_VALUE])</para>
-				</tip>
-			</sect3>
-		</sect2>
-		<sect2>
 			<title>Email settings</title>
 			<sect3>
 				<title>Task notification mail</title>
