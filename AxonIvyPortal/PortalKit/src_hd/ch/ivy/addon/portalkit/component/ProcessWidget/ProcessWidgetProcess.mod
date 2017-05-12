@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jan 03 15:17:03 ICT 2017]
-14FEEC13F8B8E7D2 3.18 #module
+[>Created: Fri May 12 09:40:19 ICT 2017]
+14FEEC13F8B8E7D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
 Ps0 RD #cInfo
@@ -24,7 +24,6 @@ Ps0 @PushWFArc f5 '' #zField
 Ps0 @RichDialogMethodStart f8 '' #zField
 Ps0 @RichDialogProcessEnd f9 '' #zField
 Ps0 @CallSub f11 '' #zField
-Ps0 @PushWFArc f10 '' #zField
 Ps0 @RichDialogMethodStart f17 '' #zField
 Ps0 @RichDialogProcessEnd f18 '' #zField
 Ps0 @Trigger f21 '' #zField
@@ -65,6 +64,9 @@ Ps0 @RichDialogProcessEnd f46 '' #zField
 Ps0 @GridStep f48 '' #zField
 Ps0 @PushWFArc f49 '' #zField
 Ps0 @PushWFArc f47 '' #zField
+Ps0 @GridStep f50 '' #zField
+Ps0 @PushWFArc f51 '' #zField
+Ps0 @PushWFArc f10 '' #zField
 >Proto Ps0 Ps0 ProcessWidgetProcess #zField
 Ps0 f1 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f1 85 213 22 22 14 0 #rect
@@ -143,7 +145,7 @@ Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f8 269 309 22 22 14 0 #rect
 Ps0 f8 @|RichDialogMethodStartIcon #fIcon
 Ps0 f9 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f9 269 501 22 22 14 0 #rect
+Ps0 f9 269 629 22 22 14 0 #rect
 Ps0 f9 @|RichDialogProcessEndIcon #fIcon
 Ps0 f11 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f11 processCall MultiPortal/ProcessStart:findProcessStartsByCriteria(String,ch.ivy.ws.addon.ProcessSearchCriteria) #txt
@@ -170,8 +172,6 @@ from all servers</name>
 ' #txt
 Ps0 f11 262 436 36 24 20 -2 #rect
 Ps0 f11 @|CallSubIcon #fIcon
-Ps0 f10 expr out #txt
-Ps0 f10 280 460 280 501 #arcP
 Ps0 f17 guid 1510E8468CE6D0AC #txt
 Ps0 f17 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f17 method synchronizeDeletedDataToPortalServer(java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess>) #txt
@@ -603,6 +603,33 @@ Ps0 f49 expr out #txt
 Ps0 f49 960 331 960 372 #arcP
 Ps0 f47 expr out #txt
 Ps0 f47 960 396 960 437 #arcP
+Ps0 f50 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
+' #txt
+Ps0 f50 actionTable 'out=in;
+' #txt
+Ps0 f50 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import gawfs.Workflow;
+ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.request.getApplication());
+List<Workflow> workflows = ivy.persistence.GAWFS.findAll(Workflow.class);
+for(Workflow wf : workflows) {
+  UserProcess userProcess = new UserProcess();
+  userProcess.setId(wf.id);
+  userProcess.setProcessName(wf.processName);
+  userProcess.setUserName(wf.processOwner);
+	String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
+  userProcess.setLink(startLink);
+  userProcess.setDefaultProcess(false);
+	userProcess.setIcon("fa-code-fork");
+  in.processes.add(userProcess);
+}' #txt
+Ps0 f50 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
+Ps0 f50 260 532 40 24 0 -8 #rect
+Ps0 f50 @|StepIcon #fIcon
+Ps0 f51 expr out #txt
+Ps0 f51 280 460 280 532 #arcP
+Ps0 f10 expr out #txt
+Ps0 f10 280 556 280 629 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -611,8 +638,6 @@ Ps0 f3 mainOut f7 tail #connect
 Ps0 f7 head f6 mainIn #connect
 Ps0 f6 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
-Ps0 f11 mainOut f10 tail #connect
-Ps0 f10 head f9 mainIn #connect
 Ps0 f21 mainOut f19 tail #connect
 Ps0 f19 head f18 mainIn #connect
 Ps0 f26 mainOut f25 tail #connect
@@ -653,3 +678,7 @@ Ps0 f35 mainOut f49 tail #connect
 Ps0 f49 head f48 mainIn #connect
 Ps0 f48 mainOut f47 tail #connect
 Ps0 f47 head f46 mainIn #connect
+Ps0 f11 mainOut f51 tail #connect
+Ps0 f51 head f50 mainIn #connect
+Ps0 f50 mainOut f10 tail #connect
+Ps0 f10 head f9 mainIn #connect
