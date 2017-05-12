@@ -7,6 +7,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isWorkingOnATask" value="true" />
+    <ui:param name="isShowStartAdhocButton" value="true"/>
     
     <ui:define name="simplePageContent">
       <h:outputScript target="head" name="layouts/js/zero_clipboard/ZeroClipboard.js" />
@@ -41,7 +42,7 @@
         <ui:insert name="infoZone" />
 
         <div class="task-template-tasks-command">
-          <p:commandLink id="start-ad-hoc" actionListener="#{taskTemplateBean.startAdhoc()}"
+          <p:commandLink id="start-ad-hoc" actionListener="#{taskTemplateBean.startAdhoc()}" rendered="#{isShowStartAdhocButton}"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" >
             <i class="fa fa-cogs fa-2x" />
           </p:commandLink>
