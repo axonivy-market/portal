@@ -164,13 +164,15 @@
 										</p:inputText>
 									</p:column>
 									<p:column colspan="1" rowspan="1" style="border: none;">
-										<p:outputLabel
+										<p:outputLabel id="untilDaysLabel"
 											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:"
 											rendered="#{gtask.count gt 1}" />
+                                        <p:tooltip for="untilDaysLabel" id="untilDaysLabelTooltip" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/untilDaysTooltip')}" />
 									</p:column>
 									<p:column colspan="1" rowspan="1" style="border: none;">
-										<p:spinner value="#{gtask.untilDays}" min="1"
+										<p:spinner id="untilDays" value="#{gtask.untilDays}" min="1"
 											rendered="#{gtask.count gt 1}"></p:spinner>
+                                        <p:tooltip for="untilDays" id="untilDaysTooltip" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/untilDaysTooltip')}" />
 									</p:column>
 								</p:row>
 							</p:panelGrid>
