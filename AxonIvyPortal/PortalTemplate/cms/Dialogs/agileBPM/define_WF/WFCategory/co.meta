@@ -1,3 +1,0 @@
-co: name={WFCategory} description={} changed={2017-05-10 06:52:42 CEST} changedby={tntanh} visualorder={0} guid={15BF0B3BAB966922} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BF0B3BABC25D1A} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:33:12 CET} validto={} changed={2017-05-10 06:52:42 CEST} changedby={tntanh} properties={} id={}
-val: guid={15BF0B3BAC58594C} datatype={} isdefault={true} langid={en} description={} validfrom={2014-02-24 10:55:17 CET} validto={} changed={2017-05-10 06:52:42 CEST} changedby={tntanh} properties={} id={}
