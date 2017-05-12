@@ -41,10 +41,10 @@
         <ui:insert name="infoZone" />
 
         <div class="task-template-tasks-command">
-          <p:link id="start-ad-hoc" href="#"
-            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}">
+          <p:commandLink id="start-ad-hoc" actionListener="#{taskTemplateBean.startAdhoc()}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" >
             <i class="fa fa-cogs fa-2x" />
-          </p:link>
+          </p:commandLink>
           <p:spacer width="5"/>
           <p:link id="copy-clipboard" href="#"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copyTooltip')}">

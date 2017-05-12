@@ -1,9 +1,0 @@
-Data #class
-ch.ivy.add.portal.selfservice #namespace
-definedTasks java.util.List<ch.ivy.add.portal.selfservice.TaskDef> #field
-definedTasks PERSISTENT #fieldModifier
-caseInfo ch.ivy.add.portal.selfservice.CaseDef #field
-caseInfo PERSISTENT #fieldModifier
-nextTask ch.ivy.add.portal.selfservice.TaskDef #field
-nextTask PERSISTENT #fieldModifier
-answer String #field

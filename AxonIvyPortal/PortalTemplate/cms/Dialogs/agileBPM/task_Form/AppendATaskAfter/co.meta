@@ -1,3 +1,0 @@
-co: name={AppendATaskAfter} description={} changed={2017-05-10 06:52:42 CEST} changedby={tntanh} visualorder={0} guid={15BF0B3BAFC28744} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BF0B3BB19A06DA} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-18 10:39:12 CET} validto={} changed={2017-05-10 06:52:42 CEST} changedby={tntanh} properties={} id={}
-val: guid={15BF0B3BAFF6384A} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:29:51 CET} validto={} changed={2017-05-10 06:52:42 CEST} changedby={tntanh} properties={} id={}
