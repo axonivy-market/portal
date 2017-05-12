@@ -8,6 +8,8 @@ import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
@@ -25,4 +27,13 @@ public class TaskTemplateBean {
   public String getLinkToTask() {
     return linkToTask;
   }
+  
+  public void startAdhoc() throws Exception{
+    PortalNavigator portalNavigator = new PortalNavigator();
+    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    String  url = processStartCollector.findACMLink();
+    url = url + "?businessCaseId=" + Ivy.wfCase().getBusinessCase().getId() + "&originalTaskId=" + Ivy.wfTask().getId();
+    portalNavigator.redirect(url);
+  }
+  
 }
