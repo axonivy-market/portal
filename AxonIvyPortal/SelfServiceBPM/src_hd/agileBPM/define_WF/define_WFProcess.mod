@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri May 12 15:13:42 ICT 2017]
+[>Created: Fri May 12 17:10:04 ICT 2017]
 144633F679C3A22D 3.20 #module
 >Proto >Proto Collection #zClass
 ds0 define_WFProcess Big #zClass
@@ -245,7 +245,7 @@ out.newTask.setUntil(ivy.cal.getWorkDayIn(1,new Time()));
 if(in.isAddingAdhocToOtherTask){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	selfServiceBPM.TaskDef currentTask = new selfServiceBPM.TaskDef();
-	currentTask.setActor(originalTask.getActivator().getDisplayName());
+	currentTask.setActor(originalTask.getActivator()!= null? originalTask.getActivator().getDisplayName(): "");
 	currentTask.setKind(originalTask.getName());
 	currentTask.setAssigned(originalTask.getExpiryTimestamp());
 	currentTask.setIsOriginalTask(true);
