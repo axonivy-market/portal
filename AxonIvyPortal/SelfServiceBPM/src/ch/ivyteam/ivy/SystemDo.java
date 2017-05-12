@@ -47,4 +47,14 @@ public class SystemDo {
       }
     });
   }
+  
+  public static void attachToBusinessCase(final ICase icase, final Long businessCaseId) throws Exception {
+	    SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
+	      @Override
+	      public Void call() throws Exception {
+	        icase.attachToBusinessCase(businessCaseId);
+	        return null;
+	      }
+	    });
+  }
 }
