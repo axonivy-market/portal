@@ -32,3 +32,5 @@ taskNotes List<ch.ivyteam.ivy.workflow.INote> #field
 taskNotes PERSISTENT #fieldModifier
 adhoc Boolean #field
 adhoc PERSISTENT #fieldModifier
+isOriginalTask Boolean #field
+isOriginalTask PERSISTENT #fieldModifier

@@ -7,3 +7,9 @@ caseInfo PERSISTENT #fieldModifier
 nextTask selfServiceBPM.TaskDef #field
 nextTask PERSISTENT #fieldModifier
 answer String #field
+businessCaseId Long #field
+businessCaseId PERSISTENT #fieldModifier
+originalTaskId Long #field
+originalTaskId PERSISTENT #fieldModifier
+isAddingAdhocToOtherTask Boolean #field
+isAddingAdhocToOtherTask PERSISTENT #fieldModifier

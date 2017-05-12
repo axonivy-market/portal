@@ -21,3 +21,9 @@ userSelection List<ch.ivyteam.ivy.security.IUser> #field
 userSelection PERSISTENT #fieldModifier
 taskDescription String #field
 taskDescription PERSISTENT #fieldModifier
+businessCaseId Long #field
+businessCaseId PERSISTENT #fieldModifier
+originalTaskId Long #field
+originalTaskId PERSISTENT #fieldModifier
+isAddingAdhocToOtherTask Boolean #field
+isAddingAdhocToOtherTask PERSISTENT #fieldModifier
