@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jan 05 17:08:26 ICT 2016]
-144633F679C3A22D 3.18 #module
+[>Created: Fri May 12 15:13:42 ICT 2017]
+144633F679C3A22D 3.20 #module
 >Proto >Proto Collection #zClass
 ds0 define_WFProcess Big #zClass
 ds0 RD #cInfo
@@ -68,10 +68,14 @@ ds0 @PushWFArc f52 '' #zField
 >Proto ds0 ds0 define_WFProcess #zField
 ds0 f0 guid 144633F67BB43F5D #txt
 ds0 f0 type agileBPM.define_WF.define_WFData #txt
-ds0 f0 method start() #txt
+ds0 f0 method start(java.lang.Long,java.lang.Long,Boolean) #txt
 ds0 f0 disableUIEvents true #txt
 ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+<java.lang.Long businessCaseId,java.lang.Long originalTaskId,java.lang.Boolean isAddingAdhocTaskToOtherTask> param = methodEvent.getInputArguments();
+' #txt
+ds0 f0 inParameterMapAction 'out.businessCaseId=param.businessCaseId;
+out.isAddingAdhocToOtherTask=param.isAddingAdhocTaskToOtherTask;
+out.originalTaskId=param.originalTaskId;
 ' #txt
 ds0 f0 outParameterDecl '<List<selfServiceBPM.TaskDef> definedTasks,selfServiceBPM.CaseDef caseInfo> result;
 ' #txt
@@ -81,9 +85,7 @@ result.caseInfo=in.caseInfo;
 ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(List&lt;TaskDef&gt;,CaseDef)</name>
-        <nameStyle>28,5,7
-</nameStyle>
+        <name>start(Long,Long,Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -137,6 +139,9 @@ if(out.errormsg.length() == 0)
 	SystemDo.setCaseName(ivy.case,in.caseInfo.kind + ": " + in.caseInfo.subject);
 	SystemDo.setCaseDescription(ivy.case,in.caseInfo.description);
 	SystemDo.setProcess(ivy.case,in.caseInfo.kind, in.caseInfo.kind);
+	if(in.isAddingAdhocToOtherTask){
+		SystemDo.attachToBusinessCase(ivy.case,in.businessCaseId);
+	}
 	
 	out.definedTasks.addAll(in.additionalTasks);
 	ivy.case.createNote(ivy.session,"Started");
@@ -222,24 +227,39 @@ ds0 f7 actionTable 'out=in;
 out.caseInfo.kind="TODO";
 out.started=new DateTime();
 ' #txt
-ds0 f7 actionCode 'import javax.faces.context.FacesContext;
+ds0 f7 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.Helper;
 import java.util.Collection;
 
 // creator task
 out.newTask = new selfServiceBPM.TaskDef();
 out.newTask.setActor(ivy.session.getSessionUserName());
+if(in.isAddingAdhocToOtherTask){
+	in.caseInfo.kind = "AD-HOC";
+}
 out.newTask.setKind(in.caseInfo.kind);
 out.newTask.setAssigned(new DateTime());
 out.newTask.setUntil(ivy.cal.getWorkDayIn(1,new Time()));
 
-// a first task
-selfServiceBPM.TaskDef newTask = new selfServiceBPM.TaskDef();
-newTask.setActor(ivy.session.getSessionUserName());
-newTask.setKind(in.caseInfo.kind);
-newTask.setAssigned(new DateTime());
-newTask.setUntil(ivy.cal.getWorkDayIn(1,new Time()));
-out.definedTasks.add(newTask);
+if(in.isAddingAdhocToOtherTask){
+	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
+	selfServiceBPM.TaskDef currentTask = new selfServiceBPM.TaskDef();
+	currentTask.setActor(originalTask.getActivator().getDisplayName());
+	currentTask.setKind(originalTask.getName());
+	currentTask.setAssigned(originalTask.getExpiryTimestamp());
+	currentTask.setIsOriginalTask(true);
+	out.additionalTasks.add(currentTask);	
+}
+else{
+	// a first task
+	selfServiceBPM.TaskDef newTask = new selfServiceBPM.TaskDef();
+	newTask.setActor(ivy.session.getSessionUserName());
+	newTask.setKind(in.caseInfo.kind);
+	newTask.setAssigned(new DateTime());
+	newTask.setUntil(ivy.cal.getWorkDayIn(1,new Time()));
+	out.definedTasks.add(newTask);
+}
 
 // wfuserlist
 // not that gravatar is used for portrait images
@@ -254,7 +274,9 @@ for(IUser user : users)
 		out.userList.add(user);
 	}
 }
-out.userList = Helper.sortUsers(out.userList);' #txt
+out.userList = Helper.sortUsers(out.userList);
+
+' #txt
 ds0 f7 security system #txt
 ds0 f7 type agileBPM.define_WF.define_WFData #txt
 ds0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -339,7 +361,7 @@ out.definedTasks.add(newTask);
 }	
 else
 { 
-	// AD-HOC
+	//Ad-Hoc
 }
 ' #txt
 ds0 f18 type agileBPM.define_WF.define_WFData #txt
