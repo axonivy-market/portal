@@ -364,14 +364,15 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
+            taskQuery.where().and(queryForNoHideAdditionalProperty());
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
-                CategoryData categoryData = new CategoryData();
-                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-                categoryData.setRawPath(category.getRawPath());
-                categories.add(categoryData);
-              });
+              CategoryData categoryData = new CategoryData();
+              categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+              categoryData.setRawPath(category.getRawPath());
+              categories.add(categoryData);
+            });
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -400,6 +401,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
+            taskQuery.where().and(queryForNoHideAdditionalProperty());
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
@@ -438,6 +440,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
+            taskQuery.where().and(queryForNoHideAdditionalProperty());
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
@@ -462,6 +465,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       return securityManager().executeAsSystem(
           () -> {
             TaskQuery priorityQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+            priorityQuery.where().and(queryForNoHideAdditionalProperty());
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               priorityQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -504,6 +508,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       return securityManager().executeAsSystem(
           () -> {
             TaskQuery expiryQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+            expiryQuery.where().and(queryForNoHideAdditionalProperty());
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               expiryQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -537,6 +542,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       finalQuery.where().and(queryForInvolvedApplications(taskSearchCriteria.getInvolvedApplications()));
     }
     
+    finalQuery.where().and(queryForNoHideAdditionalProperty());
     return finalQuery;
   }
 
@@ -764,6 +770,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         TaskQuery.create().where().expiryTimestamp().isGreaterOrEqualThan(date).and().expiryTimestamp()
             .isLowerThan(dateAfter1Day);
     return priorityQuery;
+  }
+  
+  private TaskQuery queryForNoHideAdditionalProperty() {
+    return TaskQuery.create().where().and().additionalProperty("HIDE").isNull();
   }
 
   /**
