@@ -286,7 +286,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             List<IvyTask> allIvyTasks = new ArrayList<>();
             IvyTaskTransformer transformer = new IvyTaskTransformer(isUrlBuiltFromSystemProperties);
             tasks.forEach(task -> {
-              Ivy.log().error("NAME {0}", task.getName());
               IvyTask ivyTask = transformer.transform(task);
 
               if (taskSearchCriteria.hasInvolvedUsername()) {
