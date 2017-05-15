@@ -763,6 +763,6 @@ public final class TaskUtils {
    * @param task
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
-    task.setAdditionalProperty(HIDE, HIDE);
+    task.setAdditionalProperty(HIDE, null);
   }
 }
