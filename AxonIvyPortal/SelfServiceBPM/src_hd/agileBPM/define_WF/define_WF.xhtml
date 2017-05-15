@@ -117,18 +117,19 @@
               <p:panel styleClass="panel u-no-border MarTop10">
                 <h:panelGrid columns="2" cellpadding="0" cellspacing="0">
                   <h:graphicImage library="ivy-webcontent" name="images/flowA.png" height="36" title="Forward to: " />
-                  <h:panelGrid columns="2" cellpadding="1" styleClass="flowpanel">
+                  <h:panelGrid columns="2" cellpadding="1" styleClass="flowpanel #{adTask.isOriginalTask? 'originalTask':''}">
                     <h:graphicImage library="ivy-webcontent" name="user/SYSTEM.jpg" height="68" title="#{adTask.actor}"
                       styleClass="circularImg" rendered="#{adTask.actor eq 'SYSTEM'}" />
                     <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(adTask.actor).getEMailAddress()}"
                       size="60" notFound="mm" style="border-radius:30px" rendered="#{adTask.actor ne 'SYSTEM' and !adTask.isOriginalTask}" />
                      <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(adTask.actor).getEMailAddress()}"
                       size="60" notFound="mm" style="border-radius:30px;border:blue solid 2px;" rendered="#{adTask.actor ne 'SYSTEM' and adTask.isOriginalTask}" />
-
                     <h:panelGrid columns="1">
-                      <p:outputLabel value="#{adTask.kind}" readonly="true" styleClass="font-bold" />
+                      <c:set var="isHaveTaskId" value="#{not empty adTask.taskId}"/>
+                      <p:outputLabel value="#{isHaveTaskId? adTask.taskId : ''} #{isHaveTaskId? '-' : ''} #{adTask.kind}" readonly="true" styleClass="font-bold" />
                       <p:outputLabel value="#{adTask.actor}" readonly="true" />
                     </h:panelGrid>
+                    <p:tooltip for="@(.originalTask)" rendered="#{adTask.isOriginalTask}" value="#{ivy.cms.co('/Dialogs/agileBPM/TooltipForOriginalTask')}" trackMouse="true" />
                   </h:panelGrid>
                 </h:panelGrid>
               </p:panel>
