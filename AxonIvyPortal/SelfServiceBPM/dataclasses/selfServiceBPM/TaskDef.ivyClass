@@ -34,3 +34,5 @@ adhoc Boolean #field
 adhoc PERSISTENT #fieldModifier
 isOriginalTask Boolean #field
 isOriginalTask PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier
