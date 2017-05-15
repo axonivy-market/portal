@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import gawfs.Workflow;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +16,27 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
 
 import ch.ivy.addon.portalkit.bo.RemoteProcessStart;
 import ch.ivy.addon.portalkit.enums.Protocol;
+import ch.ivy.addon.portalkit.enums.UserProcessType;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.data.persistence.IIvyEntityManager;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 
 @ManagedBean
 @ViewScoped
 public class ProcessWidgetBean implements Serializable {
 
+  private static final String GAWFS_ADMIN_ROLE = "GAWFS_ADMIN";
+  private static final String GAWFS_PERSISTENCE = "GAWFS";
   private static final long serialVersionUID = -5889375917550618261L;
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
@@ -39,36 +47,39 @@ public class ProcessWidgetBean implements Serializable {
   private List<UserProcess> selectedUserProcesses;
   private List<IProcessStart> iProcessStarts;
   private String processWidgetComnponentId;
-  
+
   @PostConstruct
   public void init() {
-      processWidgetComnponentId = Attrs.currentContext().getBuildInAttribute("id");
-      userProcessService = new UserProcessService();
-      String compactModeAttribute = Attrs.currentContext().get("compactMode");
-      compactMode = compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
-      deleteMode = false;
-      selectedUserProcesses = new ArrayList<UserProcess>();
-      userName = UserUtils.getSessionUserName();
-      userProcesses = findUserProcessBaseOnUIMode(compactMode);
+    processWidgetComnponentId = Attrs.currentContext().getBuildInAttribute("id");
+    userProcessService = new UserProcessService();
+    String compactModeAttribute = Attrs.currentContext().get("compactMode");
+    compactMode = compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
+    deleteMode = false;
+    selectedUserProcesses = new ArrayList<UserProcess>();
+    userName = UserUtils.getSessionUserName();
+    userProcesses = findUserProcessBaseOnUIMode(compactMode);
   }
-  
-  private List<UserProcess> findFavoriteProcessUserCanStart(){
-    
+
+  private List<UserProcess> findFavoriteProcessUserCanStart() {
+
     IvyComponentLogicCaller<List<UserProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-    
-    List<UserProcess> userProcesses =  ivyComponentLogicCaller.invokeComponentLogic(processWidgetComnponentId, "#{logic.collectDefaultProcesses}",  new Object[]{});
+
+    List<UserProcess> userProcesses =
+        ivyComponentLogicCaller.invokeComponentLogic(processWidgetComnponentId, "#{logic.collectDefaultProcesses}",
+            new Object[] {});
     userProcesses.forEach(defaultProcess -> {
       defaultProcess.setUserName(userName);
       defaultProcess.setDefaultProcess(true);
     });
-    
+
     userProcesses.addAll(userProcessService.findByUserName(userName));
     return userProcesses;
   }
-  
-  private List<UserProcess> findAllProcesses(){
+
+  private List<UserProcess> findAllProcesses() {
     IvyComponentLogicCaller<List<UserProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-    return ivyComponentLogicCaller.invokeComponentLogic(processWidgetComnponentId, "#{logic.collectAllProcesses}",  new Object[]{});
+    return ivyComponentLogicCaller.invokeComponentLogic(processWidgetComnponentId, "#{logic.collectAllProcesses}",
+        new Object[] {});
   }
 
   public void preRenderProcessAutoComplete(List<IProcessStart> iProcessStarts) {
@@ -84,7 +95,7 @@ public class ProcessWidgetBean implements Serializable {
 
   public void switchMode() {
     compactMode = !compactMode;
-    userProcesses =  findUserProcessBaseOnUIMode(compactMode);
+    userProcesses = findUserProcessBaseOnUIMode(compactMode);
   }
 
   private List<UserProcess> findUserProcessBaseOnUIMode(Boolean compactMode) {
@@ -92,8 +103,7 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   public void addNewUserProcess(String clientId) {
-    editingProcess = new UserProcess();
-    editingProcess.setUserName(userName);
+    this.editingProcess = new UserProcess();
     RequestContext.getCurrentInstance().reset(clientId + ":add-new-process-dialog");
   }
 
@@ -114,32 +124,68 @@ public class ProcessWidgetBean implements Serializable {
   private boolean isValidProcessLink(String processLink) {
     String linkInLowerCase = processLink.toLowerCase();
     return linkInLowerCase.startsWith(Protocol.HTTP.getValue())
-        || linkInLowerCase.startsWith(Protocol.HTTPS.getValue())
-        || linkInLowerCase.startsWith("/");
+        || linkInLowerCase.startsWith(Protocol.HTTPS.getValue()) || linkInLowerCase.startsWith("/");
   }
 
-  public List<String> completeUserProcess(String query) {
-    List<String> filteredUserProcesses =
-        iProcessStarts.stream().filter(processStart -> StringUtils.containsIgnoreCase(processStart.getName(), query) && !isUserProcess(processStart))
-            .map(processStart -> stripHtmlTags(processStart.getName())).collect(Collectors.toList());
+  public List<UserProcess> completeUserProcess(String query) {
+    List<UserProcess> filteredUserProcesses =
+        iProcessStarts
+            .stream()
+            .filter(
+                processStart -> StringUtils.containsIgnoreCase(processStart.getName(), query)
+                    && !isUserProcess(processStart))
+            .map(
+                processStart -> new UserProcess(stripHtmlTags(processStart.getName()), UserProcessType.PROCESS,
+                    userName, ((RemoteProcessStart) processStart).getStartLink())).collect(Collectors.toList());
+    filteredUserProcesses.addAll(getExpressWorkflows());
+    filteredUserProcesses.sort((process1, process2) -> process1.getProcessName().compareTo(process2.getProcessName()));
     return filteredUserProcesses;
   }
-  
-	private boolean isUserProcess(IProcessStart processStart) {
-		return userProcesses.stream()
-				.anyMatch(
-						userProcess -> ((userProcess.getLink().toLowerCase()).contains(processStart.getFullRequestPath()
-								.toLowerCase())));
-	}
 
-  public void selectUserProcess(SelectEvent event) {
-    String selectedProcessName = (String) event.getObject();
-    for (IProcessStart iProcessStart : iProcessStarts) {
-      if (stripHtmlTags(iProcessStart.getName()).equals(selectedProcessName)) {
-        editingProcess.setLink(((RemoteProcessStart) iProcessStart).getStartLink());
-        return;
+  private List<UserProcess> getExpressWorkflows() {
+    List<UserProcess> workflow = new ArrayList<>();
+    IIvyEntityManager entityManager = Ivy.persistence().get(GAWFS_PERSISTENCE);
+    List<Workflow> workflows =
+        entityManager.findAll(Workflow.class).stream().filter(wf -> !isUserProcess(wf))
+            .collect(Collectors.toList());
+    for (Workflow wf : workflows) {
+      if (canStartWorkflow(wf)) {
+        workflow.add(new UserProcess(wf.getProcessName(), UserProcessType.WORKFLOW, userName,
+            generateWorkflowStartLink(wf)));
       }
     }
+    return workflow;
+  }
+
+  private boolean canStartWorkflow(Workflow workflow) {
+    IRole permittedRole = Ivy.request().getApplication().getSecurityContext().findRole(workflow.getProcessPermission());
+    IUser owner = Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner());
+    return Ivy.session().hasRole(permittedRole, false)
+        || Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(GAWFS_ADMIN_ROLE), false)
+        || Ivy.session().canActAsUser(owner);
+  }
+
+  private String generateWorkflowStartLink(Workflow wf) {
+    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
+    try {
+      return processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.getId();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return "";
+    }
+  }
+
+  private boolean isUserProcess(IProcessStart processStart) {
+    return userProcesses.stream()
+        .anyMatch(
+            userProcess -> ((userProcess.getLink().toLowerCase()).contains(processStart.getFullRequestPath()
+                .toLowerCase())));
+  }
+
+  private boolean isUserProcess(Workflow workflow) {
+    return userProcesses.stream().anyMatch(
+        userProcess -> ((userProcess.getLink().toLowerCase()).contains(generateWorkflowStartLink(workflow)
+            .toLowerCase())));
   }
 
   public String stripHtmlTags(String text) {
