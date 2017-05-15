@@ -54,6 +54,7 @@ public final class TaskUtils {
   private static final boolean RUNNING_MODE = false;
   private static final int DEFAULT_PAGESIZE = -1;
   private static final int DEFAULT_INDEX = 0;
+  private static final String HIDE = "HIDE";
 
   /**
    * Get the running tasks of the session user
@@ -747,5 +748,21 @@ public final class TaskUtils {
 
     return outTasks;
 
+  }
+  
+  /**
+   * Sets the "HIDE" additional property to the given task to hide it in any task lists of Portal.
+   * @param task
+   */
+  public static void setHidePropertyToHideInPortal(ITask task) {
+    task.setAdditionalProperty(HIDE, HIDE);
+  }
+  
+  /**
+   * Removes the "HIDE" additional property to the given task to display it in any task lists of Portal.
+   * @param task
+   */
+  public static void removeHidePropertyToDisplayInPortal(ITask task) {
+    task.setAdditionalProperty(HIDE, HIDE);
   }
 }
