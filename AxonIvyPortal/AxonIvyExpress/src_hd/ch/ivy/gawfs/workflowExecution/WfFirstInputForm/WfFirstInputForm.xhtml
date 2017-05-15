@@ -58,7 +58,7 @@
 									<!-- Must be "readonly" with AD, otherwise error! -->
 									<p:inputText
 										value="#{data.executePredefinedWorkflowData.applicant.user.name}"
-										id="applicantField" readonly="true" disabled="#{data.assignementType eq 0}"
+										id="applicantField" disabled="#{data.assignementType eq 0}"
 										required="#{param['form:save']!=null}">
 										<p:ajax event="mousedown" listener="#{logic.setApplicant}"
 											oncomplete="PF('chooseApplicant').show();"
@@ -77,7 +77,7 @@
 							<p:column style="width:25%; border: none; padding-top: 15px;">
 								<p:inputText id="applicantName" style="width:81%;margin-left:-10px"
 									value="#{data.executePredefinedWorkflowData.applicant.user.name}"
-									readonly="true" />
+									disabled="true" />
 							</p:column>
 							<p:column style="width:25%; border: none;">
 								<p:outputLabel value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/fullName')}:" for="applicantLastname" />
@@ -85,7 +85,7 @@
 							<p:column style="width:25%; border: none;">
 								<p:inputText id="applicantLastname" style="width:87%;margin-left:-10px"
 									value="#{data.executePredefinedWorkflowData.applicant.user.fullName}"
-									readonly="true" />
+									disabled="true" />
 							</p:column>
 						</p:row>
 
@@ -96,7 +96,7 @@
 							<p:column style="width:25%; border: none">
 								<p:inputText id="applicantMail" style="width:81%;margin-left:-10px"
 									value="#{data.executePredefinedWorkflowData.applicant.user.EMailAddress}"
-									readonly="true" />
+									disabled="true" />
 							</p:column>
 						</p:row>
 					</p:panelGrid>
