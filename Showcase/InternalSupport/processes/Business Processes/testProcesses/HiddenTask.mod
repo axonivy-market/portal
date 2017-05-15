@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon May 15 14:44:28 ICT 2017]
+[>Created: Mon May 15 15:15:16 ICT 2017]
 15C0A4B1BA58DEA3 3.20 #module
 >Proto >Proto Collection #zClass
 Hk0 HiddenTask Big #zClass
@@ -86,6 +86,7 @@ Hk0 f5 actionTable 'out=in;
 ' #txt
 Hk0 f5 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hk0 f5 security system #txt
 Hk0 f5 type internaltest.Data #txt
 Hk0 f5 160 42 112 44 0 -8 #rect
 Hk0 f5 @|StepIcon #fIcon
@@ -101,6 +102,7 @@ Hk0 f6 actionTable 'out=in;
 ' #txt
 Hk0 f6 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hk0 f6 security system #txt
 Hk0 f6 type internaltest.Data #txt
 Hk0 f6 394 42 112 44 0 -8 #rect
 Hk0 f6 @|StepIcon #fIcon
