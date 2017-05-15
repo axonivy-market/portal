@@ -1,7 +1,6 @@
 package ch.ivy.gawfs;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -29,10 +28,6 @@ public class DynaFormController implements Serializable {
 	}
 
 	public void createForm(){
-			//List<Formelement> selectedFormelementsHeader
-			//List<Formelement> selectedFormelementsLeftPanel
-			//List<Formelement> selectedFormelementsRightPanel
-			//List<Formelement> selectedFormelementsFooter
 			model = new DynaFormModel();
 			Ivy.log().debug("DynaForm.createForm called!");	
 			
@@ -110,7 +105,6 @@ public class DynaFormController implements Serializable {
 	
 		}
 		
-		
 		//Loop to create all Elements places in the Footer Section	
 		for (Formelement element : dragAndDropController.getSelectedFormelementsFooter()) {
 			
@@ -124,23 +118,10 @@ public class DynaFormController implements Serializable {
 				DynaFormControl control = tempRow.addControl(element, element.getType(),3,1);
 				label.setForControl(control);
 			}else{
-				//DynaFormLabel label = tempRow.addLabel(element.getLabel(),4,1);
-				//tempRow = model.createRegularRow();
-				DynaFormControl control = tempRow.addControl(element, element.getType(),4,1);
-				//label.setForControl(control);
 				Ivy.log().debug("DynaForm.createForm Footerloop: " + element.getType() + "," + element.getLabel()+ " Sonderform erstellt!");
 			}
-			
 			Ivy.log().debug("DynaForm.createForm Footerloop: " + element.getType() + "," + element.getLabel()+ " erstellt!");
 		}
-		
-		
-		
-//		tempRow = model.createRegularRow();
-//		tempRow.addControl(null, "Spacer");
-//		tempRow.addControl(null, "Spacer");
-//		
-		
 	}
 
 
