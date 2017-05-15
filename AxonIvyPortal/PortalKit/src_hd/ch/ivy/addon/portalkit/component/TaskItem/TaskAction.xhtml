@@ -49,6 +49,16 @@
       <p:tooltip for="task-reset-and-start-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openTaskTooltip')}"
         styleClass="task-command-tooltip" />
+        
+      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command" global="false">
+      	 <span class="action-icon fa fa-ellipsis-h fa-2x" />
+      	  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskSideSteps')}" />
+      </p:commandLink>
+      
+      <p:menu overlay="true" trigger="task-side-steps-menu" my="left top" at="left bottom" >
+        <p:menuitem styleClass="sideStepsMenuItem" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/addAdhocTask')}" url="#{taskWidgetBean.createAdhocLink(task)}" />
+   	  </p:menu>
+   	  <p:tooltip for="task-side-steps-menu" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskSideSteps')}" styleClass="task-command-tooltip" />
     </div>
   </div>
 </ui:composition>
