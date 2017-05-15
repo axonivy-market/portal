@@ -82,9 +82,10 @@
           </p:panel>
           <c:forEach items="#{data.definedTasks}" var="defTask" varStatus="row">
             <h:graphicImage library="ivy-webcontent" name="images/flowA.png" />
-            <h:panelGrid columns="1" styleClass="flowpanel TexAlCenter">
+            <h:panelGrid columns="1" styleClass="flowpanel TexAlCenter #{defTask.isOriginalTask? 'originalTask':''}">
               <h:panelGroup>
-                <p:outputLabel value="#{defTask.kind}"></p:outputLabel>
+               	<c:set var="isHaveTaskId" value="#{not empty defTask.taskId}"/>
+                <p:outputLabel value="#{isHaveTaskId? defTask.taskId : ''} #{isHaveTaskId? '-': ''} #{defTask.kind}"></p:outputLabel>
                 <p:spacer width="10" height="1"></p:spacer>
                 <p:commandButton icon="ui-icon-close" title="Delete this Task"
                   actionListener="#{logic.deleteTask(defTask)}" update=":caseform:workflow" process=":caseform:workflow"
@@ -102,6 +103,7 @@
                <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(defTask.actor).getEMailAddress()}" size="60"
                 notFound="mm" style="border-radius:30px;border:blue solid 2px;"
                 rendered="#{defTask.actor.indexOf(',') le 0 and defTask.actor ne 'SYSTEM' and defTask.isOriginalTask}" />
+               <p:tooltip for="@(.originalTask)" rendered="#{defTask.isOriginalTask}" value="#{ivy.cms.co('/Dialogs/agileBPM/TooltipForOriginalTask')}" trackMouse="true" />
               <p:outputLabel value="#{defTask.actor}"></p:outputLabel>
             </h:panelGrid>
           </c:forEach>
