@@ -2160,6 +2160,10 @@ a.compact-task-start-link:hover {
 .no-task-message {
   font-size: 1.1rem;
 }
+
+.sideStepsMenuItem .ui-menuitem-text {
+  font-size: 1.1rem;
+}
 /********************************** END TASK WIDGET **********************************/
 
 /********************************** TASK DETAIL **********************************/
