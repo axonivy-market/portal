@@ -1,22 +1,17 @@
 package ch.ivy.ws.portaldata.service;
 
-import static java.util.stream.Collectors.toList;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 
 import ch.ivy.ws.addon.util.PasswordUtils;
 import ch.ivy.ws.portaldata.model.CustomPropertyPair;
-import ch.ivy.ws.portaldata.model.User;
 import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
-
-import com.google.gson.Gson;
 
 /**
  * Class uses {@link ICustomProperties} to add, update, delete portal data to {@link ICustomProperty} in PortalConnector
@@ -43,7 +38,6 @@ public class PortalDataService {
 
   private static class AddOrUpdateCustomPropertiesCommand implements Callable<Void> {
 
-    private static final String USER_KEY_PREFIX = "AxonIvyPortal.User";
     private List<CustomPropertyPair> customPropertyPairs;
 
     public AddOrUpdateCustomPropertiesCommand(List<CustomPropertyPair> customPropertyPairs) {
@@ -60,36 +54,9 @@ public class PortalDataService {
           PasswordUtils.createPassword(propertyValue);
           propertyValue = PasswordUtils.removePasswordInformation(propertyValue);
         }
-        if (isKeyOfUser(propertyKey)) {
-          createUserIfNotExisted(customProperties, propertyKey, propertyValue);
-          continue;
-        }
         customProperties.property(propertyKey).setValue(propertyValue);
       }
       return null;
-    }
-
-    public void createUserIfNotExisted(ICustomProperties customProperties, String propertyKey, String propertyValue) {
-      User newUser = new Gson().fromJson(propertyValue, User.class);
-      synchronized (PortalDataService.class) {
-        if (getAllUsers().contains(newUser) == false) {
-          customProperties.property(propertyKey).setValue(propertyValue);
-        }
-      }
-    }
-
-    private List<User> getAllUsers() {
-      List<ICustomProperty> userProperties =
-          IvyService.getApplication().customProperties().findAllStartingWith(USER_KEY_PREFIX);
-      Gson gson = new Gson();
-      List<User> users =
-          userProperties.stream().map(ICustomProperty::getValue)
-              .map(userAsString -> gson.fromJson(userAsString, User.class)).collect(toList());
-      return users;
-    }
-
-    private boolean isKeyOfUser(String propertyKey) {
-      return propertyKey.startsWith(USER_KEY_PREFIX);
     }
   }
 
