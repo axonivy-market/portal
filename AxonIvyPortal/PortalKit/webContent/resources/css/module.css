@@ -3719,3 +3719,12 @@ margin-top
 .ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover, .ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
   background-color: transparent !important;
 } 
+
+.start-adhoc-link {
+   color: #337ab7 !important;
+   font-size: 1rem;
+}
+
+.start-adhoc-link:hover {
+  color: #337ab7 !important;
+}

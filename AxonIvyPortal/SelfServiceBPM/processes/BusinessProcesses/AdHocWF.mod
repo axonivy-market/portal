@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri May 12 16:02:54 ICT 2017]
+[>Created: Mon May 15 17:19:07 ICT 2017]
 14232C3D829C4D71 3.20 #module
 >Proto >Proto Collection #zClass
 AF0 AdHocWF Big #zClass
@@ -24,12 +24,15 @@ AF0 @Alternative f5 '' #zField
 AF0 @PushWFArc f6 '' #zField
 AF0 @PushWFArc f4 '' #zField
 AF0 @EndRequest f10 '' #zField
-AF0 @PushWFArc f11 '' #zField
-AF0 @EndRequest f3 '' #zField
-AF0 @PushWFArc f12 '' #zField
 AF0 @GridStep f7 '' #zField
 AF0 @PushWFArc f8 '' #zField
 AF0 @PushWFArc f2 '' #zField
+AF0 @GridStep f9 '' #zField
+AF0 @PushWFArc f11 '' #zField
+AF0 @Alternative f14 '' #zField
+AF0 @PushWFArc f15 '' #zField
+AF0 @PushWFArc f13 '' #zField
+AF0 @PushWFArc f12 '' #zField
 >Proto AF0 AF0 AdHocWF #zField
 1b1 Ct0 S10 'Sub 1' #zField
 1b1 @TextInP .resExport .resExport #zField
@@ -170,8 +173,10 @@ param.isAddingAdhocTaskToOtherTask=in.isAddingAdhocToOtherTask;
 ' #txt
 AF0 f1 responseActionDecl 'selfServiceBPM.Data out;
 ' #txt
-AF0 f1 responseMappingAction 'out.caseInfo=result.caseInfo;
+AF0 f1 responseMappingAction 'out.businessCaseId=in.businessCaseId;
+out.caseInfo=result.caseInfo;
 out.definedTasks=result.definedTasks;
+out.originalTaskId=in.originalTaskId;
 ' #txt
 AF0 f1 windowConfiguration '* ' #txt
 AF0 f1 isAsynch false #txt
@@ -207,22 +212,14 @@ AF0 f4 outCond 'in.definedTasks.size() > 0' #txt
 AF0 f4 510 112 552 112 #arcP
 AF0 f10 type selfServiceBPM.Data #txt
 AF0 f10 template "/ProcessPages/AdHocWF/portalHome.ivc" #txt
-AF0 f10 785 97 30 30 0 15 #rect
+AF0 f10 937 97 30 30 0 15 #rect
 AF0 f10 @|EndRequestIcon #fIcon
-AF0 f11 664 112 785 112 #arcP
-AF0 f3 type selfServiceBPM.Data #txt
-AF0 f3 template "/ProcessPages/AdHocWF/portalHome.ivc" #txt
-AF0 f3 785 161 30 30 0 15 #rect
-AF0 f3 @|EndRequestIcon #fIcon
-AF0 f12 expr in #txt
-AF0 f12 496 126 785 176 #arcP
-AF0 f12 1 496 176 #addKink
-AF0 f12 1 0.37654183361439714 0 0 #arcLabel
 AF0 f7 actionDecl 'selfServiceBPM.Data out;
 ' #txt
 AF0 f7 actionTable 'out=in;
 ' #txt
-AF0 f7 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+AF0 f7 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.ICase;
 
 if(in.#businessCaseId is initialized && in.#originalTaskId is initialized){
@@ -230,8 +227,11 @@ if(in.#businessCaseId is initialized && in.#originalTaskId is initialized){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	if(case != null && originalTask != null){
 		in.isAddingAdhocToOtherTask = true;
+		//originalTask.reset();
+		TaskUtils.setHidePropertyToHideInPortal(originalTask);
 	}
 }' #txt
+AF0 f7 security system #txt
 AF0 f7 type selfServiceBPM.Data #txt
 AF0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -249,6 +249,46 @@ AF0 f8 expr out #txt
 AF0 f8 109 112 144 112 #arcP
 AF0 f2 expr out #txt
 AF0 f2 304 112 328 112 #arcP
+AF0 f9 actionDecl 'selfServiceBPM.Data out;
+' #txt
+AF0 f9 actionTable 'out=in;
+' #txt
+AF0 f9 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.ICase;
+
+if(in.#businessCaseId is initialized && in.#originalTaskId is initialized){
+	ICase case = ivy.wf.findCase(in.businessCaseId);
+	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
+	if(case != null && originalTask != null){
+		TaskUtils.removeHidePropertyToDisplayInPortal(originalTask);
+	}
+}' #txt
+AF0 f9 type selfServiceBPM.Data #txt
+AF0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show original task</name>
+        <nameStyle>18
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+AF0 f9 792 90 112 44 -50 -8 #rect
+AF0 f9 @|StepIcon #fIcon
+AF0 f11 expr out #txt
+AF0 f11 904 112 937 112 #arcP
+AF0 f14 type selfServiceBPM.Data #txt
+AF0 f14 720 96 32 32 0 16 #rect
+AF0 f14 @|AlternativeIcon #fIcon
+AF0 f15 664 112 720 112 #arcP
+AF0 f13 expr in #txt
+AF0 f13 752 112 792 112 #arcP
+AF0 f12 expr in #txt
+AF0 f12 496 126 736 128 #arcP
+AF0 f12 1 496 192 #addKink
+AF0 f12 2 736 192 #addKink
+AF0 f12 1 0.49583333333333335 0 0 #arcLabel
 >Proto AF0 .type selfServiceBPM.Data #txt
 >Proto AF0 .processKind NORMAL #txt
 >Proto AF0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -791,14 +831,18 @@ AF0 f1 mainOut f6 tail #connect
 AF0 f6 head f5 in #connect
 AF0 f5 out f4 tail #connect
 AF0 f4 head 1b0 g0 #connect
-AF0 1b0 g1 f11 tail #connect
-AF0 f11 head f10 mainIn #connect
-AF0 f5 out f12 tail #connect
-AF0 f12 head f3 mainIn #connect
 AF0 f0 mainOut f8 tail #connect
 AF0 f8 head f7 mainIn #connect
 AF0 f7 mainOut f2 tail #connect
 AF0 f2 head f1 mainIn #connect
+AF0 f9 mainOut f11 tail #connect
+AF0 f11 head f10 mainIn #connect
+AF0 1b0 g1 f15 tail #connect
+AF0 f15 head f14 in #connect
+AF0 f14 out f13 tail #connect
+AF0 f13 head f9 mainIn #connect
+AF0 f5 out f12 tail #connect
+AF0 f12 head f14 in #connect
 1b1 g0 m f0 tail #connect
 1b1 f0 head f6 in #connect
 1b1 f1 head g1 m #connect
