@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 16 13:47:32 ICT 2017]
+[>Created: Tue May 16 14:16:40 ICT 2017]
 14232C3D829C4D71 3.20 #module
 >Proto >Proto Collection #zClass
 AF0 AdHocWF Big #zClass
@@ -261,6 +261,7 @@ if(in.#businessCaseId is initialized && in.#originalTaskId is initialized){
 		TaskUtils.removeHidePropertyToDisplayInPortal(originalTask);
 	}
 }' #txt
+AF0 f9 security system #txt
 AF0 f9 type selfServiceBPM.Data #txt
 AF0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -289,6 +290,7 @@ if(in.#businessCaseId is initialized && in.#originalTaskId is initialized){
 		TaskUtils.setHidePropertyToHideInPortal(originalTask);
 	}
 }' #txt
+AF0 f3 security system #txt
 AF0 f3 type selfServiceBPM.Data #txt
 AF0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
