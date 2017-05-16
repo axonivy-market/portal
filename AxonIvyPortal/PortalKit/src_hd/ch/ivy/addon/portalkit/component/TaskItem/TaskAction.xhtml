@@ -50,7 +50,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openTaskTooltip')}"
         styleClass="task-command-tooltip" />
         
-      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command" global="false">
+      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command" global="false" rendered="#{taskWidgetBean.hasSelfService()}">
       	 <span class="action-icon fa fa-ellipsis-h fa-2x" />
       	  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskSideSteps')}" />
       </p:commandLink>

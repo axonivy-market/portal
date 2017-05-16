@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri May 12 17:46:40 ICT 2017]
+[>Created: Tue May 16 09:14:22 ICT 2017]
 144633F679C3A22D 3.20 #module
 >Proto >Proto Collection #zClass
 ds0 define_WFProcess Big #zClass
@@ -122,6 +122,11 @@ ds0 f3 actionTable 'out=in;
 ds0 f3 actionCode 'import ch.ivyteam.ivy.SystemDo;
 import selfServiceBPM.TaskDef;
 out.errormsg = null;
+
+if(in.definedTasks.size() < 1){
+	out.errormsg = ivy.cms.co("/system/validation/adhocTaskRequired");
+}
+
 for(TaskDef tdef: in.definedTasks)
 {
 	List<String> names = tdef.actor.split(",");
@@ -402,13 +407,13 @@ ds0 f22 type agileBPM.define_WF.define_WFData #txt
 ds0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>wf user ok?</name>
-        <nameStyle>11
+        <name>Validation ok?</name>
+        <nameStyle>14
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-ds0 f22 272 144 32 32 -31 18 #rect
+ds0 f22 272 144 32 32 -38 18 #rect
 ds0 f22 @|AlternativeIcon #fIcon
 ds0 f23 expr out #txt
 ds0 f23 232 160 272 160 #arcP
