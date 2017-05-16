@@ -19,7 +19,6 @@ import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portalkit.bo.RemoteProcessStart;
 import ch.ivy.addon.portalkit.enums.Protocol;
-import ch.ivy.addon.portalkit.enums.UserProcessType;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -135,8 +134,8 @@ public class ProcessWidgetBean implements Serializable {
                 processStart -> StringUtils.containsIgnoreCase(processStart.getName(), query)
                     && !isUserProcess(processStart))
             .map(
-                processStart -> new UserProcess(stripHtmlTags(processStart.getName()), UserProcessType.PROCESS,
-                    userName, ((RemoteProcessStart) processStart).getStartLink())).collect(Collectors.toList());
+                processStart -> new UserProcess(stripHtmlTags(processStart.getName()), userName,
+                    ((RemoteProcessStart) processStart).getStartLink())).collect(Collectors.toList());
     filteredUserProcesses.addAll(getExpressWorkflows());
     filteredUserProcesses.sort((process1, process2) -> process1.getProcessName().compareTo(process2.getProcessName()));
     return filteredUserProcesses;
@@ -146,12 +145,10 @@ public class ProcessWidgetBean implements Serializable {
     List<UserProcess> workflow = new ArrayList<>();
     IIvyEntityManager entityManager = Ivy.persistence().get(GAWFS_PERSISTENCE);
     List<Workflow> workflows =
-        entityManager.findAll(Workflow.class).stream().filter(wf -> !isUserProcess(wf))
-            .collect(Collectors.toList());
+        entityManager.findAll(Workflow.class).stream().filter(wf -> !isUserProcess(wf)).collect(Collectors.toList());
     for (Workflow wf : workflows) {
       if (canStartWorkflow(wf)) {
-        workflow.add(new UserProcess(wf.getProcessName(), UserProcessType.WORKFLOW, userName,
-            generateWorkflowStartLink(wf)));
+        workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf)));
       }
     }
     return workflow;
