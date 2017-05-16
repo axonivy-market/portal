@@ -36,4 +36,10 @@ public class TaskTemplateBean {
     portalNavigator.redirect(url);
   }
   
+  public boolean hasSelfService() throws Exception{
+    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    String  url = processStartCollector.findACMLink();
+    return !url.isEmpty();
+  }
+  
 }

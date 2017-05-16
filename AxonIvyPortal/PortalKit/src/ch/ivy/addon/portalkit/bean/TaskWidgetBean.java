@@ -102,4 +102,10 @@ public class TaskWidgetBean implements Serializable {
 	    
 		return host + adhocUrl;
   }
+  
+  public boolean hasSelfService() throws Exception{
+    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    String adhocUrl = processStartCollector.findACMLink();
+    return !adhocUrl.isEmpty();
+  }
 }
