@@ -2,24 +2,20 @@ package ch.ivy.addon.portalkit.persistence.domain;
 
 import java.util.Objects;
 
-import ch.ivy.addon.portalkit.enums.UserProcessType;
-
 
 public class UserProcess extends BusinessEntity {
   private String userName;
   private String processName;
   private String icon;
   private String link;
-  private UserProcessType type;
   private boolean defaultProcess;
 
   public UserProcess() {
 
   }
 
-  public UserProcess(String processName, UserProcessType type, String userName, String link) {
+  public UserProcess(String processName, String userName, String link) {
     this.processName = processName;
-    this.type = type;
     this.userName = userName;
     this.link = link;
   }
@@ -64,14 +60,6 @@ public class UserProcess extends BusinessEntity {
     this.defaultProcess = defaultProcess;
   }
 
-  public UserProcessType getType() {
-    return type;
-  }
-
-  public void setType(UserProcessType type) {
-    this.type = type;
-  }
-
   @Override
   public String toString() {
     return "UserProcess {userName=" + userName + ", processName=" + processName + ", icon=" + icon + ", link=" + link
@@ -80,6 +68,6 @@ public class UserProcess extends BusinessEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultProcess, icon, link, processName, type, userName);
+    return Objects.hash(defaultProcess, icon, link, processName, userName);
   }
 }
