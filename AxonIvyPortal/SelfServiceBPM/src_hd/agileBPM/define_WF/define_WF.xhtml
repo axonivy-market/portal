@@ -13,9 +13,7 @@
       <h3>#{ivy.cms.co('/Labels/title')}</h3>
       <p:outputLabel escape="false" value="#{ivy.cms.co('/Texts/AdhocWF-Explain')}" />
       <h:form id="form" enctype="multipart/form-data">
-        <f:facet name="header">
-          <p:messages></p:messages>
-        </f:facet>
+        <p:messages/>
         <br></br>
         <p:fieldset legend="Case" styleClass="panel">
           <p:focus context="form" />
@@ -138,8 +136,7 @@
         </p:fieldset>
         <br />
         <p:spacer width="10px" />
-        <p:commandButton actionListener="#{logic.go}" value="Start Workflow" icon="fa fa-check" update="form"
-          ajax="false" />
+        <p:commandButton actionListener="#{logic.go}" value="Start Workflow" icon="fa fa-check" update="form" ajax="false"/>
       </h:form>
       <p:dialog id="userList" header="Responsable Users" widgetVar="userList" modal="true" appendTo="@(body)">
         <ui:include src="responsableUser.xhtml"></ui:include>
