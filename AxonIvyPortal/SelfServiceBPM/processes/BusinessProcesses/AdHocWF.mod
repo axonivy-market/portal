@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 16 14:16:40 ICT 2017]
+[>Created: Tue May 16 16:27:41 ICT 2017]
 14232C3D829C4D71 3.20 #module
 >Proto >Proto Collection #zClass
 AF0 AdHocWF Big #zClass
@@ -278,7 +278,9 @@ AF0 f3 actionDecl 'selfServiceBPM.Data out;
 ' #txt
 AF0 f3 actionTable 'out=in;
 ' #txt
-AF0 f3 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+AF0 f3 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -286,7 +288,10 @@ if(in.#businessCaseId is initialized && in.#originalTaskId is initialized){
 	ICase case = ivy.wf.findCase(in.businessCaseId);
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	if(case != null && originalTask != null){
-		originalTask.reset();
+		boolean isOriginalTaskInValidStatesToReset = Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED).contains(originalTask.getState());
+		if(isOriginalTaskInValidStatesToReset){
+			originalTask.reset();
+		}
 		TaskUtils.setHidePropertyToHideInPortal(originalTask);
 	}
 }' #txt
