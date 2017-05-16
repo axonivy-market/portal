@@ -18,4 +18,19 @@
 			<para>ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.util.HIDE, [ANY_VALUE])</para>
 		</tip>
 	</sect2>
+		<sect2>
+		<title>Hide technical tasks</title>
+		<para>
+			A technical task is the task which is not displayed in any task lists of Portal.
+		</para>
+		<para>
+			To mark a task as a technical task, set the
+			<emphasis role="strong">HIDE</emphasis>
+			additional property with any value to the task.
+		</para>
+		<tip>
+			<para>Use the utility method of Portal to set property:</para>
+			<para>ch.ivy.addon.portalkit.util.TaskUtils.setHidePropertyToHideInPortal(ITask), remove property: ch.ivy.addon.portalkit.util.TaskUtils.removeHidePropertyToDisplayInPortal(ITask)</para>
+		</tip>
+	</sect2>
 </sect1>
