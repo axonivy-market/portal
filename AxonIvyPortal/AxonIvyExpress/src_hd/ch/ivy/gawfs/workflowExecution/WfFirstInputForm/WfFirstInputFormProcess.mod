@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu May 11 14:54:05 ICT 2017]
+[>Created: Tue May 16 11:22:58 ICT 2017]
 157893EF862D1265 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFirstInputFormProcess Big #zClass
@@ -147,6 +147,10 @@ for(IUser user : users)
 }
 
 in.executePredefinedWorkflowData.applicant.user = ivy.case.getCreatorUser();
+
+in.executePredefinedWorkflowData.applicant.fullname = in.executePredefinedWorkflowData.applicant.user.getFullName();
+in.executePredefinedWorkflowData.applicant.username = in.executePredefinedWorkflowData.applicant.user.getName();
+in.executePredefinedWorkflowData.applicant.email = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();
 ' #txt
 Ws0 f10 security system #txt
 Ws0 f10 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
@@ -191,6 +195,9 @@ Ws0 f14 actionCode 'import org.primefaces.context.RequestContext;
 
 if(in.assignementType == 0){
 	in.executePredefinedWorkflowData.applicant.user = ivy.case.getCreatorUser();
+	in.executePredefinedWorkflowData.applicant.fullname = in.executePredefinedWorkflowData.applicant.user.getFullName();
+	in.executePredefinedWorkflowData.applicant.username = in.executePredefinedWorkflowData.applicant.user.getName();
+	in.executePredefinedWorkflowData.applicant.email = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();
 }else{
 	RequestContext context = RequestContext.getCurrentInstance();
 	context.execute("PF(''chooseApplicant'').show();");
@@ -225,7 +232,10 @@ Ws0 f16 actionCode 'import org.primefaces.context.RequestContext;
 import ch.ivyteam.ivy.security.IUser;
 
 in.assignementType=1;
-' #txt
+
+in.executePredefinedWorkflowData.applicant.fullname = in.executePredefinedWorkflowData.applicant.user.getFullName();
+in.executePredefinedWorkflowData.applicant.username = in.executePredefinedWorkflowData.applicant.user.getName();
+in.executePredefinedWorkflowData.applicant.email = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();' #txt
 Ws0 f16 security system #txt
 Ws0 f16 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
 Ws0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
