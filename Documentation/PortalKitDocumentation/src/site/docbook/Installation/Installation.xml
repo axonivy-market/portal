@@ -533,6 +533,9 @@
 						<para>Task category of Portal is now stored in new Task category field of ivy.</para>
 						<para>Please refer to <link linkend="axonivyportal.installation.migrationnotes" endterm="axonivyportal.installation.migrationnotes.title" /> to learn how to migrate data from <code>customVarCharField5</code> to new <code>category</code> field.</para>
 					</listitem>
+					<listitem>
+						<para>Hide technical tasks (the HIDE additional property is set), so that they are not displayed in any Portal task lists.</para>
+					</listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
