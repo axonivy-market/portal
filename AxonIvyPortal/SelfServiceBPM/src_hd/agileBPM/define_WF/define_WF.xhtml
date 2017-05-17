@@ -120,8 +120,8 @@
                       styleClass="circularImg" rendered="#{adTask.actor eq 'SYSTEM'}" />
                     <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(adTask.actor).getEMailAddress()}"
                       size="60" notFound="mm" style="border-radius:30px" rendered="#{adTask.actor ne 'SYSTEM' and !adTask.isOriginalTask}" />
-                     <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(adTask.actor).getEMailAddress()}"
-                      size="60" notFound="mm" style="border-radius:30px;border:blue solid 2px;" rendered="#{adTask.actor ne 'SYSTEM' and adTask.isOriginalTask}" />
+                     <pe:gravatar id="additonalTaskUserAvatar" value="#{ivy.wf.getSecurityContext().findUser(adTask.actor).getEMailAddress()}"
+                      size="60" notFound="mm" style="border-radius:30px;" rendered="#{adTask.actor ne 'SYSTEM' and adTask.isOriginalTask}" />
                     <h:panelGrid columns="1">
                       <c:set var="isHaveTaskId" value="#{not empty adTask.taskId}"/>
                       <p:outputLabel value="#{isHaveTaskId? adTask.taskId : ''} #{isHaveTaskId? '-' : ''} #{adTask.kind}" readonly="true" styleClass="font-bold" />
