@@ -143,11 +143,11 @@
                 #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
           cache="true" minQueryLength="2" completeMethod="#{processWidgetBean.completeUserProcess}" var="userProcess"
           itemValue="#{userProcess}" itemLabel="#{userProcess.processName}" scrollHeight="300" queryDelay="500"
-          itemtipAtPosition="right top" converter="pojoConverter" >
+          itemtipAtPosition="right top" converter="userProcessAutoCompleteConverter">
           <f:event listener="#{processWidgetBean.preRenderProcessAutoComplete(logic.collectAllProcessStarts())}"
             type="preRenderComponent" />
           <p:ajax event="query" global="false" />
-          <p:ajax event="itemSelect" update="@form" />
+          <p:ajax event="itemSelect" update="@form" resetValues="true" />
           <p:column>
             <h:outputText styleClass="autocomplete-tooltip" value="#{userProcess.processName}" escape="false"
               title="#{processWidgetBean.getProcessDescription(userProcess.processName)}" />
