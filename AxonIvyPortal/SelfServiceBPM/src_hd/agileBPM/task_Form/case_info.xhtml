@@ -100,8 +100,8 @@
               <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(defTask.actor).getEMailAddress()}" size="60"
                 notFound="mm" style="border-radius:30px"
                 rendered="#{defTask.actor.indexOf(',') le 0 and defTask.actor ne 'SYSTEM' and !defTask.isOriginalTask}" />
-               <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(defTask.actor).getEMailAddress()}" size="60"
-                notFound="mm" style="border-radius:30px;border:blue solid 2px;"
+               <pe:gravatar id="additonalTaskUserAvatar" value="#{ivy.wf.getSecurityContext().findUser(defTask.actor).getEMailAddress()}" size="60"
+                notFound="mm" style="border-radius:30px;"
                 rendered="#{defTask.actor.indexOf(',') le 0 and defTask.actor ne 'SYSTEM' and defTask.isOriginalTask}" />
                <p:tooltip for="@(.originalTask)" rendered="#{defTask.isOriginalTask}" value="#{ivy.cms.co('/Dialogs/agileBPM/TooltipForOriginalTask')}" trackMouse="true" />
               <p:outputLabel value="#{defTask.actor}"></p:outputLabel>
