@@ -62,6 +62,7 @@ public class TaskQueryService {
 
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
     finalQuery = appender.appendSorting(criteria).toQuery();
+    finalQuery.where().and().additionalProperty("HIDE").isNull();
     return finalQuery;
   }
 
