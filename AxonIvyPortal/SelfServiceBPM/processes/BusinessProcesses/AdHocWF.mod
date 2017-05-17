@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 16 17:58:05 ICT 2017]
+[>Created: Wed May 17 11:15:49 ICT 2017]
 14232C3D829C4D71 3.20 #module
 >Proto >Proto Collection #zClass
 AF0 AdHocWF Big #zClass
@@ -215,13 +215,19 @@ AF0 f7 actionDecl 'selfServiceBPM.Data out;
 ' #txt
 AF0 f7 actionTable 'out=in;
 ' #txt
-AF0 f7 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+AF0 f7 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+import ch.ivy.addon.portalkit.service.PermissionCheckerService;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.ICase;
 
 if(in.#businessCaseId is initialized && in.#originalTaskId is initialized){
 	ICase case = ivy.wf.findCase(in.businessCaseId);
 	ITask originalTask = TaskUtils.findTaskUserHasPermissionToSee(in.originalTaskId);
+	PermissionCheckerService permissionService = new PermissionCheckerService();
+	if(originalTask == null && permissionService.hasPermission(IPermission.TASK_READ_ALL)){
+		originalTask = ivy.wf.findTask(in.originalTaskId);
+	}
 	if(case != null && originalTask != null){
 		in.isAddingAdhocToOtherTask = true;
 	}
