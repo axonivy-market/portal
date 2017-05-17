@@ -42,8 +42,9 @@
         <ui:insert name="infoZone" />
 
         <div class="task-template-tasks-command">
-          <p:commandLink id="start-adhoc" actionListener="#{taskTemplateBean.startAdhoc()}" rendered="#{isShowStartAdhocButton}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" styleClass="start-adhoc-link">
+          <p:commandLink id="start-adhoc" rendered="#{isShowStartAdhocButton}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" styleClass="start-adhoc-link"
+            oncomplete="PF('task-reset-confirmation-dialog').show()" >
             <i class="fa fa-cogs fa-2x" />
           </p:commandLink>
           <p:spacer width="5"/>
@@ -118,6 +119,26 @@
           </ui:insert>
         </div>
       </div>
+
+    <p:dialog id="task-reset-confirmation-dialog" resizable="false"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
+      widgetVar="task-reset-confirmation-dialog" appendTo="@(body)"
+      modal="true" dynamic="true">
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
+        value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning')}" />
+      <f:facet name="footer">
+        <h:form prependId="false">
+          <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
+            <p:commandButton actionListener="#{taskTemplateBean.startAdhoc()}" process="@this" update="@none"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+              styleClass="portal-ok-button" />
+            <p:commandButton onclick="PF('task-reset-confirmation-dialog').hide()"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
+              styleClass="portal-cancel-button" />
+          </h:panelGroup>
+        </h:form>
+      </f:facet>
+    </p:dialog>
 
       <ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab
         confirmMessage="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/browserTabClosingWarning')}" />
