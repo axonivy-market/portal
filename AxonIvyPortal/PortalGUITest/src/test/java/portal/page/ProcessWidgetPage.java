@@ -167,7 +167,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
     public void selectIvyProcessByName(String ivyProcessName) {
       findElementByClassName("ui-autocomplete-dropdown").click();
-      String processSelector = "tr[data-item-value='" + ivyProcessName + "']";
+      String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
       waitForElementDisplayed(By.cssSelector(processSelector), true);
       findElementByCssSelector(processSelector).click();
       waitAjaxIndicatorDisappear();
