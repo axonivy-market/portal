@@ -136,18 +136,18 @@ public class ProcessWidgetBean implements Serializable {
             .map(
                 processStart -> new UserProcess(stripHtmlTags(processStart.getName()), userName,
                     ((RemoteProcessStart) processStart).getStartLink())).collect(Collectors.toList());
-    filteredUserProcesses.addAll(getExpressWorkflows());
+    filteredUserProcesses.addAll(getFilteredExpressWorkflows(query));
     filteredUserProcesses.sort((process1, process2) -> process1.getProcessName().compareTo(process2.getProcessName()));
     return filteredUserProcesses;
   }
 
-  private List<UserProcess> getExpressWorkflows() {
+  private List<UserProcess> getFilteredExpressWorkflows(String query) {
     List<UserProcess> workflow = new ArrayList<>();
     IIvyEntityManager entityManager = Ivy.persistence().get(GAWFS_PERSISTENCE);
     List<Workflow> workflows =
         entityManager.findAll(Workflow.class).stream().filter(wf -> !isUserProcess(wf)).collect(Collectors.toList());
     for (Workflow wf : workflows) {
-      if (canStartWorkflow(wf)) {
+      if (canStartWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
         workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf)));
       }
     }
@@ -197,7 +197,7 @@ public class ProcessWidgetBean implements Serializable {
     }
     return StringUtils.EMPTY;
   }
-
+  
   public UserProcess getEditingProcess() {
     return editingProcess;
   }
