@@ -382,11 +382,13 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
    */
   protected void buildQueryToSearchCriteria() {
-    String jsonQuery =
-        SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()").call()
-            .get("jsonQuery", String.class);
-    TaskQuery customizedTaskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
-    queryCriteria.setTaskQuery(customizedTaskQuery);
+    if (queryCriteria.getTaskQuery() == null) {
+      String jsonQuery =
+          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()").call()
+          .get("jsonQuery", String.class);
+      TaskQuery customizedTaskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+      queryCriteria.setTaskQuery(customizedTaskQuery);
+    }
     extendSort();
     searchCriteria.setJsonQuery(TaskQueryService.service().createQuery(queryCriteria).asJson());
   }
