@@ -109,7 +109,7 @@
         </div>
       </div>
     
-      <div class="container u-invisibility" id="main-area-panel">
+      <div class="container #{hideMainArea eq true ? 'u-invisibility' : ''}" id="main-area-panel">
         <ui:insert name="pageContent">
           <div class="simple-container #{simpleContainerClass}">
             <div class="js-simple-main-col #{simpleMainColClass}">
