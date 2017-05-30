@@ -34,7 +34,7 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 @ViewScoped
 public class ProcessWidgetBean implements Serializable {
 
-  private static final String GAWFS_ADMIN_ROLE = "GAWFS_ADMIN";
+  private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
   private static final String GAWFS_PERSISTENCE = "GAWFS";
   private static final long serialVersionUID = -5889375917550618261L;
   private UserProcessService userProcessService;
@@ -158,7 +158,7 @@ public class ProcessWidgetBean implements Serializable {
     IRole permittedRole = Ivy.request().getApplication().getSecurityContext().findRole(workflow.getProcessPermission());
     IUser owner = Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner());
     return Ivy.session().hasRole(permittedRole, false)
-        || Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(GAWFS_ADMIN_ROLE), false)
+        || Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false)
         || Ivy.session().canActAsUser(owner);
   }
 

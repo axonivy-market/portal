@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Mar 15 14:25:10 CET 2017]
-1589822F106E69C9 3.18 #module
+[>Created: Tue May 30 16:47:40 ICT 2017]
+1589822F106E69C9 3.20 #module
 >Proto >Proto Collection #zClass
 Ms0 ManageUsergroups Big #zClass
 Ms0 B #cInfo
@@ -36,16 +36,8 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
+Ms0 f0 caseData businessCase.attach=false #txt
 Ms0 f0 showInStartList 1 #txt
-Ms0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ms0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -55,7 +47,7 @@ Ms0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ms0 f0 @C|.responsibility GAWFS_ROLEADMIN #txt
+Ms0 f0 @C|.responsibility Everybody #txt
 Ms0 f0 81 49 30 30 -64 17 #rect
 Ms0 f0 @|StartRequestIcon #fIcon
 Ms0 f1 type gawfs.ManageUsergroupsData #txt

@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 15:18:55 ICT 2017]
+[>Created: Tue May 30 16:50:26 ICT 2017]
 1576FA61C4EDC8B1 3.20 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
@@ -127,11 +127,7 @@ for(IUser user : users)
 {
 	if(user.getName() != "SYSTEM")
 	{
-		
-		if(user.getUserToken().hasRole(ivy.request.getApplication().getSecurityContext().findRole("GAWFS_USER"), false) ){
 			out.AvailableRolesAndUsers.add(user);
-		}
-		
 	}
 }
 
@@ -142,12 +138,8 @@ List roles = ivy.wf.getSecurityContext().getRoles();
 for(IRole role : roles){
 		IRole  roleP = role.getParent();
 		
-		if(roleP != null){	
-			ivy.log.debug("ZZZ" + roleP.getDisplayName());
-			if(roleP.getName()=="GAWFS_GROUPS"){
-				ivy.log.debug("XXX" + role.getDisplayName());
+		if(roleP != null){
 				out.AvailableRolesAndUsers.add(role);
-			}
 		}
 }
 
