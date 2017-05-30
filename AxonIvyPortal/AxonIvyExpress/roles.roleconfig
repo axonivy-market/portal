@@ -1,28 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <role>
     <identifier>Everybody</identifier>
-    <role>
-        <identifier>GAWFS_GROUPS</identifier>
-        <displayName>GAWFS_GROUPS</displayName>
-        <role>
-            <identifier>Test1</identifier>
-            <displayName>Testwww</displayName>
-        </role>
-    </role>
-    <role>
-        <identifier>GAWFS_ADMIN</identifier>
-        <displayName>GAWFS Administrator</displayName>
-    </role>
-    <role>
-        <identifier>GAWFS_CREATOR</identifier>
-        <displayName>GAWFS Creator</displayName>
-    </role>
-    <role>
-        <identifier>GAWFS_USER</identifier>
-        <displayName>GAWFS User</displayName>
-    </role>
-    <role>
-        <identifier>GAWFS_ROLEADMIN</identifier>
-        <displayName>GAWFS Roleadmin</displayName>
-    </role>
 </role>

@@ -39,7 +39,7 @@ public class UserGroupService {
 
 	
 	final static String ROLE_PREFIX =  "GAWFS_"; //not used for AIFA
-	final static String ROLE_ROOT =  "GAWFS_GROUPS";
+	final static String ROLE_ROOT =  "Everybody";
 
     /**
 	 * create roleFor Department

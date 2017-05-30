@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon May 08 16:57:31 ICT 2017]
+[>Created: Tue May 30 16:48:10 ICT 2017]
 15798655494F25E1 3.20 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
@@ -39,9 +39,9 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!
+TaskTriggered.EXROL=Everybody
 TaskTriggered.NAM=Workflow Eigenschaften
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!' #txt
 cw0 f0 caseData 'case.name=Neuen Prozess erstellen
 case.description=Erstellen eines neuen Prozesses\!
 customFields.varchar.1="CREATE_WF"
@@ -56,7 +56,7 @@ cw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-cw0 f0 @C|.responsibility GAWFS_CREATOR #txt
+cw0 f0 @C|.responsibility Everybody #txt
 cw0 f0 81 49 30 30 -51 17 #rect
 cw0 f0 @|StartRequestIcon #fIcon
 cw0 f1 type gawfs.createWorkflowData #txt

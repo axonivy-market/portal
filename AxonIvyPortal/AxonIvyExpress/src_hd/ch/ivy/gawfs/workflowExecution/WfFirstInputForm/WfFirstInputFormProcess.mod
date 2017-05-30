@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 16 11:22:58 ICT 2017]
+[>Created: Tue May 30 16:49:20 ICT 2017]
 157893EF862D1265 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFirstInputFormProcess Big #zClass
@@ -140,9 +140,7 @@ for(IUser user : users)
 {
 	if(user.getName() != "SYSTEM")
 	{
-		if(user.getUserToken().hasRole(ivy.request.getApplication().getSecurityContext().findRole("GAWFS_USER"), false) ){
 			out.availUsers.add(user);
-		}		
 	}
 }
 
