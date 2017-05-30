@@ -53,7 +53,12 @@ public class TaskQueryService {
     if (criteria.getTaskAssigneeType() == TaskAssigneeType.ROLE) {
       finalQuery.where().and().activatorRoleId().isNotNull();
     } else if (criteria.getTaskAssigneeType() == TaskAssigneeType.USER) {
-      finalQuery.where().and().activatorUserId().isNotNull();
+      TaskQuery personalTaskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
+      if (criteria.getIncludedStates().contains(TaskState.PARKED)) {
+        TaskQuery reservedTaskQuery = TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
+        personalTaskQuery.where().or(reservedTaskQuery);
+      }
+      finalQuery.where().and(personalTaskQuery);
     }
 
     if (criteria.hasCategory()) {
