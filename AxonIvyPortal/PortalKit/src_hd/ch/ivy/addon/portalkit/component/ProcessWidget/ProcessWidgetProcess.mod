@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri May 12 16:03:36 ICT 2017]
+[>Created: Tue May 30 16:51:24 ICT 2017]
 14FEEC13F8B8E7D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
@@ -617,7 +617,7 @@ List<Workflow> workflows = ivy.persistence.GAWFS.findAll(Workflow.class);
 for(Workflow wf : workflows) {
 	IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
 	IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner);
-	if(ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("GAWFS_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
+	if(ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
   	UserProcess userProcess = new UserProcess();
   	userProcess.setId(wf.id);
   	userProcess.setProcessName(wf.processName);
