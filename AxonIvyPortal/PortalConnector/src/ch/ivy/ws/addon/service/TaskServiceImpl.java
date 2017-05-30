@@ -394,7 +394,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                 .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
-            taskQuery.where().and().activatorUserId().isNotNull();
+            TaskQuery reservedTaskQuery = TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
+            taskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
             taskQuery.where()
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
