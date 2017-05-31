@@ -35,8 +35,8 @@ public class TaskDescriptionChangeTest extends BaseTest {
         firstTask,
         "<b>HTML</b> description could contain malicious script <script>alert('Attacking')</script> but it will be sanitized.",
         "HTML description could contain malicious script but it will be sanitized.",
-        "TODO [Task description is in HTML, show more details to see it]", taskWidgetPage);
-    testChangeTaskDescription(firstTask, "", "[Task description not available]", "[Task description not available]",
+        "[Task description is in HTML, click here to see more]", taskWidgetPage);
+    testChangeTaskDescription(firstTask, "", "[no description is available]", "[no description is available]",
         taskWidgetPage);
     testChangeTaskDescription(firstTask, "And you can change description if it is empty",
         "And you can change description if it is empty", "And you can change description if it is empty",

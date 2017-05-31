@@ -70,6 +70,6 @@ public class TaskWidgetCustomizationTest extends BaseTest {
 
     taskWidgetPage.sortTaskListByColumn(CUSTOM_VARCHAR_FIELD5_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Other Leave/Sick/Long".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
+    assertTrue("Annual Leave".equals(taskWidgetPage.getTaskListCellValue(3, CUSTOM_VARCHAR_FIELD5_COLUMN_ID)));
   }
 }
