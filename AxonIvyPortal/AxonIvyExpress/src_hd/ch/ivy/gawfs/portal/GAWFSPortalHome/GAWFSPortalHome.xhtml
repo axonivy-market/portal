@@ -17,8 +17,8 @@
 					<h4>Welcome to Axon.ivy Express!</h4>
 				</h:panelGroup>
 			</h:panelGrid>
-
-			<h:form id="form">
+			<h:form id="form" style="margin-top: 10px">
+				<p:commandLink style="margin-left: 5px" value="Click here to create new Workflow" actionListener="#{logic.startProcess(data.createWorkflowStartLink)}"/>
 				<h:panelGrid columns="1" style="width: 100%">
 					<f:facet name="header">
 						<p:messages></p:messages>

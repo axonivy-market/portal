@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 30 16:51:03 ICT 2017]
+[>Created: Wed May 31 09:43:25 ICT 2017]
 1580345221FA4CE0 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 GAWFSPortalHomeProcess Big #zClass
@@ -25,6 +25,11 @@ Gs0 @PushWFArc f7 '' #zField
 Gs0 @GridStep f2 '' #zField
 Gs0 @PushWFArc f8 '' #zField
 Gs0 @PushWFArc f9 '' #zField
+Gs0 @RichDialogProcessEnd f46 '' #zField
+Gs0 @GridStep f48 '' #zField
+Gs0 @RichDialogMethodStart f35 '' #zField
+Gs0 @PushWFArc f47 '' #zField
+Gs0 @PushWFArc f49 '' #zField
 >Proto Gs0 Gs0 GAWFSPortalHomeProcess #zField
 Gs0 f0 guid 158034522559ACD1 #txt
 Gs0 f0 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
@@ -78,11 +83,15 @@ Gs0 f6 actionDecl 'ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData out;
 ' #txt
 Gs0 f6 actionTable 'out=in;
 ' #txt
-Gs0 f6 actionCode 'import java.util.Collections;
+Gs0 f6 actionCode 'import ch.ivy.addon.portalkit.util.UrlHelper;
+import java.util.Collections;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import gawfs.AvailWorkflow;
 import gawfs.Workflow;
+
+//get create workflow start link
+in.createWorkflowStartLink = UrlHelper.findCreateExpressWorkflowStartLink();
 
 // all workflows to display a selection
 List<Workflow> workflows = ivy.persistence.GAWFS
@@ -212,6 +221,54 @@ Gs0 f8 expr out #txt
 Gs0 f8 288 64 328 64 #arcP
 Gs0 f9 expr out #txt
 Gs0 f9 440 64 467 64 #arcP
+Gs0 f46 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
+Gs0 f46 470 285 22 22 14 0 #rect
+Gs0 f46 @|RichDialogProcessEndIcon #fIcon
+Gs0 f48 actionDecl 'ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData out;
+' #txt
+Gs0 f48 actionTable 'out=in;
+' #txt
+Gs0 f48 actionCode 'import javax.faces.context.FacesContext;
+
+FacesContext.getCurrentInstance().getExternalContext().redirect(in.createWorkflowStartLink);' #txt
+Gs0 f48 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
+Gs0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Redirect</name>
+        <nameStyle>8,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Gs0 f48 279 284 36 24 -18 22 #rect
+Gs0 f48 @|StepIcon #fIcon
+Gs0 f35 guid 15C5C572E0456266 #txt
+Gs0 f35 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
+Gs0 f35 method startProcess(String) #txt
+Gs0 f35 disableUIEvents false #txt
+Gs0 f35 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<java.lang.String link> param = methodEvent.getInputArguments();
+' #txt
+Gs0 f35 inParameterMapAction 'out.createWorkflowStartLink=param.link;
+' #txt
+Gs0 f35 outParameterDecl '<> result;
+' #txt
+Gs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startProcess(String)</name>
+        <nameStyle>20,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Gs0 f35 78 285 22 22 14 0 #rect
+Gs0 f35 @|RichDialogMethodStartIcon #fIcon
+Gs0 f47 expr out #txt
+Gs0 f47 315 296 470 296 #arcP
+Gs0 f49 expr out #txt
+Gs0 f49 100 296 279 296 #arcP
 >Proto Gs0 .type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
 >Proto Gs0 .processKind HTML_DIALOG #txt
 >Proto Gs0 -8 -8 16 16 16 26 #rect
@@ -224,3 +281,7 @@ Gs0 f6 mainOut f8 tail #connect
 Gs0 f8 head f2 mainIn #connect
 Gs0 f2 mainOut f9 tail #connect
 Gs0 f9 head f1 mainIn #connect
+Gs0 f35 mainOut f49 tail #connect
+Gs0 f49 head f48 mainIn #connect
+Gs0 f48 mainOut f47 tail #connect
+Gs0 f47 head f46 mainIn #connect
