@@ -8,13 +8,16 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.sun.tools.classfile.StackMapTable_attribute.append_frame;
 
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
-
 import ch.ivyteam.ivy.request.IHttpRequest;
+import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
 
 import java.util.LinkedHashMap;
@@ -150,5 +153,10 @@ public class UrlHelper {
 			result = result + "?"+ paramsStr;
 		}
 		return result;
+	}
+	
+	public static String findCreateExpressWorkflowStartLink() throws Exception {
+		ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+		return collector.findCreateExpressWorkflowStartLink();
 	}
 }
