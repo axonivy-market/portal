@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jul 28 11:20:47 ICT 2016]
-153AC8F1D34C2E0D 3.18 #module
+[>Created: Tue May 30 18:37:54 ICT 2017]
+153AC8F1D34C2E0D 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemProcess Big #zClass
 Cs0 RD #cInfo
@@ -28,20 +28,26 @@ Cs0 f11 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItem.CaseItemData
 ' #txt
 Cs0 f11 actionTable 'out=in;
 ' #txt
-Cs0 f11 actionCode 'import ch.ivy.addon.portalkit.service.PermissionCheckerService;
+Cs0 f11 actionCode 'import ch.ivy.addon.portalkit.util.SideStepUtils;
+import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivyteam.ivy.security.IPermission;
 
 in.internalCase = ivy.wf.findCase(in.caseId);
 PermissionCheckerService permissionCheker = new PermissionCheckerService();
 in.canChangeCaseDescription = permissionCheker.hasPermission(IPermission.CASE_WRITE_DESCRIPTION);
-in.canChangeCaseName = permissionCheker.hasPermission(IPermission.CASE_WRITE_NAME);' #txt
+in.canChangeCaseName = permissionCheker.hasPermission(IPermission.CASE_WRITE_NAME);
+
+in.sideSteps = ivy.casemap.sideSteps().findStartable(in.internalCase.getBusinessCase());
+if (SideStepUtils.hasSelfService() || !in.sideSteps.isEmpty()) {
+	in.isSideStepsEnable = true;
+}' #txt
 Cs0 f11 security system #txt
 Cs0 f11 type ch.ivy.addon.portalkit.singleapp.cases.CaseItem.CaseItemData #txt
 Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>get case</name>
-        <nameStyle>8,7
+        <name>get case &amp; sidesteps</name>
+        <nameStyle>20,7
 </nameStyle>
     </language>
 </elementInfo>

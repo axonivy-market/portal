@@ -8,3 +8,7 @@ canChangeCaseDescription Boolean #field
 canChangeCaseDescription PERSISTENT #fieldModifier
 canChangeCaseName Boolean #field
 canChangeCaseName PERSISTENT #fieldModifier
+sideSteps java.util.List<ch.ivyteam.ivy.casemap.runtime.ISideStepProcess> #field
+sideSteps PERSISTENT #fieldModifier
+isSideStepsEnable Boolean #field
+isSideStepsEnable PERSISTENT #fieldModifier
