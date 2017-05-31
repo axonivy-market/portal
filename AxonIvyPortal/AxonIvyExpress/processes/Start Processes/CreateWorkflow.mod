@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 30 16:48:10 ICT 2017]
+[>Created: Wed May 31 09:20:21 ICT 2017]
 15798655494F25E1 3.20 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
@@ -23,7 +23,7 @@ cw0 @GridStep f7 '' #zField
 cw0 @PushWFArc f8 '' #zField
 cw0 @PushWFArc f2 '' #zField
 >Proto cw0 cw0 CreateWorkflow #zField
-cw0 f0 outLink AxonIvyExpress.ivp #txt
+cw0 f0 outLink AxonIvyExpressWF.ivp #txt
 cw0 f0 type gawfs.createWorkflowData #txt
 cw0 f0 inParamDecl '<> param;' #txt
 cw0 f0 actionDecl 'gawfs.createWorkflowData out;
@@ -31,33 +31,33 @@ cw0 f0 actionDecl 'gawfs.createWorkflowData out;
 cw0 f0 guid 15798655499443C8 #txt
 cw0 f0 requestEnabled true #txt
 cw0 f0 triggerEnabled false #txt
-cw0 f0 callSignature AxonIvyExpress() #txt
+cw0 f0 callSignature AxonIvyExpressWF() #txt
 cw0 f0 persist false #txt
-cw0 f0 startName 'Axon.ivy Express' #txt
+cw0 f0 startName 'Create Axon.ivy Express Workflow' #txt
 cw0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody
+TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!
 TaskTriggered.NAM=Workflow Eigenschaften
-TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!' #txt
+TaskTriggered.EXROL=Everybody' #txt
 cw0 f0 caseData 'case.name=Neuen Prozess erstellen
 case.description=Erstellen eines neuen Prozesses\!
 customFields.varchar.1="CREATE_WF"
 businessCase.attach=false' #txt
-cw0 f0 showInStartList 1 #txt
+cw0 f0 showInStartList 0 #txt
 cw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>AxonIvyExpress.ivp</name>
-        <nameStyle>18,5,7
+        <name>AxonIvyExpressWF.ivp</name>
+        <nameStyle>20,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 cw0 f0 @C|.responsibility Everybody #txt
-cw0 f0 81 49 30 30 -51 17 #rect
+cw0 f0 81 49 30 30 -60 17 #rect
 cw0 f0 @|StartRequestIcon #fIcon
 cw0 f1 type gawfs.createWorkflowData #txt
 cw0 f1 657 49 30 30 0 15 #rect
