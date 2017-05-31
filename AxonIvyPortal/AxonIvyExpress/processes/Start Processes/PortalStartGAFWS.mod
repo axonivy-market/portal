@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu May 11 14:39:06 ICT 2017]
+[>Created: Tue May 30 17:07:53 ICT 2017]
 1576E76B009E23DD 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStartGAFWS Big #zClass
@@ -19,7 +19,7 @@ Pt0 @RichDialog f3 '' #zField
 Pt0 @PushWFArc f4 '' #zField
 Pt0 @PushWFArc f2 '' #zField
 >Proto Pt0 Pt0 PortalStartGAFWS #zField
-Pt0 f0 outLink start.ivp #txt
+Pt0 f0 outLink AxonIvyExpress.ivp #txt
 Pt0 f0 type gawfs.PortalStartData #txt
 Pt0 f0 inParamDecl '<> param;' #txt
 Pt0 f0 actionDecl 'gawfs.PortalStartData out;
@@ -27,9 +27,9 @@ Pt0 f0 actionDecl 'gawfs.PortalStartData out;
 Pt0 f0 guid 1576E76B02BFE617 #txt
 Pt0 f0 requestEnabled true #txt
 Pt0 f0 triggerEnabled false #txt
-Pt0 f0 callSignature start() #txt
+Pt0 f0 callSignature AxonIvyExpress() #txt
 Pt0 f0 persist false #txt
-Pt0 f0 startName AxonIvyExpressStart #txt
+Pt0 f0 startName 'Axon.ivy Express' #txt
 Pt0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
@@ -41,14 +41,12 @@ Pt0 f0 showInStartList 1 #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
+        <name>AxonIvyExpress.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Pt0 f0 @C|.responsibility Everybody #txt
-Pt0 f0 81 49 30 30 -21 17 #rect
+Pt0 f0 81 49 30 30 -51 17 #rect
 Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f1 type gawfs.PortalStartData #txt
 Pt0 f1 497 49 30 30 0 15 #rect
