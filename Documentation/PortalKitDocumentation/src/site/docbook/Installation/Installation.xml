@@ -350,6 +350,15 @@
 					Permissions needed:<code>IPermission.TASK_READ_ALL</code>, <code>IPermission.CASE_READ_ALL</code>.
 				</para>
 			</sect3>
+			<sect3>
+				<title>Administrator permission can interact with all workflows in the application</title>
+				<para>
+					Normal users can creates, updates and deletes workflows belonged to him.
+				</para>
+				<para>
+					Administrator can creates, updates and deletes all workflows in the application.
+				</para>
+			</sect3>
 		</sect2>
 		<sect2>
 			<title>Global variables</title>
