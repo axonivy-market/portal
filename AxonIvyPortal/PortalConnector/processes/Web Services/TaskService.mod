@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Apr 19 13:55:59 ICT 2017]
-1380566F9095B9C4 3.19 #module
+[>Created: Thu Jun 01 19:02:53 ICT 2017]
+1380566F9095B9C4 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 WS #cInfo
@@ -176,7 +176,27 @@ Te0 f14 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
 Te0 f14 actionTable 'out=in;
 ' #txt
-Te0 f14 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
+Te0 f14 actionCode 'import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
+import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
+import ch.ivyteam.ivy.workflow.ITask;
+
+try {
+ivy.log.warn("task id {0}", in.ivyTask.id);
+ITask task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(ivy.wf.getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.ivyTask.id)) as ITask;
+ivy.log.warn("task {0}", task);
+IBusinessCase case = task.getCase().getBusinessCase();
+ivy.log.warn("case {0}", case);
+List<ISideStepProcess> sideSteps = ivy.casemap.sideSteps().findStartable(case);
+for (ISideStepProcess sideStep : sideSteps) {
+	ivy.log.warn("sideStep {0}", sideStep);
+}
+
+} catch (Exception e) {
+	ivy.log.warn("Exception when delegate", e);
+}
+
+
+import ch.ivy.ws.addon.bo.TaskServiceResult;
 import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
