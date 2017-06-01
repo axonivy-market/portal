@@ -1,3 +1,0 @@
-co: name={ProcesstypeSeries} description={} changed={2017-05-22 14:11:29 CEST} changedby={t} visualorder={0} guid={15899CBCBCB17B0C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15899CBCBD0D77B8} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:43:39 CET} validto={} changed={2017-05-22 14:11:29 CEST} changedby={t} properties={} id={}
-val: guid={15BF01551A4DA576} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 03:59:38 CEST} validto={} changed={2017-05-10 03:59:40 CEST} changedby={ldnam} properties={} id={}
