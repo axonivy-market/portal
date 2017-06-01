@@ -98,7 +98,9 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   private List<UserProcess> findUserProcessBaseOnUIMode(Boolean compactMode) {
-    return compactMode ? findFavoriteProcessUserCanStart() : findAllProcesses();
+    List<UserProcess> userProcesses = compactMode ? findFavoriteProcessUserCanStart() : findAllProcesses();
+    sortUserProcessList(userProcesses);
+    return userProcesses;
   }
 
   public void addNewUserProcess(String clientId) {
@@ -110,6 +112,7 @@ public class ProcessWidgetBean implements Serializable {
     correctProcessLink();
     editingProcess = userProcessService.save(editingProcess);
     userProcesses.add(editingProcess);
+    sortUserProcessList(userProcesses);
   }
 
   private void correctProcessLink() {
@@ -137,10 +140,14 @@ public class ProcessWidgetBean implements Serializable {
                 processStart -> new UserProcess(stripHtmlTags(processStart.getName()), userName,
                     ((RemoteProcessStart) processStart).getStartLink())).collect(Collectors.toList());
     filteredUserProcesses.addAll(getFilteredExpressWorkflows(query));
-    filteredUserProcesses.sort((process1, process2) -> process1.getProcessName().compareTo(process2.getProcessName()));
+    sortUserProcessList(filteredUserProcesses);
     return filteredUserProcesses;
   }
-
+  
+  private void sortUserProcessList(List<UserProcess> userProcesses) {
+    userProcesses.sort((process1, process2) -> process1.getProcessName().compareTo(process2.getProcessName()));
+  }
+  
   private List<UserProcess> getFilteredExpressWorkflows(String query) {
     List<UserProcess> workflow = new ArrayList<>();
     IIvyEntityManager entityManager = Ivy.persistence().get(GAWFS_PERSISTENCE);
@@ -197,7 +204,7 @@ public class ProcessWidgetBean implements Serializable {
     }
     return StringUtils.EMPTY;
   }
-  
+
   public UserProcess getEditingProcess() {
     return editingProcess;
   }
