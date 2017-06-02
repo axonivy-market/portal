@@ -42,3 +42,6 @@ delegateComment String #field
 delegateComment PERSISTENT #fieldModifier
 canDelegateTask Boolean #field
 canDelegateTask PERSISTENT #fieldModifier
+callbackUrl String #field
+callbackUrl 'Portal Task List url is used to be back after finish task' #fieldComment
+callbackUrl PERSISTENT #fieldModifier

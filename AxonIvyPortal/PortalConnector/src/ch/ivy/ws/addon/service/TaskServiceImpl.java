@@ -616,6 +616,22 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       throw new WSException(10045, e);
     }
   }
+  
+  @Override
+  public void setAdditionalProperty(Long taskId, String name, String value) throws WSException {
+    try {
+      securityManager().executeAsSystem(() -> {
+        if (taskId != null) {
+          TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
+          ITask existingTask = taskQueryExecutor().getFirstResult(query);
+          existingTask.setAdditionalProperty(name, value);
+        }
+        return null;
+        });
+    } catch (Exception e) {
+      throw new WSException(10045, e);
+    }
+  }
 
   private boolean hasPermissionToResetTask(ITask task, String username, boolean canUserResumeTask) {
     TaskState taskState = task.getState();

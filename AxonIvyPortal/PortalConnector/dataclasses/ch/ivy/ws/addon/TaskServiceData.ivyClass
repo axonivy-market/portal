@@ -29,3 +29,7 @@ expireIn2Days Long #field
 expireIn3Days Long #field
 isUrlBuiltFromSystemProperties Boolean #field
 language String #field
+name String #field
+name 'Additional property''s name' #fieldComment
+value String #field
+value 'Additional property''s value' #fieldComment
