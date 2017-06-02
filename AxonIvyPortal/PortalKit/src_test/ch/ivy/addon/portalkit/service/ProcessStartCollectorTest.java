@@ -1,9 +1,12 @@
 package ch.ivy.addon.portalkit.service;
 
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -16,6 +19,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.IProcessModelVersionRequest;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
@@ -24,6 +28,16 @@ import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
 @PrepareForTest({Ivy.class, WorkflowNavigationUtil.class})
 public class ProcessStartCollectorTest {
 
+  @Before
+  public void setup() {
+    mockStatic(Ivy.class);
+    IProcessModelVersion currentProcessModelVersion = Mockito.mock(IProcessModelVersion.class);
+    IProcessModelVersionRequest request = Mockito.mock(IProcessModelVersionRequest.class);
+    Mockito.when(request.getProcessModelVersion()).thenReturn(currentProcessModelVersion);
+    Mockito.when(Ivy.request()).thenReturn(request);
+    mockWorkflowProcessModelVersionFindProcessStart(currentProcessModelVersion, StringUtils.EMPTY, true);
+  }
+  
   @Test
   public void testFindProcessStartByUserFriendlyRequestPathWithInactiveApplication() {
     IApplication application = mockApplication(ActivityState.INACTIVE);
@@ -70,7 +84,7 @@ public class ProcessStartCollectorTest {
     Mockito.when(processModel.getReleasedProcessModelVersion()).thenReturn(processModelVersion);
     IApplication application = mockApplication(ActivityState.ACTIVE);
     Mockito.when(application.getProcessModelsSortedByName()).thenReturn(Arrays.asList(processModel));
-    mockWorkflowProcessModelVersionFindProcessStart(processModelVersion, StringUtils.EMPTY);
+    mockWorkflowProcessModelVersionFindProcessStart(processModelVersion, StringUtils.EMPTY, false);
 
     ProcessStartCollector processStartCollector = new ProcessStartCollector(application);
     IProcessStart actualProcessStart =
@@ -88,7 +102,7 @@ public class ProcessStartCollectorTest {
     Mockito.when(application.getProcessModelsSortedByName()).thenReturn(Arrays.asList(processModel));
     String requestPath = "Process Start";
     IProcessStart expectedProcessStart =
-        mockWorkflowProcessModelVersionFindProcessStart(processModelVersion, requestPath);
+        mockWorkflowProcessModelVersionFindProcessStart(processModelVersion, requestPath, false);
 
     ProcessStartCollector processStartCollector = new ProcessStartCollector(application);
     IProcessStart actualProcessStart = processStartCollector.findProcessStartByUserFriendlyRequestPath(requestPath);
@@ -113,9 +127,12 @@ public class ProcessStartCollectorTest {
     Mockito.when(processModelVersion.getActivityState()).thenReturn(activityState);
     return processModelVersion;
   }
-
+  
   private IProcessStart mockWorkflowProcessModelVersionFindProcessStart(IProcessModelVersion processModelVersion,
-      String requestPath) {
+      String requestPath, boolean returnNull) {
+    if (returnNull) {
+      return null;
+    }
     IWorkflowProcessModelVersion workflowProcessModelVersion = Mockito.mock(IWorkflowProcessModelVersion.class);
     IProcessStart processStart = null;
     if (!requestPath.isEmpty()) {
