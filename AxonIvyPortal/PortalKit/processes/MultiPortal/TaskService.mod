@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Apr 19 14:06:37 ICT 2017]
-146C8E81DE07F973 3.19 #module
+[>Created: Fri Jun 02 13:59:58 ICT 2017]
+146C8E81DE07F973 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 B #cInfo
@@ -273,6 +273,14 @@ Te0 @PushWFArc f41 '' #zField
 Te0 @GridStep f256 '' #zField
 Te0 @PushWFArc f257 '' #zField
 Te0 @PushWFArc f254 '' #zField
+Te0 @StartSub f25 '' #zField
+Te0 @GridStep f253 '' #zField
+Te0 @CallSub f264 '' #zField
+Te0 @GridStep f265 '' #zField
+Te0 @PushWFArc f266 '' #zField
+Te0 @PushWFArc f267 '' #zField
+Te0 @PushWFArc f268 '' #zField
+Te0 @PushWFArc f269 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f3 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f3 1347 995 26 26 14 0 #rect
@@ -2250,7 +2258,7 @@ Te0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f32 3942 268 36 24 20 -2 #rect
+Te0 f32 3790 268 36 24 20 -2 #rect
 Te0 f32 @|StepIcon #fIcon
 Te0 f34 inParamDecl '<ch.ivy.ws.addon.IvyTask task,java.lang.Long serverId> param;' #txt
 Te0 f34 inParamTable 'out.ivyTask=param.task;
@@ -2269,7 +2277,7 @@ Te0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f34 3947 51 26 26 14 0 #rect
+Te0 f34 3795 51 26 26 14 0 #rect
 Te0 f34 @|StartSubIcon #fIcon
 Te0 f35 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -2290,7 +2298,7 @@ Te0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f35 3942 124 36 24 20 -2 #rect
+Te0 f35 3790 124 36 24 20 -2 #rect
 Te0 f35 @|StepIcon #fIcon
 Te0 f36 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f36 processCall ServiceIntegrators/TaskServiceIntegrator:save(String,ch.ivy.addon.portalkit.persistence.domain.Server,ch.ivy.ws.addon.IvyTask) #txt
@@ -2315,17 +2323,17 @@ Te0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f36 3942 188 36 24 20 -2 #rect
+Te0 f36 3790 188 36 24 20 -2 #rect
 Te0 f36 @|CallSubIcon #fIcon
 Te0 f37 expr out #txt
-Te0 f37 3960 212 3960 268 #arcP
+Te0 f37 3808 212 3808 268 #arcP
 Te0 f38 expr out #txt
-Te0 f38 3960 77 3960 124 #arcP
+Te0 f38 3808 77 3808 124 #arcP
 Te0 f42 expr out #txt
-Te0 f42 3960 148 3960 188 #arcP
+Te0 f42 3808 148 3808 188 #arcP
 Te0 f44 expr out #txt
-Te0 f44 3960 292 1374 880 #arcP
-Te0 f44 1 3960 880 #addKink
+Te0 f44 3808 292 1374 880 #arcP
+Te0 f44 1 3808 880 #addKink
 Te0 f44 1 0.39100529100529113 0 0 #arcLabel
 Te0 f13 expr out #txt
 Te0 f13 64 77 64 116 #arcP
@@ -3428,6 +3436,111 @@ Te0 f257 expr out #txt
 Te0 f257 3576 148 3575 188 #arcP
 Te0 f254 expr out #txt
 Te0 f254 3575 212 3576 248 #arcP
+Te0 f25 inParamDecl '<java.lang.String name,java.lang.String value,java.lang.Long taskId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
+Te0 f25 inParamTable 'out.name=param.name;
+out.server=param.server;
+out.taskId=param.taskId;
+out.value=param.value;
+' #txt
+Te0 f25 outParamDecl '<java.util.List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f25 outParamTable 'result.errors=in.errors;
+' #txt
+Te0 f25 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f25 callSignature setAdditionalProperty(String,String,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
+Te0 f25 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>setAdditionalProperty
+(String,String,IvyTask,Long)</name>
+        <nameStyle>50,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f25 4019 52 26 26 14 0 #rect
+Te0 f25 @|StartSubIcon #fIcon
+Te0 f253 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f253 actionTable 'out=in;
+' #txt
+Te0 f253 actionCode 'import ch.ivy.ws.addon.WsException;
+
+for (WsException e : in.errors) {
+	e.server = in.server.name;
+}' #txt
+Te0 f253 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f253 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>finalize</name>
+        <nameStyle>8,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f253 4014 269 36 24 20 -2 #rect
+Te0 f253 @|StepIcon #fIcon
+Te0 f264 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f264 processCall ServiceIntegrators/TaskServiceIntegrator:setAdditionalProperty(ch.ivy.addon.portalkit.persistence.domain.Server,String,String,String,Long) #txt
+Te0 f264 doCall true #txt
+Te0 f264 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint,java.lang.String name,java.lang.String value,java.lang.Long taskId> param;
+' #txt
+Te0 f264 requestMappingAction 'param.server=in.server;
+param.endpoint=in.endpoint;
+param.name=in.name;
+param.value=in.value;
+param.taskId=in.taskId;
+' #txt
+Te0 f264 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f264 responseMappingAction 'out=in;
+out.errors=result.errors;
+' #txt
+Te0 f264 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskServiceIntegrator</name>
+        <nameStyle>21,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f264 4014 189 36 24 20 -2 #rect
+Te0 f264 @|CallSubIcon #fIcon
+Te0 f265 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f265 actionTable 'out=in;
+' #txt
+Te0 f265 actionCode 'import ch.ivy.addon.portalkit.service.PortalConnectorDetector;
+import ch.ivy.addon.portalkit.enums.WebServiceEndPoint;
+
+PortalConnectorDetector detector = new PortalConnectorDetector();
+in.endpoint = detector.getPortalConnectorURLOf(in.server) + WebServiceEndPoint.TASK.toString();' #txt
+Te0 f265 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f265 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init ws endpoint</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f265 4014 125 36 24 20 -2 #rect
+Te0 f265 @|StepIcon #fIcon
+Te0 f266 expr out #txt
+Te0 f266 4032 213 4032 269 #arcP
+Te0 f267 expr out #txt
+Te0 f267 4032 149 4032 189 #arcP
+Te0 f268 expr out #txt
+Te0 f268 4032 78 4032 125 #arcP
+Te0 f269 expr out #txt
+Te0 f269 4032 293 1374 880 #arcP
+Te0 f269 1 4032 880 #addKink
+Te0 f269 0 0.7385410347342349 0 0 #arcLabel
 >Proto Te0 .type ch.ivyteam.wf.processes.TaskServiceData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3766,3 +3879,11 @@ Te0 f8 mainOut f257 tail #connect
 Te0 f257 head f256 mainIn #connect
 Te0 f256 mainOut f254 tail #connect
 Te0 f254 head f11 mainIn #connect
+Te0 f264 mainOut f266 tail #connect
+Te0 f266 head f253 mainIn #connect
+Te0 f25 mainOut f268 tail #connect
+Te0 f268 head f265 mainIn #connect
+Te0 f265 mainOut f267 tail #connect
+Te0 f267 head f264 mainIn #connect
+Te0 f253 mainOut f269 tail #connect
+Te0 f269 head f148 in #connect

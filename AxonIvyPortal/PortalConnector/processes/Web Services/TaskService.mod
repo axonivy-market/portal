@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Jun 01 19:15:29 ICT 2017]
+[>Created: Fri Jun 02 14:08:48 ICT 2017]
 1380566F9095B9C4 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
@@ -88,6 +88,10 @@ Te0 @StartWS f70 '' #zField
 Te0 @PushWFArc f71 '' #zField
 Te0 @PushWFArc f72 '' #zField
 Te0 @PushWFArc f73 '' #zField
+Te0 @GridStep f74 '' #zField
+Te0 @StartWS f75 '' #zField
+Te0 @PushWFArc f76 '' #zField
+Te0 @PushWFArc f77 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f8 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -176,27 +180,7 @@ Te0 f14 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
 Te0 f14 actionTable 'out=in;
 ' #txt
-Te0 f14 actionCode 'import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
-import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
-import ch.ivyteam.ivy.workflow.ITask;
-
-try {
-ivy.log.warn("task id {0}", in.ivyTask.id);
-ITask task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(ivy.wf.getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.ivyTask.id)) as ITask;
-ivy.log.warn("task {0}", task);
-IBusinessCase case = task.getCase().getBusinessCase();
-ivy.log.warn("case {0}", case);
-List<ISideStepProcess> sideSteps = ivy.casemap.sideSteps().findStartable(case);
-for (ISideStepProcess sideStep : sideSteps) {
-	ivy.log.warn("sideStep {0}", sideStep);
-}
-
-} catch (Exception e) {
-	ivy.log.warn("Exception when delegate", e);
-}
-
-
-import ch.ivy.ws.addon.bo.TaskServiceResult;
+Te0 f14 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
 import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
@@ -207,7 +191,6 @@ try{
 }catch(WSException e){
 	in.errors.add(e);
 }' #txt
-Te0 f14 security system #txt
 Te0 f14 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1135,6 +1118,65 @@ Te0 f73 expr out #txt
 Te0 f73 680 148 1498 312 #arcP
 Te0 f73 1 680 312 #addKink
 Te0 f73 1 0.39212345493702755 0 0 #arcLabel
+Te0 f74 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f74 actionTable 'out=in;
+' #txt
+Te0 f74 actionCode 'import ch.ivy.ws.addon.WSException;
+import ch.ivy.ws.addon.WsServiceFactory;
+
+try {
+	WsServiceFactory.getTaskService().setAdditionalProperty(in.ivyTask.id, in.name, in.value);
+} catch(WSException e) {
+	in.errors.add(e);
+}' #txt
+Te0 f74 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set additional
+property to task</name>
+        <nameStyle>31,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f74 3310 164 36 24 20 -2 #rect
+Te0 f74 @|StepIcon #fIcon
+Te0 f75 inParamDecl '<java.lang.String name,java.lang.String value,java.lang.Long id> param;' #txt
+Te0 f75 inParamTable 'out.expireIn2Days=param.id;
+out.ivyTask.id=param.id;
+out.name=param.name;
+out.value=param.value;
+' #txt
+Te0 f75 outParamDecl '<List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Te0 f75 outParamTable 'result.errors=in.errors;
+' #txt
+Te0 f75 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f75 callSignature setAdditionalProperty(String,String,Long) #txt
+Te0 f75 useUserDefinedException false #txt
+Te0 f75 taskData TaskTriggered.PRI=2 #txt
+Te0 f75 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>setAdditionalProperty(String,String,Long)</name>
+        <nameStyle>41,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f75 @C|.responsibility Everybody #txt
+Te0 f75 3315 51 26 26 14 0 #rect
+Te0 f75 @|StartWSIcon #fIcon
+Te0 f76 expr out #txt
+Te0 f76 3328 77 3328 164 #arcP
+Te0 f77 expr out #txt
+Te0 f77 3328 188 1526 312 #arcP
+Te0 f77 1 3328 312 #addKink
+Te0 f77 0 0.6965586369176562 0 0 #arcLabel
 >Proto Te0 .webServiceName ch.ivy.ws.addon.TaskService #txt
 >Proto Te0 .authenticationType 'HTTP Basic' #txt
 >Proto Te0 .type ch.ivy.ws.addon.TaskServiceData #txt
@@ -1282,3 +1324,7 @@ Te0 f69 mainOut f72 tail #connect
 Te0 f72 head f58 in #connect
 Te0 f66 mainOut f73 tail #connect
 Te0 f73 head f58 in #connect
+Te0 f75 mainOut f76 tail #connect
+Te0 f76 head f74 mainIn #connect
+Te0 f74 mainOut f77 tail #connect
+Te0 f77 head f58 in #connect

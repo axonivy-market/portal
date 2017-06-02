@@ -1,14 +1,18 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -22,9 +26,16 @@ public class ProcessStartCollector {
   public ProcessStartCollector(IApplication application) {
     this.application = application;
   }
-
-  public IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
+  
+  public List<IProcessStart> findProcessStartRequestPathContainsKeyword(String keyword) {
+    List<IProcessStart> processStarts = new ArrayList<>();
     if (isActive(this.application)) {
+      processStarts =
+          findProcessStartRequestPathContainsKeywordAndPmv(keyword, Ivy.request().getProcessModelVersion());
+      if (CollectionUtils.isNotEmpty(processStarts)) {
+        return processStarts;
+      }
+
       List<IProcessModel> processModels = this.application.getProcessModelsSortedByName();
 
       for (IProcessModel processModel : processModels) {
@@ -33,9 +44,33 @@ public class ProcessStartCollector {
           IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
 
           if (isActive(processModelVersion)) {
-            IWorkflowProcessModelVersion workflowPmv =
-                WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
-            IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
+            processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, processModelVersion);
+            if (CollectionUtils.isNotEmpty(processStarts)) {
+              break;
+            }
+          }
+        }
+      }
+    }
+    return processStarts;
+  }
+
+  public IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
+    if (isActive(this.application)) {
+      IProcessStart processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+      if (processStart != null) {
+        return processStart;
+      }
+      
+      List<IProcessModel> processModels = this.application.getProcessModelsSortedByName();
+
+      for (IProcessModel processModel : processModels) {
+
+        if (isActive(processModel)) {
+          IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
+
+          if (isActive(processModelVersion)) {
+            processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, processModelVersion);
             if (processStart != null) {
               return processStart;
             }
@@ -44,6 +79,22 @@ public class ProcessStartCollector {
       }
     }
     return null;
+  }
+
+  private IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
+      IProcessModelVersion processModelVersion) {
+    IWorkflowProcessModelVersion workflowPmv =
+        WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+    IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
+    return processStart;
+  }
+  
+  private List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPmv(String keyword, IProcessModelVersion processModelVersion) {
+    IWorkflowProcessModelVersion workflowPmv =
+        WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+    return workflowPmv.getProcessStarts().stream()
+        .filter(processStart -> processStart.getUserFriendlyRequestPath().contains(keyword))
+        .collect(Collectors.toList());
   }
 
   public String findACMLink() throws Exception {

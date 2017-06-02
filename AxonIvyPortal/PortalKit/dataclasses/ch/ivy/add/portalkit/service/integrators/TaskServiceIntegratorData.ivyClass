@@ -30,3 +30,7 @@ isUrlBuiltFromSystemProperties Boolean #field
 jsonQuery String #field
 jsonQuery 'Customized TaskQuery' #fieldComment
 language String #field
+name String #field
+name 'Additional property''s name' #fieldComment
+value String #field
+value 'Additional property''s value' #fieldComment
