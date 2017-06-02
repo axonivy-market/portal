@@ -40,3 +40,7 @@ serverId Long #field
 task ch.ivy.addon.portalkit.bo.RemoteTask #field
 jsonQuery String #field
 jsonQuery 'Customized TaskQuery' #fieldComment
+name String #field
+name 'Additional property''s name' #fieldComment
+value String #field
+value 'Additional property''s value' #fieldComment

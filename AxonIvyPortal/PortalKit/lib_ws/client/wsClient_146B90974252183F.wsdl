@@ -29,6 +29,8 @@
 <xs:element name="resetTaskResponse" type="tns:resetTaskResponse"></xs:element>
 <xs:element name="save" type="tns:save"></xs:element>
 <xs:element name="saveResponse" type="tns:saveResponse"></xs:element>
+<xs:element name="setAdditionalProperty" type="tns:setAdditionalProperty"></xs:element>
+<xs:element name="setAdditionalPropertyResponse" type="tns:setAdditionalPropertyResponse"></xs:element>
 <xs:complexType name="analyzePriorityStatistic">
     <xs:sequence>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
@@ -317,6 +319,18 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+<xs:complexType name="setAdditionalProperty">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setAdditionalPropertyResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
 <xs:complexType name="findPersonalTaskCategories">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
@@ -564,6 +578,10 @@
     <wsdl:part element="tns:parkTask" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="setAdditionalPropertyResponse">
+    <wsdl:part element="tns:setAdditionalPropertyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="findGroupTaskCategories">
     <wsdl:part element="tns:findGroupTaskCategories" name="parameters">
     </wsdl:part>
@@ -574,6 +592,10 @@
   </wsdl:message>
   <wsdl:message name="WebServiceProcessTechnicalException">
     <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setAdditionalProperty">
+    <wsdl:part element="tns:setAdditionalProperty" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="findPersonalTaskCategories">
@@ -657,6 +679,14 @@
       <wsdl:input message="tns:analyzeExpiryStatistic" name="analyzeExpiryStatistic">
     </wsdl:input>
       <wsdl:output message="tns:analyzeExpiryStatisticResponse" name="analyzeExpiryStatisticResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setAdditionalProperty">
+      <wsdl:input message="tns:setAdditionalProperty" name="setAdditionalProperty">
+    </wsdl:input>
+      <wsdl:output message="tns:setAdditionalPropertyResponse" name="setAdditionalPropertyResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -778,6 +808,18 @@
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="findGroupTaskCategoriesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setAdditionalProperty">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="setAdditionalProperty">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setAdditionalPropertyResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
