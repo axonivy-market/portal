@@ -33,11 +33,10 @@
 											actionListener="#{logic.startProcess(data.createWorkflowStartLink)}" />
 
 
-								<p:dataGrid id="availableWorkflows" var="workflow"
+								<p:dataGrid id="availableWorkflows" var="workflow" styleClass="workflow-data-grid"
 									emptyMessage="#{ivy.cms.co('/Dialogs/GAWFSPortalHome/NoWorkflowAvailable')}" 
-									value="#{data.workflows}" style="border: none; width: 100%;"
-									columns="1" layout="grid">
-									
+									value="#{data.workflows}" columns="1" layout="grid">
+
 									<p:panel style="vertical-align: middle; border:none; width: 100%;">
 										<p:panelGrid style="width: 100%;margin-top:-10px"
 											styleClass="express-start-process-panel processStartsPanelGrid">
