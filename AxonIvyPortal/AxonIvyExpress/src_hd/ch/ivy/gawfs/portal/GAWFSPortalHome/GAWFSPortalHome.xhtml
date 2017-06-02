@@ -18,17 +18,19 @@
 				</h:panelGroup>
 			</h:panelGrid>
 			<h:form id="form" style="margin-top: 10px">
-				<p:commandLink style="margin-left: 5px" value="Click here to create new Workflow" actionListener="#{logic.startProcess(data.createWorkflowStartLink)}"/>
 				<h:panelGrid columns="1" style="width: 100%">
 					<f:facet name="header">
 						<p:messages></p:messages>
 					</f:facet>
 					<p:panelGrid style="border: none; width: 100%;">
 						<p:row>
-							<p:column style="width: 60%; vertical-align: top; border: none">
+							<p:column styleClass="express-panel">
 								<h3>
 									<i class="fa fa-fire" aria-hidden="true"></i> #{ivy.cms.co('/Dialogs/GAWFSPortalHome/AvailableProcess')}
 								</h3>
+
+								<p:commandButton styleClass="create-process-button" value="Create Process" icon="fa fa-plus"
+											actionListener="#{logic.startProcess(data.createWorkflowStartLink)}" />
 
 
 								<p:dataGrid id="availableWorkflows" var="workflow"
@@ -36,14 +38,13 @@
 									value="#{data.workflows}" style="border: none; width: 100%;"
 									columns="1" layout="grid">
 									
-									<p:panel id="pnl" style="vertical-align: middle;border:none; width: 100%;">
-										
+									<p:panel style="vertical-align: middle; border:none; width: 100%;">
 										<p:panelGrid style="width: 100%;margin-top:-10px"
-											styleClass="processStartsPanelGrid">
+											styleClass="express-start-process-panel processStartsPanelGrid">
 											<p:row style="width: 100%;">
 												<p:column style="padding: 1px 2px; border: none; vertial-align: middle; overflow:hidden; white-space:nowrap; -ms-text-overflow:ellipsis; text-overflow:ellipsis;">
 													<p:panel style="border:2px solid #f5f5f5;box-shadow: 3px 0 2px 0 rgba(150, 150, 150, 1); border-radius: 12px;">
-													<p:panelGrid  styleClass="processList">
+													<p:panelGrid  styleClass="process-list">
 														<p:row style="width: 100%;">
 														<p:column colspan="1" rowspan="2">
 															</p:column>
@@ -51,10 +52,7 @@
 																style="padding: 1px 2px; padding-right: 0px; padding-left: 0px;">
 																<i class="fa fa-chevron-right fa-sm" aria-hidden="true">&#160;</i>
 															</p:column>
-															<p:column colspan="1" rowspan="2"
-																style="border-right: 1px solid #f5f5f5 !important;">
-																
-															</p:column>
+															<p:column colspan="1" rowspan="2" styleClass="separator" />
 															<p:column colspan="1" rowspan="2">
 															</p:column>
 															<p:column colspan="1" style="padding: 1px 2px; width: 100%;">
@@ -79,34 +77,27 @@
 																	value="#{workflow.processDescription}"
 																	style="font-size:14px; display: inline; overflow: hidden; height: 80px;"></h:outputText>
 															</p:column>
-																<p:column colspan="1" rowspan="2"
-																	style="border-left: 1px solid #f5f5f5 !important;">
-																	
-																</p:column>
+																<p:column colspan="1" rowspan="2" />
 														
-															<p:column colspan="1" style="padding: 1px 2px; width: 100%;">
+															<p:column colspan="1" styleClass="separator" style="padding: 1px 2px; width: 100%;">
 																
 
 															</p:column>
-															<p:column style="text-align: middle; width: 35px; border: none;"
-																		rendered="#{workflow.owner}">
+															<p:column styleClass="icon-placeholder" rendered="#{workflow.owner}">
 															<h:outputLink value="#{workflow.processDeleteLink}">
-																<i class="fa fa-trash-o fa-lg" style="font-size:14px; color: #f21c0a;" aria-hidden="true"></i>
+																<i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
 															</h:outputLink>
 
 															</p:column>
-															<p:column
-																style="text-align: middle; width: 35px; border: none;"
-																rendered="#{workflow.owner}">
+															<p:column styleClass="icon-placeholder" rendered="#{workflow.owner}">
 																<h:outputLink value="#{workflow.processEditLink}">
-																	<i class="fa fa-pencil fa-lg" style="font-size:14px; color: #f21c0a;"  aria-hidden="true"></i>
+																	<i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
 																</h:outputLink>
-			
 															</p:column>
-															<p:column
-																style="text-align: middle; width: 35px; border: none;">
+
+															<p:column styleClass="icon-placeholder">
 																<h:outputLink value="#{workflow.processStartLink}">
-																	<i class="fa fa-play fa-2x" style="font-size:14px; color: #f21c0a;"  aria-hidden="true"></i>
+																	<i class="fa fa-play fa-2x" aria-hidden="true"></i>
 																</h:outputLink>
 															</p:column>
 														</p:row>
