@@ -45,6 +45,10 @@ public class ServerService extends AbstractService<Server> {
     }
   }
   
+  public List<Server> findActiveServersNotLocalhost() {
+    return getDao().findActiveServers();
+  }
+  
   public boolean isMultiServers() {
     return findActiveServers().size() > 1;
   }
