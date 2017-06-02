@@ -87,5 +87,6 @@ public interface ITaskService {
 
   TaskServiceResult findGroupTaskCategories(String jsonQuery, String username, List<String> apps, String language) throws WSException;
 
+  void setAdditionalProperty(Long taskId, String name, String value) throws WSException;
 
 }
