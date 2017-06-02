@@ -37,6 +37,10 @@ public class ApplicationService extends AbstractService<Application> {
   public Application findByDisplayNameAndNameAndServerId(String displayName, String name, Long serverId) {
     return getDao().findByDisplayNameAndNameAndServerId(displayName, name, serverId);
   }
+  
+  public List<Application> findOnlineApplicationByServerId(Long serverId) {
+    return getDao().findOnlineAppByServerId(serverId);
+  }
 
   public Application findByName(String name) {
     return getDao().findByName(name);
