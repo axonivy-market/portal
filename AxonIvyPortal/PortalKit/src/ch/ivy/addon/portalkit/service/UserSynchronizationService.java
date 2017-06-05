@@ -30,7 +30,7 @@ public class UserSynchronizationService {
     Server workingOnServer = detector.getServerWorkingOn();
 
     List<Application> applications = applicationService.findOnlineApplicationByServerId(workingOnServer.getId());
-    if (applications.size() < 2) {
+    if (isSingleAppConfigured(applications)) {
       return true;
     }
 
@@ -41,5 +41,9 @@ public class UserSynchronizationService {
       return true;
     }
     return false;
+  }
+
+  private static boolean isSingleAppConfigured(List<Application> applications) {
+    return applications.size() < 2;
   }
 }
