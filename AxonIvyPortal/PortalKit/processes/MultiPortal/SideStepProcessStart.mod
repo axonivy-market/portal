@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 02 20:02:29 ICT 2017]
+[>Created: Mon Jun 05 16:53:51 ICT 2017]
 15C6291386FB461E 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 SideStepProcessStart Big #zClass
@@ -87,11 +87,13 @@ Pt0 f28 actionDecl 'ch.ivyteam.wf.processes.SideStepProcessData out;
 ' #txt
 Pt0 f28 actionTable 'out=in;
 ' #txt
-Pt0 f28 actionCode 'import ch.ivy.addon.portalkit.support.UrlDetector;
+Pt0 f28 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+import ch.ivyteam.ivy.request.IHttpRequest;
+import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.mapper.RemoteSideStepMapper;
 
 if (in.tempErrors.isEmpty()) {
-	String host = "";
+	String host = RequestUriFactory.createServerUri(ivy.request as IHttpRequest).toString();
 	if (in.isMultiServer) {
 		UrlDetector detector = new UrlDetector();
 		host = detector.getHost(in.server.path);
