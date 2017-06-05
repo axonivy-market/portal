@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 02 10:49:54 ICT 2017]
+[>Created: Mon Jun 05 11:43:00 ICT 2017]
 153AC8F1D34C2E0D 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemProcess Big #zClass
@@ -35,24 +35,14 @@ import ch.ivyteam.ivy.security.IPermission;
 in.internalCase = ivy.wf.findCase(in.caseId);
 PermissionCheckerService permissionCheker = new PermissionCheckerService();
 in.canChangeCaseDescription = permissionCheker.hasPermission(IPermission.CASE_WRITE_DESCRIPTION);
-in.canChangeCaseName = permissionCheker.hasPermission(IPermission.CASE_WRITE_NAME);
-
-in.sideSteps = ivy.casemap.sideSteps().findStartable(in.internalCase.getBusinessCase());
-in.isAdhocEnabled = SideStepUtils.hasSelfService();
-if (in.isAdhocEnabled && in.#showStartAdhoc is initialized && in.showStartAdhoc.equalsIgnoreCase("false")) {
-	in.isAdhocEnabled = false;
-}
-
-if (in.isAdhocEnabled || !in.sideSteps.isEmpty()) {
-	in.isSideStepsEnabled = true;
-}' #txt
+in.canChangeCaseName = permissionCheker.hasPermission(IPermission.CASE_WRITE_NAME);' #txt
 Cs0 f11 security system #txt
 Cs0 f11 type ch.ivy.addon.portalkit.singleapp.cases.CaseItem.CaseItemData #txt
 Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>get case &amp; sidesteps</name>
-        <nameStyle>20,7
+        <name>get case</name>
+        <nameStyle>8,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -63,21 +53,20 @@ Cs0 f2 expr out #txt
 Cs0 f2 64 172 64 213 #arcP
 Cs0 f0 guid 153ACF5FD10306C5 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.singleapp.cases.CaseItem.CaseItemData #txt
-Cs0 f0 method start(Long,String) #txt
+Cs0 f0 method start(Long) #txt
 Cs0 f0 disableUIEvents true #txt
 Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Long caseId,java.lang.String showStartAdhoc> param = methodEvent.getInputArguments();
+<java.lang.Long caseId> param = methodEvent.getInputArguments();
 ' #txt
 Cs0 f0 inParameterMapAction 'out.caseId=param.caseId;
-out.showStartAdhoc=param.#showStartAdhoc;
 ' #txt
 Cs0 f0 outParameterDecl '<> result;
 ' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(Long,String)</name>
-        <nameStyle>18,5,7
+        <name>start(Long)</name>
+        <nameStyle>11,5,7
 </nameStyle>
     </language>
 </elementInfo>
