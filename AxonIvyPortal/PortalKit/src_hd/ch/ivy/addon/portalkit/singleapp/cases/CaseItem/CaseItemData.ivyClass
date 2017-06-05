@@ -10,5 +10,9 @@ canChangeCaseName Boolean #field
 canChangeCaseName PERSISTENT #fieldModifier
 sideSteps java.util.List<ch.ivyteam.ivy.casemap.runtime.ISideStepProcess> #field
 sideSteps PERSISTENT #fieldModifier
-isSideStepsEnable Boolean #field
-isSideStepsEnable PERSISTENT #fieldModifier
+isSideStepsEnabled Boolean #field
+isSideStepsEnabled PERSISTENT #fieldModifier
+showStartAdhoc String #field
+showStartAdhoc PERSISTENT #fieldModifier
+isAdhocEnabled Boolean #field
+isAdhocEnabled PERSISTENT #fieldModifier

@@ -10,6 +10,12 @@
             <parameterType>Long</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
+        <inputParameter>
+            <name>showStartAdhoc</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>

@@ -8,6 +8,7 @@ import static org.owasp.html.Sanitizers.STYLES;
 import static org.owasp.html.Sanitizers.TABLES;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -15,11 +16,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.menu.DefaultMenuItem;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.MenuModel;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.HTMLDetector;
+import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.request.RequestUriFactory;
@@ -119,4 +124,17 @@ public class TaskWidgetBean implements Serializable {
 	  return isAdmin && (TaskState.SUSPENDED.equals(task.getState()) || TaskState.RESUMED.equals(task.getState()) ||  TaskState.PARKED.equals(task.getState()));
   }
   
+  public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps) throws Exception {
+    MenuModel model = new DefaultMenuModel();
+    int menuIndex = 0;
+    for (ISideStepProcess process : sideSteps) {
+      DefaultMenuItem item = new DefaultMenuItem(process.getName());
+      item.setId(Integer.toString(menuIndex));
+      menuIndex++;
+      final String processURI = process.getStartRequestUri().toString();
+      item.setUrl(processURI);
+      model.addElement(item);
+    }
+    return model;
+  }
 }
