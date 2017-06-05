@@ -39,8 +39,6 @@
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_154F091E0FE17F3C.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_155B8E8D03D38D19.jar"/>
 	<classpathentry kind="con" path="WS_CALL_AXIS2_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15C628C5125A5D1A.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15C76439257CCA00.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15C7646A4BDA62E7.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
