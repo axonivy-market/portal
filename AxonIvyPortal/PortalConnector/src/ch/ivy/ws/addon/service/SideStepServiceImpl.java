@@ -3,7 +3,10 @@ package ch.ivy.ws.addon.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.Callable;
+
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.SideStepServiceResult;
@@ -33,7 +36,8 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
                   .isEqual(searchCriteria.getCaseId()));
           List<IvySideStep> sideSteps = new ArrayList<>();
           if (!searchCriteria.isAdhocExcluded()) {
-            sideSteps.add(createAdhocSideStep(wfCase));
+            IvySideStep adhocSideStep = createAdhocSideStep(wfCase);
+            Optional.ofNullable(adhocSideStep).ifPresent(adhoc -> sideSteps.add(adhoc));
           }
           SideStepServiceResult result = new SideStepServiceResult();
           result.setSideSteps(sideSteps);
@@ -45,10 +49,26 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     }
   }
 
+  public boolean hasSideSteps(boolean isAdhocExcluded, ICase wfCase) throws Exception {
+    if (!isAdhocExcluded) {
+      IvySideStep adhocSideStep = createAdhocSideStep(wfCase);
+      if (adhocSideStep != null) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * @return null if cannot find adhoc, otherwise return adhoc process
+   */
   private IvySideStep createAdhocSideStep(ICase wfCase) throws Exception {
     IApplication application = wfCase.getApplication();
     ProcessStartCollector collector = new ProcessStartCollector(application);
     String acmLink = collector.findACMLink();
+    if (StringUtils.EMPTY.equals(acmLink)) {
+      return null;
+    }
     IvySideStep adhoc = new IvySideStep();
     adhoc.setName(Ivy.cms().co("/ch/ivy/addon/portalconnector/sidestep/addAdhocTask"));
     adhoc.setStartLink(acmLink);
