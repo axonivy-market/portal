@@ -101,7 +101,7 @@ public class CaseBean {
       adhocItem.setId(Integer.toString(menuIndex));
       menuIndex++;
       adhocItem.setTitle(Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip"));
-      adhocItem.setOncomplete("PF('task-reset-confirmation-dialog').show()");
+      adhocItem.setOnclick("PF('task-reset-confirmation-dialog').show()");
       model.addElement(adhocItem);
     }
     for (ISideStepProcess process : sideSteps) {
