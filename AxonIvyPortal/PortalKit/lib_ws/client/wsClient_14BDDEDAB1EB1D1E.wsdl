@@ -184,7 +184,7 @@
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
-          <xs:element minOccurs="0" name="customMailsDisabled" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="applicationMailEnabled" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="emailNotificationDisabled" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnFriday" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="emailSendDailyTaskSummaryOnMonday" type="xs:boolean"></xs:element>
