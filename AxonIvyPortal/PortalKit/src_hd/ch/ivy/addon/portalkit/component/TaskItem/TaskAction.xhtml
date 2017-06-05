@@ -50,14 +50,12 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openTaskTooltip')}"
         styleClass="task-command-tooltip" />
         
-      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command" global="false" disabled="#{!taskWidgetBean.hasSelfService() or (!task.canResume and !taskWidgetBean.hasPermissionToAddAdhoc(task))}">
-      	 <span class="action-icon fa fa-ellipsis-h fa-2x" />
-      	  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskSideSteps')}" />
+      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command side-step" global="false" disabled="#{!taskWidgetBean.hasSelfService() or (!task.canResume and !taskWidgetBean.hasPermissionToAddAdhoc(task))}"
+        actionListener="#{logic.collectSideSteps(task)}" oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();" >
+      	 <span class="action-icon fa fa-ellipsis-v fa-2x" />
       </p:commandLink>
-      <p:overlayPanel for="task-side-steps-menu" my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true">
-        <p:menu overlay="false">
-          <p:menuitem styleClass="side-steps-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/addAdhocTask')}" url="#{taskWidgetBean.createAdhocLink(task)}" />
-   	    </p:menu>
+      <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel-#{rowIndex}" for="task-side-steps-menu" my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true" rendered="#{!(!taskWidgetBean.hasSelfService() or (!task.canResume and !taskWidgetBean.hasPermissionToAddAdhoc(task)))}">
+        <p:menu overlay="false" model="#{taskWidgetBean.getSideStepsMenuModel(data.sideSteps)}" />
       </p:overlayPanel>
       
    	  <p:tooltip for="task-side-steps-menu" styleClass="task-command-tooltip" 

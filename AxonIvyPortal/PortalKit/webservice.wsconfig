@@ -428,4 +428,28 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
         </wsdlGeneratedInfo>
         <webServiceVersion/>
     </webServiceConfig>
+    <webServiceConfig>
+        <name>sideStepService</name>
+        <id>15C7646A4BDA62E7</id>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/15C62875FD98F850?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>SideStepProcessServicePort="findSideStepsByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>SideStepProcessServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>SideStepProcessServicePortfindSideStepsByCriteria="arg0__@@__ch.ivy.ws.addon.FindSideStepsByCriteriaE__@@__"</axisParameterProperties>
+            <axisPortList>SideStepProcessServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.SideStepProcessServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>SideStepProcessServicePortfindSideStepsByCriteria=ch.ivy.ws.addon.FindSideStepsByCriteriaResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.SideStepProcessServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteria.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaE.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResult.java","ch\\ivy\\ws\\addon\\IvySideStep.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\SideStepProcessServiceService.java","ch\\ivy\\ws\\addon\\SideStepProcessServiceServiceStub.java","ch\\ivy\\ws\\addon\\SideStepSearchCriteria.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1496632972277</codeGenerationTimestamp>
+            <wsdlWebserviceName>SideStepProcessServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
 </webServiceConfigurationNode>

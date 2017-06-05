@@ -1,0 +1,4 @@
+SideStepServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+sideSteps java.util.List<ch.ivy.ws.addon.types.IvySideStep> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field

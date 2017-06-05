@@ -1730,6 +1730,14 @@ a.case-details-document-add-link {
   text-align: center;
   border-left: solid 1px rgba(0,0,0,0.5);
 }
+
+.case-info-header-action .action-icon {
+  font-size: 1.5rem;
+}
+
+.case-info-header-action a {
+  font-size: 1.1rem;
+}
 /********************************** END CASE ITEM **********************************/
 .process-start-list {
   margin: 30px 0;
@@ -2074,6 +2082,14 @@ a.compact-task-start-link:hover {
 .task-start-list .action-cell .task-command .action-icon {
   display: block;
   font-size: 1.5rem;
+}
+
+.task-start-list .action-cell .task-command.side-step {
+  position: absolute;
+}
+
+.task-start-list .action-cell .task-command.side-step .fa{
+  font-size: 2rem;
 }
 
 .task-state-open, .case-state-in-progress {
@@ -3729,12 +3745,3 @@ margin-top
 .ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover, .ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
   background-color: transparent !important;
 } 
-
-.start-adhoc-link {
-   color: #337ab7 !important;
-   font-size: 1rem;
-}
-
-.start-adhoc-link:hover {
-  color: #337ab7 !important;
-}

@@ -13,6 +13,7 @@ import ch.ivy.ws.addon.service.ILanguagesSettingsService;
 import ch.ivy.ws.addon.service.IProcessStartService;
 import ch.ivy.ws.addon.service.ISecurityService;
 import ch.ivy.ws.addon.service.IServerService;
+import ch.ivy.ws.addon.service.ISideStepService;
 import ch.ivy.ws.addon.service.ITaskService;
 import ch.ivy.ws.addon.service.IUserSettingService;
 import ch.ivy.ws.addon.service.IsAliveServiceImpl;
@@ -20,15 +21,13 @@ import ch.ivy.ws.addon.service.LanguagesSettingsServiceImpl;
 import ch.ivy.ws.addon.service.ProcessStartServiceImpl;
 import ch.ivy.ws.addon.service.SecurityServiceImpl;
 import ch.ivy.ws.addon.service.ServerServiceImpl;
+import ch.ivy.ws.addon.service.SideStepServiceImpl;
 import ch.ivy.ws.addon.service.TaskServiceImpl;
 import ch.ivy.ws.addon.service.UserSettingServiceImpl;
 
 
 /**
  * Service Factory for all services that are provided as web service
- * 
- * @author mde
- *
  */
 public class WsServiceFactory {
 
@@ -45,6 +44,8 @@ public class WsServiceFactory {
   private static IApplicationService applicationService;
   
   private static IServerService serverService;
+
+  private static ISideStepService sideStepService;
 
   @Deprecated
   private static IIsAliveService isAliveService;
@@ -122,5 +123,12 @@ public class WsServiceFactory {
       serverService = new ServerServiceImpl();
     }
     return serverService;
+  }
+
+  public static ISideStepService getSideStepService() {
+    if (sideStepService == null) {
+      sideStepService = new SideStepServiceImpl();
+    }
+    return sideStepService;
   }
 }
