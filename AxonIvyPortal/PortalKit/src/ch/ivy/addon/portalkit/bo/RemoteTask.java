@@ -111,6 +111,7 @@ public class RemoteTask implements ITask {
   private boolean canChangePriority;
   private boolean canChangeDescription;
   private boolean canChangeName;
+  private boolean hasMoreActions;
   
   /**
    * Gets the workerFullName
@@ -1269,6 +1270,14 @@ public class RemoteTask implements ITask {
 
   public void setCanChangeName(boolean canChangeName) {
 	this.canChangeName = canChangeName;
+  }
+
+  public boolean isHasMoreActions() {
+    return hasMoreActions;
+  }
+
+  public void setHasMoreActions(boolean hasMoreActions) {
+    this.hasMoreActions = hasMoreActions;
   }
 
   @Override

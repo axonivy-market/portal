@@ -98,3 +98,4 @@ expireActivatorFullName String #field
 canChangeDescription Boolean #field
 canChangeName Boolean #field
 expireTaskStartElementPid String #field
+hasMoreActions Boolean #field
