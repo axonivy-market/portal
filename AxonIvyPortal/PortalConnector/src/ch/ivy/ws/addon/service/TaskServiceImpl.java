@@ -299,6 +299,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     task.getApplication()));
                 ivyTask.setCanChangeDescription(hasPermissionToChangeDescription(involvedUsername, task));
                 ivyTask.setCanChangeName(hasPermissionToChangeName(involvedUsername, task));
+                try {
+                  ivyTask.setHasMoreActions(hasMoreActions(task));
+                } catch (Exception e) {
+                  Ivy.log().error("Error when checking whether task has more actions", e);
+                }
                 if (taskSearchCriteria.isQueryByTaskId()) {
                   ivyTasks.add(ivyTask);
                 } else if (canUserResumeTask) {
@@ -319,6 +324,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     } catch (Exception e) {
       throw new WSException(10016, e);
     }
+  }
+
+  private boolean hasMoreActions(ITask task) throws Exception {
+    SideStepServiceImpl sideStepService = new SideStepServiceImpl();
+    return sideStepService.hasSideSteps(false, task.getCase());
   }
 
   @Override
