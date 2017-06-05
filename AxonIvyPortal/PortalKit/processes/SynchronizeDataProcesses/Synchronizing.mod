@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jun 14 16:17:58 ICT 2016]
-1504020B50E9697E 3.18 #module
+[>Created: Mon Jun 05 14:49:14 ICT 2017]
+1504020B50E9697E 3.20 #module
 >Proto >Proto Collection #zClass
 Se0 Synchronizing Big #zClass
 Se0 B #cInfo
@@ -77,6 +77,22 @@ Se0 @PushWFArc f60 '' #zField
 Se0 @PushWFArc f61 '' #zField
 Se0 @PushWFArc f62 '' #zField
 Se0 @PushWFArc f63 '' #zField
+Se0 @Trigger f64 '' #zField
+Se0 @StartSub f65 '' #zField
+Se0 @GridStep f66 '' #zField
+Se0 @Alternative f67 '' #zField
+Se0 @GridStep f68 '' #zField
+Se0 @GridStep f69 '' #zField
+Se0 @Alternative f70 '' #zField
+Se0 @EndSub f71 '' #zField
+Se0 @PushWFArc f72 '' #zField
+Se0 @PushWFArc f73 '' #zField
+Se0 @PushWFArc f74 '' #zField
+Se0 @PushWFArc f75 '' #zField
+Se0 @PushWFArc f76 '' #zField
+Se0 @PushWFArc f77 '' #zField
+Se0 @PushWFArc f78 '' #zField
+Se0 @PushWFArc f79 '' #zField
 >Proto Se0 Se0 Synchronizing #zField
 Se0 f0 inParamDecl '<List<ch.ivy.ws.addon.CustomPropertyPair> customPropertyPairs> param;' #txt
 Se0 f0 inParamTable 'out.customPropertyPairs=param.customPropertyPairs;
@@ -588,6 +604,137 @@ Se0 f63 expr in #txt
 Se0 f63 814 456 928 404 #arcP
 Se0 f63 1 928 456 #addKink
 Se0 f63 1 0.37512823390828437 0 0 #arcLabel
+Se0 f64 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
+Se0 f64 processCall SynchronizeDataProcesses/SynchronizingTriggerProcess:deleteByPrefixThenUpdate(ch.ivy.addon.portalkit.persistence.domain.Server,List<ch.ivy.ws.addon.CustomPropertyPair>,String) #txt
+Se0 f64 doCall true #txt
+Se0 f64 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,List<ch.ivy.ws.addon.CustomPropertyPair> customPropertyPairs,java.lang.String keyPrefix> param;
+' #txt
+Se0 f64 requestMappingAction 'param.server=in.servers.get(in.counter);
+param.customPropertyPairs=in.customPropertyPairs;
+param.keyPrefix=in.keyPrefixToBeDeleted;
+' #txt
+Se0 f64 responseActionDecl 'ch.ivy.add.portalkit.synchronization.SynchronizingData out;
+' #txt
+Se0 f64 responseMappingAction 'out=in;
+' #txt
+Se0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>delete by prefix
+then update property</name>
+        <nameStyle>37,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Se0 f64 1621 378 36 24 20 -2 #rect
+Se0 f64 @|TriggerIcon #fIcon
+Se0 f65 inParamDecl '<List<ch.ivy.ws.addon.CustomPropertyPair> customPropertyPairs,java.lang.String keyPrefixToBeDeleted> param;' #txt
+Se0 f65 inParamTable 'out.customPropertyPairs=param.customPropertyPairs;
+out.keyPrefixToBeDeleted=param.keyPrefixToBeDeleted;
+' #txt
+Se0 f65 outParamDecl '<> result;
+' #txt
+Se0 f65 actionDecl 'ch.ivy.add.portalkit.synchronization.SynchronizingData out;
+' #txt
+Se0 f65 callSignature deleteThenUpdateToAllServer(List<ch.ivy.ws.addon.CustomPropertyPair>,String) #txt
+Se0 f65 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
+Se0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>deleteByPrefixThenUpdateToAllServer(String, List&lt;CustomPropertyPair&gt;)</name>
+        <nameStyle>69,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Se0 f65 1498 41 26 26 14 0 #rect
+Se0 f65 @|StartSubIcon #fIcon
+Se0 f66 actionDecl 'ch.ivy.add.portalkit.synchronization.SynchronizingData out;
+' #txt
+Se0 f66 actionTable 'out=in;
+' #txt
+Se0 f66 actionCode 'in.counter = 0;' #txt
+Se0 f66 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
+Se0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init counter</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Se0 f66 1493 170 36 24 20 -2 #rect
+Se0 f66 @|StepIcon #fIcon
+Se0 f67 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
+Se0 f67 1497 440 28 28 14 0 #rect
+Se0 f67 @|AlternativeIcon #fIcon
+Se0 f68 actionDecl 'ch.ivy.add.portalkit.synchronization.SynchronizingData out;
+' #txt
+Se0 f68 actionTable 'out=in;
+' #txt
+Se0 f68 actionCode in.counter++; #txt
+Se0 f68 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
+Se0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>increase counter</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Se0 f68 1621 282 36 24 20 -2 #rect
+Se0 f68 @|StepIcon #fIcon
+Se0 f69 actionDecl 'ch.ivy.add.portalkit.synchronization.SynchronizingData out;
+' #txt
+Se0 f69 actionTable 'out=in;
+' #txt
+Se0 f69 actionCode 'import ch.ivy.addon.portalkit.service.ServerService;
+
+ServerService service = new ServerService();
+in.servers = new java.util.ArrayList();
+in.servers.addAll(service.findAll());' #txt
+Se0 f69 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
+Se0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get portal server list</name>
+        <nameStyle>22,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Se0 f69 1493 106 36 24 20 -2 #rect
+Se0 f69 @|StepIcon #fIcon
+Se0 f70 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
+Se0 f70 1497 232 28 28 14 0 #rect
+Se0 f70 @|AlternativeIcon #fIcon
+Se0 f71 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
+Se0 f71 1498 521 26 26 14 0 #rect
+Se0 f71 @|EndSubIcon #fIcon
+Se0 f72 expr in #txt
+Se0 f72 1511 260 1511 440 #arcP
+Se0 f73 expr in #txt
+Se0 f73 outCond 'in.servers.size() - in.counter < 1' #txt
+Se0 f73 1511 468 1511 521 #arcP
+Se0 f74 expr out #txt
+Se0 f74 1511 67 1511 106 #arcP
+Se0 f75 expr out #txt
+Se0 f75 1511 130 1511 170 #arcP
+Se0 f76 expr out #txt
+Se0 f76 1639 282 1525 246 #arcP
+Se0 f76 1 1639 246 #addKink
+Se0 f76 0 0.9847272945456741 0 0 #arcLabel
+Se0 f77 expr out #txt
+Se0 f77 1639 378 1639 306 #arcP
+Se0 f78 expr out #txt
+Se0 f78 1511 194 1511 232 #arcP
+Se0 f79 expr in #txt
+Se0 f79 1525 454 1639 402 #arcP
+Se0 f79 1 1639 454 #addKink
+Se0 f79 1 0.28541036719852647 0 0 #arcLabel
 >Proto Se0 .type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
 >Proto Se0 .processKind CALLABLE_SUB #txt
 >Proto Se0 0 0 32 24 18 0 #rect
@@ -656,3 +803,19 @@ Se0 f55 out f62 tail #connect
 Se0 f62 head f48 mainIn #connect
 Se0 f55 out f63 tail #connect
 Se0 f63 head f52 mainIn #connect
+Se0 f69 mainOut f75 tail #connect
+Se0 f75 head f66 mainIn #connect
+Se0 f66 mainOut f78 tail #connect
+Se0 f78 head f70 in #connect
+Se0 f64 mainOut f77 tail #connect
+Se0 f77 head f68 mainIn #connect
+Se0 f70 out f72 tail #connect
+Se0 f72 head f67 in #connect
+Se0 f68 mainOut f76 tail #connect
+Se0 f76 head f70 in #connect
+Se0 f65 mainOut f74 tail #connect
+Se0 f74 head f69 mainIn #connect
+Se0 f67 out f73 tail #connect
+Se0 f73 head f71 mainIn #connect
+Se0 f67 out f79 tail #connect
+Se0 f79 head f64 mainIn #connect

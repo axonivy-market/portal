@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Mar 30 16:46:01 ICT 2017]
+[>Created: Mon Jun 05 10:37:19 ICT 2017]
 150406C1AFBE566B 3.20 #module
 >Proto >Proto Collection #zClass
 An0 AbstractSynchronizingConfiguration Big #zClass
@@ -46,6 +46,13 @@ An0 @PushWFArc f23 '' #zField
 An0 @CallSub f25 '' #zField
 An0 @PushWFArc f28 '' #zField
 An0 @PushWFArc f16 '' #zField
+An0 @CallSub f32 '' #zField
+An0 @StartRequest f33 '' #zField
+An0 @EndTask f34 '' #zField
+An0 @GridStep f36 '' #zField
+An0 @PushWFArc f37 '' #zField
+An0 @PushWFArc f38 '' #zField
+An0 @PushWFArc f39 '' #zField
 >Proto An0 An0 AbstractSynchronizingConfiguration #zField
 An0 f1 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f1 51 291 26 26 14 0 #rect
@@ -489,6 +496,108 @@ An0 f28 expr out #txt
 An0 f28 832 188 832 228 #arcP
 An0 f16 expr out #txt
 An0 f16 832 252 832 291 #arcP
+An0 f32 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
+An0 f32 processCall SynchronizeDataProcesses/Synchronizing:deleteThenUpdateToAllServer(List<ch.ivy.ws.addon.CustomPropertyPair>,String) #txt
+An0 f32 doCall true #txt
+An0 f32 requestActionDecl '<List<ch.ivy.ws.addon.CustomPropertyPair> customPropertyPairs,java.lang.String keyPrefixToBeDeleted> param;
+' #txt
+An0 f32 requestMappingAction 'param.customPropertyPairs=in.customPropertyPairs;
+param.keyPrefixToBeDeleted=in.keyPrefixToBeDeleted;
+' #txt
+An0 f32 responseActionDecl 'ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData out;
+' #txt
+An0 f32 responseMappingAction 'out=in;
+' #txt
+An0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>delete and update
+configuration data</name>
+        <nameStyle>36,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+An0 f32 1384 231 36 24 19 -2 #rect
+An0 f32 @|CallSubIcon #fIcon
+An0 f33 outLink deleteByPrefixThenUpdateMany.ivp #txt
+An0 f33 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
+An0 f33 inParamDecl '<java.lang.String propertyPrefix,List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> businessEntities> param;' #txt
+An0 f33 inParamTable 'out.businessEntities=param.businessEntities;
+out.keyPrefixToBeDeleted=param.propertyPrefix;
+' #txt
+An0 f33 actionDecl 'ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData out;
+' #txt
+An0 f33 guid 15C7606992F3FB8A #txt
+An0 f33 requestEnabled false #txt
+An0 f33 triggerEnabled true #txt
+An0 f33 callSignature deleteByPrefixThenUpdateMany(String,List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity>) #txt
+An0 f33 persist false #txt
+An0 f33 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntitiesDescription")%>
+TaskTriggered.EXTYPE=0
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXROL=Everybody' #txt
+An0 f33 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/SynchronizeDataCaseName")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/SynchronizeDataProcess/AddOrUpdateBusinessEntitiesDescription")%>
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=true' #txt
+An0 f33 showInStartList 1 #txt
+An0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>deleteByPrefixThenUpdateMany(List&lt;BusinessEntity&gt;, String)</name>
+        <nameStyle>58,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+An0 f33 @C|.responsibility Everybody #txt
+An0 f33 1389 86 26 26 14 0 #rect
+An0 f33 @|StartRequestIcon #fIcon
+An0 f34 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
+An0 f34 1389 294 26 26 14 0 #rect
+An0 f34 @|EndIcon #fIcon
+An0 f36 actionDecl 'ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData out;
+' #txt
+An0 f36 actionTable 'out=in;
+' #txt
+An0 f36 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
+
+import ch.ivy.ws.addon.CustomPropertyPair;
+import ch.ivy.addon.portalkit.webservice.PortalSynchronizationRequestPreparer;
+
+in.customPropertyPairs = new java.util.ArrayList();
+PortalSynchronizationRequestPreparer preparer = new PortalSynchronizationRequestPreparer();
+for(BusinessEntity entity : in.businessEntities){
+	CustomPropertyPair customPropertyPair = preparer.convertPortalEntityToRequestData(entity);
+	in.customPropertyPairs.add(customPropertyPair);
+}
+in.customPropertyPairs.add(preparer.getIncrementIdPropertyPair());
+' #txt
+An0 f36 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
+An0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>convert configuration objects
+to customPropertyPairs</name>
+        <nameStyle>52,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+An0 f36 1384 167 36 24 20 -2 #rect
+An0 f36 @|StepIcon #fIcon
+An0 f37 expr out #txt
+An0 f37 1402 112 1402 167 #arcP
+An0 f38 expr out #txt
+An0 f38 1402 255 1402 294 #arcP
+An0 f39 expr out #txt
+An0 f39 1402 191 1402 231 #arcP
 >Proto An0 .type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 >Proto An0 .processKind NORMAL #txt
 >Proto An0 0 0 32 24 18 0 #rect
@@ -521,3 +630,9 @@ An0 f20 mainOut f28 tail #connect
 An0 f28 head f25 mainIn #connect
 An0 f25 mainOut f16 tail #connect
 An0 f16 head f14 mainIn #connect
+An0 f36 mainOut f39 tail #connect
+An0 f39 head f32 mainIn #connect
+An0 f32 mainOut f38 tail #connect
+An0 f38 head f34 mainIn #connect
+An0 f33 mainOut f37 tail #connect
+An0 f37 head f36 mainIn #connect

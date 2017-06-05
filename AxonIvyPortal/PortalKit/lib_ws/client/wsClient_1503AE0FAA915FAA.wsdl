@@ -6,6 +6,8 @@
 <xs:element name="delete" type="tns:delete"></xs:element>
 <xs:element name="deleteByPrefix" type="tns:deleteByPrefix"></xs:element>
 <xs:element name="deleteByPrefixResponse" type="tns:deleteByPrefixResponse"></xs:element>
+<xs:element name="deleteByPrefixThenUpdate" type="tns:deleteByPrefixThenUpdate"></xs:element>
+<xs:element name="deleteByPrefixThenUpdateResponse" type="tns:deleteByPrefixThenUpdateResponse"></xs:element>
 <xs:element name="deleteManyProperties" type="tns:deleteManyProperties"></xs:element>
 <xs:element name="deleteManyPropertiesResponse" type="tns:deleteManyPropertiesResponse"></xs:element>
 <xs:element name="deleteResponse" type="tns:deleteResponse"></xs:element>
@@ -26,6 +28,23 @@
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="addOrUpdateResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="status" type="tns:returnedStatus"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteByPrefixThenUpdate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="keyPrefixToBeDeleted" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="customPropertyPairs" type="tns:customPropertyPair"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteByPrefixThenUpdateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:deleteByPrefixThenUpdateResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteByPrefixThenUpdateResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="status" type="tns:returnedStatus"></xs:element>
@@ -90,12 +109,20 @@
   <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
 </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="deleteByPrefixThenUpdate">
+    <wsdl:part element="tns:deleteByPrefixThenUpdate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="delete">
     <wsdl:part element="tns:delete" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="deleteManyProperties">
     <wsdl:part element="tns:deleteManyProperties" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteByPrefixThenUpdateResponse">
+    <wsdl:part element="tns:deleteByPrefixThenUpdateResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="WebServiceProcessTechnicalException">
@@ -135,6 +162,14 @@
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="deleteByPrefixThenUpdate">
+      <wsdl:input message="tns:deleteByPrefixThenUpdate" name="deleteByPrefixThenUpdate">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteByPrefixThenUpdateResponse" name="deleteByPrefixThenUpdateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="delete">
       <wsdl:input message="tns:delete" name="delete">
     </wsdl:input>
@@ -168,6 +203,18 @@
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="addOrUpdateResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteByPrefixThenUpdate">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="deleteByPrefixThenUpdate">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteByPrefixThenUpdateResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
