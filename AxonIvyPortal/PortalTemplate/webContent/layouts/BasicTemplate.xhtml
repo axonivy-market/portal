@@ -48,7 +48,7 @@
 
 <h:body>
   <!-- CALL THIS METHOD TO INITIALIZE THE APPLICATION BEAN TO SET HIDE PROPERTY FOR ROLE -->
-  <h:inputHidden value="#{dataInitializationBean.run()}" />
+  <f:event type="preRenderView" listener="#{dataInitializationBean.run()}" />
 
   <f:event type="preRenderView"
     listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />

@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 02 17:33:32 ICT 2017]
+[>Created: Mon Jun 05 10:55:56 ICT 2017]
 15C685ACE14B261F 3.20 #module
 >Proto >Proto Collection #zClass
 De0 DefaultEndPage Big #zClass
@@ -32,8 +32,8 @@ De0 f30 type ch.ivy.addon.portal.generic.PortalStartData #txt
 De0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>is task started?</name>
-        <nameStyle>16
+        <name>is there callbackUrl?</name>
+        <nameStyle>21
 </nameStyle>
     </language>
 </elementInfo>
@@ -85,9 +85,9 @@ import ch.ivyteam.ivy.request.IHttpResponse;
 import ch.ivyteam.ivy.workflow.ITask;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-in.isTaskStarted = #task is initialized ? task.getStartProcessData() is initialized : false;
+boolean isTaskStarted = #task is initialized ? task.getStartProcessData() is initialized : false;
 
-if (in.isTaskStarted) {
+if (isTaskStarted) {
 	out.callbackUrl = task.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
@@ -139,7 +139,7 @@ De0 f29 0 0.2732919254658385 9 0 #arcLabel
 De0 f31 expr out #txt
 De0 f31 302 95 382 95 #arcP
 De0 f34 expr in #txt
-De0 f34 outCond in.isTaskStarted #txt
+De0 f34 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
 De0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
