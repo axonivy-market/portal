@@ -28,9 +28,8 @@ public class IvySideStepTransformer {
   public IvySideStep transform(ISideStepProcess sideStep) {
     IvySideStep result = new IvySideStep();
     try {
-      result.setStartRequestUri(sideStep.getStartRequestUri().toString());
       result.setName(sideStep.getName());
-      result.setStartLink(getStartLink(sideStep));
+      result.setStartRequestUri(getStartLink(sideStep));
     } catch (Exception exception) {
       Ivy.log().error(exception);
       throw new IvyTransformerException(exception);

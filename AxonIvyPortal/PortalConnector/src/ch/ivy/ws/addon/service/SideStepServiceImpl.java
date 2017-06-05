@@ -69,8 +69,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     }
     IvySideStep adhoc = new IvySideStep();
     adhoc.setName(Ivy.cms().co("/ch/ivy/addon/portalconnector/sidestep/addAdhocTask"));
-    adhoc.setStartLink(acmLink);
-    adhoc.setStartRequestUri("add-adhoc-task");
+    adhoc.setStartRequestUri(acmLink);
     return adhoc;
   }
 }
