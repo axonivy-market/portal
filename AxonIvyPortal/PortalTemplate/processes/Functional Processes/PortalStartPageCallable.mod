@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 02 17:32:10 ICT 2017]
+[>Created: Mon Jun 05 14:42:21 ICT 2017]
 15C685BB425F6192 3.20 #module
 >Proto >Proto Collection #zClass
 Pe0 PortalStartPageCallable Big #zClass
@@ -17,7 +17,6 @@ Pe0 @StartSub f0 '' #zField
 Pe0 @RichDialog f8 '' #zField
 Pe0 @Alternative f6 '' #zField
 Pe0 @GridStep f15 '' #zField
-Pe0 @InfoButton f16 '' #zField
 Pe0 @CallSub f9 '' #zField
 Pe0 @RichDialog f5 '' #zField
 Pe0 @GridStep f22 '' #zField
@@ -31,10 +30,10 @@ Pe0 @PushWFArc f23 '' #zField
 Pe0 @PushWFArc f18 '' #zField
 Pe0 @PushWFArc f24 '' #zField
 Pe0 @PushWFArc f1 '' #zField
-Pe0 @AnnotationArc f2 '' #zField
 >Proto Pe0 Pe0 PortalStartPageCallable #zField
 Pe0 f0 inParamDecl '<ch.ivy.addon.portal.generic.PortalStartData data> param;' #txt
 Pe0 f0 inParamTable 'out=param.data;
+out.dataModel=param.data.getDataModel();
 ' #txt
 Pe0 f0 outParamDecl '<> result;
 ' #txt
@@ -46,10 +45,12 @@ Pe0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>call(PortalStartData)</name>
+        <nameStyle>21,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f0 81 177 30 30 -55 17 #rect
+Pe0 f0 81 81 30 30 -55 17 #rect
 Pe0 f0 @|StartSubIcon #fIcon
 Pe0 f8 targetWindow NEW:card: #txt
 Pe0 f8 targetDisplay TOP #txt
@@ -79,10 +80,10 @@ Pe0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f8 520 257 96 48 -22 -8 #rect
+Pe0 f8 520 161 96 48 -22 -8 #rect
 Pe0 f8 @|RichDialogIcon #fIcon
 Pe0 f6 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pe0 f6 210 179 28 28 14 0 #rect
+Pe0 f6 210 83 28 28 14 0 #rect
 Pe0 f6 @|AlternativeIcon #fIcon
 Pe0 f15 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -99,7 +100,7 @@ import java.util.Map;
 import org.primefaces.extensions.util.json.GsonConverter;
 import java.util.Arrays;
 
-if (in.#dataModel is initialized) {
+if (!in.isDataModelInitialized) {
 	TaskNode taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
 	boolean canLinkBackToCaseDetail = in.#dataModel.#queryCriteria.#caseId is initialized; 
 	
@@ -109,21 +110,21 @@ if (in.#dataModel is initialized) {
 	
 	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CATEGORY.toString());
 } else {
-	TaskLazyDataModel dataModel = new TaskLazyDataModel();
-	dataModel.getQueryCriteria().setNewQueryCreated(true);
-	dataModel.setIgnoreInvolvedUser(true);
-	dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
+	in.dataModel.compactMode = false;
+	in.dataModel.getQueryCriteria().setNewQueryCreated(true);
+	in.dataModel.setIgnoreInvolvedUser(true);
+	in.dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 		
 	Map taskInfo = GsonConverter.getGson().fromJson(in.parameters,Map.class) as Map;
 	long taskId = Long.parseLong(taskInfo.get("taskId") as String);
-	dataModel.setTaskId(taskId);
+	in.dataModel.setTaskId(taskId);
 		
 	String pageTitle = ivy.cms.co("/Labels/Task");
 	MainMenuNode category = new MainMenuNode();
 	category.value = pageTitle;
 	String noTaskMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound");
 		
-	out.taskView = TaskView.create().dataModel(dataModel).pageTitle(pageTitle).category(category).remoteTaskId(taskId).hideTaskFilter(true).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).createNewTaskView();
+	out.taskView = TaskView.create().dataModel(in.dataModel).pageTitle(pageTitle).category(category).remoteTaskId(taskId).hideTaskFilter(true).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).createNewTaskView();
 }' #txt
 Pe0 f15 security system #txt
 Pe0 f15 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -137,23 +138,8 @@ Pe0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f15 472 453 128 56 -43 -16 #rect
+Pe0 f15 472 357 128 56 -43 -16 #rect
 Pe0 f15 @|StepIcon #fIcon
-Pe0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>NOTE: IF THERE IS A CUSTOMIZED DATA MODEL, PLEASE REPLACE THE SCRIPT
-
-in.dataModel = new TaskLazyDataModel();
-BY
-in.dataModel = new &lt;CUSTOMIZED_DATA_MODEL&gt;();</name>
-        <nameStyle>158
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pe0 f16 296 54 480 92 -230 -40 #rect
-Pe0 f16 @|IBIcon #fIcon
 Pe0 f9 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pe0 f9 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
 Pe0 f9 doCall true #txt
@@ -172,7 +158,7 @@ Pe0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f9 668 457 104 48 -46 -6 #rect
+Pe0 f9 668 361 104 48 -46 -6 #rect
 Pe0 f9 @|CallSubIcon #fIcon
 Pe0 f5 targetWindow NEW:card: #txt
 Pe0 f5 targetDisplay TOP #txt
@@ -199,19 +185,13 @@ Pe0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f5 708 169 120 48 -45 -8 #rect
+Pe0 f5 708 73 120 48 -45 -8 #rect
 Pe0 f5 @|RichDialogIcon #fIcon
 Pe0 f22 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pe0 f22 actionTable 'out=in;
 ' #txt
-Pe0 f22 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portal.generic.view.TaskView;
-
-if (!in.#dataModel is initialized) {
-	in.dataModel = new TaskLazyDataModel();
-	in.dataModel.compactMode = true;
-}
+Pe0 f22 actionCode 'import ch.ivy.addon.portal.generic.view.TaskView;
 
 in.taskView = TaskView.create().dataModel(in.dataModel).showHeaderToolbar(true).noTaskFoundMessage("").createNewTaskView();
 ' #txt
@@ -226,7 +206,7 @@ list''s configuration</name>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f22 524 181 36 24 20 -2 #rect
+Pe0 f22 524 85 36 24 20 -2 #rect
 Pe0 f22 @|StepIcon #fIcon
 Pe0 f17 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pe0 f17 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
@@ -248,7 +228,7 @@ Pe0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f17 696 345 112 48 -49 -12 #rect
+Pe0 f17 696 249 112 48 -49 -12 #rect
 Pe0 f17 @|CallSubIcon #fIcon
 Pe0 f7 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -280,10 +260,10 @@ Pe0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f7 540 345 104 48 -46 -4 #rect
+Pe0 f7 540 249 104 48 -46 -4 #rect
 Pe0 f7 @|StepIcon #fIcon
 Pe0 f21 expr out #txt
-Pe0 f21 600 481 668 481 #arcP
+Pe0 f21 600 385 668 385 #arcP
 Pe0 f21 0 0.7418894103244236 0 0 #arcLabel
 Pe0 f19 expr in #txt
 Pe0 f19 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.ERROR_PAGE ,in.portalPage) ' #txt
@@ -296,9 +276,9 @@ Pe0 f19 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f19 229 202 520 281 #arcP
-Pe0 f19 1 272 281 #addKink
-Pe0 f19 1 0.24193548387096775 0 -11 #arcLabel
+Pe0 f19 229 106 520 185 #arcP
+Pe0 f19 1 272 185 #addKink
+Pe0 f19 1 0.179551587407764 0 -10 #arcLabel
 Pe0 f13 expr in #txt
 Pe0 f13 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.LINK_TO_TASK, in.portalPage)' #txt
 Pe0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -310,11 +290,11 @@ Pe0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f13 224 207 472 481 #arcP
-Pe0 f13 1 224 481 #addKink
+Pe0 f13 224 111 472 385 #arcP
+Pe0 f13 1 224 385 #addKink
 Pe0 f13 1 0.2540322580645161 0 -14 #arcLabel
 Pe0 f12 expr out #txt
-Pe0 f12 560 193 708 193 #arcP
+Pe0 f12 560 97 708 97 #arcP
 Pe0 f12 0 0.37297345905809204 0 -17 #arcLabel
 Pe0 f23 expr in #txt
 Pe0 f23 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.HOME_PAGE, in.portalPage) || java.util.Objects.isNull(in.portalPage)' #txt
@@ -327,10 +307,10 @@ Pe0 f23 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f23 238 193 524 193 #arcP
+Pe0 f23 238 97 524 97 #arcP
 Pe0 f23 0 0.32167832167832167 0 -9 #arcLabel
 Pe0 f18 expr out #txt
-Pe0 f18 644 369 696 369 #arcP
+Pe0 f18 644 273 696 273 #arcP
 Pe0 f24 expr in #txt
 Pe0 f24 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.CASE_DETAIL_FROM_TASK, in.portalPage)' #txt
 Pe0 f24 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -342,12 +322,11 @@ Pe0 f24 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f24 227 204 540 369 #arcP
-Pe0 f24 1 272 368 #addKink
+Pe0 f24 227 108 540 273 #arcP
+Pe0 f24 1 272 273 #addKink
 Pe0 f24 1 0.32068221371388794 1 -15 #arcLabel
 Pe0 f1 expr out #txt
-Pe0 f1 110 192 210 193 #arcP
-Pe0 f2 536 146 524 193 #arcP
+Pe0 f1 110 96 210 97 #arcP
 >Proto Pe0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pe0 .processKind CALLABLE_SUB #txt
 >Proto Pe0 0 0 32 24 18 0 #rect
@@ -368,5 +347,3 @@ Pe0 f22 mainOut f12 tail #connect
 Pe0 f12 head f5 mainIn #connect
 Pe0 f0 mainOut f1 tail #connect
 Pe0 f1 head f6 in #connect
-Pe0 f16 ao f2 tail #connect
-Pe0 f2 head f22 @CG|ai #connect
