@@ -51,23 +51,6 @@
 					</h:panelGroup>
 				</div>
 			</div>
-  			<div class="case-header-action case-info-header-action" >
-              <h:panelGroup
-                rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasSelfService(): isShowStartAdhocButton}">
-                <p:commandLink id="case-side-steps-menu" onstart="event.stopPropagation();" global="false"
-                  disabled="#{not data.isSideStepsEnabled}">
-                  <span class="action-icon fa fa-ellipsis-v fa-2x" style="font-size: 2rem" />
-                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}" />
-                </p:commandLink>
-                <p:menu overlay="true" trigger="case-side-steps-menu" my="left top" at="left bottom"
-                  model="#{caseBean.getSideStepsMenuModel(data.sideSteps, data.isAdhocEnabled)}"
-                  styleClass="side-steps-menu-item" />
-                <p:tooltip for="case-side-steps-menu" rendered="#{data.isSideStepsEnabled}"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}" />
-                <p:tooltip for="case-side-steps-menu" rendered="#{not data.isSideStepsEnabled}"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
-              </h:panelGroup>
-        </div>
 		</h:panelGroup>
 
 		<h:panelGroup layout="block" styleClass="case-body js-case-item-body">

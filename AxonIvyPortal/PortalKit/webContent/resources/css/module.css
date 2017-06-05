@@ -3745,3 +3745,47 @@ margin-top
 .ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover, .ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
   background-color: transparent !important;
 } 
+
+.case-action-link {
+   color: #337ab7 !important;
+   font-size: 1rem;
+}
+
+.case-action-link:hover {
+  color: #337ab7 !important;
+}
+
+.case-action-link.ui-state-disabled,
+.case-action-link.ui-state-disabled.ui-state-hover {
+  color: rgba(0,0,0,0.2) !important;
+}
+
+.side-steps-container {
+  border-radius: 0;
+}
+
+.side-steps-container .ui-overlaypanel-content {
+  display: grid;
+  padding: 2px !important;
+}
+
+.side-steps-container .side-step-item {
+  font-family: 'robotoregular';
+  font-size: 14px !important;
+  clear: both;
+  float: left;
+  padding: 5px 20px;
+  margin: 0;
+}
+
+.side-steps-container .side-step-item:hover {
+  background-color: white;
+}
+
+.side-steps-container .side-step-item:first-child {
+  margin-top: 10px;
+}
+
+.side-steps-container .side-step-item:last-child {
+  margin-bottom: 10px;
+}
