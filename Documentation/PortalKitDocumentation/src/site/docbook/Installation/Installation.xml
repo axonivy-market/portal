@@ -442,7 +442,7 @@
 					<para>PortalHome: The <code>taskView</code> parameter is added to the start method.</para>
 				</listitem>
 			</itemizedlist>
-      <sect3>
+			<sect3>
 				<title>SQL conversion</title>
 				<para>From Portal <code>7.0</code>, we use standard axon.ivy Task Category field to store task category.</para>
 				<para>To migrate task categories, please deploy <link xlink:href="documents/MigrateTaskCategorySample.iar">MigrateTaskCategorySample.iar</link> to your application and run <code>Migrate Task Category</code> process to:</para>
@@ -458,6 +458,12 @@
 					</listitem>
 				</orderedlist>
 				<para>If you have queries which referring to task category, plese replace <code>customVarCharField5()</code> part with <code>category()</code> part.</para>
+			</sect3>
+			<sect3>
+				<title>Change of property DisableCustomMails</title>
+				<para>From Portal <code>7.0</code>, we renamed property <code>DisableCustomMails</code> to <code>EnableApplicationMails</code>.</para>
+				<para>Please use below SQL to apply this change for engine's database.</para>
+				<screen>update iwa_userproperty set propertyname = 'EnableApplicationMails' where propertyname = 'DisableCustomMails'</screen>
 			</sect3>
 		</sect2>
 		<sect2>
