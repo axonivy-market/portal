@@ -14,9 +14,8 @@ public class UserSynchronizationService {
    * Helps prevent multi-application synchronizing users, only 1 application is allowed to synchronize users. <br>
    * 
    * @return If no server is configured, return true<br>
-   *         If multi-application is configured and the current application is the first application that configured in
-   *         Admin Settings, {@link Application#getMenuOrdinal()} {@code = 1} , return true<br>
-   *         , else return false.
+   *         If multi-application is configured and the current application's name is in the first order of the list of
+   *         configured application sorted by name in ascending order, return true else return false.
    */
   public static boolean isCurrentApplicationAllowedToSynchUser() {
     ServerService serverService = new ServerService();
