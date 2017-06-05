@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jun 05 10:55:56 ICT 2017]
+[>Created: Mon Jun 05 14:10:04 ICT 2017]
 15C685ACE14B261F 3.20 #module
 >Proto >Proto Collection #zClass
 De0 DefaultEndPage Big #zClass
@@ -86,9 +86,10 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
 boolean isTaskStarted = #task is initialized ? task.getStartProcessData() is initialized : false;
+String callbackUrl = task.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
 
-if (isTaskStarted) {
-	out.callbackUrl = task.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
+if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
+	out.callbackUrl = callbackUrl;
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
 	SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), in.portalPage);
