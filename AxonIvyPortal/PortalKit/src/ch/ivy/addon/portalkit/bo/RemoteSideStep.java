@@ -9,9 +9,7 @@ import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
 public class RemoteSideStep implements ISideStepProcess {
 
   private String name;
-  private String startLink;
   private URI startRequestUri;
-
 
   @Override
   public String getName() {
@@ -35,14 +33,5 @@ public class RemoteSideStep implements ISideStepProcess {
   public void setStartRequestUri(URI startRequestUri) {
     this.startRequestUri = startRequestUri;
   }
-
-  public String getStartLink() {
-    return startLink;
-  }
-
-  public void setStartLink(String startLink) {
-    this.startLink = startLink;
-  }
-
 
 }
