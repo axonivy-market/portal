@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Mar 30 16:46:46 ICT 2017]
+[>Created: Mon Jun 05 09:45:46 ICT 2017]
 1503C5419245E19B 3.20 #module
 >Proto >Proto Collection #zClass
 Ae0 SynchronizingTriggerProcess Big #zClass
@@ -33,6 +33,11 @@ Ae0 @StartRequest f16 '' #zField
 Ae0 @CallSub f17 '' #zField
 Ae0 @PushWFArc f18 '' #zField
 Ae0 @PushWFArc f19 '' #zField
+Ae0 @StartRequest f20 '' #zField
+Ae0 @EndTask f21 '' #zField
+Ae0 @CallSub f23 '' #zField
+Ae0 @PushWFArc f24 '' #zField
+Ae0 @PushWFArc f22 '' #zField
 >Proto Ae0 Ae0 SynchronizingTriggerProcess #zField
 Ae0 f0 outLink addOrUpdate.ivp #txt
 Ae0 f0 type ch.ivy.add.portalkit.synchronization.SynchronizingTriggerProcessData #txt
@@ -312,6 +317,73 @@ Ae0 f18 expr out #txt
 Ae0 f18 352 429 352 500 #arcP
 Ae0 f19 expr out #txt
 Ae0 f19 352 524 352 595 #arcP
+Ae0 f20 outLink deleteByPrefixThenUpdate.ivp #txt
+Ae0 f20 type ch.ivy.add.portalkit.synchronization.SynchronizingTriggerProcessData #txt
+Ae0 f20 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,List<ch.ivy.ws.addon.CustomPropertyPair> customPropertyPairs,java.lang.String keyPrefix> param;' #txt
+Ae0 f20 inParamTable 'out.customPropertyPairs=param.customPropertyPairs;
+out.keyPrefix=param.keyPrefix;
+out.server=param.server;
+' #txt
+Ae0 f20 actionDecl 'ch.ivy.add.portalkit.synchronization.SynchronizingTriggerProcessData out;
+' #txt
+Ae0 f20 guid 15C760FD6EEB7D8F #txt
+Ae0 f20 requestEnabled false #txt
+Ae0 f20 triggerEnabled true #txt
+Ae0 f20 callSignature deleteByPrefixThenUpdate(ch.ivy.addon.portalkit.persistence.domain.Server,List<ch.ivy.ws.addon.CustomPropertyPair>,String) #txt
+Ae0 f20 persist false #txt
+Ae0 f20 taskData 'TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Ae0 f20 caseData businessCase.attach=true #txt
+Ae0 f20 showInStartList 1 #txt
+Ae0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>deleteByPrefixThenUpdate(Server,List&lt;CustomPropertyPair&gt;,String)</name>
+        <nameStyle>64,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f20 @C|.responsibility Everybody #txt
+Ae0 f20 657 113 30 30 19 4 #rect
+Ae0 f20 @|StartRequestIcon #fIcon
+Ae0 f21 type ch.ivy.add.portalkit.synchronization.SynchronizingTriggerProcessData #txt
+Ae0 f21 657 305 30 30 0 15 #rect
+Ae0 f21 @|EndIcon #fIcon
+Ae0 f23 type ch.ivy.add.portalkit.synchronization.SynchronizingTriggerProcessData #txt
+Ae0 f23 processCall SynchronizeDataProcesses/DeleteThenUpdateWSCalling:deleteByPrefixThenUpdate(String,ch.ivy.addon.portalkit.persistence.domain.Server,List<ch.ivy.ws.addon.CustomPropertyPair>) #txt
+Ae0 f23 doCall true #txt
+Ae0 f23 requestActionDecl '<java.lang.String keyPrefix,ch.ivy.addon.portalkit.persistence.domain.Server server,List<ch.ivy.ws.addon.CustomPropertyPair> customPropertyPairs> param;
+' #txt
+Ae0 f23 requestMappingAction 'param.keyPrefix=in.keyPrefix;
+param.server=in.server;
+param.customPropertyPairs=in.customPropertyPairs;
+' #txt
+Ae0 f23 responseActionDecl 'ch.ivy.add.portalkit.synchronization.SynchronizingTriggerProcessData out;
+' #txt
+Ae0 f23 responseMappingAction 'out=in;
+' #txt
+Ae0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Delete by prefix
+then update WS calling</name>
+        <nameStyle>17,7
+22,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f23 652 212 40 24 25 -2 #rect
+Ae0 f23 @|CallSubIcon #fIcon
+Ae0 f24 expr out #txt
+Ae0 f24 672 143 672 212 #arcP
+Ae0 f22 expr out #txt
+Ae0 f22 672 236 672 305 #arcP
 >Proto Ae0 .type ch.ivy.add.portalkit.synchronization.SynchronizingTriggerProcessData #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 0 0 32 24 18 0 #rect
@@ -332,3 +404,7 @@ Ae0 f16 mainOut f18 tail #connect
 Ae0 f18 head f17 mainIn #connect
 Ae0 f17 mainOut f19 tail #connect
 Ae0 f19 head f15 mainIn #connect
+Ae0 f20 mainOut f24 tail #connect
+Ae0 f24 head f23 mainIn #connect
+Ae0 f23 mainOut f22 tail #connect
+Ae0 f22 head f21 mainIn #connect
