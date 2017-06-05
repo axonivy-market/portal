@@ -41,12 +41,6 @@
         <ui:insert name="infoZone" />
 
         <div class="task-template-tasks-command">
-          <p:commandLink id="start-adhoc" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasSelfService(): isShowStartAdhocButton}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" styleClass="start-adhoc-link"
-            oncomplete="PF('task-reset-confirmation-dialog').show()" >
-            <i class="fa fa-random fa-2x" />
-          </p:commandLink>
-          <p:spacer width="5"/>
           <p:link id="copy-clipboard" href="#"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copyTooltip')}">
             <i class="fa fa-share-square-o fa-2x" />
@@ -91,7 +85,7 @@
                 </c:when>
                 <c:otherwise>
                   <h:form id="case-details-form" prependId="false">
-                    <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItem caseId="#{caseId}" id="case-item">
+                    <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItem caseId="#{caseId}" showStartAdhoc="#{isShowStartAdhocButton}" id="case-item">
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemGeneralInformation id="general-information"
                         caseId="#{caseId}" />
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemRelatedTasks id="related-tasks"

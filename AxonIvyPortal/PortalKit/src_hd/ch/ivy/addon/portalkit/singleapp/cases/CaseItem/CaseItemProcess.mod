@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 30 18:37:54 ICT 2017]
+[>Created: Fri Jun 02 10:49:54 ICT 2017]
 153AC8F1D34C2E0D 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemProcess Big #zClass
@@ -38,8 +38,13 @@ in.canChangeCaseDescription = permissionCheker.hasPermission(IPermission.CASE_WR
 in.canChangeCaseName = permissionCheker.hasPermission(IPermission.CASE_WRITE_NAME);
 
 in.sideSteps = ivy.casemap.sideSteps().findStartable(in.internalCase.getBusinessCase());
-if (SideStepUtils.hasSelfService() || !in.sideSteps.isEmpty()) {
-	in.isSideStepsEnable = true;
+in.isAdhocEnabled = SideStepUtils.hasSelfService();
+if (in.isAdhocEnabled && in.#showStartAdhoc is initialized && in.showStartAdhoc.equalsIgnoreCase("false")) {
+	in.isAdhocEnabled = false;
+}
+
+if (in.isAdhocEnabled || !in.sideSteps.isEmpty()) {
+	in.isSideStepsEnabled = true;
 }' #txt
 Cs0 f11 security system #txt
 Cs0 f11 type ch.ivy.addon.portalkit.singleapp.cases.CaseItem.CaseItemData #txt
@@ -58,28 +63,29 @@ Cs0 f2 expr out #txt
 Cs0 f2 64 172 64 213 #arcP
 Cs0 f0 guid 153ACF5FD10306C5 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.singleapp.cases.CaseItem.CaseItemData #txt
-Cs0 f0 method start(Long) #txt
+Cs0 f0 method start(Long,String) #txt
 Cs0 f0 disableUIEvents true #txt
 Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Long caseId> param = methodEvent.getInputArguments();
+<java.lang.Long caseId,java.lang.String showStartAdhoc> param = methodEvent.getInputArguments();
 ' #txt
 Cs0 f0 inParameterMapAction 'out.caseId=param.caseId;
+out.showStartAdhoc=param.#showStartAdhoc;
 ' #txt
 Cs0 f0 outParameterDecl '<> result;
 ' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(Long)</name>
-        <nameStyle>11,5,7
+        <name>start(Long,String)</name>
+        <nameStyle>18,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f0 53 85 22 22 14 0 #rect
+Cs0 f0 52 84 24 24 14 0 #rect
 Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f3 expr out #txt
-Cs0 f3 64 107 64 148 #arcP
+Cs0 f3 64 108 64 148 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.singleapp.cases.CaseItem.CaseItemData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect

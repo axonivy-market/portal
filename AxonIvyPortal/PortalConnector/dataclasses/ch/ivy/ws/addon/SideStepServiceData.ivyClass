@@ -1,0 +1,7 @@
+SideStepServiceData #class
+ch.ivy.ws.addon #namespace
+errors List<ch.ivy.ws.addon.WSException> #field
+sideStepSearchCriteria ch.ivy.ws.addon.service.SideStepSearchCriteria #field
+sideSteps java.util.List<ch.ivy.ws.addon.types.IvySideStep> #field
+isUrlBuiltFromSystemProperties Boolean #field
+language String #field

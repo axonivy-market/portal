@@ -92,15 +92,16 @@ public class CaseBean {
     return hasCaseDestroyPermission;
   }
 
-  public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps) throws Exception {
+  public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps, boolean isAdhocEnabled) throws Exception {
     MenuModel model = new DefaultMenuModel();
     int menuIndex = 0;
-    if (SideStepUtils.hasSelfService()) {
+    if (isAdhocEnabled && SideStepUtils.hasSelfService()) {
       DefaultMenuItem adhocItem =
           new DefaultMenuItem(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskInformation/addAdhocTask"));
       adhocItem.setId(Integer.toString(menuIndex));
       menuIndex++;
-      adhocItem.setUrl(SideStepUtils.createAdhocLink(Ivy.wfTask()));
+      adhocItem.setTitle(Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip"));
+      adhocItem.setOncomplete("PF('task-reset-confirmation-dialog').show()");
       model.addElement(adhocItem);
     }
     for (ISideStepProcess process : sideSteps) {
