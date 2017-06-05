@@ -2,4 +2,3 @@ IvySideStep #class
 ch.ivy.ws.addon.types #namespace
 startRequestUri String #field
 name String #field
-startLink String #field

@@ -6,7 +6,6 @@ import java.net.URISyntaxException;
 import ch.ivy.addon.portalkit.bo.RemoteSideStep;
 import ch.ivy.addon.portalkit.util.UrlValidator;
 import ch.ivy.ws.addon.IvySideStep;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.List;
 
 public class RemoteSideStepMapper {
@@ -14,12 +13,9 @@ public class RemoteSideStepMapper {
   protected static RemoteSideStep mapSideStep(IvySideStep sideStep, String host) throws URISyntaxException {
     RemoteSideStep result = new RemoteSideStep();
     result.setName(sideStep.getName());
-    final String startLink = sideStep.getStartLink();
-    Ivy.log().warn("mapper {0}", startLink);
-    Ivy.log().warn("host {0}", host);
-    result.setStartLink(UrlValidator.isValidUrl(startLink) ? startLink : host + startLink);
-    Ivy.log().warn("link {0}", result.getStartLink());
-    result.setStartRequestUri(new URI(sideStep.getStartLink()));
+    String requestUri = sideStep.getStartRequestUri();
+    String requestUrl = UrlValidator.isValidUrl(requestUri) ? requestUri : host + requestUri;
+    result.setStartRequestUri(new URI(requestUrl));
     return result;
   }
 
