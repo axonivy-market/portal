@@ -51,8 +51,8 @@
         styleClass="task-command-tooltip" />
         
       <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command side-step" global="false" disabled="#{not task.hasMoreActions}"
-        actionListener="#{logic.collectSideSteps(task)}" oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();" >
-      	 <span class="action-icon fa fa-ellipsis-v fa-2x" />
+        actionListener="#{logic.collectSideSteps(task)}" oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();">
+      	 <span class="action-icon fa fa-ellipsis-v" />
       </p:commandLink>
       <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel-#{rowIndex}" for="task-side-steps-menu" my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true" rendered="#{task.hasMoreActions}">
         <p:menu overlay="false" model="#{taskWidgetBean.getSideStepsMenuModel(data.sideSteps)}" />
