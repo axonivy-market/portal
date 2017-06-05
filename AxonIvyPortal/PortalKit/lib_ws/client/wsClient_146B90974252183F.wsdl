@@ -242,6 +242,7 @@
           <xs:element minOccurs="0" name="expireTaskStartElementPid" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="expireTimestamp" type="xs:dateTime"></xs:element>
           <xs:element minOccurs="0" name="fullRequestPath" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="hasMoreActions" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
           <xs:element minOccurs="0" name="isExpired" type="xs:boolean"></xs:element>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyNotes" nillable="true" type="tns:ivyNote"></xs:element>
