@@ -2062,7 +2062,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .action-cell .action-container {
-  padding: 0 20px;
+  padding: 0 35px 0 20px;
   text-align: center;
   border-left: solid 1px rgba(0,0,0,0.5);
   display: inline-block;
@@ -2086,10 +2086,17 @@ a.compact-task-start-link:hover {
 
 .task-start-list .action-cell .task-command.side-step {
   position: absolute;
+  padding: 0.6rem 1.2rem;
+  top: 0.9rem;
+}
+
+.task-start-list .action-cell .task-command.side-step:hover {
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
 }
 
 .task-start-list .action-cell .task-command.side-step .fa{
-  font-size: 2rem;
+  font-size: 1.7rem;
 }
 
 .task-state-open, .case-state-in-progress {
