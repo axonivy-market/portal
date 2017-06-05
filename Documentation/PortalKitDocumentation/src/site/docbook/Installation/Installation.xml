@@ -410,7 +410,7 @@
 					</listitem>
 					<listitem>
 						<para>
-							Application specific mail is stored in the user profile within the attribute <code>DisableCustomMails</code>.The value of this attribute is <code>True/False</code>.
+							Application specific mail is stored in the user profile within the attribute <code>EnableApplicationMails</code>.The value of this attribute is <code>True/False</code>.
 						</para>
 						<para>
 							If <code>True</code> then this user will receive notification email send out from the process, otherwise they will not receive email.

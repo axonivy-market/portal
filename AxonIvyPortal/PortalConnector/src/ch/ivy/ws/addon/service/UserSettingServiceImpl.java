@@ -27,7 +27,7 @@ import ch.ivyteam.util.date.Weekday;
  *
  */
 public class UserSettingServiceImpl extends AbstractService implements IUserSettingService {
-  private static String DISABLE_CUSTOM_MAILS = "DisableCustomMails";
+  private static String ENABLE_APPLICATION_MAIL = "EnableApplicationMails";
   private static String TRUE = "true";
 
   /**
@@ -206,13 +206,15 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
                 if (serverApp.getSecurityContext().findUser(user) != null) {
                   IUser iuser = serverApp.getSecurityContext().findUser(user);
                   setting.setAppName(serverApp.getName());
-                  // set value for CustomMailsDisabled base on property in IUser
-                  if (iuser.getProperty(DISABLE_CUSTOM_MAILS) != null
-                      && TRUE.equals(iuser.getProperty(DISABLE_CUSTOM_MAILS).toLowerCase())) {
-                    setting.setCustomMailsDisabled(true);
+
+                  // set value for applicationMailEnabled base on property in IUser
+                  if (iuser.getProperty(ENABLE_APPLICATION_MAIL) != null
+                      && TRUE.equals(iuser.getProperty(ENABLE_APPLICATION_MAIL).toLowerCase())) {
+                    setting.setApplicationMailEnabled(true);
                   } else {
-                    setting.setCustomMailsDisabled(false);
+                    setting.setApplicationMailEnabled(false);
                   }
+
                   IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings();
                   // if user settings is set to default, return default settings of the application
                   if (emailSettings.isUseApplicationDefault()) {
@@ -299,8 +301,8 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
                   // set value for email settings on the server
                   iuser.setEMailNotificationSettings(convertFromIvyEmailSettingToIUserEMailNotificationSettings(iuser,
                       setting));
-                  if (setting.getCustomMailsDisabled() != null) {
-                    iuser.setProperty(DISABLE_CUSTOM_MAILS, setting.getCustomMailsDisabled().toString());
+                  if (setting.getApplicationMailEnabled() != null) {
+                    iuser.setProperty(ENABLE_APPLICATION_MAIL, setting.getApplicationMailEnabled().toString());
                   }
                 } else {
                   List<Object> userText = new ArrayList<Object>();
