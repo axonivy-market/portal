@@ -328,7 +328,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   private boolean hasMoreActions(ITask task) throws Exception {
     SideStepServiceImpl sideStepService = new SideStepServiceImpl();
-    return sideStepService.hasSideSteps(false, task.getCase());
+    return sideStepService.hasSideSteps(task.getCase());
   }
 
   @Override
