@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jun 09 17:27:02 ICT 2016]
-150374D567D113F5 3.18 #module
+[>Created: Mon Jun 05 11:45:06 ICT 2017]
+150374D567D113F5 3.20 #module
 >Proto >Proto Collection #zClass
 Pe0 PortalDataService Big #zClass
 Pe0 WS #cInfo
@@ -44,6 +44,13 @@ Pe0 @PushWFArc f17 '' #zField
 Pe0 @PushWFArc f23 '' #zField
 Pe0 @PushWFArc f11 '' #zField
 Pe0 @PushWFArc f5 '' #zField
+Pe0 @StartWS f24 '' #zField
+Pe0 @EndWS f25 '' #zField
+Pe0 @GridStep f26 '' #zField
+Pe0 @PushWFArc f27 '' #zField
+Pe0 @PushWFArc f28 '' #zField
+Pe0 @PushWFArc f29 '' #zField
+Pe0 @ErrorBoundaryEvent Et4 ErrorBoundaryEvent #zField
 >Proto Pe0 Pe0 PortalDataService #zField
 Pe0 f2 inParamDecl '<List<ch.ivy.ws.portaldata.model.CustomPropertyPair> customPropertyPairs> param;' #txt
 Pe0 f2 inParamTable 'out.customPropertyPairs=param.customPropertyPairs;
@@ -58,15 +65,6 @@ Pe0 f2 actionDecl 'ch.ivy.ws.protaldata.PortalDataServiceData out;
 Pe0 f2 callSignature addOrUpdate(List<ch.ivy.ws.portaldata.model.CustomPropertyPair>) #txt
 Pe0 f2 useUserDefinedException false #txt
 Pe0 f2 taskData TaskTriggered.PRI=2 #txt
-Pe0 f2 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Pe0 f2 type ch.ivy.ws.protaldata.PortalDataServiceData #txt
 Pe0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -119,15 +117,6 @@ Pe0 f0 actionDecl 'ch.ivy.ws.protaldata.PortalDataServiceData out;
 Pe0 f0 callSignature delete(String) #txt
 Pe0 f0 useUserDefinedException false #txt
 Pe0 f0 taskData TaskTriggered.PRI=2 #txt
-Pe0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Pe0 f0 type ch.ivy.ws.protaldata.PortalDataServiceData #txt
 Pe0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -206,15 +195,6 @@ Pe0 f14 actionDecl 'ch.ivy.ws.protaldata.PortalDataServiceData out;
 Pe0 f14 callSignature deleteByPrefix(String) #txt
 Pe0 f14 useUserDefinedException false #txt
 Pe0 f14 taskData TaskTriggered.PRI=2 #txt
-Pe0 f14 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Pe0 f14 type ch.ivy.ws.protaldata.PortalDataServiceData #txt
 Pe0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -280,15 +260,6 @@ Pe0 f18 actionDecl 'ch.ivy.ws.protaldata.PortalDataServiceData out;
 Pe0 f18 callSignature deleteManyProperties(List<String>) #txt
 Pe0 f18 useUserDefinedException false #txt
 Pe0 f18 taskData TaskTriggered.PRI=2 #txt
-Pe0 f18 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Pe0 f18 type ch.ivy.ws.protaldata.PortalDataServiceData #txt
 Pe0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -357,6 +328,80 @@ Pe0 f5 103 238 109 368 #arcP
 Pe0 f5 1 184 238 #addKink
 Pe0 f5 2 184 368 #addKink
 Pe0 f5 1 0.2867046013300879 0 0 #arcLabel
+Pe0 f24 inParamDecl '<java.lang.String keyPrefixToBeDeleted,List<ch.ivy.ws.portaldata.model.CustomPropertyPair> customPropertyPairs> param;' #txt
+Pe0 f24 inParamTable 'out.customPropertyPairs=param.customPropertyPairs;
+out.keyPrefixToBeDeleted=param.keyPrefixToBeDeleted;
+' #txt
+Pe0 f24 outParamDecl '<java.lang.String message,ch.ivy.ws.addon.ReturnedStatus status> result;
+' #txt
+Pe0 f24 outParamTable 'result.message=in.message;
+result.status=in.returnedStatus;
+' #txt
+Pe0 f24 actionDecl 'ch.ivy.ws.protaldata.PortalDataServiceData out;
+' #txt
+Pe0 f24 callSignature deleteByPrefixThenUpdate(String,List<ch.ivy.ws.portaldata.model.CustomPropertyPair>) #txt
+Pe0 f24 useUserDefinedException false #txt
+Pe0 f24 taskData TaskTriggered.PRI=2 #txt
+Pe0 f24 type ch.ivy.ws.protaldata.PortalDataServiceData #txt
+Pe0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>deleteByPrefixThenUpdate(String, List&lt;CustomPropertyPair&gt;)</name>
+        <nameStyle>58,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pe0 f24 @C|.responsibility Everybody #txt
+Pe0 f24 1024 96 26 26 17 -1 #rect
+Pe0 f24 @|StartWSIcon #fIcon
+Pe0 f25 type ch.ivy.ws.protaldata.PortalDataServiceData #txt
+Pe0 f25 1024 360 26 26 14 0 #rect
+Pe0 f25 @|EndWSIcon #fIcon
+Pe0 f26 actionDecl 'ch.ivy.ws.protaldata.PortalDataServiceData out;
+' #txt
+Pe0 f26 actionTable 'out=in;
+out.returnedStatus=ch.ivy.ws.addon.ReturnedStatus.SUCCESSFUL;
+' #txt
+Pe0 f26 actionCode 'import ch.ivy.ws.portaldata.service.PortalDataService;
+
+PortalDataService service = new PortalDataService();
+service.deleteByPrefix(in.keyPrefixToBeDeleted);
+service.addOrUpdate(in.customPropertyPairs);
+' #txt
+Pe0 f26 type ch.ivy.ws.protaldata.PortalDataServiceData #txt
+Pe0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>delete by prefix
+then update property</name>
+        <nameStyle>37,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pe0 f26 1019 209 36 24 20 -2 #rect
+Pe0 f26 @|StepIcon #fIcon
+Pe0 f27 expr out #txt
+Pe0 f27 1037 122 1037 209 #arcP
+Pe0 f28 expr out #txt
+Pe0 f28 1037 233 1037 360 #arcP
+Pe0 f29 expr out #txt
+Pe0 f29 1018 243 1024 373 #arcP
+Pe0 f29 1 976 243 #addKink
+Pe0 f29 2 976 373 #addKink
+Pe0 f29 1 0.2867046013300879 0 0 #arcLabel
+Pe0 Et4 actionDecl 'ch.ivy.ws.protaldata.PortalDataServiceData out;
+' #txt
+Pe0 Et4 actionTable 'out=in;
+out.message=error.stackTrace.toString();
+out.returnedStatus=ch.ivy.ws.addon.ReturnedStatus.ERROR;
+' #txt
+Pe0 Et4 actionCode 'ivy.log.error("Error", error);' #txt
+Pe0 Et4 type ch.ivy.ws.protaldata.PortalDataServiceData #txt
+Pe0 Et4 attachedToRef 150374D567D113F5-f26 #txt
+Pe0 Et4 1018 230 26 26 14 0 #rect
+Pe0 Et4 @|ErrorBoundaryEventIcon #fIcon
 >Proto Pe0 .webServiceName ch.ivy.ws.addon.PortalDataService #txt
 >Proto Pe0 .authenticationType 'HTTP Basic' #txt
 >Proto Pe0 .type ch.ivy.ws.protaldata.PortalDataServiceData #txt
@@ -387,3 +432,9 @@ Pe0 f21 mainOut f20 tail #connect
 Pe0 f20 head f19 mainIn #connect
 Pe0 Et3 mainOut f23 tail #connect
 Pe0 f23 head f19 mainIn #connect
+Pe0 f24 mainOut f27 tail #connect
+Pe0 f27 head f26 mainIn #connect
+Pe0 f26 mainOut f28 tail #connect
+Pe0 f28 head f25 mainIn #connect
+Pe0 Et4 mainOut f29 tail #connect
+Pe0 f29 head f25 mainIn #connect
