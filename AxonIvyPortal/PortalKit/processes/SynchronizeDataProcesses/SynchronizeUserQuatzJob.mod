@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 02 14:08:32 ICT 2017]
+[>Created: Mon Jun 05 10:37:35 ICT 2017]
 150FFE7ECE139751 3.20 #module
 >Proto >Proto Collection #zClass
 Sb0 SynchronizeUserQuatzJob Big #zClass
@@ -60,7 +60,7 @@ Sb0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Sb0 f3 174 308 36 24 25 -26 #rect
+Sb0 f3 174 308 36 24 25 -9 #rect
 Sb0 f3 @|CallSubIcon #fIcon
 Sb0 f5 outerBean "ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean" #txt
 Sb0 f5 beanConfig "PortalStartTimeSynchUserExpression" #txt

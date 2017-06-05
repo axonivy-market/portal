@@ -351,11 +351,12 @@ AbsenceServicePorttestWS=ch.ivy.ws.addon.TestWSResponseE</axisReturnTypes>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
-            <axisOperationsToPort>PortalDataServicePort="delete","deleteManyProperties","deleteByPrefix","addOrUpdate"</axisOperationsToPort>
+            <axisOperationsToPort>PortalDataServicePort="delete","deleteByPrefixThenUpdate","deleteManyProperties","addOrUpdate","deleteByPrefix"</axisOperationsToPort>
             <axisEndPointForPortType>PortalDataServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>PortalDataServicePortdeleteAll="arg0__@@__ch.ivy.ws.addon.DeleteAllE__@@__"
 PortalDataServicePortdeleteByPrefix="arg0__@@__ch.ivy.ws.addon.DeleteByPrefixE__@@__"
 PortalDataServicePortdeleteManyProperties="arg0__@@__ch.ivy.ws.addon.DeleteManyPropertiesE__@@__"
+PortalDataServicePortdeleteByPrefixThenUpdate="arg0__@@__ch.ivy.ws.addon.DeleteByPrefixThenUpdateE__@@__"
 PortalDataServicePortaddOrUpdate="arg0__@@__ch.ivy.ws.addon.AddOrUpdateE__@@__"
 PortalDataServicePortdelete="arg0__@@__ch.ivy.ws.addon.DeleteE__@@__"</axisParameterProperties>
             <axisPortList>PortalDataServicePort</axisPortList>
@@ -363,11 +364,12 @@ PortalDataServicePortdelete="arg0__@@__ch.ivy.ws.addon.DeleteE__@@__"</axisParam
             <axisReturnTypes>PortalDataServicePortdeleteAll=ch.ivy.ws.addon.DeleteAllResponseE
 PortalDataServicePortdeleteByPrefix=ch.ivy.ws.addon.DeleteByPrefixResponseE
 PortalDataServicePortdeleteManyProperties=ch.ivy.ws.addon.DeleteManyPropertiesResponseE
+PortalDataServicePortdeleteByPrefixThenUpdate=ch.ivy.ws.addon.DeleteByPrefixThenUpdateResponseE
 PortalDataServicePortaddOrUpdate=ch.ivy.ws.addon.AddOrUpdateResponseE
 PortalDataServicePortdelete=ch.ivy.ws.addon.DeleteResponseE</axisReturnTypes>
             <axisServiceClassname>ch.ivy.ws.addon.PortalDataServiceService</axisServiceClassname>
-            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\AddOrUpdate.java","ch\\ivy\\ws\\addon\\AddOrUpdateE.java","ch\\ivy\\ws\\addon\\AddOrUpdateResponse.java","ch\\ivy\\ws\\addon\\AddOrUpdateResponseE.java","ch\\ivy\\ws\\addon\\AddOrUpdateResult.java","ch\\ivy\\ws\\addon\\CustomPropertyPair.java","ch\\ivy\\ws\\addon\\Delete.java","ch\\ivy\\ws\\addon\\DeleteByPrefix.java","ch\\ivy\\ws\\addon\\DeleteByPrefixE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResponse.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResponseE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResult.java","ch\\ivy\\ws\\addon\\DeleteE.java","ch\\ivy\\ws\\addon\\DeleteManyProperties.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesE.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResponse.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResponseE.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResult.java","ch\\ivy\\ws\\addon\\DeleteResponse.java","ch\\ivy\\ws\\addon\\DeleteResponseE.java","ch\\ivy\\ws\\addon\\DeleteResult.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\PortalDataServiceService.java","ch\\ivy\\ws\\addon\\PortalDataServiceServiceStub.java","ch\\ivy\\ws\\addon\\ReturnedStatus.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
-            <codeGenerationTimestamp>1447665463090</codeGenerationTimestamp>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\AddOrUpdate.java","ch\\ivy\\ws\\addon\\AddOrUpdateE.java","ch\\ivy\\ws\\addon\\AddOrUpdateResponse.java","ch\\ivy\\ws\\addon\\AddOrUpdateResponseE.java","ch\\ivy\\ws\\addon\\AddOrUpdateResult.java","ch\\ivy\\ws\\addon\\CustomPropertyPair.java","ch\\ivy\\ws\\addon\\Delete.java","ch\\ivy\\ws\\addon\\DeleteByPrefix.java","ch\\ivy\\ws\\addon\\DeleteByPrefixE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResponse.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResponseE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResult.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdate.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdateE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdateResponse.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdateResponseE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdateResult.java","ch\\ivy\\ws\\addon\\DeleteE.java","ch\\ivy\\ws\\addon\\DeleteManyProperties.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesE.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResponse.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResponseE.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResult.java","ch\\ivy\\ws\\addon\\DeleteResponse.java","ch\\ivy\\ws\\addon\\DeleteResponseE.java","ch\\ivy\\ws\\addon\\DeleteResult.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\PortalDataServiceService.java","ch\\ivy\\ws\\addon\\PortalDataServiceServiceStub.java","ch\\ivy\\ws\\addon\\ReturnedStatus.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1496649499882</codeGenerationTimestamp>
             <wsdlWebserviceName>PortalDataServiceService</wsdlWebserviceName>
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
