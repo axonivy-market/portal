@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-	version="5.0" xml:id="axonivyportal.settings">
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+	xml:id="axonivyportal.settings">
 	<title xml:id="axonivyportal.settings.title">Settings</title>
 	<sect1 xml:id="axonivyportal.settings.thefirstsection">
 		<para>
@@ -13,8 +13,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						<link linkend="axonivyportal.settings.absenceandsubstitutesettings"
-							endterm="axonivyportal.settings.absenceandsubstitutesettings.title" />
+						<link linkend="axonivyportal.settings.absenceandsubstitutesettings" endterm="axonivyportal.settings.absenceandsubstitutesettings.title" />
 					</para>
 				</listitem>
 				<listitem>
@@ -24,8 +23,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						<link linkend="axonivyportal.settings.languagesettings"
-							endterm="axonivyportal.settings.languagesettings.title" />
+						<link linkend="axonivyportal.settings.languagesettings" endterm="axonivyportal.settings.languagesettings.title" />
 					</para>
 				</listitem>
 			</itemizedlist>
@@ -43,8 +41,7 @@
 			<code>AXONIVY_PORTAL_ADMIN</code>
 			to see this menu item, it is used to configure Portal configuration,
 			see how to configure Portal in
-			<link linkend="axonivyportal.customization.buildyourownportal"
-				endterm="axonivyportal.customization.buildyourownportal.title" />
+			<link linkend="axonivyportal.customization.buildyourownportal" endterm="axonivyportal.customization.buildyourownportal.title" />
 		</para>
 		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
 			<title xml:id="axonivyportal.settings.adminsettings.setupmultiportals.title">Setup multi portals</title>
@@ -145,8 +142,7 @@
 														> Engine Configuration > System Administrators
 													</emphasis>
 													. E.g. in the latest EngineGuide, refer to
-													<link
-														xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#d5e1756">this guideline</link>
+													<link xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#d5e1756">this guideline</link>
 													.
 												</para>
 											</listitem>
@@ -157,7 +153,8 @@
 											<listitem>
 												<para>
 													External Host is used for external users connect to server
-													via host name. It's useful for generating task, process
+													via host name. It's useful for generating task,
+													process
 													start URL(s), therefore they navigate to server instead of
 													using any internal host or
 													<code>IP</code>
@@ -205,7 +202,8 @@
 								dialog and click on
 								<code>New</code>
 								button to add new application. Here you can choose application
-								type either as Ivy application or Third Party application.
+								type either as Ivy application or Third Party
+								application.
 								<mediaobject>
 									<imageobject>
 										<imagedata fileref="images/Settings/multi-portal-add-application.png" />
@@ -214,8 +212,9 @@
 							</para>
 						</para>
 						<tip>
-							For multiple languages of application display name, you need to create the "AppInfo/SupportedLanguages" CMS which defines how
-							many languages your application supports. See the below "Language settings" for more details. 
+							For multiple languages of application display name, you need to create the "AppInfo/SupportedLanguages" CMS
+							which defines how
+							many languages your application supports. See the below "Language settings" for more details.
 						</tip>
 					</listitem>
 					<listitem>
@@ -225,7 +224,8 @@
 								After adding new settings (server, application), click on
 								<code>Synchronize Settings</code>
 								to synch new settings and information about users to registered
-								servers. Close dialog (logging out may be required) and check if
+								servers. Close dialog (logging out may be
+								required) and check if
 								newly created application is available on left menu.
 								<mediaobject>
 									<imageobject>
@@ -236,10 +236,26 @@
 							<tip>
 								In single mode, Portal detects the applications that have
 								the
-								login user in the current engine. Based on that, Portal will
+								login user in the current engine. Based on that,
+								Portal will
 								collect tasks, cases of those applications. In multi-portal
-								mode, Portal will only collect on registered applications.
+								mode, Portal will only collect on
+								registered applications.
 							</tip>
+							<para>
+								By default, Portal will automatically synchronize user settings to registered servers at 5AM everyday.
+								This synchronization process is needed to run at only one application for each server. If there are
+								multiple applications registered for one server, the first application in alphabetical order will run
+								the synchronization process. You can change the time when the synchronization start by going to AdminUI
+								and change the value of the global variable
+								<code class="code"> PortalStartTimeSynchUserExpression</code>
+								of the application that will run the synchronization process.
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/Settings/synchronization-time-setting.png" />
+									</imageobject>
+								</mediaobject>
+							</para>
 						</para>
 					</listitem>
 				</orderedlist>
@@ -379,9 +395,11 @@
 			<listitem>
 				<para>
 					To change language for application, select one in the
-					languages dropdown list of application. When the change is saved,
+					languages dropdown list of application. When the change
+					is saved,
 					the language will be set for application (Click on the application
-					in header menu to reload application and see the change of
+					in header menu to reload application and
+					see the change of
 					language).
 				</para>
 				<mediaobject>
@@ -392,9 +410,11 @@
 			</listitem>
 			<listitem>
 				<para>
-				For multiple languages, the CMS key <emphasis role="bold">/AppInfo/SupportedLanguages</emphasis>
-				must exist in your application.
-				This entry contains list of all languages supported by your application, separated by comma.
+					For multiple languages, the CMS key
+					<emphasis role="bold">/AppInfo/SupportedLanguages</emphasis>
+					must exist in your application.
+					This entry contains list of all languages supported by your application, separated
+					by comma.
 				</para>
 				<itemizedlist>
 					<listitem>Must not contain spaces</listitem>
