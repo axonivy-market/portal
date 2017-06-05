@@ -41,10 +41,24 @@
         <ui:insert name="infoZone" />
 
         <div class="task-template-tasks-command">
+          <p:commandLink id="start-adhoc" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasSelfService(): isShowStartAdhocButton}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" styleClass="case-action-link"
+            oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" >
+            <i class="fa fa-random fa-2x" />
+          </p:commandLink>
+          <p:spacer width="5"/>
           <p:link id="copy-clipboard" href="#"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copyTooltip')}">
             <i class="fa fa-share-square-o fa-2x" />
           </p:link>
+          <p:spacer width="5"/>
+          <p:commandLink id="side-steps-menu"
+            styleClass="case-action-link" global="true"
+            oncomplete="PF('side-steps-panel').loadContents();"
+            disabled="#{taskTemplateBean.checkSideStepsEnabled(caseId)}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}">
+            <span class="action-icon fa fa-ellipsis-h fa-2x" />
+          </p:commandLink>
         </div>
 
         <p:growl id="clipboard-growl" widgetVar="clipboard-growl" for="copy-clipboard" />
@@ -62,6 +76,16 @@
             </p:panelGrid>
           </h:form>
         </p:overlayPanel>
+
+      <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel" for="side-steps-menu" my="left top" at="left bottom"
+        appendToBody="true" styleClass="side-steps-container" dynamic="true">
+        <ui:repeat var="sidestep" value="#{taskTemplateBean.sideStepList}">
+          <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sidestep.getName()}"
+            global="false"
+            actionListener="#{taskTemplateBean.setSelectedSideStep(sidestep)}"
+            oncomplete="PF('sidestep-task-reset-confirmation-dialog').show()" />
+        </ui:repeat>
+      </p:overlayPanel>
 
         <p:tabView prependId="false">
           <ui:insert name="dynamicTabs">
@@ -85,7 +109,7 @@
                 </c:when>
                 <c:otherwise>
                   <h:form id="case-details-form" prependId="false">
-                    <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItem caseId="#{caseId}" showStartAdhoc="#{isShowStartAdhocButton}" id="case-item">
+                    <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItem caseId="#{caseId}" id="case-item">
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemGeneralInformation id="general-information"
                         caseId="#{caseId}" />
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemRelatedTasks id="related-tasks"
@@ -113,9 +137,9 @@
         </div>
       </div>
 
-    <p:dialog id="task-reset-confirmation-dialog" resizable="false"
+    <p:dialog id="adhoc-task-reset-confirmation-dialog" resizable="false"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-      widgetVar="task-reset-confirmation-dialog" appendTo="@(body)"
+      widgetVar="adhoc-task-reset-confirmation-dialog" appendTo="@(body)"
       modal="true" dynamic="true">
       <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
         value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning')}" />
@@ -125,7 +149,27 @@
             <p:commandButton actionListener="#{taskTemplateBean.startAdhoc()}" process="@this" update="@none"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
               styleClass="portal-ok-button" />
-            <p:commandButton onclick="PF('task-reset-confirmation-dialog').hide()"
+            <p:commandButton onclick="PF('adhoc-task-reset-confirmation-dialog').hide()"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
+              styleClass="portal-cancel-button" />
+          </h:panelGroup>
+        </h:form>
+      </f:facet>
+    </p:dialog>
+
+    <p:dialog id="sidestep-task-reset-confirmation-dialog" resizable="false"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
+      widgetVar="sidestep-task-reset-confirmation-dialog" appendTo="@(body)"
+      modal="true" dynamic="true">
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
+        value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning')}" />
+      <f:facet name="footer">
+        <h:form prependId="false">
+          <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
+            <p:commandButton actionListener="#{taskTemplateBean.startSideStep()}" process="@this" update="@none"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+              styleClass="portal-ok-button" />
+            <p:commandButton onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
               styleClass="portal-cancel-button" />
           </h:panelGroup>
