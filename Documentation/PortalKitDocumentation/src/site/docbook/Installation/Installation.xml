@@ -436,6 +436,12 @@
 			<para>If you copy the <code>PortalStart</code> process or the <code>PortalHome</code> HTMLDialog for customizations, please adapt the changes:</para>
 			<itemizedlist>
 				<listitem>
+					<para>The whole process is refactored to be clearer. So it is recommended that you copy it again.</para>
+				</listitem>
+				<listitem>
+					<para>New process is introduced: restorePortalTaskList.ivp</para>
+				</listitem>
+				<listitem>
 					<para>PortalStart: some new ivy scripts are added to handle the navigation back to the same page before starting a task.</para>
 				</listitem>
 				<listitem>
