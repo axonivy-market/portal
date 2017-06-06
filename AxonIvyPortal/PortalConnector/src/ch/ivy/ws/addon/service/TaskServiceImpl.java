@@ -1,5 +1,9 @@
 package ch.ivy.ws.addon.service;
 
+import static ch.ivyteam.ivy.workflow.TaskState.PARKED;
+import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
+import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Callable;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -300,7 +305,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 ivyTask.setCanChangeDescription(hasPermissionToChangeDescription(involvedUsername, task));
                 ivyTask.setCanChangeName(hasPermissionToChangeName(involvedUsername, task));
                 try {
-                  ivyTask.setHasMoreActions(hasMoreActions(task));
+                  ivyTask.setHasMoreActions(hasMoreActions(task, involvedUsername));
                 } catch (Exception e) {
                   Ivy.log().error("Error when checking whether task has more actions", e);
                 }
@@ -326,9 +331,13 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
-  private boolean hasMoreActions(ITask task) throws Exception {
+  private boolean hasMoreActions(ITask task, String userName) throws Exception {
+    boolean isAdmin = SessionUtil.doesUserHavePermission(task.getApplication(), userName, IPermission.TASK_READ_ALL);
+    boolean isOpenTask = Stream.of(SUSPENDED, RESUMED, PARKED).anyMatch(state -> state.equals(task.getState()));
+    boolean canUserResumeTask = canUserResumeTask(userName, task);
+    boolean isAdhocIncluded = (isAdmin && isOpenTask) || canUserResumeTask;
     SideStepServiceImpl sideStepService = new SideStepServiceImpl();
-    return sideStepService.hasSideSteps(task.getCase());
+    return sideStepService.hasSideSteps(task.getCase(), isAdhocIncluded);
   }
 
   @Override
