@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.SideStepUtils;
 import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
 import ch.ivyteam.ivy.casemap.runtime.SideStepService;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -55,10 +56,8 @@ public class TaskTemplateBean {
     portalNavigator.redirect(selectedSideStep.getStartRequestUri().toString());
   }
 
-  public boolean hasSelfService() throws Exception{
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-    String  url = processStartCollector.findACMLink();
-    return !url.isEmpty();
+  public boolean hasSelfService() throws Exception {
+    return SideStepUtils.hasSelfService();
   }
 
   public List<ISideStepProcess> generateSideStepList(String caseId) throws Exception{
