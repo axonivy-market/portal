@@ -55,7 +55,7 @@
           <p:commandLink id="side-steps-menu"
             styleClass="case-action-link" global="true"
             oncomplete="PF('side-steps-panel').loadContents();"
-            disabled="#{taskTemplateBean.checkSideStepsEnabled(caseId)}"
+            disabled="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}">
             <span class="action-icon fa fa-ellipsis-h fa-2x" />
           </p:commandLink>
@@ -78,7 +78,7 @@
         </p:overlayPanel>
 
       <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel" for="side-steps-menu" my="left top" at="left bottom"
-        appendToBody="true" styleClass="side-steps-container" dynamic="true">
+        appendToBody="true" styleClass="side-steps-container" dynamic="true" rendered="#{taskTemplateBean.checkSideStepsEnabled(caseId)}">
         <ui:repeat var="sidestep" value="#{taskTemplateBean.sideStepList}">
           <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sidestep.getName()}"
             global="false"
