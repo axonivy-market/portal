@@ -2,20 +2,10 @@ package ch.ivy.addon.portalkit.bean;
 
 import static ch.ivyteam.ivy.security.IPermission.CASE_DESTROY;
 
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 
-import org.primefaces.model.menu.DefaultMenuItem;
-import org.primefaces.model.menu.DefaultMenuModel;
-import org.primefaces.model.menu.MenuModel;
-
-import ch.ivy.addon.portalkit.util.SideStepUtils;
 import ch.ivy.addon.portalkit.vo.CaseVO;
-import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.IHttpRequest;
-import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -90,30 +80,6 @@ public class CaseBean {
     ISecurityDescriptor securityDescriptor = Ivy.request().getApplication().getSecurityDescriptor();
     boolean hasCaseDestroyPermission = ivySession.hasPermission(securityDescriptor, CASE_DESTROY);
     return hasCaseDestroyPermission;
-  }
-
-  public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps, boolean isAdhocEnabled) throws Exception {
-    MenuModel model = new DefaultMenuModel();
-    int menuIndex = 0;
-    if (isAdhocEnabled && SideStepUtils.hasSelfService()) {
-      DefaultMenuItem adhocItem =
-          new DefaultMenuItem(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskInformation/addAdhocTask"));
-      adhocItem.setId(Integer.toString(menuIndex));
-      menuIndex++;
-      adhocItem.setTitle(Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip"));
-      adhocItem.setOnclick("PF('task-reset-confirmation-dialog').show()");
-      model.addElement(adhocItem);
-    }
-    for (ISideStepProcess process : sideSteps) {
-      DefaultMenuItem item = new DefaultMenuItem(process.getName());
-      item.setId(Integer.toString(menuIndex));
-      menuIndex++;
-      final String processURI = process.getStartRequestUri().toString();
-      String serverURI = RequestUriFactory.createServerUri((IHttpRequest) Ivy.request()).toString();
-      item.setUrl(serverURI + processURI);
-      model.addElement(item);
-    }
-    return model;
   }
 
 }
