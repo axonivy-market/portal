@@ -21,17 +21,14 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.HTMLDetector;
 import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean
 @ViewScoped
@@ -110,20 +107,7 @@ public class TaskWidgetBean implements Serializable {
 	    
 		return host + adhocUrl;
   }
-  
-  public boolean hasSelfService() throws Exception{
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-    String adhocUrl = processStartCollector.findACMLink();
-    return !adhocUrl.isEmpty();
-  }
-  
-  public boolean hasPermissionToAddAdhoc(ITask task){
-	  PermissionCheckerService permissionService = new PermissionCheckerService();
-	  boolean isAdmin =  permissionService.hasPermission(IPermission.TASK_READ_ALL);
-	 
-	  return isAdmin && (TaskState.SUSPENDED.equals(task.getState()) || TaskState.RESUMED.equals(task.getState()) ||  TaskState.PARKED.equals(task.getState()));
-  }
-  
+
   public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps) throws Exception {
     MenuModel model = new DefaultMenuModel();
     int menuIndex = 0;
