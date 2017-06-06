@@ -35,12 +35,6 @@
         <name>start</name>
         <description>Default dialog start method.</description>
         <inputParameter>
-            <name>businessCaseId</name>
-            <description></description>
-            <parameterType>java.lang.Long</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
             <name>originalTaskId</name>
             <description></description>
             <parameterType>java.lang.Long</parameterType>
