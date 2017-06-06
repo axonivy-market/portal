@@ -59,7 +59,7 @@
       </p:overlayPanel>
       
    	  <p:tooltip for="task-side-steps-menu" styleClass="task-command-tooltip" 
-        value="#{taskWidgetBean.hasSelfService() and (task.canResume or taskWidgetBean.hasPermissionToAddAdhoc(task)) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskSideSteps'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noSideSteps')}" />
+        value="#{task.hasMoreActions ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskSideSteps'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noSideSteps')}" />
     </div>
   </div>
 </ui:composition>

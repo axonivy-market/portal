@@ -49,10 +49,12 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     }
   }
 
-  public boolean hasSideSteps(ICase wfCase) throws Exception {
-    IvySideStep adhocSideStep = createAdhocSideStep(wfCase);
-    if (adhocSideStep != null) {
-      return true;
+  public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded) throws Exception {
+    if (isAdhocIncluded) {
+      IvySideStep adhocSideStep = createAdhocSideStep(wfCase);
+      if (adhocSideStep != null) {
+        return true;
+      }
     }
     return false;
   }
