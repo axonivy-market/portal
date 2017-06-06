@@ -85,6 +85,7 @@ public class TaskWidgetBean implements Serializable {
   }
 
   public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps, RemoteTask task) throws Exception {
+    sortSideStepsByName(sideSteps);
     MenuModel model = new DefaultMenuModel();
     int menuIndex = 0;
     for (ISideStepProcess process : sideSteps) {
@@ -96,5 +97,9 @@ public class TaskWidgetBean implements Serializable {
       model.addElement(item);
     }
     return model;
+  }
+
+  private void sortSideStepsByName(List<ISideStepProcess> sideSteps) {
+    sideSteps.sort((s1, s2) -> s1.getName().compareTo(s2.getName()));
   }
 }
