@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 26 17:59:04 ICT 2017]
+[>Created: Tue Jun 06 09:49:31 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -70,6 +70,11 @@ Tt0 @TaskSwitch f55 '' #zField
 Tt0 @TkArc f56 '' #zField
 Tt0 @PushWFArc f57 '' #zField
 Tt0 @PushWFArc f58 '' #zField
+Tt0 @StartRequest f59 '' #zField
+Tt0 @UserTask f60 '' #zField
+Tt0 @TkArc f61 '' #zField
+Tt0 @EndTask f62 '' #zField
+Tt0 @PushWFArc f63 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -947,6 +952,75 @@ Tt0 f58 outCond ivp=="TaskB.ivp" #txt
 Tt0 f58 206 864 256 979 #arcP
 Tt0 f58 1 256 864 #addKink
 Tt0 f58 1 0.1571087239093166 0 0 #arcLabel
+Tt0 f59 outLink leaveRequest.ivp #txt
+Tt0 f59 type internaltest.Data #txt
+Tt0 f59 inParamDecl '<> param;' #txt
+Tt0 f59 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f59 guid 15C7B4C9AB3C244D #txt
+Tt0 f59 requestEnabled true #txt
+Tt0 f59 triggerEnabled false #txt
+Tt0 f59 callSignature leaveRequest() #txt
+Tt0 f59 persist false #txt
+Tt0 f59 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f59 caseData businessCase.attach=true #txt
+Tt0 f59 showInStartList 1 #txt
+Tt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>LeaveRequest.ivp</name>
+        <nameStyle>16,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f59 @C|.responsibility Everybody #txt
+Tt0 f59 529 497 30 30 -49 17 #rect
+Tt0 f59 @|StartRequestIcon #fIcon
+Tt0 f60 richDialogId internaltest.TaskForm #txt
+Tt0 f60 startMethod start() #txt
+Tt0 f60 requestActionDecl '<> param;' #txt
+Tt0 f60 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f60 responseMappingAction 'out=in;
+' #txt
+Tt0 f60 outLinks "TaskA.ivp" #txt
+Tt0 f60 caseData 'case.name=Create Leave Request' #txt
+Tt0 f60 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Create Leave Request
+TaskA.PRI=2
+TaskA.ROL=Everybody
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f60 type internaltest.Data #txt
+Tt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Simple leave request</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f60 480 586 128 44 -58 -8 #rect
+Tt0 f60 @|UserTaskIcon #fIcon
+Tt0 f61 expr out #txt
+Tt0 f61 type internaltest.Data #txt
+Tt0 f61 var in1 #txt
+Tt0 f61 544 527 544 586 #arcP
+Tt0 f62 type internaltest.Data #txt
+Tt0 f62 529 689 30 30 0 15 #rect
+Tt0 f62 @|EndIcon #fIcon
+Tt0 f63 expr data #txt
+Tt0 f63 outCond ivp=="TaskA.ivp" #txt
+Tt0 f63 544 630 544 689 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1018,3 +1092,7 @@ Tt0 f55 out f57 tail #connect
 Tt0 f57 head f53 mainIn #connect
 Tt0 f55 out f58 tail #connect
 Tt0 f58 head f54 mainIn #connect
+Tt0 f59 mainOut f61 tail #connect
+Tt0 f61 head f60 in #connect
+Tt0 f60 out f63 tail #connect
+Tt0 f63 head f62 mainIn #connect
