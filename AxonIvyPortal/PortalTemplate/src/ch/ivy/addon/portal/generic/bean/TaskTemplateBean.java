@@ -69,6 +69,6 @@ public class TaskTemplateBean {
   }
 
   public boolean checkSideStepsEnabled(String caseId) throws Exception {
-    return generateSideStepList(caseId).isEmpty();
+    return !generateSideStepList(caseId).isEmpty();
   }
 }
