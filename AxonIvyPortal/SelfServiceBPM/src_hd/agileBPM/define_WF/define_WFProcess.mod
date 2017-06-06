@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 16 16:32:23 ICT 2017]
+[>Created: Tue Jun 06 16:46:38 ICT 2017]
 144633F679C3A22D 3.20 #module
 >Proto >Proto Collection #zClass
 ds0 define_WFProcess Big #zClass
@@ -68,13 +68,12 @@ ds0 @PushWFArc f52 '' #zField
 >Proto ds0 ds0 define_WFProcess #zField
 ds0 f0 guid 144633F67BB43F5D #txt
 ds0 f0 type agileBPM.define_WF.define_WFData #txt
-ds0 f0 method start(java.lang.Long,java.lang.Long,Boolean) #txt
+ds0 f0 method start(java.lang.Long,Boolean) #txt
 ds0 f0 disableUIEvents true #txt
 ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Long businessCaseId,java.lang.Long originalTaskId,java.lang.Boolean isAddingAdhocTaskToOtherTask> param = methodEvent.getInputArguments();
+<java.lang.Long originalTaskId,java.lang.Boolean isAddingAdhocTaskToOtherTask> param = methodEvent.getInputArguments();
 ' #txt
-ds0 f0 inParameterMapAction 'out.businessCaseId=param.businessCaseId;
-out.isAddingAdhocToOtherTask=param.isAddingAdhocTaskToOtherTask;
+ds0 f0 inParameterMapAction 'out.isAddingAdhocToOtherTask=param.isAddingAdhocTaskToOtherTask;
 out.originalTaskId=param.originalTaskId;
 ' #txt
 ds0 f0 outParameterDecl '<List<selfServiceBPM.TaskDef> definedTasks,selfServiceBPM.CaseDef caseInfo> result;
@@ -86,6 +85,8 @@ ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(Long,Long,Boolean)</name>
+        <nameStyle>24,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -249,6 +250,7 @@ out.newTask.setUntil(ivy.cal.getWorkDayIn(1,new Time()));
 
 if(in.isAddingAdhocToOtherTask){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
+	in.businessCaseId = originalTask.getCase().getBusinessCase().getId();
 	selfServiceBPM.TaskDef currentTask = new selfServiceBPM.TaskDef();
 	currentTask.setActor(originalTask.getActivator()!= null? originalTask.getActivator().getDisplayName(): "");
 	currentTask.setKind(originalTask.getName());

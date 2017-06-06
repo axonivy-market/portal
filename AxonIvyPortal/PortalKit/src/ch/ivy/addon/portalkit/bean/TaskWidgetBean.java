@@ -9,7 +9,6 @@ import static org.owasp.html.Sanitizers.TABLES;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
@@ -20,15 +19,11 @@ import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 
+import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.HTMLDetector;
 import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.IHttpRequest;
-import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -88,34 +83,15 @@ public class TaskWidgetBean implements Serializable {
   private boolean containsHTML(String text) {
     return Optional.ofNullable(text).map(t -> HTMLDetector.isHtml(t)).orElse(false);
   }
-  
-  public String createAdhocLink(ITask task) throws Exception{
-	  if(Objects.isNull(task)){
-			return StringUtils.EMPTY;
-		}
-		ICase currentCase = task.getCase();
-		if(Objects.isNull(currentCase)){
-			return StringUtils.EMPTY;
-		}
-		Long businessCaseId = currentCase.getId();
-		String adhocUrl = StringUtils.EMPTY;
-		
-		String host = RequestUriFactory.createServerUri((IHttpRequest) Ivy.request()).toString();
-	    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-	    adhocUrl = processStartCollector.findACMLink();
-	    adhocUrl = adhocUrl + "?businessCaseId=" + businessCaseId + "&originalTaskId=" + task.getId();
-	    
-		return host + adhocUrl;
-  }
 
-  public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps) throws Exception {
+  public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps, RemoteTask task) throws Exception {
     MenuModel model = new DefaultMenuModel();
     int menuIndex = 0;
     for (ISideStepProcess process : sideSteps) {
       DefaultMenuItem item = new DefaultMenuItem(process.getName());
       item.setId(Integer.toString(menuIndex));
       menuIndex++;
-      final String processURI = process.getStartRequestUri().toString();
+      final String processURI = process.getStartRequestUri().toString() + "?originalTaskId=" + task.getId();
       item.setUrl(processURI);
       model.addElement(item);
     }
