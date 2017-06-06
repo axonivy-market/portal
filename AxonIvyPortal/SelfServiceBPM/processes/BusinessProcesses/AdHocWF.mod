@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 17 11:15:49 ICT 2017]
+[>Created: Tue Jun 06 16:47:33 ICT 2017]
 14232C3D829C4D71 3.20 #module
 >Proto >Proto Collection #zClass
 AF0 AdHocWF Big #zClass
@@ -120,9 +120,8 @@ AF0 1b0 704 90 112 44 -40 -8 #rect
 AF0 1b0 @|BIcon #fIcon
 AF0 f0 outLink start.ivp #txt
 AF0 f0 type selfServiceBPM.Data #txt
-AF0 f0 inParamDecl '<java.lang.Long businessCaseId,java.lang.Long originalTaskId> param;' #txt
-AF0 f0 inParamTable 'out.businessCaseId=param.businessCaseId;
-out.isAddingAdhocToOtherTask=false;
+AF0 f0 inParamDecl '<java.lang.Long originalTaskId> param;' #txt
+AF0 f0 inParamTable 'out.isAddingAdhocToOtherTask=false;
 out.originalTaskId=param.originalTaskId;
 ' #txt
 AF0 f0 actionDecl 'selfServiceBPM.Data out;
@@ -130,18 +129,18 @@ AF0 f0 actionDecl 'selfServiceBPM.Data out;
 AF0 f0 guid 14232C40032FD3B8 #txt
 AF0 f0 requestEnabled true #txt
 AF0 f0 triggerEnabled false #txt
-AF0 f0 callSignature start(Long,Long) #txt
+AF0 f0 callSignature start(Long) #txt
 AF0 f0 persist false #txt
 AF0 f0 startName <%=ivy.cms.co("/ProcessPages/selfServiceAdhocProcess")%> #txt
 AF0 f0 startDescription <%=ivy.cms.co("/ProcessPages/selfServiceDescription")%> #txt
 AF0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.KINDC=CREATOR
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody
-TaskTriggered.NAM=Self Service Workflow' #txt
+TaskTriggered.NAM=Self Service Workflow
+TaskTriggered.EXROL=Everybody' #txt
 AF0 f0 caseData 'processCategory.name=Self Service WF
 processCategory.code=Self Service WF
 process.name=Self Service WF
@@ -164,11 +163,10 @@ AF0 f0 @|StartRequestIcon #fIcon
 AF0 f1 targetWindow NEW:card: #txt
 AF0 f1 targetDisplay TOP #txt
 AF0 f1 richDialogId agileBPM.define_WF #txt
-AF0 f1 startMethod start(java.lang.Long,java.lang.Long,Boolean) #txt
+AF0 f1 startMethod start(java.lang.Long,Boolean) #txt
 AF0 f1 type selfServiceBPM.Data #txt
-AF0 f1 requestActionDecl '<java.lang.Long businessCaseId, java.lang.Long originalTaskId, Boolean isAddingAdhocTaskToOtherTask> param;' #txt
-AF0 f1 requestMappingAction 'param.businessCaseId=in.businessCaseId;
-param.originalTaskId=in.originalTaskId;
+AF0 f1 requestActionDecl '<java.lang.Long originalTaskId, Boolean isAddingAdhocTaskToOtherTask> param;' #txt
+AF0 f1 requestMappingAction 'param.originalTaskId=in.originalTaskId;
 param.isAddingAdhocTaskToOtherTask=in.isAddingAdhocToOtherTask;
 ' #txt
 AF0 f1 responseActionDecl 'selfServiceBPM.Data out;
@@ -219,16 +217,14 @@ AF0 f7 actionCode 'import ch.ivyteam.ivy.security.IPermission;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.ICase;
 
-if(in.#businessCaseId is initialized && in.#originalTaskId is initialized){
-	ICase case = ivy.wf.findCase(in.businessCaseId);
+if(in.#originalTaskId is initialized){
 	ITask originalTask = TaskUtils.findTaskUserHasPermissionToSee(in.originalTaskId);
 	PermissionCheckerService permissionService = new PermissionCheckerService();
 	if(originalTask == null && permissionService.hasPermission(IPermission.TASK_READ_ALL)){
 		originalTask = ivy.wf.findTask(in.originalTaskId);
 	}
-	if(case != null && originalTask != null){
+	if(originalTask != null){
 		in.isAddingAdhocToOtherTask = true;
 	}
 }' #txt
