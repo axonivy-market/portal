@@ -1,3 +1,0 @@
-co: name={taskSideSteps} description={} changed={2017-05-23 13:43:41 CEST} changedby={t} visualorder={0} guid={15C0ACFD95ECFBDB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15C0ACFD96DE323C} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-15 08:33:32 CEST} validto={} changed={2017-05-16 09:34:06 CEST} changedby={tntanh} properties={} id={}
-val: guid={15C0AD182688C2C0} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-15 08:35:15 CEST} validto={} changed={2017-05-23 13:43:41 CEST} changedby={t} properties={} id={}

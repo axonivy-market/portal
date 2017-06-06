@@ -2090,7 +2090,7 @@ a.compact-task-start-link:hover {
   top: 0.9rem;
 }
 
-.task-start-list .action-cell .task-command.side-step:hover {
+.task-start-list .action-cell .task-command.side-step:not(.ui-state-disabled):hover {
   background-color: rgba(0,0,0,0.04);
   border-radius: 3px;
 }
@@ -2196,6 +2196,15 @@ a.compact-task-start-link:hover {
 
 .side-steps-panel.ui-overlaypanel .ui-overlaypanel-content {
   padding: 0px !important;
+}
+
+.side-steps-panel.ui-overlaypanel .ui-overlaypanel-content .ui-widget-content {
+  width: 150px;
+}
+
+.side-steps-panel.ui-overlaypanel .ui-overlaypanel-content .ui-widget-content .ui-menuitem-link {
+  font-size: 1.1rem;
+  padding: 0.7rem 0;
 }
 /********************************** END TASK WIDGET **********************************/
 
@@ -3769,11 +3778,14 @@ margin-top
 
 .side-steps-container {
   border-radius: 0;
+  background: #FBFCFD;
+  width: 200px;
 }
 
 .side-steps-container .ui-overlaypanel-content {
   display: grid;
   padding: 2px !important;
+  width: 150px;
 }
 
 .side-steps-container .side-step-item {
@@ -3783,6 +3795,8 @@ margin-top
   float: left;
   padding: 5px 20px;
   margin: 0;
+  width: 158px;
+  word-wrap: break-word;
 }
 
 .side-steps-container .side-step-item:hover {
