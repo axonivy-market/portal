@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jun 05 14:18:04 ICT 2017]
+[>Created: Tue Jun 06 14:23:02 ICT 2017]
 150CB86EFC2F2972 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
@@ -1055,7 +1055,8 @@ Ts0 f39 actionTable 'out=in;
 ' #txt
 Ts0 f39 actionCode 'import ch.ivy.ws.addon.SideStepSearchCriteria;
 in.sideStepSearchCriteria.setCaseId(in.selectedTask.getCase().getId());
-in.sideStepSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());' #txt
+in.sideStepSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());
+' #txt
 Ts0 f39 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

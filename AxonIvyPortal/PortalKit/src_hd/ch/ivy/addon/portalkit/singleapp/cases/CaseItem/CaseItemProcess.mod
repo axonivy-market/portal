@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jun 05 11:43:00 ICT 2017]
+[>Created: Tue Jun 06 16:56:34 ICT 2017]
 153AC8F1D34C2E0D 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemProcess Big #zClass
@@ -28,8 +28,7 @@ Cs0 f11 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItem.CaseItemData
 ' #txt
 Cs0 f11 actionTable 'out=in;
 ' #txt
-Cs0 f11 actionCode 'import ch.ivy.addon.portalkit.util.SideStepUtils;
-import ch.ivy.addon.portalkit.service.PermissionCheckerService;
+Cs0 f11 actionCode 'import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivyteam.ivy.security.IPermission;
 
 in.internalCase = ivy.wf.findCase(in.caseId);
