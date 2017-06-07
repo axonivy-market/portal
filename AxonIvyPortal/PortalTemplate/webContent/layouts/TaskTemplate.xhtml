@@ -46,18 +46,19 @@
             oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" >
             <i class="fa fa-random fa-2x" />
           </p:commandLink>
-          <p:spacer width="5"/>
+          <p:spacer width="7"/>
           <p:link id="copy-clipboard" href="#"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copyTooltip')}">
             <i class="fa fa-share-square-o fa-2x" />
           </p:link>
-          <p:spacer width="5"/>
+          <p:spacer width="7"/>
+          <c:set var="isSideStepDisabled" value="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}" />
           <p:commandLink id="side-steps-menu"
             styleClass="case-action-link" global="true"
             oncomplete="PF('side-steps-panel').loadContents();"
-            disabled="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}">
-            <span class="action-icon fa fa-ellipsis-h fa-2x" />
+            disabled="#{isSideStepDisabled}">
+            <span class="action-icon tmi-ellipsis-h side-step-icon" 
+              title="#{isSideStepDisabled ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noSideSteps') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}" />
           </p:commandLink>
         </div>
 

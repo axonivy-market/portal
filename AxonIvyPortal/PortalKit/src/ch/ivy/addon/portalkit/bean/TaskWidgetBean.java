@@ -8,21 +8,15 @@ import static org.owasp.html.Sanitizers.STYLES;
 import static org.owasp.html.Sanitizers.TABLES;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.menu.DefaultMenuItem;
-import org.primefaces.model.menu.DefaultMenuModel;
-import org.primefaces.model.menu.MenuModel;
 
-import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.util.HTMLDetector;
-import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -82,24 +76,5 @@ public class TaskWidgetBean implements Serializable {
   
   private boolean containsHTML(String text) {
     return Optional.ofNullable(text).map(t -> HTMLDetector.isHtml(t)).orElse(false);
-  }
-
-  public MenuModel getSideStepsMenuModel(List<ISideStepProcess> sideSteps, RemoteTask task) throws Exception {
-    sortSideStepsByName(sideSteps);
-    MenuModel model = new DefaultMenuModel();
-    int menuIndex = 0;
-    for (ISideStepProcess process : sideSteps) {
-      DefaultMenuItem item = new DefaultMenuItem(process.getName());
-      item.setId(Integer.toString(menuIndex));
-      menuIndex++;
-      final String processURI = process.getStartRequestUri().toString() + "?originalTaskId=" + task.getId();
-      item.setUrl(processURI);
-      model.addElement(item);
-    }
-    return model;
-  }
-
-  private void sortSideStepsByName(List<ISideStepProcess> sideSteps) {
-    sideSteps.sort((s1, s2) -> s1.getName().compareTo(s2.getName()));
   }
 }
