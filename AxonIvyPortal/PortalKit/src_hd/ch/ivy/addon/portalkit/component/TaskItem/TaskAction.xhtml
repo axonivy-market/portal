@@ -52,10 +52,15 @@
         
       <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command side-step" global="false" disabled="#{not task.hasMoreActions}"
         actionListener="#{logic.collectSideSteps(task)}" oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();">
-      	 <span class="action-icon fa fa-ellipsis-v" />
+      	 <span class="action-icon tmi-ellipsis-v side-step-icon" />
       </p:commandLink>
-      <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel-#{rowIndex}" for="task-side-steps-menu" my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true" rendered="#{task.hasMoreActions}">
-        <p:menu overlay="false" model="#{taskWidgetBean.getSideStepsMenuModel(data.sideSteps, data.selectedTask)}" />
+      <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel-#{rowIndex}" for="task-side-steps-menu"
+        my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true" rendered="#{task.hasMoreActions}">
+        <ui:repeat var="sidestep" value="#{data.sideSteps}">
+          <p:commandLink id="side-step-item" styleClass="side-step-item"
+            value="#{sidestep.name}" global="false"
+            actionListener="#{logic.navigateToSidestep(sidestep,task)}" />
+        </ui:repeat>
       </p:overlayPanel>
       
    	  <p:tooltip for="task-side-steps-menu" styleClass="task-command-tooltip" 
