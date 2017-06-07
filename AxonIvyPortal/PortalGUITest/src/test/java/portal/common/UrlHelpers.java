@@ -13,6 +13,13 @@ public class UrlHelpers {
     return getEngineUrl() + "/pro/" + getApplicationName() + "/" + relativeProcessStartLink;
   }
 
+  public static String generateAbsoluteCaseMapStartLink(String relativeCaseMapLink) {
+    if (!SystemProperties.isInServerMode() || System.getProperty("engineUrl") != null) {
+      relativeCaseMapLink = WordUtils.capitalize(relativeCaseMapLink);
+    }
+    return getEngineUrl() + "/casemap/" + getApplicationName() + "/" + relativeCaseMapLink;
+  }
+
   private static String getApplicationName() {
     String applicationName = System.getProperty("engineApplicationName");
     return Optional.ofNullable(applicationName).orElse(PropertyLoader.getApplicationName());
