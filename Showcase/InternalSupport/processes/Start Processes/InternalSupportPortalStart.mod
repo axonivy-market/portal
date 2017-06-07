@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jun 05 15:39:07 ICT 2017]
+[>Created: Wed Jun 07 10:26:11 ICT 2017]
 15B0ED067061F4DE 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 InternalSupportPortalStart Big #zClass
@@ -376,12 +376,15 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivyteam.ivy.request.IHttpResponse;
 import ch.ivyteam.ivy.workflow.ITask;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-boolean isTaskStarted = #task is initialized ? task.getStartProcessData() is initialized : false;
-String callbackUrl = task.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
+boolean isTaskStarted = false;
+String callbackUrl;
+if  (#task is initialized) {
+	boolean isTaskStarted = task.getStartProcessData() is initialized;
+	callbackUrl = task.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
+}
 
 if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
 	out.callbackUrl = callbackUrl;
