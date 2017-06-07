@@ -284,8 +284,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             if (taskSearchCriteria.isEmpty() && StringUtils.isBlank(taskSearchCriteria.getJsonQuery())) {
               return result(noErrors());
             }
-
+            
             TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
+            queryExcludeHiddenTasks(taskQuery);
+            
             List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
             List<IvyTask> ivyTasks = new ArrayList<>();
             List<IvyTask> allIvyTasks = new ArrayList<>();
@@ -350,6 +352,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         }
 
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
+        queryExcludeHiddenTasks(taskQuery);
+        
         long taskCount = countTasks(taskQuery);
         return result(taskCount, errors);
 
@@ -383,6 +387,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
+            queryExcludeHiddenTasks(taskQuery);
+            
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
@@ -420,7 +426,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
-
+            queryExcludeHiddenTasks(taskQuery);
+            
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
@@ -458,6 +465,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
+            queryExcludeHiddenTasks(taskQuery);
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
@@ -493,6 +501,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             List<TaskState> states = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
             priorityQuery.aggregate().countRows().where().and(queryForStates(states)).groupBy().priority().orderBy()
                 .priority();
+            queryExcludeHiddenTasks(priorityQuery);
+            
             Recordset recordSet = taskQueryExecutor().getRecordset(priorityQuery);
             PriorityStatistic priorityStatistic = new PriorityStatistic();
             recordSet.getRecords().forEach(record -> {
@@ -534,6 +544,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
             List<TaskState> states = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
             expiryQuery.where().and(queryForStates(states)).and(queryForExpiry(expiryDate));
+            queryExcludeHiddenTasks(expiryQuery);
 
             return numberOfExpiryTasks(countTasks(expiryQuery), errors);
           });
@@ -801,6 +812,14 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             .isLowerThan(dateAfter1Day);
     return priorityQuery;
   }
+  
+  private void queryExcludeHiddenTasks(TaskQuery taskQuery) {
+    List<ITask> hiddenTasks = executeTaskQuery(TaskQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
+
+    hiddenTasks.forEach(hiddenTask -> {
+      taskQuery.where().and().taskId().isNotEqual(hiddenTask.getId());
+    });
+  }
 
   /**
    * Execute query
@@ -826,4 +845,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   private ISecurityManager securityManager() {
     return ServerFactory.getServer().getSecurityManager();
   }
+  
+  
 }
