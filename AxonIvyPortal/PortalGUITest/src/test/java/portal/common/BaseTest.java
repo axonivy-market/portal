@@ -29,6 +29,7 @@ public class BaseTest extends SeleneseTestBase {
   
   protected String createTestingTasksUrl = "internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp";
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
+  protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
@@ -57,6 +58,14 @@ public class BaseTest extends SeleneseTestBase {
     }
   }
 
+  public void redirectToCaseMapRelativeLink(String relativeCaseMapUrl) {
+    try {
+      browser.goHome(UrlHelpers.generateAbsoluteCaseMapStartLink(relativeCaseMapUrl));
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
+  }
+
   public void launchBrowserAndLogoutInDesigner() {
     try {
       browser.launch(browserType, designerLogoutUrl, ieDriverPath);
@@ -71,6 +80,15 @@ public class BaseTest extends SeleneseTestBase {
     } else {
       logoutDesigner();
       redirectToRelativeLink(relativeProcessStartUrl);
+    }
+  }
+
+  protected void navigateToCaseMapUrl(String relativeCaseMapUrl) {
+    if (SystemProperties.isInServerMode()) {
+      redirectToCaseMapRelativeLink(relativeCaseMapUrl);
+    } else {
+      logoutDesigner();
+      redirectToCaseMapRelativeLink(relativeCaseMapUrl);
     }
   }
 
