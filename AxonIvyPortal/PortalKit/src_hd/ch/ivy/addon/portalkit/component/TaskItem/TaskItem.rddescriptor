@@ -65,6 +65,22 @@
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
+    <method>
+        <name>navigateToSidestep</name>
+        <description></description>
+        <inputParameter>
+            <name>sidestep</name>
+            <description></description>
+            <parameterType>ch.ivyteam.ivy.casemap.runtime.ISideStepProcess</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>task</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

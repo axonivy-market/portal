@@ -65,11 +65,16 @@ public class TaskTemplateBean {
     if (sideStepList == null && !caseId.isEmpty()) {
       ICase internalCase = Ivy.wf().findCase(Long.parseLong(caseId));
       sideStepList = SideStepService.get().findStartable(internalCase.getBusinessCase());
+      sortSideStepsByName(sideStepList);
     }
     return sideStepList;
   }
 
   public boolean checkSideStepsEnabled(String caseId) throws Exception {
     return !generateSideStepList(caseId).isEmpty();
+  }
+
+  private void sortSideStepsByName(List<ISideStepProcess> sideSteps) {
+    sideSteps.sort((s1, s2) -> s1.getName().compareTo(s2.getName()));
   }
 }

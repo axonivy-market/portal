@@ -87,6 +87,17 @@ body {
   content: "\44";
 }
 
+.tmi-ellipsis-h:before,
+.tmi-ellipsis-v:before {
+  content: "\e00f";
+}
+
+.tmi-ellipsis-v {
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
 a.ui-widget:focus {
   text-decoration: none;
   outline: none;
