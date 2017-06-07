@@ -2,11 +2,7 @@ package ch.ivy.ws.addon.transformer;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.text.StrSubstitutor;
 
 import ch.ivy.ws.addon.types.IvyCase;
 import ch.ivy.ws.addon.types.IvyTask;
@@ -232,16 +228,6 @@ public class IvyTaskTransformer {
   private String getStartLink(ITask task) {
     IApplicationConfigurationManager appConfig = ServerFactory.getServer().getApplicationConfigurationManager();
     URI taskUri = RequestUriFactory.createTaskStartUri(appConfig, task);
-    if (!isUrlBuiltFromSystemProperties) {
-      return taskUri.toString();
-    }
-
-    String taskStartLinkFormat = "${serverURL}${taskRequestPath}";
-    String url = ServerUrlUtils.buildUrlFromSystemProperties();
-    Map<String, String> stringFormatParams = new HashMap<String, String>();
-    stringFormatParams.put("serverURL", url);
-    stringFormatParams.put("taskRequestPath", taskUri.toString());
-    StrSubstitutor strSubstitutor = new StrSubstitutor(stringFormatParams);
-    return strSubstitutor.replace(taskStartLinkFormat);
+    return ServerUrlUtils.getStartLink(taskUri.toString(), isUrlBuiltFromSystemProperties);
   }
 }
