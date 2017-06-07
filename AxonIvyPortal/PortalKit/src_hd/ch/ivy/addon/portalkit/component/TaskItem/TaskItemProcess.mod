@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 06 14:23:02 ICT 2017]
+[>Created: Wed Jun 07 11:41:23 ICT 2017]
 150CB86EFC2F2972 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
@@ -100,9 +100,12 @@ Ts0 @CallSub f31 '' #zField
 Ts0 @RichDialogProcessEnd f32 '' #zField
 Ts0 @RichDialogMethodStart f36 '' #zField
 Ts0 @GridStep f39 '' #zField
-Ts0 @PushWFArc f61 '' #zField
 Ts0 @PushWFArc f62 '' #zField
 Ts0 @PushWFArc f63 '' #zField
+Ts0 @PushWFArc f61 '' #zField
+Ts0 @RichDialogMethodStart f64 '' #zField
+Ts0 @RichDialogProcessEnd f67 '' #zField
+Ts0 @PushWFArc f65 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f0 guid 150CB86EFDA88218 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -1069,12 +1072,41 @@ Ts0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f39 1568 400 112 44 -28 -8 #rect
 Ts0 f39 @|StepIcon #fIcon
-Ts0 f61 expr out #txt
-Ts0 f61 1624 530 1624 585 #arcP
 Ts0 f62 expr out #txt
 Ts0 f62 1624 444 1624 506 #arcP
 Ts0 f63 expr out #txt
 Ts0 f63 1624 339 1624 400 #arcP
+Ts0 f61 expr out #txt
+Ts0 f61 1624 530 1624 585 #arcP
+Ts0 f64 guid 15C80D2D06F5658C #txt
+Ts0 f64 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f64 method navigateToSidestep(ch.ivyteam.ivy.casemap.runtime.ISideStepProcess,ch.ivy.addon.portalkit.bo.RemoteTask) #txt
+Ts0 f64 disableUIEvents false #txt
+Ts0 f64 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivyteam.ivy.casemap.runtime.ISideStepProcess sidestep,ch.ivy.addon.portalkit.bo.RemoteTask task> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f64 inActionCode 'import javax.faces.context.FacesContext;
+
+String url = param.sidestep.getStartRequestUri().toString() + "?originalTaskId=" + param.task.getId();
+FacesContext.getCurrentInstance().getExternalContext().redirect(url);' #txt
+Ts0 f64 outParameterDecl '<> result;
+' #txt
+Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToSidestep(ISideStepProcess,RemoteTask)</name>
+        <nameStyle>47,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f64 1843 307 26 26 -145 15 #rect
+Ts0 f64 @|RichDialogMethodStartIcon #fIcon
+Ts0 f67 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f67 1843 587 26 26 0 12 #rect
+Ts0 f67 @|RichDialogProcessEndIcon #fIcon
+Ts0 f65 expr out #txt
+Ts0 f65 1856 333 1856 587 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -1161,3 +1193,5 @@ Ts0 f36 mainOut f63 tail #connect
 Ts0 f63 head f39 mainIn #connect
 Ts0 f39 mainOut f62 tail #connect
 Ts0 f62 head f31 mainIn #connect
+Ts0 f64 mainOut f65 tail #connect
+Ts0 f65 head f67 mainIn #connect

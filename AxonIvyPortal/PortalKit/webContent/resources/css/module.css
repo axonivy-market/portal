@@ -2086,7 +2086,7 @@ a.compact-task-start-link:hover {
 
 .task-start-list .action-cell .task-command.side-step {
   position: absolute;
-  padding: 0.6rem 1.2rem;
+  padding: 0.4rem 0.4rem;
   top: 0.9rem;
 }
 
@@ -2194,17 +2194,52 @@ a.compact-task-start-link:hover {
   font-size: 1.1rem;
 }
 
+.side-steps-panel {
+  background-color: #FFFFFF;
+  width: 200px;
+  border-top: solid 1px rgba(43, 59, 93, 0.2);
+  border-radius: 5px;
+  webkit-box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
+  box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
+}
+
 .side-steps-panel.ui-overlaypanel .ui-overlaypanel-content {
-  padding: 0px !important;
-}
-
-.side-steps-panel.ui-overlaypanel .ui-overlaypanel-content .ui-widget-content {
+  padding: 0 !important;
   width: 150px;
+  background-color: #FFFFFF;
+  display: grid;
 }
 
-.side-steps-panel.ui-overlaypanel .ui-overlaypanel-content .ui-widget-content .ui-menuitem-link {
-  font-size: 1.1rem;
-  padding: 0.7rem 0;
+.side-steps-panel .side-step-item {
+  clear: both;
+  float: left;
+  padding: 10px 20px;
+  margin: 0;
+  width: 160px;
+  color: rgba(0, 0, 0, 0.5) !important;
+  font-size: 1.2rem;
+  font-family: 'robotoregular';
+  line-height: 1.2rem;
+  box-sizing: content-box;
+}
+
+.side-steps-panel .side-step-item:hover {
+  color: rgba(0, 0, 0, 1) !important;
+  background-color: #f5f5f5;
+}
+
+.side-steps-panel .side-step-item:first-child {
+  margin-top: 10px;
+}
+
+.side-steps-panel .side-step-item:last-child {
+  margin-bottom: 10px;
+}
+
+.task-start-list .action-cell .task-command .action-icon.side-step-icon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.2rem;
 }
 /********************************** END TASK WIDGET **********************************/
 
@@ -3776,31 +3811,42 @@ margin-top
   color: rgba(0,0,0,0.2) !important;
 }
 
+.case-action-link .side-step-icon {
+  font-size:1.5em;
+}
+
 .side-steps-container {
-  border-radius: 0;
-  background: #FBFCFD;
+  background-color: #FFFFFF;
   width: 200px;
+  border-top: solid 1px rgba(43, 59, 93, 0.2);
+  border-radius: 5px;
+  webkit-box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
+  box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
 }
 
 .side-steps-container .ui-overlaypanel-content {
+  background-color: #FFFFFF;
   display: grid;
-  padding: 2px !important;
+  padding: 0 !important;
   width: 150px;
 }
 
 .side-steps-container .side-step-item {
-  font-family: 'robotoregular';
-  font-size: 14px !important;
   clear: both;
   float: left;
   padding: 5px 20px;
   margin: 0;
-  width: 158px;
-  word-wrap: break-word;
+  width: 160px;
+  color: rgba(0, 0, 0, 0.5) !important;
+  font-size: 16px;
+  font-family: 'robotoregular';
+  line-height: 36px;
+  box-sizing: content-box;
 }
 
 .side-steps-container .side-step-item:hover {
-  background-color: white;
+  color: rgba(0, 0, 0, 1) !important;
+  background-color: #f5f5f5;
 }
 
 .side-steps-container .side-step-item:first-child {
