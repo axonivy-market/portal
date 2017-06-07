@@ -30,8 +30,10 @@ public class ProcessStartCollector {
   public List<IProcessStart> findProcessStartRequestPathContainsKeyword(String keyword) {
     List<IProcessStart> processStarts = new ArrayList<>();
     if (isActive(this.application)) {
-      processStarts =
-          findProcessStartRequestPathContainsKeywordAndPmv(keyword, Ivy.request().getProcessModelVersion());
+      if (Ivy.request().getApplication().equals(application)) {
+        processStarts =
+            findProcessStartRequestPathContainsKeywordAndPmv(keyword, Ivy.request().getProcessModelVersion());
+      }
       if (CollectionUtils.isNotEmpty(processStarts)) {
         return processStarts;
       }
@@ -56,8 +58,11 @@ public class ProcessStartCollector {
   }
 
   public IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
+    IProcessStart processStart = null;
     if (isActive(this.application)) {
-      IProcessStart processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+      if (Ivy.request().getApplication().equals(application)) {
+        processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+      }
       if (processStart != null) {
         return processStart;
       }
@@ -78,7 +83,7 @@ public class ProcessStartCollector {
         }
       }
     }
-    return null;
+    return processStart;
   }
 
   private IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
