@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.SideStepServiceResult;
 import ch.ivy.ws.addon.types.IvySideStep;
+import ch.ivy.ws.addon.util.ServerUrlUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -36,7 +37,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
                   .isEqual(searchCriteria.getCaseId()));
           List<IvySideStep> sideSteps = new ArrayList<>();
           if (!searchCriteria.isAdhocExcluded()) {
-            IvySideStep adhocSideStep = createAdhocSideStep(wfCase);
+            IvySideStep adhocSideStep = createAdhocSideStep(wfCase, isUrlBuiltFromSystemProperties);
             Optional.ofNullable(adhocSideStep).ifPresent(adhoc -> sideSteps.add(adhoc));
           }
           SideStepServiceResult result = new SideStepServiceResult();
@@ -51,7 +52,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
 
   public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded) throws Exception {
     if (isAdhocIncluded) {
-      IvySideStep adhocSideStep = createAdhocSideStep(wfCase);
+      IvySideStep adhocSideStep = createAdhocSideStep(wfCase, false);
       if (adhocSideStep != null) {
         return true;
       }
@@ -62,7 +63,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
   /**
    * @return null if cannot find adhoc, otherwise return adhoc process
    */
-  private IvySideStep createAdhocSideStep(ICase wfCase) throws Exception {
+  private IvySideStep createAdhocSideStep(ICase wfCase, boolean isUrlBuiltFromSystemProperties) throws Exception {
     IApplication application = wfCase.getApplication();
     ProcessStartCollector collector = new ProcessStartCollector(application);
     String acmLink = collector.findACMLink();
@@ -71,7 +72,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     }
     IvySideStep adhoc = new IvySideStep();
     adhoc.setName(Ivy.cms().co("/ch/ivy/addon/portalconnector/sidestep/addAdhocTask"));
-    adhoc.setStartRequestUri(acmLink);
+    adhoc.setStartRequestUri(ServerUrlUtils.getStartLink(acmLink, isUrlBuiltFromSystemProperties));
     return adhoc;
   }
 }

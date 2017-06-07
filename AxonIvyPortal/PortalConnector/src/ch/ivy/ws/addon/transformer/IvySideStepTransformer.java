@@ -1,12 +1,7 @@
 package ch.ivy.ws.addon.transformer;
 
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.text.StrSubstitutor;
 
 import ch.ivy.ws.addon.transformer.exception.IvyTransformerException;
 import ch.ivy.ws.addon.types.IvySideStep;
@@ -29,7 +24,8 @@ public class IvySideStepTransformer {
     IvySideStep result = new IvySideStep();
     try {
       result.setName(sideStep.getName());
-      result.setStartRequestUri(getStartLink(sideStep));
+      String sideStepUri = sideStep.getStartRequestUri().toString();
+      result.setStartRequestUri(ServerUrlUtils.getStartLink(sideStepUri, isUrlBuiltFromSystemProperties));
     } catch (Exception exception) {
       Ivy.log().error(exception);
       throw new IvyTransformerException(exception);
@@ -45,18 +41,4 @@ public class IvySideStepTransformer {
     return result;
   }
 
-  private String getStartLink(ISideStepProcess sideStep) {
-    URI sideStepUri = sideStep.getStartRequestUri();
-    if (!isUrlBuiltFromSystemProperties) {
-      return sideStepUri.toString();
-    }
-
-    String specifiedServerURL = ServerUrlUtils.buildUrlFromSystemProperties();
-    String sideStepURLFormat = "${serverUrl}${processPath}";
-    Map<String, String> sideStepURLParams = new HashMap<>();
-    sideStepURLParams.put("serverUrl", specifiedServerURL);
-    sideStepURLParams.put("processPath", sideStepUri.toString());
-    StrSubstitutor strSubstitutor = new StrSubstitutor(sideStepURLParams);
-    return strSubstitutor.replace(sideStepURLFormat);
-  }
 }
