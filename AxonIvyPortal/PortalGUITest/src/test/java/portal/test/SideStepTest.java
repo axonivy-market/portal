@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import portal.common.BaseTest;
 import portal.common.TestAccount;
+import portal.page.AdhocPage;
 import portal.page.HomePage;
 import portal.page.LoginPage;
 import portal.page.TaskTemplatePage;
@@ -32,5 +33,27 @@ public class SideStepTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     return taskTemplatePage;
+  }
+
+  @Test
+  public void testAddAdhocTask() {
+    int firstTask = 0;
+    final String TASK_NAME = "Create Leave Request";
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    assertTrue(taskWidgetPage.countTasks() == 1);
+    assertEquals(taskWidgetPage.getNameOfTaskAt(0), TASK_NAME);
+    taskWidgetPage.expand();
+    AdhocPage adhocPage = taskWidgetPage.addAdhoc(firstTask);
+    adhocPage.enterSubject("Collect Information");
+    adhocPage.addTask();
+    taskWidgetPage = adhocPage.startWorkflow();
+    assertTrue(taskWidgetPage.countTasks() == 1);
+    assertEquals(taskWidgetPage.getNameOfTaskAt(0), "TASK Collect Information");
+    taskWidgetPage.startTask(0);
+    adhocPage = new AdhocPage();
+    adhocPage.addComment("Annual leaves are available");
+    taskWidgetPage = adhocPage.send();
+    assertTrue(taskWidgetPage.countTasks() == 1);
+    assertEquals(taskWidgetPage.getNameOfTaskAt(0), TASK_NAME);
   }
 }

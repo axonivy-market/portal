@@ -226,7 +226,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
-  public String getNameOfTaskAt(int index) {
+  public String getNameOfTaskWhenDisplayingDetailsAt(int index) {
     String taskNameId =
         String
             .format(
@@ -323,5 +323,22 @@ public class TaskWidgetPage extends TemplatePage {
   
   public boolean isDelegateListSelectionAvailable() {
     return isElementPresent(By.id("task-widget:task-list-scroller:0:task-item:task-delegate-form:select-delegate-panel"));
+  }
+
+  public AdhocPage addAdhoc(int taskIndex) {
+    WebElement moreAction = findElementByCssSelector("*[id$='" + taskIndex + ":task-item:task-side-steps-menu']");
+    moreAction.click();
+    waitAjaxIndicatorDisappear();
+    WebElement moreActionPanel = findElementByCssSelector("*[id$='" + taskIndex + ":task-item:side-steps-panel']");
+    WebElement adhocMenuItem = moreActionPanel.findElement(By.cssSelector("a.ui-menuitem-link"));
+    adhocMenuItem.click();
+    waitForElementPresent(By.id("copy-clipboard"), true);
+    return new AdhocPage();
+  }
+
+  public String getNameOfTaskAt(int index) {
+    WebElement name =
+        findElementByCssSelector("*[id$='" + index + ":task-item:task-start-item-view:task-start-task-name']");
+    return name.getText();
   }
 }
