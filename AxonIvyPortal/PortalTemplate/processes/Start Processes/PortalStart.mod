@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jun 07 11:50:45 ICT 2017]
+[>Created: Wed Jun 07 13:46:09 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -335,7 +335,7 @@ ITask task = ivy.wf.findTask(in.endedTaskId);
 boolean isTaskStarted = false;
 String callbackUrl;
 if  (#task is initialized) {
-	boolean isTaskStarted = task.getStartProcessData() is initialized;
+	isTaskStarted = task.getStartProcessData() is initialized;
 	callbackUrl = task.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
 }
 
