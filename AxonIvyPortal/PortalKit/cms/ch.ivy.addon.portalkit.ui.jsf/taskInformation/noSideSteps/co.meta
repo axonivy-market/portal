@@ -1,3 +1,0 @@
-co: name={noSideSteps} description={} changed={2017-05-16 08:55:47 CEST} changedby={tntanh} visualorder={0} guid={15C1009DF138D112} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15C1009DF2030590} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-16 08:55:01 CEST} validto={} changed={2017-05-16 08:55:10 CEST} changedby={tntanh} properties={} id={}
-val: guid={15C100A91E1D1692} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-16 08:55:38 CEST} validto={} changed={2017-05-16 08:55:47 CEST} changedby={tntanh} properties={} id={}
