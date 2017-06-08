@@ -650,4 +650,11 @@ public class DownloadDocumentResult implements org.apache.axis2.databinding.ADBB
       return object;
     }
   } // end of factory class
+
+  /**
+   * Unit test can call this method to check whether this class is patched.
+   */
+  public boolean isPatched() {
+    return true;
+  }
 }
