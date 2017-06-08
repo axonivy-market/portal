@@ -32,7 +32,7 @@ public class ProcessStartCollector {
     if (isActive(this.application)) {
       if (Ivy.request().getApplication().equals(application)) {
         processStarts =
-            findProcessStartRequestPathContainsKeywordAndPmv(keyword, Ivy.request().getProcessModelVersion());
+            findProcessStartRequestPathContainsKeywordAndPmv(keyword, Ivy.wfTask().getProcessModelVersion());
       }
       if (CollectionUtils.isNotEmpty(processStarts)) {
         return processStarts;
@@ -61,7 +61,7 @@ public class ProcessStartCollector {
     IProcessStart processStart = null;
     if (isActive(this.application)) {
       if (Ivy.request().getApplication().equals(application)) {
-        processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+        processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.wfTask().getProcessModelVersion());
       }
       if (processStart != null) {
         return processStart;
