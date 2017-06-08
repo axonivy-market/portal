@@ -685,10 +685,17 @@
 
 /* =================== DIALOG ====================== */
 .ui-widget.ui-dialog .ui-dialog-content {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
   margin-top: 35px !important;
+}
+
+.ui-dialog-content .ui-messages-info-icon, 
+.ui-dialog-content .ui-messages-warn-icon, 
+.ui-dialog-content .ui-messages-error-icon, 
+.ui-dialog-content .ui-messages-fatal-icon {
+  margin-top: -10px !important;
 }
 /* =================== END DIALOG ====================== */
 
