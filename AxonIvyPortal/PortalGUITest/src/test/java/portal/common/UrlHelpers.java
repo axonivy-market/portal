@@ -10,14 +10,10 @@ public class UrlHelpers {
     if (!SystemProperties.isInServerMode() || System.getProperty("engineUrl") != null) {
       relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
     }
-    return getEngineUrl() + "/pro/" + getApplicationName() + "/" + relativeProcessStartLink;
-  }
-
-  public static String generateAbsoluteCaseMapStartLink(String relativeCaseMapLink) {
-    if (!SystemProperties.isInServerMode() || System.getProperty("engineUrl") != null) {
-      relativeCaseMapLink = WordUtils.capitalize(relativeCaseMapLink);
+    if (relativeProcessStartLink.endsWith(".icm")) {
+      return getEngineUrl() + "/casemap/" + getApplicationName() + "/" + relativeProcessStartLink;
     }
-    return getEngineUrl() + "/casemap/" + getApplicationName() + "/" + relativeCaseMapLink;
+    return getEngineUrl() + "/pro/" + getApplicationName() + "/" + relativeProcessStartLink;
   }
 
   private static String getApplicationName() {

@@ -32,7 +32,7 @@ public class TaskNameChangeTest extends BaseTest {
 		taskWidgetPage.expand();
 		taskWidgetPage.openTaskDetails(firstTask);
 		taskWidgetPage.changeNameOfTask(firstTask, newTaskName);
-		assertEquals(taskWidgetPage.getNameOfTaskAt(firstTask), newTaskName);
+    assertEquals(taskWidgetPage.getNameOfTaskWhenDisplayingDetailsAt(firstTask), newTaskName);
 	}
 	
 	@Test
