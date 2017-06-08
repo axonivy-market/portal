@@ -591,7 +591,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           if (workerUser != null) {
             String fullName = workerUser.getFullName();
             String workerName =
-                fullName == null || fullName.isEmpty() ? workerUser.getName() : workerUser.getFullName() + "("
+                fullName == null || fullName.isEmpty() ? workerUser.getName() : workerUser.getFullName() + " ("
                     + workerUser.getName() + ")";
             result.setWorkerUserName(workerName);
           }

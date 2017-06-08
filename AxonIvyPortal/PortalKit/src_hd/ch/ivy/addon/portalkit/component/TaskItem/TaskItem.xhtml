@@ -65,17 +65,6 @@
     </h:panelGroup>
   </p:confirmDialog>
 
-  <p:dialog id="is-another-user-working-dialog" closeOnEscape="true" rendered="#{rowIndex == 0}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/errorStartTask')}"
-    widgetVar="is-another-user-working-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade"
-    resizable="false" appendTo="@(body)">
-    <h:outputText id="is-another-user-working-message" value="#{data.isAnotherUserWorkingMessage}" />
-    <f:facet name="footer">
-      <p:commandButton id="close-command" onclick="PF('is-another-user-working-dialog').hide();"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" type="button" styleClass="portal-ok-button" />
-    </f:facet>
-  </p:dialog>
-
   <ui:include src="TaskDelegateDialog.xhtml">
     <ui:param name="rowIndex" value="#{rowIndex}" />
   </ui:include>
