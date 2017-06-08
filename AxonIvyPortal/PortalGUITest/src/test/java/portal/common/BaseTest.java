@@ -60,7 +60,7 @@ public class BaseTest extends SeleneseTestBase {
 
   public void redirectToCaseMapRelativeLink(String relativeCaseMapUrl) {
     try {
-      browser.goHome(UrlHelpers.generateAbsoluteCaseMapStartLink(relativeCaseMapUrl));
+      browser.goHome(UrlHelpers.generateAbsoluteProcessStartLink(relativeCaseMapUrl));
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
