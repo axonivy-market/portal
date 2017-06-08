@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jun 07 11:41:23 ICT 2017]
+[>Created: Thu Jun 08 10:43:42 ICT 2017]
 150CB86EFC2F2972 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
@@ -580,11 +580,14 @@ Ts0 f79 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f79 actionTable 'out=in;
 ' #txt
-Ts0 f79 actionCode 'import java.util.Arrays;
+Ts0 f79 actionCode 'import javax.faces.application.FacesMessage;
+import java.util.Arrays;
 import org.primefaces.context.RequestContext;
 
-in.isAnotherUserWorkingMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/isAnotherUserWorking", Arrays.asList(in.selectedTask.name, in.selectedTask.id, in.workerUserName));
-RequestContext.getCurrentInstance().update("is-another-user-working-message").execute("PF(''is-another-user-working-dialog'').show()");' #txt
+String isAnotherUserWorkingMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/isAnotherUserWorking", Arrays.asList(in.selectedTask.name, in.selectedTask.id, in.workerUserName));
+String header = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/errorStartTask");
+FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, header, isAnotherUserWorkingMessage);
+RequestContext.getCurrentInstance().showMessageInDialog(facesMessage);' #txt
 Ts0 f79 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -26,8 +26,6 @@ canUserResumeTask Boolean #field
 canUserResumeTask PERSISTENT #fieldModifier
 securityMemberData ch.ivyteam.wf.processes.SecurityMemberData #field
 securityMemberData PERSISTENT #fieldModifier
-isAnotherUserWorkingMessage String #field
-isAnotherUserWorkingMessage PERSISTENT #fieldModifier
 workerUserName String #field
 workerUserName PERSISTENT #fieldModifier
 ivyTask ch.ivy.ws.addon.IvyTask #field
