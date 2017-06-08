@@ -104,7 +104,7 @@
           <div class="Fleft">
             <p:panel styleClass="panel u-no-border">
               <h:panelGrid columns="1" styleClass="MarTop30">
-                <p:commandButton icon="fa fa-plus" value="Task" styleClass="iconButton"
+                <p:commandButton id="add-task" icon="fa fa-plus" value="Task" styleClass="iconButton"
                   title="Add a task to the sequence" actionListener="#{logic.addTaskDef}" update=":form:taskDef"
                   process=":form:taskDef" />
               </h:panelGrid>
@@ -136,7 +136,7 @@
         </p:fieldset>
         <br />
         <p:spacer width="10px" />
-        <p:commandButton actionListener="#{logic.go}" value="Start Workflow" icon="fa fa-check" update="form" ajax="false"/>
+        <p:commandButton id="start-workflow" actionListener="#{logic.go}" value="Start Workflow" icon="fa fa-check" update="form" ajax="false"/>
       </h:form>
       <p:dialog id="userList" header="Responsable Users" widgetVar="userList" modal="true" appendTo="@(body)">
         <ui:include src="responsableUser.xhtml"></ui:include>
