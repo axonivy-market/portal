@@ -54,8 +54,7 @@
           <p:spacer width="7"/>
           <c:set var="isSideStepDisabled" value="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}" />
           <p:commandLink id="side-steps-menu"
-            styleClass="case-action-link" global="true"
-            oncomplete="PF('side-steps-panel').loadContents();"
+            styleClass="case-action-link" global="false"
             disabled="#{isSideStepDisabled}">
             <span class="action-icon tmi-ellipsis-h side-step-icon" 
               title="#{isSideStepDisabled ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noSideSteps') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}" />
@@ -79,7 +78,7 @@
         </p:overlayPanel>
 
       <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel" for="side-steps-menu" my="left top" at="left bottom"
-        appendToBody="true" styleClass="side-steps-container" dynamic="true" rendered="#{taskTemplateBean.checkSideStepsEnabled(caseId)}">
+        appendToBody="true" styleClass="side-steps-container" dynamic="false" rendered="#{taskTemplateBean.checkSideStepsEnabled(caseId)}">
         <ui:repeat var="sidestep" value="#{taskTemplateBean.sideStepList}">
           <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sidestep.getName()}"
             global="false"
@@ -163,7 +162,7 @@
       widgetVar="sidestep-task-reset-confirmation-dialog" appendTo="@(body)"
       modal="true" dynamic="true">
       <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
-        value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning')}" />
+        value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToSidestepWarning')}" />
       <f:facet name="footer">
         <h:form prependId="false">
           <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
