@@ -120,7 +120,7 @@ public class ChartView {
     Date dateAfter1Day = plusDays(date, 1);
     TaskQuery priorityQuery =
         TaskQuery.create().where().expiryTimestamp().isGreaterOrEqualThan(date).and().expiryTimestamp()
-            .isLowerThan(dateAfter1Day);
+            .isLowerThan(dateAfter1Day).and().isExpired().isEqual(false);
     return priorityQuery;
   }
 
