@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 30 16:50:26 ICT 2017]
+[>Created: Fri Jun 09 14:22:30 ICT 2017]
 1576FA61C4EDC8B1 3.20 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
@@ -136,11 +136,7 @@ import ch.ivyteam.ivy.security.IUser;
 List roles = ivy.wf.getSecurityContext().getRoles();
 
 for(IRole role : roles){
-		IRole  roleP = role.getParent();
-		
-		if(roleP != null){
-				out.AvailableRolesAndUsers.add(role);
-		}
+	out.AvailableRolesAndUsers.add(role);
 }
 
 //out.AvailableRolesAndUsers = Helper.sortSecurityMembersByMemberType(out.AvailableRolesAndUsers);
