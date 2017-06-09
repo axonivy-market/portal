@@ -16,7 +16,7 @@ public class Helper {
 		Collections.sort(userList, new Comparator<IUser>() {
 			public int compare(IUser u1, IUser u2) {
 				try {
-					return (u1.getFullName().compareTo(u2.getFullName()));
+					return (u1.getDisplayName().toLowerCase().compareTo(u2.getDisplayName().toLowerCase()));
 				} catch (Exception ex) {
 					return 0;
 				}
@@ -29,7 +29,7 @@ public class Helper {
 		Collections.sort(rolesList, new Comparator<IRole>() {
 			public int compare(IRole r1, IRole r2) {
 				try {
-					return (r1.getDisplayName().compareTo(r2.getDisplayName()));
+					return (r1.getDisplayName().toLowerCase().compareTo(r2.getDisplayName().toLowerCase()));
 				} catch (Exception ex) {
 					return 0;
 				}
@@ -55,7 +55,7 @@ public class Helper {
 					return -1;
 				}
 					try {
-						return (m1.getDisplayName().compareTo(m2.getDisplayName()));
+						return (m1.getDisplayName().toLowerCase().compareTo(m2.getDisplayName().toLowerCase()));
 					} catch (Exception ex) {
 						return 0;
 					}
