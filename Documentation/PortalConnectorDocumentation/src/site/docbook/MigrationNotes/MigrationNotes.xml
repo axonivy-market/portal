@@ -13,7 +13,10 @@
 		<para>
 			Open url : <code>your engine/ivy/info/index.jsp?showSystemApp=true</code> to check for available web services.
 		</para>
-		
+		<sect2>
+			<title>Migrate 6.x to 7.0</title>
+			<para>Param: DisableCustomMails is renamed to UseCustomMails in UserSettingService. Please update your web service to adapt this change.</para>
+		</sect2>
 		<sect2>
 			<title>Migrate 6.5 to 6.6</title>
 			<para>Params: jsonQuery is added to TaskService (findCategories, findPersonalCategories, findGroupCategories, analyzePriorityStatistic, analyzeExpiryStatistic)</para>
