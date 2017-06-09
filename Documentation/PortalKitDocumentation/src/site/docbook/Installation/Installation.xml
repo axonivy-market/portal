@@ -405,7 +405,7 @@
 					</listitem>
 					<listitem>
 						<para>
-							Application specific mail is stored in the user profile within the attribute <code>EnableApplicationMails</code>.The value of this attribute is <code>True/False</code>.
+							Application specific mail is stored in the user profile within the attribute <code>UseCustomMails</code>.The value of this attribute is <code>True/False</code>.
 						</para>
 						<para>
 							If <code>True</code> then this user will receive notification email send out from the process, otherwise they will not receive email.
@@ -459,12 +459,6 @@
 					</listitem>
 				</orderedlist>
 				<para>If you have queries which referring to task category, plese replace <code>customVarCharField5()</code> part with <code>category()</code> part.</para>
-			</sect3>
-			<sect3>
-				<title>Change of property DisableCustomMails</title>
-				<para>From Portal <code>7.0</code>, we renamed property <code>DisableCustomMails</code> to <code>EnableApplicationMails</code>.</para>
-				<para>Please use below SQL to apply this change for engine's database.</para>
-				<screen>update iwa_userproperty set propertyname = 'EnableApplicationMails' where propertyname = 'DisableCustomMails'</screen>
 			</sect3>
 		</sect2>
 		<sect2>

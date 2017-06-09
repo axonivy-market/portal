@@ -27,7 +27,8 @@ import ch.ivyteam.util.date.Weekday;
  *
  */
 public class UserSettingServiceImpl extends AbstractService implements IUserSettingService {
-  private static String ENABLE_APPLICATION_MAIL = "EnableApplicationMails";
+  private static String ENABLE_CUSTOM_MAIL = "UseCustomMails";
+  private static String OLD_VAR_DISABLE_CUSTOM_MAIL = "DisableCustomMails";
   private static String TRUE = "true";
 
   /**
@@ -207,12 +208,19 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
                   IUser iuser = serverApp.getSecurityContext().findUser(user);
                   setting.setAppName(serverApp.getName());
 
-                  // set value for applicationMailEnabled base on property in IUser
-                  if (iuser.getProperty(ENABLE_APPLICATION_MAIL) != null
-                      && TRUE.equals(iuser.getProperty(ENABLE_APPLICATION_MAIL).toLowerCase())) {
-                    setting.setApplicationMailEnabled(true);
+                  // set value for useCustomMails base on property in IUser
+                  boolean useNewCustomMailVariable = iuser.getProperty(ENABLE_CUSTOM_MAIL) != null
+                      && TRUE.equals(iuser.getProperty(ENABLE_CUSTOM_MAIL).toLowerCase());
+
+                  // In old versions of Portal, we use property disableCustomMails instead of useCustomMails.
+                  // To make Portal more compatible and easier to migrate, we decided not to ignore old property disableCustomMails.
+                  boolean useOldCustomMailVariable = iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL) != null
+                      && TRUE.equals(iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL).toLowerCase());
+
+                  if (useNewCustomMailVariable || useOldCustomMailVariable) {
+                    setting.setCustomMailEnabled(true);
                   } else {
-                    setting.setApplicationMailEnabled(false);
+                    setting.setCustomMailEnabled(false);
                   }
 
                   IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings();
@@ -301,8 +309,8 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
                   // set value for email settings on the server
                   iuser.setEMailNotificationSettings(convertFromIvyEmailSettingToIUserEMailNotificationSettings(iuser,
                       setting));
-                  if (setting.getApplicationMailEnabled() != null) {
-                    iuser.setProperty(ENABLE_APPLICATION_MAIL, setting.getApplicationMailEnabled().toString());
+                  if (setting.getCustomMailEnabled() != null) {
+                    iuser.setProperty(ENABLE_CUSTOM_MAIL, setting.getCustomMailEnabled().toString());
                   }
                 } else {
                   List<Object> userText = new ArrayList<Object>();

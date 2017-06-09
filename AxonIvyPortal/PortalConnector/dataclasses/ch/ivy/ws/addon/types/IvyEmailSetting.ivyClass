@@ -9,5 +9,5 @@ emailSendDailyTaskSummaryOnThursday Boolean #field
 emailSendDailyTaskSummaryOnFriday Boolean #field
 emailSendDailyTaskSummaryOnSaturday Boolean #field
 emailSendDailyTaskSummaryOnSunday Boolean #field
-applicationMailEnabled Boolean #field
+customMailEnabled Boolean #field
 appName String #field
