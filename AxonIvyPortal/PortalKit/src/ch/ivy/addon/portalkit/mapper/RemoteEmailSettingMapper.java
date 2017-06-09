@@ -71,7 +71,7 @@ public class RemoteEmailSettingMapper {
 		result.setServer(server);
 		result.setAppName(ivyEmailSetting.getAppName());
 		result.setMailNotification(ivyEmailSetting.getEmailSendOnNewWorkTasks());
-		result.setFurtherMailFromApp(ivyEmailSetting.getApplicationMailEnabled());
+		result.setFurtherMailFromApp(ivyEmailSetting.getCustomMailEnabled());
 		if (ivyEmailSetting.getEmailSendDailyTaskSummaryOnMonday()) {
 			weekDays.add(RemoteWeekDay.MONDAY);
 		}
@@ -143,7 +143,7 @@ public class RemoteEmailSettingMapper {
 		if (remoteEmailSetting != null) {
 			IvyEmailSetting emailSetting = new IvyEmailSetting();
 			emailSetting.setAppName(remoteEmailSetting.getAppName());
-			emailSetting.setApplicationMailEnabled(remoteEmailSetting.isFurtherMailFromApp());
+			emailSetting.setCustomMailEnabled(remoteEmailSetting.isFurtherMailFromApp());
 			emailSetting.setEmailSendOnNewWorkTasks(remoteEmailSetting.isMailNotification());
 			if (remoteEmailSetting.getWeekDays().contains(RemoteWeekDay.MONDAY)) {
 				emailSetting.setEmailSendDailyTaskSummaryOnMonday(true);

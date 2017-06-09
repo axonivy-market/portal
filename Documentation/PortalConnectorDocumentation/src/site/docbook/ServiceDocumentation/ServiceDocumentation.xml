@@ -2326,7 +2326,7 @@
 						</row>
 						<row>
 							<entry>
-								<para>applicationMailEnabled</para>
+								<para>customMailEnabled</para>
 							</entry>
 							<entry>
 								<para>Boolean</para>
