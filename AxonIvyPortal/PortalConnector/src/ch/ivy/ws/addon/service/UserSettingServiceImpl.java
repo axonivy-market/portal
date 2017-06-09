@@ -27,7 +27,7 @@ import ch.ivyteam.util.date.Weekday;
  *
  */
 public class UserSettingServiceImpl extends AbstractService implements IUserSettingService {
-  private static String ENABLE_CUSTOM_MAIL = "UseCustomMails";
+  private static String ENABLE_CUSTOM_MAIL = "useCustomMails";
   private static String OLD_VAR_DISABLE_CUSTOM_MAIL = "DisableCustomMails";
   private static String TRUE = "true";
 
