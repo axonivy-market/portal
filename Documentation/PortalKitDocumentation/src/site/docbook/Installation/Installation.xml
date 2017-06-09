@@ -348,7 +348,7 @@
 			<sect3>
 				<title>Administrator permission can interact with all workflows in the application</title>
 				<para>
-					Normal users can creates, updates and deletes workflows belonged to him.
+					Normal users can updates and deletes workflows which created by him and can interact with workflow's task which assigned to him.
 				</para>
 				<para>
 					Administrator can creates, updates and deletes all workflows in the application.
