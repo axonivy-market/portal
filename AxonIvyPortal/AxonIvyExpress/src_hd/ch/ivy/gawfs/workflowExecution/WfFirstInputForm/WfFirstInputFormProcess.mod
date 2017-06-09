@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 30 16:49:20 ICT 2017]
+[>Created: Fri Jun 09 16:42:52 ICT 2017]
 157893EF862D1265 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFirstInputFormProcess Big #zClass
@@ -127,13 +127,14 @@ Ws0 f10 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInput
 ' #txt
 Ws0 f10 actionTable 'out=in;
 ' #txt
-Ws0 f10 actionCode 'import ch.ivyteam.ivy.security.IUser;
+Ws0 f10 actionCode 'import ch.ivy.gawfs.Helper;
+import ch.ivyteam.ivy.security.IUser;
 
 //inital soll der Antragssteller "im eigenen Namen" sein.
 in.assignementType = 0;
 
 //Get Users
-List users = ivy.wf.getSecurityContext().getUsers();
+List<IUser> users = ivy.wf.getSecurityContext().getUsers();
 in.availUsers.clear();
 
 for(IUser user : users)
@@ -143,6 +144,8 @@ for(IUser user : users)
 			out.availUsers.add(user);
 	}
 }
+
+out.availUsers = Helper.sortUsers(out.availUsers);
 
 in.executePredefinedWorkflowData.applicant.user = ivy.case.getCreatorUser();
 
