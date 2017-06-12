@@ -1,6 +1,7 @@
 package portal.test;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.common.BaseTest;
@@ -23,6 +24,7 @@ public class SideStepTest extends BaseTest {
   }
 
   @Test
+  @Ignore
   public void testSideSteps() {
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.openSideStepMenu();
