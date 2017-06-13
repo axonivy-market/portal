@@ -236,6 +236,7 @@
           <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="displayDescriptionTemplate" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="displayNameTemplate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="endTimestamp" type="xs:dateTime"></xs:element>
           <xs:element minOccurs="0" name="expireActivatorFullName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="expireActivatorName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="expirePriority" type="xs:string"></xs:element>
