@@ -58,14 +58,6 @@ public class BaseTest extends SeleneseTestBase {
     }
   }
 
-  public void redirectToCaseMapRelativeLink(String relativeCaseMapUrl) {
-    try {
-      browser.goHome(UrlHelpers.generateAbsoluteProcessStartLink(relativeCaseMapUrl));
-    } catch (Exception e) {
-      throw new PortalGUITestException(e);
-    }
-  }
-
   public void launchBrowserAndLogoutInDesigner() {
     try {
       browser.launch(browserType, designerLogoutUrl, ieDriverPath);
@@ -80,15 +72,6 @@ public class BaseTest extends SeleneseTestBase {
     } else {
       logoutDesigner();
       redirectToRelativeLink(relativeProcessStartUrl);
-    }
-  }
-
-  protected void navigateToCaseMapUrl(String relativeCaseMapUrl) {
-    if (SystemProperties.isInServerMode()) {
-      redirectToCaseMapRelativeLink(relativeCaseMapUrl);
-    } else {
-      logoutDesigner();
-      redirectToCaseMapRelativeLink(relativeCaseMapUrl);
     }
   }
 
