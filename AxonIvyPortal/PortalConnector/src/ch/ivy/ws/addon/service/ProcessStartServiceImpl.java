@@ -12,7 +12,6 @@ import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.ProcessStartServiceResult;
 import ch.ivy.ws.addon.transformer.IvyProcessStartTransformer;
 import ch.ivy.ws.addon.types.IvyProcessStart;
-import ch.ivyteam.ivy.Advisor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -23,7 +22,6 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 /**
  * Default implementation for the process start service
  */
-@SuppressWarnings("restriction")
 public class ProcessStartServiceImpl extends AbstractService implements IProcessStartService {
 
   @Override
@@ -55,7 +53,7 @@ public class ProcessStartServiceImpl extends AbstractService implements IProcess
                   }
                 }
               } finally {
-                if (workflowSession != null && application != null && Advisor.getAdvisor().isServer()) {
+                if (workflowSession != null && application != null && !workflowSession.isSessionUserSystemUser()) {
                   ISecurityContext securityContext = application.getSecurityContext();
                   securityContext.destroySession(workflowSession.getIdentifier());
                 }
@@ -87,7 +85,7 @@ public class ProcessStartServiceImpl extends AbstractService implements IProcess
 
   private IWorkflowSession getWorkflowSession(ProcessSearchCriteria searchCriteria, IApplication application)
       throws Exception {
-    if (searchCriteria.hasInvolvedUsername() && Advisor.getAdvisor().isServer()) {
+    if (searchCriteria.hasInvolvedUsername()) {
       IWorkflowSession givenUserWorkflowSession =
           findUserWorkflowSession(searchCriteria.getInvolvedUsername(), application);
       return givenUserWorkflowSession;

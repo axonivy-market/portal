@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 13 13:33:00 ICT 2017]
+[>Created: Tue Jun 13 15:08:49 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -71,6 +71,8 @@ ch.ivy.addon.portal.generic.GlobalSearchData out2;
 ch.ivy.addon.portal.generic.GlobalSearchData out3;
 ' #txt
 Gh0 f3 actionTable 'out1=in;
+out2=in;
+out3=in;
 ' #txt
 Gh0 f3 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f3 176 144 32 32 0 16 #rect
@@ -91,6 +93,7 @@ Gh0 f7 actionTable 'out=in;
 Gh0 f7 actionCode 'import java.util.Arrays;
 
 in.processSearchCriteria.keyword = in.keyword;
+in.processSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 
 if (ivy.session.getSessionUser().getEMailLanguage() != null) {
 	in.language = ivy.session.getSessionUser().getEMailLanguage().getLanguage();
@@ -160,6 +163,24 @@ Gh0 f10 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f10 actionTable 'out=in;
 ' #txt
+Gh0 f10 actionCode 'import java.util.Arrays;
+import ch.ivy.ws.addon.CaseState;
+
+in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
+
+List<CaseState> states = new List<CaseState>();
+states.add(CaseState.DESTROYED);
+states.add(CaseState.ZOMBIE);
+in.caseSearchCriteria.excludedStates = states;
+
+in.caseSearchCriteria.keyword = in.keyword;
+
+in.caseSearchCriteria.businessCase = true;
+
+if (in.#applicationName is initialized) {
+	List<String> involvedApplications = Arrays.asList(in.applicationName);
+	in.caseSearchCriteria.involvedApplications = involvedApplications;
+}' #txt
 Gh0 f10 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -270,8 +291,12 @@ List<Workflow> workflows = ivy.persistence.GAWFS.findAll(Workflow.class);
 
 for (Workflow wf : workflows) {
 	IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
-	IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner);
+	IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
+	
+	ivy.log.error("TEST {0} a {1} b {2}", ivy.session.hasRole(permittedRole, false), ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false), ivy.session.canActAsUser(owner));
+	
 	if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
+		ivy.log.error("TEST1 {0}", wf.processOwner);
   	RemoteProcessStart workflowProcess = new RemoteProcessStart();
   	workflowProcess.setId(wf.id);
   	workflowProcess.setName(wf.processName);
