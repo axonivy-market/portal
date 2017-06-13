@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 13 15:08:49 ICT 2017]
+[>Created: Tue Jun 13 15:12:30 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -293,10 +293,7 @@ for (Workflow wf : workflows) {
 	IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
 	IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
 	
-	ivy.log.error("TEST {0} a {1} b {2}", ivy.session.hasRole(permittedRole, false), ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false), ivy.session.canActAsUser(owner));
-	
 	if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
-		ivy.log.error("TEST1 {0}", wf.processOwner);
   	RemoteProcessStart workflowProcess = new RemoteProcessStart();
   	workflowProcess.setId(wf.id);
   	workflowProcess.setName(wf.processName);
