@@ -1,7 +1,6 @@
 package portal.test;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.common.BaseTest;
@@ -20,7 +19,7 @@ public class SideStepTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
-    navigateToCaseMapUrl(createTestingCaseMapUrl);
+    redirectToRelativeLink(createTestingCaseMapUrl);
   }
 
   @Test
