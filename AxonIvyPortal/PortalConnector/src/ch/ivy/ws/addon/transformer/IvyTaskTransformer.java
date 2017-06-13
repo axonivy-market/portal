@@ -134,6 +134,7 @@ public class IvyTaskTransformer {
     result.setStartTimestamp(t.getStartTimestamp());
     result.setExpireTimestamp(t.getExpiryTimestamp());
     result.setExpireTaskStartElementPid(t.getExpiryTaskStartElementPid());
+    result.setEndTimestamp(t.getEndTimestamp());
     if (t.getState() != null) {
       result.setState(t.getState().name());
     }
