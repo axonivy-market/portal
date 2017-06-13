@@ -9,7 +9,6 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portal.generic.events.GlobalSearchEvent;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
@@ -20,7 +19,8 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.event.SystemEvent;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.process.call.SubProcessCallResult;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 
 @ManagedBean
@@ -30,7 +30,7 @@ public class UserMenuBean {
   private List<IProcessStart> foundProcesses;
   private List<RemoteTask> foundTasks;
   private List<RemoteCase> foundCases;
-  private String searchKeyWord;
+  private String searchKeyword;
   private String userName;
 
   private boolean hasNoRecordsFound;
@@ -89,9 +89,10 @@ public class UserMenuBean {
     return IApplication.PORTAL_APPLICATION_NAME.equals(Ivy.wf().getApplication().getName());
   }
 
+  @SuppressWarnings("unchecked")
   public void search() {
-    String keyWord = searchKeyWord.trim();
-    if (StringUtils.isBlank(keyWord)) {
+    String keyword = searchKeyword.trim();
+    if (StringUtils.isBlank(keyword)) {
       foundProcesses = new ArrayList<>();
       foundTasks = new ArrayList<>();
       foundCases = new ArrayList<>();
@@ -101,36 +102,31 @@ public class UserMenuBean {
     Long serverId = SecurityServiceUtils.getServerIdFromSession();
     String selectedApp = SecurityServiceUtils.getApplicationNameFromSession();
 
-    GlobalSearchEvent globalSearchEvent = new GlobalSearchEvent(keyWord, userName, serverId, selectedApp);
-    SystemEvent<GlobalSearchEvent> systemEvent = globalSearchEvent.toSystemEvent();
-    sendSystemEvent(systemEvent);
+    SubProcessCallResult result = SubProcessCall.withPath("Functional Processes/GlobalSearch")
+        .withParam("keyword", keyword)
+        .withParam("serverId", serverId)
+        .withParam("applicationName", selectedApp)
+        .call();
+    foundProcesses = (List<IProcessStart>) result.get("processes");
+    foundTasks = (List<RemoteTask>) result.get("tasks");
+    foundCases = (List<RemoteCase>) result.get("cases");
+    hasNoRecordsFound = CollectionUtils.isEmpty(foundProcesses) && CollectionUtils.isEmpty(foundTasks) && CollectionUtils.isEmpty(foundCases);
   }
 
   public void resetSearchData() {
-    searchKeyWord = StringUtils.EMPTY;
+    searchKeyword = StringUtils.EMPTY;
     foundProcesses = new ArrayList<>();
     foundTasks = new ArrayList<>();
     foundCases = new ArrayList<>();
     hasNoRecordsFound = false;
   }
 
-  public void setDataForSearchResult(List<IProcessStart> processes, List<RemoteTask> tasks, List<RemoteCase> cases) {
-    foundProcesses = processes;
-    foundTasks = tasks;
-    foundCases = cases;
-    hasNoRecordsFound = processes.isEmpty() && tasks.isEmpty() && cases.isEmpty();
+  public String getSearchKeyword() {
+    return searchKeyword;
   }
 
-  private static void sendSystemEvent(SystemEvent<?> event) {
-    Ivy.wf().getApplication().sendSystemEvent(event);
-  }
-
-  public String getSearchKeyWord() {
-    return searchKeyWord;
-  }
-
-  public void setSearchKeyWord(String searchKeyWord) {
-    this.searchKeyWord = searchKeyWord;
+  public void setSearchKeyword(String searchKeyword) {
+    this.searchKeyword = searchKeyword;
   }
 
   public List<IProcessStart> getFoundProcesses() {
