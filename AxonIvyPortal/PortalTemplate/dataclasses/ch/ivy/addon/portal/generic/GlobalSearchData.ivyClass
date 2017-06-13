@@ -7,7 +7,6 @@ processes List<ch.ivyteam.ivy.workflow.IProcessStart> #field
 processSearchCriteria ch.ivy.ws.addon.ProcessSearchCriteria #field
 tasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
 taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
-username String #field
 language String #field
 serverId Long #field
 serverId 'the id of the selected server' #fieldComment

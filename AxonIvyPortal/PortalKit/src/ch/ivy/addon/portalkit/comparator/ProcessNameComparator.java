@@ -8,7 +8,7 @@ public class ProcessNameComparator implements Comparator<IProcessStart> {
 
   @Override
   public int compare(IProcessStart firstProcess, IProcessStart secondProcess) {
-    return firstProcess.getName().compareTo(secondProcess.getName());
+    return firstProcess.getName().toLowerCase().compareTo(secondProcess.getName().toLowerCase());
   }
 
 }
