@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 13 15:12:30 ICT 2017]
+[>Created: Tue Jun 13 15:58:37 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -290,17 +290,20 @@ ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.requ
 List<Workflow> workflows = ivy.persistence.GAWFS.findAll(Workflow.class);
 
 for (Workflow wf : workflows) {
-	IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
-	IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
-	
-	if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
-  	RemoteProcessStart workflowProcess = new RemoteProcessStart();
-  	workflowProcess.setId(wf.id);
-  	workflowProcess.setName(wf.processName);
-		workflowProcess.setDescription(wf.processDescription);
-		String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
-  	workflowProcess.setStartLink(startLink);
-  	in.processes.add(workflowProcess);
+	String lowercaseKeyword = in.keyword.toLowerCase();
+	if (wf.getProcessName().toLowerCase().contains(lowercaseKeyword) || wf.getProcessDescription().toLowerCase().contains(lowercaseKeyword)) {
+		IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
+		IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
+		
+		if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
+			RemoteProcessStart workflowProcess = new RemoteProcessStart();
+			workflowProcess.setId(wf.id);
+			workflowProcess.setName(wf.processName);
+			workflowProcess.setDescription(wf.processDescription);
+			String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
+			workflowProcess.setStartLink(startLink);
+			in.processes.add(workflowProcess);
+		}
 	}
 }
 
