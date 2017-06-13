@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import portal.common.TaskState;
 
@@ -329,9 +331,16 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement moreAction = findElementByCssSelector("*[id$='" + taskIndex + ":task-item:task-side-steps-menu']");
     moreAction.click();
     waitAjaxIndicatorDisappear();
-    WebElement moreActionPanel = findElementByCssSelector("*[id$='" + taskIndex + ":task-item:side-steps-panel']");
-    WebElement adhocMenuItem = moreActionPanel.findElement(By.cssSelector("a.ui-menuitem-link"));
-    adhocMenuItem.click();
+
+    WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+    WebElement adhocMenuItem = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.side-step-item")));
+
+    try {
+      adhocMenuItem.click();
+    } catch (Exception e) {
+      adhocMenuItem = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.side-step-item")));
+      adhocMenuItem.click();
+    }
     waitForElementPresent(By.id("copy-clipboard"), true);
     return new AdhocPage();
   }
