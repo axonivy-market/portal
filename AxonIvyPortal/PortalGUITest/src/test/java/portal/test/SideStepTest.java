@@ -24,7 +24,6 @@ public class SideStepTest extends BaseTest {
   }
 
   @Test
-  @Ignore
   public void testSideSteps() {
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.openSideStepMenu();
