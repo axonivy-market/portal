@@ -97,6 +97,8 @@ public class RemoteTask implements ITask {
   private RemoteSecurityMember expiryActivator;
   private String expiryTaskStartElementPid;
   private Date expiryTimestamp;
+  
+  private Date endTimestamp;
 
   private RemoteApplication remoteApplication;
   private RemoteSecurityMember activator;
@@ -411,7 +413,7 @@ public class RemoteTask implements ITask {
   @Override
   @PublicAPI(IvyScriptVisibility.NOVICE)
   public Date getEndTimestamp() throws PersistencyException {
-    return null;
+    return endTimestamp;
   }
 
   @Override
@@ -889,7 +891,6 @@ public class RemoteTask implements ITask {
   @PublicAPI(IvyScriptVisibility.EXPERT)
   public void setExpiryTimestamp(Date newExpiryTimestamp) throws PersistencyException {
     this.expiryTimestamp = newExpiryTimestamp;
-
   }
 
   @Override
@@ -935,6 +936,16 @@ public class RemoteTask implements ITask {
    */
   public void setStartTimestamp(Date startTimestamp) throws PersistencyException {
     this.startTimestamp = startTimestamp;
+  }
+  
+  /**
+   * Set end time stamp.
+   *
+   * @param endTimestamp end time stamp
+   * @throws PersistencyException PersistencyException
+   */
+  public void setEndTimestamp(Date endTimestamp) throws PersistencyException {
+    this.endTimestamp = endTimestamp;
   }
 
   /**

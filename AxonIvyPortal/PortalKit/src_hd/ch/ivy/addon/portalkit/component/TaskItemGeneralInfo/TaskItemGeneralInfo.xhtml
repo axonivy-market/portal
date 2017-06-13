@@ -111,6 +111,13 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
       <h:outputText id="delay-date"
         value="#{empty task.getDelayTimestamp() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.getDelayTimestamp()}" />
+
+      <ui:fragment rendered="#{not empty task.endTimestamp}">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/completedOn')}" />
+        <h:outputText value="#{task.endTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+      </ui:fragment>
     </h:panelGrid>
     <p:tooltip for="related-case"
       value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})"

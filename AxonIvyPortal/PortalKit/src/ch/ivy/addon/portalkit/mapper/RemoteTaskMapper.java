@@ -75,6 +75,9 @@ public class RemoteTaskMapper {
     if (ivyTask.getExpireTimestamp() != null) {
       result.setExpiryTimestamp(ivyTask.getExpireTimestamp().getTime());
     }
+    if (ivyTask.getEndTimestamp() != null) {
+      result.setEndTimestamp(ivyTask.getEndTimestamp().getTime());
+    }
     result.setBusinessCreatorUser(ivyTask.getBusinessCreatorUser());
     result.setDisplayDescriptionTemplate(ivyTask.getDisplayDescriptionTemplate());
     result.setDisplayNameTemplate(ivyTask.getDisplayNameTemplate());
