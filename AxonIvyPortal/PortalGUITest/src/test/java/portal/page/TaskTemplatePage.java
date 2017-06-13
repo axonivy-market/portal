@@ -73,14 +73,14 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void openSideStepMenu() {
-    String sideStepXpath = "//a[@id='side-steps-menu']";
-    waitForElementDisplayed(By.xpath(sideStepXpath), true);
-    click(findElementByXpath(sideStepXpath));
+    String sideStepId = "side-steps-menu";
+    waitForElementDisplayed(By.id(sideStepId), true);
+    click(findElementById(sideStepId));
   }
 
   public int countSideSteps() {
-    String sideStepPanelXpath = "//div[@id='side-steps-panel']";
-    waitForElementDisplayed(By.xpath(sideStepPanelXpath), true);
+    String sideStepPanelId = "side-steps-panel";
+    waitForElementDisplayed(By.id(sideStepPanelId), true);
     return findListElementsByCssSelector("a[id$='side-step-item']").size();
   }
 }
