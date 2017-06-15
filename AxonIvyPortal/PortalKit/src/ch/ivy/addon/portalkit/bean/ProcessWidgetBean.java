@@ -145,7 +145,7 @@ public class ProcessWidgetBean implements Serializable {
   }
   
   private void sortUserProcessList(List<UserProcess> userProcesses) {
-    userProcesses.sort((process1, process2) -> process1.getProcessName().compareTo(process2.getProcessName()));
+    userProcesses.sort((process1, process2) -> process1.getProcessName().toLowerCase().compareTo(process2.getProcessName().toLowerCase()));
   }
   
   private List<UserProcess> getFilteredExpressWorkflows(String query) {
