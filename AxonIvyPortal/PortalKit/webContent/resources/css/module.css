@@ -2033,8 +2033,8 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .priority-cell {
-  padding: 0 20px;
-  font-size: 1.2rem;
+  padding: 0 19px;
+  font-size: 1.4rem;
 }
 
 .task-start-list .name-cell {
@@ -2060,7 +2060,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .state-cell {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .task-start-list .action-cell {
