@@ -286,7 +286,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
             
             TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
-            TaskQuery finalTaskQuery = queryExcludeHiddenTasks();
+            TaskQuery finalTaskQuery = TaskQuery.create(); 
+            queryExcludeHiddenTasks(finalTaskQuery);
             finalTaskQuery.where().and(taskQuery);
             
             List<ITask> tasks = executeTaskQuery(finalTaskQuery, startIndex, count);
@@ -353,7 +354,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         }
 
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
-        TaskQuery finalTaskQuery = queryExcludeHiddenTasks();
+        TaskQuery finalTaskQuery = TaskQuery.create(); 
+        queryExcludeHiddenTasks(finalTaskQuery);
         finalTaskQuery.where().and(taskQuery);
         
         long taskCount = countTasks(finalTaskQuery);
@@ -372,7 +374,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = queryExcludeHiddenTasks();
+            TaskQuery finalTaskQuery = TaskQuery.create(); 
+            queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
               taskQuery.fromJson(jsonQuery);
@@ -414,7 +417,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = queryExcludeHiddenTasks();
+            TaskQuery finalTaskQuery = TaskQuery.create(); 
+            queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
               taskQuery = taskQuery.fromJson(jsonQuery);
@@ -455,7 +459,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = queryExcludeHiddenTasks();
+            TaskQuery finalTaskQuery = TaskQuery.create();
+            queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
               taskQuery = taskQuery.fromJson(jsonQuery);
@@ -503,11 +508,13 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               priorityQuery.where().and(queryForInvolvedApplications(apps));
             }
 
+            queryExcludeHiddenTasks(priorityQuery);
             List<TaskState> states = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
-            priorityQuery.aggregate().countRows().where().and(queryExcludeHiddenTasks()).and(queryForStates(states)).groupBy().priority().orderBy()
+            priorityQuery.aggregate().countRows().where().and(queryForStates(states)).groupBy().priority().orderBy()
                 .priority();
-            
+
             Recordset recordSet = taskQueryExecutor().getRecordset(priorityQuery);
+
             PriorityStatistic priorityStatistic = new PriorityStatistic();
             recordSet.getRecords().forEach(record -> {
               int priority = Integer.parseInt(record.getField("PRIORITY").toString());
@@ -546,8 +553,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               expiryQuery.where().and(queryForInvolvedApplications(apps));
             }
 
+            queryExcludeHiddenTasks(expiryQuery);
             List<TaskState> states = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
-            expiryQuery.where().and(queryExcludeHiddenTasks()).and(queryForStates(states)).and(queryForExpiry(expiryDate));
+            expiryQuery.where().and(queryForStates(states)).and(queryForExpiry(expiryDate));
 
             return numberOfExpiryTasks(countTasks(expiryQuery), errors);
           });
@@ -816,14 +824,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     return priorityQuery;
   }
   
-  private TaskQuery queryExcludeHiddenTasks() {
-    TaskQuery finalTaskQuery = TaskQuery.create();
+  private void queryExcludeHiddenTasks(TaskQuery query) {
     List<ITask> hiddenTasks = executeTaskQuery(TaskQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
 
     hiddenTasks.forEach(hiddenTask -> {
-      finalTaskQuery.where().and().taskId().isNotEqual(hiddenTask.getId());
+      query.where().and().taskId().isNotEqual(hiddenTask.getId());
     });
-    return finalTaskQuery;
   }
 
   /**
