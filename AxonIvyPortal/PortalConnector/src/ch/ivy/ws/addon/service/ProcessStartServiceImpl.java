@@ -24,6 +24,8 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
  */
 public class ProcessStartServiceImpl extends AbstractService implements IProcessStartService {
 
+  private static final String PORTAL_START_REQUEST_PATH = "/PortalStart.ivp";
+
   @Override
   public ProcessStartServiceResult findProcessStartsByCriteria(ProcessSearchCriteria searchCriteria, String language, Boolean isUrlBuiltFromSystemProperties)
       throws WSException {
@@ -35,7 +37,7 @@ public class ProcessStartServiceImpl extends AbstractService implements IProcess
           IvyProcessStartTransformer transformer = new IvyProcessStartTransformer(isUrlBuiltFromSystemProperties);
           List<IApplication> applications = getAllApplications();
           List<IvyProcessStart> starts = new ArrayList<>();
-
+          
           Ivy.session().setContentLocale(new Locale(language));
 
           for (IApplication application : applications) {
@@ -46,6 +48,10 @@ public class ProcessStartServiceImpl extends AbstractService implements IProcess
 
                 if (!workflowSession.isSessionUserUnknown()) {
                   List<IProcessStart> startableProcessStarts = workflowSession.getStartableProcessStarts();
+                  startableProcessStarts =
+                      startableProcessStarts.stream()
+                          .filter(process -> !process.getRequestPath().endsWith(PORTAL_START_REQUEST_PATH))
+                          .collect(Collectors.toList());
                   if (searchCriteria.hasKeyword()) {
                     starts.addAll(findProcessStart(startableProcessStarts, searchCriteria, transformer));
                   } else {
