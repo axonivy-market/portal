@@ -163,7 +163,7 @@ public class ProcessWidgetBean implements Serializable {
 
   private boolean canStartWorkflow(Workflow workflow) {
     IRole permittedRole = Ivy.request().getApplication().getSecurityContext().findRole(workflow.getProcessPermission());
-    IUser owner = Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner());
+    IUser owner = Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1));
     return Ivy.session().hasRole(permittedRole, false)
         || Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false)
         || Ivy.session().canActAsUser(owner);
