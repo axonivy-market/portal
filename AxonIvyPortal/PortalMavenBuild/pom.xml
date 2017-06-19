@@ -19,7 +19,7 @@
 
   <properties>
     <svn.revision.number>${SVN_REVISION}</svn.revision.number>
-    <ivy.engine.version>6.6.1</ivy.engine.version>
+    <ivy.engine.version>6.6.2</ivy.engine.version>
     <powermock.version>1.6.6</powermock.version>
   </properties>
 
