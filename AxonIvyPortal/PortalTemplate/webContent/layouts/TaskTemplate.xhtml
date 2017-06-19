@@ -67,7 +67,7 @@
           at="left bottom" showEvent="none">
           <h:form prependId="false">
             <p:remoteCommand actionListener="#{taskTemplateBean.generateLinkToTask(ivy.task.id)}" autoRun="true"
-              update="#{p:component('task-details-url')}" />
+              update="#{p:component('task-details-url')}" global="false" />
             <p:panelGrid columns="1">
               <p:outputLabel id="task-details-url-label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copiedToClipboard')}" />
