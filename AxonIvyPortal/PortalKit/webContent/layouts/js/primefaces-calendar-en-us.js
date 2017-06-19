@@ -74,6 +74,13 @@ PrimeFaces.locales ['en_US'] = {
 	        'javax.faces.validator.RegexValidator.NOT_MATCHED_detail': 'Regex pattern of \'{0}\' not matched',
 	        'javax.faces.validator.RegexValidator.MATCH_EXCEPTION': 'Error in regular expression.',
 	        'javax.faces.validator.RegexValidator.MATCH_EXCEPTION_detail': 'Error in regular expression, \'{0}\''
+	    },
+	    aria: {
+  	      'paginator.PAGE': 'Page {0}',
+  	      'calendar.BUTTON': 'Show Calendar',
+  	      'datatable.sort.ASC': 'activate to sort column ascending',
+  	      'datatable.sort.DESC': 'activate to sort column descending',
+  	      'columntoggler.CLOSE': 'Close'
 	    }
 	};
 

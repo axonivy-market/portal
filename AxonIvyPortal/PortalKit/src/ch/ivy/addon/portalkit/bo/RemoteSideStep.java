@@ -1,37 +1,36 @@
 package ch.ivy.addon.portalkit.bo;
 
-import java.net.URI;
-
 import javax.servlet.http.HttpServletRequest;
 
 import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
+import ch.ivyteam.ivy.model.value.WebLink;
 
 public class RemoteSideStep implements ISideStepProcess {
 
   private String name;
-  private URI startRequestUri;
-
-  @Override
-  public String getName() {
-    return name;
-  }
-
-  @Override
-  public URI getStartRequestUri() {
-    return startRequestUri;
-  }
-
-  @Override
-  public URI getStartRequestUri(HttpServletRequest paramHttpServletRequest) {
-    return null;
-  }
+  private WebLink webLink;
 
   public void setName(String name) {
     this.name = name;
   }
 
-  public void setStartRequestUri(URI startRequestUri) {
-    this.startRequestUri = startRequestUri;
+  @Override
+  public String getName() {
+    return name;
+  }
+  
+  public void setStartLink(WebLink webLink) {
+    this.webLink = webLink;
+  }
+
+  @Override
+  public WebLink getStartLink() {
+    return webLink;
+  }
+
+  @Override
+  public WebLink getStartLink(HttpServletRequest arg0) {
+    return webLink;
   }
 
 }
