@@ -451,7 +451,7 @@
 						styleClass="admin-settings-form-input"
 						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameRequiredMsg')}"
 						validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameCharactersLimit')}">
-						<pe:keyFilter regEx="/[a-zA-Z0-9_]/i" preventPaste="false" />
+						<p:keyFilter regEx="/[a-zA-Z0-9_]/i" preventPaste="false" />
 						<f:validateRegex pattern="^[a-zA-Z0-9_]*$" />
 					</p:inputText>
 					<p:commandButton
@@ -611,7 +611,7 @@
 						disabled="#{!data.isAddMode}" required="true"
 						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/keyRequiredMsg')}"
 						validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/keyCharactersLimit')}">
-						<pe:keyFilter regEx="/[a-zA-Z0-9_]/i" preventPaste="false" />
+						<p:keyFilter regEx="/[a-zA-Z0-9_]/i" preventPaste="false" />
 						<f:validateRegex pattern="^[a-zA-Z0-9_]*$"></f:validateRegex>
 					</p:inputText>
 

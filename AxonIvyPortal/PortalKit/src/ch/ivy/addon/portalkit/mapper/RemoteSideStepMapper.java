@@ -1,11 +1,12 @@
 package ch.ivy.addon.portalkit.mapper;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 import ch.ivy.addon.portalkit.bo.RemoteSideStep;
 import ch.ivy.addon.portalkit.util.UrlValidator;
 import ch.ivy.ws.addon.IvySideStep;
+import ch.ivyteam.ivy.model.value.WebLink;
+import ch.ivyteam.ivy.request.restricted.WebLinkFactory;
 import ch.ivyteam.ivy.scripting.objects.List;
 
 public class RemoteSideStepMapper {
@@ -14,8 +15,8 @@ public class RemoteSideStepMapper {
     RemoteSideStep result = new RemoteSideStep();
     result.setName(sideStep.getName());
     String requestUri = sideStep.getStartRequestUri();
-    String requestUrl = UrlValidator.isValidUrl(requestUri) ? requestUri : host + requestUri;
-    result.setStartRequestUri(new URI(requestUrl));
+    WebLink webLink = UrlValidator.isValidUrl(requestUri) ? new WebLinkFactory().createFromContextRelative(requestUri) : new WebLink(host + requestUri);
+    result.setStartLink(webLink);
     return result;
   }
 
