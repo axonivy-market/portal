@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Jun 08 10:43:42 ICT 2017]
+[>Created: Mon Jun 19 09:47:17 ICT 2017]
 150CB86EFC2F2972 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
@@ -1090,7 +1090,7 @@ Ts0 f64 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent method
 ' #txt
 Ts0 f64 inActionCode 'import javax.faces.context.FacesContext;
 
-String url = param.sidestep.getStartRequestUri().toString() + "?originalTaskId=" + param.task.getId();
+String url = param.sidestep.getStartLink().getAbsoluteEncoded() + "?originalTaskId=" + param.task.getId();
 FacesContext.getCurrentInstance().getExternalContext().redirect(url);' #txt
 Ts0 f64 outParameterDecl '<> result;
 ' #txt

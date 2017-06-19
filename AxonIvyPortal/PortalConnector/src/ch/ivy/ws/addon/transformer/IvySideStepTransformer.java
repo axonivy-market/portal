@@ -24,7 +24,7 @@ public class IvySideStepTransformer {
     IvySideStep result = new IvySideStep();
     try {
       result.setName(sideStep.getName());
-      String sideStepUri = sideStep.getStartRequestUri().toString();
+      String sideStepUri = sideStep.getStartLink().getAbsoluteEncoded();
       result.setStartRequestUri(ServerUrlUtils.getStartLink(sideStepUri, isUrlBuiltFromSystemProperties));
     } catch (Exception exception) {
       Ivy.log().error(exception);

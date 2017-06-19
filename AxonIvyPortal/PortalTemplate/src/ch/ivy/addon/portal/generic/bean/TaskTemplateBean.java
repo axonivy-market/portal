@@ -52,7 +52,7 @@ public class TaskTemplateBean {
 
   public void startSideStep() throws Exception {
     PortalNavigator portalNavigator = new PortalNavigator();
-    portalNavigator.redirect(selectedSideStep.getStartRequestUri().toString());
+    portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }
 
   public boolean hasSelfService() throws Exception {
