@@ -39,7 +39,7 @@
 									for="processype" />
 							</p:column>
 							<p:column style="width:75%; border: none">
-								<p:selectOneRadio id="processype"
+								<p:selectOneRadio id="processype" style="width: 100%;"
 									value="#{data.data.processType}"
 									required="#{param['form:save']!=null}"
 									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}">
