@@ -2,7 +2,6 @@ package ch.ivy.gawfs;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -195,7 +194,7 @@ public class DragAndDropController implements Serializable{
 
 	private void displayFileUploadPositionNotice() {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/Dialogs/components/CaseDocument/fileUploadElementPosition"), "");
-		  FacesContext.getCurrentInstance().addMessage("DnDmessages", message);
+		  FacesContext.getCurrentInstance().addMessage("availableFormelements", message);
 	}
     
     public void resetFormelementFooter(Formelement formelement){
