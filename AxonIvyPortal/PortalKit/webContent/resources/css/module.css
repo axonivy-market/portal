@@ -171,6 +171,10 @@
 .ui-radiobutton .ui-radiobutton-box.ui-state-error .ui-icon-bullet {
   background: rgba(255, 100, 100, 1);
 }
+
+.ui-radiobutton {
+  margin: 5px 10px 0px 0px !important;
+}
 /* =================== END RADIO BUTTON ====================== */
 
 /* =================== SPINNER BUTTON ====================== */
@@ -244,6 +248,10 @@
 
 .ui-chkbox .ui-chkbox-box.ui-state-error .ui-icon-check {
   background: rgba(255, 100, 100, 1);
+}
+
+.ui-chkbox {
+	vertical-align: bottom !important;
 }
 /* =================== END CHECKBOX ====================== */
 
@@ -3861,4 +3869,19 @@ margin-top
 
 .side-steps-container .side-step-item:last-child {
   margin-bottom: 10px;
+}
+
+.ui-fileupload-content .ui-progressbar {
+	top: 0px !important;
+}
+
+.ui-fileupload-preview {
+	vertical-align: middle;
+}
+
+.ui-tooltip {
+	padding: 0px !important;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
