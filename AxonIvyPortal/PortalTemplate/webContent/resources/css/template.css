@@ -631,7 +631,7 @@
   transform: rotate(90deg);
 }
 
-.second-level-menu .ui-treetable-toggler {
+.second-level-menu .ui-treetable .ui-treetable-toggler {
   display: none;
 }
 
