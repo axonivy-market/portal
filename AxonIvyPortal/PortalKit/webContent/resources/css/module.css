@@ -699,12 +699,6 @@
   margin-top: 35px !important;
 }
 
-.ui-dialog-content .ui-messages-info-icon, 
-.ui-dialog-content .ui-messages-warn-icon, 
-.ui-dialog-content .ui-messages-error-icon, 
-.ui-dialog-content .ui-messages-fatal-icon {
-  margin-top: -10px !important;
-}
 /* =================== END DIALOG ====================== */
 
 /* =================== LINK ====================== */
@@ -2853,10 +2847,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   float: left;
 }
 
-.application-dialog-add-application-container {
-  width: 100%;
-}
-
 .admin-settings-form-input {
   width: 90%;
 }
@@ -2867,15 +2857,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .admin-settings-update-external-host-button {
   width: auto !important;
-  margin: 0px 5px;
 }
 
 .admin-settings-external-host-tooltip {
   width: 200px;
-}
-
-.add-server-container {
-  border: none;
 }
 
 .warning-portal-connector-path-security {
@@ -3884,4 +3869,16 @@ margin-top
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+}
+
+.admin-settings-container .ui-panelgrid-cell.ui-grid-col-3 {
+  position: relative;
+}
+
+.admin-settings-container .ui-panelgrid-cell.ui-grid-col-3 > label {
+  position: absolute;
+  height: 2rem;
+  margin-top: -1rem;
+  top: 50%;
+  right: 1rem;
 }
