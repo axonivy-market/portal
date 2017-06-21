@@ -18,7 +18,7 @@
       rowClasses="case-details-row-space">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/creator')}" />
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{case.creatorFullName}"
-        username="#{case.creatorUserName}" rendered="#{not empty case.creatorUserName}" />
+        username="#{case.creatorUserName}" />
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/created')}" />
       <h:outputText id="case-start-time" value="#{case.startTimestamp}">
