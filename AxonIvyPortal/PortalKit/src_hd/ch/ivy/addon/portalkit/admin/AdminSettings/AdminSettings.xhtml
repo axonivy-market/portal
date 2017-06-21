@@ -359,14 +359,14 @@
 				</p:outputPanel>
 				
 			</p:outputPanel>
-			<h:panelGroup layout="block"
-					styleClass="u-dialog-footer ui-dialog-footer">
+			<p:panelGrid columnClasses="ui-grid-col-3, ui-grid-col-9" columns="2" layout="grid" styleClass="u-dialog-footer ui-dialog-footer">
+				<h:panelGroup styleClass="Fleft">
 					<p:commandButton process="@form" 
-							styleClass="Fleft"
 							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testConnection')}"
 							actionListener="#{logic.getExternalHost}"
-							update="@form" />	
-					
+							update="@form" />
+				</h:panelGroup>	
+				<h:panelGroup layout="block" styleClass="Fright">
 					<p:commandButton
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 						actionListener="#{logic.saveServer}" styleClass="portal-ok-button"
@@ -379,7 +379,8 @@
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
 						process="@this" oncomplete="PF('serverDialogVar').hide()"
 						global="false" />
-			</h:panelGroup>
+				</h:panelGroup>
+			</p:panelGrid>
 		</h:form>
 	</p:dialog>
 
