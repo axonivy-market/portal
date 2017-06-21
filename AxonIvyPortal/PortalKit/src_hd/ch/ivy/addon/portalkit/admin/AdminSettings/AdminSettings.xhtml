@@ -267,10 +267,8 @@
 
 		<h:form prependId="false" id="serverDialogForm">
 			<p:messages/>
-			<p:outputPanel id="commentDetail" styleClass="server-dialog-comment">
-				<p:panelGrid columns="2" layout="grid"
-					columnClasses="ui-grid-col-3, ui-grid-col-9"
-					styleClass="add-server-container ui-fluid">
+			<p:outputPanel id="commentDetail">
+				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-3, ui-grid-col-9" styleClass="u-no-border admin-settings-container ui-fluid">
 					<p:outputLabel
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverName')}"
 						for="serverDisplayName"
@@ -323,7 +321,7 @@
 						value="#{data.selectedServer.wsAuthenticationType.value eq 'NTLM'}" />
 					<p:panelGrid columns="2" layout="grid"
 						columnClasses="ui-grid-col-3, ui-grid-col-9"
-						styleClass="add-server-container ui-fluid"
+						styleClass="u-no-border admin-settings-container ui-fluid"
 						rendered="#{data.selectedServer.wsAuthenticationType.value ne 'None'}">
 						<p:outputLabel
 							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/username')}"
@@ -364,7 +362,7 @@
 			<h:panelGroup layout="block"
 					styleClass="u-dialog-footer ui-dialog-footer">
 					<p:commandButton process="@form" 
-							styleClass="admin-settings-update-external-host-button Fleft"
+							styleClass="Fleft"
 							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testConnection')}"
 							actionListener="#{logic.getExternalHost}"
 							update="@form" />	
@@ -404,8 +402,7 @@
 			<p:messages id="messages" closable="true" />
 
 			<p:outputPanel id="appOverview">
-				<p:panelGrid columns="3" id="applicationPanelGrid"
-					styleClass="application-dialog-add-application-container">
+				<p:panelGrid columns="3" layout="grid" columnClasses="ui-grid-col-3, ui-grid-col-6, ui-grid-col-3" styleClass="u-no-border admin-settings-container ui-fluid" id="applicationPanelGrid">
 					<!-- Application Type -->
 					<p:outputLabel styleClass="admin-settings-form-input-label"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/type')}"
@@ -602,7 +599,7 @@
 		<h:form prependId="false" id="settingDialogForm">
 			<p:messages />
 			<p:outputPanel id="settingOverview">
-				<p:panelGrid columns="2">
+				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-3, ui-grid-col-9" styleClass="u-no-border admin-settings-container ui-fluid">
 					<!-- KEY -->
 					<p:outputLabel styleClass="admin-settings-form-input-label"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}"
