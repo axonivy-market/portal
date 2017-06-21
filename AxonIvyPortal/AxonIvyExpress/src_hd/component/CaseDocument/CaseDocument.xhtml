@@ -57,7 +57,7 @@
 				<p:commandLink id="document-delete" styleClass="fa fa-trash-o"
 					actionListener="#{logic.deleteFile(document.downloadPath)}"
 					rendered="#{cc.attrs.uploadPossible}"
-					update="case-information:form:dynaForm"
+					update="document-table"
 					title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}">
 				</p:commandLink>
