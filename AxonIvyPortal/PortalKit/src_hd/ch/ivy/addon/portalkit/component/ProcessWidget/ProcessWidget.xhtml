@@ -84,13 +84,13 @@
           <div class="process-start-list-item-action">
             <h:form prependId="false">
               <p:selectBooleanCheckbox id="delete-process-checkbox" widgetVar="delete-process-checkbox-#{status.index}">
-                <p:ajax async="true" listener="#{processWidgetBean.selectDeletingProcess}" update="@none"
+                <p:ajax listener="#{processWidgetBean.selectDeletingProcess}" update="@none"
                   process="@this" global="false" />
                 <f:attribute name="selectedProcess" value="#{process}" />
               </p:selectBooleanCheckbox>
             </h:form>
           </div>
-          <h:outputScript>processWidget.preventBubblingEvent('delete-process-checkbox-#{status.index}');</h:outputScript>
+          <!-- <h:outputScript>processWidget.preventBubblingEvent('delete-process-checkbox-#{status.index}');</h:outputScript> -->
         </h:panelGroup>
       </ui:repeat>
     </h:panelGroup>
