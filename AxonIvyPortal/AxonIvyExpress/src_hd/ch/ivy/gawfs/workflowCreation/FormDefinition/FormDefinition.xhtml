@@ -180,22 +180,38 @@
 
 								<p:panelGrid id="createManyCheckboxGrid" style="width:100%" styleClass="createManyCheckboxGridTable">
 									<p:row style="height: 20px">
-										<p:column style="width:15%; border:none">
-											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:"
-												for="ManyCheckboxName" />
-
-										</p:column>
-										<p:column style="width:35%; border:none">
-											<p:inputText id="ManyCheckboxName" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
-												type="text" value="#{data.createManyCheckboxTab.name}"
-												style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+										<p:column style="width: 50%; border:none; vertical-align: top;">
+											<p:panelGrid style="border:none;">
+												<p:row style="height: 20px">
+													<p:column style="width:15%; border:none">
+														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:"
+															for="ManyCheckboxName" />
+			
+													</p:column>
+													<p:column style="width:35%; border:none">
+														<p:inputText id="ManyCheckboxName" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+															type="text" value="#{data.createManyCheckboxTab.name}"
+															style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+													</p:column>
+												</p:row>
+												<p:row style="height: 20px">
+													<p:column style="border:none">
+														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="ManyCheckboxLabel" />
+													</p:column>
+													<p:column style="border:none">
+														<p:inputText id="ManyCheckboxLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+															value="#{data.createManyCheckboxTab.label}"
+															style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+													</p:column>
+												</p:row>
+											</p:panelGrid>
 										</p:column>
 
 										<p:column style="width:15%; border:none">
 											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxFields')}:" />
 										</p:column>
 										
-										<p:column rowspan="3" 
+										<p:column
 											style="width:35%; padding: 0px; border: solid 0px">
 
 											<p:dataTable id="ManyCheckboxOptions" var="option"
@@ -230,19 +246,6 @@
 											</p:dataTable>
 										</p:column>
 
-									</p:row>
-
-									<p:row style="height: 20px">
-										<p:column style="border:none">
-											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="ManyCheckboxLabel" />
-										</p:column>
-										<p:column style="border:none">
-											<p:inputText id="ManyCheckboxLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
-												value="#{data.createManyCheckboxTab.label}"
-												style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
-										</p:column>
-										<p:column style="border:none">
-										</p:column>
 									</p:row>
 
 									<p:row>
@@ -282,21 +285,36 @@
 
 								<p:panelGrid id="createOneRadioGrid" styleClass="createOneRadioGridTable" style="width:100%">
 									<p:row style="height: 20px">
-										<p:column style="width:15%; border:none">
-											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:" for="OneRadioName" />
-
+										<p:column style="width: 50%; border:none; vertical-align: top;">
+											<p:panelGrid style="border:none;">
+												<p:row style="height: 20px">
+													<p:column style="width:15%; border:none">
+														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:" for="OneRadioName" />
+			
+													</p:column>
+													<p:column style="width:35%; border:none">
+														<p:inputText id="OneRadioName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+															value="#{data.createOneRadioTab.name}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+			
+													</p:column>
+												</p:row>
+												<p:row style="height: 20px">
+													<p:column style="border:none">
+														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="OneRadioLabel" />
+													</p:column>
+													<p:column style="border:none">
+														<p:inputText id="OneRadioLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+															value="#{data.createOneRadioTab.label}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+													</p:column>
+												</p:row>
+											</p:panelGrid>
 										</p:column>
-										<p:column style="width:35%; border:none">
-											<p:inputText id="OneRadioName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
-												value="#{data.createOneRadioTab.name}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 
-										</p:column>
-
-										<p:column style="width:15%; border:none">
+										<p:column style="width:15%; border:none; vertical-align: top; padding-top: 10px;">
 											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/OptionboxFields')}:" />
 
 										</p:column>
-										<p:column rowspan="3"
+										<p:column
 											style="width:35%; padding: 0px; border: solid 0px">
 
 											<p:dataTable id="OneRadioOptions" var="option"
@@ -331,17 +349,6 @@
 										</p:column>
 									</p:row>
 
-									<p:row style="height: 20px">
-										<p:column style="border:none">
-											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="OneRadioLabel" />
-										</p:column>
-										<p:column style="border:none">
-											<p:inputText id="OneRadioLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
-												value="#{data.createOneRadioTab.label}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
-										</p:column>
-										<p:column style="border:none">
-										</p:column>
-									</p:row>
 									<p:row>
 										<p:column colspan="3" style="border:none">
 										</p:column>
