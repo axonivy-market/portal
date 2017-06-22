@@ -253,15 +253,20 @@ public class ProcessWidgetBean implements Serializable {
     selectedUserProcesses.clear();
   }
 
-  public void selectDeletingProcess(AjaxBehaviorEvent event) {
-    SelectBooleanCheckbox booleanCheckbox = (SelectBooleanCheckbox) event.getComponent();
-    UserProcess selectedUserProcess = (UserProcess) booleanCheckbox.getAttributes().get("selectedProcess");
-    if (booleanCheckbox.isSelected()) {
-      selectedUserProcesses.add(selectedUserProcess);
-    } else {
-      selectedUserProcesses.remove(selectedUserProcess);
-    }
-  }
+	public void selectDeletingProcess(AjaxBehaviorEvent event) {
+		SelectBooleanCheckbox booleanCheckbox = (SelectBooleanCheckbox) event
+				.getComponent();
+		UserProcess selectedUserProcess = (UserProcess) booleanCheckbox
+				.getAttributes().get("selectedProcess");
+		if (booleanCheckbox.isSelected()) {
+			boolean processExisted = selectedUserProcesses.stream().filter(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink())).findAny().isPresent();
+			if (!processExisted) {
+				selectedUserProcesses.add(selectedUserProcess);
+			}
+		} else {
+			selectedUserProcesses.removeIf(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink()));
+		}
+	}
 
   public void cancelDeletingProcess() {
     deleteMode = false;
