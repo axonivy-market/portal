@@ -29,6 +29,8 @@ import ch.ivyteam.ivy.workflow.document.IDocumentService;
  */
 public class DocumentFileUtils {
 	
+  static final String EXPRESS_UPLOAD_FOLDER="AxonIvyExpress";
+  
 	/**
 	 * @param currentCase root folder 
 	 * @param inputStream file to check exist
@@ -38,9 +40,8 @@ public class DocumentFileUtils {
 	public static boolean checkFileExist(ICase currentCase, InputStream inputStream, String fileName){
 		String originalFileName = FilenameUtils.getName(fileName);
 		IDocumentService documentService = currentCase.documents();
-		String home = Ivy.var().get("de_portalkit_upload_folder");
 		List<IDocument> documents = documentService.getAll();
-		documents = documents.stream().filter(document -> document.getPath().asString().contains(home) && document.getPath().asString().contains(originalFileName)).collect(Collectors.toList());
+		documents = documents.stream().filter(document -> document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER) && document.getPath().asString().contains(originalFileName)).collect(Collectors.toList());
 		return !documents.isEmpty();
 	}
 	/**
@@ -65,9 +66,8 @@ public class DocumentFileUtils {
 	 */
 	public static List<DocumentFile> listFileInDirectory(ICase currentCase){
 		IDocumentService documentService = currentCase.documents();
-		String home = Ivy.var().get("de_portalkit_upload_folder");
 		List<IDocument> documents = documentService.getAll();
-		documents = documents.stream().filter(document -> document.getPath().asString().contains(home)).collect(Collectors.toList());
+		documents = documents.stream().filter(document -> document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER)).collect(Collectors.toList());
 		List<DocumentFile> listFile = new ArrayList<DocumentFile>();
 		if (documents != null){
 			for (IDocument document : documents){
@@ -90,11 +90,10 @@ public class DocumentFileUtils {
 	 * @return upload success or not
 	 */
 	public static boolean uploadToDirectory(ICase currentCase, InputStream inputStream, String fileName){
-		String home = Ivy.var().get("de_portalkit_upload_folder");
 		IDocumentService documentService = currentCase.documents();
 		String originalFileName = FilenameUtils.getName(fileName);
 		try {
-			documentService.add((home.isEmpty() ? "" : home + "/") + currentCase.getId() + "/" + originalFileName).write().withContentFrom(inputStream);
+			documentService.add(EXPRESS_UPLOAD_FOLDER + "/" + originalFileName).write().withContentFrom(inputStream);
 			return true;
 		} catch (Exception e) {
 			return false;
