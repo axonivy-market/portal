@@ -47,8 +47,9 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
 	        	  List<ISideStepProcess> sideStepProcesses = SideStepService.get().findStartable((IBusinessCase) wfCase, user);
 	              for(ISideStepProcess process : sideStepProcesses){
 	            	  IvySideStep item = new IvySideStep();
-	            	  item.setStartRequestUri(process.getStartLink().toString());
+	            	  item.setStartRequestUri(process.getStartLink().getRelativeEncoded());
 	            	  item.setName(process.getName());
+	            	  item.setIsAdhoc(false);
 	            	  sideSteps.add(item);
 	              }
           }
@@ -89,6 +90,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     IvySideStep adhoc = new IvySideStep();
     adhoc.setName(Ivy.cms().co("/ch/ivy/addon/portalconnector/sidestep/addAdhocTask"));
     adhoc.setStartRequestUri(ServerUrlUtils.getStartLink(acmLink, isUrlBuiltFromSystemProperties));
+    adhoc.setIsAdhoc(true);
     return adhoc;
   }
 }

@@ -43,7 +43,7 @@ canDelegateTask PERSISTENT #fieldModifier
 callbackUrl String #field
 callbackUrl 'Portal Task List url is used to be back after finish task' #fieldComment
 callbackUrl PERSISTENT #fieldModifier
-sideSteps java.util.List<ch.ivyteam.ivy.casemap.runtime.ISideStepProcess> #field
+sideSteps java.util.List<ch.ivy.addon.portalkit.bo.RemoteSideStep> #field
 sideSteps PERSISTENT #fieldModifier
 sideStepSearchCriteria ch.ivy.ws.addon.SideStepSearchCriteria #field
 sideStepSearchCriteria PERSISTENT #fieldModifier

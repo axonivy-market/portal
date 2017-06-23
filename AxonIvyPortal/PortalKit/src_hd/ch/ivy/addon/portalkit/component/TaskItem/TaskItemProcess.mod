@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jun 19 09:47:17 ICT 2017]
+[>Created: Fri Jun 23 11:33:20 ICT 2017]
 150CB86EFC2F2972 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
@@ -1042,7 +1042,7 @@ Ts0 f36 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent method
 ' #txt
 Ts0 f36 inParameterMapAction 'out.selectedTask=param.task;
 ' #txt
-Ts0 f36 outParameterDecl '<java.util.List<ch.ivyteam.ivy.casemap.runtime.ISideStepProcess> sideSteps> result;
+Ts0 f36 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.bo.RemoteSideStep> sideSteps> result;
 ' #txt
 Ts0 f36 outParameterMapAction 'result.sideSteps=in.sideSteps;
 ' #txt
@@ -1050,6 +1050,8 @@ Ts0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>collectSideSteps(RemoteTask)</name>
+        <nameStyle>28,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1083,27 +1085,30 @@ Ts0 f61 expr out #txt
 Ts0 f61 1624 530 1624 585 #arcP
 Ts0 f64 guid 15C80D2D06F5658C #txt
 Ts0 f64 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f64 method navigateToSidestep(ch.ivyteam.ivy.casemap.runtime.ISideStepProcess,ch.ivy.addon.portalkit.bo.RemoteTask) #txt
+Ts0 f64 method navigateToSidestep(ch.ivy.addon.portalkit.bo.RemoteSideStep,ch.ivy.addon.portalkit.bo.RemoteTask) #txt
 Ts0 f64 disableUIEvents false #txt
 Ts0 f64 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.casemap.runtime.ISideStepProcess sidestep,ch.ivy.addon.portalkit.bo.RemoteTask task> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.bo.RemoteSideStep sidestep,ch.ivy.addon.portalkit.bo.RemoteTask task> param = methodEvent.getInputArguments();
 ' #txt
 Ts0 f64 inActionCode 'import javax.faces.context.FacesContext;
 
-String url = param.sidestep.getStartLink().getAbsoluteEncoded() + "?originalTaskId=" + param.task.getId();
+String url = param.sidestep.getStartLink().getAbsoluteEncoded();
+if(param.sidestep.isAdhoc) {
+	url = url + "?originalTaskId=" + param.task.getId();
+}
 FacesContext.getCurrentInstance().getExternalContext().redirect(url);' #txt
 Ts0 f64 outParameterDecl '<> result;
 ' #txt
 Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>navigateToSidestep(ISideStepProcess,RemoteTask)</name>
-        <nameStyle>47,5,7
+        <name>navigateToSidestep(RemoteSideStep,RemoteTask)</name>
+        <nameStyle>45,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f64 1843 307 26 26 -145 15 #rect
+Ts0 f64 1843 307 26 26 -142 15 #rect
 Ts0 f64 @|RichDialogMethodStartIcon #fIcon
 Ts0 f67 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f67 1843 587 26 26 0 12 #rect
