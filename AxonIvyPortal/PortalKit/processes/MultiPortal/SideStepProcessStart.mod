@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jun 05 16:53:51 ICT 2017]
+[>Created: Fri Jun 23 11:28:05 ICT 2017]
 15C6291386FB461E 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 SideStepProcessStart Big #zClass
@@ -122,7 +122,7 @@ Pt0 f11 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,ch
 Pt0 f11 inParamTable 'out.server=param.server;
 out.sideStepSearchCriteria=param.sideStepSearchCriteria;
 ' #txt
-Pt0 f11 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<ch.ivyteam.ivy.casemap.runtime.ISideStepProcess> sideSteps> result;
+Pt0 f11 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.addon.portalkit.bo.RemoteSideStep> sideSteps> result;
 ' #txt
 Pt0 f11 outParamTable 'result.errors=in.errors;
 result.sideSteps=in.sideSteps;
