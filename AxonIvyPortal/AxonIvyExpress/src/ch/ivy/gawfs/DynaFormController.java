@@ -118,6 +118,10 @@ public class DynaFormController implements Serializable {
 				DynaFormControl control = tempRow.addControl(element, element.getType(),3,1);
 				label.setForControl(control);
 			}else{
+				DynaFormLabel label = tempRow.addLabel(element.getLabel(),4,1);
+				tempRow = model.createRegularRow();
+				DynaFormControl control = tempRow.addControl(element, element.getType(),4,1);
+				label.setForControl(control);
 				Ivy.log().debug("DynaForm.createForm Footerloop: " + element.getType() + "," + element.getLabel()+ " Sonderform erstellt!");
 			}
 			Ivy.log().debug("DynaForm.createForm Footerloop: " + element.getType() + "," + element.getLabel()+ " erstellt!");
