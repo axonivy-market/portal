@@ -374,7 +374,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = TaskQuery.create(); 
+            TaskQuery finalTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery(); 
             queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
@@ -417,7 +417,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = TaskQuery.create(); 
+            TaskQuery finalTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery(); 
             queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
@@ -459,7 +459,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = TaskQuery.create();
+            TaskQuery finalTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
