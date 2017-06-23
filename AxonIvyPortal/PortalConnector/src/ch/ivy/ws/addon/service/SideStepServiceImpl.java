@@ -13,9 +13,13 @@ import ch.ivy.ws.addon.bo.SideStepServiceResult;
 import ch.ivy.ws.addon.types.IvySideStep;
 import ch.ivy.ws.addon.util.ServerUrlUtils;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
+import ch.ivyteam.ivy.casemap.runtime.SideStepService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.ICaseQueryExecutor;
 
 /**
@@ -35,7 +39,19 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
           ICase wfCase =
               caseQueryExecutor.getFirstResult(caseQueryExecutor.createCaseQuery().where().caseId()
                   .isEqual(searchCriteria.getCaseId()));
+          
           List<IvySideStep> sideSteps = new ArrayList<>();
+          if(wfCase != null && searchCriteria.hasInvolvedUsername()){
+	          IApplication application = wfCase.getApplication();
+	          IUser user = application.getSecurityContext().findUser(searchCriteria.getInvolvedUsername());
+	        	  List<ISideStepProcess> sideStepProcesses = SideStepService.get().findStartable((IBusinessCase) wfCase, user);
+	              for(ISideStepProcess process : sideStepProcesses){
+	            	  IvySideStep item = new IvySideStep();
+	            	  item.setStartRequestUri(process.getStartLink().toString());
+	            	  item.setName(process.getName());
+	            	  sideSteps.add(item);
+	              }
+          }
           if (!searchCriteria.isAdhocExcluded()) {
             IvySideStep adhocSideStep = createAdhocSideStep(wfCase, isUrlBuiltFromSystemProperties);
             Optional.ofNullable(adhocSideStep).ifPresent(adhoc -> sideSteps.add(adhoc));
