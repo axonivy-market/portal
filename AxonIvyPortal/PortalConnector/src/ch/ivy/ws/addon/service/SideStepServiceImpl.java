@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.SideStepServiceResult;
+import ch.ivy.ws.addon.transformer.IvySideStepTransformer;
 import ch.ivy.ws.addon.types.IvySideStep;
 import ch.ivy.ws.addon.util.ServerUrlUtils;
 import ch.ivyteam.ivy.application.IApplication;
@@ -46,11 +47,9 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
 	          IUser user = application.getSecurityContext().findUser(searchCriteria.getInvolvedUsername());
 	        	  List<ISideStepProcess> sideStepProcesses = SideStepService.get().findStartable((IBusinessCase) wfCase, user);
 	              for(ISideStepProcess process : sideStepProcesses){
-	            	  IvySideStep item = new IvySideStep();
-	            	  item.setStartRequestUri(process.getStartLink().getRelativeEncoded());
-	            	  item.setName(process.getName());
-	            	  item.setIsAdhoc(false);
-	            	  sideSteps.add(item);
+	            	  if(process != null){
+	            		  sideSteps.add(new IvySideStepTransformer(isUrlBuiltFromSystemProperties).transform(process));
+	            	  }
 	              }
           }
           if (!searchCriteria.isAdhocExcluded()) {
