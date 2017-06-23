@@ -61,7 +61,7 @@
         <outputParameter>
             <name>sideSteps</name>
             <description></description>
-            <parameterType>java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.ISideStepProcess&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.RemoteSideStep&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
@@ -71,7 +71,7 @@
         <inputParameter>
             <name>sidestep</name>
             <description></description>
-            <parameterType>ch.ivyteam.ivy.casemap.runtime.ISideStepProcess</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.bo.RemoteSideStep</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>

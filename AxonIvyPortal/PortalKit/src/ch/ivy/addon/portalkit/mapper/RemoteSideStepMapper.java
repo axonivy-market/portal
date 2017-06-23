@@ -17,6 +17,7 @@ public class RemoteSideStepMapper {
     String requestUri = sideStep.getStartRequestUri();
     WebLink webLink = UrlValidator.isValidUrl(requestUri) ? new WebLinkFactory().createFromContextRelative(requestUri) : new WebLink(host + requestUri);
     result.setStartLink(webLink);
+    result.setIsAdhoc(sideStep.getIsAdhoc());
     return result;
   }
 
