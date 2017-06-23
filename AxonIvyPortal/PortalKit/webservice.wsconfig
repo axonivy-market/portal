@@ -447,7 +447,7 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
             <axisReturnTypes>SideStepProcessServicePortfindSideStepsByCriteria=ch.ivy.ws.addon.FindSideStepsByCriteriaResponseE</axisReturnTypes>
             <axisServiceClassname>ch.ivy.ws.addon.SideStepProcessServiceService</axisServiceClassname>
             <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteria.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaE.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResult.java","ch\\ivy\\ws\\addon\\IvySideStep.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\SideStepProcessServiceService.java","ch\\ivy\\ws\\addon\\SideStepProcessServiceServiceStub.java","ch\\ivy\\ws\\addon\\SideStepSearchCriteria.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
-            <codeGenerationTimestamp>1498191598355</codeGenerationTimestamp>
+            <codeGenerationTimestamp>1498206892069</codeGenerationTimestamp>
             <wsdlWebserviceName>SideStepProcessServiceService</wsdlWebserviceName>
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
