@@ -26,7 +26,7 @@ public class SearchProcessTest extends BaseTest {
   }
 
   @Test
-  public void testFindProcessByNameAndOpenProcessList() {
+  public void testFindAndStartProcessByName() {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
@@ -42,6 +42,21 @@ public class SearchProcessTest extends BaseTest {
     globalSearch.startProcessOnGlobalSearch(processName);
     TaskTemplatePage taskPage = new TaskTemplatePage();
     assertTrue(taskPage.getPageUrl().contains("ProcessLeaves2"));
+  }
+  
+  @Test
+  public void testFindCaseMapByName() {
+    String caseMapName = "caseMapLeaves";
+    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    assertTrue(globalSearch.isDisplayed());
+
+    globalSearch.clickOnGlobalSearchIcon();
+    homePage.waitForElementDisplayed(globalSearch.getSearchContainer(), true);
+    globalSearch.inputSearchKeyword(caseMapName);
+
+    homePage.waitAjaxIndicatorDisappear();
+
+    assertEquals(caseMapName, globalSearch.getProcessResult());
   }
 
   @Test
