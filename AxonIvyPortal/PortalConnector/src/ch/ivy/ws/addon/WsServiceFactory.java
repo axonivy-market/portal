@@ -16,6 +16,7 @@ import ch.ivy.ws.addon.service.IServerService;
 import ch.ivy.ws.addon.service.ISideStepService;
 import ch.ivy.ws.addon.service.ITaskService;
 import ch.ivy.ws.addon.service.IUserSettingService;
+import ch.ivy.ws.addon.service.IWebStartableService;
 import ch.ivy.ws.addon.service.IsAliveServiceImpl;
 import ch.ivy.ws.addon.service.LanguagesSettingsServiceImpl;
 import ch.ivy.ws.addon.service.ProcessStartServiceImpl;
@@ -24,6 +25,7 @@ import ch.ivy.ws.addon.service.ServerServiceImpl;
 import ch.ivy.ws.addon.service.SideStepServiceImpl;
 import ch.ivy.ws.addon.service.TaskServiceImpl;
 import ch.ivy.ws.addon.service.UserSettingServiceImpl;
+import ch.ivy.ws.addon.service.WebStartableServiceImpl;
 
 
 /**
@@ -46,13 +48,15 @@ public class WsServiceFactory {
   private static IServerService serverService;
 
   private static ISideStepService sideStepService;
-
+  
   @Deprecated
   private static IIsAliveService isAliveService;
 
   private static IAbsenceService absenceService;
 
   private static ILanguagesSettingsService languagesSettingsService;
+  
+  private static IWebStartableService webStartableService;
 
   public static ILanguagesSettingsService getLanguagesSettingsService() {
     if (languagesSettingsService == null) {
@@ -130,5 +134,12 @@ public class WsServiceFactory {
       sideStepService = new SideStepServiceImpl();
     }
     return sideStepService;
+  }
+  
+  public static IWebStartableService getWebStartableService() {
+    if (webStartableService == null) {
+      webStartableService = new WebStartableServiceImpl();
+    }
+    return webStartableService;
   }
 }

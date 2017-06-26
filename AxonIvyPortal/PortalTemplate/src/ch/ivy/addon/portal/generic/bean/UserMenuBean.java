@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
+import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.service.ApplicationService;
@@ -21,13 +22,12 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.process.call.SubProcessCallResult;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 
 @ManagedBean
 @ViewScoped
 public class UserMenuBean {
 
-  private List<IProcessStart> foundProcesses;
+  private List<RemoteWebStartable> foundWebStartables;
   private List<RemoteTask> foundTasks;
   private List<RemoteCase> foundCases;
   private String searchKeyword;
@@ -93,7 +93,7 @@ public class UserMenuBean {
   public void search() {
     String keyword = searchKeyword.trim();
     if (StringUtils.isBlank(keyword)) {
-      foundProcesses = new ArrayList<>();
+      foundWebStartables = new ArrayList<>();
       foundTasks = new ArrayList<>();
       foundCases = new ArrayList<>();
       return;
@@ -107,15 +107,15 @@ public class UserMenuBean {
         .withParam("serverId", serverId)
         .withParam("applicationName", selectedApp)
         .call();
-    foundProcesses = (List<IProcessStart>) result.get("processes");
+    foundWebStartables = (List<RemoteWebStartable>) result.get("webStartables");
     foundTasks = (List<RemoteTask>) result.get("tasks");
     foundCases = (List<RemoteCase>) result.get("cases");
-    hasNoRecordsFound = CollectionUtils.isEmpty(foundProcesses) && CollectionUtils.isEmpty(foundTasks) && CollectionUtils.isEmpty(foundCases);
+    hasNoRecordsFound = CollectionUtils.isEmpty(foundWebStartables) && CollectionUtils.isEmpty(foundTasks) && CollectionUtils.isEmpty(foundCases);
   }
 
   public void resetSearchData() {
     searchKeyword = StringUtils.EMPTY;
-    foundProcesses = new ArrayList<>();
+    foundWebStartables = new ArrayList<>();
     foundTasks = new ArrayList<>();
     foundCases = new ArrayList<>();
     hasNoRecordsFound = false;
@@ -129,8 +129,8 @@ public class UserMenuBean {
     this.searchKeyword = searchKeyword;
   }
 
-  public List<IProcessStart> getFoundProcesses() {
-    return foundProcesses;
+  public List<RemoteWebStartable> getFoundWebStartables() {
+    return foundWebStartables;
   }
 
   public List<RemoteTask> getFoundTasks() {

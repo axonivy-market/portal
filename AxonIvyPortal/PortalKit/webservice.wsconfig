@@ -435,6 +435,7 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
         <id>15C7646A4BDA62E7</id>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/15C62875FD98F850?WSDL</wsdlUrl>
         <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
@@ -449,6 +450,31 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
             <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteria.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaE.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResult.java","ch\\ivy\\ws\\addon\\IvySideStep.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\SideStepProcessServiceService.java","ch\\ivy\\ws\\addon\\SideStepProcessServiceServiceStub.java","ch\\ivy\\ws\\addon\\SideStepSearchCriteria.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
             <codeGenerationTimestamp>1498206892069</codeGenerationTimestamp>
             <wsdlWebserviceName>SideStepProcessServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>webStartableService</name>
+        <id>15CD313699949A45</id>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/15CD2EB4E7714D02?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>WebStartableServicePort="findWebStartablesByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>WebStartableServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>WebStartableServicePortfindWebStartablesByCriteria="arg0__@@__ch.ivy.ws.addon.FindWebStartablesByCriteriaE__@@__"</axisParameterProperties>
+            <axisPortList>WebStartableServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.WebStartableServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>WebStartableServicePortfindWebStartablesByCriteria=ch.ivy.ws.addon.FindWebStartablesByCriteriaResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.WebStartableServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteria.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteriaE.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteriaResult.java","ch\\ivy\\ws\\addon\\IvyWebStartable.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WebStartableSearchCriteria.java","ch\\ivy\\ws\\addon\\WebStartableServiceService.java","ch\\ivy\\ws\\addon\\WebStartableServiceServiceStub.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1498444093123</codeGenerationTimestamp>
+            <wsdlWebserviceName>WebStartableServiceService</wsdlWebserviceName>
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
