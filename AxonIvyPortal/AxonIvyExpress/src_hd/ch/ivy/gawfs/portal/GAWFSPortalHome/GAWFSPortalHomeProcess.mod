@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 31 09:43:25 ICT 2017]
+[>Created: Mon Jun 26 14:06:07 ICT 2017]
 1580345221FA4CE0 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 GAWFSPortalHomeProcess Big #zClass
@@ -116,11 +116,18 @@ for(Workflow wf: workflows){
 	}
 	
 	wfx.processPermission = wf.processPermission;
-	IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wfx.processPermission);
+	
+	IRole permittedRole;
+	IUser permittedUser;
+	if(wfx.processPermission.startsWith("#")){
+		permittedUser = ivy.request.getApplication().getSecurityContext().findUser(wfx.processPermission.substring(1));
+	}else{
+		permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wfx.processPermission);
+	}
 	
 	//for Execution and displaying the workflow in general
 	//check if user 1. has a role that is allowed to execute the process, 2.is AXONIVY_PORTAL_ADMIN or 3.is creator of the process
-	if(ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)){
+	if(ivy.session.getSessionUser().getId() == permittedUser.getId() || ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)){
 		wfx.permitted = true;
 	}else{
 		wfx.permitted = false;
