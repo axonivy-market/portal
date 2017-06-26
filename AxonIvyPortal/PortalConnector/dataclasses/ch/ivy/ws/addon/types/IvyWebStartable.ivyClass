@@ -1,0 +1,8 @@
+IvyWebStartable #class
+ch.ivy.ws.addon.types #namespace
+name String #field
+displayName String #field
+description String #field
+link String #field
+activatorDisplayName String #field
+activatorMemberName String #field

@@ -1,0 +1,13 @@
+WebStartableData #class
+ch.ivyteam.wf.processes #namespace
+applications List<ch.ivy.ws.addon.IvyApplication> #field
+apps List<String> #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+ivyWebStartables List<ch.ivy.ws.addon.IvyWebStartable> #field
+listIterator java.util.ListIterator #field
+webStartables List<ch.ivy.addon.portalkit.bo.RemoteWebStartable> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+tempErrors List<ch.ivy.ws.addon.WsException> #field
+webStartableSearchCriteria ch.ivy.ws.addon.WebStartableSearchCriteria #field
+language String #field
