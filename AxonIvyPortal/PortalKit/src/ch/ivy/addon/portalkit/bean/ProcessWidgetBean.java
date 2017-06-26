@@ -134,10 +134,10 @@ public class ProcessWidgetBean implements Serializable {
         webStartables
             .stream()
             .filter(
-                webStartable -> StringUtils.containsIgnoreCase(webStartable.getName(), query)
+                webStartable -> StringUtils.containsIgnoreCase(webStartable.getDisplayName(), query)
                     && !isUserProcess(webStartable))
             .map(
-                webStartable -> new UserProcess(stripHtmlTags(webStartable.getName()), userName, webStartable
+                webStartable -> new UserProcess(stripHtmlTags(webStartable.getDisplayName()), userName, webStartable
                     .getStartLink())).collect(Collectors.toList());
     filteredUserProcesses.addAll(getFilteredExpressWorkflows(query));
     sortUserProcessList(filteredUserProcesses);
@@ -197,7 +197,7 @@ public class ProcessWidgetBean implements Serializable {
 
   public String getProcessDescription(String userProcessName) {
     for (IWebStartable webStartable : webStartables) {
-      if (webStartable.getName().equals(userProcessName)) {
+      if (webStartable.getDisplayName().equals(userProcessName)) {
         return webStartable.getDescription();
       }
     }
