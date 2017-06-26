@@ -42,10 +42,10 @@
               </h:form>
           </span></li>
           <li jsf:id="global-search-result-container" class="global-search-result-container"><h:panelGroup
-              id="global-process-result" rendered="#{not empty userMenuBean.foundProcesses}" layout="block"
+              id="global-process-result" rendered="#{not empty userMenuBean.foundWebStartables}" layout="block"
               styleClass="global-search-result">
               <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
-              <ui:repeat id="found-processes" var="foundProcess" value="#{userMenuBean.foundProcesses}">
+              <ui:repeat id="found-processes" var="foundProcess" value="#{userMenuBean.foundWebStartables}">
                 <ic:ch.ivy.addon.portal.generic.ProcessSearchResult foundProcess="#{foundProcess}" />
               </ui:repeat>
             </h:panelGroup> <h:panelGroup id="global-task-result" rendered="#{not empty userMenuBean.foundTasks}" layout="block"

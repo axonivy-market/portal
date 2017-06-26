@@ -82,7 +82,7 @@ public class UserMenuBeanTest {
   public void testSearchInCaseEmptyKeyword() {
     userMenuBean.setSearchKeyword("");
     userMenuBean.search();
-    assertEquals(0, userMenuBean.getFoundProcesses().size());
+    assertEquals(0, userMenuBean.getFoundWebStartables().size());
     assertEquals(0, userMenuBean.getFoundTasks().size());
   }
 }

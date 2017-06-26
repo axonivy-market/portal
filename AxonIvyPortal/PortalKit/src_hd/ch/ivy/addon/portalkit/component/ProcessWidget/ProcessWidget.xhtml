@@ -55,7 +55,7 @@
 
       <ui:repeat id="process-list-items" varStatus="status" var="process" value="#{processWidgetBean.userProcesses}">
         <p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
-          rendered="#{not processWidgetBean.deleteMode and (fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp'))}"
+          rendered="#{not processWidgetBean.deleteMode and (fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}"
           styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'}"
           style="#{cc.attrs.processCardStyleClass}">
           <ui:include src="ProcessItem.xhtml">
@@ -63,7 +63,7 @@
           </ui:include>
         </p:commandLink>
         <p:link id="external-process-item" href="#{process.link}" target="_blank"
-          rendered="#{not processWidgetBean.deleteMode and !(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp'))}"
+          rendered="#{not processWidgetBean.deleteMode and !(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}"
           styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'}"
           style="#{cc.attrs.processCardStyleClass}">
           <ui:include src="ProcessItem.xhtml">
