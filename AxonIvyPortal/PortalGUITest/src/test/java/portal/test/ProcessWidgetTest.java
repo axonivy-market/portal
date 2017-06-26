@@ -18,6 +18,8 @@ import com.jayway.awaitility.Duration;
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
+  private static final String CASE_MAP_LEAVES = "caseMapLeaves";
+  
   private HomePage homePage;
   ProcessWidgetPage processWidget;
 
@@ -43,6 +45,15 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.expand();
 
     assertTrue(processWidget.isExpandedMode());
+  }
+  
+  @Test
+  public void testCaseMapIsDisplayedInExpandedMode() {
+    processWidget = homePage.getProcessWidget();
+    assertTrue(processWidget.isCompactMode());
+    processWidget.expand();
+    assertTrue(processWidget.isExpandedMode());
+    assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
   }
 
   @Test
@@ -83,6 +94,15 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.selectIvyProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
     assertNotEquals(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES), null);
+  }
+  
+  @Test
+  public void testAddCaseMapBySelectingCaseMap() {
+    processWidget = homePage.getProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.selectIvyProcessByName(CASE_MAP_LEAVES);
+    addNewProcessDialog.submitForm();
+    assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
   }
 
   private void createTestProcess(String processName, String processLink) {
