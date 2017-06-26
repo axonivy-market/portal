@@ -5,185 +5,169 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.RemoteProcessStart;
+import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 /**
  * 
- * <p>{@link UserProcess}'s helper class provides methods which help to convert object to {@link UserProcess} object.</p>
+ * <p>
+ * {@link UserProcess}'s helper class provides methods which help to convert object to
+ * {@link UserProcess} object.
+ * </p>
  *
  */
 public class UserProcessConverter {
 
-	/**
-	 * Converts list of {@link IProcessStart} to list of {@link UserProcess}.
-	 * 
-	 * @param list of {@link IProcessStart}
-	 * @return list of {@link UserProcess}
-	 */
-	public List<UserProcess> convert(List<IProcessStart> processStarts) {
-		List<UserProcess> userProcesses = new ArrayList<>();
+  /**
+   * Converts list of {@link IWebStartable} to list of {@link UserProcess}.
+   * 
+   * @param list of {@link IWebStartable}
+   * @return list of {@link UserProcess}
+   */
+  public List<UserProcess> convert(List<RemoteWebStartable> webStartables) {
+    List<UserProcess> userProcesses = new ArrayList<>();
 
-		for (IProcessStart processStart : processStarts) {
-			userProcesses.add(convert(processStart));
-		}
+    for (RemoteWebStartable webStartable : webStartables) {
+      userProcesses.add(convert(webStartable));
+    }
 
-		return userProcesses;
-	}
+    return userProcesses;
+  }
 
-	private UserProcess convert(IProcessStart processStart) {
-		UserProcess p = new UserProcess();
+  private UserProcess convert(RemoteWebStartable webStartable) {
+    UserProcess p = new UserProcess();
+    p.setProcessName(webStartable.getDisplayName());
+    String icon = IconPseudoRandomChooser.basedOn(webStartable.getName()).getIconCode();
+    p.setIcon(icon);
+    p.setLink(webStartable.getStartLink());
+    return p;
+  }
 
-		String processName = detectProcessName(processStart);
-		p.setProcessName(processName);
-		String icon = IconPseudoRandomChooser.basedOn(processName).getIconCode();
-		p.setIcon(icon);
-		p.setId(processStart.getId());
-		p.setLink(((RemoteProcessStart) processStart).getStartLink());
+  /**
+   * This class provides methods which help to choose icon in a pseudo random style.
+   */
+  private static class IconPseudoRandomChooser {
 
-		return p;
-	}
+    /**
+     * <p>
+     * Selects an icon from the {@link AwesomeIcon} based on the given string.
+     * <p/>
+     * 
+     * <p>
+     * If none of pre-defined categories is matched then select icon base on the given string's
+     * hashcode. <br />
+     * For example: Lets assume that the {@link AwesomeIcon} has 500 icons. The given string is
+     * "Accept leave request". Then the selected icon should be: the 327th icon. The icon's index is
+     * calculated by this: index = |820949262 % 500| <br />
+     * <b>index</b>: is result as 326 <br />
+     * <b>820949262</b>: is the hashcode number of "Accept leave request")
+     * <p/>
+     * 
+     * @param givenString
+     * @return an icon from {@link AwesomeIcon}
+     */
+    public static AwesomeIcon basedOn(String givenString) {
 
-	private String detectProcessName(IProcessStart processStart) {
-		String originalName = processStart.getName();
-		return StringUtils.isNotEmpty(originalName) ? originalName
-				: processStart.getRequestPath();
-	}
+      givenString = StringUtils.lowerCase(givenString);
 
-	/**
-	 * This class provides methods which help to choose icon in a pseudo random
-	 * style.
-	 */
-	private static class IconPseudoRandomChooser {
+      if (givenString.contains("synch")) {
+        return AwesomeIcon.FA_RETWEET;
+      }
 
-		/**
-		 * <p>
-		 * Selects an icon from the {@link AwesomeIcon} based on the given
-		 * string.
-		 * <p/>
-		 * 
-		 * <p>
-		 * If none of pre-defined categories is matched then select icon base on
-		 * the given string's hashcode. <br />
-		 * For example: Lets assume that the {@link AwesomeIcon} has 500 icons.
-		 * The given string is "Accept leave request". Then the selected icon
-		 * should be: the 327th icon. The icon's index is calculated by this:
-		 * index = |820949262 % 500| <br />
-		 * <b>index</b>: is result as 326 <br />
-		 * <b>820949262</b>: is the hashcode number of "Accept leave request")
-		 * <p/>
-		 * 
-		 * @param givenString
-		 * @return an icon from {@link AwesomeIcon}
-		 */
-		public static AwesomeIcon basedOn(String givenString) {
+      if (givenString.contains("detail")) {
+        return AwesomeIcon.FA_FOLDER_OPEN;
+      }
 
-			givenString = StringUtils.lowerCase(givenString);
+      if (givenString.contains("run")) {
+        return AwesomeIcon.FA_ROCKET;
+      }
 
-			if (givenString.contains("synch")) {
-				return AwesomeIcon.FA_RETWEET;
-			}
+      if (givenString.contains("global")) {
+        return AwesomeIcon.FA_GLOBE;
+      }
 
-			if (givenString.contains("detail")) {
-				return AwesomeIcon.FA_FOLDER_OPEN;
-			}
+      if (givenString.contains("language")) {
+        return AwesomeIcon.FA_LANGUAGE;
+      }
 
-			if (givenString.contains("run")) {
-				return AwesomeIcon.FA_ROCKET;
-			}
+      if (givenString.contains("activate") || givenString.contains("activating")) {
+        return AwesomeIcon.FA_BOLT;
+      }
 
-			if (givenString.contains("global")) {
-				return AwesomeIcon.FA_GLOBE;
-			}
+      if (givenString.contains("clean")) {
+        return AwesomeIcon.FA_MAGIC;
+      }
 
-			if (givenString.contains("language")) {
-				return AwesomeIcon.FA_LANGUAGE;
-			}
+      if (givenString.contains("info")) {
+        return AwesomeIcon.FA_INBOX;
+      }
 
-			if (givenString.contains("activate")
-					|| givenString.contains("activating")) {
-				return AwesomeIcon.FA_BOLT;
-			}
+      if (givenString.contains("document")) {
+        return AwesomeIcon.FA_BOOK;
+      }
 
-			if (givenString.contains("clean")) {
-				return AwesomeIcon.FA_MAGIC;
-			}
+      if (givenString.contains("upload")) {
+        return AwesomeIcon.FA_CLOUD_UPLOAD;
+      }
 
-			if (givenString.contains("info")) {
-				return AwesomeIcon.FA_INBOX;
-			}
+      if (givenString.contains("absence")) {
+        return AwesomeIcon.FA_HOME;
+      }
 
-			if (givenString.contains("document")) {
-				return AwesomeIcon.FA_BOOK;
-			}
+      if (givenString.contains("mail")) {
+        return AwesomeIcon.FA_ENVELOPE_O;
+      }
 
-			if (givenString.contains("upload")) {
-				return AwesomeIcon.FA_CLOUD_UPLOAD;
-			}
+      if (givenString.contains("create") || givenString.contains("creating")) {
+        return AwesomeIcon.FA_PLUS_SQUARE;
+      }
 
-			if (givenString.contains("absence")) {
-				return AwesomeIcon.FA_HOME;
-			}
+      if (givenString.contains("generate") || givenString.contains("generating")) {
+        return AwesomeIcon.FA_CROSSHAIRS;
+      }
 
-			if (givenString.contains("mail")) {
-				return AwesomeIcon.FA_ENVELOPE_O;
-			}
+      if (givenString.contains("approve") || givenString.contains("approving")) {
+        return AwesomeIcon.FA_CHECK_SQUARE;
+      }
 
-			if (givenString.contains("create")
-					|| givenString.contains("creating")) {
-				return AwesomeIcon.FA_PLUS_SQUARE;
-			}
+      if (givenString.contains("human")) {
+        return AwesomeIcon.FA_USER;
+      }
 
-			if (givenString.contains("generate")
-					|| givenString.contains("generating")) {
-				return AwesomeIcon.FA_CROSSHAIRS;
-			}
+      if (givenString.contains("money") || givenString.contains("price") || givenString.contains("cash")
+          || givenString.contains("salary")) {
+        return AwesomeIcon.FA_DOLLAR;
+      }
 
-			if (givenString.contains("approve")
-					|| givenString.contains("approving")) {
-				return AwesomeIcon.FA_CHECK_SQUARE;
-			}
+      if (givenString.contains("holiday")) {
+        return AwesomeIcon.FA_SUITCASE;
+      }
 
-			if (givenString.contains("human")) {
-				return AwesomeIcon.FA_USER;
-			}
+      if (givenString.contains("schedule")) {
+        return AwesomeIcon.FA_CALENDAR;
+      }
 
-			if (givenString.contains("money") || givenString.contains("price")
-					|| givenString.contains("cash")
-					|| givenString.contains("salary")) {
-				return AwesomeIcon.FA_DOLLAR;
-			}
+      if (givenString.contains("capture") || givenString.contains("photo")) {
+        return AwesomeIcon.FA_CAMERA;
+      }
 
-			if (givenString.contains("holiday")) {
-				return AwesomeIcon.FA_SUITCASE;
-			}
+      if (givenString.contains("copy") || givenString.contains("clone")) {
+        return AwesomeIcon.FA_COPY;
+      }
 
-			if (givenString.contains("schedule")) {
-				return AwesomeIcon.FA_CALENDAR;
-			}
+      if (givenString.contains("admin")) {
+        return AwesomeIcon.FA_COGS;
+      }
 
-			if (givenString.contains("capture")
-					|| givenString.contains("photo")) {
-				return AwesomeIcon.FA_CAMERA;
-			}
+      if (givenString.contains("setting")) {
+        return AwesomeIcon.FA_COG;
+      }
 
-			if (givenString.contains("copy") || givenString.contains("clone")) {
-				return AwesomeIcon.FA_COPY;
-			}
+      int index = givenString.hashCode() % AwesomeIcon.values().length;
 
-			if (givenString.contains("admin")) {
-				return AwesomeIcon.FA_COGS;
-			}
-
-			if (givenString.contains("setting")) {
-				return AwesomeIcon.FA_COG;
-			}
-
-			int index = givenString.hashCode() % AwesomeIcon.values().length;
-
-			return AwesomeIcon.values()[Math.abs(index)];
-		}
-	}
+      return AwesomeIcon.values()[Math.abs(index)];
+    }
+  }
 }

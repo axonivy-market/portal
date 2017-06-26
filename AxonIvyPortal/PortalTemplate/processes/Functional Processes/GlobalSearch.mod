@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 13 15:58:37 ICT 2017]
+[>Created: Fri Jun 23 16:21:11 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -42,11 +42,11 @@ Gh0 f0 inParamTable 'out.applicationName=param.applicationName;
 out.keyword=param.keyword;
 out.serverId=param.#serverId;
 ' #txt
-Gh0 f0 outParamDecl '<List<ch.ivy.addon.portalkit.bo.RemoteTask> tasks,List<ch.ivy.addon.portalkit.bo.RemoteCase> cases,List<ch.ivyteam.ivy.workflow.IProcessStart> processes> result;
+Gh0 f0 outParamDecl '<List<ch.ivy.addon.portalkit.bo.RemoteTask> tasks,List<ch.ivy.addon.portalkit.bo.RemoteCase> cases,List<ch.ivy.addon.portalkit.bo.RemoteWebStartable> webStartables> result;
 ' #txt
 Gh0 f0 outParamTable 'result.tasks=in.tasks;
 result.cases=in.cases;
-result.processes=in.processes;
+result.webStartables=in.webStartables;
 ' #txt
 Gh0 f0 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
@@ -81,8 +81,8 @@ Gh0 f5 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f5 actionTable 'out=in1;
 out.cases=in3.cases;
-out.processes=in1.processes;
 out.tasks=in2.tasks;
+out.webStartables=in1.webStartables;
 ' #txt
 Gh0 f5 752 144 32 32 0 16 #rect
 Gh0 f5 @|JoinIcon #fIcon
@@ -92,33 +92,33 @@ Gh0 f7 actionTable 'out=in;
 ' #txt
 Gh0 f7 actionCode 'import java.util.Arrays;
 
-in.processSearchCriteria.keyword = in.keyword;
-in.processSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
+in.webStartableSearchCriteria.keyword = in.keyword;
+in.webStartableSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 
 if (ivy.session.getSessionUser().getEMailLanguage() != null) {
 	in.language = ivy.session.getSessionUser().getEMailLanguage().getLanguage();
 }
 
 if (in.#serverId is initialized) {
-	in.processSearchCriteria.serverId = in.serverId;
+	in.webStartableSearchCriteria.serverId = in.serverId;
 }
 
 if (in.#applicationName is initialized) {
 	List<String> involvedApplications = Arrays.asList(in.applicationName);
-	in.processSearchCriteria.involvedApplications = involvedApplications;
+	in.webStartableSearchCriteria.involvedApplications = involvedApplications;
 }' #txt
 Gh0 f7 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Prepare process 
+        <name>Prepare web startable
 search criteria</name>
-        <nameStyle>32
+        <nameStyle>37
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Gh0 f7 232 42 128 44 -43 -16 #rect
+Gh0 f7 224 42 144 44 -54 -16 #rect
 Gh0 f7 @|StepIcon #fIcon
 Gh0 f8 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
@@ -201,28 +201,28 @@ Gh0 f12 192 176 240 256 #arcP
 Gh0 f12 1 192 256 #addKink
 Gh0 f12 1 0.04688882764461169 0 0 #arcLabel
 Gh0 f13 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
-Gh0 f13 processCall MultiPortal/ProcessStart:findProcessStartsByCriteria(String,ch.ivy.ws.addon.ProcessSearchCriteria) #txt
+Gh0 f13 processCall MultiPortal/WebStartableService:findWebStartablesByCriteria(String,ch.ivy.ws.addon.WebStartableSearchCriteria) #txt
 Gh0 f13 doCall true #txt
-Gh0 f13 requestActionDecl '<java.lang.String language,ch.ivy.ws.addon.ProcessSearchCriteria processSearchCriteria> param;
+Gh0 f13 requestActionDecl '<java.lang.String language,ch.ivy.ws.addon.WebStartableSearchCriteria webStartableSearchCriteria> param;
 ' #txt
 Gh0 f13 requestMappingAction 'param.language=in.language;
-param.processSearchCriteria=in.processSearchCriteria;
+param.webStartableSearchCriteria=in.webStartableSearchCriteria;
 ' #txt
 Gh0 f13 responseActionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f13 responseMappingAction 'out=in;
-out.processes=result.processStarts;
+out.webStartables=result.webStartables;
 ' #txt
 Gh0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>ProcessStart</name>
-        <nameStyle>12,5,7
+        <name>WebStartableService</name>
+        <nameStyle>19,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Gh0 f13 416 42 112 44 -35 -8 #rect
+Gh0 f13 408 42 128 44 -57 -8 #rect
 Gh0 f13 @|CallSubIcon #fIcon
 Gh0 f14 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f14 processCall MultiPortal/TaskService:findTasksByCriteria(Long,ch.ivy.ws.addon.TaskSearchCriteria,Integer,Integer) #txt
@@ -278,8 +278,8 @@ Gh0 f17 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f17 actionTable 'out=in;
 ' #txt
-Gh0 f17 actionCode 'import ch.ivy.addon.portalkit.comparator.ProcessNameComparator;
-import ch.ivy.addon.portalkit.bo.RemoteProcessStart;
+Gh0 f17 actionCode 'import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
+import ch.ivy.addon.portalkit.comparator.WebStartableNameComparator;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -296,18 +296,17 @@ for (Workflow wf : workflows) {
 		IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
 		
 		if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
-			RemoteProcessStart workflowProcess = new RemoteProcessStart();
-			workflowProcess.setId(wf.id);
+			RemoteWebStartable workflowProcess = new RemoteWebStartable();
 			workflowProcess.setName(wf.processName);
 			workflowProcess.setDescription(wf.processDescription);
 			String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
 			workflowProcess.setStartLink(startLink);
-			in.processes.add(workflowProcess);
+			in.webStartables.add(workflowProcess);
 		}
 	}
 }
 
-in.processes.sort(new ProcessNameComparator());' #txt
+in.webStartables.sort(new WebStartableNameComparator());' #txt
 Gh0 f17 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -342,15 +341,15 @@ Gh0 f19 530 256 768 176 #arcP
 Gh0 f19 1 768 256 #addKink
 Gh0 f19 0 0.6949145126847597 0 0 #arcLabel
 Gh0 f25 expr out1 #txt
-Gh0 f25 192 144 232 64 #arcP
+Gh0 f25 192 144 224 64 #arcP
 Gh0 f25 1 192 64 #addKink
 Gh0 f25 1 0.08437593569205071 0 0 #arcLabel
 Gh0 f20 expr out #txt
-Gh0 f20 360 64 416 64 #arcP
+Gh0 f20 368 64 408 64 #arcP
 Gh0 f21 expr out #txt
 Gh0 f21 111 160 176 160 #arcP
 Gh0 f9 expr out #txt
-Gh0 f9 528 64 568 64 #arcP
+Gh0 f9 536 64 568 64 #arcP
 >Proto Gh0 .type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 >Proto Gh0 .processKind CALLABLE_SUB #txt
 >Proto Gh0 0 0 32 24 18 0 #rect

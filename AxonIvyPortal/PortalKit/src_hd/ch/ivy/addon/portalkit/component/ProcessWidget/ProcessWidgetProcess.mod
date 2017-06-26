@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Jun 15 11:38:48 ICT 2017]
+[>Created: Fri Jun 23 13:50:14 ICT 2017]
 14FEEC13F8B8E7D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
@@ -148,17 +148,17 @@ Ps0 f9 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #tx
 Ps0 f9 269 629 22 22 14 0 #rect
 Ps0 f9 @|RichDialogProcessEndIcon #fIcon
 Ps0 f11 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f11 processCall MultiPortal/ProcessStart:findProcessStartsByCriteria(String,ch.ivy.ws.addon.ProcessSearchCriteria) #txt
+Ps0 f11 processCall MultiPortal/WebStartableService:findWebStartablesByCriteria(String,ch.ivy.ws.addon.WebStartableSearchCriteria) #txt
 Ps0 f11 doCall true #txt
-Ps0 f11 requestActionDecl '<java.lang.String language,ch.ivy.ws.addon.ProcessSearchCriteria processSearchCriteria> param;
+Ps0 f11 requestActionDecl '<java.lang.String language,ch.ivy.ws.addon.WebStartableSearchCriteria webStartableSearchCriteria> param;
 ' #txt
 Ps0 f11 requestMappingAction 'param.language=in.language;
-param.processSearchCriteria=in.processSearchCriteria;
+param.webStartableSearchCriteria=in.webStartableSearchCriteria;
 ' #txt
 Ps0 f11 responseActionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
 ' #txt
 Ps0 f11 responseMappingAction 'out=in;
-out.processes=new ch.ivy.addon.portalkit.converter.UserProcessConverter().convert(result.processStarts);
+out.processes=new ch.ivy.addon.portalkit.converter.UserProcessConverter().convert(result.webStartables);
 ' #txt
 Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -228,9 +228,9 @@ Ps0 f23 disableUIEvents false #txt
 Ps0 f23 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f23 outParameterDecl '<List<ch.ivyteam.ivy.workflow.IProcessStart> processStarts> result;
+Ps0 f23 outParameterDecl '<List<ch.ivyteam.ivy.workflow.start.IWebStartable> webStartables> result;
 ' #txt
-Ps0 f23 outParameterMapAction 'result.processStarts=in.processStarts;
+Ps0 f23 outParameterMapAction 'result.webStartables=in.webStartables;
 ' #txt
 Ps0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -247,18 +247,17 @@ Ps0 f24 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #t
 Ps0 f24 85 565 22 22 14 0 #rect
 Ps0 f24 @|RichDialogProcessEndIcon #fIcon
 Ps0 f26 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f26 processCall MultiPortal/ProcessStart:findProcessStartsByCriteria(String,ch.ivy.ws.addon.ProcessSearchCriteria) #txt
+Ps0 f26 processCall MultiPortal/WebStartableService:findWebStartablesByCriteria(String,ch.ivy.ws.addon.WebStartableSearchCriteria) #txt
 Ps0 f26 doCall true #txt
-Ps0 f26 requestActionDecl '<java.lang.String language,ch.ivy.ws.addon.ProcessSearchCriteria processSearchCriteria> param;
+Ps0 f26 requestActionDecl '<java.lang.String language,ch.ivy.ws.addon.WebStartableSearchCriteria webStartableSearchCriteria> param;
 ' #txt
 Ps0 f26 requestMappingAction 'param.language=in.language;
-param.processSearchCriteria=in.processSearchCriteria;
-param.processSearchCriteria.involvedUsername=ivy.session.getSessionUserName();
+param.webStartableSearchCriteria=in.webStartableSearchCriteria;
 ' #txt
 Ps0 f26 responseActionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
 ' #txt
 Ps0 f26 responseMappingAction 'out=in;
-out.processStarts=result.processStarts;
+out.webStartables=result.webStartables;
 ' #txt
 Ps0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -278,9 +277,9 @@ Ps0 f28 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #t
 Ps0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>startProcesses
+        <name>webStartables
 already collected?</name>
-        <nameStyle>33,7
+        <nameStyle>32,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -288,7 +287,7 @@ already collected?</name>
 Ps0 f28 82 370 28 28 16 -15 #rect
 Ps0 f28 @|AlternativeIcon #fIcon
 Ps0 f30 expr in #txt
-Ps0 f30 outCond 'in.#processStarts is initialized' #txt
+Ps0 f30 outCond 'in.#webStartables is initialized' #txt
 Ps0 f30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -309,7 +308,7 @@ Ps0 f12 disableUIEvents true #txt
 Ps0 f12 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String keyword> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f12 inParameterMapAction 'out.processSearchCriteria.keyword=param.#keyword is initialized ? param.keyword : null;
+Ps0 f12 inParameterMapAction 'out.webStartableSearchCriteria.keyword=param.keyword;
 ' #txt
 Ps0 f12 outParameterDecl '<> result;
 ' #txt
@@ -332,7 +331,7 @@ Ps0 f0 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.security.IUser;
 
 IUser involvedUser = ivy.session.getSessionUser();
-in.processSearchCriteria.involvedUsername = involvedUser.getName();
+in.webStartableSearchCriteria.involvedUsername = involvedUser.getName();
 
 if (involvedUser.getEMailLanguage() is initialized) {
 	in.language = involvedUser.getEMailLanguage().getLanguage();
@@ -340,13 +339,13 @@ if (involvedUser.getEMailLanguage() is initialized) {
 
 Long serverId = SecurityServiceUtils.getServerIdFromSession();
 if (#serverId is initialized) {
-	in.processSearchCriteria.setServerId(serverId);
+	in.webStartableSearchCriteria.setServerId(serverId);
 }
 
 String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
 if (#applicationName is initialized) {
 	List<String> involvedApplications = [applicationName];
-	in.processSearchCriteria.setInvolvedApplications(involvedApplications);
+	in.webStartableSearchCriteria.setInvolvedApplications(involvedApplications);
 }
 ' #txt
 Ps0 f0 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
@@ -371,7 +370,7 @@ Ps0 f13 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.security.IUser;
 
 IUser involvedUser = ivy.session.getSessionUser();
-in.processSearchCriteria.involvedUsername = involvedUser.getName();
+in.webStartableSearchCriteria.involvedUsername = involvedUser.getName();
 
 if (involvedUser.getEMailLanguage() is initialized) {
 	in.language = involvedUser.getEMailLanguage().getLanguage();
@@ -379,13 +378,13 @@ if (involvedUser.getEMailLanguage() is initialized) {
 
 Long serverId = SecurityServiceUtils.getServerIdFromSession();
 if (#serverId is initialized) {
-	in.processSearchCriteria.setServerId(serverId);
+	in.webStartableSearchCriteria.setServerId(serverId);
 }
 
 String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
 if (#applicationName is initialized) {
 	List<String> involvedApplications = [applicationName];
-	in.processSearchCriteria.setInvolvedApplications(involvedApplications);
+	in.webStartableSearchCriteria.setInvolvedApplications(involvedApplications);
 }
 ' #txt
 Ps0 f13 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt

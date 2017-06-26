@@ -35,9 +35,9 @@
         <name>collectAllProcessStarts</name>
         <description></description>
         <outputParameter>
-            <name>processStarts</name>
+            <name>webStartables</name>
             <description></description>
-            <parameterType>List&lt;ch.ivyteam.ivy.workflow.IProcessStart&gt;</parameterType>
+            <parameterType>List&lt;ch.ivyteam.ivy.workflow.start.IWebStartable&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>

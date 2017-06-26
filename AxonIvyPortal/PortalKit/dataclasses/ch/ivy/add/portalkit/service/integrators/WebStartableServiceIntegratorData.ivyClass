@@ -1,0 +1,9 @@
+WebStartableServiceIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+language String #field
+password String #field
+webStartableSearchCriteria ch.ivy.ws.addon.WebStartableSearchCriteria #field
+webStartables List<ch.ivy.ws.addon.IvyWebStartable> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field

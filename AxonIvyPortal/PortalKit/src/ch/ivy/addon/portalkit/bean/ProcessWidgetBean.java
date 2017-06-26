@@ -17,7 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
 import org.primefaces.context.RequestContext;
 
-import ch.ivy.addon.portalkit.bo.RemoteProcessStart;
+import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
@@ -28,7 +28,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.data.persistence.IIvyEntityManager;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
@@ -44,7 +44,7 @@ public class ProcessWidgetBean implements Serializable {
   private boolean deleteMode;
   private String userName;
   private List<UserProcess> selectedUserProcesses;
-  private List<IProcessStart> iProcessStarts;
+  private List<RemoteWebStartable> webStartables;
   private String processWidgetComnponentId;
 
   @PostConstruct
@@ -81,9 +81,9 @@ public class ProcessWidgetBean implements Serializable {
         new Object[] {});
   }
 
-  public void preRenderProcessAutoComplete(List<IProcessStart> iProcessStarts) {
-    if (this.iProcessStarts == null) {
-      this.iProcessStarts = iProcessStarts;
+  public void preRenderProcessAutoComplete(List<RemoteWebStartable> webStartables) {
+    if (this.webStartables == null) {
+      this.webStartables = webStartables;
     }
   }
 
@@ -131,23 +131,24 @@ public class ProcessWidgetBean implements Serializable {
 
   public List<UserProcess> completeUserProcess(String query) {
     List<UserProcess> filteredUserProcesses =
-        iProcessStarts
+        webStartables
             .stream()
             .filter(
-                processStart -> StringUtils.containsIgnoreCase(processStart.getName(), query)
-                    && !isUserProcess(processStart))
+                webStartable -> StringUtils.containsIgnoreCase(webStartable.getName(), query)
+                    && !isUserProcess(webStartable))
             .map(
-                processStart -> new UserProcess(stripHtmlTags(processStart.getName()), userName,
-                    ((RemoteProcessStart) processStart).getStartLink())).collect(Collectors.toList());
+                webStartable -> new UserProcess(stripHtmlTags(webStartable.getName()), userName, webStartable
+                    .getStartLink())).collect(Collectors.toList());
     filteredUserProcesses.addAll(getFilteredExpressWorkflows(query));
     sortUserProcessList(filteredUserProcesses);
     return filteredUserProcesses;
   }
-  
+
   private void sortUserProcessList(List<UserProcess> userProcesses) {
-    userProcesses.sort((process1, process2) -> process1.getProcessName().toLowerCase().compareTo(process2.getProcessName().toLowerCase()));
+    userProcesses.sort((process1, process2) -> process1.getProcessName().toLowerCase()
+        .compareTo(process2.getProcessName().toLowerCase()));
   }
-  
+
   private List<UserProcess> getFilteredExpressWorkflows(String query) {
     List<UserProcess> workflow = new ArrayList<>();
     IIvyEntityManager entityManager = Ivy.persistence().get(GAWFS_PERSISTENCE);
@@ -179,11 +180,9 @@ public class ProcessWidgetBean implements Serializable {
     }
   }
 
-  private boolean isUserProcess(IProcessStart processStart) {
-    return userProcesses.stream()
-        .anyMatch(
-            userProcess -> ((userProcess.getLink().toLowerCase()).contains(processStart.getFullRequestPath()
-                .toLowerCase())));
+  private boolean isUserProcess(RemoteWebStartable webStartable) {
+    return userProcesses.stream().anyMatch(
+        userProcess -> ((userProcess.getLink().toLowerCase()).contains(webStartable.getStartLink().toLowerCase())));
   }
 
   private boolean isUserProcess(Workflow workflow) {
@@ -197,9 +196,9 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   public String getProcessDescription(String userProcessName) {
-    for (IProcessStart iProcessStart : iProcessStarts) {
-      if (iProcessStart.getName().equals(userProcessName)) {
-        return iProcessStart.getDescription();
+    for (IWebStartable webStartable : webStartables) {
+      if (webStartable.getName().equals(userProcessName)) {
+        return webStartable.getDescription();
       }
     }
     return StringUtils.EMPTY;
@@ -253,20 +252,20 @@ public class ProcessWidgetBean implements Serializable {
     selectedUserProcesses.clear();
   }
 
-	public void selectDeletingProcess(AjaxBehaviorEvent event) {
-		SelectBooleanCheckbox booleanCheckbox = (SelectBooleanCheckbox) event
-				.getComponent();
-		UserProcess selectedUserProcess = (UserProcess) booleanCheckbox
-				.getAttributes().get("selectedProcess");
-		if (booleanCheckbox.isSelected()) {
-			boolean processExisted = selectedUserProcesses.stream().filter(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink())).findAny().isPresent();
-			if (!processExisted) {
-				selectedUserProcesses.add(selectedUserProcess);
-			}
-		} else {
-			selectedUserProcesses.removeIf(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink()));
-		}
-	}
+  public void selectDeletingProcess(AjaxBehaviorEvent event) {
+    SelectBooleanCheckbox booleanCheckbox = (SelectBooleanCheckbox) event.getComponent();
+    UserProcess selectedUserProcess = (UserProcess) booleanCheckbox.getAttributes().get("selectedProcess");
+    if (booleanCheckbox.isSelected()) {
+      boolean processExisted =
+          selectedUserProcesses.stream()
+              .filter(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink())).findAny().isPresent();
+      if (!processExisted) {
+        selectedUserProcesses.add(selectedUserProcess);
+      }
+    } else {
+      selectedUserProcesses.removeIf(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink()));
+    }
+  }
 
   public void cancelDeletingProcess() {
     deleteMode = false;
