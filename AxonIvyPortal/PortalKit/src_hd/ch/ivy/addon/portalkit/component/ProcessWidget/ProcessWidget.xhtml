@@ -84,7 +84,7 @@
           <div class="process-start-list-item-action">
             <h:form prependId="false">
               <p:selectBooleanCheckbox id="delete-process-checkbox" widgetVar="delete-process-checkbox-#{status.index}">
-                <p:ajax listener="#{processWidgetBean.selectDeletingProcess}" update="@none"
+                <p:ajax async="true" listener="#{processWidgetBean.selectDeletingProcess}" update="@none"
                   process="@this" global="false" />
                 <f:attribute name="selectedProcess" value="#{process}" />
               </p:selectBooleanCheckbox>
