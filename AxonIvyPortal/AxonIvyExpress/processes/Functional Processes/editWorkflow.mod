@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 15:29:03 ICT 2017]
+[>Created: Mon Jun 26 13:53:02 ICT 2017]
 15791C23B125821B 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
@@ -820,7 +820,8 @@ Ct0 f25 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f25 actionTable 'out=in;
 ' #txt
-Ct0 f25 actionCode 'import ch.ivy.gawfs.Helper;
+Ct0 f25 actionCode 'import ch.ivyteam.ivy.security.IRole;
+import ch.ivy.gawfs.Helper;
 import ch.ivyteam.ivy.security.IUser;
 import gawfs.TaskDef;
 import gawfs.TaskDefp;
@@ -848,11 +849,16 @@ for(TaskDefp task: taskSteps){
 	
 	if(task.taskActor.startsWith("#")){
 		ivy.log.debug("1 taskActor: " + task.taskActor);
-		xtask.actorDisplayName = ivy.wf.getSecurityContext().findUser(task.taskActor.substring(1)).getDisplayName();
+		IUser user = ivy.wf.getSecurityContext().findUser(task.taskActor.substring(1));
+		if(#user is initialized) { 
+		  xtask.actorDisplayName = ivy.wf.getSecurityContext().findUser(task.taskActor.substring(1)).getDisplayName();
+		}
 	}else{
 		ivy.log.debug("2 taskActor: " + task.taskActor);
-		
-		xtask.actorDisplayName = ivy.wf.getSecurityContext().findRole(task.taskActor).getDisplayName();
+		IRole role =  ivy.wf.getSecurityContext().findRole(task.taskActor);
+		if(#role is initialized) {
+		  xtask.actorDisplayName = ivy.wf.getSecurityContext().findRole(task.taskActor).getDisplayName();
+		}
 	}
 	
 	in.definedTasks.add(xtask);
