@@ -1551,6 +1551,55 @@
 				</tgroup>
 			</table>
 		</sect2>
+		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.services.webstartservices">
+			<title>Web start (Process start and case map) services</title>
+			<table>
+				<title>Web start (Process start and case map) services</title>
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Web service name</entry>
+							<entry>Input parameters</entry>
+							<entry>Output parameters</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<para>
+									findWebStartablesByCriteria
+								</para>
+							</entry>
+							<entry>
+								<para>
+									isUrlBuiltFromSystemProperties (Boolean)
+								</para>
+								<para>
+									language (String)
+								</para>
+								<para>
+									webStartableSearchCriteria (WebStartableSearchCriteria)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									webStartables (List of IvyWebStartables)
+								</para>
+								<para>
+									errors (List of WSExceptions)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									Search for ivy web start base on languages, criteria.
+								</para>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
 	</sect1>
 	<sect1 xml:id="portalconnectordocumentation.servicedocumentation.objects">
 		<title>Service objects</title>
@@ -3755,7 +3804,70 @@
 								<para>Boolean</para>
 							</entry>
 						</row>
-
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
+		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.objects.ivywebstartable">
+			<title>IvyWebStartable</title>
+			<table>
+				<title>IvyWebStartable</title>
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Type</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<para>name</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>displayName</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>description</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>link</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>activatorDisplayName</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>activatorMemberName</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
