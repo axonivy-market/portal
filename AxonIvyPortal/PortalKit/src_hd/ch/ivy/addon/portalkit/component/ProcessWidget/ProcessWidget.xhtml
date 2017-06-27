@@ -73,7 +73,7 @@
 
         <h:panelGroup id="delete-process-item" layout="block" rendered="#{processWidgetBean.deleteMode}"
           styleClass="process-start-list-item u-cursor-pointer">
-          <f:passThroughAttribute name="onclick" value="PF('delete-process-checkbox-#{status.index}').toggle();" />
+          <f:passThroughAttribute name="onclick" value="processWidget.toggleDeletionCheckbox(event, 'delete-process-checkbox-#{status.index}')" />
           <div class="process-start-list-item-icon">
             <span class="fa #{process.icon} fa-fw" />
           </div>
