@@ -9,11 +9,11 @@ function ProcessWidget() {
       $('.js-filter-process-widget-list-item').val('');
     },
 
-    preventBubblingEvent : function(widgetComponentVar) {
-      var checkBox = PF(widgetComponentVar).jq.children().last();
-      $(checkBox).click(function(event) {
-        event.stopPropagation();
-      });
+    toggleDeletionCheckbox : function(event, widgetComponentVar) {
+      var target = event.target;
+      if (!($(target).is(':checkbox') || $(target).hasClass('ui-chkbox-icon'))) {
+        PF(widgetComponentVar).toggle();
+      }
     },
     
     filter: function () {
