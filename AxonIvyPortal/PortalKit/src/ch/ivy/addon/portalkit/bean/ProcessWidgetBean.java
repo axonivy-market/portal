@@ -46,8 +46,6 @@ public class ProcessWidgetBean implements Serializable {
   private List<UserProcess> selectedUserProcesses;
   private List<RemoteWebStartable> webStartables;
   private String processWidgetComnponentId;
-  private int callTime = 1;
-  private List<Boolean> checkBoxSelectedStates;
 
   @PostConstruct
   public void init() {
@@ -59,7 +57,6 @@ public class ProcessWidgetBean implements Serializable {
     selectedUserProcesses = new ArrayList<UserProcess>();
     userName = UserUtils.getSessionUserName();
     userProcesses = findUserProcessBaseOnUIMode(compactMode);
-    callTime = 1;
   }
 
   private List<UserProcess> findFavoriteProcessUserCanStart() {
@@ -253,45 +250,22 @@ public class ProcessWidgetBean implements Serializable {
 
   private void clearSelectedUserProcess() {
     selectedUserProcesses.clear();
-    callTime = 1;
   }
 
   public void selectDeletingProcess(AjaxBehaviorEvent event) {
-		SelectBooleanCheckbox booleanCheckbox = (SelectBooleanCheckbox) event
-				.getComponent();
-		UserProcess selectedUserProcess = (UserProcess) booleanCheckbox
-				.getAttributes().get("selectedProcess");
-		if (callTime == 1) {
-			checkBoxSelectedStates = new ArrayList<>();
-		}
-		checkBoxSelectedStates.add(booleanCheckbox.isSelected());
-		//each time checkbox is checked/unchecked, the listener will be called 3 times with different values of isSelected()
-		if (callTime == 3) {
-			boolean isCheckboxSelected;
-			long numOfTrueValue = checkBoxSelectedStates.stream().filter(v -> v.booleanValue() == true).count();
-			long numOfFalseValue = checkBoxSelectedStates.stream().filter(v -> v.booleanValue() == false).count();
-			if (numOfTrueValue < numOfFalseValue) {
-				//this case for checkbox selected event
-				isCheckboxSelected = true;
-			} else {
-				//this case for checkbox unselected event
-				isCheckboxSelected = false;
-			}
-			if (isCheckboxSelected) {
-				boolean processExisted = selectedUserProcesses.stream().filter(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink())).findAny().isPresent();
-				if (!processExisted) {
-					selectedUserProcesses.add(selectedUserProcess);
-				}
-			} else {
-				selectedUserProcesses.removeIf(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink()));
-			}
-		}
-		if (callTime < 3) {
-			callTime++;
-		} else {
-			callTime = 1;
-		}
-	}
+    SelectBooleanCheckbox booleanCheckbox = (SelectBooleanCheckbox) event.getComponent();
+    UserProcess selectedUserProcess = (UserProcess) booleanCheckbox.getAttributes().get("selectedProcess");
+    if (booleanCheckbox.isSelected()) {
+      boolean processExisted =
+          selectedUserProcesses.stream()
+              .filter(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink())).findAny().isPresent();
+      if (!processExisted) {
+        selectedUserProcesses.add(selectedUserProcess);
+      }
+    } else {
+      selectedUserProcesses.removeIf(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink()));
+    }
+  }
 
   public void cancelDeletingProcess() {
     deleteMode = false;
