@@ -82,9 +82,11 @@ public class TaskWidgetTest extends BaseTest {
 
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
+    taskWidgetPage.waitAjaxIndicatorDisappear();
     taskWidgetPage.openTaskDetails(firstTask);
+    taskWidgetPage.waitAjaxIndicatorDisappear();
     taskWidgetPage.changeExpiryOfTaskAt(firstTask, tomorrowStringLiteral);
-
+    taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt(firstTask));
   }
   
