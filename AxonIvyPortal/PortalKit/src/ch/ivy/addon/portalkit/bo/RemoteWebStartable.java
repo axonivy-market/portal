@@ -77,9 +77,4 @@ public class RemoteWebStartable implements IWebStartable {
   public WebLink getLink() {
     return null;
   }
-
-  @Override
-  public int compareTo(IWebStartable arg0) {
-	return 0;
-  }
 }
