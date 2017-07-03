@@ -187,7 +187,6 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
         IApplication application =
             ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
 
-        boolean localeFound = false;
         if (application != null) {
           IUser user = application.getSecurityContext().findUser(username);
           if (user != null) {
@@ -196,13 +195,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
               IUserEMailNotificationSettings userEmailSettings = user.getEMailNotificationSettings();
               userEmailSettings.setUseApplicationDefault(false);
               // copy default settings
-              for (Locale locale : Ivy.cms().getSupportedLanguages()) {
-                if (locale.getLanguage().equals(new Locale(setting.getUserLanguage()).getLanguage())) {
-                  localeFound = true;
-                  user.setEMailLanguage(locale);
-                  break;
-                }
-              }
+              user.setEMailLanguage(Locale.forLanguageTag(setting.getUserLanguage()));
               userEmailSettings.setSendDailyTaskSummary(application.getDefaultEMailNotifcationSettings()
                   .getSendDailyTaskSummary());
               userEmailSettings.setNotificationDisabled(application.getDefaultEMailNotifcationSettings()
@@ -211,19 +204,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
                   .isSendOnNewWorkTasks());
               user.setEMailNotificationSettings(userEmailSettings);
             } else {
-              for (Locale locale : Ivy.cms().getSupportedLanguages()) {
-                if (locale.getLanguage().equals(new Locale(setting.getUserLanguage()).getLanguage())) {
-                  localeFound = true;
-                  user.setEMailLanguage(locale);
-                  break;
-                }
-              }
-            }
-            if (!localeFound) {
-              // user not found
-              List<Object> userText = new ArrayList<Object>();
-              userText.add(setting.getUserLanguage());
-              errors.add(new WSException(WSErrorType.WARNING, 10041, userText, null));
+              user.setEMailLanguage(Locale.forLanguageTag(setting.getUserLanguage()));
             }
           } else {
             // user not found
