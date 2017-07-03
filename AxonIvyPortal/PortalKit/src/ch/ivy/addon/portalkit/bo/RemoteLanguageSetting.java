@@ -53,7 +53,7 @@ public class RemoteLanguageSetting {
   }
   
   private String getDisplayLanguage(String item) {
-    Locale displayedLocale = new Locale(item);
+    Locale displayedLocale = Locale.forLanguageTag(item);
     return displayedLocale.getDisplayLanguage(Ivy.session().getContentLocale());
   }
 
