@@ -13,6 +13,7 @@ import java.util.Locale;
 import java.util.concurrent.Callable;
 import java.util.stream.Stream;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.ws.addon.CategoryData;
@@ -35,6 +36,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IPermission;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -51,6 +53,8 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskServiceImpl extends AbstractService implements ITaskService {
+	
+	private static final String AXONIVY_PORTAL_ADMIN = "AXONIVY_PORTAL_ADMIN";
 
   @Override
   public NoteServiceResult createNote(final String username, final Integer taskId, final String message)
@@ -692,7 +696,20 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       return false;
     }
 
-    return SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_ACTIVATOR);
+    if (!SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_ACTIVATOR)){
+    	return false;
+    }
+    return isPortalAdminOrTaskOwner(task, username);
+  }
+
+  private boolean isPortalAdminOrTaskOwner(ITask task, String userName) {
+		IUser user = findUser(userName, task);
+		IRole adminRole = Ivy.wf().getSecurityContext().findRole(AXONIVY_PORTAL_ADMIN);
+	  List<IRole> allUserRoles = user.getAllRoles();
+		if (CollectionUtils.isNotEmpty(allUserRoles) && allUserRoles.contains(adminRole)){
+	  	return true;
+	  }
+	  return task.getActivatorUserCandidates().contains(user);
   }
 
   private boolean hasPermissionToParkTask(ITask task, String username) {
