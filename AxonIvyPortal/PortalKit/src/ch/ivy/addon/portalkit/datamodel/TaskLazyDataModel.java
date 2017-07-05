@@ -303,6 +303,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
     searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
   }
+  
+  public void setInvolvedUsername(String involvedUsername) {
+    searchCriteria.setInvolvedUsername(involvedUsername);
+  }
 
   public void setTaskId(Long taskId) {
     queryCriteria.setTaskId(taskId);
