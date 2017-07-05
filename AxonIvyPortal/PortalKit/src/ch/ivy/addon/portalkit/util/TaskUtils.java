@@ -561,7 +561,6 @@ public final class TaskUtils {
   public static boolean checkReadAllTasksPermission() {
     boolean hasReadAllTasksPermission =
         Ivy.session()
-            .getSecurityContext()
             .hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
                 ch.ivyteam.ivy.security.IPermission.TASK_READ_ALL);
     return hasReadAllTasksPermission;
@@ -575,7 +574,6 @@ public final class TaskUtils {
   public static boolean checkReadAllCasesPermission() {
     boolean hasReadAllCasesPermission =
         Ivy.session()
-            .getSecurityContext()
             .hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
                 ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL);
     return hasReadAllCasesPermission;
