@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 05 15:33:52 ICT 2017]
+[>Created: Wed Jul 05 16:17:42 ICT 2017]
 153358BE9219FD4C 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
@@ -354,7 +354,10 @@ if(in.remoteCase.isBusinessCase()){
 }
 out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
 out.taskSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
-out.taskSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());' #txt
+out.taskSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());
+
+ivy.log.error("IVYPORTAL-3925 TaskUtils.checkReadAllTasksPermission() "+ TaskUtils.checkReadAllTasksPermission());
+ivy.log.error("IVYPORTAL-3925 ivy.session.getSessionUserName() "+ ivy.session.getSessionUserName());' #txt
 Cs0 f16 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
