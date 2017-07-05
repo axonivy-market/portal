@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 05 16:17:42 ICT 2017]
+[>Created: Wed Jul 05 17:36:18 ICT 2017]
 1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
@@ -190,9 +190,6 @@ dataModel.setServerId(in.caseId.serverId());
 dataModel.setCaseName(in.caseName);
 dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
 dataModel.setInvolvedUsername(ivy.session.getSessionUserName());
-
-ivy.log.error("IVYPORTAL-3925 TaskUtils.checkReadAllTasksPermission() "+ TaskUtils.checkReadAllTasksPermission());
-ivy.log.error("IVYPORTAL-3925 ivy.session.getSessionUserName() "+ ivy.session.getSessionUserName());
 
 in.taskView = TaskView.create()
 											.category(category)
