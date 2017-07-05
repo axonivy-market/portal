@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 10:33:10 ICT 2017]
+[>Created: Wed Jul 05 15:33:39 ICT 2017]
 1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
@@ -165,7 +165,8 @@ Nr0 f14 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f14 actionTable 'out=in;
 ' #txt
-Nr0 f14 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalPage;
+Nr0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -182,12 +183,13 @@ SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), 
 
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setCaseId(in.caseId.id());
-dataModel.setIgnoreInvolvedUser(true);
 dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
 dataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
 dataModel.setServerId(in.caseId.serverId());
 dataModel.setCaseName(in.caseName);
+dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+dataModel.setInvolvedUsername(ivy.session.getSessionUserName());
 
 in.taskView = TaskView.create()
 											.category(category)
@@ -195,7 +197,8 @@ in.taskView = TaskView.create()
 											.remoteTaskId(in.taskId)
 											.pageTitle(pageTitle)
 											.showHeaderToolbar(false)
-											.dataModel(dataModel).createNewTaskView();' #txt
+											.dataModel(dataModel).createNewTaskView();
+											' #txt
 Nr0 f14 security system #txt
 Nr0 f14 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

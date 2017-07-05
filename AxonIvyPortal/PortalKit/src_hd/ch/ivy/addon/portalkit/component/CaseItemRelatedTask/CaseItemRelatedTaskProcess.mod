@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Apr 27 11:36:52 ICT 2017]
+[>Created: Wed Jul 05 15:33:52 ICT 2017]
 153358BE9219FD4C 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
@@ -83,7 +83,7 @@ param.taskSearchCriteria=in.taskSearchCriteria;
 Cs0 f66 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
 ' #txt
 Cs0 f66 responseMappingAction 'out=in;
-out.relatedTasks=result.tasks;
+out.relatedTasks=in.taskSearchCriteria.ignoreInvolvedUser ? result.allTasks : result.tasks;
 ' #txt
 Cs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -332,7 +332,8 @@ Cs0 f16 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseIte
 ' #txt
 Cs0 f16 actionTable 'out=in;
 ' #txt
-Cs0 f16 actionCode 'import ch.ivy.addon.portalkit.enums.TaskSortField;
+Cs0 f16 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -352,7 +353,8 @@ if(in.remoteCase.isBusinessCase()){
 	queryCriteria.setQueryByBusinessCaseId(true);
 }
 out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
-' #txt
+out.taskSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+out.taskSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());' #txt
 Cs0 f16 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
