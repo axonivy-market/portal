@@ -61,7 +61,7 @@ public class CaseWidgetTest extends BaseTest {
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CasePage casePage = mainMenuPage.selectCaseMenu();
     CaseDetailsPage caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    int numberOfTasks = caseDetailsPage.countTasks();
+    int numberOfTasks = caseDetailsPage.countRelatedTasks();
     TaskWidgetPage taskOfCasePage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(numberOfTasks, taskOfCasePage.countTasks());
   }

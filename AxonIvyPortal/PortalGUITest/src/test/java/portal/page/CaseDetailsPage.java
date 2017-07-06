@@ -37,8 +37,8 @@ public class CaseDetailsPage extends TemplatePage {
     return caseItem.findElements(By.cssSelector(HISTORY_LIST_CSS_SELECTOR)).size();
   }
 
-  public int countTasks() {
-    return caseItem.findElements(By.cssSelector("a[id$='task-name']")).size();
+  public int countRelatedTasks() {
+    return caseItem.findElement(By.cssSelector("div[id$='related-tasks']")).findElements(By.cssSelector("a[id$='task-name']")).size();
   }
 
   public void addNote(String content) {
