@@ -18,6 +18,8 @@
       <ui:repeat var="note" value="#{data.notes}">
         <div>
           <span id="author" class="task-author FontBold truncate-author">
+            <i class="fa fa-pencil-square-o" />
+            <p:spacer width="5" />
             <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText username="#{note.creatorUserName}"
               fullname="#{note.creatorFullName}" />
             <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/on')} " />
