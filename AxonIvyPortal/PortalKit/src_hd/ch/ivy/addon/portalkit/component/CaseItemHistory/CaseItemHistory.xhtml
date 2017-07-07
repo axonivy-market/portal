@@ -28,13 +28,13 @@
             class="fa fa-exclamation-circle" jsf:id="created-task"
             jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" /> <i
             class="fa fa-pencil-square-o" jsf:rendered="#{history.type eq 'NOTE'}" />
+          <p:spacer width="5" />
+          <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="user-full-name"
+            username="#{history.involvedUsername}" fullname="#{history.involvedFullname}" />
           <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/on')} " />
           <h:outputText value="#{history.timestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
-          <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/via')} " />
-          <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="user-full-name"
-            username="#{history.involvedUsername}" fullname="#{history.involvedFullname}" />
 
           <p:tooltip for="done-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone')}"
             trackMouse="true" />
