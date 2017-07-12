@@ -73,8 +73,14 @@ public class RemoteWebStartable implements IWebStartable {
     this.startLink = startLink;
   }
 
-  @Override
-  public WebLink getLink() {
-    return null;
-  }
+	@Override
+	public WebLink getLink() {
+		return null;
+	}
+
+	@Override
+	public int compareTo(IWebStartable arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

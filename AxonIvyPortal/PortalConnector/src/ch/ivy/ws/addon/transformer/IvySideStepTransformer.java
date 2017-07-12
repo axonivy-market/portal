@@ -6,7 +6,7 @@ import java.util.List;
 import ch.ivy.ws.addon.transformer.exception.IvyTransformerException;
 import ch.ivy.ws.addon.types.IvySideStep;
 import ch.ivy.ws.addon.util.ServerUrlUtils;
-import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
+import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
@@ -20,7 +20,7 @@ public class IvySideStepTransformer {
     this.isUrlBuiltFromSystemProperties = isUrlBuiltFromSystemProperties;
   }
 
-  public IvySideStep transform(ISideStepProcess sideStep) {
+  public IvySideStep transform(IStartableSideStep sideStep) {
     IvySideStep result = new IvySideStep();
     try {
       result.setName(sideStep.getName());
@@ -34,9 +34,9 @@ public class IvySideStepTransformer {
     return result;
   }
 
-  public List<IvySideStep> transform(List<ISideStepProcess> sideSteps) {
+  public List<IvySideStep> transform(List<IStartableSideStep> sideSteps) {
     List<IvySideStep> result = new ArrayList<>();
-    for (ISideStepProcess sideStep : sideSteps) {
+    for (IStartableSideStep sideStep : sideSteps) {
       result.add(transform(sideStep));
     }
     return result;
