@@ -14,13 +14,12 @@ import ch.ivy.ws.addon.transformer.IvySideStepTransformer;
 import ch.ivy.ws.addon.types.IvySideStep;
 import ch.ivy.ws.addon.util.ServerUrlUtils;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
-import ch.ivyteam.ivy.casemap.runtime.SideStepService;
+import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
+import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.ICaseQueryExecutor;
 
 /**
@@ -45,7 +44,8 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
           if(wfCase != null && searchCriteria.hasInvolvedUsername()){
 	          IApplication application = wfCase.getApplication();
 	          IUser user = application.getSecurityContext().findUser(searchCriteria.getInvolvedUsername());
-	        	  List<ISideStepProcess> sideStepProcesses = SideStepService.get().findStartable((IBusinessCase) wfCase, user);
+	          ICaseMapService caseMapService = ICaseMapService.get().getCaseMapService(wfCase.getBusinessCase(), user.getUserToken());
+	        	  List<IStartableSideStep> sideStepProcesses = caseMapService.findStartableSideSteps();
 	        	  sideStepProcesses.forEach(process -> sideSteps.add(new IvySideStepTransformer(isUrlBuiltFromSystemProperties).transform(process)));
           }
           if (!searchCriteria.isAdhocExcluded()) {
