@@ -2,10 +2,10 @@ package ch.ivy.addon.portalkit.bo;
 
 import javax.servlet.http.HttpServletRequest;
 
-import ch.ivyteam.ivy.casemap.runtime.ISideStepProcess;
+import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.model.value.WebLink;
 
-public class RemoteSideStep implements ISideStepProcess {
+public class RemoteSideStep implements IStartableSideStep {
 
 	private String name;
 	private WebLink webLink;
