@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 09 10:15:13 ICT 2017]
+[>Created: Wed Jul 12 17:33:15 ICT 2017]
 1538898FE5F1C3BA 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
@@ -47,30 +47,37 @@ Ds0 f3 actionDecl 'ch.ivy.add.portalkit.DefaultUserProcessData out;
 ' #txt
 Ds0 f3 actionTable 'out=in;
 ' #txt
-Ds0 f3 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-UserProcess acmProcess = new UserProcess();
-acmProcess.setLink(collector.findACMLink());
-acmProcess.setProcessName("Axon.ivy Selfservice");
-acmProcess.setIcon("fa-code-fork");
 
-in.defaultUserProcesses.add(acmProcess);
+String acmLink = collector.findACMLink();
+if (!StringUtils.isEmpty(acmLink)) {
+	UserProcess acmProcess = new UserProcess();
+	acmProcess.setLink(acmLink);
+	acmProcess.setProcessName("Axon.ivy Selfservice");
+	acmProcess.setIcon("fa-code-fork");
+	in.defaultUserProcesses.add(acmProcess);
+}
 
-UserProcess expressProcess = new UserProcess();
-expressProcess.setLink(collector.findExpressLink());
-expressProcess.setProcessName("Axon.ivy Express");
-expressProcess.setIcon("fa-code-fork");
-
-in.defaultUserProcesses.add(expressProcess);' #txt
+String expressLink = collector.findExpressLink();
+if (!StringUtils.isEmpty(expressLink)) {
+	UserProcess expressProcess = new UserProcess();
+	expressProcess.setLink(expressLink);
+	expressProcess.setProcessName("Axon.ivy Express");
+	expressProcess.setIcon("fa-code-fork");
+	in.defaultUserProcesses.add(expressProcess);
+}
+' #txt
 Ds0 f3 type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>create default
 processes</name>
-        <nameStyle>24
+        <nameStyle>24,7
 </nameStyle>
     </language>
 </elementInfo>
