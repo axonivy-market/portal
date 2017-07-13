@@ -80,9 +80,7 @@
 					<br />
 
 				</h:panelGrid>
-				<!-- !!!IMPORTANT Have to store the last-position in cookie before create task-->
-				<p:remoteCommand name="leaveRequest" actionListener="#{logic.close}"
-					update="@all" />
+
 			</h:form>
 		</ui:define>
 		<ui:define name="leftButtons">
@@ -95,8 +93,8 @@
 				<p:commandButton value="Send Request" styleClass="portal-ok-button"
 					icon="fa fa-paper-plane" onclick="leaveRequest()" />
 				<p:spacer width="5px"/>
-				<p:commandButton value="Cancel" styleClass="mod-cancel-button portal-cancel-button"
-					icon="fa fa-ban" type="button" onclick="redirectToLastPage()" />
+				<p:commandButton value="Cancel" styleClass="portal-cancel-button"
+					icon="fa fa-ban" actionListener="#{logic.close}" update="@form" />
 			</h:form>
       </h:panelGroup>
 		</ui:define>
