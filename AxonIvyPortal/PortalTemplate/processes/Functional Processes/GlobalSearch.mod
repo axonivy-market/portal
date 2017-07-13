@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 23 16:21:11 ICT 2017]
+[>Created: Thu Jul 13 17:11:48 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -298,6 +298,7 @@ for (Workflow wf : workflows) {
 		if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
 			RemoteWebStartable workflowProcess = new RemoteWebStartable();
 			workflowProcess.setName(wf.processName);
+			workflowProcess.setDisplayName(wf.processName);
 			workflowProcess.setDescription(wf.processDescription);
 			String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
 			workflowProcess.setStartLink(startLink);
@@ -305,7 +306,6 @@ for (Workflow wf : workflows) {
 		}
 	}
 }
-
 in.webStartables.sort(new WebStartableNameComparator());' #txt
 Gh0 f17 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -313,7 +313,7 @@ Gh0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Find workflow processes
 and add to processes</name>
-        <nameStyle>44
+        <nameStyle>44,7
 </nameStyle>
     </language>
 </elementInfo>
