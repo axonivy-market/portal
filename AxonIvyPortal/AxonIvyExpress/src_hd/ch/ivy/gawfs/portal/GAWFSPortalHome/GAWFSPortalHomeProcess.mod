@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jun 26 14:21:30 ICT 2017]
+[>Created: Fri Jul 14 11:18:36 ICT 2017]
 1580345221FA4CE0 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 GAWFSPortalHomeProcess Big #zClass
@@ -83,7 +83,8 @@ Gs0 f6 actionDecl 'ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData out;
 ' #txt
 Gs0 f6 actionTable 'out=in;
 ' #txt
-Gs0 f6 actionCode 'import ch.ivy.addon.portalkit.util.UrlHelper;
+Gs0 f6 actionCode 'import ch.ivy.addon.portalkit.service.ProcessService;
+import ch.ivy.addon.portalkit.util.UrlHelper;
 import java.util.Collections;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
@@ -94,11 +95,9 @@ import gawfs.Workflow;
 in.createWorkflowStartLink = UrlHelper.findCreateExpressWorkflowStartLink();
 
 // all workflows to display a selection
-List<Workflow> workflows = ivy.persistence.GAWFS
-.createQuery("select p from Workflow p order by p.processName")
-.getResultList();
+List<ch.ivy.addon.portalkit.bo.Process> workflows = ProcessService.getInstance().findAll();
 
-for(Workflow wf: workflows){
+for(ch.ivy.addon.portalkit.bo.Process wf: workflows){
 	AvailWorkflow wfx = new AvailWorkflow();
 	wfx.id = wf.id;
 	wfx.processDescription = wf.processDescription;

@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu May 11 13:41:47 ICT 2017]
+[>Created: Fri Jul 14 10:07:07 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -100,25 +100,23 @@ Bk1 @GridStep f9 '' #zField
 Bk1 @PushWFArc f10 '' #zField
 Bk1 @TkArc f1 '' #zField
 >Proto Bk1 Bk1 BpmnUserTask #zField
-ew0 f0 inParamDecl '<java.lang.Integer workflowID> param;' #txt
+ew0 f0 inParamDecl '<java.lang.String workflowID> param;' #txt
 ew0 f0 inParamTable 'out.workflowID=param.workflowID;
 ' #txt
 ew0 f0 outParamDecl '<> result;
 ' #txt
 ew0 f0 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
-ew0 f0 callSignature call(Integer) #txt
+ew0 f0 callSignature call(String) #txt
 ew0 f0 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>call(Integer)</name>
-        <nameStyle>13,5,7
-</nameStyle>
+        <name>call(String)</name>
     </language>
 </elementInfo>
 ' #txt
-ew0 f0 113 25 30 30 -32 17 #rect
+ew0 f0 113 25 30 30 -29 17 #rect
 ew0 f0 @|StartSubIcon #fIcon
 ew0 f1 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f1 1273 49 30 30 0 15 #rect
@@ -417,7 +415,7 @@ ew0 f27 expr out #txt
 ew0 f27 648 86 648 346 #arcP
 ew0 f27 0 0.257219996276489 0 0 #arcLabel
 ew0 f13 704 368 744 368 #arcP
-ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.Integer processID> param;' #txt
+ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;' #txt
 ew0 f16 inParamTable 'out.definedTasks=param.definedTasks;
 out.dragAndDropController=param.dragAndDropController;
 out.dynaFormController=param.dynaFormController;
@@ -430,7 +428,7 @@ ew0 f16 outParamDecl '<> result;
 ' #txt
 ew0 f16 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
-ew0 f16 callSignature call(List<gawfs.TaskDef>,String,String,String,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,Integer) #txt
+ew0 f16 callSignature call(List<gawfs.TaskDef>,String,String,String,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String) #txt
 ew0 f16 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -598,14 +596,13 @@ Bk0 f3 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f3 actionTable 'out=in;
 ' #txt
-Bk0 f3 actionCode 'import java.lang.reflect.Array;
+Bk0 f3 actionCode 'import ch.ivy.addon.portalkit.bo.FormElement;
+import ch.ivy.addon.portalkit.service.FormElementService;
+import java.lang.reflect.Array;
 import gawfs.Formelement;
-List<Formelement> formelements = ivy.persistence.GAWFS
-.createQuery("select f from Formelement f where f.processID = :processID")
-.setParameter("processID",in.workflowID)
-.getResultList();
+List<FormElement> formelements = FormElementService.getInstance().findByProcessId(in.workflowID);
 
-for(Formelement element: formelements){
+for(FormElement element: formelements){
 	ch.ivy.gawfs.Formelement formelement;
 	
 	formelement.id = element.elementID;
@@ -652,22 +649,18 @@ Bk0 f5 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f5 actionTable 'out=in;
 ' #txt
-Bk0 f5 actionCode 'import ch.ivy.gawfs.Helper;
+Bk0 f5 actionCode 'import ch.ivy.addon.portalkit.bo.TaskDefinition;
+import ch.ivy.addon.portalkit.service.TaskDefinitionService;
+import ch.ivy.gawfs.Helper;
 import gawfs.TaskDef;
-import gawfs.TaskDefp;
 import java.lang.reflect.Array;
 import gawfs.Formelement;
 
 Helper helper = new Helper();
 
-List<TaskDefp> taskSteps = ivy.persistence.GAWFS
-.createQuery("select t from TaskDefp t where t.processID = :processID")
-.setParameter("processID",in.workflowID)
-.getResultList();
-
-
+List<TaskDefinition> taskSteps = TaskDefinitionService.getInstance().findByProcessId(in.workflowID);
 ivy.log.debug("Eingelese Tasks aus PDB: " + taskSteps.size());
-for(TaskDefp task: taskSteps){
+for(TaskDefinition task: taskSteps){
 	TaskDef xtask = new TaskDef();
 	xtask.actor = task.taskActor;
 	xtask.count = task.taskCount;
@@ -695,10 +688,9 @@ Bk0 f8 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f8 actionTable 'out=in;
 ' #txt
-Bk0 f8 actionCode 'import gawfs.Workflow;
-import gawfs.Workflow;
+Bk0 f8 actionCode 'import ch.ivy.addon.portalkit.service.ProcessService;
 
-gawfs.Workflow workflow = ivy.persistence.GAWFS.find(gawfs.Workflow.class,in.workflowID) as gawfs.Workflow;
+ch.ivy.addon.portalkit.bo.Process workflow = ProcessService.getInstance().findById(in.workflowID);
 
 in.workflowDescription = workflow.processDescription;
 in.workflowName = workflow.processName;
