@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.bo;
 
-public class TaskDefinition {
+public class ExpressTaskDefinition {
 
   private String id;
   private String processID;

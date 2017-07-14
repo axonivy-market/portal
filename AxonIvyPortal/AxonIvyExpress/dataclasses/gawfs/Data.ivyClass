@@ -17,11 +17,11 @@ processType Processtype #fieldComment
 processType PERSISTENT #fieldModifier
 wfusers List<ch.ivyteam.ivy.security.IUser> #field
 wfusers PERSISTENT #fieldModifier
-processRepository ch.ivy.addon.portalkit.bo.Process #field
+processRepository ch.ivy.addon.portalkit.bo.ExpressProcess #field
 processRepository PERSISTENT #fieldModifier
-taskRepository ch.ivy.addon.portalkit.bo.TaskDefinition #field
+taskRepository ch.ivy.addon.portalkit.bo.ExpressTaskDefinition #field
 taskRepository PERSISTENT #fieldModifier
-formelementRepository ch.ivy.addon.portalkit.bo.FormElement #field
+formelementRepository ch.ivy.addon.portalkit.bo.ExpressFormElement #field
 formelementRepository PERSISTENT #fieldModifier
 dragAndDropController ch.ivy.gawfs.DragAndDropController #field
 dragAndDropController PERSISTENT #fieldModifier
