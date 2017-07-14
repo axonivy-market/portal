@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu May 26 15:08:20 ICT 2016]
-15438977A8AF4FC1 3.18 #module
+[>Created: Fri Jul 14 15:55:41 ICT 2017]
+15438977A8AF4FC1 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseSearchResultProcess Big #zClass
 Cs0 RD #cInfo
@@ -71,7 +71,8 @@ Cs0 f8 actionDecl 'ch.ivy.addon.portal.generic.CaseSearchResult.CaseSearchResult
 ' #txt
 Cs0 f8 actionTable 'out=in;
 ' #txt
-Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portal.generic.view.CaseView;
@@ -85,7 +86,7 @@ String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchRes
 GlobalCaseId caseId = GlobalCaseId.inServer(remoteCase.server.id).caseId(remoteCase.id).build();
 CaseLazyDataModel dataModel = new CaseLazyDataModel();
 dataModel.setKeyword(keyword);
-
+dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllCasesPermission());
 out.view = ch.ivy.addon.portal.generic.view.CaseView.create().dataModel(dataModel).withTitle(title).autoSelectIfExists(caseId).buildNewView();' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
