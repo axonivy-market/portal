@@ -1,6 +1,6 @@
 DevLoadWorkflowsData #class
 gawfs #namespace
-workflows List<ch.ivy.addon.portalkit.bo.Process> #field
+workflows List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
 workflows PERSISTENT #fieldModifier
 workflowID String #field
 workflowID PERSISTENT #fieldModifier
@@ -10,7 +10,7 @@ workflowDescription String #field
 workflowDescription PERSISTENT #fieldModifier
 workflowType String #field
 workflowType PERSISTENT #fieldModifier
-devWorkflows List<ch.ivy.addon.portalkit.bo.Process> #field
+devWorkflows List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
 devWorkflows PERSISTENT #fieldModifier
 deleteFlag Boolean #field
 deleteFlag PERSISTENT #fieldModifier

@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Jul 13 17:11:48 ICT 2017]
+[>Created: Fri Jul 14 16:27:43 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -278,18 +278,19 @@ Gh0 f17 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f17 actionTable 'out=in;
 ' #txt
-Gh0 f17 actionCode 'import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
+Gh0 f17 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.comparator.WebStartableNameComparator;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import gawfs.Workflow;
 
 ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.request.getApplication());
-List<Workflow> workflows = ivy.persistence.GAWFS.findAll(Workflow.class);
+List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
 
-for (Workflow wf : workflows) {
+for (ExpressProcess wf : workflows) {
 	String lowercaseKeyword = in.keyword.toLowerCase();
 	if (wf.getProcessName().toLowerCase().contains(lowercaseKeyword) || wf.getProcessDescription().toLowerCase().contains(lowercaseKeyword)) {
 		IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);

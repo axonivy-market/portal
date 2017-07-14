@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.bo;
 
-public class Process {
+public class ExpressProcess {
 
   private String id;
   private String processName;
