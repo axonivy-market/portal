@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 10:32:16 ICT 2017]
+[>Created: Fri Jul 14 16:50:57 ICT 2017]
 15498A84F89ACDE7 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskSearchResultProcess Big #zClass
@@ -79,7 +79,8 @@ Ts0 f6 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResult
 ' #txt
 Ts0 f6 actionTable 'out=in;
 ' #txt
-Ts0 f6 actionCode 'import org.primefaces.component.commandlink.CommandLink;
+Ts0 f6 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import org.primefaces.component.commandlink.CommandLink;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import javax.faces.event.ActionEvent;
 
@@ -100,7 +101,7 @@ String pageTitle = category.value;
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setServerId(foundTask.applicationRegister.serverId);
 dataModel.setKeyword(keyword);
-
+dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
 out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(keyword).remoteTaskId(foundTask.getId()).dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
