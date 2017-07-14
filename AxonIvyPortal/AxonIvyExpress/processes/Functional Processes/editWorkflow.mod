@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 09:53:40 ICT 2017]
+[>Created: Fri Jul 14 13:54:12 ICT 2017]
 15791C23B125821B 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
@@ -179,9 +179,7 @@ import ch.ivy.addon.portalkit.service.FormElementService;
 import ch.ivy.addon.portalkit.bo.FormElement;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivy.addon.portalkit.service.ProcessService;
-import gawfs.TaskDefp;
 import gawfs.TaskDef;
-import gawfs.Workflow;
 import ch.ivy.gawfs.Formelement;
 
 //Product product = ivy.persistence.<persistence unit>

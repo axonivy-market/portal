@@ -19,9 +19,9 @@ wfusers List<ch.ivyteam.ivy.security.IUser> #field
 wfusers PERSISTENT #fieldModifier
 processRepository ch.ivy.addon.portalkit.bo.Process #field
 processRepository PERSISTENT #fieldModifier
-taskRepository gawfs.TaskDefp #field
+taskRepository ch.ivy.addon.portalkit.bo.TaskDefinition #field
 taskRepository PERSISTENT #fieldModifier
-formelementRepository gawfs.Formelement #field
+formelementRepository ch.ivy.addon.portalkit.bo.FormElement #field
 formelementRepository PERSISTENT #fieldModifier
 dragAndDropController ch.ivy.gawfs.DragAndDropController #field
 dragAndDropController PERSISTENT #fieldModifier
