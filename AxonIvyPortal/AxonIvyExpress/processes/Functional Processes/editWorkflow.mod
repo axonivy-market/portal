@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jun 26 13:53:02 ICT 2017]
+[>Created: Fri Jul 14 09:53:40 ICT 2017]
 15791C23B125821B 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
@@ -173,7 +173,13 @@ ew0 f9 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f9 actionTable 'out=in;
 ' #txt
-ew0 f9 actionCode 'import gawfs.TaskDefp;
+ew0 f9 actionCode 'import ch.ivy.addon.portalkit.service.TaskDefinitionService;
+import ch.ivy.addon.portalkit.bo.TaskDefinition;
+import ch.ivy.addon.portalkit.service.FormElementService;
+import ch.ivy.addon.portalkit.bo.FormElement;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
+import ch.ivy.addon.portalkit.service.ProcessService;
+import gawfs.TaskDefp;
 import gawfs.TaskDef;
 import gawfs.Workflow;
 import ch.ivy.gawfs.Formelement;
@@ -182,38 +188,29 @@ import ch.ivy.gawfs.Formelement;
 //.find(Product.class, 1) as Product;
 
 //save workflowdescription
-
-	in.processRepository = ivy.persistence.GAWFS.find(Workflow.class, in.processID) as Workflow;
+	in.processRepository = ProcessService.getInstance().findById(in.processID);
 	in.processRepository.processName = in.processName;
 	in.processRepository.processDescription = in.processDescription;
 	in.processRepository.processType = in.processType;
 	in.processRepository.processOwner = ivy.session.getSessionUser().getMemberName();
 	in.processRepository.processPermission = in.definedTasks.get(0).actor;
-	in.processRepository = ivy.persistence.GAWFS.merge(in.processRepository) as Workflow;
+	BusinessDataInfo info = ProcessService.getInstance().save(in.processRepository);
+	in.processRepository.id = info.getId();
 
 
 
 //get process ID to save with other values
-Integer processID = in.processRepository.id;
+String processID = in.processRepository.id;
 in.processID = processID;
 
 //delete all other fields
-Integer deletedTaskdef = ivy.persistence.GAWFS
-.createQuery("delete from TaskDefp t where t.processID = :workflowID")
-.setParameter( "workflowID", in.processID )
-.executeUpdate();
-
-Integer deletedFormelements = ivy.persistence.GAWFS
-.createQuery("delete from Formelement f where f.processID = :workflowID")
-.setParameter( "workflowID", in.processID)
-.executeUpdate();
-
-
+TaskDefinitionService.getInstance().deleteByProcessId(in.processID);
+FormElementService.getInstance().deleteByProcessId(in.processID);
 
 //save all formelements with ID, location and order
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
-		gawfs.Formelement x = new gawfs.Formelement();
+		FormElement x = new FormElement();
 		x.elementID = e.id;
 		x.elementPosition = "HEADER";
 		x.elementType = e.type;
@@ -222,15 +219,15 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
 		x.name = e.name;
 		x.required = e.required;
 		x.processID =  processID;
-		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsAsString());
+		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsStr());
 		
 		x.optionsStr = e.getOptionsAsString();
 
-		ivy.persistence.GAWFS.persist(x);
+		FormElementService.getInstance().save(x);
 }
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
-		gawfs.Formelement x = new gawfs.Formelement();
+		FormElement x = new FormElement();
 		x.elementID = e.id;
 		x.elementPosition = "LEFTPANEL";
 		x.elementType = e.type;
@@ -239,13 +236,12 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
 		x.name = e.name;
 		x.required = e.required;
 		x.processID = processID;
-		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsAsString());
-		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.GAWFS.persist(x);
-}
+		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsStr());
+		x.optionsStr = e.getOptionsAsString();
+		FormElementService.getInstance().save(x);}
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
-		gawfs.Formelement x = new gawfs.Formelement();
+		FormElement x = new FormElement();
 		x.elementID = e.id;
 		x.elementPosition = "RIGHTPANEL";
 		x.elementType = e.type;
@@ -255,12 +251,11 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
 		x.required = e.required;
 		x.processID = processID;
 		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsAsString());
-		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.GAWFS.persist(x);
-}
+		x.optionsStr = e.getOptionsAsString();
+		FormElementService.getInstance().save(x);}
 
 for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
-		gawfs.Formelement x = new gawfs.Formelement();
+		FormElement x = new FormElement();
 		x.elementID = e.id;
 		x.elementPosition = "FOOTER";
 		x.elementType = e.type;
@@ -271,21 +266,20 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
 		x.processID = processID;
 		ivy.log.debug("1OptionsString of:"+ e.label );
 		ivy.log.debug("2OptionsString of:"+ e.getOptionsAsString());
-		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.GAWFS.persist(x);
-}
+		x.optionsStr = e.getOptionsAsString();
+		FormElementService.getInstance().save(x);}
 
 //save the taskdefinition with the order of the tasks
 
 for (TaskDef t: in.definedTasks){
-		TaskDefp tp = new TaskDefp();
+		TaskDefinition tp = new TaskDefinition();
 		tp.subject = t.subject;
 		tp.description = t.description;		
 		tp.taskActor = t.actor;
 		tp.untilDays = t.untilDays;
 		tp.processID = processID;
 		tp.taskCount = t.count;
-		ivy.persistence.GAWFS.persist(tp);
+		TaskDefinitionService.getInstance().save(tp);
 }
 
 ivy.log.debug("Process saved with the ProcessID" + in.processID);
@@ -371,9 +365,9 @@ for AHWF</name>
 ew0 f18 1096 144 32 32 -33 -49 #rect
 ew0 f18 @|AlternativeIcon #fIcon
 ew0 f20 type gawfs.Data #txt
-ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,String,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,Integer)' #txt
+ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,String,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String)' #txt
 ew0 f20 doCall true #txt
-ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.Integer processID> param;
+ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;
 ' #txt
 ew0 f20 requestMappingAction 'param.definedTasks=in.definedTasks;
 param.processName=in.processName;
@@ -414,14 +408,14 @@ ew0 f2 1 1112 256 #addKink
 ew0 f2 0 0.3125 13 0 #arcLabel
 ew0 f23 expr in #txt
 ew0 f23 1064 160 1096 160 #arcP
-ew0 f21 inParamDecl '<java.lang.Integer workflowID> param;' #txt
+ew0 f21 inParamDecl '<java.lang.String workflowID> param;' #txt
 ew0 f21 inParamTable 'out.processID=param.workflowID;
 ' #txt
 ew0 f21 outParamDecl '<> result;
 ' #txt
 ew0 f21 actionDecl 'gawfs.Data out;
 ' #txt
-ew0 f21 callSignature editWorkflow(Integer) #txt
+ew0 f21 callSignature editWorkflow(String) #txt
 ew0 f21 type gawfs.Data #txt
 ew0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -475,99 +469,98 @@ ew0 f26 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f26 actionTable 'out=in;
 ' #txt
-ew0 f26 actionCode 'import gawfs.TaskDefp;
-import gawfs.TaskDef;
-import gawfs.Workflow;
-import ch.ivy.gawfs.Formelement;
-
+ew0 f26 actionCode 'import ch.ivy.addon.portalkit.service.TaskDefinitionService;
+import ch.ivy.addon.portalkit.service.FormElementService;
+import ch.ivy.addon.portalkit.bo.TaskDefinition;
+import ch.ivy.addon.portalkit.bo.FormElement;
+import ch.ivy.addon.portalkit.service.ProcessService;
 
 //save workflowdescription
 
-in.processRepository = new Workflow();
+in.processRepository = new ch.ivy.addon.portalkit.bo.Process();
 in.processRepository.processName = in.processName;
 in.processRepository.processDescription = in.processDescription;
 in.processRepository.processType = in.processType;
 in.processRepository.processOwner = ivy.session.getSessionUser().getMemberName();
 in.processRepository.processPermission = in.definedTasks.get(0).actor;
 
-ivy.persistence.GAWFS.persist(in.processRepository);
+ProcessService.getInstance().save(in.processRepository);
+
 
 //get process ID to save with other values
-Integer processID = in.processRepository.id;
+String processID = in.processRepository.id;
 in.processID = processID;
 
 
 //save all formelements with ID, location and order
 
-for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
-		gawfs.Formelement x = new gawfs.Formelement();
-		x.elementID = e.id;
+for (FormElement e : in.dragAndDropController.selectedFormelementsHeader){
+		FormElement x = new FormElement();
+		x.elementID =  e.id;
 		x.elementPosition = "HEADER";
-		x.elementType = e.type;
+		x.elementType = e.elementType;
 		x.intSetting = e.intSetting;
 		x.label = e.label;
 		x.name = e.name;
 		x.required = e.required;
 		x.processID =  processID;
-		
-		x.optionsStr = e.getOptionsAsString();
-
-		ivy.persistence.GAWFS.persist(x);
+		x.optionsStr = e.getOptionsStr();
+		FormElementService.getInstance().save(x);
 }
 
-for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
-		gawfs.Formelement x = new gawfs.Formelement();
+for (FormElement e: in.dragAndDropController.selectedFormelementsLeftPanel){
+		FormElement x = new FormElement();
 		x.elementID = e.id;
 		x.elementPosition = "LEFTPANEL";
-		x.elementType = e.type;
+		x.elementType = e.elementType;
 		x.intSetting = e.intSetting;
 		x.label = e.label;
 		x.name = e.name;
 		x.required = e.required;
 		x.processID = processID;
-		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.GAWFS.persist(x);
+		x.optionsStr = x.optionsStr = e.getOptionsStr();
+		FormElementService.getInstance().save(x);
 }
 
-for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
-		gawfs.Formelement x = new gawfs.Formelement();
+for (FormElement e: in.dragAndDropController.selectedFormelementsRightPanel){
+		FormElement x = new FormElement();
 		x.elementID = e.id;
 		x.elementPosition = "RIGHTPANEL";
-		x.elementType = e.type;
+		x.elementType = e.elementType;
 		x.intSetting = e.intSetting;
 		x.label = e.label;
 		x.name = e.name;
 		x.required = e.required;
 		x.processID = processID;
-		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.GAWFS.persist(x);
+		x.optionsStr = x.optionsStr = e.getOptionsStr();
+		FormElementService.getInstance().save(x);
 }
 
-for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
-		gawfs.Formelement x = new gawfs.Formelement();
+for (FormElement e: in.dragAndDropController.selectedFormelementsFooter){
+		FormElement x = new FormElement();
 		x.elementID = e.id;
 		x.elementPosition = "FOOTER";
-		x.elementType = e.type;
+		x.elementType = e.elementType;
 		x.intSetting = e.intSetting;
 		x.label = e.label;
 		x.name = e.name;
 		x.required = e.required;
 		x.processID = processID;
-		x.optionsStr = x.optionsStr = e.getOptionsAsString();
-		ivy.persistence.GAWFS.persist(x);
+		x.optionsStr = x.optionsStr = e.getOptionsStr();
+		FormElementService.getInstance().save(x);
 }
 
 //save the taskdefinition with the order of the tasks
 
-for (TaskDef t: in.definedTasks){
-		TaskDefp tp = new TaskDefp();
+for (TaskDefinition t: in.definedTasks){
+		TaskDefinition tp = new TaskDefinition();
 		tp.subject = t.subject;
 		tp.description = t.description;		
-		tp.taskActor = t.actor;
+		tp.taskActor = t.taskActor;
 		tp.untilDays = t.untilDays;
 		tp.processID = processID;
-		tp.taskCount = t.count;
-		ivy.persistence.GAWFS.persist(tp);
+		tp.taskCount = t.taskCount;
+		TaskDefinitionService.getInstance().save(tp);
 }
 
 ivy.log.debug("Process saved with the ProcessID" + in.processID);
@@ -761,14 +754,12 @@ Ct0 f28 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f28 actionTable 'out=in;
 ' #txt
-Ct0 f28 actionCode 'import java.lang.reflect.Array;
-import gawfs.Formelement;
-List<Formelement> formelements = ivy.persistence.GAWFS
-.createQuery("select f from Formelement f where f.processID = :processID")
-.setParameter("processID",in.processID)
-.getResultList();
+Ct0 f28 actionCode 'import ch.ivy.addon.portalkit.service.FormElementService;
+import ch.ivy.addon.portalkit.bo.FormElement;
+import java.lang.reflect.Array;
+List<FormElement> formelements = FormElementService.getInstance().findByProcessId(in.processID);
 
-for(Formelement element: formelements){
+for (FormElement element: formelements){
 	ch.ivy.gawfs.Formelement formelement;
 	
 	formelement.id = element.elementID;
@@ -820,24 +811,23 @@ Ct0 f25 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f25 actionTable 'out=in;
 ' #txt
-Ct0 f25 actionCode 'import ch.ivyteam.ivy.security.IRole;
+Ct0 f25 actionCode 'import ch.ivy.addon.portalkit.bo.TaskDefinition;
+import ch.ivy.addon.portalkit.service.TaskDefinitionService;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivy.gawfs.Helper;
 import ch.ivyteam.ivy.security.IUser;
 import gawfs.TaskDef;
-import gawfs.TaskDefp;
+
 import java.lang.reflect.Array;
-import gawfs.Formelement;
+//import gawfs.Formelement;
 
 
-List<TaskDefp> taskSteps = ivy.persistence.GAWFS
-.createQuery("select t from TaskDefp t where t.processID = :processID")
-.setParameter("processID",in.processID)
-.getResultList();
+List<TaskDefinition> taskSteps = TaskDefinitionService.getInstance().findByProcessId(in.processID);
 
 
 ivy.log.debug("Eingelese Tasks aus PDB: " + taskSteps.size());
 
-for(TaskDefp task: taskSteps){
+for(TaskDefinition task: taskSteps){
 	TaskDef xtask = new TaskDef();
 	
 	xtask.actor = task.taskActor;
@@ -884,10 +874,9 @@ Ct0 f26 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f26 actionTable 'out=in;
 ' #txt
-Ct0 f26 actionCode 'import gawfs.Workflow;
-import gawfs.Workflow;
+Ct0 f26 actionCode 'import ch.ivy.addon.portalkit.service.ProcessService;
 
-gawfs.Workflow workflow = ivy.persistence.GAWFS.find(gawfs.Workflow.class,in.processID) as gawfs.Workflow;
+ch.ivy.addon.portalkit.bo.Process workflow = ProcessService.getInstance().findById(in.processID);
 
 in.processDescription = workflow.processDescription;
 in.processName = workflow.processName;
