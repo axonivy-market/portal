@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 13:56:42 ICT 2017]
+[>Created: Fri Jul 14 16:26:18 ICT 2017]
 14FEEC13F8B8E7D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
@@ -606,15 +606,16 @@ Ps0 f50 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidget
 ' #txt
 Ps0 f50 actionTable 'out=in;
 ' #txt
-Ps0 f50 actionCode 'import ch.ivy.addon.portalkit.service.ProcessService;
+Ps0 f50 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 
 ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.request.getApplication());
-List<ch.ivy.addon.portalkit.bo.Process> workflows = ProcessService.getInstance().findAll();
-for(ch.ivy.addon.portalkit.bo.Process wf : workflows) {
+List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
+for(ExpressProcess wf : workflows) {
 	IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
 	IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
 	if(ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
