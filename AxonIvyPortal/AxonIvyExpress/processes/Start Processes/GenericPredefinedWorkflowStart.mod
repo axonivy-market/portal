@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Mar 27 11:35:50 CEST 2017]
-15797DC22608DA55 3.18 #module
+[>Created: Fri Jul 14 11:46:54 ICT 2017]
+15797DC22608DA55 3.20 #module
 >Proto >Proto Collection #zClass
 Gt0 GenericPredefinedWorkflowStart Big #zClass
 Gt0 B #cInfo
@@ -35,7 +35,7 @@ Gt0 @TkArc f20 '' #zField
 >Proto Gt0 Gt0 GenericPredefinedWorkflowStart #zField
 Gt0 f0 outLink GenericPredefinedProcessStart.ivp #txt
 Gt0 f0 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f0 inParamDecl '<java.lang.Integer workflowID> param;' #txt
+Gt0 f0 inParamDecl '<java.lang.String workflowID> param;' #txt
 Gt0 f0 inParamTable 'out.workflowID=param.workflowID;
 ' #txt
 Gt0 f0 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
@@ -43,7 +43,7 @@ Gt0 f0 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
 Gt0 f0 guid 15797DC2264C9526 #txt
 Gt0 f0 requestEnabled true #txt
 Gt0 f0 triggerEnabled false #txt
-Gt0 f0 callSignature GenericPredefinedProcessStart(Integer) #txt
+Gt0 f0 callSignature GenericPredefinedProcessStart(String) #txt
 Gt0 f0 persist false #txt
 Gt0 f0 startName 'GenericPredefinedProcessStart (Inputparam: WorkflowID e.g. ?workflowID=24)' #txt
 Gt0 f0 taskData 'TaskTriggered.ROL=Everybody
@@ -51,23 +51,12 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=Workflow wurde angelegt
+TaskTriggered.EXROL=Everybody
 TaskTriggered.NAM=Workflow wurde angelegt
-TaskTriggered.EXROL=Everybody' #txt
-Gt0 f0 caseData customFields.varchar.1="EXECUTION_WF" #txt
+TaskTriggered.DESC=Workflow wurde angelegt' #txt
+Gt0 f0 caseData 'customFields.varchar.1="EXECUTION_WF"
+businessCase.attach=false' #txt
 Gt0 f0 showInStartList 0 #txt
-Gt0 f0 taskAndCaseSetupAction 'ivy.case.setCustomVarCharField1("EXECUTION_WF");
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("Workflow wurde angelegt"));
-taskUpdDef.setDescription(engine.expandMacros("Workflow wurde angelegt"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -81,9 +70,9 @@ Gt0 f0 @C|.responsibility Everybody #txt
 Gt0 f0 81 49 30 30 -96 17 #rect
 Gt0 f0 @|StartRequestIcon #fIcon
 Gt0 f3 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f3 processCall 'Functional Processes/executePredefinedWorkflow:call(Integer)' #txt
+Gt0 f3 processCall 'Functional Processes/executePredefinedWorkflow:call(String)' #txt
 Gt0 f3 doCall true #txt
-Gt0 f3 requestActionDecl '<java.lang.Integer workflowID> param;
+Gt0 f3 requestActionDecl '<java.lang.String workflowID> param;
 ' #txt
 Gt0 f3 requestMappingAction 'param.workflowID=in.workflowID;
 ' #txt
@@ -95,6 +84,8 @@ Gt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>executePredefinedWorkflow</name>
+        <nameStyle>25,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -104,7 +95,7 @@ Gt0 f4 expr out #txt
 Gt0 f4 111 64 200 64 #arcP
 Gt0 f5 outLink GenericDeleteProcessStart.ivp #txt
 Gt0 f5 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f5 inParamDecl '<java.lang.Integer workflowID> param;' #txt
+Gt0 f5 inParamDecl '<java.lang.String workflowID> param;' #txt
 Gt0 f5 inParamTable 'out.workflowID=param.workflowID;
 ' #txt
 Gt0 f5 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
@@ -112,7 +103,7 @@ Gt0 f5 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
 Gt0 f5 guid 1580E4D31F83146E #txt
 Gt0 f5 requestEnabled true #txt
 Gt0 f5 triggerEnabled false #txt
-Gt0 f5 callSignature GenericDeleteProcessStart(Integer) #txt
+Gt0 f5 callSignature GenericDeleteProcessStart(String) #txt
 Gt0 f5 persist false #txt
 Gt0 f5 startName 'GenericDeleteProcessStart(Inputparam: WorkflowID e.g. ?workflowID=24)' #txt
 Gt0 f5 startDescription 'Add WorkflowID to the Link like ?workflowID=24' #txt
@@ -122,22 +113,11 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
-Gt0 f5 caseData 'case.description=Ein Prozess wurde gel\u00F6scht
-case.name=Prozess gel\u00F6scht
-customFields.varchar.1="DELETE_WF"' #txt
+Gt0 f5 caseData 'case.name=Prozess gel\u00F6scht
+case.description=Ein Prozess wurde gel\u00F6scht
+customFields.varchar.1="DELETE_WF"
+businessCase.attach=false' #txt
 Gt0 f5 showInStartList 1 #txt
-Gt0 f5 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("Prozess gelöscht"));
-ivy.case.setDescription(engine.expandMacros("Ein Prozess wurde gelöscht"));
-ivy.case.setCustomVarCharField1("DELETE_WF");
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Gt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -152,7 +132,7 @@ Gt0 f5 73 145 30 30 -84 17 #rect
 Gt0 f5 @|StartRequestIcon #fIcon
 Gt0 f6 outLink GenericEditProcessStart.ivp #txt
 Gt0 f6 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f6 inParamDecl '<java.lang.Integer workflowID> param;' #txt
+Gt0 f6 inParamDecl '<java.lang.String workflowID> param;' #txt
 Gt0 f6 inParamTable 'out.workflowID=param.workflowID;
 ' #txt
 Gt0 f6 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
@@ -160,7 +140,7 @@ Gt0 f6 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
 Gt0 f6 guid 1580E4DAE49F21B4 #txt
 Gt0 f6 requestEnabled true #txt
 Gt0 f6 triggerEnabled false #txt
-Gt0 f6 callSignature GenericEditProcessStart(Integer) #txt
+Gt0 f6 callSignature GenericEditProcessStart(String) #txt
 Gt0 f6 persist false #txt
 Gt0 f6 startName 'GenericEditProcessStart(Inputparam: WorkflowID e.g. ?workflowID=24)' #txt
 Gt0 f6 startDescription 'Add WorkflowID to the Link like ?workflowID=24' #txt
@@ -169,27 +149,14 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=Ein Prozess wurde bearbeitet
+TaskTriggered.EXROL=Everybody
 TaskTriggered.NAM=Prozess bearbeitet 
-TaskTriggered.EXROL=Everybody' #txt
-Gt0 f6 caseData 'case.description=Bearbeiten eines exitierenden Workflows
-case.name=Workflow editieren
-customFields.varchar.1="EDITING_WF"' #txt
+TaskTriggered.DESC=Ein Prozess wurde bearbeitet' #txt
+Gt0 f6 caseData 'case.name=Workflow editieren
+case.description=Bearbeiten eines exitierenden Workflows
+customFields.varchar.1="EDITING_WF"
+businessCase.attach=false' #txt
 Gt0 f6 showInStartList 1 #txt
-Gt0 f6 taskAndCaseSetupAction 'ivy.case.setName(engine.expandMacros("Workflow editieren"));
-ivy.case.setDescription(engine.expandMacros("Bearbeiten eines exitierenden Workflows"));
-ivy.case.setCustomVarCharField1("EDITING_WF");
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setName(engine.expandMacros("Prozess bearbeitet"));
-taskUpdDef.setDescription(engine.expandMacros("Ein Prozess wurde bearbeitet"));
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Gt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -203,9 +170,9 @@ Gt0 f6 @C|.responsibility Everybody #txt
 Gt0 f6 73 241 30 30 -76 17 #rect
 Gt0 f6 @|StartRequestIcon #fIcon
 Gt0 f12 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f12 processCall 'Functional Processes/editWorkflow:editWorkflow(Integer)' #txt
+Gt0 f12 processCall 'Functional Processes/editWorkflow:editWorkflow(String)' #txt
 Gt0 f12 doCall true #txt
-Gt0 f12 requestActionDecl '<java.lang.Integer workflowID> param;
+Gt0 f12 requestActionDecl '<java.lang.String workflowID> param;
 ' #txt
 Gt0 f12 requestMappingAction 'param.workflowID=in.workflowID;
 ' #txt
@@ -225,9 +192,9 @@ Gt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Gt0 f12 200 232 160 48 -10 -8 #rect
 Gt0 f12 @|CallSubIcon #fIcon
 Gt0 f11 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f11 processCall 'Functional Processes/deletePredefinedWorkflow:call(Integer)' #txt
+Gt0 f11 processCall 'Functional Processes/deletePredefinedWorkflow:call(String)' #txt
 Gt0 f11 doCall true #txt
-Gt0 f11 requestActionDecl '<java.lang.Integer workflowID> param;
+Gt0 f11 requestActionDecl '<java.lang.String workflowID> param;
 ' #txt
 Gt0 f11 requestMappingAction 'param.workflowID=in.workflowID;
 ' #txt
@@ -279,21 +246,6 @@ TaskA.PRI=2
 TaskA.ROL=SYSTEM
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
-Gt0 f13 taskAction 'import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Prozess beendet."));
-taskDef.setDescription(engine.expandMacros("Prozess beendet."));
-taskDef.setAutoStartTask(true);
-taskDef.setActivator("SYSTEM");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-' #txt
 Gt0 f13 type gawfs.GenericPredefinedWorkflowStartData #txt
 Gt0 f13 template "" #txt
 Gt0 f13 497 145 30 30 0 16 #rect

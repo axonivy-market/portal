@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 11:44:14 ICT 2017]
+[>Created: Fri Jul 14 11:19:57 ICT 2017]
 15811D6A5CA25F9C 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 DeleteConfirmationProcess Big #zClass
@@ -76,10 +76,8 @@ Gs0 f8 actionDecl 'ch.ivy.gawfs.portal.DeleteConfirmation.DeleteConfirmationData
 ' #txt
 Gs0 f8 actionTable 'out=in;
 ' #txt
-Gs0 f8 actionCode 'import gawfs.Workflow;
-import gawfs.Workflow;
-
-gawfs.Workflow workflow = ivy.persistence.GAWFS.find(gawfs.Workflow.class,in.devLoadWorkflowsData.workflowID) as gawfs.Workflow;
+Gs0 f8 actionCode 'import ch.ivy.addon.portalkit.service.ProcessService;
+ch.ivy.addon.portalkit.bo.Process workflow = ProcessService.getInstance().findById(in.devLoadWorkflowsData.workflowID);
 
 in.devLoadWorkflowsData.workflowDescription = workflow.processDescription;
 in.devLoadWorkflowsData.workflowName = workflow.processName;
