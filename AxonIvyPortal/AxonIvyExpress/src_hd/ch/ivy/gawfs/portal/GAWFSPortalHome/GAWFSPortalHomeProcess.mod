@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 11:18:36 ICT 2017]
+[>Created: Fri Jul 14 13:54:27 ICT 2017]
 1580345221FA4CE0 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 GAWFSPortalHomeProcess Big #zClass
@@ -89,7 +89,6 @@ import java.util.Collections;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import gawfs.AvailWorkflow;
-import gawfs.Workflow;
 
 //get create workflow start link
 in.createWorkflowStartLink = UrlHelper.findCreateExpressWorkflowStartLink();

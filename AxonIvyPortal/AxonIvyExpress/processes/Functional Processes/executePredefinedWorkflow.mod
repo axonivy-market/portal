@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 10:07:07 ICT 2017]
+[>Created: Fri Jul 14 13:56:55 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -599,7 +599,7 @@ Bk0 f3 actionTable 'out=in;
 Bk0 f3 actionCode 'import ch.ivy.addon.portalkit.bo.FormElement;
 import ch.ivy.addon.portalkit.service.FormElementService;
 import java.lang.reflect.Array;
-import gawfs.Formelement;
+
 List<FormElement> formelements = FormElementService.getInstance().findByProcessId(in.workflowID);
 
 for(FormElement element: formelements){
@@ -654,7 +654,6 @@ import ch.ivy.addon.portalkit.service.TaskDefinitionService;
 import ch.ivy.gawfs.Helper;
 import gawfs.TaskDef;
 import java.lang.reflect.Array;
-import gawfs.Formelement;
 
 Helper helper = new Helper();
 
