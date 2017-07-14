@@ -12,11 +12,17 @@ public abstract class AbstractExpressService<T> {
   }
 
   public BusinessDataInfo<T> save(T object) {
+    if (object == null) {
+      return null;
+    }
     return repo().save(object);
   }
 
   public void delete(String id) {
     T object = findById(id);
+    if (object == null) {
+      return;
+    }
     repo().delete(object);
   }
 
