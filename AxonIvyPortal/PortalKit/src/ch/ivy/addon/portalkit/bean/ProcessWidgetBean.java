@@ -15,12 +15,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
 import org.primefaces.context.RequestContext;
 
-import ch.ivy.addon.portalkit.bo.Process;
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import ch.ivy.addon.portalkit.service.ProcessService;
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -149,9 +149,10 @@ public class ProcessWidgetBean implements Serializable {
 
   private List<UserProcess> getFilteredExpressWorkflows(String query) {
     List<UserProcess> workflow = new ArrayList<>();
-    List<Process> workflows =
-        ProcessService.getInstance().findAll().stream().filter(wf -> !isUserProcess(wf)).collect(Collectors.toList());
-    for (Process wf : workflows) {
+    List<ExpressProcess> workflows =
+        ExpressServiceRegistry.getProcessService().findAllOrderByName().stream().filter(wf -> !isUserProcess(wf))
+            .collect(Collectors.toList());
+    for (ExpressProcess wf : workflows) {
       if (canStartWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
         workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf)));
       }
@@ -159,7 +160,7 @@ public class ProcessWidgetBean implements Serializable {
     return workflow;
   }
 
-  private boolean canStartWorkflow(Process workflow) {
+  private boolean canStartWorkflow(ExpressProcess workflow) {
     IRole permittedRole = Ivy.request().getApplication().getSecurityContext().findRole(workflow.getProcessPermission());
     IUser owner = Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1));
     return Ivy.session().hasRole(permittedRole, false)
@@ -167,7 +168,7 @@ public class ProcessWidgetBean implements Serializable {
         || Ivy.session().canActAsUser(owner);
   }
 
-  private String generateWorkflowStartLink(Process wf) {
+  private String generateWorkflowStartLink(ExpressProcess wf) {
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
     try {
       return processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.getId();
@@ -182,7 +183,7 @@ public class ProcessWidgetBean implements Serializable {
         userProcess -> ((userProcess.getLink().toLowerCase()).contains(webStartable.getStartLink().toLowerCase())));
   }
 
-  private boolean isUserProcess(Process workflow) {
+  private boolean isUserProcess(ExpressProcess workflow) {
     return userProcesses.stream().anyMatch(
         userProcess -> ((userProcess.getLink().toLowerCase()).contains(generateWorkflowStartLink(workflow)
             .toLowerCase())));

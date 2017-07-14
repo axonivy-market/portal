@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 13:56:55 ICT 2017]
+[>Created: Fri Jul 14 16:24:17 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -596,13 +596,11 @@ Bk0 f3 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f3 actionTable 'out=in;
 ' #txt
-Bk0 f3 actionCode 'import ch.ivy.addon.portalkit.bo.FormElement;
-import ch.ivy.addon.portalkit.service.FormElementService;
-import java.lang.reflect.Array;
+Bk0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.bo.ExpressFormElement;
+List<ExpressFormElement> formelements = ExpressServiceRegistry.getFormElementService().findByProcessId(in.workflowID);
 
-List<FormElement> formelements = FormElementService.getInstance().findByProcessId(in.workflowID);
-
-for(FormElement element: formelements){
+for(ExpressFormElement element: formelements){
 	ch.ivy.gawfs.Formelement formelement;
 	
 	formelement.id = element.elementID;
@@ -649,17 +647,16 @@ Bk0 f5 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f5 actionTable 'out=in;
 ' #txt
-Bk0 f5 actionCode 'import ch.ivy.addon.portalkit.bo.TaskDefinition;
-import ch.ivy.addon.portalkit.service.TaskDefinitionService;
+Bk0 f5 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
 import ch.ivy.gawfs.Helper;
 import gawfs.TaskDef;
-import java.lang.reflect.Array;
 
 Helper helper = new Helper();
 
-List<TaskDefinition> taskSteps = TaskDefinitionService.getInstance().findByProcessId(in.workflowID);
+List<ExpressTaskDefinition> taskSteps = ExpressServiceRegistry.getTaskDefinitionService().findByProcessId(in.workflowID);
 ivy.log.debug("Eingelese Tasks aus PDB: " + taskSteps.size());
-for(TaskDefinition task: taskSteps){
+for(ExpressTaskDefinition task: taskSteps){
 	TaskDef xtask = new TaskDef();
 	xtask.actor = task.taskActor;
 	xtask.count = task.taskCount;
@@ -687,9 +684,11 @@ Bk0 f8 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f8 actionTable 'out=in;
 ' #txt
-Bk0 f8 actionCode 'import ch.ivy.addon.portalkit.service.ProcessService;
+Bk0 f8 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
 
-ch.ivy.addon.portalkit.bo.Process workflow = ProcessService.getInstance().findById(in.workflowID);
+
+ExpressProcess workflow = ExpressServiceRegistry.getProcessService().findById(in.workflowID) as ExpressProcess;
 
 in.workflowDescription = workflow.processDescription;
 in.workflowName = workflow.processName;
