@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 16:27:43 ICT 2017]
+[>Created: Fri Jul 14 16:28:47 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -36,6 +36,7 @@ Gh0 @PushWFArc f25 '' #zField
 Gh0 @PushWFArc f20 '' #zField
 Gh0 @PushWFArc f21 '' #zField
 Gh0 @PushWFArc f9 '' #zField
+Gh0 @InfoButton f4 '' #zField
 >Proto Gh0 Gh0 GlobalSearch #zField
 Gh0 f0 inParamDecl '<java.lang.String keyword,java.lang.Long serverId,java.lang.String applicationName> param;' #txt
 Gh0 f0 inParamTable 'out.applicationName=param.applicationName;
@@ -124,27 +125,38 @@ Gh0 f8 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f8 actionTable 'out=in;
 ' #txt
-Gh0 f8 actionCode 'import ch.ivy.addon.portalkit.service.TaskQueryService;
+Gh0 f8 actionCode 'import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.enums.TaskAssigneeType;;
+import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivyteam.ivy.workflow.TaskState;
 import java.util.Arrays;
 
-in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 
+TaskQueryCriteria queryCriteria = new TaskQueryCriteria();
 List<TaskState> states = new List<TaskState>();
 states.add(TaskState.SUSPENDED);
 states.add(TaskState.RESUMED);
 states.add(TaskState.PARKED);
-
-TaskQueryCriteria queryCriteria = new TaskQueryCriteria();
-queryCriteria.keyword = in.keyword;
+if (TaskUtils.checkReadAllTasksPermission() == true){
+	states.add(TaskState.UNASSIGNED);
+	states.add(TaskState.DONE);
+}
 queryCriteria.includedStates = states;
+queryCriteria.keyword = in.keyword;
 queryCriteria.newQueryCreated = true;
-out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
+queryCriteria.setSortDescending(true);
+queryCriteria.setSortField(TaskSortField.ID.toString());
+queryCriteria.setTaskAssigneeType(TaskAssigneeType.ALL);
+
+in.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
+in.taskSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 
 if (in.#applicationName is initialized) {
 	List<String> involvedApplications = Arrays.asList(in.applicationName);
-	out.taskSearchCriteria.involvedApplications = involvedApplications;
+	in.taskSearchCriteria.involvedApplications = involvedApplications;
 }' #txt
 Gh0 f8 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -152,7 +164,7 @@ Gh0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Prepare task 
 search criteria</name>
-        <nameStyle>29
+        <nameStyle>29,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -163,20 +175,27 @@ Gh0 f10 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f10 actionTable 'out=in;
 ' #txt
-Gh0 f10 actionCode 'import java.util.Arrays;
+Gh0 f10 actionCode 'import ch.ivy.ws.addon.CaseSortedField;
+import ch.ivy.addon.portalkit.util.TaskUtils;
+import java.util.Arrays;
 import ch.ivy.ws.addon.CaseState;
 
 in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 
 List<CaseState> states = new List<CaseState>();
-states.add(CaseState.DESTROYED);
-states.add(CaseState.ZOMBIE);
-in.caseSearchCriteria.excludedStates = states;
+states.add(CaseState.CREATED);
+states.add(CaseState.RUNNING);
 
 in.caseSearchCriteria.keyword = in.keyword;
-
-in.caseSearchCriteria.businessCase = true;
-
+in.caseSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());
+in.caseSearchCriteria.setSortedField(CaseSortedField.ID);
+in.caseSearchCriteria.setSortingDescending(true);
+in.caseSearchCriteria.setBusinessCase(true);
+in.caseSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllCasesPermission());
+if (TaskUtils.checkReadAllCasesPermission() == true){
+	states.add(CaseState.DONE);
+}
+in.caseSearchCriteria.setIncludedStates(states);
 if (in.#applicationName is initialized) {
 	List<String> involvedApplications = Arrays.asList(in.applicationName);
 	in.caseSearchCriteria.involvedApplications = involvedApplications;
@@ -187,7 +206,7 @@ Gh0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Prepare case 
 search criteria</name>
-        <nameStyle>29
+        <nameStyle>29,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -235,7 +254,7 @@ param.taskSearchCriteria=in.taskSearchCriteria;
 Gh0 f14 responseActionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f14 responseMappingAction 'out=in;
-out.tasks=result.tasks;
+out.tasks=in.taskSearchCriteria.ignoreInvolvedUser ? result.allTasks : result.tasks;
 ' #txt
 Gh0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -351,6 +370,17 @@ Gh0 f21 expr out #txt
 Gh0 f21 111 160 176 160 #arcP
 Gh0 f9 expr out #txt
 Gh0 f9 536 64 568 64 #arcP
+Gh0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>search criteria is the same condition as case/task list</name>
+        <nameStyle>55,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Gh0 f4 208 193 304 30 -145 -8 #rect
+Gh0 f4 @|IBIcon #fIcon
 >Proto Gh0 .type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 >Proto Gh0 .processKind CALLABLE_SUB #txt
 >Proto Gh0 0 0 32 24 18 0 #rect
