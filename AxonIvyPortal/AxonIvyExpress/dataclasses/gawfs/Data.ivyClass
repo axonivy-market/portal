@@ -17,7 +17,7 @@ processType Processtype #fieldComment
 processType PERSISTENT #fieldModifier
 wfusers List<ch.ivyteam.ivy.security.IUser> #field
 wfusers PERSISTENT #fieldModifier
-processRepository gawfs.Workflow #field
+processRepository ch.ivy.addon.portalkit.bo.Process #field
 processRepository PERSISTENT #fieldModifier
 taskRepository gawfs.TaskDefp #field
 taskRepository PERSISTENT #fieldModifier
@@ -29,7 +29,7 @@ dynaFormController ch.ivy.gawfs.DynaFormController #field
 dynaFormController PERSISTENT #fieldModifier
 backFlag Boolean #field
 backFlag PERSISTENT #fieldModifier
-processID Integer #field
+processID String #field
 processID PERSISTENT #fieldModifier
 directExecutionFlag Boolean #field
 directExecutionFlag PERSISTENT #fieldModifier

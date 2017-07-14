@@ -2,7 +2,7 @@ DevLoadWorkflowsData #class
 gawfs #namespace
 workflows List<gawfs.Workflow> #field
 workflows PERSISTENT #fieldModifier
-workflowID Integer #field
+workflowID String #field
 workflowID PERSISTENT #fieldModifier
 workflowName String #field
 workflowName PERSISTENT #fieldModifier

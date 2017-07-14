@@ -1,4 +1,4 @@
 GenericPredefinedWorkflowStartData #class
 gawfs #namespace
-workflowID Integer #field
+workflowID String #field
 workflowID PERSISTENT #fieldModifier

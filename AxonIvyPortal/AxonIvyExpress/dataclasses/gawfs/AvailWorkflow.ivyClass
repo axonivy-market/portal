@@ -1,6 +1,6 @@
 AvailWorkflow #class
 gawfs #namespace
-id Integer #field
+id String #field
 id PERSISTENT #fieldModifier
 processName String #field
 processName PERSISTENT #fieldModifier
