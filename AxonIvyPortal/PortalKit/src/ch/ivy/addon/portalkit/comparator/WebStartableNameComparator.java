@@ -8,7 +8,7 @@ public class WebStartableNameComparator implements Comparator<IWebStartable> {
 
   @Override
   public int compare(IWebStartable first, IWebStartable second) {
-    return first.getName().toLowerCase().compareTo(second.getName().toLowerCase());
+    return first.getDisplayName().toLowerCase().compareTo(second.getDisplayName().toLowerCase());
   }
 
 }
