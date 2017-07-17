@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 06 09:49:31 ICT 2017]
+[>Created: Mon Jul 17 13:42:11 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -72,9 +72,11 @@ Tt0 @PushWFArc f57 '' #zField
 Tt0 @PushWFArc f58 '' #zField
 Tt0 @StartRequest f59 '' #zField
 Tt0 @UserTask f60 '' #zField
-Tt0 @TkArc f61 '' #zField
 Tt0 @EndTask f62 '' #zField
 Tt0 @PushWFArc f63 '' #zField
+Tt0 @GridStep f64 '' #zField
+Tt0 @PushWFArc f65 '' #zField
+Tt0 @TkArc f61 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -1009,18 +1011,37 @@ Tt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f60 480 586 128 44 -58 -8 #rect
+Tt0 f60 480 642 128 44 -58 -8 #rect
 Tt0 f60 @|UserTaskIcon #fIcon
-Tt0 f61 expr out #txt
-Tt0 f61 type internaltest.Data #txt
-Tt0 f61 var in1 #txt
-Tt0 f61 544 527 544 586 #arcP
 Tt0 f62 type internaltest.Data #txt
-Tt0 f62 529 689 30 30 0 15 #rect
+Tt0 f62 529 729 30 30 0 15 #rect
 Tt0 f62 @|EndIcon #fIcon
 Tt0 f63 expr data #txt
 Tt0 f63 outCond ivp=="TaskA.ivp" #txt
-Tt0 f63 544 630 544 689 #arcP
+Tt0 f63 544 686 544 729 #arcP
+Tt0 f64 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f64 actionTable 'out=in;
+' #txt
+Tt0 f64 actionCode 'ivy.case.getBusinessCase().setName("Leave Request Case Map");' #txt
+Tt0 f64 type internaltest.Data #txt
+Tt0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set business case name</name>
+        <nameStyle>22,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f64 472 558 144 44 -69 -8 #rect
+Tt0 f64 @|StepIcon #fIcon
+Tt0 f65 expr out #txt
+Tt0 f65 544 527 544 558 #arcP
+Tt0 f61 expr out #txt
+Tt0 f61 type internaltest.Data #txt
+Tt0 f61 var in1 #txt
+Tt0 f61 544 602 544 642 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1092,7 +1113,9 @@ Tt0 f55 out f57 tail #connect
 Tt0 f57 head f53 mainIn #connect
 Tt0 f55 out f58 tail #connect
 Tt0 f58 head f54 mainIn #connect
-Tt0 f59 mainOut f61 tail #connect
-Tt0 f61 head f60 in #connect
 Tt0 f60 out f63 tail #connect
 Tt0 f63 head f62 mainIn #connect
+Tt0 f59 mainOut f65 tail #connect
+Tt0 f65 head f64 mainIn #connect
+Tt0 f64 mainOut f61 tail #connect
+Tt0 f61 head f60 in #connect

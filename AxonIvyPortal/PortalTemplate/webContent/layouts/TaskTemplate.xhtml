@@ -29,7 +29,8 @@
         <div class="Fright Wid70">
           <ui:insert name="process_chain_area">
             <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain startMethod="start"
-              actualStepIndex="#{actualStepIndex}" steps="#{steps}" />
+              actualStepIndex="#{actualStepIndex}" steps="#{steps}" 
+              currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}" stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId)}" />
           </ui:insert>
         </div>
       </div>
