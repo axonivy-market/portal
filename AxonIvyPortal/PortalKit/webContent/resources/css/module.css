@@ -3882,3 +3882,81 @@ margin-top
   top: 50%;
   right: 1rem;
 }
+/*Style for Stages breadcumbs-------------------------------------*/
+.stages-chain {
+  position: relative;
+  float: right;
+  top: 20px;
+  right: 20px;
+  left: -10px;
+  clear: both;
+}
+
+.stages-chain .process-step {
+  width: 100px;
+  height: 50px;
+  display: inline-block;
+  margin: 0px;
+  text-align: center;
+}
+
+.stages-chain .process-step i{
+  font-size: 16px;
+}
+
+.stages-chain .stage-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 28px;
+}
+
+.stages-chain .visited i {
+  color: #555555;
+}
+
+.stages-chain .waiting i {
+  color: #cccccc;
+}
+
+.stages-chain .process-flow {
+  width: 60px;
+  height: 50px;
+  display: inline-block;
+  margin-left: -25px;
+  margin-right: -25px;
+}
+
+.stages-chain .process-flow .flow-txt{
+  position: relative;
+  margin-top: -10px !important;
+  float: left;
+  width: 100%;
+  text-align: center;	
+}
+
+.stages-chain .process-flow .flow-txt .visible { 
+    width: 100%;
+    height: 2px; 
+    margin: 0 auto;
+    background: #cccccc;
+}
+
+.stages-chain .process-flow .flow-txt .none { 
+   display: none;
+}
+
+.stage-title {
+  position: relative;
+  margin-top: -18px !important;
+  float: left;
+  width: 100%;
+  text-align: center;  
+}
+
+.stage-title .stage-name {
+  margin: 0 auto;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
