@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 16:26:18 ICT 2017]
+[>Created: Mon Jul 17 10:37:05 ICT 2017]
 14FEEC13F8B8E7D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
@@ -606,7 +606,8 @@ Ps0 f50 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidget
 ' #txt
 Ps0 f50 actionTable 'out=in;
 ' #txt
-Ps0 f50 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Ps0 f50 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IRole;
@@ -614,21 +615,26 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 
 ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.request.getApplication());
-List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
-for(ExpressProcess wf : workflows) {
-	IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
-	IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
-	if(ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
-  	UserProcess userProcess = new UserProcess();
-  	userProcess.setProcessName(wf.processName);
-  	userProcess.setUserName(wf.processOwner);
-		String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
-  	userProcess.setLink(startLink);
-  	userProcess.setDefaultProcess(false);
-		userProcess.setIcon("fa-code-fork");
-  	in.processes.add(userProcess);
-	}
-}' #txt
+String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+if (!StringUtils.isEmpty(expressStartLink)) {
+	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
+	for(ExpressProcess wf : workflows) {
+		IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
+		IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
+		if(ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
+		  	UserProcess userProcess = new UserProcess();
+		  	userProcess.setProcessName(wf.processName);
+		  	userProcess.setUserName(wf.processOwner);
+			String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
+		  	userProcess.setLink(startLink);
+		  	userProcess.setDefaultProcess(false);
+			userProcess.setIcon("fa-code-fork");
+		  	in.processes.add(userProcess);
+		}
+	}	
+}
+
+' #txt
 Ps0 f50 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
