@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Apr 07 17:06:35 ICT 2015]
-1475D5F3DD0B29B3 3.17 #module
+[>Created: Mon Jul 17 10:42:45 ICT 2017]
+1475D5F3DD0B29B3 3.20 #module
 >Proto >Proto Collection #zClass
 as0 approveLeaveProcess Big #zClass
 as0 RD #cInfo
@@ -20,6 +20,8 @@ as0 @RichDialogProcessEnd f1 '' #zField
 as0 @PushWFArc f2 '' #zField
 as0 @RichDialogProcessStart f3 '' #zField
 as0 @RichDialogEnd f4 '' #zField
+as0 @GridStep f6 '' #zField
+as0 @PushWFArc f7 '' #zField
 as0 @PushWFArc f5 '' #zField
 >Proto as0 as0 approveLeaveProcess #zField
 as0 f0 guid 1475D5F3DF47BD15 #txt
@@ -83,16 +85,37 @@ as0 f3 @|RichDialogProcessStartIcon #fIcon
 as0 f3 -1|-1|-9671572 #nodeStyle
 as0 f4 type internaltest.ui.approveLeave.approveLeaveData #txt
 as0 f4 guid 1475D5F3DFBC19EB #txt
-as0 f4 243 147 26 26 0 12 #rect
+as0 f4 307 147 26 26 0 12 #rect
 as0 f4 @|RichDialogEndIcon #fIcon
 as0 f4 -1|-1|-9671572 #nodeStyle
+as0 f6 actionDecl 'internaltest.ui.approveLeave.approveLeaveData out;
+' #txt
+as0 f6 actionTable 'out=in;
+' #txt
+as0 f6 actionCode ' ivy.case.getBusinessCase().setStageId("postponed");' #txt
+as0 f6 type internaltest.ui.approveLeave.approveLeaveData #txt
+as0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Jump to Cancel Request</name>
+        <nameStyle>22,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+as0 f6 120 138 144 44 -68 -8 #rect
+as0 f6 @|StepIcon #fIcon
+as0 f7 expr out #txt
+as0 f7 77 160 120 160 #arcP
 as0 f5 expr out #txt
-as0 f5 77 160 243 160 #arcP
+as0 f5 264 160 307 160 #arcP
 >Proto as0 .type internaltest.ui.approveLeave.approveLeaveData #txt
 >Proto as0 .processKind HTML_DIALOG #txt
 >Proto as0 -8 -8 16 16 16 26 #rect
 >Proto as0 '' #fIcon
 as0 f0 mainOut f2 tail #connect
 as0 f2 head f1 mainIn #connect
-as0 f3 mainOut f5 tail #connect
+as0 f3 mainOut f7 tail #connect
+as0 f7 head f6 mainIn #connect
+as0 f6 mainOut f5 tail #connect
 as0 f5 head f4 mainIn #connect
