@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 16:28:47 ICT 2017]
+[>Created: Mon Jul 17 10:39:40 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -297,7 +297,8 @@ Gh0 f17 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f17 actionTable 'out=in;
 ' #txt
-Gh0 f17 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Gh0 f17 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.comparator.WebStartableNameComparator;
@@ -307,22 +308,24 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 
 ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.request.getApplication());
-List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
-
-for (ExpressProcess wf : workflows) {
-	String lowercaseKeyword = in.keyword.toLowerCase();
-	if (wf.getProcessName().toLowerCase().contains(lowercaseKeyword) || wf.getProcessDescription().toLowerCase().contains(lowercaseKeyword)) {
-		IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
-		IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
-		
-		if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
-			RemoteWebStartable workflowProcess = new RemoteWebStartable();
-			workflowProcess.setName(wf.processName);
-			workflowProcess.setDisplayName(wf.processName);
-			workflowProcess.setDescription(wf.processDescription);
-			String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
-			workflowProcess.setStartLink(startLink);
-			in.webStartables.add(workflowProcess);
+String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+if (!StringUtils.isEmpty(expressStartLink)) {
+	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
+	for (ExpressProcess wf : workflows) {
+		String lowercaseKeyword = in.keyword.toLowerCase();
+		if (wf.getProcessName().toLowerCase().contains(lowercaseKeyword) || wf.getProcessDescription().toLowerCase().contains(lowercaseKeyword)) {
+			IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
+			IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
+			
+			if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
+				RemoteWebStartable workflowProcess = new RemoteWebStartable();
+				workflowProcess.setName(wf.processName);
+				workflowProcess.setDisplayName(wf.processName);
+				workflowProcess.setDescription(wf.processDescription);
+				String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
+				workflowProcess.setStartLink(startLink);
+				in.webStartables.add(workflowProcess);
+			}
 		}
 	}
 }
