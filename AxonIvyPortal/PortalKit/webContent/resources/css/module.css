@@ -3882,6 +3882,53 @@ margin-top
   top: 50%;
   right: 1rem;
 }
+
+/*Style for express ----------------------------------------------*/
+.express-panel {
+  width: 60%;
+  vertical-align: top;
+  border: none !important;
+}
+
+.express-panel .create-process-button {
+  margin-bottom: 20px;
+  margin-right: 10px;
+  float: right;
+}
+
+.express-start-process-panel,
+.express-start-process-panel .process-list {
+  border: none;
+}
+
+.express-start-process-panel .process-list .separator {
+  border-right: 2px solid #f5f5f5 !important
+}
+
+.express-start-process-panel .process-list .icon-placeholder {
+  text-align: middle;
+  width: 35px;
+  border: none;
+}
+
+.express-start-process-panel .process-list .icon-placeholder .fa {
+  font-size:14px !important;
+}
+
+.express-panel .workflow-data-grid {
+  border: none;
+  width: 100%;
+}
+
+.express-panel .workflow-data-grid .ui-datagrid-content-empty {
+  margin-top: 60px;
+  height: 30px;
+  border: solid 1px;
+  text-align: center;
+  line-height: 2;
+  border-radius: 4px;
+}
+
 /*Style for Stages breadcumbs-------------------------------------*/
 .stages-chain {
   position: relative;
