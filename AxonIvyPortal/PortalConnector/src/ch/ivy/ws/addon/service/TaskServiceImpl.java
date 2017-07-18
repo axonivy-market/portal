@@ -286,11 +286,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
             
             TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
-            TaskQuery finalTaskQuery = TaskQuery.create(); 
-            queryExcludeHiddenTasks(finalTaskQuery);
-            finalTaskQuery.where().and(taskQuery);
+            queryExcludeHiddenTasks(taskQuery);
             
-            List<ITask> tasks = executeTaskQuery(finalTaskQuery, startIndex, count);
+            List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
             List<IvyTask> ivyTasks = new ArrayList<>();
             List<IvyTask> allIvyTasks = new ArrayList<>();
             IvyTaskTransformer transformer = new IvyTaskTransformer(isUrlBuiltFromSystemProperties);
@@ -354,11 +352,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         }
 
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
-        TaskQuery finalTaskQuery = TaskQuery.create(); 
-        queryExcludeHiddenTasks(finalTaskQuery);
-        finalTaskQuery.where().and(taskQuery);
+        queryExcludeHiddenTasks(taskQuery);
         
-        long taskCount = countTasks(finalTaskQuery);
+        long taskCount = countTasks(taskQuery);
         return result(taskCount, errors);
 
       });
@@ -374,12 +370,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery(); 
-            queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
               taskQuery.fromJson(jsonQuery);
             }
+            queryExcludeHiddenTasks(taskQuery);
 
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
@@ -394,8 +389,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
             
-            finalTaskQuery.where().and(taskQuery);
-            CategoryTree categoryTree = CategoryTree.createFor(finalTaskQuery);
+            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
                 CategoryData categoryData = new CategoryData();
@@ -417,12 +411,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery(); 
-            queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
               taskQuery = taskQuery.fromJson(jsonQuery);
             }
+            queryExcludeHiddenTasks(taskQuery);
 
             AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -434,9 +427,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
-            finalTaskQuery.where().and(taskQuery);
             
-            CategoryTree categoryTree = CategoryTree.createFor(finalTaskQuery);
+            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
                 CategoryData categoryData = new CategoryData();
@@ -459,12 +451,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery finalTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
-            queryExcludeHiddenTasks(finalTaskQuery);
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
               taskQuery = taskQuery.fromJson(jsonQuery);
             }
+            queryExcludeHiddenTasks(taskQuery);
 
             AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -475,9 +466,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
-            finalTaskQuery.where().and(taskQuery);
 
-            CategoryTree categoryTree = CategoryTree.createFor(finalTaskQuery);
+            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
                 CategoryData categoryData = new CategoryData();
