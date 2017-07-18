@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -85,7 +87,7 @@ public class TaskTemplateBean {
   }
 
   public List<IStage> getStagesBaseOnCurrentStage(String caseId) {
-    if(caseId == null) {
+    if(StringUtils.isBlank(caseId)) {
       return Collections.emptyList();
     }
     ICase wfCase = Ivy.wf().findCase(Long.parseLong(caseId));
@@ -106,7 +108,7 @@ public class TaskTemplateBean {
   }
 
   public int getIndexOfCurrentStage(String caseId) {
-    if(caseId == null) {
+    if(StringUtils.isBlank(caseId)) {
       return -1;
     }
     ICase wfCase = Ivy.wf().findCase(Long.parseLong(caseId));

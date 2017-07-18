@@ -29,7 +29,7 @@
   </div>
 
   <!-- Stages breadcrumb for CaseMap -->
-  <div class="stages-chain">
+  <div id="stage-breadcrumb" class="stages-chain">
     <c:forEach items="#{cc.attrs.stages}" var="stage" varStatus="counter">
       <h:panelGroup layout="block" id="stage-info-#{counter.index}"
         class="process-step #{cc.attrs.currentIndex eq counter.index ? 'current' :  cc.attrs.currentIndex > counter.index ? 'visited' : 'waiting'}">
