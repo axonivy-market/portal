@@ -45,10 +45,10 @@ public class TaskTemplateBean {
     this.selectedSideStep = selectedSideStep;
   }
 
-  public void startAdhoc() throws Exception{
+  public void startAdhoc() throws Exception {
     PortalNavigator portalNavigator = new PortalNavigator();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-    String  url = processStartCollector.findACMLink();
+    String url = processStartCollector.findACMLink();
     url = url + "?originalTaskId=" + Ivy.wfTask().getId();
     portalNavigator.redirect(url);
   }
@@ -64,11 +64,13 @@ public class TaskTemplateBean {
     return !adhocUrl.isEmpty();
   }
 
-  public List<IStartableSideStep> generateSideStepList(String caseId) throws Exception{
+  public List<IStartableSideStep> generateSideStepList(String caseId) throws Exception {
     if (sideStepList == null && !caseId.isEmpty()) {
       ICase internalCase = Ivy.wf().findCase(Long.parseLong(caseId));
-      ICaseMapService caseMapService = ICaseMapService.get().getCaseMapService(internalCase.getBusinessCase(), Ivy.session().getSessionUser().getUserToken());
-			sideStepList = caseMapService.findStartableSideSteps();
+      ICaseMapService caseMapService =
+          ICaseMapService.get().getCaseMapService(internalCase.getBusinessCase(),
+              Ivy.session().getSessionUser().getUserToken());
+      sideStepList = caseMapService.findStartableSideSteps();
       sortSideStepsByName(sideStepList);
     }
     return sideStepList;
@@ -81,58 +83,62 @@ public class TaskTemplateBean {
   private void sortSideStepsByName(List<IStartableSideStep> sideSteps) {
     sideSteps.sort((s1, s2) -> s1.getName().compareTo(s2.getName()));
   }
-  
+
   public List<IStage> getStagesBaseOnCurrentStage(String caseId) {
-	  ICase wfCase = Ivy.wf().findCase(Long.parseLong(caseId));
-		if (wfCase == null) {
-			return Collections.emptyList();
-		}
-		ICaseMap caseMap = getCaseMapService(wfCase.getBusinessCase()).findCaseMap();
-		if (caseMap == null) {
-			return Collections.emptyList();
-		}
-		List<IStage> stages = caseMap.getStages();
-		//if current stages index smaller or equal than the first stage has terminating flag, 
-		//than just get the sublist from beginning to firstTerminatingStageIndex
-		int firstTerminatingStageIndex = getFirstTerminatingStageIndex(stages);
-		if(firstTerminatingStageIndex >= getIndexOfCurrentStage(caseId)) {
-			stages = stages.subList(0, firstTerminatingStageIndex + 1);
-		}
-		return stages;
+    if(caseId == null) {
+      return Collections.emptyList();
+    }
+    ICase wfCase = Ivy.wf().findCase(Long.parseLong(caseId));
+    if (wfCase == null) {
+      return Collections.emptyList();
+    }
+    ICaseMap caseMap = getCaseMapService(wfCase.getBusinessCase()).findCaseMap();
+    if (caseMap == null) {
+      return Collections.emptyList();
+    }
+    List<IStage> stages = caseMap.getStages();
+    // if current stage is in the main flow, do not display secondary flow
+    int firstTerminatingStageIndex = getFirstTerminatingStageIndex(stages);
+    if (firstTerminatingStageIndex >= getIndexOfCurrentStage(caseId)) {
+      stages = stages.subList(0, firstTerminatingStageIndex + 1);
+    }
+    return stages;
   }
 
   public int getIndexOfCurrentStage(String caseId) {
-		ICase wfCase = Ivy.wf().findCase(Long.parseLong(caseId));
-		if (wfCase == null) {
-			return -1;
-		}
-		return getStages(caseId).indexOf(getCaseMapService(wfCase).findCurrentStage());
+    if(caseId == null) {
+      return -1;
+    }
+    ICase wfCase = Ivy.wf().findCase(Long.parseLong(caseId));
+    if (wfCase == null) {
+      return -1;
+    }
+    return getStages(wfCase).indexOf(getCaseMapService(wfCase).findCurrentStage());
   }
-	
-  private List<IStage> getStages(String caseId) {
-	  ICase wfCase = Ivy.wf().findCase(Long.parseLong(caseId));
-		if (wfCase == null) {
-			return Collections.emptyList();
-		}
-		ICaseMap caseMap = getCaseMapService(wfCase.getBusinessCase()).findCaseMap();
-		if (caseMap == null) {
-			return Collections.emptyList();
-		}
-		return caseMap.getStages();
+
+  private List<IStage> getStages(ICase wfCase) {
+    if (wfCase == null) {
+      return Collections.emptyList();
+    }
+    ICaseMap caseMap = getCaseMapService(wfCase.getBusinessCase()).findCaseMap();
+    if (caseMap == null) {
+      return Collections.emptyList();
+    }
+    return caseMap.getStages();
   }
-	
+
   private ICaseMapService getCaseMapService(ICase wfCase) {
-	  return Ivy.get(ICaseMapService.class).getCaseMapService(wfCase.getBusinessCase());
+    return Ivy.get(ICaseMapService.class).getCaseMapService(wfCase.getBusinessCase());
   }
-	
+
   private int getFirstTerminatingStageIndex(List<IStage> stages) {
-	int counter = 0;
-	for(IStage stage : stages) {
-		if(stage.isTerminating()){
-			return counter;
-		}
-		counter++;
-	}
-	return -1;
+    int counter = 0;
+    for (IStage stage : stages) {
+      if (stage.isTerminating()) {
+        return counter;
+      }
+      counter++;
+    }
+    return -1;
   }
 }
