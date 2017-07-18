@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Mon Mar 20 16:06:10 CET 2017]
-158AC7867D5D538B 3.18 #module
+[>Created: Tue Jul 18 17:47:39 ICT 2017]
+158AC7867D5D538B 3.20 #module
 >Proto >Proto Collection #zClass
 ee0 endPage Big #zClass
 ee0 B #cInfo
@@ -41,16 +41,8 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
-ee0 f0 showInStartList 1 #txt
-ee0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
+ee0 f0 caseData businessCase.attach=false #txt
+ee0 f0 showInStartList 0 #txt
 ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
