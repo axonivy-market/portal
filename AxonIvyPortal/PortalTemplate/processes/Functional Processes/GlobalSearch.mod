@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jul 17 10:39:40 ICT 2017]
+[>Created: Tue Jul 18 11:34:02 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -146,8 +146,7 @@ if (TaskUtils.checkReadAllTasksPermission() == true){
 queryCriteria.includedStates = states;
 queryCriteria.keyword = in.keyword;
 queryCriteria.newQueryCreated = true;
-queryCriteria.setSortDescending(true);
-queryCriteria.setSortField(TaskSortField.ID.toString());
+queryCriteria.setSortField(TaskSortField.NAME.toString());
 queryCriteria.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 in.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
@@ -188,8 +187,7 @@ states.add(CaseState.RUNNING);
 
 in.caseSearchCriteria.keyword = in.keyword;
 in.caseSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());
-in.caseSearchCriteria.setSortedField(CaseSortedField.ID);
-in.caseSearchCriteria.setSortingDescending(true);
+in.caseSearchCriteria.setSortedField(CaseSortedField.NAME);
 in.caseSearchCriteria.setBusinessCase(true);
 in.caseSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllCasesPermission());
 if (TaskUtils.checkReadAllCasesPermission() == true){
