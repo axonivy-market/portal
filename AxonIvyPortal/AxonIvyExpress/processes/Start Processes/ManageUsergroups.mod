@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 30 16:47:40 ICT 2017]
+[>Created: Tue Jul 18 17:47:46 ICT 2017]
 1589822F106E69C9 3.20 #module
 >Proto >Proto Collection #zClass
 Ms0 ManageUsergroups Big #zClass
@@ -37,7 +37,7 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Ms0 f0 caseData businessCase.attach=false #txt
-Ms0 f0 showInStartList 1 #txt
+Ms0 f0 showInStartList 0 #txt
 Ms0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
