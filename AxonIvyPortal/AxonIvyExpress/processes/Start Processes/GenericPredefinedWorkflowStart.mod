@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 11:46:54 ICT 2017]
+[>Created: Tue Jul 18 17:46:02 ICT 2017]
 15797DC22608DA55 3.20 #module
 >Proto >Proto Collection #zClass
 Gt0 GenericPredefinedWorkflowStart Big #zClass
@@ -117,7 +117,8 @@ Gt0 f5 caseData 'case.name=Prozess gel\u00F6scht
 case.description=Ein Prozess wurde gel\u00F6scht
 customFields.varchar.1="DELETE_WF"
 businessCase.attach=false' #txt
-Gt0 f5 showInStartList 1 #txt
+Gt0 f5 wfuser 1 #txt
+Gt0 f5 showInStartList 0 #txt
 Gt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -156,7 +157,8 @@ Gt0 f6 caseData 'case.name=Workflow editieren
 case.description=Bearbeiten eines exitierenden Workflows
 customFields.varchar.1="EDITING_WF"
 businessCase.attach=false' #txt
-Gt0 f6 showInStartList 1 #txt
+Gt0 f6 wfuser 1 #txt
+Gt0 f6 showInStartList 0 #txt
 Gt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Oct 05 22:38:40 PDT 2016]
-1574EC0ADCD99718 3.18 #module
+[>Created: Tue Jul 18 17:44:35 ICT 2017]
+1574EC0ADCD99718 3.20 #module
 >Proto >Proto Collection #zClass
 Dt0 DevBuildWorkflow Big #zClass
 Dt0 B #cInfo
@@ -31,10 +31,22 @@ Dt0 f0 guid 1578123DBC99E740 #txt
 Dt0 f0 requestEnabled true #txt
 Dt0 f0 triggerEnabled false #txt
 Dt0 f0 callSignature start() #txt
+Dt0 f0 persist false #txt
+Dt0 f0 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f0 caseData businessCase.attach=false #txt
+Dt0 f0 wfuser 1 #txt
+Dt0 f0 showInStartList 0 #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
+        <nameStyle>9,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
