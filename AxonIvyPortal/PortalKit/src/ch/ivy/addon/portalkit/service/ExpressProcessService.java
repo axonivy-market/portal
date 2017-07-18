@@ -9,7 +9,7 @@ import ch.ivy.addon.portalkit.bo.ExpressProcess;
 public class ExpressProcessService extends AbstractExpressService<ExpressProcess> {
 
   public List<ExpressProcess> findAllOrderByName() {
-    if (repo().search(getType()).execute().count() > 0) {
+    if (repo().search(getType()).execute().totalCount() > 0) {
       return repo().search(getType()).orderBy().textField("processName").ascending().execute().getAll();
     }
     return Collections.emptyList();
