@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue May 30 17:07:53 ICT 2017]
+[>Created: Tue Jul 18 11:09:53 ICT 2017]
 1576E76B009E23DD 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStartGAFWS Big #zClass
@@ -37,11 +37,14 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Pt0 f0 caseData businessCase.attach=false #txt
+Pt0 f0 wfuser 1 #txt
 Pt0 f0 showInStartList 1 #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>AxonIvyExpress.ivp</name>
+        <nameStyle>18,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
