@@ -1,3 +1,0 @@
-co: name={GroupName} description={} changed={2017-05-22 13:28:46 CEST} changedby={t} visualorder={0} guid={15899B6AD4C6A35B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BECD9F3AEE834C} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:55:54 CEST} validto={} changed={2017-05-09 12:55:58 CEST} changedby={ldnam} properties={} id={}
-val: guid={15899B6AD505D7C8} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:20:35 CET} validto={} changed={2017-05-22 13:28:46 CEST} changedby={t} properties={} id={}
