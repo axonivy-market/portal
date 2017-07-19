@@ -23,6 +23,8 @@
 <xs:element name="findTaskNotesResponse" type="tns:findTaskNotesResponse"></xs:element>
 <xs:element name="findTasksByCriteria" type="tns:findTasksByCriteria"></xs:element>
 <xs:element name="findTasksByCriteriaResponse" type="tns:findTasksByCriteriaResponse"></xs:element>
+<xs:element name="findUnassignedTaskCategories" type="tns:findUnassignedTaskCategories"></xs:element>
+<xs:element name="findUnassignedTaskCategoriesResponse" type="tns:findUnassignedTaskCategoriesResponse"></xs:element>
 <xs:element name="parkTask" type="tns:parkTask"></xs:element>
 <xs:element name="parkTaskResponse" type="tns:parkTaskResponse"></xs:element>
 <xs:element name="resetTask" type="tns:resetTask"></xs:element>
@@ -419,6 +421,24 @@
       <xs:element minOccurs="0" name="ivyTask" type="tns:ivyTask"></xs:element>
     </xs:sequence>
   </xs:complexType>
+<xs:complexType name="findUnassignedTaskCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findUnassignedTaskCategoriesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findUnassignedTaskCategoriesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findUnassignedTaskCategoriesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
 <xs:complexType name="findTaskNotes">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
@@ -560,6 +580,10 @@
     <wsdl:part element="tns:canUserResumeTask" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="findUnassignedTaskCategoriesResponse">
+    <wsdl:part element="tns:findUnassignedTaskCategoriesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="findTasksByCriteriaResponse">
     <wsdl:part element="tns:findTasksByCriteriaResponse" name="parameters">
     </wsdl:part>
@@ -618,6 +642,10 @@
   </wsdl:message>
   <wsdl:message name="countTasksByCriteriaResponse">
     <wsdl:part element="tns:countTasksByCriteriaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUnassignedTaskCategories">
+    <wsdl:part element="tns:findUnassignedTaskCategories" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="findTaskNotes">
@@ -725,6 +753,14 @@
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="findUnassignedTaskCategories">
+      <wsdl:input message="tns:findUnassignedTaskCategories" name="findUnassignedTaskCategories">
+    </wsdl:input>
+      <wsdl:output message="tns:findUnassignedTaskCategoriesResponse" name="findUnassignedTaskCategoriesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="findTaskNotes">
       <wsdl:input message="tns:findTaskNotes" name="findTaskNotes">
     </wsdl:input>
@@ -816,24 +852,24 @@
         <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="setAdditionalProperty">
-      <soap:operation soapAction="" style="document"></soap:operation>
-      <wsdl:input name="setAdditionalProperty">
-        <soap:body use="literal"></soap:body>
-      </wsdl:input>
-      <wsdl:output name="setAdditionalPropertyResponse">
-        <soap:body use="literal"></soap:body>
-      </wsdl:output>
-      <wsdl:fault name="WebServiceProcessTechnicalException">
-        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="analyzeExpiryStatistic">
       <soap:operation soapAction="" style="document"></soap:operation>
       <wsdl:input name="analyzeExpiryStatistic">
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="analyzeExpiryStatisticResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setAdditionalProperty">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="setAdditionalProperty">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setAdditionalPropertyResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
@@ -882,6 +918,18 @@
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="delegateTaskResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findUnassignedTaskCategories">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findUnassignedTaskCategories">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findUnassignedTaskCategoriesResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
