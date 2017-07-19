@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 16:31:50 ICT 2017]
+[>Created: Wed Jul 19 11:00:11 ICT 2017]
 15797F0F040DE913 3.20 #module
 >Proto >Proto Collection #zClass
 dw0 deletePredefinedWorkflow Big #zClass
@@ -57,7 +57,6 @@ ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(in.workflowI
 ExpressServiceRegistry.getFormElementService().deleteByProcessId(in.workflowID);
 
 ivy.log.debug("WORKFLOW has Id {0} is DELETED by  TaskId {1}, CaseId {2}", in.workflowID, ivy.task.getId(),  ivy.case.getId());
-ivy.log.debug(ivy.case.getCustomVarCharField1());
 ' #txt
 dw0 f3 type gawfs.deletePredefinedWorkflowData #txt
 dw0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
