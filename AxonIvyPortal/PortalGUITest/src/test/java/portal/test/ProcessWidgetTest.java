@@ -18,7 +18,7 @@ import com.jayway.awaitility.Duration;
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
-  private static final String CASE_MAP_LEAVES = "caseMapLeaves";
+  private static final String CASE_MAP_LEAVES = "Case Map Leave";
   
   private HomePage homePage;
   ProcessWidgetPage processWidget;
