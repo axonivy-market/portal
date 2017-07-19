@@ -1,0 +1,3 @@
+co: name={UnassignedTasks} description={} changed={2017-07-19 10:01:58 CEST} changedby={dhtlong} visualorder={0} guid={15D59DD45FDEEEDB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15D59DD46069163B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-09-05 12:38:06 CEST} validto={} changed={2017-07-19 10:01:58 CEST} changedby={dhtlong} properties={} id={}
+val: guid={015D59DD4610CEED} datatype={} isdefault={false} langid={de} description={} validfrom={2016-09-05 12:38:32 CEST} validto={} changed={2017-07-19 10:01:57 CEST} changedby={dhtlong} properties={} id={}

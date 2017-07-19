@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 02 14:09:59 ICT 2017]
+[>Created: Wed Jul 19 15:19:12 ICT 2017]
 14E8BC51CC56193A 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskServiceIntegrator Big #zClass
@@ -204,6 +204,21 @@ Te0 @PushWFArc f189 '' #zField
 Te0 @PushWFArc f190 '' #zField
 Te0 @PushWFArc f191 '' #zField
 Te0 @PushWFArc f192 '' #zField
+Te0 @GridStep f193 '' #zField
+Te0 @WSElement f194 '' #zField
+Te0 @WSElement f195 '' #zField
+Te0 @Alternative f196 '' #zField
+Te0 @WSElement f197 '' #zField
+Te0 @StartSub f198 '' #zField
+Te0 @EndSub f199 '' #zField
+Te0 @PushWFArc f200 '' #zField
+Te0 @PushWFArc f201 '' #zField
+Te0 @PushWFArc f202 '' #zField
+Te0 @PushWFArc f203 '' #zField
+Te0 @PushWFArc f204 '' #zField
+Te0 @PushWFArc f205 '' #zField
+Te0 @PushWFArc f206 '' #zField
+Te0 @PushWFArc f207 '' #zField
 >Proto Te0 Te0 TaskServiceIntegrator #zField
 Te0 f7 .resExport export #txt
 Te0 f7 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -2817,6 +2832,207 @@ Te0 f192 expr in #txt
 Te0 f192 2798 576 2944 660 #arcP
 Te0 f192 1 2944 576 #addKink
 Te0 f192 0 0.7875410210393261 0 0 #arcLabel
+Te0 f193 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f193 actionTable 'out=in;
+' #txt
+Te0 f193 actionCode 'import java.util.Locale;
+
+Locale emailLanguage = ivy.cms.getDefaultLanguage();
+if (ivy.session.getSessionUser().getEMailLanguage() != null) {
+	emailLanguage = ivy.session.getSessionUser().getEMailLanguage();
+}
+
+in.language = emailLanguage.toLanguageTag();' #txt
+Te0 f193 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f193 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get user language</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f193 2257 893 36 24 20 -2 #rect
+Te0 f193 @|StepIcon #fIcon
+Te0 f194 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f194 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f194 actionTable 'out=in;
+out.categories=wsResponse.findUnassignedTaskCategoriesResponse.result.categories;
+out.errors=wsResponse.findUnassignedTaskCategoriesResponse.result.errors;
+' #txt
+Te0 f194 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f194 timeout 10 #txt
+Te0 f194 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=findUnassignedTaskCategories
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findUnassignedTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findUnassignedTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findUnassignedTaskCategories.language__@@__String__@@__in.language"""' #txt
+Te0 f194 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f194 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f194 returningObjectList '[wsResponse]' #txt
+Te0 f194 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f194 2257 1053 36 24 20 -2 #rect
+Te0 f194 @|WebServiceIcon #fIcon
+Te0 f195 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f195 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f195 actionTable 'out=in;
+out.categories=wsResponse.findUnassignedTaskCategoriesResponse.result.categories;
+out.errors=wsResponse.findUnassignedTaskCategoriesResponse.result.errors;
+' #txt
+Te0 f195 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f195 timeout 10 #txt
+Te0 f195 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=findUnassignedTaskCategories
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findUnassignedTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findUnassignedTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findUnassignedTaskCategories.language__@@__String__@@__in.language"""' #txt
+Te0 f195 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f195 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f195 returningObjectList '[wsResponse]' #txt
+Te0 f195 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f195 2097 1053 36 24 20 -2 #rect
+Te0 f195 @|WebServiceIcon #fIcon
+Te0 f196 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f196 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f196 2261 955 28 28 14 -22 #rect
+Te0 f196 @|AlternativeIcon #fIcon
+Te0 f197 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f197 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f197 actionTable 'out=in;
+out.categories=wsResponse.findUnassignedTaskCategoriesResponse.result.categories;
+out.errors=wsResponse.findUnassignedTaskCategoriesResponse.result.errors;
+' #txt
+Te0 f197 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f197 timeout 10 #txt
+Te0 f197 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=findUnassignedTaskCategories
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findUnassignedTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findUnassignedTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findUnassignedTaskCategories.language__@@__String__@@__in.language"""' #txt
+Te0 f197 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f197 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f197 returningObjectList '[wsResponse]' #txt
+Te0 f197 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f197 2417 1053 36 24 20 -2 #rect
+Te0 f197 @|WebServiceIcon #fIcon
+Te0 f198 inParamDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f198 inParamTable 'out.applicationNames=param.apps;
+out.endpoint=param.endpoint;
+out.jsonQuery=param.jsonQuery;
+out.server=param.server;
+' #txt
+Te0 f198 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f198 outParamTable 'result.categories=in.categories;
+result.errors=in.errors;
+' #txt
+Te0 f198 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f198 callSignature findUnassignedCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f198 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f198 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findUnassignedCategories(String,List&lt;String&gt;,Server,String)</name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f198 2262 828 26 26 14 0 #rect
+Te0 f198 @|StartSubIcon #fIcon
+Te0 f199 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f199 2262 1148 26 26 14 0 #rect
+Te0 f199 @|EndSubIcon #fIcon
+Te0 f200 expr out #txt
+Te0 f200 2435 1077 2288 1161 #arcP
+Te0 f200 1 2435 1161 #addKink
+Te0 f200 1 0.3353862987498499 0 0 #arcLabel
+Te0 f201 expr out #txt
+Te0 f201 2275 1077 2275 1148 #arcP
+Te0 f202 expr in #txt
+Te0 f202 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Te0 f202 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f202 2275 983 2275 1053 #arcP
+Te0 f203 expr out #txt
+Te0 f203 2115 1077 2262 1161 #arcP
+Te0 f203 1 2115 1161 #addKink
+Te0 f203 1 0.20679742620065877 0 0 #arcLabel
+Te0 f204 expr out #txt
+Te0 f204 2275 854 2275 893 #arcP
+Te0 f205 expr in #txt
+Te0 f205 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Te0 f205 2261 969 2115 1053 #arcP
+Te0 f205 1 2115 969 #addKink
+Te0 f205 0 0.7954957451949382 0 0 #arcLabel
+Te0 f206 expr out #txt
+Te0 f206 2275 917 2275 955 #arcP
+Te0 f207 expr in #txt
+Te0 f207 2289 969 2435 1053 #arcP
+Te0 f207 1 2435 969 #addKink
+Te0 f207 0 0.7875410210393261 0 0 #arcLabel
 >Proto Te0 .type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 0 0 32 24 18 0 #rect
@@ -3027,3 +3243,19 @@ Te0 f162 out f192 tail #connect
 Te0 f192 head f159 mainIn #connect
 Te0 f154 mainOut f187 tail #connect
 Te0 f187 head f162 in #connect
+Te0 f196 out f202 tail #connect
+Te0 f202 head f194 mainIn #connect
+Te0 f194 mainOut f201 tail #connect
+Te0 f201 head f199 mainIn #connect
+Te0 f197 mainOut f200 tail #connect
+Te0 f200 head f199 mainIn #connect
+Te0 f196 out f205 tail #connect
+Te0 f205 head f195 mainIn #connect
+Te0 f195 mainOut f203 tail #connect
+Te0 f203 head f199 mainIn #connect
+Te0 f196 out f207 tail #connect
+Te0 f207 head f197 mainIn #connect
+Te0 f198 mainOut f204 tail #connect
+Te0 f204 head f193 mainIn #connect
+Te0 f193 mainOut f206 tail #connect
+Te0 f206 head f196 in #connect

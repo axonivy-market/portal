@@ -308,7 +308,7 @@ function removeAppNameAndMenuTypeFromPath(menuItemPath) {
 
 function getCategoryClass(element) {
 	var elementClass = $(element).attr("class");
-	var category = /(All_Tasks|My_Tasks|Group_Tasks)[^\s\\]*\b/.exec(elementClass);
+	var category = /(All_Tasks|My_Tasks|Group_Tasks|Unassigned_Tasks)[^\s\\]*\b/.exec(elementClass);
 	if (category != null && category.length > 0) {
 		return category[0];
 	}
