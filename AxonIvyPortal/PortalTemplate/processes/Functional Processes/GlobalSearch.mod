@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jul 18 11:34:02 ICT 2017]
+[>Created: Wed Jul 19 10:14:53 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -126,7 +126,7 @@ Gh0 f8 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 Gh0 f8 actionTable 'out=in;
 ' #txt
 Gh0 f8 actionCode 'import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.enums.TaskAssigneeType;;
+import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
