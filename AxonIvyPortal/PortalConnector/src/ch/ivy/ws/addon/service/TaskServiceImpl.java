@@ -482,6 +482,39 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       throw new WSException(10016, e);
     }
   }
+  
+  @SuppressWarnings("static-access")
+  @Override
+  public TaskServiceResult findUnassignedTaskCategories(String jsonQuery, List<String> apps, String language) throws WSException {
+    List<WSException> errors = Collections.emptyList();
+    try {
+      return securityManager().executeAsSystem(
+          () -> {
+            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+            if (StringUtils.isNotBlank(jsonQuery)) {
+              taskQuery = taskQuery.fromJson(jsonQuery);
+            }
+            queryExcludeHiddenTasks(taskQuery);
+
+            taskQuery.where().and(queryForInvolvedApplications(apps));
+            taskQuery.where().and(queryForStates(Arrays.asList(TaskState.UNASSIGNED)));
+            taskQuery.where().and().category().isNotNull();
+            
+            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
+            List<CategoryData> categories = new ArrayList<>();
+            categoryTree.getAllChildren().forEach(category -> {
+                CategoryData categoryData = new CategoryData();
+                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+                categoryData.setRawPath(category.getRawPath());
+                categories.add(categoryData);
+              });
+
+            return result(categories, errors);
+          });
+    } catch (Exception e) {
+      throw new WSException(10016, e);
+    }
+  }
 
   @Override
   public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException {

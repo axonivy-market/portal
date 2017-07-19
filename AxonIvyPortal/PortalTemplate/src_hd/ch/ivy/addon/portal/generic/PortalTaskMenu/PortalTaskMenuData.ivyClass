@@ -23,3 +23,5 @@ groupTaskCategories PERSISTENT #fieldModifier
 jsonQuery String #field
 jsonQuery 'Customized TaskQuery' #fieldComment
 jsonQuery PERSISTENT #fieldModifier
+unassignedTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+unassignedTaskCategories PERSISTENT #fieldModifier

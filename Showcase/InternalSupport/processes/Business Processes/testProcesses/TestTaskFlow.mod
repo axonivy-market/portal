@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jul 17 13:42:11 ICT 2017]
+[>Created: Wed Jul 19 18:19:06 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -133,7 +133,7 @@ TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=Annual Leave Request
 TaskA.PRI=2
-TaskA.ROL="demo"
+TaskA.ROL="demo1"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
 TaskA.customFields.varchar.1="Annual CustomVarCharField1"
@@ -149,9 +149,9 @@ TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
 TaskB.NAM=Sick Leave Request
 TaskB.PRI=1
-TaskB.ROL=Everybody
+TaskB.ROL="aa"
 TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
+TaskB.TYPE=3
 TaskB.customFields.varchar.1="Sick CustomVarCharField1"
 TaskB.customFields.varchar.2="Sick CustomVarCharField2"
 TaskB.customFields.varchar.3="Sick CustomVarCharField3"
@@ -524,7 +524,8 @@ Tt0 f27 actionTable 'out=in1;
 ' #txt
 Tt0 f27 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Tt0 f27 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f27 taskData 'TaskA.DESC=Annual Leave Request Description
+Tt0 f27 taskData 'TaskA.CATEGORY=AnnualLeave
+TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
