@@ -101,12 +101,12 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
                         // default user settings???
                         if (user.getEMailNotificationSettings().isUseApplicationDefault()) {
                           Ivy.log().debug("default languages");
-                          result.setUserLanguage(app.getDefaultEMailLanguage().getLanguage());
+                          result.setUserLanguage(app.getDefaultEMailLanguage().toLanguageTag().toLowerCase());
                         } else {
                           if (user.getEMailLanguage() != null) {
-                            result.setUserLanguage(user.getEMailLanguage().getLanguage());
+                            result.setUserLanguage(user.getEMailLanguage().toLanguageTag().toLowerCase());
                           } else {
-                            result.setUserLanguage(Locale.ENGLISH.getLanguage());
+                            result.setUserLanguage(Locale.ENGLISH.toLanguageTag().toLowerCase());
                           }
                         }
                       } else {
