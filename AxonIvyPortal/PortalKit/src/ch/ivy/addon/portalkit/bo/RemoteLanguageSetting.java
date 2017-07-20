@@ -32,7 +32,7 @@ public class RemoteLanguageSetting {
     items.clear();
     if (supportedLanguages != null) {
       for (String item : supportedLanguages) {
-        SelectItem it = new SelectItem(item, getDisplayLanguage(item));
+        SelectItem it = new SelectItem(item.toLowerCase(), getDisplayLanguage(item.toLowerCase()));
         items.add(it);
       }
     }
