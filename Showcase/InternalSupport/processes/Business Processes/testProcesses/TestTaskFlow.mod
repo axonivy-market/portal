@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 19 18:19:06 ICT 2017]
+[>Created: Thu Jul 20 08:59:59 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -133,7 +133,7 @@ TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=Annual Leave Request
 TaskA.PRI=2
-TaskA.ROL="demo1"
+TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
 TaskA.customFields.varchar.1="Annual CustomVarCharField1"
@@ -149,9 +149,9 @@ TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
 TaskB.NAM=Sick Leave Request
 TaskB.PRI=1
-TaskB.ROL="aa"
+TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=3
+TaskB.TYPE=0
 TaskB.customFields.varchar.1="Sick CustomVarCharField1"
 TaskB.customFields.varchar.2="Sick CustomVarCharField2"
 TaskB.customFields.varchar.3="Sick CustomVarCharField3"
