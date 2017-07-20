@@ -343,7 +343,7 @@ public class TaskBean {
   }
   
   public boolean isNotDone(RemoteTask task) {
-    EnumSet<TaskState> taskStages = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED);
+    EnumSet<TaskState> taskStages = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED);
     return taskStages.contains(task.getState());
   }
   
