@@ -1,3 +1,4 @@
-co: name={addNewSetting} description={} changed={2015-11-20 15:55:22 CET} changedby={t} visualorder={0} guid={150F4AE3A209CA04} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={addNewSetting} description={} changed={2017-07-24 11:49:01 CEST} changedby={dhtlong} visualorder={0} guid={150F4AE3A209CA04} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15D73FFF9AA1184F} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:01 CEST} validto={} changed={2017-07-24 11:49:01 CEST} changedby={dhtlong} properties={} id={}
 val: guid={150F4AE3A21F0D6E} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-11 10:28:22 CET} validto={} changed={2015-11-11 04:54:30 CET} changedby={lvcthanh} properties={} id={}
 val: guid={15125648079A1934} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:22 CET} validto={} changed={2015-11-20 15:55:22 CET} changedby={t} properties={} id={}

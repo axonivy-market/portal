@@ -1,2 +1,3 @@
-co: name={DeletePropertiesOfServerDescription} description={} changed={2017-01-19 11:49:55 CET} changedby={anhnguyenhoang} visualorder={0} guid={159B64D4E5B5A1A2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={DeletePropertiesOfServerDescription} description={} changed={2017-07-24 11:49:00 CEST} changedby={dhtlong} visualorder={0} guid={159B64D4E5B5A1A2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15D73FFF59DA1AF1} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:00 CEST} validto={} changed={2017-07-24 11:49:00 CEST} changedby={dhtlong} properties={} id={}
 val: guid={159B64D4E6B33468} datatype={} isdefault={true} langid={en} description={} validfrom={2017-01-19 11:37:16 CET} validto={} changed={2017-01-19 11:37:16 CET} changedby={anhnguyenhoang} properties={} id={}

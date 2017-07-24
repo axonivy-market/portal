@@ -1,3 +1,4 @@
-co: name={portalHome} description={} changed={2017-01-24 12:25:55 CET} changedby={mnhnam} visualorder={0} guid={1537EED2B5371949} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1537EED662871E33} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-16 11:16:32 CET} validto={} changed={2017-01-24 12:25:55 CET} changedby={mnhnam} properties={} id={}
+co: name={portalHome} description={} changed={2017-07-24 11:51:33 CEST} changedby={dhtlong} visualorder={0} guid={1537EED2B5371949} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1537EED662871E33} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-16 11:16:32 CET} validto={} changed={2017-07-24 11:51:33 CEST} changedby={dhtlong} properties={} id={}
 val: guid={1537EED2B5DCFCCA} datatype={} isdefault={true} langid={en} description={} validfrom={2016-03-16 11:16:25 CET} validto={} changed={2017-01-24 12:25:55 CET} changedby={mnhnam} properties={} id={}
+val: guid={15D74004F0C727DA} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:23 CEST} validto={} changed={2017-07-24 11:49:23 CEST} changedby={dhtlong} properties={} id={}

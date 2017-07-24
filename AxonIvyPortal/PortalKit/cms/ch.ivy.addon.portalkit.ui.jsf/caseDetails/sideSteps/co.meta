@@ -1,3 +1,4 @@
-co: name={sideSteps} description={} changed={2017-06-02 04:44:49 CEST} changedby={lttung} visualorder={0} guid={15C42D6773F32430} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15C42D6775B806E1} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-15 08:35:15 CEST} validto={} changed={2017-06-02 04:44:49 CEST} changedby={lttung} properties={} id={}
+co: name={sideSteps} description={} changed={2017-07-24 11:59:24 CEST} changedby={dhtlong} visualorder={0} guid={15C42D6773F32430} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15D740977EFD50DC} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:58:46 CEST} validto={} changed={2017-07-24 11:59:23 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15C42D6775B806E1} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-15 08:35:15 CEST} validto={} changed={2017-07-24 11:59:23 CEST} changedby={dhtlong} properties={} id={}
 val: guid={15C42D6774C75A03} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-15 08:33:32 CEST} validto={} changed={2017-06-02 04:44:41 CEST} changedby={lttung} properties={} id={}

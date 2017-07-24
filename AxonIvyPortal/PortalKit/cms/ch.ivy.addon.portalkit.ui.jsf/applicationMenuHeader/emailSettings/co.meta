@@ -1,3 +1,4 @@
-co: name={emailSettings} description={} changed={2016-12-21 15:20:52 CET} changedby={t} visualorder={0} guid={14C27528407A22D4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={emailSettings} description={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} visualorder={0} guid={14C27528407A22D4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={14CA1F94A38E9A07} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:52 CET} validto={} changed={2016-12-21 15:20:52 CET} changedby={t} properties={} id={}
 val: guid={14C2752840BF422D} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:52 CET} validto={} changed={2016-12-21 15:20:52 CET} changedby={t} properties={} id={}
+val: guid={15D73FFFE0881641} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} properties={} id={}

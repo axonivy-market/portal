@@ -1,3 +1,4 @@
-co: name={holidayRequestList} description={} changed={2016-12-21 15:20:55 CET} changedby={t} visualorder={0} guid={14C58FEF66F6A8EE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={holidayRequestList} description={} changed={2017-07-24 11:49:03 CEST} changedby={dhtlong} visualorder={0} guid={14C58FEF66F6A8EE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15921C19F1A8E9E4} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:55 CET} validto={} changed={2016-12-21 15:20:55 CET} changedby={t} properties={} id={}
 val: guid={14C58FEF67D436E4} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:55 CET} validto={} changed={2016-12-21 15:20:55 CET} changedby={t} properties={} id={}
+val: guid={15D7400007135832} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:03 CEST} validto={} changed={2017-07-24 11:49:03 CEST} changedby={dhtlong} properties={} id={}
