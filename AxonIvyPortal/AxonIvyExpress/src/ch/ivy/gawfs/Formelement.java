@@ -9,8 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.IPersistentChildObject;
-import ch.ivyteam.ivy.persistence.IPersistentObject;
 
 @ManagedBean(name = "Formelement")
 @ViewScoped
@@ -50,8 +48,13 @@ public class Formelement implements Serializable{
 	
 	public String getOptionsAsString(){
 		String x = "";
-		for(String s: this.optionsStr){	
-			x += s + ":";
+		for(String s: this.optionsStr){
+		  if(this.optionsStr.size() > 1) {
+		    x += s + ":";
+		  }
+		  else {
+		    x += s;
+		  }
 		}
 		if(x.length()>1){
 			x = x.substring( 0, x.length() - 1 );
