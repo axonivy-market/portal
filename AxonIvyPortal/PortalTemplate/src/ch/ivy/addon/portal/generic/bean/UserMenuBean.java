@@ -37,6 +37,7 @@ public class UserMenuBean {
 
   public void logout() {
     Ivy.session().logoutSessionUser();
+    Ivy.session().getSecurityContext().destroySession(Ivy.session().getIdentifier());
   }
 
   public String getUserName() {
