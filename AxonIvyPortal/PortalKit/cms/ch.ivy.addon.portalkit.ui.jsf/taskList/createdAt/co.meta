@@ -1,3 +1,4 @@
-co: name={createdAt} description={} changed={2014-07-22 09:48:04 GMT} changedby={roman} visualorder={0} guid={1475D77EAAE9C3AD} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1475D77EAB2FBE73} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-22 09:47:25 GMT} validto={} changed={2014-07-22 09:47:36 GMT} changedby={roman} properties={} id={}
-val: guid={1475D7814F1F02AC} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-22 09:47:36 GMT} validto={} changed={2014-07-22 09:48:04 GMT} changedby={roman} properties={} id={}
+co: name={createdAt} description={} changed={2017-07-24 11:49:07 CEST} changedby={dhtlong} visualorder={0} guid={1475D77EAAE9C3AD} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15D74000F824D111} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-07-24 11:49:07 CEST} changedby={dhtlong} properties={} id={}
+val: guid={1475D77EAB2FBE73} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-22 11:47:25 CEST} validto={} changed={2014-07-22 11:47:36 CEST} changedby={roman} properties={} id={}
+val: guid={1475D7814F1F02AC} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-22 11:47:36 CEST} validto={} changed={2014-07-22 11:48:04 CEST} changedby={roman} properties={} id={}

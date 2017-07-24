@@ -1,3 +1,4 @@
-co: name={panelHeader} description={} changed={2015-04-10 11:51:16 CEST} changedby={Johannes} visualorder={0} guid={14B3406CDF3DAF97} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14B3406CDFC8895B} datatype={} isdefault={true} langid={en} description={} validfrom={2015-01-29 05:26:01 CET} validto={} changed={2015-02-02 07:44:45 CET} changedby={Ngqhuy} properties={} id={}
+co: name={panelHeader} description={} changed={2017-07-24 11:49:05 CEST} changedby={dhtlong} visualorder={0} guid={14B3406CDF3DAF97} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15D7400088436716} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-07-24 11:49:05 CEST} changedby={dhtlong} properties={} id={}
 val: guid={14CA2BD989EDE36E} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 11:51:08 CEST} validto={} changed={2015-04-10 11:51:16 CEST} changedby={Johannes} properties={} id={}
+val: guid={14B3406CDFC8895B} datatype={} isdefault={true} langid={en} description={} validfrom={2015-01-29 05:26:01 CET} validto={} changed={2015-02-02 07:44:45 CET} changedby={Ngqhuy} properties={} id={}

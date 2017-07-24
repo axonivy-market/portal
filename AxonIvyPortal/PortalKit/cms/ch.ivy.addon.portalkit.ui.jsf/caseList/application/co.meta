@@ -1,3 +1,4 @@
-co: name={application} description={} changed={2014-07-15 14:08:13 GMT} changedby={roman} visualorder={0} guid={1473A59ED60E4D56} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1473A59ED632A5E2} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-15 14:07:57 GMT} validto={} changed={2014-07-15 14:08:04 GMT} changedby={roman} properties={} id={}
-val: guid={1473A5A075CC92A0} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-15 14:08:04 GMT} validto={} changed={2014-07-15 14:08:13 GMT} changedby={roman} properties={} id={}
+co: name={application} description={} changed={2017-07-24 11:49:03 CEST} changedby={dhtlong} visualorder={0} guid={1473A59ED60E4D56} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1473A59ED632A5E2} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-15 16:07:57 CEST} validto={} changed={2014-07-15 16:08:04 CEST} changedby={roman} properties={} id={}
+val: guid={15D73FFFF997C1A3} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:03 CEST} validto={} changed={2017-07-24 11:49:03 CEST} changedby={dhtlong} properties={} id={}
+val: guid={1473A5A075CC92A0} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-15 16:08:04 CEST} validto={} changed={2014-07-15 16:08:13 CEST} changedby={roman} properties={} id={}

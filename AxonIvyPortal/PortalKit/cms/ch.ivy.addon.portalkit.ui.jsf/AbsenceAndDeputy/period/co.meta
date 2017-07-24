@@ -1,3 +1,4 @@
-co: name={period} description={} changed={2015-08-10 06:43:12 CEST} changedby={hvu} visualorder={0} guid={14BD8C0D1A6354FE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14BD8C0D1ABACE0F} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-02 05:31:30 CET} validto={} changed={2015-03-02 05:31:32 CET} changedby={nqtinh} properties={} id={}
+co: name={period} description={} changed={2017-07-24 11:49:01 CEST} changedby={dhtlong} visualorder={0} guid={14BD8C0D1A6354FE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={14CA26293AFBADFC} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:11:46 CEST} validto={} changed={2015-04-10 10:11:51 CEST} changedby={Johannes} properties={} id={}
+val: guid={15D73FFF7B6DA0DA} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:01 CEST} validto={} changed={2017-07-24 11:49:01 CEST} changedby={dhtlong} properties={} id={}
+val: guid={14BD8C0D1ABACE0F} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-02 05:31:30 CET} validto={} changed={2015-03-02 05:31:32 CET} changedby={nqtinh} properties={} id={}
