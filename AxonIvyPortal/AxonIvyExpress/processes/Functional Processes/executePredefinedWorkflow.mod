@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 19 11:04:55 ICT 2017]
+[>Created: Fri Jul 14 16:24:17 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -746,6 +746,8 @@ ivy.case.setName(in.workflowName);
 ivy.case.setDescription(in.workflowDescription);
 
 ivy.task.setCustomVarCharField1("INIT_WF");
+ivy.case.setCustomVarCharField1(in.workflowName);
+
 
 
 String caseDetailsProcessSignature = "startgawfsCaseDetails(Integer)";
