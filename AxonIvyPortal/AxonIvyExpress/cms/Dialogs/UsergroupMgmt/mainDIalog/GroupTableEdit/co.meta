@@ -1,0 +1,3 @@
+co: name={GroupTableEdit} description={} changed={2017-05-22 13:30:27 CEST} changedby={t} visualorder={0} guid={15899B3F67EF5737} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15899B3F683827B5} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:17:37 CET} validto={} changed={2017-05-22 13:30:27 CEST} changedby={t} properties={} id={}
+val: guid={15BECDABEEA28D49} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:56:48 CEST} validto={} changed={2017-05-09 12:56:50 CEST} changedby={ldnam} properties={} id={}

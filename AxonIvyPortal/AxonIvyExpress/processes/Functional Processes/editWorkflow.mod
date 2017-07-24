@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 19 11:00:41 ICT 2017]
+[>Created: Fri Jul 14 16:21:05 ICT 2017]
 15791C23B125821B 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
@@ -40,6 +40,12 @@ ew0 @GridStep f24 '' #zField
 ew0 @PushWFArc f25 '' #zField
 ew0 @PushWFArc f6 '' #zField
 ew0 @EndSub f32 '' #zField
+ew0 @GridStep f37 '' #zField
+ew0 @PushWFArc f38 '' #zField
+ew0 @PushWFArc f10 '' #zField
+ew0 @GridStep f39 '' #zField
+ew0 @PushWFArc f40 '' #zField
+ew0 @PushWFArc f35 '' #zField
 ew0 @Alternative f41 '' #zField
 ew0 @PushWFArc f42 '' #zField
 ew0 @PushWFArc f4 '' #zField
@@ -51,8 +57,6 @@ ew0 @PushWFArc f47 '' #zField
 ew0 @PushWFArc f48 '' #zField
 ew0 @PushWFArc f12 '' #zField
 ew0 @PushWFArc f49 '' #zField
-ew0 @PushWFArc f19 '' #zField
-ew0 @PushWFArc f22 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -450,6 +454,52 @@ ew0 f6 264 160 312 160 #arcP
 ew0 f32 type gawfs.Data #txt
 ew0 f32 1713 241 30 30 0 15 #rect
 ew0 f32 @|EndSubIcon #fIcon
+ew0 f37 actionDecl 'gawfs.Data out;
+' #txt
+ew0 f37 actionTable 'out=in;
+' #txt
+ew0 f37 actionCode ivy.case.setCustomVarCharField2(in.processName); #txt
+ew0 f37 security system #txt
+ew0 f37 type gawfs.Data #txt
+ew0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set value for endpage</name>
+        <nameStyle>21,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f37 1536 138 128 44 -59 -8 #rect
+ew0 f37 @|StepIcon #fIcon
+ew0 f38 expr out #txt
+ew0 f38 1480 160 1536 160 #arcP
+ew0 f10 expr out #txt
+ew0 f10 1664 160 1713 160 #arcP
+ew0 f39 actionDecl 'gawfs.Data out;
+' #txt
+ew0 f39 actionTable 'out=in;
+' #txt
+ew0 f39 actionCode 'ivy.case.setCustomVarCharField1("ADHC_WF");
+ivy.case.setCustomVarCharField2(in.processName);' #txt
+ew0 f39 security system #txt
+ew0 f39 type gawfs.Data #txt
+ew0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set value for endpage</name>
+        <nameStyle>21,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f39 1536 234 128 44 -59 -8 #rect
+ew0 f39 @|StepIcon #fIcon
+ew0 f40 expr out #txt
+ew0 f40 1464 256 1536 256 #arcP
+ew0 f40 0 0.6106044604758954 0 0 #arcLabel
+ew0 f35 expr out #txt
+ew0 f35 1664 256 1713 256 #arcP
 ew0 f41 type gawfs.Data #txt
 ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -496,11 +546,6 @@ ew0 f12 expr in #txt
 ew0 f12 1000 160 1032 160 #arcP
 ew0 f49 expr in #txt
 ew0 f49 1128 160 1272 160 #arcP
-ew0 f19 expr out #txt
-ew0 f19 1480 160 1713 160 #arcP
-ew0 f22 expr out #txt
-ew0 f22 1464 256 1713 256 #arcP
-ew0 f22 0 0.6106044604758954 0 0 #arcLabel
 >Proto ew0 .type gawfs.Data #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -719,6 +764,14 @@ ew0 f0 mainOut f25 tail #connect
 ew0 f25 head f24 mainIn #connect
 ew0 f24 mainOut f6 tail #connect
 ew0 f6 head f5 mainIn #connect
+ew0 f9 mainOut f38 tail #connect
+ew0 f38 head f37 mainIn #connect
+ew0 f37 mainOut f10 tail #connect
+ew0 f10 head f1 mainIn #connect
+ew0 f20 mainOut f40 tail #connect
+ew0 f40 head f39 mainIn #connect
+ew0 f39 mainOut f35 tail #connect
+ew0 f35 head f32 mainIn #connect
 ew0 f7 mainOut f42 tail #connect
 ew0 f42 head f41 in #connect
 ew0 f41 out f4 tail #connect
@@ -733,10 +786,6 @@ ew0 f45 out f12 tail #connect
 ew0 f12 head f11 in #connect
 ew0 f18 out f49 tail #connect
 ew0 f49 head f9 mainIn #connect
-ew0 f9 mainOut f19 tail #connect
-ew0 f19 head f1 mainIn #connect
-ew0 f20 mainOut f22 tail #connect
-ew0 f22 head f32 mainIn #connect
 Ct0 f28 mainOut f31 tail #connect
 Ct0 f31 head f25 mainIn #connect
 Ct0 f27 mainOut f30 tail #connect

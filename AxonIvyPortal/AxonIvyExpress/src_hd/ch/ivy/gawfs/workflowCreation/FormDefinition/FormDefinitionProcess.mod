@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 19 10:31:51 ICT 2017]
+[>Created: Wed May 10 17:14:55 ICT 2017]
 1574EBDBE9576CED 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
@@ -59,9 +59,12 @@ Ds0 @RichDialogProcessStart f44 '' #zField
 Ds0 @PushWFArc f45 '' #zField
 Ds0 @RichDialogProcessStart f42 '' #zField
 Ds0 @PushWFArc f43 '' #zField
+Ds0 @GridStep f47 '' #zField
 Ds0 @RichDialogProcessStart f51 '' #zField
 Ds0 @RichDialogProcessStart f3 '' #zField
 Ds0 @PushWFArc f5 '' #zField
+Ds0 @RichDialogEnd f46 '' #zField
+Ds0 @PushWFArc f52 '' #zField
 Ds0 @GridStep f48 '' #zField
 Ds0 @RichDialogEnd f50 '' #zField
 Ds0 @PushWFArc f53 '' #zField
@@ -548,6 +551,75 @@ Ds0 f42 @|RichDialogProcessStartIcon #fIcon
 Ds0 f43 expr out #txt
 Ds0 f43 109 736 563 736 #arcP
 Ds0 f43 0 0.5649178034353388 0 0 #arcLabel
+Ds0 f47 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f47 actionTable 'out=in;
+' #txt
+Ds0 f47 actionCode 'import ch.ivyteam.ivy.workflow.CaseState;
+import javax.servlet.http.HttpServletRequest;
+import javax.faces.context.FacesContext;
+import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
+ 
+ivy.task.destroy(); //delete task
+//ivy.task.reset();
+
+String link;
+
+if (ivy.session.isSessionUserUnknown() && !ivy.wf.getApplication().getName().equalsIgnoreCase("designer")) {
+		link = ivy.var.gawfs_core_endpage;
+		ivy.log.debug("DESIGNER!!!");
+}
+else {
+	HttpServletRequest  req = FacesContext.getCurrentInstance().getExternalContext().getRequest() as HttpServletRequest;
+	 
+	                IProcessStart processStart;
+	                for (IProcessStart start : ivy.session.getStartableProcessStarts())
+	                {
+	                               ivy.log.debug("Process-start Id:"+start.getName()+"/"+start.getProcessElementId());
+	                               if (start.getProcessElementId().equals("1576E76B009E23DD-f0")) { //Portal
+	                                               processStart = start;
+	                                               break;
+	                               }
+	                }
+	
+	String context = ivy.html.applicationHomeRef().substring(0,ivy.html.applicationHomeRef().indexOf("/",1));
+	//ivy.log.info("HomeRef:"+context);
+	                
+	link = "http://"+req.getServerName() + ":"+ req.getServerPort() + context + "/pro/";
+	                if(processStart != null) {
+	                               if (!ivy.case.getState().equals(CaseState.ZOMBIE) && !ivy.case.getState().equals(CaseState.CREATED)) {
+	                                               link += processStart.getFullRequestPath()+"?taskIdentifier="+ivy.task.getId();
+	                               }
+	                               else {
+	                                               link += processStart.getFullRequestPath();
+	                               }
+	                }
+	
+
+	if (ivy.case.getState().equals(CaseState.ZOMBIE) || ivy.case.getState().equals(CaseState.DESTROYED)) {
+									
+	                ivy.wf.deleteCompletedCase(ivy.case);
+	}
+
+}
+
+//redirect to portal
+//ivy.log.debug("Link to Portal found:"+link);
+FacesContext.getCurrentInstance().getExternalContext().redirect(link);
+' #txt
+Ds0 f47 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reset task</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f47 228 996 104 40 -28 -6 #rect
+Ds0 f47 @|StepIcon #fIcon
 Ds0 f51 guid 158942FA3188C6C0 #txt
 Ds0 f51 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f51 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
@@ -586,6 +658,12 @@ Ds0 f5 expr out #txt
 Ds0 f5 109 864 576 749 #arcP
 Ds0 f5 1 576 864 #addKink
 Ds0 f5 0 0.6342623844357043 0 0 #arcLabel
+Ds0 f46 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f46 guid 15AF771F9FE6D231 #txt
+Ds0 f46 379 1003 26 26 0 12 #rect
+Ds0 f46 @|RichDialogEndIcon #fIcon
+Ds0 f52 expr out #txt
+Ds0 f52 332 1016 379 1016 #arcP
 Ds0 f48 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
 ' #txt
 Ds0 f48 actionTable 'out=in;
@@ -658,6 +736,8 @@ Ds0 f42 mainOut f43 tail #connect
 Ds0 f43 head f4 mainIn #connect
 Ds0 f3 mainOut f5 tail #connect
 Ds0 f5 head f4 mainIn #connect
+Ds0 f47 mainOut f52 tail #connect
+Ds0 f52 head f46 mainIn #connect
 Ds0 f48 mainOut f53 tail #connect
 Ds0 f53 head f50 mainIn #connect
 Ds0 f51 mainOut f54 tail #connect
