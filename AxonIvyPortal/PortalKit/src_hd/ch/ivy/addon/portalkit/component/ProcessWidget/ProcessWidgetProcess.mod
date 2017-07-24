@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jul 17 10:37:05 ICT 2017]
+[>Created: Mon Jul 24 17:22:46 ICT 2017]
 14FEEC13F8B8E7D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
@@ -606,7 +606,8 @@ Ps0 f50 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidget
 ' #txt
 Ps0 f50 actionTable 'out=in;
 ' #txt
-Ps0 f50 actionCode 'import org.apache.commons.lang3.StringUtils;
+Ps0 f50 actionCode 'import ch.ivyteam.ivy.security.ISecurityMember;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivyteam.ivy.security.IUser;
@@ -619,9 +620,15 @@ String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (!StringUtils.isEmpty(expressStartLink)) {
 	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
 	for(ExpressProcess wf : workflows) {
-		IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
+		Boolean isWorkflowAssignee = false;
+		ISecurityMember permittedRole = ivy.request.getApplication().getSecurityContext().findSecurityMember(wf.processPermission);
+		if(#permittedRole is initialized) {
+			isWorkflowAssignee = permittedRole.isUser() ? ivy.session.canActAsUser(permittedRole as IUser) : ivy.session.hasRole(permittedRole as IRole, false);
+		}
 		IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
-		if(ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
+		ivy.log.error(owner.getDisplayName());
+		ivy.log.error(permittedRole.getDisplayName());
+		if(isWorkflowAssignee || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
 		  	UserProcess userProcess = new UserProcess();
 		  	userProcess.setProcessName(wf.processName);
 		  	userProcess.setUserName(wf.processOwner);
