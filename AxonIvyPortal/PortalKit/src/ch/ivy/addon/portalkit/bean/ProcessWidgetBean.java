@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -26,6 +27,7 @@ import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -161,9 +163,13 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   private boolean canStartWorkflow(ExpressProcess workflow) {
-    IRole permittedRole = Ivy.request().getApplication().getSecurityContext().findRole(workflow.getProcessPermission());
+    boolean isWorkflowAssignee = false;
+    ISecurityMember permittedRole = Ivy.request().getApplication().getSecurityContext().findSecurityMember(workflow.getProcessPermission());
+    if(!Objects.isNull(permittedRole)) {
+      isWorkflowAssignee = permittedRole.isUser() ? Ivy.session().canActAsUser((IUser) permittedRole) : Ivy.session().hasRole((IRole) permittedRole, false); 
+    }
     IUser owner = Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1));
-    return Ivy.session().hasRole(permittedRole, false)
+    return isWorkflowAssignee
         || Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false)
         || Ivy.session().canActAsUser(owner);
   }
