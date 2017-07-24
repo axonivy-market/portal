@@ -48,7 +48,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noFavoriteProcess')}" />
       <p jsf:rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses}">
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messagePrefix')}
-        <p:commandLink id="add-new-process-message" actionListener="#{processWidgetBean.addNewUserProcess}"
+        <p:commandLink id="add-new-process-message" actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
           update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()">
           <b>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messageSuffix')}</b>?</p:commandLink>
       </p>
