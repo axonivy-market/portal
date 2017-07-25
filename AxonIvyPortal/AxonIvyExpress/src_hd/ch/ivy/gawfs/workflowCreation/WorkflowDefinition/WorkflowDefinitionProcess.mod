@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jul 24 11:22:19 ICT 2017]
+[>Created: Tue Jul 25 10:40:39 ICT 2017]
 1576FA61C4EDC8B1 3.20 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
@@ -136,7 +136,7 @@ import ch.ivyteam.ivy.security.IUser;
 List roles = ivy.wf.getSecurityContext().getRoles();
 
 for(IRole role : roles){
-	if (role.getProperty("HIDE") != null) {
+	if (role.getProperty("HIDE") is initialized) {
               continue;
        }
 	out.AvailableRolesAndUsers.add(role);
