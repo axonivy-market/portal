@@ -28,7 +28,6 @@
 	<classpathentry kind="lib" path="lib_test/objenesis-2.2.jar"/>
 	<classpathentry kind="lib" path="lib_test/mockito-core-1.10.19.jar"/>
 	<classpathentry kind="lib" path="lib_test/powermock-api-mockito-common-1.6.5.jar"/>
-	<classpathentry kind="lib" path="lib/owasp-java-html-sanitizer-20170329.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
@@ -41,5 +40,6 @@
 	<classpathentry kind="con" path="WS_CALL_AXIS2_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15C7646A4BDA62E7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15CD313699949A45.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.10.3.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
