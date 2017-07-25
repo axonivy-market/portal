@@ -179,6 +179,11 @@
 							<entry>TRUE/FALSE</entry>
 							<entry>Set to <code>TRUE</code> to hide hours and minutes next to date.</entry>
 						</row>
+						<row>
+							<entry>SHOW_TASK_BUTTON_LABELS</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>Set to <code>TRUE</code> to show button labels from task list.</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
