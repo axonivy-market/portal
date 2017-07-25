@@ -1,22 +1,16 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static org.owasp.html.Sanitizers.BLOCKS;
-import static org.owasp.html.Sanitizers.FORMATTING;
-import static org.owasp.html.Sanitizers.IMAGES;
-import static org.owasp.html.Sanitizers.LINKS;
-import static org.owasp.html.Sanitizers.STYLES;
-import static org.owasp.html.Sanitizers.TABLES;
-
 import java.io.Serializable;
-import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.util.HTMLDetector;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -55,26 +49,23 @@ public class TaskWidgetBean implements Serializable {
   }
 
   public String sanitizeHTML(String text) {
-    String sanitizedText =
-        Optional.ofNullable(text)
-            .map(t -> BLOCKS.and(FORMATTING).and(LINKS).and(STYLES).and(IMAGES).and(TABLES).sanitize(t)).orElse("");
-    if (StringUtils.isEmpty(sanitizedText.trim())) {
+    String sanitizedText = Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
+    if (StringUtils.isEmpty(sanitizedText.trim()) || StringUtils.isEmpty(extractTextFromHtml(sanitizedText))) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskDescriptionNotAvailable");
     }
     return sanitizedText;
   }
 
   public String createTaskDescriptionInTaskStart(String text) {
-    if (containsHTML(text)) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/descriptionInHTML");
-    }
-    if (Optional.ofNullable(text).map(t -> t.trim().equals("")).orElse(true)) {
+    String extractedText = extractTextFromHtml(text);
+    if(StringUtils.isBlank(extractedText)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskDescriptionNotAvailable");
     }
-    return text;
+    return extractTextFromHtml(text);
   }
-  
-  private boolean containsHTML(String text) {
-    return Optional.ofNullable(text).map(t -> HTMLDetector.isHtml(t)).orElse(false);
+
+  private String extractTextFromHtml(String text) {
+    Document doc = Jsoup.parse(text);
+    return doc.body().text();
   }
 }
