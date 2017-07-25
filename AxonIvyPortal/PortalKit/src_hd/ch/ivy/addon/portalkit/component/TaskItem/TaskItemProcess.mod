@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 23 11:33:20 ICT 2017]
+[>Created: Tue Jul 25 16:53:28 ICT 2017]
 150CB86EFC2F2972 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
@@ -17,7 +17,6 @@ Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @RichDialogInitStart f0 '' #zField
 Ts0 @RichDialogProcessEnd f1 '' #zField
-Ts0 @PushWFArc f2 '' #zField
 Ts0 @CallSub f29 '' #zField
 Ts0 @RichDialogMethodStart f27 '' #zField
 Ts0 @RichDialogProcessEnd f28 '' #zField
@@ -106,6 +105,9 @@ Ts0 @PushWFArc f61 '' #zField
 Ts0 @RichDialogMethodStart f64 '' #zField
 Ts0 @RichDialogProcessEnd f67 '' #zField
 Ts0 @PushWFArc f65 '' #zField
+Ts0 @GridStep f66 '' #zField
+Ts0 @PushWFArc f2 '' #zField
+Ts0 @PushWFArc f68 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f0 guid 150CB86EFDA88218 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -125,13 +127,11 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f0 53 77 22 22 14 0 #rect
+Ts0 f0 48 77 22 22 14 0 #rect
 Ts0 f0 @|RichDialogInitStartIcon #fIcon
 Ts0 f1 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f1 53 213 22 22 14 0 #rect
+Ts0 f1 48 213 22 22 14 0 #rect
 Ts0 f1 @|RichDialogProcessEndIcon #fIcon
-Ts0 f2 expr out #txt
-Ts0 f2 64 99 64 213 #arcP
 Ts0 f29 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f29 processCall MultiPortal/TaskService:resetTask(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ts0 f29 doCall true #txt
@@ -1115,12 +1115,43 @@ Ts0 f67 1843 587 26 26 0 12 #rect
 Ts0 f67 @|RichDialogProcessEndIcon #fIcon
 Ts0 f65 expr out #txt
 Ts0 f65 1856 333 1856 587 #arcP
+Ts0 f66 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f66 actionTable 'out=in;
+' #txt
+Ts0 f66 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+GlobalSettingService service = new GlobalSettingService();
+
+String isShowTaskButtonLabels =  service.findGlobalSettingValue(GlobalVariable.SHOW_TASK_BUTTON_LABELS);
+
+if(isShowTaskButtonLabels != null && !isShowTaskButtonLabels.isEmpty()){
+	in.isShowTaskButtonLabels = Boolean.parseBoolean(isShowTaskButtonLabels);
+} else{
+	in.isShowTaskButtonLabels = false;	
+}
+' #txt
+Ts0 f66 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init show/hide
+buttons</name>
+        <nameStyle>22
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f66 41 142 36 24 20 -2 #rect
+Ts0 f66 @|StepIcon #fIcon
+Ts0 f2 expr out #txt
+Ts0 f2 59 99 59 142 #arcP
+Ts0 f68 expr out #txt
+Ts0 f68 59 166 59 213 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
-Ts0 f0 mainOut f2 tail #connect
-Ts0 f2 head f1 mainIn #connect
 Ts0 f27 mainOut f34 tail #connect
 Ts0 f34 head f29 mainIn #connect
 Ts0 f29 mainOut f48 tail #connect
@@ -1203,3 +1234,7 @@ Ts0 f39 mainOut f62 tail #connect
 Ts0 f62 head f31 mainIn #connect
 Ts0 f64 mainOut f65 tail #connect
 Ts0 f65 head f67 mainIn #connect
+Ts0 f0 mainOut f2 tail #connect
+Ts0 f2 head f66 mainIn #connect
+Ts0 f66 mainOut f68 tail #connect
+Ts0 f68 head f1 mainIn #connect

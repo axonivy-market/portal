@@ -49,3 +49,5 @@ sideStepSearchCriteria ch.ivy.ws.addon.SideStepSearchCriteria #field
 sideStepSearchCriteria PERSISTENT #fieldModifier
 startLink String #field
 startLink PERSISTENT #fieldModifier
+isShowTaskButtonLabels Boolean #field
+isShowTaskButtonLabels PERSISTENT #fieldModifier
