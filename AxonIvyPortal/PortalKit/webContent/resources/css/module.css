@@ -2098,9 +2098,12 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .action-cell .task-command.side-step {
-  position: absolute;
   padding: 0.4rem 0;
   top: 0.9rem;
+}
+
+.task-start-list .action-cell .task-command.side-step-position {
+  position: absolute;
 }
 
 .task-start-list .action-cell .task-command.side-step .fa{
