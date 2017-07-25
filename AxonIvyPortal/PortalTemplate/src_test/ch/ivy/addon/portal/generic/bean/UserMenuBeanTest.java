@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyNew;
-import static org.powermock.api.mockito.PowerMockito.verifyNoMoreInteractions;
 import static org.powermock.api.mockito.PowerMockito.when;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
@@ -17,6 +16,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 @RunWith(PowerMockRunner.class)
@@ -34,11 +34,13 @@ public class UserMenuBeanTest {
   public void testLogout() {
     mockStatic(Ivy.class);
     IWorkflowSession session = mock(IWorkflowSession.class);
+    ISecurityContext context = mock(ISecurityContext.class);
     when(Ivy.session()).thenReturn(session);
+    when(Ivy.session().getSecurityContext()).thenReturn(context);
     userMenuBean.logout();
 
     Mockito.verify(session).logoutSessionUser();
-    verifyNoMoreInteractions(session);
+    Mockito.verify(context).destroySession(session.getIdentifier());
   }
 
   @Test
