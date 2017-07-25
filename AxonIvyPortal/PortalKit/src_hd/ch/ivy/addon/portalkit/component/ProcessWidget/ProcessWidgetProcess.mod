@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jul 24 17:22:46 ICT 2017]
+[>Created: Tue Jul 25 11:25:12 ICT 2017]
 14FEEC13F8B8E7D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
@@ -626,8 +626,6 @@ if (!StringUtils.isEmpty(expressStartLink)) {
 			isWorkflowAssignee = permittedRole.isUser() ? ivy.session.canActAsUser(permittedRole as IUser) : ivy.session.hasRole(permittedRole as IRole, false);
 		}
 		IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
-		ivy.log.error(owner.getDisplayName());
-		ivy.log.error(permittedRole.getDisplayName());
 		if(isWorkflowAssignee || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
 		  	UserProcess userProcess = new UserProcess();
 		  	userProcess.setProcessName(wf.processName);
