@@ -49,7 +49,7 @@
         disabled="#{!task.canResume}" styleClass="task-command" oncomplete="PF('reset-task-dialog').show()"
         actionListener="#{data.setSelectedTask(task)}" onstart="event.stopPropagation();">
         <span class="action-icon tmi-chevorn-right" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
+        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
       </p:commandLink>
       <p:tooltip for="task-reset-and-start-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openTaskTooltip')}"
