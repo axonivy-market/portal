@@ -40,8 +40,8 @@
 			User needs to have role
 			<code>AXONIVY_PORTAL_ADMIN</code>
 			to see this menu item, it is used to configure Portal configuration,
-			see how to configure Portal in
-			<link linkend="axonivyportal.customization.buildyourownportal" endterm="axonivyportal.customization.buildyourownportal.title" />
+			see differen Portal configurations in
+			<link linkend="axonivyportal.installation.basicinstallation.specifyservers.generalConcept" endterm="axonivyportal.installation.basicinstallation.specifyservers.generalConcept.title" />
 		</para>
 		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
 			<title xml:id="axonivyportal.settings.adminsettings.setupmultiportals.title">Setup multi portals</title>
@@ -176,7 +176,7 @@
 													button, if
 													<code>WebServer.ExternalHostName</code>
 													is set the value would be updated, otherwise displays
-													<code>AUTO_DETECTION</code>
+													<code>AUTO_DETECT</code>
 													.
 												</para>
 												<para>
@@ -212,9 +212,55 @@
 							</para>
 						</para>
 						<tip>
-							For multiple languages of application display name, you need to create the "AppInfo/SupportedLanguages" CMS
-							which defines how
-							many languages your application supports. See the below "Language settings" for more details.
+							<itemizedlist>
+								<listitem>
+									<para>
+										<code>Application name</code>
+										is the name of the application when you create it.
+										<code>Display name</code>
+										is the name of the application to be shown on Portal UI.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										If
+										<code>Active</code>
+										is not checked, the application will be disabled on the application menu. To prevent its tasks, cases and
+										processes to be shown, you must leave the
+										<code>Visible</code>
+										box unchecked.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										<code>Portal link</code>
+										specifies the link you will be redirect to when select the application on the application menu.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										<code>Absence planning</code>
+										if checked will enable absence feature for the application.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										<code>Mail notification</code>
+										If checked, you can configure separated email setting for the application. If this is unchecked, the
+										application
+										will use the general email setting.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										For multiple languages of application display name, you need to create the "AppInfo/SupportedLanguages"
+										CMS
+										which defines how
+										many languages your application supports. See the below "Language settings" for more
+										details.
+									</para>
+								</listitem>
+							</itemizedlist>
 						</tip>
 					</listitem>
 					<listitem>
@@ -244,10 +290,14 @@
 							</tip>
 							<para>
 								By default, Portal will automatically synchronize user settings to registered servers at 5AM everyday.
-								This synchronization process is needed to run at only one application for each server. If there are
-								multiple applications registered for one server, the first application in alphabetical order will run
-								the synchronization process. You can change the time when the synchronization start by going to AdminUI
-								and change the value of the global variable
+								This
+								synchronization process is needed to run at only one application for each server. If there are
+								multiple
+								applications registered for one server, the first application in alphabetical order will run
+								the synchronization
+								process. You can change the time when the synchronization start by going to AdminUI
+								and change the value of the
+								global variable
 								<code class="code"> PortalStartTimeSynchUserExpression</code>
 								of the application that will run the synchronization process.
 								<mediaobject>
