@@ -84,7 +84,7 @@
 						<emphasis role="bold">Single mode</emphasis>
 						: Only one Portal application on one engine. The Portal application must include portalKit, portalTemplate and
 						portalStyle modules.
-						By default, portalConnector is already deployed on the System application of Ivy engine.
+						By default, portalConnector is already deployed on the System application of Axon.ivy engine.
 					</listitem>
 					<listitem>
 						<emphasis role="bold">Multi-application mode</emphasis>
@@ -93,8 +93,9 @@
 					</listitem>
 					<listitem>
 						<emphasis role="bold">Multi-portal mode</emphasis>
-						: Single or multiple Portal applications on multiple engines. Each engines will use portalConnector of its System
-						application to communicate with other engines.
+						: Single or multiple Portal applications on multiple engines. The engines will communicate with each other via the
+						portalConnector of their System
+						application.
 					</listitem>
 				</itemizedlist>
 			</sect3>
