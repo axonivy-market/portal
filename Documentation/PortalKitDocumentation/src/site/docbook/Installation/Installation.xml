@@ -209,9 +209,16 @@
 						<row>
 							<entry>HIDE_LOGOUT_BUTTON</entry>
 							<entry>TRUE/FALSE</entry>
-							<entry>For show/hide logout menu configuration, if need to hide menu logout, add more bellow record to table.
-								Setting value to display logout menu item or not. If true (none case-sensitive), it will be hidden, otherwise it
-								will be showed. If record HIDE_LOGOUT_BUTTON is not set in database, the logout menu will be displayed by
+							<entry>
+								If
+								<code>true</code>
+								(none case-sensitive), the logout button on top
+								menu will be hidden, otherwise it
+								will be
+								shown. If this
+								property is
+								not set, the logout
+								menu will be displayed by
 								default.
 							</entry>
 						</row>
@@ -505,12 +512,12 @@
 							<entry>PortalStartTimeSynchUserExpression</entry>
 							<entry>0 0 5 * * ?</entry>
 							<entry>
-								Cron expression define the time to reload application users into table cache. E.g.: expression for at 5AM every
+								Cron expression define the time to reload application user datas. E.g.: expression for at 5AM every
 								day is
 								<code>0 0 5 * * ?</code>
 								. Refer to
 								<link xlink:href="http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger">crontrigger</link>
-								. Please restart Ivy engine after change this variable.
+								. Please restart Ivy engine after changing this variable.
 							</entry>
 						</row>
 						<row>
@@ -721,7 +728,7 @@
 						</listitem>
 						<listitem>
 							<para>
-								Add properties and plugins are defined in PortalStyle/pom.xml of Portal
+								Add properties and plugins which are defined in PortalStyle/pom.xml of Portal
 								<code>6.4</code>
 								to PortalStyle/pom.xml of the current Portal.
 							</para>
@@ -734,7 +741,7 @@
 							</para>
 						</listitem>
 						<listitem>
-							<para>PortalStyle/webContent/resources/css/theme.css is obsolete, remove it.</para>
+							<para>PortalStyle/webContent/resources/css/theme.css is obsolete, please remove it.</para>
 						</listitem>
 					</orderedlist>
 				</para>
