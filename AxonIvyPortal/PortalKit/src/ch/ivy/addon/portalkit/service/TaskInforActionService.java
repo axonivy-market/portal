@@ -15,9 +15,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskInforActionService {
 
-	public String prepareChangeDeadlineNoteContent(String changeBy, Date datetime) {
+	public String prepareChangeDeadlineNoteContent(String fullNameOfUser, String userNameOfUser, Date datetime, Long taskId) {
 		String formattedDate = formatDate(datetime);
-		List<Object> parameters = Arrays.asList(changeBy, formattedDate);
+		List<Object> parameters = Arrays.asList(fullNameOfUser, userNameOfUser, taskId, formattedDate);
 		return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/setDeadlineNote", parameters);
 	}
 	

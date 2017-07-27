@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import static ch.ivyteam.ivy.security.IPermission.DELEGATE_TASKS;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_ACTIVATOR;
-import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_EXPIRY_ACTIVATOR;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_EXPIRY_PRIORITY;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_ORIGINAL_PRIORITY;
 import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
@@ -312,7 +311,7 @@ public class TaskBean {
   private boolean isSessionUserHasTaskChangeDeadlinePermission() {
     IWorkflowSession ivySession = Ivy.session();
     ISecurityDescriptor securityDescriptor = Ivy.request().getApplication().getSecurityDescriptor();
-    boolean hasTaskWriteExpiryPermission = ivySession.hasPermission(securityDescriptor, TASK_WRITE_EXPIRY_ACTIVATOR);
+    boolean hasTaskWriteExpiryPermission = ivySession.hasPermission(securityDescriptor, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP);
     return hasTaskWriteExpiryPermission;
   }
 
@@ -462,11 +461,7 @@ public class TaskBean {
     return StringUtils.isNotEmpty(caseName) ? caseName : "#" + iCase.getId();
   }
   
-  public Boolean isEnableExpiryInput(ITask task) {
-    if (task.getExpiryActivator() != null || !StringUtils.isBlank(task.getExpiryTaskStartElementPid())) {
-      return true;
-    }
-
-    return false;
+  public Boolean canChangeExpiry(RemoteTask task){
+    return task.canChangeExpiry() && (task.getExpiryActivator() != null || StringUtils.isNotBlank(task.getExpiryTaskStartElementPid()));
   }
 }

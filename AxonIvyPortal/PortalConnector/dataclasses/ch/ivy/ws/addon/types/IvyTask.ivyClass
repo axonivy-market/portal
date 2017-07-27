@@ -100,3 +100,4 @@ canChangeName Boolean #field
 expireTaskStartElementPid String #field
 hasMoreActions Boolean #field
 endTimestamp java.util.Date #field
+canChangeExpiry Boolean #field

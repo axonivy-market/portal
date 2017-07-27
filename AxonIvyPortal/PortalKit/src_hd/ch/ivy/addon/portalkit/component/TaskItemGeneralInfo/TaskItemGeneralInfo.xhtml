@@ -87,7 +87,7 @@
           <p:inplace id="edit-inplace" editor="true"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}" rendered="#{taskBean.isEnableExpiryInput(task)}">
+            label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}" rendered="#{taskBean.canChangeExpiry(task)}">
             <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="#{cc.attrs.componentToUpdate}" />
             <p:ajax event="cancel" resetValues="true" />
             <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}"
@@ -96,7 +96,7 @@
             </p:calendar>
           </p:inplace>
         </h:form>
-        <h:outputText id="noExpiryAvailable" value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}" rendered="#{!taskBean.isEnableExpiryInput(task)}">
+        <h:outputText id="noExpiryAvailable" value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}" rendered="#{!taskBean.canChangeExpiry(task)}">
         	<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
       </ui:fragment>
@@ -122,7 +122,7 @@
       trackMouse="true" />
    <p:tooltip for="noExpiryAvailable expiryLabel"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}"
-      trackMouse="true" rendered="#{taskBean.isNotDone(task) and !taskBean.isEnableExpiryInput(task)}"/>
+      trackMouse="true" rendered="#{taskBean.isNotDone(task) and !taskBean.canChangeExpiry(task)}"/>
   </div>
 
 </cc:implementation>
