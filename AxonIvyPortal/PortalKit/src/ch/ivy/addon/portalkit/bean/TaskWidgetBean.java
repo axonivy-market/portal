@@ -49,8 +49,8 @@ public class TaskWidgetBean implements Serializable {
   }
 
   public String sanitizeHTML(String text) {
-    String sanitizedText = Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
-    if (StringUtils.isEmpty(sanitizedText.trim()) || StringUtils.isEmpty(extractTextFromHtml(sanitizedText))) {
+    String sanitizedText = sanitize(text);
+    if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskDescriptionNotAvailable");
     }
     return sanitizedText;
@@ -65,7 +65,12 @@ public class TaskWidgetBean implements Serializable {
   }
 
   private String extractTextFromHtml(String text) {
-    Document doc = Jsoup.parse(text);
+    String sanitizedText = sanitize(text);
+    Document doc = Jsoup.parse(sanitizedText);
     return doc.body().text();
+  }
+
+  private String sanitize(String text) {
+    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
   }
 }
