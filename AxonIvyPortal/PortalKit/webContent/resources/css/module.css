@@ -2066,8 +2066,15 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .action-cell {
-  flex: 0 0 180px;
   text-align: right;
+}
+
+.task-start-list .without-button-labels {
+  flex: 0 0 180px;
+}
+
+.task-start-list .with-button-labels {
+  flex: 0 0 380px;
 }
 
 .task-start-list .action-cell .action-container {
