@@ -6,7 +6,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 
 <ui:composition>
-  <div id="action-cell-#{rowIndex}" class="action-cell">
+  <div id="action-cell-#{rowIndex}" class="action-cell #{data.isShowTaskButtonLabels? 'with-button-labels' : 'without-button-labels'}">
     <div class="action-container">
       <p:commandLink id="task-reset-command" onstart="event.stopPropagation();"
         disabled="#{task.state eq 'SUSPENDED' or !task.canReset}" styleClass="task-command"
