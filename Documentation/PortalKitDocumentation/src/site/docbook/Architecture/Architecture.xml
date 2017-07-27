@@ -14,7 +14,7 @@
 	<sect1 xml:id="axonivyportal.architecture.portalkit">
 		<title>Portal kit</title>
 		<para>
-			Contains set of UI components. This module contains set of JSF Ivy Component to provide user the usages to work with Ivy Process Data such as: task, case, absence... , styles CSS and JavaScript file for component and Modena theme library. This is the most important module that user needs to use Portal. This module also contains AdminSettings component that is used to configure configuration data of Portal.
+			Contains set of UI components. This module contains set of JSF Ivy Component to provide user the usages to work with Ivy Process Data such as: task, case, absence... , styles CSS and JavaScript file for component and Modena theme library. This is the most important module that user needs to use Portal. This module also contains AdminSettings component that is used to configure Portal.
 		</para>
 	</sect1>
 	<sect1 xml:id="axonivyportal.architecture.portalstyle">
@@ -29,7 +29,7 @@
 	<sect1 xml:id="axonivyportal.architecture.portaltemplate">
 		<title>Portal template</title>
 		<para>
-			Provides default portal's templates and pages. This module contains templates page for Portal's user can use as composition, then they will have supporting features such as : top menu, application menu, user menu. It also contains some start process links to default page such as : Portal home, Portal task list, Portal case list... . Portal's user is advised to depend on this module to easily use Portal.
+			Provides default portal's templates and pages. This module contains templates page for Portal's user to use as composition, then they will have supporting features such as : top menu, application menu, user menu. It also contains some start process links to default page such as : Portal home, Portal task list, Portal case list... . Portal's user is advised to depend on this module to use Portal easily.
 		</para>
 	</sect1>
 	<sect1 xml:id="axonivyportal.architecture.selfservicebpm">
@@ -41,7 +41,7 @@
 	<sect1 xml:id="axonivyportal.architecture.portalconnector">
 		<title>Portal connector</title>
 		<para>
-			Communication channel to communicate between portal axon.ivy engine (e.g.: for synchronizing data, read ivy process data :task, case, absence, substitute,...). This module acts like service layer that contains web service's implementation for PortalKit can call to get data, just only PortalKit know about these web services.
+			Communication channel to communicate between portal axon.ivy engine (e.g.: for synchronizing data, read ivy process data like task, case, absence, substitute,...). This module acts like service layer that contains web service's implementation for PortalKit to call and get data, only PortalKit knows about these web services.
 		</para>
 		<note>
 			By default, this module is integrated to System application of Axon.Ivy engine. To be able to run Portal in designer, you need to import this module.

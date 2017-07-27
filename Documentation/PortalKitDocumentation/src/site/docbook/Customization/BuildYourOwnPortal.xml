@@ -69,7 +69,7 @@
 					<para>
 						Set category for tasks
 						<para>
-							To categorize tasks, set values for <code>CustomVarcharField5</code> field. Task category can be multi-level if it is separated by slash <code>/</code> signs, as below.
+							To categorize tasks, set values for <code>Category</code> field. Task category can be multi-level if it is separated by slash <code>/</code> signs, as below.
 							<mediaobject>
 								<imageobject>
 									<imagedata fileref="images/BuildYourOwnPortal/task-category-config.png" />
