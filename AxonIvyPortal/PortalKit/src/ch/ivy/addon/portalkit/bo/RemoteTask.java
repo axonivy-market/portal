@@ -111,6 +111,7 @@ public class RemoteTask implements ITask {
   private boolean canResume;
   private boolean canPark;
   private boolean canChangePriority;
+  private boolean canChangeExpiry;
   private boolean canChangeDescription;
   private boolean canChangeName;
   private boolean hasMoreActions;
@@ -1231,8 +1232,16 @@ public class RemoteTask implements ITask {
     return canChangePriority;
   }
 
-  public void setCanChangePriority(boolean canUserChangePriority) {
-    this.canChangePriority = canUserChangePriority;
+  public void setCanChangePriority(boolean canChangePriority) {
+    this.canChangePriority = canChangePriority;
+  }
+
+  public boolean canChangeExpiry() {
+    return canChangeExpiry;
+  }
+
+  public void setCanChangeExpiry(boolean canChangeExpiry) {
+    this.canChangeExpiry = canChangeExpiry;
   }
 
   public String getExpiryActivatorFullName() {

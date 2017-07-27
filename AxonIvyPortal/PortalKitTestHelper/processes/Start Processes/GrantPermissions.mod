@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Aug 10 10:42:57 ICT 2016]
-14DE09882B540AD5 3.18 #module
+[>Created: Thu Jul 27 17:02:25 ICT 2017]
+14DE09882B540AD5 3.20 #module
 >Proto >Proto Collection #zClass
 Is0 GrantPermissions Big #zClass
 Is0 B #cInfo
@@ -42,15 +42,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Is0 f0 showInStartList 1 #txt
-Is0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -70,9 +61,11 @@ Is0 f3 actionDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
 Is0 f3 actionTable 'out=in;
 ' #txt
-Is0 f3 actionCode 'import ch.ivy.addon.portalkit.test.util.SecurityUtils;
+Is0 f3 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+import com.ulcjava.base.client.IPendingRequestsOwner;
+import ch.ivy.addon.portalkit.test.util.SecurityUtils;
 
-SecurityUtils.grantAllPermissionsTo(ivy.session.getSessionUser());' #txt
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, ivy.session.getSessionUser());' #txt
 Is0 f3 security system #txt
 Is0 f3 type ch.ivy.add.portalkit.Data #txt
 Is0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -106,15 +99,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Is0 f10 showInStartList 1 #txt
-Is0 f10 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Is0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

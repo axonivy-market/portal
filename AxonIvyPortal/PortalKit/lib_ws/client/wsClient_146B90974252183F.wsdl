@@ -167,6 +167,7 @@
           <xs:element minOccurs="0" name="businessCreatorUser" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="businessMileStoneTimestamp" type="xs:dateTime"></xs:element>
           <xs:element minOccurs="0" name="canChangeDescription" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canChangeExpiry" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="canChangeName" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="canChangePriority" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="canDelegate" type="xs:boolean"></xs:element>

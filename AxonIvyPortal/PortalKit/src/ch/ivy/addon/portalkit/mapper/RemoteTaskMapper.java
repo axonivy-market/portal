@@ -114,6 +114,7 @@ public class RemoteTaskMapper {
     result.setCanResume(ivyTask.getCanResume());
     result.setCanPark(ivyTask.getCanPark());
     result.setCanChangePriority(ivyTask.getCanChangePriority());
+    result.setCanChangeExpiry(ivyTask.getCanChangeExpiry());
     result.setCanChangeDescription(ivyTask.getCanChangeDescription());
     result.setCanChangeName(ivyTask.getCanChangeName());
     result.setHasMoreActions(ivyTask.getHasMoreActions());
