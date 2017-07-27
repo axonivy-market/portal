@@ -401,7 +401,7 @@
 						</para>
 						<para>
 							This function will be enabled if session user has
-							<code>IPermission.TASK_WRITE_EXPIRY_ACTIVATOR</code>
+							<code>IPermission.TASK_WRITE_EXPIRY_TIMESTAMP</code>
 							.
 						</para>
 						<important>

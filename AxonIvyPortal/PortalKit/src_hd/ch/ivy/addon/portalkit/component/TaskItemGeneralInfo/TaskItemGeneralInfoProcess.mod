@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Fri Dec 30 16:32:23 ICT 2016]
-15493A537A91F8FC 3.18 #module
+[>Created: Thu Jul 27 17:13:48 ICT 2017]
+15493A537A91F8FC 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemGeneralInfoProcess Big #zClass
 Ts0 RD #cInfo
@@ -316,11 +316,16 @@ Ts0 f18 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskIte
 ' #txt
 Ts0 f18 actionTable 'out=in;
 ' #txt
-Ts0 f18 actionCode 'import ch.ivy.addon.portalkit.service.TaskInforActionService;
+Ts0 f18 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.service.TaskInforActionService;
 
 
 TaskInforActionService service = new TaskInforActionService();
-in.changeDeadlineNoteContent = service.prepareChangeDeadlineNoteContent(ivy.session.getSessionUser().getDisplayName(), in.task.expiryTimestamp);' #txt
+IUser user = ivy.session.getSessionUser();
+String fullName = user.getFullName();
+String userName = StringUtils.substring(user.getMemberName(), 1);
+in.changeDeadlineNoteContent = service.prepareChangeDeadlineNoteContent(fullName, userName ,in.task.expiryTimestamp, in.task.id);' #txt
 Ts0 f18 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
