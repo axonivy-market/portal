@@ -61,7 +61,7 @@ public class TaskWidgetBean implements Serializable {
     if(StringUtils.isBlank(extractedText)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskDescriptionNotAvailable");
     }
-    return extractTextFromHtml(text);
+    return extractedText;
   }
 
   private String extractTextFromHtml(String text) {
