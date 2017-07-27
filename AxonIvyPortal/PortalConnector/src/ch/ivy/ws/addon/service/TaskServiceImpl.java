@@ -272,6 +272,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     ivyTask.setCanDelegate(hasPermissionToDelegateTask(task, userName));
     ivyTask.setCanPark(hasPermissionToParkTask(task, userName));
     ivyTask.setCanResume(canUserResumeTask);
+    ivyTask.setCanChangePriority(hasPermissionToChangeOriginalPriority(userName, task.getApplication()));
+    ivyTask.setCanChangeDescription(hasPermissionToChangeDescription(userName, task));
+    ivyTask.setCanChangeName(hasPermissionToChangeName(userName, task));
+    ivyTask.setCanChangeExpiry(hasPermissionToChangeExpiry(userName, task));
   }
 
   @Override
@@ -279,55 +283,47 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       Integer count, Boolean isUrlBuiltFromSystemProperties) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return securityManager().executeAsSystem(
-          () -> {
-            if (taskSearchCriteria.isEmpty() && StringUtils.isBlank(taskSearchCriteria.getJsonQuery())) {
-              return result(noErrors());
+      return securityManager().executeAsSystem(() -> {
+        if (taskSearchCriteria.isEmpty() && StringUtils.isBlank(taskSearchCriteria.getJsonQuery())) {
+          return result(noErrors());
+        }
+
+        TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
+        queryExcludeHiddenTasks(taskQuery);
+
+        List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
+        List<IvyTask> ivyTasks = new ArrayList<>();
+        List<IvyTask> allIvyTasks = new ArrayList<>();
+        IvyTaskTransformer transformer = new IvyTaskTransformer(isUrlBuiltFromSystemProperties);
+        tasks.forEach(task -> {
+          IvyTask ivyTask = transformer.transform(task);
+
+          if (taskSearchCriteria.hasInvolvedUsername()) {
+            String involvedUsername = taskSearchCriteria.getInvolvedUsername();
+            boolean canUserResumeTask = canUserResumeTask(involvedUsername, task);
+            checkUserPemissions(involvedUsername, task, ivyTask);
+            try {
+              ivyTask.setHasMoreActions(hasMoreActions(task, involvedUsername));
+            } catch (Exception e) {
+              Ivy.log().error("Error when checking whether task has more actions", e);
             }
-            
-            TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
-            queryExcludeHiddenTasks(taskQuery);
-            
-            List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
-            List<IvyTask> ivyTasks = new ArrayList<>();
-            List<IvyTask> allIvyTasks = new ArrayList<>();
-            IvyTaskTransformer transformer = new IvyTaskTransformer(isUrlBuiltFromSystemProperties);
-            tasks.forEach(task -> {
-              IvyTask ivyTask = transformer.transform(task);
+            if (taskSearchCriteria.isQueryByTaskId()) {
+              ivyTasks.add(ivyTask);
+            } else if (canUserResumeTask) {
+              ivyTasks.add(ivyTask);
+            }
 
-              if (taskSearchCriteria.hasInvolvedUsername()) {
-                String involvedUsername = taskSearchCriteria.getInvolvedUsername();
-                boolean canUserResumeTask = canUserResumeTask(involvedUsername, task);
-                ivyTask.setCanReset(hasPermissionToResetTask(task, involvedUsername, canUserResumeTask));
-                ivyTask.setCanDelegate(hasPermissionToDelegateTask(task, involvedUsername));
-                ivyTask.setCanPark(hasPermissionToParkTask(task, involvedUsername));
-                ivyTask.setCanResume(canUserResumeTask);
-                ivyTask.setCanChangePriority(hasPermissionToChangeOriginalPriority(involvedUsername,
-                    task.getApplication()));
-                ivyTask.setCanChangeDescription(hasPermissionToChangeDescription(involvedUsername, task));
-                ivyTask.setCanChangeName(hasPermissionToChangeName(involvedUsername, task));
-                try {
-                  ivyTask.setHasMoreActions(hasMoreActions(task, involvedUsername));
-                } catch (Exception e) {
-                  Ivy.log().error("Error when checking whether task has more actions", e);
-                }
-                if (taskSearchCriteria.isQueryByTaskId()) {
-                  ivyTasks.add(ivyTask);
-                } else if (canUserResumeTask) {
-                  ivyTasks.add(ivyTask);
-                }
+            if (taskSearchCriteria.isIgnoreInvolvedUser()) {
+              allIvyTasks.add(ivyTask);
+            }
+          } else {
+            ivyTasks.add(ivyTask);
+          }
 
-                if (taskSearchCriteria.isIgnoreInvolvedUser()) {
-                  allIvyTasks.add(ivyTask);
-                }
-              } else {
-                ivyTasks.add(ivyTask);
-              }
+        });
 
-            });
-
-            return result(ivyTasks, allIvyTasks, errors);
-          });
+        return result(ivyTasks, allIvyTasks, errors);
+      });
     } catch (Exception e) {
       throw new WSException(10016, e);
     }
@@ -353,7 +349,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
         queryExcludeHiddenTasks(taskQuery);
-        
+
         long taskCount = countTasks(taskQuery);
         return result(taskCount, errors);
 
@@ -365,7 +361,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   @SuppressWarnings("static-access")
   @Override
-  public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
+  public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language)
+      throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
@@ -381,22 +378,22 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                   .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
             } else {
-              taskQuery.where().and(queryForInvolvedApplications(apps)); 
+              taskQuery.where().and(queryForInvolvedApplications(apps));
             }
             taskQuery.where()
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
-            
+
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
-                CategoryData categoryData = new CategoryData();
-                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-                categoryData.setRawPath(category.getRawPath());
-                categories.add(categoryData);
-              });
+              CategoryData categoryData = new CategoryData();
+              categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+              categoryData.setRawPath(category.getRawPath());
+              categories.add(categoryData);
+            });
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -406,7 +403,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   @SuppressWarnings("static-access")
   @Override
-  public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
+  public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps,
+      String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
@@ -420,22 +418,23 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                 .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
-            TaskQuery reservedTaskQuery = TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
+            TaskQuery reservedTaskQuery =
+                TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
             taskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
             taskQuery.where()
                 .and(
                     queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
-            
+
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
-                CategoryData categoryData = new CategoryData();
-                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-                categoryData.setRawPath(category.getRawPath());
-                categories.add(categoryData);
-              });
+              CategoryData categoryData = new CategoryData();
+              categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+              categoryData.setRawPath(category.getRawPath());
+              categories.add(categoryData);
+            });
 
             return result(categories, errors);
           });
@@ -446,7 +445,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   @SuppressWarnings("static-access")
   @Override
-  public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException {
+  public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps,
+      String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
@@ -470,11 +470,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
             List<CategoryData> categories = new ArrayList<>();
             categoryTree.getAllChildren().forEach(category -> {
-                CategoryData categoryData = new CategoryData();
-                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-                categoryData.setRawPath(category.getRawPath());
-                categories.add(categoryData);
-              });
+              CategoryData categoryData = new CategoryData();
+              categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+              categoryData.setRawPath(category.getRawPath());
+              categories.add(categoryData);
+            });
 
             return result(categories, errors);
           });
@@ -482,47 +482,49 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       throw new WSException(10016, e);
     }
   }
-  
+
   @SuppressWarnings("static-access")
   @Override
-  public TaskServiceResult findUnassignedTaskCategories(String jsonQuery, List<String> apps, String language) throws WSException {
+  public TaskServiceResult findUnassignedTaskCategories(String jsonQuery, List<String> apps, String language)
+      throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return securityManager().executeAsSystem(
-          () -> {
-            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
-            if (StringUtils.isNotBlank(jsonQuery)) {
-              taskQuery = taskQuery.fromJson(jsonQuery);
-            }
-            queryExcludeHiddenTasks(taskQuery);
+      return securityManager().executeAsSystem(() -> {
+        TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+        if (StringUtils.isNotBlank(jsonQuery)) {
+          taskQuery = taskQuery.fromJson(jsonQuery);
+        }
+        queryExcludeHiddenTasks(taskQuery);
 
-            taskQuery.where().and(queryForInvolvedApplications(apps));
-            taskQuery.where().and(queryForStates(Arrays.asList(TaskState.UNASSIGNED)));
-            taskQuery.where().and().category().isNotNull();
-            
-            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
-            List<CategoryData> categories = new ArrayList<>();
-            categoryTree.getAllChildren().forEach(category -> {
-                CategoryData categoryData = new CategoryData();
-                categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-                categoryData.setRawPath(category.getRawPath());
-                categories.add(categoryData);
-              });
+        taskQuery.where().and(queryForInvolvedApplications(apps));
+        taskQuery.where().and(queryForStates(Arrays.asList(TaskState.UNASSIGNED)));
+        taskQuery.where().and().category().isNotNull();
 
-            return result(categories, errors);
-          });
+        CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
+        List<CategoryData> categories = new ArrayList<>();
+        categoryTree.getAllChildren().forEach(category -> {
+          CategoryData categoryData = new CategoryData();
+          categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+          categoryData.setRawPath(category.getRawPath());
+          categories.add(categoryData);
+        });
+
+        return result(categories, errors);
+      });
     } catch (Exception e) {
       throw new WSException(10016, e);
     }
   }
 
   @Override
-  public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException {
+  public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps)
+      throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery priorityQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+            TaskQuery priorityQuery =
+                StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               priorityQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -561,13 +563,14 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public NumberOfExpiryTasks countExpiryTasksByDate(String jsonQuery, final String username, List<String> apps, Date expiryDate)
-      throws WSException {
+  public NumberOfExpiryTasks countExpiryTasksByDate(String jsonQuery, final String username, List<String> apps,
+      Date expiryDate) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
-            TaskQuery expiryQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+            TaskQuery expiryQuery =
+                StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               expiryQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -601,7 +604,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     } else if (taskSearchCriteria.hasInvolvedApplications()) {
       finalQuery.where().and(queryForInvolvedApplications(taskSearchCriteria.getInvolvedApplications()));
     }
-    
+
     return finalQuery;
   }
 
@@ -680,7 +683,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       throw new WSException(10045, e);
     }
   }
-  
+
   @Override
   public void setAdditionalProperty(Long taskId, String name, String value) throws WSException {
     try {
@@ -691,7 +694,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           existingTask.setAdditionalProperty(name, value);
         }
         return null;
-        });
+      });
     } catch (Exception e) {
       throw new WSException(10045, e);
     }
@@ -741,6 +744,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       return user.equals(task.getWorkerUser());
     }
     return false;
+  }
+
+  private boolean hasPermissionToChangeExpiry(String username, ITask task) {
+    return SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP);
   }
 
   private boolean hasPermissionToChangeOriginalPriority(String userName, IApplication application) {
@@ -846,9 +853,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             .isLowerThan(dateAfter1Day);
     return priorityQuery;
   }
-  
+
   private void queryExcludeHiddenTasks(TaskQuery query) {
-    List<ITask> hiddenTasks = executeTaskQuery(TaskQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
+    List<ITask> hiddenTasks =
+        executeTaskQuery(TaskQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
 
     hiddenTasks.forEach(hiddenTask -> {
       query.where().and().taskId().isNotEqual(hiddenTask.getId());
@@ -879,6 +887,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   private ISecurityManager securityManager() {
     return ServerFactory.getServer().getSecurityManager();
   }
-  
-  
+
+
 }
