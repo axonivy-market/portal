@@ -45,7 +45,7 @@
         <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{showHeaderToolbar}">
           <ui:fragment>
             <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
-              update="task-view task-widget-sort-menu task-widget-header #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
+              update="task-view task-widget-sort-menu task-widget-header advanced-filter-container #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
               onsuccess="#{data.dataModel.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; " 
               oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
               <i class="fa fa-angle-left" jsf:rendered="#{!data.dataModel.compactMode}" />
@@ -59,15 +59,100 @@
       <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter}"
         styleClass="widget-header-content-filter #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}"
         id="filter-view">
-        <h:form id="filter-form" onsubmit="return false;">
+        <h:form id="filter-form" onsubmit="return false;" style="margin-top: 11px;">
           <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
             icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
             keywordStoresIn="#{data.keyword}" styleClass="widget-header-filter-input"
             onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
         </h:form>
       </h:panelGroup>
+      <h:panelGroup id="filter-add-container" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}" styleClass="filter-add-container">
+        <p:commandButton id="filter-add-action" value="More" styleClass="filter-add-button" icon="fa fa-caret-down"
+          iconPos="right" type="button" />
+        <p:overlayPanel id="filter-add-panel" styleClass="filter-add-panel"
+          for="filter-add-action" my="left top" at="left bottom">
+          <h:form>
+            <p:scrollPanel styleClass="filter-selector-container">
+              <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
+                value="#{data.dataModel.selectedFilters}" converter="pojoConverter">
+                <p:ajax update="#{p:component('advanced-filter-container')}" global="false" />
+                <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label}"
+                  itemValue="#{filter}" />
+              </p:selectManyCheckbox>
+            </p:scrollPanel>
+          </h:form>
+        </p:overlayPanel>
+      </h:panelGroup>
     </h:panelGroup>
 
+    <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container"
+      rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
+      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="state-filter" taskFilter="#{data.dataModel.stateFilter}"
+        dataModel="#{data.dataModel}" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/state')}:">
+        <f:facet name="filterContent">
+          <p:selectManyCheckbox id="state-filter" layout="pageDirection"
+            value="#{data.dataModel.stateFilter.selectedFilteredStates}">
+            <f:selectItems value="#{data.dataModel.stateFilter.filteredStates}" var="state" itemValue="#{state}"
+              itemLabel="#{state}" />
+          </p:selectManyCheckbox>
+        </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+
+      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="created-filter" dataModel="#{data.dataModel}"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}:" dismissableOverlayPanel="false"
+        taskFilter="#{data.dataModel.creationDateFilter}">
+        <f:facet name="filterContent">
+          <h:panelGrid columns="3">
+            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
+              for="from-created-calendar" />
+            <p:spacer width="5" />
+            <p:calendar id="from-created-calendar" value="#{data.dataModel.creationDateFilter.fromCreationDate}"
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+
+            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
+              for="to-created-calendar" />
+            <p:spacer width="5" />
+            <p:calendar id="to-created-calendar" value="#{data.dataModel.creationDateFilter.toCreationDate}"
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+          </h:panelGrid>
+        </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+
+      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="expired-filter" dataModel="#{data.dataModel}"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}:" dismissableOverlayPanel="false"
+        taskFilter="#{data.dataModel.expiredDateFilter}">
+        <f:facet name="filterContent">
+          <h:panelGrid columns="3">
+            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
+              for="from-expired-calendar" />
+            <p:spacer width="5" />
+            <p:calendar id="from-expired-calendar" value="#{data.dataModel.expiredDateFilter.fromExpiredDate}"
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+
+            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
+              for="to-expired-calendar" />
+            <p:spacer width="5" />
+            <p:calendar id="to-expired-calendar" value="#{data.dataModel.expiredDateFilter.toExpiredDate}"
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+          </h:panelGrid>
+        </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+
+      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="description-filter" dataModel="#{data.dataModel}"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/description')}:"
+        taskFilter="#{data.dataModel.descriptionFilter}">
+        <f:facet name="filterContent">
+          <p:inputText id="description" value="#{data.dataModel.descriptionFilter.description}" />
+        </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+
+      <!--       <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="responsible-filter" dataModel="#{data.dataModel}" -->
+<!--         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}: SUSPENDED"> -->
+<!--         <f:facet name="filterContent"> -->
+<!--           <p:inputText id="responsible" /> -->
+<!--         </f:facet> -->
+<!--       </ic:ch.ivy.addon.portalkit.component.AdvancedFilter> -->
+    </h:panelGroup>
 
     <h:panelGroup id="task-widget-sort-menu" layout="block"
       styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : ''}">

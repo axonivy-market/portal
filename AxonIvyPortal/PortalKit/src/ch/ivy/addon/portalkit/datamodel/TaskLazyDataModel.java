@@ -15,21 +15,29 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
+import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
+import ch.ivy.addon.portalkit.taskfilter.TaskCreationDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskDescriptionFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskExpiredDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
+import edu.emory.mathcs.backport.java.util.Collections;
 
 public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
-  
+
   protected static final String TASK_WIDGET_COMPONENT_ID = "task-widget";
   protected static final int BUFFER_LOAD = 10;
   protected List<RemoteTask> data;
@@ -41,24 +49,45 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected TaskQueryCriteria queryCriteria;
   protected Long serverId;
   protected Comparator<RemoteTask> comparator;
-  
+
   protected boolean compactMode;
   protected String caseName;
+
+  protected List<TaskFilter> filters;
+  protected List<TaskFilter> selectedFilters;
+  protected TaskStateFilter stateFilter = new TaskStateFilter();
+  protected TaskDescriptionFilter descriptionFilter = new TaskDescriptionFilter();
+  protected TaskCreationDateFilter creationDateFilter = new TaskCreationDateFilter();
+  protected TaskExpiredDateFilter expiredDateFilter = new TaskExpiredDateFilter();
 
   public TaskLazyDataModel() {
     super();
     data = new ArrayList<>();
     displayedTaskMap = new HashMap<>();
     notDisplayedTaskMap = new HashMap<>();
+    selectedFilters = new ArrayList<>();
     searchCriteria = buildCriteria();
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
 
     autoInitForNoAppConfiguration();
+    initFilters();
   }
-  
+
+  private void initFilters() {
+    filters = new ArrayList<>();
+    filters.add(stateFilter);
+    filters.add(descriptionFilter);
+    filters.add(creationDateFilter);
+    filters.add(expiredDateFilter);
+    Collections.sort(filters, new TaskFilterComparator());
+    
+    selectedFilters.add(stateFilter);
+  }
+
   /**
-   * Creates a new instance which extends from TaskLazyDataModel, and copy its properties from source.
+   * Creates a new instance which extends from TaskLazyDataModel, and copy its properties from
+   * source.
    * 
    * @param source
    * @param toClass
@@ -76,7 +105,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     instance.setCaseName(source.getCaseName());
     return instance;
   }
-  
+
   @Override
   public List<RemoteTask> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
@@ -243,8 +272,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * If your customized task list has new columns/fields, please get TaskQuery in queryCriteria and extend the sort query for these fields and
-   * also override the "extendSortTasksInNotDisplayedTaskMap" method.
+   * If your customized task list has new columns/fields, please get TaskQuery in queryCriteria and
+   * extend the sort query for these fields and also override the
+   * "extendSortTasksInNotDisplayedTaskMap" method.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
@@ -260,8 +290,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * 
    * @return
    */
-  protected void extendSort() {
-  }
+  protected void extendSort() {}
 
   @Override
   public void setRowIndex(int index) {
@@ -303,7 +332,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
     searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
   }
-  
+
   public void setInvolvedUsername(String involvedUsername) {
     searchCriteria.setInvolvedUsername(involvedUsername);
   }
@@ -322,10 +351,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.serverId = serverId;
   }
 
-  public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId){
-	  queryCriteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
+  public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
+    queryCriteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
   }
-  
+
   public void setInvolvedApplications(String... involvedApplications) {
     searchCriteria.setInvolvedApplications(involvedApplications);
   }
@@ -365,7 +394,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public Long getServerId() {
     return serverId;
   }
-  
+
   public boolean isCompactMode() {
     return compactMode;
   }
@@ -382,19 +411,69 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.caseName = caseName;
   }
 
+  public List<TaskFilter> getFilters() {
+    return filters;
+  }
+
+  public List<TaskFilter> getSelectedFilters() {
+    return selectedFilters;
+  }
+
+  public void setSelectedFilters(List<TaskFilter> selectedFilters) {
+    this.selectedFilters = selectedFilters;
+  }
+
+  public TaskStateFilter getStateFilter() {
+    return stateFilter;
+  }
+
+  public TaskDescriptionFilter getDescriptionFilter() {
+    return descriptionFilter;
+  }
+
+  public TaskCreationDateFilter getCreationDateFilter() {
+    return creationDateFilter;
+  }
+
+  public TaskExpiredDateFilter getExpiredDateFilter() {
+    return expiredDateFilter;
+  }
+  
+  public void removeFilter(TaskFilter filter) {
+    filter.resetValues();
+    selectedFilters.remove(filter);
+  }
+
   /**
    * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
    */
   protected void buildQueryToSearchCriteria() {
     if (queryCriteria.getTaskQuery() == null) {
       String jsonQuery =
-          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()").call()
-          .get("jsonQuery", String.class);
-      TaskQuery customizedTaskQuery = StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()")
+              .call().get("jsonQuery", String.class);
+      TaskQuery customizedTaskQuery =
+          StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
       queryCriteria.setTaskQuery(customizedTaskQuery);
     }
     extendSort();
-    searchCriteria.setJsonQuery(TaskQueryService.service().createQuery(queryCriteria).asJson());
+
+    if (selectedFilters.contains(stateFilter)) {
+      queryCriteria.setIncludedStates(new ArrayList<>());
+    } else {
+      queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.PARKED,
+          TaskState.RESUMED)));
+    }
+
+    TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);
+    IFilterQuery filterQuery = taskQuery.where();
+    selectedFilters.forEach(selectedFilter -> {
+      TaskQuery subQuery = selectedFilter.buildQuery();
+      if (subQuery != null) {
+        filterQuery.and(subQuery);
+      }
+    });
+    searchCriteria.setJsonQuery(taskQuery.asJson());
   }
 
   /**

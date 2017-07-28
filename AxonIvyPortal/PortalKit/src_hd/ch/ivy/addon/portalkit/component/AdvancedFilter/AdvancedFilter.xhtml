@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
+    shortDescription="Used if filter can be removed" />
+  <cc:attribute name="taskFilter" required="true" type="ch.ivy.addon.portalkit.taskfilter.TaskFilter" />
+  <cc:attribute name="label" />
+  <cc:attribute name="updateListener" />
+  <cc:attribute name="removeListener" />
+  <cc:attribute name="containerStyleClass" />
+  <cc:attribute name="buttonStyleClass" />
+  <cc:attribute name="removeIconStyleClass" />
+  <cc:attribute name="displayUpdateButton" default="true" />
+  <cc:attribute name="dismissableOverlayPanel" default="true"
+    shortDescription="If there is a component with a popup like calendar, autocomplete placed inside the overlay panel, popup part might exceed the boundaries of panel and clicking the outside hides the panel. Set false in this case" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
+  <c:set var="selectedFilters" value="#{dataModel.selectedFilters}" />
+  <c:set var="taskFilter" value="#{cc.attrs.taskFilter}" />
+
+  <h:panelGroup rendered="#{empty dataModel or selectedFilters.contains(taskFilter)}"
+        style="order: #{selectedFilters.indexOf(taskFilter)}">
+    <h:form>
+      <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
+        <p:commandButton id="#{cc.clientId}-advanced-filter-command" type="button" value="#{cc.attrs.label} #{cc.attrs.taskFilter.value()}"
+          styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass}" />
+        <p:commandLink id="advanced-filter-remove-command"
+          styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
+          actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
+          update="#{p:component('advanced-filter-container')} #{p:component('filter-add-container')} #{p:component('task-view-container')}">
+        </p:commandLink>
+      </h:panelGroup>
+
+      <p:overlayPanel id="#{cc.clientId}-advanced-filter-panel" widgetVar="#{cc.clientId}-advanced-filter-panel"
+        dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel"
+        for="#{cc.clientId}-advanced-filter-command" my="left top" at="left bottom">
+        <h:panelGroup layout="block" styleClass="ui-overlaypanel-filter-content">
+          <cc:renderFacet name="filterContent" />
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="ui-overlaypanel-footer" rendered="#{cc.attrs.displayUpdateButton}">
+          <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/update')}"
+            actionListener="#{cc.attrs.updateListener}" update="#{p:component('task-view-container')} @form"
+            oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+          <p:spacer width="5" />
+          <p:commandButton id="cancel-command" styleClass="portal-cancel-button" type="button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            onclick="PF('#{cc.clientId}-advanced-filter-panel').hide()" />
+        </h:panelGroup>
+      </p:overlayPanel>
+    </h:form>
+  </h:panelGroup>
+</cc:implementation>
+</html>
