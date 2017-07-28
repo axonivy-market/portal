@@ -40,7 +40,7 @@
 			User needs to have role
 			<code>AXONIVY_PORTAL_ADMIN</code>
 			to see this menu item, it is used to configure Portal configuration,
-			see differen Portal configurations in
+			see different Portal configurations in
 			<link linkend="axonivyportal.installation.basicinstallation.specifyservers.generalConcept" endterm="axonivyportal.installation.basicinstallation.specifyservers.generalConcept.title" />
 		</para>
 		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
@@ -152,13 +152,12 @@
 										<itemizedlist>
 											<listitem>
 												<para>
-													External Host is used for external users connect to server
-													via host name. It's useful for generating task,
-													process
-													start URL(s), therefore they navigate to server instead of
-													using any internal host or
-													<code>IP</code>
-													address.
+													In multi-Portal mode, Portal uses the
+													External Host value as host value for task or process starts
+													URLs.
+													If this value is empty, Portal will use the host value as configured in the server path field. For
+													other
+													mode, Portal will use the host value of the web address of the engine for the URLs.
 												</para>
 											</listitem>
 											<listitem>
@@ -172,7 +171,7 @@
 												</para>
 												<para>
 													You can sync this value by clicking
-													<code>Refresh</code>
+													<code>Test Connection</code>
 													button, if
 													<code>WebServer.ExternalHostName</code>
 													is set the value would be updated, otherwise displays
@@ -246,9 +245,7 @@
 								<listitem>
 									<para>
 										<code>Mail notification</code>
-										If checked, you can configure separated email setting for the application. If this is unchecked, the
-										application
-										will use the general email setting.
+										If checked will enable email setting feature for the application.
 									</para>
 								</listitem>
 								<listitem>
@@ -401,17 +398,10 @@
 			</listitem>
 			<listitem>
 				<para>
-					UI reads current settings for all applications.
+					You can configure one email setting for all applications or each application separately.
 				</para>
 			</listitem>
 			<listitem>
-				<para>
-					If all settings are same, UI will be displayed in
-					<code>same settings for all</code>
-					mode. Otherwise, UI will be display
-					<code>for each application separate</code>
-					.
-				</para>
 				<mediaobject>
 					<imageobject>
 						<imagedata fileref="images/Settings/email-settings.png" />
