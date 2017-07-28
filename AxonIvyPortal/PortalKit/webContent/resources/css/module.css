@@ -1023,7 +1023,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .widget-header-main.mod-expanded-mode {
-  flex: 1 0 60%;
+  flex: 1 0 50%;
 }
 
 .widget-header-content-filter.mod-expanded-mode {
@@ -1256,8 +1256,127 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   right: 5px;
   font-size: 1.4rem;
 }
-
 /********************************** END FILTER WIDGET **********************************/
+
+/********************************** START ADVANCED FILTER WIDGET **********************************/
+.task-widget .advanced-filter-container {
+  margin-top: 10px;
+  display: flex;
+}
+
+.task-widget .filter-add-container {
+  display: flex;
+}
+
+.task-widget .ui-widget.ui-button.filter-add-button {
+  min-width: 10px;
+  margin-top: auto;
+  margin-left: 10px;
+  height: 30px;
+}
+
+.task-widget .ui-widget.ui-button.filter-add-button .ui-button-text {
+  min-width: 10px;
+  padding: 5px 0 5px 10px !important;
+  border-right: none;
+}
+
+.task-widget .ui-widget.ui-button.filter-add-button .ui-icon {
+  float: right;
+  padding: 5px 10px 5px 5px !important;
+}
+
+.task-widget .advanced-filter {
+  display: inline-block;
+  margin-right: 10px;
+  border: solid transparent 1px;
+  font-size: 1.1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.task-widget .advanced-filter:hover {
+  background-color: rgba(0,0,0,0.04);
+  border-color: #d5d5d5;
+  border-radius: 5px;
+}
+
+.task-widget .ui-widget.ui-button.advanced-filter-command {
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  background: none;
+  min-width: 0;
+  padding: 0 25px 0 5px;
+}
+
+.task-widget .ui-widget.ui-button.advanced-filter-command:after {
+  content: "\f0d7";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-left: 5px;
+  color: black;
+}
+
+.task-widget .advanced-filter .ui-button-text-only .ui-button-text {
+  padding: 0 !important;
+  display: inline-block;
+}
+
+.task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-hover,
+.task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-active,
+.task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-focus {
+  background: none !important;
+}
+
+.advanced-filter-icon {
+  position: absolute;
+  font-size: 1.8rem;
+  right: 5px;
+  top: 9px;
+  color: rgba(0,0,0,0.3) !important;
+}
+
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
+  background-color: white;
+  padding: 0 !important;
+}
+
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content {
+  padding: 10px;
+}
+
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
+  padding: 10px;
+  border-top: solid 1px #eaeaea;
+  text-align: right;
+}
+
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer .ui-widget.ui-button {
+  min-width: 0;
+}
+
+.task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
+  background-color: white;
+  min-width: 140px;
+  padding: 10px !important;
+}
+
+.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel {
+  border: none;
+  padding: 0px !important;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  font-size: 1rem;
+  max-height: 75vh;
+}
+
+/********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/
 .case-widget-empty-message .ui-outputlabel{

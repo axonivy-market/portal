@@ -23,7 +23,7 @@ public class TaskQueryService {
     TaskQuery finalQuery = TaskQuery.create();
     criteria.setNewQueryCreated(criteria.isNewQueryCreated() || criteria.getTaskQuery() == null || criteria.hasTaskId()
         || criteria.hasCaseId());
-    
+
     if (!criteria.isNewQueryCreated()) {
       finalQuery = TaskQuery.fromJson(criteria.getTaskQuery().asJson());
     }
@@ -38,11 +38,12 @@ public class TaskQueryService {
     }
 
     if (criteria.hasCaseId()) {
-      if(criteria.isQueryByBusinessCaseId()){
-    	  finalQuery.where().and(TaskQuery.create().where().businessCaseId().isEqual(criteria.getCaseId()).or().caseId().isEqual(criteria.getCaseId()));
-      }
-      else {
-    	  finalQuery.where().and().caseId().isEqual(criteria.getCaseId());
+      if (criteria.isQueryByBusinessCaseId()) {
+        finalQuery.where().and(
+            TaskQuery.create().where().businessCaseId().isEqual(criteria.getCaseId()).or().caseId()
+                .isEqual(criteria.getCaseId()));
+      } else {
+        finalQuery.where().and().caseId().isEqual(criteria.getCaseId());
       }
     }
 
@@ -55,7 +56,8 @@ public class TaskQueryService {
     } else if (criteria.getTaskAssigneeType() == TaskAssigneeType.USER) {
       TaskQuery personalTaskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
       if (criteria.getIncludedStates().contains(TaskState.PARKED)) {
-        TaskQuery reservedTaskQuery = TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
+        TaskQuery reservedTaskQuery =
+            TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
         personalTaskQuery.where().or(reservedTaskQuery);
       }
       finalQuery.where().and(personalTaskQuery);
@@ -96,14 +98,9 @@ public class TaskQueryService {
   private TaskQuery queryForStates(List<TaskState> states) {
     TaskQuery stateFieldQuery = TaskQuery.create();
 
-    if (states == null || states.isEmpty()) {
-      stateFieldQuery.where().state().isNotEqual(TaskState.DONE).and().state().isNotEqual(TaskState.ZOMBIE).and()
-          .state().isNotEqual(TaskState.DESTROYED);
-    } else {
-      IFilterQuery filterQuery = stateFieldQuery.where();
-      for (TaskState state : states) {
-        filterQuery.or().state().isEqual(state);
-      }
+    IFilterQuery filterQuery = stateFieldQuery.where();
+    for (TaskState state : states) {
+      filterQuery.or().state().isEqual(state);
     }
     return stateFieldQuery;
   }
