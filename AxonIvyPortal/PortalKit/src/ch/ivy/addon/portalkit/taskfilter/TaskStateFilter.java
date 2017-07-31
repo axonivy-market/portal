@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -13,9 +15,22 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskStateFilter extends TaskFilter {
 
-  private List<TaskState> filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
+  private List<TaskState> filteredStates;
   private List<TaskState> selectedFilteredStates;
 
+  /**
+   * Initialize the values of filteredStates: SUSPENDED, RESUMED, PARKED.
+   */
+  public TaskStateFilter() {
+    this.filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
+    this.selectedFilteredStates = new ArrayList<>();
+  }
+  
+  public TaskStateFilter(List<TaskState> filteredStates, List<TaskState> selectedFilteredStates) {
+    this.filteredStates = distinct(filteredStates);
+    this.selectedFilteredStates = distinct(selectedFilteredStates);
+  }
+  
   @Override
   public String label() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/state");
@@ -56,5 +71,16 @@ public class TaskStateFilter extends TaskFilter {
 
   public List<TaskState> getFilteredStates() {
     return filteredStates;
+  }
+
+  public void setFilteredStates(List<TaskState> filteredStates) {
+    this.filteredStates = filteredStates;
+  }
+  
+  private List<TaskState> distinct(List<TaskState> filteredStates) {
+    if (filteredStates != null) {
+      return filteredStates.stream().collect(Collectors.toList());
+    }
+    return new ArrayList<>();
   }
 }

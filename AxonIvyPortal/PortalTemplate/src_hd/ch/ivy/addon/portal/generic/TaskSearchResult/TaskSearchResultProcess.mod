@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 16:50:57 ICT 2017]
+[>Created: Mon Jul 31 13:37:21 ICT 2017]
 15498A84F89ACDE7 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskSearchResultProcess Big #zClass
@@ -143,7 +143,9 @@ Ts0 f16 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);' #txt
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
+
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString());' #txt
 Ts0 f16 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
 Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

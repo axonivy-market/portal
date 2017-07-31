@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 17:27:45 ICT 2017]
+[>Created: Mon Jul 31 16:33:21 ICT 2017]
 156A1AA176DE2A21 3.20 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
@@ -621,7 +621,9 @@ As0 f16 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);' #txt
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
+
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString());' #txt
 As0 f16 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
