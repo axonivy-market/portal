@@ -36,6 +36,7 @@
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
           update="#{p:component('advanced-filter-container')} #{p:component('filter-add-container')} #{p:component('task-view-container')}">
+          <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
       </h:panelGroup>
 
@@ -49,7 +50,7 @@
         <h:panelGroup layout="block" styleClass="ui-overlaypanel-footer" rendered="#{cc.attrs.displayUpdateButton}">
           <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/update')}"
-            actionListener="#{cc.attrs.updateListener}" update="#{p:component('task-view-container')} @form"
+            actionListener="#{cc.attrs.updateListener}" update="#{p:component('task-view-container')} @form #{p:component('advanced-filter-container')}"
             oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
           <p:spacer width="5" />
           <p:commandButton id="cancel-command" styleClass="portal-cancel-button" type="button"

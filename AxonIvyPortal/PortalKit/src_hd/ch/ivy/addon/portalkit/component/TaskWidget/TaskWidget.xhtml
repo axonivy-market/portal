@@ -87,12 +87,13 @@
 
     <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container"
       rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
-      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="state-filter" taskFilter="#{data.dataModel.stateFilter}"
+      <c:set var="filterContainer" value="#{data.dataModel.filterContainer}" />
+      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="state-filter" taskFilter="#{filterContainer.stateFilter}"
         dataModel="#{data.dataModel}" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/state')}:">
         <f:facet name="filterContent">
           <p:selectManyCheckbox id="state-filter" layout="pageDirection"
-            value="#{data.dataModel.stateFilter.selectedFilteredStates}">
-            <f:selectItems value="#{data.dataModel.stateFilter.filteredStates}" var="state" itemValue="#{state}"
+            value="#{filterContainer.stateFilter.selectedFilteredStates}">
+            <f:selectItems value="#{filterContainer.stateFilter.filteredStates}" var="state" itemValue="#{state}"
               itemLabel="#{state}" />
           </p:selectManyCheckbox>
         </f:facet>
@@ -100,19 +101,19 @@
 
       <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="created-filter" dataModel="#{data.dataModel}"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}:" dismissableOverlayPanel="false"
-        taskFilter="#{data.dataModel.creationDateFilter}">
+        taskFilter="#{filterContainer.creationDateFilter}">
         <f:facet name="filterContent">
           <h:panelGrid columns="3">
             <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
               for="from-created-calendar" />
             <p:spacer width="5" />
-            <p:calendar id="from-created-calendar" value="#{data.dataModel.creationDateFilter.fromCreationDate}"
+            <p:calendar id="from-created-calendar" value="#{filterContainer.creationDateFilter.fromCreationDate}"
               pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
 
             <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
               for="to-created-calendar" />
             <p:spacer width="5" />
-            <p:calendar id="to-created-calendar" value="#{data.dataModel.creationDateFilter.toCreationDate}"
+            <p:calendar id="to-created-calendar" value="#{filterContainer.creationDateFilter.toCreationDate}"
               pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
           </h:panelGrid>
         </f:facet>
@@ -120,19 +121,19 @@
 
       <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="expired-filter" dataModel="#{data.dataModel}"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}:" dismissableOverlayPanel="false"
-        taskFilter="#{data.dataModel.expiredDateFilter}">
+        taskFilter="#{filterContainer.expiredDateFilter}">
         <f:facet name="filterContent">
           <h:panelGrid columns="3">
             <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
               for="from-expired-calendar" />
             <p:spacer width="5" />
-            <p:calendar id="from-expired-calendar" value="#{data.dataModel.expiredDateFilter.fromExpiredDate}"
+            <p:calendar id="from-expired-calendar" value="#{filterContainer.expiredDateFilter.fromExpiredDate}"
               pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
 
             <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
               for="to-expired-calendar" />
             <p:spacer width="5" />
-            <p:calendar id="to-expired-calendar" value="#{data.dataModel.expiredDateFilter.toExpiredDate}"
+            <p:calendar id="to-expired-calendar" value="#{filterContainer.expiredDateFilter.toExpiredDate}"
               pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
           </h:panelGrid>
         </f:facet>
@@ -140,9 +141,9 @@
 
       <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="description-filter" dataModel="#{data.dataModel}"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/description')}:"
-        taskFilter="#{data.dataModel.descriptionFilter}">
+        taskFilter="#{filterContainer.descriptionFilter}">
         <f:facet name="filterContent">
-          <p:inputText id="description" value="#{data.dataModel.descriptionFilter.description}" />
+          <p:inputText id="description" value="#{filterContainer.descriptionFilter.description}" />
         </f:facet>
       </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
 

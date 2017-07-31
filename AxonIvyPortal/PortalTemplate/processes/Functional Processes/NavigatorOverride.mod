@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 05 17:36:18 ICT 2017]
+[>Created: Mon Jul 31 10:29:12 ICT 2017]
 1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
@@ -184,7 +184,6 @@ SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), 
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.setCaseId(in.caseId.id());
 dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
-dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
 dataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
 dataModel.setServerId(in.caseId.serverId());
 dataModel.setCaseName(in.caseName);
