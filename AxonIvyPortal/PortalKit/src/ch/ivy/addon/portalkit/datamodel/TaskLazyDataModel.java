@@ -15,16 +15,13 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
-import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
-import ch.ivy.addon.portalkit.taskfilter.TaskCreationDateFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskDescriptionFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskExpiredDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -32,7 +29,6 @@ import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
-import edu.emory.mathcs.backport.java.util.Collections;
 
 public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
@@ -55,10 +51,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
-  protected TaskStateFilter stateFilter = new TaskStateFilter();
-  protected TaskDescriptionFilter descriptionFilter = new TaskDescriptionFilter();
-  protected TaskCreationDateFilter creationDateFilter = new TaskCreationDateFilter();
-  protected TaskExpiredDateFilter expiredDateFilter = new TaskExpiredDateFilter();
+  protected TaskFilterContainer filterContainer;
 
   public TaskLazyDataModel() {
     super();
@@ -66,6 +59,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     displayedTaskMap = new HashMap<>();
     notDisplayedTaskMap = new HashMap<>();
     selectedFilters = new ArrayList<>();
+    filterContainer = new DefaultTaskFilterContainer();
     searchCriteria = buildCriteria();
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
@@ -75,14 +69,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private void initFilters() {
-    filters = new ArrayList<>();
-    filters.add(stateFilter);
-    filters.add(descriptionFilter);
-    filters.add(creationDateFilter);
-    filters.add(expiredDateFilter);
-    Collections.sort(filters, new TaskFilterComparator());
-    
-    selectedFilters.add(stateFilter);
+    filters = filterContainer.getFilters();
+    selectedFilters.add(filterContainer.getStateFilter());
   }
 
   /**
@@ -103,6 +91,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     instance.setServerId(source.getServerId());
     instance.setCompactMode(source.isCompactMode());
     instance.setCaseName(source.getCaseName());
+    instance.setFilterContainer(source.getFilterContainer());
     return instance;
   }
 
@@ -265,6 +254,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
     jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.PARKED,
         TaskState.RESUMED)));
+    setValuesForStateFilter(jsonQuerycriteria);
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
     return jsonQuerycriteria;
@@ -370,9 +360,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public boolean isSortDescending() {
     return queryCriteria.isSortDescending();
   }
+  
+  public void setIncludedStates(List<TaskState> includedStates) {
+    this.queryCriteria.setIncludedStates(includedStates);
+    setValuesForStateFilter(this.queryCriteria);
+  }
 
   public void addIncludedStates(List<TaskState> includedStates) {
     this.queryCriteria.addIncludedStates(includedStates);
+    setValuesForStateFilter(this.queryCriteria);
   }
 
   public void setSearchCriteria(TaskSearchCriteria searchCriteria) {
@@ -423,22 +419,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.selectedFilters = selectedFilters;
   }
 
-  public TaskStateFilter getStateFilter() {
-    return stateFilter;
+  public TaskFilterContainer getFilterContainer() {
+    return filterContainer;
   }
 
-  public TaskDescriptionFilter getDescriptionFilter() {
-    return descriptionFilter;
+  public void setFilterContainer(TaskFilterContainer filterContainer) {
+    this.filterContainer = filterContainer;
   }
 
-  public TaskCreationDateFilter getCreationDateFilter() {
-    return creationDateFilter;
-  }
-
-  public TaskExpiredDateFilter getExpiredDateFilter() {
-    return expiredDateFilter;
-  }
-  
   public void removeFilter(TaskFilter filter) {
     filter.resetValues();
     selectedFilters.remove(filter);
@@ -458,11 +446,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
     extendSort();
 
-    if (selectedFilters.contains(stateFilter)) {
+    if (selectedFilters.contains(filterContainer.getStateFilter())) {
       queryCriteria.setIncludedStates(new ArrayList<>());
     } else {
-      queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.PARKED,
-          TaskState.RESUMED)));
+      queryCriteria.setIncludedStates(filterContainer.getStateFilter().getFilteredStates());
     }
 
     TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);
@@ -473,6 +460,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         filterQuery.and(subQuery);
       }
     });
+    
     searchCriteria.setJsonQuery(taskQuery.asJson());
   }
 
@@ -508,5 +496,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     if (StringUtils.isNotBlank(applicationName)) {
       setInvolvedApplications(applicationName);
     }
+  }
+  
+  private void setValuesForStateFilter(TaskQueryCriteria querycriteria) {
+    filterContainer.getStateFilter().setFilteredStates(querycriteria.getIncludedStates());
+    filterContainer.getStateFilter().setSelectedFilteredStates(querycriteria.getIncludedStates());
   }
 }

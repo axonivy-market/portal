@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 19 18:05:19 ICT 2017]
+[>Created: Mon Jul 31 10:26:06 ICT 2017]
 156F869FC3FCD1D9 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
@@ -206,7 +206,7 @@ if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_UNASSIGNED_TASKS)) {
 	dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 	dataModel.setIgnoreInvolvedUser(true);
-	dataModel.queryCriteria.setIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+	dataModel.setIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
 }
 
 in.taskView = TaskView.create().category(categoryMenu).dataModel(dataModel).pageTitle(categoryMenu.value).showHeaderToolbar(false).createNewTaskView();' #txt
