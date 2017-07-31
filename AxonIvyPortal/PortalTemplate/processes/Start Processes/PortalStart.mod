@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 09 08:53:12 ICT 2017]
+[>Created: Mon Jul 31 14:32:35 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -522,10 +522,13 @@ import org.primefaces.extensions.util.json.GsonConverter;
 import java.util.Arrays;
 
 if (!in.isDataModelInitialized) {
-	TaskNode taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
+	TaskNode taskCategory;
+	try {
+		taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
+	} catch (Exception e) {}
 	boolean canLinkBackToCaseDetail = in.#dataModel.#queryCriteria.#caseId is initialized; 
 	
-	in.taskView = TaskView.create().category(taskCategory).dataModel(in.dataModel)
+	in.taskView = TaskView.create().category(#taskCategory).dataModel(in.dataModel)
 												.canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false)
 												.remoteTaskId(in.selectedTaskId).createNewTaskView();
 	

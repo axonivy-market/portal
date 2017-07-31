@@ -24,11 +24,13 @@ function TaskWidget(outerPanelId) {
         var mainAreaPanel = $('#' + outerPanelId);
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
         var taskWidgetSortMenuContainer = $('.js-task-widget-sort-menu');
+        var taskWidgetAdvancdedFilterContainer = $('.advanced-filter-container');
         var customWidgetContainer = $('.js-custom-widget-container');
         var error = 5;
 
         var availableHeight = mainAreaPanel.outerHeight() - taskWidgetHeaderContainer.outerHeight(true)
-            - taskWidgetSortMenuContainer.outerHeight(true) - customWidgetContainer.outerHeight(true) - error;
+            - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetAdvancdedFilterContainer.outerHeight(true)
+            - customWidgetContainer.outerHeight(true) - error;
 
         if (!!availableHeight) {
           container.height(availableHeight);
