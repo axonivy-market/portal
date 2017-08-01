@@ -2,8 +2,11 @@ package ch.ivy.addon.portalkit.taskfilter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -42,11 +45,23 @@ public class TaskResponsibleFilter extends TaskFilter {
                   .get("roles", List.class);
             }
           });
-      Collections.sort(users, new RemoteUserComparator());
-      Collections.sort(roles, new RemoteRoleComparator());
-      
-      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(users));
-      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteRoles(roles));
+
+      List<RemoteUser> distinctUsers =
+          users.stream().collect(
+              Collectors.collectingAndThen(
+                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))),
+                  ArrayList::new));
+      List<RemoteRole> distinctRoles =
+          roles.stream().collect(
+              Collectors.collectingAndThen(
+                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteRole::getMemberName))),
+                  ArrayList::new));
+
+      Collections.sort(distinctUsers, new RemoteUserComparator());
+      Collections.sort(distinctRoles, new RemoteRoleComparator());
+
+      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
+      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteRoles(distinctRoles));
     } catch (Exception e) {
       Ivy.log().error("Can't get list of users or roles in responsible filter", e);
     }
@@ -82,12 +97,12 @@ public class TaskResponsibleFilter extends TaskFilter {
   public void resetValues() {
     selectedResponsible = null;
   }
-  
+
   public String formatName(RemoteSecurityMember responsible) {
     if (StringUtils.isBlank(responsible.getDisplayName())) {
       return responsible.getMemberName();
     }
-    return responsible.getDisplayName() + " (" + responsible.getMemberName() + ")"; 
+    return responsible.getDisplayName() + " (" + responsible.getMemberName() + ")";
   }
 
   public List<RemoteSecurityMember> getResponsibles() {
