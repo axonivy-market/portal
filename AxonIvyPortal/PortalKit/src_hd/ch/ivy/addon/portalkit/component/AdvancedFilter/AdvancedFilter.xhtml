@@ -26,11 +26,12 @@
   <c:set var="selectedFilters" value="#{dataModel.selectedFilters}" />
   <c:set var="taskFilter" value="#{cc.attrs.taskFilter}" />
 
-  <h:panelGroup rendered="#{empty dataModel or selectedFilters.contains(taskFilter)}"
-        style="order: #{selectedFilters.indexOf(taskFilter)}">
+  <h:panelGroup id="#{cc.clientId}" rendered="#{empty dataModel or selectedFilters.contains(taskFilter)}"
+    style="order: #{selectedFilters.indexOf(taskFilter)}">
     <h:form>
       <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
-        <p:commandButton id="#{cc.clientId}-advanced-filter-command" type="button" value="#{cc.attrs.label} #{cc.attrs.taskFilter.value()}"
+        <p:commandButton id="#{cc.clientId}-advanced-filter-command" type="button"
+          value="#{cc.attrs.label} #{cc.attrs.taskFilter.value()}"
           styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass}" />
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
@@ -43,19 +44,21 @@
       <p:overlayPanel id="#{cc.clientId}-advanced-filter-panel" widgetVar="#{cc.clientId}-advanced-filter-panel"
         dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel"
         for="#{cc.clientId}-advanced-filter-command" my="left top" at="left bottom">
-        <h:panelGroup layout="block" styleClass="ui-overlaypanel-filter-content">
-          <cc:renderFacet name="filterContent" />
+        <h:panelGroup id="advanced-filter-panel-content" layout="block" styleClass="ui-overlaypanel-filter-content">
+          <cc:insertChildren />
         </h:panelGroup>
 
-        <h:panelGroup layout="block" styleClass="ui-overlaypanel-footer" rendered="#{cc.attrs.displayUpdateButton}">
+        <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer"
+          rendered="#{cc.attrs.displayUpdateButton}">
           <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/update')}"
-            actionListener="#{cc.attrs.updateListener}" update="#{p:component('task-view-container')} @form #{p:component('advanced-filter-container')}"
+            actionListener="#{cc.attrs.updateListener}" update="@form #{p:component('task-view-container')}"
             oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
           <p:spacer width="5" />
           <p:commandButton id="cancel-command" styleClass="portal-cancel-button" type="button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            onclick="PF('#{cc.clientId}-advanced-filter-panel').hide()" />
+            onclick="PF('#{cc.clientId}-advanced-filter-panel').hide()">
+          </p:commandButton>
         </h:panelGroup>
       </p:overlayPanel>
     </h:form>
