@@ -85,22 +85,23 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container"
-      rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
-      <c:set var="filterContainer" value="#{data.dataModel.filterContainer}" />
+    <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
+      <h:panelGroup rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
+        <c:set var="filterContainer" value="#{data.dataModel.filterContainer}" />
 
-      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="state-filter" taskFilter="#{filterContainer.stateFilter}"
-        dataModel="#{data.dataModel}" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/state')}:">
+        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="state-filter"
+          taskFilter="#{filterContainer.stateFilter}" dataModel="#{data.dataModel}"
+          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/state')}:">
           <p:selectManyCheckbox id="state-selection" layout="pageDirection"
             value="#{filterContainer.stateFilter.selectedFilteredStates}">
             <f:selectItems value="#{filterContainer.stateFilter.filteredStates}" var="state" itemValue="#{state}"
               itemLabel="#{state}" />
           </p:selectManyCheckbox>
-      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
 
-      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="created-filter" dataModel="#{data.dataModel}"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}:" dismissableOverlayPanel="false"
-        taskFilter="#{filterContainer.creationDateFilter}">
+        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="created-filter" dataModel="#{data.dataModel}"
+          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}:" dismissableOverlayPanel="false"
+          taskFilter="#{filterContainer.creationDateFilter}">
           <h:panelGrid columns="3">
             <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
               for="from-created-calendar" />
@@ -114,11 +115,11 @@
             <p:calendar id="to-created-calendar" value="#{filterContainer.creationDateFilter.toCreationDate}"
               pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
           </h:panelGrid>
-      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
 
-      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="expired-filter" dataModel="#{data.dataModel}"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}:" dismissableOverlayPanel="false"
-        taskFilter="#{filterContainer.expiredDateFilter}">
+        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="expired-filter" dataModel="#{data.dataModel}"
+          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}:" dismissableOverlayPanel="false"
+          taskFilter="#{filterContainer.expiredDateFilter}">
           <h:panelGrid columns="3">
             <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
               for="from-expired-calendar" />
@@ -132,20 +133,31 @@
             <p:calendar id="to-expired-calendar" value="#{filterContainer.expiredDateFilter.toExpiredDate}"
               pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
           </h:panelGrid>
-      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
 
-      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="description-filter" dataModel="#{data.dataModel}"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/description')}:"
-        taskFilter="#{filterContainer.descriptionFilter}">
+        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="description-filter" dataModel="#{data.dataModel}"
+          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/description')}:"
+          taskFilter="#{filterContainer.descriptionFilter}">
           <p:inputText id="description" value="#{filterContainer.descriptionFilter.description}" />
-      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
-      
-<!--       <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="responsible-filter" dataModel="#{data.dataModel}" -->
-<!--         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}: SUSPENDED"> -->
-<!--         <f:facet name="filterContent"> -->
-<!--           <p:inputText id="responsible" /> -->
-<!--         </f:facet> -->
-<!--       </ic:ch.ivy.addon.portalkit.component.AdvancedFilter> -->
+        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+
+        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="responsible-filter" dataModel="#{data.dataModel}"
+          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}:"
+          taskFilter="#{filterContainer.responsibleFilter}" displayUpdateButton="false">
+          <p:selectOneListbox id="responsible" value="#{filterContainer.responsibleFilter.selectedResponsible}"
+            var="responsible" filter="true" filterMatchMode="contains" styleClass="responsible-list-filter"
+            converter="pojoConverter">
+            <p:ajax update="@form #{p:component('task-view-container')}" process="@all"
+              oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+            <f:selectItems value="#{filterContainer.responsibleFilter.responsibles}" var="r"
+              itemLabel="#{r.displayName}" itemValue="#{r}" />
+            <p:column>
+              <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+              <h:outputText value="#{filterContainer.responsibleFilter.formatName(responsible)}" />
+            </p:column>
+          </p:selectOneListbox>
+        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+      </h:panelGroup>
     </h:panelGroup>
 
     <h:panelGroup id="task-widget-sort-menu" layout="block"
