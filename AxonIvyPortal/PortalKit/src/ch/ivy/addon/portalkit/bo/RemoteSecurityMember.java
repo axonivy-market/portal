@@ -18,6 +18,8 @@ public class RemoteSecurityMember implements ISecurityMember{
 	
 	private String memberName;
 	
+	private boolean isUser;
+	
 	/**
 	 * Constructor
 	 *
@@ -77,7 +79,7 @@ public class RemoteSecurityMember implements ISecurityMember{
 	@Override
 	@PublicAPI(IvyScriptVisibility.NOVICE)
 	public boolean isUser() {
-		if(memberName != null && memberName.startsWith("#")){
+		if((memberName != null && memberName.startsWith("#")) || isUser){
 			return true;
 		}
 		return false;
@@ -106,6 +108,8 @@ public class RemoteSecurityMember implements ISecurityMember{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
+  public void setUser(boolean isUser) {
+    this.isUser = isUser;
+  }
 }
