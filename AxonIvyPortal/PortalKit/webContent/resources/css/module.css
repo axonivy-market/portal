@@ -1376,6 +1376,9 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   max-height: 75vh;
 }
 
+.ui-selectonelistbox.responsible-list-filter {
+  width: auto;
+}
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/
