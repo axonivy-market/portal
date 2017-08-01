@@ -29,7 +29,7 @@
 		<sect2>
 			<title>Project modules</title>
 			<para>
-				The application consists of 4 process modules. For detailed information of each module, refer to
+				The application consists of 5 process modules. For detailed information of each module, refer to
 				<link linkend="axonivyportal.architecture" endterm="axonivyportal.architecture.title" />
 				.
 				<itemizedlist>
@@ -51,6 +51,11 @@
 					<listitem>
 						<para>
 							SelfServiceBPM
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							AxonIvyExpress
 						</para>
 					</listitem>
 				</itemizedlist>

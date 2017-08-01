@@ -3,7 +3,7 @@
 	<title xml:id="axonivyportal.architecture.title">Architecture</title>
 	<sect1 xml:id="axonivyportal.architecture.portalprocessmodulesstructure">
 		<para>
-			Currently Portal system contains 5 modules
+			Currently Portal system contains 6 modules
 		</para>
 		<mediaobject>
 			<imageobject>
@@ -35,8 +35,29 @@
 	<sect1 xml:id="axonivyportal.architecture.selfservicebpm">
 		<title>Self service BPM</title>
 		<para>
-			This project extends PortalTemplate and is a utility which implements concept of Adaptive Case Management. The idea is that user can start any cases and add simultaneously new roles and tasks while doing your process work.
+			This project extends PortalTemplate and is a utility which implements concept of Adaptive Case Management. The idea is that user can start any cases and add simultaneously new roles and tasks while doing his process work.
 		</para>
+	</sect1>
+	<sect1 xml:id="axonivyportal.architecture.axonivyexpress">
+		<title>Axon Ivy Express</title>
+		<para>
+			The idea is that user can create his own process and can manage it easily, it gives user more flexibility when working with Portal.
+		</para>
+		<para>
+			This project is an extended project from PortalTemplate. It provides:
+		</para>
+		<itemizedlist>
+			<listitem>
+				<para>
+					Ability to create his/her own workflow
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Tools to create and modify the web form for his workflow
+				</para>
+			</listitem>
+		</itemizedlist>
 	</sect1>
 	<sect1 xml:id="axonivyportal.architecture.portalconnector">
 		<title>Portal connector</title>
