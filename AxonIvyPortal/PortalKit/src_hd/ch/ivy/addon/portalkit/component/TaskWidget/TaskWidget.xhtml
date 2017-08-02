@@ -75,8 +75,9 @@
             <p:scrollPanel styleClass="filter-selector-container" mode="native">
               <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                 value="#{data.dataModel.selectedFilters}" converter="pojoConverter">
-                <p:ajax update="#{p:component('advanced-filter-container')}" global="false" />
-                <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label}"
+                <p:ajax update="#{p:component('advanced-filter-container')}" global="false" 
+                  oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+                <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                   itemValue="#{filter}" />
               </p:selectManyCheckbox>
             </p:scrollPanel>

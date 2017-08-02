@@ -731,7 +731,8 @@
 /* =================== TEXTFIELD ====================== */
 .ui-inputtext,
 .ui-inputfield.hasDatepicker,
-.ui-inputfield.ui-password {
+.ui-inputfield.ui-password,
+.ui-selectlistbox-filter.ui-inputfield.ui-widget {
   padding: 6px 0 !important;
   font-family: "robotomedium" !important;
   font-size: 1.8rem;
@@ -742,6 +743,11 @@
   -moz-box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
   box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
 }
+
+.ui-selectlistbox-filter.ui-inputfield.ui-widget {
+  padding-left: 35px !important;
+}
+
 #top-menu li ul li input[type="text"] {
   font-size: 1.8rem;
   padding: 6px 0 !important;
