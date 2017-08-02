@@ -350,4 +350,24 @@ public class TaskWidgetPage extends TemplatePage {
         findElementByCssSelector("*[id$='" + index + ":task-item:task-start-item-view:task-start-task-name']");
     return name.getText();
   }
+  
+  public void openAdvancedFilter(String filter) {
+    click(By.id("task-widget:filter-add-action"));
+    WebElement filterSelectionElement = findElementById("task-widget:filter-add-form:filter-selection");
+    findChildElementsByTagName(filterSelectionElement, "LABEL").forEach(filterElement -> {
+      if (filter.equals(filterElement.getText())) {
+        filterElement.click();
+        return;
+      }
+    });
+    waitForElementDisplayed(By.id("task-widget:" + filter.toLowerCase() + "-filter:filter-form:advanced-filter-item-container"), true);
+  }
+  
+  public void filterByDescription(String text) {
+    click(By.id("task-widget:description-filter:filter-form:advanced-filter-command"));
+    WebElement descriptionInput = findElementById("task-widget:description-filter:filter-form:description");
+    enterKeys(descriptionInput, text);
+    click(By.id("task-widget:description-filter:filter-form:update-command"));
+    Sleeper.sleepTight(2000);
+  }
 }
