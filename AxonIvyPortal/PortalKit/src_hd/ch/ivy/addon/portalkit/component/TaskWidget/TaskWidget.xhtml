@@ -147,7 +147,7 @@
           <p:selectOneListbox id="responsible" value="#{filterContainer.responsibleFilter.selectedResponsible}"
             var="responsible" filter="true" filterMatchMode="contains" styleClass="responsible-list-filter"
             converter="pojoConverter">
-            <p:ajax update="@form #{p:component('task-view-container')}" process="@all"
+            <p:ajax update="@form #{p:component('task-view-container')}" global="false"
               oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
             <f:selectItems value="#{filterContainer.responsibleFilter.responsibles}" var="r"
               itemLabel="#{r.displayName}" itemValue="#{r}" />
