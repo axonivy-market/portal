@@ -71,8 +71,8 @@
           iconPos="right" type="button" />
         <p:overlayPanel id="filter-add-panel" styleClass="filter-add-panel"
           for="filter-add-action" my="left top" at="left bottom">
-          <h:form>
-            <p:scrollPanel styleClass="filter-selector-container">
+          <h:form id="filter-add-form">
+            <p:scrollPanel styleClass="filter-selector-container" mode="native">
               <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                 value="#{data.dataModel.selectedFilters}" converter="pojoConverter">
                 <p:ajax update="#{p:component('advanced-filter-container')}" global="false" />

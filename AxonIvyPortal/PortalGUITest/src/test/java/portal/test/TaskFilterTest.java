@@ -7,6 +7,7 @@ import portal.common.BaseTest;
 import portal.common.TestAccount;
 import portal.page.HomePage;
 import portal.page.LoginPage;
+import portal.page.MainMenuPage;
 import portal.page.TaskWidgetPage;
 
 public class TaskFilterTest extends BaseTest {
@@ -30,4 +31,18 @@ public class TaskFilterTest extends BaseTest {
     assertEquals(1, taskWidgetPage.countTasks());
   }
 
+  @Test
+  public void testAdvancedFilterTask() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
+    
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    assertEquals(3, taskWidgetPage.countTasks());
+    
+    taskWidgetPage.openAdvancedFilter("Description");
+    taskWidgetPage.filterByDescription("Maternity");
+    
+    assertEquals(1, taskWidgetPage.countTasks());
+  }
 }
