@@ -25,7 +25,7 @@ public class TaskDescriptionFilter extends TaskFilter {
       return null;
     }
     
-    String containingKeyword = String.format("%%%s%%", description);
+    String containingKeyword = String.format("%%%s%%", description.trim());
     return TaskQuery.create().where().description().isLike(containingKeyword);
   }
 
