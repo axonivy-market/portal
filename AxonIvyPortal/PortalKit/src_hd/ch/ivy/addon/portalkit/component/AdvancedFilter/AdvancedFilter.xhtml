@@ -28,7 +28,7 @@
 
   <h:panelGroup rendered="#{empty dataModel or selectedFilters.contains(taskFilter)}"
     style="order: #{selectedFilters.indexOf(taskFilter)}">
-    <h:form>
+    <h:form id="filter-form">
       <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
         <p:commandButton id="advanced-filter-command" type="button"
           value="#{cc.attrs.label} #{cc.attrs.taskFilter.value()}"
