@@ -58,7 +58,7 @@ public class TaskStateFilter extends TaskFilter {
 
   @Override
   public void resetValues() {
-    selectedFilteredStates.clear();
+    selectedFilteredStates = filteredStates;
   }
 
   public List<TaskState> getSelectedFilteredStates() {
