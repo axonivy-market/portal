@@ -23,6 +23,7 @@ import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -435,6 +436,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     filter.resetValues();
     selectedFilters.remove(filter);
   }
+  
+  public boolean hasReadAllTasksPermisson() {
+    return TaskUtils.checkReadAllTasksPermission();
+  }
 
   /**
    * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
@@ -460,15 +465,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       }
     }
 
-    TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);
-    IFilterQuery filterQuery = taskQuery.where();
-    selectedFilters.forEach(selectedFilter -> {
-      TaskQuery subQuery = selectedFilter.buildQuery();
-      if (subQuery != null) {
-        filterQuery.and(subQuery);
-      }
-    });
-    
+    TaskQuery taskQuery = buildTaskQuery();
     searchCriteria.setJsonQuery(taskQuery.asJson());
   }
 
@@ -509,5 +506,17 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private void setValuesForStateFilter(TaskQueryCriteria querycriteria) {
     filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(querycriteria.getIncludedStates()));
     filterContainer.getStateFilter().setSelectedFilteredStates(querycriteria.getIncludedStates());
+  }
+  
+  private TaskQuery buildTaskQuery() {
+    TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);
+    IFilterQuery filterQuery = taskQuery.where();
+    selectedFilters.forEach(selectedFilter -> {
+      TaskQuery subQuery = selectedFilter.buildQuery();
+      if (subQuery != null) {
+        filterQuery.and(subQuery);
+      }
+    });
+    return taskQuery;
   }
 }
