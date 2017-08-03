@@ -87,18 +87,8 @@
     </h:panelGroup>
 
     <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
-      <h:panelGroup layout="block" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter and !data.dataModel.hasReadAllTasksPermisson()}">
-        <h:form id="in-progress-form">
-          <p:selectBooleanCheckbox id="in-progress-checkbox"
-            value="#{data.dataModel.searchCriteria.taskStartedByAnotherDisplayed}"
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsers')}">
-            <p:ajax global="false" update="#{p:component('task-view-container')}" />
-          </p:selectBooleanCheckbox>
-          <p:tooltip for="in-progress-checkbox"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
-        </h:form>
-      </h:panelGroup>
-      <h:panelGroup styleClass="additional-filter-container" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
+      <h:panelGroup styleClass="additional-filter-container"
+        rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
         <c:set var="filterContainer" value="#{data.dataModel.filterContainer}" />
 
         <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="state-filter"
@@ -126,7 +116,7 @@
               for="to-created-calendar" />
             <p:spacer width="5" />
             <p:calendar id="to-created-calendar" value="#{filterContainer.creationDateFilter.toCreationDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" 
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
           </h:panelGrid>
         </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
@@ -173,6 +163,17 @@
             </p:column>
           </p:selectOneListbox>
         </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+        <h:panelGroup layout="block" rendered="#{!data.dataModel.hasReadAllTasksPermisson()}" styleClass="in-progress-filter-container">
+          <h:form id="in-progress-form">
+            <p:selectBooleanCheckbox id="in-progress-checkbox"
+              value="#{data.dataModel.searchCriteria.taskStartedByAnotherDisplayed}"
+              itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsers')}">
+              <p:ajax global="false" update="#{p:component('task-view-container')}" />
+            </p:selectBooleanCheckbox>
+            <p:tooltip for="in-progress-checkbox"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
+          </h:form>
+        </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
 
