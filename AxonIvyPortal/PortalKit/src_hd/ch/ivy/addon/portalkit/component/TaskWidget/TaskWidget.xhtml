@@ -87,7 +87,18 @@
     </h:panelGroup>
 
     <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
-      <h:panelGroup rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
+      <h:panelGroup layout="block" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter and !data.dataModel.hasReadAllTasksPermisson()}">
+        <h:form id="in-progress-form">
+          <p:selectBooleanCheckbox id="in-progress-checkbox"
+            value="#{data.dataModel.searchCriteria.taskStartedByAnotherDisplayed}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsers')}">
+            <p:ajax global="false" update="#{p:component('task-view-container')}" />
+          </p:selectBooleanCheckbox>
+          <p:tooltip for="in-progress-checkbox"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
+        </h:form>
+      </h:panelGroup>
+      <h:panelGroup styleClass="additional-filter-container" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
         <c:set var="filterContainer" value="#{data.dataModel.filterContainer}" />
 
         <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="state-filter"

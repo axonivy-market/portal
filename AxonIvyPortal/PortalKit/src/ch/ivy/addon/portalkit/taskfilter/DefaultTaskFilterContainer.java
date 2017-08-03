@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
+import java.util.Collections;
 import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
-import edu.emory.mathcs.backport.java.util.Collections;
 
 public class DefaultTaskFilterContainer extends TaskFilterContainer {
 
