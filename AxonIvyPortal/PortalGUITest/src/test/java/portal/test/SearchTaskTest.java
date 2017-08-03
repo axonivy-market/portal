@@ -44,16 +44,4 @@ public class SearchTaskTest extends BaseTest {
     assertEquals(numberOfTasks, resultPage.countTasks());
     assertTrue(resultPage.isTaskItemSelected(0));
   }
-
-  @Test
-  public void testFindTaskByCustomVarchar() {
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
-
-    globalSearch.clickOnGlobalSearchIcon();
-    String taskName = "Other Leave";
-
-    globalSearch.inputSearchKeyword(taskName);
-
-    assertEquals(2, globalSearch.countFoundTasks());
-  }
 }
