@@ -481,6 +481,7 @@
       <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element name="queryByTaskId" type="xs:boolean"></xs:element>
+      <xs:element name="taskStartedByAnotherDisplayed" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="findTasksByCriteriaResponse">

@@ -1267,6 +1267,9 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 /********************************** START ADVANCED FILTER WIDGET **********************************/
 .task-widget .advanced-filter-container {
   margin-top: 10px;
+}
+
+.task-widget .advanced-filter-container .additional-filter-container {
   display: flex;
 }
 
