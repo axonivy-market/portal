@@ -317,7 +317,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
     if (ignoreInvolvedUser) {
-      queryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED, TaskState.DONE));
+      addIncludedStates(Arrays.asList(TaskState.UNASSIGNED, TaskState.DONE));
     }
     searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
   }
@@ -396,6 +396,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void setCompactMode(boolean compactMode) {
     this.compactMode = compactMode;
+    if (compactMode) {
+      selectedFilters.clear();
+    }
   }
 
   public String getCaseName() {
@@ -445,10 +448,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
     extendSort();
 
-    if (selectedFilters.contains(filterContainer.getStateFilter())) {
-      queryCriteria.setIncludedStates(new ArrayList<>());
+    if (compactMode) {
+      queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.DONE)));
     } else {
-      queryCriteria.setIncludedStates(filterContainer.getStateFilter().getFilteredStates());
+      if (selectedFilters.contains(filterContainer.getStateFilter())) {
+        queryCriteria.setIncludedStates(new ArrayList<>());
+      } else {
+        queryCriteria.setIncludedStates(filterContainer.getStateFilter().getFilteredStates());
+      }
     }
 
     TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);

@@ -96,7 +96,7 @@
           <p:selectManyCheckbox id="state-selection" layout="pageDirection"
             value="#{filterContainer.stateFilter.selectedFilteredStates}">
             <f:selectItems value="#{filterContainer.stateFilter.filteredStates}" var="state" itemValue="#{state}"
-              itemLabel="#{state}" />
+              itemLabel="#{filterContainer.stateFilter.userFriendlyState(state)}" />
           </p:selectManyCheckbox>
         </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
 
@@ -108,13 +108,15 @@
               for="from-created-calendar" />
             <p:spacer width="5" />
             <p:calendar id="from-created-calendar" value="#{filterContainer.creationDateFilter.fromCreationDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
+              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
             <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
               for="to-created-calendar" />
             <p:spacer width="5" />
             <p:calendar id="to-created-calendar" value="#{filterContainer.creationDateFilter.toCreationDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" 
+              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
           </h:panelGrid>
         </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
 
@@ -126,13 +128,15 @@
               for="from-expired-calendar" />
             <p:spacer width="5" />
             <p:calendar id="from-expired-calendar" value="#{filterContainer.expiredDateFilter.fromExpiredDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
+              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
             <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
               for="to-expired-calendar" />
             <p:spacer width="5" />
             <p:calendar id="to-expired-calendar" value="#{filterContainer.expiredDateFilter.toExpiredDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
+              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
           </h:panelGrid>
         </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
 
