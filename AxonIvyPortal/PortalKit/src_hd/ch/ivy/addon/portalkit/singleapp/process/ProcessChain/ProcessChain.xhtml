@@ -19,11 +19,11 @@
   <div id="#{cc.clientId}">
     <div class="process-chain">
       <c:forEach items="#{cc.attrs.steps}" var="stepName" varStatus="counter">
-        <div
-          class="foreground-text-color process-step #{cc.attrs.actualStepIndex eq counter.index ? 'eon-red-color' : ''}"
-          type="#{cc.attrs.actualStepIndex eq counter.index ? 'current' :  cc.attrs.actualStepIndex > counter.index ? 'visited' : 'waiting'}">
+        <h:panelGroup layout="block" id="step-info-#{counter.index}" 
+          class="foreground-text-color process-step #{cc.attrs.actualStepIndex eq counter.index ? 'current' :  cc.attrs.actualStepIndex > counter.index ? 'visited' : 'waiting'}">
           <span class="step-title">${stepName}</span>
-        </div>
+        </h:panelGroup>
+        <p:tooltip for="step-info-#{counter.index}" value="#{stepName}" escape="false" trackMouse="true" />
       </c:forEach>
     </div>
   </div>
