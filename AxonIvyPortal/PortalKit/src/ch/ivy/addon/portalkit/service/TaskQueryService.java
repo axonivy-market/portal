@@ -154,9 +154,9 @@ public class TaskQueryService {
     private void appendSortByActivatorIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
-          query.orderBy().activatorName().descending();
+          query.orderBy().activatorDisplayName().descending();
         } else {
-          query.orderBy().activatorName();
+          query.orderBy().activatorDisplayName();
         }
       }
     }
