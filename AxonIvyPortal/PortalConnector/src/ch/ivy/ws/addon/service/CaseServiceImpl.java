@@ -608,10 +608,10 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     String containingKeyword = String.format("%%%s%%", keyword);
 
     CaseQuery filterByKeywordQuery =
-        CaseQuery.create().where().or().name().isLike(containingKeyword).or().description().isLike(containingKeyword)
-            .or().customVarCharField1().isLike(containingKeyword).or().customVarCharField2().isLike(containingKeyword)
-            .or().customVarCharField3().isLike(containingKeyword).or().customVarCharField4().isLike(containingKeyword)
-            .or().customVarCharField5().isLike(containingKeyword);
+        CaseQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or().description().isLikeIgnoreCase(containingKeyword)
+            .or().customVarCharField1().isLikeIgnoreCase(containingKeyword).or().customVarCharField2().isLikeIgnoreCase(containingKeyword)
+            .or().customVarCharField3().isLikeIgnoreCase(containingKeyword).or().customVarCharField4().isLikeIgnoreCase(containingKeyword)
+            .or().customVarCharField5().isLikeIgnoreCase(containingKeyword);
 
     try {
       long idKeyword = Long.parseLong(keyword);
