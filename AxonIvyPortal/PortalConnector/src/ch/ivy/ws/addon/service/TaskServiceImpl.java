@@ -309,7 +309,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
             if (taskSearchCriteria.isQueryByTaskId()) {
               ivyTasks.add(ivyTask);
-            } else if (canUserResumeTask) {
+            } else if (canUserResumeTask || taskSearchCriteria.isTaskStartedByAnotherDisplayed()) {
               ivyTasks.add(ivyTask);
             }
 
@@ -599,7 +599,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
       AvailableAppsResult availableAppsResult =
           findAvailableApplicationsAndUsers(involvedApplications, involvedUsername);
-      finalQuery.where().and(queryForInvolvedUsers(availableAppsResult.getUsers()))
+      finalQuery.where().and(queryForInvolvedUsers(availableAppsResult.getUsers(), taskSearchCriteria.isTaskStartedByAnotherDisplayed()))
           .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
     } else if (taskSearchCriteria.hasInvolvedApplications()) {
       finalQuery.where().and(queryForInvolvedApplications(taskSearchCriteria.getInvolvedApplications()));
@@ -812,9 +812,16 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     return Collections.emptyList();
   }
 
-  private TaskQuery queryForInvolvedUsers(List<IUser> users) {
+  private TaskQuery queryForInvolvedUsers(List<IUser> users, boolean isTaskStartedByAnotherDisplayed) {
     TaskQuery taskQuery = TaskQuery.create();
-    users.forEach(user -> taskQuery.where().or().isInvolved(user));
+    users.forEach(user -> {
+      taskQuery.where().or().isInvolved(user);
+      if (isTaskStartedByAnotherDisplayed) {
+        user.getAllRoles().forEach(role -> {
+          taskQuery.where().or().activatorName().isEqual(role.getName()); 
+        });
+      }
+    });
     return taskQuery;
   }
 
