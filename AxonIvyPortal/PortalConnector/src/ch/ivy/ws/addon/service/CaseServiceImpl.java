@@ -760,7 +760,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       if (criteria.getSortedField() != CaseSortedField.CREATOR) {
         return;
       }
-      OrderByColumnQuery orderByName = query.orderBy().creatorUserName();
+      OrderByColumnQuery orderByName = query.orderBy().creatorUserDisplayName();
       if (criteria.isSortingDescending()) {
         orderByName.descending();
       }
