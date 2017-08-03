@@ -338,10 +338,16 @@ public class TaskBean {
   }
   
   public boolean canChangeOriginalPriority(RemoteTask task) {
+    if (task == null) {
+      return false;
+    }
     return isNotDone(task) && task.canChangePriority();
   }
   
   public boolean isNotDone(RemoteTask task) {
+    if (task == null) {
+      return false;
+    }
     EnumSet<TaskState> taskStages = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED);
     return taskStages.contains(task.getState());
   }
