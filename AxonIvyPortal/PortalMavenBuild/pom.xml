@@ -19,7 +19,7 @@
 
   <properties>
     <svn.revision.number>${SVN_REVISION}</svn.revision.number>
-    <ivy.engine.version>6.6.2</ivy.engine.version>
+    <ivy.engine.version>6.7.0</ivy.engine.version>
     <powermock.version>1.6.6</powermock.version>
   </properties>
 
@@ -44,6 +44,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  	<pluginRepositories>
+		<!-- Snapshot releases are not deployed to maven central. So the repo on sonatype could be used instead -->
+		<pluginRepository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
   <build>
     <sourceDirectory>${basedir}/src/</sourceDirectory>
@@ -78,10 +88,8 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>6.5.0</version>
-        <extensions>true</extensions>
+        <version>6.5.1-SNAPSHOT</version>
       </plugin>
-      
     </plugins>
   </build>
 </project>
