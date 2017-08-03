@@ -1,0 +1,4 @@
+co: name={SUSPENDED} description={} changed={2017-08-03 04:40:33 CEST} changedby={dhtlong} visualorder={0} guid={15DA5F01D142DC5A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DA5F01D157E58E} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-23 11:17:17 CEST} validto={} changed={2017-08-03 04:40:33 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15DA5F01D19EC7E5} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-27 05:11:30 CET} validto={} changed={2017-08-03 04:40:33 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15DA5F01D1C21D79} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-08-03 04:40:33 CEST} changedby={dhtlong} properties={} id={}

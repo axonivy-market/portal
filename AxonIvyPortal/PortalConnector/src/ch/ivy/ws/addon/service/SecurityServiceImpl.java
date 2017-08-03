@@ -45,7 +45,9 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
           for (IApplication i : server.getApplicationConfigurationManager().getApplications()) {
             if (apps.contains(i.getName())) {
               for (IRole r : i.getSecurityContext().getRoles()) {
-                members.add(transformer.transform(r, i));
+                if (r.getProperty(HIDE) == null) {
+                  members.add(transformer.transform(r, i));
+                }
               }
             }
           }

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -41,7 +40,11 @@ public class TaskStateFilter extends TaskFilter {
     if (CollectionUtils.isEmpty(selectedFilteredStates) || filteredStates.equals(selectedFilteredStates)) {
       return ALL;
     }
-    return StringUtils.join(selectedFilteredStates, COMMA);
+    String value = userFriendlyState(selectedFilteredStates.get(0));
+    for (int i = 1; i < selectedFilteredStates.size(); i++) {
+      value += COMMA + userFriendlyState(selectedFilteredStates.get(i));
+    }
+    return value;
   }
 
   @Override
@@ -59,6 +62,10 @@ public class TaskStateFilter extends TaskFilter {
   @Override
   public void resetValues() {
     selectedFilteredStates = filteredStates;
+  }
+
+  public String userFriendlyState(TaskState state) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/userFriendlyTaskState/" + state);
   }
 
   public List<TaskState> getSelectedFilteredStates() {

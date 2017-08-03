@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -57,6 +60,16 @@ public class TaskExpiredDateFilter extends TaskFilter {
   public void resetValues() {
     fromExpiredDate = null;
     toExpiredDate = null;
+  }
+  
+  public void validate() {
+    if (fromExpiredDate != null && toExpiredDate != null && (fromExpiredDate.compareTo(toExpiredDate) > 0)) {
+      FacesContext.getCurrentInstance().validationFailed();
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
+              "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
+    }
   }
 
   public Date getFromExpiredDate() {
