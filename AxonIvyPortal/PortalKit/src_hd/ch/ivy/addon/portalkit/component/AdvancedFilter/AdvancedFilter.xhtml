@@ -27,6 +27,7 @@
   <c:set var="selectedFilters" value="#{dataModel.selectedFilters}" />
   <c:set var="taskFilter" value="#{cc.attrs.taskFilter}" />
   <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
+  <c:set var="taskContainerId" value="#{p:component('task-view-container')}" />
 
   <h:panelGroup rendered="#{empty dataModel or selectedFilters.contains(taskFilter)}"
     style="order: #{selectedFilters.indexOf(taskFilter)}">
@@ -60,8 +61,9 @@
           <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/update')}"
             actionListener="#{taskFilter.validate()}"
-            update="#{cc.clientId}:filter-open-form @form #{p:component('task-view-container')}"
-            oncomplete="PF('#{widgetVarPanel}').hide(); taskWidget.setupScrollbar(); taskWidget.setupHeader()">
+            update="#{cc.clientId}:filter-open-form @form"
+            oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); taskWidget.setupScrollbar(); taskWidget.setupHeader()">
+            <f:actionListener binding="#{logic.updateTasksByFilter(taskContainerId)}" />
             <f:actionListener binding="#{cc.attrs.updateListener}" />
           </p:commandButton>
           <p:spacer width="5" />
