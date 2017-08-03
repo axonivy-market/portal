@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Apr 24 10:14:20 ICT 2017]
+[>Created: Thu Aug 03 10:11:23 ICT 2017]
 15035F535EFB1618 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
@@ -24,7 +24,6 @@ Ts0 @PushWFArc f61 '' #zField
 Ts0 @PushWFArc f44 '' #zField
 Ts0 @RichDialogProcessStart f82 '' #zField
 Ts0 @RichDialogProcessEnd f83 '' #zField
-Ts0 @PushWFArc f84 '' #zField
 Ts0 @GridStep f91 '' #zField
 Ts0 @PushWFArc f90 '' #zField
 Ts0 @GridStep f93 '' #zField
@@ -48,6 +47,9 @@ Ts0 @GridStep f10 '' #zField
 Ts0 @PushWFArc f11 '' #zField
 Ts0 @PushWFArc f12 '' #zField
 Ts0 @PushWFArc f3 '' #zField
+Ts0 @GridStep f4 '' #zField
+Ts0 @PushWFArc f5 '' #zField
+Ts0 @PushWFArc f6 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -135,7 +137,6 @@ Ts0 f82 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 ' #txt
 Ts0 f82 actionTable 'out=in;
 ' #txt
-Ts0 f82 actionCode 'out.dataModel.compactMode = !out.dataModel.compactMode;' #txt
 Ts0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -150,8 +151,6 @@ Ts0 f82 @|RichDialogProcessStartIcon #fIcon
 Ts0 f83 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f83 61 437 22 22 14 0 #rect
 Ts0 f83 @|RichDialogProcessEndIcon #fIcon
-Ts0 f84 expr out #txt
-Ts0 f84 72 363 72 437 #arcP
 Ts0 f91 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f91 actionTable 'out=in;
@@ -410,6 +409,31 @@ Ts0 f12 1 640 448 #addKink
 Ts0 f12 1 0.4606959193892842 0 0 #arcLabel
 Ts0 f3 expr out #txt
 Ts0 f3 72 75 72 181 #arcP
+Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f4 actionTable 'out=in;
+' #txt
+Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+
+in.dataModel.compactMode = !in.dataModel.compactMode;
+in.dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission() && !in.dataModel.compactMode);
+' #txt
+Ts0 f4 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>switch mode</name>
+        <nameStyle>11,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f4 54 397 36 24 20 -7 #rect
+Ts0 f4 @|StepIcon #fIcon
+Ts0 f5 expr out #txt
+Ts0 f5 72 363 72 397 #arcP
+Ts0 f6 expr out #txt
+Ts0 f6 72 421 72 437 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -418,8 +442,6 @@ Ts0 f37 mainOut f61 tail #connect
 Ts0 f61 head f60 mainIn #connect
 Ts0 f60 mainOut f44 tail #connect
 Ts0 f44 head f38 mainIn #connect
-Ts0 f82 mainOut f84 tail #connect
-Ts0 f84 head f83 mainIn #connect
 Ts0 f91 mainOut f90 tail #connect
 Ts0 f90 head f83 mainIn #connect
 Ts0 f93 mainOut f89 tail #connect
@@ -442,3 +464,7 @@ Ts0 f10 mainOut f12 tail #connect
 Ts0 f12 head f83 mainIn #connect
 Ts0 f0 mainOut f3 tail #connect
 Ts0 f3 head f1 mainIn #connect
+Ts0 f82 mainOut f5 tail #connect
+Ts0 f5 head f4 mainIn #connect
+Ts0 f4 mainOut f6 tail #connect
+Ts0 f6 head f83 mainIn #connect

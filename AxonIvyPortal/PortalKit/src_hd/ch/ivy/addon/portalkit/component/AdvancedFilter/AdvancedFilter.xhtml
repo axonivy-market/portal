@@ -5,7 +5,7 @@
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-  xmlns:jsf="http://xmlns.jcp.org/jsf">
+  xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
@@ -26,26 +26,32 @@
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
   <c:set var="selectedFilters" value="#{dataModel.selectedFilters}" />
   <c:set var="taskFilter" value="#{cc.attrs.taskFilter}" />
+  <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
 
   <h:panelGroup rendered="#{empty dataModel or selectedFilters.contains(taskFilter)}"
     style="order: #{selectedFilters.indexOf(taskFilter)}">
-    <h:form id="filter-form">
+    <h:form id="filter-open-form">
       <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
         <p:commandButton id="advanced-filter-command" type="button"
           value="#{cc.attrs.label} #{cc.attrs.taskFilter.value()}"
-          styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass}" />
+          styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
-          update="#{p:component('advanced-filter-container')} #{p:component('filter-add-container')} #{p:component('task-view-container')}">
+          update="#{p:component('advanced-filter-container')} #{p:component('filter-add-container')} #{p:component('task-view-container')}"
+          oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
       </h:panelGroup>
+    </h:form>
 
-      <p:overlayPanel id="advanced-filter-panel" dismissable="#{cc.attrs.dismissableOverlayPanel}"
-        styleClass="advanced-filter-panel" for="advanced-filter-command" my="left top" at="left bottom"
+    <h:form id="filter-input-form">
+      <p:overlayPanel id="advanced-filter-panel" widgetVar="#{widgetVarPanel}"
+        dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel #{widgetVarPanel}"
+        for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
         onHide="$(this.targetElement).parents('form').find('.portal-cancel-button').click()">
         <h:panelGroup id="advanced-filter-panel-content" layout="block" styleClass="ui-overlaypanel-filter-content">
+          <p:messages id="filter-error-messages" />
           <cc:insertChildren />
         </h:panelGroup>
 
@@ -53,11 +59,16 @@
           rendered="#{cc.attrs.displayUpdateButton}">
           <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/update')}"
-            actionListener="#{cc.attrs.updateListener}" update="@form #{p:component('task-view-container')}"
-            oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+            actionListener="#{taskFilter.validate()}"
+            update="#{cc.clientId}:filter-open-form @form #{p:component('task-view-container')}"
+            oncomplete="PF('#{widgetVarPanel}').hide(); taskWidget.setupScrollbar(); taskWidget.setupHeader()">
+            <f:actionListener binding="#{cc.attrs.updateListener}" />
+          </p:commandButton>
           <p:spacer width="5" />
           <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="@form">
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            actionListener="#{taskFilter.validate()}"
+            update="#{cc.clientId}:filter-open-form @form" resetValues="true" oncomplete="PF('#{widgetVarPanel}').hide()">
           </p:commandButton>
         </h:panelGroup>
       </p:overlayPanel>
