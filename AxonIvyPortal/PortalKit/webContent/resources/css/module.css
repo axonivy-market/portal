@@ -1328,6 +1328,26 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: black;
 }
 
+.task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before {
+  content: "\f06a";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: red;
+  margin-right: 5px;
+}
+
+.task-widget .error-filter-input {
+  position: absolute;
+  font-size: 1.8rem;
+  right: 23px;
+  top: 9px;
+  color: red;
+}
+
 .task-widget .advanced-filter .ui-button-text-only .ui-button-text {
   padding: 0 !important;
   display: inline-block;

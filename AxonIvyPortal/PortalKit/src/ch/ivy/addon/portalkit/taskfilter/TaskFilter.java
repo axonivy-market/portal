@@ -5,7 +5,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public abstract class TaskFilter {
 
   private String label;
-  
+
   public TaskFilter() {
     label = label();
   }
@@ -21,7 +21,7 @@ public abstract class TaskFilter {
    * @return the string label is displayed in filter item.
    */
   public abstract String label();
- 
+
   /**
    * @return the string value is displayed in filter item.
    */
@@ -36,6 +36,11 @@ public abstract class TaskFilter {
    * Reset values after close filter item.
    */
   public abstract void resetValues();
+
+  /**
+   * Override this method if need to validates filtered values.
+   */
+  public void validate() {};
 
   public String getLabel() {
     return label;
