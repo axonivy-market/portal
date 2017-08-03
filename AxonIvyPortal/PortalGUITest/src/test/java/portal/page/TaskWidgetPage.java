@@ -360,14 +360,14 @@ public class TaskWidgetPage extends TemplatePage {
         return;
       }
     });
-    waitForElementDisplayed(By.id("task-widget:" + filter.toLowerCase() + "-filter:filter-form:advanced-filter-item-container"), true);
+    waitForElementDisplayed(By.id("task-widget:" + filter.toLowerCase() + "-filter:filter-open-form:advanced-filter-item-container"), true);
   }
   
   public void filterByDescription(String text) {
-    click(By.id("task-widget:description-filter:filter-form:advanced-filter-command"));
-    WebElement descriptionInput = findElementById("task-widget:description-filter:filter-form:description");
+    click(By.id("task-widget:description-filter:filter-open-form:advanced-filter-command"));
+    WebElement descriptionInput = findElementById("task-widget:description-filter:filter-input-form:description");
     enterKeys(descriptionInput, text);
-    click(By.id("task-widget:description-filter:filter-form:update-command"));
+    click(By.id("task-widget:description-filter:filter-input-form:update-command"));
     Sleeper.sleepTight(2000);
   }
 }
