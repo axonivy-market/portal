@@ -26,7 +26,7 @@ public class TaskDescriptionFilter extends TaskFilter {
     }
     
     String containingKeyword = String.format("%%%s%%", description.trim());
-    return TaskQuery.create().where().description().isLike(containingKeyword);
+    return TaskQuery.create().where().description().isLikeIgnoreCase(containingKeyword);
   }
 
   @Override

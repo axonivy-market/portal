@@ -75,7 +75,7 @@ public class TaskQueryService {
   private TaskQuery queryForKeyword(String keyword) {
     String containingKeyword = String.format("%%%s%%", keyword);
     TaskQuery filterByKeywordQuery =
-        TaskQuery.create().where().or().name().isLike(containingKeyword);
+        TaskQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword);
 
     try {
       long idKeyword = Long.parseLong(keyword);
