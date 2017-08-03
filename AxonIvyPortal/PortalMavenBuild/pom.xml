@@ -89,6 +89,7 @@
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <version>6.5.1-SNAPSHOT</version>
+        <extensions>true</extensions>
       </plugin>
     </plugins>
   </build>
