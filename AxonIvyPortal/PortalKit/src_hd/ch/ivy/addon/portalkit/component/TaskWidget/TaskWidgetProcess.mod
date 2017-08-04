@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Aug 03 10:11:23 ICT 2017]
+[>Created: Fri Aug 04 10:34:51 ICT 2017]
 15035F535EFB1618 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
@@ -413,9 +413,16 @@ Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData ou
 ' #txt
 Ts0 f4 actionTable 'out=in;
 ' #txt
-Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 
 in.dataModel.compactMode = !in.dataModel.compactMode;
+if (!in.dataModel.compactMode) {
+	for (TaskFilter filter : in.dataModel.filterContainer.filters) {
+		filter.resetValues();
+	}
+}
+
 in.dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission() && !in.dataModel.compactMode);
 ' #txt
 Ts0 f4 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
