@@ -153,8 +153,9 @@
           <p:selectOneListbox id="responsible" value="#{filterContainer.responsibleFilter.selectedResponsible}"
             var="responsible" filter="true" filterMatchMode="contains" styleClass="responsible-list-filter"
             converter="pojoConverter">
-            <p:ajax update="@form #{p:component('task-view-container')}" global="false"
-              oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+            <p:ajax
+              update="#{cc.clientId}:responsible-filter:filter-open-form @form #{p:component('task-view-container')}"
+              global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
             <f:selectItems value="#{filterContainer.responsibleFilter.responsibles}" var="r"
               itemLabel="#{r.displayName}" itemValue="#{r}" />
             <p:column>
@@ -163,6 +164,7 @@
             </p:column>
           </p:selectOneListbox>
         </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+
         <h:panelGroup layout="block" rendered="#{!data.dataModel.hasReadAllTasksPermisson()}" styleClass="in-progress-filter-container">
           <h:form id="in-progress-form">
             <p:selectBooleanCheckbox id="in-progress-checkbox"

@@ -1277,6 +1277,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 .task-widget .advanced-filter-container .additional-filter-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .task-widget .filter-add-container {
@@ -1323,6 +1324,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   background: none;
   min-width: 0;
   padding: 0 25px 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after {
