@@ -317,10 +317,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-    if (ignoreInvolvedUser) {
-      queryCriteria.setIncludedStates(Arrays.asList(TaskState.UNASSIGNED, TaskState.DONE));
-      filterContainer.getStateFilter().getFilteredStates().addAll(Arrays.asList(TaskState.UNASSIGNED, TaskState.DONE));
-      filterContainer.getStateFilter().getSelectedFilteredStates().addAll(Arrays.asList(TaskState.UNASSIGNED));
+    if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
+      queryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED, TaskState.DONE));
+      setValuesForStateFilter(queryCriteria);
+      filterContainer.getStateFilter().getSelectedFilteredStates().remove(TaskState.DONE);
     }
     searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
   }
