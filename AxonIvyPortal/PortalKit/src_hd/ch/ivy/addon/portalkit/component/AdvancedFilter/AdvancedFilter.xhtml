@@ -50,7 +50,7 @@
       <p:overlayPanel id="advanced-filter-panel" widgetVar="#{widgetVarPanel}"
         dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel #{widgetVarPanel}"
         for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
-        onHide="$(this.targetElement).parents('form').find('.portal-cancel-button').click()">
+        onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
         <h:panelGroup id="advanced-filter-panel-content" layout="block" styleClass="ui-overlaypanel-filter-content">
           <p:messages id="filter-error-messages" />
           <cc:insertChildren />
