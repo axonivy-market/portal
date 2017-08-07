@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Aug 04 17:01:51 ICT 2017]
+[>Created: Mon Aug 07 15:24:54 ICT 2017]
 156A1AA176DE2A21 3.20 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
@@ -47,7 +47,6 @@ As0 @PushWFArc f38 '' #zField
 As0 @GridStep f21 '' #zField
 As0 @RichDialogProcessStart f39 '' #zField
 As0 @CallSub f40 '' #zField
-As0 @PushWFArc f41 '' #zField
 As0 @GridStep f16 '' #zField
 As0 @PushWFArc f43 '' #zField
 As0 @PushWFArc f42 '' #zField
@@ -71,6 +70,9 @@ As0 @PushWFArc f55 '' #zField
 As0 @GridStep f30 '' #zField
 As0 @PushWFArc f57 '' #zField
 As0 @PushWFArc f11 '' #zField
+As0 @CallSub f58 '' #zField
+As0 @PushWFArc f59 '' #zField
+As0 @PushWFArc f41 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f0 guid 14AF0B1C8DE6C030 #txt
 As0 f0 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -555,13 +557,11 @@ As0 f21 actionTable 'out=in;
 ' #txt
 As0 f21 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portal.generic.view.TaskView;
-import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 
-TaskLazyDataModel dataModel = new TaskLazyDataModel();
-dataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
-dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
+in.taskDataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
+in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
-in.taskView = TaskView.create().dataModel(dataModel).noTaskFoundMessage("").showHeaderToolbar(false).createNewTaskView();
+in.taskView = TaskView.create().dataModel(in.taskDataModel).noTaskFoundMessage("").showHeaderToolbar(false).createNewTaskView();
 ' #txt
 As0 f21 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -573,7 +573,7 @@ As0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f21 1774 116 36 24 20 -2 #rect
+As0 f21 1774 180 36 24 20 -2 #rect
 As0 f21 @|StepIcon #fIcon
 As0 f39 guid 15731420EB6AD172 #txt
 As0 f39 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -612,10 +612,8 @@ As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f40 1740 244 104 56 -48 -12 #rect
+As0 f40 1740 308 104 56 -48 -12 #rect
 As0 f40 @|CallSubIcon #fIcon
-As0 f41 expr out #txt
-As0 f41 1792 75 1792 116 #arcP
 As0 f16 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f16 actionTable 'out=in;
@@ -638,12 +636,12 @@ as Portal Task to session</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f16 1712 178 160 44 -62 -16 #rect
+As0 f16 1712 242 160 44 -62 -16 #rect
 As0 f16 @|StepIcon #fIcon
 As0 f43 expr out #txt
-As0 f43 1792 140 1792 178 #arcP
+As0 f43 1792 204 1792 242 #arcP
 As0 f42 expr out #txt
-As0 f42 1792 222 1792 244 #arcP
+As0 f42 1792 286 1792 308 #arcP
 As0 f27 expr out #txt
 As0 f27 736 332 736 397 #arcP
 As0 f44 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
@@ -780,6 +778,31 @@ As0 f57 expr out #txt
 As0 f57 736 75 736 116 #arcP
 As0 f11 expr out #txt
 As0 f11 736 140 736 178 #arcP
+As0 f58 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f58 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
+As0 f58 doCall true #txt
+As0 f58 requestActionDecl '<> param;
+' #txt
+As0 f58 responseActionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f58 responseMappingAction 'out=in;
+out.taskDataModel=result.dataModel;
+' #txt
+As0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init data model</name>
+        <nameStyle>15
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f58 1736 106 112 44 -40 -8 #rect
+As0 f58 @|CallSubIcon #fIcon
+As0 f59 expr out #txt
+As0 f59 1792 75 1792 106 #arcP
+As0 f41 expr out #txt
+As0 f41 1792 150 1792 180 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -824,8 +847,6 @@ As0 f36 mainOut f2 tail #connect
 As0 f2 head f1 mainIn #connect
 As0 f20 mainOut f38 tail #connect
 As0 f38 head f36 mainIn #connect
-As0 f39 mainOut f41 tail #connect
-As0 f41 head f21 mainIn #connect
 As0 f21 mainOut f43 tail #connect
 As0 f43 head f16 mainIn #connect
 As0 f16 mainOut f42 tail #connect
@@ -854,3 +875,7 @@ As0 f29 mainOut f57 tail #connect
 As0 f57 head f30 mainIn #connect
 As0 f30 mainOut f11 tail #connect
 As0 f11 head f5 in #connect
+As0 f39 mainOut f59 tail #connect
+As0 f59 head f58 mainIn #connect
+As0 f58 mainOut f41 tail #connect
+As0 f41 head f21 mainIn #connect

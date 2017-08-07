@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu Jul 20 08:59:59 ICT 2017]
+[>Created: Mon Aug 07 16:10:16 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -136,11 +136,8 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.varchar.1="Annual CustomVarCharField1"
-TaskA.customFields.varchar.2="Annual CustomVarCharField2"
-TaskA.customFields.varchar.3="Annual CustomVarCharField3"
-TaskA.customFields.varchar.4="Annual CustomVarCharField4"
-TaskA.customFields.varchar.5="Annual Leave"
+TaskA.customFields.varchar.1="Exterior"
+TaskA.customFields.varchar.5="Long Do"
 TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
@@ -152,11 +149,8 @@ TaskB.PRI=1
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.varchar.1="Sick CustomVarCharField1"
-TaskB.customFields.varchar.2="Sick CustomVarCharField2"
-TaskB.customFields.varchar.3="Sick CustomVarCharField3"
-TaskB.customFields.varchar.4="Sick CustomVarCharField4"
-TaskB.customFields.varchar.5="Other Leave/Sick/Long"
+TaskB.customFields.varchar.1="Interior"
+TaskB.customFields.varchar.5="Tung Le"
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -168,11 +162,8 @@ TaskC.PRI=3
 TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0
-TaskC.customFields.varchar.1="Maternity CustomVarCharField1"
-TaskC.customFields.varchar.2="Maternity CustomVarCharField2"
-TaskC.customFields.varchar.3="Maternity CustomVarCharField3"
-TaskC.customFields.varchar.4="Maternity CustomVarCharField4"
-TaskC.customFields.varchar.5="Other Leave/Maternity"' #txt
+TaskC.customFields.varchar.1="Interior"
+TaskC.customFields.varchar.5="Anh Nguyen"' #txt
 Tt0 f7 type internaltest.Data #txt
 Tt0 f7 template "" #txt
 Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

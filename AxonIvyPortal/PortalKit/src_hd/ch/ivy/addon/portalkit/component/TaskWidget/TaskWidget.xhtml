@@ -164,6 +164,8 @@
             </p:column>
           </p:selectOneListbox>
         </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+        
+        <cc:renderFacet name="taskFilter" />
 
         <h:panelGroup layout="block" rendered="#{!data.dataModel.hasReadAllTasksPermisson()}" styleClass="in-progress-filter-container">
           <h:form id="in-progress-form">

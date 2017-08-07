@@ -12,12 +12,23 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   }
 
   @Override
+  protected void initFilterContainer() {
+    filterContainer = new CustomizedTaskFilterContainer();
+  }
+
+  @Override
   public void extendSort() {
     if ("customVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
       if (queryCriteria.isSortDescending()) {
         queryCriteria.getTaskQuery().orderBy().customVarCharField5().descending();
       } else {
         queryCriteria.getTaskQuery().orderBy().customVarCharField5();
+      }
+    } else if ("customVarcharField1".equalsIgnoreCase(queryCriteria.getSortField())) {
+      if (queryCriteria.isSortDescending()) {
+        queryCriteria.getTaskQuery().orderBy().customVarCharField1().descending();
+      } else {
+        queryCriteria.getTaskQuery().orderBy().customVarCharField1();
       }
     }
   }
@@ -26,6 +37,8 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   public void extendSortTasksInNotDisplayedTaskMap() {
     if ("customVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparatorString(RemoteTask::getCustomVarCharField5);
+    } else if ("customVarcharField1".equalsIgnoreCase(queryCriteria.getSortField())) {
+      comparator = comparatorString(RemoteTask::getCustomVarCharField1);
     }
   }
 
