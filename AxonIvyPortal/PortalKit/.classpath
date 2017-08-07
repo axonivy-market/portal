@@ -41,5 +41,6 @@
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15C7646A4BDA62E7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15CD313699949A45.jar"/>
 	<classpathentry kind="lib" path="lib/jsoup-1.10.3.jar"/>
+	<classpathentry kind="lib" path="lib/vt-password-3.1.1.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
