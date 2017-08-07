@@ -1,0 +1,4 @@
+co: name={leave} description={} changed={2017-08-04 11:55:52 CEST} changedby={dhtlong} visualorder={0} guid={15DACAC06883FCB3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DACAC06A074EE8} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-04 11:55:41 CEST} validto={} changed={2017-08-04 11:55:41 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15DACAC06908AE87} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-04 11:55:41 CEST} validto={} changed={2017-08-04 11:55:52 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15DACAC06A62B11D} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-04 11:55:41 CEST} validto={} changed={2017-08-04 11:55:41 CEST} changedby={dhtlong} properties={} id={}

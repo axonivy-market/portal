@@ -1,0 +1,4 @@
+co: name={reserve} description={} changed={2017-08-04 11:57:16 CEST} changedby={dhtlong} visualorder={0} guid={15DACACC9F4F1F6C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DACACC9F6FA3A0} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-04 11:56:31 CEST} validto={} changed={2017-08-04 11:56:31 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15DACAD5EA5F017E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-04 11:56:56 CEST} validto={} changed={2017-08-04 11:57:09 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15DACAD5E53710F1} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-04 11:56:58 CEST} validto={} changed={2017-08-04 11:57:16 CEST} changedby={dhtlong} properties={} id={}
