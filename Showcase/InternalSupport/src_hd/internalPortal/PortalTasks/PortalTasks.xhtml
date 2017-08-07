@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
     <ui:param name="menuState" value="#{data.menuState}" />
@@ -39,9 +40,11 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}"
         sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
 
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}" componentId="task-custom"
-        sortField="customVarcharField5" value="CustomVarcharField5" styleClass="state-column-header TexAlCenter" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}" componentId="customer-name-header"
+        sortField="customVarcharField5" value="Customer name" styleClass="state-column-header TexAlCenter" />
 
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}" componentId="customer-type-header"
+        sortField="customVarcharField1" value="Customer type" styleClass="state-column-header TexAlCenter" />
     </ui:define>
 
     <ui:define name="taskHeader">
@@ -60,8 +63,29 @@
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
         value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
 
-      <h:outputText id="custom-varchar-field5" styleClass="TexAlCenter" style="flex: 0 0 150px;" value="#{task.customVarCharField5}" />
+      <h:outputText id="customer-name" styleClass="TexAlCenter" style="flex: 0 0 150px;" value="#{task.customVarCharField5}" />
 
+      <h:outputText id="customer-type" styleClass="TexAlCenter" style="flex: 0 0 150px;" value="#{task.customVarCharField1}" />
+    </ui:define>
+
+    <ui:define name="taskFilter">
+      <c:set var="filterContainer" value="#{taskView.dataModel.filterContainer}" />
+      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="customer-name-filter" dataModel="#{taskView.dataModel}"
+        label="Customer name:"
+        taskFilter="#{filterContainer.customerNameFilter}">
+        <p:inputText id="customVarChar5" value="#{filterContainer.customerNameFilter.customerName}" />
+      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
+      
+      <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="customer-type-filter" dataModel="#{taskView.dataModel}"
+        label="Customer type:" displayUpdateButton="false"
+        taskFilter="#{filterContainer.customerTypeFilter}">
+        <p:selectOneRadio layout="pageDirection" value="#{filterContainer.customerTypeFilter.selectedCustomerType}">
+          <p:ajax
+              update="@([id$='customer-type-filter:filter-open-form']) @form #{p:component('task-view-container')}"
+              global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+          <f:selectItems var="type" value="#{filterContainer.customerTypeFilter.customerTypes}" itemLabel="#{type}" itemValue="#{type}" />
+        </p:selectOneRadio>
+      </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
     </ui:define>
   </ui:composition>
 </h:body>

@@ -16,3 +16,5 @@ hasReadAllTasksPermisson Boolean #field
 hasReadAllTasksPermisson PERSISTENT #fieldModifier
 taskView ch.ivy.addon.portal.generic.view.TaskView #field
 taskView PERSISTENT #fieldModifier
+taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+taskDataModel PERSISTENT #fieldModifier
