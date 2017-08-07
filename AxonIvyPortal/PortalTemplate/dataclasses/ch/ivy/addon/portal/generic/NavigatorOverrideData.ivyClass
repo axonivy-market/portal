@@ -7,3 +7,4 @@ taskView ch.ivy.addon.portal.generic.view.TaskView #field
 taskId Long #field
 thirdPartyAppName String #field
 thirdPartyAppUrl String #field
+taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field

@@ -60,39 +60,21 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     displayedTaskMap = new HashMap<>();
     notDisplayedTaskMap = new HashMap<>();
     selectedFilters = new ArrayList<>();
-    filterContainer = new DefaultTaskFilterContainer();
+    initFilterContainer();
+    initFilters();
     searchCriteria = buildCriteria();
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
 
     autoInitForNoAppConfiguration();
-    initFilters();
   }
 
-  private void initFilters() {
+  protected void initFilterContainer() {
+    filterContainer = new DefaultTaskFilterContainer();
+  }
+  
+  protected void initFilters() {
     filters = filterContainer.getFilters();
-  }
-
-  /**
-   * Creates a new instance which extends from TaskLazyDataModel, and copy its properties from
-   * source.
-   * 
-   * @param source
-   * @param toClass
-   * @return
-   * @throws InstantiationException
-   * @throws IllegalAccessException
-   */
-  public static <T extends TaskLazyDataModel> T newInstance(TaskLazyDataModel source, Class<T> toClass)
-      throws InstantiationException, IllegalAccessException {
-    T instance = toClass.newInstance();
-    instance.setSearchCriteria(source.getSearchCriteria());
-    instance.setQueryCriteria(source.getQueryCriteria());
-    instance.setServerId(source.getServerId());
-    instance.setCompactMode(source.isCompactMode());
-    instance.setCaseName(source.getCaseName());
-    instance.setFilterContainer(source.getFilterContainer());
-    return instance;
   }
 
   @Override
