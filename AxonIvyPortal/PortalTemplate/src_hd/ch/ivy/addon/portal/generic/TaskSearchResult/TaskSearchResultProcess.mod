@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jul 31 13:37:21 ICT 2017]
+[>Created: Mon Aug 07 17:17:57 ICT 2017]
 15498A84F89ACDE7 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskSearchResultProcess Big #zClass
@@ -21,10 +21,12 @@ Ts0 @PushWFArc f2 '' #zField
 Ts0 @CallSub f4 '' #zField
 Ts0 @RichDialogProcessStart f6 '' #zField
 Ts0 @GridStep f23 '' #zField
-Ts0 @PushWFArc f3 '' #zField
 Ts0 @GridStep f16 '' #zField
 Ts0 @PushWFArc f7 '' #zField
 Ts0 @PushWFArc f5 '' #zField
+Ts0 @CallSub f8 '' #zField
+Ts0 @PushWFArc f9 '' #zField
+Ts0 @PushWFArc f3 '' #zField
 >Proto Ts0 Ts0 TaskSearchResultProcess #zField
 Ts0 f0 guid 15498A84FB37527F #txt
 Ts0 f0 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
@@ -71,7 +73,7 @@ Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f4 278 276 36 24 20 -2 #rect
+Ts0 f4 278 364 36 24 20 -2 #rect
 Ts0 f4 @|CallSubIcon #fIcon
 Ts0 f6 guid 15498BCDDAD82718 #txt
 Ts0 f6 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
@@ -79,30 +81,12 @@ Ts0 f6 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResult
 ' #txt
 Ts0 f6 actionTable 'out=in;
 ' #txt
-Ts0 f6 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-import org.primefaces.component.commandlink.CommandLink;
+Ts0 f6 actionCode 'import org.primefaces.component.commandlink.CommandLink;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
-import javax.faces.event.ActionEvent;
-
-import ch.ivy.addon.portalkit.bo.RemoteTask;
-import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import java.util.Arrays;
-import ch.ivy.addon.portalkit.bo.MainMenuNode;
-import ch.ivy.addon.portal.generic.view.TaskView;
 
 CommandLink commandLink = event.getSource() as CommandLink;
-
-String keyword = commandLink.getAttributes().get("keyword") as String;
-RemoteTask foundTask = commandLink.getAttributes().get("foundTask") as RemoteTask;
-
-MainMenuNode category = new MainMenuNode();
-category.value = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/task"), keyword));
-String pageTitle = category.value;
-TaskLazyDataModel dataModel = new TaskLazyDataModel();
-dataModel.setServerId(foundTask.applicationRegister.serverId);
-dataModel.setKeyword(keyword);
-dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
-out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(keyword).remoteTaskId(foundTask.getId()).dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();' #txt
+out.keyword = commandLink.getAttributes().get("keyword") as String;
+out.foundTask = commandLink.getAttributes().get("foundTask") as RemoteTask;' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -119,22 +103,34 @@ Ts0 f23 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResul
 Ts0 f23 actionTable 'out=in;
 ' #txt
 Ts0 f23 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
-MenuUtils.clearMenuState();
-in.view.dataModel.queryCriteria.newQueryCreated = true;' #txt
+import ch.ivy.addon.portalkit.util.TaskUtils;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.bo.MainMenuNode;
+import ch.ivy.addon.portal.generic.view.TaskView;
+
+MainMenuNode category = new MainMenuNode();
+category.value = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/task"), in.keyword));
+String pageTitle = category.value;
+
+in.dataModel.setServerId(in.foundTask.applicationRegister.serverId);
+in.dataModel.setKeyword(in.keyword);
+in.dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.dataModel.queryCriteria.newQueryCreated = true;
+out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(in.keyword).remoteTaskId(in.foundTask.getId()).dataModel(in.dataModel).showHeaderToolbar(false).createNewTaskView();
+
+MenuUtils.clearMenuState();' #txt
 Ts0 f23 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
 Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>clear menu state</name>
-        <nameStyle>16,7
+        <name>initialize data</name>
+        <nameStyle>15,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f23 278 156 36 24 20 -2 #rect
+Ts0 f23 278 244 36 24 20 -2 #rect
 Ts0 f23 @|StepIcon #fIcon
-Ts0 f3 expr out #txt
-Ts0 f3 296 116 296 156 #arcP
 Ts0 f16 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData out;
 ' #txt
 Ts0 f16 actionTable 'out=in;
@@ -157,21 +153,46 @@ to session</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f16 232 202 128 44 -45 -16 #rect
+Ts0 f16 232 290 128 44 -45 -16 #rect
 Ts0 f16 @|StepIcon #fIcon
 Ts0 f7 expr out #txt
-Ts0 f7 296 180 296 202 #arcP
+Ts0 f7 296 268 296 290 #arcP
 Ts0 f5 expr out #txt
-Ts0 f5 296 246 296 276 #arcP
+Ts0 f5 296 334 296 364 #arcP
+Ts0 f8 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
+Ts0 f8 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
+Ts0 f8 doCall true #txt
+Ts0 f8 requestActionDecl '<> param;
+' #txt
+Ts0 f8 responseActionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData out;
+' #txt
+Ts0 f8 responseMappingAction 'out=in;
+out.dataModel=result.dataModel;
+' #txt
+Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>InitializeTaskDataModel</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f8 224 154 144 44 -65 -8 #rect
+Ts0 f8 @|CallSubIcon #fIcon
+Ts0 f9 expr out #txt
+Ts0 f9 296 116 296 154 #arcP
+Ts0 f3 expr out #txt
+Ts0 f3 296 198 296 244 #arcP
 >Proto Ts0 .type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
 Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
-Ts0 f6 mainOut f3 tail #connect
-Ts0 f3 head f23 mainIn #connect
 Ts0 f23 mainOut f7 tail #connect
 Ts0 f7 head f16 mainIn #connect
 Ts0 f16 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
+Ts0 f6 mainOut f9 tail #connect
+Ts0 f9 head f8 mainIn #connect
+Ts0 f8 mainOut f3 tail #connect
+Ts0 f3 head f23 mainIn #connect

@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jul 31 10:29:12 ICT 2017]
+[>Created: Mon Aug 07 15:27:01 ICT 2017]
 1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
@@ -24,13 +24,15 @@ Nr0 @EndSub f10 '' #zField
 Nr0 @CallSub f12 '' #zField
 Nr0 @PushWFArc f11 '' #zField
 Nr0 @StartSub f9 '' #zField
-Nr0 @PushWFArc f15 '' #zField
 Nr0 @PushWFArc f13 '' #zField
 Nr0 @GridStep f14 '' #zField
 Nr0 @InfoButton f21 '' #zField
 Nr0 @AnnotationArc f3 '' #zField
 Nr0 @InfoButton f4 '' #zField
 Nr0 @AnnotationArc f22 '' #zField
+Nr0 @CallSub f16 '' #zField
+Nr0 @PushWFArc f17 '' #zField
+Nr0 @PushWFArc f15 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 inParamTable 'out.caseId=param.caseId;
@@ -109,7 +111,7 @@ Nr0 f8 64 109 64 196 #arcP
 Nr0 f6 expr out #txt
 Nr0 f6 64 220 64 260 #arcP
 Nr0 f10 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f10 51 683 26 26 14 0 #rect
+Nr0 f10 51 779 26 26 14 0 #rect
 Nr0 f10 @|EndSubIcon #fIcon
 Nr0 f12 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f12 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
@@ -131,10 +133,10 @@ Nr0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Nr0 f12 46 604 36 24 20 -2 #rect
+Nr0 f12 46 700 36 24 20 -2 #rect
 Nr0 f12 @|CallSubIcon #fIcon
 Nr0 f11 expr out #txt
-Nr0 f11 64 628 64 683 #arcP
+Nr0 f11 64 724 64 779 #arcP
 Nr0 f9 inParamDecl '<java.lang.Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,java.lang.String caseName> param;' #txt
 Nr0 f9 inParamTable 'out.caseId=param.caseId;
 out.caseName=param.caseName;
@@ -157,10 +159,8 @@ Nr0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f9 51 451 26 26 14 0 #rect
 Nr0 f9 @|StartSubIcon #fIcon
-Nr0 f15 expr out #txt
-Nr0 f15 64 477 64 532 #arcP
 Nr0 f13 expr out #txt
-Nr0 f13 64 556 64 604 #arcP
+Nr0 f13 64 652 64 700 #arcP
 Nr0 f14 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f14 actionTable 'out=in;
@@ -169,26 +169,22 @@ Nr0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
 import java.util.Arrays;
-
 
 MainMenuNode category = new MainMenuNode();
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
 SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
 
-TaskLazyDataModel dataModel = new TaskLazyDataModel();
-dataModel.setCaseId(in.caseId.id());
-dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
-dataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
-dataModel.setServerId(in.caseId.serverId());
-dataModel.setCaseName(in.caseName);
-dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
-dataModel.setInvolvedUsername(ivy.session.getSessionUserName());
+in.taskDataModel.setCaseId(in.caseId.id());
+in.taskDataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
+in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
+in.taskDataModel.setServerId(in.caseId.serverId());
+in.taskDataModel.setCaseName(in.caseName);
+in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
 
 in.taskView = TaskView.create()
 											.category(category)
@@ -196,7 +192,7 @@ in.taskView = TaskView.create()
 											.remoteTaskId(in.taskId)
 											.pageTitle(pageTitle)
 											.showHeaderToolbar(false)
-											.dataModel(dataModel).createNewTaskView();								
+											.dataModel(in.taskDataModel).createNewTaskView();								
 											' #txt
 Nr0 f14 security system #txt
 Nr0 f14 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
@@ -209,7 +205,7 @@ Nr0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Nr0 f14 46 532 36 24 20 -2 #rect
+Nr0 f14 46 628 36 24 20 -2 #rect
 Nr0 f14 @|StepIcon #fIcon
 Nr0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -250,9 +246,34 @@ is put in PortalTemplate.</name>
     </language>
 </elementInfo>
 ' #txt
-Nr0 f4 160 658 496 172 -238 -84 #rect
+Nr0 f4 224 586 496 172 -238 -84 #rect
 Nr0 f4 @|IBIcon #fIcon
-Nr0 f22 160 744 64 628 #arcP
+Nr0 f22 224 672 82 712 #arcP
+Nr0 f16 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f16 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
+Nr0 f16 doCall true #txt
+Nr0 f16 requestActionDecl '<> param;
+' #txt
+Nr0 f16 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f16 responseMappingAction 'out=in;
+out.taskDataModel=result.dataModel;
+' #txt
+Nr0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init data model</name>
+        <nameStyle>15,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f16 8 538 112 44 -40 -8 #rect
+Nr0 f16 @|CallSubIcon #fIcon
+Nr0 f17 expr out #txt
+Nr0 f17 64 477 64 538 #arcP
+Nr0 f15 expr out #txt
+Nr0 f15 64 582 64 628 #arcP
 >Proto Nr0 .type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -270,11 +291,13 @@ Nr0 f7 mainOut f6 tail #connect
 Nr0 f6 head f5 mainIn #connect
 Nr0 f12 mainOut f11 tail #connect
 Nr0 f11 head f10 mainIn #connect
-Nr0 f9 mainOut f15 tail #connect
-Nr0 f15 head f14 mainIn #connect
 Nr0 f14 mainOut f13 tail #connect
 Nr0 f13 head f12 mainIn #connect
 Nr0 f21 ao f3 tail #connect
 Nr0 f3 head f5 @CG|ai #connect
 Nr0 f4 ao f22 tail #connect
 Nr0 f22 head f12 @CG|ai #connect
+Nr0 f9 mainOut f17 tail #connect
+Nr0 f17 head f16 mainIn #connect
+Nr0 f16 mainOut f15 tail #connect
+Nr0 f15 head f14 mainIn #connect

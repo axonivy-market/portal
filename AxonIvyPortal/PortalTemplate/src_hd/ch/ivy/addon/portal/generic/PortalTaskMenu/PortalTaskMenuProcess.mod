@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Jul 31 10:26:06 ICT 2017]
+[>Created: Mon Aug 07 17:11:15 ICT 2017]
 156F869FC3FCD1D9 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
@@ -26,7 +26,6 @@ Ps0 @CallSub f21 '' #zField
 Ps0 @GridStep f13 '' #zField
 Ps0 @CallSub f38 '' #zField
 Ps0 @RichDialogProcessStart f12 '' #zField
-Ps0 @PushWFArc f18 '' #zField
 Ps0 @GridStep f7 '' #zField
 Ps0 @PushWFArc f15 '' #zField
 Ps0 @PushWFArc f17 '' #zField
@@ -49,6 +48,9 @@ Ps0 @PushWFArc f30 '' #zField
 Ps0 @CallSub f31 '' #zField
 Ps0 @PushWFArc f32 '' #zField
 Ps0 @PushWFArc f23 '' #zField
+Ps0 @CallSub f33 '' #zField
+Ps0 @PushWFArc f34 '' #zField
+Ps0 @PushWFArc f18 '' #zField
 >Proto Ps0 Ps0 PortalTaskMenuProcess #zField
 Ps0 f0 guid 156F869FC6B3D9ED #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
@@ -189,27 +191,26 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 
 in.selectedMenuItem = in.selectedNode.getData() as MainMenuNode;
 TaskNode categoryMenu = in.selectedMenuItem as TaskNode;
-TaskLazyDataModel dataModel = new TaskLazyDataModel();
 
-dataModel.setCategory(categoryMenu.categoryRawPath);
+in.dataModel.setCategory(categoryMenu.categoryRawPath);
 
 if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
-	dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
+	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 	in.hasReadAllTasksPermisson = TaskUtils.checkReadAllTasksPermission();
-	dataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
+	in.dataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_MY_TASKS)) {
-	dataModel.setTaskAssigneeType(TaskAssigneeType.USER);
-	dataModel.setIgnoreInvolvedUser(false);
+	in.dataModel.setTaskAssigneeType(TaskAssigneeType.USER);
+	in.dataModel.setIgnoreInvolvedUser(false);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_GROUP_TASKS)) {
-	dataModel.setTaskAssigneeType(TaskAssigneeType.ROLE);
-	dataModel.setIgnoreInvolvedUser(false);
+	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ROLE);
+	in.dataModel.setIgnoreInvolvedUser(false);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_UNASSIGNED_TASKS)) {
-	dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
-	dataModel.setIgnoreInvolvedUser(true);
-	dataModel.setIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
+	in.dataModel.setIgnoreInvolvedUser(true);
+	in.dataModel.setIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
 }
 
-in.taskView = TaskView.create().category(categoryMenu).dataModel(dataModel).pageTitle(categoryMenu.value).showHeaderToolbar(false).createNewTaskView();' #txt
+in.taskView = TaskView.create().category(categoryMenu).dataModel(in.dataModel).pageTitle(categoryMenu.value).showHeaderToolbar(false).createNewTaskView();' #txt
 Ps0 f13 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -221,7 +222,7 @@ Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f13 190 292 36 24 -47 14 #rect
+Ps0 f13 294 340 36 24 -47 14 #rect
 Ps0 f13 @|StepIcon #fIcon
 Ps0 f38 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f38 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
@@ -243,7 +244,7 @@ Ps0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f38 440 280 128 48 -48 -12 #rect
+Ps0 f38 544 328 128 48 -48 -12 #rect
 Ps0 f38 @|CallSubIcon #fIcon
 Ps0 f12 guid 156FDAF210A2DE69 #txt
 Ps0 f12 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
@@ -260,10 +261,8 @@ Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f12 45 293 22 22 14 0 #rect
+Ps0 f12 45 341 22 22 -27 15 #rect
 Ps0 f12 @|RichDialogProcessStartIcon #fIcon
-Ps0 f18 expr out #txt
-Ps0 f18 67 304 190 304 #arcP
 Ps0 f7 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
 ' #txt
 Ps0 f7 actionTable 'out=in;
@@ -416,13 +415,13 @@ to session</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f28 277 282 128 44 -45 -16 #rect
+Ps0 f28 384 330 128 44 -45 -16 #rect
 Ps0 f28 @|StepIcon #fIcon
 Ps0 f29 expr out #txt
-Ps0 f29 226 304 277 304 #arcP
+Ps0 f29 330 352 384 352 #arcP
 Ps0 f29 0 0.24467500942153303 0 0 #arcLabel
 Ps0 f30 expr out #txt
-Ps0 f30 405 304 440 304 #arcP
+Ps0 f30 512 352 544 352 #arcP
 Ps0 f31 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f31 processCall MultiPortal/TaskService:findUnassignedCategories(String,List<String>,Long) #txt
 Ps0 f31 doCall true #txt
@@ -457,14 +456,35 @@ Ps0 f23 expr out #txt
 Ps0 f23 828 152 896 186 #arcP
 Ps0 f23 1 896 152 #addKink
 Ps0 f23 0 0.7656103032438362 0 0 #arcLabel
+Ps0 f33 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
+Ps0 f33 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
+Ps0 f33 doCall true #txt
+Ps0 f33 requestActionDecl '<> param;
+' #txt
+Ps0 f33 responseActionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
+' #txt
+Ps0 f33 responseMappingAction 'out=in;
+out.dataModel=result.dataModel;
+' #txt
+Ps0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>InitializeTaskDataModel</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f33 112 330 144 44 -65 -8 #rect
+Ps0 f33 @|CallSubIcon #fIcon
+Ps0 f34 expr out #txt
+Ps0 f34 67 352 112 352 #arcP
+Ps0 f18 expr out #txt
+Ps0 f18 256 352 294 352 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
-Ps0 f12 mainOut f18 tail #connect
-Ps0 f18 head f13 mainIn #connect
 Ps0 f3 mainOut f15 tail #connect
 Ps0 f15 head f7 mainIn #connect
 Ps0 f7 mainOut f17 tail #connect
@@ -493,3 +513,7 @@ Ps0 f21 mainOut f32 tail #connect
 Ps0 f32 head f31 mainIn #connect
 Ps0 f31 mainOut f23 tail #connect
 Ps0 f23 head f22 in #connect
+Ps0 f12 mainOut f34 tail #connect
+Ps0 f34 head f33 mainIn #connect
+Ps0 f33 mainOut f18 tail #connect
+Ps0 f18 head f13 mainIn #connect
