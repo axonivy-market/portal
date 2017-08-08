@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Aug 07 15:24:54 ICT 2017]
+[>Created: Tue Aug 08 13:44:07 ICT 2017]
 156A1AA176DE2A21 3.20 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
@@ -21,16 +21,13 @@ As0 @RichDialogInitStart f20 '' #zField
 As0 @GridStep f22 '' #zField
 As0 @PushWFArc f23 '' #zField
 As0 @PushWFArc f3 '' #zField
-As0 @GridStep f14 '' #zField
 As0 @RichDialogProcessEnd f26 '' #zField
 As0 @GridStep f28 '' #zField
 As0 @Alternative f5 '' #zField
 As0 @RichDialogProcessStart f29 '' #zField
 As0 @RichDialogProcessStart f12 '' #zField
-As0 @PushWFArc f19 '' #zField
 As0 @RichDialogMethodStart f10 '' #zField
 As0 @PushWFArc f7 '' #zField
-As0 @PushWFArc f6 '' #zField
 As0 @PushWFArc f8 '' #zField
 As0 @RichDialogProcessStart f13 '' #zField
 As0 @RichDialogProcessStart f25 '' #zField
@@ -73,6 +70,7 @@ As0 @PushWFArc f11 '' #zField
 As0 @CallSub f58 '' #zField
 As0 @PushWFArc f59 '' #zField
 As0 @PushWFArc f41 '' #zField
+As0 @PushWFArc f60 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f0 guid 14AF0B1C8DE6C030 #txt
 As0 f0 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -242,24 +240,6 @@ As0 f23 expr out #txt
 As0 f23 208 140 208 172 #arcP
 As0 f3 expr out #txt
 As0 f3 208 196 208 228 #arcP
-As0 f14 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
-' #txt
-As0 f14 actionTable 'out=in;
-' #txt
-As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.resetTask(ivy.task);' #txt
-As0 f14 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>reset task</name>
-        <nameStyle>10,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f14 494 116 36 24 20 -2 #rect
-As0 f14 @|StepIcon #fIcon
 As0 f26 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f26 725 397 22 22 14 0 #rect
 As0 f26 @|RichDialogProcessEndIcon #fIcon
@@ -319,16 +299,14 @@ As0 f12 actionTable 'out=in;
 As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>resetTask</name>
-        <nameStyle>9,5,7
+        <name>leave</name>
+        <nameStyle>5,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 As0 f12 501 53 22 22 14 0 #rect
 As0 f12 @|RichDialogProcessStartIcon #fIcon
-As0 f19 expr out #txt
-As0 f19 512 75 512 116 #arcP
 As0 f10 guid 1559F666C6B122FC #txt
 As0 f10 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f10 method openApp(String) #txt
@@ -351,10 +329,6 @@ As0 f10 853 53 22 22 14 0 #rect
 As0 f10 @|RichDialogMethodStartIcon #fIcon
 As0 f7 expr out #txt
 As0 f7 208 82 208 116 #arcP
-As0 f6 expr out #txt
-As0 f6 512 140 722 192 #arcP
-As0 f6 1 512 192 #addKink
-As0 f6 1 0.6722270221806622 0 0 #arcLabel
 As0 f8 expr out #txt
 As0 f8 864 75 750 192 #arcP
 As0 f8 1 864 192 #addKink
@@ -803,6 +777,10 @@ As0 f59 expr out #txt
 As0 f59 1792 75 1792 106 #arcP
 As0 f41 expr out #txt
 As0 f41 1792 150 1792 180 #arcP
+As0 f60 expr out #txt
+As0 f60 512 75 722 192 #arcP
+As0 f60 1 512 192 #addKink
+As0 f60 1 0.21326629738341493 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -831,12 +809,8 @@ As0 f22 mainOut f3 tail #connect
 As0 f3 head f9 mainIn #connect
 As0 f28 mainOut f27 tail #connect
 As0 f27 head f26 mainIn #connect
-As0 f12 mainOut f19 tail #connect
-As0 f19 head f14 mainIn #connect
 As0 f0 mainOut f7 tail #connect
 As0 f7 head f4 mainIn #connect
-As0 f14 mainOut f6 tail #connect
-As0 f6 head f5 in #connect
 As0 f10 mainOut f8 tail #connect
 As0 f8 head f5 in #connect
 As0 f18 mainOut f31 tail #connect
@@ -879,3 +853,5 @@ As0 f39 mainOut f59 tail #connect
 As0 f59 head f58 mainIn #connect
 As0 f58 mainOut f41 tail #connect
 As0 f41 head f21 mainIn #connect
+As0 f12 mainOut f60 tail #connect
+As0 f60 head f5 in #connect
