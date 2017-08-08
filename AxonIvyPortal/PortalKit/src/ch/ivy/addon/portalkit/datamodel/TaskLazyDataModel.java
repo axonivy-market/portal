@@ -69,6 +69,18 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     autoInitForNoAppConfiguration();
   }
 
+  /**
+   * <p>
+   * Initialize TaskFilterContainer with your customized TaskFilterContainer class. 
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * filterContainer = new CustomizedTaskFilterContainer();
+   * </pre></code>
+   * </p>
+   * 
+   * @return
+   */
   protected void initFilterContainer() {
     filterContainer = new DefaultTaskFilterContainer();
   }

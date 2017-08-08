@@ -11,13 +11,12 @@
   <cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
     shortDescription="Used if filter can be removed" />
   <cc:attribute name="taskFilter" required="true" type="ch.ivy.addon.portalkit.taskfilter.TaskFilter" />
-  <cc:attribute name="label" />
   <cc:attribute name="updateListener" />
   <cc:attribute name="removeListener" />
   <cc:attribute name="containerStyleClass" />
   <cc:attribute name="buttonStyleClass" />
   <cc:attribute name="removeIconStyleClass" />
-  <cc:attribute name="displayUpdateButton" default="true" />
+  <cc:attribute name="displayFooterButtons" default="true" />
   <cc:attribute name="dismissableOverlayPanel" default="true"
     shortDescription="If there is a component with a popup like calendar, autocomplete placed inside the overlay panel, popup part might exceed the boundaries of panel and clicking the outside hides the panel. Set false in this case" />
 </cc:interface>
@@ -34,7 +33,7 @@
     <h:form id="filter-open-form">
       <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
         <p:commandButton id="advanced-filter-command" type="button"
-          value="#{cc.attrs.label} #{cc.attrs.taskFilter.value()}"
+          value="#{cc.attrs.taskFilter.label()}: #{cc.attrs.taskFilter.value()}"
           styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
@@ -57,7 +56,7 @@
         </h:panelGroup>
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer"
-          rendered="#{cc.attrs.displayUpdateButton}">
+          rendered="#{cc.attrs.displayFooterButtons}">
           <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/update')}"
             actionListener="#{taskFilter.validate()}"
