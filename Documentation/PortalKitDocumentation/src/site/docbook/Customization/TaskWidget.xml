@@ -90,164 +90,163 @@
 						After previous steps, you can override <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">TaskHeader and TaskListHeader</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskbody">TaskBody</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">TaskFilter</link>
 					</para>
 				</listitem>
-				<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskheader">
-					<title>Task header</title>
-					<para>
-						Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate. In case your task widget has new columns, you should override TaskLazyDataModel to make the sort function of these columns work:
-						<itemizedlist>
-							<listitem>
-								<para>Introduce a java class extends TaskLazyDataModel</para>
-							</listitem>
-							<listitem>
-								<para>Override the <code>extendSort</code> method, the <code>extendSortTasksInNotDisplayedTaskMap</code> method and extend the sort function for the added columns (see the methods' Javadoc comments)</para>
-							</listitem>
-							<listitem>
-								<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
-							</listitem>
-							<listitem>
-								<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
-							</listitem>
-							<listitem>
-								<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
-							</listitem>
-						</itemizedlist>
-					</para>
-				</sect3>
-				<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskbody">
-					<title>Task body</title>
-					<para>
-						Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate.
-					</para>
-					<para>
-						If you need to apply the responsiveness behavior of Portal for task details, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
-						<itemizedlist>
-							<listitem>
-								<para>
-									ResponsivenessHandleContainer: a container contains <code>ResponsivenessHandleButton</code> and your javascript which contains the onstart and oncomplete function of <code>ResponsivenessHandleButton</code>.
-								</para>
-							</listitem>
-							<listitem>
-								<para>
-									ResponsivenessHandleButton: contains the params which handle responsiveness:
-									<para>
-										<itemizedlist>
-											<listitem>
-												<para>
-													icon: the icon of button
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													displayedSelectors: css selectors of the components which need to be displayed.
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													hiddenSelectorsInLargeScreen: css selectors of the components which need to be hidden in large screen (width: 1920).
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													hiddenSelectorsInMediumScreen: css selectors of the components which need to be hidden in medium screen (width: 1366).
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													hiddenSelectorsInSmallScreen: css selectors of the components which need to be hidden in small screen (width: 1024).
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													fadeTime: the fade in/out time.
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													onstart: client side callback to execute before responsiveness execution.
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													oncomplete: client side callback to execute after responsiveness execution.
-												</para>
-											</listitem>
-										</itemizedlist>
-									</para> 
-								</para>
-							</listitem>
-						</itemizedlist>
-						<para>
-							For example:
-							<para>
-									<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
-							</para>
-							<para>
-									<code>&lt;ui:param name="useOverrideBody" value="true" /&gt;</code>
-							</para>
-							<para>
-									<code>&lt;ui:define name="taskBody"&gt;</code>
-							</para>
-							<para>
-									<code>Customized content</code>
-							</para>
-							<para>
-									<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg"&gt;</code>
-							</para>
-							<para>
-									<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-note-column-responsive-button" displayedSelectors="['#task-note']" hiddenSelectorsInMediumScreen="['.task-details .replaced']" hiddenSelectorsInSmallScreen="['.task-details .replaced']" /&gt;</code>
-							</para>
-							<para>
-									<code>&lt;h:outputScript library="js" name="task-detail-default-responsiveness.js" /&gt;</code>
-							</para>
-							<para>
-									<code>&lt;/ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer&gt;</code>
-							</para>
-							<para>
-									<code>&lt;/ui:define&gt;</code>
-							</para>
-							<para>
-									<code>&lt;/ui:composition&gt;</code>
-							</para>
-						</para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/TaskWidget/TaskDetailsResponsiveness.png" />
-							</imageobject>
-						</mediaobject>
-					</para>
-				</sect3>
-				<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">
-					<title>Task filter</title>
-						<itemizedlist>
-							<listitem>
-								<para>Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate for UI</para>
-							</listitem>
-							<listitem>
-								<para>In order to introduce new filter, create a new java class extends TaskFilter and override its methods (see javadoc comments)</para>
-							</listitem>
-							<listitem>
-								<para>Introduce a java class extends TaskFilterContainer. This filter container contains your filters, you can reuse default filters, refer to <code>DefaultTaskFilterContainer.java</code></para>
-								<tip>StateFilter is added as default to container. If you don't need it, use this code in constructor: <code>filters.remove(stateFilter);</code></tip>
-							</listitem>
-							<listitem>
-								<para>Introduce a java class extends TaskLazyDataModel. Override the <code>initFilterContainer</code> method and initialize filter container (see javadoc comments)</para>
-							</listitem>
-							<listitem>
-								<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
-							</listitem>
-							<listitem>
-								<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
-							</listitem>
-							<listitem>
-								<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
-							</listitem>
-							<listitem>
-								<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
-							</listitem>
-						</itemizedlist>
-					</para>
-				</sect3>
 			</orderedlist>
+			<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskheader">
+				<title>Task header</title>
+				<para>
+					Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate. In case your task widget has new columns, you should override TaskLazyDataModel to make the sort function of these columns work:
+					<itemizedlist>
+						<listitem>
+							<para>Introduce a java class extends TaskLazyDataModel</para>
+						</listitem>
+						<listitem>
+							<para>Override the <code>extendSort</code> method, the <code>extendSortTasksInNotDisplayedTaskMap</code> method and extend the sort function for the added columns (see the methods' Javadoc comments)</para>
+						</listitem>
+						<listitem>
+							<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
+						</listitem>
+						<listitem>
+							<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
+						</listitem>
+						<listitem>
+							<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
+						</listitem>
+					</itemizedlist>
+				</para>
+			</sect3>
+			<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskbody">
+				<title>Task body</title>
+				<para>
+					Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate.
+				</para>
+				<para>
+					If you need to apply the responsiveness behavior of Portal for task details, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
+					<itemizedlist>
+						<listitem>
+							<para>
+								ResponsivenessHandleContainer: a container contains <code>ResponsivenessHandleButton</code> and your javascript which contains the onstart and oncomplete function of <code>ResponsivenessHandleButton</code>.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								ResponsivenessHandleButton: contains the params which handle responsiveness:
+								<para>
+									<itemizedlist>
+										<listitem>
+											<para>
+												icon: the icon of button
+											</para>
+										</listitem>
+										<listitem>
+											<para>
+												displayedSelectors: css selectors of the components which need to be displayed.
+											</para>
+										</listitem>
+										<listitem>
+											<para>
+												hiddenSelectorsInLargeScreen: css selectors of the components which need to be hidden in large screen (width: 1920).
+											</para>
+										</listitem>
+										<listitem>
+											<para>
+												hiddenSelectorsInMediumScreen: css selectors of the components which need to be hidden in medium screen (width: 1366).
+											</para>
+										</listitem>
+										<listitem>
+											<para>
+												hiddenSelectorsInSmallScreen: css selectors of the components which need to be hidden in small screen (width: 1024).
+											</para>
+										</listitem>
+										<listitem>
+											<para>
+												fadeTime: the fade in/out time.
+											</para>
+										</listitem>
+										<listitem>
+											<para>
+												onstart: client side callback to execute before responsiveness execution.
+											</para>
+										</listitem>
+										<listitem>
+											<para>
+												oncomplete: client side callback to execute after responsiveness execution.
+											</para>
+										</listitem>
+									</itemizedlist>
+								</para> 
+							</para>
+						</listitem>
+					</itemizedlist>
+					<para>
+						For example:
+						<para>
+								<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
+						</para>
+						<para>
+								<code>&lt;ui:param name="useOverrideBody" value="true" /&gt;</code>
+						</para>
+						<para>
+								<code>&lt;ui:define name="taskBody"&gt;</code>
+						</para>
+						<para>
+								<code>Customized content</code>
+						</para>
+						<para>
+								<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg"&gt;</code>
+						</para>
+						<para>
+								<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-note-column-responsive-button" displayedSelectors="['#task-note']" hiddenSelectorsInMediumScreen="['.task-details .replaced']" hiddenSelectorsInSmallScreen="['.task-details .replaced']" /&gt;</code>
+						</para>
+						<para>
+								<code>&lt;h:outputScript library="js" name="task-detail-default-responsiveness.js" /&gt;</code>
+						</para>
+						<para>
+								<code>&lt;/ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer&gt;</code>
+						</para>
+						<para>
+								<code>&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+								<code>&lt;/ui:composition&gt;</code>
+						</para>
+					</para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/TaskWidget/TaskDetailsResponsiveness.png" />
+						</imageobject>
+					</mediaobject>
+				</para>
+			</sect3>
+			<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">
+				<title>Task filter</title>
+				<itemizedlist>
+					<listitem>
+						<para>Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate for UI</para>
+					</listitem>
+					<listitem>
+						<para>In order to introduce new filter, create a new java class extends TaskFilter and override its methods (see javadoc comments)</para>
+					</listitem>
+					<listitem>
+						<para>Introduce a java class extends TaskFilterContainer. This filter container contains your filters, you can reuse default filters, refer to <code>DefaultTaskFilterContainer.java</code></para>
+						<tip><para>StateFilter is added as default to container. If you don't need it, use this code in constructor: <code>filters.remove(stateFilter);</code></para></tip>
+					</listitem>
+					<listitem>
+						<para>Introduce a java class extends TaskLazyDataModel. Override the <code>initFilterContainer</code> method and initialize filter container (see javadoc comments)</para>
+					</listitem>
+					<listitem>
+						<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
+					</listitem>
+					<listitem>
+						<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
+					</listitem>
+					<listitem>
+						<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
+					</listitem>
+					<listitem>
+						<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
+					</listitem>
+				</itemizedlist>
+			</sect3>
 		</para>
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverridedataquery">
