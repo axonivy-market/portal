@@ -18,7 +18,7 @@ public abstract class TaskFilter {
   protected static final String DOUBLE_QUOTES = "\"%s\"";
 
   /**
-   * @return the string label is displayed in filter item.
+   * @return the string label is displayed in filter item and checkbox filter item.
    */
   public abstract String label();
 
