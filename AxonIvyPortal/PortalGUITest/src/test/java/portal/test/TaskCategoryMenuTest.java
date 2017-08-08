@@ -41,6 +41,6 @@ public class TaskCategoryMenuTest extends BaseTest {
     homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    assertEquals(4, taskWidgetPage.countTasks());
+    assertEquals(3, taskWidgetPage.countTasks());
   }
 }
