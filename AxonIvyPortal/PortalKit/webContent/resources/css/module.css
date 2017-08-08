@@ -4183,3 +4183,15 @@ margin-top
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.change-password-1st-column{
+  width: 40%;
+}
+
+.change-password-2nd-column input{
+  width: 100%;
+}
+
+.change-password-panel {
+  width: 100%;
+}
