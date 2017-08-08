@@ -237,9 +237,6 @@
 						<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
 					</listitem>
 					<listitem>
-						<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
-					</listitem>
-					<listitem>
 						<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
 					</listitem>
 					<listitem>
