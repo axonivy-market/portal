@@ -89,6 +89,12 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/languageSettings')}"
               onclick="loadLanguageSetting()" /></li>
 
+          <li><p:commandLink id="change-password-menu-item"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
+              oncomplete="PF('changePasswordDialog').show();" 
+              resetValues="true" update="change-password-form"/>
+          </li>
+
           <li><p:commandLink id="logout-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/logOut')}"
               rendered="#{!userMenuBean.hiddenLogout and !isWorkingOnATask}" actionListener="#{userMenuBean.logout}"
@@ -101,6 +107,13 @@
       <li jsf:rendered="#{enablesChat}"><a jsf:id="toggle-chat-panel-command"
         class="notification-badge mod-chat-menu js-toggle-chat-panel"><i class="fa fa-comment" /></a></li>
     </ul>
+
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" widgetVar="changePasswordDialog" id="change-password-dialog" 
+      closeOnEscape="true" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true" width="500">
+      <h:form id="change-password-form" >
+        <ic:ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting id="password-setting" dialogName="changePasswordDialog" />
+      </h:form>
+    </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" width="90%"
       id="admin-ui-dialog" widgetVar="adminUI" closeOnEscape="true" resizable="false" modal="true" draggable="false" appendTo="@(body)"

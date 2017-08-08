@@ -1,0 +1,4 @@
+co: name={confirmNewPassword} description={} changed={2017-08-08 05:41:04 CEST} changedby={tntanh} visualorder={0} guid={15DBFCE59EBA8EB5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DBFEE7CAF59C87} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-08 05:40:51 CEST} validto={} changed={2017-08-08 05:41:04 CEST} changedby={tntanh} properties={} id={}
+val: guid={15DBFEE7BDD8F939} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-08 05:40:54 CEST} validto={} changed={2017-08-08 05:41:03 CEST} changedby={tntanh} properties={} id={}
+val: guid={15DBFCE59EFE8069} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-08 05:05:57 CEST} validto={} changed={2017-08-08 05:05:58 CEST} changedby={tntanh} properties={} id={}
