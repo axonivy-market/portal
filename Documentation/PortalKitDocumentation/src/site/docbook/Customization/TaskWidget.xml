@@ -7,7 +7,7 @@
 	</para>
 	<orderedlist>
 		<listitem>
-			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: TaskHeader and TaskListHeader and TaskBody</para>
+			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: TaskHeader and TaskListHeader and TaskBody and TaskFilter</para>
 		</listitem>
 		<listitem>
 			<para><link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery">Data query</link>: display the tasks as you want</para>
@@ -39,15 +39,12 @@
 				</listitem>
 				<listitem>
 					<para>
-						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project.
+						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project. This process is new home page and administrator should register this link by global
 					</para>
 				</listitem>
 				<listitem>
 					<para>
-						Open <code>Admin settings</code> dialog, select <code>Settings</code> tab and add new setting (global variable) with <code>HOMEPAGE_URL</code> as key and your home page link as value.
-					</para>
-					<para>
-						For example: <code>http://localhost:8081/ivy/pro/Portal/MyCustomTaskWidget/01548075757CBCAA/PortalStart.ivp</code>. By default the portal home link is <code>http://localhost:8081/ivy/pro/Portal/PortalTemplate/1549F58C18A6C562/PortalStart.ivp</code> and overridden by the new specified link.
+						Refer to <link linkend="axonivyportal.customization.portalhome">Customize Portal home</link> to set new home page.
 					</para>
 				</listitem>
 				<listitem>
@@ -90,7 +87,13 @@
 				</listitem>
 				<listitem>
 					<para>
-						In case your task widget has new columns, you should override TaskLazyDataModel to make the sort function of these columns work:
+						After previous steps, you can override <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">TaskHeader and TaskListHeader</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskbody">TaskBody</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">TaskFilter</link>
+					</para>
+				</listitem>
+				<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskheader">
+					<title>Task header</title>
+					<para>
+						Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate. In case your task widget has new columns, you should override TaskLazyDataModel to make the sort function of these columns work:
 						<itemizedlist>
 							<listitem>
 								<para>Introduce a java class extends TaskLazyDataModel</para>
@@ -99,15 +102,22 @@
 								<para>Override the <code>extendSort</code> method, the <code>extendSortTasksInNotDisplayedTaskMap</code> method and extend the sort function for the added columns (see the methods' Javadoc comments)</para>
 							</listitem>
 							<listitem>
+								<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
+							</listitem>
+							<listitem>
 								<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
 							</listitem>
 							<listitem>
-								<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>) and in OpenPortalTasksOverride callable process, use the script from note element with your data model class</para>
+								<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
 							</listitem>
 						</itemizedlist>
 					</para>
-					</listitem>
-				<listitem>
+				</sect3>
+				<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskbody">
+					<title>Task body</title>
+					<para>
+						Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate.
+					</para>
 					<para>
 						If you need to apply the responsiveness behavior of Portal for task details, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
 						<itemizedlist>
@@ -205,7 +215,38 @@
 							</imageobject>
 						</mediaobject>
 					</para>
-				</listitem>
+				</sect3>
+				<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">
+					<title>Task filter</title>
+						<itemizedlist>
+							<listitem>
+								<para>Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate for UI</para>
+							</listitem>
+							<listitem>
+								<para>In order to introduce new filter, create a new java class extends TaskFilter and override its methods (see javadoc comments)</para>
+							</listitem>
+							<listitem>
+								<para>Introduce a java class extends TaskFilterContainer. This filter container contains your filters, you can reuse default filters, refer to <code>DefaultTaskFilterContainer.java</code></para>
+								<tip>StateFilter is added as default to container. If you don't need it, use this code in constructor: <code>filters.remove(stateFilter);</code></tip>
+							</listitem>
+							<listitem>
+								<para>Introduce a java class extends TaskLazyDataModel. Override the <code>initFilterContainer</code> method and initialize filter container (see javadoc comments)</para>
+							</listitem>
+							<listitem>
+								<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
+							</listitem>
+							<listitem>
+								<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
+							</listitem>
+							<listitem>
+								<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
+							</listitem>
+							<listitem>
+								<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
+							</listitem>
+						</itemizedlist>
+					</para>
+				</sect3>
 			</orderedlist>
 		</para>
 	</sect2>

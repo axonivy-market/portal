@@ -50,13 +50,14 @@
 				</listitem>
 				<listitem>
 					<para>
-						Create a new process start for the new home page. Now you will use this process start as the entry point of your portal instead of the default one. <emphasis role="strong">To let portal know about your new portal home, you have to go to the portal settings and set the portal home url to the new one. e.g: HOMEPAGE_URL=http://localhost:8081/ivy/pro/designer/CustomizePortalHome/157454FCA39C3844/start.ivp</emphasis>
+						<emphasis>In case of single Portal:</emphasis> Create a new process start for the new home page. Now you will use this process start as the entry point of your portal instead of the default one. <emphasis role="strong">To let portal know about your new portal home, you have to go to the portal settings and set the portal home url to the new one. e.g: HOMEPAGE_URL=http://localhost:8081/ivy/pro/designer/CustomizePortalHome/157454FCA39C3844/start.ivp</emphasis>
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/PortalHome/SetHomePageUrl.png" />
 							</imageobject>
 						</mediaobject>
 					</para>
+					<para><emphasis>In case of multi Portal:</emphasis> refer to <link linkend="axonivyportal.settings.adminsettings">Setup multi portals</link> to setup.</para>
 				</listitem>
 			</orderedlist>
 			<note>

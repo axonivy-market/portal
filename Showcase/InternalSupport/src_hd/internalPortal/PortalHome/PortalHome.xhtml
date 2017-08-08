@@ -74,14 +74,12 @@
     <ui:define name="taskFilter">
       <c:set var="filterContainer" value="#{dataModel.filterContainer}" />
       <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="customer-name-filter" dataModel="#{dataModel}"
-        label="Customer name:"
         taskFilter="#{filterContainer.customerNameFilter}">
         <p:inputText id="customVarChar5" value="#{filterContainer.customerNameFilter.customerName}" />
       </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
       
       <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="customer-type-filter" dataModel="#{dataModel}"
-        label="Customer type:" displayUpdateButton="false"
-        taskFilter="#{filterContainer.customerTypeFilter}">
+        displayFooterButtons="false" taskFilter="#{filterContainer.customerTypeFilter}">
         <p:selectOneRadio layout="pageDirection" value="#{filterContainer.customerTypeFilter.selectedCustomerType}">
           <p:ajax
               update="@([id$='customer-type-filter:filter-open-form']) @form #{p:component('task-view-container')}"
