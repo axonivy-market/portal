@@ -91,6 +91,7 @@
 
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
+              rendered="#{!userMenuBean.hiddenChangePassword}"
               oncomplete="PF('changePasswordDialog').show();" 
               resetValues="true" update="change-password-form"/>
           </li>
