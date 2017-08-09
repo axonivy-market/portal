@@ -73,9 +73,9 @@
           for="filter-add-action" my="left top" at="left bottom">
           <h:form id="filter-add-form">
             <p:scrollPanel styleClass="filter-selector-container" mode="native">
-              <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
+              <p:selectManyCheckbox id="filter-selection" layout="pageDirection" valueChangeListener="#{data.dataModel.onFilterChange}"
                 value="#{data.dataModel.selectedFilters}" converter="pojoConverter">
-                <p:ajax update="#{p:component('advanced-filter-container')}" global="false" 
+                <p:ajax update="#{p:component('advanced-filter-container')}" global="false"
                   oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
                 <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                   itemValue="#{filter}" />
@@ -89,77 +89,6 @@
     <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
       <h:panelGroup styleClass="additional-filter-container"
         rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
-        <c:set var="filterContainer" value="#{data.dataModel.filterContainer}" />
-
-        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="state-filter"
-          taskFilter="#{filterContainer.stateFilter}" dataModel="#{data.dataModel}">
-          <p:selectManyCheckbox id="state-selection" layout="pageDirection"
-            value="#{filterContainer.stateFilter.selectedFilteredStates}">
-            <f:selectItems value="#{filterContainer.stateFilter.filteredStates}" var="state" itemValue="#{state}"
-              itemLabel="#{filterContainer.stateFilter.userFriendlyState(state)}" />
-          </p:selectManyCheckbox>
-        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
-
-        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="created-filter" dataModel="#{data.dataModel}"
-          dismissableOverlayPanel="false" taskFilter="#{filterContainer.creationDateFilter}">
-          <h:panelGrid columns="3">
-            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
-              for="from-created-calendar" />
-            <p:spacer width="5" />
-            <p:calendar id="from-created-calendar" value="#{filterContainer.creationDateFilter.fromCreationDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
-              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
-
-            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
-              for="to-created-calendar" />
-            <p:spacer width="5" />
-            <p:calendar id="to-created-calendar" value="#{filterContainer.creationDateFilter.toCreationDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
-              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
-          </h:panelGrid>
-        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
-
-        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="expired-filter" dataModel="#{data.dataModel}"
-          dismissableOverlayPanel="false" taskFilter="#{filterContainer.expiredDateFilter}">
-          <h:panelGrid columns="3">
-            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
-              for="from-expired-calendar" />
-            <p:spacer width="5" />
-            <p:calendar id="from-expired-calendar" value="#{filterContainer.expiredDateFilter.fromExpiredDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
-              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
-
-            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
-              for="to-expired-calendar" />
-            <p:spacer width="5" />
-            <p:calendar id="to-expired-calendar" value="#{filterContainer.expiredDateFilter.toExpiredDate}"
-              pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
-              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
-          </h:panelGrid>
-        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
-
-        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="description-filter" dataModel="#{data.dataModel}"
-          taskFilter="#{filterContainer.descriptionFilter}">
-          <p:inputText id="description" value="#{filterContainer.descriptionFilter.description}" />
-        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
-
-        <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="responsible-filter" dataModel="#{data.dataModel}"
-          taskFilter="#{filterContainer.responsibleFilter}" displayFooterButtons="false">
-          <p:selectOneListbox id="responsible" value="#{filterContainer.responsibleFilter.selectedResponsible}"
-            var="responsible" filter="true" filterMatchMode="contains" styleClass="responsible-list-filter"
-            converter="pojoConverter">
-            <p:ajax
-              update="#{cc.clientId}:responsible-filter:filter-open-form @form #{p:component('task-view-container')}"
-              global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
-            <f:selectItems value="#{filterContainer.responsibleFilter.responsibles}" var="r"
-              itemLabel="#{r.displayName}" itemValue="#{r}" />
-            <p:column>
-              <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-              <h:outputText value="#{filterContainer.responsibleFilter.formatName(responsible)}" />
-            </p:column>
-          </p:selectOneListbox>
-        </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
-        
         <cc:renderFacet name="taskFilter" />
 
         <h:panelGroup layout="block" rendered="#{!data.dataModel.hasReadAllTasksPermisson()}" styleClass="in-progress-filter-container">

@@ -8,7 +8,7 @@ public class TaskFilterComparator implements Comparator<TaskFilter> {
 
   @Override
   public int compare(TaskFilter first, TaskFilter second) {
-    return first.getLabel().compareTo(second.getLabel());
+    return first.label().compareTo(second.label());
   }
 
 }
