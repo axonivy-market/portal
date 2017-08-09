@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import javax.faces.event.ValueChangeEvent;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
@@ -429,6 +432,16 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public void removeFilter(TaskFilter filter) {
     filter.resetValues();
     selectedFilters.remove(filter);
+  }
+  
+  @SuppressWarnings("unchecked")
+  public void onFilterChange(ValueChangeEvent event) {
+    List<TaskFilter> oldSelectedFilters = (List<TaskFilter>) event.getOldValue();
+    List<TaskFilter> newSelectedFilters = (List<TaskFilter>) event.getNewValue();
+    List<TaskFilter> toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    if (CollectionUtils.isNotEmpty(toggleFilters)) {
+      toggleFilters.get(0).resetValues();
+    }
   }
   
   public boolean hasReadAllTasksPermisson() {

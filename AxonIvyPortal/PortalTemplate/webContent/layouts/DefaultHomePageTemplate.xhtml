@@ -109,8 +109,14 @@
               </f:facet>
 
               <f:facet name="taskFilter">
-                <ui:insert name="taskFilter">
-                </ui:insert>
+                <ui:fragment rendered="#{useOverrideFilter}">
+                  <ui:insert name="taskFilter">
+                  </ui:insert>
+                </ui:fragment>
+
+                <ui:fragment rendered="#{not useOverrideFilter}">
+                  <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{dataModel}" />
+                </ui:fragment>
               </f:facet>
             </ic:ch.ivy.addon.portalkit.component.TaskWidget>
           </h:panelGroup>
