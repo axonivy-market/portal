@@ -57,6 +57,12 @@ public class UserMenuBean {
     return Boolean.parseBoolean(isHiddenLogout);
   }
 
+  public boolean isHiddenChangePassword(){
+    GlobalSettingService globalSettingSerive = new GlobalSettingService();
+    String isHiddenChangePassword = globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
+    return Boolean.parseBoolean(isHiddenChangePassword);
+  }
+  
   public String getHomePageURL() throws Exception {
     ApplicationService applicationService = new ApplicationService();
     String homePageURL = getHomePageFromSetting();
