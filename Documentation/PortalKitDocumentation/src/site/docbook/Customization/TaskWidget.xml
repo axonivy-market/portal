@@ -94,7 +94,7 @@
 			<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskheader">
 				<title>Task header</title>
 				<para>
-					Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate. In case your task widget has new columns, you should override TaskLazyDataModel to make the sort function of these columns work:
+					Refer to the <code>taskListHeader</code> and <code>taskHeader</code> sections in <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> of PortalTemplate. In case your task widget has new columns, you should override TaskLazyDataModel to make the sort function of these columns work:
 					<itemizedlist>
 						<listitem>
 							<para>Introduce a java class extends TaskLazyDataModel</para>
@@ -117,7 +117,7 @@
 			<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskbody">
 				<title>Task body</title>
 				<para>
-					Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate.
+					Refer to the <code>taskBody</code> section in <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> of PortalTemplate.
 				</para>
 				<para>
 					If you need to apply the responsiveness behavior of Portal for task details, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
@@ -221,10 +221,15 @@
 				<title>Task filter</title>
 				<itemizedlist>
 					<listitem>
-						<para>Refer to <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> in PortalTemplate for UI</para>
+						<para>Refer to the <code>taskFilter</code> section in <code>PortalHome.xhtml</code> and <code>PortalTasks.xhtml</code> of PortalTemplate.</para>
 					</listitem>
 					<listitem>
 						<para>In order to introduce new filter, create a new java class extends TaskFilter and override its methods (see javadoc comments)</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/TaskWidget/TaskFilter.png" />
+							</imageobject>
+						</mediaobject>
 					</listitem>
 					<listitem>
 						<para>Introduce a java class extends TaskFilterContainer. This filter container contains your filters, you can reuse default filters, refer to <code>DefaultTaskFilterContainer.java</code></para>
@@ -237,10 +242,10 @@
 						<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
 					</listitem>
 					<listitem>
-						<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
+						<para>In your customized portal home HTMLDialog, the customized data model and filter container should be passed as parameters to template and components (refer to <code>PortalHome.xhtml</code>)</para>
 					</listitem>
 					<listitem>
-						<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
+						<para>In your customized portal tasks HTMLDialog, the customized data model and filter container should be passed as parameters to components (refer to <code>PortalTasks.xhtml</code>).</para>
 					</listitem>
 				</itemizedlist>
 			</sect3>
