@@ -793,7 +793,7 @@
 				<title>Changes in 7.0 (Jakobshorn)</title>
 				<itemizedlist>
 					<listitem>
-						<para>More search criterias for user in Task list are added</para>
+						<para>More search criteria for user in Task list are added and allowed to customize.</para>
 					</listitem>
 					<listitem>
 						<para>Task delegate customization is supported</para>
