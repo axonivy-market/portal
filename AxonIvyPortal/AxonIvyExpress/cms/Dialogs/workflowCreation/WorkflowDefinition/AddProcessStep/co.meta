@@ -1,3 +1,4 @@
-co: name={AddProcessStep} description={} changed={2017-05-22 14:07:37 CEST} changedby={t} visualorder={0} guid={15899CBCC5D9BA59} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={AddProcessStep} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={15899CBCC5D9BA59} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15BF010A7063A4B5} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 03:54:33 CEST} validto={} changed={2017-05-10 03:54:34 CEST} changedby={ldnam} properties={} id={}
+val: guid={15DCAF1F900BEE25} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
 val: guid={15899CBCC62E7165} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:43:40 CET} validto={} changed={2017-05-22 14:07:37 CEST} changedby={t} properties={} id={}

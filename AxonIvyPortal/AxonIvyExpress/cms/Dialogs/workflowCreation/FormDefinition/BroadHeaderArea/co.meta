@@ -1,3 +1,4 @@
-co: name={BroadHeaderArea} description={} changed={2017-05-22 13:36:12 CEST} changedby={t} visualorder={0} guid={1589E1765F4F83B1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={BroadHeaderArea} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={1589E1765F4F83B1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={1589E1765FAA562A} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-05-22 13:36:12 CEST} changedby={t} properties={} id={}
+val: guid={15DCAF1F6ED365CB} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
 val: guid={15BECDBB17CDC668} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:57:50 CEST} validto={} changed={2017-05-09 12:57:52 CEST} changedby={ldnam} properties={} id={}
