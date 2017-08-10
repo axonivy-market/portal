@@ -100,7 +100,7 @@
 						<emphasis role="bold">Multi-portal mode</emphasis>
 						: Single or multiple Portal applications on multiple engines. The engines will communicate with each other via the
 						portalConnector of their System
-						application.
+						application (This mode is not supported yet).
 					</listitem>
 				</itemizedlist>
 			</sect3>
