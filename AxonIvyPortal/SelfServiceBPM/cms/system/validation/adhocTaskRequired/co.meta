@@ -1,3 +1,4 @@
-co: name={adhocTaskRequired} description={} changed={2017-05-23 13:47:37 CEST} changedby={t} visualorder={0} guid={15C0B94083EC1E9D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={adhocTaskRequired} description={} changed={2017-08-10 09:01:42 CEST} changedby={t} visualorder={0} guid={15C0B94083EC1E9D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DCAF2E4B8F4650} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-08-10 09:01:42 CEST} changedby={t} properties={} id={}
 val: guid={15C0B94344CAF635} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-15 12:07:59 CEST} validto={} changed={2017-05-23 13:47:37 CEST} changedby={t} properties={} id={}
 val: guid={15C0B94084D632F7} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-15 12:07:49 CEST} validto={} changed={2017-05-23 13:47:37 CEST} changedby={t} properties={} id={}
