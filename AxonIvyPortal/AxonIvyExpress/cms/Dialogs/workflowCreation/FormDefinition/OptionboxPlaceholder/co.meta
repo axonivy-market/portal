@@ -1,3 +1,4 @@
-co: name={OptionboxPlaceholder} description={} changed={2017-05-09 13:16:24 CEST} changedby={ldnam} visualorder={0} guid={1589E2D4954F704E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={OptionboxPlaceholder} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={1589E2D4954F704E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={1589E2D495A37972} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 02:08:37 CET} validto={} changed={2016-11-26 02:08:37 CET} changedby={marce} properties={} id={}
+val: guid={15DCAF1F893604A5} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
 val: guid={15BECECA96B21793} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:16:20 CEST} validto={} changed={2017-05-09 13:16:24 CEST} changedby={ldnam} properties={} id={}

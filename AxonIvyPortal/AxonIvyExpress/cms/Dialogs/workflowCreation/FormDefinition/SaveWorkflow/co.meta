@@ -1,3 +1,4 @@
-co: name={SaveWorkflow} description={} changed={2017-05-22 14:06:30 CEST} changedby={t} visualorder={0} guid={1589E1766B377D4A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={SaveWorkflow} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={1589E1766B377D4A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15BECED5C77CF1B2} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:17:07 CEST} validto={} changed={2017-05-09 13:17:10 CEST} changedby={ldnam} properties={} id={}
 val: guid={1589E1766B9F3190} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-05-22 14:06:30 CEST} changedby={t} properties={} id={}
+val: guid={15DCAF1F8C25B00A} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}

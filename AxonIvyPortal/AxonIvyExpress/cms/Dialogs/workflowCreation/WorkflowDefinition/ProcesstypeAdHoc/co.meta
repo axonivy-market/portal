@@ -1,3 +1,4 @@
-co: name={ProcesstypeAdHoc} description={} changed={2017-05-22 14:09:17 CEST} changedby={t} visualorder={0} guid={15899CBCBACBBE9E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={ProcesstypeAdHoc} description={} changed={2017-08-10 09:00:42 CEST} changedby={t} visualorder={0} guid={15899CBCBACBBE9E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15BF0150E3B8ABE9} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 03:59:20 CEST} validto={} changed={2017-05-10 03:59:23 CEST} changedby={ldnam} properties={} id={}
 val: guid={15899CBCBB1156D4} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:43:39 CET} validto={} changed={2017-05-22 14:09:17 CEST} changedby={t} properties={} id={}
+val: guid={15DCAF1FB1436C5C} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:42 CEST} validto={} changed={2017-08-10 09:00:42 CEST} changedby={t} properties={} id={}

@@ -1,3 +1,4 @@
-co: name={InputCheckbox} description={} changed={2017-05-22 13:47:48 CEST} changedby={t} visualorder={0} guid={1589E1763A234E9E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={InputCheckbox} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={1589E1763A234E9E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15BECE972B2235A0} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:12:50 CEST} validto={} changed={2017-05-09 13:12:54 CEST} changedby={ldnam} properties={} id={}
 val: guid={1589E1763A91FAAF} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:42 CET} validto={} changed={2017-05-22 13:47:48 CEST} changedby={t} properties={} id={}
+val: guid={15DCAF1F799A6266} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}

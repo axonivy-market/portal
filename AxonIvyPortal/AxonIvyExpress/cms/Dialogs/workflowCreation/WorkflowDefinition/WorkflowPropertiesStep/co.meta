@@ -1,3 +1,4 @@
-co: name={WorkflowPropertiesStep} description={} changed={2017-05-22 14:12:04 CEST} changedby={t} visualorder={0} guid={15BF146D13E8B109} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={WorkflowPropertiesStep} description={} changed={2017-08-10 09:00:42 CEST} changedby={t} visualorder={0} guid={15BF146D13E8B109} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DCAF1FB33DDEA7} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:42 CEST} validto={} changed={2017-08-10 09:00:42 CEST} changedby={t} properties={} id={}
 val: guid={15BF146F8BA7A7E8} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 09:33:28 CEST} validto={} changed={2017-05-10 09:33:32 CEST} changedby={ldnam} properties={} id={}
 val: guid={15BF146D142C99F1} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 09:33:21 CEST} validto={} changed={2017-05-22 14:12:04 CEST} changedby={t} properties={} id={}

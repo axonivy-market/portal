@@ -1,3 +1,4 @@
-co: name={NoCheckboxFieldYet} description={} changed={2017-05-22 14:01:45 CEST} changedby={t} visualorder={0} guid={1589E1764E668EBB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={NoCheckboxFieldYet} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={1589E1764E668EBB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15BECEA2378B6768} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:13:37 CEST} validto={} changed={2017-05-09 13:13:39 CEST} changedby={ldnam} properties={} id={}
+val: guid={15DCAF1F806C2191} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
 val: guid={1589E1764EBA04C0} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-05-22 14:01:45 CEST} changedby={t} properties={} id={}

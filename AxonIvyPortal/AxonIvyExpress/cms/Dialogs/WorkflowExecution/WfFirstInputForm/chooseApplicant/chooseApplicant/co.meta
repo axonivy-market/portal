@@ -1,3 +1,4 @@
-co: name={chooseApplicant} description={} changed={2017-05-22 14:46:34 CEST} changedby={t} visualorder={0} guid={158ADFFD6347AA83} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BF0220CF46A01E} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 04:13:32 CEST} validto={} changed={2017-05-10 04:13:35 CEST} changedby={ldnam} properties={} id={}
+co: name={chooseApplicant} description={} changed={2017-08-10 09:00:40 CEST} changedby={t} visualorder={0} guid={158ADFFD6347AA83} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15BF0220CF46A01E} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2017-08-10 09:00:40 CEST} changedby={t} properties={} id={}
 val: guid={158ADFFD63BE7230} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-29 03:52:54 CET} validto={} changed={2017-05-22 14:46:34 CEST} changedby={t} properties={} id={}
+val: guid={15DCAF1F58677278} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2017-08-10 09:00:40 CEST} changedby={t} properties={} id={}

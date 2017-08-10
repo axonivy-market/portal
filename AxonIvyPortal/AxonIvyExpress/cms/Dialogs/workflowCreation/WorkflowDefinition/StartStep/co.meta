@@ -1,3 +1,4 @@
-co: name={StartStep} description={} changed={2017-05-22 14:11:43 CEST} changedby={t} visualorder={0} guid={15BF1461B2B87B64} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={StartStep} description={} changed={2017-08-10 09:00:42 CEST} changedby={t} visualorder={0} guid={15BF1461B2B87B64} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DCAF1FB2361565} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:42 CEST} validto={} changed={2017-08-10 09:00:42 CEST} changedby={t} properties={} id={}
 val: guid={15BF1461B3AF5D70} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 09:32:35 CEST} validto={} changed={2017-05-22 14:11:43 CEST} changedby={t} properties={} id={}
 val: guid={15BF1465806DB562} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 09:32:44 CEST} validto={} changed={2017-05-10 09:32:51 CEST} changedby={ldnam} properties={} id={}
