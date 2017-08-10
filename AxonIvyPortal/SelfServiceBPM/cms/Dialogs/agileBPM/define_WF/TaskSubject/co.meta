@@ -1,3 +1,4 @@
-co: name={TaskSubject} description={} changed={2016-03-04 10:33:05 CET} changedby={dre} visualorder={0} guid={144684AFFDF55C56} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={TaskSubject} description={} changed={2017-08-10 09:01:41 CEST} changedby={t} visualorder={0} guid={144684AFFDF55C56} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DCAF2E2C4283E9} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:41 CEST} validto={} changed={2017-08-10 09:01:41 CEST} changedby={t} properties={} id={}
 val: guid={15340F9235EC2069} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:33:02 CET} validto={} changed={2016-03-04 10:33:05 CET} changedby={dre} properties={} id={}
 val: guid={144684AFFFE56C09} datatype={} isdefault={true} langid={en} description={} validfrom={2014-02-25 10:05:49 CET} validto={} changed={2014-02-25 10:06:42 CET} changedby={bb} properties={} id={}

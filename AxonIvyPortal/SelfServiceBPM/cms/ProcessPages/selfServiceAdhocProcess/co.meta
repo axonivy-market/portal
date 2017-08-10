@@ -1,3 +1,4 @@
-co: name={selfServiceAdhocProcess} description={} changed={2017-05-11 08:53:22 CEST} changedby={t} visualorder={0} guid={1537EF6EDB7E3AB7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={selfServiceAdhocProcess} description={} changed={2017-08-10 09:01:42 CEST} changedby={t} visualorder={0} guid={1537EF6EDB7E3AB7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DCAF2E40C5B5B6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-08-10 09:01:42 CEST} changedby={t} properties={} id={}
 val: guid={1537EF6EDC148F95} datatype={} isdefault={true} langid={en} description={} validfrom={2016-03-16 11:27:05 CET} validto={} changed={2017-05-11 08:53:22 CEST} changedby={t} properties={} id={}
 val: guid={1537EF74EB4D1FFF} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-16 11:27:25 CET} validto={} changed={2017-05-11 08:53:22 CEST} changedby={t} properties={} id={}
