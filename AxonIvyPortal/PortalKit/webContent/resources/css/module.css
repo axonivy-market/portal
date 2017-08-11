@@ -1329,7 +1329,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after {
