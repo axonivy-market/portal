@@ -1265,12 +1265,14 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 /********************************** END FILTER WIDGET **********************************/
 
 /********************************** START ADVANCED FILTER WIDGET **********************************/
-.in-progress-filter-container {
-  order: 100;
-  margin-left: auto;
-  padding: 6px 0;
+.task-widget .in-progress-task-checkbox {
+  padding-left: 2.4px;
 }
 
+.task-widget .in-progress-task-checkbox .ui-chkbox-label {
+  margin-left: 0 !important;
+}
+  
 .task-widget .advanced-filter-container {
   margin-top: 10px;
 }
