@@ -34,6 +34,8 @@
     value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
   <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
+  
+  <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
     <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header"
