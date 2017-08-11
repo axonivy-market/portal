@@ -89,9 +89,10 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/languageSettings')}"
               onclick="loadLanguageSetting()" /></li>
 
+          <!-- Currently, this feature does not support -->
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
-              rendered="#{!userMenuBean.hiddenChangePassword}"
+              rendered="false"
               oncomplete="PF('changePasswordDialog').show();" 
               resetValues="true" update="change-password-form"/>
           </li>
