@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed May 10 17:14:55 ICT 2017]
+[>Created: Fri Aug 11 11:24:42 ICT 2017]
 1574EBDBE9576CED 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
@@ -561,13 +561,12 @@ import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
  
-ivy.task.destroy(); //delete task
-//ivy.task.reset();
+ivy.task.destroy(); 
 
 String link;
 
 if (ivy.session.isSessionUserUnknown() && !ivy.wf.getApplication().getName().equalsIgnoreCase("designer")) {
-		link = ivy.var.gawfs_core_endpage;
+		link = "";
 		ivy.log.debug("DESIGNER!!!");
 }
 else {
@@ -606,8 +605,8 @@ else {
 
 //redirect to portal
 //ivy.log.debug("Link to Portal found:"+link);
-FacesContext.getCurrentInstance().getExternalContext().redirect(link);
-' #txt
+
+FacesContext.getCurrentInstance().getExternalContext().redirect(link);' #txt
 Ds0 f47 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
