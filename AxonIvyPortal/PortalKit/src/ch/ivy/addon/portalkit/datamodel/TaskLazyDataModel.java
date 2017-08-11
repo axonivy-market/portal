@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
+import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
@@ -56,6 +57,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
   protected TaskFilterContainer filterContainer;
+  
+  private TaskInProgressByOthersFilter inProgressFilter = new TaskInProgressByOthersFilter();
+  private boolean isInProgressFilterDisplayed = false;
 
   public TaskLazyDataModel() {
     super();
@@ -404,6 +408,22 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return caseName;
   }
 
+  public TaskInProgressByOthersFilter getInProgressFilter() {
+    return inProgressFilter;
+  }
+
+  public void setInProgressFilter(TaskInProgressByOthersFilter inProgressFilter) {
+    this.inProgressFilter = inProgressFilter;
+  }
+
+  public boolean isInProgressFilterDisplayed() {
+    return isInProgressFilterDisplayed;
+  }
+
+  public void setInProgressFilterDisplayed(boolean isInProgressFilterDisplayed) {
+    this.isInProgressFilterDisplayed = isInProgressFilterDisplayed;
+  }
+
   public void setCaseName(String caseName) {
     this.caseName = caseName;
   }
@@ -442,9 +462,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       toggleFilters.get(0).resetValues();
     }
   }
-  
+
   public boolean hasReadAllTasksPermisson() {
     return TaskUtils.checkReadAllTasksPermission();
+  }
+  
+  public void hideInProgressFilter() {
+    inProgressFilter.resetValues();
+    isInProgressFilterDisplayed = false;
   }
 
   /**
@@ -469,6 +494,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       } else {
         queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
       }
+      
+      searchCriteria.setTaskStartedByAnotherDisplayed(inProgressFilter.isTaskInProgressByOthersDisplayed());
     }
 
     TaskQuery taskQuery = buildTaskQuery();
