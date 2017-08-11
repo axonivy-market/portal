@@ -5,17 +5,17 @@
   <parent>
     <groupId>ch.ivyteam.ivy.project.portal</groupId>
     <artifactId>portalMavenBuild</artifactId>
-    <version>6.6.142.0</version>
+    <version>6.7.142.0</version>
   </parent>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalKit</artifactId>
-  <version>6.6.142.0</version>
+  <version>6.7.142.0</version>
   <packaging>iar</packaging>
   <dependencies>
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
       <artifactId>portalStyle</artifactId>
-      <version>6.6.142.0</version>
+      <version>6.7.142.0</version>
       <type>iar</type>
     </dependency>
     <dependency>
