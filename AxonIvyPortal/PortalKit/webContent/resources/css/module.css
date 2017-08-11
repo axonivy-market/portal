@@ -2792,9 +2792,38 @@ a.task-details-document-add-link {
   top: 0;
 }
 
+@-webkit-keyframes change-color {
+  0%   { background-color: transparent; color: black;}
+  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
+}
+@-moz-keyframes change-color {
+  0%   { background-color: transparent; color: black;}
+  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
+}
+@-o-keyframes change-color {
+  0%   { background-color: transparent; color: black;}
+  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
+}
+@keyframes change-color {
+  0%   { background-color: transparent; color: black;}
+  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
+}
+
 .ajax-status-color {
-  background-color: rgba(0, 0, 0, 0.46);
-  color: white;
+  -webkit-animation: change-color 1s; /* Safari 4+ */
+  -moz-animation:    change-color 1s; /* Fx 5+ */
+  -o-animation:      change-color 1s; /* Opera 12+ */
+  animation:         change-color 1s; /* IE 10+ */
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+.ajax-status .ajax-spinner {
+  margin: auto;
+}
+
+.ajax-status .ajax-spinner:before {
+  content: url("#{resource['images/loader/spinner.gif']}");
 }
 
 .ajax-status span {
