@@ -39,7 +39,7 @@
 		</para>
 	</sect1>
 	<sect1 xml:id="axonivyportal.architecture.axonivyexpress">
-		<title>Axon Ivy Express</title>
+		<title>Axon.ivy Express</title>
 		<para>
 			The idea is that user can create his own process and can manage it easily, it gives user more flexibility when working with Portal.
 		</para>
