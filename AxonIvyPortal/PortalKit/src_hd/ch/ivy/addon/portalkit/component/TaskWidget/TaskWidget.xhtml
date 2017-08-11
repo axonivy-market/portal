@@ -62,13 +62,14 @@
         <h:form id="filter-form" onsubmit="return false;" style="margin-top: 11px;">
           <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
             icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             keywordStoresIn="#{data.keyword}" styleClass="widget-header-filter-input"
             onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
         </h:form>
       </h:panelGroup>
       <h:panelGroup id="filter-add-container" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}" styleClass="filter-add-container">
-        <p:commandButton id="filter-add-action" value="More" styleClass="filter-add-button" icon="fa fa-caret-down"
-          iconPos="right" type="button" />
+        <p:commandButton id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
+          styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
         <p:overlayPanel id="filter-add-panel" styleClass="filter-add-panel"
           for="filter-add-action" my="left top" at="left bottom">
           <h:form id="filter-add-form">
@@ -80,6 +81,15 @@
                 <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                   itemValue="#{filter}" />
               </p:selectManyCheckbox>
+              <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
+                rendered="#{!data.dataModel.hasReadAllTasksPermisson()}"
+                value="#{data.dataModel.inProgressFilterDisplayed}"
+                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/displayTaskInProgressFilter')}">
+                <p:ajax global="false" update="#{p:component('advanced-filter-container')}" 
+                  oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+              </p:selectBooleanCheckbox>
+              <p:tooltip for="in-progress-checkbox" trackMouse="true"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
             </p:scrollPanel>
           </h:form>
         </p:overlayPanel>
@@ -91,17 +101,17 @@
         rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
         <cc:renderFacet name="taskFilter" />
 
-        <h:panelGroup layout="block" rendered="#{!data.dataModel.hasReadAllTasksPermisson()}" styleClass="in-progress-filter-container">
-          <h:form id="in-progress-form">
-            <p:selectBooleanCheckbox id="in-progress-checkbox"
-              value="#{data.dataModel.searchCriteria.taskStartedByAnotherDisplayed}"
-              itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsers')}">
-              <p:ajax global="false" update="#{p:component('task-view-container')}" />
-            </p:selectBooleanCheckbox>
-            <p:tooltip for="in-progress-checkbox" trackMouse="true"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
-          </h:form>
-        </h:panelGroup>
+        <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="in-progress-filter"
+          removeListener="#{data.dataModel.hideInProgressFilter()}" displayFooterButtons="false"
+          taskFilter="#{data.dataModel.inProgressFilter}" dataModel="#{data.dataModel}"
+          rendered="#{data.dataModel.inProgressFilterDisplayed}" forceRendered="true" position="100">
+          <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
+            value="#{data.dataModel.inProgressFilter.taskInProgressByOthersDisplayed}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}">
+            <p:ajax update="@([id$='in-progress-filter:filter-open-form']) @form #{p:component('task-view-container')}"
+              global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+          </p:selectBooleanCheckbox>
+        </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
       </h:panelGroup>
     </h:panelGroup>
 
