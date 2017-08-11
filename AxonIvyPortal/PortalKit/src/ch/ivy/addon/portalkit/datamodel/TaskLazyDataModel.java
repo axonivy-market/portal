@@ -67,8 +67,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     displayedTaskMap = new HashMap<>();
     notDisplayedTaskMap = new HashMap<>();
     selectedFilters = new ArrayList<>();
-    initFilterContainer();
-    initFilters();
     searchCriteria = buildCriteria();
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
@@ -92,7 +90,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     filterContainer = new DefaultTaskFilterContainer();
   }
   
-  protected void initFilters() {
+  public void initFilters() {
+    initFilterContainer();
     filters = filterContainer.getFilters();
   }
 
@@ -255,7 +254,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
     jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.PARKED,
         TaskState.RESUMED)));
-    setValuesForStateFilter(jsonQuerycriteria);
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
     return jsonQuerycriteria;
