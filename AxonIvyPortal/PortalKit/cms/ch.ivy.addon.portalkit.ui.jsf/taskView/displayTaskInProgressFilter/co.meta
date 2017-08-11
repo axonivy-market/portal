@@ -1,4 +1,4 @@
-co: name={displayTaskInProgressFilter} description={} changed={2017-08-11 05:52:02 CEST} changedby={dhtlong} visualorder={0} guid={15DCF537623F9AC1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DCF53762CD4E45} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-08-11 05:25:47 CEST} changedby={dhtlong} properties={} id={}
-val: guid={15DCF537630232EE} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-08-11 05:52:02 CEST} changedby={dhtlong} properties={} id={}
-val: guid={15DCF53762549D18} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-08-11 05:52:02 CEST} changedby={dhtlong} properties={} id={}
+co: name={displayTaskInProgressFilter} description={} changed={2017-08-11 09:33:14 CEST} changedby={t} visualorder={0} guid={15DCF537623F9AC1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15DCF53762CD4E45} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-08-11 09:33:14 CEST} changedby={t} properties={} id={}
+val: guid={15DCF537630232EE} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-08-11 09:33:14 CEST} changedby={t} properties={} id={}
+val: guid={15DCF53762549D18} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-08-11 09:33:14 CEST} changedby={t} properties={} id={}
