@@ -50,7 +50,6 @@
   color: black;
 }
 /* =================== END WIDGET ====================== */
-
 /* =================== PORTAL BUTTONS ====================== */
 .ui-widget.ui-button {
   min-width: 137px;
@@ -813,9 +812,15 @@
   color: rgba(0,0,0,0.2) !important;
 }
 /*IE 10+*/
-.ui-inputtext:-ms-input-placeholder,
-.ui-inputfield.hasDatepicker:-ms-input-placeholder,
-.ui-inputfield.ui-password:-ms-input-placeholder {
+.ui-widget.ui-inputtext:-ms-input-placeholder,
+.ui-widget.ui-inputfield.hasDatepicker:-ms-input-placeholder,
+.ui-widget.ui-inputfield.ui-password:-ms-input-placeholder {
+  color: rgba(0,0,0,0.2) !important;
+}
+
+.ui-widget.ui-inputtext.ui-state-hover:-ms-input-placeholder,
+.ui-widget.ui-inputfield.ui-state-hover.hasDatepicker:-ms-input-placeholder,
+.ui-widget.ui-inputfield.ui-state-hover.ui-password:-ms-input-placeholder {
   color: rgba(0,0,0,0.2) !important;
 }
 /*Firefox 18-*/
@@ -1253,7 +1258,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .filter-widget .filter-widget-input {
-  color: black !important;
+  color: black;
 }
 
 .filter-widget-icon  {
