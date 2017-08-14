@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jul 14 16:24:17 ICT 2017]
+[>Created: Mon Aug 14 16:34:18 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -560,8 +560,6 @@ Bk0 f21 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 Bk0 f21 actionTable 'out=in;
 ' #txt
 Bk0 f21 actionCode 'out.nextTask = in.definedTasks.removeGet(0);
-in.creatorUser = ivy.case.getCreatorUser();
-
 //out.nextTask.setSubject(in.caseInfo.subject);
 
 
