@@ -24,7 +24,5 @@ applicant gawfs.Applicant #field
 applicant PERSISTENT #fieldModifier
 denied Boolean #field
 denied PERSISTENT #fieldModifier
-creatorUser ch.ivyteam.ivy.security.IUser #field
-creatorUser PERSISTENT #fieldModifier
 discard Boolean #field
 discard PERSISTENT #fieldModifier
