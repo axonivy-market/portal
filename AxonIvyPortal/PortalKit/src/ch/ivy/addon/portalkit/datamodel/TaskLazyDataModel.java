@@ -93,6 +93,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public void initFilters() {
     initFilterContainer();
     filters = filterContainer.getFilters();
+    setValuesForStateFilter(queryCriteria);
   }
 
   @Override
