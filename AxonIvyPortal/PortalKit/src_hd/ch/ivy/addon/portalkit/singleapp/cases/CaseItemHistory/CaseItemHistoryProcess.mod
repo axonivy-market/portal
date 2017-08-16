@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed Oct 12 15:08:05 ICT 2016]
-153A84D4509574FB 3.18 #module
+[>Created: Wed Aug 16 15:07:39 ICT 2017]
+153A84D4509574FB 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -93,10 +93,12 @@ Cs0 f78 62 180 36 24 20 -35 #rect
 Cs0 f78 @|StepIcon #fIcon
 Cs0 f63 guid 1533632E93F2AB48 #txt
 Cs0 f63 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory.CaseItemHistoryData #txt
-Cs0 f63 method createNote() #txt
+Cs0 f63 method createNote(String) #txt
 Cs0 f63 disableUIEvents false #txt
 Cs0 f63 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+<java.lang.String clientId> param = methodEvent.getInputArguments();
+' #txt
+Cs0 f63 inParameterMapAction 'out.historyComponentId=param.clientId + ":case-histories";
 ' #txt
 Cs0 f63 outParameterDecl '<> result;
 ' #txt
@@ -142,10 +144,13 @@ Cs0 f13 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory.CaseI
 ' #txt
 Cs0 f13 actionTable 'out=in;
 ' #txt
-Cs0 f13 actionCode 'import ch.ivyteam.ivy.workflow.INote;
+Cs0 f13 actionCode 'import org.primefaces.context.RequestContext;
+import ch.ivyteam.ivy.workflow.INote;
 
 INote note = in.internalCase.createNote(ivy.session, in.noteContent.trim());
-in.noteContent = "";' #txt
+in.noteContent = "";
+
+RequestContext.getCurrentInstance().update(in.historyComponentId);' #txt
 Cs0 f13 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
