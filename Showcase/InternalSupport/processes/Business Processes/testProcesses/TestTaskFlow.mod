@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Aug 07 16:10:16 ICT 2017]
+[>Created: Tue Aug 15 15:17:06 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -77,6 +77,11 @@ Tt0 @PushWFArc f63 '' #zField
 Tt0 @GridStep f64 '' #zField
 Tt0 @PushWFArc f65 '' #zField
 Tt0 @TkArc f61 '' #zField
+Tt0 @StartRequest f66 '' #zField
+Tt0 @EndTask f67 '' #zField
+Tt0 @RichDialog f69 '' #zField
+Tt0 @PushWFArc f70 '' #zField
+Tt0 @PushWFArc f68 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -1034,6 +1039,56 @@ Tt0 f61 expr out #txt
 Tt0 f61 type internaltest.Data #txt
 Tt0 f61 var in1 #txt
 Tt0 f61 544 602 544 642 #arcP
+Tt0 f66 outLink testPortalCustomErrorHandler.ivp #txt
+Tt0 f66 type internaltest.Data #txt
+Tt0 f66 inParamDecl '<> param;' #txt
+Tt0 f66 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f66 guid 15DE4F0CE5EEEE7D #txt
+Tt0 f66 requestEnabled true #txt
+Tt0 f66 triggerEnabled false #txt
+Tt0 f66 callSignature testPortalCustomErrorHandler() #txt
+Tt0 f66 persist false #txt
+Tt0 f66 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f66 caseData businessCase.attach=true #txt
+Tt0 f66 showInStartList 1 #txt
+Tt0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>testPortalCustomErrorHandler.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f66 @C|.responsibility Everybody #txt
+Tt0 f66 737 489 30 30 -92 17 #rect
+Tt0 f66 @|StartRequestIcon #fIcon
+Tt0 f67 type internaltest.Data #txt
+Tt0 f67 737 649 30 30 0 15 #rect
+Tt0 f67 @|EndIcon #fIcon
+Tt0 f69 targetWindow NEW #txt
+Tt0 f69 targetDisplay TOP #txt
+Tt0 f69 richDialogId internaltest.TestPortalCustomErrorHandler #txt
+Tt0 f69 startMethod start() #txt
+Tt0 f69 type internaltest.Data #txt
+Tt0 f69 requestActionDecl '<> param;' #txt
+Tt0 f69 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f69 responseMappingAction 'out=in;
+' #txt
+Tt0 f69 isAsynch false #txt
+Tt0 f69 isInnerRd false #txt
+Tt0 f69 userContext '* ' #txt
+Tt0 f69 704 560 96 48 0 -8 #rect
+Tt0 f69 @|RichDialogIcon #fIcon
+Tt0 f70 expr out #txt
+Tt0 f70 752 519 752 560 #arcP
+Tt0 f68 expr out #txt
+Tt0 f68 752 608 752 649 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1111,3 +1166,7 @@ Tt0 f59 mainOut f65 tail #connect
 Tt0 f65 head f64 mainIn #connect
 Tt0 f64 mainOut f61 tail #connect
 Tt0 f61 head f60 in #connect
+Tt0 f66 mainOut f70 tail #connect
+Tt0 f70 head f69 mainIn #connect
+Tt0 f69 mainOut f68 tail #connect
+Tt0 f68 head f67 mainIn #connect
