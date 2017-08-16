@@ -41,12 +41,7 @@
 			<itemizedlist>
 				<listitem>
 					<para>
-						Export Portal Connector from workspace as <code>.zip</code> file.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						On engine extract all files from <code>.zip</code> to <code>YOUR_ENGINE_NAME_FOLDER/applications/System/PortalConnector/1/</code>.
+						On engine extract all files from <code>PortalConnector.iar</code> to <code>YOUR_ENGINE_NAME_FOLDER/applications/System/PortalConnector/1/</code>.
 					</para>
 				</listitem>
 				<listitem>
