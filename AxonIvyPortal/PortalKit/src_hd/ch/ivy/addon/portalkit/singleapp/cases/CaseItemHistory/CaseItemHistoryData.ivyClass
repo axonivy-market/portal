@@ -16,3 +16,5 @@ taskId Long #field
 taskId PERSISTENT #fieldModifier
 fullNote String #field
 fullNote PERSISTENT #fieldModifier
+historyComponentId String #field
+historyComponentId PERSISTENT #fieldModifier
