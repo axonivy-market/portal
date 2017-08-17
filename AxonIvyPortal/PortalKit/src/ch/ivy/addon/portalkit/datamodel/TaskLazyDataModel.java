@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
@@ -94,6 +95,11 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     initFilterContainer();
     filters = filterContainer.getFilters();
     setValuesForStateFilter(queryCriteria);
+    if (searchCriteria.getIgnoreInvolvedUser()) {
+      TaskStateFilter stateFilter = filterContainer.getStateFilter();
+      stateFilter.getSelectedFilteredStates().remove(TaskState.DONE);
+      stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
+    }
   }
 
   @Override

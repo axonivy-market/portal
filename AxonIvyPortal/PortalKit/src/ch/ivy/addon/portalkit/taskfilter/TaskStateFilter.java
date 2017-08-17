@@ -16,25 +16,27 @@ public class TaskStateFilter extends TaskFilter {
 
   private List<TaskState> filteredStates;
   private List<TaskState> selectedFilteredStates;
+  private List<TaskState> selectedFilteredStatesAtBeginning;
 
   /**
    * Initialize the values of filteredStates: SUSPENDED, RESUMED, PARKED.
    */
   public TaskStateFilter() {
     this.filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
+    this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
   }
-  
+
   public TaskStateFilter(List<TaskState> filteredStates, List<TaskState> selectedFilteredStates) {
     this.filteredStates = distinct(filteredStates);
     this.selectedFilteredStates = distinct(selectedFilteredStates);
   }
-  
+
   @Override
   public String label() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/state");
   }
-  
+
   @Override
   public String value() {
     if (CollectionUtils.isEmpty(selectedFilteredStates) || filteredStates.equals(selectedFilteredStates)) {
@@ -50,7 +52,7 @@ public class TaskStateFilter extends TaskFilter {
   @Override
   public TaskQuery buildQuery() {
     if (CollectionUtils.isEmpty(selectedFilteredStates)) {
-      selectedFilteredStates = filteredStates;
+      selectedFilteredStates = new ArrayList<>(filteredStates);
     }
 
     TaskQuery query = TaskQuery.create();
@@ -61,7 +63,7 @@ public class TaskStateFilter extends TaskFilter {
 
   @Override
   public void resetValues() {
-    selectedFilteredStates = filteredStates;
+    selectedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
   }
 
   public String userFriendlyState(TaskState state) {
@@ -83,11 +85,19 @@ public class TaskStateFilter extends TaskFilter {
   public void setFilteredStates(List<TaskState> filteredStates) {
     this.filteredStates = filteredStates;
   }
-  
+
   private List<TaskState> distinct(List<TaskState> filteredStates) {
     if (filteredStates != null) {
       return filteredStates.stream().collect(Collectors.toList());
     }
     return new ArrayList<>();
+  }
+
+  public List<TaskState> getSelectedFilteredStatesAtBeginning() {
+    return selectedFilteredStatesAtBeginning;
+  }
+
+  public void setSelectedFilteredStatesAtBeginning(List<TaskState> selectedFilteredStatesAtBeginning) {
+    this.selectedFilteredStatesAtBeginning = selectedFilteredStatesAtBeginning;
   }
 }
