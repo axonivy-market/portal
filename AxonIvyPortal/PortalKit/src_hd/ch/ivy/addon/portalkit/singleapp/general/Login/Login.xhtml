@@ -13,7 +13,7 @@
   <h:outputScript name="login.js" library="js" />
   <div id="#{cc.clientId}" class="login">
     <h:form id="login-form" class="login-form"
-      onkeypress="onKeyPressForm('#{cc.clientId}:login-form:error-message', '#{cc.clientId}:login-form:login-command');">
+      onkeypress="onKeyPressForm(event, '#{cc.clientId}:login-form:error-message', '#{cc.clientId}:login-form:login-command');">
       <div class="header">
         <h:graphicImage library="ivy-cms" name="/images/logo/loginLogo" height="50" />
       </div>
