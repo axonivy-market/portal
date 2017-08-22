@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jul 18 11:01:12 ICT 2017]
+[>Created: Tue Aug 22 17:18:59 ICT 2017]
 1580345221FA4CE0 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 GAWFSPortalHomeProcess Big #zClass
@@ -30,6 +30,14 @@ Gs0 @GridStep f48 '' #zField
 Gs0 @RichDialogMethodStart f35 '' #zField
 Gs0 @PushWFArc f47 '' #zField
 Gs0 @PushWFArc f49 '' #zField
+Gs0 @RichDialogMethodStart f10 '' #zField
+Gs0 @RichDialogProcessEnd f11 '' #zField
+Gs0 @PushWFArc f12 '' #zField
+Gs0 @RichDialogProcessStart f13 '' #zField
+Gs0 @RichDialogProcessEnd f14 '' #zField
+Gs0 @GridStep f16 '' #zField
+Gs0 @PushWFArc f17 '' #zField
+Gs0 @PushWFArc f15 '' #zField
 >Proto Gs0 Gs0 GAWFSPortalHomeProcess #zField
 Gs0 f0 guid 158034522559ACD1 #txt
 Gs0 f0 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
@@ -53,7 +61,7 @@ Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Gs0 f0 83 51 26 26 -80 23 #rect
+Gs0 f0 76 51 26 26 -80 23 #rect
 Gs0 f0 @|RichDialogInitStartIcon #fIcon
 Gs0 f1 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
 Gs0 f1 467 51 26 26 0 12 #rect
@@ -71,14 +79,14 @@ Gs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Gs0 f3 83 147 26 26 -15 12 #rect
+Gs0 f3 76 147 26 26 -15 12 #rect
 Gs0 f3 @|RichDialogProcessStartIcon #fIcon
 Gs0 f4 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
 Gs0 f4 guid 158034522701D8F0 #txt
 Gs0 f4 467 147 26 26 0 12 #rect
 Gs0 f4 @|RichDialogEndIcon #fIcon
 Gs0 f5 expr out #txt
-Gs0 f5 109 160 467 160 #arcP
+Gs0 f5 102 160 467 160 #arcP
 Gs0 f6 actionDecl 'ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData out;
 ' #txt
 Gs0 f6 actionTable 'out=in;
@@ -181,7 +189,7 @@ Gs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Gs0 f6 176 42 112 44 -53 -8 #rect
 Gs0 f6 @|StepIcon #fIcon
 Gs0 f7 expr out #txt
-Gs0 f7 109 64 176 64 #arcP
+Gs0 f7 102 64 176 64 #arcP
 Gs0 f2 actionDecl 'ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData out;
 ' #txt
 Gs0 f2 actionTable 'out=in;
@@ -230,7 +238,7 @@ Gs0 f8 288 64 328 64 #arcP
 Gs0 f9 expr out #txt
 Gs0 f9 440 64 467 64 #arcP
 Gs0 f46 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
-Gs0 f46 470 285 22 22 14 0 #rect
+Gs0 f46 470 245 22 22 14 0 #rect
 Gs0 f46 @|RichDialogProcessEndIcon #fIcon
 Gs0 f48 actionDecl 'ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData out;
 ' #txt
@@ -249,7 +257,7 @@ Gs0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Gs0 f48 279 284 36 24 -18 22 #rect
+Gs0 f48 279 244 36 24 -18 22 #rect
 Gs0 f48 @|StepIcon #fIcon
 Gs0 f35 guid 15C5C572E0456266 #txt
 Gs0 f35 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
@@ -271,12 +279,87 @@ Gs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Gs0 f35 78 285 22 22 14 0 #rect
+Gs0 f35 78 245 22 22 14 0 #rect
 Gs0 f35 @|RichDialogMethodStartIcon #fIcon
 Gs0 f47 expr out #txt
-Gs0 f47 315 296 470 296 #arcP
+Gs0 f47 315 256 470 256 #arcP
 Gs0 f49 expr out #txt
-Gs0 f49 100 296 279 296 #arcP
+Gs0 f49 100 256 279 256 #arcP
+Gs0 f10 guid 15E095A7CD439EE0 #txt
+Gs0 f10 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
+Gs0 f10 method select(gawfs.AvailWorkflow) #txt
+Gs0 f10 disableUIEvents false #txt
+Gs0 f10 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<gawfs.AvailWorkflow workflow> param = methodEvent.getInputArguments();
+' #txt
+Gs0 f10 inParameterMapAction 'out.selectedWorkflow=param.workflow;
+' #txt
+Gs0 f10 outParameterDecl '<> result;
+' #txt
+Gs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>select(AvailWorkflow)</name>
+        <nameStyle>21,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Gs0 f10 76 339 26 26 -58 15 #rect
+Gs0 f10 @|RichDialogMethodStartIcon #fIcon
+Gs0 f11 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
+Gs0 f11 211 339 26 26 0 12 #rect
+Gs0 f11 @|RichDialogProcessEndIcon #fIcon
+Gs0 f12 102 352 211 352 #arcP
+Gs0 f13 guid 15E096C4A50E61A1 #txt
+Gs0 f13 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
+Gs0 f13 actionDecl 'ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData out;
+' #txt
+Gs0 f13 actionTable 'out=in;
+' #txt
+Gs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>deleteWorkflow</name>
+    </language>
+</elementInfo>
+' #txt
+Gs0 f13 76 435 26 26 -42 12 #rect
+Gs0 f13 @|RichDialogProcessStartIcon #fIcon
+Gs0 f14 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
+Gs0 f14 339 435 26 26 0 12 #rect
+Gs0 f14 @|RichDialogProcessEndIcon #fIcon
+Gs0 f16 actionDecl 'ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData out;
+' #txt
+Gs0 f16 actionTable 'out=in;
+' #txt
+Gs0 f16 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+
+in.workflows.remove(in.selectedWorkflow);
+
+ExpressServiceRegistry.getProcessService().delete(in.selectedWorkflow.id);
+ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(in.selectedWorkflow.id);
+ExpressServiceRegistry.getFormElementService().deleteByProcessId(in.selectedWorkflow.id);
+
+ivy.log.debug("WORKFLOW has Id {0} is DELETED by  TaskId {1}, CaseId {2}", in.selectedWorkflow.id, ivy.task.getId(),  ivy.case.getId());
+ivy.log.debug(ivy.case.getCustomVarCharField1());
+' #txt
+Gs0 f16 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
+Gs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>delete</name>
+        <nameStyle>6
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Gs0 f16 168 426 112 44 -17 -8 #rect
+Gs0 f16 @|StepIcon #fIcon
+Gs0 f17 expr out #txt
+Gs0 f17 102 448 168 448 #arcP
+Gs0 f15 expr out #txt
+Gs0 f15 280 448 339 448 #arcP
 >Proto Gs0 .type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
 >Proto Gs0 .processKind HTML_DIALOG #txt
 >Proto Gs0 -8 -8 16 16 16 26 #rect
@@ -293,3 +376,9 @@ Gs0 f35 mainOut f49 tail #connect
 Gs0 f49 head f48 mainIn #connect
 Gs0 f48 mainOut f47 tail #connect
 Gs0 f47 head f46 mainIn #connect
+Gs0 f10 mainOut f12 tail #connect
+Gs0 f12 head f11 mainIn #connect
+Gs0 f13 mainOut f17 tail #connect
+Gs0 f17 head f16 mainIn #connect
+Gs0 f16 mainOut f15 tail #connect
+Gs0 f15 head f14 mainIn #connect
