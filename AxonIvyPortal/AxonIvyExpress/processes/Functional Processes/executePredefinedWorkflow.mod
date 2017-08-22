@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Aug 14 16:34:18 ICT 2017]
+[>Created: Tue Aug 22 10:10:31 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -347,8 +347,7 @@ TaskA.NAM=<%\=in1.workflowName%>\: <%\=in1.nextTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=CREATOR
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=0
-TaskA.customFields.varchar.1="REVIEW_WF"' #txt
+TaskA.TYPE=0' #txt
 ew0 f7 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f7 template "" #txt
 ew0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -454,7 +453,6 @@ ew0 f3 actionTable 'out=in1;
 ' #txt
 ew0 f3 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 ew0 f3 outLinks "TaskA.ivp" #txt
-ew0 f3 caseData customFields.varchar.1="EXECUTION_WF" #txt
 ew0 f3 taskData 'TaskA.DESC=<%\=in1.nextTask.description%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
@@ -463,8 +461,7 @@ TaskA.NAM=<%\=in1.nextTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=CREATOR
 TaskA.SKIP_TASK_LIST=true
-TaskA.TYPE=0
-TaskA.customFields.varchar.1="INIT_WF"' #txt
+TaskA.TYPE=0' #txt
 ew0 f3 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f3 template "" #txt
 ew0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -743,11 +740,6 @@ ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskDescription
 ivy.case.setName(in.workflowName);
 ivy.case.setDescription(in.workflowDescription);
 
-ivy.task.setCustomVarCharField1("INIT_WF");
-ivy.case.setCustomVarCharField1(in.workflowName);
-
-
-
 String caseDetailsProcessSignature = "startgawfsCaseDetails(Integer)";
 
 if (ivy.wf.findProcessStartsBySignature(caseDetailsProcessSignature).size() > 0) {
@@ -797,8 +789,7 @@ TaskA.NAM=<%\=in1.nextTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.nextTask.actor
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=2
-TaskA.customFields.varchar.1="TASK_WF"' #txt
+TaskA.TYPE=2' #txt
 Bk1 f16 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk1 f16 template "" #txt
 Bk1 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -849,8 +840,7 @@ TaskA.NAM=<%\=in1.nextTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.nextTask.actor
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3
-TaskA.customFields.varchar.1="TASK_WF"' #txt
+TaskA.TYPE=3' #txt
 Bk1 f6 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk1 f6 template "" #txt
 Bk1 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

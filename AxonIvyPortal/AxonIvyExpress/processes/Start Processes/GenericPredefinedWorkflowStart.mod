@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jul 18 17:46:02 ICT 2017]
+[>Created: Tue Aug 22 10:12:02 ICT 2017]
 15797DC22608DA55 3.20 #module
 >Proto >Proto Collection #zClass
 Gt0 GenericPredefinedWorkflowStart Big #zClass
@@ -26,12 +26,8 @@ Gt0 @Alternative f10 '' #zField
 Gt0 @PushWFArc f15 '' #zField
 Gt0 @PushWFArc f16 '' #zField
 Gt0 @PushWFArc f2 '' #zField
-Gt0 @TaskSwitchSimple f13 '' #zField
-Gt0 @GridStep f14 '' #zField
 Gt0 @EndTask f17 '' #zField
-Gt0 @PushWFArc f18 '' #zField
-Gt0 @PushWFArc f19 '' #zField
-Gt0 @TkArc f20 '' #zField
+Gt0 @PushWFArc f1 '' #zField
 >Proto Gt0 Gt0 GenericPredefinedWorkflowStart #zField
 Gt0 f0 outLink GenericPredefinedProcessStart.ivp #txt
 Gt0 f0 type gawfs.GenericPredefinedWorkflowStartData #txt
@@ -51,11 +47,10 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody
+TaskTriggered.DESC=Workflow wurde angelegt
 TaskTriggered.NAM=Workflow wurde angelegt
-TaskTriggered.DESC=Workflow wurde angelegt' #txt
-Gt0 f0 caseData 'customFields.varchar.1="EXECUTION_WF"
-businessCase.attach=false' #txt
+TaskTriggered.EXROL=Everybody' #txt
+Gt0 f0 caseData businessCase.attach=false #txt
 Gt0 f0 showInStartList 0 #txt
 Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -115,7 +110,6 @@ TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Gt0 f5 caseData 'case.name=Prozess gel\u00F6scht
 case.description=Ein Prozess wurde gel\u00F6scht
-customFields.varchar.1="DELETE_WF"
 businessCase.attach=false' #txt
 Gt0 f5 wfuser 1 #txt
 Gt0 f5 showInStartList 0 #txt
@@ -150,12 +144,11 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody
+TaskTriggered.DESC=Ein Prozess wurde bearbeitet
 TaskTriggered.NAM=Prozess bearbeitet 
-TaskTriggered.DESC=Ein Prozess wurde bearbeitet' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Gt0 f6 caseData 'case.name=Workflow editieren
 case.description=Bearbeiten eines exitierenden Workflows
-customFields.varchar.1="EDITING_WF"
 businessCase.attach=false' #txt
 Gt0 f6 wfuser 1 #txt
 Gt0 f6 showInStartList 0 #txt
@@ -233,45 +226,11 @@ Gt0 f2 expr out #txt
 Gt0 f2 360 256 416 176 #arcP
 Gt0 f2 1 416 256 #addKink
 Gt0 f2 1 0.11186440677966109 0 0 #arcLabel
-Gt0 f13 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
-' #txt
-Gt0 f13 actionTable 'out=in1;
-' #txt
-Gt0 f13 outTypes "gawfs.GenericPredefinedWorkflowStartData" #txt
-Gt0 f13 outLinks "TaskA.ivp" #txt
-Gt0 f13 taskData 'TaskA.DESC=Prozess beendet.
-TaskA.EXPRI=2
-TaskA.EXROL=Everybody
-TaskA.EXTYPE=0
-TaskA.NAM=Prozess beendet.
-TaskA.PRI=2
-TaskA.ROL=SYSTEM
-TaskA.SKIP_TASK_LIST=true
-TaskA.TYPE=0' #txt
-Gt0 f13 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f13 template "" #txt
-Gt0 f13 497 145 30 30 0 16 #rect
-Gt0 f13 @|TaskSwitchSimpleIcon #fIcon
-Gt0 f14 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
-' #txt
-Gt0 f14 actionTable 'out=in;
-' #txt
-Gt0 f14 actionCode Thread.sleep(5000); #txt
-Gt0 f14 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f14 560 138 112 44 0 -8 #rect
-Gt0 f14 @|StepIcon #fIcon
 Gt0 f17 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f17 713 145 30 30 0 15 #rect
+Gt0 f17 497 145 30 30 0 15 #rect
 Gt0 f17 @|EndIcon #fIcon
-Gt0 f18 expr data #txt
-Gt0 f18 outCond ivp=="TaskA.ivp" #txt
-Gt0 f18 527 160 560 160 #arcP
-Gt0 f19 expr out #txt
-Gt0 f19 672 160 713 160 #arcP
-Gt0 f20 expr in #txt
-Gt0 f20 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f20 var in1 #txt
-Gt0 f20 432 160 497 160 #arcP
+Gt0 f1 expr in #txt
+Gt0 f1 432 160 497 160 #arcP
 >Proto Gt0 .type gawfs.GenericPredefinedWorkflowStartData #txt
 >Proto Gt0 .processKind NORMAL #txt
 >Proto Gt0 0 0 32 24 18 0 #rect
@@ -288,9 +247,5 @@ Gt0 f3 mainOut f16 tail #connect
 Gt0 f16 head f10 in #connect
 Gt0 f12 mainOut f2 tail #connect
 Gt0 f2 head f10 in #connect
-Gt0 f13 out f18 tail #connect
-Gt0 f18 head f14 mainIn #connect
-Gt0 f14 mainOut f19 tail #connect
-Gt0 f19 head f17 mainIn #connect
-Gt0 f10 out f20 tail #connect
-Gt0 f20 head f13 in #connect
+Gt0 f10 out f1 tail #connect
+Gt0 f1 head f17 mainIn #connect
