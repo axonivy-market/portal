@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Thu Jun 09 17:29:05 ICT 2016]
-138D76541AF4C4CF 3.18 #module
+[>Created: Wed Aug 23 09:54:43 ICT 2017]
+138D76541AF4C4CF 3.20 #module
 >Proto >Proto Collection #zClass
 Ue0 UserSettingService Big #zClass
 Ue0 WS #cInfo
@@ -51,6 +51,10 @@ Ue0 @PushWFArc f13 '' #zField
 Ue0 @PushWFArc f25 '' #zField
 Ue0 @PushWFArc f27 '' #zField
 Ue0 @PushWFArc f32 '' #zField
+Ue0 @StartWS f9 '' #zField
+Ue0 @GridStep f1 '' #zField
+Ue0 @PushWFArc f12 '' #zField
+Ue0 @PushWFArc f18 '' #zField
 >Proto Ue0 Ue0 UserSettingService #zField
 Ue0 ws0 inParamDecl '<java.lang.String user,java.lang.String appName> param;' #txt
 Ue0 ws0 inParamTable 'out.appName=param.appName;
@@ -96,15 +100,6 @@ subType.code=
 subType.name=
 type.code=
 type.name=
-' #txt
-Ue0 ws0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
 ' #txt
 Ue0 ws0 type ch.ivy.ws.addon.UserServiceData #txt
 Ue0 ws0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -163,15 +158,6 @@ subType.code=
 subType.name=
 type.code=
 type.name=
-' #txt
-Ue0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
 ' #txt
 Ue0 f0 type ch.ivy.ws.addon.UserServiceData #txt
 Ue0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -261,15 +247,6 @@ Ue0 f7 actionDecl 'ch.ivy.ws.addon.UserServiceData out;
 Ue0 f7 callSignature getEmailSetttings(List<String>,String) #txt
 Ue0 f7 useUserDefinedException false #txt
 Ue0 f7 taskData TaskTriggered.PRI=2 #txt
-Ue0 f7 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ue0 f7 type ch.ivy.ws.addon.UserServiceData #txt
 Ue0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -325,15 +302,6 @@ subType.code=
 subType.name=
 type.code=
 type.name=
-' #txt
-Ue0 f11 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
 ' #txt
 Ue0 f11 type ch.ivy.ws.addon.UserServiceData #txt
 Ue0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -455,15 +423,6 @@ subType.name=
 type.code=
 type.name=
 ' #txt
-Ue0 f19 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ue0 f19 type ch.ivy.ws.addon.UserServiceData #txt
 Ue0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -548,15 +507,6 @@ subType.name=
 type.code=
 type.name=
 ' #txt
-Ue0 f22 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ue0 f22 type ch.ivy.ws.addon.UserServiceData #txt
 Ue0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -618,15 +568,6 @@ Ue0 f28 actionDecl 'ch.ivy.ws.addon.UserServiceData out;
 Ue0 f28 callSignature getLanguagesSettings(Long,List<String>,String) #txt
 Ue0 f28 useUserDefinedException false #txt
 Ue0 f28 taskData TaskTriggered.PRI=2 #txt
-Ue0 f28 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ue0 f28 type ch.ivy.ws.addon.UserServiceData #txt
 Ue0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -732,15 +673,6 @@ subType.name=
 type.code=
 type.name=
 ' #txt
-Ue0 f45 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ue0 f45 type ch.ivy.ws.addon.UserServiceData #txt
 Ue0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -818,6 +750,63 @@ Ue0 f32 expr out #txt
 Ue0 f32 1136 172 542 264 #arcP
 Ue0 f32 1 1136 264 #addKink
 Ue0 f32 1 0.3908254353030045 0 0 #arcLabel
+Ue0 f9 inParamDecl '<List<java.lang.String> apps,java.lang.String username,java.lang.String password> param;' #txt
+Ue0 f9 inParamTable 'out.applications=param.apps;
+out.password=param.password;
+out.user=param.username;
+' #txt
+Ue0 f9 outParamDecl '<List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Ue0 f9 outParamTable 'result.errors=in.errors;
+' #txt
+Ue0 f9 actionDecl 'ch.ivy.ws.addon.UserServiceData out;
+' #txt
+Ue0 f9 callSignature changePassword(List<String>,String,String) #txt
+Ue0 f9 useUserDefinedException false #txt
+Ue0 f9 taskData TaskTriggered.PRI=2 #txt
+Ue0 f9 type ch.ivy.ws.addon.UserServiceData #txt
+Ue0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>changePassword(apps, username, password)</name>
+        <nameStyle>40,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ue0 f9 @C|.responsibility Everybody #txt
+Ue0 f9 1359 55 26 26 14 0 #rect
+Ue0 f9 @|StartWSIcon #fIcon
+Ue0 f1 actionDecl 'ch.ivy.ws.addon.UserServiceData out;
+' #txt
+Ue0 f1 actionTable 'out=in;
+' #txt
+Ue0 f1 actionCode 'import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.WSException;
+
+try{
+	in.errors = WsServiceFactory.getUserSettingService().changePassword(in.applications, in.user, in.password);
+}catch(WSException e){
+	in.errors.add(e);
+}' #txt
+Ue0 f1 type ch.ivy.ws.addon.UserServiceData #txt
+Ue0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>change password</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ue0 f1 1354 152 36 24 20 -2 #rect
+Ue0 f1 @|StepIcon #fIcon
+Ue0 f12 expr out #txt
+Ue0 f12 1372 81 1372 152 #arcP
+Ue0 f18 expr out #txt
+Ue0 f18 1372 176 542 264 #arcP
+Ue0 f18 1 1372 264 #addKink
+Ue0 f18 1 0.43253012048192774 0 0 #arcLabel
 >Proto Ue0 .webServiceName ch.ivy.ws.addon.UserService #txt
 >Proto Ue0 .authenticationType 'HTTP Basic' #txt
 >Proto Ue0 .type ch.ivy.ws.addon.UserServiceData #txt
@@ -831,6 +820,7 @@ Ue0 f32 1 0.3908254353030045 0 0 #arcLabel
         <swimlaneLabel>setEMailSettings</swimlaneLabel>
         <swimlaneLabel>substituteService</swimlaneLabel>
         <swimlaneLabel>languagesSettingService</swimlaneLabel>
+        <swimlaneLabel>changePassword</swimlaneLabel>
         <swimlaneLabel></swimlaneLabel>
     </language>
     <swimlaneOrientation>true</swimlaneOrientation>
@@ -840,12 +830,28 @@ Ue0 f32 1 0.3908254353030045 0 0 #arcLabel
     <swimlaneSize>160</swimlaneSize>
     <swimlaneSize>280</swimlaneSize>
     <swimlaneSize>392</swimlaneSize>
-    <swimlaneColor>-26164</swimlaneColor>
-    <swimlaneColor>-6710785</swimlaneColor>
-    <swimlaneColor>-13108</swimlaneColor>
-    <swimlaneColor>-3342388</swimlaneColor>
-    <swimlaneColor>-3355393</swimlaneColor>
-    <swimlaneColor>-1</swimlaneColor>
+    <swimlaneSize>192</swimlaneSize>
+    <swimlaneColor gradient="true">-26164</swimlaneColor>
+    <swimlaneColor gradient="true">-6710785</swimlaneColor>
+    <swimlaneColor gradient="true">-13108</swimlaneColor>
+    <swimlaneColor gradient="true">-3342388</swimlaneColor>
+    <swimlaneColor gradient="true">-3355393</swimlaneColor>
+    <swimlaneColor gradient="true">-1</swimlaneColor>
+    <swimlaneColor gradient="true">-3342388</swimlaneColor>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
 </elementInfo>
 ' #txt
 >Proto Ue0 -8 -8 16 16 16 26 #rect
@@ -886,3 +892,7 @@ Ue0 f30 mainOut f27 tail #connect
 Ue0 f27 head f58 in #connect
 Ue0 f44 mainOut f32 tail #connect
 Ue0 f32 head f58 in #connect
+Ue0 f9 mainOut f12 tail #connect
+Ue0 f12 head f1 mainIn #connect
+Ue0 f1 mainOut f18 tail #connect
+Ue0 f18 head f58 in #connect
