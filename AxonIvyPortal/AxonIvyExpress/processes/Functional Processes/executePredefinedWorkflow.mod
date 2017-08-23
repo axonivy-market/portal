@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Aug 22 10:10:31 ICT 2017]
+[>Created: Wed Aug 23 10:59:34 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -514,8 +514,7 @@ Bk0 f28 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f28 actionTable 'out=in;
 ' #txt
-Bk0 f28 actionCode 'import gawfs.Applicant;
-import gawfs.TaskDef;
+Bk0 f28 actionCode 'import gawfs.TaskDef;
 for(TaskDef task: in.definedTasks){
 	in.steps.add(task.subject);
 }
@@ -729,45 +728,28 @@ Bk0 f11 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f11 actionTable 'out=in;
 ' #txt
-Bk0 f11 actionCode 'import ch.ivy.addon.portalkit.util.UrlHelper;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivy.addon.portalkit.util.CaseUtils;
-
-ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
+Bk0 f11 actionCode 'ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
 ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskDescription"));
 
-
 ivy.case.setName(in.workflowName);
-ivy.case.setDescription(in.workflowDescription);
-
-String caseDetailsProcessSignature = "startgawfsCaseDetails(Integer)";
-
-if (ivy.wf.findProcessStartsBySignature(caseDetailsProcessSignature).size() > 0) {
- 	//IProcessStart processStart = ivy.wf.findProcessStartsBySignature(caseDetailsProcessSignature).iterator().next() as IProcessStart;
- 	//String caseDetailRequestPath = ivy.var.de_eon_working_context_url + "pro/" + processStart.getFullRequestPath();
-
-	String caseDetailRequestPath = UrlHelper.getFullLinkBySignature(caseDetailsProcessSignature);
- 	CaseUtils.setCaseDetailsProcess(ivy.case, caseDetailRequestPath);
-}' #txt
+ivy.case.setDescription(in.workflowDescription);' #txt
 Bk0 f11 security system #txt
 Bk0 f11 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>set Task and Case Fields
-set CaseDetails</name>
-        <nameStyle>25,7
-15,7
+        <name>set Task and Case Fields</name>
+        <nameStyle>24,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Bk0 f11 368 394 176 44 -67 -16 #rect
+Bk0 f11 376 394 160 44 -70 -8 #rect
 Bk0 f11 @|StepIcon #fIcon
 Bk0 f12 expr out #txt
-Bk0 f12 320 416 368 416 #arcP
+Bk0 f12 320 416 376 416 #arcP
 Bk0 f1 expr out #txt
-Bk0 f1 544 416 675 416 #arcP
+Bk0 f1 536 416 675 416 #arcP
 >Proto Bk0 0 0 32 24 18 0 #rect
 >Proto Bk0 @|BIcon #fIcon
 Bk1 g0 307 51 26 26 0 5 #rect

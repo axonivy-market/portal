@@ -1,4 +1,0 @@
-co: name={GroupTableActions} description={} changed={2017-08-10 09:00:40 CEST} changedby={t} visualorder={0} guid={15899B3F667693AA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BECDA8EBCF9E53} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:56:35 CEST} validto={} changed={2017-05-09 12:56:38 CEST} changedby={ldnam} properties={} id={}
-val: guid={15899B3F66ECE93A} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:17:37 CET} validto={} changed={2017-05-22 13:30:22 CEST} changedby={t} properties={} id={}
-val: guid={15DCAF1F4F922F63} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2017-08-10 09:00:40 CEST} changedby={t} properties={} id={}

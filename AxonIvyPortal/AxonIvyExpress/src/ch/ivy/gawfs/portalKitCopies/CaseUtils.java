@@ -1,12 +1,9 @@
 package ch.ivy.gawfs.portalKitCopies;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivy.gawfs.portalKitCopies.CaseVO;
-import ch.ivy.gawfs.portalKitCopies.Contact;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
 import ch.ivyteam.ivy.persistence.OrderDirection;
@@ -35,58 +32,6 @@ public final class CaseUtils {
 
   private CaseUtils() {
 
-  }
-
-  /** default key to store case details process start link in ICase object */
-  public static final String CASE_DETAIL_PROCESS = "CASE_DETAIL_PROCESS";
-  private static String fullNameFormat = "%s (%s)";
-
-  /**
-   * This function is o find the running case of session user by process category
-   * 
-   * @param category String Process Category Code of Case
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesRunningOfSessionUserByCategory(String category) {
-    List<ICase> cases = findICasesRunningOfSessionUserByCategory(category);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
-  }
-
-  /**
-   * This function is o find the running case by process category
-   * 
-   * @param category String Process Category Code of Case
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesRunningByCategory(String category) {
-    List<ICase> cases = findICasesRunningByCategory(category);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
-  }
-
-  /**
-   * This function is o find the finished case of session user by process category
-   * 
-   * @param category String Process Category Code of Case
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesFinishedOfSessionUserByCategory(String category) {
-    List<ICase> cases = findICasesFinishedOfSessionUserByCategory(category);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
-  }
-
-  /**
-   * This function is o find the finished case by process category
-   * 
-   * @param category String Process Category Code of Case
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesFinishedByCategory(String category) {
-    List<ICase> cases = findICasesFinishedByCategory(category);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
   }
 
   /**
@@ -149,84 +94,6 @@ public final class CaseUtils {
 
     List<ICase> cases = findICases(filter);
     return cases;
-  }
-
-  /**
-   * This function is o find all running cases of session user.
-   * 
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesRunningOfSessionUser() {
-    List<ICase> cases = findICasesRunningOfSessionUser();
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
-  }
-
-  /**
-   * This function is o find all running cases.
-   * 
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesRunning() {
-    List<ICase> cases = findICasesRunning();
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
-  }
-
-  /**
-   * This function is o find all running, finished and destroyed cases of session user.
-   * 
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesNotZombieOfSessionUser() {
-    IPropertyFilter<CaseProperty> filter =
-        Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.RUNNING.intValue());
-    filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.CREATED.intValue());
-    filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DONE.intValue());
-    filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DESTROYED.intValue());
-
-    List<ICase> cases = findICasesOfSessionUser(filter);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
-  }
-
-  /**
-   * This function is o find all running, finished and destroyed cases.
-   * 
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesNotZombie() {
-    IPropertyFilter<CaseProperty> filter =
-        Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.RUNNING.intValue());
-    filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.CREATED.intValue());
-    filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DONE.intValue());
-    filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DESTROYED.intValue());
-
-    List<ICase> cases = findICases(filter);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
-  }
-
-  /**
-   * This function is o find all finished cases of session user.
-   * 
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesFinishedOfSessionUser() {
-    List<ICase> cases = findICasesFinishedOfSessionUser();
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
-  }
-
-  /**
-   * This function is o find all finished cases
-   * 
-   * @return List of CaseVO List of case vo
-   */
-  public static List<CaseVO> findCasesFinished() {
-    List<ICase> cases = findICasesFinished();
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
   }
 
   /**
@@ -310,93 +177,6 @@ public final class CaseUtils {
       cases = Ivy.wf().findCases(filter, null, 0, -1, true).getResultList();
     }
     return cases;
-  }
-
-  /**
-   * Convert ICase object to CaseVO object
-   * 
-   * @param iCase ICase to convert
-   * @return CaseVO object hold data of ICase
-   */
-  public static CaseVO convertToCaseVO(ICase iCase) {
-    String caseDetailStartProcess = getCaseDetailProcess(iCase);
-    CaseVO caseVO = new CaseVO();
-    caseVO.setProcessCaseDetails(caseDetailStartProcess);
-    caseVO.setCreatedAt(iCase.getStartTimestamp());
-    caseVO.setId(iCase.getId());
-    caseVO.setDescription(iCase.getDescription());
-    caseVO.setTitle(iCase.getName());
-    if (CaseState.CREATED.equals(iCase.getState())) {
-      caseVO.setStatus(CaseState.RUNNING.name());
-    } else {
-      caseVO.setStatus(iCase.getState().name());
-    }
-    if (iCase.getCreatorUser() != null && iCase.getCreatorUser().getFullName() != null) {
-      caseVO.setCreator(String.format(fullNameFormat, iCase.getCreatorUser().getFullName(), iCase.getCreatorUser()
-          .getName()));
-    } else {
-      caseVO.setCreator(iCase.getCreatorUserName());
-    }
-    Contact contact = new Contact(getEmailAddress(iCase));
-    String phone = getPhone(iCase);
-    if (phone != null) {
-      contact.setPhone(phone);
-    }
-    String mobile = getMobile(iCase);
-    if (mobile != null) {
-      contact.setMobilePhone(mobile);
-    }
-
-    caseVO.setCreatorContact(contact);
-    return caseVO;
-  }
-
-
-  /**
-   * Get the case Details process start link by key CASE_DETAILS_PROCESS in additional property
-   * 
-   * @param iCase ICase object
-   * @return String the start link of case details
-   */
-  public static String getCaseDetailProcess(ICase iCase) {
-    if (iCase == null || iCase.getAdditionalProperty(CASE_DETAIL_PROCESS) == null) {
-      return "";
-    }
-    return iCase.getAdditionalProperty(CASE_DETAIL_PROCESS);
-  }
-
-  /**
-   * Destroy the case with specified caseVO
-   * 
-   * @param caseVO caseVO need to destroy
-   * @return boolean true is destroy success, other wise it return false, execute under system permission
-   */
-  public static boolean deleteCase(final CaseVO caseVO) {
-    final List<ICase> cases =
-        Ivy.wf()
-            .findCases(Ivy.wf().createCasePropertyFilter(CaseProperty.ID, RelationalOperator.EQUAL, caseVO.getId()),
-                null, 0, -1, true).getResultList();
-    if (cases != null && cases.size() > 0) {
-      try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-          public Boolean call() {
-            try {
-              ICase ic = cases.get(0);
-              ic.destroy();
-              return true;
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return false;
-            }
-          }
-        });
-      } catch (Exception e) {
-        Ivy.log().error(e);
-        return false;
-      }
-    } else {
-      return false;
-    }
   }
 
   /**
@@ -528,32 +308,6 @@ public final class CaseUtils {
   }
 
   /**
-   * Set case details process for case
-   * 
-   * @param iCase ICase need to set addition field
-   * @param value String value to set in case details process
-   * @return boolean true is set success, other wise it return false, execute under system permission
-   */
-  public static boolean setCaseDetailsProcess(final ICase iCase, final String value) {
-    try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-        public Boolean call() {
-          try {
-            iCase.setAdditionalProperty(CASE_DETAIL_PROCESS, value);
-            return true;
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return false;
-          }
-        }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return false;
-    }
-  }
-
-  /**
    * Set case main contact folder id for case
    * 
    * @param iCase ICase need to set addition field
@@ -591,23 +345,6 @@ public final class CaseUtils {
     ISecurityDescriptor securityDescriptor = Ivy.request().getApplication().getSecurityDescriptor();
     boolean hasReadAllCasesPermission = securityContext.hasPermission(securityDescriptor, IPermission.CASE_READ_ALL);
     return hasReadAllCasesPermission;
-  }
-
-  /**
-   * Converts list of {@link ICase} to list of {@link CaseVO}
-   * 
-   * @param iCases list of {@link ICase}
-   * @return list of {@link CaseVO}
-   */
-  public static List<CaseVO> convertICasesToCaseVOs(List<ICase> iCases) {
-    List<CaseVO> caseVOs = new ArrayList<CaseVO>();
-    if (iCases != null && iCases.size() > 0) {
-      for (ICase iCase : iCases) {
-        if (iCase != null)
-          caseVOs.add(convertToCaseVO(iCase));
-      }
-    }
-    return caseVOs;
   }
 
   /**
