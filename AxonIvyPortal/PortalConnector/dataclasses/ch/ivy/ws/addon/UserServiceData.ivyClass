@@ -11,3 +11,4 @@ serverId Long #field
 substitutes java.util.List<ch.ivy.ws.addon.types.IvySubstitute> #field
 user String #field
 userSetting ch.ivy.ws.addon.types.IvyUserSetting #field
+password String #field

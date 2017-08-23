@@ -1,9 +1,12 @@
 package ch.ivy.ws.addon.service;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Callable;
+import java.util.stream.Stream;
 
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
@@ -330,6 +333,35 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
         }
       }
     });
+  }
+
+
+  @Override
+  public List<WSException> changePassword(final List<String> apps, final String username, final String password)
+      throws WSException {
+    try {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
+        @Override
+        public List<WSException> call() throws Exception {
+
+          List<WSException> errors = new ArrayList<WSException>();
+          IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
+          for (IApplication app : server.getApplicationConfigurationManager().getApplications()) {
+            if (apps.contains(app.getName())) {
+              IUser user = app.getSecurityContext().findUser(username);
+              if (user != null) {
+                user.setPassword(password);
+              } else {
+                errors.add(new WSException(WSErrorType.WARNING, 10029, Stream.of(username).collect(toList()), null));
+              }
+            }
+          }
+          return errors;
+        }
+      });
+    } catch (Exception e) {
+      throw new WSException(10047, e);
+    }
   }
 
   /**
