@@ -47,4 +47,14 @@ public interface IUserSettingService {
 	 * @throws Exception 
 	 */
 	public List<WSException> setEMailSettings(List<IvyEmailSetting> settings, String user) throws Exception;
+
+  /**
+   * Change password of a user in applications
+   * @param apps
+   * @param username
+   * @param password
+   * @return
+   * @throws WSException
+   */
+  public List<WSException> changePassword(List<String> apps, String username, String password) throws WSException;
 }
