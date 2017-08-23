@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Aug 22 17:18:59 ICT 2017]
+[>Created: Wed Aug 23 09:35:17 ICT 2017]
 1580345221FA4CE0 3.20 #module
 >Proto >Proto Collection #zClass
 Gs0 GAWFSPortalHomeProcess Big #zClass
@@ -41,27 +41,21 @@ Gs0 @PushWFArc f15 '' #zField
 >Proto Gs0 Gs0 GAWFSPortalHomeProcess #zField
 Gs0 f0 guid 158034522559ACD1 #txt
 Gs0 f0 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
-Gs0 f0 method start(gawfs.DevLoadWorkflowsData) #txt
+Gs0 f0 method start() #txt
 Gs0 f0 disableUIEvents true #txt
 Gs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<gawfs.DevLoadWorkflowsData devLoadWorkflowsData> param = methodEvent.getInputArguments();
+<> param = methodEvent.getInputArguments();
 ' #txt
-Gs0 f0 inParameterMapAction 'out.devLoadWorkflowsData=param.devLoadWorkflowsData;
-' #txt
-Gs0 f0 outParameterDecl '<gawfs.DevLoadWorkflowsData devLoadWorkflowsData> result;
-' #txt
-Gs0 f0 outParameterMapAction 'result.devLoadWorkflowsData=in.devLoadWorkflowsData;
+Gs0 f0 outParameterDecl '<> result;
 ' #txt
 Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(DevLoadWorkflowsData)</name>
-        <nameStyle>27,5,7
-</nameStyle>
+        <name>start()</name>
     </language>
 </elementInfo>
 ' #txt
-Gs0 f0 76 51 26 26 -80 23 #rect
+Gs0 f0 76 51 26 26 -16 15 #rect
 Gs0 f0 @|RichDialogInitStartIcon #fIcon
 Gs0 f1 type ch.ivy.gawfs.portal.GAWFSPortalHome.GAWFSPortalHomeData #txt
 Gs0 f1 467 51 26 26 0 12 #rect
@@ -151,7 +145,6 @@ for(ExpressProcess wf: workflows){
 	}
 
 	wfx.processStartLink = ivy.html.startref("Start Processes/GenericPredefinedWorkflowStart/GenericPredefinedProcessStart.ivp") + "?workflowID=" + wfx.id;
-	wfx.processDeleteLink = ivy.html.startref("Start Processes/GenericPredefinedWorkflowStart/GenericDeleteProcessStart.ivp") + "?workflowID=" + wfx.id;
 	wfx.processEditLink = ivy.html.startref("Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp") + "?workflowID=" + wfx.id;
 	
 	//only show the workflow if the user is allowed to execute it!

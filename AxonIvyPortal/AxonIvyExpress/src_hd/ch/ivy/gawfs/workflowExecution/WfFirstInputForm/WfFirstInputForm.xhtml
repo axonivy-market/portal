@@ -10,10 +10,7 @@
 
 		<ui:composition template="/layouts/TaskTemplate.xhtml">
 		<ui:param name="caseId" value="#{ivy.case.id}" />
-		<ui:param name="showDocumentTab" value="false" />
-		<ui:param name="showCaseStatusInfoTab" value="true" />
 		<ui:param name="task" value="#{ivy.task}" />
-		<ui:param name="taskName" value="#{ivy.task.name}" />
 		<ui:param name="steps"
 			value="#{data.executePredefinedWorkflowData.steps}" />
 		<ui:param name="actualStepIndex"
