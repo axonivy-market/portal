@@ -11,3 +11,4 @@ server ch.ivy.addon.portalkit.persistence.domain.Server #field
 substitutes List<ch.ivy.ws.addon.IvySubstitute> #field
 targetUser String #field
 users List<ch.ivy.ws.addon.IvyUser> #field
+newPassword String #field
