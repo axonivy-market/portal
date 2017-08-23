@@ -13,4 +13,3 @@ count PERSISTENT #fieldModifier
 untilDays Number #field
 untilDays PERSISTENT #fieldModifier
 actorDisplayName String #field
-actorDisplayName PERSISTENT #fieldModifier

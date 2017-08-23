@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Wed Jun 21 11:35:47 ICT 2017]
+[>Created: Wed Aug 23 11:05:27 ICT 2017]
 15795F163B7492E2 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 CaseDocumentProcess Big #zClass
@@ -66,53 +66,22 @@ Ds0 f6 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f6 actionTable 'out=in;
 ' #txt
-Ds0 f6 actionCode '//import de.eon.gawfs.portalKitCopies.CaseDocumentService;
-//import org.primefaces.model.UploadedFile;
-
-
-import org.primefaces.model.UploadedFile;
+Ds0 f6 actionCode 'import org.primefaces.model.UploadedFile;
 import ch.ivy.addon.portalkit.util.DocumentFileUtils;
+import javax.faces.context.FacesContext;
 
 in.caseId = ivy.case.getId();
 
-//in.caseDocuments = documentService.getAll();
 in.caseDocuments = DocumentFileUtils.listFileInDirectory(ivy.case);
 
 in.selectedFile = null;
-
-
-
-import javax.faces.context.FacesContext;
 
 FacesContext fc = FacesContext.getCurrentInstance();
 Integer maxFiles = fc.getApplication().evaluateExpressionGet(fc, "#{cc.attrs.fileLimit}",Integer.class) as Integer;
 ivy.log.debug("Number of Files:" + maxFiles);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//in.listFile = DocumentFileUtils.listFileInDirectory(in.caseId);
-
-
-
-
 in.sizeLimitBytes = 10485760;
-
 
 
 //allowed file types not supported yet
@@ -160,16 +129,8 @@ Ds0 f8 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f8 actionTable 'out=in;
 ' #txt
-Ds0 f8 actionCode '//import de.eon.gawfs.portalKitCopies.CaseDocumentService;
-//CaseDocumentService documentService = new CaseDocumentService(in.caseId);
-//in.uploadingFileExists = documentService.doesDocumentExist(in.selectedFile.getFileName());
-
-
-import ch.ivy.addon.portalkit.util.DocumentFileUtils;
-
-in.uploadingFileExists = DocumentFileUtils.checkFileExist(ivy.case,in.selectedFile.getInputstream(),in.selectedFile.getFileName());
-//import ch.ivy.addon.portalkit.util.DocumentFileUtils;
-//in.override = DocumentFileUtils.checkFileExist(in.caseId,in.selectedFile.getInputstream(),in.selectedFile.getFileName());' #txt
+Ds0 f8 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
+in.uploadingFileExists = DocumentFileUtils.checkFileExist(ivy.case,in.selectedFile.getInputstream(),in.selectedFile.getFileName());' #txt
 Ds0 f8 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -189,14 +150,8 @@ Ds0 f5 disableUIEvents false #txt
 Ds0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String filePath,java.lang.String fileName> param = methodEvent.getInputArguments();
 ' #txt
-Ds0 f5 inActionCode '//import de.eon.gawfs.portalKitCopies.CaseDocumentService;
-//CaseDocumentService documentService = new CaseDocumentService(out.caseId);
-//out.downloadFile = documentService.download(param.fileName);
-
-import ch.ivy.addon.portalkit.util.DocumentFileUtils;
-ivy.log.debug("1");
-out.downloadFile = DocumentFileUtils.downloadFile(param.filePath, param.fileName, ivy.case);
-ivy.log.debug("2");' #txt
+Ds0 f5 inActionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
+out.downloadFile = DocumentFileUtils.downloadFile(param.filePath, param.fileName, ivy.case);' #txt
 Ds0 f5 outParameterDecl '<> result;
 ' #txt
 Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -216,26 +171,16 @@ Ds0 f16 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f16 actionTable 'out=in;
 ' #txt
-Ds0 f16 actionCode '//import de.eon.gawfs.portalKitCopies.CaseDocumentService;
-//import org.primefaces.context.RequestContext;
-//import javax.faces.application.FacesMessage;
-//import javax.faces.context.FacesContext;
-
-//CaseDocumentService documentService = new CaseDocumentService(in.caseId);
-//documentService.delete(in.selectedFilePath);
-//in.selectedFilePath = "";
-
-import ch.ivy.addon.portalkit.util.DocumentFileUtils;
-DocumentFileUtils.deleteFile(in.selectedFilePath, ivy.case);
-in.selectedFilePath = "";
+Ds0 f16 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
 import org.primefaces.context.RequestContext;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 
- FacesContext context = FacesContext.getCurrentInstance();
-
- context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/deleteSuceed"), ""));' #txt
+FacesContext context = FacesContext.getCurrentInstance();
+DocumentFileUtils.deleteFile(in.selectedFilePath, ivy.case);
+in.selectedFilePath = "";
+context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/deleteSuceed"), ""));' #txt
 Ds0 f16 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -295,31 +240,17 @@ Ds0 f26 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f26 actionTable 'out=in;
 ' #txt
-Ds0 f26 actionCode '//import de.eon.gawfs.portalKitCopies.CaseDocumentService;
-//import org.primefaces.context.RequestContext;
-//import javax.faces.application.FacesMessage;
-//import javax.faces.context.FacesContext;
-
-//CaseDocumentService documentService = new CaseDocumentService(in.caseId);
-//Boolean uploaded = documentService.upload(in.selectedFile.getFileName(), in.selectedFile.getInputstream());
-//if(!uploaded){
-//  FacesContext.getCurrentInstance().addMessage("choose-uploading-file", new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/components/CaseDocument/uploadFailed"),null));
-//}
-
-
-
-import ch.ivy.addon.portalkit.util.DocumentFileUtils;
-Boolean a = DocumentFileUtils.uploadToDirectory(ivy.case,in.selectedFile.getInputstream(),in.selectedFile.getFileName());
+Ds0 f26 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
 import org.primefaces.context.RequestContext;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 FacesContext context = FacesContext.getCurrentInstance();
-if(a){
- context.addMessage("documentFile", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"), "" ));
-ivy.log.debug("FileUpload erfolgreich" + ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"));
-
-}else{
+Boolean uploadSuccesfully = DocumentFileUtils.uploadToDirectory(ivy.case,in.selectedFile.getInputstream(),in.selectedFile.getFileName());
+if (uploadSuccesfully) {
+	context.addMessage("documentFile", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"), "" ));
+	ivy.log.debug("FileUpload erfolgreich" + ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"));
+} else {
 	context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/Dialogs/components/CaseDocument/uploadFailed"), "" ));
 	}
 

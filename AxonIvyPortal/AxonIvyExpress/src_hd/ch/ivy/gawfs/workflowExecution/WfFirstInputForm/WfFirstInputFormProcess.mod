@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Jun 09 16:42:52 ICT 2017]
+[>Created: Wed Aug 23 10:10:42 ICT 2017]
 157893EF862D1265 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFirstInputFormProcess Big #zClass
@@ -35,10 +35,7 @@ Ws0 @RichDialogMethodStart f19 '' #zField
 Ws0 @GridStep f24 '' #zField
 Ws0 @PushWFArc f22 '' #zField
 Ws0 @RichDialogEnd f30 '' #zField
-Ws0 @GridStep f28 '' #zField
 Ws0 @PushWFArc f4 '' #zField
-Ws0 @RichDialogEnd f18 '' #zField
-Ws0 @PushWFArc f20 '' #zField
 Ws0 @RichDialogProcessEnd f21 '' #zField
 Ws0 @PushWFArc f23 '' #zField
 >Proto Ws0 Ws0 WfFirstInputFormProcess #zField
@@ -333,31 +330,8 @@ Ws0 f30 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormDat
 Ws0 f30 guid 15AF77AA5D3C3910 #txt
 Ws0 f30 459 491 26 26 0 12 #rect
 Ws0 f30 @|RichDialogEndIcon #fIcon
-Ws0 f28 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData out;
-' #txt
-Ws0 f28 actionTable 'out=in;
-' #txt
-Ws0 f28 actionCode 'in.executePredefinedWorkflowData.discard = true;' #txt
-Ws0 f28 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
-Ws0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>discard = true</name>
-        <nameStyle>14,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ws0 f28 456 354 112 44 -37 -8 #rect
-Ws0 f28 @|StepIcon #fIcon
 Ws0 f4 expr out #txt
 Ws0 f4 109 504 459 504 #arcP
-Ws0 f18 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
-Ws0 f18 guid 15AFA691FAA2E708 #txt
-Ws0 f18 691 363 26 26 0 12 #rect
-Ws0 f18 @|RichDialogEndIcon #fIcon
-Ws0 f20 expr out #txt
-Ws0 f20 568 376 691 376 #arcP
 Ws0 f21 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
 Ws0 f21 347 371 26 26 0 12 #rect
 Ws0 f21 @|RichDialogProcessEndIcon #fIcon
@@ -385,7 +359,5 @@ Ws0 f19 mainOut f22 tail #connect
 Ws0 f22 head f24 mainIn #connect
 Ws0 f3 mainOut f4 tail #connect
 Ws0 f4 head f30 mainIn #connect
-Ws0 f28 mainOut f20 tail #connect
-Ws0 f20 head f18 mainIn #connect
 Ws0 f24 mainOut f23 tail #connect
 Ws0 f23 head f21 mainIn #connect
