@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Thu May 11 14:51:33 ICT 2017]
+[>Created: Wed Aug 23 09:58:12 ICT 2017]
 157891957447B0FC 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFinalReviewProcess Big #zClass
@@ -17,7 +17,6 @@ Ws0 @TextInP .xml .xml #zField
 Ws0 @TextInP .responsibility .responsibility #zField
 Ws0 @RichDialogInitStart f0 '' #zField
 Ws0 @RichDialogProcessEnd f1 '' #zField
-Ws0 @PushWFArc f2 '' #zField
 Ws0 @RichDialogProcessStart f3 '' #zField
 Ws0 @RichDialogEnd f4 '' #zField
 Ws0 @PushWFArc f5 '' #zField
@@ -26,6 +25,9 @@ Ws0 @GridStep f24 '' #zField
 Ws0 @RichDialogProcessEnd f21 '' #zField
 Ws0 @PushWFArc f23 '' #zField
 Ws0 @PushWFArc f6 '' #zField
+Ws0 @GridStep f7 '' #zField
+Ws0 @PushWFArc f8 '' #zField
+Ws0 @PushWFArc f2 '' #zField
 >Proto Ws0 Ws0 WfFinalReviewProcess #zField
 Ws0 f0 guid 1578919576D899E8 #txt
 Ws0 f0 type ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewData #txt
@@ -50,10 +52,8 @@ Ws0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ws0 f0 83 51 26 26 -105 15 #rect
 Ws0 f0 @|RichDialogInitStartIcon #fIcon
 Ws0 f1 type ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewData #txt
-Ws0 f1 211 51 26 26 0 12 #rect
+Ws0 f1 403 51 26 26 0 12 #rect
 Ws0 f1 @|RichDialogProcessEndIcon #fIcon
-Ws0 f2 expr out #txt
-Ws0 f2 109 64 211 64 #arcP
 Ws0 f3 guid 1578919577872B2E #txt
 Ws0 f3 type ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewData #txt
 Ws0 f3 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewData out;
@@ -150,15 +150,41 @@ Ws0 f23 expr out #txt
 Ws0 f23 276 240 347 240 #arcP
 Ws0 f6 expr out #txt
 Ws0 f6 109 240 172 240 #arcP
+Ws0 f7 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewData out;
+' #txt
+Ws0 f7 actionTable 'out=in;
+' #txt
+Ws0 f7 actionCode 'in.executePredefinedWorkflowData.applicant.user = ivy.wf.getSecurityContext().findUser(in.executePredefinedWorkflowData.applicant.username);
+in.executePredefinedWorkflowData.applicant.fullname = in.executePredefinedWorkflowData.applicant.user.getFullName();
+in.executePredefinedWorkflowData.applicant.email = in.executePredefinedWorkflowData.applicant.user.getEMailAddress();' #txt
+Ws0 f7 security system #txt
+Ws0 f7 type ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewData #txt
+Ws0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Load user</name>
+        <nameStyle>9
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ws0 f7 208 42 112 44 -28 -8 #rect
+Ws0 f7 @|StepIcon #fIcon
+Ws0 f8 expr out #txt
+Ws0 f8 109 64 208 64 #arcP
+Ws0 f2 expr out #txt
+Ws0 f2 320 64 403 64 #arcP
 >Proto Ws0 .type ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewData #txt
 >Proto Ws0 .processKind HTML_DIALOG #txt
 >Proto Ws0 -8 -8 16 16 16 26 #rect
 >Proto Ws0 '' #fIcon
-Ws0 f0 mainOut f2 tail #connect
-Ws0 f2 head f1 mainIn #connect
 Ws0 f3 mainOut f5 tail #connect
 Ws0 f5 head f4 mainIn #connect
 Ws0 f24 mainOut f23 tail #connect
 Ws0 f23 head f21 mainIn #connect
 Ws0 f51 mainOut f6 tail #connect
 Ws0 f6 head f24 mainIn #connect
+Ws0 f0 mainOut f8 tail #connect
+Ws0 f8 head f7 mainIn #connect
+Ws0 f7 mainOut f2 tail #connect
+Ws0 f2 head f1 mainIn #connect

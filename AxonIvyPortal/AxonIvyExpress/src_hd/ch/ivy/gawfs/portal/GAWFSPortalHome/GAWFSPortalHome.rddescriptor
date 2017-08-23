@@ -24,18 +24,6 @@
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>devLoadWorkflowsData</name>
-            <description></description>
-            <parameterType>gawfs.DevLoadWorkflowsData</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>devLoadWorkflowsData</name>
-            <description></description>
-            <parameterType>gawfs.DevLoadWorkflowsData</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
     </startMethod>
     <property>
         <name>guid</name>

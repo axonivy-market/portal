@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Tue Jul 18 11:09:53 ICT 2017]
+[>Created: Wed Aug 23 09:36:16 ICT 2017]
 1576E76B009E23DD 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStartGAFWS Big #zClass
@@ -57,9 +57,9 @@ Pt0 f1 @|EndIcon #fIcon
 Pt0 f3 targetWindow NEW:card: #txt
 Pt0 f3 targetDisplay TOP #txt
 Pt0 f3 richDialogId ch.ivy.gawfs.portal.GAWFSPortalHome #txt
-Pt0 f3 startMethod start(gawfs.DevLoadWorkflowsData) #txt
+Pt0 f3 startMethod start() #txt
 Pt0 f3 type gawfs.PortalStartData #txt
-Pt0 f3 requestActionDecl '<gawfs.DevLoadWorkflowsData devLoadWorkflowsData> param;' #txt
+Pt0 f3 requestActionDecl '<> param;' #txt
 Pt0 f3 responseActionDecl 'gawfs.PortalStartData out;
 ' #txt
 Pt0 f3 responseMappingAction 'out=in;
