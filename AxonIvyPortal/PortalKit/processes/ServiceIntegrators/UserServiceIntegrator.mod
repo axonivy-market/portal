@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Tue Jun 14 15:33:23 ICT 2016]
-14E8758452EA36D2 3.18 #module
+[>Created: Wed Aug 23 10:08:43 ICT 2017]
+14E8758452EA36D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ue0 UserServiceIntegrator Big #zClass
 Ue0 B #cInfo
@@ -147,6 +147,19 @@ Ue0 @WSElement f124 '' #zField
 Ue0 @PushWFArc f125 '' #zField
 Ue0 @PushWFArc f97 '' #zField
 Ue0 @PushWFArc f135 '' #zField
+Ue0 @Alternative f136 '' #zField
+Ue0 @WSElement f137 '' #zField
+Ue0 @WSElement f138 '' #zField
+Ue0 @EndSub f139 '' #zField
+Ue0 @WSElement f140 '' #zField
+Ue0 @StartSub f141 '' #zField
+Ue0 @PushWFArc f142 '' #zField
+Ue0 @PushWFArc f143 '' #zField
+Ue0 @PushWFArc f144 '' #zField
+Ue0 @PushWFArc f145 '' #zField
+Ue0 @PushWFArc f146 '' #zField
+Ue0 @PushWFArc f147 '' #zField
+Ue0 @PushWFArc f148 '' #zField
 >Proto Ue0 Ue0 UserServiceIntegrator #zField
 Ue0 f0 inParamDecl '<java.lang.String endpoint,java.lang.String userName,List<java.lang.String> applicationNames,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
 Ue0 f0 inParamTable 'out.applicationNames=param.applicationNames;
@@ -251,13 +264,13 @@ Ue0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ue0 f7 83 1611 26 26 14 0 #rect
+Ue0 f7 83 2019 26 26 14 0 #rect
 Ue0 f7 @|ExceptionIcon #fIcon
 Ue0 f8 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
-Ue0 f8 83 1739 26 26 14 0 #rect
+Ue0 f8 83 2147 26 26 14 0 #rect
 Ue0 f8 @|EndSubIcon #fIcon
 Ue0 f9 expr out #txt
-Ue0 f9 96 1637 96 1739 #arcP
+Ue0 f9 96 2045 96 2147 #arcP
 Ue0 f10 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
 Ue0 f10 actionDecl 'ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData out;
 ' #txt
@@ -807,13 +820,13 @@ Ue0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ue0 f53 275 1611 26 26 14 0 #rect
+Ue0 f53 275 2019 26 26 14 0 #rect
 Ue0 f53 @|ExceptionIcon #fIcon
 Ue0 f54 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
-Ue0 f54 275 1739 26 26 14 0 #rect
+Ue0 f54 275 2147 26 26 14 0 #rect
 Ue0 f54 @|EndSubIcon #fIcon
 Ue0 f55 expr out #txt
-Ue0 f55 288 1637 288 1739 #arcP
+Ue0 f55 288 2045 288 2147 #arcP
 Ue0 f56 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
 Ue0 f56 actionDecl 'ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData out;
 ' #txt
@@ -1901,6 +1914,180 @@ Ue0 f135 expr in #txt
 Ue0 f135 750 1312 896 1396 #arcP
 Ue0 f135 1 896 1312 #addKink
 Ue0 f135 0 0.7281679107086875 0 0 #arcLabel
+Ue0 f136 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
+Ue0 f136 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ue0 f136 273 1687 28 28 14 -22 #rect
+Ue0 f136 @|AlternativeIcon #fIcon
+Ue0 f137 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
+Ue0 f137 actionDecl 'ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData out;
+' #txt
+Ue0 f137 actionTable 'out=in;
+out.errors=wsResponse.getChangePasswordResponse().errors;
+' #txt
+Ue0 f137 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ue0 f137 timeout 10 #txt
+Ue0 f137 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=UserServicePort
+KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=changePassword
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.changePassword.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.changePassword.password__@@__String__@@__in.newPassword"",""arg0.changePassword.username__@@__String__@@__in.targetUser"""' #txt
+Ue0 f137 exceptionHandler 14E8758452EA36D2-f7-buffer #txt
+Ue0 f137 timeoutExceptionHandler 14E8758452EA36D2-f7-buffer #txt
+Ue0 f137 returningObjectList '[wsResponse]' #txt
+Ue0 f137 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ue0 f137 109 1785 36 24 20 -2 #rect
+Ue0 f137 @|WebServiceIcon #fIcon
+Ue0 f138 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
+Ue0 f138 actionDecl 'ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData out;
+' #txt
+Ue0 f138 actionTable 'out=in;
+out.errors=wsResponse.getChangePasswordResponse().errors;
+' #txt
+Ue0 f138 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ue0 f138 timeout 10 #txt
+Ue0 f138 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=UserServicePort
+KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=changePassword
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA="' #txt
+Ue0 f138 exceptionHandler 14E8758452EA36D2-f7-buffer #txt
+Ue0 f138 timeoutExceptionHandler 14E8758452EA36D2-f7-buffer #txt
+Ue0 f138 returningObjectList '[wsResponse]' #txt
+Ue0 f138 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ue0 f138 269 1785 36 24 20 -2 #rect
+Ue0 f138 @|WebServiceIcon #fIcon
+Ue0 f139 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
+Ue0 f139 275 1915 26 26 14 0 #rect
+Ue0 f139 @|EndSubIcon #fIcon
+Ue0 f140 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
+Ue0 f140 actionDecl 'ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData out;
+' #txt
+Ue0 f140 actionTable 'out=in;
+out.errors=wsResponse.getChangePasswordResponse().errors;
+' #txt
+Ue0 f140 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ue0 f140 timeout 10 #txt
+Ue0 f140 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=UserServicePort
+KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=changePassword
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA="' #txt
+Ue0 f140 exceptionHandler 14E8758452EA36D2-f7-buffer #txt
+Ue0 f140 timeoutExceptionHandler 14E8758452EA36D2-f7-buffer #txt
+Ue0 f140 returningObjectList '[wsResponse]' #txt
+Ue0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ue0 f140 429 1785 36 24 20 -2 #rect
+Ue0 f140 @|WebServiceIcon #fIcon
+Ue0 f141 inParamDecl '<java.lang.String newPassword,java.lang.String endpoint,java.lang.String userName,ch.ivy.addon.portalkit.persistence.domain.Server server,List<java.lang.String> applicationNames> param;' #txt
+Ue0 f141 inParamTable 'out.applicationNames=param.applicationNames;
+out.endpoint=param.endpoint;
+out.newPassword=param.newPassword;
+out.server=param.server;
+out.targetUser=param.userName;
+' #txt
+Ue0 f141 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Ue0 f141 outParamTable 'result.errors=in.errors;
+' #txt
+Ue0 f141 actionDecl 'ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData out;
+' #txt
+Ue0 f141 callSignature changePassword(String,String,String,ch.ivy.addon.portalkit.persistence.domain.Server,List<String>) #txt
+Ue0 f141 type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
+Ue0 f141 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>changePassword(String,String,String,Server,List&lt;String&gt;)</name>
+        <nameStyle>56,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ue0 f141 274 1592 26 26 14 0 #rect
+Ue0 f141 @|StartSubIcon #fIcon
+Ue0 f142 expr out #txt
+Ue0 f142 287 1618 287 1687 #arcP
+Ue0 f143 expr out #txt
+Ue0 f143 447 1809 301 1928 #arcP
+Ue0 f143 1 447 1928 #addKink
+Ue0 f143 1 0.2892337303118032 0 0 #arcLabel
+Ue0 f144 expr out #txt
+Ue0 f144 287 1809 287 1915 #arcP
+Ue0 f145 expr in #txt
+Ue0 f145 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Ue0 f145 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Ue0 f145 287 1715 287 1785 #arcP
+Ue0 f146 expr in #txt
+Ue0 f146 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Ue0 f146 273 1701 127 1785 #arcP
+Ue0 f146 1 127 1701 #addKink
+Ue0 f146 0 0.7302200350148694 0 0 #arcLabel
+Ue0 f147 expr out #txt
+Ue0 f147 127 1809 275 1928 #arcP
+Ue0 f147 1 127 1928 #addKink
+Ue0 f147 1 0.20679742620065877 0 0 #arcLabel
+Ue0 f148 expr in #txt
+Ue0 f148 301 1701 447 1785 #arcP
+Ue0 f148 1 447 1701 #addKink
+Ue0 f148 0 0.7281679107086875 0 0 #arcLabel
 >Proto Ue0 .type ch.ivy.add.portalkit.service.integrators.UserServiceIntegratorData #txt
 >Proto Ue0 .processKind CALLABLE_SUB #txt
 >Proto Ue0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1910,6 +2097,7 @@ Ue0 f135 0 0.7281679107086875 0 0 #arcLabel
         <swimlaneLabel>Email Setting</swimlaneLabel>
         <swimlaneLabel>Language Setting</swimlaneLabel>
         <swimlaneLabel>Substitute</swimlaneLabel>
+        <swimlaneLabel>Change password</swimlaneLabel>
         <swimlaneLabel>Exception Handler</swimlaneLabel>
         <swimlaneLabel></swimlaneLabel>
     </language>
@@ -1918,12 +2106,26 @@ Ue0 f135 0 0.7281679107086875 0 0 #arcLabel
     <swimlaneSize>384</swimlaneSize>
     <swimlaneSize>384</swimlaneSize>
     <swimlaneSize>384</swimlaneSize>
+    <swimlaneSize>408</swimlaneSize>
     <swimlaneSize>248</swimlaneSize>
-    <swimlaneColor>-10040065</swimlaneColor>
-    <swimlaneColor>-39169</swimlaneColor>
-    <swimlaneColor>-6684826</swimlaneColor>
-    <swimlaneColor>-16711681</swimlaneColor>
-    <swimlaneColor>-39322</swimlaneColor>
+    <swimlaneColor gradient="true">-10040065</swimlaneColor>
+    <swimlaneColor gradient="true">-39169</swimlaneColor>
+    <swimlaneColor gradient="true">-6684826</swimlaneColor>
+    <swimlaneColor gradient="true">-16711681</swimlaneColor>
+    <swimlaneColor gradient="false">-3355393</swimlaneColor>
+    <swimlaneColor gradient="true">-39322</swimlaneColor>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
 </elementInfo>
 ' #txt
 >Proto Ue0 0 0 32 24 18 0 #rect
@@ -2072,3 +2274,17 @@ Ue0 f124 mainOut f97 tail #connect
 Ue0 f97 head f88 mainIn #connect
 Ue0 f84 out f135 tail #connect
 Ue0 f135 head f96 mainIn #connect
+Ue0 f136 out f145 tail #connect
+Ue0 f145 head f138 mainIn #connect
+Ue0 f138 mainOut f144 tail #connect
+Ue0 f144 head f139 mainIn #connect
+Ue0 f140 mainOut f143 tail #connect
+Ue0 f143 head f139 mainIn #connect
+Ue0 f141 mainOut f142 tail #connect
+Ue0 f142 head f136 in #connect
+Ue0 f136 out f146 tail #connect
+Ue0 f146 head f137 mainIn #connect
+Ue0 f137 mainOut f147 tail #connect
+Ue0 f147 head f139 mainIn #connect
+Ue0 f136 out f148 tail #connect
+Ue0 f148 head f140 mainIn #connect

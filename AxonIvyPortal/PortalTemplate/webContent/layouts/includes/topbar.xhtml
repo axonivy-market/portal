@@ -92,11 +92,13 @@
           <!-- Currently, this feature does not support -->
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
-              rendered="false"
+              rendered="#{not userMenuBean.hiddenChangePassword}"
               oncomplete="PF('changePasswordDialog').show();" 
-              resetValues="true" update="change-password-form"/>
+              resetValues="true" update="change-password-form" >
+                <p:resetInput target=":change-password-dialog" />
+              </p:commandLink>
           </li>
-
+          
           <li><p:commandLink id="logout-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/logOut')}"
               rendered="#{!userMenuBean.hiddenLogout and !isWorkingOnATask}" actionListener="#{userMenuBean.logout}"
