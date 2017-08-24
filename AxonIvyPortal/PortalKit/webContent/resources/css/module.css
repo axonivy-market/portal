@@ -4231,3 +4231,7 @@ margin-top
 .change-password-panel {
   width: 100%;
 }
+
+.widget-header-main.mod-expanded-mode .task-widget-header-content-title {
+  padding-bottom: 4px;
+}

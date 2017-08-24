@@ -44,16 +44,14 @@
         <span class="widget-header-main-title task-widget-header-content-title"> <cc:renderFacet name="title" />
           <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" />
         </span>
-        <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{showHeaderToolbar}">
+        <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{data.dataModel.compactMode and showHeaderToolbar}">
           <ui:fragment>
             <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
               update="task-view task-widget-sort-menu task-widget-header advanced-filter-container #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
               onsuccess="#{data.dataModel.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; " 
               oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
-              <i class="fa fa-angle-left" jsf:rendered="#{!data.dataModel.compactMode}" />
-              <p:spacer width="5" />
               <h:outputText id="switch-mode-command-value"
-                value="#{data.dataModel.compactMode ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/showFullTaskList') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/backToOverview')}" />
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/showFullTaskList')}" />
             </p:commandLink>
           </ui:fragment>
         </h:panelGroup>
