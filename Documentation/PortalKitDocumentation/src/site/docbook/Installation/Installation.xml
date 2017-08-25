@@ -251,6 +251,20 @@
 								to show button labels from task list.
 							</entry>
 						</row>
+						<row>
+							<entry>HIDE_CHANGE_PASSWORD_BUTTON</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								(none case-sensitive), the change password option 
+								in top menu will be hidden, otherwise it
+								will be	shown. If this
+								property is	not set, the change password option
+								will be displayed by
+								default.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
