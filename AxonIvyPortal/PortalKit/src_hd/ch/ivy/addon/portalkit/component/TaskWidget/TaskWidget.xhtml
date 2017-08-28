@@ -141,6 +141,12 @@
         <p:outputLabel styleClass="no-task-message" value="#{noTaskFoundMessage}"
           rendered="#{data.dataModel.rowCount eq 0}" />
       </h:panelGroup>
+      <h:form id="task-polling-form">
+        <p:poll id="task-polling" interval="#{taskWidgetBean.taskListRefreshInterval}" listener="#{logic.refreshTaskList(taskWidgetBean.expandedTaskId)}" 
+        	process="scroll-position" update="@none" onstart="setScrollPositionToInputHidden();" global="false" />
+        <h:inputHidden id="scroll-position" value="#{data.scrollPosition}"/>
+        <p:growl id="new-task-notification" autoUpdate="false" severity="info" />
+      </h:form> 
     </h:panelGroup>
   </div>
 
@@ -151,6 +157,10 @@
   <script type="text/javascript">
 	var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");
     var taskListToolKit = TaskListToolKit();
+    function setScrollPositionToInputHidden() {
+      var scrollPos = $('#task-widget\\:task-view-container .ui-datascroller-content').scrollTop();
+      $('#task-widget\\:task-polling-form\\:scroll-position').val(scrollPos);
+    }
     $(function(){
       //restore widget mode on page load
       if("#{cc.attrs.compactMode}" === "true" &amp;&amp; "#{data.dataModel.compactMode}" === "false" &amp;&amp; "#{cc.attrs.onSwitchToExpandedModeCompletedCallback}") {
