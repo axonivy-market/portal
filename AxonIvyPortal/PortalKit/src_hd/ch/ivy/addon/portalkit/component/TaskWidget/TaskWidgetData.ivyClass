@@ -22,3 +22,9 @@ sortDescending Boolean #field
 sortDescending PERSISTENT #fieldModifier
 serverId Long #field
 serverId PERSISTENT #fieldModifier
+scrollPosition Integer #field
+scrollPosition PERSISTENT #fieldModifier
+expandedTaskId Long #field
+expandedTaskId PERSISTENT #fieldModifier
+currentTaskCount Long #field
+currentTaskCount PERSISTENT #fieldModifier
