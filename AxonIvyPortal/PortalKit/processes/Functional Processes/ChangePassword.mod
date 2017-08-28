@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Mon Aug 28 11:42:27 ICT 2017]
+[>Created: Mon Aug 28 13:36:18 ICT 2017]
 15E13D0DD56B6D3B 3.20 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
@@ -169,10 +169,9 @@ Cd0 f15 actionTable 'out=in;
 ' #txt
 Cd0 f15 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
 
-if(!in.isCurrentPasswordCorrect) {
-	in.status = ChangePasswordStatus.FAIL;
-	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/wrongPassword");
-}' #txt
+in.status = ChangePasswordStatus.FAIL;
+in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/wrongPassword");
+' #txt
 Cd0 f15 type ch.ivy.add.portalkit.ChangePasswordData #txt
 Cd0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
