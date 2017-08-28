@@ -73,6 +73,16 @@
         <name>storeConfiguration</name>
         <description></description>
     </method>
+    <method>
+        <name>refreshTaskList</name>
+        <description></description>
+        <inputParameter>
+            <name>expandedTaskId</name>
+            <description></description>
+            <parameterType>java.lang.Long</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
