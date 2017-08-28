@@ -1,5 +1,5 @@
 [Ivy]
-[>Created: Fri Aug 25 09:20:12 ICT 2017]
+[>Created: Mon Aug 28 11:42:27 ICT 2017]
 15E13D0DD56B6D3B 3.20 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
@@ -24,10 +24,12 @@ Cd0 @PushWFArc f8 '' #zField
 Cd0 @PushWFArc f10 '' #zField
 Cd0 @Alternative f11 '' #zField
 Cd0 @PushWFArc f2 '' #zField
-Cd0 @PushWFArc f13 '' #zField
 Cd0 @GridStep f9 '' #zField
 Cd0 @PushWFArc f12 '' #zField
 Cd0 @PushWFArc f4 '' #zField
+Cd0 @GridStep f15 '' #zField
+Cd0 @PushWFArc f16 '' #zField
+Cd0 @PushWFArc f13 '' #zField
 >Proto Cd0 Cd0 ChangePassword #zField
 Cd0 f0 inParamDecl '<java.lang.String currentPassword,java.lang.String newPassword> param;' #txt
 Cd0 f0 inParamTable 'out.currentPassword=param.currentPassword;
@@ -65,6 +67,7 @@ param.newPassword=in.newPassword;
 Cd0 f14 responseActionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
 ' #txt
 Cd0 f14 responseMappingAction 'out=in;
+out.errors=result.errors;
 ' #txt
 Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -100,17 +103,8 @@ Cd0 f6 actionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
 ' #txt
 Cd0 f6 actionTable 'out=in;
 ' #txt
-Cd0 f6 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-
-in.isCurrentPasswordCorrect = ivy.session.checkPassword(in.currentPassword);
-
-if(!in.isCurrentPasswordCorrect) {
-	in.status = ChangePasswordStatus.FAIL;
-	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/wrongPassword");
-}' #txt
+Cd0 f6 actionCode 'in.isCurrentPasswordCorrect = ivy.session.checkPassword(in.currentPassword);
+' #txt
 Cd0 f6 type ch.ivy.add.portalkit.ChangePasswordData #txt
 Cd0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -140,11 +134,6 @@ Cd0 f11 80 528 32 32 0 16 #rect
 Cd0 f11 @|AlternativeIcon #fIcon
 Cd0 f2 expr in #txt
 Cd0 f2 96 560 96 625 #arcP
-Cd0 f13 expr in #txt
-Cd0 f13 112 272 112 544 #arcP
-Cd0 f13 1 240 272 #addKink
-Cd0 f13 2 240 544 #addKink
-Cd0 f13 1 0.5 0 0 #arcLabel
 Cd0 f9 actionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
 ' #txt
 Cd0 f9 actionTable 'out=in;
@@ -174,6 +163,38 @@ Cd0 f12 expr out #txt
 Cd0 f12 96 374 96 426 #arcP
 Cd0 f4 expr out #txt
 Cd0 f4 96 470 96 528 #arcP
+Cd0 f15 actionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
+' #txt
+Cd0 f15 actionTable 'out=in;
+' #txt
+Cd0 f15 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
+
+if(!in.isCurrentPasswordCorrect) {
+	in.status = ChangePasswordStatus.FAIL;
+	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/wrongPassword");
+}' #txt
+Cd0 f15 type ch.ivy.add.portalkit.ChangePasswordData #txt
+Cd0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Wrong password
+message</name>
+        <nameStyle>15,7
+7,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cd0 f15 176 362 128 44 -43 -16 #rect
+Cd0 f15 @|StepIcon #fIcon
+Cd0 f16 expr in #txt
+Cd0 f16 112 272 240 362 #arcP
+Cd0 f16 1 240 272 #addKink
+Cd0 f16 1 0.5 0 0 #arcLabel
+Cd0 f13 expr out #txt
+Cd0 f13 240 406 112 544 #arcP
+Cd0 f13 1 240 544 #addKink
+Cd0 f13 1 0.5 0 0 #arcLabel
 >Proto Cd0 .type ch.ivy.add.portalkit.ChangePasswordData #txt
 >Proto Cd0 .processKind CALLABLE_SUB #txt
 >Proto Cd0 0 0 32 24 18 0 #rect
@@ -186,9 +207,11 @@ Cd0 f3 out f10 tail #connect
 Cd0 f10 head f14 mainIn #connect
 Cd0 f11 out f2 tail #connect
 Cd0 f2 head f1 mainIn #connect
-Cd0 f3 out f13 tail #connect
-Cd0 f13 head f11 in #connect
 Cd0 f14 mainOut f12 tail #connect
 Cd0 f12 head f9 mainIn #connect
 Cd0 f9 mainOut f4 tail #connect
 Cd0 f4 head f11 in #connect
+Cd0 f3 out f16 tail #connect
+Cd0 f16 head f15 mainIn #connect
+Cd0 f15 mainOut f13 tail #connect
+Cd0 f13 head f11 in #connect
