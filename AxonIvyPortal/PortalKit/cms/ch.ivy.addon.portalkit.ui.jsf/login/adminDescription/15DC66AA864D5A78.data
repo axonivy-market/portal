@@ -1,1 +1,1 @@
-TODO:This user is meant to administrate the portal. As such special permissions like "Set absences for others", "See tasks of everyone", etc. are granted. You may review these permissions in AdminUI (see ServerGuide chapter EXTEND_THIS)
+Dieser Benutzer ist "das Portal Administrator", welche Berchtigungen, wie u.A. "Absensen für anderen", "Alle Aufgaben verwalten" auch besitzt. Sie können diese Permissions im AdminUI ändern (siehe ServerGuide)
