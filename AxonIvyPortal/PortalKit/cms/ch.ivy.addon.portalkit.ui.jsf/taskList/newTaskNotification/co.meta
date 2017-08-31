@@ -1,4 +1,0 @@
-co: name={newTaskNotification} description={} changed={2017-08-28 12:07:47 CEST} changedby={anhnguyenhoang} visualorder={0} guid={15E28367F1AE86FC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15E28367F3F4E67D} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-28 11:40:13 CEST} validto={} changed={2017-08-28 12:07:47 CEST} changedby={anhnguyenhoang} properties={} id={}
-val: guid={15E28367F25CDB39} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-28 11:40:13 CEST} validto={} changed={2017-08-28 12:07:47 CEST} changedby={anhnguyenhoang} properties={} id={}
-val: guid={15E28367F385A671} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-28 11:40:13 CEST} validto={} changed={2017-08-28 12:07:47 CEST} changedby={anhnguyenhoang} properties={} id={}
