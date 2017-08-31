@@ -1,2 +1,3 @@
-co: name={requireCurrentPassword} description={} changed={2017-08-23 03:53:30 GMT} changedby={ldnam} visualorder={0} guid={15E0D3945F760770} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15E0D39460277AD9} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-23 03:53:30 GMT} validto={} changed={2017-08-23 03:53:30 GMT} changedby={ldnam} properties={} id={}
+co: name={requireCurrentPassword} description={} changed={2017-08-31 15:42:18 CEST} changedby={t} visualorder={0} guid={15E0D3945F760770} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15E388736563DA2A} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-31 15:41:52 CEST} validto={} changed={2017-08-31 15:42:18 CEST} changedby={t} properties={} id={}
+val: guid={15E0D39460277AD9} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-23 05:53:30 CEST} validto={} changed={2017-08-31 15:41:20 CEST} changedby={t} properties={} id={}
