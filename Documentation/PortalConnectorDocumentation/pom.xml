@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>ch.ivyteam.ivy.doc</groupId>
 		<artifactId>doc.config</artifactId>
-		<version>6.7.143.0</version>
+		<version>6.7.0-SNAPSHOT</version>
 		<relativePath>../mavenconfig</relativePath>
 	</parent>
 
