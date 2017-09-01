@@ -834,6 +834,13 @@
 							task lists.
 						</para>
 					</listitem>
+					<listitem>
+						<para>
+						Change password is supported to be customized. Please refer to 
+						<link linkend="axonivyportal.customization.changepasswordprocess" endterm="axonivyportal.customization.changepasswordprocess.title" /> 
+						to know how to customize this feature.
+						</para>
+					</listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
