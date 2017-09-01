@@ -1,1 +1,1 @@
-TODO Cet utilisateur est sensé administrer le portail. Il possède des permissions spéciales comme "Administrer les abscences pour autrui", "Voir les tâches de tout le monde", etc... Vous pouvez visualiser ces permissions dans l'AdminUI (Voir le guide du serveur)
+Cet utilisateur est l'administreur du portail. Il possède des droits particuliers comme "Administrer les abscences pour autrui", "Voir les tâches de tout le monde", etc... Vous pouvez modifier ces droits dans l'AdminUI (Voir le guide du serveur)
