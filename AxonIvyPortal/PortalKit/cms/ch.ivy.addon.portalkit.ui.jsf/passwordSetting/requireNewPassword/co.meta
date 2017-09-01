@@ -1,3 +1,4 @@
-co: name={requireNewPassword} description={} changed={2017-08-31 15:51:09 CEST} changedby={t} visualorder={0} guid={15E0D394610D4DAC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={requireNewPassword} description={} changed={2017-09-01 18:02:41 CEST} changedby={ec} visualorder={0} guid={15E0D394610D4DAC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15E3E2E170775D31} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-09-01 18:02:14 CEST} validto={} changed={2017-09-01 18:02:41 CEST} changedby={ec} properties={} id={}
 val: guid={15E0D394613E8FE4} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-23 05:53:30 CEST} validto={} changed={2017-08-31 15:51:09 CEST} changedby={t} properties={} id={}
 val: guid={15E388CC1A5D1367} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-31 15:48:05 CEST} validto={} changed={2017-08-31 15:48:22 CEST} changedby={t} properties={} id={}
