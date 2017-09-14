@@ -76,7 +76,7 @@
             <p:scrollPanel styleClass="filter-selector-container" mode="native">
               <p:selectManyCheckbox id="filter-selection" layout="pageDirection" valueChangeListener="#{data.dataModel.onFilterChange}"
                 value="#{data.dataModel.selectedFilters}" converter="pojoConverter">
-                <p:ajax update="#{p:component('advanced-filter-container')}" global="false"
+                <p:ajax update="#{p:component('advanced-filter-container')} #{p:component('task-view-container')}" global="false"
                   oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
                 <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                   itemValue="#{filter}" />
@@ -85,7 +85,7 @@
                 rendered="#{!data.dataModel.hasReadAllTasksPermisson()}"
                 value="#{data.dataModel.inProgressFilterDisplayed}"
                 itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/displayTaskInProgressFilter')}">
-                <p:ajax global="false" update="#{p:component('advanced-filter-container')}" 
+                <p:ajax global="false" update="#{p:component('advanced-filter-container')} #{p:component('task-view-container')}" 
                   oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
               </p:selectBooleanCheckbox>
               <p:tooltip for="in-progress-checkbox" trackMouse="true"

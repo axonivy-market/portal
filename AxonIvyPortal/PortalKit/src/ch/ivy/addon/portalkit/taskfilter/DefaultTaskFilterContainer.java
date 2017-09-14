@@ -1,10 +1,12 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
 import java.util.Collections;
+
 import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
 
 public class DefaultTaskFilterContainer extends TaskFilterContainer {
 
+  private TaskPriorityFilter priorityFilter = new TaskPriorityFilter();
   private TaskDescriptionFilter descriptionFilter = new TaskDescriptionFilter();
   private TaskCreationDateFilter creationDateFilter = new TaskCreationDateFilter();
   private TaskExpiredDateFilter expiredDateFilter = new TaskExpiredDateFilter();
@@ -12,6 +14,7 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
 
   public DefaultTaskFilterContainer() {
     super();
+    filters.add(priorityFilter);
     filters.add(descriptionFilter);
     filters.add(creationDateFilter);
     filters.add(expiredDateFilter);
@@ -19,6 +22,14 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
     Collections.sort(filters, new TaskFilterComparator());
   }
   
+  public TaskPriorityFilter getPriorityFilter() {
+    return priorityFilter;
+  }
+
+  public void setPriorityFilter(TaskPriorityFilter priorityFilter) {
+    this.priorityFilter = priorityFilter;
+  }
+
   public TaskDescriptionFilter getDescriptionFilter() {
     return descriptionFilter;
   }
