@@ -10,6 +10,8 @@
 
 <cc:implementation>
   <c:set var="filterContainer" value="#{cc.attrs.dataModel.filterContainer}" />
+  <ic:ch.ivy.addon.portalkit.component.task.filter.TaskPriorityFilter filter="#{filterContainer.priorityFilter}"
+    dataModel="#{cc.attrs.dataModel}" />
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskStateFilter filter="#{filterContainer.stateFilter}"
     dataModel="#{cc.attrs.dataModel}" />
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCreationDateFilter filter="#{filterContainer.creationDateFilter}"
