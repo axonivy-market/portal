@@ -34,12 +34,12 @@
                     styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
                   <h:panelGroup rendered="#{task.priority == 'EXCEPTION'}"
                     styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
-                  <h:outputText value="#{task.priority}" />
+                  <h:outputText value="#{taskBean.getPriority(task.priority)}" />
                 </h:panelGroup>
               </f:facet>
               <p:ajax event="save" listener="#{logic.updatePriority(task)}" update="priority-form #{cc.attrs.priorityComponentToUpdate}" />
               <p:selectOneMenu id="priority-select-menu" value="#{task.priority}" styleClass="task-details-priority">
-                <f:selectItems value="#{task.getPriority().values()}" var="priority" itemLabel="#{priority}"
+                <f:selectItems value="#{task.getPriority().values()}" var="priority" itemLabel="#{taskBean.getPriority(priority)}"
                   itemValue="#{priority}" />
               </p:selectOneMenu>
             </p:inplace>
