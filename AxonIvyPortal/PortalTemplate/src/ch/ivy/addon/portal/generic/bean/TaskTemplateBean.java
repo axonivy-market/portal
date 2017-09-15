@@ -67,7 +67,11 @@ public class TaskTemplateBean {
   }
 
   public List<IStartableSideStep> generateSideStepList(String caseId) throws Exception {
-    if (sideStepList == null && !caseId.isEmpty()) {
+    if (StringUtils.isBlank(caseId)) {
+      return Collections.emptyList();
+    }
+
+    if (sideStepList == null) {
       ICase internalCase = Ivy.wf().findCase(Long.parseLong(caseId));
       ICaseMapService caseMapService =
           ICaseMapService.get().getCaseMapService(internalCase.getBusinessCase(),

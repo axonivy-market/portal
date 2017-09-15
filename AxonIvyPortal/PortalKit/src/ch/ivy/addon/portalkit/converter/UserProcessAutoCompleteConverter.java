@@ -16,7 +16,7 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 
 @FacesConverter("userProcessAutoCompleteConverter")
 public class UserProcessAutoCompleteConverter implements Converter {
-  private static final String UNIQUE_CONVERTER_IDENTIFIER = PojoConverter.class.getName();
+  private static final String UNIQUE_CONVERTER_IDENTIFIER = UserProcessAutoCompleteConverter.class.getName();
   private static final String KEY_DELIMITER = ":::";
   private static final String MAP_KEY_TEMPLATE = UNIQUE_CONVERTER_IDENTIFIER + KEY_DELIMITER + "%s" + KEY_DELIMITER
       + "%s";
