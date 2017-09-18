@@ -5,11 +5,9 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.bo.Contact;
 import ch.ivy.addon.portalkit.vo.CaseVO;
-import ch.ivy.addon.portalkit.vo.ProcessStartVO;
 import ch.ivy.addon.portalkit.vo.TaskVO;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 
 /**
