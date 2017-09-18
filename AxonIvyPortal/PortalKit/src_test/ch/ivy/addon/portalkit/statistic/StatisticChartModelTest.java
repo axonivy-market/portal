@@ -1,13 +1,6 @@
 package ch.ivy.addon.portalkit.statistic;
 
-import java.time.ZoneOffset;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
 
 import junit.framework.Assert;
 
@@ -21,13 +14,11 @@ import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
-import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.statistics.StatisticChartModel;
 import ch.ivy.ws.addon.ExpiryStatistic;
 import ch.ivy.ws.addon.PriorityStatistic;
 import ch.ivyteam.ivy.cm.IContentManagementSystem;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Ivy.class)
