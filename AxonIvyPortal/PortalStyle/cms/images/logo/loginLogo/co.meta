@@ -1,2 +1,2 @@
-co: name={loginLogo} description={} changed={2016-08-16 13:44:46 CEST} changedby={tntanh} visualorder={0} guid={1535F874D76C4B24} parentguid={} typeguid={E6AFEA1F8A858C25} id={} parentid={} typeid={}
-val: guid={1535F874D7A83620} datatype={} isdefault={true} langid={en} description={} validfrom={2016-03-10 08:56:56 CET} validto={} changed={2016-08-16 13:44:46 CEST} changedby={tntanh} properties={} id={}
+co: name={loginLogo} description={} changed={2017-09-19 05:17:39 CEST} changedby={tdnguyen} visualorder={0} guid={1535F874D76C4B24} parentguid={} typeguid={E6AFEA1F8A858C25} id={} parentid={} typeid={}
+val: guid={1535F874D7A83620} datatype={} isdefault={true} langid={en} description={} validfrom={2016-03-10 08:56:56 CET} validto={} changed={2017-09-19 05:17:39 CEST} changedby={tdnguyen} properties={} id={}
