@@ -18,3 +18,7 @@ taskView ch.ivy.addon.portal.generic.view.TaskView #field
 taskView PERSISTENT #fieldModifier
 taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
 taskDataModel PERSISTENT #fieldModifier
+isWorkingOnATask Boolean #field
+isWorkingOnATask PERSISTENT #fieldModifier
+menuKind ch.ivy.addon.portalkit.enums.MenuKind #field
+menuKind PERSISTENT #fieldModifier
