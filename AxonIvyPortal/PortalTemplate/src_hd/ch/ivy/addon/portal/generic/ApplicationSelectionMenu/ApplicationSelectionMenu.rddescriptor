@@ -14,6 +14,12 @@
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
+        <inputParameter>
+            <name>isWorkingOnATask</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </startMethod>
     <startMethod>
         <name>StartNotRequiredLogin</name>

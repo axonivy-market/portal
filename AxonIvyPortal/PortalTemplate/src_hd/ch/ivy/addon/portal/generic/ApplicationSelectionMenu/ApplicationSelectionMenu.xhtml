@@ -8,7 +8,6 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="menuState" />
-  <cc:attribute name="isWorkingOnATask" default="false" />
   <cc:attribute name="onClickTaskMenuItemCallback" />
 </cc:interface>
 
@@ -21,18 +20,10 @@
       <h:inputHidden id="first-level-menu-state-info" value="#{menuStateBean.menuState}" />
       <c:forEach items="#{data.menuItems}" var="menuItem" varStatus="theCount">
         <p:commandLink actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}"
-          rendered="#{!cc.attrs.isWorkingOnATask and empty menuItem.getAttributes().get('isThirdPartyApp')}"
+          rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
           styleClass="left-sidebar-menu-header js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}">
           <i class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
           <h:outputText value="#{menuItem.value}" styleClass="left-sidebar-menu-name left-sidebar-animation" />
-        </p:commandLink>
-        <p:commandLink rendered="#{cc.attrs.isWorkingOnATask and empty menuItem.getAttributes().get('isThirdPartyApp')}"
-          styleClass="left-sidebar-menu-header js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}"
-          oncomplete="PF('task-losing-confirmation-dialog').show()"
-          update=":#{p:component('task-losing-confirmation-dialog')}" disabled="#{menuItem.disabled}">
-          <i class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
-          <h:outputText value="#{menuItem.value}" styleClass="left-sidebar-menu-name left-sidebar-animation" />
-          <f:setPropertyActionListener value="#{menuItem.href}" target="#{data.applicationUrl}" />
         </p:commandLink>
         <p:commandLink rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
           disabled="#{menuItem.disabled}"
@@ -84,8 +75,8 @@
 
     <p:dialog id="task-losing-confirmation-dialog" resizable="false"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-      widgetVar="task-losing-confirmation-dialog" rendered="#{cc.attrs.isWorkingOnATask}" appendTo="@(body)"
-      modal="true" dynamic="true">
+      widgetVar="task-losing-confirmation-dialog" rendered="#{data.isWorkingOnATask}" appendTo="@(body)"
+      modal="true">
       
       <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state != 'CREATED'}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resumedTaskLostBeforeLeave')}" />
