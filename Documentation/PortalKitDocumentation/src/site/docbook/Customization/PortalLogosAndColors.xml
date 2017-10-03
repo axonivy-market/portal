@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.portallogosandcolors" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<title xml:id="axonivyportal.customization.portallogosandcolors.title">Portal logos and colors</title>
+	<title xml:id="axonivyportal.customization.portallogosandcolors.title">PortalStyle customization (logos, colors, date patterns)</title>
 	<sect2 xml:id="axonivyportal.customization.portallogosandcolors.changeportallogos">
 		<title>Change Portal's logos</title>
 		<para>
@@ -66,6 +66,12 @@
 				</listitem>
 			</itemizedlist>
 			After you finish your customization, compile these above less files to build the css file named <code>theme.min.css</code> and put it at <code>PortalStyle/webContent/resources/css</code>. You are highly recommended to run the <code>mvn lesscss:compile</code> maven command in PortalStyle to do it quickly.
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.portallogosandcolors.changedatepatterns">
+		<title>Change date time pattern</title>
+		<para>
+			You can change date pattern by modifying CMS in PortalStyle project: <code>PortalStyle/patterns/datePattern</code> and <code>PortalStyle/patterns/dateTimePattern</code>.
 		</para>
 	</sect2>
 </sect1>
