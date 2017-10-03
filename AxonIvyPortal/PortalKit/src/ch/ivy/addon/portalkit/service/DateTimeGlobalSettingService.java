@@ -16,11 +16,11 @@ public class DateTimeGlobalSettingService {
   }
 
   public String getDateTimePattern() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dateTimePattern");
+    return Ivy.cms().co("/patterns/dateTimePattern");
   }
   
   public String getDatePattern() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/datePattern");
+    return Ivy.cms().co("/patterns/datePattern");
   }
   
   public boolean isHideTime() {
