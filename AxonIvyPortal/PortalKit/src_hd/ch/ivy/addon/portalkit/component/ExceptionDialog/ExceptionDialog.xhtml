@@ -16,7 +16,7 @@
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}: #{cc.attrs.message}" />
     <p>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace")}:</p>
     <div class="exception-handler-stacktrace">
-      <p:inputTextarea styleClass="exception-handler-stacktrace-text" value="#{cc.attrs.stackTrace}" readonly="true" />
+      <h:outputText styleClass="exception-handler-stacktrace-text" value="#{cc.attrs.stackTrace}" readonly="true" escape="false"/>
     </div>
     <f:facet name="footer">
       <div class="exception-handler-command">
