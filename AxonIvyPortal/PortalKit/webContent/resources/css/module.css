@@ -2428,6 +2428,11 @@ a.compact-task-start-link:hover {
   height: 2rem;
   margin-right: 0.2rem;
 }
+
+.task-filter-form {
+  margin-top: 11px;
+}
+
 /********************************** END TASK WIDGET **********************************/
 
 /********************************** TASK DETAIL **********************************/
