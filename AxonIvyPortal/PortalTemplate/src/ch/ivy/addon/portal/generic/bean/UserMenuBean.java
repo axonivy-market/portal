@@ -23,6 +23,8 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.process.call.SubProcessCallResult;
+import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.system.ISystemProperty;
 
 @ManagedBean
 @ViewScoped
@@ -58,12 +60,13 @@ public class UserMenuBean {
     return Boolean.parseBoolean(isHiddenLogout);
   }
 
-  public boolean isHiddenChangePassword(){
+  public boolean isHiddenChangePassword() {
     GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String isHiddenChangePassword = globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
+    String isHiddenChangePassword =
+        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
     return Boolean.parseBoolean(isHiddenChangePassword);
   }
-  
+
   public String getHomePageURL() throws Exception {
     ApplicationService applicationService = new ApplicationService();
     String homePageURL = getHomePageFromSetting();
@@ -87,8 +90,8 @@ public class UserMenuBean {
         applicationService.findByDisplayNameAndNameAndServerId(selectedAppDisplayName, selectedApp, serverId);
     return selectedApplication.getLink();
   }
-  
-  public void navigateToHomePage() throws Exception{
+
+  public void navigateToHomePage() throws Exception {
     FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
   }
 
@@ -114,15 +117,15 @@ public class UserMenuBean {
     Long serverId = SecurityServiceUtils.getServerIdFromSession();
     String selectedApp = SecurityServiceUtils.getApplicationNameFromSession();
 
-    SubProcessCallResult result = SubProcessCall.withPath("Functional Processes/GlobalSearch")
-        .withParam("keyword", keyword)
-        .withParam("serverId", serverId)
-        .withParam("applicationName", selectedApp)
-        .call();
+    SubProcessCallResult result =
+        SubProcessCall.withPath("Functional Processes/GlobalSearch").withParam("keyword", keyword)
+            .withParam("serverId", serverId).withParam("applicationName", selectedApp).call();
     foundWebStartables = (List<RemoteWebStartable>) result.get("webStartables");
     foundTasks = (List<RemoteTask>) result.get("tasks");
     foundCases = (List<RemoteCase>) result.get("cases");
-    hasNoRecordsFound = CollectionUtils.isEmpty(foundWebStartables) && CollectionUtils.isEmpty(foundTasks) && CollectionUtils.isEmpty(foundCases);
+    hasNoRecordsFound =
+        CollectionUtils.isEmpty(foundWebStartables) && CollectionUtils.isEmpty(foundTasks)
+            && CollectionUtils.isEmpty(foundCases);
   }
 
   public void resetSearchData() {
@@ -131,6 +134,7 @@ public class UserMenuBean {
     foundTasks = new ArrayList<>();
     foundCases = new ArrayList<>();
     hasNoRecordsFound = false;
+
   }
 
   public String getSearchKeyword() {
@@ -155,5 +159,20 @@ public class UserMenuBean {
 
   public boolean isHasNoRecordsFound() {
     return hasNoRecordsFound;
+  }
+
+  public boolean getErrorDetailToEndUser() {
+    try {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> findShowErrorDetailSystemProperty());
+    } catch (Exception e) {
+      Ivy.log().error(e);
+    }
+    return true;
+  }
+
+  private boolean findShowErrorDetailSystemProperty() {
+    ISystemProperty systemProp =
+        ServerFactory.getServer().getApplicationConfigurationManager().getSystemProp("Errors.ShowDetailsToEndUser");
+    return systemProp.getBooleanValue();
   }
 }
