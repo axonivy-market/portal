@@ -59,7 +59,7 @@
       <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter}"
         styleClass="widget-header-content-filter #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}"
         id="filter-view">
-        <h:form id="filter-form" onsubmit="return false;" style="margin-top: 11px;">
+        <h:form id="filter-form" onsubmit="return false;" styleClass="task-filter-form">
           <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
             icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
