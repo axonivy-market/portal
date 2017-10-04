@@ -3,7 +3,7 @@ package ch.ivy.ws.addon.util;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.system.IProperty;
+import ch.ivyteam.ivy.system.ISystemProperty;
 
 public final class SystemProperties {
   public static final String EXTERNAL_HOST_NAME = "WebServer.ExternalHostName";
@@ -22,7 +22,7 @@ public final class SystemProperties {
   private static String getExternalHostCallable(String propertyName) {
     IApplicationConfigurationManager applicationConfigurationManager =
         ServerFactory.getServer().getApplicationConfigurationManager();
-    IProperty systemProperty = applicationConfigurationManager.getSystemProperty(propertyName);
+    ISystemProperty systemProperty = applicationConfigurationManager.getSystemProp(propertyName);
     return systemProperty.getValue();
   }
 }
