@@ -1,13 +1,30 @@
-.applicantFieldContainer {
+.applicant-field-container {
   width: 100%;
   border: none;
 }
 
-.applicantFieldGrid {
+.applicant-field-grid {
   width: 25%;
   border: none !important;
 }
 
-.applicantFieldInput {
+.applicant-field-input {
   width: 85%;
+}
+
+.padding-top-15 {
+  padding-top: 15px !important;
+}
+
+.applicant-selection-container {
+  border: none;
+  border-bottom: solid #dfdfdf;
+}
+
+.user-list-form {
+  width:500px;
+}
+
+.user-selection {
+  width:400px;
 }
