@@ -1,0 +1,13 @@
+.applicantFieldContainer {
+  width: 100%;
+  border: none;
+}
+
+.applicantFieldGrid {
+  width: 25%;
+  border: none !important;
+}
+
+.applicantFieldInput {
+  width: 85%;
+}
