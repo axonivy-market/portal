@@ -9,8 +9,7 @@
   <h:outputScript name="global-search.js" library="js" target="head" />
   <div style="text-align: center">
 
-    <p:commandLink id="logo" 
-      oncomplete="window.location.href='#{userMenuBean.homePageURL}'">
+    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePage}">
       <h:graphicImage library="ivy-cms" name="/images/logo/CorporateLogo" />
     </p:commandLink>
     <c:if test="#{!isNotRequiredLogin}">

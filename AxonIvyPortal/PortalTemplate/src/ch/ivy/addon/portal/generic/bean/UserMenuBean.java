@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -85,6 +86,10 @@ public class UserMenuBean {
     Application selectedApplication =
         applicationService.findByDisplayNameAndNameAndServerId(selectedAppDisplayName, selectedApp, serverId);
     return selectedApplication.getLink();
+  }
+  
+  public void navigateToHomePage() throws Exception{
+    FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
   }
 
   private String getHomePageFromSetting() {
