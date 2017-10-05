@@ -21,7 +21,7 @@
 		<sect3 xml:id="axonivyportal.components.errorhandling.ajaxerrorhandling.introduction">
 			<title>Introduction</title>
 			<para>
-				By default, Portal handles all exeptions from ajax requests.
+				By default, Portal handles all exceptions from ajax requests.
 			</para>
 			<para>
 				When an exception occurs, Portal will show an error notification with the exception type and message to end user. The exception details is available when user click on show details button.

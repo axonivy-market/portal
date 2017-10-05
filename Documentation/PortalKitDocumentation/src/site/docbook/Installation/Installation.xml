@@ -612,6 +612,12 @@
 			tells you what needs to be done to made your existing Portal working with current Axon.ivy engine.
 		</para>
 		<sect2>
+			<title>Migrate 7.0 to 7.1</title>
+			<para>
+				By default, Portal handles all exceptions from ajax requests. Old configuration, customization of ajax error handling should be removed.
+			</para>
+		</sect2>
+		<sect2>
 			<title>Migrate 6.x to 7.0</title>
 			<para>
 				If you copy the
