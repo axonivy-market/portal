@@ -1,9 +1,97 @@
+.process-property-container {
+  width: 100%;
+  border: none;
+}
+
+.process-property-label-col {
+  width: 15%;
+  border: none !important;
+}
+
+.process-description-label-col {
+  vertical-align: top;
+}
+
+.process-property-input-col {
+  width: 75%;
+  border: none !important;
+}
+
+.process-property-input {
+  width: 98%;
+}
+
+.process-flow-container {
+  border: none;
+  margin-left: -10px;
+}
+
+.task-panel-container {
+  text-align: center;
+  vertical-align: middle;
+  border: none;
+}
+
+.dynamic-task-panel-grid {
+  border: none;
+  text-align: left;
+  width: 100%;
+}
+
+.dynamic-task-title-col {
+  border: none !important;
+  border-bottom: solid #dfdfdf !important;
+}
+
+.dynamic-task-arrow {
+  border: none !important;
+  width: 15px;
+  padding-top: 15px !important;
+}
+
+.dynamic-task-name-label-col, .dynamic-task-description-label-col {
+  width: 15%;
+  border: none !important;
+  padding-top: 15px !important;
+}
+
+.dynamic-task-name-input-col, .dynamic-task-description-input-col {
+  width: 35%;
+  border: none !important;
+  padding-top: 15px !important;
+}
+
+.dynamic-task-name-input, .dynamic-task-description-input, .dynamic-task-actor-input {
+  width: 70%;
+}
+
+.dynamic-task-name-input, .dynamic-task-actor-input {
+  margin-left: -11px;
+}
+
+.dynamic-task-action-container {
+  border: none !important;
+  text-align: left;
+  width: 100%;
+}
+
+.dynamic-task-left-action {
+  border: none !important;
+  text-align: left;
+  width: 50%;
+}
+
+.dynamic-task-right-action {
+  border: none !important;
+  text-align: right;
+}
+
 .applicant-field-container {
   width: 100%;
   border: none;
 }
 
-.applicant-field-grid {
+.applicant-field-col {
   width: 25%;
   border: none !important;
 }
@@ -22,9 +110,9 @@
 }
 
 .user-list-form {
-  width:500px;
+  width: 500px;
 }
 
 .user-selection {
-  width:400px;
+  width: 400px;
 }
