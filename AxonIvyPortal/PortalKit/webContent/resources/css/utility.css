@@ -122,7 +122,7 @@
 }
 
 .u-no-border {
-  border: none;
+  border: none !important;
 }
 
 .u-buttons-spacer {
@@ -149,10 +149,14 @@
   display: none !important;
 }
 
-.u-invisibility{
+.u-invisibility {
   visibility:hidden;
 }
 
 .u-mar-right-5 {
   margin-right: 5px !important;
+}
+
+.u-mar-right-20 {
+  margin-right: 20px !important;
 }
