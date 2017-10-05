@@ -461,8 +461,8 @@
 						value="#{data.dragAndDropController.availableFormelements}"
 						columns="3">
 						<p:panel id="pnl"
-							styleClass="txt-center vertical-align-middle">
-							<p:panelGrid styleClass="no-border txt-left">
+							styleClass="TexAlCenter vertical-align-middle">
+							<p:panelGrid styleClass="no-border TexAlLeft">
 								<p:row>
 									<p:column styleClass="no-border">
 										<p:graphicImage library="ivy-cms"
@@ -509,7 +509,7 @@
 
 					<p:panelGrid styleClass="Wid100 form-definition-border-color">
 						<p:row id="selectedFormelementsHeaderFieldSet"
-							styleClass="txt-center form-definition-border-color">
+							styleClass="TexAlCenter form-definition-border-color">
 							<p:column colspan="2">
 
 								<p:outputPanel id="selectedFormelementsHeaderPanel">
@@ -570,9 +570,9 @@
 								</p:outputPanel>
 							</p:column>
 						</p:row>
-						<p:row styleClass="txt-center form-definition-border-color">
+						<p:row styleClass="TexAlCenter form-definition-border-color">
 							<p:column colspan="1" id="selectedFormelementsLeftPanelFieldSet"
-								styleClass="Wid50 txt-center form-definition-border-color">
+								styleClass="Wid50 TexAlCenter form-definition-border-color">
 
 								<p:outputPanel id="selectedFormelementsLeftPanelPanel">
 
@@ -591,8 +591,8 @@
 										value="#{data.dragAndDropController.selectedFormelementsLeftPanel}"
 										rendered="#{not empty data.dragAndDropController.selectedFormelementsLeftPanel}">
 
-										<p:panel id="pnl" styleClass="txt-center vertical-align-middle">
-											<p:panelGrid styleClass="no-border txt-left">
+										<p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle">
+											<p:panelGrid styleClass="no-border TexAlLeft">
 												<p:row>
 													<p:column styleClass="no-border">
 														<p:graphicImage library="ivy-cms"
@@ -633,7 +633,7 @@
 							</p:column>
 
 							<p:column colspan="1" id="selectedFormelementsRightPanelFieldSet"
-								styleClass="txt-center Wid50">
+								styleClass="TexAlCenter Wid50">
 								<p:outputPanel id="selectedFormelementsRightPanelPanel">
 
 									<p:outputPanel
@@ -648,12 +648,12 @@
 
 
 									<p:dataGrid id="selectedFormelementsRightPanel"
-										var="formelement" styleClass="no-border txt-center" columns="1"
+										var="formelement" styleClass="no-border TexAlCenter" columns="1"
 										value="#{data.dragAndDropController.selectedFormelementsRightPanel}"
 										rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}">
 
-										<p:panel id="pnl" styleClass="txt-center vertical-align-middle">
-											<p:panelGrid styleClass="no-border txt-left">
+										<p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle">
+											<p:panelGrid styleClass="no-border TexAlLeft">
 												<p:row>
 													<p:column styleClass="no-border">
 														<p:graphicImage library="ivy-cms"
@@ -693,7 +693,7 @@
 
 
 
-						<p:row id="selectedFormelementsFooterFieldSet" styleClass="txt-center form-definition-border-color">
+						<p:row id="selectedFormelementsFooterFieldSet" styleClass="TexAlCenter form-definition-border-color">
 							<p:column colspan="2">
 								<p:outputPanel id="selectedFormelementsFooterPanel">
 
@@ -713,10 +713,10 @@
 									<p:dataGrid id="selectedFormelementsFooter" var="formelement"
 										value="#{data.dragAndDropController.selectedFormelementsFooter}"
 										rendered="#{not empty data.dragAndDropController.selectedFormelementsFooter}"
-										styleClass="no-border txt-center" columns="1">
+										styleClass="no-border TexAlCenter" columns="1">
 
-										<p:panel id="pnl" styleClass="txt-center vertical-align-middle">
-											<p:panelGrid styleClass="no-border txt-left">
+										<p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle">
+											<p:panelGrid styleClass="no-border TexAlLeft">
 												<p:row>
 													<p:column styleClass="no-border">
 														<p:graphicImage library="ivy-cms"
@@ -829,7 +829,7 @@
 
 				</p:fieldset>
 				<br/>
-				<p:outputPanel styleClass="txt-right">
+				<p:outputPanel styleClass="TexAlRight">
 					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left" update="form:selectedFormelementsField" styleClass="buttonDelegate" process="form:selectedFormelementsField" actionListener="#{logic.back}"/>
 					
 					<p:spacer width="20px"></p:spacer>
