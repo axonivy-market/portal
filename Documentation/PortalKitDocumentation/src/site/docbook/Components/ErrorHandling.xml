@@ -21,72 +21,25 @@
 		<sect3 xml:id="axonivyportal.components.errorhandling.ajaxerrorhandling.introduction">
 			<title>Introduction</title>
 			<para>
-				By default, when an exception occurs during a JSF ajax request, Portal would not get any form of feedback if the action was successfully performed or not. It would make sense if exceptions during ajax requests are handled as the way that the end user would see an alert with the exception type and message (exception stack trace might be included for advanced user).
+				By default, Portal handles all exeptions from ajax requests.
 			</para>
 			<para>
-				Portal uses the <code>ajaxExceptionHandler</code> component provided by PrimeFaces to handle exceptions occur during JSF ajax requests. This document describes when and how to enable this feature.
+				When an exception occurs, Portal will show an error notification with the exception type and message to end user. The exception details is available when user click on show details button.
+			</para>
+			<para>
+				Stacktrace on error messages can be showed/hid depend on ivy system property <code>Errors.ShowDetailsToEndUser</code>.
 			</para>
 			<note>
 				This feature is only available if using the portal default template: <code>BasicTemplate</code> or its extension.
 			</note>
 		</sect3>
-		<sect3 xml:id="axonivyportal.components.errorhandling.ajaxerrorhandling.configuration">
-			<title>Configuration</title>
-			<para>
-				This exception handler must be registered by a factory as follows in <code>faces-config.xml</code> in order to get it to run:
-			</para>
-			<para>
-				Config Ajax Exception Handler of Primefaces
-				<para><code>&lt;application&gt;</code></para>
-				<para><code>&lt;el-resolver&gt;</code></para>
-				<para><code>org.primefaces.application.exceptionhandler.PrimeExceptionHandlerELResolver</code></para>
-				<para><code>&lt;/el-resolver&gt;</code></para>
-				<para><code>&lt;/application&gt;</code></para>
-				<para><code>&lt;factory&gt;</code></para>
-				<para><code>&lt;exception-handler-factory&gt;</code></para>
-				<para><code>org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory</code></para>
-				<para><code>&lt;/exception-handler-factory&gt;</code></para>
-				<para><code>&lt;/factory&gt;</code></para>
-			</para>
-			<note>
-				The <code>faces-config.xml</code> file is located at <code>../webapps/ivy/WEB-INF</code> inside your Ivy Designer/Engine. The designer/engine need to be restarted in order to make the changes affect.
-			</note>
-		</sect3>
-		<sect3 xml:id="axonivyportal.components.errorhandling.ajaxerrorhandling.defaultexceptionhandlerbyportal">
-			<title>Default exception handler by Portal</title>
-			<para>
-				The default exception handler of Portal after being configured will transparently handle all exceptions during ajax requests. It is configured to handle the exception type <code>java.lang.Throwable</code>, therefore any specific exceptions would match.
-			</para>
-			<para>
-				When an exception occurs, Portal will show an error notification with the exception type and message to end user. The exception details is available when user click on the show details button.
-			</para>
-			<para>
-				The default exception handler defined in Portal:
-				<para><code>&lt;p:ajaxExceptionHandler type="java.lang.Throwable" update="exception-dialog" onexception="portal.notifyError('Action completed with an error! Error message: #{pfExceptionHandler.message}')" /&gt;</code></para>
-			</para>
-		</sect3>
-		<sect3 xml:id="axonivyportal.components.errorhandling.ajaxerrorhandling.customizingexceptionhandler">
-			<title>Customizing exception handler</title>
-			<para>
-				If more fine grained control is desired for determining the root cause of the caught exception, or whether it should be handled, or determining the error notification, or logging the exception, then the developer can opt to define their own exception handler and override the default exception handler of Portal:
-				<para><code>&lt;p:ajaxExceptionHandler type="your.business.domain.MyCustomWidgetException" update="exception-dialog" onexception="portal.notifyError('MyCustomWidget could not perform the action completely! Error message: #{pfExceptionHandler.message}')" /&gt;</code></para>
-			</para>
-			<note>
-				<para>
-					Portal provides following Javascript methods for notification:
-					<itemizedlist>
-						<listitem>
-							<para><code>portal.notifyError(String message)</code></para>
-						</listitem>
-						<listitem>
-							<para><code>portal.notifyWarning(String message)</code></para>
-						</listitem>
-						<listitem>
-							<para><code>portal.notifyInfo(String message)</code></para>
-						</listitem>
-					</itemizedlist>
-				</para>
-			</note>
+		<sect3 xml:id="axonivyportal.components.errorhandling.ajaxerrorhandling.result">
+			<title>Result</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/ErrorHandling/portalAjaxErrorHandler.png" />
+				</imageobject>
+			</mediaobject>
 		</sect3>
 	</sect2>
 	<sect2 xml:id="axonivyportal.components.errorhandling.nonajaxerrorhandling">
