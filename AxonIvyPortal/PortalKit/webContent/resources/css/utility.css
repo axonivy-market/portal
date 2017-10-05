@@ -130,7 +130,7 @@
 }
 
 .u-text-align-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .u-vertical-align-center {
