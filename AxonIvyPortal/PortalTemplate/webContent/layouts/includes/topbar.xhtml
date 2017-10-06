@@ -88,7 +88,6 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/languageSettings')}"
               onclick="loadLanguageSetting()" /></li>
 
-          <!-- Currently, this feature does not support -->
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
               rendered="#{not userMenuBean.hiddenChangePassword}"
@@ -98,13 +97,7 @@
               </p:commandLink>
           </li>
           
-          <li><p:commandLink id="logout-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/logOut')}"
-              rendered="#{!userMenuBean.hiddenLogout and !isWorkingOnATask}" actionListener="#{userMenuBean.logout}"
-              oncomplete="returnHomePage()" /></li>
-          <li><p:link id="logout-confirmation-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/logOut')}"
-              rendered="#{!userMenuBean.hiddenLogout and isWorkingOnATask}" onclick="PF('logoutConfirmation').show()" />
+          <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
           </li>
         </ul></li>
       <li jsf:rendered="#{enablesChat}"><a jsf:id="toggle-chat-panel-command"
@@ -167,35 +160,9 @@
           dialogName="languageDialogVar" />
       </h:form>
     </p:dialog>
-
-    <p:confirmDialog id="logout-confirmation-dialog"
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="logoutConfirmation"
-      appendTo="@(body)">
-      <f:facet name="message">
-        <h:outputText escape="false"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskLosingWarning')}" />
-      </f:facet>
-      <h:form prependId="false">
-        <h:panelGroup styleClass="Fs14">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" icon="fa fa-check"
-            styleClass="portal-ok-button" global="true" process="@this" actionListener="#{userMenuBean.logout}"
-            oncomplete="returnHomePage();" />
-          <p:commandButton onclick="PF('logoutConfirmation').hide()" type="button" styleClass="portal-cancel-button"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-close" />
-        </h:panelGroup>
-      </h:form>
-    </p:confirmDialog>
-
   </ui:insert>
   <c:if test="#{enablesChat eq true}">
     <ui:include src="/layouts/includes/chat.xhtml" />
   </c:if>
-
-  <script>
-      function returnHomePage() {
-        showConfirmDialogBeforeUnload = false;
-        window.open('#{userMenuBean.homePageURL}', '_self');
-      }
-    </script>
   <!-- TOPBAR END -->
 </ui:composition>

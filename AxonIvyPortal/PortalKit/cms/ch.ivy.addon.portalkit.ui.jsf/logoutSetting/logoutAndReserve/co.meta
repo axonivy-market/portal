@@ -1,0 +1,4 @@
+co: name={logoutAndReserve} description={} changed={2017-10-06 10:30:34 CEST} changedby={dhtlong} visualorder={0} guid={15EF0BB873D53A70} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15EF0BB8748BD3AD} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-06 10:09:35 CEST} validto={} changed={2017-10-06 10:30:34 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15EF0BB874D10AE0} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-06 10:09:35 CEST} validto={} changed={2017-10-06 10:30:34 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15EF0BB873EE18D3} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-06 10:09:35 CEST} validto={} changed={2017-10-06 10:30:28 CEST} changedby={dhtlong} properties={} id={}
