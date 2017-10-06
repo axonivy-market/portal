@@ -61,6 +61,13 @@ public class UserMenuBean {
         globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
     return Boolean.parseBoolean(isHiddenChangePassword);
   }
+  
+  public String getLogoutPage() throws Exception {
+    String logoutPage =
+        SubProcessCall.withPath("Functional Processes/LogoutPage").withStartSignature("call()").call()
+            .get("logoutPage", String.class);
+    return StringUtils.isNotBlank(logoutPage) ? logoutPage : getHomePageURL();
+  }
 
   public String getHomePageURL() throws Exception {
     ApplicationService applicationService = new ApplicationService();
