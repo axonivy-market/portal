@@ -16,7 +16,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 @RunWith(PowerMockRunner.class)
@@ -27,20 +26,6 @@ public class UserMenuBeanTest {
   @Before
   public void init() {
     userMenuBean = new UserMenuBean();
-  }
-
-  @Test
-  @PrepareForTest(Ivy.class)
-  public void testLogout() {
-    mockStatic(Ivy.class);
-    IWorkflowSession session = mock(IWorkflowSession.class);
-    ISecurityContext context = mock(ISecurityContext.class);
-    when(Ivy.session()).thenReturn(session);
-    when(Ivy.session().getSecurityContext()).thenReturn(context);
-    userMenuBean.logout();
-
-    Mockito.verify(session).logoutSessionUser();
-    Mockito.verify(context).destroySession(session.getIdentifier());
   }
 
   @Test

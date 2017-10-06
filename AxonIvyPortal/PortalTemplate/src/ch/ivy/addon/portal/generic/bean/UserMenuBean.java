@@ -38,11 +38,6 @@ public class UserMenuBean {
 
   private boolean hasNoRecordsFound;
 
-  public void logout() {
-    Ivy.session().logoutSessionUser();
-    Ivy.session().getSecurityContext().destroySession(Ivy.session().getIdentifier());
-  }
-
   public String getUserName() {
     userName = Ivy.session().getSessionUserName();
     return userName;
