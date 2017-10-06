@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Thu Aug 17 11:34:52 ICT 2017]
 15035F535EFB1618 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
@@ -417,7 +416,7 @@ Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 
 in.dataModel.compactMode = !in.dataModel.compactMode;
-if (!in.dataModel.compactMode) {
+if (!in.dataModel.compactMode && in.dataModel.#filterContainer is initialized) {
 	for (TaskFilter filter : in.dataModel.filterContainer.filters) {
 		filter.resetValues();
 	}
