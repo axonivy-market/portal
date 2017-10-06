@@ -19,18 +19,14 @@ Ps0 @RichDialogProcessEnd f1 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 Ps0 @RichDialogMethodStart f3 '' #zField
 Ps0 @RichDialogProcessEnd f4 '' #zField
-Ps0 @GridStep f6 '' #zField
-Ps0 @PushWFArc f5 '' #zField
 Ps0 @CallSub f8 '' #zField
 Ps0 @PushWFArc f9 '' #zField
-Ps0 @PushWFArc f7 '' #zField
 Ps0 @RichDialogMethodStart f10 '' #zField
 Ps0 @CallSub f11 '' #zField
-Ps0 @GridStep f12 '' #zField
-Ps0 @PushWFArc f13 '' #zField
 Ps0 @PushWFArc f14 '' #zField
 Ps0 @RichDialogProcessEnd f15 '' #zField
-Ps0 @PushWFArc f16 '' #zField
+Ps0 @PushWFArc f5 '' #zField
+Ps0 @PushWFArc f6 '' #zField
 >Proto Ps0 Ps0 LogoutSettingProcess #zField
 Ps0 f0 guid 15EF07DBEF876B54 #txt
 Ps0 f0 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
@@ -51,10 +47,10 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f0 51 51 26 26 -16 15 #rect
 Ps0 f0 @|RichDialogInitStartIcon #fIcon
 Ps0 f1 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
-Ps0 f1 339 51 26 26 0 12 #rect
+Ps0 f1 307 51 26 26 0 12 #rect
 Ps0 f1 @|RichDialogProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
-Ps0 f2 77 64 339 64 #arcP
+Ps0 f2 77 64 307 64 #arcP
 Ps0 f3 guid 15EF07E1D7F2C49C #txt
 Ps0 f3 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
 Ps0 f3 method logout() #txt
@@ -74,33 +70,14 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f3 51 147 26 26 -21 15 #rect
 Ps0 f3 @|RichDialogMethodStartIcon #fIcon
 Ps0 f4 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
-Ps0 f4 467 147 26 26 0 12 #rect
+Ps0 f4 307 147 26 26 0 12 #rect
 Ps0 f4 @|RichDialogProcessEndIcon #fIcon
-Ps0 f6 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData out;
-' #txt
-Ps0 f6 actionTable 'out=in;
-' #txt
-Ps0 f6 actionCode 'ivy.session.logoutSessionUser();
-ivy.session.getSecurityContext().destroySession(ivy.session.getIdentifier());' #txt
-Ps0 f6 security system #txt
-Ps0 f6 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
-Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Logout</name>
-        <nameStyle>6
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f6 296 138 112 44 -19 -8 #rect
-Ps0 f6 @|StepIcon #fIcon
-Ps0 f5 expr out #txt
-Ps0 f5 408 160 467 160 #arcP
 Ps0 f8 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
-Ps0 f8 processCall 'Functional Processes/Logout:call()' #txt
+Ps0 f8 processCall 'Functional Processes/Logout:call(Boolean)' #txt
 Ps0 f8 doCall true #txt
-Ps0 f8 requestActionDecl '<> param;
+Ps0 f8 requestActionDecl '<java.lang.Boolean isTaskReserve> param;
+' #txt
+Ps0 f8 requestMappingAction 'param.isTaskReserve=false;
 ' #txt
 Ps0 f8 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData out;
 ' #txt
@@ -119,8 +96,6 @@ Ps0 f8 136 138 112 44 -37 -8 #rect
 Ps0 f8 @|CallSubIcon #fIcon
 Ps0 f9 expr out #txt
 Ps0 f9 77 160 136 160 #arcP
-Ps0 f7 expr out #txt
-Ps0 f7 248 160 296 160 #arcP
 Ps0 f10 guid 15EF0CF6DE58BE72 #txt
 Ps0 f10 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
 Ps0 f10 method reserveTask() #txt
@@ -140,9 +115,11 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f10 51 245 26 26 -38 15 #rect
 Ps0 f10 @|RichDialogMethodStartIcon #fIcon
 Ps0 f11 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
-Ps0 f11 processCall 'Functional Processes/Logout:call()' #txt
+Ps0 f11 processCall 'Functional Processes/Logout:call(Boolean)' #txt
 Ps0 f11 doCall true #txt
-Ps0 f11 requestActionDecl '<> param;
+Ps0 f11 requestActionDecl '<java.lang.Boolean isTaskReserve> param;
+' #txt
+Ps0 f11 requestMappingAction 'param.isTaskReserve=true;
 ' #txt
 Ps0 f11 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData out;
 ' #txt
@@ -159,51 +136,26 @@ Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f11 137 235 112 44 -37 -8 #rect
 Ps0 f11 @|CallSubIcon #fIcon
-Ps0 f12 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData out;
-' #txt
-Ps0 f12 actionTable 'out=in;
-' #txt
-Ps0 f12 actionCode 'ivy.session.parkTask(ivy.task);
-ivy.session.logoutSessionUser();
-ivy.session.getSecurityContext().destroySession(ivy.session.getIdentifier());' #txt
-Ps0 f12 security system #txt
-Ps0 f12 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
-Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Logout and
-reserve</name>
-        <nameStyle>18
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f12 297 235 112 44 -31 -16 #rect
-Ps0 f12 @|StepIcon #fIcon
-Ps0 f13 expr out #txt
-Ps0 f13 249 257 297 257 #arcP
 Ps0 f14 expr out #txt
 Ps0 f14 76 257 137 257 #arcP
 Ps0 f15 type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
-Ps0 f15 467 245 26 26 0 12 #rect
+Ps0 f15 307 245 26 26 0 12 #rect
 Ps0 f15 @|RichDialogProcessEndIcon #fIcon
-Ps0 f16 expr out #txt
-Ps0 f16 409 257 467 257 #arcP
+Ps0 f5 expr out #txt
+Ps0 f5 248 160 307 160 #arcP
+Ps0 f6 expr out #txt
+Ps0 f6 249 257 307 257 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
-Ps0 f6 mainOut f5 tail #connect
-Ps0 f5 head f4 mainIn #connect
 Ps0 f3 mainOut f9 tail #connect
 Ps0 f9 head f8 mainIn #connect
-Ps0 f8 mainOut f7 tail #connect
-Ps0 f7 head f6 mainIn #connect
-Ps0 f11 mainOut f13 tail #connect
-Ps0 f13 head f12 mainIn #connect
 Ps0 f10 mainOut f14 tail #connect
 Ps0 f14 head f11 mainIn #connect
-Ps0 f12 mainOut f16 tail #connect
-Ps0 f16 head f15 mainIn #connect
+Ps0 f8 mainOut f5 tail #connect
+Ps0 f5 head f4 mainIn #connect
+Ps0 f11 mainOut f6 tail #connect
+Ps0 f6 head f15 mainIn #connect
