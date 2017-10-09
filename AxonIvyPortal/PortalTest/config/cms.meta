@@ -1,0 +1,4 @@
+cms: description={Configuration DB} defaultLanguage={en} defaultPageLayout={} defaultPageStyleSheet={}
+lang: language={de} id={}
+lang: language={en} id={}
+lang: language={fr} id={}
