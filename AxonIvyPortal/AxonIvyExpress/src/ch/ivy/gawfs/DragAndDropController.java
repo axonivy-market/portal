@@ -17,6 +17,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ViewScoped
 public class DragAndDropController implements Serializable{
 
+	private static final String FORM_ELEMENT_FILE_UPLOAD = "FileUpload";
+
 	private static final long serialVersionUID = 2896675125359151717L;
 
 	private List<Formelement> availableFormelements;    
@@ -62,7 +64,6 @@ public class DragAndDropController implements Serializable{
     	selectedFormelementsFooter = new ArrayList<Formelement>();
     	finalUsedFormelements = new ArrayList<Formelement>();
         
-        Ivy.log().info("Formelements initiated");
 	}
     
     
@@ -75,16 +76,16 @@ public class DragAndDropController implements Serializable{
 	public void onFieldDropHeader(DragDropEvent ddEvent) {
 		Formelement droppedFormelement = ((Formelement) ddEvent.getData());
 
-		if (droppedFormelement.getType().equals("FileUpload")) {
+		if (droppedFormelement.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
 			for (Formelement element : selectedFormelementsHeader) {
-				if (element.getType().equals("FileUpload")) {
+				if (element.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
 					displayFileUploadPositionNotice();
 					return;
 				}
 				
 			}
 			for (Formelement element : selectedFormelementsFooter) {
-				if (element.getType().equals("FileUpload")) {
+				if (element.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
 					displayFileUploadPositionNotice();
 					return;
 				}
@@ -98,9 +99,6 @@ public class DragAndDropController implements Serializable{
 		availableFormelements.remove(droppedFormelement);
 
 		updateForm();
-		Ivy.log().info(
-				"Formselement (" + droppedFormelement.getType()
-						+ ") droppped in Header");
 	}
     
     
@@ -109,7 +107,6 @@ public class DragAndDropController implements Serializable{
     	selectedFormelementsHeader.remove(formelement);
     	
     	updateForm();
-    	Ivy.log().info("Formelement resetted from Header");
     }
     
     
@@ -117,7 +114,7 @@ public class DragAndDropController implements Serializable{
     public void onFieldDropLeftPanel(DragDropEvent ddEvent) {
         Formelement droppedFormelement = ((Formelement) ddEvent.getData());
         
-        if(droppedFormelement.getType().equals("FileUpload")){
+        if(droppedFormelement.getType().equals(FORM_ELEMENT_FILE_UPLOAD)){
          	 displayFileUploadPositionNotice();           
          	return;
        }
@@ -126,7 +123,6 @@ public class DragAndDropController implements Serializable{
         availableFormelements.remove(droppedFormelement);
         
         updateForm();        
-        Ivy.log().info("Formselement(" + droppedFormelement.getType()+ ") droppped in LeftPanel");
     }
     
     public void resetFormelementLeftPanel(Formelement formelement){
@@ -134,13 +130,12 @@ public class DragAndDropController implements Serializable{
     	selectedFormelementsLeftPanel.remove(formelement);
     	
     	updateForm();
-    	Ivy.log().info("Formelement resetted from Left Panel");
     }
     
     public void onFieldDropRightPanel(DragDropEvent ddEvent) {
         Formelement droppedFormelement = ((Formelement) ddEvent.getData());
         
-        if(droppedFormelement.getType().equals("FileUpload")){
+        if(droppedFormelement.getType().equals(FORM_ELEMENT_FILE_UPLOAD)){
         	 displayFileUploadPositionNotice();                    
           	return;
         }
@@ -149,7 +144,6 @@ public class DragAndDropController implements Serializable{
         availableFormelements.remove(droppedFormelement);
         
         updateForm();
-        Ivy.log().info("Formselement(" + droppedFormelement.getType()+ ") droppped in RightPanel");
     }
     
     public void resetFormelementRightPanel(Formelement formelement){
@@ -157,23 +151,22 @@ public class DragAndDropController implements Serializable{
     	selectedFormelementsRightPanel.remove(formelement);
     	
     	updateForm();
-    	Ivy.log().info("Formelement resetted from Right Panel");
     }
     
     
     public void onFieldDropFooter(DragDropEvent ddEvent) {
         Formelement droppedFormelement = ((Formelement) ddEvent.getData());
         
-    	if (droppedFormelement.getType().equals("FileUpload")) {
+    	if (droppedFormelement.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
 			for (Formelement element : selectedFormelementsHeader) {
-				if (element.getType().equals("FileUpload")) {
+				if (element.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
 					displayFileUploadPositionNotice();
 					return;
 				}
 				
 			}
 			for (Formelement element : selectedFormelementsFooter) {
-				if (element.getType().equals("FileUpload")) {
+				if (element.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
 					 displayFileUploadPositionNotice();          
 					return;
 				}
@@ -188,7 +181,6 @@ public class DragAndDropController implements Serializable{
         availableFormelements.remove(droppedFormelement);
         
         updateForm();
-        Ivy.log().info("Formselement (" + droppedFormelement.getType()+ ") droppped in Footer");
         
     }
 
@@ -202,7 +194,6 @@ public class DragAndDropController implements Serializable{
     	selectedFormelementsFooter.remove(formelement);
     	
     	updateForm();
-    	Ivy.log().info("Formelement resetted from Footer");
     }
 
 
@@ -296,13 +287,5 @@ public class DragAndDropController implements Serializable{
 	public void addFinalUsedFormelements(Formelement formelement) {
 		this.finalUsedFormelements.add(formelement);
 	}
-    
-    
-	
-    
-    
-
-     
- 
 
 }

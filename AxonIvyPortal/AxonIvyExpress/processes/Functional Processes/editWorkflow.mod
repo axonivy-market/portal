@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 10:06:21 ICT 2017]
 15791C23B125821B 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
@@ -201,8 +200,6 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
 		x.name = e.name;
 		x.required = e.required;
 		x.processID =  processID;
-		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsStr());
-		
 		x.optionsStr = e.getOptionsAsString();
 
 		ExpressServiceRegistry.getFormElementService().save(x);
@@ -218,7 +215,6 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
 		x.name = e.name;
 		x.required = e.required;
 		x.processID = processID;
-		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsStr());
 		x.optionsStr = e.getOptionsAsString();
 		ExpressServiceRegistry.getFormElementService().save(x);}
 
@@ -232,7 +228,6 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
 		x.name = e.name;
 		x.required = e.required;
 		x.processID = processID;
-		ivy.log.debug("OptionsString of:"+ e.label + "-" + e.getOptionsAsString());
 		x.optionsStr = e.getOptionsAsString();
 		ExpressServiceRegistry.getFormElementService().save(x);}
 
@@ -246,8 +241,6 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
 		x.name = e.name;
 		x.required = e.required;
 		x.processID = processID;
-		ivy.log.debug("1OptionsString of:"+ e.label );
-		ivy.log.debug("2OptionsString of:"+ e.getOptionsAsString());
 		x.optionsStr = e.getOptionsAsString();
 		ExpressServiceRegistry.getFormElementService().save(x);}
 
@@ -263,8 +256,6 @@ for (TaskDef t: in.definedTasks){
 		tp.taskCount = t.count;
 		ExpressServiceRegistry.getTaskDefinitionService().save(tp);
 }
-
-ivy.log.debug("Process saved with the ProcessID" + in.processID);
 ' #txt
 ew0 f9 security system #txt
 ew0 f9 type gawfs.Data #txt
@@ -549,13 +540,11 @@ for (ExpressFormElement element: formelements){
 	formelement.name = element.name;
 	formelement.required = element.required;
 	formelement.type = element.elementType;
-	
-	ivy.log.debug("element.optionsStr");
+
 	List<String> optionsStrx = element.optionsStr.split(":",-1);
 	
 	//direct assignement makes an array list, which makes problems in the seriealization, workaround:
 	for(String optionx: optionsStrx){
-		ivy.log.debug("1" + optionx);
 		formelement.addOption(optionx);
 	}
 	
@@ -602,8 +591,6 @@ import gawfs.TaskDef;
 List<ExpressTaskDefinition> taskSteps = ExpressServiceRegistry.getTaskDefinitionService().findByProcessId(in.processID);
 
 
-ivy.log.debug("Eingelese Tasks aus PDB: " + taskSteps.size());
-
 for(ExpressTaskDefinition task: taskSteps){
 	TaskDef xtask = new TaskDef();
 	
@@ -615,13 +602,11 @@ for(ExpressTaskDefinition task: taskSteps){
 	xtask.actorDisplayName = "";
 	
 	if(task.taskActor.startsWith("#")){
-		ivy.log.debug("1 taskActor: " + task.taskActor);
 		IUser user = ivy.wf.getSecurityContext().findUser(task.taskActor.substring(1));
 		if(#user is initialized) { 
 		  xtask.actorDisplayName = ivy.wf.getSecurityContext().findUser(task.taskActor.substring(1)).getDisplayName();
 		}
 	}else{
-		ivy.log.debug("2 taskActor: " + task.taskActor);
 		IRole role =  ivy.wf.getSecurityContext().findRole(task.taskActor);
 		if(#role is initialized) {
 		  xtask.actorDisplayName = ivy.wf.getSecurityContext().findRole(task.taskActor).getDisplayName();

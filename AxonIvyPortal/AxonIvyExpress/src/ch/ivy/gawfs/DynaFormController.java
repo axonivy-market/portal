@@ -5,15 +5,18 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
 import org.primefaces.extensions.model.dynaform.DynaFormLabel;
 import org.primefaces.extensions.model.dynaform.DynaFormModel;
 import org.primefaces.extensions.model.dynaform.DynaFormRow;
 
-import ch.ivyteam.ivy.environment.Ivy;
-
 public class DynaFormController implements Serializable {
+
+	private static final String CONTROL_SPACER = "Spacer";
+
+	private static final String FORM_ELEMENT_FILE_UPLOAD = "FileUpload";
 
 	private static final long serialVersionUID = -1486400417160014320L;
 
@@ -29,13 +32,6 @@ public class DynaFormController implements Serializable {
 
 	public void createForm(){
 			model = new DynaFormModel();
-			Ivy.log().debug("DynaForm.createForm called!");	
-			
-			Ivy.log().debug("DynaForm.createForm Headerloop with " + dragAndDropController.getSelectedFormelementsHeader().size() + " Elements");
-			Ivy.log().debug("DynaForm.createForm Leftloop with " + dragAndDropController.getSelectedFormelementsLeftPanel().size() + " Elements");
-			Ivy.log().debug("DynaForm.createForm Rightloop with " + dragAndDropController.getSelectedFormelementsRightPanel().size() + " Elements");
-			Ivy.log().debug("DynaForm.createForm Footerloop with " + dragAndDropController.getSelectedFormelementsFooter().size() + " Elements");
-		
 			dragAndDropController.getFinalUsedFormelements().clear();
 			
 		//Loop to create all Elements places in the Header Section	
@@ -44,7 +40,7 @@ public class DynaFormController implements Serializable {
 			
 			tempRow = model.createRegularRow();
 			
-			if(!element.getType().equals("FileUpload")){
+			if(!element.getType().equals(FORM_ELEMENT_FILE_UPLOAD)){
 				
 				DynaFormLabel label = tempRow.addLabel(element.getLabel());
 				DynaFormControl control = tempRow.addControl(element, element.getType(),3,1);
@@ -55,11 +51,7 @@ public class DynaFormController implements Serializable {
 				tempRow = model.createRegularRow();
 				DynaFormControl control = tempRow.addControl(element, element.getType(),4,1);
 				label.setForControl(control);
-				Ivy.log().debug("DynaForm.createForm Headerloop: " + element.getType() + "," + element.getLabel()+ " Sonderform erstellt!");
 			}
-			
-			Ivy.log().debug("DynaForm.createForm Headerloop: " + element.getType() + "," + element.getLabel()+ " erstellt!");
-			
 		}
 		
 		
@@ -76,12 +68,9 @@ public class DynaFormController implements Serializable {
 				DynaFormLabel label = tempRow.addLabel(element.getLabel());
 				DynaFormControl control = tempRow.addControl(element, element.getType());
 				label.setForControl(control);				
-				Ivy.log().debug("DynaForm.createForm Leftloop: " + element.getType() + "," + element.getLabel()+ " erstellt!");
 			} else {
-				tempRow.addLabel("");
-				tempRow.addControl(null, "Spacer");
-
-				Ivy.log().debug("DynaForm.createForm Leftloop Spacer erstellt!");
+				tempRow.addLabel(StringUtils.EMPTY);
+				tempRow.addControl(null, CONTROL_SPACER);
 			}
 			
 			//Elements from the Right Section	
@@ -94,13 +83,10 @@ public class DynaFormController implements Serializable {
 				DynaFormControl control = tempRow.addControl(element, element.getType());
 				label.setForControl(control);
 				
-				Ivy.log().debug("DynaForm.createForm Rightloop: " + element.getType() + "," + element.getLabel()+ " erstellt!");
-				
 			} else {
-				tempRow.addLabel("");
-				tempRow.addControl(null, "Spacer");
+				tempRow.addLabel(StringUtils.EMPTY);
+				tempRow.addControl(null, CONTROL_SPACER);
 				
-				Ivy.log().debug("DynaForm.createForm Rightloop Spacer erstellt!");
 			}	
 	
 		}
@@ -109,11 +95,9 @@ public class DynaFormController implements Serializable {
 		for (Formelement element : dragAndDropController.getSelectedFormelementsFooter()) {
 			
 			dragAndDropController.addFinalUsedFormelements(element);
-			Ivy.log().debug("DynaForm.createForm Footerloop with " + dragAndDropController.getSelectedFormelementsFooter().size() + "Elements");	
-		
 			tempRow = model.createRegularRow();
 			
-			if(!element.getType().equals("FileUpload")){
+			if(!element.getType().equals(FORM_ELEMENT_FILE_UPLOAD)){
 				DynaFormLabel label = tempRow.addLabel(element.getLabel());
 				DynaFormControl control = tempRow.addControl(element, element.getType(),3,1);
 				label.setForControl(control);
@@ -122,9 +106,7 @@ public class DynaFormController implements Serializable {
 				tempRow = model.createRegularRow();
 				DynaFormControl control = tempRow.addControl(element, element.getType(),4,1);
 				label.setForControl(control);
-				Ivy.log().debug("DynaForm.createForm Footerloop: " + element.getType() + "," + element.getLabel()+ " Sonderform erstellt!");
 			}
-			Ivy.log().debug("DynaForm.createForm Footerloop: " + element.getType() + "," + element.getLabel()+ " erstellt!");
 		}
 	}
 
