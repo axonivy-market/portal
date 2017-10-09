@@ -29,7 +29,7 @@ import ch.ivyteam.ivy.workflow.document.IDocumentService;
  */
 public class DocumentFileUtils {
 	
-  static final String EXPRESS_UPLOAD_FOLDER="AxonIvyExpress";
+  static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
   
 	/**
 	 * @param currentCase root folder 

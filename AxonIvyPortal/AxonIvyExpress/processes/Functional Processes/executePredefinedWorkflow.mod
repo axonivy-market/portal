@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 10:59:34 ICT 2017]
 15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
@@ -129,7 +128,6 @@ ew0 f9 actionCode 'out.nextTask = in.definedTasks.removeGet(0);
 
 in.actualStepIndex++;
 
-//out.nextTask.setSubject(in.caseInfo.subject);
 
 
 ' #txt
@@ -339,7 +337,7 @@ ew0 f7 actionTable 'out=in1;
 ' #txt
 ew0 f7 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 ew0 f7 outLinks "TaskA.ivp" #txt
-ew0 f7 taskData 'TaskA.DESC=Der Workflow <%\=in1.workflowName%> wurde <%\=in1.nextTask.description%>\!
+ew0 f7 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName, in1.nextTask.description))%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
@@ -649,7 +647,7 @@ import gawfs.TaskDef;
 Helper helper = new Helper();
 
 List<ExpressTaskDefinition> taskSteps = ExpressServiceRegistry.getTaskDefinitionService().findByProcessId(in.workflowID);
-ivy.log.debug("Eingelese Tasks aus PDB: " + taskSteps.size());
+
 for(ExpressTaskDefinition task: taskSteps){
 	TaskDef xtask = new TaskDef();
 	xtask.actor = task.taskActor;

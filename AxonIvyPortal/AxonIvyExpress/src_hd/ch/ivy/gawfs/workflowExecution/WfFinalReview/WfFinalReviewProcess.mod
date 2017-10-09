@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 09:58:12 ICT 2017]
 157891957447B0FC 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFinalReviewProcess Big #zClass
@@ -99,12 +98,10 @@ Ws0 f24 actionTable 'out=in;
 Ws0 f24 actionCode 'import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
-import javax.servlet.http.HttpServletRequest;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
  
-//ivy.task.destroy();
 ivy.task.reset();
 
 IProcessStart processStart;
@@ -127,7 +124,6 @@ if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
 }
 
 //redirect to portal
-//ivy.log.debug("Link to Portal found:"+link);
 FacesContext.getCurrentInstance().getExternalContext().redirect(link);
 ' #txt
 Ws0 f24 security system #txt

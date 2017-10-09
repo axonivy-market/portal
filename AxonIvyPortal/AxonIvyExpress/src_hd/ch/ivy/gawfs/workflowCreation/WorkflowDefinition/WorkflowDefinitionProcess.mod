@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Tue Jul 25 10:40:39 ICT 2017]
 1576FA61C4EDC8B1 3.20 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
@@ -32,10 +31,7 @@ Fs0 @GridStep f13 '' #zField
 Fs0 @PushWFArc f14 '' #zField
 Fs0 @PushWFArc f15 '' #zField
 Fs0 @RichDialogMethodStart f16 '' #zField
-Fs0 @GridStep f17 '' #zField
-Fs0 @PushWFArc f18 '' #zField
 Fs0 @RichDialogProcessEnd f20 '' #zField
-Fs0 @PushWFArc f21 '' #zField
 Fs0 @RichDialogMethodStart f19 '' #zField
 Fs0 @GridStep f23 '' #zField
 Fs0 @PushWFArc f24 '' #zField
@@ -45,6 +41,7 @@ Fs0 @RichDialogEnd f30 '' #zField
 Fs0 @GridStep f28 '' #zField
 Fs0 @PushWFArc f32 '' #zField
 Fs0 @PushWFArc f31 '' #zField
+Fs0 @PushWFArc f26 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -97,11 +94,12 @@ Fs0 f6 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefi
 Fs0 f6 actionTable 'out=in;
 out.one=1;
 ' #txt
-Fs0 f6 actionCode '
-import java.util.Collections;
+Fs0 f6 actionCode 'import java.util.Collections;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivy.gawfs.Helper;
 import gawfs.TaskDef;
+import ch.ivyteam.ivy.security.IUser;
+
 
 ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskName"));
 ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskDescription"));
@@ -119,7 +117,6 @@ if(in.data.definedTasks.size()<1){
 
 
 //Get Users
-import ch.ivyteam.ivy.security.IUser;
 List users = ivy.wf.getSecurityContext().getUsers();
 in.AvailableRolesAndUsers.clear();
 
@@ -132,7 +129,6 @@ for(IUser user : users)
 }
 
 //Get Roles
-import ch.ivyteam.ivy.security.IUser;
 List roles = ivy.wf.getSecurityContext().getRoles();
 
 for(IRole role : roles){
@@ -142,7 +138,6 @@ for(IRole role : roles){
 	out.AvailableRolesAndUsers.add(role);
 }
 
-//out.AvailableRolesAndUsers = Helper.sortSecurityMembersByMemberType(out.AvailableRolesAndUsers);
 out.AvailableRolesAndUsers = Helper.sortSecurityMembers(out.AvailableRolesAndUsers);
 
 //init user selection 
@@ -288,33 +283,9 @@ Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fs0 f16 83 339 26 26 -70 15 #rect
 Fs0 f16 @|RichDialogMethodStartIcon #fIcon
-Fs0 f17 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
-Fs0 f17 actionTable 'out=in;
-' #txt
-Fs0 f17 actionCode '
-
-//in.selectedRoleOrUser = in.AvailableRolesAndUsers.get(0);' #txt
-Fs0 f17 security system #txt
-Fs0 f17 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>initAssignement</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Fs0 f17 200 330 112 44 -44 -8 #rect
-Fs0 f17 @|StepIcon #fIcon
-Fs0 f18 expr out #txt
-Fs0 f18 109 352 200 352 #arcP
 Fs0 f20 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f20 435 339 26 26 0 12 #rect
 Fs0 f20 @|RichDialogProcessEndIcon #fIcon
-Fs0 f21 expr out #txt
-Fs0 f21 312 352 435 352 #arcP
 Fs0 f19 guid 1579333111525F97 #txt
 Fs0 f19 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f19 method updateAssignement() #txt
@@ -337,14 +308,9 @@ Fs0 f23 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDef
 ' #txt
 Fs0 f23 actionTable 'out=in;
 ' #txt
-Fs0 f23 actionCode 'import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.security.IRole;
-
-out.openTask.actor = "";
-out.openTask.actor = in.selectedRoleOrUser.getMemberName();
+Fs0 f23 actionCode 'out.openTask.actor = in.selectedRoleOrUser.getMemberName();
 out.openTask.actorDisplayName = in.selectedRoleOrUser.getDisplayName();
-
-ivy.log.debug("Assignee: " + in.selectedRoleOrUser.getMemberName());' #txt
+' #txt
 Fs0 f23 security system #txt
 Fs0 f23 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -411,6 +377,8 @@ Fs0 f32 expr out #txt
 Fs0 f32 109 576 200 576 #arcP
 Fs0 f31 expr out #txt
 Fs0 f31 312 576 435 576 #arcP
+Fs0 f26 expr out #txt
+Fs0 f26 109 352 435 352 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -429,10 +397,6 @@ Fs0 f8 mainOut f14 tail #connect
 Fs0 f14 head f13 mainIn #connect
 Fs0 f13 mainOut f15 tail #connect
 Fs0 f15 head f1 mainIn #connect
-Fs0 f16 mainOut f18 tail #connect
-Fs0 f18 head f17 mainIn #connect
-Fs0 f17 mainOut f21 tail #connect
-Fs0 f21 head f20 mainIn #connect
 Fs0 f19 mainOut f24 tail #connect
 Fs0 f24 head f23 mainIn #connect
 Fs0 f23 mainOut f22 tail #connect
@@ -441,3 +405,5 @@ Fs0 f25 mainOut f32 tail #connect
 Fs0 f32 head f28 mainIn #connect
 Fs0 f28 mainOut f31 tail #connect
 Fs0 f31 head f30 mainIn #connect
+Fs0 f16 mainOut f26 tail #connect
+Fs0 f26 head f20 mainIn #connect
