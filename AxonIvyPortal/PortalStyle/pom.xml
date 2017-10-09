@@ -24,6 +24,10 @@
     <resources.directory>${project.basedir}/webContent/resources</resources.directory>
   </properties>
   <build>
+  	<sourceDirectory>${basedir}/src/</sourceDirectory>
+	<directory>${basedir}/target</directory>
+	<outputDirectory>${basedir}/classes</outputDirectory>
+	
     <plugins>
       <plugin>
 		<artifactId>maven-antrun-plugin</artifactId>
