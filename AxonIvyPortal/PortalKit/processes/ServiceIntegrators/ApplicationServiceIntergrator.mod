@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 14 10:33:29 ICT 2016]
-154F0F14C9113E05 3.18 #module
+154F0F14C9113E05 3.20 #module
 >Proto >Proto Collection #zClass
 Ar0 ApplicationServiceIntergrator Big #zClass
 Ar0 B #cInfo
@@ -40,12 +39,12 @@ Ar0 @WSElement f24 '' #zField
 Ar0 @PushWFArc f25 '' #zField
 Ar0 @PushWFArc f26 '' #zField
 Ar0 @PushWFArc f21 '' #zField
-Ar0 @PushWFArc f29 '' #zField
 Ar0 @PushWFArc f1 '' #zField
 Ar0 @WSElement f3 '' #zField
 Ar0 @PushWFArc f4 '' #zField
 Ar0 @PushWFArc f5 '' #zField
 Ar0 @PushWFArc f6 '' #zField
+Ar0 @PushWFArc f35 '' #zField
 >Proto Ar0 Ar0 ApplicationServiceIntergrator #zField
 Ar0 f17 type ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData #txt
 Ar0 f17 actionDecl 'ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData out;
@@ -54,12 +53,14 @@ Ar0 f17 actionTable 'out=in;
 out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
-Ar0 f17 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f17 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f17 timeout 0 #txt
 Ar0 f17 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getAllApplications
 KEY_AUTHENTICATION_KIND=0
@@ -78,7 +79,7 @@ with default settings</name>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f17 496 260 160 56 -59 -16 #rect
+Ar0 f17 496 292 160 56 -59 -16 #rect
 Ar0 f17 @|WebServiceIcon #fIcon
 Ar0 f15 type ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData #txt
 Ar0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -90,7 +91,7 @@ Ar0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f15 338 146 28 28 8 -28 #rect
+Ar0 f15 338 178 28 28 8 -28 #rect
 Ar0 f15 @|AlternativeIcon #fIcon
 Ar0 f9 type ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData #txt
 Ar0 f9 actionDecl 'ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData out;
@@ -99,12 +100,14 @@ Ar0 f9 actionTable 'out=in;
 out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
-Ar0 f9 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f9 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f9 timeout 0 #txt
 Ar0 f9 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getAllApplications
 KEY_AUTHENTICATION_KIND=4
@@ -124,10 +127,10 @@ and Global Variable Settings</name>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f9 264 258 176 60 -70 -24 #rect
+Ar0 f9 264 290 176 60 -70 -24 #rect
 Ar0 f9 @|WebServiceIcon #fIcon
 Ar0 f16 type ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData #txt
-Ar0 f16 339 403 26 26 14 0 #rect
+Ar0 f16 339 435 26 26 14 0 #rect
 Ar0 f16 @|EndSubIcon #fIcon
 Ar0 f19 expr in #txt
 Ar0 f19 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
@@ -140,13 +143,13 @@ Ar0 f19 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f19 352 174 352 258 #arcP
+Ar0 f19 352 206 352 290 #arcP
 Ar0 f19 0 0.27380952380952384 -13 0 #arcLabel
 Ar0 f20 expr out #txt
-Ar0 f20 352 318 352 403 #arcP
+Ar0 f20 352 350 352 435 #arcP
 Ar0 f22 expr out #txt
-Ar0 f22 576 316 365 416 #arcP
-Ar0 f22 1 576 416 #addKink
+Ar0 f22 576 348 365 448 #arcP
+Ar0 f22 1 576 448 #addKink
 Ar0 f22 0 0.5636261753528126 0 0 #arcLabel
 Ar0 f0 inParamDecl '<java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
 Ar0 f0 inParamTable 'out.endpoint=param.endpoint;
@@ -203,12 +206,14 @@ Ar0 f7 actionTable 'out=in;
 out.applications=wsResponse.getApplicationsByAppNamesResponse.result.applications;
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
-Ar0 f7 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f7 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f7 timeout 0 #txt
 Ar0 f7 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getApplicationsByAppNames
 KEY_AUTHENTICATION_KIND=4
@@ -252,12 +257,14 @@ Ar0 f11 actionTable 'out=in;
 out.applications=wsResponse.getApplicationsByAppNamesResponse.result.applications;
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
-Ar0 f11 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f11 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f11 timeout 0 #txt
 Ar0 f11 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getApplicationsByAppNames
 KEY_AUTHENTICATION_KIND=0
@@ -303,7 +310,10 @@ Ar0 f28 actionTable 'out=in;
 ' #txt
 Ar0 f28 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
-in.applicationNames = SecurityServiceUtils.getAppNames(in.server);' #txt
+in.applicationNames = SecurityServiceUtils.getAppNames(in.server);
+
+
+' #txt
 Ar0 f28 type ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData #txt
 Ar0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -378,12 +388,14 @@ Ar0 f24 actionTable 'out=in;
 out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
-Ar0 f24 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f24 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f24 timeout 0 #txt
 Ar0 f24 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getAllApplications
 KEY_AUTHENTICATION_KIND=1
@@ -402,7 +414,7 @@ with HTTP Basic</name>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f24 48 266 160 44 -59 -16 #rect
+Ar0 f24 48 298 160 44 -59 -16 #rect
 Ar0 f24 @|WebServiceIcon #fIcon
 Ar0 f25 expr in #txt
 Ar0 f25 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
@@ -415,12 +427,12 @@ Ar0 f25 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f25 338 160 128 266 #arcP
-Ar0 f25 1 128 160 #addKink
+Ar0 f25 338 192 128 298 #arcP
+Ar0 f25 1 128 192 #addKink
 Ar0 f25 0 0.719047619047619 0 -10 #arcLabel
 Ar0 f26 expr out #txt
-Ar0 f26 128 310 339 416 #arcP
-Ar0 f26 1 128 416 #addKink
+Ar0 f26 128 342 339 448 #arcP
+Ar0 f26 1 128 448 #addKink
 Ar0 f26 1 0.25011774148469074 0 0 #arcLabel
 Ar0 f21 expr in #txt
 Ar0 f21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -432,11 +444,9 @@ Ar0 f21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f21 366 160 576 260 #arcP
-Ar0 f21 1 576 160 #addKink
+Ar0 f21 366 192 576 292 #arcP
+Ar0 f21 1 576 192 #addKink
 Ar0 f21 0 0.7986561412607155 -1 -11 #arcLabel
-Ar0 f29 expr out #txt
-Ar0 f29 352 77 352 146 #arcP
 Ar0 f1 expr out #txt
 Ar0 f1 1024 77 1024 116 #arcP
 Ar0 f3 type ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData #txt
@@ -446,12 +456,14 @@ Ar0 f3 actionTable 'out=in;
 out.applications=wsResponse.getApplicationsByAppNamesResponse.result.applications;
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
-Ar0 f3 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f3 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f3 timeout 0 #txt
 Ar0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getApplicationsByAppNames
 KEY_AUTHENTICATION_KIND=1
@@ -503,6 +515,8 @@ Ar0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ar0 f6 1038 192 1280 284 #arcP
 Ar0 f6 1 1280 192 #addKink
 Ar0 f6 0 0.7107438016528925 0 -12 #arcLabel
+Ar0 f35 expr out #txt
+Ar0 f35 352 77 352 178 #arcP
 >Proto Ar0 .type ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData #txt
 >Proto Ar0 .processKind CALLABLE_SUB #txt
 >Proto Ar0 0 0 32 24 18 0 #rect
@@ -531,8 +545,6 @@ Ar0 f24 mainOut f26 tail #connect
 Ar0 f26 head f16 mainIn #connect
 Ar0 f15 out f21 tail #connect
 Ar0 f21 head f17 mainIn #connect
-Ar0 f0 mainOut f29 tail #connect
-Ar0 f29 head f15 in #connect
 Ar0 f2 mainOut f1 tail #connect
 Ar0 f1 head f28 mainIn #connect
 Ar0 f8 out f4 tail #connect
@@ -541,3 +553,5 @@ Ar0 f3 mainOut f5 tail #connect
 Ar0 f5 head f10 mainIn #connect
 Ar0 f8 out f6 tail #connect
 Ar0 f6 head f11 mainIn #connect
+Ar0 f0 mainOut f35 tail #connect
+Ar0 f35 head f15 in #connect
