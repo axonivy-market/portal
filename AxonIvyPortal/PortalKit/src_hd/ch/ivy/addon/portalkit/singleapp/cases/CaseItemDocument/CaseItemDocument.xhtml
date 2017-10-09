@@ -49,9 +49,7 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
         mode="advanced" dragDropSupport="true" multiple="true" update="upload-messages case-details-documents"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}"
-        uploadLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/upload')}"
-        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" auto="true" />
 
       <f:facet name="footer">
         <p:commandButton id="document-upload-close-command" type="button"

@@ -1023,7 +1023,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .widget-header-main {
-  flex: 1 0 100%;
+  flex: 1 0 50%;
   position: relative;
   height: 50px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -1044,7 +1044,9 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .widget-header-sub {
-  padding-bottom: 5px;
+  flex: 1 0 auto;
+  margin-left: 25px;
+  align-self: flex-end;
 }
 
 .widget-header-main-title {
@@ -1249,6 +1251,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .filter-widget {
   position: relative;
   display: flex;
+  margin-top: 11px;
 }
 
 .filter-widget-input {
