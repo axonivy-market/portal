@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Thu May 11 14:52:05 ICT 2017]
 15788E435FBCCB49 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfSecondReviewFormProcess Big #zClass
@@ -203,7 +202,6 @@ import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
  
-//ivy.task.destroy();
 ivy.task.reset();
 
 IProcessStart processStart;
@@ -226,7 +224,6 @@ if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
 }
 
 //redirect to portal
-//ivy.log.debug("Link to Portal found:"+link);
 FacesContext.getCurrentInstance().getExternalContext().redirect(link);' #txt
 Ws0 f24 security system #txt
 Ws0 f24 type ch.ivy.gawfs.workflowExecution.WfSecondReviewForm.WfSecondReviewFormData #txt
