@@ -8,11 +8,13 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import org.apache.commons.lang.StringUtils;
 
 @ManagedBean(name = "Formelement")
 @ViewScoped
 public class Formelement implements Serializable{
+
+	private static final String COLON = ":";
 
 	private static final long serialVersionUID = -4960948147758580124L;
 	
@@ -33,7 +35,7 @@ public class Formelement implements Serializable{
 			optionsStr.add(formelementOption.getValue());			
 		}			
 		if(this.optionsStr.isEmpty()){
-			this.optionsStr.add("");
+			this.optionsStr.add(StringUtils.EMPTY);
 		}
 		return optionsStr;
 	}
@@ -47,10 +49,10 @@ public class Formelement implements Serializable{
 	}
 	
 	public String getOptionsAsString(){
-		String x = "";
+		String x = StringUtils.EMPTY;
 		for(String s: this.optionsStr){
 		  if(this.optionsStr.size() > 1) {
-		    x += s + ":";
+		    x += s + COLON;
 		  }
 		  else {
 		    x += s;
@@ -127,10 +129,10 @@ public class Formelement implements Serializable{
 
 	public void setLabel(String label) {
 		label = label.trim();
-		if(label.substring(label.length() - 1).equals(":")){
+		if(label.substring(label.length() - 1).equals(COLON)){
 			this.label = label;
 		}else{
-			label +=":";
+			label +=COLON;
 			this.label = label;
 		}
 	}
@@ -186,7 +188,7 @@ public class Formelement implements Serializable{
 	}
 	
 	public void addOption(){
-		this.options.add(new FormelementOption(""));
+		this.options.add(new FormelementOption(StringUtils.EMPTY));
 		this.optionsStr.clear();
 		for (FormelementOption formelementOption : options) {
 			optionsStr.add(formelementOption.getValue());			
@@ -213,23 +215,7 @@ public class Formelement implements Serializable{
 	}
 	
 	public void deleteOption(FormelementOption option){
-		Ivy.log().debug("deleteOption" + option.getValue());
 		this.options.remove(this.options.size()-1);
-		//this.options.remove(option);
 	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
