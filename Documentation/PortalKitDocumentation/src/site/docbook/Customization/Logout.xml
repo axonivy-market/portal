@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.changepasswordprocess">
-	<title xml:id="axonivyportal.customization.changepasswordprocess.title">Logout process</title>
-	<sect2 xml:id="axonivyportal.customization.changepasswordprocess.customization">
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.logout">
+	<title xml:id="axonivyportal.customization.logout.title">Logout process</title>
+	<sect2 xml:id="axonivyportal.customization.logout.customization">
 		<title>Logout process</title>
 		<para>
 			<orderedlist>
