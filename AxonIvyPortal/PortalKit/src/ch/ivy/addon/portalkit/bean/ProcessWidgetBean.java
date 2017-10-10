@@ -293,4 +293,13 @@ public class ProcessWidgetBean implements Serializable {
     String editLink = Ivy.html().startref("Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp");
     return editLink + EXPRESS_WORKFLOW_ID_PARAM + process.getWorkflowId();
   }
+
+  public void deleteExpressWorkflow () {
+    String workflowId = editingProcess.getWorkflowId();
+    ExpressServiceRegistry.getProcessService().delete(workflowId);
+    ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
+    ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
+
+    userProcesses.remove(editingProcess);
+  }
 }

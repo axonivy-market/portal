@@ -71,20 +71,6 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
-    <method>
-        <name>deleteExpressWorkflow</name>
-        <description></description>
-    </method>
-    <method>
-        <name>selectExpressWorkflow</name>
-        <description></description>
-        <inputParameter>
-            <name>process</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.persistence.domain.UserProcess</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
     <startMethod>
         <name>start</name>
         <description></description>
