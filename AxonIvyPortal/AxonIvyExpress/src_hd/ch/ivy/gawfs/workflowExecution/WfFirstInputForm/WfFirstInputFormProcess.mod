@@ -277,9 +277,13 @@ Ws0 f24 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInput
 ' #txt
 Ws0 f24 actionTable 'out=in;
 ' #txt
-Ws0 f24 actionCode 'import ch.ivyteam.ivy.workflow.CaseState;
+Ws0 f24 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.CaseState;
 
-ivy.task.destroy();
+if (!ivy.task.getState().equals(TaskState.DESTROYED)) {
+	ivy.task.destroy();
+}
+
 if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
 	ivy.wf.deleteCompletedCase(ivy.case);
 }' #txt
