@@ -8,6 +8,7 @@ public class UserProcess extends BusinessEntity {
   private String processName;
   private String icon;
   private String link;
+  private String workflowId;
   private boolean defaultProcess;
 
   public UserProcess() {
@@ -69,5 +70,13 @@ public class UserProcess extends BusinessEntity {
   @Override
   public int hashCode() {
     return Objects.hash(defaultProcess, icon, link, processName, userName);
+  }
+
+  public String getWorkflowId() {
+    return workflowId;
+  }
+
+  public void setWorkflowId(String workflowId) {
+    this.workflowId = workflowId;
   }
 }
