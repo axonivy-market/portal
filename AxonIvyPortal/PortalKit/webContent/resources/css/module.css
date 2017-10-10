@@ -1993,28 +1993,36 @@ a.case-details-document-add-link {
 }
 
 .process-start-list-item-action {
-  opacity: .3;
-  font-size: 1.2rem;
+  position: relative;
   display: flex;
   align-items: center;
-  padding-right: 15px;
+  width: 10%;
+  opacity: .3;
+  font-size: 1.2rem;
+  padding-right: 25px;
+}
+
+.process-start-list-item .process-start-list-item-action .open-icon {
+  position: absolute;
+  right: 15px;
 }
 
 .process-start-list-item .process-start-list-item-action .express-workflow {
-	display: none;
-	font-size: 1.3rem;
-	padding-right: 7px;
-	padding-bottom: 3px;
+  display: none;
+  font-size: 1.3rem;
+  padding-right: 7px;
+  padding-bottom: 3px;
+  float: left;
 }
 
 .process-start-list-item:hover .process-start-list-item-action .express-workflow {
-	display: inline-block;
+  display: inline-block;
 }
 
 .process-start-list-item .ui-commandlink {
-	display: flex;
-	width: 90%;
-	color: black !important;
+  display: flex;
+  width: 90%;
+  color: black !important;
 }
 
 .process-start-list-item:hover .process-start-list-item-action {

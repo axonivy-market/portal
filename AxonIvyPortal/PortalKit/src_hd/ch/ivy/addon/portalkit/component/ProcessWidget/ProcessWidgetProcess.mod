@@ -66,19 +66,11 @@ Ps0 @PushWFArc f47 '' #zField
 Ps0 @GridStep f50 '' #zField
 Ps0 @PushWFArc f51 '' #zField
 Ps0 @PushWFArc f10 '' #zField
-Ps0 @RichDialogMethodStart f52 '' #zField
 Ps0 @RichDialogProcessEnd f61 '' #zField
-Ps0 @GridStep f53 '' #zField
-Ps0 @PushWFArc f55 '' #zField
+Ps0 @RichDialogMethodStart f52 '' #zField
 Ps0 @PushWFArc f54 '' #zField
-Ps0 @RichDialogMethodStart f56 '' #zField
-Ps0 @GridStep f57 '' #zField
-Ps0 @PushWFArc f58 '' #zField
-Ps0 @RichDialogProcessEnd f59 '' #zField
-Ps0 @PushWFArc f60 '' #zField
-Ps0 @RichDialogMethodStart f62 '' #zField
-Ps0 @RichDialogProcessEnd f63 '' #zField
-Ps0 @PushWFArc f64 '' #zField
+Ps0 @PushWFArc f55 '' #zField
+Ps0 @GridStep f53 '' #zField
 >Proto Ps0 Ps0 ProcessWidgetProcess #zField
 Ps0 f1 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f1 85 213 22 22 14 0 #rect
@@ -595,10 +587,10 @@ Ps0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f35 949 309 22 22 14 0 #rect
+Ps0 f35 853 85 22 22 14 0 #rect
 Ps0 f35 @|RichDialogMethodStartIcon #fIcon
 Ps0 f46 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f46 949 437 22 22 14 0 #rect
+Ps0 f46 853 213 22 22 14 0 #rect
 Ps0 f46 @|RichDialogProcessEndIcon #fIcon
 Ps0 f48 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
 ' #txt
@@ -609,12 +601,12 @@ Ps0 f48 actionCode 'import javax.faces.context.FacesContext;
 ivy.log.error(in.processLink);
 FacesContext.getCurrentInstance().getExternalContext().redirect(in.processLink);' #txt
 Ps0 f48 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f48 942 372 36 24 20 -2 #rect
+Ps0 f48 846 148 36 24 20 -2 #rect
 Ps0 f48 @|StepIcon #fIcon
 Ps0 f49 expr out #txt
-Ps0 f49 960 331 960 372 #arcP
+Ps0 f49 864 107 864 148 #arcP
 Ps0 f47 expr out #txt
-Ps0 f47 960 396 960 437 #arcP
+Ps0 f47 864 172 864 213 #arcP
 Ps0 f50 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
 ' #txt
 Ps0 f50 actionTable 'out=in;
@@ -670,6 +662,9 @@ Ps0 f51 expr out #txt
 Ps0 f51 280 460 280 532 #arcP
 Ps0 f10 expr out #txt
 Ps0 f10 280 556 280 629 #arcP
+Ps0 f61 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
+Ps0 f61 948 433 26 26 0 12 #rect
+Ps0 f61 @|RichDialogProcessEndIcon #fIcon
 Ps0 f52 guid 15EFF090347F8941 #txt
 Ps0 f52 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f52 method editExpressWorkflow(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
@@ -690,11 +685,12 @@ Ps0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f52 853 83 22 22 14 0 #rect
+Ps0 f52 949 307 22 22 14 0 #rect
 Ps0 f52 @|RichDialogMethodStartIcon #fIcon
-Ps0 f61 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f61 852 209 26 26 0 12 #rect
-Ps0 f61 @|RichDialogProcessEndIcon #fIcon
+Ps0 f54 expr out #txt
+Ps0 f54 960 328 961 373 #arcP
+Ps0 f55 expr out #txt
+Ps0 f55 961 397 961 433 #arcP
 Ps0 f53 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
 ' #txt
 Ps0 f53 actionTable 'out=in;
@@ -707,78 +703,8 @@ ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getAppli
 String editLink = collector.findExpressWorkflowEditLink(in.userProcess.workflowId);
 FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);' #txt
 Ps0 f53 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f53 847 149 36 24 20 -2 #rect
+Ps0 f53 943 373 36 24 20 -2 #rect
 Ps0 f53 @|StepIcon #fIcon
-Ps0 f55 expr out #txt
-Ps0 f55 865 173 865 209 #arcP
-Ps0 f54 expr out #txt
-Ps0 f54 864 104 865 149 #arcP
-Ps0 f56 guid 15F00528FC09B17D #txt
-Ps0 f56 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f56 method deleteExpressWorkflow() #txt
-Ps0 f56 disableUIEvents false #txt
-Ps0 f56 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f56 outParameterDecl '<> result;
-' #txt
-Ps0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>deleteExpressWorkflow()</name>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f56 1109 84 22 22 14 0 #rect
-Ps0 f56 @|RichDialogMethodStartIcon #fIcon
-Ps0 f57 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
-' #txt
-Ps0 f57 actionTable 'out=in;
-' #txt
-Ps0 f57 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
-
-in.processes.remove(in.userProcess);
-
-ExpressServiceRegistry.getProcessService().delete(in.userProcess.workflowId);
-ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(in.userProcess.workflowId);
-ExpressServiceRegistry.getFormElementService().deleteByProcessId(in.userProcess.workflowId);' #txt
-Ps0 f57 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f57 1102 147 36 24 20 -2 #rect
-Ps0 f57 @|StepIcon #fIcon
-Ps0 f58 expr out #txt
-Ps0 f58 1120 106 1120 147 #arcP
-Ps0 f59 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f59 1107 211 26 26 0 12 #rect
-Ps0 f59 @|RichDialogProcessEndIcon #fIcon
-Ps0 f60 expr out #txt
-Ps0 f60 1120 171 1120 211 #arcP
-Ps0 f62 guid 15F005ABF10531A4 #txt
-Ps0 f62 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f62 method selectExpressWorkflow(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
-Ps0 f62 disableUIEvents false #txt
-Ps0 f62 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.persistence.domain.UserProcess process> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f62 inParameterMapAction 'out.userProcess=param.process;
-' #txt
-Ps0 f62 outParameterDecl '<> result;
-' #txt
-Ps0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>selectExpressWorkflow(UserProcess)</name>
-        <nameStyle>34,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f62 1332 84 24 24 11 5 #rect
-Ps0 f62 @|RichDialogMethodStartIcon #fIcon
-Ps0 f63 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f63 1331 211 26 26 0 12 #rect
-Ps0 f63 @|RichDialogProcessEndIcon #fIcon
-Ps0 f64 expr out #txt
-Ps0 f64 1344 108 1344 211 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -835,9 +761,3 @@ Ps0 f53 mainOut f55 tail #connect
 Ps0 f55 head f61 mainIn #connect
 Ps0 f52 mainOut f54 tail #connect
 Ps0 f54 head f53 mainIn #connect
-Ps0 f56 mainOut f58 tail #connect
-Ps0 f58 head f57 mainIn #connect
-Ps0 f57 mainOut f60 tail #connect
-Ps0 f60 head f59 mainIn #connect
-Ps0 f62 mainOut f64 tail #connect
-Ps0 f64 head f63 mainIn #connect

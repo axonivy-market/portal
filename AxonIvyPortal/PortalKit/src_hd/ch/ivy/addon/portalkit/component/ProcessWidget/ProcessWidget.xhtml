@@ -192,24 +192,26 @@
   <p:dialog id="remove-express-workflow-dialog" widgetVar="remove-express-workflow-dialog"
      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowHeader')}"
      closeOnEscape="true" modal="true" dynamic="true" appendTo="@(body)" resizable="false">
-     <h:form id="delete-workflow-form">
+     <h:form id="delete-workflow-form" rendered="#{!processWidgetBean.compactMode}">
        <h:outputText escape="false"
          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowConfirmation')}" />
          <br/>
        <h:outputText value="#{data.userProcess.processName}" styleClass="Fs22 FontBold" />
        <div class="ui-dialog-footer u-dialog-footer">
          <p:commandButton styleClass="portal-ok-button"
-           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
-           update="@form #{p:component('process-list')} #{p:component('process-widget-footer')}"
-           oncomplete="PF('remove-express-workflow-dialog').hide();callSynchronizeDataToPortalServer()"
-           actionListener="#{logic.deleteExpressWorkflow}" />
+           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}">
+           <p:ajax event="click" global="false" process="@form"
+             update="@([id$='process-item-form']) @form #{p:component('process-list')}"
+             listener="#{processWidgetBean.deleteExpressWorkflow}"
+             oncomplete="PF('remove-express-workflow-dialog').hide();callSynchronizeDataToPortalServer();location.reload();" />
+         </p:commandButton>
          <p:spacer width="5" />
          <p:commandButton onclick="PF('remove-express-workflow-dialog').hide()"
            styleClass="portal-cancel-button"
            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
            type="button" />
          <p:remoteCommand name="callSynchronizeDataToPortalServer"
-          actionListener="#{logic.synchronizeUserProcessToPortalServer(data.userProcess)}" />
+          actionListener="#{logic.synchronizeUserProcessToPortalServer(processWidgetBean.editingProcess)}" />
        </div>
      </h:form>
   </p:dialog>
