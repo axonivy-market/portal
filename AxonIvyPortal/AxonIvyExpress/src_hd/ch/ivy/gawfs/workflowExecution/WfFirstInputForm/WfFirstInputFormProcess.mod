@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 10:10:42 ICT 2017]
 157893EF862D1265 3.20 #module
 >Proto >Proto Collection #zClass
 Ws0 WfFirstInputFormProcess Big #zClass
@@ -36,8 +35,8 @@ Ws0 @GridStep f24 '' #zField
 Ws0 @PushWFArc f22 '' #zField
 Ws0 @RichDialogEnd f30 '' #zField
 Ws0 @PushWFArc f4 '' #zField
-Ws0 @RichDialogProcessEnd f21 '' #zField
-Ws0 @PushWFArc f23 '' #zField
+Ws0 @RichDialogEnd f5 '' #zField
+Ws0 @PushWFArc f18 '' #zField
 >Proto Ws0 Ws0 WfFirstInputFormProcess #zField
 Ws0 f0 guid 157884982E527C49 #txt
 Ws0 f0 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
@@ -77,7 +76,7 @@ Ws0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ws0 f3 83 491 26 26 -15 12 #rect
+Ws0 f3 83 467 26 26 -15 12 #rect
 Ws0 f3 @|RichDialogProcessStartIcon #fIcon
 Ws0 f6 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData out;
 ' #txt
@@ -278,38 +277,12 @@ Ws0 f24 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInput
 ' #txt
 Ws0 f24 actionTable 'out=in;
 ' #txt
-Ws0 f24 actionCode 'import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.workflow.CaseState;
-import javax.servlet.http.HttpServletRequest;
-import javax.faces.context.FacesContext;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
- 
+Ws0 f24 actionCode 'import ch.ivyteam.ivy.workflow.CaseState;
+
 ivy.task.destroy();
-
-IProcessStart processStart;
-for (IProcessStart start : ivy.session.getStartableProcessStarts()) {
-	if (start.getProcessElementId().equals("1576E76B009E23DD-f0")) {
-  	processStart = start;
-		break;
-	}
-}
-
-String link = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
-if(processStart != null) {
-	if (!ivy.case.getState().equals(CaseState.ZOMBIE) && !ivy.case.getState().equals(CaseState.CREATED)) {
-  	link += "?taskIdentifier="+ivy.task.getId();
-  }
-}
-
 if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
 	ivy.wf.deleteCompletedCase(ivy.case);
-}
-
-//redirect to portal
-//ivy.log.debug("Link to Portal found:"+link);
-FacesContext.getCurrentInstance().getExternalContext().redirect(link);' #txt
+}' #txt
 Ws0 f24 security system #txt
 Ws0 f24 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
 Ws0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -321,22 +294,23 @@ Ws0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ws0 f24 172 364 104 40 -28 -6 #rect
+Ws0 f24 256 364 104 40 -28 -6 #rect
 Ws0 f24 @|StepIcon #fIcon
 Ws0 f22 expr out #txt
-Ws0 f22 109 384 172 384 #arcP
+Ws0 f22 109 384 256 384 #arcP
 Ws0 f22 0 0.5145499197722859 0 0 #arcLabel
 Ws0 f30 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
 Ws0 f30 guid 15AF77AA5D3C3910 #txt
-Ws0 f30 459 491 26 26 0 12 #rect
+Ws0 f30 563 467 26 26 0 12 #rect
 Ws0 f30 @|RichDialogEndIcon #fIcon
 Ws0 f4 expr out #txt
-Ws0 f4 109 504 459 504 #arcP
-Ws0 f21 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
-Ws0 f21 347 371 26 26 0 12 #rect
-Ws0 f21 @|RichDialogProcessEndIcon #fIcon
-Ws0 f23 expr out #txt
-Ws0 f23 276 384 347 384 #arcP
+Ws0 f4 109 480 563 480 #arcP
+Ws0 f5 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
+Ws0 f5 guid 15F03F02989D33A9 #txt
+Ws0 f5 563 371 26 26 0 12 #rect
+Ws0 f5 @|RichDialogEndIcon #fIcon
+Ws0 f18 expr out #txt
+Ws0 f18 360 384 563 384 #arcP
 >Proto Ws0 .type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
 >Proto Ws0 .processKind HTML_DIALOG #txt
 >Proto Ws0 -8 -8 16 16 16 26 #rect
@@ -359,5 +333,5 @@ Ws0 f19 mainOut f22 tail #connect
 Ws0 f22 head f24 mainIn #connect
 Ws0 f3 mainOut f4 tail #connect
 Ws0 f4 head f30 mainIn #connect
-Ws0 f24 mainOut f23 tail #connect
-Ws0 f23 head f21 mainIn #connect
+Ws0 f24 mainOut f18 tail #connect
+Ws0 f18 head f5 mainIn #connect

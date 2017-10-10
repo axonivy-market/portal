@@ -6,19 +6,13 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 
 <ui:composition>
-  <div class="process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}">
-    <div class="process-start-list-item-icon">
-      <span class="fa #{process.icon} fa-fw" />
-    </div>
-    <div class="process-start-list-item-name">
-      <h:outputText id="process-name-#{rowIndex}" value="#{process.processName}" escape="false"
-        styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
-      <p:tooltip for="process-name-#{rowIndex}" value="#{process.processName}" escape="false" />
-    </div>
-    <div class="process-start-list-item-action">
-      <span class="tmi-chevorn-right" />
-    </div>
+  <div class="process-start-list-item-icon">
+    <span class="fa #{process.icon} fa-fw" />
   </div>
-
+  <div class="process-start-list-item-name">
+    <h:outputText id="process-name" value="#{process.processName}" escape="false"
+      styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
+      <p:tooltip for="process-name" value="#{process.processName}" escape="false" />
+  </div>
 </ui:composition>
 </html>

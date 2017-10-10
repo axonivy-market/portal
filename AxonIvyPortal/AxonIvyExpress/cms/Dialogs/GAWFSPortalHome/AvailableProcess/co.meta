@@ -1,4 +1,0 @@
-co: name={AvailableProcess} description={} changed={2017-08-10 09:00:40 CEST} changedby={t} visualorder={0} guid={15BF0542E38C5D12} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BF0547D0818EC6} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 05:08:36 CEST} validto={} changed={2017-05-10 05:08:40 CEST} changedby={ldnam} properties={} id={}
-val: guid={15BF0542E3E51151} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 05:08:20 CEST} validto={} changed={2017-05-11 08:34:11 CEST} changedby={t} properties={} id={}
-val: guid={15DCAF1F324A38C3} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2017-08-10 09:00:40 CEST} changedby={t} properties={} id={}

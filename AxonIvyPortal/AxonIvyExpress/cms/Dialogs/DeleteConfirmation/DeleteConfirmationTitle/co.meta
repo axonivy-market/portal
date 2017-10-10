@@ -1,4 +1,0 @@
-co: name={DeleteConfirmationTitle} description={} changed={2017-08-10 09:00:40 CEST} changedby={t} visualorder={0} guid={15BF086C5A920695} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DCAF1F3052A83C} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2017-08-10 09:00:40 CEST} changedby={t} properties={} id={}
-val: guid={15BF086C5AE83F0C} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 06:03:35 CEST} validto={} changed={2017-05-11 06:51:42 CEST} changedby={t} properties={} id={}
-val: guid={15BF086EB658CB5D} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 06:03:41 CEST} validto={} changed={2017-05-10 06:03:45 CEST} changedby={ldnam} properties={} id={}

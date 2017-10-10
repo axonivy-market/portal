@@ -54,14 +54,6 @@
       </p>
 
       <ui:repeat id="process-list-items" varStatus="status" var="process" value="#{processWidgetBean.userProcesses}">
-        <p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
-          rendered="#{not processWidgetBean.deleteMode and (fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}"
-          styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'}"
-          style="#{cc.attrs.processCardStyleClass}">
-          <ui:include src="ProcessItem.xhtml">
-            <ui:param name="rowIndex" value="process-item" />
-          </ui:include>
-        </p:commandLink>
         <p:link id="external-process-item" href="#{process.link}" target="_blank"
           rendered="#{not processWidgetBean.deleteMode and !(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}"
           styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'}"
@@ -70,6 +62,18 @@
             <ui:param name="rowIndex" value="external-process-item" />
           </ui:include>
         </p:link>
+
+        <h:form id="process-item-form" styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}"
+          style="#{cc.attrs.processCardStyleClass}">
+          <p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
+            rendered="#{not processWidgetBean.deleteMode and (fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}">
+            <ui:include src="ProcessItem.xhtml" />
+          </p:commandLink>
+          <ui:include src="ProcessItemActions.xhtml">
+            <ui:param name="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
+            <ui:param name="compactMode" value="#{processWidgetBean.compactMode}" />
+          </ui:include>
+        </h:form>
 
         <h:panelGroup id="delete-process-item" layout="block" rendered="#{processWidgetBean.deleteMode}"
           styleClass="process-start-list-item u-cursor-pointer">
@@ -183,6 +187,31 @@
           actionListener="#{logic.synchronizeUserProcessToPortalServer(processWidgetBean.editingProcess)}" />
       </div>
     </h:form>
+  </p:dialog>
+
+  <p:dialog id="remove-express-workflow-dialog" widgetVar="remove-express-workflow-dialog"
+     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowHeader')}"
+     closeOnEscape="true" modal="true" dynamic="true" appendTo="@(body)" resizable="false">
+     <h:form id="delete-workflow-form">
+       <h:outputText escape="false"
+         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowConfirmation')}" />
+         <br/>
+       <h:outputText value="#{data.userProcess.processName}" styleClass="Fs22 FontBold" />
+       <div class="ui-dialog-footer u-dialog-footer">
+         <p:commandButton styleClass="portal-ok-button"
+           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
+           update="@form #{p:component('process-list')} #{p:component('process-widget-footer')}"
+           oncomplete="PF('remove-express-workflow-dialog').hide();callSynchronizeDataToPortalServer()"
+           actionListener="#{logic.deleteExpressWorkflow}" />
+         <p:spacer width="5" />
+         <p:commandButton onclick="PF('remove-express-workflow-dialog').hide()"
+           styleClass="portal-cancel-button"
+           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+           type="button" />
+         <p:remoteCommand name="callSynchronizeDataToPortalServer"
+          actionListener="#{logic.synchronizeUserProcessToPortalServer(data.userProcess)}" />
+       </div>
+     </h:form>
   </p:dialog>
 </cc:implementation>
 </html>
