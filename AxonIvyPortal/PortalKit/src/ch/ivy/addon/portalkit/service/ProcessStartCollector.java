@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
+import ch.ivyteam.util.Pair;
 
 public class ProcessStartCollector {
 
@@ -118,22 +119,6 @@ public class ProcessStartCollector {
     });
   }
   
-  public String findExpressLink() throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-      @Override
-      public String call() throws Exception {
-        ProcessStartCollector collector = new ProcessStartCollector(application);
-        IProcessStart process =
-            collector.findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStartGAFWS/AxonIvyExpress.ivp");
-        if (process != null) {
-          return RequestUriFactory.createProcessStartUri(
-              ServerFactory.getServer().getApplicationConfigurationManager(), process).toString();
-        }
-        return StringUtils.EMPTY;
-      }
-    });
-  }
-  
   public String findExpressWorkflowStartLink() throws Exception {
     return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
       @Override
@@ -165,6 +150,23 @@ public class ProcessStartCollector {
 	      }
 	    });
 	  }
+
+  public String findExpressWorkflowEditLink(String workflowId) throws Exception {
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
+      @Override
+      public String call() throws Exception {
+        ProcessStartCollector collector = new ProcessStartCollector(application);
+        IProcessStart process =
+            collector.findProcessStartByUserFriendlyRequestPath("Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp");
+        if (process != null) {
+          Pair<String, String> workflowIdParam = new Pair<String, String>("workflowID", workflowId);
+          return RequestUriFactory.createProcessStartUri(
+              ServerFactory.getServer().getApplicationConfigurationManager(), process, workflowIdParam).toString();
+        }
+        return StringUtils.EMPTY;
+      }
+    });
+  }
 
   private boolean isActive(IProcessModelVersion processModelVersion) {
     return processModelVersion != null && ActivityState.ACTIVE.equals(processModelVersion.getActivityState());

@@ -1,4 +1,0 @@
-co: name={NoWorkflowAvailable} description={} changed={2017-08-10 09:00:40 CEST} changedby={t} visualorder={0} guid={15BF05236684CFBF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DCAF1F344BB5C6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2017-08-10 09:00:40 CEST} changedby={t} properties={} id={}
-val: guid={15BF05236E0E437C} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 05:03:05 CEST} validto={} changed={2017-05-10 05:06:11 CEST} changedby={ldnam} properties={} id={}
-val: guid={15BF052366ABEC82} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 05:02:48 CEST} validto={} changed={2017-05-11 06:58:07 CEST} changedby={t} properties={} id={}
