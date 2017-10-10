@@ -15,10 +15,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib_test/junit-4.8.2.jar"/>
-	<classpathentry kind="lib" path="lib_test/mockito-core-1.10.19.jar"/>
-	<classpathentry kind="lib" path="lib_test/objenesis-2.2.jar"/>
-	<classpathentry kind="lib" path="lib_test/powermock-api-mockito-common-1.6.5.jar"/>
-	<classpathentry kind="lib" path="lib_test/powermock-mockito-1.6.5-full.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
