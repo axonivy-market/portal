@@ -36,6 +36,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class ProcessWidgetBean implements Serializable {
 
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
+  private static final String EXPRESS_WORKFLOW_ID_PARAM ="?workflowID=";
   private static final long serialVersionUID = -5889375917550618261L;
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
@@ -177,7 +178,7 @@ public class ProcessWidgetBean implements Serializable {
   private String generateWorkflowStartLink(ExpressProcess wf) {
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
     try {
-      return processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.getId();
+      return processStartCollector.findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + wf.getId();
     } catch (Exception e) {
       Ivy.log().error(e);
       return "";
@@ -282,5 +283,14 @@ public class ProcessWidgetBean implements Serializable {
 
   public void setSelectedUserProcesses(List<UserProcess> selectedUserProcesses) {
     this.selectedUserProcesses = selectedUserProcesses;
+  }
+
+  public boolean isExpressWorkflow (UserProcess process) {
+    return !StringUtils.isBlank(process.getWorkflowId());
+  }
+
+  public String getEditLinkOfExpressWorkflow (UserProcess process) {
+    String editLink = Ivy.html().startref("Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp");
+    return editLink + EXPRESS_WORKFLOW_ID_PARAM + process.getWorkflowId();
   }
 }

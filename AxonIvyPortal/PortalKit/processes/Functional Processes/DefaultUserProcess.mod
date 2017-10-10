@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Jul 12 17:33:15 ICT 2017]
 1538898FE5F1C3BA 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
@@ -60,17 +59,7 @@ if (!StringUtils.isEmpty(acmLink)) {
 	acmProcess.setProcessName("Axon.ivy Selfservice");
 	acmProcess.setIcon("fa-code-fork");
 	in.defaultUserProcesses.add(acmProcess);
-}
-
-String expressLink = collector.findExpressLink();
-if (!StringUtils.isEmpty(expressLink)) {
-	UserProcess expressProcess = new UserProcess();
-	expressProcess.setLink(expressLink);
-	expressProcess.setProcessName("Axon.ivy Express");
-	expressProcess.setIcon("fa-code-fork");
-	in.defaultUserProcesses.add(expressProcess);
-}
-' #txt
+}' #txt
 Ds0 f3 type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -1930,7 +1930,7 @@ a.case-details-document-add-link {
 .process-start-list-item-wrapper {
   min-width: 300px;
   margin-right: 5px;
-  flex: 0 1 30em;
+  flex: 0 1 36em;
 }
 
 .process-start-list-item {
@@ -1982,7 +1982,6 @@ a.case-details-document-add-link {
   overflow: hidden;
   display: flex;
   align-items: center;
-  width: 85%;
 }
 
 .process-start-list-item:hover .process-start-list-item-name {
@@ -1999,6 +1998,23 @@ a.case-details-document-add-link {
   display: flex;
   align-items: center;
   padding-right: 15px;
+}
+
+.process-start-list-item .process-start-list-item-action .express-workflow {
+	display: none;
+	font-size: 1.3rem;
+	padding-right: 7px;
+	padding-bottom: 3px;
+}
+
+.process-start-list-item:hover .process-start-list-item-action .express-workflow {
+	display: inline-block;
+}
+
+.process-start-list-item .ui-commandlink {
+	display: flex;
+	width: 90%;
+	color: black !important;
 }
 
 .process-start-list-item:hover .process-start-list-item-action {

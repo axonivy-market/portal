@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Tue Aug 22 10:11:22 ICT 2017]
 15798655494F25E1 3.20 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
@@ -41,7 +40,7 @@ TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!' #txt
 cw0 f0 caseData 'case.name=Neuen Prozess erstellen
 case.description=Erstellen eines neuen Prozesses\!
 businessCase.attach=false' #txt
-cw0 f0 showInStartList 0 #txt
+cw0 f0 showInStartList 1 #txt
 cw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
