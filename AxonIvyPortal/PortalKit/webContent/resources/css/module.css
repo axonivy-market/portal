@@ -1018,7 +1018,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 /* =================== END AUTOCOMPLETE ====================== */
 .widget-header {
   display: flex;
-  margin-bottom: 15px;
   flex-flow: row wrap;
 }
 
@@ -1077,7 +1076,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .widget-sort-menu {
   color: rgba(0,0,0,0.4);
   flex: 1 0 100%;
-  line-height: 35px;
+  line-height: 45px;
 }
 
 .widget-sort-menu.full-mode {
@@ -1107,7 +1106,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   padding: 15px 25px 5px 0 !important;
   font-family: "robotomedium" !important;
   color: black;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  width: 200px;
 }
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
@@ -1115,7 +1115,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   padding: 15px 25px 5px 0 !important;
   font-family: "robotomedium" !important;
   color: black !important;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .widget-content a:hover {
@@ -1251,7 +1251,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .filter-widget {
   position: relative;
   display: flex;
-  margin-top: 11px;
 }
 
 .filter-widget-input {
@@ -1624,12 +1623,12 @@ a.case-details-document-add-link {
   width: 30%;
   padding-left: 25px;
   box-sizing: border-box;
+  margin-top: 11px;
 }
 
 .case-list-item {
   background-color: rgba(255, 255, 255, 0.2);
 }
-
 
 .case-list-item:hover, .case-list-item.case-list-item-expanded {
   background: rgba(255, 255, 255, 1);
@@ -1845,6 +1844,10 @@ a.case-details-document-add-link {
   box-sizing: border-box;
 }
 /********************************** END CASE ITEM **********************************/
+.process-widget-action {
+  line-height: 45px;
+}
+
 .process-start-list {
   margin: 30px 0;
   display: flex;
@@ -2043,11 +2046,6 @@ a.case-details-document-add-link {
 
 .widget a.border-bottom-none {
   border-bottom: none;
-}
-
-.widget .process-button-position {
-  margin-bottom: 10px;
-  margin-button: 20px;
 }
 
 .menu-toolbar:after {
@@ -2370,8 +2368,12 @@ a.compact-task-start-link:hover {
   margin-right: 0.2rem;
 }
 
-.task-filter-form {
-  margin-top: 11px;
+.mod-expanded-mode .widget-header-filter-input.ui-inputfield {
+  font-size: 1.4rem;
+}
+
+.mod-expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-hover, .mod-expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-focus {
+  font-size: 1.4rem;
 }
 
 /********************************** END TASK WIDGET **********************************/
