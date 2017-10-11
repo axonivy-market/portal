@@ -124,10 +124,8 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}"
-      styleClass="widget-header-content-filter Fright"
-      id="filter-view">
-      <h:form id="filter-form" onsubmit="return false;" styleClass="task-filter-form">
+    <h:panelGroup id="filter-view">
+      <h:form id="filter-form" onsubmit="return false;" styleClass="task-filter-form widget-header-content-filter Fright" rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}">
         <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
           icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
