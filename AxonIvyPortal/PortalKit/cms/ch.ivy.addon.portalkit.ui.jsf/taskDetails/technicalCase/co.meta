@@ -1,4 +1,4 @@
-co: name={technicalCase} description={} changed={2017-10-10 12:15:05 CEST} changedby={tntanh} visualorder={0} guid={15F05C76688A87D5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={technicalCase} description={} changed={2017-10-11 12:48:32 CEST} changedby={t} visualorder={0} guid={15F05C76688A87D5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15F05C766996F411} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-10 12:14:34 CEST} validto={} changed={2017-10-10 12:14:34 CEST} changedby={tntanh} properties={} id={}
-val: guid={15F05C7DD77CD341} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-10 12:14:50 CEST} validto={} changed={2017-10-10 12:15:05 CEST} changedby={tntanh} properties={} id={}
+val: guid={15F05C7DD77CD341} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-10 12:14:50 CEST} validto={} changed={2017-10-11 12:48:32 CEST} changedby={t} properties={} id={}
 val: guid={15F05C7DDE247062} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-10 12:14:47 CEST} validto={} changed={2017-10-10 12:15:05 CEST} changedby={tntanh} properties={} id={}
