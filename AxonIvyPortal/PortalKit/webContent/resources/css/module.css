@@ -1596,7 +1596,6 @@ a.case-details-document-add-link {
 }
 /********************************** CASE ITEM SIMIlAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
-  margin-top: 12px !important;
   margin: 0;
   padding: 0 2px;
   display: flex;
@@ -1608,8 +1607,8 @@ a.case-details-document-add-link {
 
 .case-widget-top-header-main-title-container {
   font-size: 1.4rem;
-  flex: 1 0 60%;
-  height: 39px;
+  flex: 1 0 50%;
+  height: 50px;
   box-sizing: border-box;
   position: relative;
   border-bottom: 1px solid rgba(0,0,0,0.1);
