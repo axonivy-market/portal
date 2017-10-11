@@ -29,7 +29,7 @@ public class TaskInforActionService {
 
 	private String formatDate(Date datetime) {
 		String dateTimePattern =
-				Ivy.cms().findContentObjectValue("/ch.ivy.addon.portalkit.ui.jsf/common/dateTimePattern", Locale.ENGLISH)
+				Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH)
 						.getContentAsString();
 		DateFormat formatter = new SimpleDateFormat(dateTimePattern);
 		return formatter.format(datetime);
