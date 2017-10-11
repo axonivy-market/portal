@@ -3878,3 +3878,7 @@ margin-top
 .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
   padding-bottom: 4px;
 }
+
+.ui-tabs-top .ui-tabs-nav li a {
+  font-size: 1.4rem;
+}
