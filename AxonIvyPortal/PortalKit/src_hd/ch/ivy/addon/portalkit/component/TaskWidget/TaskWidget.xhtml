@@ -34,7 +34,6 @@
     value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
   <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
-  
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
     <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header"
@@ -46,7 +45,7 @@
         <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{data.dataModel.compactMode and showHeaderToolbar}">
           <ui:fragment>
             <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
-              update="task-view task-widget-sort-menu task-widget-header advanced-filter-container #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
+              update="task-view task-widget-sort-menu task-widget-header advanced-filter-container filter-view #{data.dataModel.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
               onsuccess="#{data.dataModel.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}; " 
               oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
               <h:outputText id="switch-mode-command-value"
@@ -55,11 +54,10 @@
           </ui:fragment>
         </h:panelGroup>
       </div>
-      <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter}"
-        styleClass="widget-header-content-filter #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}"
-        id="filter-view">
-        <h:form id="filter-form" onsubmit="return false;" styleClass="task-filter-form">
-          <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
+      <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and !data.dataModel.compactMode}"
+        styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
+        <h:form id="expanded-mode-filter-form" onsubmit="return false;">
+          <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="expanded-mode-filter-container"
             icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             keywordStoresIn="#{data.keyword}" styleClass="widget-header-filter-input"
@@ -67,7 +65,7 @@
         </h:form>
       </h:panelGroup>
       <h:panelGroup id="filter-add-container" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}" styleClass="filter-add-container">
-	  <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
+        <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
       
         <p:commandButton id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
           styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
@@ -116,7 +114,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup id="task-widget-sort-menu" layout="block"
+    <h:panelGroup id="task-widget-sort-menu"
       styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : ''}">
       <h:panelGroup rendered="#{data.dataModel.compactMode}">
         <ui:include src="CompactSortMenu.xhtml" />
@@ -124,6 +122,18 @@
       <h:panelGroup rendered="#{!data.dataModel.compactMode}">
         <cc:renderFacet name="taskListHeader" />
       </h:panelGroup>
+    </h:panelGroup>
+
+    <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}"
+      styleClass="widget-header-content-filter Fright"
+      id="filter-view">
+      <h:form id="filter-form" onsubmit="return false;" styleClass="task-filter-form">
+        <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
+          icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
+          keywordStoresIn="#{data.keyword}" styleClass="widget-header-filter-input"
+          onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+      </h:form>
     </h:panelGroup>
 
     <h:panelGroup layout="block" id="task-view">

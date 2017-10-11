@@ -27,7 +27,7 @@
         <h:panelGroup styleClass="widget-header-main-menu"
           rendered="#{cc.attrs.showBackButton and not processWidgetBean.deleteMode}">
           <p:commandLink id="switch-mode-command"
-            update="#{cc.clientId}:header #{cc.clientId}:process-list #{cc.clientId}:process-widget-footer"
+            update="#{cc.clientId}:header #{cc.clientId}:process-list #{cc.clientId}:process-widget-action"
             actionListener="#{processWidgetBean.switchMode()}"
             oncomplete="#{processWidgetBean.compactMode ? '' : 'processWidget.clearSearchField()'};#{processWidgetBean.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}">
             <h:outputText id="switch-mode-command-value"
@@ -39,6 +39,39 @@
         <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
           styleClass="js-filter-process-widget-list-item" rendered="#{!cc.attrs.hideProcessFilter}" />
       </h:panelGroup>
+    </h:panelGroup>
+
+    <h:panelGroup id="process-widget-action" styleClass="process-widget-action">
+      <h:form rendered="#{processWidgetBean.compactMode}"
+        styleClass="js-compact-mode-element process-button-position process-action-button">
+        <h:panelGroup layout="block"
+          rendered="#{not processWidgetBean.deleteMode and (processWidgetBean.userProcesses.size() gt 0)}">
+          <p:commandLink id="show-adding-dialog-commmand"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
+            actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
+            update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()" />
+          <p:spacer width="20" />
+          <p:commandLink id="deletion-switch-command"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcess')}"
+            actionListener="#{processWidgetBean.switchDeleteMode}"
+            update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" rendered="#{processWidgetBean.deleteMode}">
+          <p:commandLink id="delete-process-command" styleClass="underline-on-hover"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+            actionListener="#{processWidgetBean.deleteSelectedProcess}"
+            update="@form #{cc.clientId}:process-list #{cc.clientId}:header"
+            onsuccess="synchDataAfterDeleteProcesses();" />
+          <p:spacer width="20" />
+          <p:commandLink id="cancel-deleting-process-command" styleClass="underline-on-hover portal-cancel-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            actionListener="#{processWidgetBean.cancelDeletingProcess}"
+            update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
+        </h:panelGroup>
+        <p:remoteCommand name="synchDataAfterDeleteProcesses"
+          actionListener="#{logic.synchronizeDeletedDataToPortalServer(processWidgetBean.selectedUserProcesses)}" />
+      </h:form>
     </h:panelGroup>
 
     <h:panelGroup id="process-list" layout="block"
@@ -101,39 +134,6 @@
         </h:panelGroup>
       </ui:repeat>
     </h:panelGroup>
-
-    <h:panelGroup id="process-widget-footer">
-      <h:form rendered="#{processWidgetBean.compactMode}"
-        styleClass="js-compact-mode-element process-button-position process-action-button">
-        <h:panelGroup layout="block"
-          rendered="#{not processWidgetBean.deleteMode and (processWidgetBean.userProcesses.size() gt 0)}">
-          <p:commandLink id="show-adding-dialog-commmand"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
-            actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
-            update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()" />
-          <span class="action-separator">|</span>
-          <p:commandLink id="deletion-switch-command"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcess')}"
-            actionListener="#{processWidgetBean.switchDeleteMode}"
-            update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
-        </h:panelGroup>
-
-        <h:panelGroup layout="block" rendered="#{processWidgetBean.deleteMode}">
-          <p:commandLink id="delete-process-command" styleClass="underline-on-hover"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-            actionListener="#{processWidgetBean.deleteSelectedProcess}"
-            update="@form #{cc.clientId}:process-list #{cc.clientId}:header"
-            onsuccess="synchDataAfterDeleteProcesses();" />
-          <span class="action-separator">|</span>
-          <p:commandLink id="cancel-deleting-process-command" styleClass="underline-on-hover portal-cancel-button"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            actionListener="#{processWidgetBean.cancelDeletingProcess}"
-            update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
-        </h:panelGroup>
-        <p:remoteCommand name="synchDataAfterDeleteProcesses"
-          actionListener="#{logic.synchronizeDeletedDataToPortalServer(processWidgetBean.selectedUserProcesses)}" />
-      </h:form>
-    </h:panelGroup>
   </div>
   <p:dialog id="add-new-process-dialog" styleClass="new-process-dialog" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcessDialogHeader')}"
@@ -181,7 +181,7 @@
         <p:commandButton id="add-process-command" tabindex="3" styleClass="portal-ok-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}" process="@form"
           actionListener="#{processWidgetBean.saveNewUserProcess}"
-          update="@form #{p:component('process-list')} #{p:component('process-widget-footer')}"
+          update="@form #{p:component('process-list')} #{p:component('process-widget-action')}"
           oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();callSynchronizeDataToPortalServer()}" />
         <p:spacer width="5" />
         <p:commandButton id="cancel-adding-process-command" tabindex="4" global="false"
