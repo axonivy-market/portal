@@ -20,6 +20,7 @@ import javax.faces.bean.ManagedBean;
 
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.vo.TaskVO;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -465,6 +466,17 @@ public class TaskBean {
     ICase iCase = task.getCase();
     String caseName = iCase.getName();
     return StringUtils.isNotEmpty(caseName) ? caseName : "#" + iCase.getId();
+  }
+  
+  public String getTechnicalCaseDisplayName(RemoteTask remoteTask){
+    RemoteCase technicalCase = remoteTask.getRemoteTechnicalCase();
+    if(technicalCase != null){
+      if(technicalCase.getName() != null && !technicalCase.getName().isEmpty()){
+        return technicalCase.getName();
+      }
+      return String.valueOf(technicalCase.getId());
+    }
+    return StringUtils.EMPTY;
   }
   
   public Boolean canChangeExpiry(RemoteTask task){

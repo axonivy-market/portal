@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Thu Jul 27 17:13:48 ICT 2017]
 15493A537A91F8FC 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemGeneralInfoProcess Big #zClass
@@ -76,7 +75,7 @@ import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 
 RemoteTask remoteTask = Attrs.currentContext().get("task") as RemoteTask;
-in.globalCaseId = GlobalCaseId.inServer(remoteTask.applicationRegister.serverId).caseId(remoteTask.case.getId()).build();
+in.globalCaseId = GlobalCaseId.inServer(remoteTask.applicationRegister.serverId).caseId(in.selectedCase.id).build();
 in.caseName = remoteTask.case.name;' #txt
 Ts0 f69 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -96,6 +95,11 @@ Ts0 f68 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskIte
 ' #txt
 Ts0 f68 actionTable 'out=in;
 ' #txt
+Ts0 f68 actionCode 'import ch.ivy.addon.portalkit.bo.RemoteCase;
+import org.primefaces.component.commandlink.CommandLink;
+
+CommandLink commandLink = event.getSource() as CommandLink;
+out.selectedCase = commandLink.getAttributes().get("selectedCase") as RemoteCase;' #txt
 Ts0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

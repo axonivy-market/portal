@@ -259,6 +259,51 @@
           <xs:element minOccurs="0" name="priority" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="startTimestamp" type="xs:dateTime"></xs:element>
           <xs:element minOccurs="0" name="state" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessCorrespondentId" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessCreatorUser" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessMainContactDocumentDatabaseCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessMainContactFolderId" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessMainContactId" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessMainContactName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessMainContactType" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessMilestoneTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessObjectCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessObjectDocumentDatabaseCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessObjectFolderId" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessObjectName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessPriority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseBusinessStartTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCreatorUserName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomDecimalField1" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomDecimalField2" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomDecimalField3" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomDecimalField4" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomDecimalField5" type="xs:float"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomTimestampField1" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomTimestampField2" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomTimestampField3" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomTimestampField4" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomTimestampField5" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomVarCharField1" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomVarCharField2" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomVarCharField3" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomVarCharField4" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseCustomVarCharField5" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseDescription" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseEndTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseId" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCasePriority" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseProcessCategoryCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseProcessCategoryName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseProcessCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseProcessName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseStartTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseState" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseSubTypeCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseSubTypeName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseTypeCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="technicalCaseTypeName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="workerFullName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="workerUserName" type="xs:string"></xs:element>
         </xs:sequence>
