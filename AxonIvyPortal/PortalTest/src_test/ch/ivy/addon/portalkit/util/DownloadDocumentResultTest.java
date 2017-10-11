@@ -1,6 +1,9 @@
 package ch.ivy.addon.portalkit.util;
 
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 import ch.ivy.ws.addon.DownloadDocumentResult;
 
 /**
@@ -13,6 +16,7 @@ import ch.ivy.ws.addon.DownloadDocumentResult;
  * 4. Check to make sure no compile error.
  */
 public class DownloadDocumentResultTest {
+  @Test
   public void testDownloadDocumentResultTestPatched() {
     DownloadDocumentResult documentResult = new DownloadDocumentResult();
     assertTrue(documentResult.isPatched());
