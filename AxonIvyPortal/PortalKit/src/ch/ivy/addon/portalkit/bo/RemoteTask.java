@@ -105,6 +105,7 @@ public class RemoteTask implements ITask {
   private String activatorUserName;
   private String activatorFullName;
   private RemoteCase remoteCase;
+  private RemoteCase remoteTechnicalCase;
   private List<RemoteNote> remoteNotes;
   private boolean canReset;
   private boolean canDelegate;
@@ -1300,6 +1301,14 @@ public class RemoteTask implements ITask {
     this.hasMoreActions = hasMoreActions;
   }
 
+  public RemoteCase getRemoteTechnicalCase() {
+    return remoteTechnicalCase;
+  }
+
+  public void setRemoteTechnicalCase(RemoteCase remoteTechnicalCase) {
+    this.remoteTechnicalCase = remoteTechnicalCase;
+  }
+  
   @Override
   public ResumeTaskResult canUserResumeTask(ISession session)
 		throws PersistencyException {
@@ -1337,4 +1346,5 @@ public class RemoteTask implements ITask {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

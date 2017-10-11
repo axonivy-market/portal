@@ -98,9 +98,12 @@ public class RemoteTaskMapper {
     /*
      * Implementation (ICase, ISecurityMember, IApplication)
      */
-    RemoteCase rc = RemoteCaseMapper.mapCaseFromTask(ivyTask);
+    RemoteCase rc = RemoteCaseMapper.mapRemoteBusinessCaseFromTask(ivyTask);
     result.setCase(rc);
-
+    
+    RemoteCase technicalCase = RemoteCaseMapper.mapRemoteTechnicalCaseFromTask(ivyTask);
+    result.setRemoteTechnicalCase(technicalCase);
+    
     RemoteApplication ra = new RemoteApplication();
     ra.setName(ivyTask.getApplicationName());
     result.setApplication(ra);
