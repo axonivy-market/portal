@@ -126,14 +126,108 @@ public class RemoteCaseMapper {
   }
 
   /**
-   * Convert web service task to remote task.
+   * Convert web service task to remote technical case 
    * 
    * @param ivyTask web service task
    * @return remote task
    * @see IvyTask
    * @see RemoteCase
    */
-  public static RemoteCase mapCaseFromTask(IvyTask ivyTask) {
+  public static RemoteCase mapRemoteTechnicalCaseFromTask(IvyTask ivyTask) {
+    RemoteCase result = new RemoteCase();
+
+    /* 1. GETTER + SETTER must be implemented in RemoteTask (overrides) */
+
+    result.setBusinessCorrespondentId(ivyTask.getTechnicalCaseBusinessCorrespondentId());
+    result.setBusinessCreatorUser(ivyTask.getTechnicalCaseBusinessCreatorUser());
+    result.setBusinessMainContactDocumentDatabaseCode(ivyTask.getTechnicalCaseBusinessMainContactDocumentDatabaseCode());
+    result.setBusinessMainContactFolderId(ivyTask.getTechnicalCaseBusinessMainContactFolderId());
+    result.setBusinessMainContactId(ivyTask.getTechnicalCaseBusinessMainContactId());
+    result.setBusinessMainContactName(ivyTask.getTechnicalCaseBusinessMainContactName());
+    result.setBusinessMainContactType(ivyTask.getTechnicalCaseBusinessMainContactType());
+    result.setBusinessMilestoneTimestamp(ivyTask.getTechnicalCaseBusinessMilestoneTimestamp() == null ? null : ivyTask
+        .getTechnicalCaseBusinessMilestoneTimestamp().getTime());
+    result.setBusinessObjectCode(ivyTask.getTechnicalCaseBusinessObjectCode());
+    result.setBusinessObjectDocumentDatabaseCode(ivyTask.getTechnicalCaseBusinessObjectDocumentDatabaseCode());
+    result.setBusinessObjectFolderId(ivyTask.getTechnicalCaseBusinessObjectFolderId());
+    result.setBusinessObjectName(ivyTask.getTechnicalCaseBusinessObjectName());
+    result.setBusinessPriority(ivyTask.getTechnicalCaseBusinessPriority());
+    result.setBusinessStartTimestamp(ivyTask.getTechnicalCaseBusinessStartTimestamp() == null ? null : ivyTask
+        .getTechnicalCaseBusinessStartTimestamp().getTime());
+
+
+    result.setCustomDecimalField1(ivyTask.getTechnicalCaseCustomDecimalField1());
+    result.setCustomDecimalField2(ivyTask.getTechnicalCaseCustomDecimalField2());
+    result.setCustomDecimalField3(ivyTask.getTechnicalCaseCustomDecimalField3());
+    result.setCustomDecimalField4(ivyTask.getTechnicalCaseCustomDecimalField4());
+    result.setCustomDecimalField5(ivyTask.getTechnicalCaseCustomDecimalField5());
+
+    result.setCustomTimestampField1(ivyTask.getTechnicalCaseCustomTimestampField1() == null ? null : ivyTask
+        .getTechnicalCaseCustomTimestampField1().getTime());
+    result.setCustomTimestampField2(ivyTask.getTechnicalCaseCustomTimestampField2() == null ? null : ivyTask
+        .getTechnicalCaseCustomTimestampField2().getTime());
+    result.setCustomTimestampField3(ivyTask.getTechnicalCaseCustomTimestampField3() == null ? null : ivyTask
+        .getTechnicalCaseCustomTimestampField3().getTime());
+    result.setCustomTimestampField4(ivyTask.getTechnicalCaseCustomTimestampField4() == null ? null : ivyTask
+        .getTechnicalCaseCustomTimestampField4().getTime());
+    result.setCustomTimestampField5(ivyTask.getTechnicalCaseCustomTimestampField5() == null ? null : ivyTask
+        .getTechnicalCaseCustomTimestampField5().getTime());
+
+    result.setCustomVarCharField1(ivyTask.getTechnicalCaseCustomVarCharField1());
+    result.setCustomVarCharField2(ivyTask.getTechnicalCaseCustomVarCharField2());
+    result.setCustomVarCharField3(ivyTask.getTechnicalCaseCustomVarCharField3());
+    result.setCustomVarCharField4(ivyTask.getTechnicalCaseCustomVarCharField4());
+    result.setCustomVarCharField5(ivyTask.getTechnicalCaseCustomVarCharField5());
+
+    result.setDescription(ivyTask.getTechnicalCaseDescription());
+    result.setName(ivyTask.getTechnicalCaseName());
+
+
+    try {
+      result.setPriority(WorkflowPriority.valueOf(ivyTask.getTechnicalCasePriority()));
+    } catch (Exception e) {
+
+    }
+
+    /*
+     * 2. - setters must be implemented as NEW METHODS in RemoteCase
+     */
+    /* - getters must be implemented (override) */
+
+
+    result.setCreatorUserName(ivyTask.getTechnicalCaseCreatorUserName());
+
+    result.setEndTimestamp(ivyTask.getTechnicalCaseEndTimestamp() == null ? null : ivyTask.getTechnicalCaseEndTimestamp().getTime());
+    result.setId(ivyTask.getTechnicalCaseId());
+
+    result.setProcessCategoryCode(ivyTask.getTechnicalCaseProcessCategoryCode());
+    result.setProcessCategoryName(ivyTask.getTechnicalCaseProcessCategoryName());
+    result.setProcessCode(ivyTask.getTechnicalCaseProcessCode());
+    result.setProcessName(ivyTask.getTechnicalCaseProcessName());
+
+    result
+        .setStartTimestamp(ivyTask.getTechnicalCaseStartTimestamp() == null ? null : ivyTask.getTechnicalCaseStartTimestamp().getTime());
+    result.setState(CaseState.valueOf(ivyTask.getCaseState()));
+    result.setSubTypeCode(ivyTask.getTechnicalCaseSubTypeCode());
+    result.setSubTypeName(ivyTask.getTechnicalCaseSubTypeName());
+
+
+    result.setTypeCode(ivyTask.getTechnicalCaseTypeCode());
+    result.setTypeName(ivyTask.getTechnicalCaseTypeName());
+
+    return result;
+  }
+  
+  
+  /**
+   * Convert web service task to remote business case.
+   * 
+   * @param ivyTask web service task
+   * @return remote task
+   * @see IvyTask
+   * @see RemoteCase
+   */
+  public static RemoteCase mapRemoteBusinessCaseFromTask(IvyTask ivyTask) {
     RemoteCase result = new RemoteCase();
 
     /* 1. GETTER + SETTER must be implemented in RemoteTask (overrides) */
@@ -217,7 +311,7 @@ public class RemoteCaseMapper {
 
     return result;
   }
-
+  
   public static RemoteCase mapCaseFromTask(ITask ivyTask) {
     RemoteCase remoteCase = new RemoteCase();
 

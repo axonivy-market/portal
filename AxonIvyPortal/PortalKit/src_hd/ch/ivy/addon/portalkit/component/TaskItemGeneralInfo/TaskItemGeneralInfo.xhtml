@@ -70,9 +70,17 @@
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.expiryActivatorFullName}"
         username="#{task.expiryActivatorName}" />
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/case')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
       <p:commandLink id="related-case" value="#{taskBean.displayCaseName(task)}"
-        actionListener="#{logic.navigateToRelatedCase}" />
+        actionListener="#{logic.navigateToRelatedCase}" >
+        <f:attribute name="selectedCase" value="#{task.case}" />
+      </p:commandLink>
+      
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" rendered="#{task.remoteTechnicalCase.id ne task.case.id}"/>
+      <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
+        actionListener="#{logic.navigateToRelatedCase}" rendered="#{task.remoteTechnicalCase.id ne task.case.id}" >
+        <f:attribute name="selectedCase" value="#{task.remoteTechnicalCase}" />
+      </p:commandLink>
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/createOn')}" />
       <h:outputText id="start-date" value="#{task.startTimestamp}">
@@ -119,6 +127,9 @@
     </h:panelGrid>
     <p:tooltip for="related-case"
       value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})"
+      trackMouse="true" />
+    <p:tooltip for="related-technical-case"
+      value="##{task.getRemoteTechnicalCase().id} #{task.getRemoteTechnicalCase().name} (#{caseBean.getState(task.getRemoteTechnicalCase()).toUpperCase()})"
       trackMouse="true" />
    <p:tooltip for="noExpiryAvailable expiryLabel"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}"
