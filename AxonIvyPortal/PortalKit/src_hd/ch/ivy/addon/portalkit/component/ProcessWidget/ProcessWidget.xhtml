@@ -63,13 +63,16 @@
           </ui:include>
         </p:link>
 
-        <h:form id="process-item-form" styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}"
-          style="#{cc.attrs.processCardStyleClass}">
+        <c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
+        <h:form id="process-item-form" styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''} #{isExpressWorkflow ? 'express-workflow' : ''}"
+          style="#{cc.attrs.processCardStyleClass}"
+          rendered="#{!processWidgetBean.deleteMode}">
+          
           <p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
             rendered="#{not processWidgetBean.deleteMode and (fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}">
             <ui:include src="ProcessItem.xhtml" />
           </p:commandLink>
-          <h:panelGroup rendered="#{!processWidgetBean.compactMode and processWidgetBean.isExpressWorkflow(process)}">
+          <h:panelGroup rendered="#{!processWidgetBean.compactMode and isExpressWorkflow}">
             <ui:include src="ProcessItemActions.xhtml" />
           </h:panelGroup>
         </h:form>
