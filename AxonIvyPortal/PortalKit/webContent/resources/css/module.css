@@ -321,7 +321,7 @@
 
 .ui-datepicker-calendar thead tr th {
   padding: 0px 7.5px 8px 7.5px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   width: 14px;
   color: rgba(0, 0, 0, 0.4);
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
@@ -791,7 +791,7 @@
 }
 .ui-messages-error .ui-message-error-icon,
 .ui-message-error .ui-message-error-icon {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .ui-messages-error .ui-message-error-detail,
 .ui-message-error .ui-message-error-detail {
@@ -1067,7 +1067,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .widget-header-main-menu a.ui-widget.ui-commandlink, .widget-header-main-menu span.ui-widget.ui-commandlink.ui-state-disabled,
   .widget-sort-menu a.ui-widget.ui-commandlink, .widget-sort-menu span.ui-widget.ui-commandlink.ui-state-disabled
   {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .widget-header-main-menu a:hover {
@@ -1165,12 +1165,12 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   flex: 1 0 20%;
   margin: 5px;
   padding: 0 5px 10px;
-  font-size: .65em;
+  font-size: 1.2rem;
   min-width: 0;
 }
 
 .grid-item-header {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-family: "robotomedium";
 }
 
@@ -1316,7 +1316,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: inline-block;
   margin-right: 10px;
   border: solid transparent 1px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   position: relative;
   cursor: pointer;
 }
@@ -1398,6 +1398,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content {
   padding: 10px;
+  font-size: 1.2rem;
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
@@ -1422,7 +1423,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   max-height: 75vh;
 }
 
@@ -1433,7 +1434,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 /********************************** START CASE ITEM **********************************/
 .case-widget-empty-message .ui-outputlabel{
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .case.expanded-mode {
@@ -1442,16 +1443,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   cursor: default;
 }
 
-.case-header {
-  font-size: .7em;
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  padding: 10px;
-}
-
 .case-list-header-cell {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .case-list-name-desc-header-cell {
@@ -1475,7 +1468,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: .8rem;
+  font-size: 1.2rem;
   opacity: 0;
   transition: opacity .65s;
 }
@@ -1486,11 +1479,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 .widget-content-list-item.mod-expanded .case-header-data:hover:before {
   content: none;
-}
-
-.case-header-data-middle {
-  font-size: 2.3em;
-  padding: 5px 0;
 }
 
 .case-body {
@@ -1533,33 +1521,12 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   font-size: 19px;
 }
 
-.case-details-data {
-  display: table-cell;
-  width: 15%;
-  padding: 20px;
-  vertical-align: top;
-  font-size: .7em;
-  border-right: 1px solid #e0e0e0;
-}
-
-.case-details-data td.first-column {
-  padding-right: 10px;
-  text-align: right;
-  word-break: normal;
-  white-space: nowrap;
-}
-
-.case-details-data td.second-column {
-  text-align: left;
-  font-weight: bold;
-}
-
 .case-details-related-tasks {
   display: table-cell;
   width: 30%;
   padding: 30px;
   vertical-align: top;
-  font-size: .7em;
+  font-size: 1.2rem;
   border-right: 1px solid #e0e0e0;
 }
 
@@ -1568,7 +1535,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   width: 30%;
   padding: 20px;
   vertical-align: top;
-  font-size: .7em;
+  font-size: 1.2rem;
   border-right: 1px solid #e0e0e0;
 }
 
@@ -1584,8 +1551,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .case-details-document-scrollpanel {
- height: 245px;
-  font-size: .7em;
+  height: 245px;
+  font-size: 1.2rem;
 }
 
 .case-details-document-add {
@@ -1595,7 +1562,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 a.case-details-document-add-link {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .case-details-document-add-link-icon {
@@ -1765,7 +1732,7 @@ a.case-details-document-add-link {
   height: 65px;
   align-items: center;
   position: relative;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
@@ -1804,7 +1771,7 @@ a.case-details-document-add-link {
 }
 
 .case-header-action-cell .case-destroy-command {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .case-header-action-cell .action-cell-container {
@@ -1827,7 +1794,6 @@ a.case-details-document-add-link {
 }
 
 .case-state {
-  font-size: .7em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1836,7 +1802,7 @@ a.case-details-document-add-link {
 }
 
 .case-info-header {
-  font-size: .6em;
+  font-size: 1.2rem;
 }
 
 .case-info-content {
@@ -1845,30 +1811,7 @@ a.case-details-document-add-link {
 }
 
 .case-info-footer {
-  font-size: .6em;
-}
-
-.case-header-action {
-  font-size: 1.3em !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.case-header-action a {
-  text-align: center;
-}
-
-.case-header-action a:hover {
-  border-bottom: none;
-}
-
-.case-header-action label {
-  font-size: .4em;
-}
-
-.case-header-action .fa {
-  display: block;
+  font-size: 1.2rem;
 }
 
 .case-command {
@@ -1904,20 +1847,6 @@ a.case-details-document-add-link {
   flex: 1 0 70%;
   height: 38px;
   box-sizing: border-box;
-}
-
-.case-info-header-action {
-  padding: 0 20px;
-  text-align: center;
-  border-left: solid 1px rgba(0,0,0,0.5);
-}
-
-.case-info-header-action .action-icon {
-  font-size: 1.5rem;
-}
-
-.case-info-header-action a {
-  font-size: 1.1rem;
 }
 /********************************** END CASE ITEM **********************************/
 .process-start-list {
@@ -2011,7 +1940,7 @@ a.case-details-document-add-link {
 
 .process-start-list-item .process-start-list-item-action .express-workflow {
   display: none;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   padding-right: 7px;
   padding-bottom: 3px;
   float: left;
@@ -2209,7 +2138,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-info-header, .task-start-info-footer {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: rgba(0,0,0,.3);
   display: block;
 }
@@ -2286,7 +2215,7 @@ a.compact-task-start-link:hover {
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .task-start-list .action-cell .task-command:not(:last-child) {
@@ -2309,10 +2238,6 @@ a.compact-task-start-link:hover {
 
 .task-start-list .action-cell .task-command.side-step-position {
   position: absolute;
-}
-
-.task-start-list .action-cell .task-command.side-step .fa{
-  font-size: 1.7rem;
 }
 
 .task-state-open, .case-state-in-progress {
@@ -2346,7 +2271,7 @@ a.compact-task-start-link:hover {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: .8rem;
+  font-size: 1.2rem;
   opacity: 0;
   transition: opacity .65s;
 }
@@ -2369,7 +2294,7 @@ a.compact-task-start-link:hover {
   height: 65px;
   align-items: center;
   position: relative;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
@@ -2399,15 +2324,15 @@ a.compact-task-start-link:hover {
   height: 200px;
   padding-right: 10px;
   padding-top: 5px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .no-task-message {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .side-steps-menu-item .ui-menuitem-text {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .side-steps-panel {
@@ -2492,7 +2417,7 @@ a.compact-task-start-link:hover {
   text-align: right;
   word-break: normal;
   white-space: nowrap;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: rgba(0,0,0,0.4);
   line-height: 1.8rem;
 }
@@ -2531,7 +2456,7 @@ a.compact-task-start-link:hover {
 
 .task-details-note-scrollpanel {
   height: 225px;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .task-details-note-scrollpanel .note-separator:last-child {
@@ -2539,7 +2464,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-author, .task-note > * {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .task-note {
@@ -2585,7 +2510,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-details-note-add-link {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .task-details-note-add-link-icon {
@@ -2594,7 +2519,7 @@ a.compact-task-start-link:hover {
 
 .empty-note-message {
   display: block;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 
@@ -2636,14 +2561,14 @@ a.compact-task-start-link:hover {
 .document-even-row a.ui-widget.ui-commandlink, .document-odd-row a.ui-widget.ui-commandlink {
   line-height: 34px;
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .no-documents-message {
   text-align: center;
   line-height: 34px;
   display: block;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .document-even-row a.download-command, .document-odd-row a.download-command {
@@ -2663,7 +2588,7 @@ a.compact-task-start-link:hover {
 }
 
 a.task-details-document-add-link {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .task-details-document-add-link-icon {
@@ -2715,7 +2640,7 @@ a.task-details-document-add-link {
   text-align: right;
   word-break: normal;
   white-space: nowrap;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: rgba(0,0,0,0.4);
   line-height: 1.8rem;
 }
@@ -2769,7 +2694,7 @@ a.task-details-document-add-link {
 
 .case-details-history-scrollpanel{
   height: 225px;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .case-details-history-scrollpanel .note-separator:last-child {
@@ -2777,7 +2702,7 @@ a.task-details-document-add-link {
 }
 
 .history-author, .history-note > * {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .history-note {
@@ -2785,11 +2710,11 @@ a.task-details-document-add-link {
 }
 
 .case-related-tasks-scrollpanel.ui-scrollpanel {
-    height: 196px;
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-    border: none;
-    padding: 0 0 7px 0 !important;
+  height: 196px;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  border: none;
+  padding: 0 0 7px 0 !important;
 }
 
 .case-related-tasks-scrollpanel .related-task{
@@ -2811,7 +2736,7 @@ a.task-details-document-add-link {
   height: 200px;
   padding-right: 10px;
   padding-top: 5px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 .case-detail-description-input {
   width: 89%;
@@ -3113,7 +3038,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .warning-portal-connector-path-security {
   color: #f9bf08;
-  font-size: 0.75em;
+  font-size: 1.2rem;
 }
 /********************************** ABSENCES AND DEPUTY **********************************/
 .absences-view-command-buttons {
@@ -3377,17 +3302,21 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   height: 350px;
 }
 
-.jqplot-data-label {
+.jqplot-target .jqplot-data-label {
   color: #5f5f5f;
 }
 
-.jqplot-highlighter-tooltip {
-  font-size: 1em;
+.jqplot-target .jqplot-highlighter-tooltip {
+  font-size: 1.2rem;
   color: #1A1A1A;
 }
 
 .compact-mode .jqplot-target {
   width: 320px;
+}
+
+.statistic-widget .jqplot-target, .jqplot-target table.jqplot-table-legend {
+  font-size: 1.2rem;
 }
 
 /********************************** END STATISTIC WIDGET **********************************/
@@ -3425,7 +3354,7 @@ margin-top
   width: 430px;
   height: 60px;
   background: rgb(230, 113, 99);
-  font-size: 1em;
+  font-size: 1.2rem;
   display: flex;
 }
 
@@ -3689,7 +3618,7 @@ margin-top
 }
 
 .login-command {
-  font-size: 1.4em;
+  font-size: 1.4rem;
   color: black !important;
   text-decoration: none !important;
   outline: none !important;
@@ -3705,7 +3634,7 @@ margin-top
   margin: 10px 0 0;
   padding: 0 !important;
   color: red !important;
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 
 .login-form .ui-messages ul {
@@ -3732,7 +3661,7 @@ margin-top
 
 .case-action-link {
    color: #337ab7 !important;
-   font-size: 1rem;
+   font-size: 1.2rem;
 }
 
 .case-action-link:hover {
@@ -3771,7 +3700,7 @@ margin-top
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
-  font-size: 16px;
+  font-size: 1.2rem;
   font-family: 'robotoregular';
   line-height: 36px;
   box-sizing: content-box;
