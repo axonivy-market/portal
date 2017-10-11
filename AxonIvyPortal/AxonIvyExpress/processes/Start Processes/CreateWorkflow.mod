@@ -28,15 +28,15 @@ cw0 f0 requestEnabled true #txt
 cw0 f0 triggerEnabled false #txt
 cw0 f0 callSignature AxonIvyExpressWF() #txt
 cw0 f0 persist false #txt
-cw0 f0 startName 'Create Axon.ivy Express Workflow' #txt
+cw0 f0 startName <%=ivy.cms.co("/Dialogs/workflowCreation/ProcessName")%> #txt
 cw0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody
+TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!
 TaskTriggered.NAM=Workflow Eigenschaften
-TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!' #txt
+TaskTriggered.EXROL=Everybody' #txt
 cw0 f0 caseData 'case.name=Neuen Prozess erstellen
 case.description=Erstellen eines neuen Prozesses\!
 businessCase.attach=false' #txt

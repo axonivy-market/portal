@@ -1981,6 +1981,7 @@ a.case-details-document-add-link {
   font-size: 1.2rem;
   overflow: hidden;
   display: flex;
+  width: 90%;
   align-items: center;
 }
 
@@ -2005,6 +2006,7 @@ a.case-details-document-add-link {
 .process-start-list-item .process-start-list-item-action .open-icon {
   position: absolute;
   right: 15px;
+  top: 35%;
 }
 
 .process-start-list-item .process-start-list-item-action .express-workflow {
