@@ -60,23 +60,52 @@ public class UserProcess extends BusinessEntity {
   public void setDefaultProcess(boolean defaultProcess) {
     this.defaultProcess = defaultProcess;
   }
-
-  @Override
-  public String toString() {
-    return "UserProcess {userName=" + userName + ", processName=" + processName + ", icon=" + icon + ", link=" + link
-        + ", isDefaultProcess=" + defaultProcess + ", id=" + getId() + "}";
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(defaultProcess, icon, link, processName, userName);
-  }
-
+  
   public String getWorkflowId() {
     return workflowId;
   }
 
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
+  }
+
+  @Override
+  public String toString() {
+    return "UserProcess {userName=" + userName + ", processName=" + processName + ", icon=" + icon + ", link=" + link
+        + ", isDefaultProcess=" + defaultProcess + ", id=" + getId() + "}";
+  }
+  
+  @Override
+  public int hashCode() {
+    return Objects.hash(defaultProcess, icon, link, processName, userName);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    UserProcess other = (UserProcess) obj;
+    if (id == null) {
+      if (other.id != null) {
+        return false;
+      }
+    } else if (!id.equals(other.id)) {
+      return false;
+    }
+    if (workflowId == null) {
+      if (other.workflowId != null) {
+        return false;
+      }
+    } else if (!workflowId.equals(other.workflowId)) {
+      return false;
+    }
+    return true;
   }
 }

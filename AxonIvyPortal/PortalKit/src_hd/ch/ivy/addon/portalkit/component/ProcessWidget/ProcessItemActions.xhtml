@@ -8,11 +8,11 @@
 <ui:composition>
   <div class="process-start-list-item-action">
     <p:commandLink id="edit-express-workflow-#{rowIndex}" styleClass="fa fa-pencil express-workflow"
-      rendered="#{isExpressWorkflow and not compactMode}" actionListener="#{logic.editExpressWorkflow(process)}" target="_self" />
+      actionListener="#{logic.editExpressWorkflow(process)}" target="_self" />
     <p:tooltip id="edit-express-workflow-tooltip-#{rowIndex}" for="edit-express-workflow-#{rowIndex}"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}" position="top" />
     <p:commandLink id="delete-express-workflow-#{rowIndex}" styleClass="fa fa-trash express-workflow"
-      rendered="#{isExpressWorkflow and not compactMode}" actionListener="#{processWidgetBean.setEditingProcess(process)}"
+      actionListener="#{processWidgetBean.setEditingProcess(process)}"
       oncomplete="PF('remove-express-workflow-dialog').show();"
       update=":#{p:component('remove-express-workflow-dialog')}" />
     <p:tooltip id="delete-express-workflow-tooltip-#{rowIndex}" for="delete-express-workflow-#{rowIndex}"
