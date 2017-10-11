@@ -32,26 +32,7 @@
       <artifactId>boon</artifactId>
       <version>0.33</version>
     </dependency>
-    <dependency>
-      <groupId>ch.ivy.ws.addon</groupId>
-      <artifactId>taskService</artifactId>
-      <version>6.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>ch.ivy.ws.addon</groupId>
-      <artifactId>portalDataService</artifactId>
-      <version>6.0</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>portalKit.local</id>
-      <name>portalKit</name>
-      <url>file:${project.basedir}/repo</url>
-    </repository>
-  </repositories>
   <build>
 	  <sourceDirectory>${basedir}/src/</sourceDirectory>
 	  <directory>${basedir}/target</directory>
