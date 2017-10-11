@@ -1281,11 +1281,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   margin-left: 0 !important;
 }
   
-.task-widget .advanced-filter-container {
-  margin-top: 10px;
-}
-
 .task-widget .advanced-filter-container .additional-filter-container {
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -2048,18 +2045,9 @@ a.case-details-document-add-link {
   border-bottom: none;
 }
 
-.widget .action-separator {
-  margin-left: 4px;
-  margin-right: 5px
-}
-
 .widget .process-button-position {
-  margin-top: 10px;
+  margin-bottom: 10px;
   margin-button: 20px;
-}
-
-.process-action-button {
-  text-align: center;
 }
 
 .menu-toolbar:after {
@@ -3592,8 +3580,7 @@ margin-top
 
 .content .title {
   margin: 0;
-  font-size: 2.4em;
-  margin-bottom: 50px;
+  font-size: 2rem;
 }
 
 .content .input.ui-inputfield {
@@ -3613,7 +3600,7 @@ margin-top
 }
 
 .footer {
-  margin-top: 45px;
+  margin-top: 18px;
 }
 
 .login-command {
