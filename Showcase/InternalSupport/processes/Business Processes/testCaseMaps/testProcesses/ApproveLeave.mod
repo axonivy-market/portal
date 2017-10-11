@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Tue Jun 06 09:24:24 ICT 2017]
 15C7B30FB93C827E 3.20 #module
 >Proto >Proto Collection #zClass
 Ae0 ApproveLeave Big #zClass
@@ -34,10 +33,9 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.NAM=Approve Leave Request
-TaskTriggered.EXROL=Everybody' #txt
-Ae0 f0 caseData 'case.name=Approve Leave Request
-businessCase.attach=true' #txt
+TaskTriggered.EXROL=Everybody
+TaskTriggered.NAM=Approve Leave Request' #txt
+Ae0 f0 caseData businessCase.attach=true #txt
 Ae0 f0 showInStartList 1 #txt
 Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -207,6 +207,65 @@ public class IvyTaskTransformer {
       result.setCaseTypeCode(c.getTypeCode());
       result.setCaseTypeName(c.getTypeName());
     }
+    
+    // Add technical case object
+    if (addCaseToTask) {
+      IvyCaseTransformer caseTransformer = new IvyCaseTransformer();
+      IvyCase c = caseTransformer.transform(t.getCase());
+      result.setTechnicalCaseBusinessCorrespondentId(c.getBusinessCorrespondentId());
+      result.setTechnicalCaseBusinessCreatorUser(c.getBusinessCreatorUser());
+      result.setTechnicalCaseBusinessMainContactDocumentDatabaseCode(c.getBusinessMainContactDocumentDatabaseCode());
+      result.setTechnicalCaseBusinessMainContactFolderId(c.getBusinessMainContactFolderId());
+      result.setTechnicalCaseBusinessMainContactId(c.getBusinessMainContactId());
+      result.setTechnicalCaseBusinessMainContactName(c.getBusinessMainContactName());
+      result.setTechnicalCaseBusinessMainContactType(c.getBusinessMainContactType());
+      result.setTechnicalCaseBusinessMilestoneTimestamp(c.getBusinessMilestoneTimestamp());
+      result.setTechnicalCaseBusinessObjectCode(c.getBusinessObjectCode());
+      result.setTechnicalCaseBusinessObjectDocumentDatabaseCode(c.getBusinessObjectDocumentDatabaseCode());
+      result.setTechnicalCaseBusinessObjectFolderId(c.getBusinessObjectFolderId());
+      result.setTechnicalCaseBusinessObjectName(c.getBusinessObjectName());
+      result.setTechnicalCaseBusinessPriority(c.getBusinessPriority());
+      result.setTechnicalCaseBusinessStartTimestamp(c.getBusinessStartTimestamp());
+      result.setTechnicalCaseCreatorUserName(c.getCreatorUserName());
+
+      result.setTechnicalCaseCustomDecimalField1(c.getCustomDecimalField1());
+      result.setTechnicalCaseCustomDecimalField2(c.getCustomDecimalField2());
+      result.setTechnicalCaseCustomDecimalField3(c.getCustomDecimalField3());
+      result.setTechnicalCaseCustomDecimalField4(c.getCustomDecimalField4());
+      result.setTechnicalCaseCustomDecimalField5(c.getCustomDecimalField5());
+
+      result.setTechnicalCaseCustomTimestampField1(c.getCustomTimestampField1());
+      result.setTechnicalCaseCustomTimestampField2(c.getCustomTimestampField2());
+      result.setTechnicalCaseCustomTimestampField3(c.getCustomTimestampField3());
+      result.setTechnicalCaseCustomTimestampField4(c.getCustomTimestampField4());
+      result.setTechnicalCaseCustomTimestampField5(c.getCustomTimestampField5());
+
+      result.setTechnicalCaseCustomVarCharField1(c.getCustomVarCharField1());
+      result.setTechnicalCaseCustomVarCharField2(c.getCustomVarCharField2());
+      result.setTechnicalCaseCustomVarCharField3(c.getCustomVarCharField3());
+      result.setTechnicalCaseCustomVarCharField4(c.getCustomVarCharField4());
+      result.setTechnicalCaseCustomVarCharField5(c.getCustomVarCharField5());
+
+      result.setTechnicalCaseDescription(c.getDescription());
+      result.setTechnicalCaseEndTimestamp(c.getEndTimestamp());
+      result.setTechnicalCaseId(c.getId());
+      result.setTechnicalCaseName(c.getName());
+      result.setTechnicalCasePriority(c.getPriority());
+
+      result.setTechnicalCaseProcessCategoryCode(c.getProcessCategoryCode());
+      result.setTechnicalCaseProcessCategoryName(c.getProcessCategoryName());
+      result.setTechnicalCaseProcessCode(c.getProcessCode());
+      result.setTechnicalCaseProcessName(c.getProcessName());
+
+      result.setTechnicalCaseStartTimestamp(c.getStartTimestamp());
+      result.setTechnicalCaseState(c.getState());
+      result.setTechnicalCaseSubTypeCode(c.getSubTypeCode());
+      result.setTechnicalCaseSubTypeName(c.getSubTypeName());
+
+      result.setTechnicalCaseTypeCode(c.getTypeCode());
+      result.setTechnicalCaseTypeName(c.getTypeName());
+    }
+    
     return result;
   }
 
