@@ -6,7 +6,7 @@ import ch.ivy.addon.portalkit.persistence.variable.PropertyKey;
 
 public abstract class BusinessEntity {
   protected static final int PRIME_NUMBER = 31;
-  private Long id;
+  protected Long id;
 
   @JsonIgnore
   private String propertyKey;
