@@ -59,7 +59,7 @@
           styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'}"
           style="#{cc.attrs.processCardStyleClass}">
           <ui:include src="ProcessItem.xhtml">
-            <ui:param name="rowIndex" value="external-process-item" />
+            <ui:param name="rowIndex" value="process-item" />
           </ui:include>
         </p:link>
 
@@ -73,7 +73,9 @@
             <ui:include src="ProcessItem.xhtml" />
           </p:commandLink>
           <h:panelGroup rendered="#{!processWidgetBean.compactMode and isExpressWorkflow}">
-            <ui:include src="ProcessItemActions.xhtml" />
+            <ui:include src="ProcessItemActions.xhtml">
+              <ui:param name="rowIndex" value="external-process-item" />
+            </ui:include>
           </h:panelGroup>
         </h:form>
 
