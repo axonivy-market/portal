@@ -76,15 +76,18 @@
 
     <h:panelGroup id="process-list" layout="block"
       styleClass="widget-content #{processWidgetBean.compactMode ? '' : 'process-start-list'}">
-      <p:outputLabel id="empty-process-message"
-        rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noFavoriteProcess')}" />
-      <p jsf:rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses}">
-        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messagePrefix')}
-        <p:commandLink id="add-new-process-message" actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
-          update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()">
-          <b>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messageSuffix')}</b>?</p:commandLink>
-      </p>
+      <h:panelGroup styleClass="process-empty-container" rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses}">
+        <p>
+          <h:outputText id="empty-process-message"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noFavoriteProcess')}" />
+        </p>
+        <p>
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messagePrefix')}
+          <p:commandLink id="add-new-process-message" actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
+            update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()">
+            <b>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messageSuffix')}</b>?</p:commandLink>
+        </p>
+      </h:panelGroup>
 
       <ui:repeat id="process-list-items" varStatus="status" var="process" value="#{processWidgetBean.userProcesses}">
         <p:link id="external-process-item" href="#{process.link}" target="_blank"
