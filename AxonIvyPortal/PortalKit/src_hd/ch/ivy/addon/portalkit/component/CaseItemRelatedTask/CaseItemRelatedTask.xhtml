@@ -40,7 +40,7 @@
               <f:attribute name="selectedCase" value="#{technicalCase}" />
             </p:commandLink>
           </h:panelGroup>
-          <p:tooltip for="technicalCase" value="#{technicalCase.id} - #{technicalCase.name}" trackMouse="true" /> 
+          <p:tooltip for="technicalCase" value="Technical case: ##{technicalCase.id} #{technicalCase.name} (#{caseBean.getState(technicalCase).toUpperCase()})" trackMouse="true" /> 
         </ui:repeat>
     </p:scrollPanel>
   </div>
