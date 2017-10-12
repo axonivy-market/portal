@@ -53,9 +53,9 @@
 
     <ui:define name="rightButtons">
       <h:panelGroup styleClass="MarTop5 DispBlock">
-    	  <p:commandButton value="Send" styleClass="portal-ok-button" icon="fa fa-send-o" onclick="leaveRequest()" />
+    	  <p:commandButton type="button" value="Send" styleClass="portal-ok-button" icon="fa fa-send-o" onclick="leaveRequest()" />
     	  <p:spacer width="5px"/>
-        <p:commandButton value="Cancel" styleClass="mod-cancel-button portal-cancel-button" icon="fa fa-ban" oncomplete="closeDialog()" />
+        <p:commandButton type="button" value="Cancel" styleClass="mod-cancel-button portal-cancel-button" icon="fa fa-ban" onclick="closeDialog()" />
       </h:panelGroup>
     </ui:define>
 
