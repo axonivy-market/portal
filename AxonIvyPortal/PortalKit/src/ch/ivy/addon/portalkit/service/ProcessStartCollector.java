@@ -23,6 +23,7 @@ import ch.ivyteam.util.Pair;
 public class ProcessStartCollector {
 
   private final IApplication application;
+  private final String CREATE_EXPRESS_LINK = "Start Processes/CreateWorkflow/AxonIvyExpressWF.ivp";
 
   public ProcessStartCollector(IApplication application) {
     this.application = application;
@@ -135,13 +136,14 @@ public class ProcessStartCollector {
     });
   }
   
+
   public String findCreateExpressWorkflowStartLink() throws Exception {
 	    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
 	      @Override
 	      public String call() throws Exception {
 	        ProcessStartCollector collector = new ProcessStartCollector(application);
 	        IProcessStart process =
-	            collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CreateWorkflow/AxonIvyExpressWF.ivp");
+	            collector.findProcessStartByUserFriendlyRequestPath(CREATE_EXPRESS_LINK);
 	        if (process != null) {
 	          return RequestUriFactory.createProcessStartUri(
 	              ServerFactory.getServer().getApplicationConfigurationManager(), process).toString();
@@ -150,6 +152,16 @@ public class ProcessStartCollector {
 	      }
 	    });
 	  }
+
+  public IProcessStart findCreateExpressWorlflowProcess() throws Exception{
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IProcessStart>() {
+      @Override
+      public IProcessStart call() throws Exception {
+        ProcessStartCollector collector = new ProcessStartCollector(application);
+        return collector.findProcessStartByUserFriendlyRequestPath(CREATE_EXPRESS_LINK);
+      }
+    });
+  }
 
   public String findExpressWorkflowEditLink(String workflowId) throws Exception {
     return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {

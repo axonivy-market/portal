@@ -30,7 +30,6 @@ Ps0 @PushWFArc f19 '' #zField
 Ps0 @RichDialogMethodStart f23 '' #zField
 Ps0 @RichDialogProcessEnd f24 '' #zField
 Ps0 @CallSub f26 '' #zField
-Ps0 @PushWFArc f25 '' #zField
 Ps0 @Alternative f28 '' #zField
 Ps0 @PushWFArc f30 '' #zField
 Ps0 @RichDialogInitStart f12 '' #zField
@@ -54,7 +53,6 @@ Ps0 @PushWFArc f15 '' #zField
 Ps0 @PushWFArc f32 '' #zField
 Ps0 @RichDialogProcessEnd f43 '' #zField
 Ps0 @GridStep f45 '' #zField
-Ps0 @PushWFArc f44 '' #zField
 Ps0 @PushWFArc f20 '' #zField
 Ps0 @RichDialogMethodStart f27 '' #zField
 Ps0 @PushWFArc f29 '' #zField
@@ -71,6 +69,8 @@ Ps0 @RichDialogMethodStart f52 '' #zField
 Ps0 @PushWFArc f54 '' #zField
 Ps0 @PushWFArc f55 '' #zField
 Ps0 @GridStep f53 '' #zField
+Ps0 @PushWFArc f44 '' #zField
+Ps0 @PushWFArc f25 '' #zField
 >Proto Ps0 Ps0 ProcessWidgetProcess #zField
 Ps0 f1 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f1 85 213 22 22 14 0 #rect
@@ -275,8 +275,6 @@ from all servers</name>
 ' #txt
 Ps0 f26 78 500 36 24 20 -13 #rect
 Ps0 f26 @|CallSubIcon #fIcon
-Ps0 f25 expr out #txt
-Ps0 f25 96 524 96 565 #arcP
 Ps0 f28 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -539,8 +537,6 @@ Ps0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f45 622 148 36 24 20 -2 #rect
 Ps0 f45 @|StepIcon #fIcon
-Ps0 f44 expr out #txt
-Ps0 f44 640 172 640 213 #arcP
 Ps0 f20 expr out #txt
 Ps0 f20 96 107 96 213 #arcP
 Ps0 f27 guid 157D210CFFD83014 #txt
@@ -640,6 +636,7 @@ if (!StringUtils.isEmpty(expressStartLink)) {
 		  	userProcess.setDefaultProcess(false);
 			userProcess.setIcon("fa-code-fork");
 			userProcess.setWorkflowId(wf.id);
+			userProcess.setDescription(wf.processDescription);
 		  	in.processes.add(userProcess);
 		}
 	}	
@@ -705,6 +702,10 @@ FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);' #txt
 Ps0 f53 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f53 943 373 36 24 20 -2 #rect
 Ps0 f53 @|StepIcon #fIcon
+Ps0 f44 expr out #txt
+Ps0 f44 640 172 640 213 #arcP
+Ps0 f25 expr out #txt
+Ps0 f25 96 524 96 565 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect

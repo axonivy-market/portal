@@ -1848,6 +1848,11 @@ a.case-details-document-add-link {
   line-height: 45px;
 }
 
+.process-widget-action .process-action-button.action-create-experss-workflow {
+  line-height: 1.2rem;
+  margin-top: 20px;
+}
+
 .process-empty-container {
   font-size: 1.2rem;
 }
@@ -1872,6 +1877,7 @@ a.case-details-document-add-link {
   border-radius: 5px;
   color: black;
   display: flex;
+  position: relative;
 }
 
 .process-start-list-item:hover {
@@ -1926,16 +1932,29 @@ a.case-details-document-add-link {
 }
 
 .process-start-list-item-action {
-  position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  width: 10%;
   opacity: .3;
   font-size: 1.2rem;
-  padding-right: 25px;
+  margin-right: 25px;
 }
 
-.process-start-list-item .process-start-list-item-action .open-icon {
+.process-start-list-item-action.fa-info-circle.express-workflow {
+  cursor: default;
+}
+
+.process-start-list-item:hover .process-start-list-item-action.is-express-workflow {
+  padding-left: 10px;
+  margin-left: auto;
+  min-width: 60px;
+}
+
+.process-start-list-item .process-start-list-item-action.is-express-workflow {
+  min-width: 0;
+}
+
+
+.process-start-list-item  .open-icon {
   position: absolute;
   right: 15px;
   top: 35%;
@@ -1954,9 +1973,13 @@ a.case-details-document-add-link {
 }
 
 .process-start-list-item .ui-commandlink {
-  display: flex;
-  width: 90%;
+  display: inline-flex;
   color: black !important;
+}
+
+.process-start-list-item .ui-commandlink.process-item {
+  min-width: 60%;
+  max-width: 90%;
 }
 
 .process-start-list-item:hover .process-start-list-item-action {
@@ -3881,4 +3904,11 @@ margin-top
 
 .ui-tabs-top .ui-tabs-nav li a {
   font-size: 1.4rem;
+}
+
+.create-express-workflow-container {
+  display: block;
+  width: 100%;
+  text-align: right;
+  margin-top: 10px;
 }
