@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +13,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
 import org.primefaces.context.RequestContext;
 
@@ -26,9 +27,12 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -47,6 +51,7 @@ public class ProcessWidgetBean implements Serializable {
   private List<UserProcess> selectedUserProcesses;
   private List<RemoteWebStartable> webStartables;
   private String processWidgetComnponentId;
+  private IProcessStart createExpressWorkflowProcessStart;
 
   @PostConstruct
   public void init() {
@@ -58,6 +63,13 @@ public class ProcessWidgetBean implements Serializable {
     selectedUserProcesses = new ArrayList<UserProcess>();
     userName = UserUtils.getSessionUserName();
     userProcesses = findUserProcessBaseOnUIMode(compactMode);
+
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    try {
+      createExpressWorkflowProcessStart = collector.findCreateExpressWorlflowProcess();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+    }
   }
 
   private List<UserProcess> findFavoriteProcessUserCanStart() {
@@ -67,9 +79,10 @@ public class ProcessWidgetBean implements Serializable {
     List<UserProcess> userProcesses =
         ivyComponentLogicCaller.invokeComponentLogic(processWidgetComnponentId, "#{logic.collectDefaultProcesses}",
             new Object[] {});
+
     userProcesses.forEach(defaultProcess -> {
-      defaultProcess.setUserName(userName);
-      defaultProcess.setDefaultProcess(true);
+        defaultProcess.setUserName(userName);
+        defaultProcess.setDefaultProcess(true);
     });
 
     userProcesses.addAll(userProcessService.findByUserName(userName));
@@ -301,5 +314,36 @@ public class ProcessWidgetBean implements Serializable {
     ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
 
     userProcesses.remove(editingProcess);
+  }
+
+  public String getCreateExpessWorkflowLink() throws Exception {
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
+      @Override
+      public String call() throws Exception {
+        if (createExpressWorkflowProcessStart != null) {
+          return RequestUriFactory.createProcessStartUri(
+              ServerFactory.getServer().getApplicationConfigurationManager(), createExpressWorkflowProcessStart).toString();
+        }
+        return StringUtils.EMPTY;
+      }
+    });
+  }
+
+  public IProcessStart getCreateExpressWorkflowProcessStart() {
+    return createExpressWorkflowProcessStart;
+  }
+
+  public void setCreateExpressWorkflowProcessStart(
+      IProcessStart createExpressWorkflowProcessStart) {
+    this.createExpressWorkflowProcessStart = createExpressWorkflowProcessStart;
+  }
+
+  public boolean canCreateExpessWorkflow() {
+    boolean result = !compactMode && createExpressWorkflowProcessStart != null;
+    return result;
+  }
+
+  public boolean isExpressWorkflowLink (String link) {
+    return !StringUtils.isBlank(link) && link.contains(EXPRESS_WORKFLOW_ID_PARAM);
   }
 }
