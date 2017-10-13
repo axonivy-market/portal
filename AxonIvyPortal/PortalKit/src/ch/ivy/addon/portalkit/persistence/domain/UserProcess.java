@@ -9,6 +9,7 @@ public class UserProcess extends BusinessEntity {
   private String icon;
   private String link;
   private String workflowId;
+  private String description;
   private boolean defaultProcess;
 
   public UserProcess() {
@@ -67,6 +68,14 @@ public class UserProcess extends BusinessEntity {
 
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   @Override

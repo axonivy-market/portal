@@ -34,13 +34,13 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!
+TaskTriggered.EXROL=Everybody
 TaskTriggered.NAM=Workflow Eigenschaften
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.DESC=Bitte definieren Sie die Workfloweigenschaften\!' #txt
 cw0 f0 caseData 'case.name=Neuen Prozess erstellen
 case.description=Erstellen eines neuen Prozesses\!
 businessCase.attach=false' #txt
-cw0 f0 showInStartList 1 #txt
+cw0 f0 showInStartList 0 #txt
 cw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
