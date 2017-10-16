@@ -363,23 +363,11 @@ public class TaskBean {
    * @param task to get the state
    * @return the state of task
    */
-  public String getStateByITask(ITask task) {
-    String stateDisplayOut = "";
-    if (task == null) {
-      return stateDisplayOut;
+  public String getTranslatedState(TaskState state) {
+    if (state == null) {
+      return StringUtils.EMPTY;
     }
-    if (TaskState.DELAYED == task.getState()) {
-      ArrayList<Object> params = new ArrayList<Object>();
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT_DATE);
-      if (task.getDelayTimestamp() != null) {
-        params.add(simpleDateFormat.format(task.getDelayTimestamp()));
-        stateDisplayOut = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + task.getState(), params);
-      }
-    } else {
-      stateDisplayOut = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + task.getState());
-    }
-
-    return stateDisplayOut;
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
   }
   
   public String displayRelatedTaskToolTip(ITask task) {
@@ -387,7 +375,7 @@ public class TaskBean {
   	if(task != null) {
   		taskResponsible = ((RemoteTask)task).getActivatorFullName();
   	}
-  	List<Object> params = Arrays.asList(task.getState(), Objects.toString(taskResponsible, ""));
+  	List<Object> params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
   	return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
   
@@ -401,7 +389,7 @@ public class TaskBean {
   			taskResponsible = !((IRole)taskActivor).getDisplayName().isEmpty() ? ((IRole)taskActivor).getDisplayName() : ((IRole)taskActivor).getMemberName();
   		}
   	}
-  	List<Object> params = Arrays.asList(task.getState(), Objects.toString(taskResponsible, ""));
+  	List<Object> params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
   	return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
   

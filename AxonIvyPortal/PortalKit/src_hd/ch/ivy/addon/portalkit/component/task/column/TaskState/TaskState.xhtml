@@ -30,6 +30,6 @@
       styleClass="fa fa-cog task-state-system #{cc.attrs.stateIconStyleClass}" />
   </h:panelGroup>
   <p:tooltip id="state-tooltip" for="#{cc.attrs.componentId}"
-    value="#{taskBean.getUserFriendlyTaskState(state)} (#{state})" styleClass="#{cc.attrs.stateTooltipStyleClass}" />
+    value="#{taskBean.getUserFriendlyTaskState(state)} (#{taskBean.getTranslatedState(state)})" styleClass="#{cc.attrs.stateTooltipStyleClass}" />
 </cc:implementation>
 </html>
