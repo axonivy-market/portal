@@ -95,7 +95,8 @@ Ws0 f24 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewDa
 ' #txt
 Ws0 f24 actionTable 'out=in;
 ' #txt
-Ws0 f24 actionCode 'import ch.ivyteam.ivy.server.ServerFactory;
+Ws0 f24 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import javax.faces.context.FacesContext;
@@ -104,15 +105,11 @@ import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
  
 ivy.task.reset();
 
-IProcessStart processStart;
-for (IProcessStart start : ivy.session.getStartableProcessStarts()) {
-	if (start.getProcessElementId().equals("1576E76B009E23DD-f0")) {
-  	processStart = start;
-		break;
-	}
-}
-
+String processStartLink = "Start Processes/PortalStart/DefaultEndPage.ivp";
+ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+IProcessStart processStart = collector.findProcessStartByUserFriendlyRequestPath(processStartLink);
 String link = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
+
 if(processStart != null) {
 	if (!ivy.case.getState().equals(CaseState.ZOMBIE) && !ivy.case.getState().equals(CaseState.CREATED)) {
   	link += "?taskIdentifier="+ivy.task.getId();
