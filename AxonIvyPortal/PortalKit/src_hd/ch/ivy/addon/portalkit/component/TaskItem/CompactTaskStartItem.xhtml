@@ -11,7 +11,7 @@
     <div class="task-start-info">
       <h:outputText id="task-start-task-state" value="##{task.id} #{taskBean.getUserFriendlyTaskState(task.state)}"
         styleClass="task-start-info-header" />
-      <p:tooltip for="task-start-task-state" value="#{task.state}" trackMouse="true" />
+      <p:tooltip for="task-start-task-state" value="#{taskBean.getTranslatedState(task.state)}" trackMouse="true" />
       <h:outputText id="task-start-task-name" styleClass="task-start-info-content u-truncate-text"
         value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
       <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}" />
