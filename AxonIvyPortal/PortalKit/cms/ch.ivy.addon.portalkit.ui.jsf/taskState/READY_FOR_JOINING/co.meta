@@ -1,4 +1,4 @@
-co: name={READY_FOR_JOINING} description={} changed={2017-10-19 11:58:32 CEST} changedby={ec} visualorder={0} guid={15F14D4FA3532B88} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F14D4FA47773BB} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-13 10:23:42 CEST} validto={} changed={2017-10-19 11:58:32 CEST} changedby={ec} properties={} id={}
+co: name={READY_FOR_JOINING} description={} changed={2017-10-19 15:42:56 CEST} changedby={ec} visualorder={0} guid={15F14D4FA3532B88} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F14D4FA47773BB} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-13 10:23:42 CEST} validto={} changed={2017-10-19 15:42:56 CEST} changedby={ec} properties={} id={}
 val: guid={15F14D4FA37AB7D3} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-13 10:23:42 CEST} validto={} changed={2017-10-13 10:24:33 CEST} changedby={dhtlong} properties={} id={}
 val: guid={15F14D4FA41886CE} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-13 10:23:42 CEST} validto={} changed={2017-10-13 10:23:42 CEST} changedby={dhtlong} properties={} id={}
