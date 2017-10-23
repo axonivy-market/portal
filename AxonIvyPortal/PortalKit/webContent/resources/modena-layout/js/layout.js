@@ -154,7 +154,7 @@ var Modena = {
                 $this.topMenu.find('.active-menu').removeClass('active-menu');
                 link.addClass('active-menu');
                 
-                if(submenu.length) {
+                if(submenu.length) {
                     submenu.addClass('active-menu');
                 }
             }
