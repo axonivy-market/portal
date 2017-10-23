@@ -9,7 +9,7 @@
 		<groupId>ch.ivyteam.ivy.doc</groupId>
 		<artifactId>doc.config</artifactId>
 		<version>7.1.0-SNAPSHOT</version>
-		<relativePath>../mavenconfig</relativePath>
+		<relativePath>../doc.config</relativePath>
 	</parent>
 
 	<properties>
