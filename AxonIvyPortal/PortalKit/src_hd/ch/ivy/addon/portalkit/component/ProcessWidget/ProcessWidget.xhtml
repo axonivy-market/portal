@@ -21,7 +21,7 @@
 <cc:implementation>
   <h:outputScript library="js" name="process-widget.js" />
   <div id="#{cc.clientId}" class="widget process-widget">
-    <h:panelGroup id="header" styleClass="widget-header" layout="block">
+    <h:panelGroup id="header" styleClass="widget-header #{processWidgetBean.compactMode? '' : 'expanded'}" layout="block">
       <div class="widget-header-main">
         <span class="widget-header-main-title">#{cc.attrs.title}</span>
         <h:panelGroup styleClass="widget-header-main-menu"
