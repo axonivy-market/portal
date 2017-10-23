@@ -1867,9 +1867,28 @@ a.case-details-document-add-link {
 .process-start-list-item-wrapper {
   min-width: 300px;
   margin-right: 5px;
-  flex: 0 1 36em;
 }
 
+/* Small screen */
+@media (max-width: 1365px) {
+  .process-start-list-item-wrapper {
+    flex: 0 1 49.3%;
+  }
+}
+
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .process-start-list-item-wrapper {
+    flex: 0 1 32.8%;
+  }
+}
+
+/* Large screen */
+@media (min-width: 1920px) {
+  .process-start-list-item-wrapper {
+    flex: 0 1 32.9%;
+  }
+}
 .process-start-list-item {
   height: 50px;
   margin-bottom: 5px;
