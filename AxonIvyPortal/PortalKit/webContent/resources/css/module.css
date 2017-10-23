@@ -1874,6 +1874,9 @@ a.case-details-document-add-link {
   .process-start-list-item-wrapper {
     flex: 0 1 49.3%;
   }
+  .process-widget .widget-header.expanded {
+    margin-right: 5px;
+  }
 }
 
 /* Medium screen */
@@ -1881,12 +1884,18 @@ a.case-details-document-add-link {
   .process-start-list-item-wrapper {
     flex: 0 1 32.8%;
   }
+  .process-widget .widget-header.expanded {
+    margin-right: 8px;
+  }
 }
 
 /* Large screen */
 @media (min-width: 1920px) {
   .process-start-list-item-wrapper {
     flex: 0 1 32.9%;
+  }
+  .process-widget .widget-header.expanded {
+    margin-right: 5px;
   }
 }
 .process-start-list-item {
