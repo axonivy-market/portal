@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Tue Aug 15 15:17:06 ICT 2017]
 14B2FC03D2E87141 3.20 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
@@ -151,7 +150,7 @@ TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
 TaskB.NAM=Sick Leave Request
 TaskB.PRI=1
-TaskB.ROL=Everybody
+TaskB.ROL=Storage
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
 TaskB.customFields.varchar.1="Interior"
