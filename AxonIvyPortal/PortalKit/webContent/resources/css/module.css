@@ -425,6 +425,10 @@
   border: none;
 }
 
+.ui-datatable .ui-column-filter.ui-widget {
+  width: 100%;
+}
+
 .ui-datatable .ui-paginator {
   background-color: transparent;
 }
@@ -3939,4 +3943,12 @@ margin-top
   width: 100%;
   text-align: right;
   margin-top: 10px;
+}
+
+.preview-users-datatable {
+  width: 400px;
+}
+
+.preview-users-datatable .ui-datatable-scrollable-body {
+  overflow-x: hidden;
 }
