@@ -11,10 +11,11 @@
         </p:inputTextarea>
       </h:panelGrid>
       <p:outputLabel value="#{ivy.cms.co('/Texts/QAresponse-Explain')}" escape="false"></p:outputLabel>
-      <br></br>
-      <p:commandButton actionListener="#{logic.followupQ}" value="Send" update="form2" icon="ui-icon-check" />
-      <p:spacer width="10"></p:spacer>
-      <p:commandButton actionListener="#{logic.close}" value="Finish" process="@this" icon="fa fa-check" />
+      <p:outputPanel styleClass="TexAlRight">
+        <p:commandButton actionListener="#{logic.followupQ}" value="Send" update="form2" icon="fa fa-check" />
+        <p:spacer width="5"></p:spacer>
+        <p:commandButton actionListener="#{logic.close}" value="Finish" process="@this" icon="fa fa-check" styleClass="portal-ok-button" />
+      </p:outputPanel>
     </p:fieldset>
   </h:form>
 </h:body>
