@@ -17,8 +17,9 @@
         </p:inputTextarea>
       </h:panelGrid>
       <p:outputLabel escape="false" value="#{ivy.cms.co('/Texts/Approval-Explain')}"></p:outputLabel>
-      <br></br>
-      <p:commandButton actionListener="#{logic.close}" value="Send" update="form2" icon="fa fa-check" />
+      <p:outputPanel styleClass="TexAlRight">
+        <p:commandButton actionListener="#{logic.close}" value="Send" update="form2" icon="fa fa-check" styleClass="portal-ok-button" />
+      </p:outputPanel>
       <p:focus context="answer" />
 
     </p:fieldset>
