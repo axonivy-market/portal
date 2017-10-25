@@ -603,6 +603,17 @@
 				<link xlink:href="http://www.primefaces.org/eos/modena/">Modena</link>
 				theme from version 6.3.
 			</para>
+			<para>
+				Please notice that all dialogs in Portal and screens of <emphasis role="bold">Self service BPM</emphasis> 
+				and <emphasis role="bold">Axon.ivy Express</emphasis> have following buttons orders:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						Yes/Ok buttons on the left, No/Cancel buttons on the right
+					</para>
+				</listitem>
+			</itemizedlist>
 		</sect2>
 	</sect1>
 	<sect1 xml:id="axonivyportal.installation.migrationnotes">
