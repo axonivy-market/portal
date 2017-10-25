@@ -21,9 +21,10 @@
 			</h:panelGrid>
 			<p:outputLabel escape="false"
 				value="#{ivy.cms.co('/Texts/Adhoc-Explain')}"></p:outputLabel>
-			<br></br>
-			<p:commandButton id="send" actionListener="#{logic.close}" value="Send"
-				update="form2" icon="fa fa-check" />
+			<p:outputPanel styleClass="TexAlRight">
+				<p:commandButton id="send" actionListener="#{logic.close}" value="Send"
+					update="form2" icon="fa fa-check" styleClass="portal-ok-button" />
+			</p:outputPanel>
 			<p:focus context="comments" />
 		</p:fieldset>
 	</h:form>
