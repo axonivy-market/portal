@@ -1,4 +1,4 @@
-co: name={cannotDelegateTaskMessage} description={} changed={2017-04-19 08:32:48 CEST} changedby={anhnguyenhoang} visualorder={0} guid={15B840770F372C87} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15B84E6F325CD04F} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-04-19 08:29:18 CEST} validto={} changed={2017-04-19 08:32:48 CEST} changedby={anhnguyenhoang} properties={} id={}
-val: guid={15B84E6F284D8A16} datatype={} isdefault={false} langid={de} description={} validfrom={2017-04-19 08:29:16 CEST} validto={} changed={2017-04-19 08:32:48 CEST} changedby={anhnguyenhoang} properties={} id={}
-val: guid={15B840770F78AC84} datatype={} isdefault={true} langid={en} description={} validfrom={2017-04-19 04:24:41 CEST} validto={} changed={2017-04-19 04:25:31 CEST} changedby={anhnguyenhoang} properties={} id={}
+co: name={cannotDelegateTaskMessage} description={} changed={2017-10-25 11:59:32 CEST} changedby={mnhnam} visualorder={0} guid={15B840770F372C87} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15B84E6F325CD04F} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-04-19 08:29:18 CEST} validto={} changed={2017-10-25 11:59:32 CEST} changedby={mnhnam} properties={} id={}
+val: guid={15B84E6F284D8A16} datatype={} isdefault={false} langid={de} description={} validfrom={2017-04-19 08:29:16 CEST} validto={} changed={2017-10-25 11:59:31 CEST} changedby={mnhnam} properties={} id={}
+val: guid={15B840770F78AC84} datatype={} isdefault={true} langid={en} description={} validfrom={2017-04-19 04:24:41 CEST} validto={} changed={2017-10-25 11:59:32 CEST} changedby={mnhnam} properties={} id={}

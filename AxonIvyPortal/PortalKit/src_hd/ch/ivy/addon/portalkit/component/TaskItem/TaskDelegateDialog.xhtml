@@ -16,15 +16,15 @@
         <h:form id="task-delegate-form">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}" />
           <h:panelGroup id="activator-panel" layout="block" styleClass="delegate-dialog-activator-panel"
-            rendered="#{not empty data.securityMemberData.ivyRoles and not empty data.securityMemberData.ivyUsers}">
+            rendered="#{not empty data.securityMemberData.ivyRoles or not empty data.securityMemberData.ivyUsers}">
             <p:row>
               <p:column>
                 <div class="delegate-type-container">
                   <p:selectOneRadio id="activator-type-select" value="#{data.isUserDelegated}">
                     <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}"
-                      itemValue="true" />
+                      itemValue="true" itemDisabled="#{empty data.securityMemberData.ivyUsers}" />
                     <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}"
-                      itemValue="false" />
+                      itemValue="false" itemDisabled="#{empty data.securityMemberData.ivyRoles}" />
                     <p:ajax event="change" listener="#{logic.changeAssignType}"
                       update="activator-panel task-delegate-form" />
                   </p:selectOneRadio>
