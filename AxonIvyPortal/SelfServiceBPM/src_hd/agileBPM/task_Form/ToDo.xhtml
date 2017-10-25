@@ -4,17 +4,16 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 <h:body>
   <h:form id="form2">
-    <br></br>
-    <p:fieldset legend="Done" styleClass="panel">
-      <h:outputText escape="false" value="#{ivy.cms.co('/Texts/ToDo-Explain')}" />
+    <p:spacer height="5" />
+    <p:outputPanel styleClass="TexAlRight">
       <p:commandButton actionListener="#{logic.done(true)}" value="Done" title="Confirm the Todo" update="form2"
-        icon="fa fa-check">
+        icon="fa fa-check" styleClass="portal-ok-button">
       </p:commandButton>
-      <p:spacer width="10"></p:spacer>
+      <p:spacer width="5"></p:spacer>
       <p:commandButton actionListener="#{logic.done(false)}" value="Decline" title="Decline the task" update="form2"
-        icon="fa fa-remove">
+        icon="fa fa-remove" styleClass="portal-cancel-button">
       </p:commandButton>
-    </p:fieldset>
+    </p:outputPanel>
   </h:form>
 </h:body>
 </html>
