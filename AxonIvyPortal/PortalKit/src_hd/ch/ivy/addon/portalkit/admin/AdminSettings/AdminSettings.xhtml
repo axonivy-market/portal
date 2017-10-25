@@ -681,13 +681,13 @@
 	<!-- USER LIST DIALOG -->
 	<p:dialog
 		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/previewUsers')}"
-		id="previewUsersDialog" widgetVar="previewUsersDialog" width="40%"
+		id="previewUsersDialog" widgetVar="previewUsersDialog"
 		dynamic="true" modal="true" showEffect="fade" hideEffect="fade"
 		resizable="false" styleClass="user-list-dialog" appendTo="@(body)">
 		<h:form>
 			<p:dataTable value="#{data.usersApplicationList}" var="user"
 				sortBy="#{user.userName}" scrollable="true"
-				filteredValue="#{data.filteredUsers}" scrollHeight="300"
+				filteredValue="#{data.filteredUsers}" scrollHeight="300" styleClass="preview-users-datatable"
 				emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
 				<p:column
 					headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/fullUserName')}"
