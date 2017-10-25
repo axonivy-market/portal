@@ -78,8 +78,7 @@
           <p:commandLink id="create-express-workflow"
           value="#{processWidgetBean.createExpressWorkflowProcessStart.name}" target="_self"
           rendered="#{processWidgetBean.canCreateExpessWorkflow()}"
-          actionListener="#{logic.startProcess(processWidgetBean.getCreateExpessWorkflowLink())}"
-          update="#{cc.clientId}:process-list" oncomplete="callSynchronizeDataToPortalServer();" />
+          actionListener="#{logic.startProcess(processWidgetBean.getCreateExpessWorkflowLink())}" />
         </h:panelGroup>
       </h:form>
     </h:panelGroup>
