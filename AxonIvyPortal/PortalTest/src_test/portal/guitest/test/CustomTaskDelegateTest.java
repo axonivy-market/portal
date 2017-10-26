@@ -28,7 +28,11 @@ public class CustomTaskDelegateTest extends BaseTest {
 
     taskWidgetPage.openTaskDelegateDialog(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertFalse(taskWidgetPage.isDelegateTypeSelectAvailable());
+    assertTrue(taskWidgetPage.isDelegateTypeSelectAvailable());
+    // Radio button "User" is enabled
+    assertTrue(taskWidgetPage.isDelegateTypeDisabled(0,0));
+    // Radio button "Group" is disabled
+    assertFalse(taskWidgetPage.isDelegateTypeDisabled(0,1));
     assertTrue(taskWidgetPage.isDelegateListSelectionAvailable());
   }
 
