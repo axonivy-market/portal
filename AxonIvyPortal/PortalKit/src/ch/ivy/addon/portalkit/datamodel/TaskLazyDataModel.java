@@ -272,25 +272,25 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * If your customized task list has new columns/fields, please get TaskQuery in queryCriteria and
-   * extend the sort query for these fields and also override the
+   * If your customized task list has new columns/fields, please extend the {@code taskQuery} parameter
+   * with the sort query for these fields and also override the
    * "extendSortTasksInNotDisplayedTaskMap" method.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
    * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
    *   if (queryCriteria.isSortDescending()) {
-   *     queryCriteria.getTaskQuery().orderBy().customVarCharField5().descending();
+   *     taskQuery.orderBy().customVarCharField5().descending();
    *   } else {
-   *     queryCriteria.getTaskQuery().orderBy().customVarCharField5();
+   *     taskQuery.orderBy().customVarCharField5();
    *   }
    * }
    * </pre></code>
    * </p>
-   * 
+   * @param taskQuery
    * @return
    */
-  protected void extendSort() {}
+  protected void extendSort(TaskQuery taskQuery) {}
 
   @Override
   public void setRowIndex(int index) {
@@ -493,7 +493,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
           StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
       queryCriteria.setTaskQuery(customizedTaskQuery);
     }
-    extendSort();
 
     if (compactMode) {
       queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
@@ -508,6 +507,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
 
     TaskQuery taskQuery = buildTaskQuery();
+    extendSort(taskQuery);
     searchCriteria.setJsonQuery(taskQuery.asJson());
   }
 

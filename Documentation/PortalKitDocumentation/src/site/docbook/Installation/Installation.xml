@@ -627,6 +627,10 @@
 			<para>
 				<emphasis role="bold">Ajax error handling</emphasis>: By default, Portal handles all exceptions from ajax requests. Old configuration, customization of ajax error handling should be removed.
 			</para>
+            <para>
+                Custom fields in Portal task list can now be sorted properly. The method <code>extendSort()</code> of <code>TaskLazyDataModel</code> is changed
+                to have a <code>taskQuery</code> parameter. If you override this method, please change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
+           </para>
 		</sect2>
 		<sect2>
 			<title>Migrate 6.x to 7.0</title>
