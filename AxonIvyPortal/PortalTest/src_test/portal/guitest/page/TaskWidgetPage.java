@@ -1,6 +1,7 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -321,6 +322,11 @@ public class TaskWidgetPage extends TemplatePage {
   
   public boolean isDelegateTypeSelectAvailable() {
     return isElementPresent(By.id("task-widget:task-list-scroller:0:task-item:task-delegate-form:activator-panel"));
+  }
+  
+  public boolean isDelegateTypeDisabled(int taskIndex, int index) {
+    WebElement delegateTypeRadioButton = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-delegate-form:activator-type-select:%d", taskIndex, index));
+    return Optional.ofNullable(delegateTypeRadioButton.getAttribute("disabled")).isPresent();
   }
   
   public boolean isDelegateListSelectionAvailable() {
