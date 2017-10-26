@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 import javax.faces.event.ValueChangeEvent;
@@ -30,6 +31,7 @@ import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -536,8 +538,11 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     if (serverId != null) {
       setServerId(serverId);
     }
-
-    String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
+    String applicationName = StringUtils.EMPTY;
+    String applicationNameFromRequest = Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
+    if(!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)){
+    	applicationName = applicationNameFromRequest;
+    }
     if (StringUtils.isNotBlank(applicationName)) {
       setInvolvedApplications(applicationName);
     }
