@@ -200,3 +200,7 @@
 .pe-dynaform-grid.Wid100 {
 	width: 100% !important;
 }
+
+.floatLeft {
+	float: left !important;
+}
