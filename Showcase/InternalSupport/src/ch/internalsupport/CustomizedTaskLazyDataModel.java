@@ -2,6 +2,7 @@ package ch.internalsupport;
 
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 
@@ -17,18 +18,18 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   }
 
   @Override
-  public void extendSort() {
+  public void extendSort(TaskQuery taskQuery) {
     if ("customVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
       if (queryCriteria.isSortDescending()) {
-        queryCriteria.getTaskQuery().orderBy().customVarCharField5().descending();
+        taskQuery.orderBy().customVarCharField5().descending();
       } else {
-        queryCriteria.getTaskQuery().orderBy().customVarCharField5();
+        taskQuery.orderBy().customVarCharField5();
       }
     } else if ("customVarcharField1".equalsIgnoreCase(queryCriteria.getSortField())) {
       if (queryCriteria.isSortDescending()) {
-        queryCriteria.getTaskQuery().orderBy().customVarCharField1().descending();
+        taskQuery.orderBy().customVarCharField1().descending();
       } else {
-        queryCriteria.getTaskQuery().orderBy().customVarCharField1();
+        taskQuery.orderBy().customVarCharField1();
       }
     }
   }
