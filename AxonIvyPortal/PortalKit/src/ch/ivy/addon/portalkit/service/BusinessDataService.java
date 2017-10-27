@@ -5,7 +5,7 @@ import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.BusinessDataRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 
-public abstract class AbstractExpressService<T> {
+public abstract class BusinessDataService<T> {
 
   public T findById(String id) {
     return repo().find(id, getType());

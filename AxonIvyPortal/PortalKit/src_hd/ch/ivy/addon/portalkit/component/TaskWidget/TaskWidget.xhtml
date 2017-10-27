@@ -55,9 +55,12 @@
             <ui:repeat var="taskFilterData" value="#{data.taskFilterDatas}">
               <h:panelGroup layout="block" styleClass="user-definied-filter-container">
                 <p:commandLink id="user-definied-filter" styleClass="user-definied-filter" value="#{taskFilterData.filterName}"
-                  global="false" actionListener="#{logic.applyFilter(taskFilterData, taskContainerId, filterSelectionFormId)}" 
-                  update="#{p:component('advanced-filter-container')} #{p:component('filter-selection-form')} #{p:component('task-view-container')}" />
-                <p:commandLink id="delete-user-definied-filter-command" styleClass="fa fa-times-circle delete-user-definied-filter-command" />
+                  global="false" actionListener="#{logic.applyFilter(taskFilterData)}" 
+                  update="#{p:component('advanced-filter-container')} #{p:component('filter-selection-form')} #{p:component('task-view-container')} #{p:component('filter-add-form')}" />
+                <p:commandLink id="delete-user-definied-filter-command"
+                  styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                  actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
+                  oncomplete="PF('delete-filter-confirmation-dialog').show();" />
               </h:panelGroup>
             </ui:repeat>
           </p:overlayPanel>
@@ -182,14 +185,14 @@
     <p:remoteCommand actionListener="#{logic.storeConfiguration()}" name="onTaskStartCallBack" async="true" />
   </h:form>
 
-  <p:dialog id="saveFilterSetDialog" widgetVar="saveFilterSetDialog" header="Save filter set" resizable="false" width="500">
+  <p:dialog id="saveFilterSetDialog" widgetVar="saveFilterSetDialog" header="Save filter" resizable="false" width="420">
     <h:form>
       <h:panelGrid columns="2" styleClass="save-filter-set-panel" columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">
-        <p:outputLabel id="saveFilterSetNameLabel" for="saveFilterSetNameInput" value="Filter set name:" />
+        <p:outputLabel id="saveFilterSetNameLabel" for="saveFilterSetNameInput" value="Filter name:" />
         <p:inputText id="saveFilterSetNameInput" value="#{data.filterSetName}" />
-        <p:outputLabel id="saveFilterTypeLabel" for="saveFilterTypeRadio" value="Filter set access level:" />
+        <p:outputLabel id="saveFilterTypeLabel" for="saveFilterTypeRadio" value="Filter visibility:" />
         <p:selectOneRadio id="saveFilterTypeRadio" value="#{data.filterType}">
-          <f:selectItem id="onlyMe" itemLabel="Only me" itemValue="ONLY_ME" />
+          <f:selectItem id="onlyMe" itemLabel="Only me" itemValue="ONLY_ME"/>
           <f:selectItem id="allUsers" itemLabel="All users" itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
@@ -209,6 +212,18 @@
       </h:panelGroup>
     </h:form>
   </p:dialog>
+
+  <p:confirmDialog id="delete-filter-confirmation-dialog"
+    message="Are you sure you want to delete this filter?"
+    header="Confirmation" widgetVar="delete-filter-confirmation-dialog"
+    appendTo="@(body)" severity="alert">
+    <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+      actionListener="#{logic.deleteFilter()}" styleClass="portal-ok-button"
+      oncomplete="PF('delete-filter-confirmation-dialog').hide()"
+      update="#{p:component('filter-selection-form')}"/>
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+      onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
+  </p:confirmDialog>
 
   <script type="text/javascript">
 	var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");

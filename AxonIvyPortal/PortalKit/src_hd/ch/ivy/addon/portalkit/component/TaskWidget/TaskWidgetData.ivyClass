@@ -24,13 +24,11 @@ serverId Long #field
 serverId PERSISTENT #fieldModifier
 taskFilterDatas java.util.List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
 taskFilterDatas PERSISTENT #fieldModifier
-taskContainerId String #field
-taskContainerId PERSISTENT #fieldModifier
 selectedTaskFilterData ch.ivy.addon.portalkit.taskfilter.TaskFilterData #field
 selectedTaskFilterData PERSISTENT #fieldModifier
-filterAddContainerId String #field
-filterAddContainerId PERSISTENT #fieldModifier
 filterSetName String #field
 filterSetName PERSISTENT #fieldModifier
 filterType ch.ivy.addon.portalkit.enums.FilterType #field
 filterType PERSISTENT #fieldModifier
+taskFilterDataToBeRemoved ch.ivy.addon.portalkit.taskfilter.TaskFilterData #field
+taskFilterDataToBeRemoved PERSISTENT #fieldModifier
