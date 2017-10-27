@@ -79,8 +79,8 @@ public abstract class TaskFilter {
 
   /**
    * <p>
-   * Override this method if need to validate filtered values. If values are incorrect, use the
-   * methods: validationFailed and addMessage
+   * Override this method if need to validate filtered values. If values are incorrect, use the methods:
+   * validationFailed and addMessage
    * </p>
    * <p>
    * <b>Example: </b> <code>
@@ -93,4 +93,13 @@ public abstract class TaskFilter {
    * </p>
    */
   public void validate() {};
+
+  public String serializeData() {
+    return "";
+  };
+
+  public TaskFilter deserializeData(String data) {
+    return null;
+  }
+
 }

@@ -2118,6 +2118,73 @@ a.case-details-document-add-link {
   margin-bottom: 0;
 }
 
+.widget-header.task-widget-header .widget-header-main.mod-expanded-mode {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  align-items: flex-end;
+}
+
+.widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
+  flex: 1 0 10%;
+  position: relative;
+}
+
+.widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form {
+  flex: 1 0 auto;
+  self-align: flex-end;
+  text-align: right;
+  padding-bottom: 4px;
+}
+
+.filter-selection-form label,
+.filter-selection-form a.ui-commandlink {
+  font-size: 1.4rem;
+  color: #000000 !important;
+}
+
+.filter-selection-form label {
+  margin-right: 5px;
+}
+
+.filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
+  padding: 15px 0 !important;
+}
+
+.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container {
+  display: flex;
+  min-width: 21rem;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 6px 10px;
+}
+
+.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover {
+  background-color: rgba(0,0,0,0.04);
+}
+
+.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .ui-commandlink {
+  font-size: 1.2rem;
+}
+
+.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .user-definied-filter {
+  flex: 1 0 90%;
+  position: relative;
+  self-align: flex-start;
+  text-align: left;
+}
+
+.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command {
+  flex: 1 0 auto;
+  self-align: flex-end;
+  text-align: right;
+  display: none;
+}
+
+.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .delete-user-definied-filter-command {
+  display: inline-block;
+}
+
 .task-compact-mode {
   padding: 0 25px;
 }
