@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
@@ -23,6 +25,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskResponsibleFilter extends TaskFilter {
 
+  @JsonIgnore
   private List<RemoteSecurityMember> responsibles = new ArrayList<>();
   private RemoteSecurityMember selectedResponsible;
 
