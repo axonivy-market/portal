@@ -15,7 +15,6 @@ Ts0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @RichDialogInitStart f0 '' #zField
-Ts0 @RichDialogProcessEnd f1 '' #zField
 Ts0 @RichDialogMethodStart f37 '' #zField
 Ts0 @RichDialogProcessEnd f38 '' #zField
 Ts0 @GridStep f60 '' #zField
@@ -45,7 +44,6 @@ Ts0 @RichDialogMethodStart f8 '' #zField
 Ts0 @GridStep f10 '' #zField
 Ts0 @PushWFArc f11 '' #zField
 Ts0 @PushWFArc f12 '' #zField
-Ts0 @PushWFArc f3 '' #zField
 Ts0 @GridStep f4 '' #zField
 Ts0 @PushWFArc f5 '' #zField
 Ts0 @PushWFArc f6 '' #zField
@@ -62,8 +60,16 @@ Ts0 @PushWFArc f20 '' #zField
 Ts0 @RichDialogProcessStart f23 '' #zField
 Ts0 @GridStep f24 '' #zField
 Ts0 @PushWFArc f25 '' #zField
-Ts0 @RichDialogProcessEnd f26 '' #zField
-Ts0 @PushWFArc f27 '' #zField
+Ts0 @RichDialogProcessStart f28 '' #zField
+Ts0 @RichDialogProcessEnd f29 '' #zField
+Ts0 @GridStep f31 '' #zField
+Ts0 @PushWFArc f32 '' #zField
+Ts0 @PushWFArc f30 '' #zField
+Ts0 @PushWFArc f26 '' #zField
+Ts0 @GridStep f27 '' #zField
+Ts0 @PushWFArc f1 '' #zField
+Ts0 @RichDialogProcessEnd f3 '' #zField
+Ts0 @PushWFArc f33 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -95,11 +101,8 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f0 61 53 22 22 14 0 #rect
+Ts0 f0 53 53 22 22 14 0 #rect
 Ts0 f0 @|RichDialogInitStartIcon #fIcon
-Ts0 f1 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f1 61 181 22 22 14 0 #rect
-Ts0 f1 @|RichDialogProcessEndIcon #fIcon
 Ts0 f37 guid 152ED6485874C117 #txt
 Ts0 f37 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f37 method filter() #txt
@@ -421,8 +424,6 @@ Ts0 f12 expr out #txt
 Ts0 f12 640 420 83 448 #arcP
 Ts0 f12 1 640 448 #addKink
 Ts0 f12 1 0.4606959193892842 0 0 #arcLabel
-Ts0 f3 expr out #txt
-Ts0 f3 72 75 72 181 #arcP
 Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f4 actionTable 'out=in;
@@ -616,11 +617,77 @@ Ts0 f24 192 714 112 44 -36 -8 #rect
 Ts0 f24 @|StepIcon #fIcon
 Ts0 f25 expr out #txt
 Ts0 f25 109 736 192 736 #arcP
-Ts0 f26 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f26 371 723 26 26 0 12 #rect
-Ts0 f26 @|RichDialogProcessEndIcon #fIcon
-Ts0 f27 expr out #txt
-Ts0 f27 304 736 371 736 #arcP
+Ts0 f28 guid 15F5BFFC0DEF027B #txt
+Ts0 f28 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f28 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f28 actionTable 'out=in;
+' #txt
+Ts0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>clearSaveFilterDialog</name>
+        <nameStyle>21,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f28 83 819 26 26 -58 15 #rect
+Ts0 f28 @|RichDialogProcessStartIcon #fIcon
+Ts0 f29 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f29 371 819 26 26 0 12 #rect
+Ts0 f29 @|RichDialogProcessEndIcon #fIcon
+Ts0 f31 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f31 actionTable 'out=in;
+' #txt
+Ts0 f31 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
+in.filterType = FilterType.ALL_USERS;
+in.filterSetName = "";' #txt
+Ts0 f31 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Clear filter</name>
+        <nameStyle>12
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f31 192 810 112 44 -28 -8 #rect
+Ts0 f31 @|StepIcon #fIcon
+Ts0 f32 expr out #txt
+Ts0 f32 109 832 192 832 #arcP
+Ts0 f30 expr out #txt
+Ts0 f30 304 832 371 832 #arcP
+Ts0 f26 expr out #txt
+Ts0 f26 248 758 248 810 #arcP
+Ts0 f27 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f27 actionTable 'out=in;
+' #txt
+Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
+TaskFilterService taskFilterService = new TaskFilterService();
+in.taskFilterDatas = taskFilterService.findByUserName();' #txt
+Ts0 f27 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>load filter set</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f27 46 112 36 24 20 -2 #rect
+Ts0 f27 @|StepIcon #fIcon
+Ts0 f1 expr out #txt
+Ts0 f1 64 75 64 112 #arcP
+Ts0 f3 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f3 51 179 26 26 0 12 #rect
+Ts0 f3 @|RichDialogProcessEndIcon #fIcon
+Ts0 f33 expr out #txt
+Ts0 f33 64 136 64 179 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -649,8 +716,6 @@ Ts0 f8 mainOut f11 tail #connect
 Ts0 f11 head f10 mainIn #connect
 Ts0 f10 mainOut f12 tail #connect
 Ts0 f12 head f83 mainIn #connect
-Ts0 f0 mainOut f3 tail #connect
-Ts0 f3 head f1 mainIn #connect
 Ts0 f82 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
 Ts0 f4 mainOut f6 tail #connect
@@ -665,5 +730,13 @@ Ts0 f21 mainOut f20 tail #connect
 Ts0 f20 head f17 mainIn #connect
 Ts0 f23 mainOut f25 tail #connect
 Ts0 f25 head f24 mainIn #connect
-Ts0 f24 mainOut f27 tail #connect
-Ts0 f27 head f26 mainIn #connect
+Ts0 f28 mainOut f32 tail #connect
+Ts0 f32 head f31 mainIn #connect
+Ts0 f31 mainOut f30 tail #connect
+Ts0 f30 head f29 mainIn #connect
+Ts0 f24 mainOut f26 tail #connect
+Ts0 f26 head f31 mainIn #connect
+Ts0 f0 mainOut f1 tail #connect
+Ts0 f1 head f27 mainIn #connect
+Ts0 f27 mainOut f33 tail #connect
+Ts0 f33 head f3 mainIn #connect
