@@ -514,7 +514,16 @@ TaskFilterService taskFilterService = new TaskFilterService();
 in.taskFilterDatas = taskFilterService.findByUserName();
 ' #txt
 Ts0 f19 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f19 192 522 112 44 0 -8 #rect
+Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get saved filters</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f19 192 522 112 44 -43 -8 #rect
 Ts0 f19 @|StepIcon #fIcon
 Ts0 f18 expr out #txt
 Ts0 f18 109 544 192 544 #arcP
@@ -545,25 +554,18 @@ for (int i = 0; i < filters.size(); i++) {
 			break;
 		}
 	}
-}
-
-
-/*in.dataModel.setSelectedFilters(in.selectedTaskFilterData.taskFilters);
-List filters = in.dataModel.getFilterContainer().getFilters();
-for (int i = 0; i < filters.size(); i++) {
-	if (filters.get(i).getClass().equals(TaskPriorityFilter.class)) {
-		filters.removeAt(i);
-		filters.addAll(in.selectedTaskFilterData.taskFilters);
-		break;
-	}
-}
-*/
-//List updatedComponents = Stream.of(in.taskContainerId, in.filterAddContainerId).collect(Collectors.toList()) as ;
-//RequestContext.getCurrentInstance().update(Stream.of(in.taskContainerId, in.filterAddContainerId).collect(Collectors.toList()) as List);
-//RequestContext.getCurrentInstance().update(in.filterAddContainerId);
-' #txt
+}' #txt
 Ts0 f21 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f21 192 618 112 44 0 -8 #rect
+Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set values to filters</name>
+        <nameStyle>21,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f21 192 618 112 44 -51 -8 #rect
 Ts0 f21 @|StepIcon #fIcon
 Ts0 f22 expr out #txt
 Ts0 f22 109 640 192 640 #arcP
@@ -594,7 +596,7 @@ Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 
 TaskFilterData taskFilterData = new TaskFilterData(in.dataModel.selectedFilters);
-taskFilterData.setUserName(ivy.session.getSessionUserName());
+taskFilterData.setUserId(ivy.session.getSessionUser().getId());
 taskFilterData.setFilterName(in.filterSetName);
 taskFilterData.setType(in.filterType);
 
@@ -606,7 +608,7 @@ Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>save filter set</name>
-        <nameStyle>15
+        <nameStyle>15,7
 </nameStyle>
     </language>
 </elementInfo>
