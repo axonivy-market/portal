@@ -5,7 +5,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
 
-public class ExpressTaskDefinitionService extends AbstractExpressService<ExpressTaskDefinition> {
+public class ExpressTaskDefinitionService extends BusinessDataService<ExpressTaskDefinition> {
 
   public void deleteByProcessId(String processId) {
     List<ExpressTaskDefinition> taskDefinitions = findByProcessId(processId);
