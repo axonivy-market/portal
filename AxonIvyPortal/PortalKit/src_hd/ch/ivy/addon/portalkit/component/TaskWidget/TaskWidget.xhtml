@@ -42,6 +42,26 @@
         <span class="widget-header-main-title task-widget-header-content-title"> <cc:renderFacet name="title" />
           <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" />
         </span>
+
+        <h:form id="filter-selection-form" class="filter-selection-form" rendered="#{not empty data.taskFilterDatas}">
+          <c:set var="taskContainerId" value="#{p:component('task-view-container')}" />
+          <c:set var="filterSelectionFormId" value="#{p:component('filter-selection-form')}" />
+          <h:outputLabel rendered="#{not data.dataModel.compactMode}" value="Filter:" for="filter-name" />
+          <p:commandLink id="filter-name" styleClass="filter-name"
+            value="#{data.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/selectedFilterSetDefaultValue') : data.selectedTaskFilterData.filterName}"
+            actionListener="#{logic.loadFilter}" />
+          <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name" hideEffect="fade" dynamic="true" >
+            <ui:repeat var="taskFilterData" value="#{data.taskFilterDatas}">
+              <h:panelGroup layout="block" styleClass="user-definied-filter-container">
+                <p:commandLink id="user-definied-filter" styleClass="user-definied-filter" value="#{taskFilterData.filterName}"
+                  global="false" actionListener="#{logic.applyFilter(taskFilterData, taskContainerId, filterSelectionFormId)}" 
+                  update="#{p:component('advanced-filter-container')} #{p:component('filter-selection-form')} #{p:component('task-view-container')}" />
+                <p:commandLink id="delete-user-definied-filter-command" styleClass="fa fa-times-circle delete-user-definied-filter-command" />
+              </h:panelGroup>
+            </ui:repeat>
+          </p:overlayPanel>
+        </h:form>
+
         <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu" rendered="#{data.dataModel.compactMode and showHeaderToolbar}">
           <ui:fragment>
             <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
@@ -92,6 +112,10 @@
             </p:scrollPanel>
           </h:form>
         </p:overlayPanel>
+        <p:commandButton id="filter-save-action" value="Save"
+          styleClass="filter-add-button" icon="fa fa-save" iconPos="right"
+          update=":#{p:component('saveFilterSetDialog')}"
+          oncomplete="PF('saveFilterSetDialog').show();" />
       </h:panelGroup>
     </h:panelGroup>
 
@@ -156,6 +180,35 @@
   <h:form>
     <p:remoteCommand actionListener="#{logic.storeConfiguration()}" name="onTaskStartCallBack" async="true" />
   </h:form>
+
+  <p:dialog id="saveFilterSetDialog" widgetVar="saveFilterSetDialog" header="Save filter set">
+    <h:form>
+      <p:panelGrid columns="2">
+        <p:outputLabel id="saveFilterSetNameLabel" for="saveFilterSetNameInput" value="Filter set name:" />
+        <p:inputText id="saveFilterSetNameInput" value="#{data.filterSetName}" />
+        <p:outputLabel id="saveFilterTypeLabel" for="saveFilterTypeRadio" value="Filter set access level:" />
+        <p:selectOneRadio id="saveFilterTypeRadio" value="#{data.filterType}">
+          <f:selectItem id="onlyMe" itemLabel="Only me" itemValue="ONLY_ME" />
+          <f:selectItem id="allUsers" itemLabel="All users" itemValue="ALL_USERS" />
+        </p:selectOneRadio>
+      </p:panelGrid>
+      <div class="u-dialog-footer ui-dialog-footer">
+        <p:commandButton styleClass="portal-ok-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          process="@form" oncomplete="PF('saveFilterSetDialog').hide();"
+          update="#{p:component('filter-selection-form')}"
+          actionListener="#{logic.saveFilter}">
+          <p:resetInput target="saveFilterSetNameInput, saveFilterTypeRadio" />
+        </p:commandButton>
+        <p:spacer width="5px" />
+        <p:commandButton type="button" styleClass="portal-cancel-button" 
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+          onclick="PF('saveFilterSetDialog').hide();">
+          <p:resetInput target="saveFilterSetNameInput, saveFilterTypeRadio" />
+        </p:commandButton>
+      </div>
+    </h:form>
+  </p:dialog>
 
   <script type="text/javascript">
 	var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");

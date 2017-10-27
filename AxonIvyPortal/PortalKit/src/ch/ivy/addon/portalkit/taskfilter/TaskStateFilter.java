@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -14,8 +16,10 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskStateFilter extends TaskFilter {
 
+  @JsonIgnore
   private List<TaskState> filteredStates;
   private List<TaskState> selectedFilteredStates;
+  @JsonIgnore
   private List<TaskState> selectedFilteredStatesAtBeginning;
 
   /**
