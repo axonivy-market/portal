@@ -2185,6 +2185,22 @@ a.case-details-document-add-link {
   display: inline-block;
 }
 
+.save-filter-set-panel {
+  width: 100%;
+}
+
+.save-filter-set-panel .save-filter-set-panel-column-1 {
+  width: 40%;
+}
+
+.save-filter-set-panel .save-filter-set-panel-column-2 {
+  width: 60%;
+}
+
+.save-filter-set-panel .save-filter-set-panel-column-2 .ui-inputfield.ui-inputtext {
+  width: 100%;
+}
+
 .task-compact-mode {
   padding: 0 25px;
 }
