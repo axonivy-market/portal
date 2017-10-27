@@ -511,8 +511,7 @@ Ts0 f19 actionTable 'out=in;
 Ts0 f19 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 TaskFilterService taskFilterService = new TaskFilterService();
-in.taskFilterDatas = taskFilterService.findByUserName();
-' #txt
+in.taskFilterDatas = taskFilterService.findByUserName();' #txt
 Ts0 f19 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -602,7 +601,7 @@ taskFilterData.setType(in.filterType);
 
 TaskFilterService taskFilterService = new TaskFilterService();
 taskFilterService.save(taskFilterData);
-in.taskFilterDatas = taskFilterService.findByUserName();' #txt
+in.taskFilterDatas.add(taskFilterData);' #txt
 Ts0 f24 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
