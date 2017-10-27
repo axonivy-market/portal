@@ -5,7 +5,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 
-public class ExpressProcessService extends AbstractExpressService<ExpressProcess> {
+public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
 
   public List<ExpressProcess> findAllOrderByName() {
     return repo().search(getType()).orderBy().textField("processName").ascending().execute().getAll();

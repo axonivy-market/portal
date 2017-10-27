@@ -86,16 +86,18 @@
             <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskFilterData</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
+    </method>
+    <method>
+        <name>deleteFilter</name>
+        <description></description>
+    </method>
+    <method>
+        <name>setFilterToBeDeleted</name>
+        <description></description>
         <inputParameter>
-            <name>taskContainerId</name>
+            <name>taskFilterData</name>
             <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>filterAddContainerId</name>
-            <description></description>
-            <parameterType>String</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskFilterData</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>

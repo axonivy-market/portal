@@ -4,7 +4,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 
-public class ExpressFormElementService extends AbstractExpressService<ExpressFormElement> {
+public class ExpressFormElementService extends BusinessDataService<ExpressFormElement> {
 
   public void deleteByProcessId(String processId) {
     List<ExpressFormElement> formElements = findByProcessId(processId);
