@@ -13,7 +13,7 @@ public class TaskDescriptionFilter extends TaskFilter {
   public String label() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/description");
   }
-  
+
   @Override
   public String value() {
     return StringUtils.isNotBlank(description) ? String.format(DOUBLE_QUOTES, description) : ALL;
@@ -24,7 +24,7 @@ public class TaskDescriptionFilter extends TaskFilter {
     if (StringUtils.isBlank(description)) {
       return null;
     }
-    
+
     String containingKeyword = String.format("%%%s%%", description.trim());
     return TaskQuery.create().where().description().isLikeIgnoreCase(containingKeyword);
   }
@@ -41,4 +41,15 @@ public class TaskDescriptionFilter extends TaskFilter {
   public void setDescription(String description) {
     this.description = description;
   }
+
+  @Override
+  public String serializeData() {
+    return "1";
+  }
+
+  @Override
+  public TaskFilter deserializeData(String data) {
+    return new TaskDescriptionFilter();
+  }
+
 }

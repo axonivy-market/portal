@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -13,6 +15,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskPriorityFilter extends TaskFilter {
 
+  @JsonIgnore
   private List<WorkflowPriority> priorities;
   private List<WorkflowPriority> selectedPriorities;
 

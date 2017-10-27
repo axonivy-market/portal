@@ -49,6 +49,21 @@ Ts0 @PushWFArc f3 '' #zField
 Ts0 @GridStep f4 '' #zField
 Ts0 @PushWFArc f5 '' #zField
 Ts0 @PushWFArc f6 '' #zField
+Ts0 @RichDialogMethodStart f13 '' #zField
+Ts0 @RichDialogProcessEnd f14 '' #zField
+Ts0 @RichDialogMethodStart f16 '' #zField
+Ts0 @RichDialogProcessEnd f17 '' #zField
+Ts0 @GridStep f19 '' #zField
+Ts0 @PushWFArc f18 '' #zField
+Ts0 @PushWFArc f15 '' #zField
+Ts0 @GridStep f21 '' #zField
+Ts0 @PushWFArc f22 '' #zField
+Ts0 @PushWFArc f20 '' #zField
+Ts0 @RichDialogProcessStart f23 '' #zField
+Ts0 @GridStep f24 '' #zField
+Ts0 @PushWFArc f25 '' #zField
+Ts0 @RichDialogProcessEnd f26 '' #zField
+Ts0 @PushWFArc f27 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -441,6 +456,170 @@ Ts0 f5 expr out #txt
 Ts0 f5 72 363 72 397 #arcP
 Ts0 f6 expr out #txt
 Ts0 f6 72 421 72 437 #arcP
+Ts0 f13 guid 15F4DE3A9F496837 #txt
+Ts0 f13 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f13 method loadFilter() #txt
+Ts0 f13 disableUIEvents false #txt
+Ts0 f13 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f13 outParameterDecl '<> result;
+' #txt
+Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>loadFilter()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f13 83 531 26 26 -29 12 #rect
+Ts0 f13 @|RichDialogMethodStartIcon #fIcon
+Ts0 f14 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f14 371 531 26 26 0 12 #rect
+Ts0 f14 @|RichDialogProcessEndIcon #fIcon
+Ts0 f16 guid 15F4E025D8AC5858 #txt
+Ts0 f16 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData,String,String) #txt
+Ts0 f16 disableUIEvents false #txt
+Ts0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData,java.lang.String taskContainerId,java.lang.String filterAddContainerId> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f16 inParameterMapAction 'out.filterAddContainerId=param.filterAddContainerId;
+out.selectedTaskFilterData=param.taskFilterData;
+out.taskContainerId=param.taskContainerId;
+' #txt
+Ts0 f16 outParameterDecl '<> result;
+' #txt
+Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>applyFilter(TaskFilterData)</name>
+        <nameStyle>27,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f16 83 627 26 26 -72 15 #rect
+Ts0 f16 @|RichDialogMethodStartIcon #fIcon
+Ts0 f17 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f17 371 627 26 26 0 12 #rect
+Ts0 f17 @|RichDialogProcessEndIcon #fIcon
+Ts0 f19 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f19 actionTable 'out=in;
+' #txt
+Ts0 f19 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+TaskFilterService taskFilterService = new TaskFilterService();
+in.taskFilterDatas = taskFilterService.findByUserName();
+' #txt
+Ts0 f19 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f19 192 522 112 44 0 -8 #rect
+Ts0 f19 @|StepIcon #fIcon
+Ts0 f18 expr out #txt
+Ts0 f18 109 544 192 544 #arcP
+Ts0 f15 expr out #txt
+Ts0 f15 304 544 371 544 #arcP
+Ts0 f21 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f21 actionTable 'out=in;
+' #txt
+Ts0 f21 actionCode 'import java.util.ArrayList;
+import org.apache.commons.beanutils.BeanUtils;
+import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskPriorityFilter;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.primefaces.context.RequestContext;
+
+List filters = in.dataModel.getFilterContainer().getFilters();
+in.dataModel.selectedFilters = new ArrayList();
+for (int i = 0; i < filters.size(); i++) {
+	TaskFilter taskFilter = in.dataModel.filterContainer.filters.get(i) as TaskFilter;
+	for (int j = 0; j < in.selectedTaskFilterData.taskFilters.size(); j++) {
+		TaskFilter selectedTaskFilter = in.selectedTaskFilterData.taskFilters.get(j);
+		if (taskFilter.getClass().equals(selectedTaskFilter.getClass())) {
+			BeanUtils.copyProperties(taskFilter, selectedTaskFilter);
+			in.dataModel.selectedFilters.add(taskFilter);
+			break;
+		}
+	}
+}
+
+
+/*in.dataModel.setSelectedFilters(in.selectedTaskFilterData.taskFilters);
+List filters = in.dataModel.getFilterContainer().getFilters();
+for (int i = 0; i < filters.size(); i++) {
+	if (filters.get(i).getClass().equals(TaskPriorityFilter.class)) {
+		filters.removeAt(i);
+		filters.addAll(in.selectedTaskFilterData.taskFilters);
+		break;
+	}
+}
+*/
+//List updatedComponents = Stream.of(in.taskContainerId, in.filterAddContainerId).collect(Collectors.toList()) as ;
+//RequestContext.getCurrentInstance().update(Stream.of(in.taskContainerId, in.filterAddContainerId).collect(Collectors.toList()) as List);
+//RequestContext.getCurrentInstance().update(in.filterAddContainerId);
+' #txt
+Ts0 f21 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f21 192 618 112 44 0 -8 #rect
+Ts0 f21 @|StepIcon #fIcon
+Ts0 f22 expr out #txt
+Ts0 f22 109 640 192 640 #arcP
+Ts0 f20 expr out #txt
+Ts0 f20 304 640 371 640 #arcP
+Ts0 f23 guid 15F5844AD96F4A4C #txt
+Ts0 f23 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f23 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f23 actionTable 'out=in;
+' #txt
+Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>saveFilter</name>
+        <nameStyle>10,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f23 83 723 26 26 -26 15 #rect
+Ts0 f23 @|RichDialogProcessStartIcon #fIcon
+Ts0 f24 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f24 actionTable 'out=in;
+' #txt
+Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+
+TaskFilterData taskFilterData = new TaskFilterData(in.dataModel.selectedFilters);
+taskFilterData.setUserName(ivy.session.getSessionUserName());
+taskFilterData.setFilterName(in.filterSetName);
+taskFilterData.setType(in.filterType);
+
+TaskFilterService taskFilterService = new TaskFilterService();
+taskFilterService.save(taskFilterData);
+in.taskFilterDatas = taskFilterService.findByUserName();' #txt
+Ts0 f24 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>save filter set</name>
+        <nameStyle>15
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f24 192 714 112 44 -36 -8 #rect
+Ts0 f24 @|StepIcon #fIcon
+Ts0 f25 expr out #txt
+Ts0 f25 109 736 192 736 #arcP
+Ts0 f26 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f26 371 723 26 26 0 12 #rect
+Ts0 f26 @|RichDialogProcessEndIcon #fIcon
+Ts0 f27 expr out #txt
+Ts0 f27 304 736 371 736 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -475,3 +654,15 @@ Ts0 f82 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
 Ts0 f4 mainOut f6 tail #connect
 Ts0 f6 head f83 mainIn #connect
+Ts0 f13 mainOut f18 tail #connect
+Ts0 f18 head f19 mainIn #connect
+Ts0 f19 mainOut f15 tail #connect
+Ts0 f15 head f14 mainIn #connect
+Ts0 f16 mainOut f22 tail #connect
+Ts0 f22 head f21 mainIn #connect
+Ts0 f21 mainOut f20 tail #connect
+Ts0 f20 head f17 mainIn #connect
+Ts0 f23 mainOut f25 tail #connect
+Ts0 f25 head f24 mainIn #connect
+Ts0 f24 mainOut f27 tail #connect
+Ts0 f27 head f26 mainIn #connect
