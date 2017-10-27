@@ -70,6 +70,14 @@ Ts0 @GridStep f27 '' #zField
 Ts0 @PushWFArc f1 '' #zField
 Ts0 @RichDialogProcessEnd f3 '' #zField
 Ts0 @PushWFArc f33 '' #zField
+Ts0 @RichDialogMethodStart f34 '' #zField
+Ts0 @GridStep f35 '' #zField
+Ts0 @RichDialogProcessEnd f36 '' #zField
+Ts0 @PushWFArc f39 '' #zField
+Ts0 @PushWFArc f40 '' #zField
+Ts0 @RichDialogMethodStart f41 '' #zField
+Ts0 @RichDialogProcessEnd f42 '' #zField
+Ts0 @PushWFArc f43 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -480,14 +488,12 @@ Ts0 f14 371 531 26 26 0 12 #rect
 Ts0 f14 @|RichDialogProcessEndIcon #fIcon
 Ts0 f16 guid 15F4E025D8AC5858 #txt
 Ts0 f16 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData,String,String) #txt
+Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
 Ts0 f16 disableUIEvents false #txt
 Ts0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData,java.lang.String taskContainerId,java.lang.String filterAddContainerId> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f16 inParameterMapAction 'out.filterAddContainerId=param.filterAddContainerId;
-out.selectedTaskFilterData=param.taskFilterData;
-out.taskContainerId=param.taskContainerId;
+Ts0 f16 inParameterMapAction 'out.selectedTaskFilterData=param.taskFilterData;
 ' #txt
 Ts0 f16 outParameterDecl '<> result;
 ' #txt
@@ -533,15 +539,11 @@ Ts0 f21 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 ' #txt
 Ts0 f21 actionTable 'out=in;
 ' #txt
-Ts0 f21 actionCode 'import java.util.ArrayList;
-import org.apache.commons.beanutils.BeanUtils;
-import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskPriorityFilter;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import org.primefaces.context.RequestContext;
+Ts0 f21 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
 
+TaskFilterService service = new TaskFilterService();
+service.applyFilter(in.dataModel, in.selectedTaskFilterData);
+/*
 List filters = in.dataModel.getFilterContainer().getFilters();
 in.dataModel.selectedFilters = new ArrayList();
 for (int i = 0; i < filters.size(); i++) {
@@ -554,7 +556,10 @@ for (int i = 0; i < filters.size(); i++) {
 			break;
 		}
 	}
-}' #txt
+}
+*/
+
+' #txt
 Ts0 f21 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -592,17 +597,21 @@ Ts0 f24 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 ' #txt
 Ts0 f24 actionTable 'out=in;
 ' #txt
-Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
+Ts0 f24 actionCode 'import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
+import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 
-TaskFilterData taskFilterData = new TaskFilterData(in.dataModel.selectedFilters);
+TaskFilterData taskFilterData = new TaskFilterData();
+taskFilterData.setTaskFilters(in.dataModel.selectedFilters);
 taskFilterData.setUserId(ivy.session.getSessionUser().getId());
 taskFilterData.setFilterName(in.filterSetName);
 taskFilterData.setType(in.filterType);
 
 TaskFilterService taskFilterService = new TaskFilterService();
-taskFilterService.save(taskFilterData);
-in.taskFilterDatas.add(taskFilterData);' #txt
+BusinessDataInfo info = taskFilterService.save(taskFilterData);
+taskFilterData.setId(info.getId());
+in.taskFilterDatas.add(taskFilterData);
+in.taskFilterDatas = taskFilterService.sortFilters(in.taskFilterDatas);' #txt
 Ts0 f24 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -642,14 +651,14 @@ Ts0 f31 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 Ts0 f31 actionTable 'out=in;
 ' #txt
 Ts0 f31 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
-in.filterType = FilterType.ALL_USERS;
+in.filterType = FilterType.ONLY_ME;
 in.filterSetName = "";' #txt
 Ts0 f31 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Clear filter</name>
-        <nameStyle>12
+        <nameStyle>12,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -666,9 +675,11 @@ Ts0 f27 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 ' #txt
 Ts0 f27 actionTable 'out=in;
 ' #txt
-Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
+Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService taskFilterService = new TaskFilterService();
-in.taskFilterDatas = taskFilterService.findByUserName();' #txt
+in.taskFilterDatas = taskFilterService.findByUserName();
+in.filterType = FilterType.ONLY_ME;' #txt
 Ts0 f27 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -688,6 +699,79 @@ Ts0 f3 51 179 26 26 0 12 #rect
 Ts0 f3 @|RichDialogProcessEndIcon #fIcon
 Ts0 f33 expr out #txt
 Ts0 f33 64 136 64 179 #arcP
+Ts0 f34 guid 15F5C0F9B77406B4 #txt
+Ts0 f34 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f34 method deleteFilter() #txt
+Ts0 f34 disableUIEvents false #txt
+Ts0 f34 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f34 outParameterDecl '<> result;
+' #txt
+Ts0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>removeFilter(TaskFilterData)</name>
+        <nameStyle>28,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f34 83 915 26 26 -78 15 #rect
+Ts0 f34 @|RichDialogMethodStartIcon #fIcon
+Ts0 f35 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f35 actionTable 'out=in;
+' #txt
+Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
+TaskFilterService service = new TaskFilterService();
+service.delete(in.taskFilterDataToBeRemoved.getId());
+in.taskFilterDatas = in.taskFilterDatas.remove(in.taskFilterDataToBeRemoved);' #txt
+Ts0 f35 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>remove filter</name>
+        <nameStyle>13,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f35 192 906 112 44 -33 -8 #rect
+Ts0 f35 @|StepIcon #fIcon
+Ts0 f36 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f36 371 915 26 26 0 12 #rect
+Ts0 f36 @|RichDialogProcessEndIcon #fIcon
+Ts0 f39 expr out #txt
+Ts0 f39 109 928 192 928 #arcP
+Ts0 f40 expr out #txt
+Ts0 f40 304 928 371 928 #arcP
+Ts0 f41 guid 15F5C9F2AA5C9BA1 #txt
+Ts0 f41 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
+Ts0 f41 disableUIEvents false #txt
+Ts0 f41 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f41 inParameterMapAction 'out.taskFilterDataToBeRemoved=param.taskFilterData;
+' #txt
+Ts0 f41 outParameterDecl '<> result;
+' #txt
+Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>setFilterToBeDeleted(String)</name>
+        <nameStyle>28,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f41 83 1011 26 26 -78 15 #rect
+Ts0 f41 @|RichDialogMethodStartIcon #fIcon
+Ts0 f42 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f42 371 1011 26 26 0 12 #rect
+Ts0 f42 @|RichDialogProcessEndIcon #fIcon
+Ts0 f43 109 1024 371 1024 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -740,3 +824,9 @@ Ts0 f0 mainOut f1 tail #connect
 Ts0 f1 head f27 mainIn #connect
 Ts0 f27 mainOut f33 tail #connect
 Ts0 f33 head f3 mainIn #connect
+Ts0 f34 mainOut f39 tail #connect
+Ts0 f39 head f35 mainIn #connect
+Ts0 f35 mainOut f40 tail #connect
+Ts0 f40 head f36 mainIn #connect
+Ts0 f41 mainOut f43 tail #connect
+Ts0 f43 head f42 mainIn #connect
