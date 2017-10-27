@@ -43,7 +43,7 @@
           <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" />
         </span>
 
-        <h:form id="filter-selection-form" class="filter-selection-form" rendered="#{not empty data.taskFilterDatas}">
+        <h:form id="filter-selection-form" class="filter-selection-form" rendered="#{not empty data.taskFilterDatas and not data.dataModel.compactMode}">
           <c:set var="taskContainerId" value="#{p:component('task-view-container')}" />
           <c:set var="filterSelectionFormId" value="#{p:component('filter-selection-form')}" />
           <h:outputLabel rendered="#{not data.dataModel.compactMode}" value="Filter:" for="filter-name" />
@@ -202,7 +202,8 @@
         </p:commandButton>
         <p:spacer width="5px" />
         <p:commandButton type="button" styleClass="portal-cancel-button" 
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          actionListener="#{logic.clearSaveFilterDialog}"
           onclick="PF('saveFilterSetDialog').hide();">
         </p:commandButton>
       </h:panelGroup>
