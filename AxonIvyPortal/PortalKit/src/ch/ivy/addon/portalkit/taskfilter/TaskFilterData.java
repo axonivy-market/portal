@@ -7,8 +7,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 public class TaskFilterData {
   private List<TaskFilter> taskFilters;
   private String filterName;
-  private String applicationName;
-  private String userName;
+  private Long userId;
   private FilterType type;
 
   public TaskFilterData() {}
@@ -33,20 +32,12 @@ public class TaskFilterData {
     this.filterName = filterName;
   }
 
-  public String getApplicationName() {
-    return applicationName;
+  public Long getUserId() {
+    return userId;
   }
 
-  public void setApplicationName(String applicationName) {
-    this.applicationName = applicationName;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
   public FilterType getType() {
