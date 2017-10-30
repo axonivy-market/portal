@@ -631,6 +631,10 @@
                 Custom fields in Portal task list can now be sorted properly. The method <code>extendSort()</code> of <code>TaskLazyDataModel</code> is changed
                 to have a <code>taskQuery</code> parameter. If you override this method, please change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
            </para>
+           <para>
+                Portal does not have separate full task list in the homepage anymore. It's mean that you don't have to customize the task list in <code>/layouts/DefaultHomePageTemplate.xhtml</code>. You can remove those code
+                if you have customized your task list.
+           </para>
 		</sect2>
 		<sect2>
 			<title>Migrate 6.x to 7.0</title>
