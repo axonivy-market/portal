@@ -28,11 +28,11 @@ public class TaskInProgressByOthersFilter extends TaskFilter {
     isTaskInProgressByOthersDisplayed = false;
   }
 
-  public boolean isTaskInProgressByOthersDisplayed() {
+  public boolean getIsTaskInProgressByOthersDisplayed() {
     return isTaskInProgressByOthersDisplayed;
   }
 
-  public void setTaskInProgressByOthersDisplayed(boolean isTaskInProgressByOthersDisplayed) {
+  public void setIsTaskInProgressByOthersDisplayed(boolean isTaskInProgressByOthersDisplayed) {
     this.isTaskInProgressByOthersDisplayed = isTaskInProgressByOthersDisplayed;
   }
   

@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.datamodel;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -19,19 +20,23 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
+import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -461,6 +466,33 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     filter.resetValues();
     selectedFilters.remove(filter);
   }
+
+  public TaskFilterData saveFilter(String filterName, FilterType filterType) {
+    TaskFilterData taskFilterData = new TaskFilterData();
+    List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
+    taskFilters.add(inProgressFilter);
+    taskFilterData.setTaskFilters(taskFilters);
+    taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
+    taskFilterData.setFilterName(filterName);
+    taskFilterData.setType(filterType);
+
+    TaskFilterService taskFilterService = new TaskFilterService();
+    BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
+    taskFilterData.setId(info.getId());
+    return taskFilterData;
+  }
+  
+  public void applyFilter(TaskFilterData taskFilterData) throws IllegalAccessException, InvocationTargetException,
+      NoSuchMethodException {
+    TaskFilterService service = new TaskFilterService();
+    service.applyFilter(this, taskFilterData);
+    for (TaskFilter savedTaskFilter : taskFilterData.getTaskFilters()) {
+      if (savedTaskFilter instanceof TaskInProgressByOthersFilter) {
+        service.copyFilterValues(inProgressFilter, savedTaskFilter);
+        isInProgressFilterDisplayed = true;
+      }
+    }
+  }
   
   @SuppressWarnings("unchecked")
   public void onFilterChange(ValueChangeEvent event) {
@@ -503,7 +535,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
       }
       
-      searchCriteria.setTaskStartedByAnotherDisplayed(inProgressFilter.isTaskInProgressByOthersDisplayed());
+      searchCriteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
     }
 
     TaskQuery taskQuery = buildTaskQuery();
