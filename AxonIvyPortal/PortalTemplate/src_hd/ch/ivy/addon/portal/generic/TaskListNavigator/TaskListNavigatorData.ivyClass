@@ -1,0 +1,6 @@
+TaskListNavigatorData #class
+ch.ivy.addon.portal.generic.TaskListNavigator #namespace
+taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+taskDataModel PERSISTENT #fieldModifier
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskView PERSISTENT #fieldModifier

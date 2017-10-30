@@ -10,8 +10,6 @@
   <cc:attribute name="processCardStyleClass" />
   <cc:attribute name="compactMode" default="true" />
   <cc:attribute name="showBackButton" default="true" type="java.lang.Boolean" />
-  <cc:attribute name="onSwitchToCompactModeCompletedCallback" />
-  <cc:attribute name="onSwitchToExpandedModeCompletedCallback" />
   <cc:attribute name="highlightedProcessStartLink" />
   <cc:attribute name="hideProcessFilter" default="false" shortDescription="Process filter text field is hidden or not"
     type="java.lang.Boolean" />
@@ -21,18 +19,13 @@
 <cc:implementation>
   <h:outputScript library="js" name="process-widget.js" />
   <div id="#{cc.clientId}" class="widget process-widget">
-    <h:panelGroup id="header" styleClass="widget-header #{processWidgetBean.compactMode? '' : 'expanded'}" layout="block">
+    <h:panelGroup id="header" styleClass="widget-header #{processWidgetBean.compactMode? '' : 'expanded'}"
+      layout="block">
       <div class="widget-header-main">
-        <span class="widget-header-main-title">#{cc.attrs.title}</span>
+        <span class="widget-header-main-title">#{cc.attrs.title} #{showProcessNavigator}</span>
         <h:panelGroup styleClass="widget-header-main-menu"
           rendered="#{cc.attrs.showBackButton and not processWidgetBean.deleteMode}">
-          <p:commandLink id="switch-mode-command"
-            update="#{cc.clientId}:header #{cc.clientId}:process-list #{cc.clientId}:process-widget-action"
-            actionListener="#{processWidgetBean.switchMode()}"
-            oncomplete="#{processWidgetBean.compactMode ? '' : 'processWidget.clearSearchField()'};#{processWidgetBean.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}">
-            <h:outputText id="switch-mode-command-value"
-              value="#{processWidgetBean.getDisplayTextForSwitchModeButton()}" />
-          </p:commandLink>
+          <cc:renderFacet name="headerToolbar" />
         </h:panelGroup>
       </div>
       <h:panelGroup rendered="#{not processWidgetBean.compactMode}" styleClass="widget-header-sub">
@@ -54,7 +47,7 @@
           <p:commandLink id="deletion-switch-command"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcess')}"
             actionListener="#{processWidgetBean.switchDeleteMode}"
-            update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
+            update="@form #{cc.clientId}:process-list #{cc.clientId}:header #{p:component('process-link')}" />
         </h:panelGroup>
 
         <h:panelGroup layout="block" rendered="#{processWidgetBean.deleteMode}">
@@ -74,25 +67,27 @@
       </h:form>
       <h:form rendered="#{not processWidgetBean.compactMode}"
         styleClass="process-button-position process-action-button action-create-experss-workflow">
-         <h:panelGroup layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
+        <h:panelGroup layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
           <p:commandLink id="create-express-workflow"
-          value="#{processWidgetBean.createExpressWorkflowProcessStart.name}" target="_self"
-          rendered="#{processWidgetBean.canCreateExpessWorkflow()}"
-          actionListener="#{logic.startProcess(processWidgetBean.getCreateExpessWorkflowLink())}" />
+            value="#{processWidgetBean.createExpressWorkflowProcessStart.name}" target="_self"
+            rendered="#{processWidgetBean.canCreateExpessWorkflow()}"
+            actionListener="#{logic.startProcess(processWidgetBean.getCreateExpessWorkflowLink())}" />
         </h:panelGroup>
       </h:form>
     </h:panelGroup>
 
     <h:panelGroup id="process-list" layout="block"
       styleClass="widget-content #{processWidgetBean.compactMode ? '' : 'process-start-list'}">
-      <h:panelGroup styleClass="process-empty-container" rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses}">
+      <h:panelGroup styleClass="process-empty-container"
+        rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses}">
         <p>
           <h:outputText id="empty-process-message"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noFavoriteProcess')}" />
         </p>
         <p>
           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messagePrefix')}
-          <p:commandLink id="add-new-process-message" actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
+          <p:commandLink id="add-new-process-message"
+            actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
             update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()">
             <b>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messageSuffix')}</b>?</p:commandLink>
         </p>
@@ -109,11 +104,12 @@
         </p:link>
 
         <c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
-        <h:form id="process-item-form" styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''} #{isExpressWorkflow ? 'express-workflow' : ''}"
-          style="#{cc.attrs.processCardStyleClass}"
-          rendered="#{!processWidgetBean.deleteMode}">
-          
-          <p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self" styleClass="process-item"
+        <h:form id="process-item-form"
+          styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''} #{isExpressWorkflow ? 'express-workflow' : ''}"
+          style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.deleteMode}">
+
+          <p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
+            styleClass="process-item"
             rendered="#{not processWidgetBean.deleteMode and (fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}">
             <ui:include src="ProcessItem.xhtml" />
           </p:commandLink>
@@ -127,7 +123,8 @@
 
         <h:panelGroup id="delete-process-item" layout="block" rendered="#{processWidgetBean.deleteMode}"
           styleClass="process-start-list-item u-cursor-pointer #{isExpressWorkflow ? 'express-workflow' : ''}">
-          <f:passThroughAttribute name="onclick" value="processWidget.toggleDeletionCheckbox(event, 'delete-process-checkbox-#{status.index}')" />
+          <f:passThroughAttribute name="onclick"
+            value="processWidget.toggleDeletionCheckbox(event, 'delete-process-checkbox-#{status.index}')" />
           <div class="process-start-list-item-icon">
             <span class="fa #{process.icon} fa-fw" />
           </div>
@@ -205,26 +202,23 @@
   </p:dialog>
 
   <p:dialog id="remove-express-workflow-dialog" widgetVar="remove-express-workflow-dialog"
-     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowHeader')}"
-     closeOnEscape="true" modal="true" dynamic="true" appendTo="@(body)" resizable="false">
-     <h:form id="delete-workflow-form" rendered="#{!processWidgetBean.compactMode}">
-       <h:outputText escape="false"
-         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowConfirmation')}" />
-         <br/>
-       <h:outputText value="#{processWidgetBean.editingProcess.processName}" styleClass="FontBold" />
-       <div class="ui-dialog-footer u-dialog-footer">
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowHeader')}"
+    closeOnEscape="true" modal="true" dynamic="true" appendTo="@(body)" resizable="false">
+    <h:form id="delete-workflow-form" rendered="#{!processWidgetBean.compactMode}">
+      <h:outputText escape="false"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowConfirmation')}" />
+      <br />
+      <h:outputText value="#{processWidgetBean.editingProcess.processName}" styleClass="FontBold" />
+      <div class="ui-dialog-footer u-dialog-footer">
         <p:commandButton styleClass="portal-ok-button" global="false" process="@this"
-          update="#{cc.clientId}:process-list"
-          actionListener="#{processWidgetBean.deleteExpressWorkflow}"
+          update="#{cc.clientId}:process-list" actionListener="#{processWidgetBean.deleteExpressWorkflow}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           oncomplete="PF('remove-express-workflow-dialog').hide();callSynchronizeDataToPortalServer();" />
         <p:spacer width="5" />
-         <p:commandButton onclick="PF('remove-express-workflow-dialog').hide()"
-           styleClass="portal-cancel-button"
-           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-           type="button" />
-       </div>
-     </h:form>
+        <p:commandButton onclick="PF('remove-express-workflow-dialog').hide()" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+      </div>
+    </h:form>
   </p:dialog>
 
   <h:form>

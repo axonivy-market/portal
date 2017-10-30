@@ -21,7 +21,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void switchMode() {
-    WebElement switchLink = findElementById("statistics-widget:switch-mode-command-value");
+    WebElement switchLink = findElementById("statistics-widget:statistic-link:statistic-link");
     switchLink.click();
   }
 
