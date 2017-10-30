@@ -28,7 +28,7 @@ public class TaskResponsibleFilter extends TaskFilter {
   @JsonIgnore
   private List<RemoteSecurityMember> responsibles = new ArrayList<>();
   private RemoteSecurityMember selectedResponsible;
-
+  @JsonIgnore
   private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
 
   @SuppressWarnings("unchecked")
