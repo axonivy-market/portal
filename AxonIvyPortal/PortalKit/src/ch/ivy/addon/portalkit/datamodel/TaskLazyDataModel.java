@@ -470,7 +470,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public TaskFilterData saveFilter(String filterName, FilterType filterType) {
     TaskFilterData taskFilterData = new TaskFilterData();
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
-    taskFilters.add(inProgressFilter);
+    if (isInProgressFilterDisplayed) {
+      taskFilters.add(inProgressFilter);
+    }
     taskFilterData.setTaskFilters(taskFilters);
     taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
     taskFilterData.setFilterName(filterName);
