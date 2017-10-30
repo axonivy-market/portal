@@ -133,7 +133,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void loadSwitchModeButton() {
-    switchModeButton = findElementById("process-widget:switch-mode-command");
+    switchModeButton = findElementById("process-widget:process-link:process-link-label");
   }
 
   public void loadLiveSearchTextField() {

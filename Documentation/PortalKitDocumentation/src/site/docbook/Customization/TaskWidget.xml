@@ -49,31 +49,11 @@
 				</listitem>
 				<listitem>
 					<para>
-						Override Task widget at home page.
+						Override Task widget in: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
 						<itemizedlist>
 							<listitem>
 								<para>
-									Introduce a new HTMLDialog which uses template <code>/layouts/DefaultHomePageTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override task details's responsiveness). You can take a look at <code>PortalHome.xhtml</code> to see how to customize it.
-									<tip>
-										<para>Highly recommend to copy the <code>PortalHome</code> HTMLDialog in PortalTemplate and change the copied one's view.</para>
-									</tip>
-								</para>
-							</listitem>
-							<listitem>
-								<para>
-									Replace the old home HTMLDialog of PortalTemplate to the new one at the copied process which you have done at step 2.
-								</para>
-							</listitem>
-						</itemizedlist>
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Override Task widget in other places: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
-						<itemizedlist>
-							<listitem>
-								<para>
-									It is the same way as home page. You should introduce a new HTMLDialog which uses template <code>/layouts/PortalTasksTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). You can take a look at <code>PortalTasks.xhtml</code> to see how to customize it.
+									Introduce a new HTMLDialog which uses template <code>/layouts/PortalTasksTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). You can take a look at <code>PortalTasks.xhtml</code> to see how to customize it.
 									<tip>
 										<para>Highly recommend to copy the <code>PortalTasks</code> HTMLDialog in PortalTemplate and change the copied one's view.</para>
 									</tip>

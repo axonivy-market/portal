@@ -8,31 +8,28 @@
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="priorityStatistic" type="ch.ivy.ws.addon.PriorityStatistic" />
   <cc:attribute name="expiryStatistic" type="ch.ivy.ws.addon.ExpiryStatistic" />
-  <cc:attribute name="onSwitchToCompactModeCompletedCallback" />
-  <cc:attribute name="onSwitchToExpandedModeCompletedCallback" />
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
-  <f:event listener="#{logic.setStatistics(cc.attrs.priorityStatistic, cc.attrs.expiryStatistic)}" type="preRenderComponent" />
+  <f:event listener="#{logic.setStatistics(cc.attrs.priorityStatistic, cc.attrs.expiryStatistic)}"
+    type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main">
         <span class="widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics')}</span>
-        <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{cc.attrs.compactMode}" styleClass="widget-header-main-menu">
-          <p:commandLink id="switch-mode-command" actionListener="#{logic.switchMode}"
-            update="widget-container statistic-widget-header #{p:component('statistic-widget-empty-state')}"
-            oncomplete="#{data.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}">
-            <h:outputText id="switch-mode-command-value"
-              value="#{data.compactMode? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/showAllCharts') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/backToOverview')}" />
-          </p:commandLink>
+        <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{cc.attrs.compactMode}"
+          styleClass="widget-header-main-menu">
+          <cc:renderFacet name="headerToolbar" />
         </h:panelGroup>
       </div>
     </h:panelGroup>
 
-    <h:panelGroup id="widget-container" layout="block" styleClass="statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}" rendered="#{data.hasStatistic}">
+    <h:panelGroup id="widget-container" layout="block"
+      styleClass="statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}"
+      rendered="#{data.hasStatistic}">
       <p:chart id="tasks-priority-chart" type="pie" model="#{data.priorityPieModel}" styleClass="chart-height"
         responsive="true" />
       <p:chart id="tasks-expiry-chart" rendered="#{!data.compactMode}" type="bar" model="#{data.expiryBarChartModel}"
