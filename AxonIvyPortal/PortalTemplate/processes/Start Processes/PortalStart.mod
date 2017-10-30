@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Aug 07 15:12:06 ICT 2017]
 1549F58C18A6C562 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
@@ -57,6 +56,11 @@ Pt0 @Alternative f43 '' #zField
 Pt0 @PushWFArc f44 '' #zField
 Pt0 @PushWFArc f40 '' #zField
 Pt0 @PushWFArc f45 '' #zField
+Pt0 @StartRequest f6 '' #zField
+Pt0 @GridStep f16 '' #zField
+Pt0 @EndTask f46 '' #zField
+Pt0 @PushWFArc f47 '' #zField
+Pt0 @PushWFArc f48 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -706,6 +710,44 @@ Pt0 f45 480 144 960 144 #arcP
 Pt0 f45 1 480 96 #addKink
 Pt0 f45 2 960 96 #addKink
 Pt0 f45 0 0.4166666666666667 -10 0 #arcLabel
+Pt0 f6 outLink start.ivp #txt
+Pt0 f6 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f6 inParamDecl '<> param;' #txt
+Pt0 f6 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f6 guid 15F6BEBA14A6E64D #txt
+Pt0 f6 requestEnabled true #txt
+Pt0 f6 triggerEnabled false #txt
+Pt0 f6 callSignature start() #txt
+Pt0 f6 caseData businessCase.attach=true #txt
+Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>start.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f6 @C|.responsibility Everybody #txt
+Pt0 f6 81 657 30 30 -21 17 #rect
+Pt0 f6 @|StartRequestIcon #fIcon
+Pt0 f16 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f16 actionTable 'out=in;
+' #txt
+Pt0 f16 actionCode 'import ch.ivyteam.ivy.workflow.StandardProcessType;
+String projectIdentifier = "ch.ivyteam.ivy.project.portal:portalTemplate"; // use library name of your project with the default (start) processes
+ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES, projectIdentifier);
+ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, projectIdentifier);' #txt
+Pt0 f16 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f16 184 650 112 44 0 -8 #rect
+Pt0 f16 @|StepIcon #fIcon
+Pt0 f46 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f46 385 657 30 30 0 15 #rect
+Pt0 f46 @|EndIcon #fIcon
+Pt0 f47 expr out #txt
+Pt0 f47 296 672 385 672 #arcP
+Pt0 f48 expr out #txt
+Pt0 f48 111 672 184 672 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -754,3 +796,7 @@ Pt0 f43 out f40 tail #connect
 Pt0 f40 head f21 in #connect
 Pt0 f41 out f45 tail #connect
 Pt0 f45 head f43 in #connect
+Pt0 f16 mainOut f47 tail #connect
+Pt0 f47 head f46 mainIn #connect
+Pt0 f6 mainOut f48 tail #connect
+Pt0 f48 head f16 mainIn #connect

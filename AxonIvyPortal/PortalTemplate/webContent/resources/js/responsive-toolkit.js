@@ -631,41 +631,10 @@ function CaseListSmallScreenHandler() {
 };
 
 /***************************Handle responsive for Dashboard**********************************/
-var DashboardModeDetector = {
-		isCompactMode: function(){
-			return $('.js-expansed-mode').length === 0;
-		},
-		
-		isExpandedMode: function(){
-			return $('.js-expansed-mode').length !== 0;
-		}
-}
-
 function DashboardLargeScreen() {
 	
 	this.updateMainContainer = function(){
-		if(DashboardModeDetector.isExpandedMode()){
-			updateExpandedDashboard();
-		}
 	}
-	
-	 function updateExpandedDashboard() {
-		var $taskWidget = $('.js-expansed-mode').find('.js-task-widget');
-		var $statisticWidget = $('.js-expansed-mode').find('.js-statistic-widget');
-		var $processWidget = $('.js-expansed-mode').find('.js-process-widget');
-
-		// Task widget
-		if ($taskWidget.length !== 0) {
-		   var taskListLargeScreen = new TaskListLargeScreenHandler();
-		   taskListLargeScreen.updateMainContainer();
-		 }
-		
-		// Statistic widget or Process widget
-		if ($statisticWidget.length !== 0 || $processWidget.length !== 0) {
-		   var simpleLargeScreen = new SimpleLargeScreen();
-		   simpleLargeScreen.updateMainContainer();
-		}
-	 }
 }
 
 function DashboardMediumScreen() {
@@ -675,11 +644,7 @@ function DashboardMediumScreen() {
 			  		};
 	
 	this.updateMainContainer = function(){
-		if(DashboardModeDetector.isCompactMode()){
-			updateDashboardInCompactMode();
-		} else {
-			updateDashboardInExpandedMode();
-		}
+	  updateDashboard();
 	}
 	
 	function moveStatisticsToFirstCol() {
@@ -691,37 +656,18 @@ function DashboardMediumScreen() {
 		$('.js-dashboard-main-content-3rd-col').removeClass('u-hidden').append($('.js-statistic-widget'));
 	}
 	
-	function updateDashboardInCompactMode() {
+	function updateDashboard() {
 		var $mainMenu = $('.js-left-sidebar');
 		var $dashboardFirstCol = $('.js-dashboard-main-content-1st-col');
 
 		if ($mainMenu.hasClass('in')) {
-		  if (!$('.js-dashboard-main-content-3rd-col').hasClass('js-expanded-mode')) {
-		        moveStatisticsToFirstCol();
-		   }
+		   moveStatisticsToFirstCol();
 		   $dashboardFirstCol.animate({marginLeft : firstCol.marginValWhenMainMenuOpen}, animateDuration);
 		} else {
 			moveStatisticsToThirdCol();
 			$dashboardFirstCol.animate({marginLeft : firstCol.marginValWhenMainMenuClose}, animateDuration);
 		}
 	}
-	
-	function updateDashboardInExpandedMode() {
-	    var $taskWidget = $('.js-expansed-mode').find('.js-task-widget');
-	    var $statisticWidget = $('.js-expansed-mode').find('.js-statistic-widget');
-	    var $processWidget = $('.js-expansed-mode').find('.js-process-widget');
-
-	    // Task widget
-	    if ($taskWidget.length !== 0) {
-	      var taskListMediumScreen = new TaskListMediumScreenHandler();
-	      taskListMediumScreen.updateMainContainer();
-	    }
-	    // Statistic widget or Process widget
-	    if ($statisticWidget.length !== 0 || $processWidget.length !== 0) {
-	      var simpleMediumScreen = new SimpleMediumScreen();
-	      simpleMediumScreen.updateMainContainer();
-	    }
-	  }
 }
 
 function DashboardSmallScreen(){
@@ -738,11 +684,7 @@ function DashboardSmallScreen(){
 		  };
 	
 	this.updateMainContainer = function(){
-		if(DashboardModeDetector.isCompactMode()) {
-			updateDashboardInCompactMode();
-		} else {
-			updateDashboardInExpandedMode();
-		}
+	  updateDashboard();
 	}
 	
 	function moveStatisticsToFirstCol() {
@@ -750,7 +692,7 @@ function DashboardSmallScreen(){
 		   $('.js-dashboard-main-content-3rd-col').addClass('u-hidden');
 		}
 	
-	function updateDashboardInCompactMode() {
+	function updateDashboard() {
 	    var $mainMenu = $('.js-left-sidebar');
 	    var $dashboardFirstCol = $('.js-dashboard-main-content-1st-col');
 	    var $dashboardSecondCol = $('.js-dashboard-main-content-2nd-col');
@@ -778,126 +720,4 @@ function DashboardSmallScreen(){
 	      }, animateDuration);
 	    }
 	  }
-
-	  function updateDashboardInExpandedMode() {
-	    var $taskWidget = $('.js-expansed-mode').find('.js-task-widget');
-	    var $statisticWidget = $('.js-expansed-mode').find('.js-statistic-widget');
-	    var $processWidget = $('.js-expansed-mode').find('.js-process-widget');
-
-	    // Task widget
-	    if ($taskWidget.length !== 0) {
-	      var taskListSmallScreen = new TaskListSmallScreenHandler();
-	      taskListSmallScreen.updateMainContainer();
-	    }
-	    // Statistic widget or Process widget
-	    if ($statisticWidget.length !== 0 || $processWidget.length !== 0) {
-	      var simpleSmallScreen = new SimpleSmallScreen();
-	      simpleSmallScreen.updateMainContainer();
-	    }
-	  }
 }
-
-function PortalDashboardToolkit() {
-	  var compactWidgetContainerClass;
-	  var COMPACT_MODE = "COMPACT";
-	  var EXPAND_MODE = "EXPANDED";
-	  
-	  function switchMode(widget, mode) {
-	    var expandedWidgetClass = 'js-expansed-mode';
-	    var $widgetContainer = $(widget).closest('.layout-col');
-	    if (isCompactMode(mode)) {
-	      $widgetContainer.removeClass(expandedWidgetClass);
-	      $('.js-dashboard-default-widget-container').children().not($widgetContainer.get(0)).removeClass('u-hidden');
-	      $widgetContainer.children().not(widget).removeClass('u-hidden');
-	    } else {
-	      compactWidgetContainerClass = $widgetContainer.get(0).classList.toString().replace(/,/g, " ");
-	      $widgetContainer.addClass(expandedWidgetClass);
-	      $('.js-dashboard-default-widget-container').children().not($widgetContainer.get(0)).addClass('u-hidden');
-	      $widgetContainer.children().not(widget).addClass('u-hidden');
-	    }
-	    $widgetContainer.attr('style', '');
-	  }
-	  
-	  function isCompactMode(mode){
-		  return COMPACT_MODE === mode;
-	  }
-
-	  function switchContainerClass(mode) {
-	    if (isCompactMode(mode)) {
-	      $('.simple-container').switchClass('simple-container', 'dashboard-container', 0).attr('style', '');
-	      $('.js-expansed-mode').switchClass('js-simple-main-col', compactWidgetContainerClass, 0);
-	    } else {
-	      $('.dashboard-container').switchClass('dashboard-container', 'simple-container', 0).attr('style', '');
-		  $('.js-expansed-mode').switchClass(compactWidgetContainerClass, 'js-simple-main-col', 0);
-	    }
-	  }
-
-	  function switchTaskListContainerClass(mode) {
-	    compactWidgetContainerClass = 'js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col';
-	    if (isCompactMode(mode)) {
-	      $('.task-list-container').switchClass('task-list-container js-task-list-container', 'dashboard-container', 0).attr('style', '');
-	      $('.js-task-list-main-col').attr('style', '');
-	      $('.js-expansed-mode').switchClass('js-task-list-main-col', compactWidgetContainerClass, 0);
-	    }else {
-	      $('.dashboard-container').switchClass('dashboard-container', 'task-list-container js-task-list-container', 0).attr('style', '');
-	      $('.js-expansed-mode').switchClass(compactWidgetContainerClass, 'js-task-list-main-col', 0);
-	    }
-	  }
-
-	  return {
-	    /*
-	     * Task Widget: switch from Expand Mode to Compact Mode
-	     */
-	    switchTaskWidgetToCompactMode : function(updateLayoutCallback) {
-	      switchTaskListContainerClass(COMPACT_MODE);
-	      switchMode($('.js-task-widget'), COMPACT_MODE);
-	      updateLayoutCallback();
-	    },
-
-	    /*
-	     * Task Widget: switch from Compact Mode to Expand Mode
-	     */
-	    switchTaskWidgetToExpandedMode : function(updateLayoutCallback) {
-	      switchMode($('.js-task-widget'), EXPAND_MODE);
-	      switchTaskListContainerClass(EXPAND_MODE);
-	      updateLayoutCallback();
-	    },
-
-	    /*
-	     * Process Widget: switch from Expand Mode to Compact Mode
-	     */
-	    switchProcessWidgetToCompactMode : function(updateLayoutCallback) {
-	    	
-	      switchContainerClass(COMPACT_MODE);
-	      switchMode($('.js-process-widget'), COMPACT_MODE);
-	      updateLayoutCallback();
-	    },
-
-	    /*
-	     * Process Widget: switch from Compact Mode to Expand Mode
-	     */
-	    switchProcessWidgetToExpandedMode : function(updateLayoutCallback) {
-	      switchMode($('.js-process-widget'), EXPAND_MODE);
-	      switchContainerClass(EXPAND_MODE);
-	      updateLayoutCallback();
-	    },
-
-	    /*
-	     * Statistic Widget: switch from Expand Mode to Compact Mode
-	     */
-	    switchStatisticWidgetToCompactMode : function(updateLayoutCallback) {
-	      switchContainerClass(COMPACT_MODE);
-	      switchMode($('.js-statistic-widget'), COMPACT_MODE);
-	      updateLayoutCallback();
-	    },
-
-	    /*
-	     * Statistic Widget: switch from Compact Mode to Expand Mode
-	     */
-	    switchStatisticWidgetToExpandedMode : function(updateLayoutCallback) {
-	      switchMode($('.js-statistic-widget'), EXPAND_MODE);
-	      switchContainerClass(EXPAND_MODE);
-	      updateLayoutCallback();
-	    }
-	  };
-	};

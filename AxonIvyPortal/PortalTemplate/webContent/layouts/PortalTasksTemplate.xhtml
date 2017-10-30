@@ -15,7 +15,7 @@
     <c:set var="dataModel" value="#{taskView.dataModel}" />
     
     <div class="task-list-container js-task-list-container">
-      <div class="js-task-list-main-col">
+      <div>
         <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" keyword="#{dataModel.queryCriteria.keyword}"
           hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{dataModel}"
           showHeaderToolbar="#{taskView.showHeaderToolbar}" compactMode="false" selectedTaskId="#{taskView.remoteTaskId}"
