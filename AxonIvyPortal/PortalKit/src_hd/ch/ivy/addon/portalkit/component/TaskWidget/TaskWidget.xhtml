@@ -43,7 +43,7 @@
           rendered="#{not empty data.taskFilterDatas and not data.dataModel.compactMode}">
           <c:set var="taskContainerId" value="#{p:component('task-view-container')}" />
           <c:set var="filterSelectionFormId" value="#{p:component('filter-selection-form')}" />
-          <h:outputLabel rendered="#{not data.dataModel.compactMode}" value="Filter:" for="filter-name" />
+          <h:outputLabel rendered="#{not data.dataModel.compactMode}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" for="filter-name" />
           <p:commandLink id="filter-name" styleClass="filter-name"
             value="#{data.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/selectedFilterSetDefaultValue') : data.selectedTaskFilterData.filterName}"
             actionListener="#{logic.loadFilter()}" />
@@ -111,8 +111,10 @@
             </p:scrollPanel>
           </h:form>
         </p:overlayPanel>
-        <p:commandButton id="filter-save-action" value="Save" styleClass="filter-add-button" icon="fa fa-save"
-          iconPos="right" update=":#{p:component('saveFilterSetDialog')}" oncomplete="PF('saveFilterSetDialog').show();" />
+        <p:commandButton id="filter-save-action" value="Save"
+          styleClass="filter-add-button" icon="fa fa-save" iconPos="right"
+          update=":#{p:component('save-filter-set-dialog')}"
+          oncomplete="PF('save-filter-set-dialog').show();" />
       </h:panelGroup>
     </h:panelGroup>
 
@@ -180,37 +182,43 @@
     <p:remoteCommand actionListener="#{logic.storeConfiguration()}" name="onTaskStartCallBack" async="true" />
   </h:form>
 
-  <p:dialog id="saveFilterSetDialog" widgetVar="saveFilterSetDialog" header="Save filter" resizable="false" width="420">
+  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterSavingHeader')}" resizable="false" width="420">
+    <p:messages autoUpdate="true" />
     <h:form>
-      <h:panelGrid columns="2" styleClass="save-filter-set-panel"
-        columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">
-        <p:outputLabel id="saveFilterSetNameLabel" for="saveFilterSetNameInput" value="Filter name:" />
-        <p:inputText id="saveFilterSetNameInput" value="#{data.filterSetName}" />
-        <p:outputLabel id="saveFilterTypeLabel" for="saveFilterTypeRadio" value="Filter visibility:" />
-        <p:selectOneRadio id="saveFilterTypeRadio" value="#{data.filterType}">
-          <f:selectItem id="onlyMe" itemLabel="Only me" itemValue="ONLY_ME" />
-          <f:selectItem id="allUsers" itemLabel="All users" itemValue="ALL_USERS" />
+      <h:panelGrid columns="2" styleClass="save-filter-set-panel" columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">
+        <p:outputLabel id="save-filter-set-name-label" for="save-filter-set-name-input" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterName')}" />
+        <p:inputText id="save-filter-set-name-input" value="#{data.filterSetName}" required="true" maxlength="20"/>
+        <p:outputLabel id="save-filter-type-label" for="save-filter-type-radio" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterVisibility')}" />
+        <p:selectOneRadio id="save-filter-type-radio" value="#{data.filterType}">
+          <f:selectItem id="only-me" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterTypeOnlyMe')}" itemValue="ONLY_ME"/>
+          <f:selectItem id="all-users" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterTypeAllUsers')}" itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-        <p:commandButton styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          process="@form" oncomplete="PF('saveFilterSetDialog').hide();" actionListener="#{logic.saveFilter}"
+        <p:commandButton styleClass="portal-ok-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          process="@form" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
+          actionListener="#{logic.saveFilter}"
           update="#{p:component('task-widget-header')}">
         </p:commandButton>
         <p:spacer width="5px" />
-        <p:commandButton type="button" styleClass="portal-cancel-button"
+        <p:commandButton type="button" styleClass="portal-cancel-button" 
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          actionListener="#{logic.clearSaveFilterDialog}" onclick="PF('saveFilterSetDialog').hide();">
+          actionListener="#{logic.clearSaveFilterDialog}"
+          onclick="PF('save-filter-set-dialog').hide();">
         </p:commandButton>
       </h:panelGroup>
     </h:form>
   </p:dialog>
 
-  <p:confirmDialog id="delete-filter-confirmation-dialog" message="Are you sure you want to delete this filter?"
-    header="Confirmation" widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
+  <p:confirmDialog id="delete-filter-confirmation-dialog"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmationHeader')}" widgetVar="delete-filter-confirmation-dialog"
+    appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter()}" styleClass="portal-ok-button"
-      oncomplete="PF('delete-filter-confirmation-dialog').hide()" update="#{p:component('filter-selection-form')}" />
+      oncomplete="PF('delete-filter-confirmation-dialog').hide()"
+      update="#{p:component('filter-selection-form')}"/>
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
