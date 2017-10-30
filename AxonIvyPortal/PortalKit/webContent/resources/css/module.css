@@ -1968,7 +1968,6 @@ a.case-details-document-add-link {
   align-items: center;
   opacity: .3;
   font-size: 1.2rem;
-  margin-right: 25px;
 }
 
 .process-start-list-item-action.fa-info-circle.express-workflow {
@@ -1979,6 +1978,7 @@ a.case-details-document-add-link {
   padding-left: 10px;
   margin-left: auto;
   min-width: 60px;
+  margin-right: 25px;
 }
 
 .process-start-list-item .process-start-list-item-action.is-express-workflow {
@@ -2012,6 +2012,7 @@ a.case-details-document-add-link {
 .process-start-list-item .ui-commandlink.process-item {
   min-width: 60%;
   max-width: 90%;
+  width: 100%;
 }
 
 .process-start-list-item:hover .process-start-list-item-action {
