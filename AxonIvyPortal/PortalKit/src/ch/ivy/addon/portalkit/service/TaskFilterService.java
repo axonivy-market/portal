@@ -13,6 +13,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
@@ -47,8 +48,8 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
     return filters;
   }
 
-  public void applyFilter(TaskLazyDataModel dataModel, TaskFilterData savedFilterData)
-      throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+  public void applyFilter(TaskLazyDataModel dataModel, TaskFilterData savedFilterData) throws IllegalAccessException,
+      InvocationTargetException, NoSuchMethodException {
     List<TaskFilter> filters = dataModel.getFilterContainer().getFilters();
     dataModel.setSelectedFilters(new ArrayList<>());
     for (int i = 0; i < filters.size(); i++) {
@@ -64,14 +65,31 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
     }
   }
 
-  public void copyFilterValues(TaskFilter taskFilter, TaskFilter savedTaskFilter)
-      throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+  public void copyFilterValues(TaskFilter taskFilter, TaskFilter savedTaskFilter) throws IllegalAccessException,
+      InvocationTargetException, NoSuchMethodException {
     Field[] fields = taskFilter.getClass().getDeclaredFields();
     for (Field field : fields) {
       if (field.getAnnotation(JsonIgnore.class) == null) {
         String fieldName = field.getName();
         BeanUtils.copyProperty(taskFilter, fieldName, PropertyUtils.getProperty(savedTaskFilter, fieldName));
       }
+    }
+  }
+
+  public boolean isFilterExisted(String name, FilterType type) {
+    if (FilterType.ONLY_ME == type) {
+      Filter<TaskFilterData> publicFilterQuery =
+          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).and()
+              .textField(FILTER_NAME).isEqualToIgnoringCase(name);
+      Filter<TaskFilterData> privateFilterQuery =
+          repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
+              .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().textField(FILTER_NAME)
+              .isEqualToIgnoringCase(name);
+      Filter<TaskFilterData> combinedQuery =
+          repo().search(getType()).filter(publicFilterQuery).or().filter(privateFilterQuery);
+      return combinedQuery.execute().count() > 0;
+    } else {
+      return repo().search(getType()).textField(FILTER_NAME).isEqualToIgnoringCase(name).execute().count() > 0;
     }
   }
 }
