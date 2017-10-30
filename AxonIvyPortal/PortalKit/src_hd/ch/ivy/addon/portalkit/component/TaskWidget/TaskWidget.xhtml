@@ -131,9 +131,9 @@
         <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="in-progress-filter"
           removeListener="#{data.dataModel.hideInProgressFilter()}" displayFooterButtons="false"
           taskFilter="#{data.dataModel.inProgressFilter}" dataModel="#{data.dataModel}"
-          rendered="#{data.dataModel.inProgressFilterDisplayed}" forceRendered="true" position="100">
+          rendered="#{!data.dataModel.hasReadAllTasksPermisson() and data.dataModel.inProgressFilterDisplayed}" forceRendered="true" position="100">
           <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
-            value="#{data.dataModel.inProgressFilter.taskInProgressByOthersDisplayed}"
+            value="#{data.dataModel.inProgressFilter.isTaskInProgressByOthersDisplayed}"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}">
             <p:ajax update="@([id$='in-progress-filter:filter-open-form']) @form #{p:component('task-view-container')}"
               global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
