@@ -48,7 +48,9 @@ public class TaskStateFilter extends TaskFilter {
     }
     String value = userFriendlyState(selectedFilteredStates.get(0));
     for (int i = 1; i < selectedFilteredStates.size(); i++) {
-      value += COMMA + userFriendlyState(selectedFilteredStates.get(i));
+      if (filteredStates.contains(selectedFilteredStates.get(i))) {
+        value += COMMA + userFriendlyState(selectedFilteredStates.get(i));
+      }
     }
     return value;
   }
