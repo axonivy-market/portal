@@ -57,7 +57,7 @@
                 <p:commandLink id="user-definied-filter" styleClass="user-definied-filter" value="#{taskFilterData.filterName}"
                   global="false" actionListener="#{logic.applyFilter(taskFilterData)}" 
                   update="#{p:component('advanced-filter-container')} #{p:component('filter-selection-form')} #{p:component('task-view-container')} #{p:component('filter-add-form')}" />
-                <p:commandLink id="delete-user-definied-filter-command"
+                <p:commandLink id="delete-user-definied-filter-command" rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
                   styleClass="fa fa-times-circle delete-user-definied-filter-command"
                   actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                   oncomplete="PF('delete-filter-confirmation-dialog').show();" />
