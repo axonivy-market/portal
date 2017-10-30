@@ -539,25 +539,7 @@ Ts0 f21 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 ' #txt
 Ts0 f21 actionTable 'out=in;
 ' #txt
-Ts0 f21 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
-
-TaskFilterService service = new TaskFilterService();
-service.applyFilter(in.dataModel, in.selectedTaskFilterData);
-/*
-List filters = in.dataModel.getFilterContainer().getFilters();
-in.dataModel.selectedFilters = new ArrayList();
-for (int i = 0; i < filters.size(); i++) {
-	TaskFilter taskFilter = in.dataModel.filterContainer.filters.get(i) as TaskFilter;
-	for (int j = 0; j < in.selectedTaskFilterData.taskFilters.size(); j++) {
-		TaskFilter selectedTaskFilter = in.selectedTaskFilterData.taskFilters.get(j);
-		if (taskFilter.getClass().equals(selectedTaskFilter.getClass())) {
-			BeanUtils.copyProperties(taskFilter, selectedTaskFilter);
-			in.dataModel.selectedFilters.add(taskFilter);
-			break;
-		}
-	}
-}
-*/
+Ts0 f21 actionCode 'in.dataModel.applyFilter(in.selectedTaskFilterData);
 
 ' #txt
 Ts0 f21 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -597,20 +579,11 @@ Ts0 f24 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 ' #txt
 Ts0 f24 actionTable 'out=in;
 ' #txt
-Ts0 f24 actionCode 'import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
+Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
-
-TaskFilterData taskFilterData = new TaskFilterData();
-taskFilterData.setTaskFilters(in.dataModel.selectedFilters);
-taskFilterData.setUserId(ivy.session.getSessionUser().getId());
-taskFilterData.setFilterName(in.filterSetName);
-taskFilterData.setType(in.filterType);
-
-TaskFilterService taskFilterService = new TaskFilterService();
-BusinessDataInfo info = taskFilterService.save(taskFilterData);
-taskFilterData.setId(info.getId());
+TaskFilterData taskFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType);
 in.taskFilterDatas.add(taskFilterData);
+TaskFilterService taskFilterService = new TaskFilterService();
 in.taskFilterDatas = taskFilterService.sortFilters(in.taskFilterDatas);' #txt
 Ts0 f24 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

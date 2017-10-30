@@ -56,7 +56,7 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
       for (int j = 0; j < savedFilterData.getTaskFilters().size(); j++) {
         TaskFilter savedTaskFilter = savedFilterData.getTaskFilters().get(j);
         if (taskFilter.getClass().equals(savedTaskFilter.getClass())) {
-          applyFilter(taskFilter, savedTaskFilter);
+          copyFilterValues(taskFilter, savedTaskFilter);
           dataModel.getSelectedFilters().add(taskFilter);
           break;
         }
@@ -64,7 +64,7 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
     }
   }
 
-  private void applyFilter(TaskFilter taskFilter, TaskFilter savedTaskFilter)
+  public void copyFilterValues(TaskFilter taskFilter, TaskFilter savedTaskFilter)
       throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
     Field[] fields = taskFilter.getClass().getDeclaredFields();
     for (Field field : fields) {
