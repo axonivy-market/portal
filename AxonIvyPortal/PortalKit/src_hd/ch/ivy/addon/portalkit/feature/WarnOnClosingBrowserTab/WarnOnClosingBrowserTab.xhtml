@@ -27,7 +27,13 @@
 			$(document).on('mousedown', 'a[href], :submit, :button', function(e) {
 				showConfirmDialogBeforeUnload = false;
 			}).on('mouseleave', 'a[href], :submit, :button', function(e) {
-				showConfirmDialogBeforeUnload = true;
+				//find the button id if this is a mouse leave event for submit button
+				var buttonId = $(e.target).parent().attr('id');
+				console.log(buttonId);
+				var saveLanguageButton = "language-settings-form:language-settings:save-settings";
+				if (saveLanguageButton != buttonId) {
+					showConfirmDialogBeforeUnload = true;
+				}
 			});
 
 			PrimeFaces.ajax.ResponseProcessor.doRedirect = function(node) {
