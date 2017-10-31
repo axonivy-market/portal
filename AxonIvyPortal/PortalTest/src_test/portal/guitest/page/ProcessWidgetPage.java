@@ -106,7 +106,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public int getNumberOfUserProcesses() {
-    List<WebElement> processes = findListElementsByCssSelector("a[id*='process-widget:process-list-items']");
+    List<WebElement> processes = findListElementsByCssSelector("form[id*='process-widget:process-list-items']");
     return processes.size();
 
   }
