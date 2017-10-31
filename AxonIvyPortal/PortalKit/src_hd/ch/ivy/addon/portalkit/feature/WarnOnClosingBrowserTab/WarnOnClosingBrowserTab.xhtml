@@ -29,6 +29,10 @@
 			}).on('mouseleave', 'a[href], :submit, :button', function(e) {
 				//find the button id if this is a mouse leave event for submit button
 				var buttonId = e.target.id;
+				//for Chrome browser
+				if (buttonId == '' &amp;&amp; !!window.chrome == true &amp;&amp; e.target.className == 'ui-button-text ui-c') {
+					buttonId = $(e.target).parent().attr('id');
+				}
 				var saveLanguageButton = "language-settings-form:language-settings:save-settings";
 				if (saveLanguageButton != buttonId) {
 					showConfirmDialogBeforeUnload = true;
