@@ -182,7 +182,8 @@
     <p:remoteCommand actionListener="#{logic.storeConfiguration()}" name="onTaskStartCallBack" async="true" />
   </h:form>
 
-  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterSavingHeader')}" resizable="false" width="420">
+  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterSavingHeader')}"
+    resizable="false" width="420" modal="true" closeOnEscape="true">
     <p:messages autoUpdate="true" />
     <h:form>
       <h:panelGrid columns="2" styleClass="save-filter-set-panel" columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">
