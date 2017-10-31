@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Thu Mar 31 15:37:35 ICT 2016]
-14C2C99A2B54EEF3 3.18 #module
+14C2C99A2B54EEF3 3.20 #module
 >Proto >Proto Collection #zClass
 Es0 CentralLanguageProcess Big #zClass
 Es0 RD #cInfo
@@ -25,13 +24,11 @@ Es0 @PushWFArc f18 '' #zField
 Es0 @PushWFArc f16 '' #zField
 Es0 @RichDialogProcessEnd f19 '' #zField
 Es0 @CallSub f21 '' #zField
-Es0 @RichDialogProcessStart f20 '' #zField
 Es0 @PushWFArc f6 '' #zField
 Es0 @GridStep f2 '' #zField
 Es0 @PushWFArc f4 '' #zField
 Es0 @GridStep f5 '' #zField
 Es0 @PushWFArc f10 '' #zField
-Es0 @PushWFArc f22 '' #zField
 Es0 @PushWFArc f24 '' #zField
 Es0 @RichDialogProcessEnd f12 '' #zField
 Es0 @GridStep f13 '' #zField
@@ -42,6 +39,8 @@ Es0 @PushWFArc f3 '' #zField
 Es0 @GridStep f27 '' #zField
 Es0 @PushWFArc f28 '' #zField
 Es0 @PushWFArc f23 '' #zField
+Es0 @RichDialogMethodStart f29 '' #zField
+Es0 @PushWFArc f20 '' #zField
 >Proto Es0 Es0 CentralLanguageProcess #zField
 Es0 f0 guid 14BD8AF4A523241B #txt
 Es0 f0 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
@@ -176,23 +175,6 @@ Es0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Es0 f21 206 396 36 24 20 -6 #rect
 Es0 f21 @|CallSubIcon #fIcon
-Es0 f20 guid 14BEDDCD21AD868C #txt
-Es0 f20 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
-Es0 f20 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
-' #txt
-Es0 f20 actionTable 'out=in;
-' #txt
-Es0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>loadLanguageSetting</name>
-        <nameStyle>19,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Es0 f20 214 326 20 20 14 -6 #rect
-Es0 f20 @|RichDialogProcessStartIcon #fIcon
 Es0 f6 expr out #txt
 Es0 f6 72 74 72 198 #arcP
 Es0 f2 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
@@ -249,8 +231,6 @@ Es0 f5 206 220 36 24 22 -7 #rect
 Es0 f5 @|StepIcon #fIcon
 Es0 f10 expr out #txt
 Es0 f10 224 244 224 270 #arcP
-Es0 f22 expr out #txt
-Es0 f22 224 346 224 396 #arcP
 Es0 f24 expr out #txt
 Es0 f24 224 74 224 124 #arcP
 Es0 f12 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
@@ -321,6 +301,26 @@ Es0 f28 expr out #txt
 Es0 f28 224 148 224 172 #arcP
 Es0 f23 expr out #txt
 Es0 f23 224 196 224 220 #arcP
+Es0 f29 guid 15F6C3F5914708A5 #txt
+Es0 f29 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
+Es0 f29 method loadLanguageSetting() #txt
+Es0 f29 disableUIEvents false #txt
+Es0 f29 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+Es0 f29 outParameterDecl '<> result;
+' #txt
+Es0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>loadLanguageSetting()</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f29 211 339 26 26 -63 15 #rect
+Es0 f29 @|RichDialogMethodStartIcon #fIcon
+Es0 f20 expr out #txt
+Es0 f20 224 365 224 396 #arcP
 >Proto Es0 .type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -348,8 +348,6 @@ Es0 f2 mainOut f4 tail #connect
 Es0 f4 head f19 mainIn #connect
 Es0 f5 mainOut f10 tail #connect
 Es0 f10 head f9 mainIn #connect
-Es0 f20 mainOut f22 tail #connect
-Es0 f22 head f21 mainIn #connect
 Es0 f7 mainOut f24 tail #connect
 Es0 f24 head f11 mainIn #connect
 Es0 f13 mainOut f26 tail #connect
@@ -362,3 +360,5 @@ Es0 f11 mainOut f28 tail #connect
 Es0 f28 head f27 mainIn #connect
 Es0 f27 mainOut f23 tail #connect
 Es0 f23 head f5 mainIn #connect
+Es0 f29 mainOut f20 tail #connect
+Es0 f20 head f21 mainIn #connect
