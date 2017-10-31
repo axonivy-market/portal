@@ -1,2 +1,4 @@
-co: name={filterDeletionConfirmationHeader} description={} changed={2017-10-30 14:15:29 CET} changedby={lttung} visualorder={0} guid={15F6D6C35C8A4AE9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={filterDeletionConfirmationHeader} description={} changed={2017-10-31 02:47:21 CET} changedby={lttung} visualorder={0} guid={15F6D6C35C8A4AE9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15F6D6C35CAF8011} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-30 12:05:30 CET} validto={} changed={2017-10-30 14:15:29 CET} changedby={lttung} properties={} id={}
+val: guid={15F701C92D4A1D39} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-31 02:47:21 CET} validto={} changed={2017-10-31 02:47:21 CET} changedby={lttung} properties={} id={}
+val: guid={15F701C7C24A3768} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-31 02:47:15 CET} validto={} changed={2017-10-31 02:47:16 CET} changedby={lttung} properties={} id={}

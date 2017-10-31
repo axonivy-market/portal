@@ -1,2 +1,4 @@
-co: name={filterVisibility} description={} changed={2017-10-30 14:15:29 CET} changedby={lttung} visualorder={0} guid={15F6D6C36167E32B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={filterVisibility} description={} changed={2017-10-31 02:48:30 CET} changedby={lttung} visualorder={0} guid={15F6D6C36167E32B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F701D82FC3F96E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-31 02:48:23 CET} validto={} changed={2017-10-31 02:48:23 CET} changedby={lttung} properties={} id={}
+val: guid={15F701DA12FD549F} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-31 02:48:30 CET} validto={} changed={2017-10-31 02:48:30 CET} changedby={lttung} properties={} id={}
 val: guid={15F6D6C361952ECB} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-30 12:13:52 CET} validto={} changed={2017-10-30 14:15:29 CET} changedby={lttung} properties={} id={}
