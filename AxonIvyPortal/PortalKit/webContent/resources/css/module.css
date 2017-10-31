@@ -2163,30 +2163,32 @@ a.case-details-document-add-link {
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container {
   display: flex;
-  min-width: 21rem;
+  min-width: 14.5rem;
   flex-flow: row wrap;
   align-items: center;
   padding: 6px 10px;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover {
-  background-color: rgba(0,0,0,0.04);
+  background-color: #f5f5f5;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .ui-commandlink {
   font-size: 1.2rem;
 }
 
+.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .ui-commandlink {
+  font-family: 'robotobold' !important;
+}
+
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .user-definied-filter {
   flex: 1 0 90%;
   position: relative;
-  self-align: flex-start;
   text-align: left;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command {
-  flex: 1 0 auto;
-  self-align: flex-end;
+  font-size: 1.4rem;
   text-align: right;
   display: none;
 }
