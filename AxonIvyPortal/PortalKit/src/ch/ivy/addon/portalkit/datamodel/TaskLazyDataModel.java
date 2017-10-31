@@ -68,6 +68,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   
   private TaskInProgressByOthersFilter inProgressFilter = new TaskInProgressByOthersFilter();
   private boolean isInProgressFilterDisplayed = false;
+  private TaskFilterData selectedTaskFilterData;
 
   public TaskLazyDataModel() {
     super();
@@ -462,6 +463,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.filterContainer = filterContainer;
   }
 
+  public TaskFilterData getSelectedTaskFilterData() {
+    return selectedTaskFilterData;
+  }
+
+  public void setSelectedTaskFilterData(TaskFilterData selectedTaskFilterData) {
+    this.selectedTaskFilterData = selectedTaskFilterData;
+  }
+
   public void removeFilter(TaskFilter filter) {
     filter.resetValues();
     selectedFilters.remove(filter);
@@ -486,6 +495,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   
   public void applyFilter(TaskFilterData taskFilterData) throws IllegalAccessException, InvocationTargetException,
       NoSuchMethodException {
+    selectedTaskFilterData = taskFilterData;
     TaskFilterService service = new TaskFilterService();
     service.applyFilter(this, taskFilterData);
     for (TaskFilter savedTaskFilter : taskFilterData.getTaskFilters()) {
@@ -588,7 +598,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       filterContainer.getStateFilter().setSelectedFilteredStates(querycriteria.getIncludedStates());
     }
   }
-  
+
   private TaskQuery buildTaskQuery() {
     TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);
     IFilterQuery filterQuery = taskQuery.where();
