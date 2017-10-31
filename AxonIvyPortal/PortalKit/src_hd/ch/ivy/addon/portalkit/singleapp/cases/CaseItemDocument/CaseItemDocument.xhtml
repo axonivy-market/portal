@@ -42,7 +42,7 @@
       </p:commandLink>
     </h:panelGroup>
 
-    <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)"
+    <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocument')}" modal="true" resizable="false"
       showEffect="fade" hideEffect="fade" width="800">
       <p:messages id="upload-messages" />

@@ -11,6 +11,8 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.startEmailSetting()}" type="preRenderComponent" />
+
   <div id="#{cc.clientId}">
 
     <h:panelGrid>
@@ -18,8 +20,6 @@
         widgetVar="growl" escape="false" />
     </h:panelGrid>
     <p:remoteCommand name="updateGrowlEmail" actionListener="#{logic.updateGrowl}" update="change-email-setting-info" />
-    <p:remoteCommand name="startEmailSetting" actionListener="#{logic.startEmailSetting}" process="@this"
-      update="@next email-messages @widgetVar(errorDialogEmail)" oncomplete="PF('#{cc.attributes.dialogName}').show();" />
 
     <h:panelGroup layout="block" id="email-setting-container">
       <p:messages escape="false" showDetail="true" closable="true" id="email-messages" />
@@ -121,7 +121,7 @@
 
       </h:panelGrid>
 
-      <p:dialog id="exception-message-dialog" header="#{ivy.cms.co('/errors/header')}"
+      <p:dialog id="exception-message-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
         styleClass="email-setting-exception-dialog" widgetVar="errorDialogEmail" modal="true" appendTo="@(body)">
         <p:messages id="errorsMessageE" severity="info" escape="false" showDetail="true" closable="true" />
         <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
