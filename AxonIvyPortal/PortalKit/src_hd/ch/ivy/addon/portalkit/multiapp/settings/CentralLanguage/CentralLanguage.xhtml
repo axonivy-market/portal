@@ -11,6 +11,8 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.loadLanguageSetting()}" type="preRenderComponent" />
+  
   <div id="#{cc.clientId}">
     <p:remoteCommand name="updateGrowl" actionListener="#{logic.updateGrowl}" update="error-growl-language" />
     <h:panelGroup id="setting-grid" layout="block">
@@ -18,9 +20,6 @@
         escape="false" />
       <p:messages id="errors-message" widgetVar="messageError" escape="false" severity="error" showDetail="true"
         closable="true" />
-      <p:remoteCommand name="loadLanguageSetting" actionListener="#{logic.loadLanguageSetting}"
-        update="language-setting-table errors-message @widgetVar(errorLanguageDialog)"
-        oncomplete="PF('#{cc.attributes.dialogName}').show()" />
       <p:dataTable id="language-setting-table" value="#{data.remoteLanguageSettings}" var="ivyLanguage"
         scrollable="true" scrollHeight="100" styleClass="language-table">
 
@@ -46,7 +45,7 @@
         styleClass="portal-cancel-button" />
     </h:panelGroup>
 
-    <p:dialog id="exception-handler-dialog" header="#{ivy.cms.co('/errors/header')}"
+    <p:dialog id="exception-handler-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
       styleClass="language-settings-exception-dialog" widgetVar="errorLanguageDialog" modal="true" appendTo="@(body)">
       <p:messages id="info-messages" widgetVar="infoMessages" severity="info" escape="false" showDetail="true"
         closable="true" />

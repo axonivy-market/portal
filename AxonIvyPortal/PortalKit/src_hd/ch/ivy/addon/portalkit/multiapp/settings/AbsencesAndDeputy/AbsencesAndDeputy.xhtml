@@ -11,6 +11,8 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.openAbsence()}" type="preRenderComponent" />
+
   <div id="#{cc.clientId}">
     <p:growl id="error-growl" showDetail="true" sticky="false" severity="info" life="400" widgetVar="growl"
       escape="false" />
@@ -21,8 +23,6 @@
           update=":#{p:component('absence-table')}" />
         <p:remoteCommand name="updateGrowlAbsence" actionListener="#{logic.updateGrowlAbsence}"
           update=":#{p:component('error-growl')}" />
-        <p:remoteCommand name="openAbsence" actionListener="#{logic.openAbsence}" process="@this"
-          update="absences-msg absence-form" oncomplete="PF('#{cc.attributes.dialogName}').show()" />
 
         <h:panelGroup layout="block" id="absence-setting-container">
           <!-- Absence -->
@@ -32,7 +32,7 @@
             <p:selectBooleanCheckbox styleClass="absence-in-the-past-command" id="show-absence-in-the-past"
               value="#{data.absenceInThePastShown}"
               itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}">
-              <p:ajax event="change" listener="#{logic.openAbsence}" update="absence-table" process="@this" />
+              <p:ajax event="change" listener="#{logic.openAbsence()}" update="absence-table" process="@this" />
             </p:selectBooleanCheckbox>
 
             <h:panelGroup layout="block" styleClass="absences-view-command-buttons">
@@ -99,7 +99,7 @@
           </p:dataTable>
         </h:panelGroup>
 
-        <p:dialog id="error-substitue-dialog" header="#{ivy.cms.co('/errors/header')}"
+        <p:dialog id="error-substitue-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
           styleClass="substitude-exception-dialog" widgetVar="errorDialogSubstitue" modal="true" appendTo="@(body)">
           <p:messages id="errorsMessageE" widgetVar="messagInfo" severity="info" escape="false" showDetail="true"
             closable="true" />
