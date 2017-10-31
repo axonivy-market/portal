@@ -759,7 +759,7 @@ import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService service = new TaskFilterService();
 in.isFilterExisted = false;
 if (service.isFilterExisted(in.filterSetName, in.filterType)) {
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, "Filter is existed", "");
+	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
 	FacesContext.getCurrentInstance().addMessage("", message);
 	FacesContext.getCurrentInstance().validationFailed();
 	in.isFilterExisted = true;
