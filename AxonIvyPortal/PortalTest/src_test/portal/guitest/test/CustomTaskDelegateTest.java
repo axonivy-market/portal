@@ -24,7 +24,6 @@ public class CustomTaskDelegateTest extends BaseTest {
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
 
     taskWidgetPage.openTaskDelegateDialog(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
@@ -42,7 +41,6 @@ public class CustomTaskDelegateTest extends BaseTest {
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
 
     taskWidgetPage.openTaskDelegateDialog(1);
     taskWidgetPage.waitAjaxIndicatorDisappear();
@@ -57,7 +55,6 @@ public class CustomTaskDelegateTest extends BaseTest {
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
 
     taskWidgetPage.openTaskDelegateDialog(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();

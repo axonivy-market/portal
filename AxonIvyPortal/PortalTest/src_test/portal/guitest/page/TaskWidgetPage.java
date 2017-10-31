@@ -25,8 +25,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void expand() {
     WebElement fullModeButton = findElementById("task-widget:task-list-link:task-list-link");
     fullModeButton.click();
-    waitAjaxIndicatorDisappear();
-    waitForElementEnabled(By.id("task-widget:task-widget-sort-menu"), true, DEFAULT_TIMEOUT);
+    Sleeper.sleepTight(5000);
   }
 
   public void openTaskDetails(int index) {

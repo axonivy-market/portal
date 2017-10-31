@@ -29,7 +29,6 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   public void testShowHideCustomColumnsInTaskWidget() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
     assertFalse(taskWidgetPage.isTaskListColumnExist(STATE_COLUMN_NAME));
     assertTrue(taskWidgetPage.isTaskListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
     assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
