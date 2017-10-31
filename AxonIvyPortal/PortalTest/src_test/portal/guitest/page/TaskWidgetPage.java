@@ -23,7 +23,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void expand() {
-    WebElement fullModeButton = findElementById("task-widget:task-list-navigator:task-list-navigator");
+    WebElement fullModeButton = findElementById("task-widget:task-list-link:task-list-link");
     fullModeButton.click();
     waitAjaxIndicatorDisappear();
     waitForElementEnabled(By.id("task-widget:task-widget-sort-menu"), true, DEFAULT_TIMEOUT);
