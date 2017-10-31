@@ -49,14 +49,9 @@ Ts0 @PushWFArc f5 '' #zField
 Ts0 @PushWFArc f6 '' #zField
 Ts0 @RichDialogMethodStart f13 '' #zField
 Ts0 @RichDialogProcessEnd f14 '' #zField
-Ts0 @RichDialogMethodStart f16 '' #zField
-Ts0 @RichDialogProcessEnd f17 '' #zField
 Ts0 @GridStep f19 '' #zField
 Ts0 @PushWFArc f18 '' #zField
 Ts0 @PushWFArc f15 '' #zField
-Ts0 @GridStep f21 '' #zField
-Ts0 @PushWFArc f22 '' #zField
-Ts0 @PushWFArc f20 '' #zField
 Ts0 @RichDialogProcessStart f23 '' #zField
 Ts0 @GridStep f24 '' #zField
 Ts0 @RichDialogProcessStart f28 '' #zField
@@ -492,31 +487,6 @@ Ts0 f13 @|RichDialogMethodStartIcon #fIcon
 Ts0 f14 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f14 371 531 26 26 0 12 #rect
 Ts0 f14 @|RichDialogProcessEndIcon #fIcon
-Ts0 f16 guid 15F4E025D8AC5858 #txt
-Ts0 f16 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
-Ts0 f16 disableUIEvents false #txt
-Ts0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f16 inParameterMapAction 'out.selectedTaskFilterData=param.taskFilterData;
-' #txt
-Ts0 f16 outParameterDecl '<> result;
-' #txt
-Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>applyFilter(TaskFilterData)</name>
-        <nameStyle>27,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f16 83 627 26 26 -72 15 #rect
-Ts0 f16 @|RichDialogMethodStartIcon #fIcon
-Ts0 f17 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f17 371 627 26 26 0 12 #rect
-Ts0 f17 @|RichDialogProcessEndIcon #fIcon
 Ts0 f19 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f19 actionTable 'out=in;
@@ -541,29 +511,6 @@ Ts0 f18 expr out #txt
 Ts0 f18 109 544 192 544 #arcP
 Ts0 f15 expr out #txt
 Ts0 f15 304 544 371 544 #arcP
-Ts0 f21 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
-' #txt
-Ts0 f21 actionTable 'out=in;
-' #txt
-Ts0 f21 actionCode 'in.dataModel.applyFilter(in.selectedTaskFilterData);
-
-' #txt
-Ts0 f21 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>set values to filters</name>
-        <nameStyle>21,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f21 192 618 112 44 -51 -8 #rect
-Ts0 f21 @|StepIcon #fIcon
-Ts0 f22 expr out #txt
-Ts0 f22 109 640 192 640 #arcP
-Ts0 f20 expr out #txt
-Ts0 f20 304 640 371 640 #arcP
 Ts0 f23 guid 15F5844AD96F4A4C #txt
 Ts0 f23 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f23 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
@@ -857,10 +804,6 @@ Ts0 f13 mainOut f18 tail #connect
 Ts0 f18 head f19 mainIn #connect
 Ts0 f19 mainOut f15 tail #connect
 Ts0 f15 head f14 mainIn #connect
-Ts0 f16 mainOut f22 tail #connect
-Ts0 f22 head f21 mainIn #connect
-Ts0 f21 mainOut f20 tail #connect
-Ts0 f20 head f17 mainIn #connect
 Ts0 f28 mainOut f32 tail #connect
 Ts0 f32 head f31 mainIn #connect
 Ts0 f31 mainOut f30 tail #connect

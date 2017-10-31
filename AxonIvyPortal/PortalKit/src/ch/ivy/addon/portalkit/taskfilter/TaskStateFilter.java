@@ -3,16 +3,15 @@ package ch.ivy.addon.portalkit.taskfilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class TaskStateFilter extends TaskFilter {
 
@@ -29,11 +28,6 @@ public class TaskStateFilter extends TaskFilter {
     this.filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
-  }
-
-  public TaskStateFilter(List<TaskState> filteredStates, List<TaskState> selectedFilteredStates) {
-    this.filteredStates = distinct(filteredStates);
-    this.selectedFilteredStates = distinct(selectedFilteredStates);
   }
 
   @Override
@@ -90,13 +84,6 @@ public class TaskStateFilter extends TaskFilter {
 
   public void setFilteredStates(List<TaskState> filteredStates) {
     this.filteredStates = filteredStates;
-  }
-
-  private List<TaskState> distinct(List<TaskState> filteredStates) {
-    if (filteredStates != null) {
-      return filteredStates.stream().collect(Collectors.toList());
-    }
-    return new ArrayList<>();
   }
 
   public List<TaskState> getSelectedFilteredStatesAtBeginning() {
