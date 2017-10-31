@@ -1986,7 +1986,6 @@ a.case-details-document-add-link {
   padding-left: 10px;
   margin-left: auto;
   min-width: 60px;
-  margin-right: 25px;
 }
 
 .process-start-list-item .process-start-list-item-action.is-express-workflow {
@@ -1995,9 +1994,8 @@ a.case-details-document-add-link {
 
 
 .process-start-list-item  .open-icon {
-  position: absolute;
-  right: 15px;
-  top: 35%;
+  padding-right: 15px;
+  align-items: center;
 }
 
 .process-start-list-item .process-start-list-item-action .express-workflow {
@@ -2012,14 +2010,15 @@ a.case-details-document-add-link {
   display: inline-block;
 }
 
-.process-start-list-item .ui-commandlink {
+.process-start-list-item .ui-commandlink,
+.process-start-list-item .ui-link {
   display: inline-flex;
   color: black !important;
 }
 
-.process-start-list-item .ui-commandlink.process-item {
+.process-start-list-item .ui-commandlink.process-item,  
+.process-start-list-item .ui-link.external-process-item {
   min-width: 60%;
-  max-width: 90%;
   width: 100%;
 }
 

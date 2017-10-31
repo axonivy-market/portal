@@ -94,28 +94,29 @@
       </h:panelGroup>
 
       <ui:repeat id="process-list-items" varStatus="status" var="process" value="#{processWidgetBean.userProcesses}">
-        <p:link id="external-process-item" href="#{process.link}" target="_blank"
-          rendered="#{not processWidgetBean.deleteMode and !(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}"
-          styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'}"
-          style="#{cc.attrs.processCardStyleClass}">
-          <ui:include src="ProcessItem.xhtml">
-            <ui:param name="rowIndex" value="process-item" />
-          </ui:include>
-        </p:link>
-
         <c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
+        <c:set var="isExternalProcess" value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
         <h:form id="process-item-form"
           styleClass="#{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''} #{isExpressWorkflow ? 'express-workflow' : ''}"
           style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.deleteMode}">
-
+          <p:link id="external-process-item" href="#{process.link}" target="_blank"
+            rendered="#{not processWidgetBean.deleteMode and isExternalProcess}"
+            styleClass="external-process-item #{cc.attrs.processCardStyle} #{processWidgetBean.compactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'}"
+            style="#{cc.attrs.processCardStyleClass}">
+            <ui:include src="ProcessItem.xhtml">
+              <ui:param name="processType" value="external-process-item" />
+            </ui:include>
+          </p:link>
           <p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
             styleClass="process-item"
-            rendered="#{not processWidgetBean.deleteMode and (fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}">
-            <ui:include src="ProcessItem.xhtml" />
+            rendered="#{not processWidgetBean.deleteMode and !isExternalProcess}">
+            <ui:include src="ProcessItem.xhtml">
+              <ui:param name="processType" value="process-item" />
+            </ui:include>
           </p:commandLink>
           <h:panelGroup>
             <ui:include src="ProcessItemActions.xhtml">
-              <ui:param name="rowIndex" value="external-process-item" />
+              <ui:param name="processType" value="#{isExternalProcess ? 'external-process' : 'process'}" />
               <ui:param name="canShowExpressActions" value="#{!processWidgetBean.compactMode and isExpressWorkflow}" />
             </ui:include>
           </h:panelGroup>

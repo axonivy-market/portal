@@ -10,9 +10,9 @@
     <span class="fa #{process.icon} fa-fw" />
   </div>
   <div class="process-start-list-item-name">
-    <h:outputText id="process-name" value="#{process.processName}" escape="false"
+    <h:outputText id="process-name-#{processType}" value="#{process.processName}" escape="false"
       styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
-      <p:tooltip for="process-name" value="#{process.processName}" escape="false" />
+      <p:tooltip for="process-name-#{processType}" value="#{process.processName}" escape="false" />
   </div>
 </ui:composition>
 </html>
