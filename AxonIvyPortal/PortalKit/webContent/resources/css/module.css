@@ -143,6 +143,10 @@
   color: rgba(0, 0, 0, 1);
 }
 
+.ui-selectoneradio label.ui-state-disabled {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .ui-radiobutton .ui-radiobutton-box.ui-state-default  {
   border: solid 2px rgba(0, 0, 0, 1);
 }
@@ -201,6 +205,10 @@
   font-size: 1.2rem;
   color: rgba(0, 0, 0, 1);
   opacity: 1;
+}
+
+.ui-selectmanycheckbox label.ui-state-disabled {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .ui-chkbox .ui-chkbox-label {
