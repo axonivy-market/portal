@@ -2134,7 +2134,7 @@ a.case-details-document-add-link {
 }
 
 .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
-  flex: 1 0 10%;
+  flex: 1 0 75%;
   position: relative;
 }
 
@@ -2165,7 +2165,6 @@ a.case-details-document-add-link {
   min-width: 14.5rem;
   flex-flow: row wrap;
   align-items: center;
-  padding: 6px 10px;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover {
@@ -2181,9 +2180,11 @@ a.case-details-document-add-link {
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .user-definied-filter {
-  flex: 1 0 90%;
+  flex: 1 0 10%;
   position: relative;
   text-align: left;
+  padding: 10px 0 10px 6px;
+  max-width: 12rem;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command {
