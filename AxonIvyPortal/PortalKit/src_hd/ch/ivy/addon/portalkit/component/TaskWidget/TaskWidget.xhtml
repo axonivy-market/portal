@@ -45,7 +45,7 @@
           <c:set var="filterSelectionFormId" value="#{p:component('filter-selection-form')}" />
           <h:outputLabel rendered="#{not data.dataModel.compactMode}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" for="filter-name" />
           <p:commandLink id="filter-name" styleClass="filter-name"
-            value="#{data.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/selectedFilterSetDefaultValue') : data.selectedTaskFilterData.filterName}"
+            value="#{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/selectedFilterSetDefaultValue') : data.dataModel.selectedTaskFilterData.filterName}"
             global="false" />
           <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
             hideEffect="fade" my="left top" at="left bottom">
@@ -53,7 +53,7 @@
               <h:panelGroup layout="block" styleClass="user-definied-filter-container">
                 <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
                   value="#{taskFilterData.filterName}" global="false"
-                  actionListener="#{logic.applyFilter(taskFilterData)}"
+                  actionListener="#{data.dataModel.applyFilter(taskFilterData)}"
                   update="#{p:component('advanced-filter-container')} #{p:component('filter-selection-form')} #{p:component('task-view-container')} #{p:component('filter-add-form')}" />
                 <p:commandLink id="delete-user-definied-filter-command"
                   rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
