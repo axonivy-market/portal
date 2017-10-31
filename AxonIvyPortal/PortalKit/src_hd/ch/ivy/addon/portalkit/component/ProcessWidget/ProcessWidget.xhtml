@@ -22,7 +22,7 @@
     <h:panelGroup id="header" styleClass="widget-header #{processWidgetBean.compactMode? '' : 'expanded'}"
       layout="block">
       <div class="widget-header-main">
-        <span class="widget-header-main-title">#{cc.attrs.title} #{showProcessNavigator}</span>
+        <span class="widget-header-main-title">#{cc.attrs.title}</span>
         <h:panelGroup styleClass="widget-header-main-menu"
           rendered="#{cc.attrs.showBackButton and not processWidgetBean.deleteMode}">
           <cc:renderFacet name="headerToolbar" />
