@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Nov 02 17:15:10 ICT 2016]
-14C30066460AD7AA 3.18 #module
+14C30066460AD7AA 3.20 #module
 >Proto >Proto Collection #zClass
 As0 AbsencesAndDeputyProcess Big #zClass
 As0 RD #cInfo
@@ -39,7 +38,6 @@ As0 @PushWFArc f83 '' #zField
 As0 @PushWFArc f47 '' #zField
 As0 @RichDialogProcessEnd f1 '' #zField
 As0 @GridStep f3 '' #zField
-As0 @RichDialogProcessStart f79 '' #zField
 As0 @GridStep f59 '' #zField
 As0 @PushWFArc f62 '' #zField
 As0 @RichDialogMethodStart f11 '' #zField
@@ -128,7 +126,6 @@ As0 @PushWFArc f10 '' #zField
 As0 @PushWFArc f41 '' #zField
 As0 @PushWFArc f42 '' #zField
 As0 @Alternative f8 '' #zField
-As0 @PushWFArc f58 '' #zField
 As0 @PushWFArc f60 '' #zField
 As0 @PushWFArc f81 '' #zField
 As0 @PushWFArc f113 '' #zField
@@ -152,6 +149,8 @@ As0 @PushWFArc f139 '' #zField
 As0 @GridStep f140 '' #zField
 As0 @PushWFArc f141 '' #zField
 As0 @PushWFArc f27 '' #zField
+As0 @RichDialogMethodStart f16 '' #zField
+As0 @PushWFArc f17 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f5 guid 14BD99040C72C9E8 #txt
 As0 f5 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
@@ -499,23 +498,6 @@ And build tree</name>
 ' #txt
 As0 f3 1598 509 36 22 -103 -19 #rect
 As0 f3 @|StepIcon #fIcon
-As0 f79 guid 14BED2D7A7D359D6 #txt
-As0 f79 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f79 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
-As0 f79 actionTable 'out=in;
-' #txt
-As0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>openAbsence</name>
-        <nameStyle>11,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f79 1447 55 19 18 -35 -31 #rect
-As0 f79 @|RichDialogProcessStartIcon #fIcon
 As0 f59 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt
 As0 f59 actionTable 'out=in;
@@ -1438,10 +1420,6 @@ As0 f42 1616 478 1616 509 #arcP
 As0 f8 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f8 1602 298 28 28 14 0 #rect
 As0 f8 @|AlternativeIcon #fIcon
-As0 f58 expr out #txt
-As0 f58 1455 73 1602 312 #arcP
-As0 f58 1 1455 312 #addKink
-As0 f58 1 0.0567860245732053 0 0 #arcLabel
 As0 f60 expr in #txt
 As0 f60 1616 326 1616 338 #arcP
 As0 f81 expr out #txt
@@ -1608,6 +1586,28 @@ As0 f141 expr out #txt
 As0 f141 2624 252 2624 292 #arcP
 As0 f27 expr out #txt
 As0 f27 2624 316 2624 358 #arcP
+As0 f16 guid 15F6B8C17AF40866 #txt
+As0 f16 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f16 method openAbsence() #txt
+As0 f16 disableUIEvents false #txt
+As0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+As0 f16 outParameterDecl '<> result;
+' #txt
+As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>openAbsence()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f16 1459 51 26 26 -42 15 #rect
+As0 f16 @|RichDialogMethodStartIcon #fIcon
+As0 f17 expr out #txt
+As0 f17 1472 77 1602 312 #arcP
+As0 f17 1 1472 312 #addKink
+As0 f17 1 0.3871797712799135 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1728,8 +1728,6 @@ As0 f108 mainOut f41 tail #connect
 As0 f41 head f9 in #connect
 As0 f9 out f42 tail #connect
 As0 f42 head f3 mainIn #connect
-As0 f79 mainOut f58 tail #connect
-As0 f58 head f8 in #connect
 As0 f8 out f60 tail #connect
 As0 f60 head f78 in #connect
 As0 f59 mainOut f81 tail #connect
@@ -1756,3 +1754,5 @@ As0 f76 mainOut f141 tail #connect
 As0 f141 head f140 mainIn #connect
 As0 f140 mainOut f27 tail #connect
 As0 f27 head f66 mainIn #connect
+As0 f16 mainOut f17 tail #connect
+As0 f17 head f8 in #connect

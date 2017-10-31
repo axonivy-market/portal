@@ -12,7 +12,7 @@
 
 <cc:implementation>
   <p:dialog closeOnEscape="true" id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false" appendTo="@(body)"
-    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/title')}" width="800px">
+    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/title')}" width="800px" dynamic="true">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}: #{cc.attrs.message}" />
     <h:panelGroup layout="block" rendered="#{userMenuBean.errorDetailToEndUser}">
     <p>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace")}:</p>
