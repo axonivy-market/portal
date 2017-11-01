@@ -375,4 +375,21 @@ public class TaskWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
     Sleeper.sleepTight(2000);
   }
+  
+  public void saveFilter(String filterName){
+    click(By.id("task-widget:filter-save-action"));
+    Sleeper.sleepTight(2000);
+    WebElement filterNameInput = findElementById("task-widget:filter-save-form:save-filter-set-name-input");
+    enterKeys(filterNameInput, filterName);
+    click(findElementById("task-widget:filter-save-form:filter-save-command"));
+    Sleeper.sleepTight(2000);
+  }
+  
+  public String getFilterName(){
+    click(findElementById("task-widget:filter-selection-form:filter-name"));
+    WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
+    
+    return descriptionInput.getText();
+  }
+  
 }
