@@ -537,7 +537,8 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 TaskFilterData taskFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType);
 in.taskFilterDatas.add(taskFilterData);
 TaskFilterService taskFilterService = new TaskFilterService();
-in.taskFilterDatas = taskFilterService.sortFilters(in.taskFilterDatas);' #txt
+in.taskFilterDatas = taskFilterService.sortFilters(in.taskFilterDatas);
+in.dataModel.selectedTaskFilterData = taskFilterData;' #txt
 Ts0 f24 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
