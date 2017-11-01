@@ -1,12 +1,13 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.enums.FilterType;
 
 public class TaskFilterData {
   private String id;
-  private List<TaskFilter> taskFilters;
+  private List<TaskFilter> taskFilters = new ArrayList<>();
   private String filterName;
   private Long userId;
   private FilterType type;
