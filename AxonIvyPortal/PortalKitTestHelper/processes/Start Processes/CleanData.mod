@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Thu Oct 20 09:35:32 ICT 2016]
-1511A66AF619A768 3.18 #module
+1511A66AF619A768 3.20 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanData Big #zClass
 Ca0 B #cInfo
@@ -57,15 +56,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Ca0 f0 showInStartList 1 #txt
-Ca0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ca0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -126,15 +116,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Ca0 f7 showInStartList 1 #txt
-Ca0 f7 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ca0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -159,12 +140,13 @@ Ca0 f57 actionDecl 'portalKit_test.Data out;
 ' #txt
 Ca0 f57 actionTable 'out=in;
 ' #txt
-Ca0 f57 actionCode 'import ch.ivy.addon.portalkit.test.util.TaskConcurrencyUtils;
+Ca0 f57 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
+import ch.ivy.addon.portalkit.test.util.TaskConcurrencyUtils;
 import ch.ivy.addon.portalkit.test.util.TaskUtils;
 
-
 TaskConcurrencyUtils.setInProcess(true);
-TaskUtils.destroyAllCase();' #txt
+TaskUtils.destroyAllCase();
+BusinessDataUtils.clearAllBusinessData();' #txt
 Ca0 f57 type portalKit_test.Data #txt
 Ca0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -195,15 +177,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Ca0 f61 showInStartList 1 #txt
-Ca0 f61 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ca0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -239,15 +212,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Ca0 f10 showInStartList 1 #txt
-Ca0 f10 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ca0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -295,15 +259,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Ca0 f15 showInStartList 1 #txt
-Ca0 f15 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ca0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -320,8 +275,10 @@ Ca0 f16 actionDecl 'portalKit_test.Data out;
 ' #txt
 Ca0 f16 actionTable 'out=in;
 ' #txt
-Ca0 f16 actionCode 'import ch.ivy.addon.portalkit.test.util.CaseUtils;
-CaseUtils.deleteAllCases();' #txt
+Ca0 f16 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
+import ch.ivy.addon.portalkit.test.util.CaseUtils;
+CaseUtils.deleteAllCases();
+BusinessDataUtils.clearAllBusinessData();' #txt
 Ca0 f16 security system #txt
 Ca0 f16 type portalKit_test.Data #txt
 Ca0 f16 718 180 36 24 20 -2 #rect
