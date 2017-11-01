@@ -20,29 +20,47 @@ public class TaskFilterTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
+   @Test
+   public void testFilterTask() {
+   LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+   loginPage.login();
+  
+   TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+   assertEquals(3, taskWidgetPage.countTasks());
+   taskWidgetPage.filterTasksBy("Maternity");
+   assertEquals(1, taskWidgetPage.countTasks());
+   }
+  
+   @Test
+   public void testAdvancedFilterTask() {
+   LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+   loginPage.login();
+  
+   MainMenuPage mainMenuPage = new MainMenuPage();
+   TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+   assertEquals(3, taskWidgetPage.countTasks());
+  
+   taskWidgetPage.openAdvancedFilter("Description");
+   taskWidgetPage.filterByDescription("Maternity");
+  
+   assertEquals(1, taskWidgetPage.countTasks());
+   }
+
   @Test
-  public void testFilterTask() {
+  public void testSaveTaskFilter() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
-
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    assertEquals(3, taskWidgetPage.countTasks());
-    taskWidgetPage.filterTasksBy("Maternity");
-    assertEquals(1, taskWidgetPage.countTasks());
-  }
-
-  @Test
-  public void testAdvancedFilterTask() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-    
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     assertEquals(3, taskWidgetPage.countTasks());
     
+    String filterName = "Maternity";
     taskWidgetPage.openAdvancedFilter("Description");
-    taskWidgetPage.filterByDescription("Maternity");
+    taskWidgetPage.filterByDescription(filterName);
+    taskWidgetPage.saveFilter(filterName);
     
-    assertEquals(1, taskWidgetPage.countTasks());
+    mainMenuPage.selectCaseMenu();
+    taskWidgetPage = mainMenuPage.openTaskList();
+    assertEquals(filterName, taskWidgetPage.getFilterName());
   }
 }
