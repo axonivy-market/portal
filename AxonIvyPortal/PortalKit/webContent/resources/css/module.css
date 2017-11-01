@@ -1320,6 +1320,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   padding: 5px 10px 5px 5px !important;
 }
 
+.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel.filter-selector-container .ui-widget.ui-chkbox-box {
+  outline: none;
+}
+
 .task-widget .advanced-filter {
   display: inline-block;
   margin-right: 10px;
@@ -2136,6 +2140,17 @@ a.case-details-document-add-link {
 .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
   flex: 1 0 75%;
   position: relative;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .widget-header-content-filter.mod-expanded-mode {
+    margin-left: 10px;
+  }
+  .task-widget .filter-add-container {
+    margin-left: auto;
+    margin-top: 10px;
+  }
 }
 
 .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form {
