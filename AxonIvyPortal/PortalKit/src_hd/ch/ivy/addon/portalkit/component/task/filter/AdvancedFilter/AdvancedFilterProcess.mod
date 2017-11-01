@@ -22,11 +22,6 @@ Ss0 @RichDialogProcessEnd f4 '' #zField
 Ss0 @GridStep f5 '' #zField
 Ss0 @PushWFArc f6 '' #zField
 Ss0 @PushWFArc f7 '' #zField
-Ss0 @RichDialogMethodStart f8 '' #zField
-Ss0 @GridStep f9 '' #zField
-Ss0 @RichDialogProcessEnd f10 '' #zField
-Ss0 @PushWFArc f11 '' #zField
-Ss0 @PushWFArc f12 '' #zField
 >Proto Ss0 Ss0 AdvancedFilterProcess #zField
 Ss0 f0 guid 152EE20AC7136182 #txt
 Ss0 f0 type ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter.AdvancedFilterData #txt
@@ -103,63 +98,6 @@ Ss0 f6 expr out #txt
 Ss0 f6 77 192 144 192 #arcP
 Ss0 f7 expr out #txt
 Ss0 f7 272 192 307 192 #arcP
-Ss0 f8 guid 15F568FEADAA89F3 #txt
-Ss0 f8 type ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter.AdvancedFilterData #txt
-Ss0 f8 method getFilter(java.util.List<ch.ivy.addon.portalkit.taskfilter.TaskFilter>,ch.ivy.addon.portalkit.taskfilter.TaskFilter) #txt
-Ss0 f8 disableUIEvents false #txt
-Ss0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivy.addon.portalkit.taskfilter.TaskFilter> filters,ch.ivy.addon.portalkit.taskfilter.TaskFilter taskFilter> param = methodEvent.getInputArguments();
-' #txt
-Ss0 f8 inParameterMapAction 'out.selectedTaskFilters=param.filters;
-out.taskFilter=param.taskFilter;
-' #txt
-Ss0 f8 outParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskFilter result> result;
-' #txt
-Ss0 f8 outParameterMapAction 'result.result=in.filter;
-' #txt
-Ss0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>containsFilter(List&lt;TaskFilter&gt;,String)</name>
-        <nameStyle>39,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f8 48 284 32 24 -102 14 #rect
-Ss0 f8 @|RichDialogMethodStartIcon #fIcon
-Ss0 f9 actionDecl 'ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter.AdvancedFilterData out;
-' #txt
-Ss0 f9 actionTable 'out=in;
-' #txt
-Ss0 f9 actionCode 'if (in.taskFilter is initialized) {
-	for (int i = 0; i < in.selectedTaskFilters.size(); i++) {
-		if (in.selectedTaskFilters.get(i).getClass().equals(in.taskFilter)) {
-			in.filter = in.selectedTaskFilters.get(i);
-			break;
-		}
-	}
-}
-' #txt
-Ss0 f9 type ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter.AdvancedFilterData #txt
-Ss0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>check contain filterType</name>
-        <nameStyle>24,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f9 152 274 144 44 -63 -8 #rect
-Ss0 f9 @|StepIcon #fIcon
-Ss0 f10 type ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter.AdvancedFilterData #txt
-Ss0 f10 323 283 26 26 0 12 #rect
-Ss0 f10 @|RichDialogProcessEndIcon #fIcon
-Ss0 f11 expr out #txt
-Ss0 f11 80 296 152 296 #arcP
-Ss0 f12 expr out #txt
-Ss0 f12 296 296 323 296 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter.AdvancedFilterData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -170,7 +108,3 @@ Ss0 f3 mainOut f6 tail #connect
 Ss0 f6 head f5 mainIn #connect
 Ss0 f5 mainOut f7 tail #connect
 Ss0 f7 head f4 mainIn #connect
-Ss0 f8 mainOut f11 tail #connect
-Ss0 f11 head f9 mainIn #connect
-Ss0 f9 mainOut f12 tail #connect
-Ss0 f12 head f10 mainIn #connect

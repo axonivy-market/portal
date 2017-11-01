@@ -2,9 +2,3 @@ AdvancedFilterData #class
 ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter #namespace
 taskContainerId String #field
 taskContainerId PERSISTENT #fieldModifier
-selectedTaskFilters java.util.List<ch.ivy.addon.portalkit.taskfilter.TaskFilter> #field
-selectedTaskFilters PERSISTENT #fieldModifier
-taskFilter ch.ivy.addon.portalkit.taskfilter.TaskFilter #field
-taskFilter PERSISTENT #fieldModifier
-filter ch.ivy.addon.portalkit.taskfilter.TaskFilter #field
-filter PERSISTENT #fieldModifier

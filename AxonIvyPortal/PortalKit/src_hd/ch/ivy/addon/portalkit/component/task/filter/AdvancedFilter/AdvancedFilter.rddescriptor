@@ -11,28 +11,6 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
-    <method>
-        <name>getFilter</name>
-        <description></description>
-        <inputParameter>
-            <name>filters</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.taskfilter.TaskFilter&gt;</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>taskFilter</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskFilter</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>result</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskFilter</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </outputParameter>
-    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

@@ -93,13 +93,4 @@ public abstract class TaskFilter {
    * </p>
    */
   public void validate() {};
-
-  public String serializeData() {
-    return "";
-  };
-
-  public TaskFilter deserializeData(String data) {
-    return null;
-  }
-
 }
