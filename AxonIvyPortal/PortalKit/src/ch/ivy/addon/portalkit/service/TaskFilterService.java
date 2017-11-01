@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class TaskFilterService extends BusinessDataService<TaskFilterData> {
 
+  private static final int MAX_NUMBER_OF_FILTERS_TO_LOAD = 20;
   private static final String FILTER_NAME = "filterName";
   private static final String USER_ID = "userId";
   private static final String FILTER_TYPE = "type";
@@ -35,7 +36,8 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
             .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
     Filter<TaskFilterData> combinedQuery =
         repo().search(getType()).filter(publicFilterQuery).or().filter(privateFilterQuery);
-    return combinedQuery.orderBy().textField(FILTER_NAME).ascending().execute().getAll();
+    return combinedQuery.orderBy().textField(FILTER_NAME).ascending().limit(MAX_NUMBER_OF_FILTERS_TO_LOAD).execute()
+        .getAll();
   }
 
   @Override

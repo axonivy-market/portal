@@ -491,7 +491,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     taskFilterData.setType(filterType);
     TaskFilterService taskFilterService = new TaskFilterService();
     BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
-    taskFilterData.setId(info.getId());
+    taskFilterData = taskFilterService.findById(info.getId());
     return taskFilterData;
   }
   
