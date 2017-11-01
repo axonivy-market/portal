@@ -27,7 +27,7 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
   private static final String USER_ID = "userId";
   private static final String FILTER_TYPE = "type";
 
-  public List<TaskFilterData> findByUserName() {
+  public List<TaskFilterData> getFiltersForCurrentUser() {
     Filter<TaskFilterData> publicFilterQuery =
         repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name());
     Filter<TaskFilterData> privateFilterQuery =
