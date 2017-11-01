@@ -2158,7 +2158,7 @@ a.case-details-document-add-link {
 }
 
 .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
-  flex: 1 0 75%;
+  flex: 1 0 65%;
   position: relative;
 }
 
@@ -2167,6 +2167,11 @@ a.case-details-document-add-link {
   .widget-header-content-filter.mod-expanded-mode {
     margin-left: 10px;
   }
+
+  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
+    flex: 1 0 auto;
+  }
+
   .task-widget .filter-add-container {
     margin-left: auto;
     margin-top: 10px;
@@ -2193,12 +2198,15 @@ a.case-details-document-add-link {
 .filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
   padding: 15px 0 !important;
   background-color: white;
+  height: 30rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container {
   display: flex;
-  min-width: 14.5rem;
-  flex-flow: row wrap;
+  width: 17.5rem;
+  flex-flow: row;
   align-items: center;
 }
 
@@ -2215,21 +2223,26 @@ a.case-details-document-add-link {
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .user-definied-filter {
-  flex: 1 0 10%;
+  flex: 1 0 80%;
   position: relative;
   text-align: left;
   padding: 10px 0 10px 6px;
-  max-width: 12rem;
+  min-width: 15rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command {
   font-size: 1.4rem;
   text-align: right;
   display: none;
+  flex: 1 0 auto;
+  margin-right: 10px;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .delete-user-definied-filter-command {
-  display: inline-block;
+  display: inline;
 }
 
 .save-filter-set-panel {
