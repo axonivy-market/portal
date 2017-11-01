@@ -49,13 +49,14 @@
               value="#{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/selectedFilterSetDefaultValue') : data.dataModel.selectedTaskFilterData.filterName}"
               global="false" />
             <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
-              hideEffect="fade" my="left top" at="left bottom">
+              hideEffect="fade" my="left top" at="left bottom"> 
               <ui:repeat var="taskFilterData" value="#{data.taskFilterDatas}">
                 <h:panelGroup layout="block" styleClass="user-definied-filter-container">
                   <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
                     value="#{taskFilterData.filterName}" global="false"
                     actionListener="#{data.dataModel.applyFilter(taskFilterData)}"
                     update="#{p:component('advanced-filter-container')} #{p:component('filter-selection-form')} #{p:component('task-view-container')} #{p:component('filter-add-form')}" />
+                  <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}" trackMouse="true" />
                   <p:commandLink id="delete-user-definied-filter-command"
                     rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
                     styleClass="fa fa-times-circle delete-user-definied-filter-command"
