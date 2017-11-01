@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Thu Jan 29 11:42:16 ICT 2015]
-14B33FEBF587FE2D 3.17 #module
+14B33FEBF587FE2D 3.20 #module
 >Proto >Proto Collection #zClass
 Ss0 TaskFormProcess Big #zClass
 Ss0 RD #cInfo
@@ -18,6 +17,7 @@ Ss0 @RichDialogProcessEnd f1 '' #zField
 Ss0 @PushWFArc f2 '' #zField
 Ss0 @RichDialogProcessStart f3 '' #zField
 Ss0 @RichDialogEnd f4 '' #zField
+Ss0 @RichDialogProcessEnd f6 '' #zField
 Ss0 @PushWFArc f5 '' #zField
 >Proto Ss0 Ss0 TaskFormProcess #zField
 Ss0 f0 guid 14B33FEBF8047203 #txt
@@ -64,6 +64,9 @@ Ss0 f4 type internaltest.TaskForm.TaskFormData #txt
 Ss0 f4 guid 14B33FF20755BB39 #txt
 Ss0 f4 214 158 20 20 13 0 #rect
 Ss0 f4 @|RichDialogEndIcon #fIcon
+Ss0 f6 type internaltest.TaskForm.TaskFormData #txt
+Ss0 f6 275 147 26 26 0 12 #rect
+Ss0 f6 @|RichDialogProcessEndIcon #fIcon
 Ss0 f5 expr out #txt
 Ss0 f5 224 74 224 158 #arcP
 >Proto Ss0 .type internaltest.TaskForm.TaskFormData #txt

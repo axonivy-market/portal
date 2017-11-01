@@ -41,9 +41,6 @@
           </p:inputText>
           <p:message id="substitute-msg" for="substitute" />
         </h:panelGrid>
-
-        <p:remoteCommand name="leaveRequest" actionListener="#{logic.close}" update="leave-request" />
-        <p:remoteCommand name="closeDialog" actionListener="#{logic.close}" process="@this" />
       </h:form>
     </ui:define>
 
@@ -52,11 +49,15 @@
     </ui:define>
 
     <ui:define name="rightButtons">
-      <h:panelGroup styleClass="MarTop5 DispBlock">
-    	  <p:commandButton type="button" value="Send" styleClass="portal-ok-button" icon="fa fa-send-o" onclick="leaveRequest()" />
-    	  <p:spacer width="5px"/>
-        <p:commandButton type="button" value="Cancel" styleClass="mod-cancel-button portal-cancel-button" icon="fa fa-ban" onclick="closeDialog()" />
-      </h:panelGroup>
+      <h:form>
+        <h:panelGroup styleClass="MarTop5 DispBlock">
+          <p:commandButton value="Send" styleClass="portal-ok-button" icon="fa fa-send-o" partialSubmit="true"
+            actionListener="#{logic.close}" process=":leave-request" update=":leave-request" />
+          <p:spacer width="5px" />
+          <p:commandButton value="Cancel" styleClass="mod-cancel-button portal-cancel-button" icon="fa fa-ban"
+            actionListener="#{logic.close}" />
+        </h:panelGroup>
+      </h:form>
     </ui:define>
 
   </ui:composition>
