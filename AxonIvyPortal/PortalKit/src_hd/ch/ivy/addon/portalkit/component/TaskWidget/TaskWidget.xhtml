@@ -54,8 +54,8 @@
                 <h:panelGroup layout="block" styleClass="user-definied-filter-container">
                   <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
                     value="#{taskFilterData.filterName}" global="false"
-                    actionListener="#{data.dataModel.applyFilter(taskFilterData)}"
-                    update="#{p:component('advanced-filter-container')} #{p:component('filter-selection-form')} #{p:component('task-view-container')} #{p:component('filter-add-form')}" />
+                    actionListener="#{logic.applyFilter(taskFilterData)}"
+                    update="#{p:component('advanced-filter-container')} #{p:component('task-widget-header')} #{p:component('task-view-container')}" />
                   <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}" trackMouse="true" />
                   <p:commandLink id="delete-user-definied-filter-command"
                     rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
