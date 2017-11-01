@@ -41,15 +41,4 @@ public class TaskDescriptionFilter extends TaskFilter {
   public void setDescription(String description) {
     this.description = description;
   }
-
-  @Override
-  public String serializeData() {
-    return "1";
-  }
-
-  @Override
-  public TaskFilter deserializeData(String data) {
-    return new TaskDescriptionFilter();
-  }
-
 }
