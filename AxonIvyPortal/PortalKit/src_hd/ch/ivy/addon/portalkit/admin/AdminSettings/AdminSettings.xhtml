@@ -476,7 +476,7 @@
 						id="addLanguages"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
 						process="appName appDisplayName serverSelection"
-						update=":#{p:component('applicationName')} appDisplayName"
+						update=":#{p:component('applicationName')} appDisplayName appDialogForm"
 						actionListener="#{logic.getLanguageList}"
 						oncomplete="if(args &amp;&amp; !args.validationFailed){PF('applicationName').show();}">
 						<f:param name="skipDisplayNameInputValidation" value="true" />
