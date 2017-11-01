@@ -482,9 +482,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public TaskFilterData saveFilter(String filterName, FilterType filterType) {
     TaskFilterData taskFilterData = new TaskFilterData();
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
-    if (isInProgressFilterDisplayed) {
-      taskFilters.add(inProgressFilter);
-    }
+    addCustomSettingsToTaskFilters(taskFilters);
     taskFilterData.setTaskFilters(taskFilters);
     taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
     taskFilterData.setFilterName(filterName);
@@ -494,6 +492,12 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     taskFilterData = taskFilterService.findById(info.getId());
     return taskFilterData;
   }
+
+  private void addCustomSettingsToTaskFilters(List<TaskFilter> taskFilters) {
+    if (isInProgressFilterDisplayed) {
+      taskFilters.add(inProgressFilter);
+    }
+  }
   
   /**
    * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel} 
@@ -501,11 +505,17 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public void applyFilter(TaskFilterData taskFilterData) throws IllegalAccessException, InvocationTargetException,
       NoSuchMethodException {
     selectedTaskFilterData = taskFilterData;
-    TaskFilterService service = new TaskFilterService();
-    service.applyFilter(this, taskFilterData);
+    new TaskFilterService().applyFilter(this, taskFilterData);
+    applyCustomSettings(taskFilterData);
+  }
+
+  private void applyCustomSettings(TaskFilterData taskFilterData) throws IllegalAccessException,
+      InvocationTargetException, NoSuchMethodException {
+    isInProgressFilterDisplayed = false;
+    inProgressFilter = new TaskInProgressByOthersFilter();
     for (TaskFilter savedTaskFilter : taskFilterData.getTaskFilters()) {
       if (savedTaskFilter instanceof TaskInProgressByOthersFilter) {
-        service.copyFilterValues(inProgressFilter, savedTaskFilter);
+        new TaskFilterService().copyFilterValues(inProgressFilter, savedTaskFilter);
         isInProgressFilterDisplayed = true;
       }
     }
