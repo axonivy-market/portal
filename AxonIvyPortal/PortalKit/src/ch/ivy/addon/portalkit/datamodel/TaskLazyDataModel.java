@@ -269,8 +269,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    */
   protected TaskQueryCriteria buildQueryCriteria() {
     TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
-    jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.PARKED,
-        TaskState.RESUMED)));
+    jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED,
+        TaskState.PARKED)));
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
     return jsonQuerycriteria;
