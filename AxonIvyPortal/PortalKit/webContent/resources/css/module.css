@@ -234,6 +234,7 @@
   height: 100%;
   margin: 0px;
   box-sizing: border-box;
+  transition: background 0.5s ease;
 }
 
 .ui-chkbox .ui-chkbox-box.ui-state-disabled .ui-icon-check{
@@ -1421,6 +1422,11 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer .ui-widget.ui-button {
   min-width: 0;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
 }
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
@@ -1441,6 +1447,20 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 .ui-selectonelistbox.responsible-list-filter {
   width: auto;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-inputfield.ui-widget,
+.ui-selectonelistbox.responsible-list-filter .ui-selectlistbox-filter.ui-inputfield.ui-widget {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
 }
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
