@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class TaskFilterService extends BusinessDataService<TaskFilterData> {
 
-  private static final int MAX_NUMBER_OF_FILTERS_TO_LOAD = 20;
+  private static final int MAX_NUMBER_OF_FILTERS_TO_LOAD = 1000;
   private static final String FILTER_NAME = "filterName";
   private static final String USER_ID = "userId";
   private static final String FILTER_TYPE = "type";

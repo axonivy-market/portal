@@ -91,6 +91,16 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
+    <method>
+        <name>applyFilter</name>
+        <description></description>
+        <inputParameter>
+            <name>taskFilterData</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskFilterData</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

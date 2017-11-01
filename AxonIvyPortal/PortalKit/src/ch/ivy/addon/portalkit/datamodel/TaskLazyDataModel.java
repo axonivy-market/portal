@@ -484,6 +484,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
     addCustomSettingsToTaskFilters(taskFilters);
     taskFilterData.setTaskFilters(taskFilters);
+    taskFilterData.setKeyword(queryCriteria.getKeyword());
     taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
     taskFilterData.setFilterName(filterName);
     taskFilterData.setType(filterType);
@@ -511,6 +512,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   private void applyCustomSettings(TaskFilterData taskFilterData) throws IllegalAccessException,
       InvocationTargetException, NoSuchMethodException {
+    queryCriteria.setKeyword(taskFilterData.getKeyword());
     isInProgressFilterDisplayed = false;
     inProgressFilter = new TaskInProgressByOthersFilter();
     for (TaskFilter savedTaskFilter : taskFilterData.getTaskFilters()) {
