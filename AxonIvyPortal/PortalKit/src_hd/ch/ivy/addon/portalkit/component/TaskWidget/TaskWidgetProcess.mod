@@ -494,7 +494,7 @@ Ts0 f19 actionTable 'out=in;
 Ts0 f19 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 TaskFilterService taskFilterService = new TaskFilterService();
-in.taskFilterDatas = taskFilterService.findByUserName();' #txt
+in.taskFilterDatas = taskFilterService.getFiltersForCurrentUser();' #txt
 Ts0 f19 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -602,7 +602,7 @@ Ts0 f27 actionTable 'out=in;
 Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService taskFilterService = new TaskFilterService();
-in.taskFilterDatas = taskFilterService.findByUserName();
+in.taskFilterDatas = taskFilterService.getFiltersForCurrentUser();
 in.filterType = FilterType.ONLY_ME;' #txt
 Ts0 f27 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -647,10 +647,16 @@ Ts0 f35 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 ' #txt
 Ts0 f35 actionTable 'out=in;
 ' #txt
-Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
+Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService service = new TaskFilterService();
 service.delete(in.taskFilterDataToBeRemoved.getId());
-in.taskFilterDatas = in.taskFilterDatas.remove(in.taskFilterDataToBeRemoved);' #txt
+in.taskFilterDatas = in.taskFilterDatas.remove(in.taskFilterDataToBeRemoved);
+if (in.dataModel.#selectedTaskFilterData is initialized && in.dataModel.selectedTaskFilterData.equals(in.taskFilterDataToBeRemoved)) {
+	TaskFilterData taskFilterData = new TaskFilterData();
+	in.dataModel.applyFilter(taskFilterData);
+	in.dataModel.setSelectedTaskFilterData(null);
+}' #txt
 Ts0 f35 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

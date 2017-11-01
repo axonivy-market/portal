@@ -476,6 +476,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     selectedFilters.remove(filter);
   }
 
+  /**
+   * Save all filter settings to business data
+   */
   public TaskFilterData saveFilter(String filterName, FilterType filterType) {
     TaskFilterData taskFilterData = new TaskFilterData();
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
@@ -486,13 +489,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
     taskFilterData.setFilterName(filterName);
     taskFilterData.setType(filterType);
-
     TaskFilterService taskFilterService = new TaskFilterService();
     BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
     taskFilterData.setId(info.getId());
     return taskFilterData;
   }
   
+  /**
+   * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel} 
+   */
   public void applyFilter(TaskFilterData taskFilterData) throws IllegalAccessException, InvocationTargetException,
       NoSuchMethodException {
     selectedTaskFilterData = taskFilterData;
