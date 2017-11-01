@@ -8,6 +8,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 public class TaskFilterData {
   private String id;
   private List<TaskFilter> taskFilters = new ArrayList<>();
+  private String keyword;
   private String filterName;
   private Long userId;
   private FilterType type;
@@ -53,5 +54,14 @@ public class TaskFilterData {
   public void setType(FilterType type) {
     this.type = type;
   }
+
+  public String getKeyword() {
+    return keyword;
+  }
+
+  public void setKeyword(String keyword) {
+    this.keyword = keyword;
+  }
+
 
 }
