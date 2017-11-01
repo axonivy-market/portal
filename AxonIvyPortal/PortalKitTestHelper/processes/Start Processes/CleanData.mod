@@ -169,13 +169,14 @@ Ca0 f61 requestEnabled true #txt
 Ca0 f61 triggerEnabled false #txt
 Ca0 f61 callSignature cleanAllCasesByDestroying() #txt
 Ca0 f61 persist false #txt
-Ca0 f61 startName 'Clean all cases by destroying' #txt
+Ca0 f61 startName 'Clean all cases by destroying and clear all business data' #txt
 Ca0 f61 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
+Ca0 f61 caseData businessCase.attach=false #txt
 Ca0 f61 showInStartList 1 #txt
 Ca0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -183,7 +184,7 @@ Ca0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>cleanAllCasesByDestroying.ivp</name>
         <nameStyle>29,5,7
 </nameStyle>
-        <desc>Detroy all tasks &amp; cases in system</desc>
+        <desc>Detroy all tasks &amp; cases in system &amp; clean all business data</desc>
     </language>
 </elementInfo>
 ' #txt
@@ -251,13 +252,14 @@ Ca0 f15 requestEnabled true #txt
 Ca0 f15 triggerEnabled false #txt
 Ca0 f15 callSignature cleanupCases() #txt
 Ca0 f15 persist false #txt
-Ca0 f15 startName '(For autotest) Clean up all cases' #txt
+Ca0 f15 startName '(For autotest) Clean up all cases and clear all business data' #txt
 Ca0 f15 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
+Ca0 f15 caseData businessCase.attach=false #txt
 Ca0 f15 showInStartList 1 #txt
 Ca0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
