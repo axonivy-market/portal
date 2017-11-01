@@ -79,6 +79,9 @@ Ts0 @PushWFArc f48 '' #zField
 Ts0 @PushWFArc f25 '' #zField
 Ts0 @RichDialogProcessEnd f50 '' #zField
 Ts0 @PushWFArc f51 '' #zField
+Ts0 @RichDialogMethodStart f16 '' #zField
+Ts0 @RichDialogProcessEnd f17 '' #zField
+Ts0 @PushWFArc f20 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -775,6 +778,33 @@ Ts0 f51 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f51 352 720 595 688 #arcP
 Ts0 f51 1 352 688 #addKink
 Ts0 f51 1 0.3018284624086855 0 0 #arcLabel
+Ts0 f16 guid 15F772190BB92384 #txt
+Ts0 f16 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
+Ts0 f16 disableUIEvents false #txt
+Ts0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f16 inParameterMapAction 'out.keyword=param.taskFilterData.keyword;
+' #txt
+Ts0 f16 inActionCode out.dataModel.applyFilter(param.taskFilterData); #txt
+Ts0 f16 outParameterDecl '<> result;
+' #txt
+Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>applyFilter(TaskFilterData)</name>
+        <nameStyle>27,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f16 83 1107 26 26 -72 15 #rect
+Ts0 f16 @|RichDialogMethodStartIcon #fIcon
+Ts0 f17 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f17 371 1107 26 26 0 12 #rect
+Ts0 f17 @|RichDialogProcessEndIcon #fIcon
+Ts0 f20 109 1120 371 1120 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -835,3 +865,5 @@ Ts0 f47 out f25 tail #connect
 Ts0 f25 head f24 mainIn #connect
 Ts0 f47 out f51 tail #connect
 Ts0 f51 head f50 mainIn #connect
+Ts0 f16 mainOut f20 tail #connect
+Ts0 f20 head f17 mainIn #connect
