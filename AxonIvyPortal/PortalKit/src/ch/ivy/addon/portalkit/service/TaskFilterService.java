@@ -46,7 +46,7 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
   }
 
   public List<TaskFilterData> sortFilters(List<TaskFilterData> filters) {
-    filters.sort((f1, f2) -> f1.getFilterName().compareTo(f2.getFilterName()));
+    filters.sort((f1, f2) -> f1.getFilterName().toLowerCase().compareTo(f2.getFilterName().toLowerCase()));
     return filters;
   }
 
