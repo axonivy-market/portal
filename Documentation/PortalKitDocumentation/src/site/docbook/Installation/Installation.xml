@@ -632,8 +632,8 @@
                 to have a <code>taskQuery</code> parameter. If you override this method, please change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
            </para>
            <para>
-                Portal does not have separate full task list in the homepage anymore. It's mean that you don't have to customize the task list in <code>/layouts/DefaultHomePageTemplate.xhtml</code>. You can remove those code
-                if you have customized your task list.
+                Portal does not have separate full task list in the homepage anymore. It's mean that you don't have to customize the task list in <code>/layouts/DefaultHomePageTemplate.xhtml</code>. You can remove your
+                 task list customization code in <code>PortalHome.xhtml</code>.
            </para>
 		</sect2>
 		<sect2>
