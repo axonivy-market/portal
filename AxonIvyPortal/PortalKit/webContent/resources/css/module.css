@@ -1387,7 +1387,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 .task-widget .advanced-filter .ui-button-text-only .ui-button-text {
   padding: 0 !important;
-  display: inline-block;
+  display: inline;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-hover,
