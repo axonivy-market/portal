@@ -87,8 +87,8 @@ function getReversedState(state) {
 
 /* Portal's main menu */
 var MainMenu = {
-    urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse"]], ["PortalTasks.xhtml", ["Tasks", "Aufgaben"]],
-      ["PortalCases.xhtml", ["Cases", "Vorgänge"]], ["PortalDashBoard.xhtml", ["Statistics","Statistiken"]]],
+    urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus"]], ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches"]],
+      ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers"]], ["PortalDashBoard.xhtml", ["Statistics","Statistiken", "Statistiques"]]],
 
 	init : function(responsiveToolkit) {
 		this.highlightFirstLevelMenu();
@@ -119,7 +119,7 @@ var MainMenu = {
     MainMenu.displaySecondLevelMenu(firstLevelMenu);
     var $activeFirstLevelMenu = $('div.ivy-active .left-sidebar-sub-menu-name').filter(function(index) {
       if (firstLevelMenu) {
-        return $(this).text() === firstLevelMenu[0] || $(this).text() === firstLevelMenu[1];
+        return (firstLevelMenu.indexOf($(this).text()) > -1);
       }
     });
     $activeFirstLevelMenu.parent().addClass('active-menu-item');
