@@ -221,6 +221,12 @@
 					<listitem>
 						<para>In your customized portal tasks HTMLDialog, the customized data model and filter container should be passed as parameters to components (refer to <code>PortalTasks.xhtml</code>).</para>
 					</listitem>
+					<listitem>
+						<para>Portal supports storing/restoring filters. Your filter class (extends <code>TaskFilter</code>) is stored in business data.
+							Properties stored user input values should be persisted, properties to control logic should not be persisted to reduce persisted data size in business data.
+							Use annotation <code>@JsonIgnore</code> to exclude properties.
+							By default, Portal takes care storing/restoring filters. If you want to customize storing/restoring filter data, do it in your data model class (extends <code>TaskLazyDataModel</code> class).</para>
+					</listitem>
 				</itemizedlist>
 			</sect3>
 		</para>
