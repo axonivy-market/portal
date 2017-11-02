@@ -55,7 +55,8 @@
                   <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
                     value="#{taskFilterData.filterName}" global="false"
                     actionListener="#{logic.applyFilter(taskFilterData)}"
-                    update="#{p:component('advanced-filter-container')} #{p:component('task-widget-header')} #{p:component('task-view-container')}" />
+                    update="#{p:component('advanced-filter-container')} #{p:component('task-widget-header')} #{p:component('task-view-container')}"
+                    oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader();" />
                   <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}" trackMouse="true" />
                   <p:commandLink id="delete-user-definied-filter-command"
                     rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
@@ -188,7 +189,7 @@
   </h:form>
 
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterSavingHeader')}"
-    resizable="false" width="420" modal="true" closeOnEscape="true">
+    resizable="false" modal="true" closeOnEscape="true">
     <p:messages autoUpdate="true" />
     <h:form id="filter-save-form">
       <h:panelGrid columns="2" styleClass="save-filter-set-panel" columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">
@@ -223,7 +224,7 @@
     appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter()}" styleClass="portal-ok-button"
-      oncomplete="PF('delete-filter-confirmation-dialog').hide()"
+      oncomplete="PF('delete-filter-confirmation-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.setupHeader();"
       update="#{p:component('advanced-filter-container')} #{p:component('filter-selection-form')} #{p:component('task-view-container')} #{p:component('filter-add-form')}"/>
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />

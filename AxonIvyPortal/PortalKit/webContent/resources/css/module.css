@@ -2198,14 +2198,14 @@ a.case-details-document-add-link {
 .filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
   padding: 15px 0 !important;
   background-color: white;
-  height: 30rem;
+  max-height: 80rem;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container {
   display: flex;
-  width: 17.5rem;
+  width: 16rem;
   flex-flow: row;
   align-items: center;
 }
@@ -2227,7 +2227,7 @@ a.case-details-document-add-link {
   position: relative;
   text-align: left;
   padding: 10px 0 10px 6px;
-  min-width: 15rem;
+  max-width: 14rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
