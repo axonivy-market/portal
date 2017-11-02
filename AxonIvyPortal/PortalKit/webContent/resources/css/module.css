@@ -2198,7 +2198,7 @@ a.case-details-document-add-link {
 .filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
   padding: 15px 0 !important;
   background-color: white;
-  max-height: 80rem;
+  max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -2243,6 +2243,14 @@ a.case-details-document-add-link {
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .delete-user-definied-filter-command {
   display: inline;
+}
+
+.save-filter-set-dialog .ui-messages-error .ui-messages-error-summary {
+  margin-left: 0;
+}
+
+.save-filter-set-dialog .ui-messages-error ul {
+  margin-left: 50px !important;
 }
 
 .save-filter-set-panel {
