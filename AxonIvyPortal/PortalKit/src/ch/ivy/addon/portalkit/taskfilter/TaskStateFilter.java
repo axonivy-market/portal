@@ -37,7 +37,7 @@ public class TaskStateFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (CollectionUtils.isEmpty(selectedFilteredStates) || filteredStates.equals(selectedFilteredStates)) {
+    if (CollectionUtils.isEmpty(selectedFilteredStates) || isAllStatesSelected()) {
       return ALL;
     }
     String value = userFriendlyState(selectedFilteredStates.get(0));
@@ -47,6 +47,12 @@ public class TaskStateFilter extends TaskFilter {
       }
     }
     return value;
+  }
+
+  private boolean isAllStatesSelected() {
+    return filteredStates.equals(selectedFilteredStates)
+    // In case the filter is a saved filter from a user who can filter more task state
+        || (filteredStates.size() < selectedFilteredStates.size() && selectedFilteredStates.containsAll(filteredStates));
   }
 
   @Override
