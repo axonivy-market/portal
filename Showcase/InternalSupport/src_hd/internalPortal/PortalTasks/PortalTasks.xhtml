@@ -77,13 +77,13 @@
       <c:set var="filterContainer" value="#{taskView.dataModel.filterContainer}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCreationDateFilter
-        filter="#{filterContainer.creationDateFilter}" dataModel="#{dataModel}" />
+        filter="#{filterContainer.creationDateFilter}" dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.filter.TaskExpiredDateFilter
-        filter="#{filterContainer.expiredDateFilter}" dataModel="#{dataModel}" />
+        filter="#{filterContainer.expiredDateFilter}" dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.filter.TaskDescriptionFilter
-        filter="#{filterContainer.descriptionFilter}" dataModel="#{dataModel}" />
+        filter="#{filterContainer.descriptionFilter}" dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter
-        filter="#{filterContainer.responsibleFilter}" dataModel="#{dataModel}" />
+        filter="#{filterContainer.responsibleFilter}" dataModel="#{taskView.dataModel}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="customer-name-filter" dataModel="#{taskView.dataModel}"
         taskFilter="#{filterContainer.customerNameFilter}">
