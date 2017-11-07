@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Jul 05 17:36:18 ICT 2017]
 153358BE9219FD4C 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
@@ -303,7 +302,9 @@ Cs0 f15 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseIte
 ' #txt
 Cs0 f15 actionTable 'out=in;
 ' #txt
-Cs0 f15 actionCode 'import ch.ivy.ws.addon.CaseSortedField;
+Cs0 f15 actionCode 'import ch.ivy.addon.portalkit.service.CaseQueryService;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.ws.addon.CaseSearchCriteria;
 
 //prepare search criteria for technical csse
@@ -311,7 +312,11 @@ if(in.remoteCase.isBusinessCase()) {
 	in.caseSearchCriteria.setTechnicalCase(true);
 	in.caseSearchCriteria.setBusinessCaseId(in.remoteCase.getId());
 	in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
-	in.caseSearchCriteria.sortedField = CaseSortedField.NAME;
+	
+	CaseQueryCriteria queryCriteria = new CaseQueryCriteria();
+	queryCriteria.newQueryCreated = true;
+	queryCriteria.sortField = CaseSortField.NAME.toString();
+	in.caseSearchCriteria.jsonQuery = CaseQueryService.service().createQuery(queryCriteria).asJson();
 }
 
 	' #txt

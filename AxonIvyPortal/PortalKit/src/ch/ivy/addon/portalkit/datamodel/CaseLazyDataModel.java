@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.datamodel;
 import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.naturalOrderNullsFirst;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -17,10 +18,11 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.ws.addon.CaseSearchCriteria;
-import ch.ivy.ws.addon.CaseSortedField;
-import ch.ivy.ws.addon.CaseState;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.CaseState;
 
 public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   private static final int BUFFER_LOAD = 10;
@@ -31,7 +33,8 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   private String caseWidgetComponentId;
   private int rowIndex;
-  private CaseSearchCriteria criteria;
+  private CaseSearchCriteria searchCriteria;
+  private CaseQueryCriteria queryCriteria;
   private Long serverId;
 
   public CaseLazyDataModel() {
@@ -44,17 +47,18 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     displayedCaseMap = new HashMap<>();
     notDisplayedCaseMap = new HashMap<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
-    criteria = buildCriteria();
+    searchCriteria = buildSearchCriteria();
+    queryCriteria = buildQueryCriteria();
   }
 
   @Override
   public List<RemoteCase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
     if (first == 0) {
-      initializedDataModel(criteria);
+      initializedDataModel(searchCriteria);
     }
 
-    List<RemoteCase> foundCases = findCases(first, pageSize, criteria);
+    List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
     putCasesToNotDisplayedTaskMap(foundCases);
     List<RemoteCase> notDisplayedCases = new ArrayList<>();
     notDisplayedCases.addAll(notDisplayedCaseMap.values());
@@ -69,20 +73,20 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   private Optional<Comparator<? super RemoteCase>> getComparatorForSorting() {
     Comparator<? super RemoteCase> comparator = null;
-    if (criteria.getSortedField() == CaseSortedField.NAME) {
+    if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getName);
-    } else if (criteria.getSortedField() == CaseSortedField.ID) {
+    } else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getId);
-    } else if (criteria.getSortedField() == CaseSortedField.START_TIME) {
+    } else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getStartTimestamp);
-    } else if (criteria.getSortedField() == CaseSortedField.END_TIME) {
+    } else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
-    } else if (criteria.getSortedField() == CaseSortedField.CREATOR) {
+    } else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(caseCreator());
-    } else if (criteria.getSortedField() == CaseSortedField.STATE) {
+    } else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getState);
     }
-    if (comparator != null && criteria.getSortingDescending()) {
+    if (comparator != null && queryCriteria.isSortDescending()) {
       comparator = comparator.reversed();
     }
     return Optional.ofNullable(comparator);
@@ -153,31 +157,16 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     return caseCount.intValue();
   }
 
-  private CaseSearchCriteria buildCriteria() {
+  private CaseSearchCriteria buildSearchCriteria() {
     CaseSearchCriteria crit = new CaseSearchCriteria();
     crit.setInvolvedUsername(Ivy.session().getSessionUserName());
-    crit.setIncludedStates(new CaseState[] { CaseState.CREATED, CaseState.RUNNING });
-    crit.setSortedField(CaseSortedField.ID);
-    crit.setSortingDescending(true);
     crit.setBusinessCase(true);
     return crit;
   }
 
   public void setSorting(String sortedField, boolean descending) {
-    CaseSortedField caseSortedField = convertFieldNameToCaseSortedField(sortedField);
-    criteria.setSortedField(caseSortedField);
-    criteria.setSortingDescending(descending);
-  }
-
-  private CaseSortedField convertFieldNameToCaseSortedField(String sortedField) {
-    CaseSortedField caseSortedField = null;
-    try {
-      caseSortedField = (CaseSortedField) CaseSortedField.class.getField(sortedField).get(null);
-    } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-      String message = String.format("Column name '%s' is not case sorted field", sortedField);
-      throw new IllegalArgumentException(message);
-    }
-    return caseSortedField;
+    queryCriteria.setSortField(sortedField);
+    queryCriteria.setSortDescending(descending);
   }
 
   @Override
@@ -202,24 +191,24 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   }
 
   public void setKeyword(String keyWord) {
-    criteria.setKeyword(keyWord);
+	  queryCriteria.setKeyword(keyWord.trim());
   }
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-    criteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
+	searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
     if (ignoreInvolvedUser) {
-      criteria.addIncludedStates(CaseState.DONE);
+    queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
     }
   }
 
   public void setTaskId(Long taskId) {
-    criteria.setTaskId(taskId);
-    criteria.addIncludedStates(CaseState.DONE);
+	queryCriteria.setTaskId(taskId);
+	queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
   }
 
   public void setCaseId(Long caseId) {
-    criteria.setCaseId(caseId);
-    criteria.setIncludedStates(new CaseState[] {});
+	queryCriteria.setCaseId(caseId);
+	queryCriteria.setIncludedStates(new ArrayList<>());
   }
 
   public void setServerId(Long serverId) {
@@ -227,15 +216,31 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   }
 
   public void setInvolvedApplications(String... involvedApplications) {
-    criteria.setInvolvedApplications(involvedApplications);
+	  searchCriteria.setInvolvedApplications(involvedApplications);
   }
 
-  public CaseSortedField getSortedField() {
-    return criteria.getSortedField();
+  public String getSortField() {
+    return queryCriteria.getSortField();
   }
 
-  public boolean isSortingDescending() {
-    return criteria.getSortingDescending();
+  public boolean isSortDescending() {
+    return queryCriteria.isSortDescending();
   }
 
+  public void getQueryCriteria(CaseQueryCriteria queryCriteria) {
+	  this.queryCriteria = queryCriteria;
+  }
+  
+  public CaseQueryCriteria setQueryCriteria() {
+	  return queryCriteria;
+  }
+  
+  protected CaseQueryCriteria buildQueryCriteria() {
+    CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
+    jsonQueryCriteria.setIncludedStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING));
+    jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
+    jsonQueryCriteria.setSortDescending(true);
+    return jsonQueryCriteria;
+  }
+  
 }
