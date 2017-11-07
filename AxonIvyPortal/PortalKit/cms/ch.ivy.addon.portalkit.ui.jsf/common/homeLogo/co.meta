@@ -1,0 +1,4 @@
+co: name={homeLogo} description={} changed={2017-11-06 04:41:06 CET} changedby={dhtlong} visualorder={0} guid={15F8F69F3A3C34B8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F8F69F3B5B249B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-06 04:40:06 CET} validto={} changed={2017-11-06 04:41:03 CET} changedby={dhtlong} properties={} id={}
+val: guid={15F8F69F3B018094} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-06 04:40:06 CET} validto={} changed={2017-11-06 04:40:06 CET} changedby={dhtlong} properties={} id={}
+val: guid={15F8F69F3A661D4A} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-06 04:40:06 CET} validto={} changed={2017-11-06 04:41:03 CET} changedby={dhtlong} properties={} id={}
