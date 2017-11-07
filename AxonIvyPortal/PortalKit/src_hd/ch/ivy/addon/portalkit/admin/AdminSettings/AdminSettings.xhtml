@@ -294,7 +294,7 @@
 
                 <p:commandButton id="apply-colors-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                  actionListener="#{designChooserBean.applyNewColors()}" />
+                  actionListener="#{designChooserBean.applyNewColors()}" oncomplete="window.location.reload(true);" />
               </h:panelGrid>
             </h:form>
           </p:fieldset>
