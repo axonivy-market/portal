@@ -19,10 +19,13 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.ws.addon.CaseSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   private static final int BUFFER_LOAD = 10;
@@ -125,6 +128,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     data.clear();
     displayedCaseMap.clear();
     notDisplayedCaseMap.clear();
+    buildQueryToSearchCriteria();
     setRowCount(getCaseCount(criteria));
   }
 
@@ -241,6 +245,30 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
     jsonQueryCriteria.setSortDescending(true);
     return jsonQueryCriteria;
+  }
+  
+  /**
+   * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
+   */
+  protected void buildQueryToSearchCriteria() {
+    if (queryCriteria.getCaseQuery() == null) {
+      String jsonQuery =
+          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()")
+              .call().get("jsonQuery", String.class);
+      CaseQuery customizedTaskQuery =
+          StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
+      queryCriteria.setCaseQuery(customizedTaskQuery);
+    }
+
+    queryCriteria.setIncludedStates(new ArrayList<>());
+
+    CaseQuery caseQuery = buildCaseQuery();
+    searchCriteria.setJsonQuery(caseQuery.asJson());
+  }
+  
+  private CaseQuery buildCaseQuery() {
+    CaseQuery caseQuery = CaseQueryService.service().createQuery(queryCriteria);
+    return caseQuery;
   }
   
 }
