@@ -253,11 +253,11 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   protected void buildQueryToSearchCriteria() {
     if (queryCriteria.getCaseQuery() == null) {
       String jsonQuery =
-          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()")
+          SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery").withStartSignature("buildCaseJsonQuery()")
               .call().get("jsonQuery", String.class);
-      CaseQuery customizedTaskQuery =
+      CaseQuery customizedCaseQuery =
           StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
-      queryCriteria.setCaseQuery(customizedTaskQuery);
+      queryCriteria.setCaseQuery(customizedCaseQuery);
     }
 
     queryCriteria.setIncludedStates(new ArrayList<>());
