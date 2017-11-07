@@ -237,7 +237,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   
   protected CaseQueryCriteria buildQueryCriteria() {
     CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
-    jsonQueryCriteria.setIncludedStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING));
+    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING)));
     jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
     jsonQueryCriteria.setSortDescending(true);
     return jsonQueryCriteria;

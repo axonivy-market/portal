@@ -7,16 +7,16 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition>
-  <p:commandLink id="#{id}" styleClass="#{styleClass} #{data.dataModel.sortedField eq sortedField ? 'is-selected' : ''}"
+  <p:commandLink id="#{id}" styleClass="#{styleClass} #{data.dataModel.sortField eq sortedField ? 'is-selected' : ''}"
     update="#{componentToBeUpdated} case-widget-form case-list-scroller" rendered="#{sortable eq true}"
     oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()">
-    <f:actionListener binding="#{logic.sort(sortedField,data.dataModel.sortedField eq sortedField and !data.dataModel.sortingDescending)}" />
+    <f:actionListener binding="#{logic.sort(sortedField,data.dataModel.sortField eq sortedField and !data.dataModel.isSortDescending())}" />
     <f:actionListener binding="#{caseWidgetBean.setExpandedCaseId(0,false)}" />
     <h:outputText value="#{value}" />
     <i class="sort-icon fa fa-angle-down"
-      jsf:rendered="#{data.dataModel.sortedField eq sortedField and data.dataModel.sortingDescending}" />
+      jsf:rendered="#{data.dataModel.sortField eq sortedField and data.dataModel.isSortDescending()}" />
     <i class="sort-icon fa fa-angle-up"
-      jsf:rendered="#{data.dataModel.sortedField eq sortedField and !data.dataModel.sortingDescending}" />
+      jsf:rendered="#{data.dataModel.sortField eq sortedField and !data.dataModel.isSortDescending()}" />
   </p:commandLink>
   <h:panelGroup rendered="#{sortable ne true}" styleClass="#{styleClass} case-list-unsortable-header-cell">
     <h:outputText value="#{value}" />
