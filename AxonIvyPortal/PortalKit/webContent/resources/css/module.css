@@ -3239,6 +3239,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   color: #f9bf08;
   font-size: 1.2rem;
 }
+
+.color-button .ui-button.ui-widget {
+  min-width: 0;
+}
 /********************************** ABSENCES AND DEPUTY **********************************/
 .absences-view-command-buttons {
   float: right;
