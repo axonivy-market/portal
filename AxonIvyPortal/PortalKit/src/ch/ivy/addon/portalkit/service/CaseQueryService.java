@@ -25,7 +25,7 @@ public class CaseQueryService {
                 || criteria.getCaseQuery() == null || criteria.hasTaskId()
                 || criteria.hasCaseId());
 
-        if (criteria.isNewQueryCreated()) {
+        if (!criteria.isNewQueryCreated()) {
             finalQuery = CaseQuery.fromJson(criteria.getCaseQuery().asJson());
         }
 
