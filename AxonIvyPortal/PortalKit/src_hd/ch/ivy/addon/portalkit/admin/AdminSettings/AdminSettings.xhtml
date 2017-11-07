@@ -255,6 +255,50 @@
 				</p:dataTable>
 			</h:form>
 		</p:tab>
+    
+        <!-- LOGO AND COLOR TAB -->
+        <p:tab id="designTab"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/design')}">
+          <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/logos')}" styleClass="MarBot10">
+            <h:form id="logo-form">
+              <h:panelGrid columns="3" columnClasses=",TexAlCenter">
+                <p:outputLabel for="login-logo-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}:" styleClass="MarRight10" />
+                <p:graphicImage id="login-logo-preview" value="#{resource['ivy-cms:images/logo/loginLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}"
+                  height="50" cache="false" />
+                <p:fileUpload id="login-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true" update="login-logo-preview"
+                  invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
+                  label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" fileUploadListener="#{designChooserBean.uploadLoginLogo}" />
+  
+                <p:outputLabel for="home-logo-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}:" styleClass="MarRight10" />
+                <p:graphicImage id="home-logo-preview" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"
+                  height="50" cache="false" />
+                <p:fileUpload id="home-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true" update="home-logo-preview #{p:component('logo')}"
+                  invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
+                  label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" fileUploadListener="#{designChooserBean.uploadHomeLogo}" />
+              </h:panelGrid>
+            </h:form>
+          </p:fieldset>
+          
+          <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/colors')}">
+            <h:form id="colorForm">
+              <h:panelGrid columns="3" columnClasses=",TexAlCenter" styleClass="Wid80">
+                <h:panelGrid columns="2">
+                  <p:outputLabel for="main-color-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/mainColor')}:" styleClass="MarRight10" />
+                  <p:colorPicker id="main-color-chooser" value="#{designChooserBean.mainColor}" styleClass="color-button" />
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2">
+                  <p:outputLabel for="background-color-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/backgroundColor')}:" styleClass="MarRight10" />
+                  <p:colorPicker id="background-color-chooser" value="#{designChooserBean.backgroundColor}" styleClass="color-button" />
+                </h:panelGrid>
+
+                <p:commandButton id="apply-colors-button"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                  actionListener="#{designChooserBean.applyNewColors()}" />
+              </h:panelGrid>
+            </h:form>
+          </p:fieldset>
+        </p:tab>
 	</p:tabView>
 
 	<!-- SERVER DIALOG-->

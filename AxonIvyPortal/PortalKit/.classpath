@@ -18,6 +18,8 @@
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_14BDDEDAB1EB1D1E.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_14E91368EA389FD7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_14EFDA6C3FD72228.jar"/>
+	<classpathentry kind="lib" path="lib/plexus-utils-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/maven-invoker-3.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
