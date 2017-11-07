@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Jul 19 10:14:53 ICT 2017]
 15C9F795D7A23730 3.20 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
@@ -174,10 +173,12 @@ Gh0 f10 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f10 actionTable 'out=in;
 ' #txt
-Gh0 f10 actionCode 'import ch.ivy.ws.addon.CaseSortedField;
+Gh0 f10 actionCode 'import ch.ivy.addon.portalkit.service.CaseQueryService;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
+import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import java.util.Arrays;
-import ch.ivy.ws.addon.CaseState;
 
 in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 
@@ -185,19 +186,23 @@ List<CaseState> states = new List<CaseState>();
 states.add(CaseState.CREATED);
 states.add(CaseState.RUNNING);
 
-in.caseSearchCriteria.keyword = in.keyword;
 in.caseSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());
-in.caseSearchCriteria.setSortedField(CaseSortedField.NAME);
 in.caseSearchCriteria.setBusinessCase(true);
 in.caseSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllCasesPermission());
 if (TaskUtils.checkReadAllCasesPermission() == true){
 	states.add(CaseState.DONE);
 }
-in.caseSearchCriteria.setIncludedStates(states);
 if (in.#applicationName is initialized) {
 	List<String> involvedApplications = Arrays.asList(in.applicationName);
 	in.caseSearchCriteria.involvedApplications = involvedApplications;
-}' #txt
+}
+
+CaseQueryCriteria queryCriteria = new CaseQueryCriteria();
+queryCriteria.newQueryCreated = true;
+queryCriteria.keyword = in.keyword;
+queryCriteria.sortField = CaseSortField.NAME.toString();
+queryCriteria.setIncludedStates(states);
+in.caseSearchCriteria.jsonQuery = CaseQueryService.service().createQuery(queryCriteria).asJson();' #txt
 Gh0 f10 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

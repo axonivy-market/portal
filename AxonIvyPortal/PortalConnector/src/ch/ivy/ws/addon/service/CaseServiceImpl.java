@@ -14,7 +14,6 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.bo.AvailableAppsResult;
 import ch.ivy.ws.addon.bo.CaseServiceResult;
 import ch.ivy.ws.addon.bo.NoteServiceResult;
-import ch.ivy.ws.addon.enums.CaseSortedField;
 import ch.ivy.ws.addon.transformer.IvyCaseTransformer;
 import ch.ivy.ws.addon.transformer.IvyDocumentTransformer;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
@@ -29,15 +28,11 @@ import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseServiceImpl extends AbstractService implements ICaseService {
 
@@ -603,36 +598,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     return caseQuery;
   }
 
-  private static CaseQuery queryForKeyword(String keyword) {
-
-    String containingKeyword = String.format("%%%s%%", keyword);
-
-    CaseQuery filterByKeywordQuery =
-        CaseQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or().description().isLikeIgnoreCase(containingKeyword)
-            .or().customVarCharField1().isLikeIgnoreCase(containingKeyword).or().customVarCharField2().isLikeIgnoreCase(containingKeyword)
-            .or().customVarCharField3().isLikeIgnoreCase(containingKeyword).or().customVarCharField4().isLikeIgnoreCase(containingKeyword)
-            .or().customVarCharField5().isLikeIgnoreCase(containingKeyword);
-
-    try {
-      long idKeyword = Long.parseLong(keyword);
-      filterByKeywordQuery.where().or().caseId().isEqual(idKeyword);
-    } catch (NumberFormatException e) {
-    }
-    return filterByKeywordQuery;
-  }
-
-  private static CaseQuery queryForExcludedStates(List<CaseState> excludedStates) {
-    CaseQuery stateFieldQuery = CaseQuery.create();
-
-    if (excludedStates == null || excludedStates.isEmpty()) {
-      return stateFieldQuery;
-    }
-
-    excludedStates.forEach(excludedState -> stateFieldQuery.where().and().state().isNotEqual(excludedState));
-
-    return stateFieldQuery;
-  }
-
   private List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
     List<ICase> cases = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query, startIndex, count);
     return cases;
@@ -643,29 +608,8 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
 
   private CaseQuery createCaseQuery(CaseSearchCriteria caseSearchCriteria) throws Exception {
-    CaseQuery finalQuery = CaseQuery.create();
+    CaseQuery finalQuery = CaseQuery.fromJson(caseSearchCriteria.getJsonQuery());
 
-    if (caseSearchCriteria.hasExcludedStates()) {
-      finalQuery.where().and(queryForExcludedStates(caseSearchCriteria.getExcludedStates()));
-    }
-
-    if (caseSearchCriteria.hasIncludedStates()) {
-      finalQuery.where().and(queryForStates(caseSearchCriteria.getIncludedStates()));
-    }
-
-    if (caseSearchCriteria.hasCaseId()) {
-      finalQuery.where().and().caseId().isEqual(caseSearchCriteria.getCaseId());
-      return finalQuery;
-    }
-
-    if (caseSearchCriteria.hasKeyword()) {
-      finalQuery.where().and(queryForKeyword(caseSearchCriteria.getKeyword()));
-    }
-
-    if (caseSearchCriteria.hasTaskId()) {
-      finalQuery.where().and().tasks(TaskQuery.create().where().taskId().isEqual(caseSearchCriteria.getTaskId()));
-    }
-    
     if (caseSearchCriteria.isBusinessCase()) {
       finalQuery.where().and().isBusinessCase();
     } else if (caseSearchCriteria.isTechnicalCase()) {
@@ -684,97 +628,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       finalQuery.where().and(queryForInvolvedApplications(caseSearchCriteria.getInvolvedApplications()));
     }
 
-    CaseSortingQueryAppender appender = new CaseSortingQueryAppender(finalQuery);
-    finalQuery = appender.appendSorting(caseSearchCriteria).toQuery();
-
     return finalQuery;
-  }
-
-  private static final class CaseSortingQueryAppender {
-
-    private CaseQuery query;
-
-    public CaseSortingQueryAppender(CaseQuery query) {
-      this.query = query;
-    }
-
-    public CaseQuery toQuery() {
-      return query;
-    }
-
-    public CaseSortingQueryAppender appendSorting(CaseSearchCriteria criteria) {
-      appendSortByNameIfSet(criteria);
-      appendSortByIdIfSet(criteria);
-      appendSortByStartTimeIfSet(criteria);
-      appendSortByEndTimeIfSet(criteria);
-      appendSortByCreatorIfSet(criteria);
-      appendSortByStateIfSet(criteria);
-      return this;
-    }
-
-    private void appendSortByNameIfSet(CaseSearchCriteria criteria) {
-      if (criteria.getSortedField() != CaseSortedField.NAME) {
-        return;
-      }
-      OrderByColumnQuery orderByName = query.orderBy().name();
-      if (criteria.isSortingDescending()) {
-        orderByName.descending();
-      }
-    }
-
-    private void appendSortByIdIfSet(CaseSearchCriteria criteria) {
-      if (criteria.getSortedField() == null) {
-        query.orderBy().caseId().descending();
-        return;
-      }
-      if (criteria.getSortedField() != CaseSortedField.ID) {
-        return;
-      }
-      OrderByColumnQuery orderByName = query.orderBy().caseId();
-      if (criteria.isSortingDescending()) {
-        orderByName.descending();
-      }
-    }
-
-    private void appendSortByStartTimeIfSet(CaseSearchCriteria criteria) {
-      if (criteria.getSortedField() != CaseSortedField.START_TIME) {
-        return;
-      }
-      OrderByColumnQuery orderByName = query.orderBy().startTimestamp();
-      if (criteria.isSortingDescending()) {
-        orderByName.descending();
-      }
-    }
-
-    private void appendSortByEndTimeIfSet(CaseSearchCriteria criteria) {
-      if (criteria.getSortedField() != CaseSortedField.END_TIME) {
-        return;
-      }
-      OrderByColumnQuery orderByName = query.orderBy().endTimestamp();
-      if (criteria.isSortingDescending()) {
-        orderByName.descending();
-      }
-    }
-
-    private void appendSortByCreatorIfSet(CaseSearchCriteria criteria) {
-      if (criteria.getSortedField() != CaseSortedField.CREATOR) {
-        return;
-      }
-      OrderByColumnQuery orderByName = query.orderBy().creatorUserDisplayName();
-      if (criteria.isSortingDescending()) {
-        orderByName.descending();
-      }
-    }
-
-    private void appendSortByStateIfSet(CaseSearchCriteria criteria) {
-      if (criteria.getSortedField() != CaseSortedField.STATE) {
-        return;
-      }
-      OrderByColumnQuery orderByName = query.orderBy().state();
-      if (criteria.isSortingDescending()) {
-        orderByName.descending();
-      }
-    }
   }
 
   private CaseQuery queryForInvolvedApplications(List<String> apps) throws WSException {
@@ -782,21 +636,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     CaseQuery caseQuery = CaseQuery.create();
     applications.forEach(app -> caseQuery.where().or().applicationId().isEqual(app.getId()));
     return caseQuery;
-  }
-
-  private CaseQuery queryForStates(List<CaseState> states) {
-    CaseQuery stateFieldQuery = CaseQuery.create();
-
-    if (states == null || states.isEmpty()) {
-      stateFieldQuery.where().state().isNotEqual(CaseState.DONE).and().state().isNotEqual(CaseState.ZOMBIE).and()
-          .state().isNotEqual(CaseState.DESTROYED);
-    } else {
-      IFilterQuery filterQuery = stateFieldQuery.where();
-      for (CaseState state : states) {
-        filterQuery.or().state().isEqual(state);
-      }
-    }
-    return stateFieldQuery;
   }
 
   @Override

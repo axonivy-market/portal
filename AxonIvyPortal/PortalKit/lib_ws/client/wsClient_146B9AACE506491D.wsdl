@@ -243,16 +243,10 @@
     <xs:sequence>
       <xs:element name="businessCase" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="businessCaseId" type="xs:long"></xs:element>
-      <xs:element minOccurs="0" name="caseId" type="xs:long"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="excludedStates" nillable="true" type="tns:caseState"></xs:element>
       <xs:element name="ignoreInvolvedUser" type="xs:boolean"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="includedStates" nillable="true" type="tns:caseState"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="involvedApplications" nillable="true" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="keyword" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="sortedField" type="tns:caseSortedField"></xs:element>
-      <xs:element name="sortingDescending" type="xs:boolean"></xs:element>
-      <xs:element minOccurs="0" name="taskId" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element name="technicalCase" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -393,27 +387,6 @@
       <xs:enumeration value="INFO"></xs:enumeration>
       <xs:enumeration value="WARNING"></xs:enumeration>
       <xs:enumeration value="ERROR"></xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-<xs:simpleType name="caseState">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="CREATED"></xs:enumeration>
-      <xs:enumeration value="RUNNING"></xs:enumeration>
-      <xs:enumeration value="DONE"></xs:enumeration>
-      <xs:enumeration value="DESTROYED"></xs:enumeration>
-      <xs:enumeration value="ZOMBIE"></xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-<xs:simpleType name="caseSortedField">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="NAME"></xs:enumeration>
-      <xs:enumeration value="CREATOR"></xs:enumeration>
-      <xs:enumeration value="ID"></xs:enumeration>
-      <xs:enumeration value="START_TIME"></xs:enumeration>
-      <xs:enumeration value="END_TIME"></xs:enumeration>
-      <xs:enumeration value="PM"></xs:enumeration>
-      <xs:enumeration value="PMV"></xs:enumeration>
-      <xs:enumeration value="STATE"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
@@ -796,7 +769,7 @@
   </wsdl:binding>
   <wsdl:service name="CaseServiceService">
     <wsdl:port binding="tns:CaseServiceServiceSoapBinding" name="CaseServicePort">
-      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD8C8C617F9"></soap:address>
+      <soap:address location="http://localhost:8081/ivy/ws/designer/portalConnector/137A1AD8C8C617F9"></soap:address>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
