@@ -22,3 +22,7 @@ userSelection List<ch.ivyteam.ivy.security.IUser> #field
 userList List<ch.ivyteam.ivy.security.IUser> #field
 msg String #field
 msg PERSISTENT #fieldModifier
+autoCompleteQuery String #field
+autoCompleteQuery PERSISTENT #fieldModifier
+selectedActor ch.ivyteam.ivy.security.IUser #field
+selectedActor PERSISTENT #fieldModifier

@@ -1,24 +1,32 @@
 package ch.ivyteam.ivy;
 
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.List;
 
-import ch.ivyteam.ivy.scripting.objects.List;
+import org.apache.commons.lang.StringUtils;
+
 import ch.ivyteam.ivy.security.IUser;
 
 public class Helper {
 
-  public static List<IUser> sortUsers(List<IUser> userList) {
-    Collections.sort(userList, new Comparator<IUser>() {
-      public int compare(IUser u1, IUser u2) {
-        try {
-          return (u1.getFullName().compareTo(u2.getFullName()));
-        } catch (Exception ex) {
-          return 0;
-        }
-      }
-    });
-    return userList;
-  }
+	public static List<IUser> sortUsers(List<IUser> userList) {
+		userList.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
+			second.getDisplayName().toLowerCase()));
+		return userList;
+	}
 
+	public static List<IUser> filterUsers(List<IUser> userList, String query) {
+		if (StringUtils.isEmpty(query)) {
+			return userList;
+		}
+
+		java.util.List<IUser> result = new ArrayList<>();
+		for (IUser user : userList) {
+			if (user.getDisplayName().toLowerCase().contains(query.toLowerCase())
+				|| user.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+				result.add(user);
+			}
+		}
+		return sortUsers(result);
+	}
 }

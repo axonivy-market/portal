@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Nov 24 10:47:01 CET 2015]
-1492E077AA2879D3 3.18 #module
+1492E077AA2879D3 3.20 #module
 >Proto >Proto Collection #zClass
 ts0 task_FormProcess Big #zClass
 ts0 RD #cInfo
@@ -58,6 +57,9 @@ ts0 @GridStep f18 '' #zField
 ts0 @PushWFArc f40 '' #zField
 ts0 @PushWFArc f42 '' #zField
 ts0 @GridStep f41 '' #zField
+ts0 @RichDialogMethodStart f43 '' #zField
+ts0 @RichDialogProcessEnd f44 '' #zField
+ts0 @PushWFArc f45 '' #zField
 >Proto ts0 ts0 task_FormProcess #zField
 ts0 f0 guid 1492E077AC02C00B #txt
 ts0 f0 type agileBPM.task_Form.task_FormData #txt
@@ -229,7 +231,7 @@ ts0 f8 actionDecl 'agileBPM.task_Form.task_FormData out;
 ts0 f8 actionTable 'out=in;
 ' #txt
 ts0 f8 actionCode 'selfServiceBPM.TaskDef newTask2 = new selfServiceBPM.TaskDef();
-newTask2.setActor(in.addTask.actor);
+newTask2.setActor(in.selectedActor.getName());
 newTask2.setAssigned(new DateTime());
 newTask2.setUntil(ivy.cal.getWorkDayIn(1,new Time()));
 newTask2.kind = "TASK";
@@ -237,7 +239,7 @@ newTask2.description = in.remark;
 newTask2.setAdhoc(true);
 
 out.definedTasks.add(0,newTask2);
-out.msg = in.addTask.actor;
+out.msg = in.selectedActor.getName();
 ' #txt
 ts0 f8 type agileBPM.task_Form.task_FormData #txt
 ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -448,14 +450,14 @@ SystemDo.setCustomVarCharField1(ivy.task, "AD_HOC_MODIFIED");
 out.definedTasks.add(0,in.nextTask);
 
 selfServiceBPM.TaskDef newTask2 = new selfServiceBPM.TaskDef();
-newTask2.setActor(in.addTask.actor);
+newTask2.setActor(in.selectedActor.getName());
 newTask2.setAssigned(new DateTime());
 newTask2.setUntil(ivy.cal.getWorkDayIn(1,new Time()));
 newTask2.kind = "TASK";
 newTask2.description = in.remark;
 out.definedTasks.add(0,newTask2);
 
-out.msg = in.addTask.actor;
+out.msg = in.selectedActor.getName();
 
 ' #txt
 ts0 f28 type agileBPM.task_Form.task_FormData #txt
@@ -600,6 +602,36 @@ ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ts0 f41 328 682 112 44 -41 -8 #rect
 ts0 f41 @|StepIcon #fIcon
+ts0 f43 guid 15F99E7D864F8414 #txt
+ts0 f43 type agileBPM.task_Form.task_FormData #txt
+ts0 f43 method autoCompleteFilter(String) #txt
+ts0 f43 disableUIEvents false #txt
+ts0 f43 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<java.lang.String query> param = methodEvent.getInputArguments();
+' #txt
+ts0 f43 inParameterMapAction 'out.autoCompleteQuery=param.query;
+' #txt
+ts0 f43 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> userList> result;
+' #txt
+ts0 f43 outActionCode 'import ch.ivyteam.ivy.Helper;
+
+result.userList = Helper.filterUsers(in.userList, in.autoCompleteQuery);' #txt
+ts0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>autoCompleteFilter(String)</name>
+        <nameStyle>26,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f43 83 787 26 26 -72 15 #rect
+ts0 f43 @|RichDialogMethodStartIcon #fIcon
+ts0 f44 type agileBPM.task_Form.task_FormData #txt
+ts0 f44 307 787 26 26 0 12 #rect
+ts0 f44 @|RichDialogProcessEndIcon #fIcon
+ts0 f45 expr out #txt
+ts0 f45 109 800 307 800 #arcP
 >Proto ts0 .type agileBPM.task_Form.task_FormData #txt
 >Proto ts0 .processKind HTML_DIALOG #txt
 >Proto ts0 -8 -8 16 16 16 26 #rect
@@ -642,3 +674,5 @@ ts0 f33 mainOut f42 tail #connect
 ts0 f42 head f41 mainIn #connect
 ts0 f41 mainOut f40 tail #connect
 ts0 f40 head f39 mainIn #connect
+ts0 f43 mainOut f45 tail #connect
+ts0 f45 head f44 mainIn #connect

@@ -979,6 +979,17 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: rgba(0,0,0,1) !important;
 }
 
+.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext {
+  cursor: default;
+}
+
+.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-highlight,
+.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-hover {
+  font-family: 'robotoregular';
+  color: #656565 !important;
+  background-color: white;
+}
+
 .ui-autocomplete .ui-button.ui-autocomplete-dropdown {
   background-color: transparent !important;
   border: none;
@@ -2072,9 +2083,19 @@ a.case-details-document-add-link {
 }
 
 .select-delegate-panel {
-  margin: 10px 0 20px 0;
+  margin: 5px 0 20px 0;
   width: 100%;
 }
+
+.select-delegate-panel .ui-autocomplete {
+  min-width: 100%;
+}
+
+.select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
+  width: auto;
+  min-width: 94%;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .task-delegate-dialog {

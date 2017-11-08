@@ -51,3 +51,5 @@ startLink String #field
 startLink PERSISTENT #fieldModifier
 isShowTaskButtonLabels Boolean #field
 isShowTaskButtonLabels PERSISTENT #fieldModifier
+queryAutoComplete String #field
+queryAutoComplete PERSISTENT #fieldModifier

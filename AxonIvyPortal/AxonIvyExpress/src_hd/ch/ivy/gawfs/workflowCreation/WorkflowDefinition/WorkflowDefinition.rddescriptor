@@ -27,6 +27,22 @@
         <name>cancel</name>
         <description></description>
     </method>
+    <method>
+        <name>autoCompleteFilter</name>
+        <description></description>
+        <inputParameter>
+            <name>query</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <outputParameter>
+            <name>availableRolesAndUsers</name>
+            <description></description>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.security.ISecurityMember&gt;</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </outputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
