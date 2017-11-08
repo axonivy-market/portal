@@ -11,6 +11,7 @@ public class TaskFilterData {
   private String keyword;
   private String filterName;
   private Long userId;
+  private Long taskFilterGroupId;
   private FilterType type;
 
   public TaskFilterData() {}
@@ -63,5 +64,12 @@ public class TaskFilterData {
     this.keyword = keyword;
   }
 
+  public Long getTaskFilterGroupId() {
+    return taskFilterGroupId;
+  }
 
+  public void setTaskFilterGroupId(Long taskFilterGroupId) {
+    this.taskFilterGroupId = taskFilterGroupId;
+  }
+  
 }
