@@ -2218,10 +2218,20 @@ a.case-details-document-add-link {
   font-size: 1.2rem;
 }
 
+.filter-name-overlay-panel .filter-separator.ui-separator{
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.filter-name-overlay-panel .filter-type-label {
+   font-size: 12px; 
+   text-align: left; 
+   padding: 10px 0 10px 6px;
+   color: rgba(0,0,0,0.6);
+}
+
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .ui-commandlink {
   font-family: 'robotobold' !important;
 }
-
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .user-definied-filter {
   flex: 1 0 80%;
   position: relative;

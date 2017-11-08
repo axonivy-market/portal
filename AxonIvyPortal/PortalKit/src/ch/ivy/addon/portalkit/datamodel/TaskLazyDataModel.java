@@ -65,7 +65,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
   protected TaskFilterContainer filterContainer;
-  
+
   private TaskInProgressByOthersFilter inProgressFilter = new TaskInProgressByOthersFilter();
   private boolean isInProgressFilterDisplayed = false;
   private TaskFilterData selectedTaskFilterData;
@@ -85,7 +85,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * Initialize TaskFilterContainer with your customized TaskFilterContainer class. 
+   * Initialize TaskFilterContainer with your customized TaskFilterContainer class.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
@@ -98,7 +98,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected void initFilterContainer() {
     filterContainer = new DefaultTaskFilterContainer();
   }
-  
+
   public void initFilters() {
     if (filterContainer == null) {
       initFilterContainer();
@@ -278,9 +278,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * If your customized task list has new columns/fields, please extend the {@code taskQuery} parameter
-   * with the sort query for these fields and also override the
-   * "extendSortTasksInNotDisplayedTaskMap" method.
+   * If your customized task list has new columns/fields, please extend the {@code taskQuery} parameter with the sort
+   * query for these fields and also override the "extendSortTasksInNotDisplayedTaskMap" method.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
@@ -293,6 +292,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * }
    * </pre></code>
    * </p>
+   * 
    * @param taskQuery
    * @return
    */
@@ -377,7 +377,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public boolean isSortDescending() {
     return queryCriteria.isSortDescending();
   }
-  
+
   public void setIncludedStates(List<TaskState> includedStates) {
     this.queryCriteria.setIncludedStates(includedStates);
     setValuesForStateFilter(this.queryCriteria);
@@ -479,13 +479,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   /**
    * Save all filter settings to business data
    */
-  public TaskFilterData saveFilter(String filterName, FilterType filterType) {
+  public TaskFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
     TaskFilterData taskFilterData = new TaskFilterData();
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
     addCustomSettingsToTaskFilters(taskFilters);
     taskFilterData.setTaskFilters(taskFilters);
     taskFilterData.setKeyword(queryCriteria.getKeyword());
     taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
+    taskFilterData.setTaskFilterGroupId(taskFilterGroupId);
     taskFilterData.setFilterName(filterName);
     taskFilterData.setType(filterType);
     TaskFilterService taskFilterService = new TaskFilterService();
@@ -499,9 +500,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       taskFilters.add(inProgressFilter);
     }
   }
-  
+
   /**
-   * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel} 
+   * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel}
    */
   public void applyFilter(TaskFilterData taskFilterData) throws IllegalAccessException, InvocationTargetException,
       NoSuchMethodException {
@@ -522,12 +523,13 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       }
     }
   }
-  
+
   @SuppressWarnings("unchecked")
   public void onFilterChange(ValueChangeEvent event) {
     List<TaskFilter> oldSelectedFilters = (List<TaskFilter>) event.getOldValue();
     List<TaskFilter> newSelectedFilters = (List<TaskFilter>) event.getNewValue();
-    List<TaskFilter> toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    List<TaskFilter> toggleFilters =
+        (List<TaskFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
       toggleFilters.get(0).resetValues();
     }
@@ -536,7 +538,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public boolean hasReadAllTasksPermisson() {
     return TaskUtils.checkReadAllTasksPermission();
   }
-  
+
   public void hideInProgressFilter() {
     inProgressFilter.resetValues();
     isInProgressFilterDisplayed = false;
@@ -556,14 +558,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
 
     if (compactMode) {
-      queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
+      queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED,
+          TaskState.PARKED)));
     } else {
       if (selectedFilters.contains(filterContainer.getStateFilter())) {
         queryCriteria.setIncludedStates(new ArrayList<>());
       } else {
         queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
       }
-      
+
       searchCriteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
     }
 
@@ -574,8 +577,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * Your customized data model needs to override this method if your customized task list has new
-   * columns/fields.
+   * Your customized data model needs to override this method if your customized task list has new columns/fields.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
@@ -600,15 +602,16 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       setServerId(serverId);
     }
     String applicationName = StringUtils.EMPTY;
-    String applicationNameFromRequest = Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if(!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)){
-    	applicationName = applicationNameFromRequest;
+    String applicationNameFromRequest =
+        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
+    if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+      applicationName = applicationNameFromRequest;
     }
     if (StringUtils.isNotBlank(applicationName)) {
       setInvolvedApplications(applicationName);
     }
   }
-  
+
   private void setValuesForStateFilter(TaskQueryCriteria querycriteria) {
     if (filterContainer != null) {
       filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(querycriteria.getIncludedStates()));
