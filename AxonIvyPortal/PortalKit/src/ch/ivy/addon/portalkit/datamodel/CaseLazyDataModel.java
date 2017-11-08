@@ -260,7 +260,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       queryCriteria.setCaseQuery(customizedCaseQuery);
     }
 
-    queryCriteria.setIncludedStates(new ArrayList<>());
+    queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING)));
 
     CaseQuery caseQuery = buildCaseQuery();
     searchCriteria.setJsonQuery(caseQuery.asJson());
