@@ -564,10 +564,8 @@ Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService taskFilterService = new TaskFilterService();
-	in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId);
-if(new PermissionBean().hasAdminPermission()) {
-  	in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId);
-}
+in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId);
+in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId);
 in.filterType = FilterType.ONLY_ME;' #txt
 Ts0 f27 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
