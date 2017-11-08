@@ -1,0 +1,4 @@
+co: name={warningMessage} description={} changed={2017-11-07 04:57:00 CET} changedby={tntanh} visualorder={0} guid={15F949F6B0EBE094} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F949FC6A5FCDE8} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-07 04:56:53 CET} validto={} changed={2017-11-07 04:57:00 CET} changedby={tntanh} properties={} id={}
+val: guid={15F949FC62579C16} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-07 04:56:51 CET} validto={} changed={2017-11-07 04:56:59 CET} changedby={tntanh} properties={} id={}
+val: guid={15F949F6B139B45C} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-07 04:56:36 CET} validto={} changed={2017-11-07 04:56:46 CET} changedby={tntanh} properties={} id={}
