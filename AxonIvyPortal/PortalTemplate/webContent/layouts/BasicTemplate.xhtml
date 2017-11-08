@@ -111,7 +111,8 @@
           </div>
         </ui:insert>
       </div>
-
+      
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session" clientSideTimeOut="#{userMenuBean.clientSideTimeout}"/>
     </c:otherwise>
   </c:choose>
 
@@ -120,7 +121,7 @@
   </ui:insert>
 
   <ic:ch.ivy.addon.portalkit.component.GlobalAjaxStatus id="ajax-indicator" />
-  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session" clientSideTimeOut="#{userMenuBean.clientSideTimeout}"/>
+ 
   
   <ui:insert name="css" />
   <ui:insert name="footer">
