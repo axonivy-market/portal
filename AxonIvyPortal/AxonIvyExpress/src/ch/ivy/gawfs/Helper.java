@@ -2,8 +2,11 @@ package ch.ivy.gawfs;
 
 import gawfs.TaskDef;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import org.apache.commons.lang.StringUtils;
 
 import ch.ivyteam.ivy.scripting.objects.List;
 import ch.ivyteam.ivy.security.IRole;
@@ -101,4 +104,39 @@ public class Helper {
 		return taskList;
 	}
 
+	public static java.util.List<ISecurityMember> filterSecurityMembers(java.util.List<ISecurityMember> securityMembers, String query) {
+		if (StringUtils.isEmpty(query)) {
+			return securityMembers;
+		}
+
+		java.util.List<ISecurityMember> result = new ArrayList<>();
+		for (ISecurityMember securityMember : securityMembers) {
+			if (securityMember.getDisplayName().toLowerCase().contains(query.toLowerCase())
+				|| securityMember.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+				result.add(securityMember);
+			}
+		}
+
+		result.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
+			second.getDisplayName().toLowerCase()));
+		return result;
+	}
+
+	public static java.util.List<IUser> filterUsers(java.util.List<IUser> users, String query) {
+		if (StringUtils.isEmpty(query)) {
+			return users;
+		}
+
+		java.util.List<IUser> result = new ArrayList<>();
+		for (IUser user : users) {
+			if (user.getDisplayName().toLowerCase().contains(query.toLowerCase())
+				|| user.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+				result.add(user);
+			}
+		}
+
+		result.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
+			second.getDisplayName().toLowerCase()));
+		return result;
+	}
 }

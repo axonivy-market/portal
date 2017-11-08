@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
+import ch.ivy.ws.addon.IvyUser;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -248,5 +249,30 @@ public class UserUtils {
       return username;
     }
     return fullname + " (" + username + ")";
+  }
+
+  /**
+   * Filter list of ivy users by name based on provided query
+   * 
+   * @param users users need to be filtered
+   * @param query provided query
+   * @return Filtered and sorted list of ivy users
+   */
+  public static List<IvyUser> filterIvyUsers(List<IvyUser> users, String query) {
+    if (StringUtils.isEmpty(query)) {
+      return users;
+    }
+
+    List<IvyUser> filterUsers = new ArrayList<>();
+    for (IvyUser user : users) {
+      if (user.getDisplayName().toLowerCase().contains(query.toLowerCase())
+          || user.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+        filterUsers.add(user);
+      }
+    }
+
+    filterUsers.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
+        second.getDisplayName().toLowerCase()));
+    return filterUsers;
   }
 }

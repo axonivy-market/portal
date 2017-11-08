@@ -114,7 +114,28 @@
 }
 
 .user-selection {
-  width: 400px;
+  min-width: 500px;
+  margin-bottom: 60px;
+}
+
+.user-selection {
+  min-width: 500px;
+  margin-bottom: 60px;
+}
+
+.user-selection .ui-autocomplete-input {
+  min-width: 470px;
+}
+
+.select-responsible-icon-column {
+  width: 16px;
+  text-align: right;
+}
+
+.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
+.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
+  background-color: white !important;
+  cursor: default;
 }
 
 .form-definition-item-icon {

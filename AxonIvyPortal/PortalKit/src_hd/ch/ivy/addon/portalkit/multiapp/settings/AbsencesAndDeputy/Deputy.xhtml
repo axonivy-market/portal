@@ -12,8 +12,9 @@
     <p:spacer styleClass="u-buttons-spacer" />
     <p:autoComplete id="substituted-user" scrollHeight="200" dropdown="true" size="35" value="#{data.selectedUser}"
       required="true" completeMethod="#{logic.autoCompleteForUser}" var="user" itemLabel="#{user.name}"
-      itemValue="#{user}" converter="pojoConverter" forceSelection="true"
-      requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}">
+      itemValue="#{user}" converter="pojoConverter" maxResults="100"
+      requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
+      moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
       <f:event listener="#{logic.loadAllUsers}" type="preRenderComponent" />
       <p:ajax event="itemSelect" listener="#{logic.changeUserSubstitute}" update="substitute-container" />
     </p:autoComplete>
@@ -31,7 +32,8 @@
         <p:autoComplete id="subsitute-username" value="#{substituteNode.substituteUser}"
           rendered="#{substituteNode.isLeaf()}" completeMethod="#{substituteNode.autoCompleteUser}" var="user"
           converter="pojoConverter" itemLabel="#{user.displayName}" itemValue="#{user}" cache="true" dropdown="true"
-          scrollHeight="200" forceSelection="true">
+          scrollHeight="200" maxResults="100"
+          moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
           <p:ajax event="itemSelect" listener="#{logic.updateSubstitute(substituteNode)}" />
         </p:autoComplete>
       </p:column>

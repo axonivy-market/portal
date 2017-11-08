@@ -37,6 +37,9 @@ Ws0 @RichDialogEnd f30 '' #zField
 Ws0 @PushWFArc f4 '' #zField
 Ws0 @RichDialogEnd f5 '' #zField
 Ws0 @PushWFArc f18 '' #zField
+Ws0 @RichDialogMethodStart f20 '' #zField
+Ws0 @RichDialogProcessEnd f21 '' #zField
+Ws0 @PushWFArc f23 '' #zField
 >Proto Ws0 Ws0 WfFirstInputFormProcess #zField
 Ws0 f0 guid 157884982E527C49 #txt
 Ws0 f0 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
@@ -334,6 +337,36 @@ Ws0 f5 563 371 26 26 0 12 #rect
 Ws0 f5 @|RichDialogEndIcon #fIcon
 Ws0 f18 expr out #txt
 Ws0 f18 360 384 563 384 #arcP
+Ws0 f20 guid 15F95CCE408656C6 #txt
+Ws0 f20 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
+Ws0 f20 method autoCompleteFilter(String) #txt
+Ws0 f20 disableUIEvents false #txt
+Ws0 f20 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<java.lang.String query> param = methodEvent.getInputArguments();
+' #txt
+Ws0 f20 inParameterMapAction 'out.autoCompleteQuery=param.query;
+' #txt
+Ws0 f20 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> availUsers> result;
+' #txt
+Ws0 f20 outActionCode 'import ch.ivy.gawfs.Helper;
+
+result.availUsers = Helper.filterUsers(in.availUsers, in.autoCompleteQuery);' #txt
+Ws0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>autoCompleteFilter(String)</name>
+        <nameStyle>26,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ws0 f20 83 563 26 26 -72 15 #rect
+Ws0 f20 @|RichDialogMethodStartIcon #fIcon
+Ws0 f21 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
+Ws0 f21 563 563 26 26 0 12 #rect
+Ws0 f21 @|RichDialogProcessEndIcon #fIcon
+Ws0 f23 expr out #txt
+Ws0 f23 109 576 563 576 #arcP
 >Proto Ws0 .type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
 >Proto Ws0 .processKind HTML_DIALOG #txt
 >Proto Ws0 -8 -8 16 16 16 26 #rect
@@ -358,3 +391,5 @@ Ws0 f3 mainOut f4 tail #connect
 Ws0 f4 head f30 mainIn #connect
 Ws0 f24 mainOut f18 tail #connect
 Ws0 f18 head f5 mainIn #connect
+Ws0 f20 mainOut f23 tail #connect
+Ws0 f23 head f21 mainIn #connect
