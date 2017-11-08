@@ -35,8 +35,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DesignChooserBean {
 
   private final static String PORTALSTYLE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalStyle";
-//  private static final String THEME_CSS_PATH = "/resources/css/theme.min.css";
-//  private static final String THEME_LESS_PATH = "/resources/less/theme.less";
   private static final String COLORS_LESS_PATH = "/resources/less/colors.less";
   private static final String HOME_LOGO_CMS = "/images/logo/CorporateLogo";
   private static final String LOGIN_LOGO_CMS = "/images/logo/loginLogo";
