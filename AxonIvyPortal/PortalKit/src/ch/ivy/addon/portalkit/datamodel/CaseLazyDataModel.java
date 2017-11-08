@@ -230,6 +230,10 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   public boolean isSortDescending() {
     return queryCriteria.isSortDescending();
   }
+  
+  public CaseSearchCriteria getSearchCriteria() {
+      return searchCriteria;
+  }
 
   public void getQueryCriteria(CaseQueryCriteria queryCriteria) {
 	  this.queryCriteria = queryCriteria;
