@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -35,6 +36,9 @@ public class UserMenuBean {
   private List<RemoteCase> foundCases;
   private String searchKeyword;
   private String userName;
+  public static final int MINUTE_TO_SECOND = 60;
+  public static final int SECONND_TO_MILLISECOND = 1000;
+  public static final int TIME_BEFORE_LOST_SESSION = 180000; // 3 minutes
 
   private boolean hasNoRecordsFound;
 
@@ -60,6 +64,22 @@ public class UserMenuBean {
     String isHiddenChangePassword =
         globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
     return Boolean.parseBoolean(isHiddenChangePassword);
+  }
+  
+  public int getClientSideTimeout() {
+    GlobalSettingService globalSettingSerive = new GlobalSettingService();
+    String clientSideTimeoutInMinute = globalSettingSerive.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
+    if(clientSideTimeoutInMinute !=null && !clientSideTimeoutInMinute.isEmpty()){
+      return Integer.valueOf(clientSideTimeoutInMinute)*MINUTE_TO_SECOND*SECONND_TO_MILLISECOND;
+    }
+    return getDefaultClientSideTimeout();
+  }
+
+  private int getDefaultClientSideTimeout() {
+    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+    int serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval()*SECONND_TO_MILLISECOND;
+    int defaultClientSideTimeout = serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
+    return defaultClientSideTimeout;
   }
   
   public String getLogoutPage() throws Exception {
