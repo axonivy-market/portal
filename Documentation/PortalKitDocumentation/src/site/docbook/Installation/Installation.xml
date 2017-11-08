@@ -285,7 +285,7 @@
 							<entry>AXONIVY_PORTAL_ADMIN</entry>
 							<entry>
 								<para>
-									User belong to this role can handle AdminUI page, configure the internal role properties, users who own this
+									User belong to this role can handle AdminUI page, configure the internal role properties, create public filters. Users who own this
 									role need some permissions. See
 									<link linkend="axonivyportal.installation.basicinstallation.permissionsettings" endterm="axonivyportal.installation.basicinstallation.permissionsettings.title" />
 									.

@@ -22,8 +22,8 @@ sortDescending Boolean #field
 sortDescending PERSISTENT #fieldModifier
 serverId Long #field
 serverId PERSISTENT #fieldModifier
-taskFilterDatas java.util.List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
-taskFilterDatas PERSISTENT #fieldModifier
+taskFilterDatass java.util.List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
+taskFilterDatass PERSISTENT #fieldModifier
 filterSetName String #field
 filterSetName PERSISTENT #fieldModifier
 filterType ch.ivy.addon.portalkit.enums.FilterType #field
@@ -32,3 +32,9 @@ taskFilterDataToBeRemoved ch.ivy.addon.portalkit.taskfilter.TaskFilterData #fiel
 taskFilterDataToBeRemoved PERSISTENT #fieldModifier
 isFilterExisted Boolean #field
 isFilterExisted PERSISTENT #fieldModifier
+taskFilterGroupId Long #field
+taskFilterGroupId PERSISTENT #fieldModifier
+taskPublicFilters List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
+taskPublicFilters PERSISTENT #fieldModifier
+taskPrivateFilters List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
+taskPrivateFilters PERSISTENT #fieldModifier

@@ -26,18 +26,34 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
   private static final int MAX_NUMBER_OF_FILTERS_TO_LOAD = 1000;
   private static final String FILTER_NAME = "filterName";
   private static final String USER_ID = "userId";
+  private static final String TASK_FILTER_GROUP_ID = "taskFilterGroupId";
   private static final String FILTER_TYPE = "type";
 
-  public List<TaskFilterData> getFiltersForCurrentUser() {
-    Filter<TaskFilterData> publicFilterQuery =
-        repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name());
-    Filter<TaskFilterData> privateFilterQuery =
-        repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
-            .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
-    Filter<TaskFilterData> combinedQuery =
-        repo().search(getType()).filter(publicFilterQuery).or().filter(privateFilterQuery);
-    return combinedQuery.orderBy().textField(FILTER_NAME).ascending().limit(MAX_NUMBER_OF_FILTERS_TO_LOAD).execute()
-        .getAll();
+  public List<TaskFilterData> getPublicFilter(Long taskFilterGroupId) {
+    try {
+      Filter<TaskFilterData> publicFilterQuery =
+          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).and()
+              .numberField(TASK_FILTER_GROUP_ID).isEqualTo(taskFilterGroupId);
+      return publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(MAX_NUMBER_OF_FILTERS_TO_LOAD)
+          .execute().getAll();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
+    }
+  }
+
+  public List<TaskFilterData> getPrivateFilterForCurrentUser(Long taskFilterGroupId) {
+    try {
+      Filter<TaskFilterData> privateFilterQuery =
+          repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
+              .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().numberField(TASK_FILTER_GROUP_ID)
+              .isEqualTo(taskFilterGroupId);
+      return privateFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(MAX_NUMBER_OF_FILTERS_TO_LOAD)
+          .execute().getAll();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
+    }
   }
 
   @Override
@@ -78,20 +94,18 @@ public class TaskFilterService extends BusinessDataService<TaskFilterData> {
     }
   }
 
-  public boolean isFilterExisted(String name, FilterType type) {
+  public boolean isFilterExisted(String name, FilterType type, Long taskFilterGroupId) {
     if (FilterType.ONLY_ME == type) {
-      Filter<TaskFilterData> publicFilterQuery =
-          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).and()
-              .textField(FILTER_NAME).isEqualToIgnoringCase(name);
       Filter<TaskFilterData> privateFilterQuery =
           repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
               .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().textField(FILTER_NAME)
-              .isEqualToIgnoringCase(name);
-      Filter<TaskFilterData> combinedQuery =
-          repo().search(getType()).filter(publicFilterQuery).or().filter(privateFilterQuery);
+              .isEqualToIgnoringCase(name).and().numberField(TASK_FILTER_GROUP_ID).isEqualTo(taskFilterGroupId);
+      Filter<TaskFilterData> combinedQuery = repo().search(getType()).filter(privateFilterQuery);
       return combinedQuery.execute().count() > 0;
     } else {
-      return repo().search(getType()).textField(FILTER_NAME).isEqualToIgnoringCase(name).execute().count() > 0;
+      return repo().search(getType()).textField(FILTER_NAME).isEqualToIgnoringCase(name).and().textField(FILTER_TYPE)
+          .isEqualToIgnoringCase(ALL_USERS.name()).and().numberField(TASK_FILTER_GROUP_ID).isEqualTo(taskFilterGroupId)
+          .execute().count() > 0;
     }
   }
 }
