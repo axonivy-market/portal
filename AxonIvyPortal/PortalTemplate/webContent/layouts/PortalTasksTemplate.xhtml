@@ -8,7 +8,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
-
+    <ui:param name="taskFilterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}</ui:define>
 
     <ui:define name="pageContent">
@@ -17,7 +17,7 @@
     <div class="task-list-container js-task-list-container">
       <div>
         <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" keyword="#{dataModel.queryCriteria.keyword}"
-          hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{dataModel}"
+          hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{dataModel}" taskFilterGroupId="#{taskFilterGroupId}"
           showHeaderToolbar="#{taskView.showHeaderToolbar}" compactMode="false" selectedTaskId="#{taskView.remoteTaskId}"
           selectedTaskServerId="#{dataModel.serverId}" noTaskFoundMessage="#{taskView.noTaskFoundMessage}">
             <f:facet name="title">
