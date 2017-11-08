@@ -594,7 +594,6 @@ Ps0 f48 actionTable 'out=in;
 ' #txt
 Ps0 f48 actionCode 'import javax.faces.context.FacesContext;
 
-ivy.log.error(in.processLink);
 FacesContext.getCurrentInstance().getExternalContext().redirect(in.processLink);' #txt
 Ps0 f48 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f48 846 148 36 24 20 -2 #rect
