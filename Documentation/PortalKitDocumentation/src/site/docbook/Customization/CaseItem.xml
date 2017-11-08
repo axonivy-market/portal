@@ -169,4 +169,27 @@
 			</listitem>
 		</orderedlist>
 	</sect2>
+	<sect2 xml:id="axonivyportal.customization.casewidget.howtooverridedataquery">
+		<title xml:id="axonivyportal.customization.casewidget.howtooverridedataquery.title">How to override case widget's data query</title>
+		<para>
+			Override the <code>BuildCaseJsonQuery</code> callable process of PortalKit and build your own query to effect the data of case widget.
+		</para>
+		<para>
+			Apply the following steps in case you would like to provide data for case list:
+			<itemizedlist>
+				<listitem>
+					<para>Use the <code>OpenPortalCases</code> callable process with the <code>CaseView</code> parameter. It is used to define which information are displayed in CaseWidget.</para>
+				</listitem>
+				<listitem>
+					<para>Refer to CaseView, CaseSearchCriteria, CaseQueryCriteria to build your CaseView</para>
+				</listitem>
+			</itemizedlist>
+<screen>
+CaseLazyDataModel dataModel = new CaseLazyDataModel();
+dataModel.getQueryCriteria().setCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
+dataModel.getSearchCriteria().setInvolvedUsername(true); // Use this code line if you would like to display the cases for all users
+out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();
+</screen>
+		</para>
+	</sect2>
 </sect1>
