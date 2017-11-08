@@ -12,7 +12,10 @@ import java.util.concurrent.Callable;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.add.portalkit.admin.RolePropertyData;
+import ch.ivy.ws.addon.IvyRole;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -338,7 +341,6 @@ public final class RoleUtils {
    * Set hide property for specific roles by default
    */
   public static void setHidePropertyForDefaultHiddenRoles() {
-    @SuppressWarnings("unchecked")
     List<String> defaultHiddenRoleNames = Arrays.asList(DEFAULT_HIDDEN_ROLES);
     
     defaultHiddenRoleNames.forEach(roleName -> {
@@ -357,4 +359,28 @@ public final class RoleUtils {
     return role -> Objects.isNull(role.getProperty(HIDE));
   }
 
+  /**
+   * Filter list of ivy roles by name based on provided query
+   * 
+   * @param roles roles need to be filtered
+   * @param query provided query
+   * @return Filtered and sorted list of ivy roles
+   */
+  public static List<IvyRole> filterIvyRoles(List<IvyRole> roles, String query) {
+    if (StringUtils.isEmpty(query)) {
+      return roles;
+    }
+
+    List<IvyRole> filterRoles = new ArrayList<>();
+    for (IvyRole role : roles) {
+      if (role.getDisplayName().toLowerCase().contains(query.toLowerCase())
+          || role.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+        filterRoles.add(role);
+      }
+    }
+
+    filterRoles.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
+        second.getDisplayName().toLowerCase()));
+    return filterRoles;
+  }
 }

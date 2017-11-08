@@ -18,8 +18,9 @@
           var="user" itemValue="#{user}" itemLabel="#{user.name}"
           converter="pojoConverter"
           rendered="#{uneditedUserName eq 'false'}" required="true"
-          forceSelection="true" cache="true"
-          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}">
+          cache="true" maxResults="100"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
+          moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
           <f:event listener="#{logic.loadAllUsers}" type="preRenderComponent" />
           <p:ajax event="itemSelect" listener="#{logic.userSelect}"
             process="@this comment absence-start-date absence-end-date" update="#{updateComponent}" />

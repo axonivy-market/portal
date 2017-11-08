@@ -10,3 +10,5 @@ AvailableRolesAndUsers List<ch.ivyteam.ivy.security.ISecurityMember> #field
 AvailableRolesAndUsers PERSISTENT #fieldModifier
 selectedRoleOrUser ch.ivyteam.ivy.security.ISecurityMember #field
 selectedRoleOrUser PERSISTENT #fieldModifier
+autoCompleteQuery String #field
+autoCompleteQuery PERSISTENT #fieldModifier

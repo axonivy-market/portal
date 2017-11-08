@@ -42,6 +42,9 @@ Fs0 @GridStep f28 '' #zField
 Fs0 @PushWFArc f32 '' #zField
 Fs0 @PushWFArc f31 '' #zField
 Fs0 @PushWFArc f26 '' #zField
+Fs0 @RichDialogMethodStart f17 '' #zField
+Fs0 @RichDialogProcessEnd f18 '' #zField
+Fs0 @PushWFArc f21 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -379,6 +382,36 @@ Fs0 f31 expr out #txt
 Fs0 f31 312 576 435 576 #arcP
 Fs0 f26 expr out #txt
 Fs0 f26 109 352 435 352 #arcP
+Fs0 f17 guid 15F94B0886B676AB #txt
+Fs0 f17 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f17 method autoCompleteFilter(String) #txt
+Fs0 f17 disableUIEvents false #txt
+Fs0 f17 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<java.lang.String query> param = methodEvent.getInputArguments();
+' #txt
+Fs0 f17 inParameterMapAction 'out.autoCompleteQuery=param.query;
+' #txt
+Fs0 f17 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.ISecurityMember> availableRolesAndUsers> result;
+' #txt
+Fs0 f17 outActionCode 'import ch.ivy.gawfs.Helper;
+
+result.availableRolesAndUsers = Helper.filterSecurityMembers(in.AvailableRolesAndUsers, in.autoCompleteQuery);' #txt
+Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>autoCompleteFilter(String)</name>
+        <nameStyle>26,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f17 83 659 26 26 -72 15 #rect
+Fs0 f17 @|RichDialogMethodStartIcon #fIcon
+Fs0 f18 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f18 435 659 26 26 0 12 #rect
+Fs0 f18 @|RichDialogProcessEndIcon #fIcon
+Fs0 f21 expr out #txt
+Fs0 f21 109 672 435 672 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -407,3 +440,5 @@ Fs0 f28 mainOut f31 tail #connect
 Fs0 f31 head f30 mainIn #connect
 Fs0 f16 mainOut f26 tail #connect
 Fs0 f26 head f20 mainIn #connect
+Fs0 f17 mainOut f21 tail #connect
+Fs0 f21 head f18 mainIn #connect
