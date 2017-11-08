@@ -313,23 +313,28 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement cell = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s", index, columnId));
     return cell.getText();
   }
-  
+
   public void openTaskDelegateDialog(int index) {
-    WebElement delegateButton = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-delegate-command", index));
+    WebElement delegateButton =
+        findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-delegate-command", index));
     delegateButton.click();
   }
-  
+
   public boolean isDelegateTypeSelectAvailable() {
     return isElementPresent(By.id("task-widget:task-list-scroller:0:task-item:task-delegate-form:activator-panel"));
   }
-  
+
   public boolean isDelegateTypeDisabled(int taskIndex, int index) {
-    WebElement delegateTypeRadioButton = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-delegate-form:activator-type-select:%d", taskIndex, index));
+    WebElement delegateTypeRadioButton =
+        findElementById(String
+            .format("task-widget:task-list-scroller:%d:task-item:task-delegate-form:activator-type-select:%d",
+                taskIndex, index));
     return Optional.ofNullable(delegateTypeRadioButton.getAttribute("disabled")).isPresent();
   }
-  
+
   public boolean isDelegateListSelectionAvailable() {
-    return isElementPresent(By.id("task-widget:task-list-scroller:0:task-item:task-delegate-form:select-delegate-panel"));
+    return isElementPresent(By
+        .id("task-widget:task-list-scroller:0:task-item:task-delegate-form:select-delegate-panel"));
   }
 
   public AdhocPage addAdhoc(int taskIndex) {
@@ -355,28 +360,43 @@ public class TaskWidgetPage extends TemplatePage {
         findElementByCssSelector("*[id$='" + index + ":task-item:task-start-item-view:task-start-task-name']");
     return name.getText();
   }
-  
-  public void openAdvancedFilter(String filter) {
+
+  public boolean isFilterSelectionVisible() {
+    return isElementPresent(By.id("task-widget:filter-selection-form:filter-selection-panel"));
+  }
+
+  public void openAdvancedFilter(String filterName, String filterIdName) {
     click(By.id("task-widget:filter-add-action"));
     WebElement filterSelectionElement = findElementById("task-widget:filter-add-form:filter-selection");
     findChildElementsByTagName(filterSelectionElement, "LABEL").forEach(filterElement -> {
-      if (filter.equals(filterElement.getText())) {
+      if (filterName.equals(filterElement.getText())) {
         filterElement.click();
         return;
       }
     });
-    waitForElementDisplayed(By.cssSelector("span[id$='" + filter.toLowerCase() + "-filter:filter-open-form:advanced-filter-item-container']"), true);
+    waitForElementDisplayed(
+        By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
   }
-  
+
   public void filterByDescription(String text) {
     click(By.cssSelector("button[id$='description-filter:filter-open-form:advanced-filter-command']"));
-    WebElement descriptionInput = findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
+    WebElement descriptionInput =
+        findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
     Sleeper.sleepTight(2000);
   }
-  
-  public void saveFilter(String filterName){
+
+  public void filterByCustomerName(String text) {
+    click(By.cssSelector("button[id$='task-widget:customer-name-filter:filter-open-form:advanced-filter-command']"));
+    WebElement customerNameInput =
+        findElementByCssSelector("input[id$='customer-name-filter:filter-input-form:customVarChar5']");
+    enterKeys(customerNameInput, text);
+    click(By.cssSelector("button[id$='task-widget:customer-name-filter:filter-input-form:update-command']"));
+    Sleeper.sleepTight(2000);
+  }
+
+  public void saveFilter(String filterName) {
     click(By.id("task-widget:filter-save-action"));
     Sleeper.sleepTight(2000);
     WebElement filterNameInput = findElementById("task-widget:filter-save-form:save-filter-set-name-input");
@@ -384,12 +404,12 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementById("task-widget:filter-save-form:filter-save-command"));
     Sleeper.sleepTight(2000);
   }
-  
-  public String getFilterName(){
+
+  public String getFilterName() {
     click(findElementById("task-widget:filter-selection-form:filter-name"));
     WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
-    
+
     return descriptionInput.getText();
   }
-  
+
 }
