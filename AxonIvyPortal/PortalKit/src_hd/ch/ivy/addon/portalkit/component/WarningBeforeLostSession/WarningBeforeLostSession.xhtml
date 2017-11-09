@@ -9,9 +9,9 @@
 </cc:interface>
 <cc:implementation>
 
-  <p:confirmDialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
+  <p:confirmDialog id="timeout-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
-    widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
+    widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto" >
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
       styleClass="portal-ok-button" oncomplete="PF('timeout-warning-dialog').hide()"
       actionListener="#{logic.extendSession}" />

@@ -210,7 +210,7 @@
 			title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settings')}">
 			<h:form prependId="false" id="settingForm">
 				<h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
-					<p:commandButton actionListener="#{logic.addNewSetting}"
+					<p:commandButton id="add-global-variable-button" actionListener="#{logic.addNewSetting}"
 						oncomplete="PF('settingDialog').show()"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}"
 						resetValues="true" update=":#{p:component('settingDialog')}" />
@@ -674,7 +674,7 @@
 				<!-- Two buttons OK, Cancel -->
 				<h:panelGroup layout="block"
 					styleClass="u-dialog-footer ui-dialog-footer">
-					<p:commandButton
+					<p:commandButton id="save-setting"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 						actionListener="#{logic.saveSetting}" styleClass="portal-ok-button"
 						oncomplete="if (!args.validationFailed){ PF('settingDialog').hide()}"
