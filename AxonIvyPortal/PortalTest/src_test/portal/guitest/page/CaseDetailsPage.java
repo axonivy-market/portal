@@ -22,7 +22,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('case-widget:case-widget-form')";
+    return "id('case-widget:case-list')";
   }
 
   public CaseDetailsPage(WebElement caseItem) {
@@ -141,14 +141,14 @@ public class CaseDetailsPage extends TemplatePage {
   public String getNameOfCaseAt(int caseIndex) {
     WebElement taskName =
         findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:case-header:case-name-edit-inplace_display", caseIndex));
+            "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_display", caseIndex));
     waitForElementDisplayed(taskName, true);
     return taskName.getText();
   }
 
   public boolean isCaseNameChangeComponentPresented(int caseIndex) {
     return isElementPresent(By.id(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-input", caseIndex)));
+        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-input", caseIndex)));
   }
 
   public String getDescriptionOfCaseAt(int caseIndex) {
@@ -167,7 +167,7 @@ public class CaseDetailsPage extends TemplatePage {
   private void onSubmitDescriptionInplaceEditor(int caseIndex) {
     WebElement editor =
         findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:description:case-desription-inplace_editor", caseIndex));
+            "case-widget:case-list-scroller:%d:case-item:description:case-description-form:case-desription-inplace_editor", caseIndex));
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
     waitAjaxIndicatorDisappear();
@@ -175,7 +175,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onChangeDescriptionInput(String newDescription, int caseIndex) {
     WebElement caseDescriptionInput =
-        findElementById(String.format("case-widget:case-list-scroller:%d:case-item:description:case-description-input",
+        findElementById(String.format("case-widget:case-list-scroller:%d:case-item:description:case-description-form:case-description-input",
             caseIndex));
     waitForElementDisplayed(caseDescriptionInput, true);
     caseDescriptionInput.clear();
@@ -185,7 +185,7 @@ public class CaseDetailsPage extends TemplatePage {
   private void onClickDescriptionInplace(int caseIndex) {
     WebElement caseDescriptionInplace =
         findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:description:case-desription-inplace_display", caseIndex));
+            "case-widget:case-list-scroller:%d:case-item:description:case-description-form:case-desription-inplace_display", caseIndex));
     waitForElementDisplayed(caseDescriptionInplace, true);
     caseDescriptionInplace.click();
   }
@@ -229,7 +229,7 @@ public class CaseDetailsPage extends TemplatePage {
   private void onSubmitNameInplaceEditor(int caseIndex) {
     WebElement editor =
         findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:case-header:case-name-edit-inplace_editor", caseIndex));
+            "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_editor", caseIndex));
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
     waitAjaxIndicatorDisappear();
@@ -237,7 +237,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onChangeNameInput(String newCaseName, int caseIndex) {
     String caseNameInputId =
-        String.format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-input", caseIndex);
+        String.format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-input", caseIndex);
     WebElement caseNameInput = findElementById(caseNameInputId);
     waitForElementDisplayed(caseNameInput, true);
     caseNameInput.clear();
@@ -246,7 +246,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onClickNameInplace(int caseIndex) {
     String caseNameInplaceId =
-        String.format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-edit-inplace_display",
+        String.format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_display",
             caseIndex);
     WebElement caseNameInplace = findElementById(caseNameInplaceId);
     caseNameInplace.click();

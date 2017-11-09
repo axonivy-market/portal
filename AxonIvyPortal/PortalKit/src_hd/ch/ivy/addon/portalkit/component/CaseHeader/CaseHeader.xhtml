@@ -20,6 +20,7 @@
     <h:outputText styleClass="case-header-name-cell" rendered="#{!expanded or case.state eq 'DONE'}"
       value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"></h:outputText>
     <span class="case-header-name-cell">
+      <h:form id="case-name-form">
       <p:inplace id="case-name-edit-inplace" editor="true" rendered="#{expanded and case.state ne 'DONE'}"
         disabled="#{!case.canChangeName}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="case-name-edit-inplace"
@@ -30,6 +31,7 @@
           update="case-name-edit-inplace" />
         <f:passThroughAttribute name="onclick" value="if('#{case.canChangeName}'=='true') {event.stopPropagation()}" />
       </p:inplace>
+      </h:form>
     </span>
     <h:outputText id="description-cell" styleClass="case-header-desc-cell" value="#{case.description}" />
   </h:panelGroup>

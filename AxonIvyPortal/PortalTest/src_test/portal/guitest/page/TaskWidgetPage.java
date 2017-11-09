@@ -96,7 +96,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public CasePage openRelatedCaseOfTask(int taskId) {
     click(findElementByCssSelector("*[id$='task-details-container'] *[id$='related-case']"));
-    waitForElementDisplayed(By.cssSelector("*[id$='case-widget-form']"), true);
+    waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
     return new CasePage();
   }
 

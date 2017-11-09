@@ -1296,47 +1296,56 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 /********************************** END FILTER WIDGET **********************************/
 
 /********************************** START ADVANCED FILTER WIDGET **********************************/
-.task-widget .in-progress-task-checkbox {
+.task-widget .in-progress-task-checkbox, 
+.case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
 }
 
-.task-widget .in-progress-task-checkbox .ui-chkbox-label {
+.task-widget .in-progress-task-checkbox .ui-chkbox-label, 
+.case-widget-container .in-progress-task-checkbox .ui-chkbox-label {
   margin-left: 0 !important;
 }
   
-.task-widget .advanced-filter-container .additional-filter-container {
+.task-widget .advanced-filter-container .additional-filter-container, 
+.case-widget-container .advanced-filter-container .additional-filter-container {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.task-widget .filter-add-container {
+.task-widget .filter-add-container, 
+.case-widget-container .filter-add-container {
   display: flex;
 }
 
-.task-widget .ui-widget.ui-button.filter-add-button {
+.task-widget .ui-widget.ui-button.filter-add-button, 
+.case-widget-container .ui-widget.ui-button.filter-add-button {
   min-width: 10px;
   margin-top: auto;
   margin-left: 10px;
   height: 30px;
 }
 
-.task-widget .ui-widget.ui-button.filter-add-button .ui-button-text {
+.task-widget .ui-widget.ui-button.filter-add-button .ui-button-text, 
+.case-widget-container .ui-widget.ui-button.filter-add-button .ui-button-text {
   min-width: 10px;
   padding: 5px 0 5px 10px !important;
   border-right: none;
 }
 
-.task-widget .ui-widget.ui-button.filter-add-button .ui-icon {
+.task-widget .ui-widget.ui-button.filter-add-button .ui-icon, 
+.case-widget-container .ui-widget.ui-button.filter-add-button .ui-icon {
   float: right;
   padding: 5px 10px 5px 5px !important;
 }
 
-.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel.filter-selector-container .ui-widget.ui-chkbox-box {
+.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel.filter-selector-container .ui-widget.ui-chkbox-box, 
+.case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel.filter-selector-container .ui-widget.ui-chkbox-box {
   outline: none;
 }
 
-.task-widget .advanced-filter {
+.task-widget .advanced-filter, .case-widget .advanced-filter,
+.case-widget-container .advanced-filter, .case-widget .advanced-filter {
   display: inline-block;
   margin-right: 10px;
   border: solid transparent 1px;
@@ -1345,13 +1354,15 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   cursor: pointer;
 }
 
-.task-widget .advanced-filter:hover {
+.task-widget .advanced-filter:hover, 
+.case-widget-container .advanced-filter:hover  {
   background-color: rgba(0,0,0,0.04);
   border-color: #d5d5d5;
   border-radius: 5px;
 }
 
-.task-widget .ui-widget.ui-button.advanced-filter-command {
+.task-widget .ui-widget.ui-button.advanced-filter-command, 
+.case-widget-container .ui-widget.ui-button.advanced-filter-command  {
   display: inline-block;
   height: 35px;
   line-height: 35px;
@@ -1364,7 +1375,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   max-width: 400px;
 }
 
-.task-widget .ui-widget.ui-button.advanced-filter-command:after {
+.task-widget .ui-widget.ui-button.advanced-filter-command:after, 
+.case-widget-container .ui-widget.ui-button.advanced-filter-command:after {
   content: "\f0d7";
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -1376,7 +1388,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: black;
 }
 
-.task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before {
+.task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before, 
+.case-widget-container .ui-widget.ui-button.advanced-filter-command.error-filter:before {
   content: "\f06a";
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -1388,7 +1401,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   margin-right: 5px;
 }
 
-.task-widget .error-filter-input {
+.task-widget .error-filter-input,
+.case-widget-container .error-filter-input {
   position: absolute;
   font-size: 1.8rem;
   right: 23px;
@@ -1396,14 +1410,18 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: red;
 }
 
-.task-widget .advanced-filter .ui-button-text-only .ui-button-text {
+.task-widget .advanced-filter .ui-button-text-only .ui-button-text,
+.case-widget-container .advanced-filter .ui-button-text-only .ui-button-text {
   padding: 0 !important;
   display: inline;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-hover,
 .task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-active,
-.task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-focus {
+.task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-focus,
+.case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-hover,
+.case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-active,
+.case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-focus {
   background: none !important;
 }
 
@@ -1415,23 +1433,27 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: rgba(0,0,0,0.3) !important;
 }
 
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
   background-color: white;
   padding: 0 !important;
 }
 
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content {
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content {
   padding: 10px;
   font-size: 1.2rem;
 }
 
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
   padding: 10px;
   border-top: solid 1px #eaeaea;
   text-align: right;
 }
 
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer .ui-widget.ui-button {
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer .ui-widget.ui-button,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer .ui-widget.ui-button {
   min-width: 0;
   -webkit-transition: none;
   -moz-transition: none;
@@ -1440,13 +1462,15 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   transition: none;
 }
 
-.task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
+.task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content,
+.case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
   background-color: white;
   min-width: 140px;
   padding: 10px !important;
 }
 
-.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel {
+.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
+.case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel {
   border: none;
   padding: 0px !important;
   border-radius: 0;
@@ -1466,6 +1490,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-inputfield.ui-widget,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-inputfield.ui-widget,
 .ui-selectonelistbox.responsible-list-filter .ui-selectlistbox-filter.ui-inputfield.ui-widget {
   -webkit-transition: none;
   -moz-transition: none;
