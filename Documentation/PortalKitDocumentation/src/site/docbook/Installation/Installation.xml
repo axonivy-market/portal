@@ -265,6 +265,14 @@
 								default.
 							</entry>
 						</row>
+						<row>
+							<entry>CLIENT_SIDE_TIMEOUT</entry>
+							<entry>INTEGER</entry>
+							<entry>
+								Client side timeout in minute, must be less than server side timeout (e.g. 25).
+								If not set, default client side timeout is server side timeout minus 3 minutes.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
@@ -828,6 +836,14 @@
 		<title>Release notes</title>
 		<para>
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
+			<sect2>
+				<title>Changes in 7.1</title>
+				<itemizedlist>
+					<listitem>
+						<para>Portal supports client side timeout: informs user when session is about to expire and auto logout when expired.</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
 			<sect2>
 				<title>Changes in 7.0 (Jakobshorn)</title>
 				<itemizedlist>
