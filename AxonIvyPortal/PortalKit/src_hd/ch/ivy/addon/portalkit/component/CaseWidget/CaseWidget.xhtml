@@ -30,9 +30,11 @@
           <h:outputText styleClass="case-widget-top-header-main-title" value="#{cc.attrs.title}" />
         </div>
         <div jsf:rendered="#{!cc.attrs.hideCaseFilter}" class="filter">
-          <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.filteringKeyword}"
-            listener="#{logic.filter()}" updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
-            onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
+          <h:form id="case-basic-filter-form" onsubmit="return false;">
+	          <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.filteringKeyword}"
+	            listener="#{logic.filter()}" updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
+	            onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
+          </h:form>
         </div>
         <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
         <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
