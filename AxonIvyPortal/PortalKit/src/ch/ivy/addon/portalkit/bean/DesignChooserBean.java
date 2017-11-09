@@ -36,6 +36,7 @@ public class DesignChooserBean {
 
   private final static String PORTALSTYLE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalStyle";
   private static final String COLORS_LESS_PATH = "/resources/less/colors.less";
+  private static final String CUSTOMIZATION_LESS_PATH = "/resources/less/customization.less";
   private static final String HOME_LOGO_CMS = "/images/logo/CorporateLogo";
   private static final String LOGIN_LOGO_CMS = "/images/logo/loginLogo";
   private static final String MAIN_COLOR_ATTRIBUTE = "@menu-color: ";
@@ -43,6 +44,8 @@ public class DesignChooserBean {
   private static final String ANY_CHARACTERS_REGEX = "([^']*)";
   private static final String SEMICOLON = ";";
   private static final String HASH_SIGN = "#";
+  private static final String MAIN_COLOR_PATTERN = MAIN_COLOR_ATTRIBUTE + ANY_CHARACTERS_REGEX;
+  private static final String BACKGROUND_COLOR_PATTERN = BACKGROUND_COLOR_ATTRIBUTE + ANY_CHARACTERS_REGEX;
 
   private String mainColor;
   private String backgroundColor;
@@ -68,14 +71,21 @@ public class DesignChooserBean {
   }
 
   public void applyNewColors() throws IOException, MavenInvocationException {
-    Optional<Path> path = loader.findResource(COLORS_LESS_PATH);
+    Optional<Path> path = loader.findResource(CUSTOMIZATION_LESS_PATH);
     if (path.isPresent()) {
-      try (Stream<String> lines = Files.lines(path.get())) {
-        List<String> replacedLines = lines
-            .map(line -> line.replaceFirst(MAIN_COLOR_ATTRIBUTE + ANY_CHARACTERS_REGEX, MAIN_COLOR_ATTRIBUTE + HASH_SIGN + mainColor + SEMICOLON))
-            .map(line -> line.replaceFirst(BACKGROUND_COLOR_ATTRIBUTE + ANY_CHARACTERS_REGEX, BACKGROUND_COLOR_ATTRIBUTE + HASH_SIGN+ backgroundColor + SEMICOLON))
-            .collect(Collectors.toList());
-        Files.write(path.get(), replacedLines);
+      try (Stream<String> lineStream = Files.lines(path.get())) {
+        String newMainColor = MAIN_COLOR_ATTRIBUTE + HASH_SIGN + mainColor + SEMICOLON;
+        String newBackgroundColor = BACKGROUND_COLOR_ATTRIBUTE + HASH_SIGN + backgroundColor + SEMICOLON;
+        
+        List<String> lines = lineStream.map(line -> line.replaceAll(MAIN_COLOR_PATTERN, newMainColor))
+                  .map(line -> line.replaceAll(BACKGROUND_COLOR_PATTERN, newBackgroundColor)).collect(Collectors.toList());
+        if (!lines.stream().anyMatch(Pattern.compile(MAIN_COLOR_PATTERN).asPredicate())) {
+          lines.add(newMainColor);
+        }
+        if (lines.stream().filter(Pattern.compile(BACKGROUND_COLOR_PATTERN).asPredicate()).count() == 1) {
+          lines.add(newBackgroundColor);
+        }
+        Files.write(path.get(), lines);
       }
       compileThemeLess();
     }
@@ -99,16 +109,24 @@ public class DesignChooserBean {
   }
 
   private String retrieveMainColorFromFile() throws IOException {
-    return retrieveColorValueFromLessFile(MAIN_COLOR_ATTRIBUTE + ANY_CHARACTERS_REGEX);
+    return retrieveColorValueFromLessFile(MAIN_COLOR_PATTERN);
   }
 
   private String retrieveBackgroundColorFromFile() throws IOException {
-    return retrieveColorValueFromLessFile(BACKGROUND_COLOR_ATTRIBUTE + ANY_CHARACTERS_REGEX);
+    return retrieveColorValueFromLessFile(BACKGROUND_COLOR_PATTERN);
   }
 
   private String retrieveColorValueFromLessFile(String pattern) throws IOException {
+    String color = retrieveColorValueFromLessFile(pattern, CUSTOMIZATION_LESS_PATH);
+    if (StringUtils.isBlank(color)) {
+      color = retrieveColorValueFromLessFile(pattern, COLORS_LESS_PATH);
+    }
+    return color;
+  }
+
+  private String retrieveColorValueFromLessFile(String pattern, String resource) throws IOException {
     String color = StringUtils.EMPTY;
-    Optional<Path> path = loader.findResource(COLORS_LESS_PATH);
+    Optional<Path> path = loader.findResource(resource);
     if (path.isPresent()) {
       try (Stream<String> lines = Files.lines(path.get())) {
         Pattern p = Pattern.compile(pattern);
