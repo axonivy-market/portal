@@ -21,6 +21,7 @@
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.portallogosandcolors.changeportalbackground">
 		<title>Change Portal styles</title>
+		<para>Portal administrators can change logos and colors by GUI, refer to <link linkend="axonivyportal.settings.adminsettings.changelogosandcolors" endterm="axonivyportal.settings.adminsettings.changelogosandcolors.title" /></para>
 		<para>
 			Portal applies <link xlink:show="new" xlink:href="http://lesscss.org">LESS</link> framework to support you in customizing the styles of Portal. There are 3 files: <code>theme.less</code> (shouldn't be customized), <code>font-faces.less</code>, <code>customization.less</code>, they are placed at <code>PortalStyle/webContent/resources/less</code>.
 			<itemizedlist>
