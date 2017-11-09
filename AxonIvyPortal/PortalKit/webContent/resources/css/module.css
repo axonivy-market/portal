@@ -2244,7 +2244,7 @@ a.case-details-document-add-link {
 }
 
 .filter-name-overlay-panel .filter-type-label {
-   font-size: 12px; 
+   font-size: 1.2rem; 
    text-align: left; 
    padding: 10px 0 10px 6px;
    color: rgba(0,0,0,0.6);
