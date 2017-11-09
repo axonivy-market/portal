@@ -39,6 +39,7 @@ public final class CaseUtils {
   /** default key to store case details process start link in ICase object */
   public static final String CASE_DETAIL_PROCESS = "CASE_DETAIL_PROCESS";
   private static String fullNameFormat = "%s (%s)";
+  private static final String HIDE = "HIDE";
 
   /**
    * This function is o find the running case of session user by process category
@@ -667,5 +668,21 @@ public final class CaseUtils {
       Ivy.log().error(e);
     }
     return null;
+  }
+  
+  /**
+   * Sets the "HIDE" additional property to the given case to hide it in case list of Portal.
+   * @param iCase
+   */
+  public static void setHidePropertyToHideInPortal(ICase iCase) {
+    iCase.setAdditionalProperty(HIDE, HIDE);
+  }
+  
+  /**
+   * Removes the "HIDE" additional property to the given case to display it in case list of Portal.
+   * @param iCase
+   */
+  public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
+    iCase.setAdditionalProperty(HIDE, null);
   }
 }
