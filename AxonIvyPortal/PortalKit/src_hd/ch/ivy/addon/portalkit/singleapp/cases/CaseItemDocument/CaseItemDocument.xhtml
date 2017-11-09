@@ -45,11 +45,13 @@
     <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocument')}" modal="true" resizable="false"
       showEffect="fade" hideEffect="fade" width="800">
-      <p:messages id="upload-messages" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
-      <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
-        mode="advanced" dragDropSupport="true" multiple="true" update="upload-messages case-details-documents"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" auto="true" />
+      <h:form id="document-upload-form">
+        <p:messages id="upload-messages" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
+        <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
+          mode="advanced" dragDropSupport="true" multiple="true" update="#{cc.clientId}:document-upload-form:upload-messages #{cc.clientId}:case-details-documents"
+          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" auto="true" />
+      </h:form>
 
       <f:facet name="footer">
         <p:commandButton id="document-upload-close-command" type="button"
@@ -57,7 +59,7 @@
           onclick="PF('document-upload-dialog').hide(); scrollDocumentsToBottom()">
         </p:commandButton>
       </f:facet>
-      <p:ajax event="close" listener="#{logic.resetDataUploadDialog()}" update="upload-messages" global="false" />
+      <p:ajax event="close" listener="#{logic.resetDataUploadDialog()}" update="#{cc.clientId}:document-upload-form:upload-messages" global="false" />
     </p:dialog>
 
     <p:confirmDialog widgetVar="document-deletion-dialog"
