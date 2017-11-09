@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class CasePage extends TemplatePage {
   private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
@@ -85,5 +86,28 @@ public class CasePage extends TemplatePage {
   public boolean isCaseDisplayed(String name) {
     List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");
     return caseNameElements.stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
+  }
+  
+
+  public void openAdvancedFilter(String filterName, String filterIdName) {
+    click(By.id("case-widget:filter-add-action"));
+    WebElement filterSelectionElement = findElementById("case-widget:filter-add-form:filter-selection");
+    findChildElementsByTagName(filterSelectionElement, "LABEL").forEach(filterElement -> {
+      if (filterName.equals(filterElement.getText())) {
+        filterElement.click();
+        return;
+      }
+    });
+    waitForElementDisplayed(
+        By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
+  }
+
+  public void filterByDescription(String text) {
+    click(By.cssSelector("button[id$='description-filter:filter-open-form:advanced-filter-command']"));
+    WebElement descriptionInput =
+        findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
+    enterKeys(descriptionInput, text);
+    click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
+    Sleeper.sleepTight(2000);
   }
 }
