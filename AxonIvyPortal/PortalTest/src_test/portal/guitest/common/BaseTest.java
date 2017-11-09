@@ -40,6 +40,7 @@ public class BaseTest extends SeleneseTestBase {
     destroyAllTasksCases();
     cleanAllFavoriteProcesses();
     updatePermissionOfTestUsers();
+    cleanUpGlobalVariables();
   }
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
@@ -104,6 +105,15 @@ public class BaseTest extends SeleneseTestBase {
   public void grantAllPermissionsToCurrentUser() {
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantAllPermissionsToCurrentUser.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+  
+  public void cleanUpGlobalVariables(){
+    String cleanUpURL = "PortalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";
+    redirectToRelativeLink(cleanUpURL);
+  }
+  
+  public void refreshPage(){
+    browser.getDriver().navigate().refresh();
   }
 
 }
