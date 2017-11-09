@@ -57,6 +57,17 @@
                 </ui:insert>
               </ui:fragment>
             </f:facet>
+            
+            <f:facet name="caseFilter">
+              <ui:fragment rendered="#{useOverrideFilter}">
+                <ui:insert name="caseFilter">
+                </ui:insert>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{not useOverrideFilter}">
+                <ic:ch.ivy.addon.portalkit.component.cases.filter.DefaultCaseFilters dataModel="#{caseView.getDataModel()}" />
+              </ui:fragment>
+            </f:facet>
           </ic:ch.ivy.addon.portalkit.component.CaseWidget>
         </div>
       </div>

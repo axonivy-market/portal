@@ -11,12 +11,18 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
+import javax.faces.event.ValueChangeEvent;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.casefilter.CaseFilter;
+import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
+import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
@@ -26,6 +32,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   private static final int BUFFER_LOAD = 10;
@@ -40,6 +47,10 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   private CaseQueryCriteria queryCriteria;
   private Long serverId;
 
+  protected List<CaseFilter> filters;
+  protected List<CaseFilter> selectedFilters;
+  protected CaseFilterContainer filterContainer;
+
   public CaseLazyDataModel() {
     this("case-widget");
   }
@@ -49,6 +60,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     data = new ArrayList<>();
     displayedCaseMap = new HashMap<>();
     notDisplayedCaseMap = new HashMap<>();
+    selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
     searchCriteria = buildSearchCriteria();
     queryCriteria = buildQueryCriteria();
@@ -74,6 +86,38 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     return displayedCases;
   }
 
+  /**
+   * <p>
+   * Initialize CaseFilterContainer with your customized CaseFilterContainer class.
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * filterContainer = new CustomizedCaseFilterContainer();
+   * </pre></code>
+   * </p>
+   * 
+   * @return
+   */
+  protected void initFilterContainer() {
+    filterContainer = new DefaultCaseFilterContainer();
+  }
+
+  public void initFilters() {
+    if (filterContainer == null) {
+      initFilterContainer();
+      filters = filterContainer.getFilters();
+      setValuesForCaseStateFilter(queryCriteria);
+    }
+  }
+
+  private void setValuesForCaseStateFilter(CaseQueryCriteria criteria) {
+    if (filterContainer != null) {
+      filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
+      filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
+      filterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(criteria.getIncludedStates());
+    }
+  }
+
   private Optional<Comparator<? super RemoteCase>> getComparatorForSorting() {
     Comparator<? super RemoteCase> comparator = null;
     if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
@@ -97,7 +141,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   private Function<RemoteCase, String> caseCreator() {
     return remoteCase -> {
-      if(StringUtils.isNotEmpty(remoteCase.getCreatorFullName())) {
+      if (StringUtils.isNotEmpty(remoteCase.getCreatorFullName())) {
         return remoteCase.getCreatorFullName();
       }
       return remoteCase.getCreatorUserName();
@@ -119,8 +163,9 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       startIndex = 0;
       count = first + pageSize;
     }
-    List<RemoteCase> cases = findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}",
-        new Object[] { startIndex, count, criteria, serverId });
+    List<RemoteCase> cases =
+        findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}", new Object[] {startIndex,
+            count, criteria, serverId});
     return cases;
   }
 
@@ -150,14 +195,31 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     }
   }
 
+  @SuppressWarnings("unchecked")
+  public void onFilterChange(ValueChangeEvent event) {
+    List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
+    List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
+    List<CaseFilter> toggleFilters =
+        (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    if (CollectionUtils.isNotEmpty(toggleFilters)) {
+      toggleFilters.get(0).resetValues();
+    }
+  }
+
+  public void removeFilter(CaseFilter filter) {
+    filter.resetValues();
+    selectedFilters.remove(filter);
+  }
+
   private GlobalCaseId globalCaseId(RemoteCase oneCase) {
     return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId(), oneCase.isBusinessCase());
   }
 
   private int getCaseCount(CaseSearchCriteria criteria) {
     IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
-    Long caseCount = countCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.countCases}",
-        new Object[] { criteria, serverId });
+    Long caseCount =
+        countCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.countCases}", new Object[] {criteria,
+            serverId});
     return caseCount.intValue();
   }
 
@@ -195,24 +257,27 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   }
 
   public void setKeyword(String keyWord) {
-	  queryCriteria.setKeyword(keyWord.trim());
+    queryCriteria.setKeyword(keyWord.trim());
   }
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-	searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
-    if (ignoreInvolvedUser) {
-    queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+    searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
+    if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(CaseState.DONE)) {
+      queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+      setValuesForCaseStateFilter(queryCriteria);
     }
   }
 
   public void setTaskId(Long taskId) {
-	queryCriteria.setTaskId(taskId);
-	queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+    queryCriteria.setTaskId(taskId);
+    queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+    setValuesForCaseStateFilter(queryCriteria);
   }
 
   public void setCaseId(Long caseId) {
-	queryCriteria.setCaseId(caseId);
-	queryCriteria.setIncludedStates(new ArrayList<>());
+    queryCriteria.setCaseId(caseId);
+    queryCriteria.setIncludedStates(new ArrayList<>());
+    setValuesForCaseStateFilter(queryCriteria);
   }
 
   public void setServerId(Long serverId) {
@@ -220,7 +285,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   }
 
   public void setInvolvedApplications(String... involvedApplications) {
-	  searchCriteria.setInvolvedApplications(involvedApplications);
+    searchCriteria.setInvolvedApplications(involvedApplications);
   }
 
   public String getSortField() {
@@ -236,13 +301,13 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   }
 
   public void getQueryCriteria(CaseQueryCriteria queryCriteria) {
-	  this.queryCriteria = queryCriteria;
+    this.queryCriteria = queryCriteria;
   }
-  
+
   public CaseQueryCriteria setQueryCriteria() {
-	  return queryCriteria;
+    return queryCriteria;
   }
-  
+
   protected CaseQueryCriteria buildQueryCriteria() {
     CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
     jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING)));
@@ -250,7 +315,31 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     jsonQueryCriteria.setSortDescending(true);
     return jsonQueryCriteria;
   }
-  
+
+  public List<CaseFilter> getFilters() {
+    return filters;
+  }
+
+  public void setFilters(List<CaseFilter> filters) {
+    this.filters = filters;
+  }
+
+  public CaseFilterContainer getFilterContainer() {
+    return filterContainer;
+  }
+
+  public void setFilterContainer(CaseFilterContainer filterContainer) {
+    this.filterContainer = filterContainer;
+  }
+
+  public List<CaseFilter> getSelectedFilters() {
+    return selectedFilters;
+  }
+
+  public void setSelectedFilters(List<CaseFilter> selectedFilters) {
+    this.selectedFilters = selectedFilters;
+  }
+
   /**
    * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
    */
@@ -263,14 +352,25 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
           StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
       queryCriteria.setCaseQuery(customizedCaseQuery);
     }
-
+    if (selectedFilters.contains(filterContainer.getStateFilter())) {
+      queryCriteria.setIncludedStates(new ArrayList<>());
+    } else {
+      queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
+    }
     CaseQuery caseQuery = buildCaseQuery();
     searchCriteria.setJsonQuery(caseQuery.asJson());
   }
-  
+
   private CaseQuery buildCaseQuery() {
     CaseQuery caseQuery = CaseQueryService.service().createQuery(queryCriteria);
+    IFilterQuery filterQuery = caseQuery.where();
+    selectedFilters.forEach(selectedFilter -> {
+      CaseQuery subQuery = selectedFilter.buildQuery();
+      if (subQuery != null) {
+        filterQuery.and(subQuery);
+      }
+    });
     return caseQuery;
   }
-  
+
 }

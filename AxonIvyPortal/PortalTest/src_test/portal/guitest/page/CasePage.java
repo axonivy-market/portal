@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 public class CasePage extends TemplatePage {
   private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
   private static final String CASE_NAME_CSS_SELECTOR = "span[class='case-header-name-cell']";
-  private final static String CASE_PAGE_LOCATION = "id('case-widget:case-widget-form')";
+  private final static String CASE_PAGE_LOCATION = "id('case-widget:case-list')";
 
   @Override
   protected String getLoadedLocator() {
@@ -78,7 +78,7 @@ public class CasePage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("*[id$='case-widget:case-list']"), true);
     WebElement selectedCaseElement = findElementByCssSelector(".case-list-item-expanded");
     WebElement selectedCaseNameElement =
-        findElementById(selectedCaseElement.getAttribute("id") + ":case-header:case-name-edit-inplace");
+        findElementById(selectedCaseElement.getAttribute("id") + ":case-header:case-name-form:case-name-edit-inplace");
     return selectedCaseNameElement.getText();
   }
   
