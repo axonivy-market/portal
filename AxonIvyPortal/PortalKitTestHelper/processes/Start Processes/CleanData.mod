@@ -37,6 +37,11 @@ Ca0 @GridStep f16 '' #zField
 Ca0 @PushWFArc f18 '' #zField
 Ca0 @EndTask f17 '' #zField
 Ca0 @PushWFArc f19 '' #zField
+Ca0 @StartRequest f20 '' #zField
+Ca0 @EndTask f21 '' #zField
+Ca0 @GridStep f23 '' #zField
+Ca0 @PushWFArc f24 '' #zField
+Ca0 @PushWFArc f22 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
 Ca0 f0 type portalKit_test.Data #txt
@@ -292,6 +297,54 @@ Ca0 f17 723 275 26 26 14 0 #rect
 Ca0 f17 @|EndIcon #fIcon
 Ca0 f19 expr out #txt
 Ca0 f19 736 204 736 275 #arcP
+Ca0 f20 outLink cleanupGlobalVars.ivp #txt
+Ca0 f20 type portalKit_test.Data #txt
+Ca0 f20 inParamDecl '<> param;' #txt
+Ca0 f20 actionDecl 'portalKit_test.Data out;
+' #txt
+Ca0 f20 guid 15F9B59618135CB9 #txt
+Ca0 f20 requestEnabled true #txt
+Ca0 f20 triggerEnabled false #txt
+Ca0 f20 callSignature cleanupGlobalVars() #txt
+Ca0 f20 persist false #txt
+Ca0 f20 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Ca0 f20 caseData businessCase.attach=true #txt
+Ca0 f20 showInStartList 1 #txt
+Ca0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cleanupGlobalVars</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f20 @C|.responsibility Everybody #txt
+Ca0 f20 849 81 30 30 -57 -32 #rect
+Ca0 f20 @|StartRequestIcon #fIcon
+Ca0 f21 type portalKit_test.Data #txt
+Ca0 f21 849 273 30 30 0 15 #rect
+Ca0 f21 @|EndIcon #fIcon
+Ca0 f23 actionDecl 'portalKit_test.Data out;
+' #txt
+Ca0 f23 actionTable 'out=in;
+' #txt
+Ca0 f23 actionCode 'import ch.ivy.addon.portalkit.persistence.dao.GlobalSettingDao;
+GlobalSettingDao dao = new GlobalSettingDao();
+dao.deleteAll(dao.findAll());' #txt
+Ca0 f23 security system #txt
+Ca0 f23 type portalKit_test.Data #txt
+Ca0 f23 808 170 112 44 0 -8 #rect
+Ca0 f23 @|StepIcon #fIcon
+Ca0 f24 expr out #txt
+Ca0 f24 864 111 864 170 #arcP
+Ca0 f22 expr out #txt
+Ca0 f22 864 214 864 273 #arcP
 >Proto Ca0 .type portalKit_test.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -316,3 +369,7 @@ Ca0 f15 mainOut f18 tail #connect
 Ca0 f18 head f16 mainIn #connect
 Ca0 f16 mainOut f19 tail #connect
 Ca0 f19 head f17 mainIn #connect
+Ca0 f20 mainOut f24 tail #connect
+Ca0 f24 head f23 mainIn #connect
+Ca0 f23 mainOut f22 tail #connect
+Ca0 f22 head f21 mainIn #connect
