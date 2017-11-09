@@ -317,6 +317,9 @@
 						<imagedata fileref="images/Settings/admin-design-tab.png" />
 					</imageobject>
 				</mediaobject>
+				<warning>
+					If you change colors on Google Chrome browser, please reload page with no cache to get new colors.
+				</warning>
 			</para>
 		</sect2>
 	</sect1>
