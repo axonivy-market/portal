@@ -175,7 +175,7 @@
 			Override the <code>BuildCaseJsonQuery</code> callable process of PortalKit and build your own query to effect the data of case widget.
 		</para>
 		<para>
-			Apply the following steps in case you would like to provide data for case list:
+			Apply the following steps in case you would like to provide data for case list after navigating to case list from your page:
 			<itemizedlist>
 				<listitem>
 					<para>Use the <code>OpenPortalCases</code> callable process with the <code>CaseView</code> parameter. It is used to define which information are displayed in CaseWidget.</para>
