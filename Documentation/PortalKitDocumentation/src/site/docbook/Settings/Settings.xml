@@ -308,6 +308,17 @@
 				</orderedlist>
 			</para>
 		</sect2>
+		<sect2 xml:id="axonivyportal.settings.adminsettings.changelogosandcolors">
+			<title xml:id="axonivyportal.settings.adminsettings.changelogosandcolors.title">Change logos and colors</title>
+			<para>
+				Open the "Design" tab and you can upload new logos or change new colors.
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/admin-design-tab.png" />
+					</imageobject>
+				</mediaobject>
+			</para>
+		</sect2>
 	</sect1>
 	<sect1 xml:id="axonivyportal.settings.absenceandsubstitutesettings">
 		<title xml:id="axonivyportal.settings.absenceandsubstitutesettings.title">Absence and substitute settings</title>
