@@ -6,6 +6,7 @@
     /Functional-Processes.LogoutPage "Functional Processes/LogoutPageOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
     /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"
+    /Functional-Processes.BuildCaseJsonQuery "Functional Processes/BuildCaseJsonQueryOverride"
   }
   /RICH_DIALOG *
 }
