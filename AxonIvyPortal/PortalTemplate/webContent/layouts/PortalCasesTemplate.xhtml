@@ -12,7 +12,7 @@
     <ui:define name="pageContent">
       <div class="js-case-default-widget-container case-default-widget-container">
         <div class="js-simple-main-col case-main-container">
-          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}"
+          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{data.caseView.getTitle() != '' ? data.caseView.getTitle() : ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}"
             dataModel="#{caseView.getDataModel()}" hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"
             autoSelectCaseId="#{caseView.getAutoSelectCaseId()}">
             <f:facet name="caseHeader">
