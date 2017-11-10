@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jan 03 13:34:41 ICT 2017]
-152E8EDB33C1BDC1 3.18 #module
+152E8EDB33C1BDC1 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -39,7 +38,6 @@ Cs0 @CallSub f21 '' #zField
 Cs0 @PushWFArc f22 '' #zField
 Cs0 @RichDialogProcessEnd f26 '' #zField
 Cs0 @RichDialogProcessEnd f27 '' #zField
-Cs0 @PushWFArc f28 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f30 '' #zField
 Cs0 @GridStep f31 '' #zField
@@ -55,6 +53,7 @@ Cs0 @GridStep f35 '' #zField
 Cs0 @RichDialogProcessEnd f36 '' #zField
 Cs0 @PushWFArc f38 '' #zField
 Cs0 @PushWFArc f39 '' #zField
+Cs0 @PushWFArc f28 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
@@ -344,8 +343,6 @@ Cs0 f26 @|RichDialogProcessEndIcon #fIcon
 Cs0 f27 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f27 469 693 22 22 14 0 #rect
 Cs0 f27 @|RichDialogProcessEndIcon #fIcon
-Cs0 f28 expr out #txt
-Cs0 f28 370 608 469 608 #arcP
 Cs0 f29 expr out #txt
 Cs0 f29 75 704 334 704 #arcP
 Cs0 f30 expr out #txt
@@ -479,6 +476,8 @@ Cs0 f38 expr out #txt
 Cs0 f38 75 792 270 792 #arcP
 Cs0 f39 expr out #txt
 Cs0 f39 306 792 469 792 #arcP
+Cs0 f28 expr out #txt
+Cs0 f28 370 608 469 608 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
