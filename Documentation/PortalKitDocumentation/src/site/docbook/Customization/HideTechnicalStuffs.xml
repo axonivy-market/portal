@@ -18,7 +18,7 @@
 			<para>ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.util.HIDE, [ANY_VALUE])</para>
 		</tip>
 	</sect2>
-		<sect2>
+	<sect2>
 		<title>Hide technical tasks</title>
 		<para>
 			A technical task is the task which is not displayed in any task lists of Portal.
@@ -36,6 +36,31 @@
 				</listitem>
 				<listitem>
 					<para>Remove property: ch.ivy.addon.portalkit.util.TaskUtils.removeHidePropertyToDisplayInPortal(ITask)</para>
+				</listitem>
+			</itemizedlist>
+		</tip>
+	</sect2>
+	<sect2>
+		<title>Hide technical cases</title>
+		<para>
+			A technical case is the case which is not displayed in any case lists of Portal.
+		</para>
+		<para>
+			Tasks belong to the technical case is considered as technical tasks and should be hide as well.
+		</para>
+		<para>
+			To mark a case as a technical case, set the
+			<emphasis role="strong">HIDE</emphasis>
+			additional property with any value to the case.
+		</para>
+		<tip>
+			<para>Use the utility methods of Portal:</para>
+			<itemizedlist>
+				<listitem>
+					<para>Set property: ch.ivy.addon.portalkit.util.CaseUtils.setHidePropertyToHideInPortal(ICase)</para>
+				</listitem>
+				<listitem>
+					<para>Remove property: ch.ivy.addon.portalkit.util.CaseUtils.removeHidePropertyToDisplayInPortal(ICase)</para>
 				</listitem>
 			</itemizedlist>
 		</tip>
