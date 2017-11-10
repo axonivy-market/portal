@@ -13,6 +13,8 @@ import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -22,14 +24,21 @@ import ch.ivyteam.ivy.security.IUser;
 public class TaskWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
-
+  private static final int DEFAULT_TASK_LIST_REFRESH_INTERVAL = 59;
+  private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private TaskLazyDataModel dataModel;
+  private Boolean isTaskDetailOpenning;
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
     dataModel = new TaskLazyDataModel();
     dataModel.setCompactMode(true);
+    String taskListRefreshIntervalUserSetting =
+        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL);
+    taskListRefreshInterval =
+        StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
+            : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
   }
 
   public Long getExpandedTaskId() {
@@ -38,11 +47,14 @@ public class TaskWidgetBean implements Serializable {
 
   public void setExpandedTaskId(Long expandedTaskId, boolean alreadyExpanded) {
     if (alreadyExpanded) {
+      setIsTaskDetailOpenning(false);
       this.expandedTaskId = 0L;
     } else {
+      setIsTaskDetailOpenning(true);
       this.expandedTaskId = expandedTaskId;
     }
   }
+  
 
   public TaskLazyDataModel getDataModel() {
     return dataModel;
@@ -62,7 +74,7 @@ public class TaskWidgetBean implements Serializable {
 
   public String createTaskDescriptionInTaskStart(String text) {
     String extractedText = extractTextFromHtml(text);
-    if(StringUtils.isBlank(extractedText)) {
+    if (StringUtils.isBlank(extractedText)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskDescriptionNotAvailable");
     }
     return extractedText;
@@ -92,5 +104,18 @@ public class TaskWidgetBean implements Serializable {
         return false;
       }
     }
+  }
+
+  public Long getTaskListRefreshInterval() {
+    Ivy.log().error("REFRESH TASK LIST {0}", taskListRefreshInterval);
+    return taskListRefreshInterval;
+  }
+
+  public Boolean getIsTaskDetailOpenning() {
+    return isTaskDetailOpenning;
+  }
+
+  public void setIsTaskDetailOpenning(Boolean isTaskDetailOpenning) {
+    this.isTaskDetailOpenning = isTaskDetailOpenning;
   }
 }

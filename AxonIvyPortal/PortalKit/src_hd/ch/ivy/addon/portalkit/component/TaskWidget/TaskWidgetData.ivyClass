@@ -36,3 +36,17 @@ taskPublicFilters List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
 taskPublicFilters PERSISTENT #fieldModifier
 taskPrivateFilters List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
 taskPrivateFilters PERSISTENT #fieldModifier
+currentTaskCount Long #field
+currentTaskCount PERSISTENT #fieldModifier
+latestTasks java.util.List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+latestTasks PERSISTENT #fieldModifier
+latestTaskDate java.util.Date #field
+latestTaskDate PERSISTENT #fieldModifier
+newTaskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+newTaskSearchCriteria PERSISTENT #fieldModifier
+numberOfNewTask Long #field
+numberOfNewTask PERSISTENT #fieldModifier
+scrollPosition Integer #field
+scrollPosition PERSISTENT #fieldModifier
+expandedTaskId Long #field
+expandedTaskId PERSISTENT #fieldModifier
