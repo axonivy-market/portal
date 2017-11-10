@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.Date;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -70,6 +71,16 @@ public class TaskQueryService {
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
     finalQuery = appender.appendSorting(criteria).toQuery();
     return finalQuery;
+  }
+  
+  public TaskQuery findNewTasks(TaskQuery currentQuerry, Date timeStamp){
+    TaskQuery returnQuery = currentQuerry;
+    TaskQuery subQuery = TaskQuery.create();
+    // task when delegate, delegate time will write to customTimestampField5
+    subQuery.where().startTimestamp().isGreaterThan(timeStamp).or().customTimestampField5().isGreaterOrEqualThan(timeStamp);
+    currentQuerry.where().and(subQuery);
+    
+    return returnQuery;
   }
 
   private TaskQuery queryForKeyword(String keyword) {
