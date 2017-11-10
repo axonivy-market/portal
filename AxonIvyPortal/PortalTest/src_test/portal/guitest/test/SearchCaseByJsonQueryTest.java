@@ -22,7 +22,7 @@ public class SearchCaseByJsonQueryTest extends BaseTest {
         LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
         loginPage.login();
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (Exception e) {
             
         }
