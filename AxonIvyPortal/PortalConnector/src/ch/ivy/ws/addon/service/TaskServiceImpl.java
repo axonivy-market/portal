@@ -140,6 +140,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               errors.add(new WSException(WSErrorType.WARNING, 10028, e, userText, null));
             }
             t.setActivator(member);
+            t.setCustomTimestampField5(new Date());
             IvyTask ivyTask = new IvyTaskTransformer(isUrlBuiltFromSystemProperties).transform(t);
             result.setTask(ivyTask);
           }

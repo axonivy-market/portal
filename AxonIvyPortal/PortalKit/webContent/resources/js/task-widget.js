@@ -131,3 +131,8 @@ function TaskListToolKit() {
     }
   }
 };
+function getTaskListScrollPosition() {
+  var scrollPos = $('#task-widget\\:task-view .ui-datascroller-content').scrollTop();
+  var scrollPosInputHidden = $('input[id$=scroll-position]');
+  scrollPosInputHidden.val(scrollPos);
+}
