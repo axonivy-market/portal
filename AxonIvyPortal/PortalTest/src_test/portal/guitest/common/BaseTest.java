@@ -108,7 +108,7 @@ public class BaseTest extends SeleneseTestBase {
   }
   
   public void cleanUpGlobalVariables(){
-    String cleanUpURL = "PortalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";
+    String cleanUpURL = "portalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";
     redirectToRelativeLink(cleanUpURL);
   }
   
