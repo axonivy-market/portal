@@ -20,11 +20,12 @@ public class SearchCaseByJsonQueryTest extends BaseTest {
       
       LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
       loginPage.login();
+      new HomePage();
     }
     
     @Test
     public void testSearchCaseByJsonQuery() {
-        navigateToUrl("internalSupport/15FA421D253C6746/searchByCaseJsonQuery.ivp");
+        redirectToRelativeLink("internalSupport/15FA421D253C6746/searchByCaseJsonQuery.ivp");
         CasePage casePage = new CasePage();
         assertEquals(1, casePage.getNumberOfCases());
     }
