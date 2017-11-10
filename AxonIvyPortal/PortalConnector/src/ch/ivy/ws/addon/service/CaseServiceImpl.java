@@ -528,6 +528,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                 }
 
                 CaseQuery caseQuery = createCaseQuery(caseSearchCriteria);
+                queryExcludeHiddenTasks(caseQuery);
                 List<ICase> cases = executeCaseQuery(caseQuery, startIndex, count);
                 List<IvyCase> ivyCases = new ArrayList<>();
 
@@ -559,6 +560,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         }
 
         CaseQuery caseQuery = createCaseQuery(caseSearchCriteria);
+        queryExcludeHiddenTasks(caseQuery);
         long caseCount = countCases(caseQuery);
         return result(caseCount, errors);
 
@@ -654,4 +656,12 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
 
+  private void queryExcludeHiddenTasks(CaseQuery query) {
+    List<ICase> hiddenCases =
+        executeCaseQuery(CaseQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
+
+    hiddenCases.forEach(hiddenCase -> {
+	      query.where().and().caseId().isNotEqual(hiddenCase.getId());
+	    });
+	  }
 }

@@ -307,7 +307,7 @@ import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.ws.addon.CaseSearchCriteria;
 
-//prepare search criteria for technical csse
+//prepare search criteria for technical case
 if(in.remoteCase.isBusinessCase()) {
 	in.caseSearchCriteria.setTechnicalCase(true);
 	in.caseSearchCriteria.setBusinessCaseId(in.remoteCase.getId());
