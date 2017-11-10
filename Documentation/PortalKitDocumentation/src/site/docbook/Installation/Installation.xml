@@ -842,6 +842,10 @@
 					<listitem>
 						<para>Portal supports client side timeout: informs user when session is about to expire and auto logout when expired.</para>
 					</listitem>
+					<listitem>
+						<para>Hide technical cases (the HIDE additional property is set), so that they and their related task are not displayed
+						in any Portal case lists.</para>
+					</listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
