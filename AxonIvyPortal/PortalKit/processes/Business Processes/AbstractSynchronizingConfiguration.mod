@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Jun 05 10:37:19 ICT 2017]
 150406C1AFBE566B 3.20 #module
 >Proto >Proto Collection #zClass
 An0 AbstractSynchronizingConfiguration Big #zClass
@@ -13,25 +12,17 @@ An0 @MessageFlowInP-0n messageIn messageIn #zField
 An0 @MessageFlowOutP-0n messageOut messageOut #zField
 An0 @TextInP .xml .xml #zField
 An0 @TextInP .responsibility .responsibility #zField
-An0 @EndTask f1 '' #zField
 An0 @StartRequest f0 '' #zField
 An0 @CallSub f5 '' #zField
-An0 @PushWFArc f2 '' #zField
 An0 @CallSub f9 '' #zField
-An0 @EndTask f10 '' #zField
 An0 @StartRequest f12 '' #zField
 An0 @GridStep f13 '' #zField
 An0 @PushWFArc f15 '' #zField
-An0 @PushWFArc f17 '' #zField
 An0 @CallSub f18 '' #zField
-An0 @EndTask f19 '' #zField
 An0 @StartRequest f21 '' #zField
 An0 @GridStep f22 '' #zField
 An0 @PushWFArc f24 '' #zField
-An0 @PushWFArc f26 '' #zField
 An0 @CallSub f31 '' #zField
-An0 @PushWFArc f35 '' #zField
-An0 @EndTask f30 '' #zField
 An0 @StartRequest f27 '' #zField
 An0 @GridStep f7 '' #zField
 An0 @PushWFArc f8 '' #zField
@@ -40,23 +31,25 @@ An0 @PushWFArc f3 '' #zField
 An0 @PushWFArc f4 '' #zField
 An0 @PushWFArc f6 '' #zField
 An0 @StartRequest f11 '' #zField
-An0 @EndTask f14 '' #zField
 An0 @GridStep f20 '' #zField
 An0 @PushWFArc f23 '' #zField
 An0 @CallSub f25 '' #zField
 An0 @PushWFArc f28 '' #zField
-An0 @PushWFArc f16 '' #zField
 An0 @CallSub f32 '' #zField
 An0 @StartRequest f33 '' #zField
-An0 @EndTask f34 '' #zField
 An0 @GridStep f36 '' #zField
 An0 @PushWFArc f37 '' #zField
-An0 @PushWFArc f38 '' #zField
 An0 @PushWFArc f39 '' #zField
+An0 @EndTask f1 '' #zField
+An0 @CallSub f2 '' #zField
+An0 @PushWFArc f10 '' #zField
+An0 @PushWFArc f14 '' #zField
+An0 @PushWFArc f16 '' #zField
+An0 @PushWFArc f17 '' #zField
+An0 @PushWFArc f19 '' #zField
+An0 @PushWFArc f26 '' #zField
+An0 @PushWFArc f30 '' #zField
 >Proto An0 An0 AbstractSynchronizingConfiguration #zField
-An0 f1 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
-An0 f1 51 291 26 26 14 0 #rect
-An0 f1 @|EndIcon #fIcon
 An0 f0 outLink addOrUpdateOne.ivp #txt
 An0 f0 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f0 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity businessEntity> param;' #txt
@@ -118,8 +111,6 @@ configuration data</name>
 ' #txt
 An0 f5 46 228 36 24 19 -2 #rect
 An0 f5 @|CallSubIcon #fIcon
-An0 f2 expr out #txt
-An0 f2 64 252 64 291 #arcP
 An0 f9 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f9 processCall SynchronizeDataProcesses/Synchronizing:addOrUpdateToAllPortalServer(List<ch.ivy.ws.addon.CustomPropertyPair>) #txt
 An0 f9 doCall true #txt
@@ -143,9 +134,6 @@ configuration data</name>
 ' #txt
 An0 f9 302 228 36 24 19 -2 #rect
 An0 f9 @|CallSubIcon #fIcon
-An0 f10 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
-An0 f10 307 291 26 26 14 0 #rect
-An0 f10 @|EndIcon #fIcon
 An0 f12 outLink addOrUpdateMany.ivp #txt
 An0 f12 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f12 inParamDecl '<List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> businessEntities> param;' #txt
@@ -216,8 +204,6 @@ An0 f13 302 164 36 24 20 -2 #rect
 An0 f13 @|StepIcon #fIcon
 An0 f15 expr out #txt
 An0 f15 320 188 320 228 #arcP
-An0 f17 expr out #txt
-An0 f17 320 252 320 291 #arcP
 An0 f18 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f18 processCall SynchronizeDataProcesses/Synchronizing:delete(String) #txt
 An0 f18 doCall true #txt
@@ -241,9 +227,6 @@ configuration data</name>
 ' #txt
 An0 f18 598 228 36 24 19 -2 #rect
 An0 f18 @|CallSubIcon #fIcon
-An0 f19 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
-An0 f19 603 291 26 26 14 0 #rect
-An0 f19 @|EndIcon #fIcon
 An0 f21 outLink delete.ivp #txt
 An0 f21 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f21 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity businessEntity> param;' #txt
@@ -305,8 +288,6 @@ An0 f22 598 164 36 24 20 -2 #rect
 An0 f22 @|StepIcon #fIcon
 An0 f24 expr out #txt
 An0 f24 616 188 616 228 #arcP
-An0 f26 expr out #txt
-An0 f26 616 252 616 291 #arcP
 An0 f31 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f31 processCall SynchronizeDataProcesses/Synchronizing:deleteByPrefix(String) #txt
 An0 f31 doCall true #txt
@@ -330,11 +311,6 @@ configuration data</name>
 ' #txt
 An0 f31 1126 196 36 24 19 -2 #rect
 An0 f31 @|CallSubIcon #fIcon
-An0 f35 expr out #txt
-An0 f35 1144 220 1144 291 #arcP
-An0 f30 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
-An0 f30 1131 291 26 26 14 0 #rect
-An0 f30 @|EndIcon #fIcon
 An0 f27 outLink deleteByPropertyPrefix.ivp #txt
 An0 f27 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f27 inParamDecl '<java.lang.String propertyPrefix> param;' #txt
@@ -444,9 +420,6 @@ An0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 An0 f11 @C|.responsibility Everybody #txt
 An0 f11 819 83 26 26 14 0 #rect
 An0 f11 @|StartRequestIcon #fIcon
-An0 f14 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
-An0 f14 819 291 26 26 14 0 #rect
-An0 f14 @|EndIcon #fIcon
 An0 f20 actionDecl 'ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData out;
 ' #txt
 An0 f20 actionTable 'out=in;
@@ -494,8 +467,6 @@ An0 f25 814 228 36 24 20 -2 #rect
 An0 f25 @|CallSubIcon #fIcon
 An0 f28 expr out #txt
 An0 f28 832 188 832 228 #arcP
-An0 f16 expr out #txt
-An0 f16 832 252 832 291 #arcP
 An0 f32 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f32 processCall SynchronizeDataProcesses/Synchronizing:deleteThenUpdateToAllServer(List<ch.ivy.ws.addon.CustomPropertyPair>,String) #txt
 An0 f32 doCall true #txt
@@ -559,9 +530,6 @@ An0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 An0 f33 @C|.responsibility Everybody #txt
 An0 f33 1389 86 26 26 14 0 #rect
 An0 f33 @|StartRequestIcon #fIcon
-An0 f34 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
-An0 f34 1389 294 26 26 14 0 #rect
-An0 f34 @|EndIcon #fIcon
 An0 f36 actionDecl 'ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData out;
 ' #txt
 An0 f36 actionTable 'out=in;
@@ -594,26 +562,71 @@ An0 f36 1384 167 36 24 20 -2 #rect
 An0 f36 @|StepIcon #fIcon
 An0 f37 expr out #txt
 An0 f37 1402 112 1402 167 #arcP
-An0 f38 expr out #txt
-An0 f38 1402 255 1402 294 #arcP
 An0 f39 expr out #txt
 An0 f39 1402 191 1402 231 #arcP
+An0 f1 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
+An0 f1 817 449 30 30 0 15 #rect
+An0 f1 @|EndIcon #fIcon
+An0 f2 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
+An0 f2 processCall 'Functional Processes/HideSystemCase:call(Long,Boolean)' #txt
+An0 f2 doCall true #txt
+An0 f2 requestActionDecl '<java.lang.Long serverId,java.lang.Boolean hideBusinessCase> param;
+' #txt
+An0 f2 requestMappingAction 'param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
+param.hideBusinessCase=true;
+' #txt
+An0 f2 responseActionDecl 'ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData out;
+' #txt
+An0 f2 responseMappingAction 'out=in;
+' #txt
+An0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HideSystemCase</name>
+        <nameStyle>14,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+An0 f2 776 362 112 44 -48 -8 #rect
+An0 f2 @|CallSubIcon #fIcon
+An0 f10 expr out #txt
+An0 f10 832 406 832 449 #arcP
+An0 f14 expr out #txt
+An0 f14 1402 255 832 362 #arcP
+An0 f14 1 1402 320 #addKink
+An0 f14 2 832 320 #addKink
+An0 f14 1 0.48614312620238526 0 0 #arcLabel
+An0 f16 expr out #txt
+An0 f16 1144 220 832 362 #arcP
+An0 f16 1 1144 320 #addKink
+An0 f16 2 832 320 #addKink
+An0 f16 1 0.39768526930435627 0 0 #arcLabel
+An0 f17 expr out #txt
+An0 f17 832 252 832 362 #arcP
+An0 f19 expr out #txt
+An0 f19 64 252 832 362 #arcP
+An0 f19 1 64 320 #addKink
+An0 f19 2 832 320 #addKink
+An0 f19 1 0.4916615661999511 0 0 #arcLabel
+An0 f26 expr out #txt
+An0 f26 320 252 832 362 #arcP
+An0 f26 1 320 320 #addKink
+An0 f26 2 832 320 #addKink
+An0 f26 1 0.4792193018400009 0 0 #arcLabel
+An0 f30 expr out #txt
+An0 f30 616 252 832 362 #arcP
+An0 f30 1 616 320 #addKink
+An0 f30 2 832 320 #addKink
+An0 f30 1 0.4740907640860542 0 0 #arcLabel
 >Proto An0 .type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 >Proto An0 .processKind NORMAL #txt
 >Proto An0 0 0 32 24 18 0 #rect
 >Proto An0 @|BIcon #fIcon
-An0 f5 mainOut f2 tail #connect
-An0 f2 head f1 mainIn #connect
 An0 f13 mainOut f15 tail #connect
 An0 f15 head f9 mainIn #connect
-An0 f9 mainOut f17 tail #connect
-An0 f17 head f10 mainIn #connect
 An0 f22 mainOut f24 tail #connect
 An0 f24 head f18 mainIn #connect
-An0 f18 mainOut f26 tail #connect
-An0 f26 head f19 mainIn #connect
-An0 f31 mainOut f35 tail #connect
-An0 f35 head f30 mainIn #connect
 An0 f8 head f5 mainIn #connect
 An0 f7 mainOut f8 tail #connect
 An0 f0 mainOut f29 tail #connect
@@ -628,11 +641,21 @@ An0 f11 mainOut f23 tail #connect
 An0 f23 head f20 mainIn #connect
 An0 f20 mainOut f28 tail #connect
 An0 f28 head f25 mainIn #connect
-An0 f25 mainOut f16 tail #connect
-An0 f16 head f14 mainIn #connect
 An0 f36 mainOut f39 tail #connect
 An0 f39 head f32 mainIn #connect
-An0 f32 mainOut f38 tail #connect
-An0 f38 head f34 mainIn #connect
 An0 f33 mainOut f37 tail #connect
 An0 f37 head f36 mainIn #connect
+An0 f2 mainOut f10 tail #connect
+An0 f10 head f1 mainIn #connect
+An0 f32 mainOut f14 tail #connect
+An0 f14 head f2 mainIn #connect
+An0 f31 mainOut f16 tail #connect
+An0 f16 head f2 mainIn #connect
+An0 f25 mainOut f17 tail #connect
+An0 f17 head f2 mainIn #connect
+An0 f5 mainOut f19 tail #connect
+An0 f19 head f2 mainIn #connect
+An0 f9 mainOut f26 tail #connect
+An0 f26 head f2 mainIn #connect
+An0 f18 mainOut f30 tail #connect
+An0 f30 head f2 mainIn #connect
