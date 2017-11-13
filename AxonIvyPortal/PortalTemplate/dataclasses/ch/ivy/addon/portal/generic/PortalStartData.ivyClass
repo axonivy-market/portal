@@ -11,3 +11,4 @@ selectedTaskId Number #field
 compactMode Boolean #field
 callbackUrl String #field
 isDataModelInitialized Boolean #field
+caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
