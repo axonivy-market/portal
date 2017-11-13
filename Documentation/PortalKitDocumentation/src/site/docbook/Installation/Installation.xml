@@ -754,6 +754,9 @@
 						<para>Hide technical cases (the HIDE additional property is set), so that they and their related task are not displayed
 						in any Portal case lists.</para>
 					</listitem>
+					<listitem>
+						<para>More search criteria for user in Case list are added and allowed to customize.</para>
+					</listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
