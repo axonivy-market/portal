@@ -1,0 +1,5 @@
+co: name={cockpit} description={} changed={2017-11-13 03:52:58 GMT} changedby={anhnguyenhoang} visualorder={0} guid={15FB3819173EDB0D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FB38192A8829CD} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-13 03:52:14 GMT} validto={} changed={2017-11-13 03:52:14 GMT} changedby={anhnguyenhoang} properties={} id={}
+val: guid={15FB381929B657D9} datatype={} isdefault={false} langid={de_CH} description={} validfrom={2017-11-13 03:52:14 GMT} validto={} changed={2017-11-13 03:52:14 GMT} changedby={anhnguyenhoang} properties={} id={}
+val: guid={15FB38192A05553B} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-13 03:52:14 GMT} validto={} changed={2017-11-13 03:52:14 GMT} changedby={anhnguyenhoang} properties={} id={}
+val: guid={15FB381929048343} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-13 03:52:14 GMT} validto={} changed={2017-11-13 03:52:14 GMT} changedby={anhnguyenhoang} properties={} id={}
