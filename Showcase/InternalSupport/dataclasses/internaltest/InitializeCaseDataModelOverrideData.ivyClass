@@ -1,0 +1,3 @@
+InitializeCaseDataModelOverrideData #class
+internaltest #namespace
+dataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
