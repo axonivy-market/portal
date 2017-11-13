@@ -26,3 +26,5 @@ autoCompleteQuery String #field
 autoCompleteQuery PERSISTENT #fieldModifier
 selectedActor ch.ivyteam.ivy.security.IUser #field
 selectedActor PERSISTENT #fieldModifier
+isValidated Boolean #field
+isValidated PERSISTENT #fieldModifier
