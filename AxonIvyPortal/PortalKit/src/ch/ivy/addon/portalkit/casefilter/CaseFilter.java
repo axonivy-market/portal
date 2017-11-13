@@ -37,7 +37,7 @@ public abstract class CaseFilter {
    * </p>
    * <p>
    * <b>Format: </b> <br/>
-   * To make it consistent on UI, use the constants in TaskFilter to display.<br/>
+   * To make it consistent on UI, use the constants in CaseFilter to display.<br/>
    * Return the constant ALL if filtered values are empty or full list of suggestion selections.
    * </p>
    * 
