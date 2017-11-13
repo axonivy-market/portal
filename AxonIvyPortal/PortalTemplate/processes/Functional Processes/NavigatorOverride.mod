@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Aug 07 15:27:01 ICT 2017]
 1543D9E65076619B 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
@@ -18,7 +17,6 @@ Nr0 @EndSub f1 '' #zField
 Nr0 @CallSub f5 '' #zField
 Nr0 @PushWFArc f2 '' #zField
 Nr0 @GridStep f7 '' #zField
-Nr0 @PushWFArc f8 '' #zField
 Nr0 @PushWFArc f6 '' #zField
 Nr0 @EndSub f10 '' #zField
 Nr0 @CallSub f12 '' #zField
@@ -33,6 +31,9 @@ Nr0 @AnnotationArc f22 '' #zField
 Nr0 @CallSub f16 '' #zField
 Nr0 @PushWFArc f17 '' #zField
 Nr0 @PushWFArc f15 '' #zField
+Nr0 @CallSub f18 '' #zField
+Nr0 @PushWFArc f19 '' #zField
+Nr0 @PushWFArc f8 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 inParamTable 'out.caseId=param.caseId;
@@ -56,7 +57,7 @@ Nr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Nr0 f0 51 83 26 26 14 0 #rect
 Nr0 f0 @|StartSubIcon #fIcon
 Nr0 f1 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f1 51 387 26 26 14 0 #rect
+Nr0 f1 51 403 26 26 14 0 #rect
 Nr0 f1 @|EndSubIcon #fIcon
 Nr0 f5 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f5 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
@@ -78,10 +79,10 @@ Nr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Nr0 f5 46 260 36 24 20 -2 #rect
+Nr0 f5 46 340 36 24 20 -2 #rect
 Nr0 f5 @|CallSubIcon #fIcon
 Nr0 f2 expr out #txt
-Nr0 f2 64 284 64 387 #arcP
+Nr0 f2 64 364 64 403 #arcP
 Nr0 f7 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f7 actionTable 'out=in;
@@ -91,9 +92,9 @@ import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portal.generic.view.CaseView;
 
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", Arrays.asList(in.caseId.id().toString(), in.caseName));
-CaseLazyDataModel dataModel = new CaseLazyDataModel();
-dataModel.setCaseId(in.caseId.id());
-in.caseView = CaseView.create().dataModel(dataModel).hideCaseFilter(true).withTitle(title).autoSelectIfExists(in.caseId).buildNewView();' #txt
+
+in.caseDataModel.setCaseId(in.caseId.id());
+in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).autoSelectIfExists(in.caseId).buildNewView();' #txt
 Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -104,12 +105,10 @@ Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Nr0 f7 46 196 36 24 20 -2 #rect
+Nr0 f7 46 276 36 24 20 -2 #rect
 Nr0 f7 @|StepIcon #fIcon
-Nr0 f8 expr out #txt
-Nr0 f8 64 109 64 196 #arcP
 Nr0 f6 expr out #txt
-Nr0 f6 64 220 64 260 #arcP
+Nr0 f6 64 300 64 340 #arcP
 Nr0 f10 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f10 51 779 26 26 14 0 #rect
 Nr0 f10 @|EndSubIcon #fIcon
@@ -157,7 +156,7 @@ Nr0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Nr0 f9 51 451 26 26 14 0 #rect
+Nr0 f9 51 459 26 26 14 0 #rect
 Nr0 f9 @|StartSubIcon #fIcon
 Nr0 f13 expr out #txt
 Nr0 f13 64 652 64 700 #arcP
@@ -227,7 +226,7 @@ is put in PortalTemplate.</name>
 ' #txt
 Nr0 f21 264 130 496 172 -238 -84 #rect
 Nr0 f21 @|IBIcon #fIcon
-Nr0 f3 264 216 82 272 #arcP
+Nr0 f3 264 216 82 340 #arcP
 Nr0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -271,9 +270,35 @@ Nr0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Nr0 f16 8 538 112 44 -40 -8 #rect
 Nr0 f16 @|CallSubIcon #fIcon
 Nr0 f17 expr out #txt
-Nr0 f17 64 477 64 538 #arcP
+Nr0 f17 64 485 64 538 #arcP
 Nr0 f15 expr out #txt
 Nr0 f15 64 582 64 628 #arcP
+Nr0 f18 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f18 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
+Nr0 f18 doCall true #txt
+Nr0 f18 requestActionDecl '<> param;
+' #txt
+Nr0 f18 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f18 responseMappingAction 'out=in;
+out.caseDataModel=result.caseDataModel;
+' #txt
+Nr0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init case
+data model</name>
+        <nameStyle>20,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f18 8 170 112 44 -31 -20 #rect
+Nr0 f18 @|CallSubIcon #fIcon
+Nr0 f19 expr out #txt
+Nr0 f19 64 109 64 170 #arcP
+Nr0 f8 expr out #txt
+Nr0 f8 64 214 64 276 #arcP
 >Proto Nr0 .type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -285,8 +310,6 @@ Nr0 f15 64 582 64 628 #arcP
 >Proto Nr0 @|BIcon #fIcon
 Nr0 f5 mainOut f2 tail #connect
 Nr0 f2 head f1 mainIn #connect
-Nr0 f0 mainOut f8 tail #connect
-Nr0 f8 head f7 mainIn #connect
 Nr0 f7 mainOut f6 tail #connect
 Nr0 f6 head f5 mainIn #connect
 Nr0 f12 mainOut f11 tail #connect
@@ -301,3 +324,7 @@ Nr0 f9 mainOut f17 tail #connect
 Nr0 f17 head f16 mainIn #connect
 Nr0 f16 mainOut f15 tail #connect
 Nr0 f15 head f14 mainIn #connect
+Nr0 f0 mainOut f19 tail #connect
+Nr0 f19 head f18 mainIn #connect
+Nr0 f18 mainOut f8 tail #connect
+Nr0 f8 head f7 mainIn #connect
