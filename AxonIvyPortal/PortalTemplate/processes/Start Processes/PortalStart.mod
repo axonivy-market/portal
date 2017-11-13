@@ -445,7 +445,7 @@ long serverId = Long.parseLong(caseInfor.get("serverId") as String);
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", Arrays.asList(caseId.toString(), caseName));
 
 in.caseDataModel.setCaseId(caseId);
-out.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).autoSelectIfExists(GlobalCaseId.inServer(serverId).caseId(caseId).build()).buildNewView();' #txt
+out.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).hideCaseFilter(true).autoSelectIfExists(GlobalCaseId.inServer(serverId).caseId(caseId).build()).buildNewView();' #txt
 Pt0 f17 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

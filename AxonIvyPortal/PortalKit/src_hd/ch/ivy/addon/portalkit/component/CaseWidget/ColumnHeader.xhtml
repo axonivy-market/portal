@@ -8,7 +8,7 @@
 
 <ui:composition>
   <p:commandLink id="#{id}" styleClass="#{styleClass} #{data.dataModel.sortField eq sortedField ? 'is-selected' : ''}"
-    update="#{componentToBeUpdated} case-list case-list-scroller" rendered="#{sortable eq true}"
+    update="#{componentToBeUpdated} widget-column-header case-list case-list-scroller" rendered="#{sortable eq true}"
     oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()">
     <f:actionListener binding="#{logic.sort(sortedField,data.dataModel.sortField eq sortedField and !data.dataModel.isSortDescending())}" />
     <f:actionListener binding="#{caseWidgetBean.setExpandedCaseId(0,false)}" />

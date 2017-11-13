@@ -36,7 +36,7 @@
 	            onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
           </h:form>
         </div>
-        <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
+        <h:panelGroup id="filter-add-container" styleClass="filter-add-container" rendered="#{!cc.attrs.hideCaseFilter}">
         <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
 
         <p:commandButton id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
