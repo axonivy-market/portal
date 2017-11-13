@@ -107,7 +107,6 @@ public class TaskWidgetBean implements Serializable {
   }
 
   public Long getTaskListRefreshInterval() {
-    Ivy.log().error("REFRESH TASK LIST {0}", taskListRefreshInterval);
     return taskListRefreshInterval;
   }
 
