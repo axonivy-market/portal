@@ -415,7 +415,7 @@
 
 .left-sidebar-sub-menu.ivy-active.expand {
   opacity: 1;
-  height: 150px;
+  height: 100%;
 }
 
 .left-sidebar-sub-menu-item {
