@@ -136,6 +136,14 @@
 								Task list refresh interval in seconds
 							</entry>
 						</row>
+						<row>
+							<entry>CLIENT_SIDE_TIMEOUT</entry>
+							<entry>INTEGER</entry>
+							<entry>
+								Client side timeout in minute, must be <code>more than 2 and less than server side timeout (e.g. 25).</code>
+								If not set, default client side timeout is server side timeout minus 3 minutes.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
