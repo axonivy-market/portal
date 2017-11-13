@@ -26,7 +26,6 @@ ts0 @GridStep f11 '' #zField
 ts0 @PushWFArc f7 '' #zField
 ts0 @GridStep f8 '' #zField
 ts0 @RichDialogProcessStart f12 '' #zField
-ts0 @PushWFArc f14 '' #zField
 ts0 @GridStep f16 '' #zField
 ts0 @PushWFArc f17 '' #zField
 ts0 @PushWFArc f13 '' #zField
@@ -45,7 +44,6 @@ ts0 @PushWFArc f2 '' #zField
 ts0 @RichDialogProcessEnd f24 '' #zField
 ts0 @GridStep f28 '' #zField
 ts0 @RichDialogProcessStart f29 '' #zField
-ts0 @PushWFArc f30 '' #zField
 ts0 @RichDialogMethodStart f33 '' #zField
 ts0 @RichDialogProcessEnd f39 '' #zField
 ts0 @PushWFArc f32 '' #zField
@@ -60,6 +58,19 @@ ts0 @GridStep f41 '' #zField
 ts0 @RichDialogMethodStart f43 '' #zField
 ts0 @RichDialogProcessEnd f44 '' #zField
 ts0 @PushWFArc f45 '' #zField
+ts0 @GridStep f46 '' #zField
+ts0 @PushWFArc f47 '' #zField
+ts0 @Alternative f48 '' #zField
+ts0 @PushWFArc f49 '' #zField
+ts0 @PushWFArc f14 '' #zField
+ts0 @PushWFArc f50 '' #zField
+ts0 @GridStep f51 '' #zField
+ts0 @PushWFArc f52 '' #zField
+ts0 @Alternative f53 '' #zField
+ts0 @PushWFArc f54 '' #zField
+ts0 @PushWFArc f30 '' #zField
+ts0 @RichDialogProcessEnd f55 '' #zField
+ts0 @PushWFArc f56 '' #zField
 >Proto ts0 ts0 task_FormProcess #zField
 ts0 f0 guid 1492E077AC02C00B #txt
 ts0 f0 type agileBPM.task_Form.task_FormData #txt
@@ -134,7 +145,7 @@ ts0 f3 83 147 26 26 -15 15 #rect
 ts0 f3 @|RichDialogProcessStartIcon #fIcon
 ts0 f4 type agileBPM.task_Form.task_FormData #txt
 ts0 f4 guid 1492E077ACA40C72 #txt
-ts0 f4 499 147 26 26 0 12 #rect
+ts0 f4 787 147 26 26 0 12 #rect
 ts0 f4 @|RichDialogEndIcon #fIcon
 ts0 f6 guid 14B02755D931FD2D #txt
 ts0 f6 type agileBPM.task_Form.task_FormData #txt
@@ -189,12 +200,12 @@ ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f9 336 138 112 44 -41 -8 #rect
+ts0 f9 432 138 112 44 -41 -8 #rect
 ts0 f9 @|StepIcon #fIcon
 ts0 f10 expr out #txt
-ts0 f10 109 160 336 160 #arcP
+ts0 f10 109 160 432 160 #arcP
 ts0 f5 expr out #txt
-ts0 f5 448 160 499 160 #arcP
+ts0 f5 544 160 787 160 #arcP
 ts0 f11 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
 ts0 f11 actionTable 'out=in;
@@ -251,7 +262,7 @@ ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f8 160 490 128 44 -56 -8 #rect
+ts0 f8 448 586 128 44 -56 -8 #rect
 ts0 f8 @|StepIcon #fIcon
 ts0 f12 guid 14B733FBF37CF8B5 #txt
 ts0 f12 type agileBPM.task_Form.task_FormData #txt
@@ -268,11 +279,8 @@ ts0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f12 83 499 26 26 -34 15 #rect
+ts0 f12 83 595 26 26 -34 15 #rect
 ts0 f12 @|RichDialogProcessStartIcon #fIcon
-ts0 f14 expr out #txt
-ts0 f14 109 512 160 512 #arcP
-ts0 f14 0 0.5000000000000001 0 0 #arcLabel
 ts0 f16 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
 ts0 f16 actionTable 'out=in;
@@ -292,14 +300,14 @@ ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f16 336 250 112 44 -41 -8 #rect
+ts0 f16 432 250 112 44 -41 -8 #rect
 ts0 f16 @|StepIcon #fIcon
 ts0 f17 expr out #txt
-ts0 f17 288 272 336 272 #arcP
+ts0 f17 288 272 432 272 #arcP
 ts0 f17 0 0.2601685954614588 0 0 #arcLabel
 ts0 f13 expr out #txt
-ts0 f13 448 272 512 173 #arcP
-ts0 f13 1 512 272 #addKink
+ts0 f13 544 272 800 173 #arcP
+ts0 f13 1 800 272 #addKink
 ts0 f13 1 0.4877973440059553 0 0 #arcLabel
 ts0 f20 guid 14B7E1153B0E4196 #txt
 ts0 f20 type agileBPM.task_Form.task_FormData #txt
@@ -321,7 +329,7 @@ ts0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f20 83 403 26 26 -41 15 #rect
+ts0 f20 83 339 26 26 -41 15 #rect
 ts0 f20 @|RichDialogMethodStartIcon #fIcon
 ts0 f21 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
@@ -346,13 +354,13 @@ ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f21 328 394 112 44 -41 -8 #rect
+ts0 f21 432 330 112 44 -41 -8 #rect
 ts0 f21 @|StepIcon #fIcon
 ts0 f22 expr out #txt
-ts0 f22 109 416 328 416 #arcP
+ts0 f22 109 352 432 352 #arcP
 ts0 f23 expr out #txt
-ts0 f23 440 416 512 173 #arcP
-ts0 f23 1 512 416 #addKink
+ts0 f23 544 352 800 173 #arcP
+ts0 f23 1 800 352 #addKink
 ts0 f23 1 0.36970684039087953 0 0 #arcLabel
 ts0 f37 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
@@ -375,7 +383,7 @@ ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f37 152 602 112 44 -36 -8 #rect
+ts0 f37 160 698 112 44 -36 -8 #rect
 ts0 f37 @|StepIcon #fIcon
 ts0 f34 guid 14BEFA696A6EEA50 #txt
 ts0 f34 type agileBPM.task_Form.task_FormData #txt
@@ -392,15 +400,15 @@ ts0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f34 83 611 26 26 -42 15 #rect
+ts0 f34 83 707 26 26 -42 15 #rect
 ts0 f34 @|RichDialogProcessStartIcon #fIcon
 ts0 f35 type agileBPM.task_Form.task_FormData #txt
-ts0 f35 307 611 26 26 0 12 #rect
+ts0 f35 339 707 26 26 0 12 #rect
 ts0 f35 @|RichDialogProcessEndIcon #fIcon
 ts0 f38 expr out #txt
-ts0 f38 109 624 152 624 #arcP
+ts0 f38 109 720 160 720 #arcP
 ts0 f36 expr out #txt
-ts0 f36 264 624 307 624 #arcP
+ts0 f36 272 720 339 720 #arcP
 ts0 f15 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
 ts0 f15 actionTable 'out=in;
@@ -438,7 +446,7 @@ ts0 f26 109 64 168 64 #arcP
 ts0 f2 expr out #txt
 ts0 f2 280 64 339 64 #arcP
 ts0 f24 type agileBPM.task_Form.task_FormData #txt
-ts0 f24 499 499 26 26 0 12 #rect
+ts0 f24 787 595 26 26 0 12 #rect
 ts0 f24 @|RichDialogProcessEndIcon #fIcon
 ts0 f28 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
@@ -470,7 +478,7 @@ ts0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f28 152 330 144 44 -66 -8 #rect
+ts0 f28 432 426 144 44 -66 -8 #rect
 ts0 f28 @|StepIcon #fIcon
 ts0 f29 guid 14C46CB289D62C1B #txt
 ts0 f29 type agileBPM.task_Form.task_FormData #txt
@@ -487,10 +495,8 @@ ts0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f29 83 339 26 26 -29 15 #rect
+ts0 f29 83 435 26 26 -29 15 #rect
 ts0 f29 @|RichDialogProcessStartIcon #fIcon
-ts0 f30 expr out #txt
-ts0 f30 109 352 152 352 #arcP
 ts0 f33 guid 14C46FC6DC345ABA #txt
 ts0 f33 type agileBPM.task_Form.task_FormData #txt
 ts0 f33 method deleteTask(selfServiceBPM.TaskDef) #txt
@@ -511,17 +517,17 @@ ts0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f33 83 691 26 26 -57 15 #rect
+ts0 f33 83 787 26 26 -57 15 #rect
 ts0 f33 @|RichDialogMethodStartIcon #fIcon
 ts0 f39 type agileBPM.task_Form.task_FormData #txt
-ts0 f39 499 691 26 26 0 12 #rect
+ts0 f39 339 787 26 26 0 12 #rect
 ts0 f39 @|RichDialogProcessEndIcon #fIcon
 ts0 f32 expr out #txt
-ts0 f32 448 352 512 173 #arcP
-ts0 f32 1 512 352 #addKink
+ts0 f32 728 448 800 173 #arcP
+ts0 f32 1 800 448 #addKink
 ts0 f32 1 0.32122905027932963 0 0 #arcLabel
 ts0 f31 expr out #txt
-ts0 f31 296 352 336 352 #arcP
+ts0 f31 576 448 616 448 #arcP
 ts0 f31 0 0.2601685954614588 0 0 #arcLabel
 ts0 f27 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
@@ -541,12 +547,12 @@ ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f27 336 330 112 44 -41 -8 #rect
+ts0 f27 616 426 112 44 -41 -8 #rect
 ts0 f27 @|StepIcon #fIcon
 ts0 f25 expr out #txt
-ts0 f25 440 512 499 512 #arcP
+ts0 f25 728 608 787 608 #arcP
 ts0 f19 expr out #txt
-ts0 f19 288 512 328 512 #arcP
+ts0 f19 576 608 616 608 #arcP
 ts0 f19 0 0.5460591952111739 0 0 #arcLabel
 ts0 f18 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
@@ -571,12 +577,12 @@ ts0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f18 328 490 112 44 -41 -8 #rect
+ts0 f18 616 586 112 44 -41 -8 #rect
 ts0 f18 @|StepIcon #fIcon
 ts0 f40 expr out #txt
-ts0 f40 440 704 499 704 #arcP
+ts0 f40 272 800 339 800 #arcP
 ts0 f42 expr out #txt
-ts0 f42 109 704 328 704 #arcP
+ts0 f42 109 800 160 800 #arcP
 ts0 f41 actionDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
 ts0 f41 actionTable 'out=in;
@@ -600,7 +606,7 @@ ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f41 328 682 112 44 -41 -8 #rect
+ts0 f41 160 778 112 44 -41 -8 #rect
 ts0 f41 @|StepIcon #fIcon
 ts0 f43 guid 15F99E7D864F8414 #txt
 ts0 f43 type agileBPM.task_Form.task_FormData #txt
@@ -625,13 +631,153 @@ ts0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ts0 f43 83 787 26 26 -72 15 #rect
+ts0 f43 83 883 26 26 -72 15 #rect
 ts0 f43 @|RichDialogMethodStartIcon #fIcon
 ts0 f44 type agileBPM.task_Form.task_FormData #txt
-ts0 f44 307 787 26 26 0 12 #rect
+ts0 f44 339 883 26 26 0 12 #rect
 ts0 f44 @|RichDialogProcessEndIcon #fIcon
 ts0 f45 expr out #txt
-ts0 f45 109 800 307 800 #arcP
+ts0 f45 109 896 339 896 #arcP
+ts0 f46 actionDecl 'agileBPM.task_Form.task_FormData out;
+' #txt
+ts0 f46 actionTable 'out=in;
+' #txt
+ts0 f46 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+in.isValidated = true;
+if (!(in.#selectedActor is initialized)) {
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorNotification") , ivy.cms.co("/Dialogs/agileBPM/task_Form/ErrorEmployeeNotExist")));
+	FacesContext.getCurrentInstance().validationFailed();
+	in.isValidated = false;
+}' #txt
+ts0 f46 type agileBPM.task_Form.task_FormData #txt
+ts0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validate</name>
+        <nameStyle>8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f46 160 586 112 44 -22 -8 #rect
+ts0 f46 @|StepIcon #fIcon
+ts0 f47 expr out #txt
+ts0 f47 109 608 160 608 #arcP
+ts0 f47 0 0.5000000000000001 0 0 #arcLabel
+ts0 f48 type agileBPM.task_Form.task_FormData #txt
+ts0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Is validated?</name>
+        <nameStyle>13
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f48 336 592 32 32 -33 -30 #rect
+ts0 f48 @|AlternativeIcon #fIcon
+ts0 f49 expr out #txt
+ts0 f49 272 608 336 608 #arcP
+ts0 f49 0 0.5000000000000001 0 0 #arcLabel
+ts0 f14 expr in #txt
+ts0 f14 outCond in.isValidated #txt
+ts0 f14 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Yes</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f14 368 608 448 608 #arcP
+ts0 f14 0 0.4875 0 -7 #arcLabel
+ts0 f50 expr in #txt
+ts0 f50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>No</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f50 352 624 800 621 #arcP
+ts0 f50 1 352 672 #addKink
+ts0 f50 2 800 672 #addKink
+ts0 f50 1 0.44780228072657724 -1 -8 #arcLabel
+ts0 f51 actionDecl 'agileBPM.task_Form.task_FormData out;
+' #txt
+ts0 f51 actionTable 'out=in;
+' #txt
+ts0 f51 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+in.isValidated = true;
+if (!(in.#selectedActor is initialized)) {
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorNotification") , ivy.cms.co("/Dialogs/agileBPM/task_Form/ErrorEmployeeNotExist")));
+	FacesContext.getCurrentInstance().validationFailed();
+	in.isValidated = false;
+}' #txt
+ts0 f51 type agileBPM.task_Form.task_FormData #txt
+ts0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validate</name>
+        <nameStyle>8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f51 160 426 112 44 -22 -8 #rect
+ts0 f51 @|StepIcon #fIcon
+ts0 f52 expr out #txt
+ts0 f52 109 448 160 448 #arcP
+ts0 f53 type agileBPM.task_Form.task_FormData #txt
+ts0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is validated?</name>
+        <nameStyle>13
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f53 328 432 32 32 -34 -32 #rect
+ts0 f53 @|AlternativeIcon #fIcon
+ts0 f54 expr out #txt
+ts0 f54 272 448 328 448 #arcP
+ts0 f30 expr in #txt
+ts0 f30 outCond in.isValidated #txt
+ts0 f30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Yes</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f30 360 448 432 448 #arcP
+ts0 f30 0 0.4027777777777778 0 -9 #arcLabel
+ts0 f55 type agileBPM.task_Form.task_FormData #txt
+ts0 f55 787 499 26 26 0 12 #rect
+ts0 f55 @|RichDialogProcessEndIcon #fIcon
+ts0 f56 expr in #txt
+ts0 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>No</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ts0 f56 344 464 787 512 #arcP
+ts0 f56 1 344 512 #addKink
+ts0 f56 1 0.47404063205417607 0 -9 #arcLabel
 >Proto ts0 .type agileBPM.task_Form.task_FormData #txt
 >Proto ts0 .processKind HTML_DIALOG #txt
 >Proto ts0 -8 -8 16 16 16 26 #rect
@@ -642,8 +788,6 @@ ts0 f9 mainOut f5 tail #connect
 ts0 f5 head f4 mainIn #connect
 ts0 f6 mainOut f7 tail #connect
 ts0 f7 head f11 mainIn #connect
-ts0 f12 mainOut f14 tail #connect
-ts0 f14 head f8 mainIn #connect
 ts0 f11 mainOut f17 tail #connect
 ts0 f17 head f16 mainIn #connect
 ts0 f8 mainOut f19 tail #connect
@@ -664,8 +808,6 @@ ts0 f15 mainOut f2 tail #connect
 ts0 f2 head f1 mainIn #connect
 ts0 f18 mainOut f25 tail #connect
 ts0 f25 head f24 mainIn #connect
-ts0 f29 mainOut f30 tail #connect
-ts0 f30 head f28 mainIn #connect
 ts0 f28 mainOut f31 tail #connect
 ts0 f31 head f27 mainIn #connect
 ts0 f27 mainOut f32 tail #connect
@@ -676,3 +818,19 @@ ts0 f41 mainOut f40 tail #connect
 ts0 f40 head f39 mainIn #connect
 ts0 f43 mainOut f45 tail #connect
 ts0 f45 head f44 mainIn #connect
+ts0 f12 mainOut f47 tail #connect
+ts0 f47 head f46 mainIn #connect
+ts0 f46 mainOut f49 tail #connect
+ts0 f49 head f48 in #connect
+ts0 f48 out f14 tail #connect
+ts0 f14 head f8 mainIn #connect
+ts0 f48 out f50 tail #connect
+ts0 f50 head f24 mainIn #connect
+ts0 f29 mainOut f52 tail #connect
+ts0 f52 head f51 mainIn #connect
+ts0 f51 mainOut f54 tail #connect
+ts0 f54 head f53 in #connect
+ts0 f53 out f30 tail #connect
+ts0 f30 head f28 mainIn #connect
+ts0 f53 out f56 tail #connect
+ts0 f56 head f55 mainIn #connect
