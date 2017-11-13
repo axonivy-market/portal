@@ -20,7 +20,11 @@ taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
 taskDataModel PERSISTENT #fieldModifier
 isWorkingOnATask Boolean #field
 isWorkingOnATask PERSISTENT #fieldModifier
-menuKind ch.ivy.addon.portalkit.enums.MenuKind #field
-menuKind PERSISTENT #fieldModifier
+menuKinds ch.ivy.addon.portalkit.enums.MenuKind #field
+menuKinds PERSISTENT #fieldModifier
+subMenuItems List<ch.addon.portal.generic.menu.SubMenuItem> #field
+subMenuItems PERSISTENT #fieldModifier
 caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
 caseDataModel PERSISTENT #fieldModifier
+selectedSubMenuItem ch.addon.portal.generic.menu.SubMenuItem #field
+selectedSubMenuItem PERSISTENT #fieldModifier
