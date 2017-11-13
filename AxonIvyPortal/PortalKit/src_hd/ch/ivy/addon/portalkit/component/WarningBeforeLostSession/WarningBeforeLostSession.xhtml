@@ -11,7 +11,7 @@
 
   <p:confirmDialog id="timeout-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
-    widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto" >
+    widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
       styleClass="portal-ok-button" oncomplete="PF('timeout-warning-dialog').hide()"
       actionListener="#{logic.extendSession}" />
@@ -24,44 +24,77 @@
       onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('viewExpiredExceptionDialog').show()" />
   </h:form>
   <script type="text/javascript">
-     $(function() {
-        const
-        oneMinuteInMilisecond = 60000;
-        var timeout = "#{cc.attrs.clientSideTimeOut}";
-        var timeoutMinusOneMinute = timeout - oneMinuteInMilisecond;
-        var timerForShowWarning;
-        var timerForLogout;
-        window.onload = resetTimerForShowWarning;
-
-        document.onkeypress = resetTimerForShowWarning;
-        document.onclick = resetTimerForShowWarning;
-        document.onmousedown = resetTimerForShowWarning;
-        document.ontouchstart = resetTimerForShowWarning;
+      var timeout = "#{cc.attrs.clientSideTimeOut}";
+      var timeOutSeconds = timeout/1000;
+      localStorage.setItem("SessionCounter", timeOutSeconds);
+      var warningDialogShow = false;
+      var logOutCalled = false;
+      var intervalCheckSessionTimeout;
+      localStorage.setItem("isLogout", false);
+      
+      
+      $(function() { 
+        intervalCheckSessionTimeout = setInterval(TimerDecrement, 1000); // Call Every Second
+        document.onkeypress = resetCounterAndTimeout;
+        document.onclick = resetCounterAndTimeout;
+        document.onmousedown = resetCounterAndTimeout;
+        document.ontouchstart = resetCounterAndTimeout;
+        document.onscroll = resetCounterAndTimeout;
         
-
-        function resetTimerForShowWarning() {
-          clearTimeout(timerForShowWarning);
-          timerForShowWarning = setTimeout(showWarningDialog, timeoutMinusOneMinute);
-          clearTimeout(timerForLogout);
+        function resetCounterAndTimeout(){
+          localStorage.removeItem("SessionCounterUpdatedOn");
+          timeOutSeconds = timeout/1000;
+          localStorage.setItem("SessionCounter", timeOutSeconds);
         }
-
-        function resetTimerForLogout() {
-          clearTimeout(timerForLogout);
-          timerForLogout = setTimeout(logoutAndShowDialog, oneMinuteInMilisecond);
-        }
-
-        function showWarningDialog() {
-          PF('timeout-warning-dialog').show();
-          resetTimerForLogout();
-        }
-
-        function returnHomePage() {
-          showConfirmDialogBeforeUnload = false;
-          window.open('#{userMenuBean.logoutPage}', '_self');
-        }
-
       });
-   </script>
+
+      function TimerDecrement() {
+        var lastUpdated = localStorage.getItem("SessionCounterUpdatedOn"), now = new Date(), shouldCheck = false;
+        
+        if (lastUpdated == null) {
+            localStorage.setItem("SessionCounterUpdatedOn", now);
+        } else if (now.getTime() - new Date(lastUpdated).getTime() >= 1000) {
+            // set this immediatedly so another tab checking while we are processing doesn't also process.
+            localStorage.setItem("SessionCounterUpdatedOn", now);
+            shouldCheck = true;
+        }
+        
+        if (shouldCheck) {
+            if (timeOutSeconds > 0) {
+            
+              if (parseInt(localStorage.getItem("SessionCounter"), 10) > 0) {
+                timeOutSeconds = parseInt(localStorage.getItem("SessionCounter"), 10);
+              }
+              timeOutSeconds--;
+              localStorage.setItem("SessionCounter", timeOutSeconds);
+              
+            } else {
+                
+                if (localStorage.getItem("isLogout") === "false") {
+                  localStorage.setItem("isLogout",true);
+                  logoutAndShowDialog();
+                } else {
+                  PF('timeout-warning-dialog').hide();
+                  PF('viewExpiredExceptionDialog').show();
+                  clearInterval(intervalCheckSessionTimeout);
+                } 
+            }
+        } else {
+            timeOutSeconds = parseInt(localStorage.getItem("SessionCounter"), 10);
+        }
+        
+        if (timeOutSeconds &lt; 60){
+          if(warningDialogShow == false){
+         	warningDialogShow = true;
+            PF('timeout-warning-dialog').show();
+          }
+        } else {
+          warningDialogShow = false;
+          PF('timeout-warning-dialog').hide();
+        }
+
+      }
+    </script>
 
 </cc:implementation>
 </html>
