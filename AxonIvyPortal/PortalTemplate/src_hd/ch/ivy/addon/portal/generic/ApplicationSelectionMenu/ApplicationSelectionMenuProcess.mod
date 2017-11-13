@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Oct 02 09:36:21 ICT 2017]
 156A1AA176DE2A21 3.20 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
@@ -75,8 +74,10 @@ As0 @RichDialogProcessEnd f35 '' #zField
 As0 @PushWFArc f49 '' #zField
 As0 @PushWFArc f50 '' #zField
 As0 @PushWFArc f51 '' #zField
-As0 @PushWFArc f52 '' #zField
 As0 @PushWFArc f59 '' #zField
+As0 @CallSub f62 '' #zField
+As0 @PushWFArc f65 '' #zField
+As0 @PushWFArc f52 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f0 guid 14AF0B1C8DE6C030 #txt
 As0 f0 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -455,30 +456,28 @@ As0 f24 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.Applica
 As0 f24 actionTable 'out=in;
 ' #txt
 As0 f24 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portal.generic.view.CaseView;
 
-CaseLazyDataModel dataModel = new CaseLazyDataModel();
 
-dataModel.setIgnoreInvolvedUser(in.hasReadAllCasesPermission);
+in.caseDataModel.setIgnoreInvolvedUser(in.hasReadAllCasesPermission);
 
 Long serverId = SecurityServiceUtils.getServerIdFromSession();
 if (#serverId is initialized) {
-	dataModel.setServerId(serverId);
+	in.caseDataModel.setServerId(serverId);
 }
 
 String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
 if (#applicationName is initialized) {
-	dataModel.setInvolvedApplications(applicationName);
+	in.caseDataModel.setInvolvedApplications(applicationName);
 }
 
-in.caseView = CaseView.create().dataModel(dataModel).buildNewView();' #txt
+in.caseView = CaseView.create().dataModel(in.caseDataModel).buildNewView();' #txt
 As0 f24 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>build data model, case view</name>
-        <nameStyle>27
+        <nameStyle>27,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -782,12 +781,36 @@ As0 f50 745 359 870 456 #arcP
 As0 f51 expr in #txt
 As0 f51 outCond 'in.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.DASHBOARD' #txt
 As0 f51 747 357 1000 463 #arcP
-As0 f52 expr in #txt
-As0 f52 outCond 'in.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.CASE' #txt
-As0 f52 749 355 1214 480 #arcP
 As0 f59 expr in #txt
 As0 f59 outCond 'in.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.TASK' #txt
 As0 f59 752 352 1352 352 #arcP
+As0 f62 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f62 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
+As0 f62 doCall true #txt
+As0 f62 requestActionDecl '<> param;
+' #txt
+As0 f62 responseActionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f62 responseMappingAction 'out=in;
+out.caseDataModel=result.caseDataModel;
+' #txt
+As0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize case 
+data model</name>
+        <nameStyle>27,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f62 1176 386 112 44 -38 -20 #rect
+As0 f62 @|CallSubIcon #fIcon
+As0 f65 expr in #txt
+As0 f65 outCond 'in.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.CASE' #txt
+As0 f65 750 354 1176 408 #arcP
+As0 f52 expr out #txt
+As0 f52 1232 430 1232 468 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -868,7 +891,9 @@ As0 f63 out f50 tail #connect
 As0 f50 head f33 mainIn #connect
 As0 f63 out f51 tail #connect
 As0 f51 head f32 mainIn #connect
-As0 f63 out f52 tail #connect
-As0 f52 head f24 mainIn #connect
-As0 f63 out f59 tail #connect
 As0 f59 head f58 mainIn #connect
+As0 f63 out f65 tail #connect
+As0 f65 head f62 mainIn #connect
+As0 f63 out f59 tail #connect
+As0 f62 mainOut f52 tail #connect
+As0 f52 head f24 mainIn #connect
