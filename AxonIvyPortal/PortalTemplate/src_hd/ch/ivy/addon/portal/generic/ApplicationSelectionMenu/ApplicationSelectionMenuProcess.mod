@@ -32,7 +32,6 @@ As0 @RichDialog f82 '' #zField
 As0 @GridStep f83 '' #zField
 As0 @CallSub f84 '' #zField
 As0 @RichDialogProcessEnd f85 '' #zField
-As0 @RichDialogMethodStart f86 '' #zField
 As0 @RichDialogInitStart f87 '' #zField
 As0 @RichDialogProcessEnd f90 '' #zField
 As0 @GridStep f91 '' #zField
@@ -43,7 +42,6 @@ As0 @GridStep f95 '' #zField
 As0 @CallSub f96 '' #zField
 As0 @CallSub f97 '' #zField
 As0 @Alternative f98 '' #zField
-As0 @PushWFArc f99 '' #zField
 As0 @PushWFArc f100 '' #zField
 As0 @PushWFArc f101 '' #zField
 As0 @PushWFArc f102 '' #zField
@@ -78,6 +76,8 @@ As0 @CallSub f62 '' #zField
 As0 @PushWFArc f52 '' #zField
 As0 @PushWFArc f34 '' #zField
 As0 @PushWFArc f0 '' #zField
+As0 @RichDialogProcessStart f1 '' #zField
+As0 @PushWFArc f2 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f66 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f66 934 512 26 26 0 12 #rect
@@ -88,7 +88,7 @@ As0 f67 actionTable 'out=in;
 ' #txt
 As0 f67 actionCode 'import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().getExternalContext().redirect(in.selectedSubMenuItem.link);' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(in.selectedSubMenuItem.getExternalLink());' #txt
 As0 f67 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -380,28 +380,6 @@ As0 f84 @|CallSubIcon #fIcon
 As0 f85 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f85 249 451 20 20 13 0 #rect
 As0 f85 @|RichDialogProcessEndIcon #fIcon
-As0 f86 guid 15FB36E87031F123 #txt
-As0 f86 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f86 method onClickSubMenuItem(ch.addon.portal.generic.menu.SubMenuItem) #txt
-As0 f86 disableUIEvents false #txt
-As0 f86 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.addon.portal.generic.menu.SubMenuItem subMenuItem> param = methodEvent.getInputArguments();
-' #txt
-As0 f86 inParameterMapAction 'out.selectedSubMenuItem=param.subMenuItem;
-' #txt
-As0 f86 outParameterDecl '<> result;
-' #txt
-As0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>onClickSubMenuItem(SubMenuItem)</name>
-        <nameStyle>31,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f86 1158 32 26 26 16 14 #rect
-As0 f86 @|RichDialogMethodStartIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
 As0 f87 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f87 method start(String) #txt
@@ -636,10 +614,6 @@ As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f98 773 159 28 28 14 0 #rect
 As0 f98 @|AlternativeIcon #fIcon
-As0 f99 expr out #txt
-As0 f99 1171 58 995 173 #arcP
-As0 f99 1 1171 173 #addKink
-As0 f99 1 0.1663928547192245 0 0 #arcLabel
 As0 f100 expr out #txt
 As0 f100 1091 481 1091 512 #arcP
 As0 f100 0 0.3933539761963605 0 0 #arcLabel
@@ -796,6 +770,32 @@ As0 f34 1267 553 1267 581 #arcP
 As0 f0 expr in #txt
 As0 f0 799 337 1211 469 #arcP
 As0 f0 0 0.6190089580954733 0 0 #arcLabel
+As0 f1 guid 15FB83C392F10C9D #txt
+As0 f1 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f1 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f1 actionTable 'out=in;
+' #txt
+As0 f1 actionCode 'import ch.addon.portal.generic.menu.SubMenuItem;
+import org.primefaces.component.commandlink.CommandLink;
+
+CommandLink commandLink = event.getSource() as CommandLink;
+in.selectedSubMenuItem = commandLink.getAttributes().get("selectedSubMenuItem") as SubMenuItem;' #txt
+As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>onClickSubMenuItem</name>
+        <nameStyle>18,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f1 1155 35 26 26 16 -3 #rect
+As0 f1 @|RichDialogProcessStartIcon #fIcon
+As0 f2 expr out #txt
+As0 f2 1168 61 995 173 #arcP
+As0 f2 1 1168 173 #addKink
+As0 f2 1 0.16104556874251277 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -864,8 +864,6 @@ As0 f70 out f106 tail #connect
 As0 f106 head f82 mainIn #connect
 As0 f70 out f117 tail #connect
 As0 f117 head f73 mainIn #connect
-As0 f86 mainOut f99 tail #connect
-As0 f99 head f76 in #connect
 As0 f92 mainOut f104 tail #connect
 As0 f104 head f96 mainIn #connect
 As0 f74 mainOut f127 tail #connect
@@ -882,3 +880,5 @@ As0 f62 mainOut f52 tail #connect
 As0 f52 head f24 mainIn #connect
 As0 f70 out f0 tail #connect
 As0 f0 head f62 mainIn #connect
+As0 f1 mainOut f2 tail #connect
+As0 f2 head f76 in #connect

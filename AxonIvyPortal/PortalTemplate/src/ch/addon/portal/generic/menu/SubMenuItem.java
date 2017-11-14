@@ -46,7 +46,7 @@ public class SubMenuItem {
   }
 
   private String correctProcessLink(String link) {
-    if (!hasProtocol(link)) {
+    if (link != null && !hasProtocol(link)) {
       link = Protocol.HTTP.getValue() + link;
     }
     return link;
