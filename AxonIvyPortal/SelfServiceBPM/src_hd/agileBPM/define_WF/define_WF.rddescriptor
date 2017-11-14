@@ -31,6 +31,26 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
+    <method>
+        <name>autoCompleteForUser</name>
+        <description></description>
+        <inputParameter>
+            <name>query</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <outputParameter>
+            <name>userList</name>
+            <description></description>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.security.IUser&gt;</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </outputParameter>
+    </method>
+    <method>
+        <name>removeFromUserList</name>
+        <description></description>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

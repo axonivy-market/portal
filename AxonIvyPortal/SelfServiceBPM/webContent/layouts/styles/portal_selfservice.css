@@ -58,8 +58,42 @@
   width: 500px;
 }
 
-.acm-assignee-selection {
-  width: 200px;
+.acm-user-list-form table {
+  width: 100%;
+}
+
+.acm-user-list-form .add-user-list {
+  width: 100%;
+}
+
+_:-ms-fullscreen, :root .add-user-list {
+  width: 97%;
+}
+
+.acm-user-list-form .add-user-list .ui-autocomplete-input {
+  width: 92%;
+}
+
+.acm-user-list-form .add-user-button {
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+_:-ms-fullscreen, :root .acm-user-list-form .add-user-button {
+  margin-right: 15px;
+}
+
+.acm-user-list-form .select-user-ok-button {
+  margin-top: 20px;
+}
+
+.acm-user-list-form .acm-assignee-selection {
+  width: 100%;
+}
+
+.acm-user-list-form .selected-user-panel {
+  margin: 0;
 }
 
 #main-area-panel {

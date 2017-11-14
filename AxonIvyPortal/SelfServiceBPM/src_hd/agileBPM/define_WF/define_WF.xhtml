@@ -138,11 +138,13 @@
         <p:spacer width="10px" />
         <p:commandButton id="start-workflow" actionListener="#{logic.go}" value="Start Workflow" icon="fa fa-check" update="form" ajax="false"/>
       </h:form>
-      <p:dialog id="userList" header="Responsable Users" widgetVar="userList" modal="true" appendTo="@(body)">
-        <ui:include src="responsableUser.xhtml"></ui:include>
+      <p:dialog id="userList" header="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/ResponsibleDialogHeader')}"
+        widgetVar="userList" modal="true" appendTo="@(body)" width="400">
+        <ui:include src="responsibleUser.xhtml" />
       </p:dialog>
-      <p:dialog id="taskDesription" header="Task Description" widgetVar="taskDesription" modal="true" appendTo="@(body)">
-        <ui:include src="taskDescription.xhtml"></ui:include>
+      <p:dialog id="taskDesription" header="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/DescriptionDialogHeader')}"
+        widgetVar="taskDesription" modal="true" appendTo="@(body)">
+        <ui:include src="taskDescription.xhtml" />
       </p:dialog>
     </ui:define>
 
