@@ -42,13 +42,14 @@
             <c:set var="isIvyLink"
               value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
             <p:commandLink styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{isIvyLink}"
-              actionListener="#{logic.onClickSubMenuItem(subMenuItem)}" onclick="saveMenuState(this)">
+              actionListener="#{logic.onClickSubMenuItem}" onclick="saveMenuState(this)">
               <span
                 class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
+              <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
             </p:commandLink>
             <p:link styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{!isIvyLink}"
-              href="#{subMenuItem.externalLink}" target="_blank" >
+              href="#{subMenuItem.externalLink}" target="_blank">
               <span
                 class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
