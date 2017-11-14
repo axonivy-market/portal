@@ -10,10 +10,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
-import ch.ivy.addon.portalkit.comparator.RemoteRoleComparator;
 import ch.ivy.addon.portalkit.comparator.RemoteUserComparator;
 import ch.ivy.addon.portalkit.mapper.RemoteSecurityMemberMapper;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -36,30 +34,16 @@ public class CaseCreatorFilter extends CaseFilter {
                   .get("users", List.class);
             }
           });
-      List<RemoteRole> roles =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
-            public List<RemoteRole> call() throws Exception {
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
-                  .get("roles", List.class);
-            }
-          });
 
       List<RemoteUser> distinctUsers =
           users.stream().collect(
               Collectors.collectingAndThen(
                   Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))),
                   ArrayList::new));
-      List<RemoteRole> distinctRoles =
-          roles.stream().collect(
-              Collectors.collectingAndThen(
-                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteRole::getMemberName))),
-                  ArrayList::new));
 
       Collections.sort(distinctUsers, new RemoteUserComparator());
-      Collections.sort(distinctRoles, new RemoteRoleComparator());
 
       securityMembers.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
-      securityMembers.addAll(RemoteSecurityMemberMapper.mapFromRemoteRoles(distinctRoles));
     } catch (Exception e) {
       Ivy.log().error("Can't get list of users or roles in responsible filter", e);
     }
