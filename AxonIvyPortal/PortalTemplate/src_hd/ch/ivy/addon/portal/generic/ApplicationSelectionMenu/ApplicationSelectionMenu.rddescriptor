@@ -11,16 +11,6 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
-   	<method>
-        <name>onClickSubMenuItem</name>
-        <description></description>
-        <inputParameter>
-            <name>subMenuItem</name>
-            <description></description>
-            <parameterType>ch.addon.portal.generic.menu.SubMenuItem</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
