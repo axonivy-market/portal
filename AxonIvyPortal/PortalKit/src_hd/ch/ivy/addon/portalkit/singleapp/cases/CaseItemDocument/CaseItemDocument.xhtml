@@ -49,8 +49,9 @@
         <p:messages id="upload-messages" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
         <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
-          mode="advanced" dragDropSupport="true" multiple="true" update="#{cc.clientId}:document-upload-form:upload-messages #{cc.clientId}:case-details-documents"
+          mode="advanced" dragDropSupport="true" multiple="true"
           label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" auto="true" />
+          <f:attribute name="clientId" value="#{cc.clientId}" />
       </h:form>
 
       <f:facet name="footer">
@@ -59,7 +60,7 @@
           onclick="PF('document-upload-dialog').hide(); scrollDocumentsToBottom()">
         </p:commandButton>
       </f:facet>
-      <p:ajax event="close" listener="#{logic.resetDataUploadDialog()}" update="#{cc.clientId}:document-upload-form:upload-messages" global="false" />
+      <p:ajax event="close" listener="#{logic.resetDataUploadDialog(cc.clientId)}" />
     </p:dialog>
 
     <p:confirmDialog widgetVar="document-deletion-dialog"

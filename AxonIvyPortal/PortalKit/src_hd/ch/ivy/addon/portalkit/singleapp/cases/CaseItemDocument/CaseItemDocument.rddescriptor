@@ -44,6 +44,12 @@
     <method>
         <name>resetDataUploadDialog</name>
         <description></description>
+        <inputParameter>
+            <name>clientId</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </method>
     <startMethod>
         <name>start</name>
