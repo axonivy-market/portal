@@ -27,3 +27,9 @@ originalTaskId Long #field
 originalTaskId PERSISTENT #fieldModifier
 isAddingAdhocToOtherTask Boolean #field
 isAddingAdhocToOtherTask PERSISTENT #fieldModifier
+selectedUser ch.ivyteam.ivy.security.IUser #field
+selectedUser PERSISTENT #fieldModifier
+queryAutoComplete String #field
+queryAutoComplete PERSISTENT #fieldModifier
+isValidated Boolean #field
+isValidated PERSISTENT #fieldModifier
