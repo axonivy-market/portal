@@ -14,6 +14,7 @@ import java.util.concurrent.Callable;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
+import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.ws.addon.IvyUser;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
@@ -21,6 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -274,5 +276,30 @@ public class UserUtils {
     filterUsers.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
         second.getDisplayName().toLowerCase()));
     return filterUsers;
+  }
+
+  /**
+   * Filter list of remote security member by name based on provided query
+   * 
+   * @param securityMembers security members need to be filtered
+   * @param query provided query
+   * @return Filtered and sorted list of remote security member
+   */
+  public static java.util.List<RemoteSecurityMember> filterSecurityMembers(java.util.List<RemoteSecurityMember> securityMembers, String query) {
+    if (StringUtils.isEmpty(query)) {
+      return securityMembers;
+    }
+
+    java.util.List<RemoteSecurityMember> result = new ArrayList<>();
+    for (RemoteSecurityMember securityMember : securityMembers) {
+      if (securityMember.getDisplayName().toLowerCase().contains(query.toLowerCase())
+        || securityMember.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+        result.add(securityMember);
+      }
+    }
+
+    result.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
+      second.getDisplayName().toLowerCase()));
+    return result;
   }
 }
