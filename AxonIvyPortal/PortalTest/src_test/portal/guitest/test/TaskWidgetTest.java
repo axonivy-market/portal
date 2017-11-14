@@ -5,11 +5,15 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.UrlHelpers;
 import portal.guitest.page.CasePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
@@ -25,8 +29,10 @@ public class TaskWidgetTest extends BaseTest {
 
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
+    
+    
   }
-
+  
   @Test
   public void testShowHideTaskDetailOnExpandedMode() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -87,6 +93,35 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.changeExpiryOfTaskAt(firstTask, tomorrowStringLiteral);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt(firstTask));
+  }
+  
+  @Test
+  public void testRefreshTaskList(){
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.openTaskList();
+    int taskBeforeRefresh = taskWidgetPage.countTasks();
+    System.out.println("BEFORE IS " + taskBeforeRefresh);
+    
+    JavascriptExecutor js = (JavascriptExecutor) getBrowser().getDriver();
+    String url = UrlHelpers.generateAbsoluteProcessStartLink("internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp");
+    js.executeScript("window.open('');");
+
+    
+    String main = "";
+    for (String string : getBrowser().getDriver().getWindowHandles()) {
+      WebDriver window = getBrowser().getDriver().switchTo().window(string);
+      if (window.getCurrentUrl().contains("blank")){
+        window.get(url);
+      } else {
+        main = string;
+      }
+    }
+    
+    Sleeper.sleepTight(60000);
+    getBrowser().getDriver().switchTo().window(main);
+    int taskAfterRefresh = taskWidgetPage.countTasks();
+    System.out.println("AFTER IS " + taskAfterRefresh);
+    assertNotEquals(taskBeforeRefresh, taskAfterRefresh);
   }
   
 }
