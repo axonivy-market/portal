@@ -88,11 +88,9 @@ Ts0 @PushWFArc f15 '' #zField
 Ts0 @PushWFArc f21 '' #zField
 Ts0 @PushWFArc f57 '' #zField
 Ts0 @PushWFArc f18 '' #zField
-Ts0 @GridStep f14 '' #zField
-Ts0 @PushWFArc f53 '' #zField
-Ts0 @PushWFArc f55 '' #zField
 Ts0 @PushWFArc f63 '' #zField
 Ts0 @PushWFArc f58 '' #zField
+Ts0 @PushWFArc f19 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -337,7 +335,7 @@ Ts0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f98 534 160 36 24 20 -2 #rect
 Ts0 f98 @|CallSubIcon #fIcon
 Ts0 f100 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f100 541 357 22 22 14 0 #rect
+Ts0 f100 541 237 22 22 14 0 #rect
 Ts0 f100 @|RichDialogProcessEndIcon #fIcon
 Ts0 f88 expr out #txt
 Ts0 f88 464 363 464 396 #arcP
@@ -942,18 +940,6 @@ Ts0 f57 expr out #txt
 Ts0 f57 72 184 72 235 #arcP
 Ts0 f18 expr out #txt
 Ts0 f18 93 1056 188 1056 #arcP
-Ts0 f14 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
-' #txt
-Ts0 f14 actionTable 'out=in;
-' #txt
-Ts0 f14 actionCode ivy.log.error("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); #txt
-Ts0 f14 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f14 496 250 112 44 0 -8 #rect
-Ts0 f14 @|StepIcon #fIcon
-Ts0 f53 expr out #txt
-Ts0 f53 552 184 552 250 #arcP
-Ts0 f55 expr out #txt
-Ts0 f55 552 294 552 357 #arcP
 Ts0 f63 expr in #txt
 Ts0 f63 592 1040 1064 1034 #arcP
 Ts0 f63 1 592 968 #addKink
@@ -961,6 +947,8 @@ Ts0 f63 2 1064 968 #addKink
 Ts0 f63 1 0.5028846153846154 0 0 #arcLabel
 Ts0 f58 expr out #txt
 Ts0 f58 460 1056 576 1056 #arcP
+Ts0 f19 expr out #txt
+Ts0 f19 552 184 552 237 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -1027,11 +1015,9 @@ Ts0 f27 mainOut f57 tail #connect
 Ts0 f57 head f3 mainIn #connect
 Ts0 f13 mainOut f18 tail #connect
 Ts0 f18 head f65 mainIn #connect
-Ts0 f98 mainOut f53 tail #connect
-Ts0 f53 head f14 mainIn #connect
-Ts0 f14 mainOut f55 tail #connect
-Ts0 f55 head f100 mainIn #connect
 Ts0 f54 out f63 tail #connect
 Ts0 f63 head f59 mainIn #connect
 Ts0 f70 mainOut f58 tail #connect
 Ts0 f58 head f54 in #connect
+Ts0 f98 mainOut f19 tail #connect
+Ts0 f19 head f100 mainIn #connect
