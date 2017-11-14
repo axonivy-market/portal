@@ -10,19 +10,20 @@
 
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}"
-    taskFilter="#{cc.attrs.filter}" dataModel="#{cc.attrs.dataModel}" displayFooterButtons="false">
-    <p:selectOneListbox id="responsible" value="#{cc.attrs.filter.selectedResponsible}"
-      var="responsible" filter="true" filterMatchMode="contains" styleClass="responsible-list-filter"
-      converter="pojoConverter">
-      <p:ajax update="@([id$='#{cc.attrs.componentId}:filter-open-form']) @form #{p:component('task-view-container')}"
-        global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
-      <f:selectItems value="#{cc.attrs.filter.responsibles}" var="r" itemLabel="#{r.displayName}"
-        itemValue="#{r}" />
+    taskFilter="#{cc.attrs.filter}" dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
+    <p:autoComplete id="responsible" scrollHeight="200" dropdown="true" size="35" 
+      completeMethod="#{logic.autoCompleteForResponsible}" value="#{cc.attrs.filter.selectedResponsible}"
+      var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.displayName}"
+      converter="pojoConverter" cache="true" maxResults="100"
+      moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      styleClass="responsible-list-filter">
+      <f:event listener="#{data.setResponsibles(cc.attrs.filter.responsibles)}" type="preRenderComponent" />
+      <p:ajax event="itemSelect" global="false" />
       <p:column>
         <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
         <h:outputText value="#{cc.attrs.filter.formatName(responsible)}" />
       </p:column>
-    </p:selectOneListbox>
+    </p:autoComplete>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
 </cc:implementation>
 </html>
