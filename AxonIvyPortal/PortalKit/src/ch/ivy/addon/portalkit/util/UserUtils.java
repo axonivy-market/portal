@@ -22,7 +22,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -267,6 +266,31 @@ public class UserUtils {
 
     List<IvyUser> filterUsers = new ArrayList<>();
     for (IvyUser user : users) {
+      if (user.getDisplayName().toLowerCase().contains(query.toLowerCase())
+          || user.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+        filterUsers.add(user);
+      }
+    }
+
+    filterUsers.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
+        second.getDisplayName().toLowerCase()));
+    return filterUsers;
+  }
+
+  /**
+   * Filter list of users by name based on provided query
+   * 
+   * @param users users need to be filtered
+   * @param query provided query
+   * @return Filtered and sorted list of ivy users
+   */
+  public static List<IUser> filterIUsers (List<IUser> users, String query) {
+    if (StringUtils.isEmpty(query)) {
+      return users;
+    }
+
+    List<IUser> filterUsers = new ArrayList<>();
+    for (IUser user : users) {
       if (user.getDisplayName().toLowerCase().contains(query.toLowerCase())
           || user.getMemberName().toLowerCase().contains(query.toLowerCase())) {
         filterUsers.add(user);
