@@ -334,9 +334,9 @@ Ca0 f23 actionDecl 'portalKit_test.Data out;
 ' #txt
 Ca0 f23 actionTable 'out=in;
 ' #txt
-Ca0 f23 actionCode 'import ch.ivy.addon.portalkit.persistence.dao.GlobalSettingDao;
-GlobalSettingDao dao = new GlobalSettingDao();
-dao.deleteAll(dao.findAll());' #txt
+Ca0 f23 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+GlobalSettingService globalSettingService = new GlobalSettingService();
+globalSettingService.deleteAll(globalSettingService.findAll());' #txt
 Ca0 f23 security system #txt
 Ca0 f23 type portalKit_test.Data #txt
 Ca0 f23 808 170 112 44 0 -8 #rect
