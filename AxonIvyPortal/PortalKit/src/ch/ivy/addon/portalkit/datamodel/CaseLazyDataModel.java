@@ -23,6 +23,7 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
+import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -108,6 +109,11 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       initFilterContainer();
       filters = filterContainer.getFilters();
       setValuesForCaseStateFilter(queryCriteria);
+      if (searchCriteria.getIgnoreInvolvedUser()) {
+        CaseStateFilter stateFilter = filterContainer.getStateFilter();
+        stateFilter.getSelectedFilteredStates().remove(CaseState.DONE);
+        stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
+      }
     }
   }
 
@@ -115,7 +121,6 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     if (filterContainer != null) {
       filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
       filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
-      filterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(criteria.getIncludedStates());
     }
   }
 
