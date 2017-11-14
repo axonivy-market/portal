@@ -10,19 +10,20 @@
 
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}"
-    caseFilter="#{cc.attrs.filter}" dataModel="#{cc.attrs.dataModel}" displayFooterButtons="false">
-    <p:selectOneListbox id="creator" value="#{cc.attrs.filter.selectedCreator}"
-      var="creator" filter="true" filterMatchMode="contains" styleClass="responsible-list-filter"
-      converter="pojoConverter">
-      <p:ajax update="@([id$='#{cc.attrs.componentId}:filter-open-form']) @form #{p:component('case-list')}"
-        global="false" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()" />
-      <f:selectItems value="#{cc.attrs.filter.securityMembers}" var="r" itemLabel="#{r.displayName}"
-        itemValue="#{r}" />
+    caseFilter="#{cc.attrs.filter}" dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
+    <p:autoComplete id="creator" scrollHeight="200" dropdown="true" size="35" 
+      completeMethod="#{logic.autoCompleteForCreator}" value="#{cc.attrs.filter.selectedCreator}"
+      var="creator" itemValue="#{creator}" itemLabel="#{creator.displayName}"
+      converter="pojoConverter" cache="true" maxResults="100"
+      moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      styleClass="responsible-list-filter">
+      <f:event listener="#{data.setCreators(cc.attrs.filter.securityMembers)}" type="preRenderComponent" />
+      <p:ajax event="itemSelect" global="false" />
       <p:column>
         <i class="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
         <h:outputText value="#{cc.attrs.filter.formatName(creator)}" />
       </p:column>
-    </p:selectOneListbox>
+    </p:autoComplete>
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
 </cc:implementation>
 </html>
