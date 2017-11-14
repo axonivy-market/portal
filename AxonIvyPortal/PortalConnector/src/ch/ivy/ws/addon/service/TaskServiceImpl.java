@@ -248,6 +248,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           ITask task = findTask(taskId, errors);
 
           if (task != null) {
+            task.setCustomTimestampField5(new Date());
             task.reset();
             IvyTaskTransformer transformer = new IvyTaskTransformer(isUrlBuiltFromSystemProperties);
             IvyTask ivyTask = transformer.transform(task);
