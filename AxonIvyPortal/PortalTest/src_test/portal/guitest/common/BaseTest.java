@@ -15,11 +15,28 @@ import com.thoughtworks.selenium.SeleneseTestBase;
  */
 public class BaseTest extends SeleneseTestBase {
   private Browser browser;
+
   private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";
   private BrowserType browserType = BrowserType.IE;
-  private String ieDriverPath = getIEDriverPath();
+  private String ieDriverPath = getInternetExprorerDriverPath();
 
-  private String getIEDriverPath() {
+  public Browser getBrowser() {
+    return browser;
+  }
+  
+  public void setBrowser(Browser browser) {
+    this.browser = browser;
+  }
+  
+  public String getIeDriverPath() {
+    return ieDriverPath;
+  }
+
+  public void setIeDriverPath(String ieDriverPath) {
+    this.ieDriverPath = ieDriverPath;
+  }
+
+  private String getInternetExprorerDriverPath() {
     String vmArgPath = System.getProperty("ieDriverPath");
     if (vmArgPath != null) {
       return vmArgPath;
