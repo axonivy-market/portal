@@ -73,11 +73,15 @@ public class TaskQueryService {
     return finalQuery;
   }
   
-  public TaskQuery findNewTasks(TaskQuery currentQuerry, Date timeStamp){
+  public TaskQuery findNewTasks(TaskQuery currentQuerry, Date timeStamp, Boolean ignoreInvolvedUser){
     TaskQuery returnQuery = currentQuerry;
     TaskQuery subQuery = TaskQuery.create();
-    // task when delegate, delegate time will write to customTimestampField5
-    subQuery.where().startTimestamp().isGreaterThan(timeStamp).or().customTimestampField5().isGreaterOrEqualThan(timeStamp);
+    if (ignoreInvolvedUser){
+      subQuery.where().startTimestamp().isGreaterThan(timeStamp);
+    } else {
+      // task when delegate or reset, delegate time will write to customTimestampField5
+      subQuery.where().startTimestamp().isGreaterThan(timeStamp).or().customTimestampField5().isGreaterOrEqualThan(timeStamp);
+    }
     currentQuerry.where().and(subQuery);
     
     return returnQuery;
