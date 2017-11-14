@@ -18,3 +18,5 @@ fileAlreadyExists Boolean #field
 fileAlreadyExists PERSISTENT #fieldModifier
 caseId Long #field
 caseId PERSISTENT #fieldModifier
+clientId String #field
+clientId PERSISTENT #fieldModifier
