@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Fri Mar 25 14:09:07 ICT 2016]
-153A79700C35BE80 3.18 #module
+153A79700C35BE80 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemDocumentProcess Big #zClass
 Cs0 RD #cInfo
@@ -86,6 +85,8 @@ Cs0 f7 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 ' #txt
 Cs0 f7 inParameterMapAction 'out.documentUploadEvent=param.event;
 ' #txt
+Cs0 f7 inActionCode 'out.clientId = param.event.getComponent().getAttributes().get("clientId") as String;
+out.clientId = out.clientId.replace(":document-upload-form:document-upload-panel","");' #txt
 Cs0 f7 outParameterDecl '<> result;
 ' #txt
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -122,10 +123,12 @@ Cs0 f33 469 357 22 22 14 0 #rect
 Cs0 f33 @|RichDialogProcessEndIcon #fIcon
 Cs0 f3 guid 1534FDA4FDC9B40C #txt
 Cs0 f3 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f3 method resetDataUploadDialog() #txt
+Cs0 f3 method resetDataUploadDialog(String) #txt
 Cs0 f3 disableUIEvents false #txt
 Cs0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+<java.lang.String clientId> param = methodEvent.getInputArguments();
+' #txt
+Cs0 f3 inParameterMapAction 'out.clientId=param.clientId;
 ' #txt
 Cs0 f3 outParameterDecl '<> result;
 ' #txt
@@ -133,6 +136,8 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>resetDataUploadDialog()</name>
+        <nameStyle>23,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -145,7 +150,8 @@ Cs0 f6 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseI
 ' #txt
 Cs0 f6 actionTable 'out=in;
 ' #txt
-Cs0 f6 actionCode 'import java.util.Iterator;
+Cs0 f6 actionCode 'import org.primefaces.context.RequestContext;
+import java.util.Iterator;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 Iterator messages = FacesContext.getCurrentInstance().getMessages();
@@ -154,7 +160,7 @@ while(messages.hasNext()) {
 	messages.next();
 	messages.remove();
 }
-' #txt
+RequestContext.getCurrentInstance().update(in.clientId + ":document-upload-form:upload-messages");' #txt
 Cs0 f6 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f6 1142 180 36 24 20 -2 #rect
 Cs0 f6 @|StepIcon #fIcon
@@ -379,6 +385,8 @@ CaseDocumentService documentService = new CaseDocumentService(in.internalCase.ge
 Boolean uploaded = documentService.upload(in.documentUploadEvent.getFile().getFileName(), in.documentUploadEvent.getFile().getInputstream());
 if(!uploaded){
   FacesContext.getCurrentInstance().addMessage("upload-messages", new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed"),null));
+} else {
+ RequestContext.getCurrentInstance().update(in.clientId + ":case-details-documents");
 }
 ' #txt
 Cs0 f24 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
@@ -402,11 +410,13 @@ Cs0 f38 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.Case
 ' #txt
 Cs0 f38 actionTable 'out=in;
 ' #txt
-Cs0 f38 actionCode 'import javax.faces.application.FacesMessage;
+Cs0 f38 actionCode 'import org.primefaces.context.RequestContext;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 FacesContext context = FacesContext.getCurrentInstance();
-context.addMessage("upload-messages", new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists", [in.documentUploadEvent.getFile().getFileName()]),null));' #txt
+context.addMessage("upload-messages", new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists", [in.documentUploadEvent.getFile().getFileName()]),null));
+RequestContext.getCurrentInstance().update(in.clientId + ":document-upload-form:upload-messages");' #txt
 Cs0 f38 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
