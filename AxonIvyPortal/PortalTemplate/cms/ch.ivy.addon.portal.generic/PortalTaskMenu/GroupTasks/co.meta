@@ -1,4 +1,0 @@
-co: name={GroupTasks} description={} changed={2017-07-24 11:49:23 CEST} changedby={dhtlong} visualorder={0} guid={156F9ED32762B429} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={156F9ED327B19460} datatype={} isdefault={true} langid={en} description={} validfrom={2016-09-05 12:38:06 CEST} validto={} changed={2016-09-05 12:38:06 CEST} changedby={hvu} properties={} id={}
-val: guid={156F9ED9BAE82CB1} datatype={} isdefault={false} langid={de} description={} validfrom={2016-09-05 12:38:32 CEST} validto={} changed={2016-09-05 12:38:53 CEST} changedby={hvu} properties={} id={}
-val: guid={15D7400501A6A230} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:23 CEST} validto={} changed={2017-07-24 11:49:23 CEST} changedby={dhtlong} properties={} id={}

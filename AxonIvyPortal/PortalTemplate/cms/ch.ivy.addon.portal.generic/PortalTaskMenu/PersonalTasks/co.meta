@@ -1,4 +1,0 @@
-co: name={PersonalTasks} description={} changed={2017-07-24 12:19:01 CEST} changedby={dhtlong} visualorder={0} guid={156F9ED32685970D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={156F9ED326BA7B21} datatype={} isdefault={true} langid={en} description={} validfrom={2016-09-05 12:38:06 CEST} validto={} changed={2016-10-03 04:26:07 CEST} changedby={lvcthanh} properties={} id={}
-val: guid={156F9EDCA778A43E} datatype={} isdefault={false} langid={de} description={} validfrom={2016-09-05 12:38:44 CEST} validto={} changed={2016-10-03 04:26:16 CEST} changedby={lvcthanh} properties={} id={}
-val: guid={15D74005029FEB44} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:23 CEST} validto={} changed={2017-07-24 12:19:01 CEST} changedby={dhtlong} properties={} id={}

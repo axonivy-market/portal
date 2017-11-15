@@ -1,4 +1,0 @@
-co: name={historyTabTitle} description={} changed={2017-07-24 11:49:23 CEST} changedby={dhtlong} visualorder={0} guid={14C92E552F79B9AB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14CB638AEE011DFD} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-14 06:38:27 CEST} validto={} changed={2015-07-10 11:12:45 CEST} changedby={ndloc} properties={} id={}
-val: guid={15D74004F4284D66} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:23 CEST} validto={} changed={2017-07-24 11:49:23 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14C92E552FA14682} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-07 10:00:39 CEST} validto={} changed={2015-04-07 10:00:55 CEST} changedby={Ngqhuy} properties={} id={}

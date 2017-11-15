@@ -1,4 +1,0 @@
-co: name={goToSidestepWarning} description={} changed={2017-08-10 15:38:32 CEST} changedby={t} visualorder={0} guid={15C773DF52BE0931} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15C773DF533D9993} datatype={} isdefault={true} langid={en} description={} validfrom={2017-06-05 09:52:48 CEST} validto={} changed={2017-08-10 15:38:32 CEST} changedby={t} properties={} id={}
-val: guid={15D740366649C705} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:02:54 CEST} validto={} changed={2017-08-10 09:02:54 CEST} changedby={t} properties={} id={}
-val: guid={15C773E515398611} datatype={} isdefault={false} langid={de} description={} validfrom={2017-06-05 09:53:08 CEST} validto={} changed={2017-08-10 15:38:32 CEST} changedby={t} properties={} id={}
