@@ -24,7 +24,7 @@
       onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('viewExpiredExceptionDialog').show()" />
   </h:form>
   <script type="text/javascript">
-      var timeout = 40000;
+      var timeout = "#{cc.attrs.clientSideTimeOut}";
       var timeOutSeconds = timeout/1000;
 	  document.cookie = createCookie('SessionCounter',timeOutSeconds);
       var warningDialogShow = false;
@@ -82,7 +82,7 @@
             timeOutSeconds = parseInt(getCookie('SessionCounter'), 10);
         }
         
-        if (timeOutSeconds &lt; 20){
+        if (timeOutSeconds &lt; 60){
           if(warningDialogShow == false){
          	warningDialogShow = true;
             PF('timeout-warning-dialog').show();
