@@ -1,5 +1,0 @@
-Vous pouvez réinitialiser une tâche uniquement si elle a l'un des états suivants : RESUMED,
-CREATED,
-PARKED,
-READY_FOR_JOIN,
-FAILED

@@ -1,4 +1,0 @@
-co: name={confirmPasswordHaveMatch} description={} changed={2017-09-01 18:01:18 CEST} changedby={ec} visualorder={0} guid={15E0D3A9C1B9CEFE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15E0D3A9C1FF295E} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-23 05:54:58 CEST} validto={} changed={2017-08-31 15:48:47 CEST} changedby={t} properties={} id={}
-val: guid={15E3887FB4B8F443} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-31 15:42:30 CEST} validto={} changed={2017-09-01 18:01:17 CEST} changedby={ec} properties={} id={}
-val: guid={15E3E2CD32976F0E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-09-01 18:00:23 CEST} validto={} changed={2017-09-01 18:01:18 CEST} changedby={ec} properties={} id={}

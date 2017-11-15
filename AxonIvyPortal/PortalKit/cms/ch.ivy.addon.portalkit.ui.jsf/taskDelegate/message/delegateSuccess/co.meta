@@ -1,4 +1,0 @@
-co: name={delegateSuccess} description={} changed={2017-07-24 11:49:06 CEST} changedby={dhtlong} visualorder={0} guid={14C6A591A9B3571C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D74000C789B422} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2017-07-24 11:49:06 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14C6A591AA2A568A} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-30 13:02:46 CEST} validto={} changed={2015-04-10 11:56:42 CEST} changedby={Johannes} properties={} id={}
-val: guid={14CA2C256BDB2BA6} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 11:56:27 CEST} validto={} changed={2015-04-10 11:56:42 CEST} changedby={Johannes} properties={} id={}

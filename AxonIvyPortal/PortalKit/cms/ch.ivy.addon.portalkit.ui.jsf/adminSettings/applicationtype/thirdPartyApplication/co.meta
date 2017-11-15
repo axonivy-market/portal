@@ -1,4 +1,0 @@
-co: name={thirdPartyApplication} description={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} visualorder={0} guid={150F4AF029CF2DA2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={150F4AF029EAF1F8} datatype={} isdefault={true} langid={en} description={} validfrom={2015-06-11 05:55:09 CEST} validto={} changed={2015-11-11 04:55:21 CET} changedby={lvcthanh} properties={} id={}
-val: guid={15125648A9AF92C0} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:24 CET} validto={} changed={2015-11-20 15:55:24 CET} changedby={t} properties={} id={}
-val: guid={15D73FFFAB16A89C} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} properties={} id={}

@@ -1,4 +1,0 @@
-co: name={responsibleAfterEscalation} description={} changed={2017-07-24 11:49:07 CEST} changedby={dhtlong} visualorder={0} guid={14B6C7A728184E28} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14CA2D1918CD74DB} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 12:12:55 CEST} validto={} changed={2015-04-10 12:13:05 CEST} changedby={Johannes} properties={} id={}
-val: guid={15D74001070D1FE9} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-07-24 11:49:07 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14B6C7A728D1F783} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-09 04:55:39 CET} validto={} changed={2015-02-09 04:56:06 CET} changedby={lptchi} properties={} id={}

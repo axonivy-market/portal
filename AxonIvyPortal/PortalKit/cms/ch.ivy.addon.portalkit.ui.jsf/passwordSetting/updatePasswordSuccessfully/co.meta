@@ -1,4 +1,0 @@
-co: name={updatePasswordSuccessfully} description={} changed={2017-08-14 15:20:39 CEST} changedby={ec} visualorder={0} guid={15DBFD85BAEEA91C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DBFEF17A6AC59C} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-08 05:41:40 CEST} validto={} changed={2017-08-10 15:41:01 CEST} changedby={t} properties={} id={}
-val: guid={15DBFD85BB4E47EB} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-08 05:16:53 CEST} validto={} changed={2017-08-08 05:16:53 CEST} changedby={tntanh} properties={} id={}
-val: guid={15DBFEF1838E7A30} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-08 05:41:37 CEST} validto={} changed={2017-08-14 15:20:39 CEST} changedby={ec} properties={} id={}

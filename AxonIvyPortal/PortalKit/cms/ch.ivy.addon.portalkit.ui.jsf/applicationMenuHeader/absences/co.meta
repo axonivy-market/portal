@@ -1,4 +1,0 @@
-co: name={absences} description={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} visualorder={0} guid={14C2751F83DCDE63} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14CA1F86150B2A98} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 08:15:51 CEST} validto={} changed={2015-04-10 08:16:22 CEST} changedby={Johannees} properties={} id={}
-val: guid={15D73FFFDE2DB3F2} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14C2751F8408BE93} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-17 11:40:25 CET} validto={} changed={2015-04-10 08:15:51 CEST} changedby={Johannees} properties={} id={}

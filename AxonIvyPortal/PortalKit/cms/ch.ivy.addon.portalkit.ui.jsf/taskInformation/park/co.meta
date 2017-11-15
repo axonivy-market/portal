@@ -1,4 +1,0 @@
-co: name={park} description={} changed={2017-07-24 11:49:07 CEST} changedby={dhtlong} visualorder={0} guid={14B7124AE23BA3C6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14CA2C5D6067CAE0} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 12:00:10 CEST} validto={} changed={2015-04-10 12:00:16 CEST} changedby={Johannes} properties={} id={}
-val: guid={14B7124AE30D88EB} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-10 02:40:04 CET} validto={} changed={2015-02-10 02:40:10 CET} changedby={lptchi} properties={} id={}
-val: guid={15D74000E5D2ACEB} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-07-24 11:49:07 CEST} changedby={dhtlong} properties={} id={}

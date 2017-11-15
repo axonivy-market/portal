@@ -1,4 +1,0 @@
-co: name={removeDelayConfirm} description={} changed={2017-07-24 11:49:01 CEST} changedby={dhtlong} visualorder={0} guid={14E628E46AEA6FFF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14E628E46B55BA31} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:45 CET} validto={} changed={2016-12-21 15:20:45 CET} changedby={t} properties={} id={}
-val: guid={14E628EEF2FB51B1} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:45 CET} validto={} changed={2016-12-21 15:20:45 CET} changedby={t} properties={} id={}
-val: guid={15D73FFF93110A4B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:01 CEST} validto={} changed={2017-07-24 11:49:01 CEST} changedby={dhtlong} properties={} id={}

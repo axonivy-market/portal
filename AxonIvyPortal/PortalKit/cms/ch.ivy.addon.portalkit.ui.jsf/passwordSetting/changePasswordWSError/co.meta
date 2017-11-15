@@ -1,4 +1,0 @@
-co: name={changePasswordWSError} description={} changed={2017-09-01 18:06:14 CEST} changedby={ec} visualorder={0} guid={15E0D49A0F92267D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15E3E3155A08E38E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-09-01 18:04:47 CEST} validto={} changed={2017-09-01 18:06:14 CEST} changedby={ec} properties={} id={}
-val: guid={15E0D49A10141CE9} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-23 06:11:22 CEST} validto={} changed={2017-08-31 15:40:55 CEST} changedby={t} properties={} id={}
-val: guid={15E388192BBF2596} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-31 15:34:05 CEST} validto={} changed={2017-08-31 15:36:09 CEST} changedby={t} properties={} id={}

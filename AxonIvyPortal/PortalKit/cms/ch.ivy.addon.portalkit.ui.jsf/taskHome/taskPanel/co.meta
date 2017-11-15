@@ -1,4 +1,0 @@
-co: name={taskPanel} description={} changed={2017-07-24 11:49:06 CEST} changedby={dhtlong} visualorder={0} guid={14758F7C1B4E6DC5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14758F7C1B81D25A} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:48:57 CEST} validto={} changed={2014-07-21 14:49:13 CEST} changedby={roman} properties={} id={}
-val: guid={15D74000DE4B2479} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2017-07-24 11:49:06 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14767A10A019E116} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-24 11:08:27 CEST} validto={} changed={2014-07-24 11:08:32 CEST} changedby={tauser} properties={} id={}

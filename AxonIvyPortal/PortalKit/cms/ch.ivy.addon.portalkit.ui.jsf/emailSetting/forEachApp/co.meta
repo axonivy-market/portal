@@ -1,4 +1,0 @@
-co: name={forEachApp} description={} changed={2017-07-24 11:49:05 CEST} changedby={dhtlong} visualorder={0} guid={14BD8B4AC552D83F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D740006E38B17C} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-07-24 11:49:05 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14BD8B4AC59CFAED} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-02 05:18:14 CET} validto={} changed={2015-03-02 05:26:22 CET} changedby={maonguyen} properties={} id={}
-val: guid={14CA26BD00749DB5} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:21:43 CEST} validto={} changed={2015-04-10 10:21:56 CEST} changedby={Johannes} properties={} id={}

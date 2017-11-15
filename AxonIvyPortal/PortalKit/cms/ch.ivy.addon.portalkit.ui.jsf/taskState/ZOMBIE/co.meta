@@ -1,4 +1,0 @@
-co: name={ZOMBIE} description={} changed={2017-10-13 10:21:53 CEST} changedby={dhtlong} visualorder={0} guid={14CE5917AEC13B88} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D7400119DE8475} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-10-13 10:21:53 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14CE591E0F6C728C} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-23 11:17:59 CEST} validto={} changed={2017-10-13 10:21:53 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14CE5917AF1B962F} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-23 11:17:38 CEST} validto={} changed={2017-10-13 10:21:53 CEST} changedby={dhtlong} properties={} id={}

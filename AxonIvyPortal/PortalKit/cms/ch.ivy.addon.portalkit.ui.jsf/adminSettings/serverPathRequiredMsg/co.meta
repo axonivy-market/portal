@@ -1,4 +1,0 @@
-co: name={serverPathRequiredMsg} description={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} visualorder={0} guid={150F4AE3B84C80D3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D73FFFD40D3744} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} properties={} id={}
-val: guid={15125649FB9495EA} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:30 CET} validto={} changed={2015-11-20 15:55:30 CET} changedby={t} properties={} id={}
-val: guid={150F4AE3B85D86E3} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-12 09:14:39 CET} validto={} changed={2015-11-11 04:54:30 CET} changedby={lvcthanh} properties={} id={}
