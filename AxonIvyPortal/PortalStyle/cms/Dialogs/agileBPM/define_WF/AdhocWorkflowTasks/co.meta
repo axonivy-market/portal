@@ -1,0 +1,4 @@
+co: name={AdhocWorkflowTasks} description={} changed={2017-11-15 09:22:26 CET} changedby={chnam} visualorder={0} guid={15FBEC5AA546F415} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEC5AA63930C6} datatype={} isdefault={true} langid={en} description={} validfrom={2014-02-24 12:26:49 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC5AA56E09A2} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:32:01 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC5AA5C35232} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:41 CEST} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}

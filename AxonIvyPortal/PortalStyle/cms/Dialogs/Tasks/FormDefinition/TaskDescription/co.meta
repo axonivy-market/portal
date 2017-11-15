@@ -1,0 +1,4 @@
+co: name={TaskDescription} description={} changed={2017-11-15 11:37:30 CET} changedby={chnam} visualorder={0} guid={15FBF41543042482} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBF41543C3EA0C} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2017-11-15 11:37:30 CET} changedby={chnam} properties={} id={}
+val: guid={15FBF415437B69CE} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 10:11:48 CEST} validto={} changed={2017-11-15 11:37:30 CET} changedby={chnam} properties={} id={}
+val: guid={15FBF415432879CD} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 10:11:43 CEST} validto={} changed={2017-11-15 11:37:30 CET} changedby={chnam} properties={} id={}

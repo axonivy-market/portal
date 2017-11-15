@@ -1,0 +1,3 @@
+co: name={ToDo-Explain} description={} changed={2017-11-15 09:26:51 CET} changedby={chnam} visualorder={0} guid={15FBEC9B63269669} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
+val: guid={15FBEC9B63448A47} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-11-15 09:26:51 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC9B639FEEB6} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:40:38 CET} validto={} changed={2017-11-15 09:26:51 CET} changedby={chnam} properties={} id={}
