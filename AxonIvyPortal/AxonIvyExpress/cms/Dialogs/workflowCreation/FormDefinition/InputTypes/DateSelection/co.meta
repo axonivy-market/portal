@@ -1,4 +1,0 @@
-co: name={DateSelection} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={15BF18316EC50D61} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BF18335C4D991A} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 10:39:16 CEST} validto={} changed={2017-05-10 10:39:19 CEST} changedby={ldnam} properties={} id={}
-val: guid={15DCAF1F7D8C9542} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
-val: guid={15BF18316F1F12F8} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 10:39:11 CEST} validto={} changed={2017-07-24 05:45:51 CEST} changedby={ldnam} properties={} id={}

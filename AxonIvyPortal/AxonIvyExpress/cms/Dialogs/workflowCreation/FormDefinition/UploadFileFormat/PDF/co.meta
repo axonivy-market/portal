@@ -1,4 +1,0 @@
-co: name={PDF} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={15BF1C9866FD9F49} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DCAF1F8E118F79} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
-val: guid={15BF1C986766D704} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 11:56:07 CEST} validto={} changed={2017-05-10 11:56:07 CEST} changedby={ldnam} properties={} id={}
-val: guid={15BF1D950BD89262} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 12:13:21 CEST} validto={} changed={2017-05-10 12:13:22 CEST} changedby={ldnam} properties={} id={}

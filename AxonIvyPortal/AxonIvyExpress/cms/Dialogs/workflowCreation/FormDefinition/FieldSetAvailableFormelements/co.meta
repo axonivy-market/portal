@@ -1,4 +1,0 @@
-co: name={FieldSetAvailableFormelements} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={1589E1765A4B3A61} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DCAF1F76A2A999} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
-val: guid={15BECE70CAF98BA7} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:10:15 CEST} validto={} changed={2017-05-09 13:10:16 CEST} changedby={ldnam} properties={} id={}
-val: guid={1589E1765AA2CBC0} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-05-22 13:42:28 CEST} changedby={t} properties={} id={}

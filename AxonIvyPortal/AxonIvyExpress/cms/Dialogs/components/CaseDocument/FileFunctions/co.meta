@@ -1,4 +1,0 @@
-co: name={FileFunctions} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={15831268707374A2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DCAF1F632BAB3A} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
-val: guid={1583126870ED7E2A} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-04 22:02:38 CET} validto={} changed={2017-05-11 06:37:55 CEST} changedby={t} properties={} id={}
-val: guid={0015BECD3B3B8A5D} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:49:05 CEST} validto={} changed={2017-05-09 12:49:08 CEST} changedby={ldnam} properties={} id={}

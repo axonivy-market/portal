@@ -1,4 +1,0 @@
-co: name={AddCheckboxField} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={1589E1764D2BD169} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1589E1764D734B05} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-05-22 13:34:00 CEST} changedby={t} properties={} id={}
-val: guid={15BECDB2A993EBFB} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 12:57:16 CEST} validto={} changed={2017-05-09 12:57:18 CEST} changedby={ldnam} properties={} id={}
-val: guid={15DCAF1F6BEE51C8} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}

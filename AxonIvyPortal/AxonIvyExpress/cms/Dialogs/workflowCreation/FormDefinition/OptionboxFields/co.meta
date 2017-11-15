@@ -1,4 +1,0 @@
-co: name={OptionboxFields} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={1589E1764B88A6E4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BECEC857F589CD} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:16:13 CEST} validto={} changed={2017-05-09 13:16:15 CEST} changedby={ldnam} properties={} id={}
-val: guid={15DCAF1F864BE635} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
-val: guid={1589E1764BE922BD} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-05-22 14:00:20 CEST} changedby={t} properties={} id={}

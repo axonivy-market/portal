@@ -1,4 +1,0 @@
-co: name={untilDaysTooltip} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={15BFAE2AD5415383} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DCAF1F5D493003} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}
-val: guid={15BFAE2AE8DD9710} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-12 06:20:11 CEST} validto={} changed={2017-05-12 06:36:59 CEST} changedby={dhtlong} properties={} id={}
-val: guid={15BFAE7FEAE76A76} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-12 06:25:56 CEST} validto={} changed={2017-05-12 06:36:59 CEST} changedby={dhtlong} properties={} id={}
