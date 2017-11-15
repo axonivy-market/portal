@@ -1,4 +1,0 @@
-co: name={NumberField} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={15BF1829F1C437BD} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BF1829F1F7B11E} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 10:38:41 CEST} validto={} changed={2017-05-22 13:31:13 CEST} changedby={t} properties={} id={}
-val: guid={15BF182BFB8F577D} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 10:38:46 CEST} validto={} changed={2017-05-10 10:38:49 CEST} changedby={ldnam} properties={} id={}
-val: guid={15DCAF1F7D85217A} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}

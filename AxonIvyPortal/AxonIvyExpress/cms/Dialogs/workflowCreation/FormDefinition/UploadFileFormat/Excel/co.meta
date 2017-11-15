@@ -1,4 +1,0 @@
-co: name={Excel} description={} changed={2017-08-10 09:00:41 CEST} changedby={t} visualorder={0} guid={15BF1D91930E083E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BF1D91933C8EA3} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 12:13:08 CEST} validto={} changed={2017-05-10 12:13:08 CEST} changedby={ldnam} properties={} id={}
-val: guid={15BF1D976AC79ACA} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 12:13:31 CEST} validto={} changed={2017-05-10 12:13:32 CEST} changedby={ldnam} properties={} id={}
-val: guid={15DCAF1F8D245D3C} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-08-10 09:00:41 CEST} changedby={t} properties={} id={}

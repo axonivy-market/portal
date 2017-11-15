@@ -1,4 +1,0 @@
-co: name={ReqMsgGeneric} description={} changed={2017-08-10 09:00:42 CEST} changedby={t} visualorder={0} guid={15899D8C0E419F50} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BF010674C63927} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 03:54:16 CEST} validto={} changed={2017-05-10 03:54:18 CEST} changedby={ldnam} properties={} id={}
-val: guid={15DCAF1FB3375131} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:42 CEST} validto={} changed={2017-08-10 09:00:42 CEST} changedby={t} properties={} id={}
-val: guid={15899D8C0EBDD671} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:57:49 CET} validto={} changed={2017-05-22 14:07:23 CEST} changedby={t} properties={} id={}
