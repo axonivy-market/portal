@@ -1,5 +1,5 @@
 [Ivy]
-15FA4CC33E5D866A 3.20 #module
+15FB9D5F0CD93222 3.20 #module
 >Proto >Proto Collection #zClass
 Ls0 LoadSubMenuItems Big #zClass
 Ls0 B #cInfo
@@ -25,10 +25,10 @@ Ls0 f0 outParamDecl '<List<ch.addon.portal.generic.menu.SubMenuItem> subMenuItem
 ' #txt
 Ls0 f0 outParamTable 'result.subMenuItems=in.subMenuItems;
 ' #txt
-Ls0 f0 actionDecl 'ch.ivy.addon.portal.generic.LoadSubMenuItemsData out;
+Ls0 f0 actionDecl 'test005ProjectManagement.LoadSubMenuItemsOverrideData out;
 ' #txt
 Ls0 f0 callSignature loadSubMenuItems() #txt
-Ls0 f0 type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
+Ls0 f0 type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
 Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -38,14 +38,18 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ls0 f0 81 137 30 30 16 11 #rect
 Ls0 f0 @|StartSubIcon #fIcon
-Ls0 f1 type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
+Ls0 f1 type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
 Ls0 f1 81 361 30 30 0 15 #rect
 Ls0 f1 @|EndSubIcon #fIcon
-Ls0 f3 actionDecl 'ch.ivy.addon.portal.generic.LoadSubMenuItemsData out;
+Ls0 f3 actionDecl 'test005ProjectManagement.LoadSubMenuItemsOverrideData out;
 ' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.addon.portal.generic.menu.DashboardSubMenuItem;
+Ls0 f3 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.addon.portal.generic.menu.DashboardSubMenuItem;
 import ch.addon.portal.generic.menu.ProcessSubMenuItem;
 import ch.addon.portal.generic.menu.CaseSubMenuItem;
 import ch.addon.portal.generic.menu.TaskSubMenuItem;
@@ -55,8 +59,24 @@ import ch.addon.portal.generic.menu.SubMenuItem;
 in.subMenuItems.add(new ProcessSubMenuItem());
 in.subMenuItems.add(new TaskSubMenuItem());
 in.subMenuItems.add(new CaseSubMenuItem());
-in.subMenuItems.add(new DashboardSubMenuItem());' #txt
-Ls0 f3 type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
+in.subMenuItems.add(new DashboardSubMenuItem());
+
+SubMenuItem google = new SubMenuItem();
+google.setIcon("fa fa-binoculars");
+google.setLabel("Google");
+google.setMenuKind(MenuKind.CUSTOM);
+google.setLink("www.google.com");
+in.subMenuItems.add(google);
+
+SubMenuItem selfService = new SubMenuItem();
+selfService.setIcon("fa fa-flag");
+selfService.setLabel("Self Service");
+selfService.setMenuKind(MenuKind.CUSTOM);
+ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
+selfService.setLink(RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString());
+in.subMenuItems.add(selfService);' #txt
+Ls0 f3 type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -109,7 +129,7 @@ External link:
 Ls0 f5 256 28 352 440 -163 -208 #rect
 Ls0 f5 @|IBIcon #fIcon
 Ls0 f6 256 248 152 248 #arcP
->Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
+>Proto Ls0 .type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt
 >Proto Ls0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -18,6 +18,7 @@ var Portal = {
 				$('.left-sidebar-sub-menu-name').toggleClass('left-sidebar-animation');
 				$('.left-sidebar-menu-name').toggleClass('left-sidebar-animation');
 				$('.left-sidebar-menu-icon').toggleClass('left-sidebar-animation');
+				$("div[id*='left-sidebar-menu-item-tooltip']").toggleClass('u-invisibility');
 				setTimeout(function() {
 					$('.js-left-sidebar').toggleClass('left-sidebar-animation');
 					$('.js-left-sidebar-toggle').toggleClass('left-sidebar-animation');
@@ -111,6 +112,7 @@ var MainMenu = {
 			toggleMainMenuMode();
 			// Update layout to corresponding viewport here
 			$this.responsiveToolkit.updateLayoutWithAnimation();
+			$("div[id*='left-sidebar-menu-item-tooltip']").toggleClass('u-invisibility');
 		});
 	},
 

@@ -1,5 +1,7 @@
 {
   /PROCESS {
     /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"
+    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
   }
+  /RICH_DIALOG *
 }
