@@ -23,8 +23,11 @@
         <p:commandLink actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}"
           rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
           styleClass="left-sidebar-menu-header js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}">
-          <i class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
+          <h:outputText id="application-icon"
+            class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
           <h:outputText value="#{menuItem.value}" styleClass="left-sidebar-menu-name left-sidebar-animation" />
+          <p:tooltip id="left-sidebar-menu-item-tooltip" styleClass="left-sidebar-menu-item-tooltip"
+            value="#{menuItem.value}" for="application-icon" />
         </p:commandLink>
         <p:commandLink rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
           disabled="#{menuItem.disabled}"
@@ -43,17 +46,21 @@
               value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
             <p:commandLink styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{isIvyLink}"
               actionListener="#{logic.onClickSubMenuItem}" onclick="saveMenuState(this)">
-              <span
+              <h:panelGroup id="left-sidebar-sub-menu-item"
                 class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
               <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
             </p:commandLink>
             <p:link styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{!isIvyLink}"
               href="#{subMenuItem.externalLink}" target="_blank">
-              <span
+              <h:panelGroup id="left-sidebar-sub-menu-item-external"
                 class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
             </p:link>
+            <p:tooltip id="left-sidebar-menu-item-tooltip" styleClass="left-sidebar-menu-item-tooltip"
+              value="#{subMenuItem.label}" for="left-sidebar-sub-menu-item" />
+            <p:tooltip id="left-sidebar-sub-menu-item-tooltip-external" styleClass="left-sidebar-menu-item-tooltip"
+              value="#{subMenuItem.label}" for="left-sidebar-sub-menu-item-external" />
           </ui:repeat>
           <div class="left-sidebar-separator-bottom" />
         </h:panelGroup>
