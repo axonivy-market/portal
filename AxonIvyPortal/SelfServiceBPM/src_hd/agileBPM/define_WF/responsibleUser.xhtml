@@ -14,6 +14,7 @@
         moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
         <f:event listener="#{logic.autoCompleteForUser}" type="preRenderComponent" />
         <p:ajax event="itemSelect" global="false" update="addUserButton" />
+        <p:ajax event="query" global="false" />
       </p:autoComplete>
       <p:commandButton id="addUserButton" styleClass="add-user-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         disabled="#{data.selectedUser == null}" actionListener="#{logic.insertToUserList}" global="false" update="userSelection error-message" />

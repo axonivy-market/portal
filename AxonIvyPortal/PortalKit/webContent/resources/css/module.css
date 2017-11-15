@@ -979,12 +979,16 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: rgba(0,0,0,1) !important;
 }
 
-.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext {
+.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext,
+.ui-autocomplete-items .ui-autocomplete-item.ui-autocomplete-moretext {
   cursor: default;
+  transition: none !important;
 }
 
 .ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-highlight,
-.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-hover {
+.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-hover,
+.ui-autocomplete-items .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-highlight td,
+.ui-autocomplete-items .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-hover td {
   font-family: 'robotoregular';
   color: #656565 !important;
   background-color: white;
