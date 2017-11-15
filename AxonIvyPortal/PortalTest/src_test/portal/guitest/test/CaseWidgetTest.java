@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.BaseTest;
@@ -64,5 +65,31 @@ public class CaseWidgetTest extends BaseTest {
     int numberOfTasks = caseDetailsPage.countRelatedTasks();
     TaskWidgetPage taskOfCasePage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(numberOfTasks, taskOfCasePage.countTasks());
+  }
+
+  @Test
+  public void testHideCase() {
+    navigateToUrl(hideCaseUrl);
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+
+    HomePage homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CasePage casePage = mainMenuPage.selectCaseMenu();
+
+    CaseDetailsPage caseDetailsPage = casePage.openDetailsOfCaseHasName("Repair Computer");
+    int numberOfTasks = caseDetailsPage.countRelatedTasks();
+    int numberOfTechnicalCases = caseDetailsPage.countTechnicalCases();
+    assertEquals(3, numberOfTasks);
+    assertEquals(2, numberOfTechnicalCases);
+
+    TaskWidgetPage taskWidgetPage = caseDetailsPage.openTasksOfCasePage(2);
+    taskWidgetPage.findElementByClassName("show-task-details-mode").findElement(By.cssSelector("*[id$=':task-item:task-start-command']")).click();
+    taskWidgetPage.waitForElementPresent(By.id("user-menu-required-login:main-navigator"), true);
+
+
+    mainMenuPage = taskWidgetPage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
+    assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 }
