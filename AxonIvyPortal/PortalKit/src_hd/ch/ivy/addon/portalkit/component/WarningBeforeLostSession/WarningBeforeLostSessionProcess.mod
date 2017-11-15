@@ -27,10 +27,7 @@ Ws0 @PushWFArc f8 '' #zField
 Ws0 @RichDialogMethodStart f11 '' #zField
 Ws0 @RichDialogProcessEnd f12 '' #zField
 Ws0 @PushWFArc f13 '' #zField
-Ws0 @Alternative f14 '' #zField
-Ws0 @PushWFArc f15 '' #zField
 Ws0 @PushWFArc f10 '' #zField
-Ws0 @PushWFArc f16 '' #zField
 >Proto Ws0 Ws0 WarningBeforeLostSessionProcess #zField
 Ws0 f0 guid 15F80B73AFE43AE4 #txt
 Ws0 f0 type ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData #txt
@@ -95,7 +92,7 @@ Ws0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ws0 f6 83 243 26 26 -21 15 #rect
 Ws0 f6 @|RichDialogMethodStartIcon #fIcon
 Ws0 f7 type ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData #txt
-Ws0 f7 435 243 26 26 0 12 #rect
+Ws0 f7 347 243 26 26 0 12 #rect
 Ws0 f7 @|RichDialogProcessEndIcon #fIcon
 Ws0 f9 type ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData #txt
 Ws0 f9 processCall 'Functional Processes/Logout:call(Boolean)' #txt
@@ -117,10 +114,10 @@ Ws0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ws0 f9 264 234 112 44 -19 -8 #rect
+Ws0 f9 176 234 112 44 -19 -8 #rect
 Ws0 f9 @|CallSubIcon #fIcon
 Ws0 f8 expr out #txt
-Ws0 f8 376 256 435 256 #arcP
+Ws0 f8 288 256 347 256 #arcP
 Ws0 f11 guid 15F94574C89A91BA #txt
 Ws0 f11 type ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData #txt
 Ws0 f11 method extendSession() #txt
@@ -144,19 +141,8 @@ Ws0 f12 339 371 26 26 0 12 #rect
 Ws0 f12 @|RichDialogProcessEndIcon #fIcon
 Ws0 f13 expr out #txt
 Ws0 f13 109 384 339 384 #arcP
-Ws0 f14 type ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData #txt
-Ws0 f14 176 240 32 32 0 16 #rect
-Ws0 f14 @|AlternativeIcon #fIcon
-Ws0 f15 expr out #txt
-Ws0 f15 109 256 176 256 #arcP
-Ws0 f10 expr in #txt
-Ws0 f10 outCond !ivy.wf.getSecurityContext().getCurrentSession().isSessionUserUnknown() #txt
-Ws0 f10 208 256 264 256 #arcP
-Ws0 f16 expr in #txt
-Ws0 f16 192 272 448 269 #arcP
-Ws0 f16 1 192 304 #addKink
-Ws0 f16 2 448 304 #addKink
-Ws0 f16 1 0.505859375 0 0 #arcLabel
+Ws0 f10 expr out #txt
+Ws0 f10 109 256 176 256 #arcP
 >Proto Ws0 .type ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData #txt
 >Proto Ws0 .processKind HTML_DIALOG #txt
 >Proto Ws0 -8 -8 16 16 16 26 #rect
@@ -169,9 +155,5 @@ Ws0 f9 mainOut f8 tail #connect
 Ws0 f8 head f7 mainIn #connect
 Ws0 f11 mainOut f13 tail #connect
 Ws0 f13 head f12 mainIn #connect
-Ws0 f6 mainOut f15 tail #connect
-Ws0 f15 head f14 in #connect
-Ws0 f14 out f10 tail #connect
+Ws0 f6 mainOut f10 tail #connect
 Ws0 f10 head f9 mainIn #connect
-Ws0 f14 out f16 tail #connect
-Ws0 f16 head f7 mainIn #connect
