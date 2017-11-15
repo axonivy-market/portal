@@ -1,4 +1,0 @@
-co: name={businessCase} description={} changed={2017-10-11 12:46:49 CEST} changedby={t} visualorder={0} guid={150EAA12F746FC74} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={150EB01A3A6E772F} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:08 CET} validto={} changed={2017-10-11 12:46:49 CEST} changedby={t} properties={} id={}
-val: guid={15D74000CDC64FE1} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2017-10-11 12:46:49 CEST} changedby={t} properties={} id={}
-val: guid={150EAA12F79AA9EE} datatype={} isdefault={true} langid={en} description={} validfrom={2015-11-09 06:04:03 CET} validto={} changed={2017-10-10 12:10:33 CEST} changedby={tntanh} properties={} id={}

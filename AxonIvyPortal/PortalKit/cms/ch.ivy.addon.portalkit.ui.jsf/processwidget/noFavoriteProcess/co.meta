@@ -1,4 +1,0 @@
-co: name={noFavoriteProcess} description={} changed={2017-07-24 11:49:05 CEST} changedby={dhtlong} visualorder={0} guid={15004125D89BE810} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D7400090CB3BFC} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-07-24 11:49:05 CEST} changedby={dhtlong} properties={} id={}
-val: guid={1500412B8FC14572} datatype={} isdefault={false} langid={de} description={} validfrom={2015-09-25 12:35:41 CEST} validto={} changed={2015-11-09 12:42:28 CET} changedby={hvu} properties={} id={}
-val: guid={15004125D8D17164} datatype={} isdefault={true} langid={en} description={} validfrom={2015-09-25 12:35:23 CEST} validto={} changed={2015-11-09 12:45:06 CET} changedby={hvu} properties={} id={}

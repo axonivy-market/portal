@@ -1,4 +1,0 @@
-co: name={detailedStatistic} description={} changed={2017-07-24 11:49:06 CEST} changedby={dhtlong} visualorder={0} guid={14EAA4B3C24AE85E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D74000AD557EB6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2017-07-24 11:49:06 CEST} changedby={dhtlong} properties={} id={}
-val: guid={14EAA4B3C28A7381} datatype={} isdefault={true} langid={en} description={} validfrom={2015-07-20 05:04:36 CEST} validto={} changed={2015-07-20 09:08:54 CEST} changedby={maonguyen} properties={} id={}
-val: guid={15921C1CD3F3E364} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:06 CET} validto={} changed={2016-12-21 15:21:06 CET} changedby={t} properties={} id={}

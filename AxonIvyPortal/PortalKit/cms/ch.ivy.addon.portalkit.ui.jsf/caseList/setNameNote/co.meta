@@ -1,4 +1,0 @@
-co: name={setNameNote} description={} changed={2017-07-24 11:49:03 CEST} changedby={dhtlong} visualorder={0} guid={1563135AB4A81F2A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1563135AB50CEBF8} datatype={} isdefault={true} langid={en} description={} validfrom={2016-07-28 13:13:36 CEST} validto={} changed={2016-07-28 13:14:27 CEST} changedby={anhnguyenhoang} properties={} id={}
-val: guid={15921C1A4B8BA2B6} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:55 CET} validto={} changed={2016-12-21 15:20:55 CET} changedby={t} properties={} id={}
-val: guid={15D740001046C3A7} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:03 CEST} validto={} changed={2017-07-24 11:49:03 CEST} changedby={dhtlong} properties={} id={}

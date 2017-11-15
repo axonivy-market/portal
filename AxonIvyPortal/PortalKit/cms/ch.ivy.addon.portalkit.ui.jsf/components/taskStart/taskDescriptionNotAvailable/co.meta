@@ -1,4 +1,0 @@
-co: name={taskDescriptionNotAvailable} description={} changed={2017-08-10 08:57:15 CEST} changedby={t} visualorder={0} guid={15B8487C9C3AA60F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D740BF3F5B143E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 08:57:15 CEST} validto={} changed={2017-08-10 08:57:15 CEST} changedby={t} properties={} id={}
-val: guid={15B8487C9D2E3AE8} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:00 CET} validto={} changed={2017-05-12 04:55:54 CEST} changedby={t} properties={} id={}
-val: guid={15B8487C9C627BD2} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:00 CET} validto={} changed={2017-05-12 04:56:02 CEST} changedby={t} properties={} id={}

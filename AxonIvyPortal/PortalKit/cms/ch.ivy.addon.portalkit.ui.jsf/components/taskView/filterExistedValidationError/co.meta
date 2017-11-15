@@ -1,4 +1,0 @@
-co: name={filterExistedValidationError} description={} changed={2017-11-01 09:36:44 CET} changedby={lttung} visualorder={0} guid={15F6D8140665970D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F6D81406A89D96} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-30 12:07:56 CET} validto={} changed={2017-11-01 09:36:21 CET} changedby={lttung} properties={} id={}
-val: guid={15F701CB63094058} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-31 02:47:30 CET} validto={} changed={2017-11-01 09:36:44 CET} changedby={lttung} properties={} id={}
-val: guid={15F701CA54A866A9} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-31 02:47:26 CET} validto={} changed={2017-10-31 02:47:27 CET} changedby={lttung} properties={} id={}

@@ -1,4 +1,0 @@
-co: name={leaveAndReserve} description={} changed={2017-08-04 12:17:48 CEST} changedby={dhtlong} visualorder={0} guid={15DACBFA4B1949D3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DACBFA4B4F1A72} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-04 12:17:06 CEST} validto={} changed={2017-08-04 12:17:48 CEST} changedby={dhtlong} properties={} id={}
-val: guid={15DACBFA4BD69C50} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-04 12:17:07 CEST} validto={} changed={2017-08-04 12:17:07 CEST} changedby={dhtlong} properties={} id={}
-val: guid={15DACBFA4C02ABDE} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-04 12:17:07 CEST} validto={} changed={2017-08-04 12:17:07 CEST} changedby={dhtlong} properties={} id={}

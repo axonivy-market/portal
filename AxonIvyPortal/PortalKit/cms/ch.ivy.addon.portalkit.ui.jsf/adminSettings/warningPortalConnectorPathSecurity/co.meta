@@ -1,4 +1,0 @@
-co: name={warningPortalConnectorPathSecurity} description={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} visualorder={0} guid={1553472517BD88B4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15534725183A82E2} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:52 CET} validto={} changed={2016-12-21 15:20:52 CET} changedby={t} properties={} id={}
-val: guid={155347C7380E4EE9} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:52 CET} validto={} changed={2016-12-21 15:20:52 CET} changedby={t} properties={} id={}
-val: guid={15D73FFFDE2770D3} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} properties={} id={}

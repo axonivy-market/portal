@@ -1,4 +1,0 @@
-co: name={delegateTaskTooltip} description={} changed={2017-08-10 08:57:15 CEST} changedby={t} visualorder={0} guid={15BF045F33575A38} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D741195B659FED} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 08:57:15 CEST} validto={} changed={2017-08-10 08:57:15 CEST} changedby={t} properties={} id={}
-val: guid={15BF046773B34977} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 04:53:13 CEST} validto={} changed={2017-05-10 04:53:21 CEST} changedby={anhnguyenhoang} properties={} id={}
-val: guid={15BF045F33A74C3D} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 04:52:47 CEST} validto={} changed={2017-05-10 04:52:47 CEST} changedby={anhnguyenhoang} properties={} id={}

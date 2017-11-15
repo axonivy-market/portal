@@ -1,4 +1,0 @@
-co: name={casePanel} description={} changed={2017-07-24 11:49:03 CEST} changedby={dhtlong} visualorder={0} guid={14758F7241047A9A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={14758F7241493635} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:48:17 CEST} validto={} changed={2014-07-21 14:48:42 CEST} changedby={roman} properties={} id={}
-val: guid={15D73FFFF73CECF3} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:03 CEST} validto={} changed={2017-07-24 11:49:03 CEST} changedby={dhtlong} properties={} id={}
-val: guid={147679B601946600} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:53 CET} validto={} changed={2016-12-21 15:20:53 CET} changedby={t} properties={} id={}

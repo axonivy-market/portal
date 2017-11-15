@@ -1,4 +1,0 @@
-co: name={autoDetectExternalHost} description={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} visualorder={0} guid={155BA37EAA5AB7E9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={155BA37EAAC40A4B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-07-05 10:41:14 CEST} validto={} changed={2016-07-05 10:41:14 CEST} changedby={lvcthanh} properties={} id={}
-val: guid={155BA693FFCB7A35} datatype={} isdefault={false} langid={de} description={} validfrom={2016-07-05 11:35:04 CEST} validto={} changed={2016-10-04 11:57:32 CEST} changedby={t} properties={} id={}
-val: guid={15D73FFFAD57D2D7} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-07-24 11:49:02 CEST} changedby={dhtlong} properties={} id={}

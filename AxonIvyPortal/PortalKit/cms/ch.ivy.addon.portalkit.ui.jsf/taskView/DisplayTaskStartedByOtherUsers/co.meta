@@ -1,4 +1,0 @@
-co: name={DisplayTaskStartedByOtherUsers} description={} changed={2017-08-11 09:34:21 CEST} changedby={t} visualorder={0} guid={15DA731169C14F87} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15DA73116A92FE3D} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-03 10:23:18 CEST} validto={} changed={2017-08-11 09:32:42 CEST} changedby={t} properties={} id={}
-val: guid={15DA731603753D0F} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-03 10:23:27 CEST} validto={} changed={2017-08-11 09:34:21 CEST} changedby={t} properties={} id={}
-val: guid={15DA7316286A3FF0} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 08:57:15 CEST} validto={} changed={2017-08-10 08:57:15 CEST} changedby={t} properties={} id={}
