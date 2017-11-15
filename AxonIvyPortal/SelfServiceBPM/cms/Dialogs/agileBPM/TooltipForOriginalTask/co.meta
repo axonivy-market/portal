@@ -1,4 +1,0 @@
-co: name={TooltipForOriginalTask} description={} changed={2017-08-10 09:01:41 CEST} changedby={t} visualorder={0} guid={15BFC576D1FEA623} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15BFC57D6D22E046} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-12 13:07:38 CEST} validto={} changed={2017-05-23 13:47:04 CEST} changedby={t} properties={} id={}
-val: guid={15BFC576D2DA7E65} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-12 13:07:19 CEST} validto={} changed={2017-05-12 13:07:19 CEST} changedby={ldnam} properties={} id={}
-val: guid={15DCAF2E228C7354} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:41 CEST} validto={} changed={2017-08-10 09:01:41 CEST} changedby={t} properties={} id={}

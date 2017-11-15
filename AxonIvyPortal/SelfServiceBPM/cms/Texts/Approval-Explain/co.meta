@@ -1,4 +1,0 @@
-co: name={Approval-Explain} description={} changed={2017-08-10 09:01:42 CEST} changedby={t} visualorder={0} guid={1492E193C169E2DC} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
-val: guid={1492E193C2097B12} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-08-10 09:01:42 CEST} changedby={t} properties={} id={}
-val: guid={15340FF8D3BCF092} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:40:00 CET} validto={} changed={2016-03-04 10:40:03 CET} changedby={dre} properties={} id={}
-val: guid={15DCAF2E49957229} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-08-10 09:01:42 CEST} changedby={t} properties={} id={}
