@@ -74,22 +74,13 @@ public class CaseWidgetTest extends BaseTest {
     loginPage.login();
 
     HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.filterTasksBy("Report and hide case");
+    taskWidgetPage.waitAjaxIndicatorDisappear();
+    taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
+
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CasePage casePage = mainMenuPage.selectCaseMenu();
-
-    CaseDetailsPage caseDetailsPage = casePage.openDetailsOfCaseHasName("Repair Computer");
-    int numberOfTasks = caseDetailsPage.countRelatedTasks();
-    int numberOfTechnicalCases = caseDetailsPage.countTechnicalCases();
-    assertEquals(3, numberOfTasks);
-    assertEquals(2, numberOfTechnicalCases);
-
-    TaskWidgetPage taskWidgetPage = caseDetailsPage.openTasksOfCasePage(2);
-    taskWidgetPage.findElementByClassName("show-task-details-mode").findElement(By.cssSelector("*[id$=':task-item:task-start-command']")).click();
-    taskWidgetPage.waitForElementPresent(By.id("user-menu-required-login:main-navigator"), true);
-
-
-    mainMenuPage = taskWidgetPage.openMainMenu();
-    casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 }
