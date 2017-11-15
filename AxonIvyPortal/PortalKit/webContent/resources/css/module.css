@@ -2133,6 +2133,10 @@ a.case-details-document-add-link {
   .select-delegate-panel .ui-selectonemenu {
     min-width: 84%;
   }
+
+  .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
+    min-width: 93%;
+  }
 }
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
@@ -2212,25 +2216,9 @@ a.case-details-document-add-link {
   position: relative;
 }
 
-/* Small screen */
-@media (max-width: 1365px) {
-  .widget-header-content-filter.mod-expanded-mode {
-    margin-left: 10px;
-  }
-
-  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
-    flex: 1 0 auto;
-  }
-
-  .task-widget .filter-add-container {
-    margin-left: auto;
-    margin-top: 10px;
-  }
-}
-
 .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form {
   flex: 1 0 auto;
-  self-align: flex-end;
+  align-self: flex-end;
   text-align: right;
   padding-bottom: 4px;
 }
@@ -2266,6 +2254,55 @@ a.case-details-document-add-link {
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .ui-commandlink {
   font-size: 1.2rem;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode {
+    margin-left: 10px;
+    flex: 1 0 100%;
+    flex-flow: row nowrap;
+    border-bottom: none;
+  }
+
+  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    margin-right: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title form {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form {
+    flex: none;
+    width: 390px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-right: 10px;
+  }
+
+  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form label,
+  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form .filter-name {
+    float: left;
+  }
+
+  .task-widget .filter-add-container {
+    margin-left: auto;
+    margin-top: 10px;
+  }
+
+  .widget-header-content-filter.mod-expanded-mode {
+    margin-left: 0px;
+  }
+
+  .widget-header-content-filter.mod-expanded-mode .filter-widget {
+    float: right;
+  }
 }
 
 .filter-name-overlay-panel .filter-separator.ui-separator{
