@@ -1,4 +1,0 @@
-co: name={portalSettingSaved} description={} changed={2017-07-24 12:23:17 CEST} changedby={dhtlong} visualorder={0} guid={159D039620EA434F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={159D039621D63DC9} datatype={} isdefault={true} langid={en} description={} validfrom={2017-01-24 12:25:38 CET} validto={} changed={2017-01-24 12:25:38 CET} changedby={mnhnam} properties={} id={}
-val: guid={15D74028FF81583F} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:51:43 CEST} validto={} changed={2017-07-24 12:23:17 CEST} changedby={dhtlong} properties={} id={}
-val: guid={15D74028F63F51F1} datatype={} isdefault={false} langid={de} description={} validfrom={2017-07-24 11:51:41 CEST} validto={} changed={2017-07-24 12:23:17 CEST} changedby={dhtlong} properties={} id={}

@@ -1,4 +1,0 @@
-co: name={startAdHocTooltip} description={} changed={2017-08-10 09:02:54 CEST} changedby={t} visualorder={0} guid={15C0BC15BB59408D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15C0BC15BBCB920B} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-15 12:57:20 CEST} validto={} changed={2017-05-15 12:57:20 CEST} changedby={tntanh} properties={} id={}
-val: guid={15C0BC1939193E81} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-15 12:57:30 CEST} validto={} changed={2017-05-15 12:57:34 CEST} changedby={tntanh} properties={} id={}
-val: guid={15D740344C481007} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:02:54 CEST} validto={} changed={2017-08-10 09:02:54 CEST} changedby={t} properties={} id={}
