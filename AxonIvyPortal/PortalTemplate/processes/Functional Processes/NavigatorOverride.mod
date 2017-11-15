@@ -94,6 +94,7 @@ import ch.ivy.addon.portal.generic.view.CaseView;
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", Arrays.asList(in.caseId.id().toString(), in.caseName));
 
 in.caseDataModel.setCaseId(in.caseId.id());
+in.caseDataModel.getSearchCriteria().setBusinessCase(in.caseId.isBusinessCase());
 in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).autoSelectIfExists(in.caseId).buildNewView();' #txt
 Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
