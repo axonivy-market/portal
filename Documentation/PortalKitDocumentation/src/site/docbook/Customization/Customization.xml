@@ -4,6 +4,7 @@
 	<xi:include href="BuildYourOwnPortal.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="PortalLogosAndColors.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="Login.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="Menu.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="PortalHome.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="TaskWidget.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="CaseItem.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>

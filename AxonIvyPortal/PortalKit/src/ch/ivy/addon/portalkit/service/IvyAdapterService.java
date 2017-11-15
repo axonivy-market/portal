@@ -113,7 +113,7 @@ public class IvyAdapterService {
     private ISubProcessStart findSubprocess(SubProcessSearchFilter filter) {
       List<ISubProcessStart> subProcessStarts = SubProcessRunner.findSubProcessStarts(filter);
       ISubProcessStart foundSubProcessStart = null;
-      ISubProcessStart subProcessStartOfPortalKit = null;
+      ISubProcessStart defaultsubProcessStart = null;
       for (ISubProcessStart subProcessStart : subProcessStarts) {
         String libraryId = subProcessStart.getProcessModelVersion().getLibrary().getId();
         if (!excludedLibraries.contains(libraryId)) {
@@ -122,10 +122,10 @@ public class IvyAdapterService {
           }
           foundSubProcessStart = subProcessStart;
         } else {
-          subProcessStartOfPortalKit = subProcessStart;
+          defaultsubProcessStart = subProcessStart;
         }
       }
-      return foundSubProcessStart != null ? foundSubProcessStart : subProcessStartOfPortalKit;
+      return foundSubProcessStart != null ? foundSubProcessStart : defaultsubProcessStart;
     }
   }
 
