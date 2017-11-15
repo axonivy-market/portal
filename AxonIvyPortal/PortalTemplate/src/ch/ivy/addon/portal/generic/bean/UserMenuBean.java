@@ -1,7 +1,9 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -15,10 +17,12 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -65,27 +69,28 @@ public class UserMenuBean {
         globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
     return Boolean.parseBoolean(isHiddenChangePassword);
   }
-  
+
   public int getClientSideTimeout() {
     GlobalSettingService globalSettingSerive = new GlobalSettingService();
     String clientSideTimeoutInMinute = globalSettingSerive.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-    if(clientSideTimeoutInMinute !=null && !clientSideTimeoutInMinute.isEmpty()){
-      return Integer.valueOf(clientSideTimeoutInMinute)*MINUTE_TO_SECOND*SECONND_TO_MILLISECOND;
+    if (clientSideTimeoutInMinute != null && !clientSideTimeoutInMinute.isEmpty()) {
+      return Integer.valueOf(clientSideTimeoutInMinute) * MINUTE_TO_SECOND * SECONND_TO_MILLISECOND;
     }
     return getDefaultClientSideTimeout();
   }
 
   private int getDefaultClientSideTimeout() {
     ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-    int serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval()*SECONND_TO_MILLISECOND;
+    int serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * SECONND_TO_MILLISECOND;
     int defaultClientSideTimeout = serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
     return defaultClientSideTimeout;
   }
-  
+
   public String getLogoutPage() throws Exception {
-    String logoutPage =
-        SubProcessCall.withPath("Functional Processes/LogoutPage").withStartSignature("call()").call()
-            .get("logoutPage", String.class);
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("getLogoutPage()", null,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    String logoutPage = (String) response.get("logoutPage");
     return StringUtils.isNotBlank(logoutPage) ? logoutPage : getHomePageURL();
   }
 
