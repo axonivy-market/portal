@@ -1,9 +1,11 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.dao.UserProcessDao;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 
@@ -34,7 +36,9 @@ public class UserProcessService extends AbstractService<UserProcess> {
   }
 
   public List<UserProcess> getDefaultUserProcessesFromSubProcess() {
-    Map<String, Object> response = IvyAdapterService.startSubProcess("createDefaultUserProcesses()", null);
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("createDefaultUserProcesses()", null,
+            Arrays.asList(PortalLibrary.PORTAL_KIT.getValue()));
     @SuppressWarnings("unchecked")
     List<UserProcess> defaultUserProcesses = (List<UserProcess>) response.get("defaultUserProcesses");
     return defaultUserProcesses;

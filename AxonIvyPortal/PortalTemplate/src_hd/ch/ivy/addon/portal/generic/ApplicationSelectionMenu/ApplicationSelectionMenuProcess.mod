@@ -39,14 +39,12 @@ As0 @GridStep f92 '' #zField
 As0 @GridStep f93 '' #zField
 As0 @GridStep f94 '' #zField
 As0 @GridStep f95 '' #zField
-As0 @CallSub f96 '' #zField
 As0 @CallSub f97 '' #zField
 As0 @Alternative f98 '' #zField
 As0 @PushWFArc f100 '' #zField
 As0 @PushWFArc f101 '' #zField
 As0 @PushWFArc f102 '' #zField
 As0 @PushWFArc f103 '' #zField
-As0 @PushWFArc f104 '' #zField
 As0 @PushWFArc f105 '' #zField
 As0 @PushWFArc f106 '' #zField
 As0 @PushWFArc f107 '' #zField
@@ -62,13 +60,11 @@ As0 @PushWFArc f116 '' #zField
 As0 @PushWFArc f117 '' #zField
 As0 @PushWFArc f118 '' #zField
 As0 @PushWFArc f119 '' #zField
-As0 @PushWFArc f120 '' #zField
 As0 @PushWFArc f121 '' #zField
 As0 @PushWFArc f122 '' #zField
 As0 @PushWFArc f124 '' #zField
 As0 @PushWFArc f125 '' #zField
 As0 @PushWFArc f126 '' #zField
-As0 @PushWFArc f127 '' #zField
 As0 @PushWFArc f129 '' #zField
 As0 @GridStep f24 '' #zField
 As0 @CallSub f56 '' #zField
@@ -78,6 +74,10 @@ As0 @PushWFArc f34 '' #zField
 As0 @PushWFArc f0 '' #zField
 As0 @RichDialogProcessStart f1 '' #zField
 As0 @PushWFArc f2 '' #zField
+As0 @GridStep f3 '' #zField
+As0 @PushWFArc f4 '' #zField
+As0 @PushWFArc f5 '' #zField
+As0 @PushWFArc f6 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f66 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f66 934 512 26 26 0 12 #rect
@@ -378,7 +378,7 @@ As0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f84 1407 505 104 40 -48 -12 #rect
 As0 f84 @|CallSubIcon #fIcon
 As0 f85 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f85 249 451 20 20 13 0 #rect
+As0 f85 244 412 24 24 13 0 #rect
 As0 f85 @|RichDialogProcessEndIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
 As0 f87 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -400,7 +400,7 @@ As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f87 249 43 20 20 13 0 #rect
+As0 f87 244 44 24 24 13 0 #rect
 As0 f87 @|RichDialogInitStartIcon #fIcon
 As0 f90 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f90 1078 512 26 26 0 12 #rect
@@ -498,7 +498,7 @@ As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f92 239 209 40 24 27 -14 #rect
+As0 f92 228 208 56 32 39 -14 #rect
 As0 f92 @|StepIcon #fIcon
 As0 f93 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -518,7 +518,7 @@ As0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f93 241 385 36 24 20 -2 #rect
+As0 f93 232 328 48 32 37 -5 #rect
 As0 f93 @|StepIcon #fIcon
 As0 f94 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -538,7 +538,7 @@ As0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f94 241 153 36 24 20 -2 #rect
+As0 f94 232 152 48 32 33 -8 #rect
 As0 f94 @|StepIcon #fIcon
 As0 f95 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -560,27 +560,6 @@ selected app</name>
 ' #txt
 As0 f95 769 417 36 24 20 -2 #rect
 As0 f95 @|StepIcon #fIcon
-As0 f96 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f96 processCall 'Functional Processes/LoadSubMenuItems:call()' #txt
-As0 f96 doCall true #txt
-As0 f96 requestActionDecl '<> param;
-' #txt
-As0 f96 responseActionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
-' #txt
-As0 f96 responseMappingAction 'out=in;
-out.subMenuItems=result.subMenuItems;
-' #txt
-As0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Load sub menu items</name>
-        <nameStyle>19,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f96 239 289 40 24 30 -7 #rect
-As0 f96 @|CallSubIcon #fIcon
 As0 f97 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f97 processCall 'Business Processes/FindApplicationsByUser:findApplicationsByUser(String)' #txt
 As0 f97 doCall true #txt
@@ -602,7 +581,7 @@ As0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f97 241 97 36 24 20 -2 #rect
+As0 f97 232 96 48 32 38 -3 #rect
 As0 f97 @|CallSubIcon #fIcon
 As0 f98 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -621,12 +600,10 @@ As0 f101 expr out #txt
 As0 f101 947 477 947 512 #arcP
 As0 f101 0 0.3639429230002049 0 0 #arcLabel
 As0 f102 expr out #txt
-As0 f102 259 409 259 451 #arcP
+As0 f102 256 360 256 412 #arcP
 As0 f103 expr in #txt
 As0 f103 outCond 'in.#selectedSubMenuItem.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.PROCESS' #txt
 As0 f103 796 340 921 437 #arcP
-As0 f104 expr out #txt
-As0 f104 259 233 259 289 #arcP
 As0 f105 expr out #txt
 As0 f105 1459 485 1459 505 #arcP
 As0 f106 expr in #txt
@@ -658,7 +635,7 @@ As0 f114 expr out #txt
 As0 f114 1043 237 1094 237 #arcP
 As0 f114 0 0.2964491651298413 0 0 #arcLabel
 As0 f115 expr out #txt
-As0 f115 259 63 259 97 #arcP
+As0 f115 256 68 256 96 #arcP
 As0 f116 expr out #txt
 As0 f116 627 441 627 512 #arcP
 As0 f117 expr in #txt
@@ -668,8 +645,6 @@ As0 f118 expr out #txt
 As0 f118 1459 355 1459 385 #arcP
 As0 f119 expr out #txt
 As0 f119 787 56 787 97 #arcP
-As0 f120 expr out #txt
-As0 f120 259 313 259 385 #arcP
 As0 f121 expr out #txt
 As0 f121 1459 409 1459 437 #arcP
 As0 f122 expr out #txt
@@ -679,13 +654,9 @@ As0 f124 787 249 787 317 #arcP
 As0 f125 expr in #txt
 As0 f125 963 173 801 173 #arcP
 As0 f126 expr out #txt
-As0 f126 259 177 259 209 #arcP
-As0 f127 expr out #txt
-As0 f127 88 68 239 301 #arcP
-As0 f127 1 88 301 #addKink
-As0 f127 0 0.899571068575684 0 0 #arcLabel
+As0 f126 256 184 256 208 #arcP
 As0 f129 expr out #txt
-As0 f129 259 121 259 153 #arcP
+As0 f129 256 128 256 152 #arcP
 As0 f24 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f24 actionTable 'out=in;
@@ -796,6 +767,37 @@ As0 f2 expr out #txt
 As0 f2 1168 61 995 173 #arcP
 As0 f2 1 1168 173 #addKink
 As0 f2 1 0.16104556874251277 0 0 #arcLabel
+As0 f3 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f3 actionTable 'out=in;
+' #txt
+As0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import java.util.Arrays;
+import ch.addon.portal.generic.menu.SubMenuItem;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import java.util.Map;
+Map response = IvyAdapterService.startSubProcess("loadSubMenuItems()", null, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+in.subMenuItems = response.get("subMenuItems") as List<SubMenuItem>;' #txt
+As0 f3 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>load sub menu items</name>
+        <nameStyle>19,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f3 232 264 48 32 35 -10 #rect
+As0 f3 @|StepIcon #fIcon
+As0 f4 expr out #txt
+As0 f4 256 240 256 264 #arcP
+As0 f5 expr out #txt
+As0 f5 88 68 232 280 #arcP
+As0 f5 1 88 280 #addKink
+As0 f5 0 0.879154700344546 0 0 #arcLabel
+As0 f6 expr out #txt
+As0 f6 256 296 256 328 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -864,12 +866,6 @@ As0 f70 out f106 tail #connect
 As0 f106 head f82 mainIn #connect
 As0 f70 out f117 tail #connect
 As0 f117 head f73 mainIn #connect
-As0 f92 mainOut f104 tail #connect
-As0 f104 head f96 mainIn #connect
-As0 f74 mainOut f127 tail #connect
-As0 f127 head f96 mainIn #connect
-As0 f96 mainOut f120 tail #connect
-As0 f120 head f93 mainIn #connect
 As0 f67 mainOut f116 tail #connect
 As0 f116 head f78 mainIn #connect
 As0 f70 out f110 tail #connect
@@ -882,3 +878,9 @@ As0 f70 out f0 tail #connect
 As0 f0 head f62 mainIn #connect
 As0 f1 mainOut f2 tail #connect
 As0 f2 head f76 in #connect
+As0 f92 mainOut f4 tail #connect
+As0 f4 head f3 mainIn #connect
+As0 f74 mainOut f5 tail #connect
+As0 f5 head f3 mainIn #connect
+As0 f3 mainOut f6 tail #connect
+As0 f6 head f93 mainIn #connect
