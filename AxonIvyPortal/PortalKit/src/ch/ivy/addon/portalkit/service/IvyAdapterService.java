@@ -72,8 +72,8 @@ public class IvyAdapterService {
    * @param paramters The parameters to pass to the process.
    * @return The response of the process execution.
    */
-  public static Map<String, Object> startSubProcess(String subProcessSignature, Map<String, Object> parameters) {
-    FindSubProcessStartCallable findSubProcessStartCallable = new FindSubProcessStartCallable(subProcessSignature);
+  public static Map<String, Object> startSubProcess(String subProcessSignature, Map<String, Object> parameters, List<String> excludedLibraries) {
+    FindSubProcessStartCallable findSubProcessStartCallable = new FindSubProcessStartCallable(subProcessSignature, excludedLibraries);
     ISubProcessStart subProcessStart = executeCallableAsSystem(findSubProcessStartCallable);
 
     SubProcessCallerCallable subprocessCallable = new SubProcessCallerCallable(subProcessStart, parameters);
@@ -87,11 +87,12 @@ public class IvyAdapterService {
    */
   public static class FindSubProcessStartCallable implements Callable<ISubProcessStart> {
 
-    private final static String PORTALKIT_LIBRARY = "ch.ivyteam.ivy.project.portal:portalKit";
     private String subprocessSignature;
+    private List<String> excludedLibraries;
 
-    public FindSubProcessStartCallable(String subprocessSignature) {
+    public FindSubProcessStartCallable(String subprocessSignature, List<String> excludedLibraries) {
       this.subprocessSignature = subprocessSignature;
+      this.excludedLibraries = excludedLibraries;
     }
 
     /**
@@ -115,7 +116,7 @@ public class IvyAdapterService {
       ISubProcessStart subProcessStartOfPortalKit = null;
       for (ISubProcessStart subProcessStart : subProcessStarts) {
         String libraryId = subProcessStart.getProcessModelVersion().getLibrary().getId();
-        if (!PORTALKIT_LIBRARY.equals(libraryId)) {
+        if (!excludedLibraries.contains(libraryId)) {
           if (subProcessStart.getProcessModelVersion().equals(Ivy.request().getProcessModelVersion())) {
             return subProcessStart;
           }
