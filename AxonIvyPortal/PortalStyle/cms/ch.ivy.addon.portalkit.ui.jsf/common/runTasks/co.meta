@@ -1,0 +1,4 @@
+co: name={runTasks} description={} changed={2017-10-31 07:59:35 CET} changedby={chnam} visualorder={0} guid={15F713A6BFAA0763} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A6C0071E7E} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 11:40:37 CEST} validto={} changed={2017-10-31 07:59:35 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A6BFBFB39B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:58 CET} validto={} changed={2017-10-31 07:59:35 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A6C057D6A8} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2017-10-31 07:59:35 CET} changedby={chnam} properties={} id={}

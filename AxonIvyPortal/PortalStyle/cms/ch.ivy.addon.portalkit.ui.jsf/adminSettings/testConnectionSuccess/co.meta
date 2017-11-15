@@ -1,0 +1,4 @@
+co: name={testConnectionSuccess} description={} changed={2017-10-31 07:59:31 CET} changedby={chnam} visualorder={0} guid={15F713A5F877513D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A5F89BCEF8} datatype={} isdefault={true} langid={en} description={} validfrom={2016-07-12 13:04:14 CEST} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A5F93C1994} datatype={} isdefault={false} langid={de} description={} validfrom={2016-07-12 13:06:51 CEST} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A5F8E4C5A4} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}

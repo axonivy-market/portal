@@ -1,0 +1,4 @@
+co: name={filterVisibility} description={} changed={2017-10-31 07:59:36 CET} changedby={chnam} visualorder={0} guid={15F713A705F1E7CC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A706685D9D} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-31 02:48:30 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A7071A91C6} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-30 12:13:52 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A70611AA54} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-31 02:48:23 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}

@@ -1,0 +1,4 @@
+co: name={deleteExpressWorkflowConfirmation} description={} changed={2017-10-31 07:59:38 CET} changedby={chnam} visualorder={0} guid={15F713A78411CEB1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A784C95CB5} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-09 10:47:46 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A78506D2DC} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-09 10:45:48 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A7847C92AE} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-09 10:47:43 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}

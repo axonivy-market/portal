@@ -1,0 +1,4 @@
+co: name={personalTask} description={} changed={2017-10-31 07:59:29 CET} changedby={chnam} visualorder={0} guid={15F713A55CD8063A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A55CF91CE7} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:01 CEST} validto={} changed={2017-10-31 07:59:29 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A55DB9DAC4} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:44 CET} validto={} changed={2017-10-31 07:59:29 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A55D5CE7F3} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:44 CET} validto={} changed={2017-10-31 07:59:29 CET} changedby={chnam} properties={} id={}
