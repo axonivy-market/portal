@@ -1,0 +1,4 @@
+co: name={errorResetTaskMessage} description={} changed={2017-10-31 07:59:42 CET} changedby={chnam} visualorder={0} guid={15F713A89CCD3ADD} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A89CE72C9B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:08 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A89D745851} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:12 CET} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A89D3336E9} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-10 07:35:42 CET} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}

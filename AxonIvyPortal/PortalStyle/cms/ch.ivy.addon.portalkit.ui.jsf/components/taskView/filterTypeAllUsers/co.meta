@@ -1,0 +1,4 @@
+co: name={filterTypeAllUsers} description={} changed={2017-10-31 07:59:36 CET} changedby={chnam} visualorder={0} guid={15F713A703D3DE6F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A704932A72} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-31 02:48:05 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A7044EEE27} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-31 02:48:02 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A703F756FA} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-30 12:13:35 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}

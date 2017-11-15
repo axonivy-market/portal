@@ -1,0 +1,4 @@
+co: name={mobilephone} description={} changed={2017-10-31 07:59:36 CET} changedby={chnam} visualorder={0} guid={15F713A70D644DF6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A70E1683C8} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:00 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A70D7E88B8} datatype={} isdefault={true} langid={en} description={} validfrom={2015-05-08 10:04:47 CEST} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A70DC5C524} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}

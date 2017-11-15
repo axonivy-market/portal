@@ -1,0 +1,3 @@
+co: name={AddServerConfigDescription} description={} changed={2017-10-31 08:02:42 CET} changedby={chnam} visualorder={0} guid={15F713D4693BD49F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713D469513FC3} datatype={} isdefault={true} langid={en} description={} validfrom={2017-01-19 11:53:49 CET} validto={} changed={2017-10-31 08:02:42 CET} changedby={chnam} properties={} id={}
+val: guid={15F713D469B7F2E3} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:00 CEST} validto={} changed={2017-10-31 08:02:42 CET} changedby={chnam} properties={} id={}

@@ -1,0 +1,4 @@
+co: name={relatedTasksAndCases} description={} changed={2017-10-31 07:59:32 CET} changedby={chnam} visualorder={0} guid={15F713A622DB7FBF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A6234A770A} datatype={} isdefault={false} langid={de} description={} validfrom={2017-04-20 10:01:12 CEST} validto={} changed={2017-10-31 07:59:32 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A6239F4542} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 08:57:14 CEST} validto={} changed={2017-10-31 07:59:32 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A622F3A90A} datatype={} isdefault={true} langid={en} description={} validfrom={2017-04-20 10:00:52 CEST} validto={} changed={2017-10-31 07:59:32 CET} changedby={chnam} properties={} id={}

@@ -1,0 +1,4 @@
+co: name={throughputTime} description={} changed={2017-10-31 07:59:39 CET} changedby={chnam} visualorder={0} guid={15F713A7C42BDFD9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A7C44E1543} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A7C49EEB56} datatype={} isdefault={false} langid={de} description={} validfrom={2014-02-27 15:09:40 CET} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A7C4EA28A4} datatype={} isdefault={true} langid={en} description={} validfrom={2014-02-27 15:09:26 CET} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}

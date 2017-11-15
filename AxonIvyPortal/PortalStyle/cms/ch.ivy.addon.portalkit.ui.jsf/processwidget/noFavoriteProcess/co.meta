@@ -1,0 +1,4 @@
+co: name={noFavoriteProcess} description={} changed={2017-10-31 07:59:38 CET} changedby={chnam} visualorder={0} guid={15F713A78BDBB8A4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A78C92D6CD} datatype={} isdefault={true} langid={en} description={} validfrom={2015-09-25 12:35:23 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A78BF989E2} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A78C49CB33} datatype={} isdefault={false} langid={de} description={} validfrom={2015-09-25 12:35:41 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}

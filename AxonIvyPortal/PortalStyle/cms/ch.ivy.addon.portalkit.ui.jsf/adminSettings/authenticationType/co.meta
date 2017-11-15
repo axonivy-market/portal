@@ -1,0 +1,4 @@
+co: name={authenticationType} description={} changed={2017-10-31 07:59:30 CET} changedby={chnam} visualorder={0} guid={15F713A5B4793B2D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A5B4960564} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A5B4F9C723} datatype={} isdefault={true} langid={en} description={} validfrom={2016-06-09 11:10:44 CEST} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A5B554975C} datatype={} isdefault={false} langid={de} description={} validfrom={2016-06-09 11:24:35 CEST} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}

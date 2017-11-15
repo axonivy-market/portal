@@ -1,0 +1,4 @@
+co: name={choosePrio} description={} changed={2017-10-31 07:59:34 CET} changedby={chnam} visualorder={0} guid={15F713A6A08145D7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A6A0AB24C6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2017-10-31 07:59:34 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A6A13E75B6} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:57 CET} validto={} changed={2017-10-31 07:59:34 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A6A0E828E6} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:18:04 CEST} validto={} changed={2017-10-31 07:59:34 CET} changedby={chnam} properties={} id={}

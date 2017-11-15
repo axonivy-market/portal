@@ -1,0 +1,6 @@
+You are allowed reset only if the task is in one of the following states:
+RESUMED,
+CREATED,
+PARKED,
+READY_FOR_JOIN,
+FAILED

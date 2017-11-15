@@ -1,0 +1,6 @@
+Sie können eine Aufgabe nur zurücksetzen, wenn sich diese in einem der folgenden Zustände befindet:
+RESUMED,
+CREATED,
+PARKED,
+READY_FOR_JOIN,
+FAILED

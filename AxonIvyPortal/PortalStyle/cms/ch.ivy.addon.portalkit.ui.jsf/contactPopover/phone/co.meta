@@ -1,0 +1,4 @@
+co: name={phone} description={} changed={2017-10-31 07:59:36 CET} changedby={chnam} visualorder={0} guid={15F713A70E77DADD} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A70F2BD8A6} datatype={} isdefault={true} langid={en} description={} validfrom={2015-05-08 10:04:34 CEST} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A70ED3E784} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:34 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A70E895D6E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}

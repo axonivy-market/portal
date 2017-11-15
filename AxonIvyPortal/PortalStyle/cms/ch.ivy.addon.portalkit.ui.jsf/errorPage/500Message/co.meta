@@ -1,0 +1,3 @@
+co: name={500Message} description={} changed={2017-10-31 08:10:11 CET} changedby={chnam} visualorder={0} guid={15F7144228B86C11} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F7144228DA6B7F} datatype={} isdefault={true} langid={en} description={} validfrom={2016-01-26 09:01:55 CET} validto={} changed={2017-10-31 08:10:11 CET} changedby={chnam} properties={} id={}
+val: guid={15F714422928A2DC} datatype={} isdefault={false} langid={de} description={} validfrom={2016-01-26 09:02:55 CET} validto={} changed={2017-10-31 08:10:11 CET} changedby={chnam} properties={} id={}
