@@ -76,6 +76,7 @@ ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getAppli
 IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
 selfService.setLink(RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString());
 in.subMenuItems.add(selfService);' #txt
+Ls0 f3 security system #txt
 Ls0 f3 type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
