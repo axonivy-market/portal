@@ -75,7 +75,6 @@ selfService.setMenuKind(MenuKind.CUSTOM);
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
 IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
 selfService.setLink(RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString());
-selfService.getPages().add("define_WF.xhtml");
 in.subMenuItems.add(selfService);' #txt
 Ls0 f3 security system #txt
 Ls0 f3 type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
