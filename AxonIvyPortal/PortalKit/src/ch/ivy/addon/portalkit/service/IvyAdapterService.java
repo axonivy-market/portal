@@ -65,11 +65,12 @@ public class IvyAdapterService {
   }
 
   /**
-   * Calls the sub process with the given subProcessSignature with the given parameters. Exactly one
+   * Calls the sub process with the given subProcessSignature with the given parameters that are not from excluded libraries. Exactly one
    * sub process with the given signature is expected.
    * 
    * @param subProcessSignature The signature of the sub process to be triggered.
    * @param paramters The parameters to pass to the process.
+   * @param excludedLibraries The subprocess from these libraries name will be excluded
    * @return The response of the process execution.
    */
   public static Map<String, Object> startSubProcess(String subProcessSignature, Map<String, Object> parameters, List<String> excludedLibraries) {
