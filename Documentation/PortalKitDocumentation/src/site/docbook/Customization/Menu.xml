@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.menu">
+	<title>Menu</title>
+	<sect2 xml:id="axonivyportal.customization.menu.introduction">
+		<title>Introduction</title>
+		<para>
+			By default Portal main menu has 4 items: Processes, Tasks, Cases and Statistics. You can
+            remove these items or add your own items.
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="images/Menu/DefaultMenuItems.png" />
+              </imageobject>
+            </mediaobject>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.menu.customization">
+		<title>Customization</title>
+		<para>
+			In your project, override the process <code>LoadSubMenuItems</code> in PortalTemplate and follow
+            the hints.
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/Menu/LoadSubMenuItemsProcess.png" />
+				</imageobject>
+			</mediaobject>
+		</para>
+	</sect2>
+</sect1>
