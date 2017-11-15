@@ -244,8 +244,7 @@ Cs0 f69 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseIte
 Cs0 f69 actionTable 'out=in;
 ' #txt
 Cs0 f69 actionCode 'import ch.ivy.addon.portalkit.dto.GlobalCaseId;
-
-in.selectedGlobalCaseId = GlobalCaseId.inServer(in.remoteCase.getServer().id).caseId(in.selectedCase.id).isBusinessCase(in.remoteCase.isBusinessCase()).build();' #txt
+in.selectedGlobalCaseId = GlobalCaseId.inServer(in.remoteCase.getServer().id).caseId(in.selectedCase.id).isBusinessCase(in.selectedCase.isBusinessCase()).build();' #txt
 Cs0 f69 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
