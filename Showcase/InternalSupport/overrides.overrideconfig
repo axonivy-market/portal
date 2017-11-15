@@ -5,7 +5,6 @@
     /Functional-Processes.DefaultUserProcess "Functional Processes/DefaultUserProcessOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
-    /Functional-Processes.LogoutPage "Functional Processes/LogoutPageOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
     /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"
     /Functional-Processes.BuildCaseJsonQuery "Functional Processes/BuildCaseJsonQueryOverride"

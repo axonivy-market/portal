@@ -25,18 +25,16 @@ Le0 f0 outParamTable 'result.logoutPage=in.logoutPage;
 ' #txt
 Le0 f0 actionDecl 'ch.ivy.addon.portal.generic.LogoutPageData out;
 ' #txt
-Le0 f0 callSignature call() #txt
+Le0 f0 callSignature getLogoutPage() #txt
 Le0 f0 type ch.ivy.addon.portal.generic.LogoutPageData #txt
 Le0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>call()</name>
-        <nameStyle>6,5,7
-</nameStyle>
+        <name>getLogoutPage()</name>
     </language>
 </elementInfo>
 ' #txt
-Le0 f0 81 49 30 30 -13 17 #rect
+Le0 f0 81 49 30 30 -46 17 #rect
 Le0 f0 @|StartSubIcon #fIcon
 Le0 f1 type ch.ivy.addon.portal.generic.LogoutPageData #txt
 Le0 f1 337 49 30 30 0 15 #rect
