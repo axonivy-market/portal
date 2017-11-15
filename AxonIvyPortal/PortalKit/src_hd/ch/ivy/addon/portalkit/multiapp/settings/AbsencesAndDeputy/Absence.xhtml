@@ -22,6 +22,7 @@
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
           <f:event listener="#{logic.loadAllUsers}" type="preRenderComponent" />
+          <p:ajax event="query" global="false" />
           <p:ajax event="itemSelect" listener="#{logic.userSelect}"
             process="@this comment absence-start-date absence-end-date" update="#{updateComponent}" />
         </p:autoComplete>
