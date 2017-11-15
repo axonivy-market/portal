@@ -3,6 +3,8 @@ $(document).ready(function() {
 		swfPath : flashFileDirectory
 	});
 	
+	
+	
 	var clipboardClient = new ZeroClipboard($('#copy-clipboard'));
 	clipboardClient.on('ready', function() {
 		$('#copy-clipboard').attr('data-clipboard-target', "task-details-url");
@@ -13,12 +15,14 @@ $(document).ready(function() {
 			PF('clipboard-growl').renderMessage({"summary":copiedToClipboardMessage, "severity":"info"});
 		});
 	});
-
+	
 	clipboardClient.on('error', function() {
 		$("#task-details-url-label").text(copyHintMessage);
 		$("#copy-clipboard").on("click", function() {
 			PF("copy-clipboard-panel").show();
+			setTimeout(function(){
 			$('#task-details-url').select();
+			},100)
 		});
 		ZeroClipboard.destroy();
 	});

@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -561,7 +562,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED,
           TaskState.PARKED)));
     } else {
-      if (selectedFilters.contains(filterContainer.getStateFilter())) {
+      if (Objects.isNull(filterContainer) || selectedFilters.contains(filterContainer.getStateFilter())) {
         queryCriteria.setIncludedStates(new ArrayList<>());
       } else {
         queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
