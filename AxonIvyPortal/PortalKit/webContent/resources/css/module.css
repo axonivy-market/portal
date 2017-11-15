@@ -1953,6 +1953,9 @@ a.case-details-document-add-link {
   .process-widget .widget-header.expanded {
     margin-right: 5px;
   }
+  .delegation-select-panel{
+    max-width: 36% !important;
+  }
 }
 
 /* Medium screen */
@@ -1963,6 +1966,9 @@ a.case-details-document-add-link {
   .process-widget .widget-header.expanded {
     margin-right: 8px;
   }
+  .delegation-select-panel{
+    max-width: 32% !important;
+  }
 }
 
 /* Large screen */
@@ -1972,6 +1978,9 @@ a.case-details-document-add-link {
   }
   .process-widget .widget-header.expanded {
     margin-right: 5px;
+  }
+  .delegation-select-panel{
+    max-width: 23% !important;
   }
 }
 .process-start-list-item {
