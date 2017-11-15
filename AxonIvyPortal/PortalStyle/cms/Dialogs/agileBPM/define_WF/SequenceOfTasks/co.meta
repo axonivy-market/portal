@@ -1,0 +1,4 @@
+co: name={SequenceOfTasks} description={} changed={2017-11-15 09:22:26 CET} changedby={chnam} visualorder={0} guid={15FBEC5AA699C132} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEC5AA787897E} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:32:19 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC5AA6C12E6A} datatype={} isdefault={true} langid={en} description={} validfrom={2014-02-24 15:12:50 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC5AA7227762} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:41 CEST} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}

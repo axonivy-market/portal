@@ -1,0 +1,4 @@
+co: name={DateSelection} description={} changed={2017-11-15 09:12:19 CET} changedby={chnam} visualorder={0} guid={15FBEBC69212D987} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEBC6925AA353} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 10:39:16 CEST} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEBC6934FE2AC} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 10:39:11 CEST} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEBC692DE7BBB} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}

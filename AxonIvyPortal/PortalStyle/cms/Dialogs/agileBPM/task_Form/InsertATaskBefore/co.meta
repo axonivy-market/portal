@@ -1,0 +1,4 @@
+co: name={InsertATaskBefore} description={} changed={2017-11-15 09:22:26 CET} changedby={chnam} visualorder={0} guid={15FBEC5AB2AA2E25} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEC5AB2DC91E1} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-18 10:38:45 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC5AB3364698} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:30:03 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEC5AB3B50309} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:41 CEST} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
