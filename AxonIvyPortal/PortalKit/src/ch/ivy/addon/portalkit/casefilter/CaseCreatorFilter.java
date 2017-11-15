@@ -45,7 +45,7 @@ public class CaseCreatorFilter extends CaseFilter {
 
       securityMembers.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
     } catch (Exception e) {
-      Ivy.log().error("Can't get list of users or roles in responsible filter", e);
+      Ivy.log().error("Can't get list of users for creator filter", e);
     }
   }
 
