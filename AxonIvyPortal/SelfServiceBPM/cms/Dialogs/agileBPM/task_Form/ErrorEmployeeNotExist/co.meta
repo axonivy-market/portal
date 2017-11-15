@@ -1,4 +1,0 @@
-co: name={ErrorEmployeeNotExist} description={} changed={2017-11-14 08:26:11 CET} changedby={mnhnam} visualorder={0} guid={15FB3311C1A8C3B8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FB331A9D9B6168} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-13 03:24:41 CET} validto={} changed={2017-11-14 08:26:11 CET} changedby={mnhnam} properties={} id={}
-val: guid={15FB3311C205EFF4} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-13 03:24:21 CET} validto={} changed={2017-11-13 03:24:21 CET} changedby={mnhnam} properties={} id={}
-val: guid={15FB331AB4E27CDA} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-13 03:24:53 CET} validto={} changed={2017-11-14 08:26:11 CET} changedby={mnhnam} properties={} id={}
