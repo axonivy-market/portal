@@ -13,8 +13,8 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
     widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
-      styleClass="portal-ok-button" oncomplete="PF('timeout-warning-dialog').hide()"
-      actionListener="#{logic.extendSession}" />
+      styleClass="portal-ok-button" actionListener="#{logic.extendSession}"
+      oncomplete="hideWarningDialog();resetCounterAndTimeout();" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/logout')}"
       styleClass="portal-cancel-button" actionListener="#{logic.logout}" oncomplete="returnHomePage()" />
   </p:confirmDialog>
@@ -24,54 +24,53 @@
       onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('viewExpiredExceptionDialog').show()" />
   </h:form>
   <script type="text/javascript">
-      var timeout = "#{cc.attrs.clientSideTimeOut}";
+      var timeout = 40000;
       var timeOutSeconds = timeout/1000;
-      localStorage.setItem("SessionCounter", timeOutSeconds);
+	  document.cookie = createCookie('SessionCounter',timeOutSeconds);
       var warningDialogShow = false;
       var logOutCalled = false;
       var intervalCheckSessionTimeout;
-      localStorage.setItem("isLogout", false);
-      
+	  document.cookie = createCookie('isLogout',false);
       
       $(function() { 
         intervalCheckSessionTimeout = setInterval(TimerDecrement, 1000); // Call Every Second
+        window.onload = resetCounterAndTimeout;
         document.onkeypress = resetCounterAndTimeout;
         document.onclick = resetCounterAndTimeout;
         document.onmousedown = resetCounterAndTimeout;
         document.ontouchstart = resetCounterAndTimeout;
         document.onscroll = resetCounterAndTimeout;
-        
-        function resetCounterAndTimeout(){
-          localStorage.removeItem("SessionCounterUpdatedOn");
-          timeOutSeconds = timeout/1000;
-          localStorage.setItem("SessionCounter", timeOutSeconds);
-        }
       });
+      
+      function resetCounterAndTimeout(){
+        if(warningDialogShow == false){
+          document.cookie = createCookie('SessionCounterUpdatedOn',null);
+          timeOutSeconds = timeout/1000;
+          document.cookie = createCookie('SessionCounter',timeOutSeconds);
+        }
+      }
 
       function TimerDecrement() {
-        var lastUpdated = localStorage.getItem("SessionCounterUpdatedOn"), now = new Date(), shouldCheck = false;
-        
-        if (lastUpdated == null) {
-            localStorage.setItem("SessionCounterUpdatedOn", now);
+        var lastUpdated = getCookie('SessionCounterUpdatedOn'), now = new Date(), shouldCheck = false;
+        if (lastUpdated == 'null') {
+            document.cookie = createCookie('SessionCounterUpdatedOn', now);
         } else if (now.getTime() - new Date(lastUpdated).getTime() >= 1000) {
-            // set this immediatedly so another tab checking while we are processing doesn't also process.
-            localStorage.setItem("SessionCounterUpdatedOn", now);
+            document.cookie = createCookie('SessionCounterUpdatedOn', now);
             shouldCheck = true;
         }
         
         if (shouldCheck) {
             if (timeOutSeconds > 0) {
-            
-              if (parseInt(localStorage.getItem("SessionCounter"), 10) > 0) {
-                timeOutSeconds = parseInt(localStorage.getItem("SessionCounter"), 10);
+              
+              if (parseInt((getCookie('SessionCounter')), 10) > 0) {
+                timeOutSeconds = parseInt(getCookie('SessionCounter'), 10);
               }
               timeOutSeconds--;
-              localStorage.setItem("SessionCounter", timeOutSeconds);
+              document.cookie = createCookie('SessionCounter',timeOutSeconds);
               
             } else {
-                
-                if (localStorage.getItem("isLogout") === "false") {
-                  localStorage.setItem("isLogout",true);
+                if (getCookie('isLogout') == "false") {
+				  document.cookie = createCookie('isLogout',true);
                   logoutAndShowDialog();
                 } else {
                   PF('timeout-warning-dialog').hide();
@@ -80,19 +79,33 @@
                 } 
             }
         } else {
-            timeOutSeconds = parseInt(localStorage.getItem("SessionCounter"), 10);
+            timeOutSeconds = parseInt(getCookie('SessionCounter'), 10);
         }
         
-        if (timeOutSeconds &lt; 60){
+        if (timeOutSeconds &lt; 20){
           if(warningDialogShow == false){
          	warningDialogShow = true;
             PF('timeout-warning-dialog').show();
           }
         } else {
-          warningDialogShow = false;
-          PF('timeout-warning-dialog').hide();
+          hideWarningDialog();
         }
 
+      }
+      
+      function hideWarningDialog(){
+        warningDialogShow = false;
+        PF('timeout-warning-dialog').hide();
+      }
+      
+      function createCookie(name,value,days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
       }
     </script>
 
