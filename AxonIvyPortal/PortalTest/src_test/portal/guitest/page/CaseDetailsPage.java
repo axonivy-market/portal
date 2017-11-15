@@ -41,6 +41,10 @@ public class CaseDetailsPage extends TemplatePage {
     return caseItem.findElement(By.cssSelector("div[id$='related-tasks']")).findElements(By.cssSelector("a[id$='task-name']")).size();
   }
 
+  public int countTechnicalCases() {
+    return caseItem.findElements(By.cssSelector("div[id$=':technicalCase']")).size();
+  }
+
   public void addNote(String content) {
     onClickHistoryIcon();
     caseItem.findElement(By.cssSelector("a[id$='add-note-command']")).click();
