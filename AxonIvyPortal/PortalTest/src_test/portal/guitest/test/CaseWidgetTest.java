@@ -23,6 +23,24 @@ public class CaseWidgetTest extends BaseTest {
   }
 
   @Test
+  public void testHideCase() {
+    navigateToUrl(hideCaseUrl);
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.filterTasksBy("Report and hide case");
+    taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
+    taskWidgetPage.waitAjaxIndicatorDisappear();
+
+    homePage = taskWidgetPage.goToHomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CasePage casePage = mainMenuPage.selectCaseMenu();
+    assertFalse(casePage.isCaseDisplayed("Repair Computer"));
+  }
+
+  @Test
   public void testDestroyCaseWithPermission() {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
@@ -64,24 +82,5 @@ public class CaseWidgetTest extends BaseTest {
     int numberOfTasks = caseDetailsPage.countRelatedTasks();
     TaskWidgetPage taskOfCasePage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(numberOfTasks, taskOfCasePage.countTasks());
-  }
-
-  @Test
-  public void testHideCase() {
-    navigateToUrl(hideCaseUrl);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.filterTasksBy("Report and hide case");
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-
-    homePage = taskWidgetPage.goToHomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
-    assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 }
