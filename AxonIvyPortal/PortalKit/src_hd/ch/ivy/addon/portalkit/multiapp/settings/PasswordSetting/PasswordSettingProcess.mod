@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Thu Aug 24 18:27:53 ICT 2017]
 15DBB7002BEF4583 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PasswordSettingProcess Big #zClass
@@ -22,9 +21,9 @@ Ps0 @RichDialogMethodStart f6 '' #zField
 Ps0 @RichDialogProcessEnd f7 '' #zField
 Ps0 @PushWFArc f8 '' #zField
 Ps0 @GridStep f9 '' #zField
-Ps0 @CallSub f3 '' #zField
-Ps0 @PushWFArc f4 '' #zField
-Ps0 @PushWFArc f5 '' #zField
+Ps0 @GridStep f10 '' #zField
+Ps0 @PushWFArc f11 '' #zField
+Ps0 @PushWFArc f3 '' #zField
 >Proto Ps0 Ps0 PasswordSettingProcess #zField
 Ps0 f0 guid 15DBB70037BA9E81 #txt
 Ps0 f0 type ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData #txt
@@ -68,10 +67,10 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f6 195 51 26 26 11 10 #rect
 Ps0 f6 @|RichDialogMethodStartIcon #fIcon
 Ps0 f7 type ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData #txt
-Ps0 f7 195 371 26 26 0 12 #rect
+Ps0 f7 195 307 26 26 0 12 #rect
 Ps0 f7 @|RichDialogProcessEndIcon #fIcon
 Ps0 f8 expr out #txt
-Ps0 f8 208 320 208 371 #arcP
+Ps0 f8 208 256 208 307 #arcP
 Ps0 f9 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData out;
 ' #txt
 Ps0 f9 actionTable 'out=in;
@@ -97,37 +96,44 @@ Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f9 180 288 56 32 37 -10 #rect
+Ps0 f9 180 224 56 32 37 -10 #rect
 Ps0 f9 @|StepIcon #fIcon
-Ps0 f3 type ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData #txt
-Ps0 f3 processCall 'Functional Processes/ChangePassword:changePassword(String,String)' #txt
-Ps0 f3 doCall true #txt
-Ps0 f3 requestActionDecl '<java.lang.String currentPassword,java.lang.String newPassword> param;
+Ps0 f10 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData out;
 ' #txt
-Ps0 f3 requestMappingAction 'param.currentPassword=in.currentPassword;
-param.newPassword=in.newPassword;
+Ps0 f10 actionTable 'out=in;
 ' #txt
-Ps0 f3 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData out;
-' #txt
-Ps0 f3 responseMappingAction 'out=in;
-out.message=result.message;
-out.status=result.status;
-' #txt
-Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
+import java.util.HashMap;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import java.util.Map;
+
+Map parameters = new HashMap();
+parameters.put("currentPassword", in.currentPassword);
+parameters.put("newPassword", in.newPassword);
+Map response = IvyAdapterService.startSubProcess("changePassword(String, String)", parameters, Arrays.asList(PortalLibrary.PORTAL_KIT.getValue()));
+in.message = response.get("message") as String;
+in.status = response.get("status") as ChangePasswordStatus;
+
+ivy.log.error(in.status.name());
+ivy.log.error(in.message);' #txt
+Ps0 f10 type ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData #txt
+Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>ChangePassword</name>
-        <nameStyle>14,5,7
+        <name>Change password</name>
+        <nameStyle>15,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f3 152 170 112 44 -50 -8 #rect
-Ps0 f3 @|CallSubIcon #fIcon
-Ps0 f4 expr out #txt
-Ps0 f4 208 77 208 170 #arcP
-Ps0 f5 expr out #txt
-Ps0 f5 208 214 208 288 #arcP
+Ps0 f10 152 138 112 44 -51 -8 #rect
+Ps0 f10 @|StepIcon #fIcon
+Ps0 f11 expr out #txt
+Ps0 f11 208 77 208 138 #arcP
+Ps0 f3 expr out #txt
+Ps0 f3 208 182 208 224 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -136,7 +142,7 @@ Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f9 mainOut f8 tail #connect
 Ps0 f8 head f7 mainIn #connect
-Ps0 f6 mainOut f4 tail #connect
-Ps0 f4 head f3 mainIn #connect
-Ps0 f3 mainOut f5 tail #connect
-Ps0 f5 head f9 mainIn #connect
+Ps0 f6 mainOut f11 tail #connect
+Ps0 f11 head f10 mainIn #connect
+Ps0 f10 mainOut f3 tail #connect
+Ps0 f3 head f9 mainIn #connect
