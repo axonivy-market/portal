@@ -1,4 +1,0 @@
-co: name={searchFilter} description={} changed={2017-10-31 07:59:41 CET} changedby={chnam} visualorder={0} guid={15F713A85E5C05EC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A85EBFB9F1} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-20 04:20:10 CET} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A85F073347} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 12:13:11 CEST} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A85E7DF062} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}

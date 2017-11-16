@@ -1,4 +1,0 @@
-co: name={processStartPanel} description={} changed={2017-10-31 07:59:38 CET} changedby={chnam} visualorder={0} guid={15F713A77AC86E8B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A77B3B477F} datatype={} isdefault={false} langid={de} description={} validfrom={2014-08-06 10:13:24 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A77AE78E24} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A77B84D28A} datatype={} isdefault={true} langid={en} description={} validfrom={2014-08-06 10:13:14 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
