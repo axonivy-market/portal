@@ -582,6 +582,17 @@
 					<listitem>Process Model version, which has this CMS, must active</listitem>
 				</itemizedlist>
 			</listitem>
+			<listitem>
+				<para>
+					To add new language to Portal, what you have to do is					
+				</para>
+				<itemizedlist>
+					<listitem>Add new language locale to cms entry of Portal Style /AppInfo/SupportedLanguages </listitem>
+					<listitem>Export all CMS entries of Portal Style to excel file</listitem>
+					<listitem>Add translation of new language for all CMS entries</listitem>
+					<listitem>Import file excel back, then redeploy Portal Style</listitem>
+				</itemizedlist>
+			</listitem>
 		</itemizedlist>
 	</sect1>
 </chapter>
