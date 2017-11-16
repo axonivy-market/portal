@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.BaseTest;
@@ -78,7 +77,9 @@ public class CaseWidgetTest extends BaseTest {
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.waitAjaxIndicatorDisappear();
     taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
+    taskWidgetPage.waitAjaxIndicatorDisappear();
 
+    homePage = taskWidgetPage.goToHomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CasePage casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
