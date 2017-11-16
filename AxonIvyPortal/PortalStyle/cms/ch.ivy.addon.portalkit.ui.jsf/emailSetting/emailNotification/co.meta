@@ -1,4 +1,0 @@
-co: name={emailNotification} description={} changed={2017-10-31 07:59:36 CET} changedby={chnam} visualorder={0} guid={15F713A72986E964} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A72A42BA68} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:01 CET} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A729F2CF23} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:21:04 CEST} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A729A5B52C} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-10-31 07:59:36 CET} changedby={chnam} properties={} id={}

@@ -1,4 +1,0 @@
-co: name={averageStatistic} description={} changed={2017-10-31 07:59:38 CET} changedby={chnam} visualorder={0} guid={15F713A798817163} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A798A8553B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A798EC5309} datatype={} isdefault={true} langid={en} description={} validfrom={2015-07-20 05:04:36 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7993F1111} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:04 CET} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}

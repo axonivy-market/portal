@@ -1,4 +1,0 @@
-co: name={prevCase} description={} changed={2017-10-31 07:59:33 CET} changedby={chnam} visualorder={0} guid={15F713A661FF1C24} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A662B36413} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:03 CEST} validto={} changed={2017-10-31 07:59:33 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A662190B3B} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-22 11:37:55 CEST} validto={} changed={2017-10-31 07:59:33 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A662687975} datatype={} isdefault={false} langid={de} description={} validfrom={2014-07-22 11:38:06 CEST} validto={} changed={2017-10-31 07:59:33 CET} changedby={chnam} properties={} id={}

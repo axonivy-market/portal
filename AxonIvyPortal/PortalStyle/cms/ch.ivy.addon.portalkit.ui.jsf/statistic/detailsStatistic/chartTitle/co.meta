@@ -1,4 +1,0 @@
-co: name={chartTitle} description={} changed={2017-10-31 07:59:38 CET} changedby={chnam} visualorder={0} guid={15F713A7AF6FD79C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A7B01FBABB} datatype={} isdefault={false} langid={de} description={} validfrom={2014-02-27 15:53:13 CET} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7AFC72053} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:06 CET} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7AF84993D} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
