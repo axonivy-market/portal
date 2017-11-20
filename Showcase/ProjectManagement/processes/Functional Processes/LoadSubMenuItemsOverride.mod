@@ -36,10 +36,10 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f0 81 137 30 30 16 11 #rect
+Ls0 f0 81 161 30 30 16 11 #rect
 Ls0 f0 @|StartSubIcon #fIcon
 Ls0 f1 type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
-Ls0 f1 81 361 30 30 0 15 #rect
+Ls0 f1 81 385 30 30 0 15 #rect
 Ls0 f1 @|EndSubIcon #fIcon
 Ls0 f3 actionDecl 'test005ProjectManagement.LoadSubMenuItemsOverrideData out;
 ' #txt
@@ -75,6 +75,7 @@ selfService.setMenuKind(MenuKind.CUSTOM);
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
 IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
 selfService.setLink(RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString());
+selfService.getViews().add("define_WF.xhtml");
 in.subMenuItems.add(selfService);' #txt
 Ls0 f3 security system #txt
 Ls0 f3 type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
@@ -87,12 +88,12 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f3 40 226 112 44 -48 -8 #rect
+Ls0 f3 40 250 112 44 -48 -8 #rect
 Ls0 f3 @|StepIcon #fIcon
 Ls0 f4 expr out #txt
-Ls0 f4 96 167 96 226 #arcP
+Ls0 f4 96 191 96 250 #arcP
 Ls0 f2 expr out #txt
-Ls0 f2 96 270 96 361 #arcP
+Ls0 f2 96 294 96 385 #arcP
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -111,6 +112,9 @@ subMenuItem.setIcon(&lt;SUB_MENU_ICON&gt;);
 subMenuItem.setLabel(&lt;SUB_MENU_LABEL&gt;);
 subMenuItem.setLink(&lt;SUB_MENU_LINK&gt;);
 
+//add file names of pages where the menu item will be highlighted e.g selfService.getViews().add("PortalHome.xhtml")
+selfService.getViews().add(&lt;PAGE_TO_BE_HIGHLIGHT&gt;);
+
 in.subMenuItems.add(subMenuItem);
 
 OUT: subMenuItems: List&lt;SubMenuItem&gt;
@@ -122,14 +126,14 @@ Axon.Ivy link
 External link: 
 - www.yourexternallink.com
 - http://www.yourexternallink.com</name>
-        <nameStyle>776,7
+        <nameStyle>946,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 256 28 352 440 -163 -208 #rect
+Ls0 f5 280 34 656 476 -321 -232 #rect
 Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 256 248 152 248 #arcP
+Ls0 f6 280 272 152 272 #arcP
 >Proto Ls0 .type test005ProjectManagement.LoadSubMenuItemsOverrideData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt
 >Proto Ls0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

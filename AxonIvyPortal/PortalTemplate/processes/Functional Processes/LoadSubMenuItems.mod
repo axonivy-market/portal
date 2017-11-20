@@ -90,6 +90,9 @@ subMenuItem.setIcon(&lt;SUB_MENU_ICON&gt;);
 subMenuItem.setLabel(&lt;SUB_MENU_LABEL&gt;);
 subMenuItem.setLink(&lt;SUB_MENU_LINK&gt;);
 
+//add file names of pages where the menu item will be highlighted e.g selfService.getViews().add("PortalHome.xhtml")
+selfService.getViews().add(&lt;PAGE_TO_BE_HIGHLIGHT&gt;);
+
 in.subMenuItems.add(subMenuItem);
 
 OUT: subMenuItems: List&lt;SubMenuItem&gt;
@@ -101,14 +104,14 @@ Axon.Ivy link
 External link: 
 - www.yourexternallink.com
 - http://www.yourexternallink.com</name>
-        <nameStyle>776,7
+        <nameStyle>946,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 256 28 352 440 -163 -208 #rect
+Ls0 f5 296 10 656 476 -321 -232 #rect
 Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 256 248 152 248 #arcP
+Ls0 f6 296 248 152 248 #arcP
 >Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt
 >Proto Ls0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
