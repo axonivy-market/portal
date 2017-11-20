@@ -141,6 +141,16 @@ var MainMenu = {
       $('.second-level-menu').addClass('hide');
     }
   },
+  
+  highlightCustomMenuItem : function(viewId, views, menuItemId) {
+    var $menuItem = $("[id$='" + menuItemId + "']");
+    var views = views.replace('[', '').replace(']', '').split(', ');
+    for(var i = 0; i< views.length; i++) {
+      if (views[i] != '' && viewId.indexOf(views[i]) > -1) {
+        $menuItem.addClass('active-menu-item');
+      }
+    }
+  }
 }
 
 
@@ -322,4 +332,10 @@ if (!String.prototype.startsWith) {
 		position = position || 0;
 		return this.indexOf(searchString, position) === position;
 	};
+}
+
+if (!String.prototype.endsWith) {
+  String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+  }; 
 }
