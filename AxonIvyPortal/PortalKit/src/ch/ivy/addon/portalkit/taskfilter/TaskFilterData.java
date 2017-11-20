@@ -11,7 +11,7 @@ public class TaskFilterData {
   private String keyword;
   private String filterName;
   private Long userId;
-  private Long taskFilterGroupId;
+  private Long taskFilterGroupId; //Use to distinguish between filters of different task lists. Default value is the process model id.
   private FilterType type;
 
   public TaskFilterData() {}
