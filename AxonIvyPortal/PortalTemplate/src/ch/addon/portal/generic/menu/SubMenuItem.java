@@ -1,5 +1,8 @@
 package ch.addon.portal.generic.menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.Protocol;
 
@@ -8,7 +11,12 @@ public class SubMenuItem {
   protected String link;
   protected String icon;
   protected String label;
-
+  protected List<String> views; 
+  
+  public SubMenuItem() {
+    views = new ArrayList<>();
+  }
+  
   public MenuKind getMenuKind() {
     return menuKind;
   }
@@ -45,14 +53,22 @@ public class SubMenuItem {
     return correctProcessLink(link);
   }
 
+  public List<String> getViews() {
+    return views;
+  }
+
+  public void setViews(List<String> views) {
+    this.views = views;
+  }
+
   private String correctProcessLink(String link) {
-    if (link != null && !hasProtocol(link)) {
+    if (link != null && !hasProtocolOrIsARelativeLink(link)) {
       link = Protocol.HTTP.getValue() + link;
     }
     return link;
   }
 
-  private boolean hasProtocol(String link) {
+  private boolean hasProtocolOrIsARelativeLink(String link) {
     String linkInLowerCase = link.toLowerCase();
     return linkInLowerCase.startsWith(Protocol.HTTP.getValue())
         || linkInLowerCase.startsWith(Protocol.HTTPS.getValue()) || linkInLowerCase.startsWith("/");
