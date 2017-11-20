@@ -50,6 +50,11 @@
                 class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
               <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
+              <script type="text/javascript">
+                $(function() {
+                  MainMenu.highlightCustomMenuItem('#{view.viewId}', '#{subMenuItem.views}', '#{component.clientId}');
+                });
+              </script>
             </p:commandLink>
             <p:link styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{!isIvyLink}"
               href="#{subMenuItem.externalLink}" target="_blank">
