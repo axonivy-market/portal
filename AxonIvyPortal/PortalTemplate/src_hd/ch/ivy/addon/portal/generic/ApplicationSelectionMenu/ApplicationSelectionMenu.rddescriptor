@@ -11,6 +11,10 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
+    <method>
+        <name>loadSubMenuItems</name>
+        <description></description>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
