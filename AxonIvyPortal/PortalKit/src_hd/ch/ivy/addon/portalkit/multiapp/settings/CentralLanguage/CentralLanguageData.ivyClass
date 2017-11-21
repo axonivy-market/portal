@@ -8,7 +8,7 @@ appNames java.util.List<String> #field
 appNames PERSISTENT #fieldModifier
 errors java.util.List<ch.ivy.ws.addon.WsException> #field
 errors PERSISTENT #fieldModifier
-errorLink String #field
-errorLink PERSISTENT #fieldModifier
 remoteLanguageSettings List<ch.ivy.addon.portalkit.bo.RemoteLanguageSetting> #field
 remoteLanguageSettings PERSISTENT #fieldModifier
+errorLink String #field
+errorLink PERSISTENT #fieldModifier
