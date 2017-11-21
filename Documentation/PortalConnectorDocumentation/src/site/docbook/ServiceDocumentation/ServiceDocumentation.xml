@@ -4501,6 +4501,30 @@
 							<para>An error occurred while saving task.</para>
 						</entry>
 					</row>
+					<row>
+						<entry>
+							<para>10046</para>
+						</entry>
+						<entry>
+							<para>An error occurred while searching side steps of the case for user.</para>
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<para>10047</para>
+						</entry>
+						<entry>
+							<para>An error occurred while changing password.</para>
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<para>10048</para>
+						</entry>
+						<entry>
+							<para>Can not set language for email notification language.</para>
+						</entry>
+					</row>
 				</tbody>
 			</tgroup>
 		</table>
@@ -4510,7 +4534,7 @@
 		<para>
 			To have multi languages in portal, key
 			<code>/AppInfo/SupportedLanguages</code>
-			must exist in CMS. This entry contains list of all languages supported by this application, separated by comma.
+			must exist in CMS of Portal Style. This entry contains list of all languages supported by this application, separated by comma.
 			<itemizedlist>
 				<listitem>
 					<para>
