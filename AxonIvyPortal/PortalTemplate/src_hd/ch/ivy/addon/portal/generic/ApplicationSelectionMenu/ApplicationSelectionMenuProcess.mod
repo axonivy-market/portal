@@ -75,9 +75,12 @@ As0 @PushWFArc f0 '' #zField
 As0 @RichDialogProcessStart f1 '' #zField
 As0 @PushWFArc f2 '' #zField
 As0 @GridStep f3 '' #zField
+As0 @RichDialogMethodStart f7 '' #zField
+As0 @PushWFArc f8 '' #zField
 As0 @PushWFArc f4 '' #zField
 As0 @PushWFArc f5 '' #zField
-As0 @PushWFArc f6 '' #zField
+As0 @RichDialogProcessEnd f6 '' #zField
+As0 @PushWFArc f9 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f66 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f66 934 512 26 26 0 12 #rect
@@ -378,7 +381,7 @@ As0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f84 1407 505 104 40 -48 -12 #rect
 As0 f84 @|CallSubIcon #fIcon
 As0 f85 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f85 244 412 24 24 13 0 #rect
+As0 f85 244 348 24 24 13 0 #rect
 As0 f85 @|RichDialogProcessEndIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
 As0 f87 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -518,7 +521,7 @@ As0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f93 232 328 48 32 37 -5 #rect
+As0 f93 232 272 48 32 37 -5 #rect
 As0 f93 @|StepIcon #fIcon
 As0 f94 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -600,7 +603,7 @@ As0 f101 expr out #txt
 As0 f101 947 477 947 512 #arcP
 As0 f101 0 0.3639429230002049 0 0 #arcLabel
 As0 f102 expr out #txt
-As0 f102 256 360 256 412 #arcP
+As0 f102 256 304 256 348 #arcP
 As0 f103 expr in #txt
 As0 f103 outCond 'in.#selectedSubMenuItem.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.PROCESS' #txt
 As0 f103 796 340 921 437 #arcP
@@ -788,16 +791,39 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f3 232 264 48 32 35 -10 #rect
+As0 f3 208 432 48 32 -25 18 #rect
 As0 f3 @|StepIcon #fIcon
+As0 f7 guid 15FDC9D01571BA80 #txt
+As0 f7 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f7 method loadSubMenuItems() #txt
+As0 f7 disableUIEvents false #txt
+As0 f7 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+As0 f7 outParameterDecl '<> result;
+' #txt
+As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>loadSubMenuItems()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f7 91 435 26 26 -57 15 #rect
+As0 f7 @|RichDialogMethodStartIcon #fIcon
+As0 f8 expr out #txt
+As0 f8 117 448 208 448 #arcP
 As0 f4 expr out #txt
-As0 f4 256 240 256 264 #arcP
+As0 f4 256 240 256 272 #arcP
 As0 f5 expr out #txt
-As0 f5 88 68 232 280 #arcP
-As0 f5 1 88 280 #addKink
-As0 f5 0 0.879154700344546 0 0 #arcLabel
-As0 f6 expr out #txt
-As0 f6 256 296 256 328 #arcP
+As0 f5 88 68 232 288 #arcP
+As0 f5 1 88 288 #addKink
+As0 f5 0 0.8605300296400707 0 0 #arcLabel
+As0 f6 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f6 339 435 26 26 0 12 #rect
+As0 f6 @|RichDialogProcessEndIcon #fIcon
+As0 f9 expr out #txt
+As0 f9 256 448 339 448 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -878,9 +904,11 @@ As0 f70 out f0 tail #connect
 As0 f0 head f62 mainIn #connect
 As0 f1 mainOut f2 tail #connect
 As0 f2 head f76 in #connect
+As0 f7 mainOut f8 tail #connect
+As0 f8 head f3 mainIn #connect
 As0 f92 mainOut f4 tail #connect
-As0 f4 head f3 mainIn #connect
+As0 f4 head f93 mainIn #connect
 As0 f74 mainOut f5 tail #connect
-As0 f5 head f3 mainIn #connect
-As0 f3 mainOut f6 tail #connect
-As0 f6 head f93 mainIn #connect
+As0 f5 head f93 mainIn #connect
+As0 f3 mainOut f9 tail #connect
+As0 f9 head f6 mainIn #connect
