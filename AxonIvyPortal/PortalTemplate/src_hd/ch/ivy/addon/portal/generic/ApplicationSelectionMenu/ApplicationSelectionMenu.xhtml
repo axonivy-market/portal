@@ -13,6 +13,7 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.loadSubMenuItems}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="left-main-menu">
     <div class="left-sidebar-toggle-button js-left-sidebar-toggle left-sidebar-animation">
       <i class="fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
