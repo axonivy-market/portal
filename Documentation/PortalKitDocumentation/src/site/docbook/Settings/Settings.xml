@@ -243,9 +243,9 @@
 												</para>
 												<para>
 													To create system administrators, refer to the document
-													<emphasis role="bold">EngineGuide > chapter Configuration
+													<code>EngineGuide > chapter Configuration
 														> Engine Configuration > System Administrators
-													</emphasis>
+													</code>
 													. E.g. in the latest EngineGuide, refer to
 													<link xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#d5e1756">this guideline</link>
 													.
@@ -434,16 +434,16 @@
 			<listitem>
 				<para>
 					Choose
-					<emphasis role="bold">Absences</emphasis>
+					<code>Absences</code>
 					from
-					<emphasis role="bold">User Settings</emphasis>
+					<code>User Settings</code>
 					options.
 				</para>
 			</listitem>
 			<listitem>
 				<para>
 					To create new Absence, click
-					<emphasis role="bold">New Absence</emphasis>
+					<code>New Absence</code>
 					to open the dialog as below:
 				</para>
 				<mediaobject>
@@ -509,9 +509,9 @@
 			<listitem>
 				<para>
 					To configure mails of Portal applications, select
-					<emphasis role="bold">Email Settings</emphasis>
+					<code>Email Settings</code>
 					in
-					<emphasis role="bold">User Settings</emphasis>
+					<code>User Settings</code>
 					.
 				</para>
 			</listitem>
@@ -540,9 +540,9 @@
 			<listitem>
 				<para>
 					To configure languages of Portal applications, select
-					<emphasis role="bold">Language Settings</emphasis>
+					<code>Language Settings</code>
 					in
-					<emphasis role="bold">User Settings</emphasis>
+					<code>User Settings</code>
 					.
 				</para>
 			</listitem>
@@ -570,16 +570,16 @@
 			<listitem>
 				<para>
 					For multiple languages, the CMS key
-					<emphasis role="bold">/AppInfo/SupportedLanguages</emphasis>
-					must exist in your application.
-					This entry contains list of all languages supported by your application, separated
+					<code>/AppInfo/SupportedLanguages</code>
+					must exist in your application. From Portal 7.1, this CMS entry is moved to Portal Style.
+					It contains list of all languages supported by your application, separated
 					by comma.
 				</para>
 				<itemizedlist>
 					<listitem>Must not contain spaces</listitem>
 					<listitem>Same as display name of Locale</listitem>
 					<listitem>Separated by comma</listitem>
-					<listitem>Process Model version, which has this CMS, must active</listitem>
+					<listitem>Process model version, which has this CMS, must active</listitem>
 				</itemizedlist>
 			</listitem>
 			<listitem>
@@ -587,7 +587,7 @@
 					To add new language to Portal, what you have to do is					
 				</para>
 				<itemizedlist>
-					<listitem>Add new language locale to cms entry of Portal Style /AppInfo/SupportedLanguages </listitem>
+					<listitem>Add new language locale to cms entry of Portal Style <code>/AppInfo/SupportedLanguages</code> </listitem>
 					<listitem>Export all CMS entries of Portal Style to excel file</listitem>
 					<listitem>Add translation of new language for all CMS entries</listitem>
 					<listitem>Import file excel back, then redeploy Portal Style</listitem>
