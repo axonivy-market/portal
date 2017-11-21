@@ -1,13 +1,16 @@
 package ch.ivy.ws.addon.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
@@ -79,20 +82,20 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
         Set<String> supportedLanguages = new HashSet<String>();
         IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
         IApplication app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
-        if (app != null && app.getActivityState().equals(ActivityState.ACTIVE) && appName.equals(app.getName())) {
+        if (app != null && app.getActivityState() == ActivityState.ACTIVE && appName.equals(app.getName())) {
           // get processmodel of app
           List<IProcessModel> pms = app.getProcessModels();
           if (pms != null && pms.size() > 0) {
             for (IProcessModel pm : pms) {
               // get process model active
-              if (pm.getActivityState().equals(ActivityState.ACTIVE)) {
+              if (pm.getActivityState() == ActivityState.ACTIVE) {
                 // get processmodel version
                 List<IProcessModelVersion> pmvs = pm.getProcessModelVersions();
                 if (pmvs != null && pmvs.size() > 0) {
                   for (IProcessModelVersion pmv : pmvs) {
                     // get processmodel version active
 
-                    if (pmv.getActivityState().equals(ActivityState.ACTIVE)) {
+                    if (pmv.getActivityState() == ActivityState.ACTIVE) {
                       // app found
                       appFound = true;
                       // get default settings
@@ -111,13 +114,12 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
                         }
                       } else {
                         // user not found
-                        List<Object> userText = new ArrayList<Object>();
-                        userText.add(username);
-                        throw new WSException(WSErrorType.WARNING, 10029, userText, null);
+                        throw new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null);
                       }
 
                       lang = server.getContentManagement().findCms(pmv).co(CMS_LANG_KEY);
-                      if (!lang.equals("")) {
+                      
+                      if (!StringUtils.isEmpty(lang)) {
                         String[] sp = lang.split(",");
                         for (String spItem : sp) {
                           supportedLanguages.add(spItem);
@@ -184,18 +186,25 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
       @Override
       public List<WSException> call() throws Exception {
         List<WSException> errors = new ArrayList<WSException>();
+        IServer server = ServerFactory.getServer();
         IApplication application =
-            ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
+            server.getApplicationConfigurationManager().findApplication(appName);
 
         if (application != null) {
+          List<IProcessModelVersion> activePmvs = application.getProcessModels().stream().
+              filter(pm -> pm.getActivityState() == ActivityState.ACTIVE).
+              map(IProcessModel::getProcessModelVersions).flatMap(List::stream).
+              filter(pmv -> pmv.getActivityState() == ActivityState.ACTIVE).collect(Collectors.toList());
+          
           IUser user = application.getSecurityContext().findUser(username);
           if (user != null) {
-            // default user settings???
+            // default user settings
+            Locale emailLanguage = Locale.forLanguageTag(setting.getUserLanguage());
             if (user.getEMailNotificationSettings().isUseApplicationDefault()) {
               IUserEMailNotificationSettings userEmailSettings = user.getEMailNotificationSettings();
               userEmailSettings.setUseApplicationDefault(false);
               // copy default settings
-              user.setEMailLanguage(Locale.forLanguageTag(setting.getUserLanguage()));
+              user.setEMailLanguage(emailLanguage);
               userEmailSettings.setSendDailyTaskSummary(application.getDefaultEMailNotifcationSettings()
                   .getSendDailyTaskSummary());
               userEmailSettings.setNotificationDisabled(application.getDefaultEMailNotifcationSettings()
@@ -204,20 +213,24 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
                   .isSendOnNewWorkTasks());
               user.setEMailNotificationSettings(userEmailSettings);
             } else {
-              user.setEMailLanguage(Locale.forLanguageTag(setting.getUserLanguage()));
+              List<Locale> supportedEmailLanguages = new ArrayList<>();
+              activePmvs.forEach(pmv ->{                
+                supportedEmailLanguages.addAll(server.getContentManagement().findCms(pmv).getSupportedLanguages());
+              });
+              
+              user.setEMailLanguage(emailLanguage);
+              if (!supportedEmailLanguages.contains(emailLanguage)){
+                errors.add(new WSException(WSErrorType.WARNING, 10048, Arrays.asList(username), null));
+              }
             }
           } else {
             // user not found
-            List<Object> userText = new ArrayList<Object>();
-            userText.add(username);
-            errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
+            errors.add(new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null));
           }
 
         } else {
           // app not found
-          List<Object> userText = new ArrayList<Object>();
-          userText.add(appName);
-          errors.add(new WSException(WSErrorType.WARNING, 10030, userText, null));
+          errors.add(new WSException(WSErrorType.WARNING, 10030, Arrays.asList(username), null));
         }
         return errors;
       }
