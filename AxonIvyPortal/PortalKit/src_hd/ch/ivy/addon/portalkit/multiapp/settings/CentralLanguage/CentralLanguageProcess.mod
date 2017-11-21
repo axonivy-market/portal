@@ -30,11 +30,6 @@ Es0 @PushWFArc f4 '' #zField
 Es0 @GridStep f5 '' #zField
 Es0 @PushWFArc f10 '' #zField
 Es0 @PushWFArc f24 '' #zField
-Es0 @RichDialogProcessEnd f12 '' #zField
-Es0 @GridStep f13 '' #zField
-Es0 @PushWFArc f26 '' #zField
-Es0 @RichDialogProcessStart f8 '' #zField
-Es0 @PushWFArc f25 '' #zField
 Es0 @PushWFArc f3 '' #zField
 Es0 @GridStep f27 '' #zField
 Es0 @PushWFArc f28 '' #zField
@@ -97,11 +92,14 @@ param.user=in.user;
 Es0 f11 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
 ' #txt
 Es0 f11 responseMappingAction 'out=in;
+out.errors=result.errors;
 ' #txt
 Es0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>saveAllEmailSettings(List&lt;RemoteLanguageSetting&gt;,String)</name>
+        <nameStyle>56,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -187,7 +185,7 @@ import javax.faces.context.FacesContext;
 //Create error message
 if(in.errors.size()>0){
 	in.errorLink = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/found") + in.errors.size() + ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/clickToShowDetail");
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorNotification"), "<span style=\"cursor:pointer\"><a onclick=\"PF(''errorLanguageDialog'').show(); hideGrowl()\">"+in.errorLink+"</a></span>"));
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorNotification"), "<span style=\"cursor:pointer\"><a onclick=\"PF(''errorLanguageDialog'').show(); \">"+in.errorLink+"</a></span>"));
 	FacesContext.getCurrentInstance().validationFailed();
 }' #txt
 Es0 f2 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
@@ -213,9 +211,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 //Create error message
+RequestContext.getCurrentInstance().addCallbackParam("mailLanguageNotFound",false);
 if(in.errors.size()>0){
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/languageSetting/saveLanguageHasWSErrors")));
-	FacesContext.getCurrentInstance().validationFailed();
+	if (in.errors.size() == 1 && in.errors.get(0).getErrorCode() == 10048){
+		RequestContext.getCurrentInstance().addCallbackParam("mailLanguageNotFound",true);
+	} else {
+		FacesContext.getCurrentInstance().validationFailed();
+	}
 }' #txt
 Es0 f5 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
 Es0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -233,50 +235,6 @@ Es0 f10 expr out #txt
 Es0 f10 224 244 224 270 #arcP
 Es0 f24 expr out #txt
 Es0 f24 224 74 224 124 #arcP
-Es0 f12 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
-Es0 f12 606 470 20 20 13 0 #rect
-Es0 f12 @|RichDialogProcessEndIcon #fIcon
-Es0 f13 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
-' #txt
-Es0 f13 actionTable 'out=in;
-' #txt
-Es0 f13 actionCode 'import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/information") , ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/saveSuccessfully")));' #txt
-Es0 f13 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
-Es0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>add message</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Es0 f13 598 396 36 24 20 -2 #rect
-Es0 f13 @|StepIcon #fIcon
-Es0 f26 expr out #txt
-Es0 f26 616 420 616 470 #arcP
-Es0 f8 guid 14D50C2E843B24E4 #txt
-Es0 f8 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
-Es0 f8 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
-' #txt
-Es0 f8 actionTable 'out=in;
-' #txt
-Es0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>updateGrowl</name>
-        <nameStyle>11,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Es0 f8 606 326 20 20 13 0 #rect
-Es0 f8 @|RichDialogProcessStartIcon #fIcon
-Es0 f25 expr out #txt
-Es0 f25 616 346 616 396 #arcP
 Es0 f3 expr out #txt
 Es0 f3 224 420 224 469 #arcP
 Es0 f27 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
@@ -350,10 +308,6 @@ Es0 f5 mainOut f10 tail #connect
 Es0 f10 head f9 mainIn #connect
 Es0 f7 mainOut f24 tail #connect
 Es0 f24 head f11 mainIn #connect
-Es0 f13 mainOut f26 tail #connect
-Es0 f26 head f12 mainIn #connect
-Es0 f8 mainOut f25 tail #connect
-Es0 f25 head f13 mainIn #connect
 Es0 f21 mainOut f3 tail #connect
 Es0 f3 head f2 mainIn #connect
 Es0 f11 mainOut f28 tail #connect
