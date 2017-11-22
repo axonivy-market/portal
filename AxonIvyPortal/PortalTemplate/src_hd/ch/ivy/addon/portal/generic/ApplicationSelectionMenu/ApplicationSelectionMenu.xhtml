@@ -24,31 +24,31 @@
         <p:commandLink actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}"
           rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
           styleClass="left-sidebar-menu-header js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}">
-          <h:outputText id="application-icon"
-            class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
+          <h:outputText class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation application-icon-#{theCount.index}" />
           <h:outputText value="#{menuItem.value}" styleClass="left-sidebar-menu-name left-sidebar-animation" />
-          <p:tooltip id="left-sidebar-menu-item-tooltip" styleClass="left-sidebar-menu-item-tooltip"
-            value="#{menuItem.value}" for="application-icon" />
+          <p:tooltip styleClass="left-sidebar-menu-item-tooltip left-sidebar-menu-item-tooltip-#{theCount.index}"
+            value="#{menuItem.value}" for="@(.application-icon-#{theCount.index})" />
         </p:commandLink>
         <p:commandLink rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
           disabled="#{menuItem.disabled}"
           styleClass="left-sidebar-menu-header js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}"
           actionListener="#{logic.openApp(menuItem.href)}" ajax="false" target="_blank"
           onclick="event.stopPropagation()">
-          <i class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
+          <h:outputText class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation application-icon-#{theCount.index}" />
           <h:outputText value="#{menuItem.value}" styleClass="left-sidebar-menu-name left-sidebar-animation" />
+          <p:tooltip styleClass="left-sidebar-menu-item-tooltip left-sidebar-menu-item-tooltip-#{theCount.index}"
+            value="#{menuItem.value}" for="@(.application-icon-#{theCount.index})" />
         </p:commandLink>
 
         <h:panelGroup styleClass="left-sidebar-sub-menu js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}"
           layout="block" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}">
           <div class="left-sidebar-separator-top" />
-          <ui:repeat var="subMenuItem" value="#{data.subMenuItems}">
+          <ui:repeat var="subMenuItem" value="#{data.subMenuItems}" varStatus="status">
             <c:set var="isIvyLink"
               value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
             <p:commandLink styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{isIvyLink}"
               actionListener="#{logic.onClickSubMenuItem}" onclick="saveMenuState(this)">
-              <h:panelGroup id="left-sidebar-sub-menu-item"
-                class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation" />
+              <h:outputText class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-#{status.index}" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
               <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
               <script type="text/javascript">
@@ -59,14 +59,13 @@
             </p:commandLink>
             <p:link styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{!isIvyLink}"
               href="#{subMenuItem.externalLink}" target="_blank">
-              <h:panelGroup id="left-sidebar-sub-menu-item-external"
-                class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation" />
+              <h:panelGroup class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-external-#{status.index}" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
             </p:link>
             <p:tooltip id="left-sidebar-menu-item-tooltip" styleClass="left-sidebar-menu-item-tooltip"
-              value="#{subMenuItem.label}" for="left-sidebar-sub-menu-item" />
+              value="#{subMenuItem.label}" for="@(.left-sidebar-sub-menu-item-#{status.index})" />
             <p:tooltip id="left-sidebar-sub-menu-item-tooltip-external" styleClass="left-sidebar-menu-item-tooltip"
-              value="#{subMenuItem.label}" for="left-sidebar-sub-menu-item-external" />
+              value="#{subMenuItem.label}" for="@(.left-sidebar-sub-menu-item-external-#{status.index})" />
           </ui:repeat>
           <div class="left-sidebar-separator-bottom" />
         </h:panelGroup>
