@@ -1,4 +1,4 @@
-co: name={cannotSetEmailLanguage} description={} changed={2017-11-21 07:32:16 CET} changedby={chnam} visualorder={0} guid={15FDD461C8BDB262} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={cannotSetEmailLanguage} description={} changed={2017-11-22 03:00:14 CET} changedby={anhnguyenhoang} visualorder={0} guid={15FDD461C8BDB262} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15FDD461C944F049} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-21 07:31:20 CET} validto={} changed={2017-11-21 07:32:16 CET} changedby={chnam} properties={} id={}
-val: guid={15FDD46F7F84C4AC} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-21 07:32:05 CET} validto={} changed={2017-11-21 07:32:16 CET} changedby={chnam} properties={} id={}
-val: guid={15FDD46F7817EDCD} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-21 07:32:08 CET} validto={} changed={2017-11-21 07:32:16 CET} changedby={chnam} properties={} id={}
+val: guid={15FDD46F7F84C4AC} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-22 03:00:14 CET} validto={} changed={2017-11-22 03:00:14 CET} changedby={anhnguyenhoang} properties={} id={}
+val: guid={15FDD46F7817EDCD} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-22 03:00:14 CET} validto={} changed={2017-11-22 03:00:14 CET} changedby={anhnguyenhoang} properties={} id={}
