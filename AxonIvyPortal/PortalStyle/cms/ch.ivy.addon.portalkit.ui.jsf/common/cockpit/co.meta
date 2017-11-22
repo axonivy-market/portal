@@ -1,4 +1,4 @@
-co: name={cockpit} description={} changed={2017-11-01 02:58:47 CET} changedby={chnam} visualorder={0} guid={15F754CDAD078E06} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F754D65C5F20FF} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-01 02:58:32 CET} validto={} changed={2017-11-01 02:58:47 CET} changedby={chnam} properties={} id={}
-val: guid={15F754D6539C5692} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-01 02:58:38 CET} validto={} changed={2017-11-01 02:58:47 CET} changedby={chnam} properties={} id={}
+co: name={cockpit} description={} changed={2017-11-22 03:00:13 CET} changedby={anhnguyenhoang} visualorder={0} guid={15F754CDAD078E06} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F754D65C5F20FF} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-22 03:00:13 CET} validto={} changed={2017-11-22 03:00:13 CET} changedby={anhnguyenhoang} properties={} id={}
+val: guid={15F754D6539C5692} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-22 03:00:13 CET} validto={} changed={2017-11-22 03:00:13 CET} changedby={anhnguyenhoang} properties={} id={}
 val: guid={15F754CDADAC0365} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-01 02:58:11 CET} validto={} changed={2017-11-01 02:58:11 CET} changedby={chnam} properties={} id={}

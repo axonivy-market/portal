@@ -1,4 +1,4 @@
-co: name={loginLogo} description={} changed={2017-11-15 10:46:03 CET} changedby={chnam} visualorder={0} guid={15FBF123AF37D868} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={loginLogo} description={} changed={2017-11-22 03:00:13 CET} changedby={anhnguyenhoang} visualorder={0} guid={15FBF123AF37D868} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15FBF123AF6A0EEF} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-06 04:39:25 CET} validto={} changed={2017-11-15 10:46:03 CET} changedby={chnam} properties={} id={}
-val: guid={15FBF123AFD2D38B} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-06 04:39:25 CET} validto={} changed={2017-11-15 10:46:03 CET} changedby={chnam} properties={} id={}
-val: guid={15FBF123B04EE809} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-06 04:39:25 CET} validto={} changed={2017-11-15 10:46:03 CET} changedby={chnam} properties={} id={}
+val: guid={15FBF123AFD2D38B} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-22 03:00:13 CET} validto={} changed={2017-11-22 03:00:13 CET} changedby={anhnguyenhoang} properties={} id={}
+val: guid={15FBF123B04EE809} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-22 03:00:13 CET} validto={} changed={2017-11-22 03:00:13 CET} changedby={anhnguyenhoang} properties={} id={}
