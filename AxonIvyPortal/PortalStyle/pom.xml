@@ -22,6 +22,7 @@
     <resources.directory.css>${resources.directory}/css</resources.directory.css>
     <resources.directory.less>${resources.directory}/less/</resources.directory.less>
     <resources.directory>${project.basedir}/webContent/resources</resources.directory>
+    <build.plugin.version>7.0.1</build.plugin.version>
   </properties>
   <build>
   	<sourceDirectory>${basedir}/src/</sourceDirectory>
@@ -54,12 +55,8 @@
       <plugin>
 		<groupId>com.axonivy.ivy.ci</groupId>
 		<artifactId>project-build-plugin</artifactId>
-		<version>7.0.0</version>
+		<version>${build.plugin.version}</version>
 		<extensions>true</extensions>
-		<configuration>					
-			<engineDirectory>${settings.localRepository}/.cache/ivy/${ivy.engine.version}</engineDirectory>										
-			<encoding>UTF-8</encoding>
-		</configuration>
       </plugin>
       <plugin>
         <groupId>org.lesscss</groupId>

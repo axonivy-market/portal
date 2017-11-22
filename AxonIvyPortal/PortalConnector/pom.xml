@@ -19,6 +19,7 @@
   <properties>
   	<svn.revision.number>${SVN_REVISION}</svn.revision.number>
 	<ivy.engine.version>7.0.0</ivy.engine.version>
+    <build.plugin.version>7.0.1</build.plugin.version>
   </properties>
   <build>
 	  <sourceDirectory>${basedir}/src/</sourceDirectory>
@@ -50,7 +51,7 @@
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
-				<version>7.0.0</version>
+				<version>${build.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>					
 					<engineDirectory>${settings.localRepository}/.cache/ivy/${ivy.engine.version}</engineDirectory>										
