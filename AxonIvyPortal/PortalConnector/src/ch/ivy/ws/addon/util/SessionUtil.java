@@ -4,6 +4,7 @@ import java.util.concurrent.Callable;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IPermissionAccess;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -13,8 +14,6 @@ import ch.ivyteam.ivy.security.IUser;
 /**
  * Session Utility for SSO
  * 
- * @author mde
- *
  */
 public class SessionUtil {
   public static void loginAsUser(final String username) throws Exception {
@@ -23,16 +22,26 @@ public class SessionUtil {
       @Override
       public Object call() throws Exception {
         Ivy.session().authenticateSessionUser(securityContext.findUser(username), "customAuth",
-            Ivy.wfTask().getIdentifier());
+            Ivy.wfTask().getId());
         return null;
       }
     });
   }
 
   public static boolean doesUserHavePermission(IApplication application, String username, IPermission permission) {
-    IUser user = application.getSecurityContext().findUser(username);
-    ISecurityDescriptor securityDescriptor = application.getSecurityDescriptor();
-    IPermissionAccess permissionAccess = securityDescriptor.getPermissionAccess(permission, user);
-    return permissionAccess.isGranted();
+    IPermissionAccess permissionAccess = null;
+    try {
+      IUser user = application.getSecurityContext().findUser(username);
+      ISecurityDescriptor securityDescriptor = application.getSecurityDescriptor();
+      if (user != null){
+        permissionAccess = securityDescriptor.getPermissionAccess(permission, user);
+        return permissionAccess.isGranted();
+      }
+    } catch (PersistencyException e) {
+      // TODO Auto-generated catch block
+      Ivy.log().error(e);
+      return false;
+    }
+    return false;
   }
 }
