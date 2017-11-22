@@ -53,10 +53,6 @@
 				<artifactId>project-build-plugin</artifactId>
 				<version>${build.plugin.version}</version>
 				<extensions>true</extensions>
-				<configuration>					
-					<engineDirectory>${settings.localRepository}/.cache/ivy/${ivy.engine.version}</engineDirectory>										
-					<encoding>UTF-8</encoding>
-				</configuration>
 			</plugin>
 	  </plugins>
   </build>
