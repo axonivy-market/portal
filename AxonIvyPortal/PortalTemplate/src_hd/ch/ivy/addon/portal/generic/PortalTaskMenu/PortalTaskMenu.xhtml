@@ -13,8 +13,9 @@
     <f:event listener="#{logic.findTaskCategory}" type="preRenderComponent" />
     <h:inputHidden id="task-menu-state-info" value="#{menuStateBean.menuState}" />
     <p:treeTable id="main-menu-container" selectionMode="single" value="#{taskMenuBean.rootNode}" var="menuItem"
-      selection="#{data.selectedNode}" nodeVar="node" scrollable="true">
+      selection="#{data.selectedNode}" nodeVar="node" scrollable="true" >
       <p:ajax event="select" global="false" listener="#{logic.loadTask}" process=":#{cc.clientId}:task-menu-state-info" />
+      <f:event listener="#{taskMenuDataBean.setPortalTaskMenuData(data)}" type="preRenderComponent" />
       <f:event listener="#{taskMenuBean.initMenuBean(data)}" type="preRenderComponent" />
       <p:column styleClass="left-sidebar-animation">
         <span
