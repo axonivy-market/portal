@@ -1,1 +1,4 @@
-co: name={newTaskNotification} description={} changed={2017-11-15 10:01:54 GMT} changedby={chnam} visualorder={0} guid={15FBF20BAB05E08E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={newTaskNotification} description={} changed={2017-11-23 03:31:27 CET} changedby={chnam} visualorder={0} guid={15FBF20BAB05E08E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FE6B7349369A73} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-23 03:30:47 CET} validto={} changed={2017-11-23 03:31:27 CET} changedby={chnam} properties={} id={}
+val: guid={15FE6B734342A686} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-23 03:30:51 CET} validto={} changed={2017-11-23 03:31:27 CET} changedby={chnam} properties={} id={}
+val: guid={15FE6B733883377E} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-23 03:30:55 CET} validto={} changed={2017-11-23 03:31:26 CET} changedby={chnam} properties={} id={}
