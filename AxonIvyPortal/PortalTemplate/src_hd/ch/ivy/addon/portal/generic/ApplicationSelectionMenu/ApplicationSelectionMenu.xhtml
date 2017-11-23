@@ -48,7 +48,7 @@
               value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
             <p:commandLink styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{isIvyLink}"
               actionListener="#{logic.onClickSubMenuItem}" onclick="saveMenuState(this)">
-              <h:outputText class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-#{status.index}" />
+              <h:outputText class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-#{status.index}-#{theCount.index}" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
               <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
               <script type="text/javascript">
@@ -59,13 +59,13 @@
             </p:commandLink>
             <p:link styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{!isIvyLink}"
               href="#{subMenuItem.externalLink}" target="_blank">
-              <h:panelGroup class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-external-#{status.index}" />
+              <h:panelGroup class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-external-#{status.index}-#{theCount.index}" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
             </p:link>
             <p:tooltip id="left-sidebar-menu-item-tooltip" styleClass="left-sidebar-menu-item-tooltip"
-              value="#{subMenuItem.label}" for="@(.left-sidebar-sub-menu-item-#{status.index})" />
+              value="#{subMenuItem.label}" for="@(.left-sidebar-sub-menu-item-#{status.index}-#{theCount.index})" />
             <p:tooltip id="left-sidebar-sub-menu-item-tooltip-external" styleClass="left-sidebar-menu-item-tooltip"
-              value="#{subMenuItem.label}" for="@(.left-sidebar-sub-menu-item-external-#{status.index})" />
+              value="#{subMenuItem.label}" for="@(.left-sidebar-sub-menu-item-external-#{status.index}-#{theCount.index})" />
           </ui:repeat>
           <div class="left-sidebar-separator-bottom" />
         </h:panelGroup>
