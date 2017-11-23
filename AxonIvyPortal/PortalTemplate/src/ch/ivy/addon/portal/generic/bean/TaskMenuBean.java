@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.NodeCollapseEvent;
 import org.primefaces.event.NodeExpandEvent;
@@ -24,13 +26,13 @@ import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class TaskMenuBean implements Serializable {
 
   private static final long serialVersionUID = 5481218944095287656L;
 
-  private PortalTaskMenuData portalTaskMenuData;
   private TreeNode rootNode;
+  private static final String TASK_MENU_DATA_BEAN = "#{taskMenuDataBean}";
 
   public TreeNode getRootNode() {
     return rootNode;
@@ -40,13 +42,24 @@ public class TaskMenuBean implements Serializable {
     this.rootNode = rootNode;
   }
 
-  public void initMenuBean(PortalTaskMenuData portalTaskMenuData) {
-    this.portalTaskMenuData = portalTaskMenuData;
-    rootNode = new DefaultTreeNode();
-    addTasksMenuItem();
+  @PostConstruct
+  public void init() {
+    FacesContext context = FacesContext.getCurrentInstance();
+    TaskMenuDataBean taskMenuDataBean =
+        context.getApplication().evaluateExpressionGet(context, TASK_MENU_DATA_BEAN, TaskMenuDataBean.class);
+    PortalTaskMenuData portalTaskMenuData = taskMenuDataBean.getPortalTaskMenuData();
+    if (portalTaskMenuData != null) {
+      rootNode = new DefaultTreeNode();
+      addTasksMenuItem(portalTaskMenuData);
+    }
   }
 
-  private void addTasksMenuItem() {
+  public void initMenuBean(PortalTaskMenuData portalTaskMenuData) {
+    rootNode = new DefaultTreeNode();
+    addTasksMenuItem(portalTaskMenuData);
+  }
+
+  private void addTasksMenuItem(PortalTaskMenuData portalTaskMenuData) {
     DefaultTreeNode allTaskNode = buildAllTaskTree(portalTaskMenuData.getAllTaskCategories());
     allTaskNode.setParent(rootNode);
     rootNode.getChildren().add(allTaskNode);
@@ -56,7 +69,7 @@ public class TaskMenuBean implements Serializable {
 
     DefaultTreeNode groupTask = buildGroupTaskTree(portalTaskMenuData.getGroupTaskCategories());
     rootNode.getChildren().add(groupTask);
-    
+
     if (TaskUtils.checkReadAllTasksPermission()) {
       DefaultTreeNode unassignedTask = buildUnassignedTaskTree(portalTaskMenuData.getUnassignedTaskCategories());
       rootNode.getChildren().add(unassignedTask);
@@ -64,8 +77,9 @@ public class TaskMenuBean implements Serializable {
   }
 
   private DefaultTreeNode buildAllTaskTree(List<CategoryData> allTaskCategories) {
-    DefaultTreeNode allTaskNode = buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/AllTasks"),
-        allTaskCategories, TreeNodeType.TASKS_ALL_TASKS);
+    DefaultTreeNode allTaskNode =
+        buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/AllTasks"), allTaskCategories,
+            TreeNodeType.TASKS_ALL_TASKS);
     return allTaskNode;
   }
 
@@ -91,15 +105,17 @@ public class TaskMenuBean implements Serializable {
   }
 
   private DefaultTreeNode buildGroupTaskTree(List<CategoryData> groupTaskCategories) {
-    DefaultTreeNode groupTasks = buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/GroupTasks"),
-        groupTaskCategories, TreeNodeType.TASKS_GROUP_TASKS);
+    DefaultTreeNode groupTasks =
+        buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/GroupTasks"), groupTaskCategories,
+            TreeNodeType.TASKS_GROUP_TASKS);
 
     return groupTasks;
   }
-  
+
   private DefaultTreeNode buildUnassignedTaskTree(List<CategoryData> unassignedTaskCategories) {
-    DefaultTreeNode unassignedTasks = buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/UnassignedTasks"),
-        unassignedTaskCategories, TreeNodeType.TASKS_UNASSIGNED_TASKS);
+    DefaultTreeNode unassignedTasks =
+        buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/UnassignedTasks"),
+            unassignedTaskCategories, TreeNodeType.TASKS_UNASSIGNED_TASKS);
     return unassignedTasks;
   }
 
@@ -114,8 +130,8 @@ public class TaskMenuBean implements Serializable {
     taskNode.setType(firstCategory);
     taskNode.setExpanded(true);
     if (validCategory(categories)) {
-      List<TreeNode> childrenNodes = TaskTreeUtils.convertTaskListToTree(categories, firstCategory, isRootNodeAllTask)
-          .getChildren();
+      List<TreeNode> childrenNodes =
+          TaskTreeUtils.convertTaskListToTree(categories, firstCategory, isRootNodeAllTask).getChildren();
       taskNode.setChildren(childrenNodes);
     }
     return taskNode;
