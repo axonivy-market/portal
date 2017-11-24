@@ -143,20 +143,16 @@ public class UserUtils {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
         public Object call() throws Exception {
           IUser sessionUser = getIvySession().getSessionUser();
-
+          Locale l = null;
           if (sessionUser.getEMailLanguage() != null && sessionUser.getEMailLanguage() instanceof Locale) {
-            Locale l = sessionUser.getEMailLanguage();
-            getIvySession().setContentLocale(l);
-            getIvySession().setFormattingLocale(l);
+            l = sessionUser.getEMailLanguage();
           } else {
             // Application Default
             Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
-            String language = defaultApplicationLocal.getLanguage();
-            String country = defaultApplicationLocal.getCountry();
-            Locale l = new Locale(language, country, APPLICATION_DEFAULT);
-            getIvySession().setContentLocale(l);
-            getIvySession().setFormattingLocale(l);
+            l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(), APPLICATION_DEFAULT);
           }
+          getIvySession().setContentLocale(l);
+          getIvySession().setFormattingLocale(l);
           return null;
         }
       });
