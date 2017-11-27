@@ -2565,16 +2565,14 @@ a.compact-task-start-link:hover {
   background-color: rgba(0,0,0,0.04);
 }
 
-.task-start-list-item.full-mode .task-start-link:before {
-  content: attr(data-content);
+.show-task-detail-link{
+  width: 5%;
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
   text-align: center;
   font-size: 1.2rem;
-  opacity: 0;
-  transition: opacity .65s;
+  transform: scale(1.5,1);
 }
 
 .task-start-list-item.full-mode .task-start-link:hover:before {
