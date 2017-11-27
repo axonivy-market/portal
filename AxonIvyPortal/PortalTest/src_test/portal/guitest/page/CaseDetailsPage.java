@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
   private static final String DOCUMENT_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:document";
@@ -19,6 +20,7 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String VIEW_NOTE_DIALOG_ID =
       "case-widget:case-list-scroller:0:case-item:history:view-note-dialog";
   private WebElement caseItem;
+  private static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
   @Override
   protected String getLoadedLocator() {
@@ -49,6 +51,10 @@ public class CaseDetailsPage extends TemplatePage {
     onClickHistoryIcon();
     caseItem.findElement(By.cssSelector("a[id$='add-note-command']")).click();
     waitAjaxIndicatorDisappear();
+    String engineUrl = System.getProperty("engineUrl");
+    if (ENGINE_URL_LOCAL.equals(engineUrl)) {
+        Sleeper.sleepTight(2000);
+    }
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
