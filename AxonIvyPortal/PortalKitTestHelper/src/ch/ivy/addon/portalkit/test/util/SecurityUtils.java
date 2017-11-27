@@ -11,6 +11,7 @@ import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_ACTIVATOR;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_DESCRIPTION;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_NAME;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_ORIGINAL_PRIORITY;
+import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_EXPIRY_TIMESTAMP;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_SUBSTITUTE;
 import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_ABSENCE;
@@ -74,7 +75,18 @@ public class SecurityUtils {
 
   TASK_READ_ALL,
 
-  CASE_READ_ALL
+  CASE_READ_ALL,
+  
+  USER_READ_ABSENCES,
+  
+  USER_CREATE_ABSENCE,
+  
+  USER_DELETE_ABSENCE
+
+  };
+  private static final IPermission DEMO_GRANTED_PERMISSIONS[] = {
+
+  TASK_WRITE_EXPIRY_TIMESTAMP
 
   };
 
@@ -296,6 +308,9 @@ public class SecurityUtils {
     IUser demo = application.getSecurityContext().findUser("demo");
     for (IPermission iPermission : DEMO_DENIED_PERMISSIONS) {
       application.getSecurityDescriptor().denyPermission(iPermission, demo);
+    }
+    for (IPermission permission : DEMO_GRANTED_PERMISSIONS) {
+      application.getSecurityDescriptor().grantPermission(permission, demo);
     }
   }
 }
