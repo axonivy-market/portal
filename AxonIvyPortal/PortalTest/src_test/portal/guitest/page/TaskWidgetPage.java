@@ -37,7 +37,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private void clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
-    WebElement taskShowHideDetailsLink = findElementByCssSelector("*[id$='" + index + ":task-item:task-info']");
+    WebElement taskShowHideDetailsLink = findElementByCssSelector("*[id$='" + index + ":task-item:show-task-detail-link']");
     taskShowHideDetailsLink.click();
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.cssSelector("*[id$='" + index + ":task-item:task-details-container']"), isDetailsShown,
@@ -64,7 +64,7 @@ public class TaskWidgetPage extends TemplatePage {
     if (taskListElement.getAttribute("class").contains("compact-mode")) {
       findElementByCssSelector("*[id*='" + index + ":task-item']").click();
     } else {
-      findElementByCssSelector("*[id$='" + index + ":task-item:task-start-command']").click();
+      findElementByCssSelector("*[id$='" + index + ":task-item:task-info']").click();
     }
     waitForElementPresent(By.id("copy-clipboard"), true);
     return new TaskTemplatePage();
