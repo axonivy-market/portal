@@ -29,16 +29,23 @@
   <h:panelGroup id="task-start" layout="block" rendered="#{!compactMode}"
     styleClass="#{rowIndex % 2 == 0 ? 'task-even-row' : 'task-odd-row'} full-mode task-start-list-item js-task-start-list-item #{isExpanded ? 'show-task-details-mode' : ''}">
     <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block">
-    
-      <p:ajax event="click" delay="100" listener="#{taskWidgetBean.setExpandedTaskId(task.id, isExpanded)}"
-        update="task-start @(.show-task-details-mode)" oncomplete="taskWidget.setupScrollbar(); taskListToolKit.responsive();" />
-
-      <f:passThroughAttribute name="data-content"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/showDetailsHint')}" />
+      <p:ajax event="click" listener="#{logic.openTask(task)}" disabled="#{task.state == 'RESUMED'}" 
+        onstart="#{cc.attrs.onTaskStartCallback}" />
+      <p:ajax event="click" listener="#{data.setSelectedTask(task)}" disabled="#{task.state != 'RESUMED'}"
+          oncomplete="PF('reset-task-dialog').show()" />
       <cc:renderFacet name="taskHeader" />
       <ui:include src="TaskAction.xhtml" />
+      <p:commandLink id="show-task-detail-link" class="show-task-detail-link" onstart="event.stopPropagation()" actionListener="#{taskWidgetBean.setExpandedTaskId(task.id, isExpanded)}" 
+        update="task-start @(.show-task-details-mode)" oncomplete="taskWidget.setupScrollbar(); taskListToolKit.responsive();" >
+        <h:panelGroup rendered="#{taskWidgetBean.expandedTaskId ne task.id}">
+          <i class="fa fa-angle-double-down" />
+        </h:panelGroup>
+        <h:panelGroup rendered="#{taskWidgetBean.expandedTaskId eq task.id}">
+          <i class="fa fa-angle-double-up" />
+        </h:panelGroup>
+      </p:commandLink>
     </h:panelGroup>
-
+    
     <h:panelGroup layout="block" id="task-details-container">
       <h:panelGroup rendered="#{isExpanded}">
         <div class="Separator task-details-separator" />
