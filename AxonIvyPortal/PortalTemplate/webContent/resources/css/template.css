@@ -718,14 +718,17 @@
 
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
-  .dashboard-container, .simple-container.custom-container, .task-list-container, .case-main-container  {
+  .dashboard-container, .simple-container, .task-list-container, .case-main-container {
     width: initial;
     width: auto;
     margin-right: 15px;
     max-width: none;
   }
+  .dashboard-main-content-1st-col, .dashboard-main-content-3rd-col {
+    width: 26%;
+  }
   .dashboard-main-content-2nd-col {
-    width: 520px;
+    width: 36%;
   }
   .dashboard-main-content-3rd-col {
     display: block;
@@ -738,7 +741,7 @@
 /* Large screen */
 @media (min-width: 1920px) {
   .simple-container, .js-task-list-container {
-    margin-right: 10px;
+    margin-right: 15px;
   }
   .dashboard-main-content-1st-col, .dashboard-main-content-3rd-col {
     width: 27%;
