@@ -49,8 +49,6 @@ Ls0 f3 actionCode 'import ch.addon.portal.generic.menu.DashboardSubMenuItem;
 import ch.addon.portal.generic.menu.ProcessSubMenuItem;
 import ch.addon.portal.generic.menu.CaseSubMenuItem;
 import ch.addon.portal.generic.menu.TaskSubMenuItem;
-import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.addon.portal.generic.menu.SubMenuItem;
 
 in.subMenuItems.add(new ProcessSubMenuItem());
 in.subMenuItems.add(new TaskSubMenuItem());
