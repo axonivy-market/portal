@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Mar 22 11:50:21 ICT 2016]
-153361016FE4213A 3.18 #module
+153361016FE4213A 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemDocumentProcess Big #zClass
 Cs0 RD #cInfo
@@ -188,8 +187,8 @@ Cs0 f56 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDo
 ' #txt
 Cs0 f56 actionTable 'out=in;
 ' #txt
-Cs0 f56 actionCode 'import javax.activation.DataHandler;
-import org.apache.cxf.jaxrs.ext.multipart.InputStreamDataSource;
+Cs0 f56 actionCode 'import ch.ivy.addon.portalkit.webservice.InputStreamDataSource;
+import javax.activation.DataHandler;
 import org.primefaces.model.UploadedFile;
 
 UploadedFile uploadedFile = in.documentUploadEvent.getFile();
