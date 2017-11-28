@@ -331,8 +331,8 @@ function SimpleLargeScreen(){
 }
 
 function SimpleMediumScreen() {
-	var marginValWhenMainMenuOpen = 140;
-	var	marginValWhenTwoMenuClose = 0;
+	var marginValWhenMainMenuOpen = 190;
+	var	marginValWhenTwoMenuClose = 70;
 	
 	this.updateMainContainer = function() {
 		var $mainMenu = $('.js-left-sidebar');
@@ -688,8 +688,8 @@ function DashboardLargeScreen() {
 
 function DashboardMediumScreen() {
 	var firstCol = {
-			    		marginValWhenMainMenuOpen : 170,
-			    		marginValWhenMainMenuClose : 0
+			    		marginValWhenMainMenuOpen : 190,
+			    		marginValWhenMainMenuClose : 70
 			  		};
 	
 	this.updateMainContainer = function(){
