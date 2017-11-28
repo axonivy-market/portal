@@ -52,30 +52,40 @@ function ResponsiveToolkit(largeScreenToolkit, mediumScreenToolkit, smallScreenT
 
 /***************************Handle responsive for Task list**********************************/
 function TaskListLargeScreenHandler() {
-    var marginLeftValForTaskList = 150;
-    this.updateMainContainer = function(){
-    	var $mainMenu = $('.js-left-sidebar');
-        var $secondLevelMenu = $('#second-level-menu');
-        var $taskListContainer = $('.js-task-list-container');
-        var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
+    var marginValues = {
+      marginValWhenAllMenuClose : 70,
+      marginValWhenMainMenuOpen : 210,
+      marginValWhenSecondMenuOpen : 280,
+      marginValWhenAllMenuOpen : 410,
+    }
 
-        if ($mainMenu.hasClass('in')) {
-          if (isDisplaySecondLevelMenu) {
-            // Open main menu when second menu is opened
-            $taskListContainer.animate({
-              paddingLeft : marginLeftValForTaskList
-            }, animateDuration);
-          } else {
-        	  $taskListContainer.animate({
-                  paddingLeft : 0
-                }, animateDuration);  
-          }
+    
+    function animateTaskList($widget, properties) {
+      $widget.animate(properties, animateDuration, function() {
+        var taskListToolKit = TaskListToolKit();
+          taskListToolKit.responsive();
+      });
+   }
+    
+    this.updateMainContainer = function(){
+      var $mainMenu = $('.js-left-sidebar');
+      var $secondLevelMenu = $('#second-level-menu');
+      var $taskListContainer = $('.js-task-list-container');
+      var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
+
+      if ($mainMenu.hasClass('in')) {
+        if (isDisplaySecondLevelMenu) {
+          animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenAllMenuOpen });
         } else {
-            $taskListContainer.animate({
-              paddingLeft : 0
-            }, arguments);
+          animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenMainMenuOpen });  
         }
-        $taskListContainer.css('margin-left', 'auto');
+      } else {
+        if (isDisplaySecondLevelMenu) {
+          animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenSecondMenuOpen });
+        } else {
+          animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenAllMenuClose });  
+        }
+      }
     }
 }
 
@@ -305,7 +315,19 @@ function TaskListSmallScreenHandler() {
 
 /***************************Handle responsive for Simple Screen**********************************/	
 function SimpleLargeScreen(){
-	this.updateMainContainer = function(){}
+  var marginValWhenMainMenuOpen = 210;
+  var marginValWhenTwoMenuClose = 70;
+
+  this.updateMainContainer = function() {
+    var $mainMenu = $('.js-left-sidebar');
+    var $simpleContainer = $('.js-simple-container');
+
+    if ($mainMenu.hasClass('in')) {
+      $simpleContainer.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration);
+    } else { 
+      $simpleContainer.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
+    }
+  }
 }
 
 function SimpleMediumScreen() {
@@ -350,12 +372,29 @@ function SimpleSmallScreen(){
 
 /***************************Handle responsive for Case List**********************************/
 function CaseListLargeScreenHandler() {
+  var marginValWhenMainMenuOpen = 210;
+  var marginValWhenTwoMenuClose = 70;
+
   this.updateMainContainer = function(){
+    var $mainMenu = $('.js-left-sidebar');
+    var $simpleContainer = $('.js-simple-container');
+
+    if ($mainMenu.hasClass('in')) {
+      $simpleContainer.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration, function(){
+        var caseListToolKit = CaseListToolKit();
+        caseListToolKit.responsiveInLargeScreen();
+      });
+    } else { 
+      $simpleContainer.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration, function(){
+        var caseListToolKit = CaseListToolKit();
+        caseListToolKit.responsiveInLargeScreen();
+      });
+    }
+    
     var isCaseDetailsOpened = $('.js-case-details').length !== 0 ? true : false;
     if (isCaseDetailsOpened) {
       updateCaseDetails();
     }
-    $('.js-simple-main-col').css('margin-left', 'auto');
   }
 
   function updateCaseDetails() {
@@ -632,9 +671,19 @@ function CaseListSmallScreenHandler() {
 
 /***************************Handle responsive for Dashboard**********************************/
 function DashboardLargeScreen() {
-	
-	this.updateMainContainer = function(){
-	}
+  var marginValWhenMainMenuOpen = 210;
+  var marginValWhenTwoMenuClose = 70;
+
+  this.updateMainContainer = function() {
+    var $mainMenu = $('.js-left-sidebar');
+    var $simpleContainer = $('.js-dashboard-default-widget-container');
+
+    if ($mainMenu.hasClass('in')) {
+      $simpleContainer.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration);
+    } else { 
+      $simpleContainer.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
+    }
+  }
 }
 
 function DashboardMediumScreen() {

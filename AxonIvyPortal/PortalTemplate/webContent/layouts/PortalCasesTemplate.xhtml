@@ -10,7 +10,7 @@
 
     <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}</ui:define>
     <ui:define name="pageContent">
-      <div class="js-case-default-widget-container case-default-widget-container">
+      <div class="js-case-default-widget-container case-default-widget-container js-simple-container">
         <div class="js-simple-main-col case-main-container">
           <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{data.caseView.getTitle() != '' ? data.caseView.getTitle() : ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}"
             dataModel="#{caseView.getDataModel()}" hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"

@@ -718,9 +718,11 @@
 
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
-  .dashboard-container,
-  .simple-container {
-    width: 1150px;
+  .dashboard-container, .simple-container.custom-container, .task-list-container, .case-main-container  {
+    width: initial;
+    width: auto;
+    margin-right: 15px;
+    max-width: none;
   }
   .dashboard-main-content-2nd-col {
     width: 520px;
@@ -728,18 +730,6 @@
   .dashboard-main-content-3rd-col {
     display: block;
   }
-  .task-list-container {
-    max-width: 1246px;
-    margin-left: 60px;
-    margin-right: 15px;
-  }
-  
-  .case-main-container {
-    max-width: 1255px;
-    margin-left: 60px;
-    margin-right: 15px;
-  }
- 
   .hidden-md {
     display: none !important;
   }
@@ -747,24 +737,19 @@
 
 /* Large screen */
 @media (min-width: 1920px) {
-  .dashboard-container,
-  .simple-container {
-    width: 1190px;
+  .simple-container, .js-task-list-container {
+    margin-right: 10px;
+  }
+  .dashboard-main-content-1st-col, .dashboard-main-content-3rd-col {
+    width: 27%;
   }
   .dashboard-main-content-2nd-col {
-    width: 520px;
+    width: 40%;
   }
   .dashboard-main-content-3rd-col {
     display: block;
   }
-  .task-list-container {
-    width: 1246px;
-  }
   .hidden-lg {
     display: none !important;
-  }
-  .case-main-container {
-    width: 1255px;
-    margin: auto auto;
   }
 }
