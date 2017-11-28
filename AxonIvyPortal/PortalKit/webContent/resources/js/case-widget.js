@@ -4,9 +4,9 @@ function CaseWidget(outerPanelId) {
     var container = $('.js-case-list > .ui-datascroller-content');
     var mainAreaPanel = $("#" + outerPanelId);
     var widgetHeaderContainer = $('.js-widget-header');
-    var taskWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
+    var caseWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
     var availableHeight = mainAreaPanel.outerHeight() -
-    taskWidgetAdvancedFilterContainer.outerHeight(true) - widgetHeaderContainer.outerHeight(true) - 80;
+    caseWidgetAdvancedFilterContainer.outerHeight(true) - widgetHeaderContainer.outerHeight(true) - 80;
 
     if (container.height() > availableHeight) {
       container.height(availableHeight);
@@ -14,16 +14,17 @@ function CaseWidget(outerPanelId) {
   };
 
   this.setupHeader = function() {
-    var taskSortMenu = $('.js-case-widget-column-header');
-    var taskEntry = $('.js-case-item-header').first();
-    var noEntry = taskEntry.length == 0;
+    var caseSortMenu = $('.js-case-widget-column-header');
+    var caseEntry = $('.js-case-item-header').first();
+    var noEntry = caseEntry.length == 0;
     if (noEntry) {
-      $(taskSortMenu).hide();
+      $(caseSortMenu).hide();
     } else {
-      $(taskSortMenu).show();
+      $(caseSortMenu).show();
     }
-    $.each(taskSortMenu.children(), function(i, header) {
-      var cell = $(taskEntry).children().get(i);
+    $.each(caseSortMenu.children(), function(i, header) {
+      var cell = $(caseEntry).children().get(i);
+      var a = $(cell).outerWidth();
       $(header).outerWidth($(cell).outerWidth());
     });
   }
@@ -32,6 +33,11 @@ function CaseWidget(outerPanelId) {
 function CaseListToolKit() {
   
   return {
+    responsiveInLargeScreen : function(){
+      var caseWidget = new CaseWidget("");
+      caseWidget.setupHeader();
+    },
+    
     responsiveInMediumScreen : function(){
       var caseWidget = new CaseWidget("");
       caseWidget.setupHeader();
