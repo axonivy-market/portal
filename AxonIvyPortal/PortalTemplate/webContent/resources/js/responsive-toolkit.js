@@ -676,12 +676,12 @@ function DashboardLargeScreen() {
 
   this.updateMainContainer = function() {
     var $mainMenu = $('.js-left-sidebar');
-    var $dashboardFirstCol = $('.js-dashboard-main-content-1st-col');
+    var $dashboard = $('.js-dashboard-default-widget-container');
 
     if ($mainMenu.hasClass('in')) {
-      $dashboardFirstCol.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration);
+      $dashboard.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration);
     } else { 
-      $dashboardFirstCol.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
+      $dashboard.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
     }
   }
 }
@@ -707,14 +707,14 @@ function DashboardMediumScreen() {
 	
 	function updateDashboard() {
 		var $mainMenu = $('.js-left-sidebar');
-		var $dashboardFirstCol = $('.js-dashboard-main-content-1st-col');
+		var $dashboard = $('.js-dashboard-default-widget-container');
 
 		if ($mainMenu.hasClass('in')) {
 		   moveStatisticsToFirstCol();
-		   $dashboardFirstCol.animate({marginLeft : firstCol.marginValWhenMainMenuOpen}, animateDuration);
+		   $dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuOpen}, animateDuration);
 		} else {
 			moveStatisticsToThirdCol();
-			$dashboardFirstCol.animate({marginLeft : firstCol.marginValWhenMainMenuClose}, animateDuration);
+			$dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuClose}, animateDuration);
 		}
 	}
 }
