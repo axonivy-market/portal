@@ -10,7 +10,7 @@
     <div class="action-container">
       <p:commandLink id="task-reset-command" onstart="event.stopPropagation();"
         disabled="#{task.state eq 'SUSPENDED' or !task.canReset}" styleClass="task-command"
-        actionListener="#{logic.resetTask(task)}" update="@parent">
+        actionListener="#{logic.resetTask(task)}" update="@parent :#{p:component('task-start')}">
         <span class="action-icon tmi-box-arrow-left" />
         <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reset')}" />
       </p:commandLink>
@@ -29,7 +29,7 @@
       <p:commandLink id="task-reserve-command"
         disabled="#{!task.canPark or task.state eq 'PARKED' or task.state eq 'RESUMED'}"
         onstart="event.stopPropagation();" styleClass="task-command" actionListener="#{logic.parkTask(task)}"
-        update="@parent">
+        update="@parent :#{p:component('task-start')}">
         <span class="action-icon tmi-box-arrow-toinside" />
         <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTask')}" />
       </p:commandLink>
