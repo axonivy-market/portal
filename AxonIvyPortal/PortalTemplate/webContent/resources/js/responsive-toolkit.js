@@ -320,12 +320,12 @@ function SimpleLargeScreen(){
 
   this.updateMainContainer = function() {
     var $mainMenu = $('.js-left-sidebar');
-    var $simpleContainer = $('.js-simple-container');
+    var $simpleMainColumn = $('.js-simple-main-col');
 
     if ($mainMenu.hasClass('in')) {
-      $simpleContainer.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration);
+      $simpleMainColumn.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration);
     } else { 
-      $simpleContainer.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
+      $simpleMainColumn.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
     }
   }
 }
@@ -676,12 +676,12 @@ function DashboardLargeScreen() {
 
   this.updateMainContainer = function() {
     var $mainMenu = $('.js-left-sidebar');
-    var $simpleContainer = $('.js-dashboard-default-widget-container');
+    var $dashboardFirstCol = $('.js-dashboard-main-content-1st-col');
 
     if ($mainMenu.hasClass('in')) {
-      $simpleContainer.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration);
+      $dashboardFirstCol.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration);
     } else { 
-      $simpleContainer.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
+      $dashboardFirstCol.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
     }
   }
 }
