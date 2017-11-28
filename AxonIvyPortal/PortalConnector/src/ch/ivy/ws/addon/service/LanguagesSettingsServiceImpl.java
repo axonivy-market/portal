@@ -77,38 +77,21 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
     return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IvyLanguageSetting>() {
       @Override
       public IvyLanguageSetting call() throws Exception {
-        String lang = StringUtils.EMPTY;
         IvyLanguageSetting result = new IvyLanguageSetting();
         result.setAppName(appName);
-        Set<String> supportedLanguages = new HashSet<String>();
         IServer server = ServerFactory.getServer();
         IApplication app = server.getApplicationConfigurationManager().findApplication(appName);
         if (app != null && app.getActivityState() == ActivityState.ACTIVE && StringUtils.equals(appName, app.getName())) {
           List<IProcessModelVersion> activeReleasedPmvs = getActiveReleasedPmvs(app);          
-          for (IProcessModelVersion pmv: activeReleasedPmvs){
-            // get default settings
-            IUser user = app.getSecurityContext().findUser(username);
-            if (user != null) {
-              String userLanguage = getUserLanguage(app, user);
-              result.setUserLanguage(userLanguage.toLowerCase());
-            } else {
-              // user not found
-              throw new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null);
-            }
-
-            IContentManagementSystem findCms = server.getContentManagement().findCms(pmv);
-            if (findCms != null){
-              lang = findCms.co(CMS_LANG_KEY);
-              
-              if (!StringUtils.isEmpty(lang)) {
-                String[] sp = lang.split(",");
-                for (String spItem : sp) {
-                  supportedLanguages.add(spItem.trim());
-                }
-                result.setSupportedLanguages(new ArrayList<>(supportedLanguages));
-              }
-            }
+          IUser user = app.getSecurityContext().findUser(username);
+          if (user != null) {
+            String userLanguage = getUserLanguage(app, user);
+            result.setUserLanguage(userLanguage.toLowerCase());
+          } else {
+            // user not found
+            throw new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null);
           }
+          result.setSupportedLanguages(getSupportedLanguagesFromPmvs(activeReleasedPmvs, server));
         } else {
           // app not found
           throw new WSException(WSErrorType.WARNING, 10030, Arrays.asList(appName), null);
@@ -124,7 +107,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
         String userLanguage;
         // default user settings
         if (user.getEMailNotificationSettings().isUseApplicationDefault()) {
-          Ivy.log().debug("default languages");
+          Ivy.log().debug("default languages for user :{0} with app :{1}", user.getName(), app.getName());
           userLanguage = app.getDefaultEMailLanguage().toLanguageTag();                
         } else {
           userLanguage = user.getEMailLanguage() != null? 
@@ -132,7 +115,25 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
         }
         return userLanguage;
       }
-
+      
+      private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs, IServer server){
+        Set<String> supportedLanguages = new HashSet<String>();
+        for (IProcessModelVersion pmv: pmvs){
+          String lang = StringUtils.EMPTY;
+          IContentManagementSystem findCms = server.getContentManagement().findCms(pmv);
+          if (findCms != null){
+            lang = findCms.co(CMS_LANG_KEY);
+            
+            if (!StringUtils.isEmpty(lang)) {
+              String[] sp = lang.split(",");
+              for (String spItem : sp) {
+                supportedLanguages.add(spItem.trim());
+              }
+            }
+          }
+        }
+        return new ArrayList<>(supportedLanguages);
+      }
     });
   }
   
