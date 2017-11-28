@@ -107,12 +107,12 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void reserveTask(int taskId) {
     String reserveCommandButton =
-        String.format("task-widget:task-list-scroller:%d:task-item:task-reserve-command", taskId);
+        String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-reserve-command", taskId);
     click(findElementById(reserveCommandButton));
   }
 
   public void resetTask(int taskId) {
-    String resetCommandButton = String.format("task-widget:task-list-scroller:%d:task-item:task-reset-command", taskId);
+    String resetCommandButton = String.format("task-widget:task-list-scroller:0:task-item:task-action:task-reset-command", taskId);
     click(findElementById(resetCommandButton));
   }
 
@@ -316,7 +316,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openTaskDelegateDialog(int index) {
     WebElement delegateButton =
-        findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-delegate-command", index));
+        findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command", index));
     delegateButton.click();
   }
 
