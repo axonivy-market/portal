@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Mon Sep 26 09:29:29 ICT 2016]
-1549452C001D8A69 3.18 #module
+1549452C001D8A69 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemDocumentsProcess Big #zClass
 Ts0 RD #cInfo
@@ -430,8 +429,8 @@ Ts0 f56 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemD
 ' #txt
 Ts0 f56 actionTable 'out=in;
 ' #txt
-Ts0 f56 actionCode 'import javax.activation.DataHandler;
-import org.apache.cxf.jaxrs.ext.multipart.InputStreamDataSource;
+Ts0 f56 actionCode 'import ch.ivy.addon.portalkit.webservice.InputStreamDataSource;
+import javax.activation.DataHandler;
 import org.primefaces.model.UploadedFile;
 
 UploadedFile uploadedFile = in.documentUploadEvent.getFile();
