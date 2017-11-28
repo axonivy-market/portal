@@ -377,15 +377,15 @@ function CaseListLargeScreenHandler() {
 
   this.updateMainContainer = function(){
     var $mainMenu = $('.js-left-sidebar');
-    var $simpleContainer = $('.js-simple-container');
+    var $simpleMainColumn = $('.js-simple-main-col');
 
     if ($mainMenu.hasClass('in')) {
-      $simpleContainer.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration, function(){
+      $simpleMainColumn.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration, function(){
         var caseListToolKit = CaseListToolKit();
         caseListToolKit.responsiveInLargeScreen();
       });
     } else { 
-      $simpleContainer.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration, function(){
+      $simpleMainColumn.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration, function(){
         var caseListToolKit = CaseListToolKit();
         caseListToolKit.responsiveInLargeScreen();
       });
