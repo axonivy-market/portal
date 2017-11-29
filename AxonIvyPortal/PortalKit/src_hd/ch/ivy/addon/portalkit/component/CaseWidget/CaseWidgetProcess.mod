@@ -16,7 +16,6 @@ Cs0 @TextInP .xml .xml #zField
 Cs0 @TextInP .responsibility .responsibility #zField
 Cs0 @RichDialogInitStart f0 '' #zField
 Cs0 @RichDialogProcessEnd f1 '' #zField
-Cs0 @PushWFArc f2 '' #zField
 Cs0 @RichDialogMethodStart f6 '' #zField
 Cs0 @RichDialogProcessEnd f7 '' #zField
 Cs0 @GridStep f9 '' #zField
@@ -54,15 +53,45 @@ Cs0 @RichDialogProcessEnd f36 '' #zField
 Cs0 @PushWFArc f38 '' #zField
 Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f28 '' #zField
+Cs0 @RichDialogProcessStart f46 '' #zField
+Cs0 @GridStep f47 '' #zField
+Cs0 @RichDialogProcessEnd f50 '' #zField
+Cs0 @RichDialogProcessStart f48 '' #zField
+Cs0 @RichDialogProcessEnd f49 '' #zField
+Cs0 @GridStep f51 '' #zField
+Cs0 @Alternative f52 '' #zField
+Cs0 @GridStep f53 '' #zField
+Cs0 @PushWFArc f54 '' #zField
+Cs0 @PushWFArc f55 '' #zField
+Cs0 @PushWFArc f56 '' #zField
+Cs0 @PushWFArc f57 '' #zField
+Cs0 @PushWFArc f58 '' #zField
+Cs0 @PushWFArc f59 '' #zField
+Cs0 @PushWFArc f60 '' #zField
+Cs0 @RichDialogMethodStart f43 '' #zField
+Cs0 @PushWFArc f44 '' #zField
+Cs0 @RichDialogProcessEnd f41 '' #zField
+Cs0 @RichDialogProcessEnd f42 '' #zField
+Cs0 @RichDialogMethodStart f40 '' #zField
+Cs0 @PushWFArc f45 '' #zField
+Cs0 @GridStep f61 '' #zField
+Cs0 @PushWFArc f62 '' #zField
+Cs0 @PushWFArc f2 '' #zField
+Cs0 @RichDialogProcessEnd f66 '' #zField
+Cs0 @RichDialogMethodStart f67 '' #zField
+Cs0 @GridStep f68 '' #zField
+Cs0 @PushWFArc f69 '' #zField
+Cs0 @PushWFArc f70 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel) #txt
+Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel,java.lang.Long) #txt
 Cs0 f0 disableUIEvents true #txt
 Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel dataModel> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel dataModel,java.lang.Long filterGroupId> param = methodEvent.getInputArguments();
 ' #txt
 Cs0 f0 inParameterMapAction 'out.dataModel=param.dataModel;
+out.filterGroupId=param.filterGroupId;
 ' #txt
 Cs0 f0 outParameterDecl '<> result;
 ' #txt
@@ -80,8 +109,6 @@ Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f1 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f1 525 85 22 22 14 0 #rect
 Cs0 f1 @|RichDialogProcessEndIcon #fIcon
-Cs0 f2 expr out #txt
-Cs0 f2 75 96 525 96 #arcP
 Cs0 f6 guid 1530C78D050B0AA4 #txt
 Cs0 f6 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f6 method filter() #txt
@@ -478,12 +505,312 @@ Cs0 f39 expr out #txt
 Cs0 f39 306 792 469 792 #arcP
 Cs0 f28 expr out #txt
 Cs0 f28 370 608 469 608 #arcP
+Cs0 f46 guid 15FFBC1713CF0D50 #txt
+Cs0 f46 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f46 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
+' #txt
+Cs0 f46 actionTable 'out=in;
+' #txt
+Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>saveFilter</name>
+        <nameStyle>10,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f46 54 890 26 26 -26 15 #rect
+Cs0 f46 @|RichDialogProcessStartIcon #fIcon
+Cs0 f47 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
+' #txt
+Cs0 f47 actionTable 'out=in;
+' #txt
+Cs0 f47 actionCode 'import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.enums.FilterType;
+CaseFilterService caseFilterService = new CaseFilterService();
+CaseFilterData caseFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType, in.filterGroupId);
+if(FilterType.ONLY_ME == caseFilterData.type) {
+	in.privateFilters.add(caseFilterData);
+	in.privateFilters = caseFilterService.sortFilters(in.privateFilters) as java.util.List<CaseFilterData>;
+} else {
+	in.publicFilters.add(caseFilterData);
+	in.publicFilters = caseFilterService.sortFilters(in.publicFilters) as java.util.List<CaseFilterData>;
+}
+in.dataModel.selectedFilterData = caseFilterData;' #txt
+Cs0 f47 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>save filter set</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f47 395 881 112 44 -36 -8 #rect
+Cs0 f47 @|StepIcon #fIcon
+Cs0 f50 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f50 566 842 26 26 0 12 #rect
+Cs0 f50 @|RichDialogProcessEndIcon #fIcon
+Cs0 f48 guid 15FFBC1713E2CCD1 #txt
+Cs0 f48 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f48 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
+' #txt
+Cs0 f48 actionTable 'out=in;
+' #txt
+Cs0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>clearSaveFilterDialog</name>
+        <nameStyle>21,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f48 54 986 26 26 -58 15 #rect
+Cs0 f48 @|RichDialogProcessStartIcon #fIcon
+Cs0 f49 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f49 574 986 26 26 0 12 #rect
+Cs0 f49 @|RichDialogProcessEndIcon #fIcon
+Cs0 f51 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
+' #txt
+Cs0 f51 actionTable 'out=in;
+' #txt
+Cs0 f51 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
+in.filterType = FilterType.ONLY_ME;
+in.filterSetName = "";' #txt
+Cs0 f51 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Clear filter</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f51 395 977 112 44 -28 -8 #rect
+Cs0 f51 @|StepIcon #fIcon
+Cs0 f52 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is filter
+existed?</name>
+        <nameStyle>18,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f52 307 887 32 32 -23 18 #rect
+Cs0 f52 @|AlternativeIcon #fIcon
+Cs0 f53 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
+' #txt
+Cs0 f53 actionTable 'out=in;
+' #txt
+Cs0 f53 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.service.CaseFilterService;
+CaseFilterService service = new CaseFilterService();
+in.isFilterExisted = false;
+if (service.isFilterExisted(in.filterSetName, in.filterType, in.filterGroupId)) {
+	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
+	FacesContext.getCurrentInstance().addMessage("", message);
+	FacesContext.getCurrentInstance().validationFailed();
+	in.isFilterExisted = true;
+}' #txt
+Cs0 f53 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validate</name>
+        <nameStyle>8,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f53 139 881 112 44 -21 -8 #rect
+Cs0 f53 @|StepIcon #fIcon
+Cs0 f54 expr out #txt
+Cs0 f54 507 999 574 999 #arcP
+Cs0 f55 expr out #txt
+Cs0 f55 80 903 139 903 #arcP
+Cs0 f56 expr out #txt
+Cs0 f56 251 903 307 903 #arcP
+Cs0 f57 expr out #txt
+Cs0 f57 451 925 451 977 #arcP
+Cs0 f58 expr in #txt
+Cs0 f58 outCond 'in.isFilterExisted == false' #txt
+Cs0 f58 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f58 339 903 395 903 #arcP
+Cs0 f59 expr in #txt
+Cs0 f59 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f59 323 887 566 855 #arcP
+Cs0 f59 1 323 855 #addKink
+Cs0 f59 1 0.3018284624086855 0 0 #arcLabel
+Cs0 f60 expr out #txt
+Cs0 f60 80 999 395 999 #arcP
+Cs0 f43 guid 15FFCD4B4A52EC54 #txt
+Cs0 f43 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f43 method applyFilter(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
+Cs0 f43 disableUIEvents false #txt
+Cs0 f43 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.casefilter.CaseFilterData filterData> param = methodEvent.getInputArguments();
+' #txt
+Cs0 f43 inParameterMapAction 'out.filteringKeyword=param.filterData.keyword;
+' #txt
+Cs0 f43 inActionCode out.dataModel.applyFilter(param.filterData); #txt
+Cs0 f43 outParameterDecl '<> result;
+' #txt
+Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>applyFilter(TaskFilterData)</name>
+        <nameStyle>27,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f43 50 1077 26 26 -48 18 #rect
+Cs0 f43 @|RichDialogMethodStartIcon #fIcon
+Cs0 f44 expr out #txt
+Cs0 f44 76 1090 211 1090 #arcP
+Cs0 f41 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f41 211 1077 26 26 0 12 #rect
+Cs0 f41 @|RichDialogProcessEndIcon #fIcon
+Cs0 f42 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f42 347 1169 26 26 0 12 #rect
+Cs0 f42 @|RichDialogProcessEndIcon #fIcon
+Cs0 f40 guid 15FFCDB06969BA5E #txt
+Cs0 f40 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f40 method setFilterToBeDeleted(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
+Cs0 f40 disableUIEvents false #txt
+Cs0 f40 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.casefilter.CaseFilterData filterData> param = methodEvent.getInputArguments();
+' #txt
+Cs0 f40 inParameterMapAction 'out.filterDataToBeDeleted=param.filterData;
+' #txt
+Cs0 f40 outParameterDecl '<> result;
+' #txt
+Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>setFilterToBeDeleted(String)</name>
+        <nameStyle>28,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f40 50 1169 26 26 -51 16 #rect
+Cs0 f40 @|RichDialogMethodStartIcon #fIcon
+Cs0 f45 expr out #txt
+Cs0 f45 76 1182 347 1182 #arcP
+Cs0 f61 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
+' #txt
+Cs0 f61 actionTable 'out=in;
+' #txt
+Cs0 f61 actionCode 'import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.bean.PermissionBean;
+import ch.ivy.addon.portalkit.enums.FilterType;
+CaseFilterService filterService = new CaseFilterService();
+in.privateFilters = filterService.getPrivateFilterForCurrentUser(in.filterGroupId) as List;
+in.publicFilters = filterService.getPublicFilter(in.filterGroupId) as List;
+in.filterType = FilterType.ONLY_ME;' #txt
+Cs0 f61 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>load filter set</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f61 238 84 36 24 20 -2 #rect
+Cs0 f61 @|StepIcon #fIcon
+Cs0 f62 expr out #txt
+Cs0 f62 75 96 238 96 #arcP
+Cs0 f2 expr out #txt
+Cs0 f2 274 96 525 96 #arcP
+Cs0 f66 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f66 337 1267 26 26 0 12 #rect
+Cs0 f66 @|RichDialogProcessEndIcon #fIcon
+Cs0 f67 guid 1600186A4F085B89 #txt
+Cs0 f67 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f67 method deleteFilter() #txt
+Cs0 f67 disableUIEvents false #txt
+Cs0 f67 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+Cs0 f67 outParameterDecl '<> result;
+' #txt
+Cs0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>deleteFilter()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f67 49 1267 26 26 -34 15 #rect
+Cs0 f67 @|RichDialogMethodStartIcon #fIcon
+Cs0 f68 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
+' #txt
+Cs0 f68 actionTable 'out=in;
+' #txt
+Cs0 f68 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.service.CaseFilterService;
+CaseFilterService service = new CaseFilterService();
+service.delete(in.filterDataToBeDeleted.getId());
+if(in.filterDataToBeDeleted.type == FilterType.ONLY_ME) {
+	in.privateFilters.remove(in.filterDataToBeDeleted);
+} else {
+	in.publicFilters.remove(in.filterDataToBeDeleted);
+}
+if (in.dataModel.#selectedFilterData is initialized && in.dataModel.selectedFilterData.equals(in.filterDataToBeDeleted)) {
+	CaseFilterData caseFilterData = new CaseFilterData();
+	in.dataModel.applyFilter(caseFilterData);
+	in.dataModel.setSelectedFilterData(null);
+	in.filteringKeyword = null;
+}' #txt
+Cs0 f68 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>remove filter</name>
+        <nameStyle>13,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f68 158 1258 112 44 -33 -8 #rect
+Cs0 f68 @|StepIcon #fIcon
+Cs0 f69 expr out #txt
+Cs0 f69 75 1280 158 1280 #arcP
+Cs0 f70 expr out #txt
+Cs0 f70 270 1280 337 1280 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
-Cs0 f0 mainOut f2 tail #connect
-Cs0 f2 head f1 mainIn #connect
 Cs0 f6 mainOut f10 tail #connect
 Cs0 f10 head f9 mainIn #connect
 Cs0 f9 mainOut f8 tail #connect
@@ -516,3 +843,29 @@ Cs0 f15 mainOut f38 tail #connect
 Cs0 f38 head f35 mainIn #connect
 Cs0 f35 mainOut f39 tail #connect
 Cs0 f39 head f36 mainIn #connect
+Cs0 f48 mainOut f60 tail #connect
+Cs0 f60 head f51 mainIn #connect
+Cs0 f51 mainOut f54 tail #connect
+Cs0 f54 head f49 mainIn #connect
+Cs0 f47 mainOut f57 tail #connect
+Cs0 f57 head f51 mainIn #connect
+Cs0 f46 mainOut f55 tail #connect
+Cs0 f55 head f53 mainIn #connect
+Cs0 f53 mainOut f56 tail #connect
+Cs0 f56 head f52 in #connect
+Cs0 f52 out f58 tail #connect
+Cs0 f58 head f47 mainIn #connect
+Cs0 f52 out f59 tail #connect
+Cs0 f59 head f50 mainIn #connect
+Cs0 f43 mainOut f44 tail #connect
+Cs0 f44 head f41 mainIn #connect
+Cs0 f40 mainOut f45 tail #connect
+Cs0 f45 head f42 mainIn #connect
+Cs0 f0 mainOut f62 tail #connect
+Cs0 f62 head f61 mainIn #connect
+Cs0 f61 mainOut f2 tail #connect
+Cs0 f2 head f1 mainIn #connect
+Cs0 f67 mainOut f69 tail #connect
+Cs0 f69 head f68 mainIn #connect
+Cs0 f68 mainOut f70 tail #connect
+Cs0 f70 head f66 mainIn #connect

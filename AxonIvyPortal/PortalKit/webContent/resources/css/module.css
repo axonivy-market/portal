@@ -1671,6 +1671,11 @@ a.case-details-document-add-link {
   margin: 0;
   padding: 0 2px;
   display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  flex: 1 0 50%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .case-widget-container {
@@ -1683,7 +1688,6 @@ a.case-details-document-add-link {
   height: 50px;
   box-sizing: border-box;
   position: relative;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .case-widget-top-header-main-title {
