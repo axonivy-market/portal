@@ -19,9 +19,13 @@ import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class CaseCreatorFilter extends CaseFilter {
+  @JsonIgnore
   private List<RemoteSecurityMember> securityMembers = new ArrayList<>();
   private RemoteSecurityMember selectedCreator;
+  @JsonIgnore
   private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
 
   @SuppressWarnings("unchecked")
