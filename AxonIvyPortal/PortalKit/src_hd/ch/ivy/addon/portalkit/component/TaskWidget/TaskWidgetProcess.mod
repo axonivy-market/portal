@@ -610,13 +610,11 @@ Ts0 f34 outParameterDecl '<> result;
 Ts0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>removeFilter(TaskFilterData)</name>
-        <nameStyle>28,5,7
-</nameStyle>
+        <name>deleteFilter()</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f34 67 731 26 26 -78 15 #rect
+Ts0 f34 67 731 26 26 -34 15 #rect
 Ts0 f34 @|RichDialogMethodStartIcon #fIcon
 Ts0 f35 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
@@ -671,13 +669,11 @@ Ts0 f41 outParameterDecl '<> result;
 Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>setFilterToBeDeleted(String)</name>
-        <nameStyle>28,5,7
-</nameStyle>
+        <name>setFilterToBeDeleted(TaskFilterData)</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f41 67 827 26 26 -78 15 #rect
+Ts0 f41 67 827 26 26 -73 15 #rect
 Ts0 f41 @|RichDialogMethodStartIcon #fIcon
 Ts0 f42 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f42 355 827 26 26 0 12 #rect

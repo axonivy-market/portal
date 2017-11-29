@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.casefilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 
@@ -12,10 +11,14 @@ import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class CaseStateFilter extends CaseFilter {
 
+  @JsonIgnore
   private List<CaseState> filteredStates;
   private List<CaseState> selectedFilteredStates;
+  @JsonIgnore
   private List<CaseState> selectedFilteredStatesAtBeginning;
 
   /**
@@ -27,11 +30,6 @@ public class CaseStateFilter extends CaseFilter {
     this.selectedFilteredStates = new ArrayList<>();
   }
 
-  public CaseStateFilter(List<CaseState> filteredStates, List<CaseState> selectedFilteredStates) {
-    this.filteredStates = distinct(filteredStates);
-    this.selectedFilteredStates = distinct(selectedFilteredStates);
-  }
-
   @Override
   public String label() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/state");
@@ -39,14 +37,22 @@ public class CaseStateFilter extends CaseFilter {
 
   @Override
   public String value() {
-    if (CollectionUtils.isEmpty(selectedFilteredStates) || filteredStates.equals(selectedFilteredStates)) {
+    if (CollectionUtils.isEmpty(selectedFilteredStates) || isAllStatesSelected()) {
       return ALL;
     }
     String value = userFriendlyState(selectedFilteredStates.get(0));
     for (int i = 1; i < selectedFilteredStates.size(); i++) {
-      value += COMMA + userFriendlyState(selectedFilteredStates.get(i));
+      if (filteredStates.contains(selectedFilteredStates.get(i))) {
+        value += COMMA + userFriendlyState(selectedFilteredStates.get(i));
+      }
     }
     return value;
+  }
+
+  private boolean isAllStatesSelected() {
+    return filteredStates.equals(selectedFilteredStates)
+    // In case the filter is a saved filter from a user who can filter more state
+        || (filteredStates.size() < selectedFilteredStates.size() && selectedFilteredStates.containsAll(filteredStates));
   }
 
   @Override
@@ -84,13 +90,6 @@ public class CaseStateFilter extends CaseFilter {
 
   public void setFilteredStates(List<CaseState> filteredStates) {
     this.filteredStates = filteredStates;
-  }
-
-  private List<CaseState> distinct(List<CaseState> filteredStates) {
-    if (filteredStates != null) {
-      return filteredStates.stream().collect(Collectors.toList());
-    }
-    return new ArrayList<>();
   }
 
   public List<CaseState> getSelectedFilteredStatesAtBeginning() {
