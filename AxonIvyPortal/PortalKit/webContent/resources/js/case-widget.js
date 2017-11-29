@@ -24,7 +24,6 @@ function CaseWidget(outerPanelId) {
     }
     $.each(caseSortMenu.children(), function(i, header) {
       var cell = $(caseEntry).children().get(i);
-      var a = $(cell).outerWidth();
       $(header).outerWidth($(cell).outerWidth());
     });
   }
