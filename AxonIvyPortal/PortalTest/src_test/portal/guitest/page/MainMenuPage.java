@@ -56,7 +56,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   private void waitForTasksLoadedAfterSelectTaskCategory() {
-    waitForElementPresent(By.cssSelector("*[id$='0:task-item:task-delegate-command']"), true);
+    waitForElementPresent(By.cssSelector("*[id$='0:task-item:task-action:task-delegate-command']"), true);
   }
 
   public DashboardPage selectDashboard() {
