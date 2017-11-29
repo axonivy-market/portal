@@ -65,7 +65,7 @@
         <p:growl id="clipboard-growl" widgetVar="clipboard-growl" for="copy-clipboard" />
 
         <p:overlayPanel id="copy-clipboard-panel" widgetVar="copy-clipboard-panel" for="copy-clipboard" my="left top"
-          at="left bottom" showEvent="none">
+          at="left bottom" showEvent="none" appendToBody="true">
           <h:form prependId="false">
             <p:remoteCommand actionListener="#{taskTemplateBean.generateLinkToTask(ivy.task.id)}" autoRun="true"
               update="#{p:component('task-details-url')}" global="false" />
