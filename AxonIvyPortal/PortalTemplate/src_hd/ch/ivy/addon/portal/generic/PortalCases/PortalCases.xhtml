@@ -2,6 +2,7 @@
 <h:body>
   <ui:composition template="/layouts/PortalCasesTemplate.xhtml">
     <ui:param name="menuState" value="#{data.menuState}" />
+    <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
   </ui:composition>
 </h:body>
 </html>

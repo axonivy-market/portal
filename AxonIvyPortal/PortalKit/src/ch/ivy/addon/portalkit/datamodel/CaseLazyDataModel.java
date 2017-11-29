@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.datamodel;
 
 import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.naturalOrderNullsFirst;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -23,13 +24,17 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
+import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.ws.addon.CaseSearchCriteria;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -52,6 +57,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   protected List<CaseFilter> filters;
   protected List<CaseFilter> selectedFilters;
   protected CaseFilterContainer filterContainer;
+  private CaseFilterData selectedFilterData;
 
   public CaseLazyDataModel() {
     this("case-widget");
@@ -301,9 +307,9 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   public boolean isSortDescending() {
     return queryCriteria.isSortDescending();
   }
-  
+
   public CaseSearchCriteria getSearchCriteria() {
-      return searchCriteria;
+    return searchCriteria;
   }
 
   public void getQueryCriteria(CaseQueryCriteria queryCriteria) {
@@ -377,6 +383,47 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       }
     });
     return caseQuery;
+  }
+
+  /**
+   * Save all filter settings to business data
+   */
+  public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
+    CaseFilterData filterData = new CaseFilterData();
+    List<CaseFilter> filters = new ArrayList<>(selectedFilters);
+    filterData.setFilters(filters);
+    filterData.setKeyword(queryCriteria.getKeyword());
+    filterData.setUserId(Ivy.session().getSessionUser().getId());
+    filterData.setFilterGroupId(filterGroupId);
+    filterData.setFilterName(filterName);
+    filterData.setType(filterType);
+    CaseFilterService filterService = new CaseFilterService();
+    BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
+    filterData = filterService.findById(info.getId());
+    return filterData;
+  }
+
+  public CaseFilterData getSelectedFilterData() {
+    return selectedFilterData;
+  }
+
+  public void setSelectedFilterData(CaseFilterData selectedFilterData) {
+    this.selectedFilterData = selectedFilterData;
+  }
+
+  /**
+   * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
+   */
+  public void applyFilter(CaseFilterData caseFilterData) throws IllegalAccessException, InvocationTargetException,
+      NoSuchMethodException {
+    selectedFilterData = caseFilterData;
+    new CaseFilterService().applyFilter(this, caseFilterData);
+    applyCustomSettings(caseFilterData);
+  }
+
+  private void applyCustomSettings(CaseFilterData caseFilterData) throws IllegalAccessException,
+      InvocationTargetException, NoSuchMethodException {
+    queryCriteria.setKeyword(caseFilterData.getKeyword());
   }
 
 }
