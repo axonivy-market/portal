@@ -1,16 +1,13 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
-import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.service.CaseFilterService;
 
 @ManagedBean
 @ViewScoped
@@ -45,20 +42,9 @@ public class CaseWidgetBean implements Serializable {
     this.deletingCase = deletingCase;
   }
 
-  public boolean isDeleteFilterEnabledFor(CaseFilterData filterData) { //TODO z1
-    if (FilterType.ONLY_ME.equals(filterData.getType())) {
-      return true;
-    } else {
-      boolean isOwnerOfFilter =
-          Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(-1L)
-              .equals(filterData.getUserId());
-      boolean isAdmin = new PermissionBean().hasAdminPermission();
-      if (isOwnerOfFilter || isAdmin) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+  public boolean isDeleteFilterEnabledFor(CaseFilterData filterData) {
+    CaseFilterService filterService = new CaseFilterService();
+    return filterService.isDeleteFilterEnabledFor(filterData);
   }
 
 }

@@ -129,7 +129,7 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
-            <name>taskFilterGroupId</name>
+            <name>filterGroupId</name>
             <description></description>
             <parameterType>java.lang.Long</parameterType>
             <nullPermitted>false</nullPermitted>

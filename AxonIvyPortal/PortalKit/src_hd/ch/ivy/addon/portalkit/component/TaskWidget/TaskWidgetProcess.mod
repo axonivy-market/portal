@@ -97,10 +97,10 @@ Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f0 method start(String,Boolean,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,java.lang.Long) #txt
 Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String keyword,java.lang.Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.Long taskFilterGroupId> param = methodEvent.getInputArguments();
+<java.lang.String keyword,java.lang.Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.Long filterGroupId> param = methodEvent.getInputArguments();
 ' #txt
 Ts0 f0 inParameterMapAction 'out.keyword=param.#keyword;
-out.taskFilterGroupId=param.taskFilterGroupId;
+out.taskFilterGroupId=param.filterGroupId;
 ' #txt
 Ts0 f0 inActionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import javax.faces.context.FacesContext;
@@ -507,10 +507,10 @@ TaskFilterService taskFilterService = new TaskFilterService();
 TaskFilterData taskFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
 if(FilterType.ONLY_ME == taskFilterData.type) {
 	in.taskPrivateFilters.add(taskFilterData);
-	in.taskPrivateFilters = taskFilterService.sortFilters(in.taskPrivateFilters);
+	in.taskPrivateFilters = taskFilterService.sortFilters(in.taskPrivateFilters) as List;
 } else {
 	in.taskPublicFilters.add(taskFilterData);
-	in.taskPublicFilters = taskFilterService.sortFilters(in.taskPublicFilters);
+	in.taskPublicFilters = taskFilterService.sortFilters(in.taskPublicFilters) as List;
 }
 in.dataModel.selectedTaskFilterData = taskFilterData;' #txt
 Ts0 f24 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -578,8 +578,8 @@ Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService taskFilterService = new TaskFilterService();
-in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId);
-in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId);
+in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
+in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
 in.filterType = FilterType.ONLY_ME;' #txt
 Ts0 f27 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
