@@ -82,12 +82,12 @@ public class CasePage extends TemplatePage {
         findElementById(selectedCaseElement.getAttribute("id") + ":case-header:case-name-form:case-name-edit-inplace");
     return selectedCaseNameElement.getText();
   }
-  
+
   public boolean isCaseDisplayed(String name) {
     List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");
     return caseNameElements.stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
   }
-  
+
 
   public void openAdvancedFilter(String filterName, String filterIdName) {
     click(By.id("case-widget:filter-add-action"));
@@ -109,5 +109,25 @@ public class CasePage extends TemplatePage {
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
     Sleeper.sleepTight(2000);
+  }
+
+  public void saveFilter(String filterName) {
+    click(By.id("case-widget:filter-save-action"));
+    Sleeper.sleepTight(2000);
+    WebElement filterNameInput = findElementById("case-widget:filter-save-form:save-filter-set-name-input");
+    enterKeys(filterNameInput, filterName);
+    click(findElementById("case-widget:filter-save-form:filter-save-command"));
+    Sleeper.sleepTight(2000);
+  }
+
+  public Object getFilterName() {
+    click(findElementById("case-widget:filter-selection-form:filter-name"));
+    WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
+
+    return descriptionInput.getText();
+  }
+
+  public boolean isFilterSelectionVisible() {
+    return isElementPresent(By.id("case-widget:filter-selection-form:filter-selection-panel"));
   }
 }
