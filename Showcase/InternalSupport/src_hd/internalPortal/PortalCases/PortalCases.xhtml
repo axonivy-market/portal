@@ -7,6 +7,7 @@
   <ui:composition template="/layouts/PortalCasesTemplate.xhtml">
     <ui:param name="menuState" value="#{data.menuState}" />
     <ui:param name="useOverrideFilter" value="true" />
+    <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     
     <ui:define name="caseFilter">
 	  	<c:set var="filterContainer" value="#{caseView.getDataModel().filterContainer}" />
