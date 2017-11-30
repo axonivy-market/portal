@@ -484,10 +484,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     TaskFilterData taskFilterData = new TaskFilterData();
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
     addCustomSettingsToTaskFilters(taskFilters);
-    taskFilterData.setTaskFilters(taskFilters);
+    taskFilterData.setFilters(taskFilters);
     taskFilterData.setKeyword(queryCriteria.getKeyword());
     taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
-    taskFilterData.setTaskFilterGroupId(taskFilterGroupId);
+    taskFilterData.setFilterGroupId(taskFilterGroupId);
     taskFilterData.setFilterName(filterName);
     taskFilterData.setType(filterType);
     TaskFilterService taskFilterService = new TaskFilterService();
@@ -517,7 +517,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     queryCriteria.setKeyword(taskFilterData.getKeyword());
     isInProgressFilterDisplayed = false;
     inProgressFilter = new TaskInProgressByOthersFilter();
-    for (TaskFilter savedTaskFilter : taskFilterData.getTaskFilters()) {
+    for (TaskFilter savedTaskFilter : taskFilterData.getFilters()) {
       if (savedTaskFilter instanceof TaskInProgressByOthersFilter) {
         new TaskFilterService().copyFilterValues(inProgressFilter, savedTaskFilter);
         isInProgressFilterDisplayed = true;

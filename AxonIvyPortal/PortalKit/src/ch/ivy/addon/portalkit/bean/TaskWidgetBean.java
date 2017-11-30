@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -12,12 +11,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
 @ViewScoped
@@ -90,20 +88,9 @@ public class TaskWidgetBean implements Serializable {
     return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
   }
 
-  public boolean isDeleteFilterEnabledFor(TaskFilterData taskFilterData) {
-    if (FilterType.ONLY_ME.equals(taskFilterData.getType())) {
-      return true;
-    } else {
-      boolean isOwnerOfFilter =
-          Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(-1L)
-              .equals(taskFilterData.getUserId());
-      boolean isAdmin = new PermissionBean().hasAdminPermission();
-      if (isOwnerOfFilter || isAdmin) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+  public boolean isDeleteFilterEnabledFor(TaskFilterData filterData) {
+    TaskFilterService filterService = new TaskFilterService();
+    return filterService.isDeleteFilterEnabledFor(filterData);
   }
 
   public Long getTaskListRefreshInterval() {

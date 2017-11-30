@@ -11,7 +11,8 @@ public abstract class AbstractFilterData<T extends AbstractFilter<?>> {
   private String keyword;
   private String filterName;
   private Long userId;
-  // Use to distinguish between filters of different task/case lists. Default value is the process model id.
+  // Use to distinguish between filters of different lists (e.g. task/case lists). Default value is the process model
+  // id.
   private Long filterGroupId;
   private FilterType type;
 

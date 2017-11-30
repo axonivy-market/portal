@@ -38,7 +38,7 @@ public abstract class AbstractFilter<T extends Query<?>> {
    * </p>
    * <p>
    * <b>Format: </b> <br/>
-   * To make it consistent on UI, use the constants in TaskFilter to display.<br/>
+   * To make it consistent on UI, use the constants in {@link AbstractFilter} to display.<br/>
    * Return the constant ALL if filtered values are empty or full list of suggestion selections.
    * </p>
    * 
@@ -48,7 +48,7 @@ public abstract class AbstractFilter<T extends Query<?>> {
 
   /**
    * <p>
-   * Build TaskQuery with filtered values.
+   * Build Query with filtered values.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>

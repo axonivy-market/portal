@@ -75,7 +75,7 @@
                     <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
                       value="#{filterData.filterName}" global="false" actionListener="#{logic.applyFilter(filterData)}"
                       update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list"
-                      oncomplete="caseWidget.setupScrollbar(); caseWidget.setupHeader();" />
+                      oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader();" />
                     <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
                       value="#{filterData.filterName}" trackMouse="true" />
                     <p:commandLink id="delete-user-definied-filter-command"
