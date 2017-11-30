@@ -8,15 +8,18 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
+import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.filter.AbstractFilter;
 import ch.ivy.addon.portalkit.filter.AbstractFilterData;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -85,4 +88,21 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
           .execute().count() > 0;
     }
   }
+
+  public boolean isDeleteFilterEnabledFor(T filterData) {
+    if (FilterType.ONLY_ME.equals(filterData.getType())) {
+      return true;
+    } else {
+      boolean isOwnerOfFilter =
+          Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(-1L)
+              .equals(filterData.getUserId());
+      boolean isAdmin = new PermissionBean().hasAdminPermission();
+      if (isOwnerOfFilter || isAdmin) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
 }
