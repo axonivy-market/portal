@@ -71,6 +71,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private boolean isInProgressFilterDisplayed = false;
   private TaskFilterData selectedTaskFilterData;
 
+  protected List<String> allColumns = new ArrayList<>();
+  protected List<String> selectedColumns = new ArrayList<>();
+  private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+  
   public TaskLazyDataModel() {
     super();
     data = new ArrayList<>();
@@ -82,8 +86,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     comparator = comparator(RemoteTask::getId);
 
     autoInitForNoAppConfiguration();
+    initColumnsConfiguration();  
   }
-
+  
   /**
    * <p>
    * Initialize TaskFilterContainer with your customized TaskFilterContainer class.
@@ -631,4 +636,30 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     });
     return taskQuery;
   }
+  
+  protected void initColumnsConfiguration(){
+    allColumns.addAll(PORTAL_DEFAULT_COLUMNS);
+    selectedColumns.addAll(PORTAL_DEFAULT_COLUMNS);
+  }
+
+  public void setSelectedColumns(List<String> selectedColumns) {
+    this.selectedColumns = selectedColumns;
+  }
+
+  public List<String> getSelectedColumns() {
+    return selectedColumns;
+  }
+  
+  public List<String> getAllColumns() {
+    return allColumns;
+  }
+
+  public String getColumnLabel(String columns) {
+     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + columns);
+  }
+  
+  public boolean isSelectedColumn(String column){
+    return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
+  }
+  
 }

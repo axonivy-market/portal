@@ -4216,3 +4216,7 @@ margin-top
 .preview-users-datatable .ui-datatable-scrollable-body {
   overflow-x: hidden;
 }
+
+.config-columns-panel {
+  width: fit-content;
+}

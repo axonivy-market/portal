@@ -1,0 +1,4 @@
+co: name={STATE} description={} changed={2017-12-01 10:47:28 CET} changedby={tntanh} visualorder={0} guid={160116343789C287} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1601179440693BB5} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-12-01 10:47:08 CET} validto={} changed={2017-12-01 10:47:28 CET} changedby={tntanh} properties={} id={}
+val: guid={160117943D12EA10} datatype={} isdefault={false} langid={de} description={} validfrom={2017-12-01 10:47:10 CET} validto={} changed={2017-12-01 10:47:28 CET} changedby={tntanh} properties={} id={}
+val: guid={1601163437C1AC6F} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-01 10:23:26 CET} validto={} changed={2017-12-01 10:23:26 CET} changedby={tntanh} properties={} id={}
