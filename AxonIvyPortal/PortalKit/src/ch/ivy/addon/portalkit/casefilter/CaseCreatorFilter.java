@@ -23,35 +23,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CaseCreatorFilter extends CaseFilter {
   @JsonIgnore
-  private List<RemoteSecurityMember> securityMembers = new ArrayList<>();
+  private List<RemoteSecurityMember> securityMembers;
   private RemoteSecurityMember selectedCreator;
   @JsonIgnore
   private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
-
-  @SuppressWarnings("unchecked")
-  public CaseCreatorFilter() {
-    try {
-      List<RemoteUser> users =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
-            public List<RemoteUser> call() throws Exception {
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
-                  .get("users", List.class);
-            }
-          });
-
-      List<RemoteUser> distinctUsers =
-          users.stream().collect(
-              Collectors.collectingAndThen(
-                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))),
-                  ArrayList::new));
-
-      Collections.sort(distinctUsers, new RemoteUserComparator());
-
-      securityMembers.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
-    } catch (Exception e) {
-      Ivy.log().error("Can't get list of users for creator filter", e);
-    }
-  }
 
   @Override
   public String label() {
@@ -89,7 +64,36 @@ public class CaseCreatorFilter extends CaseFilter {
   }
 
   public List<RemoteSecurityMember> getSecurityMembers() {
+    if (securityMembers == null) {
+      initSecurityMembers();
+    }
     return securityMembers;
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initSecurityMembers() {
+    securityMembers = new ArrayList<>();
+    try {
+      List<RemoteUser> users =
+          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
+            public List<RemoteUser> call() throws Exception {
+              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
+                  .get("users", List.class);
+            }
+          });
+
+      List<RemoteUser> distinctUsers =
+          users.stream().collect(
+              Collectors.collectingAndThen(
+                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))),
+                  ArrayList::new));
+
+      Collections.sort(distinctUsers, new RemoteUserComparator());
+
+      securityMembers.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
+    } catch (Exception e) {
+      Ivy.log().error("Can't get list of users for creator filter", e);
+    }
   }
 
   public void setResponsibles(List<RemoteSecurityMember> securityMembers) {
