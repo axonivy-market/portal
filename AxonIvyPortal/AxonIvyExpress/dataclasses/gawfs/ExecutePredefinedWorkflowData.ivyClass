@@ -18,3 +18,5 @@ dragAndDropController ch.ivy.gawfs.DragAndDropController #field
 applicant gawfs.Applicant #field
 applicant PERSISTENT #fieldModifier
 denied Boolean #field
+callbackUrl String #field
+useExpressEndPage Boolean #field

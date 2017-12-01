@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/title')}</ui:define>
+		<ui:define name="simplePageContent">
+			<h3 class="Fs20">
+				<i class="fa fa-check" aria-hidden="true" /> #{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/title')}
+			</h3>
+			<h:form id="form">
+				<h:panelGrid columns="2" styleClass="Wid100">
+					<p:outputLabel value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/subtitle')}" />
+					<br/>
+					<p:outputPanel styleClass="TexAlRight"> 
+						<p:commandButton actionListener="#{logic.backToHome}" 
+						value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/backToHome')}" 
+						update="form" icon="fa fa-home" styleClass="buttonDelegate"/>
+					</p:outputPanel>
+					
+				</h:panelGrid>
+			</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
