@@ -144,6 +144,13 @@
 								If not set, default client side timeout is server side timeout minus 3 minutes.
 							</entry>
 						</row>
+						<row>
+							<entry>EXPRESS_END_PAGE</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Display custom end page on end of each Express process. Default is true.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
