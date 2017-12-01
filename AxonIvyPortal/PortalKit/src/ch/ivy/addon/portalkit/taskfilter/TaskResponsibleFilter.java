@@ -26,49 +26,10 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class TaskResponsibleFilter extends TaskFilter {
 
   @JsonIgnore
-  private List<RemoteSecurityMember> responsibles = new ArrayList<>();
+  private List<RemoteSecurityMember> responsibles;
   private RemoteSecurityMember selectedResponsible;
   @JsonIgnore
   private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
-
-  @SuppressWarnings("unchecked")
-  public TaskResponsibleFilter() {
-    try {
-      List<RemoteUser> users =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
-            public List<RemoteUser> call() throws Exception {
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
-                  .get("users", List.class);
-            }
-          });
-      List<RemoteRole> roles =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
-            public List<RemoteRole> call() throws Exception {
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
-                  .get("roles", List.class);
-            }
-          });
-
-      List<RemoteUser> distinctUsers =
-          users.stream().collect(
-              Collectors.collectingAndThen(
-                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))),
-                  ArrayList::new));
-      List<RemoteRole> distinctRoles =
-          roles.stream().collect(
-              Collectors.collectingAndThen(
-                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteRole::getMemberName))),
-                  ArrayList::new));
-
-      Collections.sort(distinctUsers, new RemoteUserComparator());
-      Collections.sort(distinctRoles, new RemoteRoleComparator());
-
-      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
-      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteRoles(distinctRoles));
-    } catch (Exception e) {
-      Ivy.log().error("Can't get list of users or roles in responsible filter", e);
-    }
-  }
 
   @Override
   public String label() {
@@ -109,7 +70,50 @@ public class TaskResponsibleFilter extends TaskFilter {
   }
 
   public List<RemoteSecurityMember> getResponsibles() {
+    if (responsibles == null) {
+      initResponsibles();
+    }
     return responsibles;
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initResponsibles() {
+    responsibles = new ArrayList<>();
+    try {
+      List<RemoteUser> users =
+          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
+            public List<RemoteUser> call() throws Exception {
+              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
+                  .get("users", List.class);
+            }
+          });
+      List<RemoteRole> roles =
+          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
+            public List<RemoteRole> call() throws Exception {
+              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
+                  .get("roles", List.class);
+            }
+          });
+
+      List<RemoteUser> distinctUsers =
+          users.stream().collect(
+              Collectors.collectingAndThen(
+                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))),
+                  ArrayList::new));
+      List<RemoteRole> distinctRoles =
+          roles.stream().collect(
+              Collectors.collectingAndThen(
+                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteRole::getMemberName))),
+                  ArrayList::new));
+
+      Collections.sort(distinctUsers, new RemoteUserComparator());
+      Collections.sort(distinctRoles, new RemoteRoleComparator());
+
+      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
+      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteRoles(distinctRoles));
+    } catch (Exception e) {
+      Ivy.log().error("Can't get list of users or roles in responsible filter", e);
+    }
   }
 
   public void setResponsibles(List<RemoteSecurityMember> responsibles) {
