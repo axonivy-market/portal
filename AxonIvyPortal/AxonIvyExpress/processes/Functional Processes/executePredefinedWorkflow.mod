@@ -33,7 +33,6 @@ ew0 @PushWFArc f17 '' #zField
 ew0 @RichDialog f21 '' #zField
 ew0 @PushWFArc f2 '' #zField
 ew0 @PushWFArc f14 '' #zField
-ew0 @PushWFArc f22 '' #zField
 ew0 @TaskSwitchSimple f7 '' #zField
 ew0 @GridStep f24 '' #zField
 ew0 @PushWFArc f25 '' #zField
@@ -47,6 +46,14 @@ ew0 @PushWFArc f5 '' #zField
 ew0 @TaskSwitchSimple f3 '' #zField
 ew0 @TkArc f20 '' #zField
 ew0 @PushWFArc f23 '' #zField
+ew0 @GridStep f28 '' #zField
+ew0 @GridStep f29 '' #zField
+ew0 @PushWFArc f31 '' #zField
+ew0 @Alternative f33 '' #zField
+ew0 @PushWFArc f34 '' #zField
+ew0 @PushWFArc f35 '' #zField
+ew0 @PushWFArc f32 '' #zField
+ew0 @PushWFArc f22 '' #zField
 >Proto ew0 ew0 executePredefinedWorkflow #zField
 Bk0 @TextInP .resExport .resExport #zField
 Bk0 @TextInP .type .type #zField
@@ -118,7 +125,7 @@ ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 f0 113 25 30 30 -29 17 #rect
 ew0 f0 @|StartSubIcon #fIcon
 ew0 f1 type gawfs.ExecutePredefinedWorkflowData #txt
-ew0 f1 1273 49 30 30 0 15 #rect
+ew0 f1 1993 49 30 30 0 15 #rect
 ew0 f1 @|EndSubIcon #fIcon
 ew0 f9 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -223,7 +230,7 @@ ew0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f11 744 346 144 44 -66 -8 #rect
+ew0 f11 744 378 144 44 -66 -8 #rect
 ew0 f11 @|RichDialogIcon #fIcon
 ew0 f30 expr out #txt
 ew0 f30 143 40 216 40 #arcP
@@ -249,7 +256,7 @@ ew0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f4 800 272 32 32 17 3 #rect
+ew0 f4 800 264 32 32 17 3 #rect
 ew0 f4 @|AlternativeIcon #fIcon
 ew0 f6 expr in #txt
 ew0 f6 outCond !in.denied #txt
@@ -262,7 +269,7 @@ ew0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f6 816 272 520 50 #arcP
+ew0 f6 816 264 520 50 #arcP
 ew0 f6 1 816 24 #addKink
 ew0 f6 2 520 24 #addKink
 ew0 f6 0 0.065 14 0 #arcLabel
@@ -279,8 +286,8 @@ ew0 f17 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f17 832 288 904 208 #arcP
-ew0 f17 1 904 288 #addKink
+ew0 f17 832 280 904 208 #arcP
+ew0 f17 1 904 280 #addKink
 ew0 f17 1 0.40625 14 0 #arcLabel
 ew0 f21 targetWindow NEW:card: #txt
 ew0 f21 targetDisplay TOP #txt
@@ -307,11 +314,11 @@ ew0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f21 1128 170 128 44 -56 -8 #rect
+ew0 f21 1824 170 128 44 -56 -8 #rect
 ew0 f21 @|RichDialogIcon #fIcon
 ew0 f2 expr out #txt
-ew0 f2 1256 192 1288 79 #arcP
-ew0 f2 1 1288 192 #addKink
+ew0 f2 1952 192 2008 79 #arcP
+ew0 f2 1 2008 192 #addKink
 ew0 f2 0 0.7808932228298981 0 0 #arcLabel
 ew0 f14 expr in #txt
 ew0 f14 outCond in.definedTasks.size()==0 #txt
@@ -327,10 +334,6 @@ ew0 f14 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 f14 520 78 888 192 #arcP
 ew0 f14 1 520 192 #addKink
 ew0 f14 0 0.30701754385964913 15 0 #arcLabel
-ew0 f22 expr data #txt
-ew0 f22 outCond ivp=="TaskA.ivp" #txt
-ew0 f22 1079 192 1128 192 #arcP
-ew0 f22 0 0.38321279022824617 0 0 #arcLabel
 ew0 f7 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 ew0 f7 actionTable 'out=in1;
@@ -406,12 +409,12 @@ ew0 U20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 U20 592 346 112 44 -28 -8 #rect
+ew0 U20 592 378 112 44 -28 -8 #rect
 ew0 U20 @|BpmnUserTaskIcon #fIcon
 ew0 f27 expr out #txt
-ew0 f27 648 86 648 346 #arcP
+ew0 f27 648 86 648 378 #arcP
 ew0 f27 0 0.257219996276489 0 0 #arcLabel
-ew0 f13 704 368 744 368 #arcP
+ew0 f13 704 400 744 400 #arcP
 ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;' #txt
 ew0 f16 inParamTable 'out.definedTasks=param.definedTasks;
 out.dragAndDropController=param.dragAndDropController;
@@ -444,7 +447,7 @@ ew0 f18 1 184 96 #addKink
 ew0 f18 2 184 40 #addKink
 ew0 f18 0 0.7517935662402834 0 0 #arcLabel
 ew0 f5 expr out #txt
-ew0 f5 816 346 816 304 #arcP
+ew0 f5 816 378 816 296 #arcP
 ew0 f3 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 ew0 f3 actionTable 'out=in1;
@@ -481,6 +484,103 @@ ew0 f23 expr data #txt
 ew0 f23 outCond ivp=="TaskA.ivp" #txt
 ew0 f23 295 192 360 192 #arcP
 ew0 f23 0 0.02819205207412269 0 0 #arcLabel
+ew0 f28 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+ew0 f28 actionTable 'out=in;
+' #txt
+ew0 f28 actionCode 'import java.util.Map;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+
+Map x =  IvyAdapterService.startSubProcess("handleEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
+in.callbackUrl = x.get("callbackUrl") as String;
+ivy.task.setAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString(), in.callbackUrl);
+
+' #txt
+ew0 f28 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set callback Url to 
+task AdditionalProperty</name>
+        <nameStyle>44
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f28 1552 170 160 44 -59 -16 #rect
+ew0 f28 @|StepIcon #fIcon
+ew0 f29 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+ew0 f29 actionTable 'out=in;
+' #txt
+ew0 f29 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+String useExpressEndPage = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE);
+
+in.useExpressEndPage = useExpressEndPage.isEmpty()? true : Boolean.valueOf(useExpressEndPage);' #txt
+ew0 f29 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>read express end page setting</name>
+        <nameStyle>29
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f29 1152 170 176 44 -83 -8 #rect
+ew0 f29 @|StepIcon #fIcon
+ew0 f31 expr data #txt
+ew0 f31 outCond ivp=="TaskA.ivp" #txt
+ew0 f31 1079 192 1152 192 #arcP
+ew0 f31 0 0.38321279022824617 0 0 #arcLabel
+ew0 f33 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>use express endpage?</name>
+        <nameStyle>20
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f33 1392 176 32 32 -65 -35 #rect
+ew0 f33 @|AlternativeIcon #fIcon
+ew0 f34 expr out #txt
+ew0 f34 1328 192 1392 192 #arcP
+ew0 f34 0 0.38321279022824617 0 0 #arcLabel
+ew0 f35 expr in #txt
+ew0 f35 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f35 1408 208 1888 214 #arcP
+ew0 f35 1 1408 256 #addKink
+ew0 f35 2 1888 256 #addKink
+ew0 f35 1 0.39004237799318525 -2 -12 #arcLabel
+ew0 f32 expr in #txt
+ew0 f32 outCond in.useExpressEndPage #txt
+ew0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f32 1424 192 1552 192 #arcP
+ew0 f32 0 0.3970929020272241 0 -10 #arcLabel
+ew0 f22 expr out #txt
+ew0 f22 1712 192 1824 192 #arcP
 >Proto ew0 .type gawfs.ExecutePredefinedWorkflowData #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -493,7 +593,7 @@ form reviewer</swimlaneLabel>
     </language>
     <swimlaneOrientation>false</swimlaneOrientation>
     <swimlaneSize>144</swimlaneSize>
-    <swimlaneSize>144</swimlaneSize>
+    <swimlaneSize>176</swimlaneSize>
     <swimlaneSize>144</swimlaneSize>
     <swimlaneColor gradient="false">-1</swimlaneColor>
     <swimlaneColor gradient="false">-1</swimlaneColor>
@@ -895,8 +995,6 @@ ew0 f14 head f8 in #connect
 ew0 f10 out f12 tail #connect
 ew0 f4 out f17 tail #connect
 ew0 f17 head f8 in #connect
-ew0 f7 out f22 tail #connect
-ew0 f22 head f21 mainIn #connect
 ew0 f21 mainOut f2 tail #connect
 ew0 f2 head f1 mainIn #connect
 ew0 f8 out f25 tail #connect
@@ -915,6 +1013,16 @@ ew0 S11 g1 f20 tail #connect
 ew0 f20 head f3 in #connect
 ew0 f3 out f23 tail #connect
 ew0 f23 head f26 mainIn #connect
+ew0 f7 out f31 tail #connect
+ew0 f31 head f29 mainIn #connect
+ew0 f29 mainOut f34 tail #connect
+ew0 f34 head f33 in #connect
+ew0 f35 head f21 mainIn #connect
+ew0 f33 out f32 tail #connect
+ew0 f32 head f28 mainIn #connect
+ew0 f33 out f35 tail #connect
+ew0 f28 mainOut f22 tail #connect
+ew0 f22 head f21 mainIn #connect
 Bk0 f3 mainOut f6 tail #connect
 Bk0 f6 head f5 mainIn #connect
 Bk0 f5 mainOut f29 tail #connect
