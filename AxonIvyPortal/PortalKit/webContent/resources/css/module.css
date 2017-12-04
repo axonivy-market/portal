@@ -2342,6 +2342,7 @@ a.case-details-document-add-link {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  line-height: 1.5;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command {
