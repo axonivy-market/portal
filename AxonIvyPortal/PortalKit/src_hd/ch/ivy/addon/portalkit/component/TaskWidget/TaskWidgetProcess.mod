@@ -631,9 +631,7 @@ if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 	in.taskPublicFilters.remove(in.taskFilterDataToBeRemoved);
 }
 if (in.dataModel.#selectedTaskFilterData is initialized && in.dataModel.selectedTaskFilterData.equals(in.taskFilterDataToBeRemoved)) {
-	TaskFilterData taskFilterData = new TaskFilterData();
-	in.dataModel.applyFilter(taskFilterData);
-	in.dataModel.setSelectedTaskFilterData(null);
+	in.dataModel.resetFilters();
 	in.keyword = null;
 }' #txt
 Ts0 f35 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
