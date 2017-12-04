@@ -51,6 +51,7 @@
 				<imagedata fileref="images/Settings/global-settings.png" />
 				</imageobject>
 			</mediaobject>
+            <para></para>
 			<table>
 				<title>Global settings</title>
 				<tgroup cols="3">
@@ -148,7 +149,7 @@
 							<entry>EXPRESS_END_PAGE</entry>
 							<entry>TRUE/FALSE</entry>
 							<entry>
-								Display custom end page on end of each Express process. Default is true.
+								Display the custom end page at the end of each Express process. Default is true.
 							</entry>
 						</row>
 					</tbody>
