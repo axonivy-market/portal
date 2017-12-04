@@ -223,6 +223,14 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     selectedFilters.remove(filter);
   }
 
+  public void resetFilters() {
+    for (CaseFilter selectedFilter : selectedFilters) {
+      selectedFilter.resetValues();
+    }
+    selectedFilters = new ArrayList<>();
+    selectedFilterData = null;
+  }
+
   private GlobalCaseId globalCaseId(RemoteCase oneCase) {
     return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId(), oneCase.isBusinessCase());
   }
