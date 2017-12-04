@@ -4,7 +4,7 @@
 	<sect2 xml:id="axonivyportal.customization.expressendpage.introduction">
 		<title>Introduction</title>
 		<para>
-			When last task of Axon Express finish, express end page will display. You can customize this by provide your own end page display.
+			When the last task of Axon Express finish, express end page will be displayed. You can customize this by provide your own page.
 		</para>
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.expressendpage.customization">
@@ -13,7 +13,7 @@
 		<para>
 			<orderedlist>
 				<listitem>
-					<para>Create a new UI and start link of new end page.</para>
+					<para>Create a new UI and start link of the new end page.</para>
 					<mediaobject>
 						<imageobject>
 							<imagedata fileref="images/ExpressEndPage/NewEndPage.png" />
