@@ -17,7 +17,7 @@ var viewPort = (function(){
 	  }
 	  
 	  function detectViewport(){
-		  var screenWidth = Math.max($(document).width(), window.innerWidth || 0);
+		  var screenWidth = window.innerWidth || 0;
 	      if (screenWidth >= 1920) {
 	        return LARGE_SCREEN;
 	      }
