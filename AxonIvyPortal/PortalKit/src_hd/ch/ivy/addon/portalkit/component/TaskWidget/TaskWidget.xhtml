@@ -205,7 +205,7 @@
           lazy="true" mode="inline" rowIndexVar="rowIndex"
           styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''}">
           <ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}"
-            onTaskStartCallback="onTaskStartCallBack()"
+            onTaskStartCallback="onTaskStartCallBack()" dataModel="#{data.dataModel}"
             isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}"
             compactMode="#{data.dataModel.compactMode}" componentToUpdate="#{p:component('task-details-notes')}">
             <cc:insertFacet name="taskHeader" />

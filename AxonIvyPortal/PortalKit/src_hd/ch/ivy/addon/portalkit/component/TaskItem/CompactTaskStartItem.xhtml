@@ -7,7 +7,8 @@
 
 <ui:composition>
   <h:panelGroup layout="block" class="task-start-list-item js-task-start-list-item">
-    <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" id="task-start-priority" />
+    <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" id="task-start-priority" 
+      dataModel="#{dataModel}" />
     <div class="task-start-info">
       <h:outputText id="task-start-task-state" value="##{task.id} #{taskBean.getUserFriendlyTaskState(task.state)}"
         styleClass="task-start-info-header" />
