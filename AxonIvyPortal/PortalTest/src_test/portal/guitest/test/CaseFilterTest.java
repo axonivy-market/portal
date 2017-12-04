@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -50,8 +49,8 @@ public class CaseFilterTest extends BaseTest {
     String filterName = "Leave";
     casePage.saveFilter(filterName);
 
-    casePage = mainMenuPage.selectCaseMenu();
-    Sleeper.sleepTight(1000);
+    mainMenuPage.selectTaskMenu();
+    casePage = mainMenuPage.openCaseList();
     assertEquals(filterName, casePage.getFilterName());
   }
 
@@ -77,8 +76,8 @@ public class CaseFilterTest extends BaseTest {
     casePage.filterByDescription("Leave");
     casePage.saveFilter(filterName);
 
-    casePage = mainMenuPage.selectCaseMenu();
-    Sleeper.sleepTight(1000);
+    mainMenuPage.selectTaskMenu();
+    casePage = mainMenuPage.openCaseList();
     assertEquals(filterName, casePage.getFilterName());
   }
 }

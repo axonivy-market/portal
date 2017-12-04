@@ -14,7 +14,7 @@ import ch.xpertline.base.pages.AbstractPage;
 public abstract class TemplatePage extends AbstractPage {
 
   private static final String TEMPLATE_PAGE_LOCATOR = "id('logo')";
-  public static final String CLASS_PROPERTY =  "class";
+  public static final String CLASS_PROPERTY = "class";
 
   public TemplatePage() {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
@@ -98,11 +98,11 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public WebElement findDisplayedElementBySelector(String selector) {
-      waitForElementDisplayed(By.cssSelector(selector), true);
-      WebElement element = findElementByCssSelector(selector);
-      return element;
+    waitForElementDisplayed(By.cssSelector(selector), true);
+    WebElement element = findElementByCssSelector(selector);
+    return element;
   }
-  
+
   public void closeMainMenu() {
     WebElement mainMenuToggle = findDisplayedElementBySelector(".js-left-sidebar-toggle");
     if (isMainMenuOpen()) {
@@ -141,6 +141,15 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementPresent(By.cssSelector("div.js-task-list-container"), true);
     return new TaskWidgetPage();
   }
+
+  public CasePage openCaseList() {
+    openMainMenu();
+    WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
+    caseListToggle.click();
+    waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
+    return new CasePage();
+  }
+
   public GlobalSearch getGlobalSearch() {
     return new GlobalSearch();
   }
