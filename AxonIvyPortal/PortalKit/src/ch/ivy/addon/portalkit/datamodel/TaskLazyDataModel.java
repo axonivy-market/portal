@@ -482,6 +482,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     selectedFilters.remove(filter);
   }
 
+
+  public void resetFilters() {
+    for (TaskFilter selectedFilter : selectedFilters) {
+      selectedFilter.resetValues();
+    }
+    selectedFilters = new ArrayList<>();
+    selectedTaskFilterData = null;
+  }
+
   /**
    * Save all filter settings to business data
    */

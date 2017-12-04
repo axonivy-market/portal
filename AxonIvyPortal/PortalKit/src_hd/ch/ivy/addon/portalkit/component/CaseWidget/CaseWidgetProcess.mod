@@ -786,9 +786,7 @@ if(in.filterDataToBeDeleted.type == FilterType.ONLY_ME) {
 	in.publicFilters.remove(in.filterDataToBeDeleted);
 }
 if (in.dataModel.#selectedFilterData is initialized && in.dataModel.selectedFilterData.equals(in.filterDataToBeDeleted)) {
-	CaseFilterData caseFilterData = new CaseFilterData();
-	in.dataModel.applyFilter(caseFilterData);
-	in.dataModel.setSelectedFilterData(null);
+	in.dataModel.resetFilters();
 	in.filteringKeyword = null;
 }' #txt
 Cs0 f68 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
