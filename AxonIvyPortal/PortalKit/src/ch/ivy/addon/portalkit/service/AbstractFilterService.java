@@ -76,12 +76,9 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
 
   public boolean isFilterExisted(String name, FilterType type, Long filterGroupId) {
     if (FilterType.ONLY_ME == type) {
-      Filter<T> privateFilterQuery =
-          repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
-              .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().textField(FILTER_NAME)
-              .isEqualToIgnoringCase(name).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId);
-      Filter<T> combinedQuery = repo().search(getType()).filter(privateFilterQuery);
-      return combinedQuery.execute().count() > 0;
+      return repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
+          .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().textField(FILTER_NAME)
+          .isEqualToIgnoringCase(name).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).execute().count() > 0;
     } else {
       return repo().search(getType()).textField(FILTER_NAME).isEqualToIgnoringCase(name).and().textField(FILTER_TYPE)
           .isEqualToIgnoringCase(ALL_USERS.name()).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId)
