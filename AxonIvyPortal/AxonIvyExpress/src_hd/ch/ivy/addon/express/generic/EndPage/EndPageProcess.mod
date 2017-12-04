@@ -53,13 +53,13 @@ Es0 f3 actionTable 'out=in;
 Es0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>backToHome</name>
-        <nameStyle>10,5,7
+        <name>close</name>
+        <nameStyle>5,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Es0 f3 83 147 26 26 -37 15 #rect
+Es0 f3 83 147 26 26 -15 15 #rect
 Es0 f3 @|RichDialogProcessStartIcon #fIcon
 Es0 f4 type ch.ivy.addon.express.generic.EndPage.EndPageData #txt
 Es0 f4 guid 1600BE1A7AA3EC82 #txt
