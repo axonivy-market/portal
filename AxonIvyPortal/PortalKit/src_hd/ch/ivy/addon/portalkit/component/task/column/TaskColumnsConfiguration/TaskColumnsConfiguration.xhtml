@@ -24,14 +24,15 @@
         for="#{cc.clientId}:config-columns-form:config-columns" my="left top" at="left bottom"
         onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
           <p:message for="columns-checkbox"/>
-          <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="grid" columns="1"
-            required="true" requiredMessage="Please select al least one column">
-            <f:selectItems value="#{dataModel.allColumns}" var="column" itemLabel="#{dataModel.getColumnLabel(column)}" />
+          <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="grid" columns="1" >
+            <f:selectItems value="#{dataModel.allColumns}" var="column" itemLabel="#{dataModel.getColumnLabel(column)}" 
+              itemDisabled="#{dataModel.getPortalRequiredColumns().contains(column)}" />
           </p:selectManyCheckbox>
         
           <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
             <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+              actionListener="#{dataModel.saveColumnsConfiguration()}"
               update="#{cc.clientId}:config-columns-form @form task-widget"
               oncomplete="if (args &amp;&amp; args.validationFailed) PF('config-columns-panel').show(); taskWidget.setupScrollbar(); taskWidget.setupHeader()">
             </p:commandButton>
