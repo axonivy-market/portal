@@ -21,9 +21,11 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
+import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
@@ -74,6 +76,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+  private List<String> PORTAL_REQUIRED_COLUMNS = Arrays.asList("NAME");
   
   public TaskLazyDataModel() {
     super();
@@ -647,8 +650,37 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
   
   protected void initColumnsConfiguration(){
-    allColumns.addAll(PORTAL_DEFAULT_COLUMNS);
-    selectedColumns.addAll(PORTAL_DEFAULT_COLUMNS);
+    allColumns.addAll(getPortalDefaultColumns());
+    
+    TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
+    TaskColumnsConfigurationData data = new TaskColumnsConfigurationData();
+    data = service.getConfiguration(Ivy.session().getSessionUser().getId());
+    
+    if(data != null){
+      selectedColumns = data.getSelectedColumns();
+    }
+    if(selectedColumns.isEmpty()){
+      selectedColumns.addAll(getPortalDefaultColumns());
+    }
+  }
+  
+  protected List<String> getPortalDefaultColumns() {
+    return PORTAL_DEFAULT_COLUMNS;
+  }
+  
+  public void saveColumnsConfiguration(){
+    selectedColumns.addAll(PORTAL_REQUIRED_COLUMNS);
+    TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
+    TaskColumnsConfigurationData taskColumnsConfigurationData = service.getConfiguration(Ivy.session().getSessionUser().getId());
+    
+    if(taskColumnsConfigurationData != null){
+      taskColumnsConfigurationData.setSelectedColumns(selectedColumns);
+    } else {
+      taskColumnsConfigurationData = new TaskColumnsConfigurationData();
+      taskColumnsConfigurationData.setUserId(Ivy.session().getSessionUser().getId());
+      taskColumnsConfigurationData.setSelectedColumns(selectedColumns);
+    }
+    service.save(taskColumnsConfigurationData);
   }
 
   public void setSelectedColumns(List<String> selectedColumns) {
@@ -671,4 +703,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
   }
   
+  public List<String> getPortalRequiredColumns(){
+    return PORTAL_REQUIRED_COLUMNS;
+  }
 }

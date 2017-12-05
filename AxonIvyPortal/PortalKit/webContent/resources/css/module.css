@@ -2503,6 +2503,10 @@ a.compact-task-start-link:hover {
   text-align: right;
 }
 
+.task-start-list .task-custom-field-cell {
+  flex: 0 0 150px;
+}
+
 .task-start-list .without-button-labels {
   flex: 0 0 180px;
 }
