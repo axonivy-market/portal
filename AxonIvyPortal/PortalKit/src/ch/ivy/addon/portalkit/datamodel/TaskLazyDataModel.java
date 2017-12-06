@@ -42,6 +42,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -654,10 +655,12 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     TaskColumnsConfigurationData data = new TaskColumnsConfigurationData();
-    data = service.getConfiguration(Ivy.session().getSessionUser().getId());
-    
-    if(data != null){
-      selectedColumns = data.getSelectedColumns();
+    Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null); 
+    if(userId != null){
+      data = service.getConfiguration(userId);
+      if(data != null){
+        selectedColumns = data.getSelectedColumns();
+      }
     }
     if(selectedColumns.isEmpty()){
       selectedColumns.addAll(getPortalDefaultColumns());
@@ -695,8 +698,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return allColumns;
   }
 
-  public String getColumnLabel(String columns) {
-     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + columns);
+  public String getColumnLabel(String column) {
+     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);
   }
   
   public boolean isSelectedColumn(String column){
