@@ -20,7 +20,6 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String VIEW_NOTE_DIALOG_ID =
       "case-widget:case-list-scroller:0:case-item:history:view-note-dialog";
   private WebElement caseItem;
-  private static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
   @Override
   protected String getLoadedLocator() {
