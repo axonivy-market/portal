@@ -8,12 +8,12 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
-		<ui:define name="title">#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/title')}</ui:define>
 		<ui:define name="simplePageContent">
 			<h:form id="form">
 				<h:panelGrid columns="1" styleClass="Wid100 TexAlCenter">
+					<p:spacer height="30"/>
 					<h3 class="Fs20">
-						<i class="fa fa-check" aria-hidden="true" />
+						<i class="fa fa-check"/>
 						#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/title')}
 					</h3>
 					<p:outputLabel value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/subtitle')}" />
