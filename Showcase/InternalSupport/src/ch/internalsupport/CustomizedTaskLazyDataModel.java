@@ -1,7 +1,11 @@
 package ch.internalsupport;
 
+import java.util.Arrays;
+import java.util.List;
+
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
@@ -43,4 +47,13 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
     }
   }
 
+  @Override
+  protected List<String> getPortalDefaultColumns() {
+    return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
+  }
+  
+  @Override
+  public String getColumnLabel(String column) {
+    return Ivy.cms().co("/DefaultColumns/" + column);
+  }
 }
