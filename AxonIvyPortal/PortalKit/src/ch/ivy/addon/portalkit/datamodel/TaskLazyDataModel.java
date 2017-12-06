@@ -667,8 +667,39 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
   }
   
+  /**
+   * <p>
+   * Your customized data model needs to override this method if your customized task list has new columns/fields.
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * 
+   * return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
+   *
+   * </pre></code>
+   * This list is the list of sortFields in TaskColumnHeader Portal component when you use it to add new column headers
+   * Also the list of checkboxes in config columns panel
+   * </p>
+   * 
+   * @return
+   */
   protected List<String> getPortalDefaultColumns() {
     return PORTAL_DEFAULT_COLUMNS;
+  }
+  
+  /**
+   * <p>
+   * In case you adds new columns, these columns need cms to show in config columns panel
+   * </p>
+   * <p>
+   * You can either add new entry to default folder below in PortalStyle or override this method to create your own folder
+   * column must be the same with sortField
+   * </p>
+   * 
+   * @return
+   */
+  public String getColumnLabel(String column) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);
   }
   
   public void saveColumnsConfiguration(){
@@ -698,10 +729,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return allColumns;
   }
 
-  public String getColumnLabel(String column) {
-     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);
-  }
-  
   public boolean isSelectedColumn(String column){
     return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
   }
