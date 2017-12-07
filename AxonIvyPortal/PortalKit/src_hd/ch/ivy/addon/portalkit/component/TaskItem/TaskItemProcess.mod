@@ -113,6 +113,11 @@ Ts0 @PushWFArc f19 '' #zField
 Ts0 @PushWFArc f69 '' #zField
 Ts0 @RichDialogProcessEnd f70 '' #zField
 Ts0 @PushWFArc f95 '' #zField
+Ts0 @RichDialogMethodStart f97 '' #zField
+Ts0 @RichDialogProcessEnd f98 '' #zField
+Ts0 @GridStep f100 '' #zField
+Ts0 @PushWFArc f101 '' #zField
+Ts0 @PushWFArc f99 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f0 guid 150CB86EFDA88218 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -585,14 +590,26 @@ Ts0 f79 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f79 actionTable 'out=in;
 ' #txt
-Ts0 f79 actionCode 'import javax.faces.application.FacesMessage;
+Ts0 f79 actionCode 'import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 import java.util.Arrays;
 import org.primefaces.context.RequestContext;
 
-String isAnotherUserWorkingMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/isAnotherUserWorking", Arrays.asList(in.selectedTask.name, in.selectedTask.id, in.workerUserName));
-String header = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/errorStartTask");
-FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, header, isAnotherUserWorkingMessage);
-RequestContext.getCurrentInstance().showMessageInDialog(facesMessage);' #txt
+RequestContext requesContext = RequestContext.getCurrentInstance();
+FacesContext facesContext = FacesContext.getCurrentInstance();
+
+if(in.workerUserName.isEmpty()){
+	facesContext.validationFailed();
+      String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessage");
+      facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+      requesContext.update("task-widget:cannot-start-task-notification");  
+} else {
+	String isAnotherUserWorkingMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/isAnotherUserWorking", Arrays.asList(in.selectedTask.name, in.selectedTask.id, in.workerUserName));
+	String header = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/errorStartTask");
+	FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, header, isAnotherUserWorkingMessage);
+	requesContext.showMessageInDialog(facesMessage);
+}
+' #txt
 Ts0 f79 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1217,6 +1234,55 @@ Ts0 f70 1587 563 26 26 0 12 #rect
 Ts0 f70 @|RichDialogProcessEndIcon #fIcon
 Ts0 f95 expr out #txt
 Ts0 f95 1600 429 1600 563 #arcP
+Ts0 f97 guid 1602EFA80B079E1D #txt
+Ts0 f97 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f97 method validate(ch.ivy.addon.portalkit.bo.RemoteTask) #txt
+Ts0 f97 disableUIEvents false #txt
+Ts0 f97 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.bo.RemoteTask task> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f97 inParameterMapAction 'out.selectedTask=param.task;
+' #txt
+Ts0 f97 outParameterDecl '<> result;
+' #txt
+Ts0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validate(RemoteTask)</name>
+        <nameStyle>20,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f97 1011 51 26 26 -60 15 #rect
+Ts0 f97 @|RichDialogMethodStartIcon #fIcon
+Ts0 f98 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f98 1011 275 26 26 0 12 #rect
+Ts0 f98 @|RichDialogProcessEndIcon #fIcon
+Ts0 f100 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f100 actionTable 'out=in;
+' #txt
+Ts0 f100 actionCode 'import ch.ivy.addon.portalkit.util.Dates;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
+
+if(!in.selectedTask.canReset){
+	RequestContext requesContext = RequestContext.getCurrentInstance();
+      FacesContext facesContext = FacesContext.getCurrentInstance();
+	facesContext.validationFailed();
+      String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessage");
+      facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+      requesContext.update("task-widget:cannot-start-task-notification");        
+}' #txt
+Ts0 f100 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f100 968 154 112 44 0 -8 #rect
+Ts0 f100 @|StepIcon #fIcon
+Ts0 f101 expr out #txt
+Ts0 f101 1024 77 1024 154 #arcP
+Ts0 f99 expr out #txt
+Ts0 f99 1024 198 1024 275 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -1311,3 +1377,7 @@ Ts0 f96 mainOut f69 tail #connect
 Ts0 f69 head f94 mainIn #connect
 Ts0 f76 mainOut f95 tail #connect
 Ts0 f95 head f70 mainIn #connect
+Ts0 f97 mainOut f101 tail #connect
+Ts0 f101 head f100 mainIn #connect
+Ts0 f100 mainOut f99 tail #connect
+Ts0 f99 head f98 mainIn #connect

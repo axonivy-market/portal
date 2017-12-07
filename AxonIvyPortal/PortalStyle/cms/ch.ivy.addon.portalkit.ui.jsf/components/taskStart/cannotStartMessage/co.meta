@@ -1,0 +1,4 @@
+co: name={cannotStartMessage} description={} changed={2017-12-07 07:57:35 CET} changedby={tntanh} visualorder={0} guid={1602FC1F1DFBC6F5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1602FC1F1EA1B737} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-07 07:55:27 CET} validto={} changed={2017-12-07 07:57:15 CET} changedby={tntanh} properties={} id={}
+val: guid={1602FC3E550E907D} datatype={} isdefault={false} langid={de} description={} validfrom={2017-12-07 07:57:22 CET} validto={} changed={2017-12-07 07:57:35 CET} changedby={tntanh} properties={} id={}
+val: guid={1602FC3E5A26B586} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-12-07 07:57:24 CET} validto={} changed={2017-12-07 07:57:35 CET} changedby={tntanh} properties={} id={}

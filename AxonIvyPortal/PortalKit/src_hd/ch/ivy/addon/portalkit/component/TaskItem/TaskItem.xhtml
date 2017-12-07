@@ -34,7 +34,7 @@
     
     <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{task.state != 'RESUMED'}">
       <p:ajax event="click" listener="#{logic.openTask(task)}" 
-        onstart="#{cc.attrs.onTaskStartCallback}" disabled="#{!task.canResume}" />
+        onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
       <f:subview id="task-action">
         <ui:include src="TaskAction.xhtml" />
@@ -51,8 +51,8 @@
     </h:panelGroup>
     
     <h:panelGroup id="resume-task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{task.state == 'RESUMED'}">
-      <p:ajax event="click" listener="#{data.setSelectedTask(task)}"
-          oncomplete="PF('reset-task-dialog').show()" disabled="#{!task.canResume}" />
+      <p:ajax event="click" listener="#{logic.validate(task)}" update=":task-widget"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
       <cc:renderFacet name="taskHeader" />
       <f:subview id="resume-task-action">
         <ui:include src="TaskAction.xhtml" />
