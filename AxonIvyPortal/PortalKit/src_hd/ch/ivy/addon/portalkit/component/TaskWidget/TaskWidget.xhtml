@@ -216,12 +216,12 @@
         <p:outputLabel styleClass="no-task-message" value="#{noTaskFoundMessage}"
           rendered="#{data.dataModel.rowCount eq 0}" />
       </h:panelGroup>
-<!--       <h:form id="task-polling-form"> -->
-<!--         <p:poll id="task-polling" interval="#{taskWidgetBean.taskListRefreshInterval}" listener="#{logic.refreshTaskList(taskWidgetBean.expandedTaskId)}"  -->
-<!--         	process="scroll-position" update="@none" global="false" onstart="getTaskListScrollPosition()" /> -->
-<!--         <h:inputHidden id="scroll-position" value="#{data.scrollPosition}"/> -->
-<!--         <p:growl id="new-task-notification" autoUpdate="false" severity="info" /> -->
-<!--       </h:form> -->
+      <h:form id="task-polling-form">
+        <p:poll id="task-polling" interval="#{taskWidgetBean.taskListRefreshInterval}" listener="#{logic.refreshTaskList(taskWidgetBean.expandedTaskId)}" 
+        	process="scroll-position" update="@none" global="false" onstart="getTaskListScrollPosition()" />
+        <h:inputHidden id="scroll-position" value="#{data.scrollPosition}"/>
+        <p:growl id="new-task-notification" autoUpdate="false" severity="info" />
+      </h:form>
     </h:panelGroup>
   </div>
 
