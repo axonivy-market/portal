@@ -590,25 +590,25 @@ Ts0 f79 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f79 actionTable 'out=in;
 ' #txt
-Ts0 f79 actionCode 'import javax.faces.context.FacesContext;
+Ts0 f79 actionCode 'import java.util.Arrays;
+import ch.ivyteam.ivy.workflow.TaskState;
+import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import java.util.Arrays;
 import org.primefaces.context.RequestContext;
 
 RequestContext requesContext = RequestContext.getCurrentInstance();
 FacesContext facesContext = FacesContext.getCurrentInstance();
 
-if(in.workerUserName.isEmpty()){
-	facesContext.validationFailed();
-      String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessage");
-      facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
-      requesContext.update("task-widget:cannot-start-task-notification");  
+String notification;
+if(in.selectedTask.state == TaskState.DONE){
+	notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", Arrays.asList(in.selectedTask.getName()));
 } else {
-	String isAnotherUserWorkingMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/isAnotherUserWorking", Arrays.asList(in.selectedTask.name, in.selectedTask.id, in.workerUserName));
-	String header = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/errorStartTask");
-	FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, header, isAnotherUserWorkingMessage);
-	requesContext.showMessageInDialog(facesMessage);
+	notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", Arrays.asList(in.selectedTask.getName()));
 }
+
+facesContext.validationFailed();
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+requesContext.update("task-widget:cannot-start-task-notification");  
 ' #txt
 Ts0 f79 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1263,7 +1263,8 @@ Ts0 f100 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f100 actionTable 'out=in;
 ' #txt
-Ts0 f100 actionCode 'import ch.ivy.addon.portalkit.util.Dates;
+Ts0 f100 actionCode 'import java.util.Arrays;
+import ch.ivy.addon.portalkit.util.Dates;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
@@ -1272,10 +1273,11 @@ if(!in.selectedTask.canReset){
 	RequestContext requesContext = RequestContext.getCurrentInstance();
       FacesContext facesContext = FacesContext.getCurrentInstance();
 	facesContext.validationFailed();
-      String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessage");
+      String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", Arrays.asList(in.selectedTask.getName()));
       facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
       requesContext.update("task-widget:cannot-start-task-notification");        
-}' #txt
+}
+' #txt
 Ts0 f100 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f100 968 154 112 44 0 -8 #rect
 Ts0 f100 @|StepIcon #fIcon
