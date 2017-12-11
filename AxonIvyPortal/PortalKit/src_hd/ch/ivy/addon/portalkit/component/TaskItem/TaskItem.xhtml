@@ -51,7 +51,7 @@
     </h:panelGroup>
     
     <h:panelGroup id="resume-task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{task.state == 'RESUMED'}">
-      <p:ajax event="click" listener="#{logic.validate(task)}" update=":task-widget"
+      <p:ajax event="click" listener="#{logic.validate(task)}" 
           oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
       <cc:renderFacet name="taskHeader" />
       <f:subview id="resume-task-action">
