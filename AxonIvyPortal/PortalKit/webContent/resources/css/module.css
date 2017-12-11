@@ -2707,6 +2707,8 @@ a.compact-task-start-link:hover {
   display: block;
   padding: 20px 18px 20px 17px;
   text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .task-details > * {
