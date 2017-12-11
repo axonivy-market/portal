@@ -116,8 +116,10 @@ Ts0 @PushWFArc f95 '' #zField
 Ts0 @RichDialogMethodStart f97 '' #zField
 Ts0 @RichDialogProcessEnd f98 '' #zField
 Ts0 @GridStep f100 '' #zField
-Ts0 @PushWFArc f101 '' #zField
 Ts0 @PushWFArc f99 '' #zField
+Ts0 @CallSub f104 '' #zField
+Ts0 @PushWFArc f105 '' #zField
+Ts0 @PushWFArc f101 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f0 guid 150CB86EFDA88218 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -603,7 +605,11 @@ String notification;
 if(in.selectedTask.state == TaskState.DONE){
 	notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", Arrays.asList(in.selectedTask.getName()));
 } else {
-	notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", Arrays.asList(in.selectedTask.getName()));
+	if(!in.workerUserName.isEmpty()){
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", Arrays.asList(in.selectedTask.name, in.selectedTask.id, in.workerUserName));
+	} else {
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", Arrays.asList(in.selectedTask.getName()));
+	}
 }
 
 facesContext.validationFailed();
@@ -1269,22 +1275,65 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
-if(!in.selectedTask.canResume){
+if(!in.selectedTask.canResume) {
+	String notification;
+	if(!in.workerUserName.isEmpty()){
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", Arrays.asList(in.selectedTask.name, in.selectedTask.id, in.workerUserName));
+	} else {
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", Arrays.asList(in.selectedTask.getName()));
+	}
 	RequestContext requesContext = RequestContext.getCurrentInstance();
       FacesContext facesContext = FacesContext.getCurrentInstance();
 	facesContext.validationFailed();
-      String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", Arrays.asList(in.selectedTask.getName()));
       facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
       requesContext.update("task-widget:cannot-start-task-notification");        
 }
 ' #txt
 Ts0 f100 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f100 968 154 112 44 0 -8 #rect
+Ts0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validate</name>
+        <nameStyle>8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f100 968 186 112 44 -22 -8 #rect
 Ts0 f100 @|StepIcon #fIcon
-Ts0 f101 expr out #txt
-Ts0 f101 1024 77 1024 154 #arcP
 Ts0 f99 expr out #txt
-Ts0 f99 1024 198 1024 275 #arcP
+Ts0 f99 1024 230 1024 275 #arcP
+Ts0 f104 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f104 processCall MultiPortal/TaskService:canUserResumeTask(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Ts0 f104 doCall true #txt
+Ts0 f104 requestActionDecl '<java.lang.String userName,ch.ivy.addon.portalkit.persistence.domain.Server ivyServer,java.lang.Long taskId> param;
+' #txt
+Ts0 f104 requestMappingAction 'param.userName=ivy.session.getSessionUserName();
+param.ivyServer=in.selectedTask.#applicationRegister.#server;
+param.taskId=in.selectedTask.id;
+' #txt
+Ts0 f104 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f104 responseMappingAction 'out=in;
+out.canUserResumeTask=result.canUserResumeTask;
+out.errors=result.errors;
+out.workerUserName=result.workerUserName;
+' #txt
+Ts0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskService</name>
+        <nameStyle>11,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f104 968 114 112 44 -33 -8 #rect
+Ts0 f104 @|CallSubIcon #fIcon
+Ts0 f105 expr out #txt
+Ts0 f105 1024 77 1024 114 #arcP
+Ts0 f101 expr out #txt
+Ts0 f101 1024 158 1024 186 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -1379,7 +1428,9 @@ Ts0 f96 mainOut f69 tail #connect
 Ts0 f69 head f94 mainIn #connect
 Ts0 f76 mainOut f95 tail #connect
 Ts0 f95 head f70 mainIn #connect
-Ts0 f97 mainOut f101 tail #connect
-Ts0 f101 head f100 mainIn #connect
 Ts0 f100 mainOut f99 tail #connect
 Ts0 f99 head f98 mainIn #connect
+Ts0 f97 mainOut f105 tail #connect
+Ts0 f105 head f104 mainIn #connect
+Ts0 f104 mainOut f101 tail #connect
+Ts0 f101 head f100 mainIn #connect
