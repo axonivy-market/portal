@@ -2911,7 +2911,8 @@ a.task-details-document-add-link {
 }
 
 .responsive-handle-container {
-  float: right;
+  position: absolute;
+  right: 20px;
   margin: 0 !important;
 }
 
@@ -2936,6 +2937,8 @@ a.task-details-document-add-link {
   display: block;
   padding: 20px 18px 20px 0;
   text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .case-details > * {
