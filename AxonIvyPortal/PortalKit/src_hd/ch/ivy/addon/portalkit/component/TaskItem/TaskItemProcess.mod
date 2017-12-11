@@ -1269,7 +1269,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
-if(!in.selectedTask.canReset){
+if(!in.selectedTask.canResume){
 	RequestContext requesContext = RequestContext.getCurrentInstance();
       FacesContext facesContext = FacesContext.getCurrentInstance();
 	facesContext.validationFailed();
