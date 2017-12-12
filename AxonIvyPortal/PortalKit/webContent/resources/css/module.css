@@ -2704,11 +2704,10 @@ a.compact-task-start-link:hover {
 
 /********************************** TASK DETAIL **********************************/
 .task-details {
-  display: block;
+  display: flex;
   padding: 20px 18px 20px 17px;
-  text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
+  justify-content: center;
+  position: relative
 }
 
 .task-details > * {
@@ -2816,7 +2815,6 @@ a.compact-task-start-link:hover {
   padding: 10px 15px !important;
   background-color: rgba(235,240,172,1);
   border: none;
-  white-space: normal;
 }
 
 .task-details-note-add {
@@ -2913,8 +2911,9 @@ a.task-details-document-add-link {
 
 .responsive-handle-container {
   position: absolute;
-  right: 20px;
+  padding-right: inherit;
   margin: 0 !important;
+  right: 0px;
 }
 
 .responsive-handle-button {
@@ -2935,11 +2934,10 @@ a.task-details-document-add-link {
 }
 
 .case-details {
-  display: block;
+  display: flex;
   padding: 20px 18px 20px 0;
-  text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
+  justify-content: center;
+  position: relative
 }
 
 .case-details > * {
@@ -4234,8 +4232,4 @@ margin-top
 
 .config-columns-button {
   margin-top: 21px;
-}
-
-.activatior-column {
-  min-width: 70px;
 }
