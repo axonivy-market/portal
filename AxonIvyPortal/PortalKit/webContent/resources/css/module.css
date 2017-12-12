@@ -4228,6 +4228,7 @@ margin-top
 
 .config-columns-panel {
   width: fit-content;
+  min-width: 250px;
 }
 
 .config-columns-button {
