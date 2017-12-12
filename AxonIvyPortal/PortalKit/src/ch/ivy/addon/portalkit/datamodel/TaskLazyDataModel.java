@@ -79,6 +79,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "STATE");
   private List<String> PORTAL_REQUIRED_COLUMNS = Arrays.asList("NAME");
   
+  private boolean isAutoHideColumns;
+  
   public TaskLazyDataModel() {
     super();
     data = new ArrayList<>();
@@ -88,7 +90,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     searchCriteria = buildCriteria();
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
-
+    isAutoHideColumns = true;
+    
     autoInitForNoAppConfiguration();
     initColumnsConfiguration();  
   }
@@ -735,5 +738,13 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   
   public List<String> getPortalRequiredColumns(){
     return PORTAL_REQUIRED_COLUMNS;
+  }
+
+  public boolean isAutoHideColumns() {
+    return isAutoHideColumns;
+  }
+
+  public void setAutoHideColumns(boolean isAutoHideColumns) {
+    this.isAutoHideColumns = isAutoHideColumns;
   }
 }
