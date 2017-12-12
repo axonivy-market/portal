@@ -1,0 +1,11 @@
+CaseNoteHistoryData #class
+ch.ivy.addon.portal.generic #namespace
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+histories List<ch.ivy.addon.portalkit.bo.History> #field
+remoteCaseId Long #field
+serverId Long #field
+caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+remoteTasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+caseId Long #field
+internalCase ch.ivyteam.ivy.workflow.ICase #field

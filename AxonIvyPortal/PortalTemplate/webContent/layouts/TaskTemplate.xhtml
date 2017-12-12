@@ -115,7 +115,15 @@
                         caseId="#{caseId}" />
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemRelatedTasks id="related-tasks"
                         caseId="#{caseId}" />
-                      <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory id="history" caseId="#{caseId}" />
+                      <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory id="history" caseId="#{caseId}" >
+                        <f:facet name="showCaseNoteHistory">
+                          <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link"
+                          target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(caseId)}">
+                            <span class="fa fa-external-link-square note-show-more-link-icon" />
+                            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
+                          </p:link>
+                        </f:facet>
+                      </ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory>
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument id="document" caseId="#{caseId}" />
                     </ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItem>
                   </h:form>

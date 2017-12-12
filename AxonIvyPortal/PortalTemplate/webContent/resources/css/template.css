@@ -756,3 +756,16 @@
     display: none !important;
   }
 }
+
+.note-history-export-button {
+    margin-top: 10px;
+}
+
+.note-show-more-link-icon {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.note-show-more-link {
+    color: rgba(0, 0, 0, 0.5) !important;
+}

@@ -23,7 +23,15 @@
               <ui:fragment rendered="#{not useOverrideBody}">
                 <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
                 <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
-                <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" >
+                    <f:facet name="showCateNoteHistory">
+                      <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link"
+                      target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}">
+                        <span class="fa fa-external-link-square note-show-more-link-icon" />
+                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
+                      </p:link>
+                    </f:facet>
+                </ic:ch.ivy.addon.portalkit.component.CaseItemHistory>
                 <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
                 <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}"
                   descriptionComponentToUpdate="#{p:component('description-cell')}" />
