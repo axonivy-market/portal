@@ -2816,6 +2816,7 @@ a.compact-task-start-link:hover {
   padding: 10px 15px !important;
   background-color: rgba(235,240,172,1);
   border: none;
+  white-space: normal;
 }
 
 .task-details-note-add {
