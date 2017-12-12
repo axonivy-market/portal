@@ -1,0 +1,4 @@
+co: name={columnTimestamp} description={} changed={2017-12-12 05:44:17 CET} changedby={tdnguyen} visualorder={0} guid={1604889A732ADC7F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={160488A6B3B6E18C} datatype={} isdefault={false} langid={de} description={} validfrom={2017-12-12 03:25:18 CET} validto={} changed={2017-12-12 03:25:19 CET} changedby={tdnguyen} properties={} id={}
+val: guid={1604909A4CF89735} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-12-12 05:44:16 CET} validto={} changed={2017-12-12 05:44:17 CET} changedby={tdnguyen} properties={} id={}
+val: guid={1604889A7363271C} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-12 03:24:28 CET} validto={} changed={2017-12-12 03:24:28 CET} changedby={tdnguyen} properties={} id={}
