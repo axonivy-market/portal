@@ -12,7 +12,7 @@
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('ACTIVATOR')}">
     <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText textId="#{cc.attrs.componentId}" fullname="#{cc.attrs.fullName}"
-      username="#{cc.attrs.userName}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.dataModel.isAutoHideColumns()?'responsible-cell js-responsible-cell':''} " />
+      username="#{cc.attrs.userName}" styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.dataModel.isAutoHideColumns()?'js-responsible-cell':''} " />
   </h:panelGroup>
 </cc:implementation>
 </html>
