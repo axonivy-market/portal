@@ -4234,3 +4234,7 @@ margin-top
 .config-columns-button {
   margin-top: 21px;
 }
+
+.config-checkbox-container {
+  text-align: center;
+}
