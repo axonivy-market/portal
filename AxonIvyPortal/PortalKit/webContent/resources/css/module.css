@@ -1061,7 +1061,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .widget-header-main.mod-expanded-mode {
-  flex: 1 0 50%;
+  flex: 1 0 45%;
 }
 
 .widget-header-content-filter.mod-expanded-mode {
@@ -2460,7 +2460,7 @@ a.compact-task-start-link:hover {
 .task-start-info {
   flex: 1;
   padding-right: 10px;
-  min-width: 0;
+  min-width: 105px;
 }
 
 .task-start-list .default-task-cell {
@@ -4234,4 +4234,8 @@ margin-top
 
 .config-columns-button {
   margin-top: 21px;
+}
+
+.activatior-column {
+  min-width: 70px;
 }

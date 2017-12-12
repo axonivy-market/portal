@@ -18,22 +18,22 @@
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
     componentId="responsible-column-header"
-    styleClass="responsible-column-header js-responsible-column-header hidden-sm"
+    styleClass="responsible-column-header activatior-column #{cc.attrs.dataModel.isAutoHideColumns()?'js-responsible-column-header hidden-sm':''}"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}"
     sortField="#{masterDataBean.taskSortFieldActivator}" />
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
-    componentId="id-column-header" styleClass="id-column-header js-id-column-header TexAlCenter"
+    componentId="id-column-header" styleClass="id-column-header TexAlCenter #{cc.attrs.dataModel.isAutoHideColumns()?'js-id-column-header':''}"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}"
     sortField="#{masterDataBean.taskSortFieldId}" />
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
-    componentId="create-column-header" styleClass="create-column-header js-create-column-header TexAlCenter"
+    componentId="create-column-header" styleClass="create-column-header TexAlCenter #{cc.attrs.dataModel.isAutoHideColumns()?'js-create-column-header':''}"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}"
     sortField="#{masterDataBean.taskSortFieldCreationTime}" />
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
-    componentId="expiry-column-header" styleClass="expiry-column-header js-expiry-column-header TexAlCenter"
+    componentId="expiry-column-header" styleClass="expiry-column-header TexAlCenter #{cc.attrs.dataModel.isAutoHideColumns()?'js-expiry-column-header':''}"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expiry')}"
     sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
 
