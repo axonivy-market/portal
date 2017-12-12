@@ -21,25 +21,25 @@
         componentId="name-column-header" styleClass="name-column-header"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/nameAndDescription')}"
         sortField="#{masterDataBean.taskSortFieldName}" />
-
+    
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
         componentId="responsible-column-header"
-        styleClass="responsible-column-header js-responsible-column-header hidden-sm"
+        styleClass="responsible-column-header activatior-column #{taskView.dataModel.isAutoHideColumns()?'js-responsible-column-header hidden-sm':''}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}"
         sortField="#{masterDataBean.taskSortFieldActivator}" />
-
+    
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        componentId="id-column-header" styleClass="id-column-header js-id-column-header TexAlCenter"
+        componentId="id-column-header" styleClass="id-column-header TexAlCenter #{taskView.dataModel.isAutoHideColumns()?'js-id-column-header':''}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}"
         sortField="#{masterDataBean.taskSortFieldId}" />
-
+    
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        componentId="create-column-header" styleClass="create-column-header js-create-column-header TexAlCenter"
+        componentId="create-column-header" styleClass="create-column-header TexAlCenter #{taskView.dataModel.isAutoHideColumns()?'js-create-column-header':''}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}"
         sortField="#{masterDataBean.taskSortFieldCreationTime}" />
-
+    
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        componentId="expiry-column-header" styleClass="expiry-column-header js-expiry-column-header TexAlCenter"
+        componentId="expiry-column-header" styleClass="expiry-column-header TexAlCenter #{taskView.dataModel.isAutoHideColumns()?'js-expiry-column-header':''}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expiry')}"
         sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
 
@@ -60,13 +60,17 @@
       </div>
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
-        fullName="#{task.activatorFullName}" styleClass="hidden-sm" dataModel="#{taskView.dataModel}" />
+        fullName="#{task.activatorFullName}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}"
+        dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" dataModel="#{taskView.dataModel}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
-        value="#{task.startTimestamp}" styleClass="js-create-cell" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
+        value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}"
+        rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
-        value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
+        value="#{task.expiryTimestamp}" 
+        styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}"
+        rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
         labelValue="#{task.customVarCharField5}" />
