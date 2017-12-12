@@ -1,0 +1,4 @@
+co: name={exportButton} description={} changed={2017-12-12 05:44:25 CET} changedby={tdnguyen} visualorder={0} guid={160488A3A39F6F75} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={160488A3A3C8E7C2} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-12 03:25:06 CET} validto={} changed={2017-12-12 03:25:06 CET} changedby={tdnguyen} properties={} id={}
+val: guid={1604909C5A9333FC} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-12-12 05:44:24 CET} validto={} changed={2017-12-12 05:44:25 CET} changedby={tdnguyen} properties={} id={}
+val: guid={160488A85F8B4BDD} datatype={} isdefault={false} langid={de} description={} validfrom={2017-12-12 03:25:25 CET} validto={} changed={2017-12-12 03:25:26 CET} changedby={tdnguyen} properties={} id={}

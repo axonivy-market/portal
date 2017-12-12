@@ -1,0 +1,8 @@
+CaseNoteHistoryData #class
+ch.ivy.addon.portal.generic.CaseNoteHistory #namespace
+histories List<ch.ivy.addon.portalkit.bo.History> #field
+histories PERSISTENT #fieldModifier
+exportedFileName String #field
+exportedFileName PERSISTENT #fieldModifier
+filteredHistories List<ch.ivy.addon.portalkit.bo.History> #field
+filteredHistories PERSISTENT #fieldModifier

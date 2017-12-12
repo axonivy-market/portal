@@ -1,0 +1,4 @@
+co: name={columnContent} description={} changed={2017-12-12 05:44:01 CET} changedby={tdnguyen} visualorder={0} guid={1604889DE4CFFDB5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1604889DE5238A8B} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-12 03:24:43 CET} validto={} changed={2017-12-12 03:24:43 CET} changedby={tdnguyen} properties={} id={}
+val: guid={160488AB83DE279E} datatype={} isdefault={false} langid={de} description={} validfrom={2017-12-12 03:25:37 CET} validto={} changed={2017-12-12 03:25:38 CET} changedby={tdnguyen} properties={} id={}
+val: guid={1604909678F2A08C} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-12-12 05:44:00 CET} validto={} changed={2017-12-12 05:44:01 CET} changedby={tdnguyen} properties={} id={}
