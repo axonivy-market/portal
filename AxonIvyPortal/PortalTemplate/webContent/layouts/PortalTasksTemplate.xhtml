@@ -57,12 +57,12 @@
                     isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
                 </div>
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{dataModel}"
-                  userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
+                  userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="activatior-column #{dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}" dataModel="#{dataModel}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{dataModel.isSelectedColumn('CREATION_TIME')}"
-                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="js-create-cell" />
+                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{dataModel.isAutoHideColumns()?'js-create-cell':''}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{dataModel.isSelectedColumn('EXPIRY_TIME')}"
-                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
+                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="#{dataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{dataModel}"
                   state="#{task.state}" />
               </ui:fragment>
