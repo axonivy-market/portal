@@ -90,6 +90,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     searchCriteria = buildCriteria();
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
+    serverId = SecurityServiceUtils.getServerIdFromSession();
     
     autoInitForNoAppConfiguration();
     initColumnsConfiguration();  
@@ -618,10 +619,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected void extendSortTasksInNotDisplayedTaskMap() {}
 
   private void autoInitForNoAppConfiguration() {
-    Long serverId = SecurityServiceUtils.getServerIdFromSession();
-    if (serverId != null) {
-      setServerId(serverId);
-    }
     String applicationName = StringUtils.EMPTY;
     String applicationNameFromRequest =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
@@ -661,8 +658,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     TaskColumnsConfigurationData data = new TaskColumnsConfigurationData();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null); 
+    Long applicationId = Ivy.request().getApplication().getId(); 
     if(userId != null){
-      data = service.getConfiguration(userId);
+      data = service.getConfiguration(serverId,applicationId,userId);
       if(data != null){
         selectedColumns = data.getSelectedColumns();
         isAutoHideColumns = data.isAutoHideColumns();
@@ -712,19 +710,19 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public void saveColumnsConfiguration(){
     selectedColumns.addAll(PORTAL_REQUIRED_COLUMNS);
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    TaskColumnsConfigurationData taskColumnsConfigurationData = service.getConfiguration(Ivy.session().getSessionUser().getId());
+    Long applicationId = Ivy.request().getApplication().getId();
+    TaskColumnsConfigurationData taskColumnsConfigurationData = service.getConfiguration(serverId,applicationId,Ivy.session().getSessionUser().getId());
     if(taskColumnsConfigurationData != null){
       updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
     } else {
-      taskColumnsConfigurationData = saveNewTaskColumnsConfigurationData();
+      taskColumnsConfigurationData = createNewTaskColumnsConfigurationData();
     }
     service.save(taskColumnsConfigurationData);
     initSelectedColumns();
   }
 
-  private TaskColumnsConfigurationData saveNewTaskColumnsConfigurationData() {
-    TaskColumnsConfigurationData taskColumnsConfigurationData;
-    taskColumnsConfigurationData = new TaskColumnsConfigurationData();
+  private TaskColumnsConfigurationData createNewTaskColumnsConfigurationData() {
+    TaskColumnsConfigurationData taskColumnsConfigurationData = new TaskColumnsConfigurationData();
     taskColumnsConfigurationData.setUserId(Ivy.session().getSessionUser().getId());
     updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
     return taskColumnsConfigurationData;
