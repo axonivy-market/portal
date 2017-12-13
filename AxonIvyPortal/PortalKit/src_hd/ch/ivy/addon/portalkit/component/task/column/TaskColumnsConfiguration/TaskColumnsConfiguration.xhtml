@@ -26,7 +26,7 @@
       onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
       <h:form id="select-columns-form">
         <div class="config-checkbox-container">
-          <p:selectBooleanCheckbox itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/default')}: "
+          <p:selectBooleanCheckbox itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/default')}"
             value="#{dataModel.autoHideColumns}">
             <p:ajax update="custom-columns-container" />
           </p:selectBooleanCheckbox>
