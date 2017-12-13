@@ -70,7 +70,7 @@
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
         value="#{task.expiryTimestamp}" 
         styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}"
-        rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
+        rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
         labelValue="#{task.customVarCharField5}" />
