@@ -60,6 +60,10 @@ public class CaseDetailsPage extends TemplatePage {
     addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
     waitAjaxIndicatorDisappear();
   }
+  
+  public void showNoteHistory() {
+      click(caseItem.findElement(By.cssSelector("a[id$='show-more-note-link']")));
+    }
 
   public String getLatestHistoryContent() {
     WebElement historyComponent = caseItem.findElement(By.id(HISTORY_COMPONENT_ID));
