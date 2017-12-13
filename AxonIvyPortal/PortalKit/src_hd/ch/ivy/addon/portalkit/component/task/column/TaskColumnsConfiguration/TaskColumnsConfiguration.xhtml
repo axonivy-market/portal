@@ -18,40 +18,44 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}" styleClass="filter-add-button" 
         icon="fa fa-caret-down" iconPos="right" />
     </h:form>
-    
-    <h:form id="select-columns-form">
-        <p:overlayPanel id="config-columns-panel" widgetVar="config-columns-panel"
-        dismissable="true" styleClass="advanced-filter-panel filter-add-panel config-columns-panel"
-        for="#{cc.clientId}:config-columns-form:config-columns" my="left top" at="left bottom"
-        onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
-          <div class="config-checkbox-container" >
-            <p:selectBooleanCheckbox itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/default')}: " value="#{dataModel.autoHideColumns}" >
-              <p:ajax update="custom-columns-container" />
-            </p:selectBooleanCheckbox>
-          </div>
-          <h:panelGroup id="custom-columns-container" >
-            <p:message for="columns-checkbox"/>
-            <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="grid" columns="1" disabled="#{dataModel.isAutoHideColumns()}" >
-              <f:selectItems value="#{dataModel.allColumns}" var="column" itemLabel="#{dataModel.getColumnLabel(column)}" 
-                itemDisabled="#{dataModel.getPortalRequiredColumns().contains(column) or column eq 'NAME'}" />
-            </p:selectManyCheckbox>
-          
-            <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
-              <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                actionListener="#{dataModel.saveColumnsConfiguration()}"
-                update="#{cc.clientId}:config-columns-form @form task-widget"
-                oncomplete="if (args &amp;&amp; args.validationFailed) PF('config-columns-panel').show(); taskWidget.setupScrollbar(); taskWidget.setupHeader()" >
-              </p:commandButton>
-              <p:spacer width="5" />
-              <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
+
+
+    <p:overlayPanel id="config-columns-panel" widgetVar="config-columns-panel" dismissable="true"
+      styleClass="advanced-filter-panel filter-add-panel config-columns-panel"
+      for="#{cc.clientId}:config-columns-form:config-columns" my="left top" at="left bottom"
+      onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
+      <h:form id="select-columns-form">
+        <div class="config-checkbox-container">
+          <p:selectBooleanCheckbox itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/default')}: "
+            value="#{dataModel.autoHideColumns}">
+            <p:ajax update="custom-columns-container" />
+          </p:selectBooleanCheckbox>
+        </div>
+        <h:panelGroup id="custom-columns-container">
+          <p:message for="columns-checkbox" />
+          <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="grid" columns="1"
+            disabled="#{dataModel.isAutoHideColumns()}">
+            <f:selectItems value="#{dataModel.allColumns}" var="column" itemLabel="#{dataModel.getColumnLabel(column)}"
+              itemDisabled="#{dataModel.getPortalRequiredColumns().contains(column) or column eq 'NAME'}" />
+          </p:selectManyCheckbox>
+
+          <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
+            <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+              actionListener="#{dataModel.saveColumnsConfiguration()}"
+              update="#{cc.clientId}:config-columns-form @form task-widget"
+              oncomplete="if (args &amp;&amp; args.validationFailed) PF('config-columns-panel').show(); taskWidget.setupScrollbar(); taskWidget.setupHeader()">
+            </p:commandButton>
+            <p:spacer width="5" />
+            <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              update="#{cc.clientId}:config-columns-form @form" resetValues="true" oncomplete="PF('config-columns-panel').hide()" >
-              </p:commandButton>
-            </h:panelGroup>
+              update="#{cc.clientId}:config-columns-form @form" resetValues="true"
+              oncomplete="PF('config-columns-panel').hide()">
+            </p:commandButton>
           </h:panelGroup>
-        </p:overlayPanel>
-    </h:form>
+        </h:panelGroup>
+      </h:form>
+    </p:overlayPanel>
   </h:panelGroup>
 </cc:implementation>
 </html>
