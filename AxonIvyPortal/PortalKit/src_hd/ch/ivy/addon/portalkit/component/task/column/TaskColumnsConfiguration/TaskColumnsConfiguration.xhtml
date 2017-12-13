@@ -20,7 +20,7 @@
     </h:form>
 
 
-    <p:overlayPanel id="config-columns-panel" widgetVar="config-columns-panel" dismissable="true"
+    <p:overlayPanel id="config-columns-panel" widgetVar="config-columns-panel" dismissable="false"
       styleClass="advanced-filter-panel filter-add-panel config-columns-panel" appendToBody="true"
       for="#{cc.clientId}:config-columns-form:config-columns" my="left top" at="left bottom"
       onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
@@ -49,7 +49,7 @@
             <p:spacer width="5" />
             <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              update="#{cc.clientId}:config-columns-form @form" resetValues="true"
+              update="#{cc.clientId}:config-columns-form #{cc.clientId}:config-columns-panel" resetValues="true"
               oncomplete="PF('config-columns-panel').hide()">
             </p:commandButton>
           </h:panelGroup>
