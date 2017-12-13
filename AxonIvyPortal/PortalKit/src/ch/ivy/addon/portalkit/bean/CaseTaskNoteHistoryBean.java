@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
@@ -18,7 +19,7 @@ public class CaseTaskNoteHistoryBean {
         IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
         String redirectLink = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
                 + "?remoteCaseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
-        redirectLink = redirectLink.replace("/ivy", ""); //remove duplicate part of path
+        redirectLink = removeDuplicatedPartOfUrl(redirectLink);
         return redirectLink;
     }
     
@@ -27,7 +28,7 @@ public class CaseTaskNoteHistoryBean {
         IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("Start Processes/TaskNoteHistory/showTaskNoteHistory.ivp");
         String redirectLink = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
                 + "?remoteTaskId=" + remoteTask.getId() + "&serverId=" + remoteTask.getApplicationRegister().getServerId();
-        redirectLink = redirectLink.replace("/ivy", ""); //remove duplicate part of path
+        redirectLink = removeDuplicatedPartOfUrl(redirectLink);
         return redirectLink;
     }
     
@@ -35,8 +36,13 @@ public class CaseTaskNoteHistoryBean {
         ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
         IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CaseNoteHistory/showCaseNoteHistoryInTask.ivp");
         String redirectLink = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + "?caseId=" + caseId;
-        redirectLink = redirectLink.replace("/ivy", ""); //remove duplicate part of path
+        redirectLink = removeDuplicatedPartOfUrl(redirectLink);
         return redirectLink;
+    }
+    
+    private String removeDuplicatedPartOfUrl(String redirectLink) {
+      String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+      return redirectLink.replace(applicationContextPath, ""); //remove duplicate part of path
     }
 
 }
