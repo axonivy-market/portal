@@ -12,14 +12,14 @@
 		<ui:define name="simplePageContent">
 			
 			<h:form id="form">
-				<p:dataTable id="notes-table" widgetVar="notesTable" var="history"
+				<p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{history.timestamp}" sortOrder="DESCENDING"
 					value="#{data.histories}" filteredValue="#{data.filteredHistories}">
-					<p:column width="15%" sortBy="#{history.involvedUsername}" filterBy="#{history.involvedUsername}" filterMatchMode="contains">
+					<p:column width="15%" sortBy="#{history.involvedFullname}" filterBy="#{history.involvedFullname}" filterMatchMode="contains">
 						<f:facet name="header">
 							<h:outputText
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnName')}" />
 						</f:facet>
-						<h:outputText value="#{history.involvedUsername}" />
+						<h:outputText value="#{history.involvedFullname}" />
 					</p:column>
 
 					<p:column width="10%" sortBy="#{history.timestamp}" filterBy="#{history.timestamp}" filterFunction="#{dateFilterBean.filterByDate}">
@@ -28,14 +28,14 @@
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}" />
 						</f:facet>
 						<f:facet name="filter">
-							<p:calendar pattern="dd.MM.yyyy">
+							<p:calendar pattern="#{ivy.cms.co('/patterns/datePattern')}">
 								<p:ajax event="dateSelect"
 									oncomplete="PF('notesTable').filter()" />
 								<p:ajax event="change" oncomplete="PF('notesTable').filter()" />
 							</p:calendar>
 						</f:facet>
 						<h:outputText value="#{history.timestamp}">
-							<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+							<f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
 						</h:outputText>
 					</p:column>
 
