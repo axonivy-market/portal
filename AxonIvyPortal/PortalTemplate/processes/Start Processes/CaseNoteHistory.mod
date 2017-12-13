@@ -295,6 +295,7 @@ for(ITask task : in.internalCase.getTasks()) {
 
 HistoryService historyService = new HistoryService();
 in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes());' #txt
+Cy0 f17 security system #txt
 Cy0 f17 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt
 Cy0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
