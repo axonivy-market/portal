@@ -83,4 +83,12 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id(sideStepPanelId), true);
     return findListElementsByCssSelector("a[id$='side-step-item']").size();
   }
+  
+  public void clickCancelButton() {
+    driver.findElement(By.className("portal-cancel-button")).click();
+  }
+  
+  public void showNoteHistory() {
+    click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
+  }
 }
