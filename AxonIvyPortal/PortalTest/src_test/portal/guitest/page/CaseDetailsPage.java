@@ -62,8 +62,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void showNoteHistory() {
-      click(caseItem.findElement(By.cssSelector("a[id$='show-more-note-link']")));
-    }
+    click(caseItem.findElement(By.cssSelector("a[id$='show-more-note-link']")));
+  }
 
   public String getLatestHistoryContent() {
     WebElement historyComponent = caseItem.findElement(By.id(HISTORY_COMPONENT_ID));

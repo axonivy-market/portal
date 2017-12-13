@@ -40,6 +40,10 @@ public class TaskWidgetPage extends TemplatePage {
   public void closeTaskDetails(int index) {
     clickOnTaskEntryInFullMode(index, false);
   }
+  
+  public void showNoteHistory() {
+    click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
+  }
 
   private void clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
     WebElement taskShowHideDetailsLink = findElementByCssSelector("*[id$='" + index + ":task-item:show-task-detail-link']");
