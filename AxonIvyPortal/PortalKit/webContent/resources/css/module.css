@@ -1450,14 +1450,16 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer
+.config-columns-panel .ui-overlaypanel-footer {
   padding: 10px;
   border-top: solid 1px #eaeaea;
   text-align: right;
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer .ui-widget.ui-button,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer .ui-widget.ui-button {
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer .ui-widget.ui-button,
+.config-columns-panel .ui-overlaypanel-footer .ui-widget.ui-button {
   min-width: 0;
   -webkit-transition: none;
   -moz-transition: none;
@@ -4228,8 +4230,17 @@ margin-top
 }
 
 .config-columns-panel {
-  width: fit-content;
   min-width: 250px;
+}
+
+.config-columns-panel .ui-overlaypanel-content {
+  padding: 10px !important;
+}
+
+.config-columns-panel .ui-overlaypanel-footer {
+  padding: 10px;
+  border-top: solid 1px #eaeaea;
+  text-align: right;
 }
 
 .config-columns-button {
