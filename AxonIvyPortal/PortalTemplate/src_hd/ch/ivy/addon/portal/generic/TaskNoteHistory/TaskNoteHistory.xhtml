@@ -11,7 +11,7 @@
 		<ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskHistoryPageTitle')}</ui:define>
 		<ui:define name="simplePageContent">
 			
-			<h:form id="form">
+			<h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }">
 				<p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{note.creationTimestamp.time}" sortOrder="DESCENDING"
 					value="#{data.notes}" filteredValue="#{data.filteredNotes}">
 					<p:column width="15%" sortBy="#{note.creatorFullName}" filterBy="#{note.creatorFullName}" filterMatchMode="contains">
