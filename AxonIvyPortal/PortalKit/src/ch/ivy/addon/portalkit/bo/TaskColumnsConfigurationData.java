@@ -4,6 +4,8 @@ import java.util.List;
 
 public class TaskColumnsConfigurationData {
   
+  private Long serverId;
+  private Long applicationId;
   private Long userId;
   private List<String> selectedColumns;
   private boolean isAutoHideColumns;
@@ -26,5 +28,16 @@ public class TaskColumnsConfigurationData {
   public void setAutoHideColumns(boolean isAutoHideColumns) {
     this.isAutoHideColumns = isAutoHideColumns;
   }
-  
+  public Long getServerId() {
+    return serverId;
+  }
+  public void setServerId(Long serverId) {
+    this.serverId = serverId;
+  }
+  public Long getApplicationId() {
+    return applicationId;
+  }
+  public void setApplicationId(Long applicationId) {
+    this.applicationId = applicationId;
+  }
 }
