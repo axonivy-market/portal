@@ -2577,6 +2577,7 @@ a.compact-task-start-link:hover {
 
 .show-task-detail-link{
   width: 5%;
+  margin-left: -2.5%;
   position: absolute;
   bottom: 0;
   left: 50%;
