@@ -14,7 +14,8 @@
   
   <h:panelGroup rendered="#{cc.attrs.rendered}" >
     <h:form id="config-columns-form" styleClass="config-columns-button" >
-      <p:commandButton id="config-columns" type="button" value="Columns" styleClass="filter-add-button" 
+      <p:commandButton id="config-columns" type="button" 
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}" styleClass="filter-add-button" 
         icon="fa fa-caret-down" iconPos="right" />
     </h:form>
     
