@@ -47,9 +47,9 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
         Sleeper.sleepTight(2000);
         mainMenuPage.openTaskList();
         taskWidgetPage.openTaskDetails(0);
+        taskWidgetPage.showNoteHistory();
         Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
         homePage.switchLastBrowserTab();
-        taskWidgetPage.showNoteHistory();
         assertEquals(1, taskHistoryPage.countNotes());
         assertEquals(noteContent, taskHistoryPage.getNoteContentOfFirstRow());
     }
