@@ -659,8 +659,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     TaskColumnsConfigurationData data = new TaskColumnsConfigurationData();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null); 
     Long applicationId = Ivy.request().getApplication().getId(); 
+    Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
     if(userId != null){
-      data = service.getConfiguration(serverId,applicationId,userId);
+      data = service.getConfiguration(serverId,applicationId,userId,taskColumnsConfigDataId);
       if(data != null){
         selectedColumns = data.getSelectedColumns();
         isAutoHideColumns = data.isAutoHideColumns();
@@ -711,7 +712,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     selectedColumns.addAll(PORTAL_REQUIRED_COLUMNS);
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long applicationId = Ivy.request().getApplication().getId();
-    TaskColumnsConfigurationData taskColumnsConfigurationData = service.getConfiguration(serverId,applicationId,Ivy.session().getSessionUser().getId());
+    Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
+    TaskColumnsConfigurationData taskColumnsConfigurationData = service.getConfiguration(serverId,applicationId,Ivy.session().getSessionUser().getId(),taskColumnsConfigDataId);
     if(taskColumnsConfigurationData != null){
       updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
     } else {
@@ -723,6 +725,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   private TaskColumnsConfigurationData createNewTaskColumnsConfigurationData() {
     TaskColumnsConfigurationData taskColumnsConfigurationData = new TaskColumnsConfigurationData();
+    taskColumnsConfigurationData.setTaskColumnsConfigDataId(Ivy.request().getProcessModel().getId());
     taskColumnsConfigurationData.setUserId(Ivy.session().getSessionUser().getId());
     taskColumnsConfigurationData.setApplicationId(Ivy.request().getApplication().getId());
     taskColumnsConfigurationData.setServerId(serverId);

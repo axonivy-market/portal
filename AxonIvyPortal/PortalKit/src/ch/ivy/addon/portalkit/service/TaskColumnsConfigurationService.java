@@ -10,19 +10,21 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
     return TaskColumnsConfigurationData.class;
   }
 
-  public TaskColumnsConfigurationData getConfiguration(Long serverId, Long applicationId, Long userId){
+  public TaskColumnsConfigurationData getConfiguration(Long serverId, Long applicationId, Long userId, Long taskColumnsConfigDataId){
     Filter<TaskColumnsConfigurationData> query;
     if(serverId != null){
       query =
           repo().search(getType())
           .numberField("serverId").isEqualTo(serverId)
           .and().numberField("applicationId").isEqualTo(applicationId)
-          .and().numberField("userId").isEqualTo(userId);
+          .and().numberField("userId").isEqualTo(userId)
+          .and().numberField("taskColumnsConfigDataId").isEqualTo(taskColumnsConfigDataId);
     } else {
       query =
           repo().search(getType())
           .numberField("applicationId").isEqualTo(applicationId)
-          .and().numberField("userId").isEqualTo(userId);
+          .and().numberField("userId").isEqualTo(userId)
+          .and().numberField("taskColumnsConfigDataId").isEqualTo(taskColumnsConfigDataId);
     }
     return query.execute().getFirst();
   }
