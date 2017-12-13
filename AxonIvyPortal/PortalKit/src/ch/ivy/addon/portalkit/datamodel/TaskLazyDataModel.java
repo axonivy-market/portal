@@ -724,6 +724,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private TaskColumnsConfigurationData createNewTaskColumnsConfigurationData() {
     TaskColumnsConfigurationData taskColumnsConfigurationData = new TaskColumnsConfigurationData();
     taskColumnsConfigurationData.setUserId(Ivy.session().getSessionUser().getId());
+    taskColumnsConfigurationData.setApplicationId(Ivy.request().getApplication().getId());
+    taskColumnsConfigurationData.setServerId(serverId);
     updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
     return taskColumnsConfigurationData;
   }
