@@ -76,7 +76,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+  private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
   private List<String> PORTAL_REQUIRED_COLUMNS = Arrays.asList("NAME");
   
   private boolean isAutoHideColumns;

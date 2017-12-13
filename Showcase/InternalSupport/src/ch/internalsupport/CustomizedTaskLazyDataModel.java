@@ -49,7 +49,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 
   @Override
   protected List<String> getPortalDefaultColumns() {
-    return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
+    return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
   }
   
   @Override
