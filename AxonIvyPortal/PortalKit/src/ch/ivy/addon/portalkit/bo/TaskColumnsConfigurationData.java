@@ -9,6 +9,7 @@ public class TaskColumnsConfigurationData {
   private Long userId;
   private List<String> selectedColumns;
   private boolean isAutoHideColumns;
+  private Long taskColumnsConfigDataId;
   
   public Long getUserId() {
     return userId;
@@ -39,5 +40,11 @@ public class TaskColumnsConfigurationData {
   }
   public void setApplicationId(Long applicationId) {
     this.applicationId = applicationId;
+  }
+  public Long getTaskColumnsConfigDataId() {
+    return taskColumnsConfigDataId;
+  }
+  public void setTaskColumnsConfigDataId(Long taskColumnsConfigDataId) {
+    this.taskColumnsConfigDataId = taskColumnsConfigDataId;
   }
 }
