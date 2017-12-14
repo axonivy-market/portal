@@ -27,14 +27,14 @@
       <h:form id="select-columns-form">
         <div class="config-checkbox-container">
           <p:selectBooleanCheckbox itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/default')}"
-            value="#{dataModel.autoHideColumns}">
+            value="#{dataModel.disableSelectionCheckboxes}">
             <p:ajax update="custom-columns-container" />
           </p:selectBooleanCheckbox>
         </div>
         <h:panelGroup id="custom-columns-container">
           <p:message for="columns-checkbox" />
           <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="grid" columns="1"
-            disabled="#{dataModel.isAutoHideColumns()}">
+            disabled="#{dataModel.isDisableSelectionCheckboxes()}">
             <f:selectItems value="#{dataModel.allColumns}" var="column" itemLabel="#{dataModel.getColumnLabel(column)}"
               itemDisabled="#{dataModel.getPortalRequiredColumns().contains(column) or column eq 'NAME'}" />
           </p:selectManyCheckbox>
@@ -50,7 +50,8 @@
             <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               update="#{cc.clientId}:config-columns-form #{cc.clientId}:config-columns-panel" resetValues="true"
-              oncomplete="PF('config-columns-panel').hide()">
+              oncomplete="PF('config-columns-panel').hide()" 
+              actionListener="#{dataModel.setDisableSelectionCheckboxes(dataModel.autoHideColumns)}">
             </p:commandButton>
           </h:panelGroup>
         </h:panelGroup>
