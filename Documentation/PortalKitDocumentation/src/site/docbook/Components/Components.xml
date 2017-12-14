@@ -5,4 +5,5 @@
 	<xi:include href="LayoutTemplates.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="PortalChat.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="ErrorHandling.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="ExportFunction.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
