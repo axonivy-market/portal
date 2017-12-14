@@ -21,11 +21,9 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
-import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
@@ -42,7 +40,6 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -74,14 +71,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private boolean isInProgressFilterDisplayed = false;
   private TaskFilterData selectedTaskFilterData;
 
-  protected List<String> allColumns = new ArrayList<>();
-  protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
-  private List<String> PORTAL_REQUIRED_COLUMNS = Arrays.asList("NAME");
-  
-  private boolean isAutoHideColumns;
-  private boolean isDisableSelectionCheckboxes;
-  
   public TaskLazyDataModel() {
     super();
     data = new ArrayList<>();
@@ -91,12 +80,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     searchCriteria = buildCriteria();
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
-    serverId = SecurityServiceUtils.getServerIdFromSession();
-    
+
     autoInitForNoAppConfiguration();
-    initColumnsConfiguration();  
   }
-  
+
   /**
    * <p>
    * Initialize TaskFilterContainer with your customized TaskFilterContainer class.
@@ -620,6 +607,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected void extendSortTasksInNotDisplayedTaskMap() {}
 
   private void autoInitForNoAppConfiguration() {
+    Long serverId = SecurityServiceUtils.getServerIdFromSession();
+    if (serverId != null) {
+      setServerId(serverId);
+    }
     String applicationName = StringUtils.EMPTY;
     String applicationNameFromRequest =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
@@ -648,136 +639,5 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       }
     });
     return taskQuery;
-  }
-  
-  protected void initColumnsConfiguration(){
-    allColumns.addAll(getPortalDefaultColumns());
-    initSelectedColumns();
-  }
-
-  private void initSelectedColumns() {
-    TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    TaskColumnsConfigurationData data = new TaskColumnsConfigurationData();
-    Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null); 
-    Long applicationId = Ivy.request().getApplication().getId(); 
-    Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
-    if(userId != null){
-      data = service.getConfiguration(serverId,applicationId,userId,taskColumnsConfigDataId);
-      if(data != null){
-        selectedColumns = data.getSelectedColumns();
-        isAutoHideColumns = data.isAutoHideColumns();
-      }
-    }
-    if(selectedColumns.isEmpty()){
-      selectedColumns.addAll(getPortalDefaultColumns());
-      isAutoHideColumns = true;
-    }
-    setDisableSelectionCheckboxes(isAutoHideColumns);
-  }
-  
-  /**
-   * <p>
-   * Your customized data model needs to override this method if your customized task list has new columns/fields.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * 
-   * return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
-   *
-   * </pre></code>
-   * This list is the list of sortFields in TaskColumnHeader Portal component when you use it to add new column headers
-   * Also the list of checkboxes in config columns panel
-   * </p>
-   * 
-   * @return
-   */
-  protected List<String> getPortalDefaultColumns() {
-    return PORTAL_DEFAULT_COLUMNS;
-  }
-  
-  /**
-   * <p>
-   * In case you adds new columns, these columns need cms to show in config columns panel
-   * </p>
-   * <p>
-   * You can either add new entry to default folder below in PortalStyle or override this method to create your own folder
-   * column must be the same with sortField
-   * </p>
-   * 
-   * @return
-   */
-  public String getColumnLabel(String column) {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);
-  }
-  
-  public void saveColumnsConfiguration(){
-    selectedColumns.addAll(PORTAL_REQUIRED_COLUMNS);
-    setAutoHideColumns(isDisableSelectionCheckboxes);
-    TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    Long applicationId = Ivy.request().getApplication().getId();
-    Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
-    TaskColumnsConfigurationData taskColumnsConfigurationData = service.getConfiguration(serverId,applicationId,Ivy.session().getSessionUser().getId(),taskColumnsConfigDataId);
-    if(taskColumnsConfigurationData != null){
-      updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
-    } else {
-      taskColumnsConfigurationData = createNewTaskColumnsConfigurationData();
-    }
-    service.save(taskColumnsConfigurationData);
-    initSelectedColumns();
-  }
-
-  private TaskColumnsConfigurationData createNewTaskColumnsConfigurationData() {
-    TaskColumnsConfigurationData taskColumnsConfigurationData = new TaskColumnsConfigurationData();
-    taskColumnsConfigurationData.setTaskColumnsConfigDataId(Ivy.request().getProcessModel().getId());
-    taskColumnsConfigurationData.setUserId(Ivy.session().getSessionUser().getId());
-    taskColumnsConfigurationData.setApplicationId(Ivy.request().getApplication().getId());
-    taskColumnsConfigurationData.setServerId(serverId);
-    updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
-    return taskColumnsConfigurationData;
-  }
-
-  private void updateTaskColumnsConfigurationData(TaskColumnsConfigurationData taskColumnsConfigurationData) {
-    taskColumnsConfigurationData.setAutoHideColumns(isAutoHideColumns);
-    if(isAutoHideColumns){
-      taskColumnsConfigurationData.setSelectedColumns(getPortalDefaultColumns());
-    } else {
-      taskColumnsConfigurationData.setSelectedColumns(selectedColumns);
-    }
-  }
-
-  public void setSelectedColumns(List<String> selectedColumns) {
-    this.selectedColumns = selectedColumns;
-  }
-
-  public List<String> getSelectedColumns() {
-    return selectedColumns;
-  }
-  
-  public List<String> getAllColumns() {
-    return allColumns;
-  }
-
-  public boolean isSelectedColumn(String column){
-    return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
-  }
-  
-  public List<String> getPortalRequiredColumns(){
-    return PORTAL_REQUIRED_COLUMNS;
-  }
-
-  public boolean isAutoHideColumns() {
-    return isAutoHideColumns;
-  }
-
-  public void setAutoHideColumns(boolean isAutoHideColumns) {
-    this.isAutoHideColumns = isAutoHideColumns;
-  }
-
-  public boolean isDisableSelectionCheckboxes() {
-    return isDisableSelectionCheckboxes;
-  }
-
-  public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
-    this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
   }
 }
