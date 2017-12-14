@@ -39,16 +39,12 @@
 						</h:outputText>
 					</p:column>
 
-					<p:column width="70%" sortBy="#{history.content}" filterBy="#{history.content}" filterMatchMode="contains">
+					<p:column width="70%" sortBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains">
 						<f:facet name="header">
 							<h:outputText
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
 						</f:facet>
-						<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone')}: " rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}"/>
-						<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed')}: " rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}"/>
-						<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie')}: " rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}"/>
-						<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated')}: " rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}"/>
-						<h:outputText value="#{history.content}" />
+						<h:outputText value="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" />
 					</p:column>
 				</p:dataTable>
 				<p:commandButton ajax="false" styleClass="note-history-export-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">

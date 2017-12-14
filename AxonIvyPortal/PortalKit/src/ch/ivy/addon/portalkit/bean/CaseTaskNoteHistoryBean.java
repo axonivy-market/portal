@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.bean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import ch.ivy.addon.portalkit.bo.History;
+import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -10,6 +12,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean {
@@ -43,6 +46,22 @@ public class CaseTaskNoteHistoryBean {
     private String removeDuplicatedPartOfUrl(String redirectLink) {
       String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
       return redirectLink.replace(applicationContextPath, ""); //remove duplicate part of path
+    }
+    
+    public String getCaseNoteContent(History history) {
+        String content = history.getContent();
+        if (history.getType() == HistoryType.TASK) {
+            if (history.getTaskState() == TaskState.DONE) {
+                return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone") + ": " + content;
+            } else if (history.getTaskState() == TaskState.DESTROYED) {
+                return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed") + ": " + content;
+            }else if (history.getTaskState() == TaskState.ZOMBIE) {
+                return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie") + ": " + content;
+            }else if (history.getTaskState() == TaskState.CREATED) {
+                return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated") + ": " + content;
+            }
+        }
+        return content;
     }
 
 }
