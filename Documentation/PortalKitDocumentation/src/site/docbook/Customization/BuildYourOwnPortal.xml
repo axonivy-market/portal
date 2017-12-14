@@ -37,6 +37,9 @@
 									<tip>
 										Find more information about templates at <link linkend="axonivyportal.components.layouttemplates" endterm="axonivyportal.components.layouttemplates.title" />.
 									</tip>
+                                    <note>
+                                      Portal uses some template files in the folder <code>"webContent/layouts"</code> in Portal Template project. Do not create files with the same path and name in your project as they can override the Portal files.
+                                    </note>
 								</para>
 							</listitem>
 							<listitem>
