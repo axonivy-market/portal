@@ -44,6 +44,10 @@
 							<h:outputText
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
 						</f:facet>
+						<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone')}: " rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}"/>
+						<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed')}: " rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}"/>
+						<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie')}: " rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}"/>
+						<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated')}: " rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}"/>
 						<h:outputText value="#{history.content}" />
 					</p:column>
 				</p:dataTable>
