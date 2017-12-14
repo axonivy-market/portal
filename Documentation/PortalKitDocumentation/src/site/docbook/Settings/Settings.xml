@@ -159,10 +159,25 @@
 		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
 			<title xml:id="axonivyportal.settings.adminsettings.setupmultiportals.title">Setup multi portals</title>
 			<warning>
-				Multi-portal is not officially supported, only an
+				Multi applications on multi engines is not officially supported, only an
 				experimental mode is
 				available.
 			</warning>
+			<important>
+				<itemizedlist>
+					<listitem>
+						<para>If number of configured applications is more than one, the default Portal application must not be configured and it must be active. </para>
+					</listitem>
+					<listitem>
+						<para>If the login user is existed in only one application, application menu shows only the menu item for that application.</para>
+					</listitem>
+					<listitem>
+						<para>If the login user is existed in more than one application, application menu shows menu items for those applications and Dashboard menu item.</para> 
+						<para>Dashboard menu item is used for displaying all tasks, cases, processes of configured applications.</para> 
+						<para>Dashboard menu item is linked to the default Portal application. Therefore, the default Portal application must be active.</para>
+					</listitem>
+				</itemizedlist>
+			</important>
 			<para>
 				<orderedlist>
 					<listitem>
