@@ -80,6 +80,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private List<String> PORTAL_REQUIRED_COLUMNS = Arrays.asList("NAME");
   
   private boolean isAutoHideColumns;
+  private boolean isDisableSelectionCheckboxes;
   
   public TaskLazyDataModel() {
     super();
@@ -671,6 +672,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       selectedColumns.addAll(getPortalDefaultColumns());
       isAutoHideColumns = true;
     }
+    setDisableSelectionCheckboxes(isAutoHideColumns);
   }
   
   /**
@@ -710,6 +712,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   
   public void saveColumnsConfiguration(){
     selectedColumns.addAll(PORTAL_REQUIRED_COLUMNS);
+    setAutoHideColumns(isDisableSelectionCheckboxes);
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long applicationId = Ivy.request().getApplication().getId();
     Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
@@ -768,5 +771,13 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void setAutoHideColumns(boolean isAutoHideColumns) {
     this.isAutoHideColumns = isAutoHideColumns;
+  }
+
+  public boolean isDisableSelectionCheckboxes() {
+    return isDisableSelectionCheckboxes;
+  }
+
+  public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
+    this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
   }
 }
