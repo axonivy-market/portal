@@ -1,7 +1,6 @@
 package portal.guitest.test;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -11,7 +10,6 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
 
-@Ignore
 public class TaskWidgetCustomizationTest extends BaseTest {
 
   private static final String CUSTOMER_NAME_COLUMN_ID = "customer-name";
