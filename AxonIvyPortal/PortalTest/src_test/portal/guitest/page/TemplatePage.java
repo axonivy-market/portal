@@ -21,7 +21,7 @@ public abstract class TemplatePage extends AbstractPage {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
     String engineUrl = System.getProperty("engineUrl");
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-        waitForElementDisplayed(getLoadedLocator(), true, 60L);
+        waitForElementDisplayed(getLoadedLocator(), true, 300L);
     } else {
         waitForElementDisplayed(getLoadedLocator(), true, 30L);
     }
