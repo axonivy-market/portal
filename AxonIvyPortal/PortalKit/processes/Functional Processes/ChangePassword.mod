@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Aug 28 13:36:18 ICT 2017]
 15E13D0DD56B6D3B 3.20 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
@@ -57,7 +56,7 @@ Cd0 f1 type ch.ivy.add.portalkit.ChangePasswordData #txt
 Cd0 f1 81 625 30 30 0 15 #rect
 Cd0 f1 @|EndSubIcon #fIcon
 Cd0 f14 type ch.ivy.add.portalkit.ChangePasswordData #txt
-Cd0 f14 processCall MultiPortal/PasswordService:changePassword(String,String) #txt
+Cd0 f14 processCall MultiPortal/PasswordService:changePasswordService(String,String) #txt
 Cd0 f14 doCall true #txt
 Cd0 f14 requestActionDecl '<java.lang.String username,java.lang.String newPassword> param;
 ' #txt
@@ -103,8 +102,7 @@ Cd0 f6 actionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
 ' #txt
 Cd0 f6 actionTable 'out=in;
 ' #txt
-Cd0 f6 actionCode 'in.isCurrentPasswordCorrect = ivy.session.checkPassword(in.currentPassword);
-' #txt
+Cd0 f6 actionCode 'in.isCurrentPasswordCorrect = ivy.session.checkPassword(in.currentPassword);' #txt
 Cd0 f6 type ch.ivy.add.portalkit.ChangePasswordData #txt
 Cd0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
