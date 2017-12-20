@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 10:35:52 ICT 2017]
 15E0CEDE89CC1D0E 3.20 #module
 >Proto >Proto Collection #zClass
 Pe0 PasswordService Big #zClass
@@ -47,18 +46,16 @@ Pe0 f0 outParamTable 'result.errors=in.errors;
 ' #txt
 Pe0 f0 actionDecl 'ch.ivyteam.wf.processes.PasswordServiceData out;
 ' #txt
-Pe0 f0 callSignature changePassword(String,String) #txt
+Pe0 f0 callSignature changePasswordService(String,String) #txt
 Pe0 f0 type ch.ivyteam.wf.processes.PasswordServiceData #txt
 Pe0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>changePassword(String,String)</name>
-        <nameStyle>29,5,7
-</nameStyle>
+        <name>changePasswordService(String,String)</name>
     </language>
 </elementInfo>
 ' #txt
-Pe0 f0 129 57 30 30 -86 17 #rect
+Pe0 f0 129 57 30 30 -106 17 #rect
 Pe0 f0 @|StartSubIcon #fIcon
 Pe0 f1 type ch.ivyteam.wf.processes.PasswordServiceData #txt
 Pe0 f1 465 745 30 30 0 15 #rect
