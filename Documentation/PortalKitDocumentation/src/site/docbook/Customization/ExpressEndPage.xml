@@ -21,7 +21,7 @@
 					</mediaobject>
 				</listitem>
 				<listitem>
-					<para>Create a callable sub process in your project with the <code>handleEndPage()</code> signature. 
+					<para>Create a callable sub process in your project with the <code>handleEndPage()</code> signature, make sure this signature is unique in your application. 
 					It must return start link of new end page you define in step 1.</para> 
 					<mediaobject>
 						<imageobject>
