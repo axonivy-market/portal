@@ -1,0 +1,4 @@
+co: name={elapsedTime} description={} changed={2017-12-12 02:05:02 CET} changedby={mnhnam} visualorder={0} guid={160483F839587352} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1604840EC309DD15} datatype={} isdefault={false} langid={de} description={} validfrom={2017-12-12 02:04:56 CET} validto={} changed={2017-12-12 02:05:02 CET} changedby={mnhnam} properties={} id={}
+val: guid={1604840EDD2413B9} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-12-12 02:04:54 CET} validto={} changed={2017-12-12 02:05:02 CET} changedby={mnhnam} properties={} id={}
+val: guid={160483F83964C9DC} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-12 02:03:30 CET} validto={} changed={2017-12-12 02:03:30 CET} changedby={mnhnam} properties={} id={}

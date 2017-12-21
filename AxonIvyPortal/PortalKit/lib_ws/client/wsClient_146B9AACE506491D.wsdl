@@ -1,6 +1,10 @@
 <?xml version="1.0" ?><wsdl:definitions name="CaseServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:types>
 <xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="analyzeCaseStateStatistic" type="tns:analyzeCaseStateStatistic"></xs:element>
+<xs:element name="analyzeCaseStateStatisticResponse" type="tns:analyzeCaseStateStatisticResponse"></xs:element>
+<xs:element name="analyzeElapsedTimeByCaseCategory" type="tns:analyzeElapsedTimeByCaseCategory"></xs:element>
+<xs:element name="analyzeElapsedTimeByCaseCategoryResponse" type="tns:analyzeElapsedTimeByCaseCategoryResponse"></xs:element>
 <xs:element name="countCasesByCriteria" type="tns:countCasesByCriteria"></xs:element>
 <xs:element name="countCasesByCriteriaResponse" type="tns:countCasesByCriteriaResponse"></xs:element>
 <xs:element name="createNote" type="tns:createNote"></xs:element>
@@ -10,6 +14,8 @@
 <xs:element name="downloadDocument" type="tns:downloadDocument"></xs:element>
 <xs:element name="downloadDocumentResponse" type="tns:downloadDocumentResponse"></xs:element>
 <xs:element name="findCase" type="tns:findCase"></xs:element>
+<xs:element name="findCaseCategoriesByCriteria" type="tns:findCaseCategoriesByCriteria"></xs:element>
+<xs:element name="findCaseCategoriesByCriteriaResponse" type="tns:findCaseCategoriesByCriteriaResponse"></xs:element>
 <xs:element name="findCaseResponse" type="tns:findCaseResponse"></xs:element>
 <xs:element name="findCasesByCriteria" type="tns:findCasesByCriteria"></xs:element>
 <xs:element name="findCasesByCriteriaResponse" type="tns:findCasesByCriteriaResponse"></xs:element>
@@ -140,6 +146,45 @@
       <xs:element minOccurs="0" name="note" type="tns:ivyNote"></xs:element>
     </xs:sequence>
   </xs:complexType>
+<xs:complexType name="analyzeCaseStateStatistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="caseSearchCriteria">
+    <xs:sequence>
+      <xs:element name="businessCase" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="businessCaseId" type="xs:long"></xs:element>
+      <xs:element name="ignoreInvolvedUser" type="xs:boolean"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="involvedApplications" nillable="true" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
+      <xs:element name="technicalCase" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzeCaseStateStatisticResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:analyzeCaseStateStatisticResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzeCaseStateStatisticResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseStateStatistic" type="tns:caseStateStatistic"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="caseStateStatistic">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="created" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="done" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="failed" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="running" type="xs:long"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
 <xs:complexType name="findCase">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
@@ -218,6 +263,22 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+<xs:complexType name="countCasesByCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="countCasesByCriteriaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:countCasesByCriteriaResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="countCasesByCriteriaResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseCount" type="xs:long"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
 <xs:complexType name="getAddtionalProperties">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
@@ -231,33 +292,6 @@
 <xs:complexType name="getAddtionalPropertiesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="addtionalProperties" nillable="true" type="tns:ivyAdditionalProperty"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="countCasesByCriteria">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="caseSearchCriteria">
-    <xs:sequence>
-      <xs:element name="businessCase" type="xs:boolean"></xs:element>
-      <xs:element minOccurs="0" name="businessCaseId" type="xs:long"></xs:element>
-      <xs:element name="ignoreInvolvedUser" type="xs:boolean"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="involvedApplications" nillable="true" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
-      <xs:element name="technicalCase" type="xs:boolean"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="countCasesByCriteriaResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="result" type="tns:countCasesByCriteriaResult"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="countCasesByCriteriaResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="caseCount" type="xs:long"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -277,6 +311,22 @@
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyCases" nillable="true" type="tns:ivyCase"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCaseCategoriesByCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCaseCategoriesByCriteriaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findCaseCategoriesByCriteriaResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findCaseCategoriesByCriteriaResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="uploadDocument">
@@ -372,6 +422,31 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
+<xs:complexType name="analyzeElapsedTimeByCaseCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzeElapsedTimeByCaseCategoryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:analyzeElapsedTimeByCaseCategoryResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analyzeElapsedTimeByCaseCategoryResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="elapsedTimeStatistic" type="tns:elapsedTimeStatistic"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="elapsedTimeStatistic">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="result" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
 <xs:complexType name="saveCase">
     <xs:sequence>
       <xs:element minOccurs="0" name="ivyCase" type="tns:ivyCase"></xs:element>
@@ -406,6 +481,10 @@
     <wsdl:part element="tns:findNotes" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="analyzeCaseStateStatistic">
+    <wsdl:part element="tns:analyzeCaseStateStatistic" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="findCase">
     <wsdl:part element="tns:findCase" name="parameters">
     </wsdl:part>
@@ -422,12 +501,20 @@
     <wsdl:part element="tns:getAddtionalPropertiesResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="countCasesByCriteria">
+    <wsdl:part element="tns:countCasesByCriteria" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getAddtionalProperties">
     <wsdl:part element="tns:getAddtionalProperties" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="countCasesByCriteria">
-    <wsdl:part element="tns:countCasesByCriteria" name="parameters">
+  <wsdl:message name="analyzeElapsedTimeByCaseCategoryResponse">
+    <wsdl:part element="tns:analyzeElapsedTimeByCaseCategoryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCaseCategoriesByCriteria">
+    <wsdl:part element="tns:findCaseCategoriesByCriteria" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="uploadDocument">
@@ -442,6 +529,10 @@
     <wsdl:part element="tns:removeDocument" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="analyzeCaseStateStatisticResponse">
+    <wsdl:part element="tns:analyzeCaseStateStatisticResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="setAdditionalPropertiesResponse">
     <wsdl:part element="tns:setAdditionalPropertiesResponse" name="parameters">
     </wsdl:part>
@@ -452,6 +543,10 @@
   </wsdl:message>
   <wsdl:message name="downloadDocument">
     <wsdl:part element="tns:downloadDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="analyzeElapsedTimeByCaseCategory">
+    <wsdl:part element="tns:analyzeElapsedTimeByCaseCategory" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="saveCaseResponse">
@@ -502,6 +597,10 @@
     <wsdl:part element="tns:destroyCase" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="findCaseCategoriesByCriteriaResponse">
+    <wsdl:part element="tns:findCaseCategoriesByCriteriaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="CaseService">
     <wsdl:operation name="setAdditionalProperties">
       <wsdl:input message="tns:setAdditionalProperties" name="setAdditionalProperties">
@@ -527,18 +626,18 @@
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="findCase">
-      <wsdl:input message="tns:findCase" name="findCase">
+    <wsdl:operation name="analyzeCaseStateStatistic">
+      <wsdl:input message="tns:analyzeCaseStateStatistic" name="analyzeCaseStateStatistic">
     </wsdl:input>
-      <wsdl:output message="tns:findCaseResponse" name="findCaseResponse">
+      <wsdl:output message="tns:analyzeCaseStateStatisticResponse" name="analyzeCaseStateStatisticResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getAddtionalProperties">
-      <wsdl:input message="tns:getAddtionalProperties" name="getAddtionalProperties">
+    <wsdl:operation name="findCase">
+      <wsdl:input message="tns:findCase" name="findCase">
     </wsdl:input>
-      <wsdl:output message="tns:getAddtionalPropertiesResponse" name="getAddtionalPropertiesResponse">
+      <wsdl:output message="tns:findCaseResponse" name="findCaseResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -551,10 +650,26 @@
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getAddtionalProperties">
+      <wsdl:input message="tns:getAddtionalProperties" name="getAddtionalProperties">
+    </wsdl:input>
+      <wsdl:output message="tns:getAddtionalPropertiesResponse" name="getAddtionalPropertiesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="findCasesByCriteria">
       <wsdl:input message="tns:findCasesByCriteria" name="findCasesByCriteria">
     </wsdl:input>
       <wsdl:output message="tns:findCasesByCriteriaResponse" name="findCasesByCriteriaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCaseCategoriesByCriteria">
+      <wsdl:input message="tns:findCaseCategoriesByCriteria" name="findCaseCategoriesByCriteria">
+    </wsdl:input>
+      <wsdl:output message="tns:findCaseCategoriesByCriteriaResponse" name="findCaseCategoriesByCriteriaResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -595,6 +710,14 @@
       <wsdl:input message="tns:destroyCase" name="destroyCase">
     </wsdl:input>
       <wsdl:output message="tns:destroyCaseResponse" name="destroyCaseResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="analyzeElapsedTimeByCaseCategory">
+      <wsdl:input message="tns:analyzeElapsedTimeByCaseCategory" name="analyzeElapsedTimeByCaseCategory">
+    </wsdl:input>
+      <wsdl:output message="tns:analyzeElapsedTimeByCaseCategoryResponse" name="analyzeElapsedTimeByCaseCategoryResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -646,24 +769,24 @@
         <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="findCase">
+    <wsdl:operation name="analyzeCaseStateStatistic">
       <soap:operation soapAction="" style="document"></soap:operation>
-      <wsdl:input name="findCase">
+      <wsdl:input name="analyzeCaseStateStatistic">
         <soap:body use="literal"></soap:body>
       </wsdl:input>
-      <wsdl:output name="findCaseResponse">
+      <wsdl:output name="analyzeCaseStateStatisticResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
         <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getAddtionalProperties">
+    <wsdl:operation name="findCase">
       <soap:operation soapAction="" style="document"></soap:operation>
-      <wsdl:input name="getAddtionalProperties">
+      <wsdl:input name="findCase">
         <soap:body use="literal"></soap:body>
       </wsdl:input>
-      <wsdl:output name="getAddtionalPropertiesResponse">
+      <wsdl:output name="findCaseResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
@@ -682,12 +805,36 @@
         <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getAddtionalProperties">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAddtionalProperties">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAddtionalPropertiesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="findCasesByCriteria">
       <soap:operation soapAction="" style="document"></soap:operation>
       <wsdl:input name="findCasesByCriteria">
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="findCasesByCriteriaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCaseCategoriesByCriteria">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findCaseCategoriesByCriteria">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findCaseCategoriesByCriteriaResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
@@ -754,6 +901,18 @@
         <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="analyzeElapsedTimeByCaseCategory">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="analyzeElapsedTimeByCaseCategory">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="analyzeElapsedTimeByCaseCategoryResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="saveCase">
       <soap:operation soapAction="" style="document"></soap:operation>
       <wsdl:input name="saveCase">
@@ -769,7 +928,7 @@
   </wsdl:binding>
   <wsdl:service name="CaseServiceService">
     <wsdl:port binding="tns:CaseServiceServiceSoapBinding" name="CaseServicePort">
-      <soap:address location="http://localhost:8081/ivy/ws/designer/portalConnector/137A1AD8C8C617F9"></soap:address>
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD8C8C617F9"></soap:address>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

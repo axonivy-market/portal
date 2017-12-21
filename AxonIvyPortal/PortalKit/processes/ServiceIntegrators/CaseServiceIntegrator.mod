@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jul 12 16:39:52 ICT 2016]
-14E8704ADB1138CA 3.18 #module
+14E8704ADB1138CA 3.20 #module
 >Proto >Proto Collection #zClass
 Ce0 CaseServiceIntegrator Big #zClass
 Ce0 B #cInfo
@@ -191,6 +190,45 @@ Ce0 @PushWFArc f173 '' #zField
 Ce0 @WSElement f174 '' #zField
 Ce0 @PushWFArc f175 '' #zField
 Ce0 @PushWFArc f178 '' #zField
+Ce0 @WSElement f180 '' #zField
+Ce0 @WSElement f181 '' #zField
+Ce0 @StartSub f182 '' #zField
+Ce0 @WSElement f183 '' #zField
+Ce0 @EndSub f184 '' #zField
+Ce0 @Alternative f185 '' #zField
+Ce0 @PushWFArc f186 '' #zField
+Ce0 @PushWFArc f187 '' #zField
+Ce0 @PushWFArc f188 '' #zField
+Ce0 @PushWFArc f189 '' #zField
+Ce0 @PushWFArc f190 '' #zField
+Ce0 @PushWFArc f191 '' #zField
+Ce0 @PushWFArc f192 '' #zField
+Ce0 @WSElement f193 '' #zField
+Ce0 @StartSub f194 '' #zField
+Ce0 @WSElement f195 '' #zField
+Ce0 @Alternative f196 '' #zField
+Ce0 @WSElement f197 '' #zField
+Ce0 @EndSub f198 '' #zField
+Ce0 @PushWFArc f200 '' #zField
+Ce0 @PushWFArc f201 '' #zField
+Ce0 @PushWFArc f202 '' #zField
+Ce0 @PushWFArc f203 '' #zField
+Ce0 @PushWFArc f204 '' #zField
+Ce0 @PushWFArc f205 '' #zField
+Ce0 @PushWFArc f199 '' #zField
+Ce0 @WSElement f206 '' #zField
+Ce0 @WSElement f207 '' #zField
+Ce0 @EndSub f208 '' #zField
+Ce0 @Alternative f209 '' #zField
+Ce0 @StartSub f210 '' #zField
+Ce0 @WSElement f211 '' #zField
+Ce0 @PushWFArc f212 '' #zField
+Ce0 @PushWFArc f213 '' #zField
+Ce0 @PushWFArc f214 '' #zField
+Ce0 @PushWFArc f215 '' #zField
+Ce0 @PushWFArc f216 '' #zField
+Ce0 @PushWFArc f217 '' #zField
+Ce0 @PushWFArc f218 '' #zField
 >Proto Ce0 Ce0 CaseServiceIntegrator #zField
 Ce0 f10 .resExport export #txt
 Ce0 f10 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
@@ -209,13 +247,13 @@ Ce0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f10 83 1643 26 26 14 0 #rect
+Ce0 f10 83 2035 26 26 14 0 #rect
 Ce0 f10 @|ExceptionIcon #fIcon
 Ce0 f11 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
-Ce0 f11 83 1771 26 26 14 0 #rect
+Ce0 f11 83 2163 26 26 14 0 #rect
 Ce0 f11 @|EndSubIcon #fIcon
 Ce0 f12 expr out #txt
-Ce0 f12 96 1669 96 1771 #arcP
+Ce0 f12 96 2061 96 2163 #arcP
 Ce0 f4 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f4 243 755 26 26 14 0 #rect
 Ce0 f4 @|EndSubIcon #fIcon
@@ -329,13 +367,13 @@ Ce0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f23 275 1643 26 26 14 0 #rect
+Ce0 f23 275 2035 26 26 14 0 #rect
 Ce0 f23 @|ExceptionIcon #fIcon
 Ce0 f24 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
-Ce0 f24 275 1771 26 26 14 0 #rect
+Ce0 f24 275 2163 26 26 14 0 #rect
 Ce0 f24 @|EndSubIcon #fIcon
 Ce0 f25 expr out #txt
-Ce0 f25 288 1669 288 1771 #arcP
+Ce0 f25 288 2061 288 2163 #arcP
 Ce0 f26 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f26 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
 ' #txt
@@ -521,13 +559,13 @@ Ce0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f36 563 1643 26 26 14 0 #rect
+Ce0 f36 563 2035 26 26 14 0 #rect
 Ce0 f36 @|ExceptionIcon #fIcon
 Ce0 f37 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
-Ce0 f37 563 1771 26 26 14 0 #rect
+Ce0 f37 563 2163 26 26 14 0 #rect
 Ce0 f37 @|EndSubIcon #fIcon
 Ce0 f38 expr out #txt
-Ce0 f38 576 1669 576 1771 #arcP
+Ce0 f38 576 2061 576 2163 #arcP
 Ce0 f39 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f39 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
 ' #txt
@@ -2556,6 +2594,519 @@ Ce0 f178 expr out #txt
 Ce0 f178 2520 268 2373 352 #arcP
 Ce0 f178 1 2520 352 #addKink
 Ce0 f178 1 0.1455946056338783 0 0 #arcLabel
+Ce0 f180 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f180 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f180 actionTable 'out=in;
+out.caseStateStatistic=wsResponse.analyzeCaseStateStatisticResponse.result.caseStateStatistic;
+out.errors=wsResponse.analyzeCaseStateStatisticResponse.result.errors;
+' #txt
+Ce0 f180 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f180 timeout 0 #txt
+Ce0 f180 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=analyzeCaseStateStatistic
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeCaseStateStatistic.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f180 returningObjectList '[wsResponse]' #txt
+Ce0 f180 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default Settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f180 401 1825 36 24 21 -2 #rect
+Ce0 f180 @|WebServiceIcon #fIcon
+Ce0 f181 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f181 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f181 actionTable 'out=in;
+out.caseStateStatistic=wsResponse.analyzeCaseStateStatisticResponse.result.caseStateStatistic;
+out.errors=wsResponse.analyzeCaseStateStatisticResponse.result.errors;
+' #txt
+Ce0 f181 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f181 timeout 0 #txt
+Ce0 f181 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=analyzeCaseStateStatistic
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeCaseStateStatistic.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f181 returningObjectList '[wsResponse]' #txt
+Ce0 f181 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f181 81 1825 36 24 21 -2 #rect
+Ce0 f181 @|WebServiceIcon #fIcon
+Ce0 f182 inParamDecl '<ch.ivy.ws.addon.CaseSearchCriteria caseSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Ce0 f182 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+out.endpoint=param.endpoint;
+out.server=param.server;
+' #txt
+Ce0 f182 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,ch.ivy.ws.addon.CaseStateStatistic caseStateStatistic> result;
+' #txt
+Ce0 f182 outParamTable 'result.errors=in.errors;
+result.caseStateStatistic=in.caseStateStatistic;
+' #txt
+Ce0 f182 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f182 callSignature analyzeCaseStateStatistic(ch.ivy.ws.addon.CaseSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Ce0 f182 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f182 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeCaseStateStatistic</name>
+        <nameStyle>25,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f182 246 1632 26 26 13 -30 #rect
+Ce0 f182 @|StartSubIcon #fIcon
+Ce0 f183 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f183 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f183 actionTable 'out=in;
+out.caseStateStatistic=wsResponse.analyzeCaseStateStatisticResponse.result.caseStateStatistic;
+out.errors=wsResponse.analyzeCaseStateStatisticResponse.result.errors;
+' #txt
+Ce0 f183 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f183 timeout 0 #txt
+Ce0 f183 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=analyzeCaseStateStatistic
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeCaseStateStatistic.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f183 returningObjectList '[wsResponse]' #txt
+Ce0 f183 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f183 241 1825 36 24 21 -2 #rect
+Ce0 f183 @|WebServiceIcon #fIcon
+Ce0 f184 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f184 246 1920 26 26 14 0 #rect
+Ce0 f184 @|EndSubIcon #fIcon
+Ce0 f185 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f185 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f185 245 1727 28 28 14 -21 #rect
+Ce0 f185 @|AlternativeIcon #fIcon
+Ce0 f186 expr in #txt
+Ce0 f186 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Ce0 f186 245 1741 99 1825 #arcP
+Ce0 f186 1 99 1741 #addKink
+Ce0 f186 0 0.8582831105414763 0 0 #arcLabel
+Ce0 f187 expr out #txt
+Ce0 f187 99 1849 246 1933 #arcP
+Ce0 f187 1 99 1933 #addKink
+Ce0 f187 1 0.20679742620065877 0 0 #arcLabel
+Ce0 f188 expr out #txt
+Ce0 f188 259 1658 259 1727 #arcP
+Ce0 f189 expr in #txt
+Ce0 f189 273 1741 419 1825 #arcP
+Ce0 f189 1 419 1741 #addKink
+Ce0 f189 0 0.7875410210393261 0 0 #arcLabel
+Ce0 f190 expr in #txt
+Ce0 f190 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Ce0 f190 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f190 259 1755 259 1825 #arcP
+Ce0 f190 0 0.6216297675645117 0 0 #arcLabel
+Ce0 f191 expr out #txt
+Ce0 f191 419 1849 272 1933 #arcP
+Ce0 f191 1 419 1933 #addKink
+Ce0 f191 1 0.3062426517680915 0 0 #arcLabel
+Ce0 f192 expr out #txt
+Ce0 f192 259 1849 259 1920 #arcP
+Ce0 f193 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f193 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f193 actionTable 'out=in;
+out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.elapsedTimeStatistic;
+out.errors=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.errors;
+' #txt
+Ce0 f193 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f193 timeout 0 #txt
+Ce0 f193 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=analyzeElapsedTimeByCaseCategory
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeElapsedTimeByCaseCategory.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f193 returningObjectList '[wsResponse]' #txt
+Ce0 f193 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f193 564 1827 36 24 21 -2 #rect
+Ce0 f193 @|WebServiceIcon #fIcon
+Ce0 f194 inParamDecl '<ch.ivy.ws.addon.CaseSearchCriteria caseSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Ce0 f194 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+out.endpoint=param.endpoint;
+out.server=param.server;
+' #txt
+Ce0 f194 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,ch.ivy.ws.addon.ElapsedTimeStatistic elapsedTimeStatistic> result;
+' #txt
+Ce0 f194 outParamTable 'result.errors=in.errors;
+result.elapsedTimeStatistic=in.elapsedTimeStatistic;
+' #txt
+Ce0 f194 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f194 callSignature analyzeElapsedTimeStatistic(ch.ivy.ws.addon.CaseSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Ce0 f194 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f194 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeElapsedTimeStatistic</name>
+        <nameStyle>27,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f194 729 1634 26 26 13 -30 #rect
+Ce0 f194 @|StartSubIcon #fIcon
+Ce0 f195 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f195 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f195 actionTable 'out=in;
+out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.elapsedTimeStatistic;
+out.errors=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.errors;
+' #txt
+Ce0 f195 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f195 timeout 0 #txt
+Ce0 f195 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=analyzeElapsedTimeByCaseCategory
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeElapsedTimeByCaseCategory.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f195 returningObjectList '[wsResponse]' #txt
+Ce0 f195 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default Settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f195 884 1827 36 24 21 -2 #rect
+Ce0 f195 @|WebServiceIcon #fIcon
+Ce0 f196 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f196 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f196 728 1729 28 28 14 -21 #rect
+Ce0 f196 @|AlternativeIcon #fIcon
+Ce0 f197 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f197 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f197 actionTable 'out=in;
+out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.elapsedTimeStatistic;
+out.errors=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.errors;
+' #txt
+Ce0 f197 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f197 timeout 0 #txt
+Ce0 f197 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=analyzeElapsedTimeByCaseCategory
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeElapsedTimeByCaseCategory.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f197 returningObjectList '[wsResponse]' #txt
+Ce0 f197 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f197 724 1827 36 24 21 -2 #rect
+Ce0 f197 @|WebServiceIcon #fIcon
+Ce0 f198 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f198 729 1922 26 26 14 0 #rect
+Ce0 f198 @|EndSubIcon #fIcon
+Ce0 f200 expr out #txt
+Ce0 f200 582 1851 729 1935 #arcP
+Ce0 f200 1 582 1935 #addKink
+Ce0 f200 1 0.20679742620065877 0 0 #arcLabel
+Ce0 f201 expr out #txt
+Ce0 f201 742 1660 742 1729 #arcP
+Ce0 f202 expr in #txt
+Ce0 f202 756 1743 902 1827 #arcP
+Ce0 f202 1 902 1743 #addKink
+Ce0 f202 0 0.7875410210393261 0 0 #arcLabel
+Ce0 f203 expr out #txt
+Ce0 f203 902 1851 755 1935 #arcP
+Ce0 f203 1 902 1935 #addKink
+Ce0 f203 1 0.3062426517680915 0 0 #arcLabel
+Ce0 f204 expr in #txt
+Ce0 f204 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Ce0 f204 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f204 742 1757 742 1827 #arcP
+Ce0 f204 0 0.6216297675645117 0 0 #arcLabel
+Ce0 f205 expr out #txt
+Ce0 f205 742 1851 742 1922 #arcP
+Ce0 f199 expr in #txt
+Ce0 f199 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Ce0 f199 728 1743 582 1827 #arcP
+Ce0 f199 1 582 1743 #addKink
+Ce0 f199 0 0.8582831105414763 0 0 #arcLabel
+Ce0 f206 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f206 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f206 actionTable 'out=in;
+out.categories=wsResponse.findCaseCategoriesByCriteriaResponse.result.categories;
+out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
+' #txt
+Ce0 f206 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f206 timeout 0 #txt
+Ce0 f206 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=findCaseCategoriesByCriteria
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f206 returningObjectList '[wsResponse]' #txt
+Ce0 f206 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f206 2705 242 36 24 21 -2 #rect
+Ce0 f206 @|WebServiceIcon #fIcon
+Ce0 f207 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f207 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f207 actionTable 'out=in;
+out.categories=wsResponse.findCaseCategoriesByCriteriaResponse.result.categories;
+out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
+' #txt
+Ce0 f207 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f207 timeout 0 #txt
+Ce0 f207 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=findCaseCategoriesByCriteria
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f207 returningObjectList '[wsResponse]' #txt
+Ce0 f207 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default Settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f207 3025 242 36 24 21 -2 #rect
+Ce0 f207 @|WebServiceIcon #fIcon
+Ce0 f208 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f208 2870 337 26 26 14 0 #rect
+Ce0 f208 @|EndSubIcon #fIcon
+Ce0 f209 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f209 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f209 2869 144 28 28 14 -21 #rect
+Ce0 f209 @|AlternativeIcon #fIcon
+Ce0 f210 inParamDecl '<ch.ivy.ws.addon.CaseSearchCriteria caseSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Ce0 f210 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+out.endpoint=param.endpoint;
+out.server=param.server;
+' #txt
+Ce0 f210 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<java.lang.String> categories> result;
+' #txt
+Ce0 f210 outParamTable 'result.errors=in.errors;
+result.categories=in.categories;
+' #txt
+Ce0 f210 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f210 callSignature findCaseCategoriesByCriteria(ch.ivy.ws.addon.CaseSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Ce0 f210 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f210 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findCaseCategoriesByCriteria(Server,String,CaseSearchCriteria)</name>
+        <nameStyle>62,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f210 2870 49 26 26 17 6 #rect
+Ce0 f210 @|StartSubIcon #fIcon
+Ce0 f211 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f211 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f211 actionTable 'out=in;
+out.categories=wsResponse.findCaseCategoriesByCriteriaResponse.result.categories;
+out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
+' #txt
+Ce0 f211 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f211 timeout 0 #txt
+Ce0 f211 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=CaseServicePort
+KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=findCaseCategoriesByCriteria
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+Ce0 f211 returningObjectList '[wsResponse]' #txt
+Ce0 f211 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f211 2865 242 36 24 21 -2 #rect
+Ce0 f211 @|WebServiceIcon #fIcon
+Ce0 f212 expr in #txt
+Ce0 f212 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Ce0 f212 2869 158 2723 242 #arcP
+Ce0 f212 1 2723 158 #addKink
+Ce0 f212 0 0.8582831105414763 0 0 #arcLabel
+Ce0 f213 expr in #txt
+Ce0 f213 2897 158 3043 242 #arcP
+Ce0 f213 1 3043 158 #addKink
+Ce0 f213 0 0.7875410210393261 0 0 #arcLabel
+Ce0 f214 expr out #txt
+Ce0 f214 2883 75 2883 144 #arcP
+Ce0 f215 expr out #txt
+Ce0 f215 3043 266 2896 350 #arcP
+Ce0 f215 1 3043 350 #addKink
+Ce0 f215 1 0.3062426517680915 0 0 #arcLabel
+Ce0 f216 expr out #txt
+Ce0 f216 2723 266 2870 350 #arcP
+Ce0 f216 1 2723 350 #addKink
+Ce0 f216 1 0.20679742620065877 0 0 #arcLabel
+Ce0 f217 expr out #txt
+Ce0 f217 2883 266 2883 337 #arcP
+Ce0 f218 expr in #txt
+Ce0 f218 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Ce0 f218 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f218 2883 172 2883 242 #arcP
+Ce0 f218 0 0.6216297675645117 0 0 #arcLabel
 >Proto Ce0 .type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2565,6 +3116,7 @@ Ce0 f178 1 0.1455946056338783 0 0 #arcLabel
         <swimlaneLabel>Additional Property</swimlaneLabel>
         <swimlaneLabel>Documents</swimlaneLabel>
         <swimlaneLabel>Note</swimlaneLabel>
+        <swimlaneLabel>Statistic</swimlaneLabel>
         <swimlaneLabel>Exception Handler</swimlaneLabel>
         <swimlaneLabel></swimlaneLabel>
     </language>
@@ -2573,17 +3125,21 @@ Ce0 f178 1 0.1455946056338783 0 0 #arcLabel
     <swimlaneSize>384</swimlaneSize>
     <swimlaneSize>384</swimlaneSize>
     <swimlaneSize>384</swimlaneSize>
+    <swimlaneSize>384</swimlaneSize>
     <swimlaneSize>232</swimlaneSize>
     <swimlaneColor gradient="true">-13369345</swimlaneColor>
     <swimlaneColor gradient="true">-39220</swimlaneColor>
     <swimlaneColor gradient="true">-10027162</swimlaneColor>
     <swimlaneColor gradient="true">-3342541</swimlaneColor>
+    <swimlaneColor gradient="false">-6697729</swimlaneColor>
     <swimlaneColor gradient="true">-39322</swimlaneColor>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
@@ -2783,3 +3339,45 @@ Ce0 f167 out f175 tail #connect
 Ce0 f175 head f174 mainIn #connect
 Ce0 f174 mainOut f178 tail #connect
 Ce0 f178 head f170 mainIn #connect
+Ce0 f185 out f190 tail #connect
+Ce0 f190 head f183 mainIn #connect
+Ce0 f183 mainOut f192 tail #connect
+Ce0 f192 head f184 mainIn #connect
+Ce0 f180 mainOut f191 tail #connect
+Ce0 f191 head f184 mainIn #connect
+Ce0 f182 mainOut f188 tail #connect
+Ce0 f188 head f185 in #connect
+Ce0 f185 out f186 tail #connect
+Ce0 f186 head f181 mainIn #connect
+Ce0 f181 mainOut f187 tail #connect
+Ce0 f187 head f184 mainIn #connect
+Ce0 f185 out f189 tail #connect
+Ce0 f189 head f180 mainIn #connect
+Ce0 f196 out f204 tail #connect
+Ce0 f204 head f197 mainIn #connect
+Ce0 f197 mainOut f205 tail #connect
+Ce0 f205 head f198 mainIn #connect
+Ce0 f195 mainOut f203 tail #connect
+Ce0 f203 head f198 mainIn #connect
+Ce0 f194 mainOut f201 tail #connect
+Ce0 f201 head f196 in #connect
+Ce0 f196 out f199 tail #connect
+Ce0 f199 head f193 mainIn #connect
+Ce0 f193 mainOut f200 tail #connect
+Ce0 f200 head f198 mainIn #connect
+Ce0 f196 out f202 tail #connect
+Ce0 f202 head f195 mainIn #connect
+Ce0 f209 out f218 tail #connect
+Ce0 f218 head f211 mainIn #connect
+Ce0 f211 mainOut f217 tail #connect
+Ce0 f217 head f208 mainIn #connect
+Ce0 f207 mainOut f215 tail #connect
+Ce0 f215 head f208 mainIn #connect
+Ce0 f210 mainOut f214 tail #connect
+Ce0 f214 head f209 in #connect
+Ce0 f209 out f212 tail #connect
+Ce0 f212 head f206 mainIn #connect
+Ce0 f206 mainOut f216 tail #connect
+Ce0 f216 head f208 mainIn #connect
+Ce0 f209 out f213 tail #connect
+Ce0 f213 head f207 mainIn #connect

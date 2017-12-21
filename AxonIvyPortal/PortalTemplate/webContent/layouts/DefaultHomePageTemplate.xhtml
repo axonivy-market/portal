@@ -54,7 +54,7 @@
             rendered="#{displayStatisticWidget}">
             <h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">
               <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
-                priorityStatistic="#{statistic.priorityStatistic}" expiryStatistic="#{statistic.expiryStatistic}">
+                statisticChartList="#{statisticChartList}">
                 <f:facet name="headerToolbar">
                   <ic:ch.ivy.addon.portal.generic.StatisticNavigator id="statistic-link"
                     label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/showAllCharts')}" />

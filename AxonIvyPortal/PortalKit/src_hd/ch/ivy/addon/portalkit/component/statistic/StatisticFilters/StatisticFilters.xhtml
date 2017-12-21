@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="filter" type="ch.ivy.addon.portalkit.statistics.StatisticFilter" required="true" />
+  <cc:attribute name="showCaseStateFilter" type="Boolean" default="true" />
+  <cc:attribute name="updateListener" method-signature="void handleEvent(javax.faces.event.ActionEvent)" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="filter" value="#{cc.attrs.filter}" />
+
+  <p:fieldset legend="Filter" styleClass="statistic-filter-main-container">
+    <h:panelGrid columns="1" cellpadding="10">
+      <p:row>
+        <p:column>
+          <p:outputLabel styleClass="label" value="Created period" />
+        </p:column>
+        <p:column>
+          <h:panelGrid columns="2" columnClasses="align-bottom, align-bottom">
+
+            <p:outputLabel styleClass="item-label" for="filter-from" value="From" />
+            <p:calendar id="filter-from" value="#{filter.createdDateFrom}"
+              pattern="#{dateTimePatternBean.configuredPattern}"
+              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
+              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+            </p:calendar>
+
+            <p:outputLabel for="filter-to" value="To " />
+            <p:calendar id="filter-to" value="#{filter.createdDateTo}"
+              pattern="#{dateTimePatternBean.configuredPattern}"
+              converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
+              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+            </p:calendar>
+
+          </h:panelGrid>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column>
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel')}"
+            for="categories" styleClass="label" />
+        </p:column>
+        <p:column>
+          <p:scrollPanel mode="native" rendered="#{not empty filter.caseCategories}" styleClass="statistic-filter-container scrollable">
+            <p:selectManyCheckbox id="categories"
+              value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
+              <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category}"
+                itemLabel="#{category == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category}" />
+              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+            </p:selectManyCheckbox>
+          </p:scrollPanel>
+          <h:outputText value="There is no case category" styleClass="no-data-message" rendered="#{empty filter.caseCategories}" />
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column>
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/rolesLabel')}"
+            styleClass="label" for="roles" />
+        </p:column>
+        <p:column>
+          <p:scrollPanel mode="native" styleClass="statistic-filter-container scrollable"
+            rendered="#{not empty filter.roles}">
+            <p:selectManyCheckbox id="roles" value="#{filter.selectedRoles}"
+              layout="grid" columns="1">
+              <f:selectItems value="#{filter.roles}" var="role"
+                itemLabel="#{role.displayName}" itemValue="#{role.memberName}" />
+              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+            </p:selectManyCheckbox>
+          </p:scrollPanel>
+          <h:outputText value="There is no roles" styleClass="no-data-message" rendered="#{empty filter.roles}" />
+        </p:column>
+      </p:row>
+
+      <p:row rendered="#{cc.attrs.showCaseStateFilter}">
+        <p:column>
+          <p:outputLabel for="caseStates" value="Workflow States" styleClass="label" />
+        </p:column>
+        <p:column>
+          <p:scrollPanel mode="native" styleClass="statistic-filter-container">
+            <p:selectManyCheckbox id="caseStates"
+              value="#{filter.selectedCaseStates}" layout="grid" columns="1">
+              <f:selectItems value="#{filter.caseStates}" var="state"
+                itemLabel="#{filter.getCaseStateName(state)}" itemValue="#{state}" />
+              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+            </p:selectManyCheckbox>
+          </p:scrollPanel>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column>
+          <p:outputLabel for="taskPriority" value="Task Priorities" styleClass="label" />
+        </p:column>
+        <p:column>
+          <p:scrollPanel mode="native" styleClass="statistic-filter-container">
+            <p:selectManyCheckbox id="taskPriority"
+              value="#{cc.attrs.filter.selectedTaskPriorities}" layout="grid" columns="1">
+              <f:selectItems value="#{cc.attrs.filter.taskPriorities}" var="priority"
+                itemLabel="#{filter.getPriorityName(priority)}" itemValue="#{priority}" />
+              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+            </p:selectManyCheckbox>
+          </p:scrollPanel>
+        </p:column>
+      </p:row>
+    </h:panelGrid>
+  </p:fieldset>
+</cc:implementation>
+</html>

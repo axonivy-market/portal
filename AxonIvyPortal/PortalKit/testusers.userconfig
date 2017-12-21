@@ -4,6 +4,7 @@
         <username>demo</username>
         <password>+d3m0++</password>
         <fullName>demo</fullName>
+        <role>Test Role</role>
     </user>
     <user>
         <username>portaladmin</username>

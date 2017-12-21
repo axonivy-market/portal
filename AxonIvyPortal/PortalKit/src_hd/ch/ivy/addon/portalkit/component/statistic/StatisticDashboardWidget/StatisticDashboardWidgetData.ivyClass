@@ -1,0 +1,14 @@
+StatisticDashboardWidgetData #class
+ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget #namespace
+selectedStatisticChart ch.ivy.addon.portalkit.statistics.StatisticChart #field
+selectedStatisticChart PERSISTENT #fieldModifier
+event org.primefaces.event.ItemSelectEvent #field
+event PERSISTENT #fieldModifier
+statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
+statisticChartList PERSISTENT #fieldModifier
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+taskQuery PERSISTENT #fieldModifier
+caseQuery ch.ivyteam.ivy.workflow.query.CaseQuery #field
+caseQuery PERSISTENT #fieldModifier
+hasStatistic Boolean #field
+hasStatistic PERSISTENT #fieldModifier

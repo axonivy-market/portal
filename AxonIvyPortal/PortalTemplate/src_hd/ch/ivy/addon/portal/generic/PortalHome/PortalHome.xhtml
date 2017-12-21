@@ -7,6 +7,7 @@
 <h:body>
   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
     <ui:param name="dataModel" value="#{logic.getDataModel()}" />
+    <ui:param name="statisticChartList" value="#{logic.getStatisticCharts()}" />
   </ui:composition>
 </h:body>
 </html>

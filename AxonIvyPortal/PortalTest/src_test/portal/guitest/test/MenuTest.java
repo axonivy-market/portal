@@ -5,10 +5,10 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.DashboardPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
@@ -54,7 +54,7 @@ public class MenuTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    DashboardPage dashboardPage = mainMenuPage.selectDashboard();
+    StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
     dashboardPage.closeMainMenu();
     homePage = dashboardPage.goToHomePage();
     assertFalse(homePage.isMainMenuOpen());
