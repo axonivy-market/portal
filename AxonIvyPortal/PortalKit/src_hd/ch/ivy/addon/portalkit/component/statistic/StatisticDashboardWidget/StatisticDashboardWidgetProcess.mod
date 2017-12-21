@@ -110,7 +110,9 @@ Ss0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-in.taskQuery = service.getQueryForSelectedItemOfTaskByPriorityChart(in.event, in.selectedStatisticChart);' #txt
+in.taskQuery = service.getQueryForSelectedItemOfTaskByPriorityChart(in.event, in.selectedStatisticChart);
+
+ivy.log.debug("TASK QUERY WHEN DRILL DOWN CHART: " + in.taskQuery);' #txt
 Ss0 f8 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
