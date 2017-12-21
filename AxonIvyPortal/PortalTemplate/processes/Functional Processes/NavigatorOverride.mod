@@ -34,6 +34,28 @@ Nr0 @PushWFArc f15 '' #zField
 Nr0 @CallSub f18 '' #zField
 Nr0 @PushWFArc f19 '' #zField
 Nr0 @PushWFArc f8 '' #zField
+Nr0 @GridStep f20 '' #zField
+Nr0 @CallSub f23 '' #zField
+Nr0 @EndSub f24 '' #zField
+Nr0 @StartSub f25 '' #zField
+Nr0 @CallSub f26 '' #zField
+Nr0 @PushWFArc f27 '' #zField
+Nr0 @PushWFArc f28 '' #zField
+Nr0 @PushWFArc f29 '' #zField
+Nr0 @PushWFArc f30 '' #zField
+Nr0 @GridStep f31 '' #zField
+Nr0 @StartSub f32 '' #zField
+Nr0 @EndSub f33 '' #zField
+Nr0 @CallSub f34 '' #zField
+Nr0 @CallSub f35 '' #zField
+Nr0 @PushWFArc f36 '' #zField
+Nr0 @PushWFArc f37 '' #zField
+Nr0 @PushWFArc f38 '' #zField
+Nr0 @PushWFArc f39 '' #zField
+Nr0 @InfoButton f40 '' #zField
+Nr0 @AnnotationArc f41 '' #zField
+Nr0 @InfoButton f42 '' #zField
+Nr0 @AnnotationArc f43 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 inParamTable 'out.caseId=param.caseId;
@@ -300,6 +322,241 @@ Nr0 f19 expr out #txt
 Nr0 f19 64 109 64 170 #arcP
 Nr0 f8 expr out #txt
 Nr0 f8 64 214 64 276 #arcP
+Nr0 f20 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f20 actionTable 'out=in;
+' #txt
+Nr0 f20 actionCode 'import ch.ivy.addon.portal.generic.view.TaskView;
+import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+
+TaskLazyDataModel model = new TaskLazyDataModel();
+model.getQueryCriteria().setTaskQuery(in.taskQuery);
+in.taskView = TaskView.create().dataModel(model).showHeaderToolbar(false).createNewTaskView();' #txt
+Nr0 f20 security system #txt
+Nr0 f20 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>prepareTaskView</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f20 847 631 36 24 20 -2 #rect
+Nr0 f20 @|StepIcon #fIcon
+Nr0 f23 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f23 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
+Nr0 f23 doCall true #txt
+Nr0 f23 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
+' #txt
+Nr0 f23 requestMappingAction 'param.taskView=in.taskView;
+' #txt
+Nr0 f23 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f23 responseMappingAction 'out=in;
+' #txt
+Nr0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalTasks</name>
+        <nameStyle>15,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f23 847 703 36 24 20 -2 #rect
+Nr0 f23 @|CallSubIcon #fIcon
+Nr0 f24 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f24 852 782 26 26 14 0 #rect
+Nr0 f24 @|EndSubIcon #fIcon
+Nr0 f25 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Nr0 f25 inParamTable 'out.taskQuery=param.taskQuery;
+' #txt
+Nr0 f25 outParamDecl '<> result;
+' #txt
+Nr0 f25 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f25 callSignature viewTaskForAnalytic(ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
+Nr0 f25 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewTaskForAnalytic(TaskQuery)</name>
+        <nameStyle>30,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f25 852 462 26 26 14 0 #rect
+Nr0 f25 @|StartSubIcon #fIcon
+Nr0 f26 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f26 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
+Nr0 f26 doCall true #txt
+Nr0 f26 requestActionDecl '<> param;
+' #txt
+Nr0 f26 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f26 responseMappingAction 'out=in;
+out.taskDataModel=result.dataModel;
+' #txt
+Nr0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init data model</name>
+        <nameStyle>15,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f26 809 541 112 44 -40 -8 #rect
+Nr0 f26 @|CallSubIcon #fIcon
+Nr0 f27 expr out #txt
+Nr0 f27 865 655 865 703 #arcP
+Nr0 f28 expr out #txt
+Nr0 f28 865 727 865 782 #arcP
+Nr0 f29 expr out #txt
+Nr0 f29 865 488 865 541 #arcP
+Nr0 f30 expr out #txt
+Nr0 f30 865 585 865 631 #arcP
+Nr0 f31 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f31 actionTable 'out=in;
+' #txt
+Nr0 f31 actionCode 'import ch.ivy.addon.portal.generic.view.CaseView;
+
+in.caseDataModel.getSearchCriteria().setBusinessCase(true);
+in.caseDataModel.getSearchCriteria().setJsonQuery(in.caseQuery.asJson());
+in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).buildNewView();' #txt
+Nr0 f31 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>prepare case view</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f31 848 275 36 24 20 -2 #rect
+Nr0 f31 @|StepIcon #fIcon
+Nr0 f32 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
+Nr0 f32 inParamTable 'out.caseQuery=param.caseQuery;
+' #txt
+Nr0 f32 outParamDecl '<> result;
+' #txt
+Nr0 f32 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f32 callSignature viewCaseForAnalytic(ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
+Nr0 f32 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewCaseForAnalytic(CaseQuery)</name>
+        <nameStyle>30,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f32 853 82 26 26 14 0 #rect
+Nr0 f32 @|StartSubIcon #fIcon
+Nr0 f33 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f33 853 402 26 26 14 0 #rect
+Nr0 f33 @|EndSubIcon #fIcon
+Nr0 f34 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f34 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
+Nr0 f34 doCall true #txt
+Nr0 f34 requestActionDecl '<> param;
+' #txt
+Nr0 f34 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f34 responseMappingAction 'out=in;
+out.caseDataModel=result.caseDataModel;
+' #txt
+Nr0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init case
+data model</name>
+        <nameStyle>20,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f34 810 169 112 44 -31 -20 #rect
+Nr0 f34 @|CallSubIcon #fIcon
+Nr0 f35 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f35 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
+Nr0 f35 doCall true #txt
+Nr0 f35 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
+' #txt
+Nr0 f35 requestMappingAction 'param.view=in.caseView;
+' #txt
+Nr0 f35 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f35 responseMappingAction 'out=in;
+' #txt
+Nr0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalCases</name>
+        <nameStyle>15,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f35 848 339 36 24 20 -2 #rect
+Nr0 f35 @|CallSubIcon #fIcon
+Nr0 f36 expr out #txt
+Nr0 f36 866 213 866 275 #arcP
+Nr0 f37 expr out #txt
+Nr0 f37 866 299 866 339 #arcP
+Nr0 f38 expr out #txt
+Nr0 f38 866 108 866 169 #arcP
+Nr0 f39 expr out #txt
+Nr0 f39 866 363 866 402 #arcP
+Nr0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing case.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f40 1096 131 496 172 -238 -84 #rect
+Nr0 f40 @|IBIcon #fIcon
+Nr0 f41 1096 217 884 351 #arcP
+Nr0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing task.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f42 1059 556 496 172 -238 -84 #rect
+Nr0 f42 @|IBIcon #fIcon
+Nr0 f43 1059 642 883 715 #arcP
 >Proto Nr0 .type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -329,3 +586,23 @@ Nr0 f0 mainOut f19 tail #connect
 Nr0 f19 head f18 mainIn #connect
 Nr0 f18 mainOut f8 tail #connect
 Nr0 f8 head f7 mainIn #connect
+Nr0 f23 mainOut f28 tail #connect
+Nr0 f28 head f24 mainIn #connect
+Nr0 f20 mainOut f27 tail #connect
+Nr0 f27 head f23 mainIn #connect
+Nr0 f25 mainOut f29 tail #connect
+Nr0 f29 head f26 mainIn #connect
+Nr0 f26 mainOut f30 tail #connect
+Nr0 f30 head f20 mainIn #connect
+Nr0 f35 mainOut f39 tail #connect
+Nr0 f39 head f33 mainIn #connect
+Nr0 f31 mainOut f37 tail #connect
+Nr0 f37 head f35 mainIn #connect
+Nr0 f32 mainOut f38 tail #connect
+Nr0 f38 head f34 mainIn #connect
+Nr0 f34 mainOut f36 tail #connect
+Nr0 f36 head f31 mainIn #connect
+Nr0 f40 ao f41 tail #connect
+Nr0 f41 head f35 @CG|ai #connect
+Nr0 f42 ao f43 tail #connect
+Nr0 f43 head f23 @CG|ai #connect

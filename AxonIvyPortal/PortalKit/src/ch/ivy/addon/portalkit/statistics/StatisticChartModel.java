@@ -138,14 +138,14 @@ public class StatisticChartModel {
 
   private Optional<ChartSeries> createExpiryChartSeries() {
     ChartSeries chartSeries = new ChartSeries();
-    chartSeries.set(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/today"),
+    /*chartSeries.set(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/today"),
         expiryStatistic.getToday());
     chartSeries.set(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/tomorrow"),
         expiryStatistic.getTomorrow());
     chartSeries.set(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/in2Days"),
         expiryStatistic.getIn2Days());
     chartSeries.set(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/in3Days"),
-        expiryStatistic.getIn3Days());
+        expiryStatistic.getIn3Days());*/
 
     Optional<ChartSeries> optionalCharSeries = Optional.ofNullable(chartSeries);
     return optionalCharSeries;

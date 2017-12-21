@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Jul 19 15:11:03 ICT 2017]
 1380566F9095B9C4 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
@@ -59,23 +58,7 @@ Te0 @GridStep f45 '' #zField
 Te0 @StartWS f49 '' #zField
 Te0 @PushWFArc f52 '' #zField
 Te0 @PushWFArc f53 '' #zField
-Te0 @GridStep f54 '' #zField
 Te0 @StartWS f56 '' #zField
-Te0 @Split f0 '' #zField
-Te0 @PushWFArc f1 '' #zField
-Te0 @PushWFArc f2 '' #zField
-Te0 @Join f3 '' #zField
-Te0 @SJArc f5 '' #zField
-Te0 @PushWFArc f6 '' #zField
-Te0 @GridStep f7 '' #zField
-Te0 @PushWFArc f12 '' #zField
-Te0 @GridStep f29 '' #zField
-Te0 @PushWFArc f30 '' #zField
-Te0 @GridStep f31 '' #zField
-Te0 @PushWFArc f33 '' #zField
-Te0 @SJArc f34 '' #zField
-Te0 @SJArc f36 '' #zField
-Te0 @SJArc f57 '' #zField
 Te0 @StartWS f62 '' #zField
 Te0 @GridStep f63 '' #zField
 Te0 @PushWFArc f64 '' #zField
@@ -96,6 +79,9 @@ Te0 @GridStep f78 '' #zField
 Te0 @StartWS f79 '' #zField
 Te0 @PushWFArc f80 '' #zField
 Te0 @PushWFArc f81 '' #zField
+Te0 @GridStep f54 '' #zField
+Te0 @PushWFArc f0 '' #zField
+Te0 @PushWFArc f1 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f8 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -728,6 +714,8 @@ Te0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>analyzePriorityStatistic(String,String,List&lt;String&gt;)</name>
+        <nameStyle>52,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -740,35 +728,6 @@ Te0 f53 expr out #txt
 Te0 f53 2320 148 1526 312 #arcP
 Te0 f53 1 2320 312 #addKink
 Te0 f53 1 0.47967086156824784 0 0 #arcLabel
-Te0 f54 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
-' #txt
-Te0 f54 actionTable 'out=in;
-' #txt
-Te0 f54 actionCode 'import ch.ivy.ws.addon.types.NumberOfExpiryTasks;
-import ch.ivy.ws.addon.util.JavaDates;
-import ch.ivy.ws.addon.WsServiceFactory;
-import ch.ivy.ws.addon.WSException;
-
-try {
-	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.today());
-	in.expireToday = result.getNumberOfExpiryTasks();
-	in.errors.addAll(result.getErrors());
-}catch(WSException e){
-	in.errors.add(e);
-}' #txt
-Te0 f54 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>analyze expiry
-today</name>
-        <nameStyle>20,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f54 2462 180 36 24 20 -2 #rect
-Te0 f54 @|StepIcon #fIcon
 Te0 f56 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f56 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
@@ -788,162 +747,15 @@ Te0 f56 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>analyzeExpiryStatistic(String,String,List&lt;String&gt;)</name>
+        <name>analyzeExpiryStatistic(Date,Date,String,String,List&lt;String&gt;)</name>
+        <nameStyle>60,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Te0 f56 @C|.responsibility Everybody #txt
-Te0 f56 2659 51 26 26 13 0 #rect
+Te0 f56 2611 51 26 26 13 0 #rect
 Te0 f56 @|StartWSIcon #fIcon
-Te0 f0 actionDecl 'ch.ivy.ws.addon.TaskServiceData out1;
-ch.ivy.ws.addon.TaskServiceData out2;
-ch.ivy.ws.addon.TaskServiceData out3;
-ch.ivy.ws.addon.TaskServiceData out4;
-' #txt
-Te0 f0 actionTable 'out1=in;
-out2=in;
-out3=in;
-out4=in;
-' #txt
-Te0 f0 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f0 2658 114 28 28 14 0 #rect
-Te0 f0 @|ThreadIcon #fIcon
-Te0 f1 expr out #txt
-Te0 f1 2672 77 2672 114 #arcP
-Te0 f2 expr out1 #txt
-Te0 f2 2658 128 2480 180 #arcP
-Te0 f2 1 2480 128 #addKink
-Te0 f2 0 0.7790944249033374 0 0 #arcLabel
-Te0 f3 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
-' #txt
-Te0 f3 actionTable 'out=in1;
-out.errors=in1.errors.addAll(in2.errors).addAll(in3.errors).addAll(in4.errors);
-out.expiryStatistic.in2Days=in3.expireIn2Days;
-out.expiryStatistic.in3Days=in4.expireIn3Days;
-out.expiryStatistic.today=in1.expireToday;
-out.expiryStatistic.tomorrow=in2.expireTomorrow;
-' #txt
-Te0 f3 2658 242 28 28 14 0 #rect
-Te0 f3 @|JoinIcon #fIcon
-Te0 f5 expr out #txt
-Te0 f5 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f5 var in1 #txt
-Te0 f5 2480 204 2658 256 #arcP
-Te0 f5 1 2480 256 #addKink
-Te0 f5 1 0.1931044146498145 0 0 #arcLabel
-Te0 f6 expr out #txt
-Te0 f6 2672 270 1526 312 #arcP
-Te0 f6 1 2672 312 #addKink
-Te0 f6 1 0.4821580288870008 0 0 #arcLabel
-Te0 f7 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
-' #txt
-Te0 f7 actionTable 'out=in;
-' #txt
-Te0 f7 actionCode 'import ch.ivy.ws.addon.types.NumberOfExpiryTasks;
-import ch.ivy.ws.addon.util.JavaDates;
-import ch.ivy.ws.addon.WsServiceFactory;
-import ch.ivy.ws.addon.WSException;
-
-try {
-	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 1));
-	in.expireTomorrow = result.getNumberOfExpiryTasks();
-	in.errors = result.getErrors();
-}catch(WSException e){
-	in.errors.add(e);
-}' #txt
-Te0 f7 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>analyze expiry
-tomorrow</name>
-        <nameStyle>23,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f7 2590 180 36 24 20 -2 #rect
-Te0 f7 @|StepIcon #fIcon
-Te0 f12 expr out2 #txt
-Te0 f12 2665 135 2620 180 #arcP
-Te0 f29 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
-' #txt
-Te0 f29 actionTable 'out=in;
-' #txt
-Te0 f29 actionCode 'import ch.ivy.ws.addon.types.NumberOfExpiryTasks;
-import ch.ivy.ws.addon.util.JavaDates;
-import ch.ivy.ws.addon.WsServiceFactory;
-import ch.ivy.ws.addon.WSException;
-
-try {
-	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 2));
-	in.expireIn2Days = result.getNumberOfExpiryTasks();
-	in.errors.addAll(result.getErrors());
-}catch(WSException e){
-	in.errors.add(e);
-}' #txt
-Te0 f29 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>analyze expiry
-in 2 days</name>
-        <nameStyle>24,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f29 2734 180 36 24 20 -2 #rect
-Te0 f29 @|StepIcon #fIcon
-Te0 f30 expr out3 #txt
-Te0 f30 2680 134 2737 180 #arcP
-Te0 f31 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
-' #txt
-Te0 f31 actionTable 'out=in;
-' #txt
-Te0 f31 actionCode 'import ch.ivy.ws.addon.types.NumberOfExpiryTasks;
-import ch.ivy.ws.addon.util.JavaDates;
-import ch.ivy.ws.addon.WsServiceFactory;
-import ch.ivy.ws.addon.WSException;
-
-try {
-	NumberOfExpiryTasks result = WsServiceFactory.getTaskService().countExpiryTasksByDate(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, JavaDates.plusDays(JavaDates.today(), 3));
-	in.expireIn3Days = result.getNumberOfExpiryTasks();
-	in.errors.addAll(result.getErrors());
-}catch(WSException e){
-	in.errors.add(e);
-}' #txt
-Te0 f31 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>analyze expiry
-in 3 days</name>
-        <nameStyle>24,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f31 2878 180 36 24 20 -2 #rect
-Te0 f31 @|StepIcon #fIcon
-Te0 f33 expr out4 #txt
-Te0 f33 2686 128 2896 180 #arcP
-Te0 f33 1 2896 128 #addKink
-Te0 f33 0 0.6560480922534767 0 0 #arcLabel
-Te0 f34 expr out #txt
-Te0 f34 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f34 var in2 #txt
-Te0 f34 2620 204 2665 249 #arcP
-Te0 f36 expr out #txt
-Te0 f36 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f36 var in3 #txt
-Te0 f36 2737 204 2680 250 #arcP
-Te0 f57 expr out #txt
-Te0 f57 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f57 var in4 #txt
-Te0 f57 2896 204 2686 256 #arcP
-Te0 f57 1 2896 256 #addKink
-Te0 f57 1 0.34395190774652323 0 0 #arcLabel
 Te0 f62 inParamDecl '<ch.ivy.ws.addon.types.IvyTask task> param;' #txt
 Te0 f62 inParamTable 'out.ivyTask=param.task;
 ' #txt
@@ -964,7 +776,7 @@ Te0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f62 @C|.responsibility Everybody #txt
-Te0 f62 3171 51 26 26 14 0 #rect
+Te0 f62 2963 51 26 26 14 0 #rect
 Te0 f62 @|StartWSIcon #fIcon
 Te0 f63 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -988,13 +800,13 @@ Te0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f63 3166 164 36 24 20 -2 #rect
+Te0 f63 2958 132 36 24 20 -2 #rect
 Te0 f63 @|StepIcon #fIcon
 Te0 f64 expr out #txt
-Te0 f64 3184 77 3184 164 #arcP
+Te0 f64 2976 77 2976 132 #arcP
 Te0 f65 expr out #txt
-Te0 f65 3184 188 1526 312 #arcP
-Te0 f65 1 3184 312 #addKink
+Te0 f65 2976 156 1526 312 #arcP
+Te0 f65 1 2976 312 #addKink
 Te0 f65 1 0.4626055488540411 0 0 #arcLabel
 Te0 f66 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -1145,11 +957,10 @@ property to task</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f74 3310 164 36 24 20 -2 #rect
+Te0 f74 3102 132 36 24 20 -2 #rect
 Te0 f74 @|StepIcon #fIcon
 Te0 f75 inParamDecl '<java.lang.String name,java.lang.String value,java.lang.Long id> param;' #txt
-Te0 f75 inParamTable 'out.expireIn2Days=param.id;
-out.ivyTask.id=param.id;
+Te0 f75 inParamTable 'out.ivyTask.id=param.id;
 out.name=param.name;
 out.value=param.value;
 ' #txt
@@ -1173,13 +984,13 @@ Te0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f75 @C|.responsibility Everybody #txt
-Te0 f75 3315 51 26 26 14 0 #rect
+Te0 f75 3107 51 26 26 14 0 #rect
 Te0 f75 @|StartWSIcon #fIcon
 Te0 f76 expr out #txt
-Te0 f76 3328 77 3328 164 #arcP
+Te0 f76 3120 77 3120 132 #arcP
 Te0 f77 expr out #txt
-Te0 f77 3328 188 1526 312 #arcP
-Te0 f77 1 3328 312 #addKink
+Te0 f77 3120 156 1526 312 #arcP
+Te0 f77 1 3120 312 #addKink
 Te0 f77 0 0.6965586369176562 0 0 #arcLabel
 Te0 f78 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -1243,6 +1054,39 @@ Te0 f81 expr out #txt
 Te0 f81 832 147 1498 312 #arcP
 Te0 f81 1 832 312 #addKink
 Te0 f81 1 0.3670320543791164 0 0 #arcLabel
+Te0 f54 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f54 actionTable 'out=in;
+' #txt
+Te0 f54 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.WSException;
+
+try {
+	TaskServiceResult result = WsServiceFactory.getTaskService().analyzeExpiryStatistic(in.taskSearchCriteria.jsonQuery,in.taskSearchCriteria.involvedUsername,in.taskSearchCriteria.involvedApplications);
+	in.errors.addAll(result.getErrors());
+	in.expiryStatistic = result.getExpiryStatistic();
+}catch(WSException e){
+	in.errors.add(e);
+}' #txt
+Te0 f54 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyze expiry</name>
+        <nameStyle>14,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f54 2606 124 36 24 20 -2 #rect
+Te0 f54 @|StepIcon #fIcon
+Te0 f0 expr out #txt
+Te0 f0 2624 77 2624 124 #arcP
+Te0 f1 expr out #txt
+Te0 f1 2624 148 1526 312 #arcP
+Te0 f1 1 2624 312 #addKink
+Te0 f1 1 0.42294521269766305 0 0 #arcLabel
 >Proto Te0 .webServiceName ch.ivy.ws.addon.TaskService #txt
 >Proto Te0 .authenticationType 'HTTP Basic' #txt
 >Proto Te0 .type ch.ivy.ws.addon.TaskServiceData #txt
@@ -1358,26 +1202,6 @@ Te0 f49 mainOut f52 tail #connect
 Te0 f52 head f45 mainIn #connect
 Te0 f45 mainOut f53 tail #connect
 Te0 f53 head f58 in #connect
-Te0 f56 mainOut f1 tail #connect
-Te0 f1 head f0 in #connect
-Te0 f0 out f2 tail #connect
-Te0 f2 head f54 mainIn #connect
-Te0 f54 mainOut f5 tail #connect
-Te0 f5 head f3 in #connect
-Te0 f3 mainOut f6 tail #connect
-Te0 f6 head f58 in #connect
-Te0 f0 out f12 tail #connect
-Te0 f12 head f7 mainIn #connect
-Te0 f0 out f30 tail #connect
-Te0 f30 head f29 mainIn #connect
-Te0 f0 out f33 tail #connect
-Te0 f33 head f31 mainIn #connect
-Te0 f7 mainOut f34 tail #connect
-Te0 f34 head f3 in #connect
-Te0 f29 mainOut f36 tail #connect
-Te0 f36 head f3 in #connect
-Te0 f31 mainOut f57 tail #connect
-Te0 f57 head f3 in #connect
 Te0 f62 mainOut f64 tail #connect
 Te0 f64 head f63 mainIn #connect
 Te0 f63 mainOut f65 tail #connect
@@ -1398,3 +1222,7 @@ Te0 f79 mainOut f80 tail #connect
 Te0 f80 head f78 mainIn #connect
 Te0 f78 mainOut f81 tail #connect
 Te0 f81 head f58 in #connect
+Te0 f56 mainOut f0 tail #connect
+Te0 f0 head f54 mainIn #connect
+Te0 f54 mainOut f1 tail #connect
+Te0 f1 head f58 in #connect

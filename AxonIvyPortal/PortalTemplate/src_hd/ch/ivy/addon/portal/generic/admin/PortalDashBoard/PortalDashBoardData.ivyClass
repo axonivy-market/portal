@@ -1,7 +1,7 @@
 PortalDashBoardData #class
 ch.ivy.addon.portal.generic.admin.PortalDashBoard #namespace
-statistic ch.ivy.addon.portal.generic.StatisticData #field
-statistic PERSISTENT #fieldModifier
+statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
+statisticChartList PERSISTENT #fieldModifier
 serverId Long #field
 serverId PERSISTENT #fieldModifier
 involvedApplications List<String> #field

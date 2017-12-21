@@ -34,13 +34,13 @@ public class StatisticChartModelTest {
     PowerMockito.when(Ivy.cms()).thenReturn(managementSystem);
     PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskPriorityRatio"))
         .thenReturn(StringUtils.EMPTY);
-    PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/piechart/exception"))
+    PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/exception"))
         .thenReturn("Exception");
-    PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/piechart/high"))
+    PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/high"))
         .thenReturn("High");
-    PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/piechart/low"))
+    PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/low"))
         .thenReturn("Low");
-    PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/piechart/normal"))
+    PowerMockito.when(managementSystem.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/normal"))
         .thenReturn("Normal");
     
     createTestData();
@@ -91,9 +91,5 @@ public class StatisticChartModelTest {
     priorityStatistic.setException(1);
     
     expiryStatistic = new ExpiryStatistic();
-    expiryStatistic.setToday(1);
-    expiryStatistic.setTomorrow(1);
-    expiryStatistic.setIn2Days(1);
-    expiryStatistic.setIn3Days(1);
   }
 }

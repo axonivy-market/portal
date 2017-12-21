@@ -5,19 +5,23 @@ import org.openqa.selenium.WebElement;
 
 public class StatisticWidgetPage extends TemplatePage {
   private WebElement statisticWidget;
+  private final static String TASK_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_1";
 
   public StatisticWidgetPage() {
     statisticWidget = findElementById("statistics-widget");
+  }
+
+  @Override
+  protected String getLoadedLocator() {
+    return "id('statistics-widget')";
   }
 
   public WebElement getStatisticWidget() {
     return statisticWidget;
   }
 
-  public boolean isCompactMode() {
-    waitForElementDisplayed(By.id("statistics-widget:tasks-priority-chart"), true, DEFAULT_TIMEOUT);
-    WebElement priorityChart = findElementById("statistics-widget:tasks-priority-chart");
-    return priorityChart.isDisplayed();
+  public boolean isTaskMenuOpen() {
+    return isElementDisplayed(By.id(TASK_MENU_ID + "_0"));
   }
 
   public void switchMode() {
@@ -25,12 +29,24 @@ public class StatisticWidgetPage extends TemplatePage {
     switchLink.click();
   }
 
-  public boolean isFullMode() {
-    waitForElementDisplayed(By.id("statistics-widget:tasks-priority-chart"), true, DEFAULT_TIMEOUT);
-    waitForElementDisplayed(By.id("statistics-widget:tasks-expiry-chart"), true, DEFAULT_TIMEOUT);
+  public void switchCreateMode() {
+    waitForElementDisplayed(By.id("statistics-widget:create-chart-link"), true, DEFAULT_TIMEOUT);
+    WebElement switchLink = findElementById("statistics-widget:create-chart-link");
+    switchLink.click();
+  }
 
-    WebElement priorityChart = findElementById("statistics-widget:tasks-priority-chart");
-    WebElement expiryChart = findElementById("statistics-widget:tasks-expiry-chart");
-    return priorityChart.isDisplayed() && expiryChart.isDisplayed();
+  public boolean isCompactMode() {
+    waitForElementDisplayed(By.id("statistics-widget:widget-container"), true, DEFAULT_TIMEOUT);
+    WebElement statisticContainer = findElementById("statistics-widget:widget-container");
+    return statisticContainer.getAttribute(CLASS_PROPERTY).contains("compact-mode");
+  }
+
+  public boolean isFullMode() {
+    return !isCompactMode();
+  }
+
+  public boolean isCreateMode() {
+    waitForElementDisplayed(By.id("statistics-widget:chart-list-container"), true, DEFAULT_TIMEOUT);
+    return isElementPresent(By.id("statistics-widget:chart-list-container"));
   }
 }

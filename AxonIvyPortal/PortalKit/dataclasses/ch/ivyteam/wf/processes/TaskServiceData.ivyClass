@@ -31,7 +31,7 @@ taskCount Long #field
 taskCount 'task count of all servers' #fieldComment
 categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 priorityStatistic ch.ivy.ws.addon.PriorityStatistic #field
-expiryStatistic ch.ivy.ws.addon.ExpiryStatistic #field
+expiryStatistic java.util.List<ch.ivy.ws.addon.ExpiryStatistic> #field
 tempPriorityStatistic ch.ivy.ws.addon.PriorityStatistic #field
 tempExpiryStatistic ch.ivy.ws.addon.ExpiryStatistic #field
 hasNoSelectedApp Boolean #field

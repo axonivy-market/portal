@@ -3609,15 +3609,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .statistic-widget-empty-message {
-  margin-top: 40px;
+  margin: auto;
+  margin-top: 20px;
 }
 
 .statistic-widget-empty-message.not-compact-mode {
   text-align: center;
-}
-
-.chart-height {
-  height: 350px;
 }
 
 .jqplot-target .jqplot-data-label {
@@ -3635,6 +3632,175 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .statistic-widget .jqplot-target, .jqplot-target table.jqplot-table-legend {
   font-size: 1.2rem;
+}
+
+.statistic-carousel {
+  width: 35rem;
+  text-align: center;
+}
+
+.statistic-carousel .ui-carousel-item .ui-panelgrid {
+  margin: auto;
+}
+
+.statistic-carousel .ui-carousel-header {
+  padding: 5px !important;
+}
+
+
+.statistic-carousel .ui-carousel-header .ui-carousel-dropdown,
+.statistic-carousel .ui-carousel-header .ui-carousel-mobiledropdown {
+  display: none;
+}
+
+.statistic-carousel .ui-carousel-header .ui-carousel-next-button,
+.statistic-carousel .ui-carousel-header .ui-carousel-prev-button {
+  margin-top: 2px;
+}
+
+.statistic-carousel .ui-panelgrid .ui-panelgrid-cell,
+.statistic-carousel .ui-panelgrid .ui-panel {
+  padding: 0 !important;
+  border: none !important;
+}
+
+.statistic-carousel .ui-panelgrid {
+  border: none !important;
+}
+
+.statistic-actions-panel {
+  margin-top: 20px;
+}
+
+.chart-container,
+.chart-container .ui-panelgrid.ui-widget,
+.chart-container .ui-panelgrid.ui-widget td,
+.chart-container .ui-panelgrid.ui-widget tr {
+  border: none;
+}
+
+.statistic-selection {
+  text-align: center;
+  border: none !important;
+  padding: 20px !important;
+}
+
+.statistic-selection .label {
+  display: block;
+}
+
+.statistic-selection .add-link {
+  margin: auto;
+  width: 15rem;
+}
+
+.statistic-chart {
+  width: 34rem;
+  height: 34rem;
+}
+
+.edit-statistic-container td {
+  vertical-align: top;
+}
+
+.statistic-filter-main-container {
+  padding: 0;
+  padding: 0 1rem;
+  border: none;
+  border-left: solid 1px #E0E0E0;
+  border-radius: 0;
+}
+
+.statistic-filter-main-container legend {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  font-weight: bold;
+}
+
+.statistic-filter-main-container .no-data-message {
+  display: block;
+  margin-top: 1rem;
+}
+
+.statistic-filter-main-container .item-label {
+  margin-right: 1rem;
+}
+
+.statistic-filter-container {
+  max-height: 20rem;
+  width: 25rem;
+  margin-top: 1rem;
+}
+
+.statistic-filter-container.scrollable {
+  border:solid 1px #E0E0E0;
+}
+
+.statistic-filter-main-container .ui-calendar .ui-inputfield.hasDatepicker {
+  transition: none !important;
+}
+
+.statistic-dashboard-container {
+  width: 76rem;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.dashboard-chart-panel {
+  display: inline-block;
+  flex: 0 1 30%;
+  margin: 1rem;
+  padding: 0 !important;
+}
+
+.dashboard-chart-panel .ui-panel-titlebar {
+  padding: 10px 15px !important;
+}
+
+.dashboard-chart-panel .chart-name {
+  font-weight: bold !important;
+}
+
+.dashboard-chart-panel .chart-actions-container {
+  height: 25px;
+  float: right;
+}
+
+.dashboard-chart-panel:hover .chart-actions-container .chart-action {
+  display: inline;
+}
+
+.dashboard-chart-panel .chart-actions-container .chart-action {
+  display: none;
+  color: #FFFFFF !important;
+  font-size: 1.5rem;
+  margin: 4px;
+}
+
+.dashboard-chart-panel .chart-actions-container .chart-action.fa-close {
+  margin-left: 20px;
+}
+
+.add-statistic-panel {
+  width: 100%;
+}
+
+.statistic-dashboard-expand-mode {
+  margin: auto;
+}
+
+.add-statistic-panel .add-statistic-panel-column-1 {
+  width: 20%;
+}
+
+.add-statistic-panel .add-statistic-panel-column-2 {
+  width: 80%
+}
+
+.add-statistic-panel .add-statistic-panel-column-2 .ui-inputfield.ui-inputtext {
+  width: 100%;
 }
 
 /********************************** END STATISTIC WIDGET **********************************/

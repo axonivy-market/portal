@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jul 05 15:30:57 ICT 2016]
-1543CB1F7FCE2CC1 3.18 #module
+1543CB1F7FCE2CC1 3.20 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -23,6 +22,16 @@ Nr0 @EndSub f6 '' #zField
 Nr0 @PushWFArc f7 '' #zField
 Nr0 @InfoButton f11 '' #zField
 Nr0 @AnnotationArc f12 '' #zField
+Nr0 @StartSub f8 '' #zField
+Nr0 @EndSub f9 '' #zField
+Nr0 @PushWFArc f10 '' #zField
+Nr0 @StartSub f13 '' #zField
+Nr0 @EndSub f14 '' #zField
+Nr0 @PushWFArc f15 '' #zField
+Nr0 @InfoButton f16 '' #zField
+Nr0 @AnnotationArc f17 '' #zField
+Nr0 @InfoButton f18 '' #zField
+Nr0 @AnnotationArc f19 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 outParamDecl '<> result;
@@ -61,11 +70,11 @@ is put in PortalTemplate.</name>
     </language>
 </elementInfo>
 ' #txt
-Nr0 f3 128 154 496 172 -238 -84 #rect
+Nr0 f3 128 162 496 172 -238 -84 #rect
 Nr0 f3 @|IBIcon #fIcon
 Nr0 f2 expr out #txt
 Nr0 f2 64 109 64 339 #arcP
-Nr0 f4 128 240 64 224 #arcP
+Nr0 f4 128 248 64 224 #arcP
 Nr0 f5 inParamDecl '<java.lang.Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,java.lang.String caseName> param;' #txt
 Nr0 f5 outParamDecl '<> result;
 ' #txt
@@ -107,9 +116,97 @@ is put in PortalTemplate.</name>
     </language>
 </elementInfo>
 ' #txt
-Nr0 f11 128 642 496 172 -238 -84 #rect
+Nr0 f11 128 498 496 172 -238 -84 #rect
 Nr0 f11 @|IBIcon #fIcon
-Nr0 f12 376 642 64 496 #arcP
+Nr0 f12 128 584 64 496 #arcP
+Nr0 f8 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Nr0 f8 outParamDecl '<> result;
+' #txt
+Nr0 f8 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
+' #txt
+Nr0 f8 callSignature viewTaskForAnalytic(ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
+Nr0 f8 type ch.ivy.add.portalkit.NavigatorData #txt
+Nr0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewTaskForAnalytic(TaskQuery)</name>
+        <nameStyle>30,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f8 724 407 26 26 14 0 #rect
+Nr0 f8 @|StartSubIcon #fIcon
+Nr0 f9 type ch.ivy.add.portalkit.NavigatorData #txt
+Nr0 f9 724 551 26 26 14 0 #rect
+Nr0 f9 @|EndSubIcon #fIcon
+Nr0 f10 expr out #txt
+Nr0 f10 737 433 737 551 #arcP
+Nr0 f13 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
+Nr0 f13 outParamDecl '<> result;
+' #txt
+Nr0 f13 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
+' #txt
+Nr0 f13 callSignature viewCaseForAnalytic(ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
+Nr0 f13 type ch.ivy.add.portalkit.NavigatorData #txt
+Nr0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewCaseForAnalytic(CaseQuery)</name>
+        <nameStyle>30,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f13 724 84 26 26 14 0 #rect
+Nr0 f13 @|StartSubIcon #fIcon
+Nr0 f14 type ch.ivy.add.portalkit.NavigatorData #txt
+Nr0 f14 724 340 26 26 14 0 #rect
+Nr0 f14 @|EndSubIcon #fIcon
+Nr0 f15 expr out #txt
+Nr0 f15 737 110 737 340 #arcP
+Nr0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing case.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f16 815 163 496 172 -238 -84 #rect
+Nr0 f16 @|IBIcon #fIcon
+Nr0 f17 815 249 737 225 #arcP
+Nr0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing task.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f18 857 497 496 172 -238 -84 #rect
+Nr0 f18 @|IBIcon #fIcon
+Nr0 f19 857 583 737 492 #arcP
 >Proto Nr0 .type ch.ivy.add.portalkit.NavigatorData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 0 0 32 24 18 0 #rect
@@ -122,3 +219,11 @@ Nr0 f5 mainOut f7 tail #connect
 Nr0 f7 head f6 mainIn #connect
 Nr0 f11 ao f12 tail #connect
 Nr0 f12 head f7 ai #connect
+Nr0 f8 mainOut f10 tail #connect
+Nr0 f10 head f9 mainIn #connect
+Nr0 f13 mainOut f15 tail #connect
+Nr0 f15 head f14 mainIn #connect
+Nr0 f16 ao f17 tail #connect
+Nr0 f17 head f15 ai #connect
+Nr0 f18 ao f19 tail #connect
+Nr0 f19 head f10 ai #connect
