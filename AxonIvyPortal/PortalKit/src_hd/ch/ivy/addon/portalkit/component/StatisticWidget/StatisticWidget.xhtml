@@ -2,20 +2,17 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
-  xmlns:pm="http://primefaces.org/mobile">
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
-  <cc:attribute name="priorityStatistic" type="ch.ivy.ws.addon.PriorityStatistic" />
-  <cc:attribute name="expiryStatistic" type="ch.ivy.ws.addon.ExpiryStatistic" />
-  <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
+  <cc:attribute name="statisticChartList" required="true" />
 </cc:interface>
 
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
-  <f:event listener="#{logic.setStatistics(cc.attrs.priorityStatistic, cc.attrs.expiryStatistic)}"
-    type="preRenderComponent" />
+  <f:event listener="#{logic.intialize(cc.attrs.statisticChartList)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main">
@@ -27,23 +24,33 @@
       </div>
     </h:panelGroup>
 
+    <h:panelGroup id="create-chart-header" layout="block" rendered="#{!cc.attrs.compactMode}"
+      styleClass="statistic-actions-panel">
+      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container @this">
+        <h:outputText id="create-chart-link-label" rendered="#{!data.createMode}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
+        <h:outputText id="back-to-dashboard-link-label" rendered="#{data.createMode}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
+      </p:commandLink>
+    </h:panelGroup>
+
     <h:panelGroup id="widget-container" layout="block"
-      styleClass="statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}"
-      rendered="#{data.hasStatistic}">
-      <p:chart id="tasks-priority-chart" type="pie" model="#{data.priorityPieModel}" styleClass="chart-height"
-        responsive="true" />
-      <p:chart id="tasks-expiry-chart" rendered="#{!data.compactMode}" type="bar" model="#{data.expiryBarChartModel}"
-        styleClass="chart-height" responsive="true" />
-    </h:panelGroup>
-    <h:panelGroup id="statistic-widget-empty-state"
-      styleClass="statistic-widget-empty-message #{!data.compactMode ? 'not-compact-mode': ''}" layout="block"
-      rendered="#{!data.hasStatistic}">
-      <h:panelGroup layout="block" rendered="#{empty cc.facets.emptyDataPlace}">
-        <p:outputLabel escape="false"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages')}" />
+      styleClass="statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}">
+
+      <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="statistic-dashboard-container"
+        rendered="#{!data.createMode}">
+        <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget"
+          compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}" />
       </h:panelGroup>
-      <cc:renderFacet name="emptyDataPlace" />
+
+      <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container"
+        rendered="#{!data.compactMode and data.createMode}">
+        <ic:ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget id="chart-creation-widget"
+          statisticChartList="#{data.statisticChartList}" />
+      </h:panelGroup>
+
     </h:panelGroup>
+    
   </div>
 </cc:implementation>
 </html>

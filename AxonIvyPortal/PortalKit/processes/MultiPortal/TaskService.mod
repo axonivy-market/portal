@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Jul 19 15:22:44 ICT 2017]
 146C8E81DE07F973 3.20 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
@@ -2017,7 +2016,7 @@ out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.userName=param.userName;
 ' #txt
-Te0 f196 outParamDecl '<ch.ivy.ws.addon.ExpiryStatistic expiryStatistic,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f196 outParamDecl '<java.util.List<ch.ivy.ws.addon.ExpiryStatistic> expiryStatistic,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
 Te0 f196 outParamTable 'result.expiryStatistic=in.expiryStatistic;
 result.errors=in.errors;
@@ -2030,6 +2029,8 @@ Te0 f196 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>analyzeExpiryStatistic(String,List&lt;String&gt;,Long,String)</name>
+        <nameStyle>55,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2067,10 +2068,9 @@ Te0 f198 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
 Te0 f198 actionTable 'out=in;
 ' #txt
-Te0 f198 actionCode 'in.expiryStatistic.today += in.tempExpiryStatistic.today;
-in.expiryStatistic.tomorrow += in.tempExpiryStatistic.tomorrow;
-in.expiryStatistic.in2Days += in.tempExpiryStatistic.in2Days;
-in.expiryStatistic.in3Days += in.tempExpiryStatistic.in3Days;' #txt
+Te0 f198 actionCode 'if (in.tempErrors.isEmpty()) {
+	in.expiryStatistic.add(in.tempExpiryStatistic);
+}' #txt
 Te0 f198 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f198 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

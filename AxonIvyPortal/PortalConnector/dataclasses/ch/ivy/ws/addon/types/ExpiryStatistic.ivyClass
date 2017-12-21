@@ -1,6 +1,3 @@
 ExpiryStatistic #class
 ch.ivy.ws.addon.types #namespace
-today Long #field
-tomorrow Long #field
-in2Days Long #field
-in3Days Long #field
+result String #field

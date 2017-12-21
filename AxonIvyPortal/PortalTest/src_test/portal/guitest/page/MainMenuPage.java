@@ -59,9 +59,9 @@ public class MainMenuPage extends TemplatePage {
     waitForElementPresent(By.cssSelector("*[id$='0:task-item:task-action:task-delegate-command']"), true);
   }
 
-  public DashboardPage selectDashboard() {
+  public StatisticWidgetPage selectStatisticDashboard() {
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")").click();
-    return new DashboardPage();
+    return new StatisticWidgetPage();
   }
 
   public boolean hasReadAllCasePermission() {

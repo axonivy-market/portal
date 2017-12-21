@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jan 03 11:42:48 ICT 2017]
-137A1AD8C8C617F9 3.18 #module
+137A1AD8C8C617F9 3.20 #module
 >Proto >Proto Collection #zClass
 Ce0 CaseService Big #zClass
 Ce0 WS #cInfo
@@ -71,6 +70,18 @@ Ce0 @StartWS f24 '' #zField
 Ce0 @GridStep f27 '' #zField
 Ce0 @PushWFArc f31 '' #zField
 Ce0 @PushWFArc f26 '' #zField
+Ce0 @StartWS f32 '' #zField
+Ce0 @GridStep f38 '' #zField
+Ce0 @PushWFArc f39 '' #zField
+Ce0 @PushWFArc f41 '' #zField
+Ce0 @StartWS f59 '' #zField
+Ce0 @GridStep f62 '' #zField
+Ce0 @PushWFArc f63 '' #zField
+Ce0 @PushWFArc f64 '' #zField
+Ce0 @StartWS f65 '' #zField
+Ce0 @GridStep f66 '' #zField
+Ce0 @PushWFArc f67 '' #zField
+Ce0 @PushWFArc f68 '' #zField
 >Proto Ce0 Ce0 CaseService #zField
 Ce0 f14 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 ' #txt
@@ -145,15 +156,6 @@ subType.code=
 subType.name=
 type.code=
 type.name=
-' #txt
-Ce0 f15 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
 ' #txt
 Ce0 f15 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -247,15 +249,6 @@ subType.name=
 type.code=
 type.name=
 ' #txt
-Ce0 f20 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f20 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -344,15 +337,6 @@ subType.name=
 type.code=
 type.name=
 ' #txt
-Ce0 f34 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f34 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -411,15 +395,6 @@ subType.code=
 subType.name=
 type.code=
 type.name=
-' #txt
-Ce0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
 ' #txt
 Ce0 f0 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -509,15 +484,6 @@ subType.name=
 type.code=
 type.name=
 ' #txt
-Ce0 f5 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f5 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -577,15 +543,6 @@ Ce0 f45 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 Ce0 f45 callSignature findDocuments(Long) #txt
 Ce0 f45 useUserDefinedException false #txt
 Ce0 f45 taskData TaskTriggered.PRI=2 #txt
-Ce0 f45 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f45 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -645,15 +602,6 @@ Ce0 f50 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 Ce0 f50 callSignature uploadDocument(Long,String,Binary) #txt
 Ce0 f50 useUserDefinedException false #txt
 Ce0 f50 taskData TaskTriggered.PRI=2 #txt
-Ce0 f50 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f50 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -710,15 +658,6 @@ Ce0 f55 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 Ce0 f55 callSignature downloadDocument(Long,Long) #txt
 Ce0 f55 useUserDefinedException false #txt
 Ce0 f55 taskData TaskTriggered.PRI=2 #txt
-Ce0 f55 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f55 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -837,15 +776,6 @@ Ce0 f1 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 Ce0 f1 callSignature destroyCase(Integer) #txt
 Ce0 f1 useUserDefinedException false #txt
 Ce0 f1 taskData TaskTriggered.PRI=2 #txt
-Ce0 f1 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f1 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -905,15 +835,6 @@ Ce0 f19 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 Ce0 f19 callSignature findCasesByCriteria(Integer,Integer,ch.ivy.ws.addon.service.CaseSearchCriteria) #txt
 Ce0 f19 useUserDefinedException false #txt
 Ce0 f19 taskData TaskTriggered.PRI=2 #txt
-Ce0 f19 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f19 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -973,15 +894,6 @@ Ce0 f46 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 Ce0 f46 callSignature removeDocument(Long,Long) #txt
 Ce0 f46 useUserDefinedException false #txt
 Ce0 f46 taskData TaskTriggered.PRI=2 #txt
-Ce0 f46 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f46 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1040,15 +952,6 @@ Ce0 f8 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 Ce0 f8 callSignature countCasesByCriteria(ch.ivy.ws.addon.service.CaseSearchCriteria) #txt
 Ce0 f8 useUserDefinedException false #txt
 Ce0 f8 taskData TaskTriggered.PRI=2 #txt
-Ce0 f8 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f8 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1106,15 +1009,6 @@ Ce0 f24 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 Ce0 f24 callSignature saveCase(ch.ivy.ws.addon.types.IvyCase) #txt
 Ce0 f24 useUserDefinedException false #txt
 Ce0 f24 taskData TaskTriggered.PRI=2 #txt
-Ce0 f24 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Ce0 f24 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1150,6 +1044,183 @@ Ce0 f26 expr out #txt
 Ce0 f26 2336 172 958 264 #arcP
 Ce0 f26 1 2336 264 #addKink
 Ce0 f26 1 0.43214804063860646 0 0 #arcLabel
+Ce0 f32 inParamDecl '<ch.ivy.ws.addon.service.CaseSearchCriteria caseSearchCriteria> param;' #txt
+Ce0 f32 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+' #txt
+Ce0 f32 outParamDecl '<ch.ivy.ws.addon.types.CaseStateStatistic caseStateStatistic,java.util.List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Ce0 f32 outParamTable 'result.caseStateStatistic=in.caseStateStatistic;
+result.errors=in.errors;
+' #txt
+Ce0 f32 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
+' #txt
+Ce0 f32 callSignature analyzeCaseStateStatistic(ch.ivy.ws.addon.service.CaseSearchCriteria) #txt
+Ce0 f32 useUserDefinedException false #txt
+Ce0 f32 taskData TaskTriggered.PRI=2 #txt
+Ce0 f32 type ch.ivy.ws.addon.CaseServiceData #txt
+Ce0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeCaseStateStatistic(CaseSearchCriteria)</name>
+        <nameStyle>45,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f32 @C|.responsibility Everybody #txt
+Ce0 f32 2482 49 30 30 18 3 #rect
+Ce0 f32 @|StartWSIcon #fIcon
+Ce0 f38 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
+' #txt
+Ce0 f38 actionTable 'out=in;
+' #txt
+Ce0 f38 actionCode 'import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.bo.CaseServiceResult;
+import ch.ivy.ws.addon.WSException;
+
+try {
+	CaseServiceResult result = WsServiceFactory.getCaseService().analyzeCaseStateStatistic(in.caseSearchCriteria);
+	in.caseStateStatistic = result.caseStateStatistic;
+	in.errors = result.errors;
+} catch (WSException e) {
+	in.errors.add(e);
+}' #txt
+Ce0 f38 type ch.ivy.ws.addon.CaseServiceData #txt
+Ce0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyze case state chart</name>
+        <nameStyle>24
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f38 2479 151 36 24 20 -2 #rect
+Ce0 f38 @|StepIcon #fIcon
+Ce0 f39 expr out #txt
+Ce0 f39 2497 79 2497 151 #arcP
+Ce0 f41 expr out #txt
+Ce0 f41 2497 175 958 264 #arcP
+Ce0 f41 1 2497 264 #addKink
+Ce0 f41 1 0.4674238080285616 0 0 #arcLabel
+Ce0 f59 inParamDecl '<ch.ivy.ws.addon.service.CaseSearchCriteria caseSearchCriteria> param;' #txt
+Ce0 f59 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+' #txt
+Ce0 f59 outParamDecl '<ch.ivy.ws.addon.types.ElapsedTimeStatistic elapsedTimeStatistic,java.util.List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Ce0 f59 outParamTable 'result.elapsedTimeStatistic=in.elapsedTimeStatistic;
+result.errors=in.errors;
+' #txt
+Ce0 f59 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
+' #txt
+Ce0 f59 callSignature analyzeElapsedTimeByCaseCategory(ch.ivy.ws.addon.service.CaseSearchCriteria) #txt
+Ce0 f59 useUserDefinedException false #txt
+Ce0 f59 taskData TaskTriggered.PRI=2 #txt
+Ce0 f59 type ch.ivy.ws.addon.CaseServiceData #txt
+Ce0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeElapsedTimeByCaseCategory(CaseSearchCriteria)</name>
+        <nameStyle>52,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f59 @C|.responsibility Everybody #txt
+Ce0 f59 2769 49 30 30 13 9 #rect
+Ce0 f59 @|StartWSIcon #fIcon
+Ce0 f62 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
+' #txt
+Ce0 f62 actionTable 'out=in;
+' #txt
+Ce0 f62 actionCode 'import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.bo.CaseServiceResult;
+import ch.ivy.ws.addon.WSException;
+
+try {
+	CaseServiceResult result = WsServiceFactory.getCaseService().analyzeElapsedTimeByCaseCategory(in.caseSearchCriteria);
+	in.elapsedTimeStatistic = result.elapsedTimeStatistic;
+	in.errors = result.errors;
+} catch (WSException e) {
+	in.errors.add(e);
+}' #txt
+Ce0 f62 type ch.ivy.ws.addon.CaseServiceData #txt
+Ce0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyze case state chart</name>
+        <nameStyle>24
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f62 2766 150 36 24 20 -2 #rect
+Ce0 f62 @|StepIcon #fIcon
+Ce0 f63 expr out #txt
+Ce0 f63 2784 79 2784 150 #arcP
+Ce0 f64 expr out #txt
+Ce0 f64 2784 174 958 264 #arcP
+Ce0 f64 1 2784 264 #addKink
+Ce0 f64 1 0.4716540658197106 0 0 #arcLabel
+Ce0 f65 inParamDecl '<ch.ivy.ws.addon.service.CaseSearchCriteria caseSearchCriteria> param;' #txt
+Ce0 f65 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+' #txt
+Ce0 f65 outParamDecl '<java.util.List<java.lang.String> categories,java.util.List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Ce0 f65 outParamTable 'result.categories=in.categories;
+result.errors=in.errors;
+' #txt
+Ce0 f65 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
+' #txt
+Ce0 f65 callSignature findCaseCategoriesByCriteria(ch.ivy.ws.addon.service.CaseSearchCriteria) #txt
+Ce0 f65 useUserDefinedException false #txt
+Ce0 f65 taskData TaskTriggered.PRI=2 #txt
+Ce0 f65 type ch.ivy.ws.addon.CaseServiceData #txt
+Ce0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findCaseCategoriesByCriteria(CaseSearchCriteria)</name>
+        <nameStyle>48,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f65 @C|.responsibility Everybody #txt
+Ce0 f65 3121 48 30 30 13 9 #rect
+Ce0 f65 @|StartWSIcon #fIcon
+Ce0 f66 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
+' #txt
+Ce0 f66 actionTable 'out=in;
+' #txt
+Ce0 f66 actionCode 'import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.bo.CaseServiceResult;
+import ch.ivy.ws.addon.WSException;
+
+try {
+	CaseServiceResult result = WsServiceFactory.getCaseService().findCaseCategoriesByCriteria(in.caseSearchCriteria);
+	in.categories = result.categories;
+	in.errors = result.errors;
+} catch (WSException e) {
+	in.errors.add(e);
+}' #txt
+Ce0 f66 type ch.ivy.ws.addon.CaseServiceData #txt
+Ce0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>find case categories</name>
+        <nameStyle>20
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f66 3118 149 36 24 20 -2 #rect
+Ce0 f66 @|StepIcon #fIcon
+Ce0 f67 expr out #txt
+Ce0 f67 3136 78 3136 149 #arcP
+Ce0 f68 expr out #txt
+Ce0 f68 3136 173 958 264 #arcP
+Ce0 f68 1 3136 264 #addKink
+Ce0 f68 1 0.4760818495321147 0 0 #arcLabel
 >Proto Ce0 .webServiceName ch.ivy.ws.addon.CaseService #txt
 >Proto Ce0 .authenticationType 'HTTP Basic' #txt
 >Proto Ce0 .type ch.ivy.ws.addon.CaseServiceData #txt
@@ -1239,3 +1310,15 @@ Ce0 f24 mainOut f31 tail #connect
 Ce0 f31 head f27 mainIn #connect
 Ce0 f27 mainOut f26 tail #connect
 Ce0 f26 head f29 in #connect
+Ce0 f32 mainOut f39 tail #connect
+Ce0 f39 head f38 mainIn #connect
+Ce0 f38 mainOut f41 tail #connect
+Ce0 f41 head f29 in #connect
+Ce0 f59 mainOut f63 tail #connect
+Ce0 f63 head f62 mainIn #connect
+Ce0 f62 mainOut f64 tail #connect
+Ce0 f64 head f29 in #connect
+Ce0 f65 mainOut f67 tail #connect
+Ce0 f67 head f66 mainIn #connect
+Ce0 f66 mainOut f68 tail #connect
+Ce0 f68 head f29 in #connect

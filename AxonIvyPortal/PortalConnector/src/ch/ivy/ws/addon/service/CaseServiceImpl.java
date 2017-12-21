@@ -2,11 +2,15 @@ package ch.ivy.ws.addon.service;
 
 import static ch.ivy.ws.addon.transformer.IvyCaseTransformer.transformToIvyCase;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
+
+import com.google.gson.Gson;
 
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
@@ -17,6 +21,8 @@ import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.transformer.IvyCaseTransformer;
 import ch.ivy.ws.addon.transformer.IvyDocumentTransformer;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
+import ch.ivy.ws.addon.types.CaseStateStatistic;
+import ch.ivy.ws.addon.types.ElapsedTimeStatistic;
 import ch.ivy.ws.addon.types.IvyAdditionalProperty;
 import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvyCase;
@@ -24,10 +30,12 @@ import ch.ivy.ws.addon.util.SessionUtil;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Binary;
+import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -570,6 +578,115 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
 
+  @Override
+  public CaseServiceResult findCaseCategoriesByCriteria(CaseSearchCriteria caseSearchCriteria) throws WSException {
+    List<WSException> errors = Collections.emptyList();
+    CaseServiceResult result = new CaseServiceResult();
+    try {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        CaseQuery caseCategoryQuery = createCaseQuery(caseSearchCriteria);
+        queryExcludeHiddenTasks(caseCategoryQuery);
+        caseCategoryQuery.groupBy().category()
+          .orderBy().category().ascending();
+
+        Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(caseCategoryQuery);
+        List<String> categories = new ArrayList<>();
+        recordSet.getRecords().forEach(record -> {
+          String category = record.getField("CATEGORY").toString();
+          if (!categories.contains(category)) {
+            categories.add(category);
+          }
+        });
+
+        result.setCategories(categories);
+        result.setErrors(errors);
+        return result;
+      });
+    } catch(Exception e) {
+      throw new WSException(10016, e);
+    }
+  }
+
+  @Override
+  public CaseServiceResult analyzeCaseStateStatistic(CaseSearchCriteria caseSearchCriteria)
+      throws WSException {
+    List<WSException> errors = Collections.emptyList();
+    try {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(
+          () -> {
+            CaseQuery caseStateQuery = createCaseQuery(caseSearchCriteria);
+            queryExcludeHiddenTasks(caseStateQuery);
+
+            caseStateQuery.aggregate().countRows()
+              .groupBy().state()
+              .orderBy().state();
+
+            Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(caseStateQuery);
+            CaseStateStatistic caseStateStatistic = new CaseStateStatistic();
+            if (recordSet != null) {
+              recordSet.getRecords().forEach(record -> {
+                int state = Integer.parseInt(record.getField("STATE").toString());
+                long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+                if (state == CaseState.DONE.intValue()) {
+                  caseStateStatistic.setDone((numberOfCases));
+                } else if (state == CaseState.CREATED.intValue()) {
+                  caseStateStatistic.setCreated(numberOfCases);
+                } else if (state == CaseState.DESTROYED.intValue()) {
+                  caseStateStatistic.setFailed(numberOfCases);
+                } else if (state == CaseState.RUNNING.intValue()) {
+                  caseStateStatistic.setRunning(numberOfCases);
+                }
+              });
+            }
+
+            return result(caseStateStatistic, errors);
+          });
+    } catch (Exception e) {
+      throw new WSException(e);
+    }
+  }
+
+  @Override
+  public CaseServiceResult analyzeElapsedTimeByCaseCategory(CaseSearchCriteria caseSearchCriteria)
+    throws WSException {
+      List<WSException> errors = Collections.emptyList();
+      try {
+        return ServerFactory.getServer().getSecurityManager().executeAsSystem(
+            () -> {
+              CaseQuery elapsedTimeQuery = createCaseQuery(caseSearchCriteria);
+              queryExcludeHiddenTasks(elapsedTimeQuery);
+
+              elapsedTimeQuery.where().and().businessRuntime().isNotNull();
+              elapsedTimeQuery.aggregate().avgBusinessRuntime()
+              .groupBy().category();
+
+              Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(elapsedTimeQuery);
+              HashMap<String, Long> recordMap = new HashMap<String, Long>();
+              if (recordSet != null) {
+                recordSet.getRecords().forEach(record -> {
+                  String categoryName = record.getField("CATEGORY").toString();
+                  BigDecimal averageElapsedTime
+                    = Optional.ofNullable((BigDecimal)record.getField("AVGBUSINESSRUNTIME")).orElse(new BigDecimal(0));
+                  long averageElapsedTimeValue = averageElapsedTime.longValue();
+                  recordMap.put(categoryName, averageElapsedTimeValue);
+                });
+              }
+
+              ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
+              Gson gsonConverter = new Gson();
+              String json = "";
+              if (recordMap.size() != 0) {
+                json = gsonConverter.toJson(recordMap);
+              }
+              elapsedTimeStatistic.setResult(json);
+
+              return result(elapsedTimeStatistic, errors);
+            });
+      } catch (Exception e) {
+        throw new WSException(e);
+      }
+  }
+
   private CaseServiceResult result(List<WSException> errors) {
     CaseServiceResult result = new CaseServiceResult();
     result.setErrors(errors);
@@ -586,6 +703,20 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   private CaseServiceResult result(long caseCount, List<WSException> errors) {
     CaseServiceResult result = new CaseServiceResult();
     result.setCaseCount(caseCount);;
+    result.setErrors(errors);
+    return result;
+  }
+
+  private CaseServiceResult result(CaseStateStatistic caseStateStatistic , List<WSException> errors) {
+    CaseServiceResult result = new CaseServiceResult();
+    result.setCaseStateStatistic(caseStateStatistic);
+    result.setErrors(errors);
+    return result;
+  }
+
+  private CaseServiceResult result(ElapsedTimeStatistic elapsedTimeStatistic, List<WSException> errors) {
+    CaseServiceResult result = new CaseServiceResult();
+    result.setElapsedTimeStatistic(elapsedTimeStatistic);
     result.setErrors(errors);
     return result;
   }
@@ -664,4 +795,5 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 	      query.where().and().caseId().isNotEqual(hiddenCase.getId());
 	    });
 	  }
+
 }
