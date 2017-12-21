@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Callable;
@@ -24,15 +25,15 @@ import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.bo.TaskServiceResult;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
 import ch.ivy.ws.addon.transformer.IvyTaskTransformer;
+import ch.ivy.ws.addon.types.ExpiryStatistic;
 import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvySecurityMember;
 import ch.ivy.ws.addon.types.IvyTask;
-import ch.ivy.ws.addon.types.NumberOfExpiryTasks;
 import ch.ivy.ws.addon.types.PriorityStatistic;
-import ch.ivy.ws.addon.util.JavaDates;
 import ch.ivy.ws.addon.util.SessionUtil;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -49,6 +50,8 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
+
+import com.google.gson.Gson;
 
 public class TaskServiceImpl extends AbstractService implements ITaskService {
 
@@ -527,6 +530,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           () -> {
             TaskQuery priorityQuery =
                 StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               priorityQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -536,43 +540,46 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
 
             queryExcludeHiddenTasks(priorityQuery);
-            List<TaskState> states = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
-            priorityQuery.aggregate().countRows().where().and(queryForStates(states)).groupBy().priority().orderBy()
-                .priority();
+
+            priorityQuery.aggregate().countRows()
+              .groupBy().priority()
+              .orderBy().priority();
 
             Recordset recordSet = taskQueryExecutor().getRecordset(priorityQuery);
-
             PriorityStatistic priorityStatistic = new PriorityStatistic();
-            recordSet.getRecords().forEach(record -> {
-              int priority = Integer.parseInt(record.getField("PRIORITY").toString());
-              long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
-              if (priority == WorkflowPriority.EXCEPTION.intValue()) {
-                priorityStatistic.setException(numberOfTasks);
-              } else if (priority == WorkflowPriority.HIGH.intValue()) {
-                priorityStatistic.setHigh(numberOfTasks);
-              } else if (priority == WorkflowPriority.NORMAL.intValue())
-                priorityStatistic.setNormal(numberOfTasks);
-              else {
-                priorityStatistic.setLow(numberOfTasks);
-              }
-            });
+            if (recordSet != null) {
+              recordSet.getRecords().forEach(record -> {
+                int priority = Integer.parseInt(record.getField("PRIORITY").toString());
+                long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
+                if (priority == WorkflowPriority.EXCEPTION.intValue()) {
+                  priorityStatistic.setException(numberOfTasks);
+                } else if (priority == WorkflowPriority.HIGH.intValue()) {
+                  priorityStatistic.setHigh(numberOfTasks);
+                } else if (priority == WorkflowPriority.NORMAL.intValue())
+                  priorityStatistic.setNormal(numberOfTasks);
+                else {
+                  priorityStatistic.setLow(numberOfTasks);
+                }
+              });
+            }
 
             return result(priorityStatistic, errors);
           });
     } catch (Exception e) {
+      Ivy.log().error("PRIORITY");
       throw new WSException(10016, e);
     }
   }
 
   @Override
-  public NumberOfExpiryTasks countExpiryTasksByDate(String jsonQuery, final String username, List<String> apps,
-      Date expiryDate) throws WSException {
+  public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
             TaskQuery expiryQuery =
                 StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+
             if (username != null && !StringUtils.isEmpty(username)) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               expiryQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
@@ -582,10 +589,30 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
 
             queryExcludeHiddenTasks(expiryQuery);
-            List<TaskState> states = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
-            expiryQuery.where().and(queryForStates(states)).and(queryForExpiry(expiryDate));
 
-            return numberOfExpiryTasks(countTasks(expiryQuery), errors);
+            expiryQuery.aggregate().countRows()
+              .groupBy().expiryTimestamp()
+              .orderBy().expiryTimestamp();
+
+            Recordset recordSet = taskQueryExecutor().getRecordset(expiryQuery);
+            HashMap<String, String> recordMap = new HashMap<String, String>();
+            if (recordSet != null) {
+              for (Record record : recordSet.getRecords()) {
+                if (record.getField("EXPIRYTIMESTAMP") != null) {
+                  recordMap.put(record.getField("EXPIRYTIMESTAMP").toString(), record.getField("COUNT").toString());
+                }
+              }
+            }
+
+            ExpiryStatistic expiryStatistic = new ExpiryStatistic();
+            Gson gsonConverter = new Gson();
+            String json = "";
+            if (recordMap.size() != 0) {
+              json= gsonConverter.toJson(recordMap);
+            }
+            expiryStatistic.setResult(json);
+
+            return result(expiryStatistic, errors);
           });
     } catch (Exception e) {
       throw new WSException(10016, e);
@@ -803,9 +830,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     return result;
   }
 
-  private NumberOfExpiryTasks numberOfExpiryTasks(long numberOfExpiryTasks, List<WSException> errors) {
-    NumberOfExpiryTasks result = new NumberOfExpiryTasks();
-    result.setNumberOfExpiryTasks(numberOfExpiryTasks);
+  private TaskServiceResult result(ExpiryStatistic expiryStatistic, List<WSException> errors) {
+    TaskServiceResult result = new TaskServiceResult();
+    result.setExpiryStatistic(expiryStatistic);
     result.setErrors(errors);
     return result;
   }
@@ -853,14 +880,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       }
     }
     return stateFieldQuery;
-  }
-
-  private TaskQuery queryForExpiry(Date date) {
-    Date dateAfter1Day = JavaDates.plusDays(date, 1);
-    TaskQuery priorityQuery =
-        TaskQuery.create().where().expiryTimestamp().isGreaterOrEqualThan(date).and().expiryTimestamp()
-            .isLowerThan(dateAfter1Day);
-    return priorityQuery;
   }
 
   private void queryExcludeHiddenTasks(TaskQuery query) {

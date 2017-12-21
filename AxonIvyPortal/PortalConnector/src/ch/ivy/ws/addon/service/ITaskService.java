@@ -1,6 +1,5 @@
 package ch.ivy.ws.addon.service;
 
-import java.util.Date;
 import java.util.List;
 
 import ch.ivy.ws.addon.WSException;
@@ -8,7 +7,6 @@ import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.bo.TaskServiceResult;
 import ch.ivy.ws.addon.types.IvySecurityMember;
 import ch.ivy.ws.addon.types.IvyTask;
-import ch.ivy.ws.addon.types.NumberOfExpiryTasks;
 import ch.ivyteam.ivy.workflow.ITask;
 
 /**
@@ -80,8 +78,7 @@ public interface ITaskService {
 
   public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
 
-  public NumberOfExpiryTasks countExpiryTasksByDate(String jsonQuery, final String username, List<String> apps, Date date)
-      throws WSException;
+  public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
 
   TaskServiceResult findPersonalTaskCategories(String jsonQuery, String username, List<String> apps, String language) throws WSException;
 

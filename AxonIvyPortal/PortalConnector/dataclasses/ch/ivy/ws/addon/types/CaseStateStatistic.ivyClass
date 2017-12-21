@@ -1,0 +1,6 @@
+CaseStateStatistic #class
+ch.ivy.ws.addon.types #namespace
+created Long #field
+done Long #field
+failed Long #field
+running Long #field

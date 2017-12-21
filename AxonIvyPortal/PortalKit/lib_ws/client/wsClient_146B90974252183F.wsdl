@@ -361,10 +361,7 @@
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
-          <xs:element minOccurs="0" name="in2Days" type="xs:long"></xs:element>
-          <xs:element minOccurs="0" name="in3Days" type="xs:long"></xs:element>
-          <xs:element minOccurs="0" name="today" type="xs:long"></xs:element>
-          <xs:element minOccurs="0" name="tomorrow" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="result" type="xs:string"></xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

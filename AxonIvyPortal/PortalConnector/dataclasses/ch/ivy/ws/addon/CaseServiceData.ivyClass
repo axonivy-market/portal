@@ -19,3 +19,6 @@ user String #field
 startIndex Integer #field
 count Integer #field
 caseCount Integer #field
+caseStateStatistic ch.ivy.ws.addon.types.CaseStateStatistic #field
+elapsedTimeStatistic ch.ivy.ws.addon.types.ElapsedTimeStatistic #field
+categories java.util.List<String> #field

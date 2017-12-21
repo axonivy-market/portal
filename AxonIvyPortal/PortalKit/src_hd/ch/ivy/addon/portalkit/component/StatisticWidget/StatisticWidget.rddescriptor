@@ -2,10 +2,6 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>switchMode</name>
-        <description></description>
-    </method>
-    <method>
         <name>setCompactMode</name>
         <description></description>
         <inputParameter>
@@ -16,54 +12,22 @@
         </inputParameter>
     </method>
     <method>
-        <name>setStatistics</name>
+        <name>switchMode</name>
+        <description></description>
+    </method>
+    <method>
+        <name>intialize</name>
         <description></description>
         <inputParameter>
-            <name>priorityStatistic</name>
+            <name>statisticChartList</name>
             <description></description>
-            <parameterType>ch.ivy.ws.addon.PriorityStatistic</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>expiryStatistic</name>
-            <description></description>
-            <parameterType>ch.ivy.ws.addon.ExpiryStatistic</parameterType>
-            <nullPermitted>true</nullPermitted>
+            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.statistics.StatisticChart&gt;</parameterType>
+            <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>lowPriorityColor</name>
-            <description>The low priority piece's color</description>
-            <parameterType>String</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>normalPriorityColor</name>
-            <description>The normal priority piece's color</description>
-            <parameterType>String</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>highPriorityColor</name>
-            <description>The high priority piece's color</description>
-            <parameterType>String</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>exceptionPriorityColor</name>
-            <description>The exception priority piece's color</description>
-            <parameterType>String</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>expiryBarColor</name>
-            <description>The expiry bar's color</description>
-            <parameterType>String</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>
