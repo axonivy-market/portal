@@ -626,6 +626,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               .groupBy().priority()
               .orderBy().priority();
 
+            Ivy.log().error("TASK BY PRIORITY QUERY: {0}", priorityQuery);
+
             Recordset recordSet = taskQueryExecutor().getRecordset(priorityQuery);
             PriorityStatistic priorityStatistic = new PriorityStatistic();
             if (recordSet != null) {
@@ -647,7 +649,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             return result(priorityStatistic, errors);
           });
     } catch (Exception e) {
-      Ivy.log().error("PRIORITY");
       throw new WSException(10016, e);
     }
   }
