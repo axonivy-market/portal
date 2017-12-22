@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.stream.Stream;
 
@@ -23,6 +24,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.bo.AvailableAppsResult;
 import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.enums.CategoryDataType;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
 import ch.ivy.ws.addon.transformer.IvyTaskTransformer;
 import ch.ivy.ws.addon.types.ExpiryStatistic;
@@ -30,6 +32,7 @@ import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvySecurityMember;
 import ch.ivy.ws.addon.types.IvyTask;
 import ch.ivy.ws.addon.types.PriorityStatistic;
+import ch.ivy.ws.addon.util.JavaDates;
 import ch.ivy.ws.addon.util.SessionUtil;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -377,8 +380,46 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               taskQuery.fromJson(jsonQuery);
             }
             queryExcludeHiddenTasks(taskQuery);
-
+            CategoryDataType categoryDataType = CategoryDataType.CURRENT_USER_CATEGORY;
             if (username != null && !StringUtils.isEmpty(username)) {
+              AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+              taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
+                  .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+            } else {
+              categoryDataType = CategoryDataType.ALL_USERS_CATEGORY;
+              taskQuery.where().and(queryForInvolvedApplications(apps));
+            }
+            taskQuery.where()
+                .and(
+                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
+                        TaskState.DONE)));
+            taskQuery.where().and().category().isNotNull();
+
+            List<CategoryData> categories = getCategoriesFromCategoryTree(language, taskQuery, categoryDataType);
+            return result(categories, errors);
+          });
+    } catch (Exception e) {
+      throw new WSException(10016, e);
+    }
+  }
+
+  @SuppressWarnings("static-access")
+  @Override
+  public TaskServiceResult findAllCategories(String jsonQuery, String username, List<String> apps, String language, Boolean isReadAllTasks)
+      throws WSException {
+    List<WSException> errors = Collections.emptyList();
+    try {
+      return securityManager().executeAsSystem(
+          () -> {
+            
+            //Query all categories of user 
+            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+            if (StringUtils.isNotBlank(jsonQuery)) {
+              taskQuery.fromJson(jsonQuery);
+            }
+            queryExcludeHiddenTasks(taskQuery);
+
+            if (Objects.isNull(isReadAllTasks) || !isReadAllTasks.booleanValue()) {
               AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
               taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                   .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
@@ -391,14 +432,62 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
 
-            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
-            List<CategoryData> categories = new ArrayList<>();
-            categoryTree.getAllChildren().forEach(category -> {
-              CategoryData categoryData = new CategoryData();
-              categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-              categoryData.setRawPath(category.getRawPath());
-              categories.add(categoryData);
-            });
+            List<CategoryData> categories = getCategoriesFromCategoryTree(language, taskQuery, isReadAllTasks ? CategoryDataType.ALL_USERS_CATEGORY : CategoryDataType.CURRENT_USER_CATEGORY);
+            
+            //Unassigned categories
+            if(!Objects.isNull(isReadAllTasks) && isReadAllTasks.booleanValue()) {
+              TaskQuery unAssignedCategoryTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+              if (StringUtils.isNotBlank(jsonQuery)) {
+                unAssignedCategoryTaskQuery = unAssignedCategoryTaskQuery.fromJson(jsonQuery);
+              }
+              queryExcludeHiddenTasks(unAssignedCategoryTaskQuery);
+
+              unAssignedCategoryTaskQuery.where().and(queryForInvolvedApplications(apps));
+              unAssignedCategoryTaskQuery.where().and(queryForStates(Arrays.asList(TaskState.UNASSIGNED)));
+              unAssignedCategoryTaskQuery.where().and().category().isNotNull();
+
+              categories.addAll(getCategoriesFromCategoryTree(language, unAssignedCategoryTaskQuery, CategoryDataType.UNASSIGNED_CATEGORY));
+            }
+            
+            //Query group categories
+            TaskQuery groupCategoryTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+            if (StringUtils.isNotBlank(jsonQuery)) {
+              groupCategoryTaskQuery = groupCategoryTaskQuery.fromJson(jsonQuery);
+            }
+            queryExcludeHiddenTasks(groupCategoryTaskQuery);
+
+            AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+            groupCategoryTaskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
+                .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+            groupCategoryTaskQuery.where().and().activatorRoleId().isNotNull();
+            groupCategoryTaskQuery.where()
+                .and(
+                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
+                        TaskState.DONE)));
+            groupCategoryTaskQuery.where().and().category().isNotNull();
+
+            categories.addAll(getCategoriesFromCategoryTree(language, groupCategoryTaskQuery, CategoryDataType.GROUP_TASK_CATEGORY));
+            
+            //Personal category
+            TaskQuery personalCategoryTaskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+            if (StringUtils.isNotBlank(jsonQuery)) {
+              personalCategoryTaskQuery = personalCategoryTaskQuery.fromJson(jsonQuery);
+            }
+            queryExcludeHiddenTasks(personalCategoryTaskQuery);
+
+            personalCategoryTaskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
+                .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+            TaskQuery reservedTaskQuery =
+                TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
+            personalCategoryTaskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
+            personalCategoryTaskQuery.where()
+                .and(
+                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
+                        TaskState.DONE)));
+            personalCategoryTaskQuery.where().and().category().isNotNull();
+
+            categories.addAll(getCategoriesFromCategoryTree(language, personalCategoryTaskQuery, CategoryDataType.MY_TASK_CATEGORY));
+            
             return result(categories, errors);
           });
     } catch (Exception e) {
@@ -406,6 +495,19 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
+  private List<CategoryData> getCategoriesFromCategoryTree(String language, TaskQuery taskQuery, CategoryDataType type) {
+    CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
+    List<CategoryData> categories = new ArrayList<>();
+    categoryTree.getAllChildren().forEach(category -> {
+      CategoryData categoryData = new CategoryData();
+      categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+      categoryData.setRawPath(category.getRawPath());
+      categoryData.setType(type);
+      categories.add(categoryData);
+    });
+    return categories;
+  }
+  
   @SuppressWarnings("static-access")
   @Override
   public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps,
@@ -432,14 +534,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
 
-            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
-            List<CategoryData> categories = new ArrayList<>();
-            categoryTree.getAllChildren().forEach(category -> {
-              CategoryData categoryData = new CategoryData();
-              categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-              categoryData.setRawPath(category.getRawPath());
-              categories.add(categoryData);
-            });
+            List<CategoryData> categories = getCategoriesFromCategoryTree(language, taskQuery, CategoryDataType.MY_TASK_CATEGORY);
 
             return result(categories, errors);
           });
@@ -472,14 +567,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                         TaskState.DONE)));
             taskQuery.where().and().category().isNotNull();
 
-            CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
-            List<CategoryData> categories = new ArrayList<>();
-            categoryTree.getAllChildren().forEach(category -> {
-              CategoryData categoryData = new CategoryData();
-              categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-              categoryData.setRawPath(category.getRawPath());
-              categories.add(categoryData);
-            });
+            List<CategoryData> categories = getCategoriesFromCategoryTree(language, taskQuery, CategoryDataType.GROUP_TASK_CATEGORY);
 
             return result(categories, errors);
           });
@@ -505,14 +593,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         taskQuery.where().and(queryForStates(Arrays.asList(TaskState.UNASSIGNED)));
         taskQuery.where().and().category().isNotNull();
 
-        CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
-        List<CategoryData> categories = new ArrayList<>();
-        categoryTree.getAllChildren().forEach(category -> {
-          CategoryData categoryData = new CategoryData();
-          categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-          categoryData.setRawPath(category.getRawPath());
-          categories.add(categoryData);
-        });
+        List<CategoryData> categories = getCategoriesFromCategoryTree(language, taskQuery, CategoryDataType.UNASSIGNED_CATEGORY);
 
         return result(categories, errors);
       });
