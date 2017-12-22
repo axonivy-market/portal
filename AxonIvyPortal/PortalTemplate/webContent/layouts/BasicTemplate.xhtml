@@ -87,18 +87,9 @@
             </c:otherwise>
           </c:choose>
         </div>
-        <div id="second-level-menu" class="second-level-menu js-left-sidebar-second left-sidebar-animation ">
-          <a href="#" class="second-level-menu-header"> 
-            <i class="fa fa-angle-left icon-left left-sidebar-animation" /> 
-            <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portal.generic/SecondLevelMenu/tasks')}</span>
-            <i class="fa fa-angle-right icon-right left-sidebar-animation" />
-          </a> 
-          <div class="second-level-menu-body">
-            <h:form prependId="false">
-              <ic:ch.ivy.addon.portal.generic.PortalTaskMenu menuState="#{menuState}"/>
-            </h:form>
-          </div>
-        </div>
+        
+         <ui:insert name="secondLevelMenu">
+         </ui:insert>
       </div>
     
       <div class="container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
