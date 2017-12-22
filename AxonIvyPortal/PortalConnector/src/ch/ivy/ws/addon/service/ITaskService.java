@@ -75,6 +75,8 @@ public interface ITaskService {
   public TaskServiceResult countTasksByCriteria(TaskSearchCriteria taskSearchCriteria) throws WSException;
 
   public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException;
+  
+  public TaskServiceResult findAllCategories(String jsonQuery, final String username, List<String> apps, String language, Boolean isReadAllTasks) throws WSException;
 
   public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
 
