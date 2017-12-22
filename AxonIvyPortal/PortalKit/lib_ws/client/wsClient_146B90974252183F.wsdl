@@ -13,6 +13,8 @@
 <xs:element name="createTaskNoteResponse" type="tns:createTaskNoteResponse"></xs:element>
 <xs:element name="delegateTask" type="tns:delegateTask"></xs:element>
 <xs:element name="delegateTaskResponse" type="tns:delegateTaskResponse"></xs:element>
+<xs:element name="findAllCategories" type="tns:findAllCategories"></xs:element>
+<xs:element name="findAllCategoriesResponse" type="tns:findAllCategoriesResponse"></xs:element>
 <xs:element name="findCategories" type="tns:findCategories"></xs:element>
 <xs:element name="findCategoriesResponse" type="tns:findCategoriesResponse"></xs:element>
 <xs:element name="findGroupTaskCategories" type="tns:findGroupTaskCategories"></xs:element>
@@ -335,6 +337,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="path" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="rawPath" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="type" type="tns:categoryDataType"></xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -464,6 +467,26 @@
       <xs:element minOccurs="0" name="ivyTask" type="tns:ivyTask"></xs:element>
     </xs:sequence>
   </xs:complexType>
+<xs:complexType name="findAllCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="isHavingReadAllTaskPermission" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findAllCategoriesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findAllCategoriesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="findAllCategoriesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
 <xs:complexType name="findUnassignedTaskCategories">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
@@ -579,6 +602,15 @@
       <xs:enumeration value="ERROR"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
+<xs:simpleType name="categoryDataType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CURRENT_USER_CATEGORY"></xs:enumeration>
+      <xs:enumeration value="ALL_USERS_CATEGORY"></xs:enumeration>
+      <xs:enumeration value="UNASSIGNED_CATEGORY"></xs:enumeration>
+      <xs:enumeration value="MY_TASK_CATEGORY"></xs:enumeration>
+      <xs:enumeration value="GROUP_TASK_CATEGORY"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
 <xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
@@ -652,6 +684,10 @@
     <wsdl:part element="tns:setAdditionalPropertyResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="findAllCategoriesResponse">
+    <wsdl:part element="tns:findAllCategoriesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="findGroupTaskCategories">
     <wsdl:part element="tns:findGroupTaskCategories" name="parameters">
     </wsdl:part>
@@ -682,6 +718,10 @@
   </wsdl:message>
   <wsdl:message name="resetTask">
     <wsdl:part element="tns:resetTask" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllCategories">
+    <wsdl:part element="tns:findAllCategories" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="countTasksByCriteriaResponse">
@@ -793,6 +833,14 @@
       <wsdl:input message="tns:delegateTask" name="delegateTask">
     </wsdl:input>
       <wsdl:output message="tns:delegateTaskResponse" name="delegateTaskResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllCategories">
+      <wsdl:input message="tns:findAllCategories" name="findAllCategories">
+    </wsdl:input>
+      <wsdl:output message="tns:findAllCategoriesResponse" name="findAllCategoriesResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -962,6 +1010,18 @@
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="delegateTaskResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllCategories">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findAllCategories">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findAllCategoriesResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
