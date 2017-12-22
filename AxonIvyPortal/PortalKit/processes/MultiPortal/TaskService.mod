@@ -307,6 +307,33 @@ Te0 @PushWFArc f293 '' #zField
 Te0 @PushWFArc f294 '' #zField
 Te0 @PushWFArc f295 '' #zField
 Te0 @PushWFArc f296 '' #zField
+Te0 @GridStep f297 '' #zField
+Te0 @StartSub f298 '' #zField
+Te0 @Alternative f299 '' #zField
+Te0 @GridStep f300 '' #zField
+Te0 @GridStep f301 '' #zField
+Te0 @Alternative f302 '' #zField
+Te0 @CallSub f303 '' #zField
+Te0 @Alternative f304 '' #zField
+Te0 @GridStep f305 '' #zField
+Te0 @CallSub f306 '' #zField
+Te0 @GridStep f307 '' #zField
+Te0 @GridStep f308 '' #zField
+Te0 @PushWFArc f309 '' #zField
+Te0 @PushWFArc f310 '' #zField
+Te0 @PushWFArc f311 '' #zField
+Te0 @PushWFArc f312 '' #zField
+Te0 @PushWFArc f313 '' #zField
+Te0 @PushWFArc f314 '' #zField
+Te0 @PushWFArc f315 '' #zField
+Te0 @PushWFArc f316 '' #zField
+Te0 @PushWFArc f318 '' #zField
+Te0 @PushWFArc f319 '' #zField
+Te0 @PushWFArc f320 '' #zField
+Te0 @PushWFArc f321 '' #zField
+Te0 @PushWFArc f322 '' #zField
+Te0 @PushWFArc f317 '' #zField
+Te0 @PushWFArc f323 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f3 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f3 1347 995 26 26 14 0 #rect
@@ -3881,6 +3908,324 @@ Te0 f296 2737 168 1374 880 #arcP
 Te0 f296 1 2656 168 #addKink
 Te0 f296 2 2656 880 #addKink
 Te0 f296 1 0.7513873294614658 0 0 #arcLabel
+Te0 f297 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f297 actionTable 'out=in;
+' #txt
+Te0 f297 actionCode 'import java.util.Arrays;
+import ch.ivy.addon.portalkit.service.ServerService;
+
+ServerService serverService = new ServerService();
+Long serverId = in.server.#id;
+if (#serverId is initialized && serverId != 0) {
+	in.servers = Arrays.asList(serverService.findById(serverId));
+} else {
+	in.servers = serverService.findActiveServers();
+}
+in.listIterator = in.servers.listIterator();' #txt
+Te0 f297 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f297 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get servers</name>
+        <nameStyle>11,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f297 4557 128 36 24 20 -2 #rect
+Te0 f297 @|StepIcon #fIcon
+Te0 f298 inParamDecl '<java.lang.Boolean isHavingReadAllTaskPermission,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
+Te0 f298 inParamTable 'out.apps=param.apps;
+out.hasNoSelectedApp=param.apps.isEmpty();
+out.isHavingReadAllTaskPermission=param.isHavingReadAllTaskPermission;
+out.jsonQuery=param.jsonQuery;
+out.server.id=param.serverId;
+out.userName=param.userName;
+' #txt
+Te0 f298 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f298 outParamTable 'result.categories=in.categories;
+result.errors=in.errors;
+' #txt
+Te0 f298 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f298 callSignature findAllCategories(Boolean,String,String,List<String>,Long) #txt
+Te0 f298 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f298 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findAllCategories(Boolean,String,String,List&lt;String&gt;,Long)</name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f298 4562 71 26 26 -50 -39 #rect
+Te0 f298 @|StartSubIcon #fIcon
+Te0 f299 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f299 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>has apps?</name>
+        <nameStyle>9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f299 4561 494 28 28 14 0 #rect
+Te0 f299 @|AlternativeIcon #fIcon
+Te0 f300 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f300 actionTable 'out=in;
+' #txt
+Te0 f300 actionCode 'import java.util.Set;
+import java.util.HashSet;
+
+Set categories = new HashSet(in.categories);
+in.categories.clear();
+in.categories.addAll(categories);' #txt
+Te0 f300 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f300 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>add categories</name>
+        <nameStyle>14,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f300 4557 672 36 24 20 -2 #rect
+Te0 f300 @|StepIcon #fIcon
+Te0 f301 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f301 actionTable 'out=in;
+' #txt
+Te0 f301 actionCode 'import ch.ivy.ws.addon.WsException;
+for(int i = 0 ; i < in.tempErrors.size() ; i++){
+	WsException w = in.tempErrors.get(i) as WsException;
+	w.server = in.server.name;
+	in.tempErrors.set(i,w);
+	}
+in.errors.addAll(in.tempErrors);
+
+if (in.hasNoSelectedApp) {
+	in.apps.clear();
+}' #txt
+Te0 f301 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f301 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>utils</name>
+        <nameStyle>5,7
+</nameStyle>
+        <desc>add server name for exceptions
+
+clear apps list</desc>
+    </language>
+</elementInfo>
+' #txt
+Te0 f301 4701 248 36 24 20 -2 #rect
+Te0 f301 @|StepIcon #fIcon
+Te0 f302 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f302 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>next server</name>
+        <nameStyle>11,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f302 4561 190 28 28 22 -21 #rect
+Te0 f302 @|AlternativeIcon #fIcon
+Te0 f303 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f303 processCall ServiceIntegrators/TaskServiceIntegrator:findAllCategories(Boolean,String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f303 doCall true #txt
+Te0 f303 requestActionDecl '<java.lang.Boolean isHavingReadAllTaskPermission,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+' #txt
+Te0 f303 requestMappingAction 'param.isHavingReadAllTaskPermission=in.isHavingReadAllTaskPermission;
+param.jsonQuery=in.jsonQuery;
+param.userName=in.userName;
+param.apps=in.apps;
+param.server=in.server;
+param.endpoint=in.endpoint;
+' #txt
+Te0 f303 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f303 responseMappingAction 'out=in;
+out.categories=in.categories.addAll(result.categories);
+out.tempErrors=result.errors;
+' #txt
+Te0 f303 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>FindCategories</name>
+        <nameStyle>14,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f303 4557 616 36 24 20 -2 #rect
+Te0 f303 @|CallSubIcon #fIcon
+Te0 f304 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f304 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no selected apps?</name>
+        <nameStyle>17
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f304 4561 310 28 28 14 0 #rect
+Te0 f304 @|AlternativeIcon #fIcon
+Te0 f305 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f305 actionTable 'out=in;
+' #txt
+Te0 f305 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.ws.addon.IvyApplication;
+import ch.ivy.addon.portalkit.service.UserService;
+
+in.apps.clear();
+
+UserService userService = new UserService();
+java.util.List<String> apps = userService.findApplicationNamesUserCanWorkOn(in.userName, in.server.id);
+for(String appName: apps) {
+	for (Application application : in.server.getApplications()) {
+		if(appName.equals(application.name) && application.isVisible && !in.apps.contains(appName)){
+			in.apps.add(appName);					
+		}
+	}
+}
+if (in.apps.isEmpty()) {
+	ApplicationService applicationService = new ApplicationService();
+	in.apps = applicationService.getApplicationNames(in.applications);
+}
+' #txt
+Te0 f305 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f305 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get Alive Apps</name>
+        <nameStyle>14,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f305 4557 440 36 24 21 -7 #rect
+Te0 f305 @|StepIcon #fIcon
+Te0 f306 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f306 processCall MultiPortal/ApplicationService:getApplicationConfiguredOn(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
+Te0 f306 doCall true #txt
+Te0 f306 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server> param;
+' #txt
+Te0 f306 requestMappingAction 'param.server=in.server;
+' #txt
+Te0 f306 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f306 responseMappingAction 'out=in;
+out.applications=result.applications;
+out.tempErrors=result.errors;
+' #txt
+Te0 f306 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get applications 
+of server</name>
+        <nameStyle>27,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f306 4557 376 36 24 20 -2 #rect
+Te0 f306 @|CallSubIcon #fIcon
+Te0 f307 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f307 actionTable 'out=in;
+' #txt
+Te0 f307 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Server;
+
+in.server = in.listIterator.next() as Server;' #txt
+Te0 f307 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f307 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get server</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f307 4557 248 36 24 20 -2 #rect
+Te0 f307 @|StepIcon #fIcon
+Te0 f308 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f308 actionTable 'out=in;
+' #txt
+Te0 f308 actionCode 'import ch.ivy.addon.portalkit.enums.WebServiceEndPoint;
+import ch.ivy.addon.portalkit.service.PortalConnectorDetector;
+
+PortalConnectorDetector detector = new PortalConnectorDetector();
+in.endpoint = detector.getPortalConnectorURLOf(in.server) + WebServiceEndPoint.TASK.toString();' #txt
+Te0 f308 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f308 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get ws endpoint</name>
+        <nameStyle>15
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f308 4557 552 36 24 20 -2 #rect
+Te0 f308 @|StepIcon #fIcon
+Te0 f309 expr in #txt
+Te0 f309 4589 508 4719 272 #arcP
+Te0 f309 1 4719 508 #addKink
+Te0 f309 0 0.8799989356997663 0 0 #arcLabel
+Te0 f310 expr out #txt
+Te0 f310 4719 248 4589 204 #arcP
+Te0 f310 1 4719 204 #addKink
+Te0 f310 1 0.251489130890622 0 0 #arcLabel
+Te0 f311 expr in #txt
+Te0 f311 outCond in.hasNoSelectedApp #txt
+Te0 f311 4575 338 4575 376 #arcP
+Te0 f312 expr out #txt
+Te0 f312 4575 400 4575 440 #arcP
+Te0 f313 expr out #txt
+Te0 f313 4575 152 4575 190 #arcP
+Te0 f314 expr out #txt
+Te0 f314 4575 97 4575 128 #arcP
+Te0 f315 expr out #txt
+Te0 f315 4575 464 4575 494 #arcP
+Te0 f316 expr out #txt
+Te0 f316 4575 576 4575 616 #arcP
+Te0 f318 expr out #txt
+Te0 f318 4575 640 4575 672 #arcP
+Te0 f319 expr in #txt
+Te0 f319 outCond 'in.apps.size() > 0' #txt
+Te0 f319 4575 522 4575 552 #arcP
+Te0 f320 expr out #txt
+Te0 f320 4593 684 4719 272 #arcP
+Te0 f320 1 4719 684 #addKink
+Te0 f320 1 0.3622224354814317 0 0 #arcLabel
+Te0 f321 expr in #txt
+Te0 f321 outCond in.listIterator.hasNext() #txt
+Te0 f321 4575 218 4575 248 #arcP
+Te0 f322 expr out #txt
+Te0 f322 4575 272 4575 310 #arcP
+Te0 f317 expr in #txt
+Te0 f317 4561 324 4557 564 #arcP
+Te0 f317 1 4504 324 #addKink
+Te0 f317 2 4504 564 #addKink
+Te0 f317 1 0.49166666666666664 0 0 #arcLabel
+Te0 f323 expr in #txt
+Te0 f323 4561 204 1360 948 #arcP
+Te0 f323 1 4472 204 #addKink
+Te0 f323 2 4472 880 #addKink
+Te0 f323 3 1360 880 #addKink
+Te0 f323 2 0.5021772939346811 0 0 #arcLabel
 >Proto Te0 .type ch.ivyteam.wf.processes.TaskServiceData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -4257,3 +4602,33 @@ Te0 f280 out f284 tail #connect
 Te0 f284 head f271 mainIn #connect
 Te0 f278 out f296 tail #connect
 Te0 f296 head f148 in #connect
+Te0 f300 mainOut f320 tail #connect
+Te0 f320 head f301 mainIn #connect
+Te0 f301 mainOut f310 tail #connect
+Te0 f310 head f302 in #connect
+Te0 f305 mainOut f315 tail #connect
+Te0 f315 head f299 in #connect
+Te0 f309 head f301 mainIn #connect
+Te0 f303 mainOut f318 tail #connect
+Te0 f318 head f300 mainIn #connect
+Te0 f302 out f321 tail #connect
+Te0 f321 head f307 mainIn #connect
+Te0 f298 mainOut f314 tail #connect
+Te0 f314 head f297 mainIn #connect
+Te0 f297 mainOut f313 tail #connect
+Te0 f313 head f302 in #connect
+Te0 f306 mainOut f312 tail #connect
+Te0 f312 head f305 mainIn #connect
+Te0 f307 mainOut f322 tail #connect
+Te0 f322 head f304 in #connect
+Te0 f304 out f311 tail #connect
+Te0 f311 head f306 mainIn #connect
+Te0 f299 out f319 tail #connect
+Te0 f319 head f308 mainIn #connect
+Te0 f299 out f309 tail #connect
+Te0 f308 mainOut f316 tail #connect
+Te0 f316 head f303 mainIn #connect
+Te0 f304 out f317 tail #connect
+Te0 f317 head f308 mainIn #connect
+Te0 f302 out f323 tail #connect
+Te0 f323 head f144 mainIn #connect

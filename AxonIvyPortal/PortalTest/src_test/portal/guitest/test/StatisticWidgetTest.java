@@ -38,23 +38,24 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testNavigateToChartFromMenu() {
     mainMenuPage = homePage.openMainMenu();
-    mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage = homePage.getStatisticsWidget();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage = new StatisticWidgetPage();
+
     assertTrue(statisticWidgetPage.isFullMode());
   }
 
   @Test
   public void testCreateTaskByPriorityChart() {
     mainMenuPage = homePage.openMainMenu();
-    mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage = homePage.getStatisticsWidget();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
     createTaskByPriorityChart();
 
     statisticWidgetPage.switchCreateMode();
 
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true, 30);
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
     WebElement taskByPriorityChartName
       = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
     assertEquals(TASK_BY_PRIORITY_CHART_NAME, taskByPriorityChartName.getText());
@@ -63,14 +64,14 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testCreateCaseByStateChart() {
     mainMenuPage = homePage.openMainMenu();
-    mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage = homePage.getStatisticsWidget();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
     createCaseByStateChart();
 
     statisticWidgetPage.switchCreateMode();
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true, 30);
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
     WebElement chartName
       = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
     assertEquals(CASE_BY_STATE_CHART_NAME, chartName.getText());
@@ -79,14 +80,14 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testCreateTaskByExpiryChart() {
     mainMenuPage = homePage.openMainMenu();
-    mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage = homePage.getStatisticsWidget();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
     createTaskByExpiryChart();
 
     statisticWidgetPage.switchCreateMode();
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true, 30);
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
     WebElement chartName
       = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
     assertEquals(TASK_BY_EXPIRY_CHART_NAME, chartName.getText());
@@ -97,14 +98,14 @@ public class StatisticWidgetTest extends BaseTest {
     generateDataForElapsedTimeChart();
 
     mainMenuPage = homePage.openMainMenu();
-    mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage = homePage.getStatisticsWidget();
+    statisticWidgetPage =  mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
     createElapsedTimeChart();
 
     statisticWidgetPage.switchCreateMode();
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true, 30);
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
     WebElement chartName
       = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
     assertEquals(ELAPSED_TIME_CHART_NAME, chartName.getText());
@@ -186,7 +187,7 @@ public class StatisticWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.filterTasksBy("Resource with ID 1212");
     taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
+    homePage.waitForPageLoaded();
 
     homePage = taskWidgetPage.goToHomePage();
   }
