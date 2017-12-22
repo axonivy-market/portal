@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
-import java.util.stream.Collectors;
 
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.SortOrder;
@@ -18,8 +17,6 @@ import ch.ivy.addon.portalkit.bo.NodeObject;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.vo.TaskVO;
-import ch.ivy.ws.addon.CategoryData;
-import ch.ivy.ws.addon.CategoryDataType;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
@@ -759,20 +756,11 @@ public final class TaskUtils {
     task.setAdditionalProperty(HIDE, HIDE);
   }
   
-  /**	
+  /**
    * Removes the "HIDE" additional property to the given task to display it in any task lists of Portal.
    * @param task
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
     task.setAdditionalProperty(HIDE, null);
-  }
-  
-  /**
-   * Group categories by theirs type
-   * @param categories
-   * @return
-   */
-  public static Map<CategoryDataType, List<CategoryData>> groupTaskCategoryByType(List<CategoryData> categories) {
-    return categories.stream().collect(Collectors.groupingBy(CategoryData::getType));
   }
 }
