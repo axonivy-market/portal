@@ -82,6 +82,10 @@ Te0 @PushWFArc f81 '' #zField
 Te0 @GridStep f54 '' #zField
 Te0 @PushWFArc f0 '' #zField
 Te0 @PushWFArc f1 '' #zField
+Te0 @StartWS f2 '' #zField
+Te0 @GridStep f3 '' #zField
+Te0 @PushWFArc f5 '' #zField
+Te0 @PushWFArc f6 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f8 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -106,7 +110,7 @@ task</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f8 1038 124 36 24 20 -2 #rect
+Te0 f8 1174 124 36 24 20 -2 #rect
 Te0 f8 @|StepIcon #fIcon
 Te0 f9 inParamDecl '<java.lang.Boolean isUrlBuiltFromSystemProperties,java.lang.String user,java.lang.Long id> param;' #txt
 Te0 f9 inParamTable 'out.isUrlBuiltFromSystemProperties=param.isUrlBuiltFromSystemProperties;
@@ -134,10 +138,10 @@ Te0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f9 @C|.responsibility Everybody #txt
-Te0 f9 1043 51 26 26 14 0 #rect
+Te0 f9 1179 51 26 26 14 0 #rect
 Te0 f9 @|StartWSIcon #fIcon
 Te0 f11 expr out #txt
-Te0 f11 1056 77 1056 124 #arcP
+Te0 f11 1192 77 1192 124 #arcP
 Te0 f13 inParamDecl '<java.lang.Boolean isUrlBuiltFromSystemProperties,ch.ivy.ws.addon.types.IvySecurityMember ivySecurityMember,java.lang.Long id> param;' #txt
 Te0 f13 inParamTable 'out.isUrlBuiltFromSystemProperties=param.isUrlBuiltFromSystemProperties;
 out.ivySecurityMember=param.ivySecurityMember;
@@ -164,7 +168,7 @@ Te0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f13 @C|.responsibility Everybody #txt
-Te0 f13 1171 51 26 26 14 0 #rect
+Te0 f13 1307 51 26 26 14 0 #rect
 Te0 f13 @|StartWSIcon #fIcon
 Te0 f14 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -192,10 +196,10 @@ task</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f14 1166 124 36 24 20 -2 #rect
+Te0 f14 1302 124 36 24 20 -2 #rect
 Te0 f14 @|StepIcon #fIcon
 Te0 f16 expr out #txt
-Te0 f16 1184 77 1184 124 #arcP
+Te0 f16 1320 77 1320 124 #arcP
 Te0 f19 inParamDecl '<java.lang.String user,java.lang.String message,java.lang.Long id> param;' #txt
 Te0 f19 inParamTable 'out.ivyTask.id=param.id;
 out.note.message=param.message;
@@ -222,7 +226,7 @@ Te0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f19 @C|.responsibility Everybody #txt
-Te0 f19 1307 51 26 26 14 0 #rect
+Te0 f19 1443 51 26 26 14 0 #rect
 Te0 f19 @|StartWSIcon #fIcon
 Te0 f20 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -249,10 +253,10 @@ Te0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f20 1302 124 36 24 20 -2 #rect
+Te0 f20 1438 124 36 24 20 -2 #rect
 Te0 f20 @|StepIcon #fIcon
 Te0 f21 expr out #txt
-Te0 f21 1320 77 1320 124 #arcP
+Te0 f21 1456 77 1456 124 #arcP
 Te0 f23 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
 Te0 f23 actionTable 'out=in;
@@ -279,7 +283,7 @@ for task</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f23 1494 124 36 24 20 -2 #rect
+Te0 f23 1630 124 36 24 20 -2 #rect
 Te0 f23 @|StepIcon #fIcon
 Te0 f25 inParamDecl '<java.lang.Long id> param;' #txt
 Te0 f25 inParamTable 'out.ivyTask.id=param.id;
@@ -305,12 +309,12 @@ Te0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f25 @C|.responsibility Everybody #txt
-Te0 f25 1499 51 26 26 14 0 #rect
+Te0 f25 1635 51 26 26 14 0 #rect
 Te0 f25 @|StartWSIcon #fIcon
 Te0 f26 expr out #txt
-Te0 f26 1512 77 1512 124 #arcP
+Te0 f26 1648 77 1648 124 #arcP
 Te0 f35 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f35 1499 435 26 26 14 0 #rect
+Te0 f35 1635 435 26 26 14 0 #rect
 Te0 f35 @|EndWSIcon #fIcon
 Te0 f38 inParamDecl '<java.lang.Boolean isUrlBuiltFromSystemProperties,java.lang.String currentUserName,java.lang.Long id> param;' #txt
 Te0 f38 inParamTable 'out.isUrlBuiltFromSystemProperties=param.isUrlBuiltFromSystemProperties;
@@ -338,7 +342,7 @@ Te0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f38 @C|.responsibility Everybody #txt
-Te0 f38 1691 51 26 26 14 0 #rect
+Te0 f38 1827 51 26 26 14 0 #rect
 Te0 f38 @|StartWSIcon #fIcon
 Te0 f41 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -365,10 +369,10 @@ Te0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f41 1686 124 36 24 20 -2 #rect
+Te0 f41 1822 124 36 24 20 -2 #rect
 Te0 f41 @|StepIcon #fIcon
 Te0 f42 expr out #txt
-Te0 f42 1704 77 1704 124 #arcP
+Te0 f42 1840 77 1840 124 #arcP
 Te0 f43 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
 Te0 f43 actionTable 'out=in;
@@ -395,7 +399,7 @@ Te0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f43 46 124 36 24 20 -2 #rect
+Te0 f43 22 124 36 24 20 -2 #rect
 Te0 f43 @|StepIcon #fIcon
 Te0 f44 inParamDecl '<java.lang.Boolean isUrlBuiltFromSystemProperties,java.lang.Integer startIndex,java.lang.Integer count,ch.ivy.ws.addon.service.TaskSearchCriteria taskSearchCriteria> param;' #txt
 Te0 f44 inParamTable 'out.count=param.count;
@@ -425,10 +429,10 @@ Te0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f44 @C|.responsibility Everybody #txt
-Te0 f44 51 51 26 26 14 0 #rect
+Te0 f44 27 51 26 26 14 0 #rect
 Te0 f44 @|StartWSIcon #fIcon
 Te0 f46 expr out #txt
-Te0 f46 64 77 64 124 #arcP
+Te0 f46 40 77 40 124 #arcP
 Te0 f48 inParamDecl '<java.lang.Long id,java.lang.String userName> param;' #txt
 Te0 f48 inParamTable 'out.ivyTask.id=param.id;
 out.user=param.userName;
@@ -456,7 +460,7 @@ Te0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f48 @C|.responsibility Everybody #txt
-Te0 f48 1883 51 26 26 14 0 #rect
+Te0 f48 2019 51 26 26 14 0 #rect
 Te0 f48 @|StartWSIcon #fIcon
 Te0 f50 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -485,12 +489,12 @@ can resume task</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f50 1878 116 36 24 20 -2 #rect
+Te0 f50 2014 116 36 24 20 -2 #rect
 Te0 f50 @|StepIcon #fIcon
 Te0 f51 expr out #txt
-Te0 f51 1896 77 1896 116 #arcP
+Te0 f51 2032 77 2032 116 #arcP
 Te0 f58 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f58 1498 298 28 28 14 0 #rect
+Te0 f58 1634 298 28 28 14 0 #rect
 Te0 f58 @|AlternativeIcon #fIcon
 Te0 f59 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f59 processCall FunctionalProcesses/ErrorLog:logError(List<java.lang.Exception>) #txt
@@ -512,38 +516,38 @@ Te0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f59 1494 364 36 24 20 -2 #rect
+Te0 f59 1630 364 36 24 20 -2 #rect
 Te0 f59 @|CallSubIcon #fIcon
 Te0 f60 expr in #txt
-Te0 f60 1512 326 1512 364 #arcP
+Te0 f60 1648 326 1648 364 #arcP
 Te0 f61 expr out #txt
-Te0 f61 1512 388 1512 435 #arcP
+Te0 f61 1648 388 1648 435 #arcP
 Te0 f55 expr out #txt
-Te0 f55 1056 148 1498 312 #arcP
-Te0 f55 1 1056 312 #addKink
+Te0 f55 1192 148 1634 312 #arcP
+Te0 f55 1 1192 312 #addKink
 Te0 f55 1 0.9805359095139481 0 0 #arcLabel
 Te0 f37 expr out #txt
-Te0 f37 1184 148 1498 312 #arcP
-Te0 f37 1 1184 312 #addKink
+Te0 f37 1320 148 1634 312 #arcP
+Te0 f37 1 1320 312 #addKink
 Te0 f37 1 0.9841320950935127 0 0 #arcLabel
 Te0 f17 expr out #txt
-Te0 f17 1320 148 1498 312 #arcP
-Te0 f17 1 1320 312 #addKink
+Te0 f17 1456 148 1634 312 #arcP
+Te0 f17 1 1456 312 #addKink
 Te0 f17 1 0.98579404476964 0 0 #arcLabel
 Te0 f22 expr out #txt
-Te0 f22 1512 148 1512 298 #arcP
+Te0 f22 1648 148 1648 298 #arcP
 Te0 f22 0 0.5354082826661823 0 0 #arcLabel
 Te0 f27 expr out #txt
-Te0 f27 1704 148 1526 312 #arcP
-Te0 f27 1 1704 312 #addKink
+Te0 f27 1840 148 1662 312 #arcP
+Te0 f27 1 1840 312 #addKink
 Te0 f27 1 0.4533394530682278 0 0 #arcLabel
 Te0 f40 expr out #txt
-Te0 f40 64 148 1498 312 #arcP
-Te0 f40 1 64 312 #addKink
+Te0 f40 40 148 1634 312 #arcP
+Te0 f40 1 40 312 #addKink
 Te0 f40 1 0.4566039884861746 0 0 #arcLabel
 Te0 f47 expr out #txt
-Te0 f47 1896 140 1526 312 #arcP
-Te0 f47 1 1896 312 #addKink
+Te0 f47 2032 140 1662 312 #arcP
+Te0 f47 1 2032 312 #addKink
 Te0 f47 1 0.4649668975722141 0 0 #arcLabel
 Te0 f24 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -570,7 +574,7 @@ Te0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f24 2062 124 36 24 20 -2 #rect
+Te0 f24 2198 124 36 24 20 -2 #rect
 Te0 f24 @|StepIcon #fIcon
 Te0 f28 inParamDecl '<ch.ivy.ws.addon.service.TaskSearchCriteria taskSearchCriteria> param;' #txt
 Te0 f28 inParamTable 'out.taskSearchCriteria=param.taskSearchCriteria;
@@ -597,13 +601,13 @@ Te0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f28 @C|.responsibility Everybody #txt
-Te0 f28 2067 51 26 26 13 0 #rect
+Te0 f28 2203 51 26 26 13 0 #rect
 Te0 f28 @|StartWSIcon #fIcon
 Te0 f32 expr out #txt
-Te0 f32 2080 77 2080 124 #arcP
+Te0 f32 2216 77 2216 124 #arcP
 Te0 f39 expr out #txt
-Te0 f39 2080 148 1526 312 #arcP
-Te0 f39 1 2080 312 #addKink
+Te0 f39 2216 148 1662 312 #arcP
+Te0 f39 1 2216 312 #addKink
 Te0 f39 1 0.4731520316611164 0 0 #arcLabel
 Te0 f4 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -630,7 +634,7 @@ Te0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f4 334 124 36 24 20 -2 #rect
+Te0 f4 470 124 36 24 20 -2 #rect
 Te0 f4 @|StepIcon #fIcon
 Te0 f10 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f10 inParamTable 'out.language=param.language;
@@ -659,13 +663,13 @@ Te0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f10 @C|.responsibility Everybody #txt
-Te0 f10 339 51 26 26 13 0 #rect
+Te0 f10 475 51 26 26 13 0 #rect
 Te0 f10 @|StartWSIcon #fIcon
 Te0 f15 expr out #txt
-Te0 f15 352 77 352 124 #arcP
+Te0 f15 488 77 488 124 #arcP
 Te0 f18 expr out #txt
-Te0 f18 352 148 1498 312 #arcP
-Te0 f18 1 352 312 #addKink
+Te0 f18 488 148 1634 312 #arcP
+Te0 f18 1 488 312 #addKink
 Te0 f18 1 0.4763779527559055 0 0 #arcLabel
 Te0 f45 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -692,7 +696,7 @@ Te0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f45 2302 124 36 24 20 -2 #rect
+Te0 f45 2438 124 36 24 20 -2 #rect
 Te0 f45 @|StepIcon #fIcon
 Te0 f49 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f49 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
@@ -720,13 +724,13 @@ Te0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f49 @C|.responsibility Everybody #txt
-Te0 f49 2307 51 26 26 13 0 #rect
+Te0 f49 2443 51 26 26 13 0 #rect
 Te0 f49 @|StartWSIcon #fIcon
 Te0 f52 expr out #txt
-Te0 f52 2320 77 2320 124 #arcP
+Te0 f52 2456 77 2456 124 #arcP
 Te0 f53 expr out #txt
-Te0 f53 2320 148 1526 312 #arcP
-Te0 f53 1 2320 312 #addKink
+Te0 f53 2456 148 1662 312 #arcP
+Te0 f53 1 2456 312 #addKink
 Te0 f53 1 0.47967086156824784 0 0 #arcLabel
 Te0 f56 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f56 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
@@ -754,7 +758,7 @@ Te0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f56 @C|.responsibility Everybody #txt
-Te0 f56 2611 51 26 26 13 0 #rect
+Te0 f56 2747 51 26 26 13 0 #rect
 Te0 f56 @|StartWSIcon #fIcon
 Te0 f62 inParamDecl '<ch.ivy.ws.addon.types.IvyTask task> param;' #txt
 Te0 f62 inParamTable 'out.ivyTask=param.task;
@@ -776,7 +780,7 @@ Te0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f62 @C|.responsibility Everybody #txt
-Te0 f62 2963 51 26 26 14 0 #rect
+Te0 f62 3099 51 26 26 14 0 #rect
 Te0 f62 @|StartWSIcon #fIcon
 Te0 f63 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -800,13 +804,13 @@ Te0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f63 2958 132 36 24 20 -2 #rect
+Te0 f63 3094 132 36 24 20 -2 #rect
 Te0 f63 @|StepIcon #fIcon
 Te0 f64 expr out #txt
-Te0 f64 2976 77 2976 132 #arcP
+Te0 f64 3112 77 3112 132 #arcP
 Te0 f65 expr out #txt
-Te0 f65 2976 156 1526 312 #arcP
-Te0 f65 1 2976 312 #addKink
+Te0 f65 3112 156 1662 312 #arcP
+Te0 f65 1 3112 312 #addKink
 Te0 f65 1 0.4626055488540411 0 0 #arcLabel
 Te0 f66 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -834,7 +838,7 @@ Categories</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f66 630 124 36 24 20 -2 #rect
+Te0 f66 766 124 36 24 20 -2 #rect
 Te0 f66 @|StepIcon #fIcon
 Te0 f67 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f67 inParamTable 'out.language=param.language;
@@ -863,10 +867,10 @@ Te0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f67 @C|.responsibility Everybody #txt
-Te0 f67 635 51 26 26 13 0 #rect
+Te0 f67 771 51 26 26 13 0 #rect
 Te0 f67 @|StartWSIcon #fIcon
 Te0 f68 expr out #txt
-Te0 f68 648 77 648 124 #arcP
+Te0 f68 784 77 784 124 #arcP
 Te0 f69 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
 Te0 f69 actionTable 'out=in;
@@ -893,7 +897,7 @@ Categories</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f69 478 124 36 24 20 -2 #rect
+Te0 f69 614 124 36 24 20 -2 #rect
 Te0 f69 @|StepIcon #fIcon
 Te0 f70 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f70 inParamTable 'out.language=param.language;
@@ -922,17 +926,17 @@ Te0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f70 @C|.responsibility Everybody #txt
-Te0 f70 483 51 26 26 13 0 #rect
+Te0 f70 619 51 26 26 13 0 #rect
 Te0 f70 @|StartWSIcon #fIcon
 Te0 f71 expr out #txt
-Te0 f71 496 77 496 124 #arcP
+Te0 f71 632 77 632 124 #arcP
 Te0 f72 expr out #txt
-Te0 f72 496 148 1498 312 #arcP
-Te0 f72 1 496 312 #addKink
+Te0 f72 632 148 1634 312 #arcP
+Te0 f72 1 632 312 #addKink
 Te0 f72 1 0.408992960074398 0 0 #arcLabel
 Te0 f73 expr out #txt
-Te0 f73 648 148 1498 312 #arcP
-Te0 f73 1 648 312 #addKink
+Te0 f73 784 148 1634 312 #arcP
+Te0 f73 1 784 312 #addKink
 Te0 f73 1 0.39212345493702755 0 0 #arcLabel
 Te0 f74 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -957,7 +961,7 @@ property to task</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f74 3102 132 36 24 20 -2 #rect
+Te0 f74 3238 132 36 24 20 -2 #rect
 Te0 f74 @|StepIcon #fIcon
 Te0 f75 inParamDecl '<java.lang.String name,java.lang.String value,java.lang.Long id> param;' #txt
 Te0 f75 inParamTable 'out.ivyTask.id=param.id;
@@ -984,13 +988,13 @@ Te0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f75 @C|.responsibility Everybody #txt
-Te0 f75 3107 51 26 26 14 0 #rect
+Te0 f75 3243 51 26 26 14 0 #rect
 Te0 f75 @|StartWSIcon #fIcon
 Te0 f76 expr out #txt
-Te0 f76 3120 77 3120 132 #arcP
+Te0 f76 3256 77 3256 132 #arcP
 Te0 f77 expr out #txt
-Te0 f77 3120 156 1526 312 #arcP
-Te0 f77 1 3120 312 #addKink
+Te0 f77 3256 156 1662 312 #arcP
+Te0 f77 1 3256 312 #addKink
 Te0 f77 0 0.6965586369176562 0 0 #arcLabel
 Te0 f78 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -1018,7 +1022,7 @@ Categories</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f78 814 123 36 24 20 -2 #rect
+Te0 f78 950 123 36 24 20 -2 #rect
 Te0 f78 @|StepIcon #fIcon
 Te0 f79 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,List<java.lang.String> apps> param;' #txt
 Te0 f79 inParamTable 'out.language=param.language;
@@ -1046,13 +1050,13 @@ Te0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f79 @C|.responsibility Everybody #txt
-Te0 f79 819 50 26 26 13 0 #rect
+Te0 f79 955 50 26 26 13 0 #rect
 Te0 f79 @|StartWSIcon #fIcon
 Te0 f80 expr out #txt
-Te0 f80 832 76 832 123 #arcP
+Te0 f80 968 76 968 123 #arcP
 Te0 f81 expr out #txt
-Te0 f81 832 147 1498 312 #arcP
-Te0 f81 1 832 312 #addKink
+Te0 f81 968 147 1634 312 #arcP
+Te0 f81 1 968 312 #addKink
 Te0 f81 1 0.3670320543791164 0 0 #arcLabel
 Te0 f54 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -1079,14 +1083,78 @@ Te0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f54 2606 124 36 24 20 -2 #rect
+Te0 f54 2742 124 36 24 20 -2 #rect
 Te0 f54 @|StepIcon #fIcon
 Te0 f0 expr out #txt
-Te0 f0 2624 77 2624 124 #arcP
+Te0 f0 2760 77 2760 124 #arcP
 Te0 f1 expr out #txt
-Te0 f1 2624 148 1526 312 #arcP
-Te0 f1 1 2624 312 #addKink
+Te0 f1 2760 148 1662 312 #arcP
+Te0 f1 1 2760 312 #addKink
 Te0 f1 1 0.42294521269766305 0 0 #arcLabel
+Te0 f2 inParamDecl '<java.lang.Boolean isHavingReadAllTaskPermission,java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
+Te0 f2 inParamTable 'out.isHavingReadAllTaskPermission=param.isHavingReadAllTaskPermission;
+out.language=param.language;
+out.taskSearchCriteria.involvedApplications=param.apps;
+out.taskSearchCriteria.involvedUsername=param.userName;
+out.taskSearchCriteria.jsonQuery=param.jsonQuery;
+' #txt
+Te0 f2 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Te0 f2 outParamTable 'result.categories=in.categories;
+result.errors=in.errors;
+' #txt
+Te0 f2 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f2 callSignature findAllCategories(Boolean,String,String,String,List<String>) #txt
+Te0 f2 useUserDefinedException false #txt
+Te0 f2 taskData TaskTriggered.PRI=2 #txt
+Te0 f2 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findAllCategories</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f2 @C|.responsibility Everybody #txt
+Te0 f2 336 53 26 26 13 0 #rect
+Te0 f2 @|StartWSIcon #fIcon
+Te0 f3 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f3 actionTable 'out=in;
+' #txt
+Te0 f3 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.WSException;
+
+try{
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findAllCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, in.language, in.isHavingReadAllTaskPermission);
+	in.categories = tsResult.getCategories();
+	in.errors = tsResult.getErrors();
+}catch(WSException e){
+	in.errors.add(e);
+}' #txt
+Te0 f3 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>find All 
+Categories</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f3 331 126 36 24 22 -16 #rect
+Te0 f3 @|StepIcon #fIcon
+Te0 f5 expr out #txt
+Te0 f5 349 79 349 126 #arcP
+Te0 f6 expr out #txt
+Te0 f6 349 150 1634 312 #arcP
+Te0 f6 1 349 312 #addKink
+Te0 f6 1 0.43156538385364845 0 0 #arcLabel
 >Proto Te0 .webServiceName ch.ivy.ws.addon.TaskService #txt
 >Proto Te0 .authenticationType 'HTTP Basic' #txt
 >Proto Te0 .type ch.ivy.ws.addon.TaskServiceData #txt
@@ -1226,3 +1294,7 @@ Te0 f56 mainOut f0 tail #connect
 Te0 f0 head f54 mainIn #connect
 Te0 f54 mainOut f1 tail #connect
 Te0 f1 head f58 in #connect
+Te0 f2 mainOut f5 tail #connect
+Te0 f5 head f3 mainIn #connect
+Te0 f3 mainOut f6 tail #connect
+Te0 f6 head f58 in #connect
