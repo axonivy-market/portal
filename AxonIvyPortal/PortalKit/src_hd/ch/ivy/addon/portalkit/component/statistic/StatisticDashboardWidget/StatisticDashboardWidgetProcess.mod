@@ -17,9 +17,7 @@ Ss0 @TextInP .responsibility .responsibility #zField
 Ss0 @RichDialogProcessStart f3 '' #zField
 Ss0 @RichDialogEnd f4 '' #zField
 Ss0 @PushWFArc f5 '' #zField
-Ss0 @RichDialogMethodStart f6 '' #zField
 Ss0 @GridStep f8 '' #zField
-Ss0 @PushWFArc f9 '' #zField
 Ss0 @RichDialogInitStart f11 '' #zField
 Ss0 @RichDialogProcessEnd f14 '' #zField
 Ss0 @PushWFArc f0 '' #zField
@@ -49,15 +47,17 @@ Ss0 @RichDialogProcessEnd f33 '' #zField
 Ss0 @PushWFArc f34 '' #zField
 Ss0 @CallSub f7 '' #zField
 Ss0 @PushWFArc f10 '' #zField
-Ss0 @RichDialogMethodStart f35 '' #zField
 Ss0 @GridStep f36 '' #zField
-Ss0 @PushWFArc f37 '' #zField
 Ss0 @PushWFArc f38 '' #zField
-Ss0 @RichDialogMethodStart f39 '' #zField
 Ss0 @GridStep f40 '' #zField
-Ss0 @PushWFArc f41 '' #zField
 Ss0 @CallSub f42 '' #zField
 Ss0 @PushWFArc f43 '' #zField
+Ss0 @RichDialogProcessStart f6 '' #zField
+Ss0 @PushWFArc f9 '' #zField
+Ss0 @RichDialogProcessStart f44 '' #zField
+Ss0 @RichDialogProcessStart f45 '' #zField
+Ss0 @PushWFArc f35 '' #zField
+Ss0 @PushWFArc f37 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ss0 f3 guid 1600AC95D5A96D44 #txt
 Ss0 f3 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
@@ -80,28 +80,6 @@ Ss0 f4 499 51 26 26 0 12 #rect
 Ss0 f4 @|RichDialogEndIcon #fIcon
 Ss0 f5 expr out #txt
 Ss0 f5 397 64 499 64 #arcP
-Ss0 f6 guid 1604F07D8AB21F0B #txt
-Ss0 f6 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f6 method drilldownTaskByPriority(org.primefaces.event.ItemSelectEvent) #txt
-Ss0 f6 disableUIEvents false #txt
-Ss0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<org.primefaces.event.ItemSelectEvent event> param = methodEvent.getInputArguments();
-' #txt
-Ss0 f6 inParameterMapAction 'out.event=param.event;
-' #txt
-Ss0 f6 outParameterDecl '<> result;
-' #txt
-Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>drilldownTaskByPriority(ItemSelectEvent)</name>
-        <nameStyle>40,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f6 115 243 26 26 -111 15 #rect
-Ss0 f6 @|RichDialogMethodStartIcon #fIcon
 Ss0 f8 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
 Ss0 f8 actionTable 'out=in;
@@ -123,8 +101,6 @@ Ss0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f8 288 234 112 44 -43 -8 #rect
 Ss0 f8 @|StepIcon #fIcon
-Ss0 f9 expr out #txt
-Ss0 f9 141 256 288 256 #arcP
 Ss0 f11 guid 1604F11B5BA97CC5 #txt
 Ss0 f11 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f11 method start() #txt
@@ -459,28 +435,6 @@ Ss0 f7 480 234 112 44 -26 -8 #rect
 Ss0 f7 @|CallSubIcon #fIcon
 Ss0 f10 expr out #txt
 Ss0 f10 400 256 480 256 #arcP
-Ss0 f35 guid 160689BA0E3586D9 #txt
-Ss0 f35 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f35 method drilldownTaskByExpiry(org.primefaces.event.ItemSelectEvent) #txt
-Ss0 f35 disableUIEvents false #txt
-Ss0 f35 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<org.primefaces.event.ItemSelectEvent event> param = methodEvent.getInputArguments();
-' #txt
-Ss0 f35 inParameterMapAction 'out.event=param.event;
-' #txt
-Ss0 f35 outParameterDecl '<> result;
-' #txt
-Ss0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>drilldownTaskByExpiry(ItemSelectEvent)</name>
-        <nameStyle>38,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f35 115 339 26 26 -109 15 #rect
-Ss0 f35 @|RichDialogMethodStartIcon #fIcon
 Ss0 f36 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
 Ss0 f36 actionTable 'out=in;
@@ -502,34 +456,10 @@ Ss0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f36 288 330 112 44 -43 -8 #rect
 Ss0 f36 @|StepIcon #fIcon
-Ss0 f37 expr out #txt
-Ss0 f37 141 352 288 352 #arcP
 Ss0 f38 expr out #txt
 Ss0 f38 400 352 536 278 #arcP
 Ss0 f38 1 536 352 #addKink
 Ss0 f38 0 0.7876935071335653 0 0 #arcLabel
-Ss0 f39 guid 16068E38860EAC9C #txt
-Ss0 f39 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f39 method drilldownCaseByState(org.primefaces.event.ItemSelectEvent) #txt
-Ss0 f39 disableUIEvents false #txt
-Ss0 f39 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<org.primefaces.event.ItemSelectEvent event> param = methodEvent.getInputArguments();
-' #txt
-Ss0 f39 inParameterMapAction 'out.event=param.event;
-' #txt
-Ss0 f39 outParameterDecl '<> result;
-' #txt
-Ss0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>drilldownCaseByState(ItemSelectEvent)</name>
-        <nameStyle>37,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f39 115 435 26 26 -108 15 #rect
-Ss0 f39 @|RichDialogMethodStartIcon #fIcon
 Ss0 f40 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
 Ss0 f40 actionTable 'out=in;
@@ -551,8 +481,6 @@ Ss0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f40 288 426 112 44 -45 -8 #rect
 Ss0 f40 @|StepIcon #fIcon
-Ss0 f41 expr out #txt
-Ss0 f41 141 448 288 448 #arcP
 Ss0 f42 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f42 processCall 'Functional Processes/Navigator:viewCaseForAnalytic(ch.ivyteam.ivy.workflow.query.CaseQuery)' #txt
 Ss0 f42 doCall true #txt
@@ -575,14 +503,75 @@ Ss0 f42 480 426 112 44 -26 -8 #rect
 Ss0 f42 @|CallSubIcon #fIcon
 Ss0 f43 expr out #txt
 Ss0 f43 400 448 480 448 #arcP
+Ss0 f6 guid 1608CEAE326E61AC #txt
+Ss0 f6 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f6 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f6 actionTable 'out=in;
+' #txt
+Ss0 f6 actionCode 'import org.primefaces.event.ItemSelectEvent;
+out.event = event as ItemSelectEvent;' #txt
+Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownTaskByPriority</name>
+        <nameStyle>23,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f6 115 243 26 26 -63 15 #rect
+Ss0 f6 @|RichDialogProcessStartIcon #fIcon
+Ss0 f9 expr out #txt
+Ss0 f9 141 256 288 256 #arcP
+Ss0 f44 guid 1608CECF9E359730 #txt
+Ss0 f44 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f44 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f44 actionTable 'out=in;
+' #txt
+Ss0 f44 actionCode 'import org.primefaces.event.ItemSelectEvent;
+out.event = event as ItemSelectEvent;' #txt
+Ss0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownTaskByExpiry</name>
+        <nameStyle>21,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f44 115 339 26 26 -61 15 #rect
+Ss0 f44 @|RichDialogProcessStartIcon #fIcon
+Ss0 f45 guid 1608CED0281A1901 #txt
+Ss0 f45 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f45 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f45 actionTable 'out=in;
+' #txt
+Ss0 f45 actionCode 'import org.primefaces.event.ItemSelectEvent;
+out.event = event as ItemSelectEvent;' #txt
+Ss0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownCaseByState</name>
+        <nameStyle>20,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f45 115 435 26 26 -60 15 #rect
+Ss0 f45 @|RichDialogProcessStartIcon #fIcon
+Ss0 f35 expr out #txt
+Ss0 f35 141 448 288 448 #arcP
+Ss0 f37 expr out #txt
+Ss0 f37 141 352 288 352 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
 >Proto Ss0 '' #fIcon
 Ss0 f3 mainOut f5 tail #connect
 Ss0 f5 head f4 mainIn #connect
-Ss0 f6 mainOut f9 tail #connect
-Ss0 f9 head f8 mainIn #connect
 Ss0 f11 mainOut f0 tail #connect
 Ss0 f0 head f14 mainIn #connect
 Ss0 f19 mainOut f20 tail #connect
@@ -607,11 +596,13 @@ Ss0 f32 mainOut f34 tail #connect
 Ss0 f34 head f33 mainIn #connect
 Ss0 f8 mainOut f10 tail #connect
 Ss0 f10 head f7 mainIn #connect
-Ss0 f35 mainOut f37 tail #connect
-Ss0 f37 head f36 mainIn #connect
 Ss0 f36 mainOut f38 tail #connect
 Ss0 f38 head f7 mainIn #connect
-Ss0 f39 mainOut f41 tail #connect
-Ss0 f41 head f40 mainIn #connect
 Ss0 f40 mainOut f43 tail #connect
 Ss0 f43 head f42 mainIn #connect
+Ss0 f6 mainOut f9 tail #connect
+Ss0 f9 head f8 mainIn #connect
+Ss0 f45 mainOut f35 tail #connect
+Ss0 f35 head f40 mainIn #connect
+Ss0 f44 mainOut f37 tail #connect
+Ss0 f37 head f36 mainIn #connect
