@@ -39,8 +39,7 @@ public class StatisticWidgetTest extends BaseTest {
   public void testNavigateToChartFromMenu() {
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage = new StatisticWidgetPage();
-
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
   }
 
