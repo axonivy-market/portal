@@ -17,7 +17,7 @@
 	</snapshotRepository>
   </distributionManagement>
   <properties>
-  	<svn.revision.number>${SVN_REVISION}</svn.revision.number>
+		<scm.revision>${GIT_COMMIT}</scm.revision>
 	<ivy.engine.version>7.0.0</ivy.engine.version>
     <resources.directory.css>${resources.directory}/css</resources.directory.css>
     <resources.directory.less>${resources.directory}/less/</resources.directory.less>
@@ -37,14 +37,14 @@
 			<execution>
 				<phase>process-resources</phase>
 				<configuration>
-					<tasks>
-						<delete>
-							<fileset dir="${basedir}">
-								<include name="svn-revision-*.txt" />
-							</fileset>
-						</delete>
-						<touch file="${basedir}/svn-revision-${svn.revision.number}.txt" />
-					</tasks>
+							<tasks>
+								<delete>
+									<fileset dir="${basedir}">
+										<include name="scm-revision-*.txt" />
+									</fileset>
+								</delete>
+								<touch file="${basedir}/scm-revision-${scm.revision}.txt" />
+							</tasks>
 				</configuration>
 				<goals>
 					<goal>run</goal>
