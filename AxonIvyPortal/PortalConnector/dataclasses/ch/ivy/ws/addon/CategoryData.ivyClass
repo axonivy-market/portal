@@ -2,4 +2,3 @@ CategoryData #class
 ch.ivy.ws.addon #namespace
 path String #field
 rawPath String #field
-type ch.ivy.ws.addon.enums.CategoryDataType #field
