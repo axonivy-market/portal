@@ -49,7 +49,7 @@
           <p:panel styleClass="panel u-no-border">
             <p:commandButton icon="fa fa-plus" value="Task"
               title="#{ivy.cms.co('/Dialogs/agileBPM/task_Form/InsertATaskBefore')}" oncomplete="PF('addTask').show();"
-              update=":caseform :addTask">
+              update=":caseform :addTask" id="insert-task-button">
               <f:setPropertyActionListener value="insert" target="#{data.ok}" />
             </p:commandButton>
           </p:panel>
@@ -76,7 +76,7 @@
           <p:panel styleClass="panel u-no-border">
             <p:commandButton icon="fa fa-plus" value="Task"
               title="#{ivy.cms.co('/Dialogs/agileBPM/task_Form/AppendATaskAfter')}" oncomplete="PF('addTask').show();"
-              update=":caseform :addTask">
+              update=":caseform :addTask" id="append-task-button">
               <f:setPropertyActionListener value="append" target="#{data.ok}" />
             </p:commandButton>
           </p:panel>
@@ -84,7 +84,7 @@
             <h:graphicImage library="ivy-webcontent" name="images/flowA.png" />
             <h:panelGrid columns="1" styleClass="flowpanel TexAlCenter #{defTask.isOriginalTask? 'originalTask':''}">
               <h:panelGroup>
-               	<c:set var="isHaveTaskId" value="#{not empty defTask.taskId}"/>
+                <c:set var="isHaveTaskId" value="#{not empty defTask.taskId}" />
                 <p:outputLabel value="#{isHaveTaskId? defTask.taskId : ''} #{isHaveTaskId? '-': ''} #{defTask.kind}"></p:outputLabel>
                 <p:spacer width="10" height="1"></p:spacer>
                 <p:commandButton icon="ui-icon-close" title="Delete this Task"
@@ -100,10 +100,11 @@
               <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(defTask.actor).getEMailAddress()}" size="60"
                 notFound="mm" style="border-radius:30px"
                 rendered="#{defTask.actor.indexOf(',') le 0 and defTask.actor ne 'SYSTEM' and !defTask.isOriginalTask}" />
-               <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(defTask.actor).getEMailAddress()}" size="60"
+              <pe:gravatar value="#{ivy.wf.getSecurityContext().findUser(defTask.actor).getEMailAddress()}" size="60"
                 notFound="mm" style="border-radius:30px;"
                 rendered="#{defTask.actor.indexOf(',') le 0 and defTask.actor ne 'SYSTEM' and defTask.isOriginalTask}" />
-               <p:tooltip for="@(.originalTask)" rendered="#{defTask.isOriginalTask}" value="#{ivy.cms.co('/Dialogs/agileBPM/TooltipForOriginalTask')}" trackMouse="true" />
+              <p:tooltip for="@(.originalTask)" rendered="#{defTask.isOriginalTask}"
+                value="#{ivy.cms.co('/Dialogs/agileBPM/TooltipForOriginalTask')}" trackMouse="true" />
               <p:outputLabel value="#{defTask.actor}"></p:outputLabel>
             </h:panelGrid>
           </c:forEach>

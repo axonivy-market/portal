@@ -1,0 +1,119 @@
+package portal.guitest.test;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+
+import portal.guitest.common.BaseTest;
+import portal.guitest.common.TestAccount;
+import portal.guitest.page.HomePage;
+import portal.guitest.page.LoginPage;
+import portal.guitest.page.SelfServicePage;
+import portal.guitest.page.SelfServiceTaskPage;
+import portal.guitest.page.TaskWidgetPage;
+
+public class SelfServiceTest extends BaseTest {
+
+  private String selfServiceProcessUrl = "selfServiceBPM/14232C3D829C4D71/start.ivp";
+
+  @Before
+  public void setup() {
+    super.setup();
+    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
+    navigateToUrl(selfServiceProcessUrl);
+  }
+
+  @Test
+  public void chooseSelfServicePatternTest() {
+    SelfServicePage selfServicePage = new SelfServicePage();
+    int todoIndex = 0;
+    int approvalIndex = 1;
+    int qaIndex = 2;
+    int adHocIndex = 3;
+
+    selfServicePage.choosePattern(approvalIndex);
+    assertEquals("APPROVAL", selfServicePage.getPatternOfTaskDef());
+
+    selfServicePage.choosePattern(qaIndex);
+    assertEquals("QA", selfServicePage.getPatternOfTaskDef());
+
+    selfServicePage.choosePattern(todoIndex);
+    assertEquals("TODO", selfServicePage.getPatternOfTaskDef());
+
+    selfServicePage.choosePattern(adHocIndex);
+    assertTrue(selfServicePage.isAdHocPatternSelected());
+
+    selfServicePage.goToHomePage();
+  }
+
+  @Test
+  public void addUserValidationTest() {
+    SelfServicePage selfServicePage = new SelfServicePage();
+    selfServicePage.openUserListSelectionOfFirstTodoTaskDef();
+    selfServicePage.inputUser(TestAccount.DEMO_USER.getUsername());
+    selfServicePage.waitForElementDisplayed(By.id("error-message"), true);
+    assertEquals("User is already selected or invalid", selfServicePage.getUserListErrorMessage());
+  }
+  
+  @Test
+  public void selfServiceTodoProcessTest() {
+    String todoSubject = "Test Todo process";
+    String todoTask = "TODO " + todoSubject;
+    String insertedTask = "TASK " + todoSubject;
+    SelfServicePage selfServicePage = new SelfServicePage();
+    selfServicePage.inputSubject(todoSubject);
+
+    selfServicePage.addTask();
+    selfServicePage.startWorkflow();
+
+    HomePage homePage = new HomePage();
+    assertTrue(homePage.isDisplayed());
+
+    TaskWidgetPage taskWidget = homePage.openTaskList();
+    assertEquals(todoTask, taskWidget.getNameOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+
+    taskWidget.startTask(0);
+    SelfServiceTaskPage taskDefPage = new SelfServiceTaskPage();
+    taskDefPage.appendTask("appended task", TestAccount.DEMO_USER.getUsername());
+    taskDefPage.insertTask("inserted task", TestAccount.DEMO_USER.getUsername());
+
+    assertTrue(homePage.isDisplayed());
+    taskWidget = homePage.openTaskList();
+    assertEquals(insertedTask, taskWidget.getNameOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+
+    taskWidget.startTask(0);
+    taskDefPage.inputTaskComment("approved");
+    taskDefPage.clickSendButton();
+    
+    assertTrue(homePage.isDisplayed());
+    taskWidget = homePage.openTaskList();
+    assertEquals(todoTask, taskWidget.getNameOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+    
+    taskWidget.startTask(0);
+    taskDefPage.clickDoneButton();
+
+    assertTrue(homePage.isDisplayed());
+    taskWidget = homePage.openTaskList();    
+    assertEquals(insertedTask, taskWidget.getNameOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+    
+    taskWidget.startTask(0);
+    taskDefPage.inputTaskComment("approved");
+    taskDefPage.clickSendButton();
+    
+    assertTrue(homePage.isDisplayed());
+    taskWidget = homePage.openTaskList();    
+    assertEquals(todoTask, taskWidget.getNameOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+    
+    taskWidget.startTask(0);
+    taskDefPage.clickDoneButton();
+    
+    assertTrue(taskWidget.hasNoTask());
+  }
+}
