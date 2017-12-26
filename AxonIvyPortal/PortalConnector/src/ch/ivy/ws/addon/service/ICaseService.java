@@ -110,25 +110,32 @@ public interface ICaseService {
   public CaseServiceResult findCasesByCriteria(CaseSearchCriteria caseSearchCriteria, Integer startIndex, Integer count)
       throws WSException;
 
+  /**
+   * Find all case categories by criteria
+   * 
+   * @param caseSearchCriteria
+   * @return case categories
+   * @throws WSException
+   */
   public CaseServiceResult findCaseCategoriesByCriteria(CaseSearchCriteria caseSearchCriteria)
       throws WSException;
 
   public CaseServiceResult countCasesByCriteria(CaseSearchCriteria caseSearchCriteria) throws WSException;
 
   /**
-   * Analyze case state chart
+   * Get statistic data by case state
    * 
    * @param caseSearchCriteria
-   * @return
+   * @return statistic data
    * @throws WSException
    */
   public CaseServiceResult analyzeCaseStateStatistic(CaseSearchCriteria caseSearchCriteria) throws WSException;
 
   /**
-   * Analyze elasped time chart
+   * Get statistic data by case category's elapsed time
    * 
    * @param caseSearchCriteria
-   * @return
+   * @return statistic data
    * @throws WSException
    */
   public CaseServiceResult analyzeElapsedTimeByCaseCategory(CaseSearchCriteria caseSearchCriteria) throws WSException;

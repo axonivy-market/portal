@@ -603,7 +603,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         return result;
       });
     } catch(Exception e) {
-      throw new WSException(10016, e);
+      throw new WSException(10053, e);
     }
   }
 
@@ -642,7 +642,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             return result(caseStateStatistic, errors);
           });
     } catch (Exception e) {
-      throw new WSException(e);
+      throw new WSException(10051, e);
     }
   }
 
@@ -683,7 +683,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               return result(elapsedTimeStatistic, errors);
             });
       } catch (Exception e) {
-        throw new WSException(e);
+        throw new WSException(10052, e);
       }
   }
 
