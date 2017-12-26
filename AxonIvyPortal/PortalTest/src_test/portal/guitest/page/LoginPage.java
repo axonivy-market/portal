@@ -29,5 +29,11 @@ public class LoginPage extends AbstractPage {
     passwordField.sendKeys(testAccount.getPassword());
     loginButton.click();
   }
+  
+  public void login(String username, String password) {
+    usernameTextField.sendKeys(username);
+    passwordField.sendKeys(password);
+    loginButton.click();
+  }
 
 }
