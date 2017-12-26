@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Jun 29 13:53:46 ICT 2016]
-153CACC26D0D4C3D 3.18 #module
+153CACC26D0D4C3D 3.20 #module
 >Proto >Proto Collection #zClass
 Dt0 DataCreation Big #zClass
 Dt0 B #cInfo
@@ -45,6 +44,11 @@ Dt0 @EndTask f11 '' #zField
 Dt0 @RichDialog f13 '' #zField
 Dt0 @PushWFArc f14 '' #zField
 Dt0 @PushWFArc f12 '' #zField
+Dt0 @StartRequest f15 '' #zField
+Dt0 @GridStep f16 '' #zField
+Dt0 @EndTask f17 '' #zField
+Dt0 @PushWFArc f18 '' #zField
+Dt0 @PushWFArc f19 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -65,15 +69,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Dt0 f0 showInStartList 1 #txt
-Dt0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -130,15 +125,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Dt0 f25 showInStartList 1 #txt
-Dt0 f25 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -313,39 +299,6 @@ TaskC.PRI=2
 TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0' #txt
-Dt0 f3 taskAction 'ivy.case.setName(engine.expandMacros("<%=in1.caseName%>"));
-import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("<%=in1.caseName%>_A"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskB.ivp");
-taskDef.setName(engine.expandMacros("<%=in1.caseName%>_B"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskC.ivp");
-taskDef.setName(engine.expandMacros("<%=in1.caseName%>_C"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-' #txt
 Dt0 f3 type portalKit_test.DataCreationData #txt
 Dt0 f3 template "" #txt
 Dt0 f3 274 322 28 28 14 0 #rect
@@ -380,15 +333,6 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Dt0 f10 showInStartList 1 #txt
-Dt0 f10 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Dt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -424,6 +368,57 @@ Dt0 f14 expr out #txt
 Dt0 f14 61 480 174 480 #arcP
 Dt0 f12 expr out #txt
 Dt0 f12 210 480 307 480 #arcP
+Dt0 f15 outLink createTestUser.ivp #txt
+Dt0 f15 type portalKit_test.DataCreationData #txt
+Dt0 f15 inParamDecl '<> param;' #txt
+Dt0 f15 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f15 guid 1608D2E8AE8B452C #txt
+Dt0 f15 requestEnabled true #txt
+Dt0 f15 triggerEnabled false #txt
+Dt0 f15 callSignature createTestUser() #txt
+Dt0 f15 persist false #txt
+Dt0 f15 startName 'Create test user' #txt
+Dt0 f15 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f15 caseData businessCase.attach=true #txt
+Dt0 f15 showInStartList 1 #txt
+Dt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTestUser.ivp</name>
+        <nameStyle>18,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f15 @C|.responsibility Everybody #txt
+Dt0 f15 81 561 30 30 -51 17 #rect
+Dt0 f15 @|StartRequestIcon #fIcon
+Dt0 f16 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f16 actionTable 'out=in;
+' #txt
+Dt0 f16 actionCode 'import java.util.Locale;
+if (ivy.wf.getSecurityContext().findUser("test_change_password_user") != null) {
+	ivy.wf.getSecurityContext().deleteUser("test_change_password_user");
+}
+ivy.wf.getSecurityContext().createUser("test_change_password_user", "Tung Le", "123", Locale.ENGLISH, "", "");' #txt
+Dt0 f16 security system #txt
+Dt0 f16 type portalKit_test.DataCreationData #txt
+Dt0 f16 152 554 112 44 0 -8 #rect
+Dt0 f16 @|StepIcon #fIcon
+Dt0 f17 type portalKit_test.DataCreationData #txt
+Dt0 f17 321 561 30 30 0 15 #rect
+Dt0 f17 @|EndIcon #fIcon
+Dt0 f18 expr out #txt
+Dt0 f18 264 576 321 576 #arcP
+Dt0 f19 expr out #txt
+Dt0 f19 111 576 152 576 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -463,3 +458,7 @@ Dt0 f10 mainOut f14 tail #connect
 Dt0 f14 head f13 mainIn #connect
 Dt0 f13 mainOut f12 tail #connect
 Dt0 f12 head f11 mainIn #connect
+Dt0 f16 mainOut f18 tail #connect
+Dt0 f18 head f17 mainIn #connect
+Dt0 f15 mainOut f19 tail #connect
+Dt0 f19 head f16 mainIn #connect
