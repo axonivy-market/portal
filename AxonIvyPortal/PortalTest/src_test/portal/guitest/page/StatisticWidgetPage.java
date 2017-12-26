@@ -36,6 +36,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public boolean isCompactMode() {
+    waitForPageLoaded();
     waitForElementDisplayed(By.id("statistics-widget:widget-container"), true, DEFAULT_TIMEOUT);
     WebElement statisticContainer = findElementById("statistics-widget:widget-container");
     return statisticContainer.getAttribute(CLASS_PROPERTY).contains("compact-mode");
