@@ -1,0 +1,4 @@
+co: name={ErrorEmployeeNotExist} description={} changed={2017-12-26 03:49:12 CET} changedby={anhnguyenhoang} visualorder={0} guid={16090B9530616302} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16090B95308B95E7} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-13 03:24:41 CET} validto={} changed={2017-12-26 03:49:12 CET} changedby={anhnguyenhoang} properties={} id={}
+val: guid={16090B9530EE795C} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-13 03:24:21 CET} validto={} changed={2017-12-26 03:49:12 CET} changedby={anhnguyenhoang} properties={} id={}
+val: guid={16090B953154468B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-13 03:24:53 CET} validto={} changed={2017-12-26 03:49:12 CET} changedby={anhnguyenhoang} properties={} id={}
