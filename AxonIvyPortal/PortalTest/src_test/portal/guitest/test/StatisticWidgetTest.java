@@ -46,75 +46,34 @@ public class StatisticWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testCreateTaskByPriorityChart() {
+  public void testCreateCharts() {
+    generateDataForElapsedTimeChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
     createTaskByPriorityChart();
-
-    statisticWidgetPage.switchCreateMode();
-
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
-    WebElement taskByPriorityChartName
-      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
-    assertEquals(TASK_BY_PRIORITY_CHART_NAME, taskByPriorityChartName.getText());
-  }
-
-  @Test
-  public void testCreateCaseByStateChart() {
-    mainMenuPage = homePage.openMainMenu();
-    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(2000);
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
-    statisticWidgetPage.switchCreateMode();
-
-    createCaseByStateChart();
-
-    statisticWidgetPage.switchCreateMode();
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
-    WebElement chartName
-      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
-    assertEquals(CASE_BY_STATE_CHART_NAME, chartName.getText());
-  }
-
-  @Test
-  public void testCreateTaskByExpiryChart() {
-    mainMenuPage = homePage.openMainMenu();
-    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(2000);
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
-    statisticWidgetPage.switchCreateMode();
-
     createTaskByExpiryChart();
-
-    statisticWidgetPage.switchCreateMode();
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
-    WebElement chartName
-      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
-    assertEquals(TASK_BY_EXPIRY_CHART_NAME, chartName.getText());
-  }
-
-  @Test
-  public void testCreateElapsedTimeChart() {
-    generateDataForElapsedTimeChart();
-    Sleeper.sleepTight(2000);
-
-    mainMenuPage = homePage.openMainMenu();
-    statisticWidgetPage =  mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(2000);
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
-    statisticWidgetPage.switchCreateMode();
-
+    createCaseByStateChart();
     createElapsedTimeChart();
 
     statisticWidgetPage.switchCreateMode();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
-    WebElement chartName
+
+    WebElement taskByPriorityChartName
       = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
-    assertEquals(ELAPSED_TIME_CHART_NAME, chartName.getText());
+    WebElement taskByExpiryChartName
+      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:1:chart-name");
+    WebElement caseByStateChartName
+      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name");
+    WebElement elapsedTimeChartName
+      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:3:chart-name");
+
+    assertEquals(TASK_BY_PRIORITY_CHART_NAME, taskByPriorityChartName.getText());
+    assertEquals(TASK_BY_EXPIRY_CHART_NAME, taskByExpiryChartName.getText());
+    assertEquals(CASE_BY_STATE_CHART_NAME, caseByStateChartName.getText());
+    assertEquals(ELAPSED_TIME_CHART_NAME, elapsedTimeChartName.getText());
   }
 
   private void createTaskByPriorityChart() {

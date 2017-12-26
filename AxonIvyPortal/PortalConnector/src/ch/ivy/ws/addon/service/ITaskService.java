@@ -76,10 +76,6 @@ public interface ITaskService {
 
   public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException;
 
-  public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
-
-  public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
-
   TaskServiceResult findPersonalTaskCategories(String jsonQuery, String username, List<String> apps, String language) throws WSException;
 
   TaskServiceResult findGroupTaskCategories(String jsonQuery, String username, List<String> apps, String language) throws WSException;
@@ -88,4 +84,25 @@ public interface ITaskService {
 
   void setAdditionalProperty(Long taskId, String name, String value) throws WSException;
 
+  /**
+   * Get statistic data by task priority
+   * 
+   * @param jsonQuery
+   * @param username
+   * @param apps
+   * @return statistic data
+   * @throws WSException
+   */
+  public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
+
+  /**
+   * Get statistic data by task expiry date
+   * 
+   * @param jsonQuery
+   * @param username
+   * @param apps
+   * @return statistic data
+   * @throws WSException
+   */
+  public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
 }
