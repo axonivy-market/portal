@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -39,6 +40,7 @@ public class StatisticWidgetTest extends BaseTest {
   public void testNavigateToChartFromMenu() {
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
   }
@@ -47,6 +49,7 @@ public class StatisticWidgetTest extends BaseTest {
   public void testCreateTaskByPriorityChart() {
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
@@ -64,6 +67,7 @@ public class StatisticWidgetTest extends BaseTest {
   public void testCreateCaseByStateChart() {
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
@@ -80,6 +84,7 @@ public class StatisticWidgetTest extends BaseTest {
   public void testCreateTaskByExpiryChart() {
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
@@ -95,9 +100,11 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testCreateElapsedTimeChart() {
     generateDataForElapsedTimeChart();
+    Sleeper.sleepTight(2000);
 
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage =  mainMenuPage.selectStatisticDashboard();
+    Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
 
@@ -115,13 +122,14 @@ public class StatisticWidgetTest extends BaseTest {
     WebElement createTaskByPriorityLink
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link");
     createTaskByPriorityLink.click();
-  
+    statisticWidgetPage.waitAjaxIndicatorDisappear();
+
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 30);
     WebElement chartNameInput
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-name-input");
     WebElement createChartButton
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-save-command");
-  
+
     chartNameInput.sendKeys(TASK_BY_PRIORITY_CHART_NAME);
     createChartButton.click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();
@@ -132,13 +140,14 @@ public class StatisticWidgetTest extends BaseTest {
     WebElement createCaseByStateLink
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-state-link");
     createCaseByStateLink.click();
-  
+    statisticWidgetPage.waitAjaxIndicatorDisappear();
+
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 30);
     WebElement chartNameInput
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-name-input");
     WebElement createChartButton
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-save-command");
-  
+
     chartNameInput.sendKeys(CASE_BY_STATE_CHART_NAME);
     createChartButton.click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();
@@ -149,7 +158,8 @@ public class StatisticWidgetTest extends BaseTest {
     WebElement createTaskByExpiryLink
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-expiry-link");
     createTaskByExpiryLink.click();
-  
+    statisticWidgetPage.waitAjaxIndicatorDisappear();
+
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 30);
     WebElement chartNameInput
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-name-input");
@@ -166,13 +176,14 @@ public class StatisticWidgetTest extends BaseTest {
     WebElement createElapsedTimeLink
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-elapsed-time-link");
     createElapsedTimeLink.click();
-  
+    statisticWidgetPage.waitAjaxIndicatorDisappear();
+
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 30);
     WebElement chartNameInput
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-name-input");
     WebElement createChartButton
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-save-command");
-  
+
     chartNameInput.sendKeys(ELAPSED_TIME_CHART_NAME);
     createChartButton.click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();

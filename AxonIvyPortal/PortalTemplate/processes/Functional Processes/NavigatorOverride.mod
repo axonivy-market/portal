@@ -326,12 +326,18 @@ Nr0 f20 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f20 actionTable 'out=in;
 ' #txt
-Nr0 f20 actionCode 'import ch.ivy.addon.portal.generic.view.TaskView;
+Nr0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
+import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portal.generic.view.TaskView;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 
-TaskLazyDataModel model = new TaskLazyDataModel();
-model.getQueryCriteria().setTaskQuery(in.taskQuery);
-in.taskView = TaskView.create().dataModel(model).showHeaderToolbar(false).createNewTaskView();' #txt
+in.taskDataModel= new TaskLazyDataModel();
+in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
+in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
+
+in.taskView = TaskView.create().dataModel(in.taskDataModel).showHeaderToolbar(false).createNewTaskView();' #txt
 Nr0 f20 security system #txt
 Nr0 f20 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
