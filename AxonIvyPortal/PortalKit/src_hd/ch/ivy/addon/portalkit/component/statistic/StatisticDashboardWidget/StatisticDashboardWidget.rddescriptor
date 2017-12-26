@@ -2,16 +2,6 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>drilldownTaskByPriority</name>
-        <description></description>
-        <inputParameter>
-            <name>event</name>
-            <description></description>
-            <parameterType>org.primefaces.event.ItemSelectEvent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
         <name>initialize</name>
         <description></description>
         <inputParameter>
@@ -72,26 +62,6 @@
             <name>statisticChart</name>
             <description></description>
             <parameterType>ch.ivy.addon.portalkit.statistics.StatisticChart</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>drilldownTaskByExpiry</name>
-        <description></description>
-        <inputParameter>
-            <name>event</name>
-            <description></description>
-            <parameterType>org.primefaces.event.ItemSelectEvent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>drilldownCaseByState</name>
-        <description></description>
-        <inputParameter>
-            <name>event</name>
-            <description></description>
-            <parameterType>org.primefaces.event.ItemSelectEvent</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
