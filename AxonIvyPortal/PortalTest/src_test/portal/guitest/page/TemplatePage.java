@@ -76,7 +76,12 @@ public abstract class TemplatePage extends AbstractPage {
     clickUserMenuItem("absence-menu-item");
     return new AbsencePage();
   }
-
+  
+  public ChangePasswordPage openChangePasswordPage() {
+    clickUserMenuItem("change-password-menu-item");
+    return new ChangePasswordPage();
+  }
+  
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     findElementById("user-settings-menu").click();

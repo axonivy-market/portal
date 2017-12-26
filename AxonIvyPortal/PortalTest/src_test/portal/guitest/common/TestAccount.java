@@ -6,8 +6,10 @@ public enum TestAccount {
 
   DEMO_USER(nameOfDemoUser(), passwordOfDemoUser()),
 
-  ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser());
+  ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser()),
 
+  TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123");
+  
   private String username;
   private String password;
 
