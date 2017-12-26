@@ -27,9 +27,9 @@ public class TaskWidgetPage extends TemplatePage {
     fullModeButton.click();
     String engineUrl = System.getProperty("engineUrl");
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-        Sleeper.sleepTight(7000);
+      Sleeper.sleepTight(7000);
     } else {
-        Sleeper.sleepTight(5000);
+      Sleeper.sleepTight(5000);
     }
   }
 
@@ -40,13 +40,14 @@ public class TaskWidgetPage extends TemplatePage {
   public void closeTaskDetails(int index) {
     clickOnTaskEntryInFullMode(index, false);
   }
-  
+
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
 
   private void clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
-    WebElement taskShowHideDetailsLink = findElementByCssSelector("*[id$='" + index + ":task-item:show-task-detail-link']");
+    WebElement taskShowHideDetailsLink =
+        findElementByCssSelector("*[id$='" + index + ":task-item:show-task-detail-link']");
     taskShowHideDetailsLink.click();
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.cssSelector("*[id$='" + index + ":task-item:task-details-container']"), isDetailsShown,
@@ -121,7 +122,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void resetTask(int taskId) {
-    String resetCommandButton = String.format("task-widget:task-list-scroller:0:task-item:task-action:task-reset-command", taskId);
+    String resetCommandButton =
+        String.format("task-widget:task-list-scroller:0:task-item:task-action:task-reset-command", taskId);
     click(findElementById(resetCommandButton));
   }
 
@@ -325,7 +327,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openTaskDelegateDialog(int index) {
     WebElement delegateButton =
-        findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command", index));
+        findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command",
+            index));
     delegateButton.click();
   }
 
@@ -364,10 +367,21 @@ public class TaskWidgetPage extends TemplatePage {
     return new AdhocPage();
   }
 
+  /**
+   * Get name from task item in task scroller at specific index. Task item must not be expanded.
+   * 
+   * @param index
+   * @return task name
+   */
   public String getNameOfTaskAt(int index) {
-    WebElement name =
-        findElementByCssSelector("*[id$='" + index + ":task-item:task-start-item-view:task-start-task-name']");
+    WebElement name = findElementByCssSelector("*[id$='" + index + ":task-item:task-name-component:task-name']");
     return name.getText();
+  }
+
+  public String getResposibleOfTaskAt(int index) {
+    WebElement taskStartInfo = findElementByCssSelector("div[id$='" + index + ":task-item:task-info']");
+    WebElement responsibleSpan = taskStartInfo.findElement(By.cssSelector("span[id$='task-responsible']"));
+    return responsibleSpan.getText();
   }
 
   public boolean isFilterSelectionVisible() {
@@ -421,4 +435,8 @@ public class TaskWidgetPage extends TemplatePage {
     return descriptionInput.getText();
   }
 
+  public boolean hasNoTask() {
+    WebElement noTaskMessage = findElementByCssSelector("label[class*='no-task-message']");
+    return noTaskMessage.isDisplayed();
+  }
 }
