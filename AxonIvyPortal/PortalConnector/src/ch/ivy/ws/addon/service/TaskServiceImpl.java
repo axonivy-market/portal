@@ -566,7 +566,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             return result(priorityStatistic, errors);
           });
     } catch (Exception e) {
-      throw new WSException(10016, e);
+      throw new WSException(10049, e);
     }
   }
 
@@ -614,7 +614,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             return result(expiryStatistic, errors);
           });
     } catch (Exception e) {
-      throw new WSException(10016, e);
+      throw new WSException(10050, e);
     }
   }
 

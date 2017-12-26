@@ -342,6 +342,31 @@
 						<row>
 							<entry>
 								<para>
+									findCaseCategoriesByCriteria
+								</para>
+							</entry>
+							<entry>
+								<para>
+									caseSearchCriteria (CaseSearchCriteria)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									categories (List of String)
+								</para>
+								<para>
+									errors (List of WSExceptions)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									Find all case categories by criteria.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>
 									findDocuments
 								</para>
 							</entry>
@@ -514,6 +539,56 @@
 							<entry>
 								<para>
 									Save Ivy Case.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>
+									analyzeCaseStateStatistic
+								</para>
+							</entry>
+							<entry>
+								<para>
+									caseSearchCriteria (CaseSearchCriteria)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									caseStateStatistic (CaseStateStatistic)
+								</para>
+								<para>
+									errors (List of WSExceptions)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									Get statistic data by case state.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>
+									analyzeElapsedTimeByCaseCategory
+								</para>
+							</entry>
+							<entry>
+								<para>
+									caseSearchCriteria (CaseSearchCriteria)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									elapsedTimeStatistic (ElapsedTimeStatistic)
+								</para>
+								<para>
+									errors (List of WSExceptions)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									Get statistic data by case category's elapsed time.
 								</para>
 							</entry>
 						</row>
@@ -914,7 +989,7 @@
 							</entry>
 							<entry>
 								<para>
-									Get expiry statistic for chart.
+									Get statistic data by task expiry date.
 								</para>
 							</entry>
 						</row>
@@ -945,7 +1020,7 @@
 							</entry>
 							<entry>
 								<para>
-									Get priority statistic for chart.
+									Get statistic data by task priority.
 								</para>
 							</entry>
 						</row>
@@ -1637,55 +1712,6 @@
 							</entry>
 							<entry>
 								<para>String</para>
-							</entry>
-						</row>
-
-					</tbody>
-				</tgroup>
-			</table>
-		</sect2>
-		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.objects.expirystatistic">
-			<title>ExpiryStatistic</title>
-			<table>
-				<title>ExpiryStatistic</title>
-				<tgroup cols="2">
-					<thead>
-						<row>
-							<entry>Name</entry>
-							<entry>Type</entry>
-						</row>
-					</thead>
-					<tbody>
-						<row>
-							<entry>
-								<para>in2Days</para>
-							</entry>
-							<entry>
-								<para>Long</para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>in3Days</para>
-							</entry>
-							<entry>
-								<para>Long</para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>today</para>
-							</entry>
-							<entry>
-								<para>Long</para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>tomorrow</para>
-							</entry>
-							<entry>
-								<para>Long</para>
 							</entry>
 						</row>
 
@@ -3953,6 +3979,102 @@
 				</tgroup>
 			</table>
 		</sect2>
+		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.objects.expirystatistic">
+			<title>ExpiryStatistic</title>
+			<table>
+				<title>ExpiryStatistic</title>
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Type</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<para>result</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
+		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.objects.casestatestatistic">
+			<title>CaseStateStatistic</title>
+			<table>
+				<title>CaseStateStatistic</title>
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Type</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<para>created</para>
+							</entry>
+							<entry>
+								<para>Long</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>running</para>
+							</entry>
+							<entry>
+								<para>Long</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>done</para>
+							</entry>
+							<entry>
+								<para>Long</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>failed</para>
+							</entry>
+							<entry>
+								<para>Long</para>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
+		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.objects.elapsedtimestatistic">
+			<title>ElapsedTimeStatistic</title>
+			<table>
+				<title>ElapsedTimeStatistic</title>
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Type</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<para>result</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
 		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.objects.wsexception">
 			<title>WSException</title>
 			<table>
@@ -4523,6 +4645,46 @@
 						</entry>
 						<entry>
 							<para>Can not set language for email notification language.</para>
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<para>10049</para>
+						</entry>
+						<entry>
+							<para>An error occurred while analyzing statistic data by task priority.</para>
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<para>10050</para>
+						</entry>
+						<entry>
+							<para>An error occurred while analyzing statistic data by task expiry date.</para>
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<para>10051</para>
+						</entry>
+						<entry>
+							<para>An error occurred while analyzing statistic data by case state.</para>
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<para>10052</para>
+						</entry>
+						<entry>
+							<para>An error occurred while analyzing statistic data by case category's elapsed time.</para>
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<para>10053</para>
+						</entry>
+						<entry>
+							<para>An error occurred while searching for case categories.</para>
 						</entry>
 					</row>
 				</tbody>
