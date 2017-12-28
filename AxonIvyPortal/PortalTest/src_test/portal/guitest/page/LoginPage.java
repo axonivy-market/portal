@@ -1,5 +1,6 @@
 package portal.guitest.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.TestAccount;
@@ -28,12 +29,14 @@ public class LoginPage extends AbstractPage {
     usernameTextField.sendKeys(testAccount.getUsername());
     passwordField.sendKeys(testAccount.getPassword());
     loginButton.click();
+    waitForElementDisplayed(By.id("left-menu"), true, AbstractPage.DEFAULT_TIMEOUT);
   }
   
   public void login(String username, String password) {
     usernameTextField.sendKeys(username);
     passwordField.sendKeys(password);
     loginButton.click();
+    waitForElementDisplayed(By.id("left-menu"), true, AbstractPage.DEFAULT_TIMEOUT);
   }
 
 }
