@@ -100,8 +100,6 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openTaskList();
     int taskBeforeRefresh = taskWidgetPage.countTasks();
-    System.out.println("BEFORE IS " + taskBeforeRefresh);
-    
     JavascriptExecutor js = (JavascriptExecutor) getBrowser().getDriver();
     String url = UrlHelpers.generateAbsoluteProcessStartLink("internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp");
     js.executeScript("window.open('');");
@@ -120,7 +118,6 @@ public class TaskWidgetTest extends BaseTest {
     Sleeper.sleepTight(60000);
     getBrowser().getDriver().switchTo().window(main);
     int taskAfterRefresh = taskWidgetPage.countTasks();
-    System.out.println("AFTER IS " + taskAfterRefresh);
     assertNotEquals(taskBeforeRefresh, taskAfterRefresh);
   }
   
