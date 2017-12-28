@@ -7,7 +7,7 @@
 <h:body>
   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
     <ui:param name="dataModel" value="#{logic.getDataModel()}" />
-
+    <ui:param name="statisticChartList" value="#{logic.getStatisticCharts()}" />
     <ui:param name="useOverrideListHeader" value="true" />
     <ui:param name="useOverrideHeader" value="true" />
     <ui:param name="useOverrideFilter" value="true" />
