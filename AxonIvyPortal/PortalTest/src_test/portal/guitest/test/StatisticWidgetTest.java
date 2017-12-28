@@ -150,9 +150,6 @@ public class StatisticWidgetTest extends BaseTest {
 
   private void generateDataForElapsedTimeChart() {
     navigateToUrl("internalSupport/14B2FC03D2E87141/CreateTaskWithSpecialCharacter.ivp");
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.filterTasksBy("Resource with ID 1212");
     taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();

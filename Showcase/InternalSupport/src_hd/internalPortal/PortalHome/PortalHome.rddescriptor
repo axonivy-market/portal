@@ -11,6 +11,16 @@
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
+    <method>
+        <name>getStatisticCharts</name>
+        <description></description>
+        <outputParameter>
+            <name>statisticChartList</name>
+            <description></description>
+            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.statistics.StatisticChart&gt;</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </outputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
