@@ -1,10 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<userConfig>
-    <user>
-        <username>demo2</username>
-        <password>+d3m0++</password>
-        <fullName>Nam Mai</fullName>
-        <role>Test Role 2</role>
-        <role>Test Role</role>
-    </user>
-</userConfig>
+<userConfig/>

@@ -31,31 +31,3 @@ function chartExtender() {
     shadow: false
   };
 }
-
-function elapsedTimeChartExtender() {
-  this.cfg.grid = {
-    gridLineColor : 'transparent',
-    background : 'rgba(255,255,255, 0)',
-    drawBorder : true,
-    shadow : false
-  };
-  this.cfg.axes.yaxis.labelOptions = {
-    textColor : 'black',
-    fontSize : '1.2rem',
-  };
-  this.cfg.axes.xaxis.labelOptions = {
-    textColor : 'black',
-    fontSize : '1.2rem'
-  };
-  this.cfg.axes.xaxis.tickOptions = {
-    textColor : 'black',
-    fontSize : '1.2rem'
-  };
-  this.cfg.axes.yaxis.tickOptions = {
-    textColor : 'black',
-    fontSize : '1.2rem',
-    showTicks: false, 
-    showTickMarks: false
-
-  };
-}
