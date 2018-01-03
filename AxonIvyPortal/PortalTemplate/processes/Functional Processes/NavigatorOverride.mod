@@ -430,9 +430,12 @@ Nr0 f31 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 Nr0 f31 actionTable 'out=in;
 ' #txt
 Nr0 f31 actionCode 'import ch.ivy.addon.portal.generic.view.CaseView;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 
 in.caseDataModel.getSearchCriteria().setBusinessCase(true);
-in.caseDataModel.getSearchCriteria().setJsonQuery(in.caseQuery.asJson());
+in.caseDataModel.setIgnoreInvolvedUser(CaseUtils.checkReadAllCasesPermission());
+in.caseDataModel.getQueryCriteria().setCaseQuery(in.caseQuery);
+
 in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).buildNewView();' #txt
 Nr0 f31 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -517,6 +520,7 @@ Nr0 f36 expr out #txt
 Nr0 f36 866 213 866 275 #arcP
 Nr0 f37 expr out #txt
 Nr0 f37 866 299 866 339 #arcP
+Nr0 f37 0 0.4999999999999999 0 0 #arcLabel
 Nr0 f38 expr out #txt
 Nr0 f38 866 108 866 169 #arcP
 Nr0 f39 expr out #txt

@@ -320,11 +320,11 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     return searchCriteria;
   }
 
-  public void getQueryCriteria(CaseQueryCriteria queryCriteria) {
+  public void setQueryCriteria(CaseQueryCriteria queryCriteria) {
     this.queryCriteria = queryCriteria;
   }
 
-  public CaseQueryCriteria setQueryCriteria() {
+  public CaseQueryCriteria getQueryCriteria() {
     return queryCriteria;
   }
 

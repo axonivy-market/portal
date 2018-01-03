@@ -96,6 +96,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private static final String USER_ID = "userId";
   private static final String NAME = "name";
 
+  private static final String JSON_QUERY = "jsonQuery";
+  private static final String RESULT = "result";
+
   @Override
   public Class<StatisticChart> getType() {
     return StatisticChart.class;
@@ -154,7 +157,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return generated task query
    */
   public TaskQuery generateTaskQuery(StatisticFilter filter) {
-    CaseQuery caseQuery = CaseQuery.create();
     TaskQuery taskQuery = TaskQuery.create();
 
     // Filter by created date
@@ -194,29 +196,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       taskQuery.where().and(subTaskQueryForPriority);
     }
 
-    // Filter by case state
-    List<CaseState> selectedCaseStates = Optional.ofNullable(filter.getSelectedCaseStates()).orElse(new ArrayList<>());
-    if (!selectedCaseStates.isEmpty()) {
-      CaseQuery subCaseQueryForSelectedCaseStates = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseStates = subCaseQueryForSelectedCaseStates.where();
-
-      selectedCaseStates.forEach(caseState ->
-        subCaseFilterForSelectedCaseStates.or().state().isEqual(caseState));
-      caseQuery.where().and(subCaseQueryForSelectedCaseStates);
-    }
-
-    // Filter by case category
-    List<String> selectedCaseCategories = Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
-    if (!selectedCaseCategories.isEmpty()) {
-      CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories = subCaseQueryForSelectedCaseCategories.where();
-
-      selectedCaseCategories.forEach(category ->
-        subCaseFilterForSelectedCaseCategories.or().category().isEqual(category));
-      caseQuery.where().and(subCaseQueryForSelectedCaseCategories);
-    }
-
-    taskQuery.where().and().cases(caseQuery);
+    taskQuery.where().and().cases(generateCaseQuery(filter, false));
     return taskQuery;
   }
 
@@ -261,20 +241,32 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     CaseQuery subCaseQueryForSelectedCaseStates = CaseQuery.create();
     ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseStates = subCaseQueryForSelectedCaseStates.where();
 
-    if (forElapsedStatistic) {
+    if (selectedCaseStates.isEmpty()) {
+      List<CaseState> caseStates = Optional.ofNullable(filter.getCaseStates()).orElse(new ArrayList<>());
+      caseStates.forEach(caseState ->
+        subCaseFilterForSelectedCaseStates.and().state().isNotEqual(caseState));
+    } else if (forElapsedStatistic) {
       subCaseFilterForSelectedCaseStates.or().state().isEqual(CaseState.DONE);
-    } else if (!selectedCaseStates.isEmpty()) {
+    } else {
       selectedCaseStates.forEach(caseState ->
-        subCaseFilterForSelectedCaseStates.or().state().isEqual(caseState));
-      caseQuery.where().and(subCaseQueryForSelectedCaseStates);
+      subCaseFilterForSelectedCaseStates.or().state().isEqual(caseState));
     }
+    caseQuery.where().and(subCaseQueryForSelectedCaseStates);
 
     // Filter by case category
     List<String> selectedCaseCategories = Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
-    if (!selectedCaseCategories.isEmpty()) {
-      CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories = subCaseQueryForSelectedCaseCategories.where();
-
+    CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
+    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories = subCaseQueryForSelectedCaseCategories.where();
+    if (selectedCaseCategories.isEmpty()) {
+      List<String> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
+      caseCategories.forEach(category -> {
+        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+          subCaseFilterForSelectedCaseCategories.and().category().isNotNull();
+        } else {
+          subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category);
+        }
+      });
+    } else {
       selectedCaseCategories.forEach(category -> {
         if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
           subCaseFilterForSelectedCaseCategories.or().category().isNull();
@@ -282,9 +274,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           subCaseFilterForSelectedCaseCategories.or().category().isEqual(category);
         }
       });
-
-      caseQuery.where().and(subCaseQueryForSelectedCaseCategories);
     }
+    caseQuery.where().and(subCaseQueryForSelectedCaseCategories);
 
     return caseQuery;
   }
@@ -317,11 +308,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public PriorityStatistic getPriorityStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put("jsonQuery", jsonQuery);
+    params.put(JSON_QUERY, jsonQuery);
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("analyzePriorityStatistic(String)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (PriorityStatistic) response.get("result");
+    return (PriorityStatistic) response.get(RESULT);
   }
 
   /**
@@ -333,11 +324,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   @SuppressWarnings("unchecked")
   public List<ExpiryStatistic> getExpiryStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put("jsonQuery", jsonQuery);
+    params.put(JSON_QUERY, jsonQuery);
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeExpiryStatistic(String)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (List<ExpiryStatistic>) response.get("result");
+    return (List<ExpiryStatistic>) response.get(RESULT);
   }
 
   /**
@@ -348,11 +339,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public CaseStateStatistic getCaseStateStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put("jsonQuery", jsonQuery);
+    params.put(JSON_QUERY, jsonQuery);
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeCaseStateStatistic(String)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (CaseStateStatistic) response.get("result");
+    return (CaseStateStatistic) response.get(RESULT);
   }
 
   /**
@@ -364,11 +355,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   @SuppressWarnings("unchecked")
   public List<ElapsedTimeStatistic> getElapsedTimeStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put("jsonQuery", jsonQuery);
+    params.put(JSON_QUERY, jsonQuery);
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeElapsedTimeStatistic(String)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (List<ElapsedTimeStatistic>) response.get("result");
+    return (List<ElapsedTimeStatistic>) response.get(RESULT);
   }
 
   /**
@@ -710,19 +701,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public boolean isTaskByPriority(StatisticChart statisticChart) {
-    return statisticChart.getType().equals(StatisticChartType.TASK_BY_PRIORITY);
+    return statisticChart.getType() == StatisticChartType.TASK_BY_PRIORITY;
   }
 
   public boolean isTaskByExpiry(StatisticChart statisticChart) {
-    return statisticChart.getType().equals(StatisticChartType.TASK_BY_EXPIRY);
+    return statisticChart.getType() == StatisticChartType.TASK_BY_EXPIRY;
   }
 
   public boolean isCaseByState(StatisticChart statisticChart) {
-    return statisticChart.getType().equals(StatisticChartType.CASES_BY_STATE);
+    return statisticChart.getType() == StatisticChartType.CASES_BY_STATE;
   }
 
   public boolean isElapsedTimeByCaseCategory(StatisticChart statisticChart) {
-    return statisticChart.getType().equals(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY);
+    return statisticChart.getType() == StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY;
   }
 
   /**
@@ -755,15 +746,24 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private String getSelectedValueOfDonutChart(ItemSelectEvent event) {
-    DonutChartModel model = (DonutChartModel)((Chart)event.getSource()).getModel();
-    int index= event.getItemIndex();
-    return model.getData().get(0).keySet().toArray()[index].toString();
+    try {
+      DonutChartModel model = (DonutChartModel)((Chart)event.getSource()).getModel();
+      int index= event.getItemIndex();
+      return model.getData().get(0).keySet().toArray()[index].toString();
+    } catch (Exception e) {
+      return "";
+    }
+    
   }
 
   private String getSelectedValueOfBarChart(ItemSelectEvent event) {
-    BarChartModel model = (BarChartModel)((Chart)event.getSource()).getModel();
-    int index = event.getItemIndex();
-    return model.getSeries().get(0).getData().keySet().toArray()[index].toString();
+    try {
+      BarChartModel model = (BarChartModel)((Chart)event.getSource()).getModel();
+      int index = event.getItemIndex();
+      return model.getSeries().get(0).getData().keySet().toArray()[index].toString();
+    } catch (Exception e) {
+      return "";
+    }
   }
 
   private Date getFirstDateOfThisWeek() {

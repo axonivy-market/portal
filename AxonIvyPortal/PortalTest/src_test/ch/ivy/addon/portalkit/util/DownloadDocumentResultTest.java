@@ -20,6 +20,6 @@ public class DownloadDocumentResultTest {
   @Test
   public void testDownloadDocumentResultTestPatched() {
     DownloadDocumentResult documentResult = new DownloadDocumentResult();
-    /*assertTrue(documentResult.isPatched());*/
+    assertTrue(documentResult.isPatched());
   }
 }
