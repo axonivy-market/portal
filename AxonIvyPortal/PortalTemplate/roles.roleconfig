@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <role>
     <identifier>Everybody</identifier>
-    <role>
-        <identifier>Test Role 2</identifier>
-        <displayName>Test Role 2</displayName>
-    </role>
 </role>

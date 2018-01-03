@@ -344,9 +344,10 @@ Tt0 f23 actionTable 'out=in1;
 Tt0 f23 outTypes "internaltest.Data" #txt
 Tt0 f23 outLinks "TaskA.ivp" #txt
 Tt0 f23 caseData 'processCategory.name=Ticket Category Name
-processCategory.code=Ticket Category Code
 case.name=SupportTicket
+processCategory.code=Ticket Category Code
 process.name=Ticket Category Name
+case.category=SupportTicket
 process.code=Ticket Category Code' #txt
 Tt0 f23 taskData 'TaskA.EXC=14B2FC03D2E87141-f38-buffer
 TaskA.EXP=new Duration("3H")

@@ -46,7 +46,7 @@
         <p:chart type="donut" styleClass="statistic-chart"
           model="#{chart.donutChartModel}"
           rendered="#{statisticDashboardBean.isTaskByPriority(chart)}">
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" onstart="#{logic.selectChart(chart)}" oncomplete="" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" onstart="#{logic.selectChart(chart)}" />
         </p:chart>
 
         <p:chart type="bar" styleClass="statistic-chart"
