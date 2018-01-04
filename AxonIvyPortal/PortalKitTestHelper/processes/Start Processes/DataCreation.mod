@@ -407,7 +407,7 @@ Dt0 f16 actionCode 'import java.util.Locale;
 if (ivy.wf.getSecurityContext().findUser("test_change_password_user") != null) {
 	ivy.wf.getSecurityContext().deleteUser("test_change_password_user");
 }
-ivy.wf.getSecurityContext().createUser("test_change_password_user", "Tung Le", "123", Locale.ENGLISH, "", "");' #txt
+ivy.wf.getSecurityContext().createUser("test_change_password_user", "Elton", "123", Locale.ENGLISH, "", "");' #txt
 Dt0 f16 security system #txt
 Dt0 f16 type portalKit_test.DataCreationData #txt
 Dt0 f16 152 554 112 44 0 -8 #rect
