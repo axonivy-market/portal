@@ -7,6 +7,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="caseView" value="#{data.caseView}" />
+    <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
 
     <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}</ui:define>
     <ui:define name="pageContent">
