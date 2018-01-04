@@ -22,7 +22,7 @@ public class SelfServiceTest extends BaseTest {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
-    navigateToUrl(selfServiceProcessUrl);
+    redirectToRelativeLink(selfServiceProcessUrl);
   }
 
   @Test

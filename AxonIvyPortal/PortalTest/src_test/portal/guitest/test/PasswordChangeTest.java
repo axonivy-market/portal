@@ -9,7 +9,7 @@ import portal.guitest.page.ChangePasswordPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 
-public class ChangePasswordTest extends BaseTest {
+public class PasswordChangeTest extends BaseTest {
 
   @Test
   public void passwordChangeTest() {
