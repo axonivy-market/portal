@@ -293,10 +293,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           return result(noErrors());
         }
 
+        Ivy.log().error("JSON QUERY WHEN FIND TASKS: {0}", taskSearchCriteria.getJsonQuery());
+        Ivy.log().error("TASK QUERY WHEN FIND TASKS: {0}", TaskQuery.fromJson(taskSearchCriteria.getJsonQuery()));
+
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
         queryExcludeHiddenTasks(taskQuery);
-
-        Ivy.log().error("TASK QUERY WHEN FIND TASKS: {0}", taskQuery);
 
         List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
         List<IvyTask> ivyTasks = new ArrayList<>();
@@ -354,10 +355,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           return result(0, errors);
         }
 
+        Ivy.log().error("JSON QUERY WHEN COUNT TASKS: {0}", taskSearchCriteria.getJsonQuery());
+        Ivy.log().error("TASK QUERY WHEN COUNT TASKS: {0}", TaskQuery.fromJson(taskSearchCriteria.getJsonQuery()));
+
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
         queryExcludeHiddenTasks(taskQuery);
-
-        Ivy.log().error("TASK QUERY WHEN COUNT TASKS: {0}", taskQuery);
 
         long taskCount = countTasks(taskQuery);
         return result(taskCount, errors);
