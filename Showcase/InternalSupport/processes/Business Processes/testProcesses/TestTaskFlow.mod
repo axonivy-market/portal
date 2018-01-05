@@ -129,6 +129,8 @@ Tt0 f7 actionTable 'out=in1;
 ' #txt
 Tt0 f7 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Tt0 f7 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
+Tt0 f7 caseData 'case.name=Leave Requests
+case.category=LeaveRequests' #txt
 Tt0 f7 taskData 'TaskA.CATEGORY=AnnualLeave
 TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
