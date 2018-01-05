@@ -18,23 +18,23 @@
     <h:panelGrid columns="1" cellpadding="10">
       <p:row>
         <p:column>
-          <p:outputLabel styleClass="label" value="Created period" />
+          <p:outputLabel styleClass="label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/createdPeriod')}" />
         </p:column>
         <p:column>
           <h:panelGrid columns="2" columnClasses="align-bottom, align-bottom">
 
-            <p:outputLabel styleClass="item-label" for="filter-from" value="From" />
+            <p:outputLabel styleClass="item-label" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/createdFrom')} " />
             <p:calendar id="filter-from" value="#{filter.createdDateFrom}"
               pattern="#{dateTimePatternBean.configuredPattern}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+              <p:ajax event="dateSelect" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
             </p:calendar>
 
-            <p:outputLabel for="filter-to" value="To " />
+            <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/createdTo')} " />
             <p:calendar id="filter-to" value="#{filter.createdDateTo}"
               pattern="#{dateTimePatternBean.configuredPattern}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+              <p:ajax event="dateSelect" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
             </p:calendar>
 
           </h:panelGrid>
