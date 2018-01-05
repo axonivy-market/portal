@@ -296,6 +296,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
         queryExcludeHiddenTasks(taskQuery);
 
+        Ivy.log().error("TASK QUERY WHEN FIND TASKS: {0}", taskQuery);
+
         List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
         List<IvyTask> ivyTasks = new ArrayList<>();
         List<IvyTask> allIvyTasks = new ArrayList<>();
@@ -354,6 +356,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
         queryExcludeHiddenTasks(taskQuery);
+
+        Ivy.log().error("TASK QUERY WHEN COUNT TASKS: {0}", taskQuery);
 
         long taskCount = countTasks(taskQuery);
         return result(taskCount, errors);
