@@ -12,5 +12,6 @@
 	<xi:include href="ChangePassword.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="Logout.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="ExpressEndPage.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="BackToPreviousPage.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="HideTechnicalStuffs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
