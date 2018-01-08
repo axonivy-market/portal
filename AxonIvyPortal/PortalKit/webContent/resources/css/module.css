@@ -3748,7 +3748,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   }
 }
 
-.edit-statistic-container td {
+.edit-statistic-container td:not(.align-bottom) {
   vertical-align: top;
 }
 
