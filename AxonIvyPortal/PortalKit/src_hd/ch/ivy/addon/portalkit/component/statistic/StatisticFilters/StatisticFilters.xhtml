@@ -14,7 +14,7 @@
 <cc:implementation>
   <c:set var="filter" value="#{cc.attrs.filter}" />
 
-  <p:fieldset legend="Filter" styleClass="statistic-filter-main-container">
+  <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/header')}" styleClass="statistic-filter-main-container">
     <h:panelGrid columns="1" cellpadding="10">
       <p:row>
         <p:column>
@@ -80,7 +80,7 @@
 
       <p:row rendered="#{cc.attrs.showCaseStateFilter}">
         <p:column>
-          <p:outputLabel for="caseStates" value="Workflow States" styleClass="label" />
+          <p:outputLabel for="caseStates" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/workflowStatesLabel')}" styleClass="label" />
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" styleClass="statistic-filter-container">
@@ -96,7 +96,7 @@
 
       <p:row>
         <p:column>
-          <p:outputLabel for="taskPriority" value="Task Priorities" styleClass="label" />
+          <p:outputLabel for="taskPriority" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPrioritiesLabel')}" styleClass="label" />
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" styleClass="statistic-filter-container">
