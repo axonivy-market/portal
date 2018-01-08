@@ -1,0 +1,4 @@
+co: name={taskPrioritiesLabel} description={} changed={2018-01-05 10:31:48 CET} changedby={mnhnam} visualorder={0} guid={160C5A94C6551F62} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={160C5A94C67A5092} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-05 10:31:34 CET} validto={} changed={2018-01-05 10:31:34 CET} changedby={mnhnam} properties={} id={}
+val: guid={160C5A97E44690EF} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-05 10:31:41 CET} validto={} changed={2018-01-05 10:31:47 CET} changedby={mnhnam} properties={} id={}
+val: guid={160C5A97FCB2A399} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-05 10:31:39 CET} validto={} changed={2018-01-05 10:31:48 CET} changedby={mnhnam} properties={} id={}
