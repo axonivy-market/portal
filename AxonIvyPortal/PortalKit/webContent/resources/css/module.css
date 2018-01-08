@@ -3626,17 +3626,47 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   color: #1A1A1A;
 }
 
-.compact-mode .jqplot-target {
-  width: 320px;
-}
-
 .statistic-widget .jqplot-target, .jqplot-target table.jqplot-table-legend {
   font-size: 1.2rem;
 }
 
 .statistic-carousel {
-  width: 35rem;
-  text-align: center;
+  margin: auto;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .statistic-carousel {
+    width: 27rem;
+    text-align: center;
+  }
+  .compact-mode .jqplot-target {
+    width: 25rem;
+  }
+}
+
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .statistic-carousel {
+    width: 30rem;
+    text-align: center;
+  }
+
+  .compact-mode .jqplot-target {
+    width: 28rem;
+  }
+}
+
+/* Large screen */
+@media (min-width: 1920px) {
+  .statistic-carousel {
+    width: 35rem;
+    text-align: center;
+  }
+
+  .compact-mode .jqplot-target {
+    width: 320px;
+  }
 }
 
 .statistic-carousel .ui-carousel-item .ui-panelgrid {
@@ -3694,12 +3724,31 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 15rem;
 }
 
-.statistic-chart {
-  width: 34rem;
-  height: 34rem;
+/* Small screen */
+@media (max-width: 1365px) {
+  .statistic-chart {
+    width: 25rem;
+    height: 25rem;
+  }
 }
 
-.edit-statistic-container td {
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .statistic-chart {
+    width: 34rem;
+    height: 34rem;
+  }
+}
+
+/* Large screen */
+@media (min-width: 1920px) {
+  .statistic-chart {
+    width: 34rem;
+    height: 34rem;
+  }
+}
+
+.edit-statistic-container td:not(.align-bottom) {
   vertical-align: top;
 }
 
@@ -3728,7 +3777,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .statistic-filter-container {
   max-height: 20rem;
-  width: 25rem;
+  max-width: 25rem;
   margin-top: 1rem;
 }
 
