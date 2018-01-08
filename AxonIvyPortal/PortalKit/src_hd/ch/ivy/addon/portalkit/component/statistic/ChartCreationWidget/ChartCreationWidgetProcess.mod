@@ -42,8 +42,8 @@ Cs0 @Alternative f21 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @PushWFArc f19 '' #zField
 Cs0 @PushWFArc f20 '' #zField
-Cs0 @RichDialogProcessStart f10 '' #zField
 Cs0 @PushWFArc f14 '' #zField
+Cs0 @RichDialogProcessStart f10 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
@@ -319,6 +319,8 @@ Cs0 f20 expr in #txt
 Cs0 f20 304 736 448 819 #arcP
 Cs0 f20 1 448 736 #addKink
 Cs0 f20 0 0.7991119562493567 0 0 #arcLabel
+Cs0 f14 expr out #txt
+Cs0 f14 141 832 232 832 #arcP
 Cs0 f10 guid 160911F3882D9937 #txt
 Cs0 f10 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f10 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
@@ -336,8 +338,6 @@ Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f10 115 819 26 26 -42 15 #rect
 Cs0 f10 @|RichDialogProcessStartIcon #fIcon
-Cs0 f14 expr out #txt
-Cs0 f14 141 832 232 832 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
