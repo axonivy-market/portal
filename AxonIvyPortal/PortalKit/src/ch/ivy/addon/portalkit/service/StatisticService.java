@@ -2,11 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
-import java.time.DayOfWeek;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -426,21 +421,25 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Long taskExpireThisWeek = new Long(0L);
     Long taskExpireThisMonth = new Long(0L);
 
-    LocalDate today = LocalDate.now();
+    Date today = truncateMinutesPart(new Date());
+    Date firstDateOfWeek = truncateMinutesPart(getFirstDateOfThisWeek());
+    Date firstDateOfNextWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfWeek, 1));
+    Date firstDateOfMonth = truncateMinutesPart(getFirstDateOfThisMonth());
+    Date firsDateOfNextMonth = truncateMinutesPart(DateUtils.addMonths(firstDateOfMonth, 1));
 
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
-      LocalDate resultDate = convertDateToLocalDate(result.getKey());
+      Date resultDate = truncateMinutesPart(result.getKey());
 
-      if (ChronoUnit.DAYS.between(today, resultDate) == 0) {
+      if (today.compareTo(resultDate) == 0) {
         taskExpireToday += result.getValue();
-      } else if (ChronoUnit.DAYS.between(today, resultDate) == 1) {
+      } else if (DateUtils.addDays(today, 1).compareTo(resultDate) == 0) {
         taskExpireTomorrow += result.getValue();
       }
 
-      if ((ChronoUnit.WEEKS.between(today, resultDate) == 0) && !(resultDate.isAfter(today) && resultDate.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+      if (firstDateOfWeek.compareTo(resultDate) <= 0 && firstDateOfNextWeek.compareTo(resultDate) > 0) {
         taskExpireThisWeek += result.getValue();
       }
-      if (ChronoUnit.MONTHS.between(today, resultDate) == 0) {
+      if (firstDateOfMonth.compareTo(resultDate) <= 0 && firsDateOfNextMonth.compareTo(resultDate) > 0) {
         taskExpireThisMonth += result.getValue();
       }
     }
@@ -520,11 +519,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
 
     return chartData;
-  }
-
-  private LocalDate convertDateToLocalDate(Date date) {
-    Instant instant = date.toInstant();
-    return instant.atZone(ZoneId.systemDefault()).toLocalDate();
   }
 
   /**
@@ -813,7 +807,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     TaskQuery query = TaskQuery.fromJson(statisticChart.getJsonQuery());
     String selectedValue = getSelectedValueOfBarChart(event);
 
-    Date today = DateUtils.truncate(new Date(), Calendar.DATE);
+    Date today = truncateMinutesPart(new Date());
     if (selectedValue.equals(Ivy.cms().co(TODAY_EXPIRY_KEY))) {
       Date tomorrow = DateUtils.addDays(today, 1);
       query.where().and().expiryTimestamp().isGreaterOrEqualThan(today).and().expiryTimestamp().isLowerThan(tomorrow);
@@ -822,12 +816,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       Date tomorrow = DateUtils.addDays(today, 1);
       query.where().and().expiryTimestamp().isGreaterOrEqualThan(tomorrow).and().expiryTimestamp().isLowerThan(dateAfterTomorrow);
     } else if (selectedValue.equals(Ivy.cms().co(THIS_WEEK_EXPIRY_KEY))) {
-      Date firstDateOfWeek = DateUtils.truncate(getFirstDateOfThisWeek(), Calendar.DATE);
-      Date firstDateOfNextWeek = DateUtils.truncate(DateUtils.addWeeks(firstDateOfWeek, 1), Calendar.DATE);
+      Date firstDateOfWeek = truncateMinutesPart(getFirstDateOfThisWeek());
+      Date firstDateOfNextWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfWeek, 1));
       query.where().and().expiryTimestamp().isGreaterOrEqualThan(firstDateOfWeek).and().expiryTimestamp().isLowerThan(firstDateOfNextWeek);
     } else if (selectedValue.equals(Ivy.cms().co(THIS_MONTH_EXPIRY_KEY))) {
-      Date firstDateOfMonth = DateUtils.truncate(getFirstDateOfThisMonth(), Calendar.DATE);
-      Date firsDateOfNextMonth = DateUtils.truncate(DateUtils.addMonths(firstDateOfMonth, 1), Calendar.DATE);
+      Date firstDateOfMonth = truncateMinutesPart(getFirstDateOfThisMonth());
+      Date firsDateOfNextMonth = truncateMinutesPart(DateUtils.addMonths(firstDateOfMonth, 1));
       query.where().and().expiryTimestamp().isGreaterOrEqualThan(firstDateOfMonth).and().expiryTimestamp().isLowerThan(firsDateOfNextMonth);
     }
 
@@ -863,5 +857,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return statisticChartList.stream()
         .filter(chart -> StringUtils.equals(chart.getName(), chartName))
         .findFirst().isPresent();
+  }
+
+  private Date truncateMinutesPart(Date date) {
+    return DateUtils.truncate(date, Calendar.DATE);
   }
 }
