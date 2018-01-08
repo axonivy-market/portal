@@ -75,7 +75,7 @@ function TaskListToolKit() {
         }
         $.each(taskSortMenu.children(), function(i, header) {
           var cell = $(taskEntry).children().get(i);
-          $(header).width($(cell).outerWidth());
+          $(header).outerWidth($(cell).outerWidth());
         });
       }
     },
