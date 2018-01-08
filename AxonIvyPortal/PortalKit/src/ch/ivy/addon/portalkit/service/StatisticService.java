@@ -855,7 +855,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       query.where().state().isEqual(CaseState.DESTROYED).or().state().isEqual(CaseState.ZOMBIE);
     }
 
-    Ivy.log().error("QUERY 1: " + query);
     return query;
   }
 

@@ -46,19 +46,22 @@
         <p:chart type="donut" styleClass="statistic-chart"
           model="#{chart.donutChartModel}"
           rendered="#{statisticDashboardBean.isTaskByPriority(chart)}">
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" onstart="#{logic.selectChart(chart)}" />
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
         </p:chart>
 
         <p:chart type="bar" styleClass="statistic-chart"
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" onstart="#{logic.selectChart(chart)}" />
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" />
         </p:chart>
 
         <p:chart type="donut" styleClass="statistic-chart"
           model="#{chart.donutChartModel}"
           rendered="#{statisticDashboardBean.isCaseByState(chart)}">
-          <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" onstart="#{logic.selectChart(chart)}" />
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
         </p:chart>
 
         <p:chart type="pie" styleClass="statistic-chart"
@@ -74,19 +77,22 @@
         <p:chart type="donut" styleClass="statistic-chart"
           model="#{chart.donutChartModel}"
           rendered="#{statisticDashboardBean.isTaskByPriority(chart)}">
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" onstart="#{logic.selectChart(chart)}" />
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
         </p:chart>
 
         <p:chart type="bar" styleClass="statistic-chart"
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" onstart="#{logic.selectChart(chart)}" />
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" />
         </p:chart>
 
         <p:chart type="donut" styleClass="statistic-chart"
           model="#{chart.donutChartModel}"
           rendered="#{statisticDashboardBean.isCaseByState(chart)}">
-          <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" onstart="#{logic.selectChart(chart)}" />
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
         </p:chart>
 
         <p:chart type="pie" styleClass="statistic-chart"
