@@ -8,6 +8,7 @@ public class SelfServiceTaskPage extends TemplatePage {
   public void insertTask(String taskDescription, String actorUsername) {
     WebElement insertTaskButton = findElementById("caseform:insert-task-button");
     insertTaskButton.click();
+    waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("addTask"), true);
     
     inputTaskDescription(taskDescription);
@@ -17,6 +18,7 @@ public class SelfServiceTaskPage extends TemplatePage {
   public void appendTask(String taskDescription, String actorUsername) {
     WebElement insertTaskButton = findElementById("caseform:append-task-button");
     insertTaskButton.click();
+    waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("addTask"), true);
     
     inputTaskDescription(taskDescription);
