@@ -43,7 +43,7 @@
               #{dataModel.caseName}
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}" />
+                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title') : taskView.pageTitle}" />
             </f:facet>
 
             <f:facet name="taskListHeader">
