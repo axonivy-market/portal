@@ -119,18 +119,18 @@ is put in PortalTemplate.</name>
 Nr0 f11 128 498 496 172 -238 -84 #rect
 Nr0 f11 @|IBIcon #fIcon
 Nr0 f12 128 584 64 496 #arcP
-Nr0 f8 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Nr0 f8 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 Nr0 f8 outParamDecl '<> result;
 ' #txt
 Nr0 f8 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
 ' #txt
-Nr0 f8 callSignature viewTaskForAnalytic(ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
+Nr0 f8 callSignature viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
 Nr0 f8 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>viewTaskForAnalytic(TaskQuery)</name>
-        <nameStyle>30,5,7
+        <name>viewTaskForAnalytic(String, TaskQuery)</name>
+        <nameStyle>38,5,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -142,18 +142,18 @@ Nr0 f9 724 551 26 26 14 0 #rect
 Nr0 f9 @|EndSubIcon #fIcon
 Nr0 f10 expr out #txt
 Nr0 f10 737 433 737 551 #arcP
-Nr0 f13 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
+Nr0 f13 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 Nr0 f13 outParamDecl '<> result;
 ' #txt
 Nr0 f13 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
 ' #txt
-Nr0 f13 callSignature viewCaseForAnalytic(ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
+Nr0 f13 callSignature viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
 Nr0 f13 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>viewCaseForAnalytic(CaseQuery)</name>
-        <nameStyle>30,5,7
+        <name>viewCaseForAnalytic(String, CaseQuery)</name>
+        <nameStyle>38,5,7
 </nameStyle>
     </language>
 </elementInfo>
