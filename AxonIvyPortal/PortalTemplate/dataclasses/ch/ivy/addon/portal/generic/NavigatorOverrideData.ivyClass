@@ -11,3 +11,4 @@ taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
 caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
 taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
 caseQuery ch.ivyteam.ivy.workflow.query.CaseQuery #field
+chartName String #field

@@ -384,11 +384,12 @@ Ss0 f31 141 160 288 160 #arcP
 Ss0 f12 expr out #txt
 Ss0 f12 432 160 499 160 #arcP
 Ss0 f7 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f7 processCall 'Functional Processes/Navigator:viewTaskForAnalytic(ch.ivyteam.ivy.workflow.query.TaskQuery)' #txt
+Ss0 f7 processCall 'Functional Processes/Navigator:viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery)' #txt
 Ss0 f7 doCall true #txt
-Ss0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;
+Ss0 f7 requestActionDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;
 ' #txt
-Ss0 f7 requestMappingAction 'param.taskQuery=in.taskQuery;
+Ss0 f7 requestMappingAction 'param.chartName=in.selectedStatisticChart.name;
+param.taskQuery=in.taskQuery;
 ' #txt
 Ss0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
@@ -398,6 +399,8 @@ Ss0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Navigator</name>
+        <nameStyle>9,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -453,11 +456,12 @@ Ss0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ss0 f40 288 426 112 44 -45 -8 #rect
 Ss0 f40 @|StepIcon #fIcon
 Ss0 f42 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f42 processCall 'Functional Processes/Navigator:viewCaseForAnalytic(ch.ivyteam.ivy.workflow.query.CaseQuery)' #txt
+Ss0 f42 processCall 'Functional Processes/Navigator:viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery)' #txt
 Ss0 f42 doCall true #txt
-Ss0 f42 requestActionDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;
+Ss0 f42 requestActionDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;
 ' #txt
-Ss0 f42 requestMappingAction 'param.caseQuery=in.caseQuery;
+Ss0 f42 requestMappingAction 'param.chartName=in.selectedStatisticChart.name;
+param.caseQuery=in.caseQuery;
 ' #txt
 Ss0 f42 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
@@ -467,6 +471,8 @@ Ss0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Navigator</name>
+        <nameStyle>9,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
