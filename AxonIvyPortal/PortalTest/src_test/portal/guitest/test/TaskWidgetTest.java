@@ -3,6 +3,7 @@ package portal.guitest.test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.JavascriptExecutor;
@@ -26,11 +27,8 @@ public class TaskWidgetTest extends BaseTest {
     super.setup();
     createTestingTasks();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
-    
-    
   }
   
   @Test
@@ -119,6 +117,15 @@ public class TaskWidgetTest extends BaseTest {
     getBrowser().getDriver().switchTo().window(main);
     int taskAfterRefresh = taskWidgetPage.countTasks();
     assertNotEquals(taskBeforeRefresh, taskAfterRefresh);
+  }
+  
+  @Test
+  public void testStickyTaskListOnCancel(){
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.openTaskList();
+    taskWidgetPage.startAndCancelTask();
+    Sleeper.sleepTight(3000);
+    Assert.assertTrue(taskWidgetPage.isTaskListShown());
   }
   
 }
