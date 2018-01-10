@@ -1,0 +1,4 @@
+co: name={relatedStatisticHeader} description={} changed={2018-01-10 09:46:38 CET} changedby={mnhnam} visualorder={0} guid={160DF3F955F25752} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={160DF3FF371DE3E0} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-10 09:46:30 CET} validto={} changed={2018-01-10 09:46:38 CET} changedby={mnhnam} properties={} id={}
+val: guid={160DF3FF1F02BA5F} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-10 09:46:33 CET} validto={} changed={2018-01-10 09:46:38 CET} changedby={mnhnam} properties={} id={}
+val: guid={160DF3F9564EAAD7} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-10 09:46:14 CET} validto={} changed={2018-01-10 09:46:38 CET} changedby={mnhnam} properties={} id={}
