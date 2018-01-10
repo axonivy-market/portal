@@ -439,4 +439,15 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement noTaskMessage = findElementByCssSelector("label[class*='no-task-message']");
     return noTaskMessage.isDisplayed();
   }
+  
+  public void startAndCancelTask(){
+    findElementByCssSelector("*[id$='0:task-item:task-info']").click();
+    waitForElementPresent(By.id("copy-clipboard"), true);
+    click(findElementById("command-form:button-cancel"));
+  }
+  
+  public boolean isTaskListShown(){
+    WebElement taskDetails = findElementByCssSelector("div.js-task-list-container");
+    return taskDetails.isDisplayed();
+  }
 }
