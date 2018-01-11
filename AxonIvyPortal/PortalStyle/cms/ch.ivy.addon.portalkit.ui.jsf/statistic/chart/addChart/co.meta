@@ -1,4 +1,4 @@
-co: name={addChart} description={} changed={2017-12-08 08:25:50 CET} changedby={mnhnam} visualorder={0} guid={16035035A01B554A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={addChart} description={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} visualorder={0} guid={16035035A01B554A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={16035035A06D2A72} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-08 08:25:00 CET} validto={} changed={2017-12-08 08:25:00 CET} changedby={mnhnam} properties={} id={}
-val: guid={16035041D3E68955} datatype={} isdefault={false} langid={de} description={} validfrom={2017-12-08 08:25:42 CET} validto={} changed={2017-12-08 08:25:50 CET} changedby={mnhnam} properties={} id={}
-val: guid={16035041EABD56A5} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-12-08 08:25:39 CET} validto={} changed={2017-12-08 08:25:50 CET} changedby={mnhnam} properties={} id={}
+val: guid={16035041D3E68955} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:13 CET} validto={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} properties={} id={}
+val: guid={16035041EABD56A5} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:13 CET} validto={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} properties={} id={}

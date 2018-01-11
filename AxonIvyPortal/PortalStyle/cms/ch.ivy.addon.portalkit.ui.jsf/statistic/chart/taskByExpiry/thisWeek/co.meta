@@ -1,4 +1,4 @@
-co: name={thisWeek} description={} changed={2017-11-29 09:27:55 CET} changedby={mnhnam} visualorder={0} guid={16006E292D48C47B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={thisWeek} description={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} visualorder={0} guid={16006E292D48C47B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={16006E292D62D3FD} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-29 09:26:40 CET} validto={} changed={2017-11-29 09:26:40 CET} changedby={mnhnam} properties={} id={}
-val: guid={16006E3B727C4DC3} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-29 09:27:42 CET} validto={} changed={2017-11-29 09:27:55 CET} changedby={mnhnam} properties={} id={}
-val: guid={16006E3B59EDD4CC} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-29 09:27:44 CET} validto={} changed={2017-11-29 09:27:54 CET} changedby={mnhnam} properties={} id={}
+val: guid={16006E3B727C4DC3} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} properties={} id={}
+val: guid={16006E3B59EDD4CC} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} properties={} id={}
