@@ -445,7 +445,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void startAndCancelTask() {
     findElementByCssSelector("*[id$='0:task-item:task-info']").click();
     waitForElementPresent(By.id("copy-clipboard"), true);
-    click(findElementById("command-form:button-cancel"));
+    click(findElementByClassName("portal-cancel-button"));
   }
 
   public boolean isTaskListShown() {
