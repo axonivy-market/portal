@@ -1105,6 +1105,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: rgba(0,0,0,0.4);
   flex: 1 0 100%;
   line-height: 45px;
+  margin-right: 10px;
 }
 
 .widget-sort-menu.full-mode {
@@ -1136,6 +1137,13 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: black;
   font-size: 1.2rem;
   width: 185px;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .widget-header-filter-input.ui-inputfield {
+    width: 150px;
+  }
 }
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
