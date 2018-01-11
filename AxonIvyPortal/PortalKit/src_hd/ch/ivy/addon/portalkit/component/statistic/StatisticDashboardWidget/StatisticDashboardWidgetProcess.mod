@@ -55,6 +55,9 @@ Ss0 @RichDialogProcessStart f44 '' #zField
 Ss0 @PushWFArc f37 '' #zField
 Ss0 @PushWFArc f35 '' #zField
 Ss0 @RichDialogProcessStart f45 '' #zField
+Ss0 @RichDialogMethodStart f32 '' #zField
+Ss0 @RichDialogProcessEnd f33 '' #zField
+Ss0 @PushWFArc f34 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ss0 f3 guid 1600AC95D5A96D44 #txt
 Ss0 f3 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
@@ -573,6 +576,33 @@ Ss0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f45 115 435 26 26 -60 15 #rect
 Ss0 f45 @|RichDialogProcessStartIcon #fIcon
+Ss0 f32 guid 160E2C0243084AFE #txt
+Ss0 f32 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f32 method selectChart(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
+Ss0 f32 disableUIEvents false #txt
+Ss0 f32 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.statistics.StatisticChart chart> param = methodEvent.getInputArguments();
+' #txt
+Ss0 f32 inParameterMapAction 'out.selectedStatisticChart=param.chart;
+' #txt
+Ss0 f32 outParameterDecl '<> result;
+' #txt
+Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>selectChart(StatisticChart)</name>
+        <nameStyle>27,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f32 115 1011 26 26 -72 15 #rect
+Ss0 f32 @|RichDialogMethodStartIcon #fIcon
+Ss0 f33 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f33 499 1011 26 26 0 12 #rect
+Ss0 f33 @|RichDialogProcessEndIcon #fIcon
+Ss0 f34 expr out #txt
+Ss0 f34 141 1024 499 1024 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -611,3 +641,5 @@ Ss0 f45 mainOut f35 tail #connect
 Ss0 f35 head f40 mainIn #connect
 Ss0 f44 mainOut f37 tail #connect
 Ss0 f37 head f36 mainIn #connect
+Ss0 f32 mainOut f34 tail #connect
+Ss0 f34 head f33 mainIn #connect

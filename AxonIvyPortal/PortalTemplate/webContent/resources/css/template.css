@@ -728,7 +728,7 @@
     width: 26%;
   }
   .dashboard-main-content-2nd-col {
-    width: 36%;
+    width: auto;
   }
   .dashboard-main-content-3rd-col {
     display: block;
