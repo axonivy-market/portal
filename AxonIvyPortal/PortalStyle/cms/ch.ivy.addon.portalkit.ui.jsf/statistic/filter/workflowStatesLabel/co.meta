@@ -1,4 +1,4 @@
-co: name={workflowStatesLabel} description={} changed={2018-01-05 10:30:47 CET} changedby={mnhnam} visualorder={0} guid={160C5A854ED2744A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={160C5A8907FF50D3} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-05 10:30:40 CET} validto={} changed={2018-01-05 10:30:47 CET} changedby={mnhnam} properties={} id={}
-val: guid={160C5A891F5812EF} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-05 10:30:38 CET} validto={} changed={2018-01-05 10:30:47 CET} changedby={mnhnam} properties={} id={}
+co: name={workflowStatesLabel} description={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} visualorder={0} guid={160C5A854ED2744A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={160C5A8907FF50D3} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} properties={} id={}
+val: guid={160C5A891F5812EF} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} properties={} id={}
 val: guid={160C5A854F0F5C57} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-05 10:30:31 CET} validto={} changed={2018-01-05 10:30:47 CET} changedby={mnhnam} properties={} id={}

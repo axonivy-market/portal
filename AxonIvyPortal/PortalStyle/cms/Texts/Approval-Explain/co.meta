@@ -1,4 +1,4 @@
-co: name={Approval-Explain} description={} changed={2017-11-15 09:26:51 CET} changedby={chnam} visualorder={0} guid={15FBEC9B5F3FC07B} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
-val: guid={15FBEC9B602F6F6E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-11-15 09:26:51 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEC9B5FC3CD38} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:40:00 CET} validto={} changed={2017-11-15 09:26:51 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEC9B5F6BE5DE} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-10 09:01:42 CEST} validto={} changed={2017-11-15 09:26:51 CET} changedby={chnam} properties={} id={}
+co: name={Approval-Explain} description={} changed={2018-01-11 11:19:11 CET} changedby={ldnam} visualorder={0} guid={15FBEC9B5F3FC07B} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
+val: guid={15FBEC9B602F6F6E} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:11 CET} validto={} changed={2018-01-11 11:19:11 CET} changedby={ldnam} properties={} id={}
+val: guid={15FBEC9B5FC3CD38} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:11 CET} validto={} changed={2018-01-11 11:19:11 CET} changedby={ldnam} properties={} id={}
+val: guid={15FBEC9B5F6BE5DE} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-11 11:19:11 CET} validto={} changed={2018-01-11 11:19:11 CET} changedby={ldnam} properties={} id={}
