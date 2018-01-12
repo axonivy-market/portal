@@ -62,7 +62,7 @@
         <version>7.0.1</version>
         <extensions>true</extensions>
         <configuration>					
-			<engineDirectory>${settings.localRepository}/.cache/ivy/${ivy.engine.version}</engineDirectory>										
+			<engineDirectory>../../engine</engineDirectory>										
 			<encoding>UTF-8</encoding>
 		</configuration>
         <executions>
@@ -79,7 +79,7 @@
               <goal>deploy-iar</goal>
             </goals>
             <configuration>
-              <deployIarFile>D:\tools\jenkins\slave\workspace\PortalKitTestHelperDeployToAllServers-nightly\target\portalKitTestHelper-7.0.0.0-SNAPSHOT.iar</deployIarFile>
+              <deployIarFile>..\PortalKitTestHelper\target\portalKitTestHelper-7.0.0.0-SNAPSHOT.iar</deployIarFile>
               <deployToEngineApplication>Portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
@@ -90,7 +90,7 @@
               <goal>deploy-iar</goal>
             </goals>
             <configuration>
-              <deployIarFile>D:\tools\jenkins\slave\workspace\InternalSupportDeployToAllServers-nightly\target\internalSupport-7.0.0.0-SNAPSHOT.iar</deployIarFile>
+              <deployIarFile>..\..\Showcase\InternalSupport\target\internalSupport-7.0.0.0-SNAPSHOT.iar</deployIarFile>
               <deployToEngineApplication>Portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
