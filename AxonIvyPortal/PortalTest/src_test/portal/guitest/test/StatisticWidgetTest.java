@@ -47,7 +47,6 @@ public class StatisticWidgetTest extends BaseTest {
 
   @Test
   public void testCreateCharts() {
-    generateDataForElapsedTimeChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
@@ -146,15 +145,5 @@ public class StatisticWidgetTest extends BaseTest {
     chartNameInput.sendKeys(ELAPSED_TIME_CHART_NAME);
     createChartButton.click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();
-  }
-
-  private void generateDataForElapsedTimeChart() {
-    navigateToUrl("internalSupport/14B2FC03D2E87141/CreateTaskWithSpecialCharacter.ivp");
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.filterTasksBy("Resource with ID 1212");
-    taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
-    homePage.waitForPageLoaded();
-
-    homePage = taskWidgetPage.goToHomePage();
   }
 }
