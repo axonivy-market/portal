@@ -445,8 +445,12 @@
 						<imagedata fileref="images/Settings/admin-design-tab.png" />
 					</imageobject>
 				</mediaobject>
+				<tip>
+					If you work in Designer, refresh PortalStyle project after change color to see the effect.
+				</tip>
 				<warning>
-					If you change colors on Google Chrome browser, please reload page with no cache to get new colors.
+					<para>Make sure your machine has M2_HOME variable in the Windows environment.</para>
+					<para>If you change colors on Google Chrome browser, please reload page with no cache to get new colors.</para>
 				</warning>
 			</para>
 		</sect2>
