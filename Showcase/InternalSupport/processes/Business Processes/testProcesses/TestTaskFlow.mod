@@ -81,6 +81,21 @@ Tt0 @EndTask f67 '' #zField
 Tt0 @RichDialog f69 '' #zField
 Tt0 @PushWFArc f70 '' #zField
 Tt0 @PushWFArc f68 '' #zField
+Tt0 @StartRequest f71 '' #zField
+Tt0 @RichDialog f72 '' #zField
+Tt0 @RichDialog f73 '' #zField
+Tt0 @EndTask f74 '' #zField
+Tt0 @TaskSwitch f75 '' #zField
+Tt0 @RichDialog f76 '' #zField
+Tt0 @PushWFArc f77 '' #zField
+Tt0 @PushWFArc f78 '' #zField
+Tt0 @PushWFArc f79 '' #zField
+Tt0 @PushWFArc f80 '' #zField
+Tt0 @PushWFArc f81 '' #zField
+Tt0 @PushWFArc f82 '' #zField
+Tt0 @GridStep f84 '' #zField
+Tt0 @PushWFArc f85 '' #zField
+Tt0 @TkArc f83 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -1091,6 +1106,252 @@ Tt0 f70 expr out #txt
 Tt0 f70 752 519 752 560 #arcP
 Tt0 f68 expr out #txt
 Tt0 f68 752 608 752 649 #arcP
+Tt0 f71 outLink CustomizationAdditionalCaseDetails.ivp #txt
+Tt0 f71 type internaltest.Data #txt
+Tt0 f71 inParamDecl '<> param;' #txt
+Tt0 f71 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f71 guid 160FE18C10FC4FA0 #txt
+Tt0 f71 requestEnabled true #txt
+Tt0 f71 triggerEnabled false #txt
+Tt0 f71 callSignature CustomizationAdditionalCaseDetails() #txt
+Tt0 f71 persist false #txt
+Tt0 f71 startName 'Customization Additional Case Details' #txt
+Tt0 f71 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f71 caseData 'customFields.decimal.5=555
+customFields.decimal.4=444
+processCategory.name=Publication Requested
+customFields.decimal.3=333
+customFields.decimal.2=222
+processCategory.code=pubRequested
+customFields.decimal.1=111
+customFields.varchar.5="CustomizationAdditionalCaseDetails CustomVarCharField5"
+customFields.varchar.4="CustomizationAdditionalCaseDetails CustomVarCharField4"
+customFields.varchar.3="CustomizationAdditionalCaseDetails CustomVarCharField3"
+customFields.varchar.2="CustomizationAdditionalCaseDetails CustomVarCharField2"
+customFields.varchar.1="CustomizationAdditionalCaseDetails CustomVarCharField1"
+businessCase.attach=true
+process.name=Publication Requested
+process.code=pubRequested
+case.name=Leave Request for Customization Additional Case Details
+customFields.timestamp.5=new DateTime(2018, 5, 5, 5, 5, 5)
+customFields.timestamp.4=new DateTime(2018, 4, 4, 4, 4, 4)
+customFields.timestamp.3=new DateTime(2018, 3, 3, 3, 3, 3)
+customFields.timestamp.2=new DateTime(2018, 2, 2, 2, 2 ,2)
+customFields.timestamp.1=new DateTime(2018, 1, 1, 1, 1, 1)
+case.description=Leave Request Description for Customization Additional Case Details' #txt
+Tt0 f71 showInStartList 1 #txt
+Tt0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CustomizationAdditionalCaseDetails.ivp</name>
+        <nameStyle>38,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f71 @C|.responsibility Everybody #txt
+Tt0 f71 1059 488 26 26 14 0 #rect
+Tt0 f71 @|StartRequestIcon #fIcon
+Tt0 f72 targetWindow NEW:card: #txt
+Tt0 f72 targetDisplay TOP #txt
+Tt0 f72 richDialogId internaltest.TaskForm #txt
+Tt0 f72 startMethod start() #txt
+Tt0 f72 type internaltest.Data #txt
+Tt0 f72 requestActionDecl '<> param;' #txt
+Tt0 f72 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f72 responseMappingAction 'out=in;
+' #txt
+Tt0 f72 windowConfiguration '* ' #txt
+Tt0 f72 isAsynch false #txt
+Tt0 f72 isInnerRd false #txt
+Tt0 f72 userContext '* ' #txt
+Tt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f72 1190 676 36 24 20 -2 #rect
+Tt0 f72 @|RichDialogIcon #fIcon
+Tt0 f73 targetWindow NEW:card: #txt
+Tt0 f73 targetDisplay TOP #txt
+Tt0 f73 richDialogId internaltest.TaskForm #txt
+Tt0 f73 startMethod start() #txt
+Tt0 f73 type internaltest.Data #txt
+Tt0 f73 requestActionDecl '<> param;' #txt
+Tt0 f73 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f73 responseMappingAction 'out=in;
+' #txt
+Tt0 f73 windowConfiguration '* ' #txt
+Tt0 f73 isAsynch false #txt
+Tt0 f73 isInnerRd false #txt
+Tt0 f73 userContext '* ' #txt
+Tt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f73 1054 676 36 24 20 -2 #rect
+Tt0 f73 @|RichDialogIcon #fIcon
+Tt0 f74 type internaltest.Data #txt
+Tt0 f74 1059 739 26 26 14 0 #rect
+Tt0 f74 @|EndIcon #fIcon
+Tt0 f75 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f75 actionTable 'out=in1;
+' #txt
+Tt0 f75 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
+Tt0 f75 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
+Tt0 f75 caseData 'case.name=Leave Request Customization Case Details Page
+case.category=CustomizationCaseDetailsPage' #txt
+Tt0 f75 taskData 'TaskA.CATEGORY=AnnualLeave
+TaskA.DESC=Annual Leave Request Description
+TaskA.EXP=new Duration("3H")
+TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Annual Leave Request Custom Case Details Page
+TaskA.PRI=2
+TaskA.ROL="demo"
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=3
+TaskA.customFields.varchar.1="Exterior"
+TaskA.customFields.varchar.5="Long Do"
+TaskB.CATEGORY=OtherLeave/SickLeave/Long
+TaskB.DESC=Sick Leave Request Description
+TaskB.EXP=new Duration("1D")
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Sick Leave Request Custom Case Details Page
+TaskB.PRI=1
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0
+TaskB.customFields.varchar.1="Interior"
+TaskB.customFields.varchar.5="Tung Le"
+TaskC.CATEGORY=OtherLeave/Maternity
+TaskC.DESC=Maternity Leave Request Description
+TaskC.EXP=new Duration("2D")
+TaskC.EXPRI=2
+TaskC.EXROL=Everybody
+TaskC.EXTYPE=0
+TaskC.NAM=Maternity Leave Request Custom Case Details Page
+TaskC.PRI=3
+TaskC.ROL=Everybody
+TaskC.SKIP_TASK_LIST=false
+TaskC.TYPE=0
+TaskC.customFields.varchar.1="Interior"
+TaskC.customFields.varchar.5="Anh Nguyen"' #txt
+Tt0 f75 type internaltest.Data #txt
+Tt0 f75 template "" #txt
+Tt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create tasks</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f75 1058 618 28 28 9 -21 #rect
+Tt0 f75 @|TaskSwitchIcon #fIcon
+Tt0 f76 targetWindow NEW:card: #txt
+Tt0 f76 targetDisplay TOP #txt
+Tt0 f76 richDialogId internaltest.TaskForm #txt
+Tt0 f76 startMethod start() #txt
+Tt0 f76 type internaltest.Data #txt
+Tt0 f76 requestActionDecl '<> param;' #txt
+Tt0 f76 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f76 responseMappingAction 'out=in;
+' #txt
+Tt0 f76 windowConfiguration '* ' #txt
+Tt0 f76 isAsynch false #txt
+Tt0 f76 isInnerRd false #txt
+Tt0 f76 userContext '* ' #txt
+Tt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>6,7
+9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f76 926 676 36 24 20 -2 #rect
+Tt0 f76 @|RichDialogIcon #fIcon
+Tt0 f77 expr out #txt
+Tt0 f77 1072 700 1072 739 #arcP
+Tt0 f78 expr data #txt
+Tt0 f78 outCond ivp=="TaskA.ivp" #txt
+Tt0 f78 1058 632 944 676 #arcP
+Tt0 f78 1 944 632 #addKink
+Tt0 f78 0 0.8879104383411323 0 0 #arcLabel
+Tt0 f79 expr data #txt
+Tt0 f79 outCond ivp=="TaskB.ivp" #txt
+Tt0 f79 1072 646 1072 676 #arcP
+Tt0 f80 expr out #txt
+Tt0 f80 944 700 1059 752 #arcP
+Tt0 f80 1 944 752 #addKink
+Tt0 f80 1 0.040404381211362396 0 0 #arcLabel
+Tt0 f81 expr data #txt
+Tt0 f81 outCond ivp=="TaskC.ivp" #txt
+Tt0 f81 1086 632 1208 676 #arcP
+Tt0 f81 1 1208 632 #addKink
+Tt0 f81 0 0.8643692094953389 0 0 #arcLabel
+Tt0 f82 expr out #txt
+Tt0 f82 1208 700 1085 752 #arcP
+Tt0 f82 1 1208 752 #addKink
+Tt0 f82 1 0.07231812892046431 0 0 #arcLabel
+Tt0 f84 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f84 actionTable 'out=in;
+' #txt
+Tt0 f84 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.service.ServerWorkingOnDetector;
+import ch.ivy.addon.portalkit.persistence.domain.Server;
+
+Server server = (new ServerWorkingOnDetector()).getServerWorkingOn();
+String casePageUrl = UrlDetector.getProcessStartUriWithCaseParameters(ivy.case.getId(), server.getId(), "Start Processes/AdditionalCaseDetails/showAdditionalCaseDetails.ivp");
+ivy.case.setAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString() ,casePageUrl.replace("/ivy", ""));' #txt
+Tt0 f84 security system #txt
+Tt0 f84 type internaltest.Data #txt
+Tt0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set customization flag</name>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f84 1008 551 128 44 -59 -8 #rect
+Tt0 f84 @|StepIcon #fIcon
+Tt0 f85 expr out #txt
+Tt0 f85 1072 514 1072 551 #arcP
+Tt0 f83 expr out #txt
+Tt0 f83 type internaltest.Data #txt
+Tt0 f83 var in1 #txt
+Tt0 f83 1072 595 1072 618 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1172,3 +1433,19 @@ Tt0 f66 mainOut f70 tail #connect
 Tt0 f70 head f69 mainIn #connect
 Tt0 f69 mainOut f68 tail #connect
 Tt0 f68 head f67 mainIn #connect
+Tt0 f75 out f78 tail #connect
+Tt0 f78 head f76 mainIn #connect
+Tt0 f75 out f79 tail #connect
+Tt0 f79 head f73 mainIn #connect
+Tt0 f75 out f81 tail #connect
+Tt0 f81 head f72 mainIn #connect
+Tt0 f73 mainOut f77 tail #connect
+Tt0 f77 head f74 mainIn #connect
+Tt0 f76 mainOut f80 tail #connect
+Tt0 f80 head f74 mainIn #connect
+Tt0 f72 mainOut f82 tail #connect
+Tt0 f82 head f74 mainIn #connect
+Tt0 f71 mainOut f85 tail #connect
+Tt0 f85 head f84 mainIn #connect
+Tt0 f84 mainOut f83 tail #connect
+Tt0 f83 head f75 in #connect
