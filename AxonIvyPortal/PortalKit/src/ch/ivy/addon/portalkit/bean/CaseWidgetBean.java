@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.NumberUtils;
 
 @ManagedBean
 @ViewScoped
@@ -80,5 +81,9 @@ public class CaseWidgetBean implements Serializable {
     Map<String, Object> response = IvyAdapterService.startSubProcess(SUBPROCESS_SIGNATURE_GET_CASE_ADDITIONAL_PROPERTY_VALUE, params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (String) response.get(SUBPROCESS_PARAM_PROPERTY_VALUE);
+  }
+  
+  public boolean isNaN(Number number){
+    return NumberUtils.isNaN(number);
   }
 }
