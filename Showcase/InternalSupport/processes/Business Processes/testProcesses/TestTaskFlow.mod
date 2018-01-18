@@ -838,6 +838,7 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
+TaskA.customFields.varchar.5="\u00DCber"
 TaskB.CATEGORY=PersonalRequest/Vacation
 TaskB.EXPRI=2
 TaskB.EXROL=Everybody
@@ -846,7 +847,8 @@ TaskB.NAM=Request vacation
 TaskB.PRI=2
 TaskB.ROL="demo"
 TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=3' #txt
+TaskB.TYPE=3
+TaskB.customFields.varchar.5="M\u00FCller"' #txt
 Tt0 f32 type internaltest.Data #txt
 Tt0 f32 template "" #txt
 Tt0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

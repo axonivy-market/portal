@@ -468,6 +468,10 @@ public class TaskBean {
   }
   
   public Boolean canChangeExpiry(RemoteTask task){
-    return task.canChangeExpiry() && (task.getExpiryActivator() != null || StringUtils.isNotBlank(task.getExpiryTaskStartElementPid()));
+    return task.canChangeExpiry() && task.getExpiryActivator() != null || StringUtils.isNotBlank(task.getExpiryTaskStartElementPid());
+  }
+  
+  public boolean notHaveExpiryHandleLogic(RemoteTask task) {
+    return task.canChangeExpiry() && task.getExpiryActivator() == null && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
   }
 }
