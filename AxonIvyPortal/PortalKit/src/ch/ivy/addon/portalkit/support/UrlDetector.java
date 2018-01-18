@@ -4,15 +4,20 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.Objects;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 
 public class UrlDetector {
 
@@ -105,5 +110,28 @@ public class UrlDetector {
       return -1;
     }
     return port;
+  }
+  
+  public static String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
+    return getProcessStartUriWithCaseParameters(remoteCase.getId(), remoteCase.getServer().getId(), requestPath);
+  }
+  
+  public static String getProcessStartUriWithCaseParameters(Long caseId, Long serverId, String requestPath) {
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
+    String redirectLink =
+        RequestUriFactory
+            .createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
+            + "?remoteCaseId=" + caseId + "&serverId=" + serverId;
+    redirectLink = removeDuplicatedPartOfUrl(redirectLink);
+    return redirectLink;
+  }
+
+  private static String removeDuplicatedPartOfUrl(String redirectLink) {
+    FacesContext facesContextInstance = FacesContext.getCurrentInstance();
+    if (Objects.isNull(facesContextInstance)){
+      return redirectLink;
+    }
+    return redirectLink.replace(facesContextInstance.getExternalContext().getApplicationContextPath(), ""); // remove duplicate part of path
   }
 }
