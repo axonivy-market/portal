@@ -15,6 +15,11 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class CaseWidgetTest extends BaseTest {
 
+  private static final String CUSTOMIZATION_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS = "/ivy/pro/designer/InternalSupport/16102669E18BD8F5/showAdditionalCaseDetails.ivp";
+  private static final String DEFAULT_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS = "/ivy/pro/designer/PortalTemplate/160FD01492D362BE/showAdditionalCaseDetails.ivp";
+  private static final String LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request Customization Case Details Page";
+  private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
+
   @Before
   public void setup() {
     super.setup();
@@ -25,10 +30,8 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testHideCase() {
     navigateToUrl(hideCaseUrl);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-
-    HomePage homePage = new HomePage();
+    HomePage homePage = selectHomePage(TestAccount.ADMIN_USER);
+    
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
@@ -41,12 +44,7 @@ public class CaseWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyCaseWithPermission() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CasePage casePage = selectCasePage(TestAccount.ADMIN_USER);
     int numberOfCasesBeforeDestroying = casePage.getNumberOfCases();
     WebElement caseSecondItemBeforDestroy = casePage.selectCaseItem(0);
     casePage.clickDestroyButton(caseSecondItemBeforDestroy);
@@ -58,12 +56,7 @@ public class CaseWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyCaseWithoutPermission() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CasePage casePage = selectCasePage(TestAccount.DEMO_USER);
     WebElement caseSecondItem = casePage.selectCaseItem(0);
 
     assertFalse(casePage.isDestroyButtonVisible(caseSecondItem));
@@ -71,15 +64,38 @@ public class CaseWidgetTest extends BaseTest {
 
   @Test
   public void testOpenRelatedTasksOfCase() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
-    CaseDetailsPage caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    CaseDetailsPage caseDetailsPage = selectCaseDetailsPage(LEAVE_REQUEST_CASE_NAME, TestAccount.DEMO_USER);
     int numberOfTasks = caseDetailsPage.countRelatedTasks();
     TaskWidgetPage taskOfCasePage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(numberOfTasks, taskOfCasePage.countTasks());
+  }
+  
+  @Test
+  public void testOpenAdditionalCaseDetailsPage() throws Exception {
+    assertTrue(getAdditionalCaseDetailsUrl(LEAVE_REQUEST_CASE_NAME, TestAccount.DEMO_USER).contains(DEFAULT_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS));
+  }
+  
+  @Test
+  public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
+    navigateToUrl(createTestingCaseUrlForCustomizationAdditionalCaseDetails);
+    assertTrue(getAdditionalCaseDetailsUrl(LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME, TestAccount.DEMO_USER).contains(CUSTOMIZATION_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS));
+  }
+  
+  private String getAdditionalCaseDetailsUrl(String caseName, TestAccount account){
+    return selectCaseDetailsPage(caseName, account).getAdditionalCaseDetailsUrl();
+  }
+
+  private CaseDetailsPage selectCaseDetailsPage(String caseName, TestAccount account) {
+    return selectCasePage(account).openDetailsOfCaseHasName(caseName);
+  }
+
+  private CasePage selectCasePage(TestAccount account) {
+    return selectHomePage(account).openMainMenu().selectCaseMenu();
+  }
+
+  private HomePage selectHomePage(TestAccount account) {
+    LoginPage loginPage = new LoginPage(account);
+    loginPage.login();
+    return new HomePage();
   }
 }
