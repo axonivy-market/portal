@@ -31,7 +31,7 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     taskWidgetPage.expand();
     assertFalse(taskWidgetPage.isTaskListColumnExist(STATE_COLUMN_NAME));
     assertTrue(taskWidgetPage.isTaskListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
-    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
+    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
   }
 
   @Test
@@ -41,7 +41,7 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertFalse(taskWidgetPage.isTaskListColumnExist(STATE_COLUMN_NAME));
     assertTrue(taskWidgetPage.isTaskListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
-    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
+    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
   }
 
   @Test
@@ -51,10 +51,10 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     taskWidgetPage.waitAjaxIndicatorDisappear();
     taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
+    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
 
     taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
+    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
   }
 }
