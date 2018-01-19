@@ -17,7 +17,8 @@
 
   <p:commandLink id="#{cc.attrs.componentId}" styleClass="#{cc.attrs.styleClass} #{isSelected ? 'is-selected' : ''}"
     update="#{cc.attrs.componentToBeUpdated} #{p:component('task-view-container')} #{p:component('task-widget-sort-menu')}"
-    oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
+    oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
+    rendered="#{data.dataModel.isSelectedColumn(sortField)}" >
     <f:actionListener
       binding="#{logic.sort(sortField, isSelected and !data.dataModel.sortDescending)}" />
     <f:actionListener binding="#{taskWidgetBean.setExpandedTaskId(0, false)}" />

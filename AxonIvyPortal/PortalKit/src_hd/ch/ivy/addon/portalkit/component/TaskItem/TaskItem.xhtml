@@ -13,6 +13,7 @@
   <cc:attribute name="onTaskStartCallback" />
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
   <cc:facet name="taskBody" shortDescription="Body content of a task item" />
+  <cc:attribute name="dataModel" />
 </cc:interface>
 
 <cc:implementation>
@@ -23,7 +24,9 @@
   <c:set var="isExpanded" value="#{task.id eq taskWidgetBean.expandedTaskId or isSelected}" />
 
   <h:panelGroup rendered="#{compactMode}">
-    <ui:include src="CompactTaskStartLink.xhtml" />
+    <ui:include src="CompactTaskStartLink.xhtml" >
+      <ui:param name="dataModel" value="#{cc.attrs.dataModel}" />
+    </ui:include>
   </h:panelGroup>
 
   <h:panelGroup id="task-start" layout="block" rendered="#{!compactMode}"
