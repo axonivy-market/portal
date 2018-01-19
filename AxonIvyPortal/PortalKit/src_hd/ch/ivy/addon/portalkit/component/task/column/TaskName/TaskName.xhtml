@@ -9,6 +9,7 @@
   <cc:attribute name="descriptionStyleClass" />
   <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.RemoteTask" />
   <cc:attribute name="isSelected" type="Boolean" />
+  <cc:attribute name="dataModel"></cc:attribute>
 </cc:interface>
 
 <cc:implementation>
@@ -16,25 +17,27 @@
   <c:set var="isSelected" value="#{taskWidgetBean.expandedTaskId == -1 and cc.attrs.isSelected}" />
   <c:set var="isExpanded" value="#{task.id eq taskWidgetBean.expandedTaskId or isSelected}" />
 
-  <h:outputText id="#{cc.attrs.nameId}" styleClass="name-cell js-name-cell #{cc.attrs.nameStyleClass}"
-    value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
-    rendered="#{!isExpanded or taskBean.isDone(task)}" />
-  <p:tooltip for="task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}" />
-  <h:form id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;" class="name-cell">
-      <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{isExpanded and taskBean.isNotDone(task)}"
-        disabled="#{!task.canChangeName}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        widgetVar="#{cc.attrs.nameId}-inplace" styleClass="js-name-cell #{cc.attrs.nameStyleClass}"
-        label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
-        <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200"
-          valueChangeListener="#{logic.keepOldNameValue}"
-          onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
-        <p:ajax event="save" listener="#{logic.updateTask(task)}" process="#{cc.attrs.nameId}-edit-form"
-          update="#{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate}" />
-        <f:passThroughAttribute name="onclick" value="if('#{task.canChangeName}'=='true') {event.stopPropagation()}" />
-      </p:inplace>
-    </h:form>
-  <h:outputText id="#{cc.attrs.descriptionId}" styleClass="description-cell js-description-cell #{cc.attrs.descriptionStyleClass}"
-    value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" />
+  <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}">
+	  <h:outputText id="#{cc.attrs.nameId}" styleClass="name-cell js-name-cell #{cc.attrs.nameStyleClass}"
+	    value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
+	    rendered="#{!isExpanded or taskBean.isDone(task)}" />
+	  <p:tooltip for="task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}" />
+	  <h:form id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;" class="name-cell">
+	      <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{isExpanded and taskBean.isNotDone(task)}"
+	        disabled="#{!task.canChangeName}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+	        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+	        widgetVar="#{cc.attrs.nameId}-inplace" styleClass="js-name-cell #{cc.attrs.nameStyleClass}"
+	        label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
+	        <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200"
+	          valueChangeListener="#{logic.keepOldNameValue}"
+	          onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
+	        <p:ajax event="save" listener="#{logic.updateTask(task)}" process="#{cc.attrs.nameId}-edit-form"
+	          update="#{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate}" />
+	        <f:passThroughAttribute name="onclick" value="if('#{task.canChangeName}'=='true') {event.stopPropagation()}" />
+	      </p:inplace>
+	    </h:form>
+	  <h:outputText id="#{cc.attrs.descriptionId}" styleClass="description-cell js-description-cell #{cc.attrs.descriptionStyleClass}"
+	    value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" />
+  </h:panelGroup>
 </cc:implementation>
 </html>
