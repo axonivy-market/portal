@@ -5,10 +5,11 @@
   <cc:attribute name="componentId" default="task-datetime" />
   <cc:attribute name="value" required="true" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="rendered" />
 </cc:interface>
 
 <cc:implementation>
-  <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}"
+  <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" rendered="#{cc.attrs.rendered}"
     styleClass="datetime-cell js-datetime-cell default-task-cell #{cc.attrs.styleClass}">
     <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
   </h:outputText>
