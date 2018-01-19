@@ -1,11 +1,13 @@
 package ch.ivy.addon.portalkit.datamodel;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -230,9 +232,11 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected <U extends Comparable<String>> Comparator<RemoteTask> comparatorString(
       Function<? super RemoteTask, String> function) {
-    return Comparator.comparing(function, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
+    Collator collator = Collator.getInstance(Locale.GERMAN);
+    function = function.andThen(s -> s == null ? StringUtils.EMPTY : s);
+    return Comparator.comparing(function, collator);
   }
-
+  
   protected String keyOfTask(RemoteTask task) {
     String keyOfTask = "serverId=" + task.getApplicationRegister().getServerId() + ";taskId=" + task.getId();
     return keyOfTask;

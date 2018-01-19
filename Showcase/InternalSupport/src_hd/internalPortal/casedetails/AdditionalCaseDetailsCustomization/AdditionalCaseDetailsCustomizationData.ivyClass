@@ -1,0 +1,4 @@
+AdditionalCaseDetailsCustomizationData #class
+internalPortal.casedetails.AdditionalCaseDetailsCustomization #namespace
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+remoteCase PERSISTENT #fieldModifier

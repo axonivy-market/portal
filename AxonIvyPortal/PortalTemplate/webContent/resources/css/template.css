@@ -769,3 +769,36 @@
 .note-show-more-link {
     color: rgba(0, 0, 0, 0.5) !important;
 }
+
+.additional-case-details-link {
+	font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.5) !important;
+	position: absolute;
+    bottom: 18px;
+    margin-left: 15px;
+}
+
+.additional-case-details-data-grid{
+	margin-left: 15px;
+}
+
+.additional-case-details-data-1st-column {
+	padding-right: 10px;
+	text-align: left;
+	word-break: normal;
+	white-space: nowrap;
+	font-size: 1.2rem;
+	color: rgba(0, 0, 0, 0.4);
+	line-height: 1.8rem;
+}
+
+.additional-case-details-data-2nd-column {
+	text-align: left;
+	font-family: 'robotomedium';
+	line-height: 1.8rem;
+	font-size: 1.2rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 400px;
+}
