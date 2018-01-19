@@ -24,8 +24,8 @@ Cs0 @PushWFArc f3 '' #zField
 >Proto Cs0 Cs0 CaseWidget #zField
 Cs0 f0 outLink showAdditionalCaseDetails.ivp #txt
 Cs0 f0 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
-Cs0 f0 inParamDecl '<java.lang.Long serverId,java.lang.Long remoteCaseId> param;' #txt
-Cs0 f0 inParamTable 'out.remoteCaseId=param.remoteCaseId;
+Cs0 f0 inParamDecl '<java.lang.Long serverId,java.lang.Long caseId> param;' #txt
+Cs0 f0 inParamTable 'out.caseId=param.caseId;
 out.serverId=param.serverId;
 ' #txt
 Cs0 f0 actionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
@@ -56,7 +56,7 @@ Cs0 f0 @C|.responsibility Everybody #txt
 Cs0 f0 81 49 30 30 -85 17 #rect
 Cs0 f0 @|StartRequestIcon #fIcon
 Cs0 f1 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
-Cs0 f1 657 49 30 30 0 15 #rect
+Cs0 f1 673 49 30 30 0 15 #rect
 Cs0 f1 @|EndIcon #fIcon
 Cs0 f6 targetWindow NEW #txt
 Cs0 f6 targetDisplay TOP #txt
@@ -87,7 +87,7 @@ Case Details</name>
 Cs0 f6 496 42 128 44 -42 -16 #rect
 Cs0 f6 @|RichDialogIcon #fIcon
 Cs0 f4 expr out #txt
-Cs0 f4 624 64 657 64 #arcP
+Cs0 f4 624 64 673 64 #arcP
 Cs0 f212 actionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
 ' #txt
 Cs0 f212 actionTable 'out=in;
@@ -112,7 +112,7 @@ Cs0 f224 doCall true #txt
 Cs0 f224 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
 ' #txt
 Cs0 f224 requestMappingAction 'param.server=in.server;
-param.caseId=in.remoteCaseId;
+param.caseId=in.caseId;
 ' #txt
 Cs0 f224 responseActionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
 ' #txt
