@@ -1,0 +1,4 @@
+AdditionalCaseDetailsData #class
+ch.ivy.addon.portal.generic.AdditionalCaseDetails #namespace
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+remoteCase PERSISTENT #fieldModifier

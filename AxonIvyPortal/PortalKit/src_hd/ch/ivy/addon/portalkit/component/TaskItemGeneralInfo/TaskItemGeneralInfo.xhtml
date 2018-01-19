@@ -104,8 +104,10 @@
             </p:calendar>
           </p:inplace>
         </h:form>
-        <h:outputText id="noExpiryAvailable" value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}" rendered="#{!taskBean.canChangeExpiry(task)}">
-        	<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        <h:outputText id="noExpiryAvailable"
+          value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}"
+          rendered="#{!taskBean.canChangeExpiry(task)}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
       </ui:fragment>
       <ui:fragment rendered="#{taskBean.isDone(task)}">
@@ -133,7 +135,7 @@
       trackMouse="true" />
    <p:tooltip for="noExpiryAvailable expiryLabel"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}"
-      trackMouse="true" rendered="#{taskBean.isNotDone(task) and !taskBean.canChangeExpiry(task)}"/>
+      trackMouse="true" rendered="#{taskBean.isNotDone(task) and taskBean.notHaveExpiryHandleLogic(task)}"/>
   </div>
 
 </cc:implementation>

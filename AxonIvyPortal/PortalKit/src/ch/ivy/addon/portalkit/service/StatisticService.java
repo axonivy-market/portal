@@ -582,7 +582,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.setDataFormat("percent");
     model.setSliceMargin(3);
     model.setLegendRows(1);
-    model.setSeriesColors(Colors.getPriorityColors());
+    model.setSeriesColors(Colors.getPriorityColors(chartData));
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.TASK_BY_PRIORITY.getCmsUri()));
@@ -648,7 +648,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.setDataFormat("percent");
     model.setSliceMargin(3);
     model.setLegendRows(1);
-    model.setSeriesColors(Colors.getCaseStateColors());
+    model.setSeriesColors(Colors.getCaseStateColors(chartData));
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
