@@ -15,7 +15,6 @@ import portal.guitest.page.MainMenuPage;
 public class CaseDetailsTest extends BaseTest {
 
   private CaseDetailsPage detailsPage;
-  private static final String ENGINE_DEFAULT_DEMO_USER_FULL_NAME = "Portal Demo User";
 
   @Before
   public void setup() {
@@ -58,9 +57,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testHistoryAuthorIsUserFullName() {
     detailsPage.addNote("Sample case note");
-    String demoUserNameProperty = System.getProperty("demoUserName");
-    String demoUserName = demoUserNameProperty == null ? "demo" : ENGINE_DEFAULT_DEMO_USER_FULL_NAME;
-    assertEquals(demoUserName, detailsPage.getHistoryAuthor());
+    assertEquals(TestAccount.DEMO_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
   
   @Test
