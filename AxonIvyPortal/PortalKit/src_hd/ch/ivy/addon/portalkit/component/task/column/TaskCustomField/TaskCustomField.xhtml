@@ -9,13 +9,14 @@
       xmlns:pm="http://primefaces.org/mobile">
       
   <cc:interface componentType="IvyComponent">
+    <cc:attribute name="componentId" />
     <cc:attribute name="labelValue" shortDescription="Text value to show in UI"/> 
     <cc:attribute name="dataModel" />
     <cc:attribute name="column" shortDescription="column name - the value in Customize TaskLazyDatModel.getPortalDefaultColumns()" />
   </cc:interface>
   
   <cc:implementation>
-    <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter task-custom-field-cell" >
+    <h:panelGroup id="#{cc.attrs.componentId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter task-custom-field-cell" >
       <h:outputText value="#{cc.attrs.labelValue}" />
     </h:panelGroup>
   </cc:implementation>
