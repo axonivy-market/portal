@@ -1541,26 +1541,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: rgba(0,0,0,0.5) !important;
 }
 
-.case-header-data:before {
-  content: attr(data-content);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 1.2rem;
-  opacity: 0;
-  transition: opacity .65s;
-}
-
-.case-header-data:hover:before {
-  opacity: .6;
-}
-
-.widget-content-list-item.mod-expanded .case-header-data:hover:before {
-  content: none;
-}
-
 .case-body {
   border-top: solid 1px #E0E0E0;
   padding: 10px 5px;
@@ -1816,7 +1796,6 @@ a.case-details-document-add-link {
   align-items: center;
   position: relative;
   font-size: 1.2rem;
-  cursor: pointer;
 }
 
 .case-header-data .case-header-default-cell {
