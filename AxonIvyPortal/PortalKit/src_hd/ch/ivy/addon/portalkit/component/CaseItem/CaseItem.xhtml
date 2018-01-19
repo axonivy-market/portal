@@ -26,7 +26,7 @@
     <h:panelGroup id="case-item-container" class="case-header-container" layout="block">
       <div class="case-show-detail-container">
         <h:panelGroup layout="block" styleClass="case-header-data js-case-item-header">
-          <p:commandLink id="resume-task-show-task-detail-link" class="show-task-detail-link" onstart="event.stopPropagation()" 
+          <p:commandLink id="case-show-detail-link" class="show-case-detail-link" onstart="event.stopPropagation()" 
             actionListener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}" 
             update="@(.case-list-item)" oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" >
             <h:panelGroup rendered="#{caseWidgetBean.expandedCaseId ne caseItem.id}">
