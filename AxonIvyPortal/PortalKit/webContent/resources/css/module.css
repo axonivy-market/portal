@@ -2558,7 +2558,8 @@ a.compact-task-start-link:hover {
   background-color: rgba(0,0,0,0.04);
 }
 
-.show-task-detail-link{
+.show-task-detail-link,
+.show-case-detail-link{
   width: 5%;
   margin-left: -2.5%;
   position: absolute;

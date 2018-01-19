@@ -32,7 +32,6 @@ public class CaseWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
 
     homePage = taskWidgetPage.goToHomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
