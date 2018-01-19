@@ -8,6 +8,7 @@ import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -18,12 +19,7 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class CaseTaskNoteHistoryBean {
     
     public String getCaseNoteHistoryLink(RemoteCase remoteCase) {
-        ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-        IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
-        String redirectLink = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
-                + "?remoteCaseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
-        redirectLink = removeDuplicatedPartOfUrl(redirectLink);
-        return redirectLink;
+      return UrlDetector.getProcessStartUriWithCaseParameters(remoteCase, "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
     }
     
     public String getTaskNoteHistoryLink(RemoteTask remoteTask) {

@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.datamodel;
 
 import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.naturalOrderNullsFirst;
+import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.comparatorString;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -133,7 +134,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   private Optional<Comparator<? super RemoteCase>> getComparatorForSorting() {
     Comparator<? super RemoteCase> comparator = null;
     if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = naturalOrderNullsFirst(RemoteCase::getName);
+      comparator = comparatorString(RemoteCase::getName);
     } else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getId);
     } else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
@@ -141,7 +142,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     } else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
     } else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = naturalOrderNullsFirst(caseCreator());
+      comparator = comparatorString(caseCreator());
     } else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getState);
     }

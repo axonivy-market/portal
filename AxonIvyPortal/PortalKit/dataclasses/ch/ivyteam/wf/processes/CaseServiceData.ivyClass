@@ -39,3 +39,5 @@ elapsedTimeStatistic java.util.List<ch.ivy.ws.addon.ElapsedTimeStatistic> #field
 tempElapsedTimeStatistic ch.ivy.ws.addon.ElapsedTimeStatistic #field
 caseCategories java.util.List<String> #field
 tempCaseCategories java.util.List<String> #field
+additionalPropertyName String #field
+additionalPropertyValue String #field
