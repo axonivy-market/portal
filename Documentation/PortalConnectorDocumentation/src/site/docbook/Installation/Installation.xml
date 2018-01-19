@@ -2,7 +2,17 @@
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="portalconnectordocumentation.installation">
 	<title>Installation</title>
 	<sect1 xml:id="portalconnectordocumentation.installation.portalconnectorinstallationassystemapplication">
-		<title>Portal connector installation as system application</title>
+		<title>Portal Connector is deployed to application SYSTEM</title>
+		<important>
+			Portal Connector is deployed to application SYSTEM by default. Do not deploy Portal Connector to other applications.
+		</important>
+	</sect1>
+	<sect1 xml:id="portalconnectordocumentation.installation.redeployportalconnector">
+		<title>Re-deploy Portal Connector</title>
+		<important>
+			Portal Connector is deployed to SYSTEM application. Therefore, you cannot use AdminUI to re-deploy it.
+			If you customize Portal Connector or use another Portal Connector, you can re-deploy by this way.
+		</important>
 		<para>
 			Setting rescanning of system application.
 		</para>
