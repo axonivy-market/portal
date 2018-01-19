@@ -16,7 +16,6 @@ import portal.guitest.page.SettingDeputyPage;
 public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate YESTERDAY = TODAY.minusDays(1);
-  private static final String ENGINE_DEFAULT_DEMO_USER_FULL_NAME = "Portal Demo User";
 
   @Before
   public void setup() {
@@ -46,8 +45,7 @@ public class AbsenceTest extends BaseTest {
     new LoginPage(TestAccount.ADMIN_USER).login();
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For party");
-    String demoUserNameProperty = System.getProperty("demoUserName");
-    String demoUserName = demoUserNameProperty == null ? TestAccount.DEMO_USER.getUsername() : ENGINE_DEFAULT_DEMO_USER_FULL_NAME;
+    String demoUserName = TestAccount.DEMO_USER.getFullName();
     createAbsence(demoUserName, YESTERDAY, YESTERDAY, "For travel of another user");
     createAbsence(demoUserName, TODAY, TODAY, "For party of another user");
     assertEquals(2, absencePage.countAbsences());
