@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.additionalcasedetailspage">
+	<title>Additional case details page</title>
+	<sect2 xml:id="axonivyportal.customization.additionalcasedetailspage.introduction">
+		<title>Introduction</title>
+		<para>
+			The additional case details page shows all custom fields of a case by clicking on "Show details" link in case details.
+		</para>
+		<para>
+			You can customize this page for each case by providing a relative URL to case.
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.additionalcasedetailspage.customization">
+		<title>Customization</title>
+		<para>
+			<orderedlist>
+				<listitem>
+					<para>Create a new additional case details UI and a start process which will display the new UI.</para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/AdditionalCaseDetailsPage/CustomizationAdditionalCaseDetailsPage.PNG" />
+						</imageobject>
+					</mediaobject>
+				</listitem>
+				<listitem>
+					<para>Generate a relative URL from start process which created in step 1.</para>
+					<para>Store the URL in "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additional property of case.</para> 
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/AdditionalCaseDetailsPage/StoreRelativeUrlInCase.PNG" />
+						</imageobject>
+					</mediaobject>
+				</listitem>
+			</orderedlist>
+			
+		</para>
+	</sect2>
+</sect1>

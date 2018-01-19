@@ -24,8 +24,8 @@ As0 @PushWFArc f3 '' #zField
 >Proto As0 As0 AdditionalCaseDetails #zField
 As0 f0 outLink showAdditionalCaseDetails.ivp #txt
 As0 f0 type internaltest.AdditionalCaseDetailsData #txt
-As0 f0 inParamDecl '<java.lang.Long serverId,java.lang.Long remoteCaseId> param;' #txt
-As0 f0 inParamTable 'out.remoteCaseId=param.remoteCaseId;
+As0 f0 inParamDecl '<java.lang.Long serverId,java.lang.Long caseId> param;' #txt
+As0 f0 inParamTable 'out.remoteCaseId=param.caseId;
 out.serverId=param.serverId;
 ' #txt
 As0 f0 actionDecl 'internaltest.AdditionalCaseDetailsData out;
@@ -56,7 +56,7 @@ As0 f0 @C|.responsibility Everybody #txt
 As0 f0 98 65 30 30 -85 17 #rect
 As0 f0 @|StartRequestIcon #fIcon
 As0 f1 type internaltest.AdditionalCaseDetailsData #txt
-As0 f1 689 65 30 30 0 15 #rect
+As0 f1 609 65 30 30 0 15 #rect
 As0 f1 @|EndIcon #fIcon
 As0 f6 targetWindow NEW #txt
 As0 f6 targetDisplay TOP #txt
@@ -76,16 +76,17 @@ As0 f6 userContext '* ' #txt
 As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Customization</name>
-        <nameStyle>13,7
+        <name>Customization
+Additional Case Details Page</name>
+        <nameStyle>42,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-As0 f6 520 58 112 44 -39 -8 #rect
+As0 f6 384 58 192 44 -76 -16 #rect
 As0 f6 @|RichDialogIcon #fIcon
 As0 f4 expr out #txt
-As0 f4 632 80 689 80 #arcP
+As0 f4 576 80 609 80 #arcP
 As0 f212 actionDecl 'internaltest.AdditionalCaseDetailsData out;
 ' #txt
 As0 f212 actionTable 'out=in;
@@ -102,12 +103,12 @@ As0 f212 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f212 236 68 40 24 -32 19 #rect
+As0 f212 220 68 40 24 -32 19 #rect
 As0 f212 @|StepIcon #fIcon
 As0 f2 expr out #txt
-As0 f2 128 80 236 80 #arcP
+As0 f2 128 80 220 80 #arcP
 As0 f225 expr out #txt
-As0 f225 276 80 396 80 #arcP
+As0 f225 260 80 300 80 #arcP
 As0 f224 type internaltest.AdditionalCaseDetailsData #txt
 As0 f224 processCall MultiPortal/CaseService:findCase(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 As0 f224 doCall true #txt
@@ -130,10 +131,10 @@ As0 f224 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f224 396 68 40 24 -26 21 #rect
+As0 f224 300 68 40 24 -26 21 #rect
 As0 f224 @|CallSubIcon #fIcon
 As0 f3 expr out #txt
-As0 f3 436 80 520 80 #arcP
+As0 f3 340 80 384 80 #arcP
 >Proto As0 .type internaltest.AdditionalCaseDetailsData #txt
 >Proto As0 .processKind NORMAL #txt
 >Proto As0 0 0 32 24 18 0 #rect

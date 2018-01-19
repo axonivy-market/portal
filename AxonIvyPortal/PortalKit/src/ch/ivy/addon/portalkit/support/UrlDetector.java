@@ -119,10 +119,8 @@ public class UrlDetector {
   public static String getProcessStartUriWithCaseParameters(Long caseId, Long serverId, String requestPath) {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-    String redirectLink =
-        RequestUriFactory
-            .createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
-            + "?remoteCaseId=" + caseId + "&serverId=" + serverId;
+    String redirectLink = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
+                                            + "?caseId=" + caseId + "&serverId=" + serverId;
     redirectLink = removeDuplicatedPartOfUrl(redirectLink);
     return redirectLink;
   }
