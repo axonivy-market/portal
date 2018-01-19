@@ -2,6 +2,7 @@ package portal.guitest.page;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -9,6 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.TaskState;
 
@@ -328,6 +332,9 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void openTaskDelegateDialog(int index) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+      .until(() -> findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command",index)).isDisplayed());
+
     WebElement delegateButton =
         findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command",
             index));

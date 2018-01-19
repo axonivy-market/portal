@@ -12,7 +12,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
-import portal.guitest.page.TaskWidgetPage;
 
 public class StatisticWidgetTest extends BaseTest {
 
