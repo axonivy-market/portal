@@ -1,13 +1,20 @@
 package portal.guitest.page;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 public class StatisticWidgetPage extends TemplatePage {
   private WebElement statisticWidget;
   private final static String TASK_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_1";
 
   public StatisticWidgetPage() {
+    Awaitility.await().atMost(new Duration(DEFAULT_TIMEOUT, TimeUnit.SECONDS))
+      .until(() -> findElementById("statistics-widget").isDisplayed());
     statisticWidget = findElementById("statistics-widget");
   }
 
