@@ -96,6 +96,19 @@ Tt0 @PushWFArc f82 '' #zField
 Tt0 @GridStep f84 '' #zField
 Tt0 @PushWFArc f85 '' #zField
 Tt0 @TkArc f83 '' #zField
+Tt0 @RichDialog f86 '' #zField
+Tt0 @RichDialog f87 '' #zField
+Tt0 @EndTask f89 '' #zField
+Tt0 @TaskSwitch f90 '' #zField
+Tt0 @RichDialog f91 '' #zField
+Tt0 @StartRequest f92 '' #zField
+Tt0 @PushWFArc f94 '' #zField
+Tt0 @PushWFArc f95 '' #zField
+Tt0 @PushWFArc f96 '' #zField
+Tt0 @PushWFArc f97 '' #zField
+Tt0 @PushWFArc f98 '' #zField
+Tt0 @PushWFArc f99 '' #zField
+Tt0 @TkArc f88 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -1354,6 +1367,223 @@ Tt0 f83 expr out #txt
 Tt0 f83 type internaltest.Data #txt
 Tt0 f83 var in1 #txt
 Tt0 f83 1072 595 1072 618 #arcP
+Tt0 f86 targetWindow NEW:card: #txt
+Tt0 f86 targetDisplay TOP #txt
+Tt0 f86 richDialogId internaltest.TaskForm #txt
+Tt0 f86 startMethod start() #txt
+Tt0 f86 type internaltest.Data #txt
+Tt0 f86 requestActionDecl '<> param;' #txt
+Tt0 f86 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f86 responseMappingAction 'out=in;
+' #txt
+Tt0 f86 windowConfiguration '* ' #txt
+Tt0 f86 isAsynch false #txt
+Tt0 f86 isInnerRd false #txt
+Tt0 f86 userContext '* ' #txt
+Tt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f86 1560 688 36 24 20 -2 #rect
+Tt0 f86 @|RichDialogIcon #fIcon
+Tt0 f87 targetWindow NEW:card: #txt
+Tt0 f87 targetDisplay TOP #txt
+Tt0 f87 richDialogId internaltest.TaskForm #txt
+Tt0 f87 startMethod start() #txt
+Tt0 f87 type internaltest.Data #txt
+Tt0 f87 requestActionDecl '<> param;' #txt
+Tt0 f87 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f87 responseMappingAction 'out=in;
+' #txt
+Tt0 f87 windowConfiguration '* ' #txt
+Tt0 f87 isAsynch false #txt
+Tt0 f87 isInnerRd false #txt
+Tt0 f87 userContext '* ' #txt
+Tt0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f87 1696 688 36 24 20 -2 #rect
+Tt0 f87 @|RichDialogIcon #fIcon
+Tt0 f89 type internaltest.Data #txt
+Tt0 f89 1565 751 26 26 14 0 #rect
+Tt0 f89 @|EndIcon #fIcon
+Tt0 f90 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f90 actionTable 'out=in1;
+' #txt
+Tt0 f90 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
+Tt0 f90 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
+Tt0 f90 caseData 'case.name=Leave Request For Default Case Details Page
+case.category=DefaultAdditionalCaseDetailsPage' #txt
+Tt0 f90 taskData 'TaskA.CATEGORY=AnnualLeave
+TaskA.DESC=Annual Leave Request Description
+TaskA.EXP=new Duration("3H")
+TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Annual Leave Request Default Case Details Page
+TaskA.PRI=2
+TaskA.ROL="demo"
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=3
+TaskA.customFields.varchar.1="Exterior"
+TaskA.customFields.varchar.5="Long Do"
+TaskB.CATEGORY=OtherLeave/SickLeave/Long
+TaskB.DESC=Sick Leave Request Description
+TaskB.EXP=new Duration("1D")
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Sick Leave Request Default Case Details Page
+TaskB.PRI=1
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0
+TaskB.customFields.varchar.1="Interior"
+TaskB.customFields.varchar.5="Tung Le"
+TaskC.CATEGORY=OtherLeave/Maternity
+TaskC.DESC=Maternity Leave Request Description
+TaskC.EXP=new Duration("2D")
+TaskC.EXPRI=2
+TaskC.EXROL=Everybody
+TaskC.EXTYPE=0
+TaskC.NAM=Maternity Leave Request Default Case Details Page
+TaskC.PRI=3
+TaskC.ROL=Everybody
+TaskC.SKIP_TASK_LIST=false
+TaskC.TYPE=0
+TaskC.customFields.varchar.1="Interior"
+TaskC.customFields.varchar.5="Anh Nguyen"' #txt
+Tt0 f90 type internaltest.Data #txt
+Tt0 f90 template "" #txt
+Tt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create tasks</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f90 1564 630 28 28 9 -21 #rect
+Tt0 f90 @|TaskSwitchIcon #fIcon
+Tt0 f91 targetWindow NEW:card: #txt
+Tt0 f91 targetDisplay TOP #txt
+Tt0 f91 richDialogId internaltest.TaskForm #txt
+Tt0 f91 startMethod start() #txt
+Tt0 f91 type internaltest.Data #txt
+Tt0 f91 requestActionDecl '<> param;' #txt
+Tt0 f91 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f91 responseMappingAction 'out=in;
+' #txt
+Tt0 f91 windowConfiguration '* ' #txt
+Tt0 f91 isAsynch false #txt
+Tt0 f91 isInnerRd false #txt
+Tt0 f91 userContext '* ' #txt
+Tt0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>6,7
+9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f91 1432 688 36 24 20 -2 #rect
+Tt0 f91 @|RichDialogIcon #fIcon
+Tt0 f92 outLink DefaultAdditionalCaseDetails.ivp #txt
+Tt0 f92 type internaltest.Data #txt
+Tt0 f92 inParamDecl '<> param;' #txt
+Tt0 f92 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f92 guid 1611C24EA3CA73C7 #txt
+Tt0 f92 requestEnabled true #txt
+Tt0 f92 triggerEnabled false #txt
+Tt0 f92 callSignature DefaultAdditionalCaseDetails() #txt
+Tt0 f92 persist false #txt
+Tt0 f92 startName 'Default Additional Case Details' #txt
+Tt0 f92 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f92 caseData 'customFields.decimal.5=1598526
+processCategory.name=Publication Requested
+customFields.decimal.3=745856
+processCategory.code=pubRequested
+customFields.decimal.1=159753852
+customFields.varchar.5="CustomVarCharField 5"
+customFields.varchar.4="CustomVarCharField 4"
+customFields.varchar.3="CustomVarCharField 3"
+customFields.varchar.2="CustomVarCharField 2"
+customFields.varchar.1="CustomVarCharField 1"
+businessCase.attach=true
+process.name=Publication Requested
+process.code=pubRequested
+case.name=Leave Request for Customization Additional Case Details
+customFields.timestamp.5=new DateTime(2018, 5, 5, 5, 5, 5)
+customFields.timestamp.3=new DateTime(2018, 3, 3, 3, 3, 3)
+customFields.timestamp.2=new DateTime(2018, 2, 2, 2, 2 ,2)
+case.description=Leave Request Description for Customization Additional Case Details' #txt
+Tt0 f92 showInStartList 1 #txt
+Tt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultAdditionalCaseDetails.ivp</name>
+        <nameStyle>32,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f92 @C|.responsibility Everybody #txt
+Tt0 f92 1565 500 26 26 14 0 #rect
+Tt0 f92 @|StartRequestIcon #fIcon
+Tt0 f94 expr data #txt
+Tt0 f94 outCond ivp=="TaskB.ivp" #txt
+Tt0 f94 1578 658 1578 688 #arcP
+Tt0 f95 expr data #txt
+Tt0 f95 outCond ivp=="TaskC.ivp" #txt
+Tt0 f95 1592 644 1714 688 #arcP
+Tt0 f95 1 1714 644 #addKink
+Tt0 f95 0 0.8643692094953389 0 0 #arcLabel
+Tt0 f96 expr out #txt
+Tt0 f96 1578 712 1578 751 #arcP
+Tt0 f97 expr out #txt
+Tt0 f97 1714 712 1591 764 #arcP
+Tt0 f97 1 1714 764 #addKink
+Tt0 f97 1 0.07231812892046431 0 0 #arcLabel
+Tt0 f98 expr out #txt
+Tt0 f98 1450 712 1565 764 #arcP
+Tt0 f98 1 1450 764 #addKink
+Tt0 f98 1 0.040404381211362396 0 0 #arcLabel
+Tt0 f99 expr data #txt
+Tt0 f99 outCond ivp=="TaskA.ivp" #txt
+Tt0 f99 1564 644 1450 688 #arcP
+Tt0 f99 1 1450 644 #addKink
+Tt0 f99 0 0.8879104383411323 0 0 #arcLabel
+Tt0 f88 expr out #txt
+Tt0 f88 type internaltest.Data #txt
+Tt0 f88 var in1 #txt
+Tt0 f88 1578 526 1578 630 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1451,3 +1681,17 @@ Tt0 f71 mainOut f85 tail #connect
 Tt0 f85 head f84 mainIn #connect
 Tt0 f84 mainOut f83 tail #connect
 Tt0 f83 head f75 in #connect
+Tt0 f90 out f99 tail #connect
+Tt0 f99 head f91 mainIn #connect
+Tt0 f90 out f94 tail #connect
+Tt0 f94 head f86 mainIn #connect
+Tt0 f90 out f95 tail #connect
+Tt0 f95 head f87 mainIn #connect
+Tt0 f86 mainOut f96 tail #connect
+Tt0 f96 head f89 mainIn #connect
+Tt0 f91 mainOut f98 tail #connect
+Tt0 f98 head f89 mainIn #connect
+Tt0 f87 mainOut f97 tail #connect
+Tt0 f97 head f89 mainIn #connect
+Tt0 f92 mainOut f88 tail #connect
+Tt0 f88 head f90 in #connect
