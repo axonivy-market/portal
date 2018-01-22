@@ -1541,6 +1541,16 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: rgba(0,0,0,0.5) !important;
 }
 
+.case-show-detail-container .case-toggle-icon {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  transform: scale(1.5,1);
+  color: rgba(0,0,0,0.5) !important;
+  padding-bottom: 2px;
+}
+
 .case-body {
   border-top: solid 1px #E0E0E0;
   padding: 10px 5px;

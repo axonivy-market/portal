@@ -26,17 +26,15 @@
     <h:panelGroup id="case-item-container" class="case-header-container" layout="block">
       <div class="case-show-detail-container">
         <h:panelGroup layout="block" styleClass="case-header-data js-case-item-header">
-          <p:commandLink id="case-show-detail-link" class="show-case-detail-link" onstart="event.stopPropagation()" 
-            actionListener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}" 
-            update="@(.case-list-item)" oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" >
-            <h:panelGroup rendered="#{caseWidgetBean.expandedCaseId ne caseItem.id}">
-              <i class="fa fa-angle-double-down" />
-            </h:panelGroup>
-            <h:panelGroup rendered="#{caseWidgetBean.expandedCaseId eq caseItem.id}">
-              <i class="fa fa-angle-double-up" />
-            </h:panelGroup>
-          </p:commandLink>
+          <p:ajax event="click" listener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}"
+            update="@(.case-list-item)" oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
           <cc:renderFacet name="caseHeader" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" rendered="#{expanded}">
+          <i class="fa fa-angle-double-up case-toggle-icon" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" rendered="#{not expanded}">
+          <i class="fa fa-angle-double-down case-toggle-icon" />
         </h:panelGroup>
       </div>
       <h:panelGroup layout="block" styleClass="case-header-action-cell">
