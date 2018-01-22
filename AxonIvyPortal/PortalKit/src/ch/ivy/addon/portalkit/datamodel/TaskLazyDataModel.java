@@ -656,7 +656,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   
   
   protected void initColumnsConfiguration(){
-    allColumns.addAll(getPortalDefaultColumns());
+    allColumns.addAll(getDefaultColumns());
     initSelectedColumns();
   }
 
@@ -674,7 +674,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       }
     }
     if(selectedColumns.isEmpty()){
-      selectedColumns.addAll(getPortalDefaultColumns());
+      selectedColumns.addAll(getDefaultColumns());
       isAutoHideColumns = true;
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);
@@ -696,7 +696,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * 
    * @return
    */
-  protected List<String> getPortalDefaultColumns() {
+  protected List<String> getDefaultColumns() {
     return PORTAL_DEFAULT_COLUMNS;
   }
   
@@ -744,7 +744,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private void updateTaskColumnsConfigurationData(TaskColumnsConfigurationData taskColumnsConfigurationData) {
     taskColumnsConfigurationData.setAutoHideColumns(isAutoHideColumns);
     if(isAutoHideColumns){
-      taskColumnsConfigurationData.setSelectedColumns(getPortalDefaultColumns());
+      taskColumnsConfigurationData.setSelectedColumns(getDefaultColumns());
     } else {
       taskColumnsConfigurationData.setSelectedColumns(selectedColumns);
     }
