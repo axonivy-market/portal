@@ -10,6 +10,6 @@
 
 <cc:implementation>
   <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" rendered="#{cc.attrs.dataModel.isSelectedColumn('ID')}"
-    styleClass="id-cell js-id-cell default-task-cell #{cc.attrs.styleClass}  #{cc.attrs.dataModel.isAutoHideColumns()?'js-id-cell':''}" />
+    styleClass="id-cell default-task-cell #{cc.attrs.styleClass}  #{cc.attrs.dataModel.isAutoHideColumns()?'js-id-cell':''}" />
 </cc:implementation>
 </html>
