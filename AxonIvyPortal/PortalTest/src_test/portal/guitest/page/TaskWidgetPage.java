@@ -327,7 +327,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getTaskListCustomCellValue(int index, String columnId) {
-    WebElement cell = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s", index, columnId));
+    WebElement cell = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
     return cell.getText();
   }
 
