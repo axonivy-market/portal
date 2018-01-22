@@ -7,5 +7,5 @@ serverId Long #field
 jsonQuery String #field
 involvedApplications java.util.List<String> #field
 elapsedTimeStatisticResult java.util.List<ch.ivy.ws.addon.ElapsedTimeStatistic> #field
-caseCategories java.util.List<String> #field
+caseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field

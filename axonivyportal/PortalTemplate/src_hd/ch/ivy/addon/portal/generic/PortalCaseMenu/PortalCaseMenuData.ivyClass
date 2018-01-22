@@ -1,0 +1,25 @@
+PortalCaseMenuData #class
+ch.ivy.addon.portal.generic.PortalCaseMenu #namespace
+loginUser String #field
+loginUser PERSISTENT #fieldModifier
+hasReadAllCasesPermisson Boolean #field
+hasReadAllCasesPermisson PERSISTENT #fieldModifier
+myCaseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+myCaseCategories PERSISTENT #fieldModifier
+allCaseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+allCaseCategories PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+caseView ch.ivy.addon.portal.generic.view.CaseView #field
+caseView PERSISTENT #fieldModifier
+selectedMenuItem ch.ivy.addon.portalkit.bo.MainMenuNode #field
+selectedMenuItem PERSISTENT #fieldModifier
+selectedNode org.primefaces.model.DefaultTreeNode #field
+selectedNode PERSISTENT #fieldModifier
+involvedApplications List<String> #field
+involvedApplications PERSISTENT #fieldModifier
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment
+jsonQuery PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
+dataModel PERSISTENT #fieldModifier

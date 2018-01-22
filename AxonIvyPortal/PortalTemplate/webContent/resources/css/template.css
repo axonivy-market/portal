@@ -620,20 +620,12 @@
   font-weight: bold;
 }
 
-.second-level-menu .second-level-menu-icon {
-  display: inline-block;
-  width: 6px;
-  margin-right: 3px;
-}
-
-.second-level-menu .ui-treetable-selectable-node.on:not(.collapsed) .second-level-menu-icon {
-  font-weight: bold;
-  transform: rotate(90deg);
-}
-
-.second-level-menu .ui-treetable .ui-treetable-toggler {
-  display: none;
-}
+/* .second-level-menu .second-level-menu-icon.ui-treetable-toggler { */
+/*   display: inline-block; */
+/*   width: 6px; */
+/*   margin-right: 3px; */
+/*   margin-top: 0; */
+/* } */
 
 .second-level-menu .ui-treetable-scrollable-body {
   padding-right: 0px !important;

@@ -47,6 +47,10 @@ public class CaseQueryService {
             finalQuery.where().and(queryForKeyword(criteria.getKeyword()));
         }
         
+        if (criteria.hasCategory()) {
+          finalQuery.where().and(queryForCategory(criteria.getCategory()));
+        }
+        
         CaseSortingQueryAppender appender = new CaseSortingQueryAppender(finalQuery);
         finalQuery = appender.appendSorting(criteria).toQuery();
         return finalQuery;
@@ -82,6 +86,13 @@ public class CaseQueryService {
         } catch (NumberFormatException e) {
         }
         return filterByKeywordQuery;
+    }
+    
+    private CaseQuery queryForCategory(String keyword) {
+      String startingWithCategory = String.format("%s%%", keyword);
+      CaseQuery filterByCategoryQuery = CaseQuery.create().where().category().isLike(startingWithCategory);
+
+      return filterByCategoryQuery;
     }
     
     private static final class CaseSortingQueryAppender {
