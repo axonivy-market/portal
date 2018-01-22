@@ -1162,17 +1162,18 @@ Ce0 f64 expr out #txt
 Ce0 f64 2784 174 958 264 #arcP
 Ce0 f64 1 2784 264 #addKink
 Ce0 f64 1 0.4716540658197106 0 0 #arcLabel
-Ce0 f65 inParamDecl '<ch.ivy.ws.addon.service.CaseSearchCriteria caseSearchCriteria> param;' #txt
+Ce0 f65 inParamDecl '<java.lang.String language,ch.ivy.ws.addon.service.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Ce0 f65 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+out.language=param.language;
 ' #txt
-Ce0 f65 outParamDecl '<java.util.List<java.lang.String> categories,java.util.List<ch.ivy.ws.addon.WSException> errors> result;
+Ce0 f65 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,java.util.List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
 Ce0 f65 outParamTable 'result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Ce0 f65 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 ' #txt
-Ce0 f65 callSignature findCaseCategoriesByCriteria(ch.ivy.ws.addon.service.CaseSearchCriteria) #txt
+Ce0 f65 callSignature findCaseCategoriesByCriteria(String,ch.ivy.ws.addon.service.CaseSearchCriteria) #txt
 Ce0 f65 useUserDefinedException false #txt
 Ce0 f65 taskData TaskTriggered.PRI=2 #txt
 Ce0 f65 type ch.ivy.ws.addon.CaseServiceData #txt
@@ -1197,7 +1198,7 @@ import ch.ivy.ws.addon.bo.CaseServiceResult;
 import ch.ivy.ws.addon.WSException;
 
 try {
-	CaseServiceResult result = WsServiceFactory.getCaseService().findCaseCategoriesByCriteria(in.caseSearchCriteria);
+	CaseServiceResult result = WsServiceFactory.getCaseService().findCategories(in.caseSearchCriteria.jsonQuery, in.caseSearchCriteria.involvedUsername, in.caseSearchCriteria.involvedApplications, in.language);
 	in.categories = result.categories;
 	in.errors = result.errors;
 } catch (WSException e) {

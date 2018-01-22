@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.datamodel;
 
-import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.naturalOrderNullsFirst;
 import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.comparatorString;
+import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.naturalOrderNullsFirst;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
@@ -307,6 +308,14 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   public void setInvolvedApplications(String... involvedApplications) {
     searchCriteria.setInvolvedApplications(involvedApplications);
+  }
+  
+  public void setCaseAssigneeType(CaseAssigneeType assigneeType) {
+    queryCriteria.setCaseAssigneeType(assigneeType);
+  }
+
+  public void setCategory(String category) {
+    queryCriteria.setCategory(category);
   }
 
   public String getSortField() {

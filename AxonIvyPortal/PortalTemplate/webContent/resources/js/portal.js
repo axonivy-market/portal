@@ -137,7 +137,7 @@ var MainMenu = {
   },
   
   displaySecondLevelMenu : function(firstLevelMenu) {
-    if(firstLevelMenu == null || "Tasks" !== firstLevelMenu[0]) {
+    if(firstLevelMenu == null || ("Tasks" !== firstLevelMenu[0] && "Cases" !== firstLevelMenu[0])) {
       $('.second-level-menu').addClass('hide');
     }
   },
@@ -320,7 +320,7 @@ function removeAppNameAndMenuTypeFromPath(menuItemPath) {
 
 function getCategoryClass(element) {
 	var elementClass = $(element).attr("class");
-	var category = /(All_Tasks|My_Tasks|Group_Tasks|Unassigned_Tasks)[^\s\\]*\b/.exec(elementClass);
+	var category = /(All_Tasks|My_Tasks|Group_Tasks|Unassigned_Tasks|All_Cases|My_Cases)[^\s\\]*\b/.exec(elementClass);
 	if (category != null && category.length > 0) {
 		return category[0];
 	}

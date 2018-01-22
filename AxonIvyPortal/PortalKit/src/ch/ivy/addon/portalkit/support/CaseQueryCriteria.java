@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -20,6 +21,7 @@ public class CaseQueryCriteria {
   private String category;
   private String sortField;
   private boolean sortDescending;
+  private CaseAssigneeType caseAssigneeType;
   
   private CaseQuery caseQuery;
   private boolean isNewQueryCreated = false;
@@ -117,6 +119,14 @@ public class CaseQueryCriteria {
 
   public void setNewQueryCreated(boolean isNewQueryCreated) {
     this.isNewQueryCreated = isNewQueryCreated;
+  }
+  
+  public CaseAssigneeType getCaseAssigneeType() {
+    return caseAssigneeType;
+  }
+
+  public void setCaseAssigneeType(CaseAssigneeType caseAssigneeType) {
+    this.caseAssigneeType = caseAssigneeType;
   }
 
   public boolean hasIncludedStates() {

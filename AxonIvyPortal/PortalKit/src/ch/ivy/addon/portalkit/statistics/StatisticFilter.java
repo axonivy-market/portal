@@ -15,6 +15,7 @@ import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -91,7 +92,7 @@ public class StatisticFilter {
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("findCaseCategories(String)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    this.caseCategories = (List<String>) response.get("result");
+    this.caseCategories = ((List<CategoryData>) response.get("result")).stream().map(CategoryData::getPath).collect(Collectors.toList());
     this.caseCategories = caseCategories.stream().distinct()
         .collect(Collectors.toList());
     this.selectedCaseCategories = new ArrayList<>(this.caseCategories);
