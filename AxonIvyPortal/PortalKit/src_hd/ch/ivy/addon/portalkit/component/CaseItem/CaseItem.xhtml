@@ -29,12 +29,12 @@
           <p:ajax event="click" listener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}"
             update="@(.case-list-item)" oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
           <cc:renderFacet name="caseHeader" />
-        </h:panelGroup>
-        <h:panelGroup layout="block" rendered="#{expanded}">
-          <i class="fa fa-angle-double-up case-toggle-icon" />
-        </h:panelGroup>
-        <h:panelGroup layout="block" rendered="#{not expanded}">
-          <i class="fa fa-angle-double-down case-toggle-icon" />
+          <h:panelGroup layout="block" rendered="#{expanded}">
+            <i class="fa fa-angle-double-up case-toggle-icon" />
+          </h:panelGroup>
+          <h:panelGroup layout="block" rendered="#{not expanded}">
+            <i class="fa fa-angle-double-down case-toggle-icon" />
+          </h:panelGroup>
         </h:panelGroup>
       </div>
       <h:panelGroup layout="block" styleClass="case-header-action-cell">
