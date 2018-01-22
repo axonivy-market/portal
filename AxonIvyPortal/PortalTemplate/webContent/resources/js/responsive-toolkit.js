@@ -372,49 +372,80 @@ function SimpleSmallScreen(){
 
 /***************************Handle responsive for Case List**********************************/
 function CaseListLargeScreenHandler() {
-  var marginValWhenMainMenuOpen = 210;
-  var marginValWhenTwoMenuClose = 70;
+  var marginValues = {
+    marginValWhenAllMenuClose : 70,
+    marginValWhenMainMenuOpen : 210,
+    marginValWhenSecondMenuOpen : 280,
+    marginValWhenAllMenuOpen : 410,
+  }
+  
+  function animateCaseList($widget, properties) {
+    $widget.animate(properties, animateDuration, function() {
+      var caseListToolKit = CaseListToolKit();
+      caseListToolKit.responsive();
+    });
+  }
 
   this.updateMainContainer = function(){
     var $mainMenu = $('.js-left-sidebar');
-    var $simpleMainColumn = $('.js-simple-main-col');
+    var $secondLevelMenu = $('#second-level-menu');
+    var $caseListContainer = $('.js-case-default-widget-container');
+    var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
     if ($mainMenu.hasClass('in')) {
-      $simpleMainColumn.animate({ marginLeft : marginValWhenMainMenuOpen }, animateDuration, function(){
-        var caseListToolKit = CaseListToolKit();
-        caseListToolKit.responsiveInLargeScreen();
-      });
-    } else { 
-      $simpleMainColumn.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration, function(){
-        var caseListToolKit = CaseListToolKit();
-        caseListToolKit.responsiveInLargeScreen();
-      });
+      if (isDisplaySecondLevelMenu) {
+        animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenAllMenuOpen });
+      } else {
+        animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenMainMenuOpen });  
+      }
+    } else {
+      if (isDisplaySecondLevelMenu) {
+        animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenSecondMenuOpen });
+      } else {
+        animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenAllMenuClose });  
+      }
     }
   }
 }
 
 function CaseListMediumScreenHandler() {
-  var marginValWhenMainMenuOpen = 190;
-  var marginValWhenMainMenuClose = 60;
+  var marginValues = {
+    marginValWhenAllMenuClose : 60,
+    marginValWhenMainMenuOpen : 190,
+    marginValWhenSecondMenuOpen : 260,
+    marginValWhenAllMenuOpen : 380,
+  }
 
-  function animateTaskList($widget, properties) {
+  function animateCaseList($widget, properties) {
     $widget.animate(properties, animateDuration, function() {
       var caseListToolKit = CaseListToolKit();
-      caseListToolKit.responsiveInMediumScreen();
+      caseListToolKit.responsive();
     });
-   }
+  }
 
   this.updateMainContainer = function(){
     var $mainMenu = $('.js-left-sidebar');
-    var $simpleMainColumn = $('.js-simple-main-col');
-    var marginVal = $mainMenu.hasClass('in') ? marginValWhenMainMenuOpen : marginValWhenMainMenuClose;
+    var $secondLevelMenu = $('#second-level-menu');
+    var $caseListContainer = $('.js-case-default-widget-container');
+    var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
-    $simpleMainColumn.animate({
-      marginLeft : marginVal
-    }, animateDuration, function(){
-      var caseListToolKit = CaseListToolKit();
-      caseListToolKit.responsiveInMediumScreen();
-    });
+    if ($mainMenu.hasClass('in')) {
+      if (isDisplaySecondLevelMenu) {
+          // Open main menu when second menu is opened
+        animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenAllMenuOpen});
+      } else {
+          // Open main menu when second menu is closed
+        animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenMainMenuOpen});
+      }
+    } else {
+        if (isDisplaySecondLevelMenu) {
+            // Close main menu when second menu is opened
+          animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenSecondMenuOpen});
+        } else {
+            // Close main menu when second menu is closed
+          animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenAllMenuClose});
+        }
+    }
 
     var isCaseDetailsOpened = $('.js-case-details').length !== 0 ? true : false;
     if (isCaseDetailsOpened) {
@@ -495,8 +526,12 @@ function CaseListMediumScreenHandler() {
 };
 
 function CaseListSmallScreenHandler() {
-  var marginValWhenMainMenuOpen = 190;
-  var marginValWhenMenuClose = 60;
+  var marginValues = {
+    marginValWhenAllMenuClose : 60,
+    marginValWhenMainMenuOpen : 190,
+    marginValWhenSecondMenuOpen : 260,
+    marginValWhenAllMenuOpen : 380,
+  }
 
   function animateCaseList($widget, properties) {
     $widget.animate(properties, animateDuration, function() {
@@ -507,15 +542,27 @@ function CaseListSmallScreenHandler() {
 
   this.updateMainContainer = function(){
     var $mainMenu = $('.js-left-sidebar');
-    var $simpleMainColumn = $('.js-simple-main-col');
-    var marginVal = $mainMenu.hasClass('in') ? marginValWhenMainMenuOpen : marginValWhenMenuClose;
+    var $secondLevelMenu = $('#second-level-menu');
+    var $caseListContainer = $('.js-case-default-widget-container');
+    var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
-    $simpleMainColumn.animate({
-      marginLeft : marginVal
-    }, animateDuration, function(){
-      var caseListToolKit = CaseListToolKit();
-      caseListToolKit.responsiveInMediumScreen();
-    });
+    if ($mainMenu.hasClass('in')) {
+      if (isDisplaySecondLevelMenu) {
+          // Open main menu when second menu is opened
+        animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenAllMenuOpen});
+      } else {
+          // Open main menu when second menu is closed
+        animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenMainMenuOpen});
+      }
+    } else {
+        if (isDisplaySecondLevelMenu) {
+            // Close main menu when second menu is opened
+          animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenSecondMenuOpen});
+        } else {
+            // Close main menu when second menu is closed
+          animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenAllMenuClose});
+        }
+    }
 
     var isCaseDetailsOpened = $('.js-case-details').length !== 0 ? true : false;
     if (isCaseDetailsOpened) {

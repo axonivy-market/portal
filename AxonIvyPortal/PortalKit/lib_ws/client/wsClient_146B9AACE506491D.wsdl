@@ -1,45 +1,79 @@
-<?xml version="1.0" ?><wsdl:definitions name="CaseServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="ch.ivyteam.ivy.webservice.process" name="CaseServiceService" targetNamespace="http://addon.ws.ivy.ch/">
   <wsdl:types>
-<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-<xs:element name="analyzeCaseStateStatistic" type="tns:analyzeCaseStateStatistic"></xs:element>
-<xs:element name="analyzeCaseStateStatisticResponse" type="tns:analyzeCaseStateStatisticResponse"></xs:element>
-<xs:element name="analyzeElapsedTimeByCaseCategory" type="tns:analyzeElapsedTimeByCaseCategory"></xs:element>
-<xs:element name="analyzeElapsedTimeByCaseCategoryResponse" type="tns:analyzeElapsedTimeByCaseCategoryResponse"></xs:element>
-<xs:element name="countCasesByCriteria" type="tns:countCasesByCriteria"></xs:element>
-<xs:element name="countCasesByCriteriaResponse" type="tns:countCasesByCriteriaResponse"></xs:element>
-<xs:element name="createNote" type="tns:createNote"></xs:element>
-<xs:element name="createNoteResponse" type="tns:createNoteResponse"></xs:element>
-<xs:element name="destroyCase" type="tns:destroyCase"></xs:element>
-<xs:element name="destroyCaseResponse" type="tns:destroyCaseResponse"></xs:element>
-<xs:element name="downloadDocument" type="tns:downloadDocument"></xs:element>
-<xs:element name="downloadDocumentResponse" type="tns:downloadDocumentResponse"></xs:element>
-<xs:element name="findCase" type="tns:findCase"></xs:element>
-<xs:element name="findCaseCategoriesByCriteria" type="tns:findCaseCategoriesByCriteria"></xs:element>
-<xs:element name="findCaseCategoriesByCriteriaResponse" type="tns:findCaseCategoriesByCriteriaResponse"></xs:element>
-<xs:element name="findCaseResponse" type="tns:findCaseResponse"></xs:element>
-<xs:element name="findCasesByCriteria" type="tns:findCasesByCriteria"></xs:element>
-<xs:element name="findCasesByCriteriaResponse" type="tns:findCasesByCriteriaResponse"></xs:element>
-<xs:element name="findDocuments" type="tns:findDocuments"></xs:element>
-<xs:element name="findDocumentsResponse" type="tns:findDocumentsResponse"></xs:element>
-<xs:element name="findNotes" type="tns:findNotes"></xs:element>
-<xs:element name="findNotesResponse" type="tns:findNotesResponse"></xs:element>
-<xs:element name="getAddtionalProperties" type="tns:getAddtionalProperties"></xs:element>
-<xs:element name="getAddtionalPropertiesResponse" type="tns:getAddtionalPropertiesResponse"></xs:element>
-<xs:element name="removeDocument" type="tns:removeDocument"></xs:element>
-<xs:element name="removeDocumentResponse" type="tns:removeDocumentResponse"></xs:element>
-<xs:element name="saveCase" type="tns:saveCase"></xs:element>
-<xs:element name="saveCaseResponse" type="tns:saveCaseResponse"></xs:element>
-<xs:element name="setAdditionalProperties" type="tns:setAdditionalProperties"></xs:element>
-<xs:element name="setAdditionalPropertiesResponse" type="tns:setAdditionalPropertiesResponse"></xs:element>
-<xs:element name="uploadDocument" type="tns:uploadDocument"></xs:element>
-<xs:element name="uploadDocumentResponse" type="tns:uploadDocumentResponse"></xs:element>
-<xs:complexType name="setAdditionalProperties">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://addon.ws.ivy.ch/" elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0">
+
+  <xs:element name="analyzeCaseStateStatistic" type="tns:analyzeCaseStateStatistic"></xs:element>
+
+  <xs:element name="analyzeCaseStateStatisticResponse" type="tns:analyzeCaseStateStatisticResponse"></xs:element>
+
+  <xs:element name="analyzeElapsedTimeByCaseCategory" type="tns:analyzeElapsedTimeByCaseCategory"></xs:element>
+
+  <xs:element name="analyzeElapsedTimeByCaseCategoryResponse" type="tns:analyzeElapsedTimeByCaseCategoryResponse"></xs:element>
+
+  <xs:element name="countCasesByCriteria" type="tns:countCasesByCriteria"></xs:element>
+
+  <xs:element name="countCasesByCriteriaResponse" type="tns:countCasesByCriteriaResponse"></xs:element>
+
+  <xs:element name="createNote" type="tns:createNote"></xs:element>
+
+  <xs:element name="createNoteResponse" type="tns:createNoteResponse"></xs:element>
+
+  <xs:element name="destroyCase" type="tns:destroyCase"></xs:element>
+
+  <xs:element name="destroyCaseResponse" type="tns:destroyCaseResponse"></xs:element>
+
+  <xs:element name="downloadDocument" type="tns:downloadDocument"></xs:element>
+
+  <xs:element name="downloadDocumentResponse" type="tns:downloadDocumentResponse"></xs:element>
+
+  <xs:element name="findCase" type="tns:findCase"></xs:element>
+
+  <xs:element name="findCaseCategoriesByCriteria" type="tns:findCaseCategoriesByCriteria"></xs:element>
+
+  <xs:element name="findCaseCategoriesByCriteriaResponse" type="tns:findCaseCategoriesByCriteriaResponse"></xs:element>
+
+  <xs:element name="findCaseResponse" type="tns:findCaseResponse"></xs:element>
+
+  <xs:element name="findCasesByCriteria" type="tns:findCasesByCriteria"></xs:element>
+
+  <xs:element name="findCasesByCriteriaResponse" type="tns:findCasesByCriteriaResponse"></xs:element>
+
+  <xs:element name="findDocuments" type="tns:findDocuments"></xs:element>
+
+  <xs:element name="findDocumentsResponse" type="tns:findDocumentsResponse"></xs:element>
+
+  <xs:element name="findNotes" type="tns:findNotes"></xs:element>
+
+  <xs:element name="findNotesResponse" type="tns:findNotesResponse"></xs:element>
+
+  <xs:element name="getAddtionalProperties" type="tns:getAddtionalProperties"></xs:element>
+
+  <xs:element name="getAddtionalPropertiesResponse" type="tns:getAddtionalPropertiesResponse"></xs:element>
+
+  <xs:element name="removeDocument" type="tns:removeDocument"></xs:element>
+
+  <xs:element name="removeDocumentResponse" type="tns:removeDocumentResponse"></xs:element>
+
+  <xs:element name="saveCase" type="tns:saveCase"></xs:element>
+
+  <xs:element name="saveCaseResponse" type="tns:saveCaseResponse"></xs:element>
+
+  <xs:element name="setAdditionalProperties" type="tns:setAdditionalProperties"></xs:element>
+
+  <xs:element name="setAdditionalPropertiesResponse" type="tns:setAdditionalPropertiesResponse"></xs:element>
+
+  <xs:element name="uploadDocument" type="tns:uploadDocument"></xs:element>
+
+  <xs:element name="uploadDocumentResponse" type="tns:uploadDocumentResponse"></xs:element>
+
+  <xs:complexType name="setAdditionalProperties">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseId" type="xs:long"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalProperties" type="tns:ivyAdditionalProperty"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyAdditionalProperty">
+
+  <xs:complexType name="ivyAdditionalProperty">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -49,22 +83,26 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType abstract="true" name="compositeObject">
+
+  <xs:complexType abstract="true" name="compositeObject">
     <xs:complexContent>
       <xs:extension base="tns:nestedObject">
         <xs:sequence></xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType abstract="true" name="nestedObject">
+
+  <xs:complexType abstract="true" name="nestedObject">
     <xs:sequence></xs:sequence>
   </xs:complexType>
-<xs:complexType name="setAdditionalPropertiesResponse">
+
+  <xs:complexType name="setAdditionalPropertiesResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="wsException">
+
+  <xs:complexType name="wsException">
     <xs:complexContent>
       <xs:extension base="tns:exception">
         <xs:sequence>
@@ -81,41 +119,45 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="exception">
+
+  <xs:complexType name="exception">
     <xs:complexContent>
       <xs:extension base="tns:throwable">
         <xs:sequence></xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="throwable">
+
+  <xs:complexType name="throwable">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType final="extension restriction" name="stackTraceElement">
+
+  <xs:complexType final="extension restriction" name="stackTraceElement">
     <xs:sequence></xs:sequence>
   </xs:complexType>
-<xs:complexType final="extension restriction" name="dateTime">
-    <xs:sequence></xs:sequence>
-  </xs:complexType>
-<xs:complexType name="findNotes">
+
+  <xs:complexType name="findNotes">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findNotesResponse">
+
+  <xs:complexType name="findNotesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findNotesResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findNotesResult">
+
+  <xs:complexType name="findNotesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="notes" nillable="true" type="tns:ivyNote"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyNote">
+
+  <xs:complexType name="ivyNote">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -128,30 +170,35 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="createNote">
+
+  <xs:complexType name="createNote">
     <xs:sequence>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="createNoteResponse">
+
+  <xs:complexType name="createNoteResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:createNoteResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="createNoteResult">
+
+  <xs:complexType name="createNoteResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="note" type="tns:ivyNote"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzeCaseStateStatistic">
+
+  <xs:complexType name="analyzeCaseStateStatistic">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="caseSearchCriteria">
+
+  <xs:complexType name="caseSearchCriteria">
     <xs:sequence>
       <xs:element name="businessCase" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="businessCaseId" type="xs:long"></xs:element>
@@ -162,18 +209,21 @@
       <xs:element name="technicalCase" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzeCaseStateStatisticResponse">
+
+  <xs:complexType name="analyzeCaseStateStatisticResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:analyzeCaseStateStatisticResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzeCaseStateStatisticResult">
+
+  <xs:complexType name="analyzeCaseStateStatisticResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseStateStatistic" type="tns:caseStateStatistic"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="caseStateStatistic">
+
+  <xs:complexType name="caseStateStatistic">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -185,23 +235,27 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="findCase">
+
+  <xs:complexType name="findCase">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCaseResponse">
+
+  <xs:complexType name="findCaseResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findCaseResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCaseResult">
+
+  <xs:complexType name="findCaseResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="ivyCase" type="tns:ivyCase"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyCase">
+
+  <xs:complexType name="ivyCase">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -263,91 +317,119 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="countCasesByCriteria">
+
+  <xs:complexType name="countCasesByCriteria">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="countCasesByCriteriaResponse">
+
+  <xs:complexType name="countCasesByCriteriaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:countCasesByCriteriaResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="countCasesByCriteriaResult">
+
+  <xs:complexType name="countCasesByCriteriaResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseCount" type="xs:long"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getAddtionalProperties">
+
+  <xs:complexType name="getAddtionalProperties">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getAddtionalPropertiesResponse">
+
+  <xs:complexType name="getAddtionalPropertiesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:getAddtionalPropertiesResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getAddtionalPropertiesResult">
+
+  <xs:complexType name="getAddtionalPropertiesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="addtionalProperties" nillable="true" type="tns:ivyAdditionalProperty"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCasesByCriteria">
+
+  <xs:complexType name="findCasesByCriteria">
     <xs:sequence>
       <xs:element minOccurs="0" name="startIndex" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="count" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCasesByCriteriaResponse">
+
+  <xs:complexType name="findCasesByCriteriaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findCasesByCriteriaResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCasesByCriteriaResult">
+
+  <xs:complexType name="findCasesByCriteriaResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyCases" nillable="true" type="tns:ivyCase"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCaseCategoriesByCriteria">
+
+  <xs:complexType name="findCaseCategoriesByCriteria">
     <xs:sequence>
+      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCaseCategoriesByCriteriaResponse">
+
+  <xs:complexType name="findCaseCategoriesByCriteriaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findCaseCategoriesByCriteriaResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCaseCategoriesByCriteriaResult">
+
+  <xs:complexType name="findCaseCategoriesByCriteriaResult">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="uploadDocument">
+
+  <xs:complexType name="categoryData">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="path" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="rawPath" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="uploadDocument">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseID" type="xs:long"></xs:element>
       <xs:element minOccurs="0" name="documentName" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="documentContent" type="xs:base64Binary"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="uploadDocumentResponse">
+
+  <xs:complexType name="uploadDocumentResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:uploadDocumentResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="uploadDocumentResult">
+
+  <xs:complexType name="uploadDocumentResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="document" type="tns:ivyDocument"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyDocument">
+
+  <xs:complexType name="ivyDocument">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -362,83 +444,99 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="modificationInfo">
+
+  <xs:complexType name="modificationInfo">
     <xs:sequence></xs:sequence>
   </xs:complexType>
-<xs:complexType name="path">
+
+  <xs:complexType name="path">
     <xs:sequence></xs:sequence>
   </xs:complexType>
-<xs:complexType name="removeDocument">
+
+  <xs:complexType name="removeDocument">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseID" type="xs:long"></xs:element>
       <xs:element minOccurs="0" name="documentId" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="removeDocumentResponse">
+
+  <xs:complexType name="removeDocumentResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findDocuments">
+
+  <xs:complexType name="findDocuments">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findDocumentsResponse">
+
+  <xs:complexType name="findDocumentsResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findDocumentsResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findDocumentsResult">
+
+  <xs:complexType name="findDocumentsResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="documents" nillable="true" type="tns:ivyDocument"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="downloadDocument">
+
+  <xs:complexType name="downloadDocument">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseID" type="xs:long"></xs:element>
       <xs:element minOccurs="0" name="documentId" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="downloadDocumentResponse">
+
+  <xs:complexType name="downloadDocumentResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:downloadDocumentResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="downloadDocumentResult">
+
+  <xs:complexType name="downloadDocumentResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="documentContent" type="xs:base64Binary"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="destroyCase">
+
+  <xs:complexType name="destroyCase">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseId" type="xs:int"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="destroyCaseResponse">
+
+  <xs:complexType name="destroyCaseResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzeElapsedTimeByCaseCategory">
+
+  <xs:complexType name="analyzeElapsedTimeByCaseCategory">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseSearchCriteria" type="tns:caseSearchCriteria"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzeElapsedTimeByCaseCategoryResponse">
+
+  <xs:complexType name="analyzeElapsedTimeByCaseCategoryResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:analyzeElapsedTimeByCaseCategoryResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzeElapsedTimeByCaseCategoryResult">
+
+  <xs:complexType name="analyzeElapsedTimeByCaseCategoryResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="elapsedTimeStatistic" type="tns:elapsedTimeStatistic"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="elapsedTimeStatistic">
+
+  <xs:complexType name="elapsedTimeStatistic">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -447,25 +545,29 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="saveCase">
+
+  <xs:complexType name="saveCase">
     <xs:sequence>
       <xs:element minOccurs="0" name="ivyCase" type="tns:ivyCase"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="saveCaseResponse">
+
+  <xs:complexType name="saveCaseResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="error" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:simpleType name="wsErrorType">
+
+  <xs:simpleType name="wsErrorType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="INFO"></xs:enumeration>
       <xs:enumeration value="WARNING"></xs:enumeration>
       <xs:enumeration value="ERROR"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
+
 </xs:schema>
-<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="ch.ivyteam.ivy.webservice.process" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process">
   <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
 </xsd:schema>
   </wsdl:types>

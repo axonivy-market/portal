@@ -361,7 +361,7 @@ ac0 f17 @|CallSubIcon #fIcon
 ac0 f36 inParamDecl '<java.lang.String jsonQuery> param;' #txt
 ac0 f36 inParamTable 'out.jsonQuery=param.jsonQuery;
 ' #txt
-ac0 f36 outParamDecl '<java.util.List<java.lang.String> result> result;
+ac0 f36 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> result> result;
 ' #txt
 ac0 f36 outParamTable 'result.result=in.caseCategories;
 ' #txt

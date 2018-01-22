@@ -428,7 +428,8 @@ Tt0 f8 actionTable 'out=in1;
 ' #txt
 Tt0 f8 outTypes "internaltest.Data" #txt
 Tt0 f8 outLinks "TaskA.ivp" #txt
-Tt0 f8 caseData 'case.name=\u00D6sterreich Resource with ID 1212' #txt
+Tt0 f8 caseData 'case.name=\u00D6sterreich Resource with ID 1212
+case.category=Resource/Austria' #txt
 Tt0 f8 taskData 'TaskA.EXP=new Duration("1D")
 TaskA.EXPRI=2
 TaskA.EXTYPE=-1
