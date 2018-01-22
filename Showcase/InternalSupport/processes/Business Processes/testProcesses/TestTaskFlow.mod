@@ -1428,8 +1428,7 @@ Tt0 f90 actionTable 'out=in1;
 ' #txt
 Tt0 f90 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Tt0 f90 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f90 caseData 'case.name=Leave Request For Default Case Details Page
-case.category=DefaultAdditionalCaseDetailsPage' #txt
+Tt0 f90 caseData case.category=DefaultAdditionalCaseDetailsPage #txt
 Tt0 f90 taskData 'TaskA.CATEGORY=AnnualLeave
 TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
@@ -1539,11 +1538,11 @@ customFields.varchar.1="CustomVarCharField 1"
 businessCase.attach=true
 process.name=Publication Requested
 process.code=pubRequested
-case.name=Leave Request for Customization Additional Case Details
+case.name=Leave Request for Default Additional Case Details
 customFields.timestamp.5=new DateTime(2018, 5, 5, 5, 5, 5)
 customFields.timestamp.3=new DateTime(2018, 3, 3, 3, 3, 3)
 customFields.timestamp.2=new DateTime(2018, 2, 2, 2, 2 ,2)
-case.description=Leave Request Description for Customization Additional Case Details' #txt
+case.description=Leave Request Description for Default Additional Case Details' #txt
 Tt0 f92 showInStartList 1 #txt
 Tt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
