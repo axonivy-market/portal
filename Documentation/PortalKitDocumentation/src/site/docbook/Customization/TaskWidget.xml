@@ -92,10 +92,10 @@
 								<para>
 									<itemizedlist>
 										<listitem>
-											<para>In case you has new columns, override <code>getPortalDefaultColumns</code> method to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
+											<para>In case you has new columns, override <code>getDefaultColumns</code> method to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
 										</listitem>
 										<listitem>
-											<para>To add cms for checkboxes's label, add new entries to folder /ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ in PortalStype  or override method getColumnLabel (see the methods' Javadoc comments)</para>
+											<para>To add cms for checkboxes's label, add new entries to folder /ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ in PortalStyle  or override method getColumnLabel (see the methods' Javadoc comments)</para>
 										</listitem>
 										<listitem>
 											<para>In <code>taskHeader</code> session, use <code>TaskCustomField</code> component, this component will handle display/hide new columns</para>
