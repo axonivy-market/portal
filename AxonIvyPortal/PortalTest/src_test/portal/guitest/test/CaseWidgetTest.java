@@ -18,6 +18,7 @@ public class CaseWidgetTest extends BaseTest {
   private static final String CUSTOMIZATION_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS = "/ivy/pro/designer/InternalSupport/16102669E18BD8F5/showAdditionalCaseDetails.ivp";
   private static final String DEFAULT_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS = "/ivy/pro/designer/PortalTemplate/160FD01492D362BE/showAdditionalCaseDetails.ivp";
   private static final String LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request Customization Case Details Page";
+  private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
 
   @Before
@@ -72,7 +73,8 @@ public class CaseWidgetTest extends BaseTest {
   
   @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
-    assertTrue(getAdditionalCaseDetailsUrl(LEAVE_REQUEST_CASE_NAME, TestAccount.DEMO_USER).contains(DEFAULT_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS));
+    navigateToUrl(createTestingCaseUrlForDefaultAdditionalCaseDetails);
+    assertTrue(getAdditionalCaseDetailsUrl(LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME, TestAccount.DEMO_USER).contains(DEFAULT_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS));
   }
   
   @Test
