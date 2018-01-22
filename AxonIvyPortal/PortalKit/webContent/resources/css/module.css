@@ -1542,13 +1542,15 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .case-show-detail-container .case-toggle-icon {
-  width: 100%;
+  width: 5%;
   display: block;
   text-align: center;
   font-size: 1.2rem;
   transform: scale(1.5,1);
   color: rgba(0,0,0,0.5) !important;
-  padding-bottom: 2px;
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
 }
 
 .case-body {
@@ -1792,6 +1794,7 @@ a.case-details-document-add-link {
 
 .case-show-detail-container {
   flex: 20;
+  cursor: pointer;
 }
 
 .case-header-name-desc-cell {
