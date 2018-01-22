@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.support.UrlDetector;
-import ch.ivy.addon.portalkit.util.NumberUtils;
 
 @ManagedBean
 @ViewScoped

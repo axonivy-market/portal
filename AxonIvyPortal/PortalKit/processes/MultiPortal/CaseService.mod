@@ -2597,7 +2597,7 @@ out.caseSearchCriteria.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.serverId=param.serverId;
 ' #txt
-Ce0 f187 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<java.lang.String> caseCategories> result;
+Ce0 f187 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<ch.ivy.ws.addon.CategoryData> caseCategories> result;
 ' #txt
 Ce0 f187 outParamTable 'result.errors=in.errors;
 result.caseCategories=in.caseCategories;

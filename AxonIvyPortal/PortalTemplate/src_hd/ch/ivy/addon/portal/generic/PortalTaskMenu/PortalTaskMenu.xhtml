@@ -18,8 +18,6 @@
       <f:event listener="#{taskMenuDataBean.setPortalTaskMenuData(data)}" type="preRenderComponent" />
       <f:event listener="#{taskMenuBean.initMenuBean(data)}" type="preRenderComponent" />
       <p:column styleClass="left-sidebar-animation">
-        <span
-          class="second-level-menu-icon fa fa-angle-right #{!empty node.children and !menuItem.firstCategoryNode ? '' : 'hide'}" />
         <h:outputText value="#{menuItem.value}" class="js-second-level-menu" />
       </p:column>
     </p:treeTable>
