@@ -67,7 +67,11 @@
         <span class="fa fa-plus-circle case-details-note-add-link-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" />
       </p:commandLink>
-      <cc:renderFacet name="showCateNoteHistory" />
+      <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link"
+      	target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}">
+      	<span class="fa fa-external-link-square note-show-more-link-icon" />
+      	<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
+      </p:link>
     </h:panelGroup>
   </div>
 
