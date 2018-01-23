@@ -15,8 +15,9 @@
     <p:treeTable id="main-menu-container" selectionMode="single" value="#{taskMenuBean.rootNode}" var="menuItem"
       selection="#{data.selectedNode}" nodeVar="node" scrollable="true" >
       <p:ajax event="select" global="false" listener="#{logic.loadTask}" process=":#{cc.clientId}:task-menu-state-info" />
+      <p:ajax event="expand" global="false" process="@none" oncomplete="wireListenerToSecondMenuItem()" />
       <f:event listener="#{taskMenuDataBean.setPortalTaskMenuData(data)}" type="preRenderComponent" />
-      <f:event listener="#{taskMenuBean.initMenuBean(data)}" type="preRenderComponent" />
+      <f:event listener="#{taskMenuBean.initMenuBean(data, menuStateBean.menuState)}" type="preRenderComponent" />
       <p:column styleClass="left-sidebar-animation">
         <h:outputText value="#{menuItem.value}" class="js-second-level-menu" />
       </p:column>

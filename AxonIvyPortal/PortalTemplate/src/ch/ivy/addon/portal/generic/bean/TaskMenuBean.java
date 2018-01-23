@@ -1,5 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import static ch.ivy.addon.portalkit.util.TaskTreeUtils.getLastCategoryFromCategoryPath;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -50,36 +52,37 @@ public class TaskMenuBean implements Serializable {
     PortalTaskMenuData portalTaskMenuData = taskMenuDataBean.getPortalTaskMenuData();
     if (portalTaskMenuData != null) {
       rootNode = new DefaultTreeNode();
-      addTasksMenuItem(portalTaskMenuData);
+      addTasksMenuItem(portalTaskMenuData, "");
     }
   }
 
-  public void initMenuBean(PortalTaskMenuData portalTaskMenuData) {
+  public void initMenuBean(PortalTaskMenuData portalTaskMenuData, String menuState) {
     rootNode = new DefaultTreeNode();
-    addTasksMenuItem(portalTaskMenuData);
+    addTasksMenuItem(portalTaskMenuData, menuState);
   }
 
-  private void addTasksMenuItem(PortalTaskMenuData portalTaskMenuData) {
-    DefaultTreeNode allTaskNode = buildAllTaskTree(portalTaskMenuData.getAllTaskCategories());
+  private void addTasksMenuItem(PortalTaskMenuData portalTaskMenuData, String menuState) {
+    DefaultTreeNode allTaskNode = buildAllTaskTree(portalTaskMenuData.getAllTaskCategories(), menuState);
     allTaskNode.setParent(rootNode);
     rootNode.getChildren().add(allTaskNode);
 
-    DefaultTreeNode personalTask = buildPersonalTaskTree(portalTaskMenuData.getMyTaskCategories());
+    DefaultTreeNode personalTask = buildPersonalTaskTree(portalTaskMenuData.getMyTaskCategories(), menuState);
     rootNode.getChildren().add(personalTask);
 
-    DefaultTreeNode groupTask = buildGroupTaskTree(portalTaskMenuData.getGroupTaskCategories());
+    DefaultTreeNode groupTask = buildGroupTaskTree(portalTaskMenuData.getGroupTaskCategories(), menuState);
     rootNode.getChildren().add(groupTask);
 
     if (TaskUtils.checkReadAllTasksPermission()) {
-      DefaultTreeNode unassignedTask = buildUnassignedTaskTree(portalTaskMenuData.getUnassignedTaskCategories());
+      DefaultTreeNode unassignedTask =
+          buildUnassignedTaskTree(portalTaskMenuData.getUnassignedTaskCategories(), menuState);
       rootNode.getChildren().add(unassignedTask);
     }
   }
 
-  private DefaultTreeNode buildAllTaskTree(List<CategoryData> allTaskCategories) {
+  private DefaultTreeNode buildAllTaskTree(List<CategoryData> allTaskCategories, String menuState) {
     DefaultTreeNode allTaskNode =
         buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/AllTasks"), allTaskCategories,
-            TreeNodeType.TASKS_ALL_TASKS);
+            TreeNodeType.TASKS_ALL_TASKS, menuState);
     return allTaskNode;
   }
 
@@ -97,29 +100,31 @@ public class TaskMenuBean implements Serializable {
 
   }
 
-  private DefaultTreeNode buildPersonalTaskTree(List<CategoryData> myTaskCategories) {
+  private DefaultTreeNode buildPersonalTaskTree(List<CategoryData> myTaskCategories, String menuState) {
     List<Object> params = Arrays.asList(Ivy.session().getSessionUserName());
     String personalTaskNodeName = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/PersonalTasks", params);
-    DefaultTreeNode myTaskNode = buildTaskTree(personalTaskNodeName, myTaskCategories, TreeNodeType.TASKS_MY_TASKS);
+    DefaultTreeNode myTaskNode =
+        buildTaskTree(personalTaskNodeName, myTaskCategories, TreeNodeType.TASKS_MY_TASKS, menuState);
     return myTaskNode;
   }
 
-  private DefaultTreeNode buildGroupTaskTree(List<CategoryData> groupTaskCategories) {
+  private DefaultTreeNode buildGroupTaskTree(List<CategoryData> groupTaskCategories, String menuState) {
     DefaultTreeNode groupTasks =
         buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/GroupTasks"), groupTaskCategories,
-            TreeNodeType.TASKS_GROUP_TASKS);
+            TreeNodeType.TASKS_GROUP_TASKS, menuState);
 
     return groupTasks;
   }
 
-  private DefaultTreeNode buildUnassignedTaskTree(List<CategoryData> unassignedTaskCategories) {
+  private DefaultTreeNode buildUnassignedTaskTree(List<CategoryData> unassignedTaskCategories, String menuState) {
     DefaultTreeNode unassignedTasks =
         buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/UnassignedTasks"),
-            unassignedTaskCategories, TreeNodeType.TASKS_UNASSIGNED_TASKS);
+            unassignedTaskCategories, TreeNodeType.TASKS_UNASSIGNED_TASKS, menuState);
     return unassignedTasks;
   }
 
-  private DefaultTreeNode buildTaskTree(String nodeDisplayName, List<CategoryData> categories, String firstCategory) {
+  private DefaultTreeNode buildTaskTree(String nodeDisplayName, List<CategoryData> categories, String firstCategory,
+      String menuState) {
     TaskNode taskMenuItem = new TaskNode();
     taskMenuItem.setValue(nodeDisplayName);
     taskMenuItem.setMenuKind(MenuKind.TASK);
@@ -128,10 +133,14 @@ public class TaskMenuBean implements Serializable {
     taskMenuItem.setFirstCategoryNode(true);
     DefaultTreeNode taskNode = new DefaultTreeNode(taskMenuItem);
     taskNode.setType(firstCategory);
-    taskNode.setExpanded(true);
+    if (menuState.contains(firstCategory) && !getLastCategoryFromCategoryPath(menuState).contains(firstCategory)) {
+      taskNode.setExpanded(true);
+    } else {
+      taskNode.setExpanded(false);
+    }
     if (validCategory(categories)) {
       List<TreeNode> childrenNodes =
-          TaskTreeUtils.convertTaskListToTree(categories, firstCategory, isRootNodeAllTask).getChildren();
+          TaskTreeUtils.convertTaskListToTree(categories, firstCategory, isRootNodeAllTask, menuState).getChildren();
       taskNode.setChildren(childrenNodes);
     }
     return taskNode;
