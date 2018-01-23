@@ -349,10 +349,13 @@
 								<para>
 									caseSearchCriteria (CaseSearchCriteria)
 								</para>
+								<para>
+									language (String)
+								</para>
 							</entry>
 							<entry>
 								<para>
-									categories (List of String)
+									categories (List of CategoryData)
 								</para>
 								<para>
 									errors (List of WSExceptions)
@@ -360,7 +363,7 @@
 							</entry>
 							<entry>
 								<para>
-									Find all case categories by criteria.
+									Find category of cases that given user can work on.
 								</para>
 							</entry>
 						</row>
@@ -1220,10 +1223,13 @@
 								<para>
 									apps (List of String)
 								</para>
+								<para>
+									language (String)
+								</para>
 							</entry>
 							<entry>
 								<para>
-									categories (List of String)
+									categories (List of CategoryData)
 								</para>
 								<para>
 									errors (List of WSExceptions)
@@ -1251,10 +1257,13 @@
 								<para>
 									apps (List of String)
 								</para>
+								<para>
+									language (String)
+								</para>
 							</entry>
 							<entry>
 								<para>
-									categories (List of String)
+									categories (List of CategoryData)
 								</para>
 								<para>
 									errors (List of WSExceptions)
@@ -1282,10 +1291,13 @@
 								<para>
 									apps (List of String)
 								</para>
+								<para>
+									language (String)
+								</para>
 							</entry>
 							<entry>
 								<para>
-									categories (List of String)
+									categories (List of CategoryData)
 								</para>
 								<para>
 									errors (List of WSExceptions)
