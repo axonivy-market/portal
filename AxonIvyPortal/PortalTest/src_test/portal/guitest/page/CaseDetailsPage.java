@@ -2,7 +2,6 @@ package portal.guitest.page;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
@@ -78,12 +77,8 @@ public class CaseDetailsPage extends TemplatePage {
     return "";
   }
   
-  public String getAdditionalCaseDetailsUrl(){
-    WebElement additionalCaseDetailsUrl = caseItem.findElement(By.cssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR));
-    if (additionalCaseDetailsUrl != null) {
-      return additionalCaseDetailsUrl.getAttribute("href");
-    }
-    return StringUtils.EMPTY;
+  public void openAdditionalCaseDetailsPage() {
+    click(caseItem.findElement(By.cssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR)));
   }
 
   private WebElement getGeneralInformationComponent() {
