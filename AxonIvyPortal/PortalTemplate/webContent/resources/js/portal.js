@@ -214,7 +214,7 @@ function storeFirstLevelMenuStateToInputElement(menuState) {
 }
 
 function storeSecondLevelMenuStateToInputElement(menuState) {
-  $('[id$=task-menu-state-info]').val(menuState);
+  $('[id$=second-menu-state-info]').val(menuState);
 }
 
 function animatePreviousActiveMenuItem(previousActiveMenuItem) {
