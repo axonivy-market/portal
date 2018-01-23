@@ -36,7 +36,10 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModelVersion')}" />
       <h:outputText id="process-model-version" value="#{case.processModelVersionNumber}" />
     </h:panelGrid>
-    <cc:renderFacet name="showAdditionalCaseDetailsLink" />
-  </div>
+	<p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
+			href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}">
+			<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}" />
+	</p:link>
+	</div>
 </cc:implementation>
 </html>

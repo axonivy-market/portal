@@ -2086,7 +2086,7 @@ Ce0 f114 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f114 3387 55 26 26 14 0 #rect
+Ce0 f114 3387 55 26 26 -149 -31 #rect
 Ce0 f114 @|StartSubIcon #fIcon
 Ce0 f115 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f115 processCall MultiPortal/ApplicationService:getApplicationConfiguredOn(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -2335,7 +2335,7 @@ Ce0 f154 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f154 3800 55 26 26 14 0 #rect
+Ce0 f154 3800 55 26 26 -174 -34 #rect
 Ce0 f154 @|StartSubIcon #fIcon
 Ce0 f155 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
@@ -2615,7 +2615,7 @@ Ce0 f187 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f187 4184 54 26 26 14 0 #rect
+Ce0 f187 4184 54 26 26 -174 -34 #rect
 Ce0 f187 @|StartSubIcon #fIcon
 Ce0 f188 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f188 processCall MultiPortal/ApplicationService:getApplicationConfiguredOn(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -2909,7 +2909,7 @@ Ce0 f211 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f211 129 1129 30 30 -139 17 #rect
+Ce0 f211 4497 73 30 30 -139 -38 #rect
 Ce0 f211 @|StartSubIcon #fIcon
 Ce0 f212 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
@@ -2927,7 +2927,7 @@ Ce0 f212 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f212 124 1068 40 24 -87 -7 #rect
+Ce0 f212 4492 164 40 24 28 -8 #rect
 Ce0 f212 @|StepIcon #fIcon
 Ce0 f213 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f213 processCall MultiPortal/CaseService:loadCaseAdditionalProperties(ch.ivy.addon.portalkit.bo.RemoteCase) #txt
@@ -2952,10 +2952,10 @@ Additional Properties</name>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f213 124 844 40 24 -135 -18 #rect
+Ce0 f213 4492 452 40 24 30 -18 #rect
 Ce0 f213 @|CallSubIcon #fIcon
 Ce0 f216 expr out #txt
-Ce0 f216 144 1129 144 1092 #arcP
+Ce0 f216 4512 103 4512 164 #arcP
 Ce0 f219 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
 Ce0 f219 actionTable 'out=in;
@@ -2969,14 +2969,14 @@ Ce0 f219 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f219 124 772 40 24 -96 -10 #rect
+Ce0 f219 4492 548 40 24 25 -9 #rect
 Ce0 f219 @|StepIcon #fIcon
 Ce0 f220 expr out #txt
-Ce0 f220 144 844 144 796 #arcP
+Ce0 f220 4512 476 4512 548 #arcP
 Ce0 f218 expr out #txt
-Ce0 f218 144 772 1002 704 #arcP
-Ce0 f218 1 144 704 #addKink
-Ce0 f218 1 0.4504999366259153 0 0 #arcLabel
+Ce0 f218 4512 572 1030 704 #arcP
+Ce0 f218 1 4512 704 #addKink
+Ce0 f218 1 0.40582636932484784 0 0 #arcLabel
 Ce0 f221 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f221 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2987,16 +2987,16 @@ Ce0 f221 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f221 128 912 32 32 -76 -6 #rect
+Ce0 f221 4496 336 32 32 20 -8 #rect
 Ce0 f221 @|AlternativeIcon #fIcon
 Ce0 f215 expr in #txt
 Ce0 f215 outCond org.apache.commons.collections4.CollectionUtils.isEmpty(in.errors) #txt
-Ce0 f215 144 912 144 868 #arcP
+Ce0 f215 4512 368 4512 452 #arcP
 Ce0 f223 expr in #txt
-Ce0 f223 160 928 1002 704 #arcP
-Ce0 f223 1 192 928 #addKink
-Ce0 f223 2 192 704 #addKink
-Ce0 f223 2 0.36084094127997896 0 0 #arcLabel
+Ce0 f223 4496 352 1030 704 #arcP
+Ce0 f223 1 4416 352 #addKink
+Ce0 f223 2 4416 704 #addKink
+Ce0 f223 2 0.9339572951585267 0 0 #arcLabel
 Ce0 f224 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f224 processCall MultiPortal/CaseService:findCase(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ce0 f224 doCall true #txt
@@ -3020,12 +3020,12 @@ Ce0 f224 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f224 124 1004 40 24 -84 -8 #rect
+Ce0 f224 4492 244 40 24 26 -8 #rect
 Ce0 f224 @|CallSubIcon #fIcon
 Ce0 f225 expr out #txt
-Ce0 f225 144 1068 144 1028 #arcP
+Ce0 f225 4512 188 4512 244 #arcP
 Ce0 f214 expr out #txt
-Ce0 f214 144 1004 144 944 #arcP
+Ce0 f214 4512 268 4512 336 #arcP
 >Proto Ce0 .type ch.ivyteam.wf.processes.CaseServiceData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
