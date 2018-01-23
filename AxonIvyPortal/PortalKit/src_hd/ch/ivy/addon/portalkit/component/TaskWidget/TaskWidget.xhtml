@@ -201,7 +201,8 @@
     </h:panelGroup>
 
     <h:panelGroup layout="block" id="task-view">
-      <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
+      <h:panelGroup id="task-view-container" layout="block"
+        styleClass="task-view-container #{data.dataModel.isDisableSelectionCheckboxes() ? '' : 'js-modified-task-view-container'}">
         <p:dataScroller id="task-list-scroller" value="#{data.dataModel}" var="task" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex"
           styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''}">
