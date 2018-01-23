@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.util.TreeUtils;
@@ -24,7 +25,8 @@ public class CaseTreeUtils {
    * @param cases : list of case
    * @return {@link TreeNode}
    */
-  public static TreeNode convertToTreeNode(List<CategoryData> categories, String firstCategory, boolean isRootAllCase) {
+  public static TreeNode convertToTreeNode(List<CategoryData> categories, String firstCategory, boolean isRootAllCase,
+      String menuState) {
     TreeNode root = new DefaultTreeNode();
     TreeNode navigatorNode = root;
     for (CategoryData category : categories) {
@@ -42,7 +44,7 @@ public class CaseTreeUtils {
         String rawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(nodePath) + nodePath.length());
 
         String nodeType = firstCategory + DELIMITER + categoryName.replaceAll(" ", "_");
-        navigatorNode = buildCaseCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllCase);
+        navigatorNode = buildCaseCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllCase, menuState);
       }
       navigatorNode = root;
     }
@@ -70,7 +72,7 @@ public class CaseTreeUtils {
    * @return TreeNode : Tree node after add node
    */
   private static TreeNode buildCaseCategoryNode(TreeNode navigatorNode, String newNodeName, String nodeType,
-      String category, String rawPath, boolean isRootAllCase) {
+      String category, String rawPath, boolean isRootAllCase, String menuState) {
     List<TreeNode> childNodes = navigatorNode.getChildren();
     for (TreeNode childNode : childNodes) {
       CaseNode childNodeData = (CaseNode) childNode.getData();
@@ -89,6 +91,20 @@ public class CaseTreeUtils {
     newNodeData.setFirstCategoryNode(false);
     TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, navigatorNode);
     newNode.setExpanded(true);
+    if (menuState.contains(nodeType)
+        && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
+      newNode.setExpanded(true);
+    } else {
+      newNode.setExpanded(false);
+    }
     return newNode;
+  }
+  
+  public static String getLastCategoryFromCategoryPath(String categoryPath) {
+    if (!StringUtils.isBlank(categoryPath)) {
+      String[] categories = categoryPath.split("/");
+      return categories[categories.length - 1];
+    }
+    return "";
   }
 }
