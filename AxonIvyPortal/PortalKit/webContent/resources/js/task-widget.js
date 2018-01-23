@@ -65,7 +65,8 @@ function TaskListToolKit() {
   return {
     setupHeader : function() {
       var taskSortMenu = $('.js-task-widget-sort-menu');
-      var taskEntry = $('.js-task-start-link').first();
+      var taskEntries = $('.js-task-start-link'); 
+      var taskEntry = taskEntries.first();
       var noEntry = taskEntry.length == 0;
       if (taskSortMenu.hasClass('full-mode')) {
         if (noEntry) {
@@ -77,6 +78,21 @@ function TaskListToolKit() {
           var cell = $(taskEntry).children().get(i);
           $(header).outerWidth($(cell).outerWidth());
         });
+
+        if ($('.js-modified-task-view-container').length != 0) {
+          var taskEntryCellsWidth = 0;
+          $.each(taskEntries, function(i, taskEntry) {
+            if (taskEntryCellsWidth == 0) {
+              $.each($(taskEntry).children(), function(j, cell) {
+                taskEntryCellsWidth = taskEntryCellsWidth + $(cell).outerWidth();
+              });
+            }
+            $(taskEntry).outerWidth(taskEntryCellsWidth);
+            $(taskEntry).closest('.js-task-start-list-item').outerWidth(taskEntryCellsWidth);
+            $(taskEntry).closest('.ui-datascroller-item').outerWidth(taskEntryCellsWidth);
+            
+          });
+        }
       }
     },
 
