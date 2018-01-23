@@ -14,6 +14,6 @@ public class AdditionalCaseDetailsPage extends TemplatePage {
   
   public String getAdditionalFieldContentOfFirstRow() {
       WebElement firstRow = driver.findElements(By.cssSelector(TABLE_ROWS_PATH)).get(0);
-      return firstRow.findElements(By.xpath("td")).get(2).getText();
+      return firstRow.findElement(By.id("custom-varchar-field-1")).getText();
   }
 }
