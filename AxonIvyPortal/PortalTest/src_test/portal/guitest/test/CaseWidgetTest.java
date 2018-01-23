@@ -91,30 +91,38 @@ public class CaseWidgetTest extends BaseTest {
   
   @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
-    navigateToUrl(createTestingCaseUrlForDefaultAdditionalCaseDetails);
-    initHomePage(TestAccount.DEMO_USER);
-    mainMenuPage = homePage.openMainMenu();
-    additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
-    casePage = mainMenuPage.selectCaseMenu();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
-    caseDetailsPage.openAdditionalCaseDetailsPage();
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
-    homePage.switchLastBrowserTab();
-    int numberOfFields;
-    try {
-      numberOfFields = additionalCaseDetailsPage.countFields();
-    } catch (TimeoutException e) { // sometimes session is destroyed (don't know reason why!!!) so we cannot reach the page
-        System.out.println("Stop testOpenAdditionalCaseDetailsPage test here because session is destroyed");
-        return ;
-    }
-    assertEquals(15, numberOfFields);
-    assertEquals("CustomVarCharField 1", additionalCaseDetailsPage.getAdditionalFieldContentOfFirstRow());
+    openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails, LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
+    validateAdditionalCaseDetailsPage(17, "CustomVarCharField 1");
   }
   
   @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
-//    navigateToUrl(createTestingCaseUrlForCustomizationAdditionalCaseDetails);
-//    assertTrue(getAdditionalCaseDetailsUrl(LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME, TestAccount.DEMO_USER).contains(CUSTOMIZATION_SHOW_ADDITIONAL_CASE_DETAILS_SUBPROCESS));
+    openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
+    validateAdditionalCaseDetailsPage(17, "CustomizationAdditionalCaseDetails CustomVarCharField1");
+  }
+  
+  private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
+    navigateToUrl(initDataUrl);
+    initHomePage(TestAccount.DEMO_USER);
+    mainMenuPage = homePage.openMainMenu();
+    additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
+    casePage = mainMenuPage.selectCaseMenu();
+    caseDetailsPage = casePage.openDetailsOfCaseHasName(caseName);
+    caseDetailsPage.openAdditionalCaseDetailsPage();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
+    homePage.switchLastBrowserTab();
+  }
+  
+  private void validateAdditionalCaseDetailsPage(int expectedNumberOfFields, String expectedFirstFieldValue){
+    int numberOfFields;
+    try {
+      numberOfFields = additionalCaseDetailsPage.countFields();
+    } catch (TimeoutException e) { // sometimes session is destroyed (don't know reason why!!!) so we cannot reach the page
+        System.out.println("Stop testOpenCustomizationAdditionalCaseDetailsPage test here because session is destroyed");
+        return ;
+    }
+    assertEquals(expectedNumberOfFields, numberOfFields);
+    assertEquals(expectedFirstFieldValue, additionalCaseDetailsPage.getAdditionalFieldContentOfFirstRow());
   }
 
   private void initHomePage(TestAccount account) {
