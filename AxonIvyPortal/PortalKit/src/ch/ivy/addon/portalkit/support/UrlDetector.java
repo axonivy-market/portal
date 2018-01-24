@@ -11,10 +11,13 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.ServerService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -112,20 +115,32 @@ public class UrlDetector {
     return port;
   }
   
-  public static String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
-    return getProcessStartUriWithCaseParameters(remoteCase.getId(), remoteCase.getServer().getId(), requestPath);
+  public String getHost(Server server) throws MalformedURLException{
+    boolean isMultiServer = (new ServerService()).isMultiServers();
+    if (isMultiServer){
+      return getHost(server.getPath());
+    }
+    return RequestUriFactory.createServerUri((IHttpRequest) Ivy.request()).toString();
   }
   
-  public static String getProcessStartUriWithCaseParameters(Long caseId, Long serverId, String requestPath) {
+  public String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-    IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-    String redirectLink = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
-                                            + "?caseId=" + caseId + "&serverId=" + serverId;
-    redirectLink = removeDuplicatedPartOfUrl(redirectLink);
-    return redirectLink;
+    String internalPath;
+    try {
+      internalPath = collector.findLinkByFriendlyRequestPath(requestPath) + "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
+    } catch (Exception e) {
+      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
+      internalPath = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
+                      + "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
+    }
+    try {
+      return getHost(remoteCase.getServer()) + internalPath;
+    } catch (MalformedURLException e) {
+      return removeDuplicatedPartOfUrl(internalPath);
+    }
   }
-
-  private static String removeDuplicatedPartOfUrl(String redirectLink) {
+  
+  private String removeDuplicatedPartOfUrl(String redirectLink) {
     FacesContext facesContextInstance = FacesContext.getCurrentInstance();
     if (Objects.isNull(facesContextInstance)){
       return redirectLink;
