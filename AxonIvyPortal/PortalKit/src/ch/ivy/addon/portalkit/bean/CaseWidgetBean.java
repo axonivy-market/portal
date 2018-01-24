@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,9 +68,13 @@ public class CaseWidgetBean implements Serializable {
   public String getAdditionalCaseDetailsPageUri(RemoteCase remoteCase) {
     String additionalCaseDetailsPageLink = getAdditionalCaseDetailsPageUriFromAdditionalProperty(remoteCase);
     if (StringUtils.isEmpty(additionalCaseDetailsPageLink)) {
-      return UrlDetector.getProcessStartUriWithCaseParameters(remoteCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
+      return (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
     } else {
-      return additionalCaseDetailsPageLink;
+      try {
+        return (new UrlDetector()).getHost(remoteCase.getServer()) + additionalCaseDetailsPageLink;
+      } catch (MalformedURLException e) {
+        return additionalCaseDetailsPageLink;
+      }
     }
   }
 
