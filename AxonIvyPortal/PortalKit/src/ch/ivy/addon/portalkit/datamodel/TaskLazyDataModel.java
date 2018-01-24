@@ -246,8 +246,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected <U extends Comparable<String>> Comparator<RemoteTask> comparatorString(
       Function<? super RemoteTask, String> function) {
     Collator collator = Collator.getInstance(Locale.GERMAN);
-    function = function.andThen(s -> s == null ? StringUtils.EMPTY : s);
-    return Comparator.comparing(function, collator);
+    return Comparator.comparing(function, Comparator.nullsLast(collator));
   }
   
   protected String keyOfTask(RemoteTask task) {
