@@ -606,7 +606,11 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   padding: 20px 7px 20px 15px;
 }
-
+.second-level-menu-body .ui-treetable table tbody tr[data-prk="root"] td .ui-treetable-toggler {
+  margin-top: -20px;
+  margin-bottom: -20px;
+  height: 35px;
+}
 .second-level-menu.on .second-level-menu-body .ui-treetable table tbody tr td {
   color: rgba(0, 0, 0, 0.5);
 }
@@ -645,6 +649,12 @@
 
 #second-level-menu .ui-treetable table tbody tr:not([data-prk="root"]) td {
     border-bottom: none;
+}
+
+#second-level-menu .ui-treetable table tbody tr:not([data-prk="root"]) td .ui-treetable-toggler {
+  margin-top: -10px;
+  margin-bottom: -10px;
+  height: 25px;
 }
 
 /* Responsive design */
