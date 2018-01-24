@@ -95,6 +95,14 @@ public class UrlDetector {
   public String getBaseURLWithoutPort(final HttpServletRequest request) throws MalformedURLException {
     return new URL(request.getScheme(), request.getServerName(), request.getContextPath()).toString();
   }
+  
+  public String getHost(Server server) throws MalformedURLException{
+    boolean isMultiServer = (new ServerService()).isMultiServers();
+    if (isMultiServer){
+      return getHost(server.getPath());
+    }
+    return RequestUriFactory.createServerUri((IHttpRequest) Ivy.request()).toString();
+  }
 
   public String getHost(String url) throws MalformedURLException {
     URL urlObject = new URL(url);
@@ -115,23 +123,15 @@ public class UrlDetector {
     return port;
   }
   
-  public String getHost(Server server) throws MalformedURLException{
-    boolean isMultiServer = (new ServerService()).isMultiServers();
-    if (isMultiServer){
-      return getHost(server.getPath());
-    }
-    return RequestUriFactory.createServerUri((IHttpRequest) Ivy.request()).toString();
-  }
-  
   public String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     String internalPath;
+    String urlParameters = "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
     try {
-      internalPath = collector.findLinkByFriendlyRequestPath(requestPath) + "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
+      internalPath = collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
     } catch (Exception e) {
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      internalPath = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
-                      + "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
+      internalPath = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
     }
     try {
       return getHost(remoteCase.getServer()) + internalPath;
