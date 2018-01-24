@@ -19,7 +19,7 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class CaseTaskNoteHistoryBean {
     
     public String getCaseNoteHistoryLink(RemoteCase remoteCase) {
-      return UrlDetector.getProcessStartUriWithCaseParameters(remoteCase, "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
+      return (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
     }
     
     public String getTaskNoteHistoryLink(RemoteTask remoteTask) {

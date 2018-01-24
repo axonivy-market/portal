@@ -1343,14 +1343,17 @@ Tt0 f84 actionDecl 'internaltest.Data out;
 ' #txt
 Tt0 f84 actionTable 'out=in;
 ' #txt
-Tt0 f84 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+Tt0 f84 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.service.ServerWorkingOnDetector;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
 
 Server server = (new ServerWorkingOnDetector()).getServerWorkingOn();
-String casePageUrl = UrlDetector.getProcessStartUriWithCaseParameters(ivy.case.getId(), server.getId(), "Start Processes/AdditionalCaseDetails/showAdditionalCaseDetails.ivp");
-ivy.case.setAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString() ,casePageUrl.replace("/ivy", ""));' #txt
+ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+String casePageUrl = collector.findLinkByFriendlyRequestPath("Start Processes/AdditionalCaseDetails/showAdditionalCaseDetails.ivp")  
+											+ "?caseId=" + ivy.case.getId() + "&serverId=" + server.getId();
+ivy.case.setAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString(), casePageUrl);' #txt
 Tt0 f84 security system #txt
 Tt0 f84 type internaltest.Data #txt
 Tt0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
