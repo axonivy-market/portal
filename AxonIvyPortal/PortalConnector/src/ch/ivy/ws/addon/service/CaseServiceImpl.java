@@ -608,7 +608,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           caseQuery.where()
               .and(
                   queryForStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-          caseQuery.where().and().category().isNotNull();
+          caseQuery.where().and().category().isNotNull().and().category().isNotEqual("Portal");
 
           CategoryTree categoryTree = CategoryTree.createFor(caseQuery);
           List<CategoryData> categories = new ArrayList<>();
