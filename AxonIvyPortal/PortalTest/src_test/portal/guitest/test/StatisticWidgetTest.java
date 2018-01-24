@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -48,7 +50,8 @@ public class StatisticWidgetTest extends BaseTest {
   public void testCreateCharts() {
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+    WebDriverWait wait = new WebDriverWait(statisticWidgetPage.getDriver(), 30);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget:widget-container")));
     statisticWidgetPage.switchCreateMode();
 
     createTaskByPriorityChart();
