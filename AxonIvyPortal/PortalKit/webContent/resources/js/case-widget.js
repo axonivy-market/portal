@@ -1,15 +1,20 @@
 function CaseWidget(outerPanelId) {
   this.setUpScrollbar = function() {
+    var childElements = $('.js-case-item');
+    if (childElements.length > 0) {
+      var container = $('.js-case-list > .ui-datascroller-content');
+      var mainAreaPanel = $('#' + outerPanelId);
+      var caseWidgetHeaderContainer = $('.widget-header');
+      var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
+      var caseWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
+      var error = 5;
 
-    var container = $('.js-case-list > .ui-datascroller-content');
-    var mainAreaPanel = $("#" + outerPanelId);
-    var widgetHeaderContainer = $('.js-widget-header');
-    var caseWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
-    var availableHeight = mainAreaPanel.outerHeight() -
-    caseWidgetAdvancedFilterContainer.outerHeight(true) - widgetHeaderContainer.outerHeight(true) - 80;
+      var availableHeight = mainAreaPanel.outerHeight() - caseWidgetHeaderContainer.outerHeight(true)
+          - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetAdvancedFilterContainer.outerHeight(true) - error;
 
-    if (container.height() > availableHeight) {
-      container.height(availableHeight);
+      if (!!availableHeight) {
+        container.height(availableHeight);
+      }
     }
   };
 
@@ -38,18 +43,17 @@ function CaseListToolKit() {
     },
     
     responsiveInLargeScreen : function(){
-      var caseWidget = new CaseWidget("");
-      caseWidget.setupHeader();
+      this.setupHeader();
     },
     
     responsiveInMediumScreen : function(){
-      var caseWidget = new CaseWidget("");
-      caseWidget.setupHeader();
+      this.setupHeader();
     },
   
     responsiveInSmallScreen : function() {
-      var caseWidget = new CaseWidget("");
-      caseWidget.setupHeader();
+      this.setupHeader();
+      var caseWidget = new CaseWidget("main-area-panel");
+      caseWidget.setUpScrollbar();
     },
     
     responsive : function() {
