@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -55,6 +56,7 @@ public class MenuTest extends BaseTest {
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
+    dashboardPage.waitForElementDisplayed(By.cssSelector(".js-left-sidebar-toggle"), true, 30);
     dashboardPage.closeMainMenu();
     homePage = dashboardPage.goToHomePage();
     assertFalse(homePage.isMainMenuOpen());
