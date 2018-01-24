@@ -76,6 +76,10 @@ public final class PortalNavigator {
   }
 
   public String getPortalStartUrlOfCurrentApplication() {
+    String homePageURL = getHomePageFromSetting();
+    if (!homePageURL.isEmpty()) {
+      return homePageURL;
+    }
     return Ivy.html().startref(PORTAL_PROCESS_START_NAME);
   }
 
