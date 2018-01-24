@@ -1510,6 +1510,14 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   -o-transition: none;
   transition: none;
 }
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .case-widget-container .filter-add-container {
+    margin-top: 30px;
+    margin-left: auto;
+  }
+}
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/
