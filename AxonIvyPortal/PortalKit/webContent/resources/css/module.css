@@ -1844,7 +1844,7 @@ a.case-details-document-add-link {
 }
 
 .case-header-action-cell {
-  flex: 0 0 100px;
+  flex: 0 0 85px;
   text-align: right;
 }
 
