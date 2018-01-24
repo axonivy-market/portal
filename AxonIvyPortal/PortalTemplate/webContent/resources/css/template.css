@@ -568,6 +568,10 @@
   border: none;
 }
 
+.second-level-menu-body .ui-treetable .ui-icon {
+  margin-right: 3px;
+}
+
 .second-level-menu-body .ui-treetable .ui-treetable-indent {
   width: 10px;
 }
