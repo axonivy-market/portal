@@ -61,8 +61,8 @@ public class RemoteTaskMapper {
     result.setRemoteNotes(RemoteNoteMapper.mapNoteArray(ivyTask.getIvyNotes()));
 
     try {
-      result.setExpiryPriority(WorkflowPriority.valueOf(ivyTask.getExpireActivatorName()));
-      result.setOriginalPriority(WorkflowPriority.valueOf(ivyTask.getExpireActivatorName()));
+      result.setExpiryPriority(WorkflowPriority.valueOf(ivyTask.getExpirePriority()));
+      result.setOriginalPriority(WorkflowPriority.valueOf(ivyTask.getOriginalPriority()));
     } catch (Exception e) {
     }
 
