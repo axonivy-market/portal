@@ -1513,6 +1513,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 /* Small screen */
 @media (max-width: 1365px) {
+  .case-widget-container .filter-widget {
+    width: 90%;
+  }
+
   .case-widget-container .filter-add-container {
     margin-top: 30px;
     margin-left: auto;
