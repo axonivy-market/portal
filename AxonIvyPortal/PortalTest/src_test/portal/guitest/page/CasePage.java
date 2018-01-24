@@ -130,4 +130,13 @@ public class CasePage extends TemplatePage {
   public boolean isFilterSelectionVisible() {
     return isElementPresent(By.id("case-widget:filter-selection-form:filter-selection-panel"));
   }
+
+  public int countCategoryRoots() {
+    List<WebElement> taskElements = findListElementsByCssSelector("span[class*='js-second-level-menu']");
+    return taskElements.size();
+  }
+
+  public void toggleCategoryMenu() {
+    click(findElementByClassName("second-level-menu-header"));
+  }
 }
