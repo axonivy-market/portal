@@ -225,8 +225,7 @@
 							This function will be disabled if session user does not have
 							<code>IPermission.USER_READ_OWN_ABSENCES</code>
 							and
-							<code>IPermission.USER_READ_ABSENCES</code>
-							.
+							<code>IPermission.USER_READ_ABSENCES</code>.
 						</para>
 					</listitem>
 					<listitem>
@@ -237,8 +236,7 @@
 							This function will be disabled if session user does not have
 							<code>IPermission.USER_CREATE_OWN_ABSENCE</code>
 							and
-							<code>IPermission.USER_CREATE_ABSENCE</code>
-							.
+							<code>IPermission.USER_CREATE_ABSENCE</code>.
 						</para>
 					</listitem>
 					<listitem>
@@ -249,8 +247,7 @@
 							This function will be disabled if session user does not have
 							<code>IPermission.USER_DELETE_OWN_ABSENCE</code>
 							and
-							<code>IPermission.USER_DELETE_ABSENCE</code>
-							.
+							<code>IPermission.USER_DELETE_ABSENCE</code>.
 						</para>
 					</listitem>
 				</itemizedlist>
