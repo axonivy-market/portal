@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
@@ -24,6 +25,7 @@ import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -117,9 +119,22 @@ public class UserMenuBean {
         applicationService.findByDisplayNameAndNameAndServerId(selectedAppDisplayName, selectedApp, serverId);
     return selectedApplication.getLink();
   }
+  
+  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws Exception {
+    if (isWorkingOnATask) {
+      RequestContext.getCurrentInstance().execute("PF('logo-task-losing-confirmation-dialog').show()");
+    } else {
+      navigateToHomePage();
+    }
+  }
 
   public void navigateToHomePage() throws Exception {
     FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
+  }
+  
+  public void reserveTaskAndNavigateToHomePage() throws Exception {
+    TaskUtils.parkTask(Ivy.wfTask());
+    navigateToHomePage();
   }
 
   private String getHomePageFromSetting() {
