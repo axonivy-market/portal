@@ -19,6 +19,9 @@ import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.NumberUtils;
+import ch.ivy.addon.portalkit.util.UrlValidator;
+import ch.ivyteam.ivy.model.value.WebLink;
+import ch.ivyteam.ivy.request.restricted.WebLinkFactory;
 
 @ManagedBean
 @ViewScoped
@@ -66,15 +69,17 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public String getAdditionalCaseDetailsPageUri(RemoteCase remoteCase) {
-    String additionalCaseDetailsPageLink = getAdditionalCaseDetailsPageUriFromAdditionalProperty(remoteCase);
-    if (StringUtils.isEmpty(additionalCaseDetailsPageLink)) {
-      return (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
-    } else {
-      try {
-        return (new UrlDetector()).getHost(remoteCase.getServer()) + additionalCaseDetailsPageLink;
-      } catch (MalformedURLException e) {
-        return additionalCaseDetailsPageLink;
-      }
+    String additionalCaseDetailsPageUri = getAdditionalCaseDetailsPageUriFromAdditionalProperty(remoteCase);
+    if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
+      additionalCaseDetailsPageUri = (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
+    }
+    try {
+      String host = (new UrlDetector()).getHost(remoteCase.getServer());
+      WebLink webLink = UrlValidator.isValidUrl(additionalCaseDetailsPageUri) ? new WebLinkFactory().createFromContextRelative(additionalCaseDetailsPageUri) 
+                                                                              : new WebLink(host + additionalCaseDetailsPageUri);
+      return webLink.getAbsoluteEncoded();
+    } catch (MalformedURLException e) {
+      return additionalCaseDetailsPageUri;
     }
   }
 

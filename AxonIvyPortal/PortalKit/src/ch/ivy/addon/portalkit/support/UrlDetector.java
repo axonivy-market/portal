@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.Objects;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -125,26 +124,12 @@ public class UrlDetector {
   
   public String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-    String internalPath;
     String urlParameters = "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
     try {
-      internalPath = collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
+      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
     } catch (Exception e) {
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      internalPath = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
+      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
     }
-    try {
-      return getHost(remoteCase.getServer()) + internalPath;
-    } catch (MalformedURLException e) {
-      return removeDuplicatedPartOfUrl(internalPath);
-    }
-  }
-  
-  private String removeDuplicatedPartOfUrl(String redirectLink) {
-    FacesContext facesContextInstance = FacesContext.getCurrentInstance();
-    if (Objects.isNull(facesContextInstance)){
-      return redirectLink;
-    }
-    return redirectLink.replace(facesContextInstance.getExternalContext().getApplicationContextPath(), ""); // remove duplicate part of path
   }
 }
