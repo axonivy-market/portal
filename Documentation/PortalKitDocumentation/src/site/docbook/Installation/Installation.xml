@@ -224,7 +224,7 @@
 						<para>
 							This function will be disabled if session user does not have
 							<code>IPermission.USER_READ_OWN_ABSENCES</code>
-							or
+							and
 							<code>IPermission.USER_READ_ABSENCES</code>
 							.
 						</para>
@@ -235,9 +235,9 @@
 						</para>
 						<para>
 							This function will be disabled if session user does not have
-							<code>IPermission.USER_CREATE_OWN_ABSENCES</code>
-							or
-							<code>IPermission.USER_CREATE_OWN_ABSENCES</code>
+							<code>IPermission.USER_CREATE_OWN_ABSENCE</code>
+							and
+							<code>IPermission.USER_CREATE_ABSENCE</code>
 							.
 						</para>
 					</listitem>
@@ -247,8 +247,8 @@
 						</para>
 						<para>
 							This function will be disabled if session user does not have
-							<code>IPermission.USER_DELETE_OWN_ABSENCES</code>
-							or
+							<code>IPermission.USER_DELETE_OWN_ABSENCE</code>
+							and
 							<code>IPermission.USER_DELETE_ABSENCE</code>
 							.
 						</para>
@@ -304,7 +304,8 @@
 						</para>
 						<para>
 							This function will be enabled if session user has permission
-							<code>IPermission.TASK_RESET_OWN_WORKING_TASK</code>
+							<code>IPermission.TASK_RESET_OWN_WORKING_TASK</code> or
+							<code>IPermission.TASK_RESET</code>
 							.
 						</para>
 						<important>
@@ -332,6 +333,44 @@
 					</listitem>
 					<listitem>
 						<para>
+							CHANGE TASK NAME
+						</para>
+						<para>
+							This function will be enabled if session user has
+							<code>IPermission.TASK_WRITE_NAME</code>
+							.
+						</para>
+						<important>
+							Task state cannot be one of following values:
+							<code>DONE</code>
+							,
+							<code>DESTROYED</code>
+							,
+							<code>FAILED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							CHANGE TASK DESCRIPTION
+						</para>
+						<para>
+							This function will be enabled if session user has
+							<code>IPermission.TASK_WRITE_DESCRIPTION</code>
+							.
+						</para>
+						<important>
+							Task state cannot be one of following values:
+							<code>DONE</code>
+							,
+							<code>DESTROYED</code>
+							,
+							<code>FAILED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
 							CHANGE DEADLINE
 						</para>
 						<para>
@@ -344,8 +383,6 @@
 							<code>DONE</code>
 							,
 							<code>DESTROYED</code>
-							,
-							<code>RESUMED</code>
 							,
 							<code>FAILED</code>
 							.
@@ -365,8 +402,6 @@
 							<code>DONE</code>
 							,
 							<code>DESTROYED</code>
-							,
-							<code>RESUMED</code>
 							,
 							<code>FAILED</code>
 							.
