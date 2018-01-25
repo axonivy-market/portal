@@ -9,6 +9,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.WorkingTaskDialogPage;
 
 public class TaskTemplateTest extends BaseTest {
 
@@ -57,6 +58,28 @@ public class TaskTemplateTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.openDocumentUploadingDialog();
     assertTrue(taskTemplatePage.isDocumentUploadingDialogDisplayed());
+  }
+  
+  @Test
+  public void testLeaveWorkingTaskByClickingOnLogo() {
+    TaskTemplatePage taskTemplatePage = startATask();
+    taskTemplatePage.clickOnLogo();
+    WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
+    HomePage homePage = dialogPage.leaveTask();
+    TaskWidgetPage taskWidget = homePage.getTaskWidget();
+    String state = taskWidget.getStateInCompactMode(0);
+    assertEquals("IN PROGRESS", state);
+  }
+  
+  @Test
+  public void testReserveWorkingTaskByClickingOnLogo() {
+    TaskTemplatePage taskTemplatePage = startATask();
+    taskTemplatePage.clickOnLogo();
+    WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
+    HomePage homePage = dialogPage.reserveTask();
+    TaskWidgetPage taskWidget = homePage.getTaskWidget();
+    String state = taskWidget.getStateInCompactMode(0);
+    assertEquals("RESERVED", state);
   }
 
   private TaskTemplatePage startATask() {

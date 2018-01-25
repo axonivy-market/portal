@@ -102,6 +102,11 @@ public abstract class TemplatePage extends AbstractPage {
     }
     return new MainMenuPage();
   }
+  
+  public void clickOnLogo() {
+    click(By.id("logo"));
+    waitAjaxIndicatorDisappear();
+  }
 
   public WebElement findDisplayedElementById(String id) {
     waitForElementDisplayed(By.id(id), true);
