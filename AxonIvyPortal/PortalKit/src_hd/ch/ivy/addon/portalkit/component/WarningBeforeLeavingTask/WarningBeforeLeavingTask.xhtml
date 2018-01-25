@@ -31,7 +31,7 @@
               styleClass="ui-confirmdialog-yes portal-ok-button u-mar-right-5" />
             <p:tooltip for="reserve-task-button" trackMouse="true"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-            <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide()"
+            <p:commandButton onclick="PF('#{cc.attrs.widgetVar}').hide()"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
               styleClass="ui-confirmdialog-no portal-cancel-button" />
           </h:panelGroup>
