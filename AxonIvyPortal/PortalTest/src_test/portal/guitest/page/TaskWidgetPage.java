@@ -459,4 +459,11 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement taskDetails = findElementByCssSelector("div.js-task-list-container");
     return taskDetails.isDisplayed();
   }
+  
+  public String getStateInCompactMode(int index) {
+    WebElement taskListElement = findElementById("task-widget:task-list-scroller");
+    WebElement taskElement = taskListElement.findElement(By.cssSelector("*[id*='" + index + ":task-item']"));
+    WebElement state = taskElement.findElement(By.cssSelector("*[id*='task-start-task-state']"));
+    return state.getText().substring(state.getText().indexOf(" ") + 1);
+  }
 }
