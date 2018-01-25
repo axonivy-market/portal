@@ -25,7 +25,7 @@ import ch.ivy.addon.portalkit.support.UrlDetector;
 @SuppressWarnings("unchecked")
 @RunWith(PowerMockRunner.class)
 public class CaseWidgetBeanTest {
-  private static final String HOST = "http://localhost:8080";
+  private static final String HOST = "http://localhost:8080/";
   private static final String CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE = "CustomizationAdditionalCaseDetailsPage";
   private static final String DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE = "DefaultAdditionalCaseDetailsPage";
   private static final String SUBPROCESS_PARAM_PROPERTY_VALUE = "propertyValue";
@@ -52,7 +52,8 @@ public class CaseWidgetBeanTest {
     UrlDetector detector = PowerMockito.mock(UrlDetector.class);
     PowerMockito.whenNew(UrlDetector.class).withNoArguments().thenReturn(detector);
     PowerMockito.when(detector.getProcessStartUriWithCaseParameters(Mockito.any(), Mockito.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
-    Assert.assertEquals(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(createRemoteCase())); 
+    PowerMockito.when(detector.getHost(Mockito.any(Server.class))).thenReturn(HOST);
+    Assert.assertEquals(HOST + DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(createRemoteCase())); 
   }
   
   @Test
@@ -61,10 +62,10 @@ public class CaseWidgetBeanTest {
     mockStatic(IvyAdapterService.class);
     Map<String, Object> responses = new HashMap<>();
     responses.put(SUBPROCESS_PARAM_PROPERTY_VALUE, CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE);
+    Mockito.when(IvyAdapterService.startSubProcess(Mockito.anyString(), Mockito.anyMap(), Mockito.anyList())).thenReturn(responses);
     UrlDetector detector = PowerMockito.mock(UrlDetector.class);
     PowerMockito.whenNew(UrlDetector.class).withNoArguments().thenReturn(detector);
     PowerMockito.when(detector.getHost(Mockito.any(Server.class))).thenReturn(HOST);
-    Mockito.when(IvyAdapterService.startSubProcess(Mockito.anyString(), Mockito.anyMap(), Mockito.anyList())).thenReturn(responses);
     Assert.assertEquals(HOST + CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(createRemoteCase())); 
   }
   
