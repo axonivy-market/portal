@@ -250,6 +250,20 @@
 							<code>IPermission.USER_DELETE_ABSENCE</code>.
 						</para>
 					</listitem>
+					<listitem>
+						<para>
+							MANAGE EVERY USER ABSENCES
+						</para>
+						<para>
+							User can read, add, delete absences of all users. This function will be disabled if session user does not have all
+							of the following permissions:
+							<code>IPermission.USER_CREATE_ABSENCE</code>
+							,
+							<code>IPermission.USER_DELETE_ABSENCE</code>
+							,
+							<code>IPermission.USER_READ_ABSENCES</code>.
+						</para>
+					</listitem>
 				</itemizedlist>
 			</sect3>
 			<sect3>
@@ -395,7 +409,7 @@
 							.
 						</para>
 						<important>
-							Task state has to be one of following:
+							Task state cannot be one of following:
 							<code>DONE</code>
 							,
 							<code>DESTROYED</code>
@@ -432,6 +446,34 @@
 							Case state has to be
 							<code>RUNNING</code>
 							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							CHANGE CASE NAME
+						</para>
+						<para>
+							Delete case function will be enabled if session user has
+							<code>IPermission.CASE_WRITE_NAME</code>
+							.
+						</para>
+						<important>
+							Case state cannot to be:
+							<code>DESTROYED</code>.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							CHANGE CASE DESCRIPTION
+						</para>
+						<para>
+							Delete case function will be enabled if session user has
+							<code>IPermission.CASE_WRITE_DESCRIPTION</code>
+							.
+						</para>
+						<important>
+							Case state cannot to be:
+							<code>DESTROYED</code>.
 						</important>
 					</listitem>
 				</itemizedlist>
