@@ -365,7 +365,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return generated data
    */
   public Map<String, Number> generateDataForTaskByPriorityChart(PriorityStatistic priorityStatistic) {
-    Map<String, Number> chartData = new LinkedHashMap<String, Number>();
+    Map<String, Number> chartData = new HashMap<String, Number>();
 
     if (priorityStatistic.getException() > 0) {
       chartData.put(Ivy.cms().co(EXCEPTION_PRIORITY_KEY), priorityStatistic.getException());
@@ -393,7 +393,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return generated data
    */
   public Map<Object, Number> generateDataForTaskByExpiryOverviewChart(List<ExpiryStatistic> expiryStatistic) {
-    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
+    Map<Object, Number> chartData = new HashMap<Object, Number>();
 
     //Convert result
     Map<Date, Long> statisticResultMap = new HashMap<Date, Long>();
@@ -568,9 +568,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public DonutChartModel generateTaskByPriorityModel(PriorityStatistic statisticData, boolean isSetDefaultName) {
     Map<String, Number> chartData = generateDataForTaskByPriorityChart(statisticData);
+    boolean isEmptyData = chartData.isEmpty();
     DonutChartModel model = new DonutChartModel();
 
-    if (chartData.size() == 0) {
+    if (isEmptyData) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks"), 0);
     }
 
@@ -582,7 +583,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.setDataFormat("percent");
     model.setSliceMargin(3);
     model.setLegendRows(1);
-    model.setSeriesColors(Colors.getPriorityColors(chartData));
+    if (!isEmptyData) {
+    	model.setSeriesColors(Colors.getPriorityColors(chartData));
+    }
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.TASK_BY_PRIORITY.getCmsUri()));
@@ -634,9 +637,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public DonutChartModel generateCaseByStateModel(CaseStateStatistic statisticData, boolean isSetDefaultName) {
     Map<String, Number> chartData = generateDataForCaseStateChart(statisticData);
+    boolean isEmptyData = chartData.isEmpty();
     DonutChartModel model = new DonutChartModel();
 
-    if (chartData.size() == 0) {
+    if (isEmptyData) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/cases"), 0);
     }
 
@@ -648,7 +652,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.setDataFormat("percent");
     model.setSliceMargin(3);
     model.setLegendRows(1);
-    model.setSeriesColors(Colors.getCaseStateColors(chartData));
+    if (!isEmptyData) {
+    	model.setSeriesColors(Colors.getCaseStateColors(chartData));
+    }
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
