@@ -127,7 +127,10 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
             if (!StringUtils.isEmpty(lang)) {
               String[] sp = lang.split(",");
               for (String spItem : sp) {
-                supportedLanguages.add(spItem.trim());
+                String languageCode = spItem.trim();
+                if (!supportedLanguages.contains(languageCode)){
+                  supportedLanguages.add(languageCode);
+                }
               }
             }
           }
