@@ -8,15 +8,16 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
   private static final String DOCUMENT_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:document";
-  private static final String CASE_ICONS_CONTAINER_COMPONENT_ID = "span[id$='responsive-handle-container']";
+  private static final String CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR = "span[id$='responsive-handle-container']";
   private static final String HISTORY_COMPONENT_ID =
       "case-widget:case-list-scroller:0:case-item:history:case-histories";
   private static final String RELATED_TASKS_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:related-tasks";
   private static final String HISTORY_LIST_CSS_SELECTOR = "div[id$='case-histories'] .author";
   private static final String GENERAL_INFORMATION_COMPONENT_ID =
       "case-widget:case-list-scroller:0:case-item:general-information";
-  private static final String HISTORY_NOTE_CONTENT_ID = "a[id$='note-content']";
-  private static final String AUTHOR_USER_ID = "span[id$='user-full-name:user']";
+  private static final String HISTORY_NOTE_CONTENT_CSS_SELECTOR = "a[id$='note-content']";
+  private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
+  private static final String AUTHOR_USER_CSS_SELECTOR = "span[id$='user-full-name:user']";
   private static final String VIEW_NOTE_DIALOG_ID =
       "case-widget:case-list-scroller:0:case-item:history:view-note-dialog";
   private WebElement caseItem;
@@ -68,12 +69,16 @@ public class CaseDetailsPage extends TemplatePage {
   public String getLatestHistoryContent() {
     WebElement historyComponent = caseItem.findElement(By.id(HISTORY_COMPONENT_ID));
     if (historyComponent != null) {
-      List<WebElement> noteContents = historyComponent.findElements(By.cssSelector(HISTORY_NOTE_CONTENT_ID));
+      List<WebElement> noteContents = historyComponent.findElements(By.cssSelector(HISTORY_NOTE_CONTENT_CSS_SELECTOR));
       if (noteContents.size() >= 1) {
         return noteContents.get(0).getText();
       }
     }
     return "";
+  }
+  
+  public void openAdditionalCaseDetailsPage() {
+    click(caseItem.findElement(By.cssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR)));
   }
 
   private WebElement getGeneralInformationComponent() {
@@ -118,11 +123,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getHistoryAuthor() {
-    return findElementByCssSelector(AUTHOR_USER_ID).getText();
+    return findElementByCssSelector(AUTHOR_USER_CSS_SELECTOR).getText();
   }
 
   public void clickViewNote() {
-    findElementByCssSelector(HISTORY_NOTE_CONTENT_ID).click();
+    findElementByCssSelector(HISTORY_NOTE_CONTENT_CSS_SELECTOR).click();
     waitAjaxIndicatorDisappear();
     WebElement noteDialog = getViewNoteDialog();
     waitForElementDisplayed(noteDialog, true);
@@ -205,7 +210,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickDescriptionEditIcon() {
     try {
-      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_ID));
+      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
       WebElement descriptionIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-clipboard']"));
       if (descriptionIcon != null) {
         descriptionIcon.click();
@@ -217,7 +222,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickHistoryIcon() {
     try {
-      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_ID));
+      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
       WebElement noteIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-align-left']"));
       if (noteIcon != null) {
         noteIcon.click();
@@ -229,7 +234,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickDocumentIcon() {
     try {
-      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_ID));
+      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
       WebElement documentIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-file']"));
       if (documentIcon != null) {
         documentIcon.click();

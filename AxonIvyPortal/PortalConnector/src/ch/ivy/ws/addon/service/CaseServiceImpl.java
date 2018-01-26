@@ -4,14 +4,17 @@ import static ch.ivy.ws.addon.transformer.IvyCaseTransformer.transformToIvyCase;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 
-import com.google.gson.Gson;
+import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.ws.addon.CategoryData;
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.WsServiceFactory;
@@ -39,8 +42,12 @@ import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
+import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
+
+import com.google.gson.Gson;
 
 public class CaseServiceImpl extends AbstractService implements ICaseService {
 
@@ -536,7 +543,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                 }
 
                 CaseQuery caseQuery = createCaseQuery(caseSearchCriteria);
-                queryExcludeHiddenTasks(caseQuery);
+                queryExcludeHiddenCases(caseQuery);
                 List<ICase> cases = executeCaseQuery(caseQuery, startIndex, count);
                 List<IvyCase> ivyCases = new ArrayList<>();
 
@@ -568,7 +575,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         }
 
         CaseQuery caseQuery = createCaseQuery(caseSearchCriteria);
-        queryExcludeHiddenTasks(caseQuery);
+        queryExcludeHiddenCases(caseQuery);
         long caseCount = countCases(caseQuery);
         return result(caseCount, errors);
 
@@ -577,33 +584,44 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       throw new WSException(10016, e);
     }
   }
-
+  
+  @SuppressWarnings("static-access")
   @Override
-  public CaseServiceResult findCaseCategoriesByCriteria(CaseSearchCriteria caseSearchCriteria) throws WSException {
+  public CaseServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language)
+      throws WSException {
     List<WSException> errors = Collections.emptyList();
-    CaseServiceResult result = new CaseServiceResult();
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        CaseQuery caseCategoryQuery = createCaseQuery(caseSearchCriteria);
-        queryExcludeHiddenTasks(caseCategoryQuery);
-        caseCategoryQuery.groupBy().category()
-          .orderBy().category().ascending();
-
-        Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(caseCategoryQuery);
-        List<String> categories = new ArrayList<>();
-        recordSet.getRecords().forEach(record -> {
-          String category = record.getField("CATEGORY").toString();
-          if (!categories.contains(category)) {
-            categories.add(category);
+          CaseQuery caseQuery = Ivy.wf().getGlobalContext().getCaseQueryExecutor().createCaseQuery();
+          if (StringUtils.isNotBlank(jsonQuery)) {
+            caseQuery.fromJson(jsonQuery);
           }
-        });
+          queryExcludeHiddenCases(caseQuery);
 
-        result.setCategories(categories);
-        result.setErrors(errors);
-        return result;
-      });
-    } catch(Exception e) {
-      throw new WSException(10053, e);
+          if (username != null && !StringUtils.isEmpty(username)) {
+            AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+            caseQuery.where().and(queryForUsers(availableAppsResult.getUsers()))
+                .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+          } else {
+            caseQuery.where().and(queryForInvolvedApplications(apps));
+          }
+          caseQuery.where()
+              .and(
+                  queryForStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+          caseQuery.where().and().category().isNotNull().and().category().isNotEqual("Portal");
+
+          CategoryTree categoryTree = CategoryTree.createFor(caseQuery);
+          List<CategoryData> categories = new ArrayList<>();
+          categoryTree.getAllChildren().forEach(category -> {
+            CategoryData categoryData = new CategoryData();
+            categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+            categoryData.setRawPath(category.getRawPath());
+            categories.add(categoryData);
+          });
+          return categoryResult(categories, errors);
+        });
+    } catch (Exception e) {
+      throw new WSException(10016, e);
     }
   }
 
@@ -615,7 +633,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(
           () -> {
             CaseQuery caseStateQuery = createCaseQuery(caseSearchCriteria);
-            queryExcludeHiddenTasks(caseStateQuery);
+            queryExcludeHiddenCases(caseStateQuery);
 
             caseStateQuery.aggregate().countRows()
               .groupBy().state()
@@ -654,7 +672,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         return ServerFactory.getServer().getSecurityManager().executeAsSystem(
             () -> {
               CaseQuery elapsedTimeQuery = createCaseQuery(caseSearchCriteria);
-              queryExcludeHiddenTasks(elapsedTimeQuery);
+              queryExcludeHiddenCases(elapsedTimeQuery);
 
               elapsedTimeQuery.where().and().businessRuntime().isNotNull();
               elapsedTimeQuery.aggregate().avgBusinessRuntime()
@@ -720,6 +738,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     result.setErrors(errors);
     return result;
   }
+  
+  private CaseServiceResult categoryResult(List<CategoryData> categories, List<WSException> errors) {
+    CaseServiceResult result = new CaseServiceResult();
+    result.setCategories(categories);
+    result.setErrors(errors);
+    return result;
+  }
 
   private static List<WSException> noErrors() {
     return Collections.emptyList();
@@ -730,6 +755,15 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     users.forEach(user -> caseQuery.where().or().isInvolved(user));
     return caseQuery;
   }
+  
+  private CaseQuery queryForStates(List<CaseState> states) {
+    CaseQuery stateFieldQuery = CaseQuery.create();
+    IFilterQuery filterQuery = stateFieldQuery.where();
+    for (CaseState state : states) {
+      filterQuery.or().state().isEqual(state);
+    }
+    return stateFieldQuery;
+}
 
   private List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
     List<ICase> cases = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query, startIndex, count);
@@ -787,7 +821,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
 
-  private void queryExcludeHiddenTasks(CaseQuery query) {
+  private void queryExcludeHiddenCases(CaseQuery query) {
     List<ICase> hiddenCases =
         executeCaseQuery(CaseQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
 

@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.util.TreeUtils;
@@ -27,7 +28,8 @@ public class TaskTreeUtils {
    * @param categories list category of user
    * @return TreeNode : The Tree after convert
    */
-  public static TreeNode convertTaskListToTree(List<CategoryData> categories, String firstCategory, boolean isRootAllTask) {
+  public static TreeNode convertTaskListToTree(List<CategoryData> categories, String firstCategory,
+      boolean isRootAllTask, String menuState) {
     TreeNode taskRootNode = new DefaultTreeNode();
     TreeNode navigatorNode = taskRootNode;
     for (CategoryData category : categories) {
@@ -37,7 +39,7 @@ public class TaskTreeUtils {
       String categoryRawPath = category.getRawPath();
       String[] nodePaths = category.getRawPath().split(DELIMITER);
 
-      for (int i=0; i<nodeNames.length; i++) {
+      for (int i = 0; i < nodeNames.length; i++) {
         String nodeName = nodeNames[i];
         String categoryName = categoryPath.substring(0, categoryPath.indexOf(nodeName) + nodeName.length());
 
@@ -45,7 +47,8 @@ public class TaskTreeUtils {
         String rawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(nodePath) + nodePath.length());
 
         String nodeType = firstCategory + DELIMITER + categoryName.replaceAll(" ", "_");
-        navigatorNode = buildTaskCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllTask);
+        navigatorNode =
+            buildTaskCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllTask, menuState);
       }
       navigatorNode = taskRootNode;
     }
@@ -73,7 +76,7 @@ public class TaskTreeUtils {
    * @return TreeNode : Tree node after add node
    */
   private static TreeNode buildTaskCategoryNode(TreeNode navigatorNode, String newNodeName, String nodeType,
-      String category, String rawPath, boolean isRootAllTask) {
+      String category, String rawPath, boolean isRootAllTask, String menuState) {
     List<TreeNode> childNodes = navigatorNode.getChildren();
     for (TreeNode childNode : childNodes) {
       TaskNode childNodeData = (TaskNode) childNode.getData();
@@ -91,7 +94,20 @@ public class TaskTreeUtils {
     newNodeData.setRootNodeAllTask(isRootAllTask);
     newNodeData.setFirstCategoryNode(false);
     TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, navigatorNode);
-    newNode.setExpanded(true);
+    if (menuState.contains(nodeType)
+        && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
+      newNode.setExpanded(true);
+    } else {
+      newNode.setExpanded(false);
+    }
     return newNode;
+  }
+
+  public static String getLastCategoryFromCategoryPath(String categoryPath) {
+    if (!StringUtils.isBlank(categoryPath)) {
+      String[] categories = categoryPath.split("/");
+      return categories[categories.length - 1];
+    }
+    return "";
   }
 }

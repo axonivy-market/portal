@@ -2,6 +2,7 @@ package portal.guitest.page;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -9,6 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.TaskState;
 
@@ -47,7 +51,9 @@ public class TaskWidgetPage extends TemplatePage {
 
   private void clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
     WebElement taskShowHideDetailsLink =
-        findElementByCssSelector("*[id$='" + index + ":task-item:show-task-detail-link']");
+        findElementByXpath("//a[contains(@id, '" + index
+            + ":task-item:resume-task-show-task-detail-link') or contains(@id, '" + index
+            + ":task-item:show-task-detail-link')]");
     taskShowHideDetailsLink.click();
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.cssSelector("*[id$='" + index + ":task-item:task-details-container']"), isDetailsShown,
@@ -320,12 +326,15 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  public String getTaskListCellValue(int index, String columnId) {
-    WebElement cell = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s", index, columnId));
+  public String getTaskListCustomCellValue(int index, String columnId) {
+    WebElement cell = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
     return cell.getText();
   }
 
   public void openTaskDelegateDialog(int index) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+      .until(() -> findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command",index)).isDisplayed());
+
     WebElement delegateButton =
         findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command",
             index));
@@ -438,5 +447,23 @@ public class TaskWidgetPage extends TemplatePage {
   public boolean hasNoTask() {
     WebElement noTaskMessage = findElementByCssSelector("label[class*='no-task-message']");
     return noTaskMessage.isDisplayed();
+  }
+
+  public void startAndCancelTask() {
+    findElementByCssSelector("*[id$='0:task-item:task-info']").click();
+    waitForElementDisplayed(By.id("copy-clipboard"), true);
+    click(findElementByClassName("portal-cancel-button"));
+  }
+
+  public boolean isTaskListShown() {
+    WebElement taskDetails = findElementByCssSelector("div.js-task-list-container");
+    return taskDetails.isDisplayed();
+  }
+  
+  public String getStateInCompactMode(int index) {
+    WebElement taskListElement = findElementById("task-widget:task-list-scroller");
+    WebElement taskElement = taskListElement.findElement(By.cssSelector("*[id*='" + index + ":task-item']"));
+    WebElement state = taskElement.findElement(By.cssSelector("*[id*='task-start-task-state']"));
+    return state.getText().substring(state.getText().indexOf(" ") + 1);
   }
 }

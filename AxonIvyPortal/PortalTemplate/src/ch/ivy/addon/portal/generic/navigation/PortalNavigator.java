@@ -20,6 +20,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
 public final class PortalNavigator {
 
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/PortalStart.ivp";
+  private static final String PORTAL_END_PAGE = "Start Processes/PortalStart/DefaultEndPage.ivp";
 
   public String getPortalStartUrl() throws Exception {
     String homePageURL = getHomePageFromSetting();
@@ -43,8 +44,7 @@ public final class PortalNavigator {
   }
 
   private String defaultPortalStartUrl(boolean isAbsoluteLink) throws Exception {
-    String requestPath =
-        SecurityServiceUtils.findProcessByUserFriendlyRequestPath(PORTAL_PROCESS_START_NAME);
+    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(PORTAL_PROCESS_START_NAME);
     if (isAbsoluteLink) {
       UrlDetector urlDetector = new UrlDetector();
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
@@ -76,6 +76,19 @@ public final class PortalNavigator {
   }
 
   public String getPortalStartUrlOfCurrentApplication() {
+    String homePageURL = getHomePageFromSetting();
+    if (!homePageURL.isEmpty()) {
+      return homePageURL;
+    }
     return Ivy.html().startref(PORTAL_PROCESS_START_NAME);
+  }
+
+  public void navigateToPortalEndPage() throws Exception{
+  	String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(PORTAL_END_PAGE);
+  	if (!requestPath.isEmpty()){
+  	  UrlDetector urlDetector = new UrlDetector();
+      String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
+      redirect(serverUrl + requestPath + "?endedTaskId=" + Ivy.wfTask().getId());
+  	}
   }
 }

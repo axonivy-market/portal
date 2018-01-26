@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainMenuPage extends TemplatePage {
 
@@ -23,6 +26,7 @@ public class MainMenuPage extends TemplatePage {
 
   public void toggleTaskMenu() {
     findElementByCssSelector("a.second-level-menu-header").click();
+    Sleeper.sleepTight(1000);
   }
 
   public void openTaskMenu() {
@@ -48,18 +52,59 @@ public class MainMenuPage extends TemplatePage {
     for (WebElement item : taskCategoryMenuItems) {
       if (item.getText().equalsIgnoreCase(category)) {
         click(item);
-        waitForTasksLoadedAfterSelectTaskCategory();
+        Sleeper.sleepTight(5000);
         return new TaskWidgetPage();
       }
     }
     return null;
   }
 
+  public void expandTaskCategory(String firstCategory, String... categories) {
+    String path = firstCategory;
+    findElementByCssSelector(getCategoryTogglerCssSelector(path)).click();
+    if (categories.length > 0) {
+      for (String category : categories) {
+        path = path.concat("\\/" + category);
+        waitForElementPresent(By.cssSelector(getCategoryTogglerCssSelector(path)), true);
+        findElementByCssSelector(getCategoryTogglerCssSelector(path)).click();
+      }
+    }
+    Sleeper.sleepTight(1000);
+  }
+
+  public boolean isTaskCategoryPathExpandedAndHighlighted(String firstCategory, String... categories) {
+    String path = firstCategory;
+    if (!isElementDisplayed(By.cssSelector(getHighlightedCategoryTaskItemCssSelector(path)))) {
+      return false;
+    }
+    if (categories.length > 0) {
+      for (String category : categories) {
+        path = path.concat("\\/" + category);
+        if (!isElementDisplayed(By.cssSelector(getHighlightedCategoryTaskItemCssSelector(path)))) {
+          System.out.println(getHighlightedCategoryTaskItemCssSelector(path));
+          return false;
+        }
+      }
+      return true;
+    }
+    return true;
+  }
+
+  private String getCategoryTogglerCssSelector(String path) {
+    return ".second-level-menu-body .ui-treetable-data ." + path + " span.ui-treetable-toggler";
+  }
+
+  private String getHighlightedCategoryTaskItemCssSelector(String path) {
+    return ".second-level-menu-body .ui-treetable-data ." + path + ".on";
+  }
+
   private void waitForTasksLoadedAfterSelectTaskCategory() {
-    waitForElementPresent(By.cssSelector("*[id$='0:task-item:task-action:task-delegate-command']"), true);
+    waitForElementDisplayed(By.cssSelector("*[id$='0:task-item:task-action:task-delegate-command']"), true);
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
+    WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")")));
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")").click();
     return new StatisticWidgetPage();
   }
@@ -93,9 +138,10 @@ public class MainMenuPage extends TemplatePage {
     getPlusIconOnCaseMenu().click();
     waitForElementDisplayed(By.id(CASE_MENU_ID + "_0"), true);
   }
-  
+
   public boolean isMenuItemHighlighted(int menuItemPosition) {
-  	return findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + menuItemPosition + ")").getCssValue("opacity").equals("1");
+    return findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + menuItemPosition + ")").getCssValue(
+        "opacity").equals("1");
   }
 
   private WebElement getPlusIconOnCaseMenu() {

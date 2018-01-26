@@ -110,17 +110,9 @@ public interface ICaseService {
   public CaseServiceResult findCasesByCriteria(CaseSearchCriteria caseSearchCriteria, Integer startIndex, Integer count)
       throws WSException;
 
-  /**
-   * Find all case categories by criteria
-   * 
-   * @param caseSearchCriteria
-   * @return case categories
-   * @throws WSException
-   */
-  public CaseServiceResult findCaseCategoriesByCriteria(CaseSearchCriteria caseSearchCriteria)
-      throws WSException;
-
   public CaseServiceResult countCasesByCriteria(CaseSearchCriteria caseSearchCriteria) throws WSException;
+  
+  public CaseServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException;
 
   /**
    * Get statistic data by case state

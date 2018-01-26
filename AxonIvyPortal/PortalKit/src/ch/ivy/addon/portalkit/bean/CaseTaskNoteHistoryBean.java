@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.net.MalformedURLException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
@@ -8,8 +10,12 @@ import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.UrlValidator;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.request.RequestUriFactory;
+import ch.ivyteam.ivy.request.restricted.WebLinkFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -18,12 +24,15 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class CaseTaskNoteHistoryBean {
     
     public String getCaseNoteHistoryLink(RemoteCase remoteCase) {
-        ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-        IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
-        String redirectLink = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
-                + "?remoteCaseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
-        redirectLink = removeDuplicatedPartOfUrl(redirectLink);
-        return redirectLink;
+      String caseNoteHistoryUri = (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
+      try {
+        String host = (new UrlDetector()).getHost(remoteCase.getServer());
+        WebLink webLink = UrlValidator.isValidUrl(caseNoteHistoryUri) ? new WebLinkFactory().createFromContextRelative(caseNoteHistoryUri) 
+                                                                                : new WebLink(host + caseNoteHistoryUri);
+        return webLink.getAbsoluteEncoded();
+      } catch (MalformedURLException e) {
+        return caseNoteHistoryUri;
+      }
     }
     
     public String getTaskNoteHistoryLink(RemoteTask remoteTask) {

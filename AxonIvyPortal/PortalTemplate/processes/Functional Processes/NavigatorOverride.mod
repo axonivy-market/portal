@@ -331,13 +331,25 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portal.generic.view.TaskView;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portal.generic.navigation.PortalPage;
+
+String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
+
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
 
 in.taskDataModel= new TaskLazyDataModel();
 in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
 in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
-in.taskView = TaskView.create().dataModel(in.taskDataModel).showHeaderToolbar(false).createNewTaskView();' #txt
+in.taskView = TaskView
+								.create()
+								.pageTitle(pageTitle)
+								.showHeaderToolbar(false)
+								.dataModel(in.taskDataModel)
+								.createNewTaskView();' #txt
 Nr0 f20 security system #txt
 Nr0 f20 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -376,20 +388,21 @@ Nr0 f23 @|CallSubIcon #fIcon
 Nr0 f24 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f24 852 782 26 26 14 0 #rect
 Nr0 f24 @|EndSubIcon #fIcon
-Nr0 f25 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
-Nr0 f25 inParamTable 'out.taskQuery=param.taskQuery;
+Nr0 f25 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Nr0 f25 inParamTable 'out.chartName=param.chartName;
+out.taskQuery=param.taskQuery;
 ' #txt
 Nr0 f25 outParamDecl '<> result;
 ' #txt
 Nr0 f25 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
-Nr0 f25 callSignature viewTaskForAnalytic(ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
+Nr0 f25 callSignature viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
 Nr0 f25 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>viewTaskForAnalytic(TaskQuery)</name>
-        <nameStyle>30,5,7
+        <name>viewTaskForAnalytic(String, TaskQuery)</name>
+        <nameStyle>38,5,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -430,10 +443,18 @@ Nr0 f31 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 Nr0 f31 actionTable 'out=in;
 ' #txt
 Nr0 f31 actionCode 'import ch.ivy.addon.portal.generic.view.CaseView;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+
+String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/relatedStatisticHeader") + in.chartName;
 
 in.caseDataModel.getSearchCriteria().setBusinessCase(true);
-in.caseDataModel.getSearchCriteria().setJsonQuery(in.caseQuery.asJson());
-in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).buildNewView();' #txt
+in.caseDataModel.setIgnoreInvolvedUser(CaseUtils.checkReadAllCasesPermission());
+in.caseDataModel.getQueryCriteria().setCaseQuery(in.caseQuery);
+
+in.caseView = CaseView.create()
+								.dataModel(in.caseDataModel)
+								.withTitle(pageTitle)
+								.buildNewView();' #txt
 Nr0 f31 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -446,20 +467,21 @@ Nr0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f31 848 275 36 24 20 -2 #rect
 Nr0 f31 @|StepIcon #fIcon
-Nr0 f32 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
+Nr0 f32 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 Nr0 f32 inParamTable 'out.caseQuery=param.caseQuery;
+out.chartName=param.chartName;
 ' #txt
 Nr0 f32 outParamDecl '<> result;
 ' #txt
 Nr0 f32 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
-Nr0 f32 callSignature viewCaseForAnalytic(ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
+Nr0 f32 callSignature viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
 Nr0 f32 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>viewCaseForAnalytic(CaseQuery)</name>
-        <nameStyle>30,5,7
+        <name>viewCaseForAnalytic(String, CaseQuery)</name>
+        <nameStyle>38,5,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -517,6 +539,7 @@ Nr0 f36 expr out #txt
 Nr0 f36 866 213 866 275 #arcP
 Nr0 f37 expr out #txt
 Nr0 f37 866 299 866 339 #arcP
+Nr0 f37 0 0.4999999999999999 0 0 #arcLabel
 Nr0 f38 expr out #txt
 Nr0 f38 866 108 866 169 #arcP
 Nr0 f39 expr out #txt

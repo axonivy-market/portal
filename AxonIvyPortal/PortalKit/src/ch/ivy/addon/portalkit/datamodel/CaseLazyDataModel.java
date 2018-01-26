@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.datamodel;
 
+import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.comparatorString;
 import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.naturalOrderNullsFirst;
 
 import java.lang.reflect.InvocationTargetException;
@@ -28,6 +29,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
@@ -133,7 +135,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   private Optional<Comparator<? super RemoteCase>> getComparatorForSorting() {
     Comparator<? super RemoteCase> comparator = null;
     if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = naturalOrderNullsFirst(RemoteCase::getName);
+      comparator = comparatorString(RemoteCase::getName);
     } else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getId);
     } else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
@@ -141,7 +143,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     } else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
     } else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = naturalOrderNullsFirst(caseCreator());
+      comparator = comparatorString(caseCreator());
     } else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = naturalOrderNullsFirst(RemoteCase::getState);
     }
@@ -307,6 +309,14 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   public void setInvolvedApplications(String... involvedApplications) {
     searchCriteria.setInvolvedApplications(involvedApplications);
   }
+  
+  public void setCaseAssigneeType(CaseAssigneeType assigneeType) {
+    queryCriteria.setCaseAssigneeType(assigneeType);
+  }
+
+  public void setCategory(String category) {
+    queryCriteria.setCategory(category);
+  }
 
   public String getSortField() {
     return queryCriteria.getSortField();
@@ -320,11 +330,11 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     return searchCriteria;
   }
 
-  public void getQueryCriteria(CaseQueryCriteria queryCriteria) {
+  public void setQueryCriteria(CaseQueryCriteria queryCriteria) {
     this.queryCriteria = queryCriteria;
   }
 
-  public CaseQueryCriteria setQueryCriteria() {
+  public CaseQueryCriteria getQueryCriteria() {
     return queryCriteria;
   }
 

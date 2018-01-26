@@ -1,0 +1,11 @@
+AnalyzeStatisticData #class
+ch.ivy.add.portalkit #namespace
+priorityStatisticResult ch.ivy.ws.addon.PriorityStatistic #field
+caseStateStatisticResult ch.ivy.ws.addon.CaseStateStatistic #field
+expiryStatisticResult java.util.List<ch.ivy.ws.addon.ExpiryStatistic> #field
+serverId Long #field
+jsonQuery String #field
+involvedApplications java.util.List<String> #field
+elapsedTimeStatisticResult java.util.List<ch.ivy.ws.addon.ElapsedTimeStatistic> #field
+caseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field

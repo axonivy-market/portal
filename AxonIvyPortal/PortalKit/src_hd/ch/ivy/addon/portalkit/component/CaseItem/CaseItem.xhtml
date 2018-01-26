@@ -28,9 +28,13 @@
         <h:panelGroup layout="block" styleClass="case-header-data js-case-item-header">
           <p:ajax event="click" listener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}"
             update="@(.case-list-item)" oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
-          <f:passThroughAttribute name="data-content"
-            value="#{expanded ? '' : ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/showDetailsHint')}" />
           <cc:renderFacet name="caseHeader" />
+          <h:panelGroup layout="block" rendered="#{expanded}">
+            <i class="fa fa-angle-double-up case-toggle-icon" />
+          </h:panelGroup>
+          <h:panelGroup layout="block" rendered="#{not expanded}">
+            <i class="fa fa-angle-double-down case-toggle-icon" />
+          </h:panelGroup>
         </h:panelGroup>
       </div>
       <h:panelGroup layout="block" styleClass="case-header-action-cell">

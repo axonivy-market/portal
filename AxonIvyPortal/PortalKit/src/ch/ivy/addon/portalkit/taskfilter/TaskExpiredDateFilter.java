@@ -18,7 +18,14 @@ public class TaskExpiredDateFilter extends TaskFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/expiry");
+    StringBuilder sb = new StringBuilder();
+    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/expiry"));
+    sb.append(" (");
+    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/from"));
+    sb.append("/");
+    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/to"));
+    sb.append(")");
+    return sb.toString();
   }
 
   @Override

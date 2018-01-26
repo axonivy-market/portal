@@ -224,9 +224,8 @@
 						<para>
 							This function will be disabled if session user does not have
 							<code>IPermission.USER_READ_OWN_ABSENCES</code>
-							or
-							<code>IPermission.USER_READ_ABSENCES</code>
-							.
+							and
+							<code>IPermission.USER_READ_ABSENCES</code>.
 						</para>
 					</listitem>
 					<listitem>
@@ -235,10 +234,9 @@
 						</para>
 						<para>
 							This function will be disabled if session user does not have
-							<code>IPermission.USER_CREATE_OWN_ABSENCES</code>
-							or
-							<code>IPermission.USER_CREATE_OWN_ABSENCES</code>
-							.
+							<code>IPermission.USER_CREATE_OWN_ABSENCE</code>
+							and
+							<code>IPermission.USER_CREATE_ABSENCE</code>.
 						</para>
 					</listitem>
 					<listitem>
@@ -247,10 +245,23 @@
 						</para>
 						<para>
 							This function will be disabled if session user does not have
-							<code>IPermission.USER_DELETE_OWN_ABSENCES</code>
-							or
+							<code>IPermission.USER_DELETE_OWN_ABSENCE</code>
+							and
+							<code>IPermission.USER_DELETE_ABSENCE</code>.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							MANAGE EVERY USER ABSENCES
+						</para>
+						<para>
+							User can read, add, delete absences of all users. This function will be disabled if session user does not have all
+							of the following permissions:
+							<code>IPermission.USER_CREATE_ABSENCE</code>
+							,
 							<code>IPermission.USER_DELETE_ABSENCE</code>
-							.
+							,
+							<code>IPermission.USER_READ_ABSENCES</code>.
 						</para>
 					</listitem>
 				</itemizedlist>
@@ -304,7 +315,8 @@
 						</para>
 						<para>
 							This function will be enabled if session user has permission
-							<code>IPermission.TASK_RESET_OWN_WORKING_TASK</code>
+							<code>IPermission.TASK_RESET_OWN_WORKING_TASK</code> or
+							<code>IPermission.TASK_RESET</code>
 							.
 						</para>
 						<important>
@@ -332,6 +344,44 @@
 					</listitem>
 					<listitem>
 						<para>
+							CHANGE TASK NAME
+						</para>
+						<para>
+							This function will be enabled if session user has
+							<code>IPermission.TASK_WRITE_NAME</code>
+							.
+						</para>
+						<important>
+							Task state cannot be one of following values:
+							<code>DONE</code>
+							,
+							<code>DESTROYED</code>
+							,
+							<code>FAILED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							CHANGE TASK DESCRIPTION
+						</para>
+						<para>
+							This function will be enabled if session user has
+							<code>IPermission.TASK_WRITE_DESCRIPTION</code>
+							.
+						</para>
+						<important>
+							Task state cannot be one of following values:
+							<code>DONE</code>
+							,
+							<code>DESTROYED</code>
+							,
+							<code>FAILED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
 							CHANGE DEADLINE
 						</para>
 						<para>
@@ -344,8 +394,6 @@
 							<code>DONE</code>
 							,
 							<code>DESTROYED</code>
-							,
-							<code>RESUMED</code>
 							,
 							<code>FAILED</code>
 							.
@@ -361,12 +409,10 @@
 							.
 						</para>
 						<important>
-							Task state has to be one of following:
+							Task state cannot be one of following:
 							<code>DONE</code>
 							,
 							<code>DESTROYED</code>
-							,
-							<code>RESUMED</code>
 							,
 							<code>FAILED</code>
 							.
@@ -400,6 +446,34 @@
 							Case state has to be
 							<code>RUNNING</code>
 							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							CHANGE CASE NAME
+						</para>
+						<para>
+							Delete case function will be enabled if session user has
+							<code>IPermission.CASE_WRITE_NAME</code>
+							.
+						</para>
+						<important>
+							Case state cannot to be:
+							<code>DESTROYED</code>.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							CHANGE CASE DESCRIPTION
+						</para>
+						<para>
+							Delete case function will be enabled if session user has
+							<code>IPermission.CASE_WRITE_DESCRIPTION</code>
+							.
+						</para>
+						<important>
+							Case state cannot to be:
+							<code>DESTROYED</code>.
 						</important>
 					</listitem>
 				</itemizedlist>

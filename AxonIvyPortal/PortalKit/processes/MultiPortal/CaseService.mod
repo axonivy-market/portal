@@ -221,6 +221,19 @@ Ce0 @PushWFArc f207 '' #zField
 Ce0 @PushWFArc f208 '' #zField
 Ce0 @PushWFArc f209 '' #zField
 Ce0 @PushWFArc f210 '' #zField
+Ce0 @StartSub f211 '' #zField
+Ce0 @GridStep f212 '' #zField
+Ce0 @CallSub f213 '' #zField
+Ce0 @PushWFArc f216 '' #zField
+Ce0 @GridStep f219 '' #zField
+Ce0 @PushWFArc f220 '' #zField
+Ce0 @PushWFArc f218 '' #zField
+Ce0 @Alternative f221 '' #zField
+Ce0 @PushWFArc f215 '' #zField
+Ce0 @PushWFArc f223 '' #zField
+Ce0 @CallSub f224 '' #zField
+Ce0 @PushWFArc f225 '' #zField
+Ce0 @PushWFArc f214 '' #zField
 >Proto Ce0 Ce0 CaseService #zField
 Ce0 f24 inParamDecl '<ch.ivy.addon.portalkit.bo.RemoteCase remoteCase> param;' #txt
 Ce0 f24 inParamTable 'out.remoteCase=param.remoteCase;
@@ -237,14 +250,13 @@ Ce0 f24 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>loadCaseAdditionalProperties
-(RemoteCase)</name>
-        <nameStyle>41,5,7
+        <name>loadCaseAdditionalProperties(RemoteCase)</name>
+        <nameStyle>40,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f24 795 35 26 26 14 -5 #rect
+Ce0 f24 795 35 26 26 -84 20 #rect
 Ce0 f24 @|StartSubIcon #fIcon
 Ce0 f33 inParamDecl '<ch.ivy.addon.portalkit.bo.RemoteCase remoteCases> param;' #txt
 Ce0 f33 inParamTable 'out.remoteCase=param.remoteCases;
@@ -355,7 +367,7 @@ Ce0 f10 requestActionDecl '<java.lang.String endpoint,java.lang.Long caseId,ch.i
 ' #txt
 Ce0 f10 requestMappingAction 'param.endpoint=in.endpoint;
 param.caseId=in.remoteCase.getId();
-param.server=in.server;
+param.server=in.remoteCase.server;
 ' #txt
 Ce0 f10 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
@@ -736,19 +748,19 @@ Ce0 f81 1016 756 1016 779 #arcP
 Ce0 f107 expr in #txt
 Ce0 f107 1016 718 1016 732 #arcP
 Ce0 f16 expr out #txt
-Ce0 f16 808 260 1009 697 #arcP
-Ce0 f16 1 808 512 #addKink
+Ce0 f16 808 260 1002 704 #arcP
+Ce0 f16 1 808 704 #addKink
 Ce0 f16 1 0.5175178126055271 0 0 #arcLabel
 Ce0 f31 expr out #txt
 Ce0 f31 1016 212 1016 690 #arcP
 Ce0 f31 0 0.788046227337837 0 0 #arcLabel
 Ce0 f27 expr out #txt
-Ce0 f27 1248 284 1024 698 #arcP
-Ce0 f27 1 1248 512 #addKink
+Ce0 f27 1248 284 1030 704 #arcP
+Ce0 f27 1 1248 704 #addKink
 Ce0 f27 1 0.3899443733485098 0 0 #arcLabel
 Ce0 f1 expr out #txt
-Ce0 f1 1456 284 1026 700 #arcP
-Ce0 f1 1 1456 520 #addKink
+Ce0 f1 1456 284 1030 704 #arcP
+Ce0 f1 1 1456 704 #addKink
 Ce0 f1 1 0.35114049847714135 0 0 #arcLabel
 Ce0 f5 inParamDecl '<ch.ivy.addon.portalkit.bo.RemoteCase remoteCase> param;' #txt
 Ce0 f5 inParamTable 'out.remoteCase=param.remoteCase;
@@ -1197,12 +1209,12 @@ Ce0 f117 1944 220 1944 260 #arcP
 Ce0 f118 expr out #txt
 Ce0 f118 1944 156 1944 196 #arcP
 Ce0 f32 expr out #txt
-Ce0 f32 1696 284 1027 701 #arcP
-Ce0 f32 1 1696 536 #addKink
+Ce0 f32 1696 284 1030 704 #arcP
+Ce0 f32 1 1696 704 #addKink
 Ce0 f32 1 0.37977708879558797 0 0 #arcLabel
 Ce0 f120 expr out #txt
-Ce0 f120 1944 284 1028 702 #arcP
-Ce0 f120 1 1944 544 #addKink
+Ce0 f120 1944 284 1030 704 #arcP
+Ce0 f120 1 1944 704 #addKink
 Ce0 f120 1 0.4121381559080655 0 0 #arcLabel
 Ce0 f169 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f169 processCall ServiceIntegrators/CaseServiceIntegrator:createNote(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long,String,String) #txt
@@ -1306,8 +1318,8 @@ Ce0 f178 2576 220 2576 260 #arcP
 Ce0 f179 expr out #txt
 Ce0 f179 2576 156 2576 196 #arcP
 Ce0 f181 expr out #txt
-Ce0 f181 2576 284 1029 703 #arcP
-Ce0 f181 1 2576 584 #addKink
+Ce0 f181 2576 284 1030 704 #arcP
+Ce0 f181 1 2576 704 #addKink
 Ce0 f181 1 0.4351014082699338 0 0 #arcLabel
 Ce0 f123 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f123 processCall ServiceIntegrators/CaseServiceIntegrator:findNotes(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
@@ -1408,8 +1420,8 @@ Ce0 f132 2928 236 2928 276 #arcP
 Ce0 f133 expr out #txt
 Ce0 f133 2928 172 2928 212 #arcP
 Ce0 f135 expr out #txt
-Ce0 f135 2928 300 1029 703 #arcP
-Ce0 f135 1 2928 584 #addKink
+Ce0 f135 2928 300 1030 704 #arcP
+Ce0 f135 1 2928 704 #addKink
 Ce0 f135 1 0.44713244673167574 0 0 #arcLabel
 Ce0 f138 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
@@ -1973,8 +1985,8 @@ Ce0 f97 3136 156 3136 196 #arcP
 Ce0 f100 expr out #txt
 Ce0 f100 3136 77 3136 132 #arcP
 Ce0 f102 expr out #txt
-Ce0 f102 3136 300 1029 703 #arcP
-Ce0 f102 1 3136 584 #addKink
+Ce0 f102 3136 300 1030 704 #arcP
+Ce0 f102 1 3136 704 #addKink
 Ce0 f102 1 0.42598901421693425 0 0 #arcLabel
 Ce0 f104 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2074,7 +2086,7 @@ Ce0 f114 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f114 3387 55 26 26 14 0 #rect
+Ce0 f114 3387 55 26 26 -149 -31 #rect
 Ce0 f114 @|StartSubIcon #fIcon
 Ce0 f115 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f115 processCall MultiPortal/ApplicationService:getApplicationConfiguredOn(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -2323,7 +2335,7 @@ Ce0 f154 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f154 3800 55 26 26 14 0 #rect
+Ce0 f154 3800 55 26 26 -174 -34 #rect
 Ce0 f154 @|StartSubIcon #fIcon
 Ce0 f155 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
@@ -2585,7 +2597,7 @@ out.caseSearchCriteria.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
 out.serverId=param.serverId;
 ' #txt
-Ce0 f187 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<java.lang.String> caseCategories> result;
+Ce0 f187 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<ch.ivy.ws.addon.CategoryData> caseCategories> result;
 ' #txt
 Ce0 f187 outParamTable 'result.errors=in.errors;
 result.caseCategories=in.caseCategories;
@@ -2603,7 +2615,7 @@ Ce0 f187 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f187 4184 54 26 26 14 0 #rect
+Ce0 f187 4184 54 26 26 -174 -34 #rect
 Ce0 f187 @|StartSubIcon #fIcon
 Ce0 f188 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f188 processCall MultiPortal/ApplicationService:getApplicationConfiguredOn(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -2874,6 +2886,146 @@ Ce0 f210 4183 171 1030 704 #arcP
 Ce0 f210 1 4096 171 #addKink
 Ce0 f210 2 4096 704 #addKink
 Ce0 f210 2 0.41806125670982003 0 0 #arcLabel
+Ce0 f211 inParamDecl '<java.lang.Long serverId,java.lang.Long caseId,java.lang.String propertyName> param;' #txt
+Ce0 f211 inParamTable 'out.additionalPropertyName=param.propertyName;
+out.caseId=param.caseId;
+out.serverId=param.serverId;
+' #txt
+Ce0 f211 outParamDecl '<java.util.List<ch.ivy.ws.addon.WsException> errors,java.lang.String propertyValue> result;
+' #txt
+Ce0 f211 outParamTable 'result.errors=in.errors;
+result.propertyValue=in.additionalPropertyValue;
+' #txt
+Ce0 f211 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
+' #txt
+Ce0 f211 callSignature getCaseAdditionalPropertyValue(Long,Long,String) #txt
+Ce0 f211 type ch.ivyteam.wf.processes.CaseServiceData #txt
+Ce0 f211 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>getCaseAdditionalPropertyValue(Long,Long,String)</name>
+        <nameStyle>48,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f211 4497 73 30 30 -139 -38 #rect
+Ce0 f211 @|StartSubIcon #fIcon
+Ce0 f212 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
+' #txt
+Ce0 f212 actionTable 'out=in;
+' #txt
+Ce0 f212 actionCode 'import ch.ivy.addon.portalkit.service.ServerService;
+
+ServerService serverService = new ServerService();
+in.server = serverService.findById(in.serverId);' #txt
+Ce0 f212 type ch.ivyteam.wf.processes.CaseServiceData #txt
+Ce0 f212 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find server</name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f212 4492 164 40 24 28 -8 #rect
+Ce0 f212 @|StepIcon #fIcon
+Ce0 f213 type ch.ivyteam.wf.processes.CaseServiceData #txt
+Ce0 f213 processCall MultiPortal/CaseService:loadCaseAdditionalProperties(ch.ivy.addon.portalkit.bo.RemoteCase) #txt
+Ce0 f213 doCall true #txt
+Ce0 f213 requestActionDecl '<ch.ivy.addon.portalkit.bo.RemoteCase remoteCase> param;
+' #txt
+Ce0 f213 requestMappingAction 'param.remoteCase=in.remoteCase;
+' #txt
+Ce0 f213 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
+' #txt
+Ce0 f213 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.remoteCase=result.remoteCase;
+' #txt
+Ce0 f213 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find All 
+Additional Properties</name>
+        <nameStyle>31,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f213 4492 452 40 24 30 -18 #rect
+Ce0 f213 @|CallSubIcon #fIcon
+Ce0 f216 expr out #txt
+Ce0 f216 4512 103 4512 164 #arcP
+Ce0 f219 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
+' #txt
+Ce0 f219 actionTable 'out=in;
+' #txt
+Ce0 f219 actionCode 'in.additionalPropertyValue = in.remoteCase.getAdditionalProperty(in.additionalPropertyName);' #txt
+Ce0 f219 type ch.ivyteam.wf.processes.CaseServiceData #txt
+Ce0 f219 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Select result</name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f219 4492 548 40 24 25 -9 #rect
+Ce0 f219 @|StepIcon #fIcon
+Ce0 f220 expr out #txt
+Ce0 f220 4512 476 4512 548 #arcP
+Ce0 f218 expr out #txt
+Ce0 f218 4512 572 1030 704 #arcP
+Ce0 f218 1 4512 704 #addKink
+Ce0 f218 1 0.40582636932484784 0 0 #arcLabel
+Ce0 f221 type ch.ivyteam.wf.processes.CaseServiceData #txt
+Ce0 f221 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no error?</name>
+        <nameStyle>9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f221 4496 336 32 32 20 -8 #rect
+Ce0 f221 @|AlternativeIcon #fIcon
+Ce0 f215 expr in #txt
+Ce0 f215 outCond org.apache.commons.collections4.CollectionUtils.isEmpty(in.errors) #txt
+Ce0 f215 4512 368 4512 452 #arcP
+Ce0 f223 expr in #txt
+Ce0 f223 4496 352 1030 704 #arcP
+Ce0 f223 1 4416 352 #addKink
+Ce0 f223 2 4416 704 #addKink
+Ce0 f223 2 0.9339572951585267 0 0 #arcLabel
+Ce0 f224 type ch.ivyteam.wf.processes.CaseServiceData #txt
+Ce0 f224 processCall MultiPortal/CaseService:findCase(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Ce0 f224 doCall true #txt
+Ce0 f224 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
+' #txt
+Ce0 f224 requestMappingAction 'param.server=in.server;
+param.caseId=in.caseId;
+' #txt
+Ce0 f224 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
+' #txt
+Ce0 f224 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.remoteCase=result.remoteCase;
+' #txt
+Ce0 f224 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find Case</name>
+        <nameStyle>9,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f224 4492 244 40 24 26 -8 #rect
+Ce0 f224 @|CallSubIcon #fIcon
+Ce0 f225 expr out #txt
+Ce0 f225 4512 188 4512 244 #arcP
+Ce0 f214 expr out #txt
+Ce0 f214 4512 268 4512 336 #arcP
 >Proto Ce0 .type ch.ivyteam.wf.processes.CaseServiceData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3125,3 +3277,17 @@ Ce0 f190 out f209 tail #connect
 Ce0 f209 head f191 mainIn #connect
 Ce0 f197 out f210 tail #connect
 Ce0 f210 head f148 in #connect
+Ce0 f211 mainOut f216 tail #connect
+Ce0 f216 head f212 mainIn #connect
+Ce0 f213 mainOut f220 tail #connect
+Ce0 f220 head f219 mainIn #connect
+Ce0 f219 mainOut f218 tail #connect
+Ce0 f218 head f148 in #connect
+Ce0 f221 out f215 tail #connect
+Ce0 f215 head f213 mainIn #connect
+Ce0 f221 out f223 tail #connect
+Ce0 f223 head f148 in #connect
+Ce0 f212 mainOut f225 tail #connect
+Ce0 f225 head f224 mainIn #connect
+Ce0 f224 mainOut f214 tail #connect
+Ce0 f214 head f221 in #connect

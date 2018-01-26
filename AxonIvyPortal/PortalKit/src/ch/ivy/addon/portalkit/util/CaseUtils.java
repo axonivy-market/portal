@@ -10,9 +10,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
 import ch.ivyteam.ivy.persistence.OrderDirection;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
-import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseProperty;
@@ -586,10 +583,11 @@ public final class CaseUtils {
    * @return hasReadAkkCasesPermission True : has read all cases permission, False : do not have read all cases
    *         permission
    */
-  private static boolean checkReadAllCasesPermission() {
-    ISecurityContext securityContext = Ivy.session().getSecurityContext();
-    ISecurityDescriptor securityDescriptor = Ivy.request().getApplication().getSecurityDescriptor();
-    boolean hasReadAllCasesPermission = securityContext.hasPermission(securityDescriptor, IPermission.CASE_READ_ALL);
+  public static boolean checkReadAllCasesPermission() {
+    boolean hasReadAllCasesPermission =
+        Ivy.session()
+            .hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
+                ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL);
     return hasReadAllCasesPermission;
   }
 

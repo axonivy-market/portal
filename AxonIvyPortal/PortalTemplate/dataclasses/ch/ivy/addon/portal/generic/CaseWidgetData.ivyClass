@@ -1,0 +1,6 @@
+CaseWidgetData #class
+ch.ivy.addon.portal.generic #namespace
+caseId Long #field
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+serverId Long #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field

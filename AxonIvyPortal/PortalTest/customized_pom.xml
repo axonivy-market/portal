@@ -9,12 +9,13 @@
   <properties>
 	<powermock.version>1.6.6</powermock.version>
 	<ivy.engine.version>7.0.0</ivy.engine.version>
+	<portal.version>${portal.released.version}</portal.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
       <artifactId>portalTemplate</artifactId>
-      <version>7.0.0.0-SNAPSHOT</version>
+      <version>${portal.version}</version>
       <type>iar</type>
     </dependency>
     <dependency>
@@ -62,7 +63,7 @@
         <version>7.0.1</version>
         <extensions>true</extensions>
         <configuration>					
-			<engineDirectory>${settings.localRepository}/.cache/ivy/${ivy.engine.version}</engineDirectory>										
+			<engineDirectory>../../engine</engineDirectory>										
 			<encoding>UTF-8</encoding>
 		</configuration>
         <executions>
@@ -79,7 +80,7 @@
               <goal>deploy-iar</goal>
             </goals>
             <configuration>
-              <deployIarFile>D:\tools\jenkins\slave\workspace\PortalKitTestHelperDeployToAllServers-nightly\target\portalKitTestHelper-7.0.0.0-SNAPSHOT.iar</deployIarFile>
+              <deployIarFile>..\PortalKitTestHelper\target\portalKitTestHelper-${portal.version}.iar</deployIarFile>
               <deployToEngineApplication>Portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
@@ -90,7 +91,7 @@
               <goal>deploy-iar</goal>
             </goals>
             <configuration>
-              <deployIarFile>D:\tools\jenkins\slave\workspace\InternalSupportDeployToAllServers-nightly\target\internalSupport-7.0.0.0-SNAPSHOT.iar</deployIarFile>
+              <deployIarFile>..\..\Showcase\InternalSupport\target\internalSupport-${portal.version}.iar</deployIarFile>
               <deployToEngineApplication>Portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>

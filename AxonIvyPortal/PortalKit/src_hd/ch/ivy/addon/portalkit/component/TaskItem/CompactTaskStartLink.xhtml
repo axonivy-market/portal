@@ -9,14 +9,18 @@
   <p:commandLink rendered="#{task.state != 'RESUMED' and task.canResume}" actionListener="#{logic.openTask(task)}"
     styleClass="compact-task-start-link" onsuccess="#{cc.attrs.onTaskStartCallback}">
     <f:subview id="task-start-item-view">
-      <ui:include src="CompactTaskStartItem.xhtml" />
+      <ui:include src="CompactTaskStartItem.xhtml" >
+        <ui:param name="dataModel" value="#{dataModel}" />
+      </ui:include>
     </f:subview>
   </p:commandLink>
 
   <p:commandLink rendered="#{task.state == 'RESUMED' and task.canResume}" styleClass="compact-task-start-link"
     oncomplete="PF('reset-task-dialog').show()" actionListener="#{data.setSelectedTask(task)}">
     <f:subview id="task-start-and-reset-item-view">
-      <ui:include src="CompactTaskStartItem.xhtml" />
+      <ui:include src="CompactTaskStartItem.xhtml" >
+        <ui:param name="dataModel" value="#{dataModel}" />
+      </ui:include>
     </f:subview>
   </p:commandLink>
 </ui:composition>

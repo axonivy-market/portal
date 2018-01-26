@@ -5,10 +5,11 @@
   <cc:attribute name="componentId" default="task-id" />
   <cc:attribute name="value" required="true" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="dataModel" />
 </cc:interface>
 
 <cc:implementation>
-  <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}"
-    styleClass="id-cell js-id-cell default-task-cell #{cc.attrs.styleClass}" />
+  <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" rendered="#{cc.attrs.dataModel.isSelectedColumn('ID')}"
+    styleClass="id-cell default-task-cell #{cc.attrs.styleClass}  #{cc.attrs.dataModel.isAutoHideColumns()?'js-id-cell':''}" />
 </cc:implementation>
 </html>

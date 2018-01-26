@@ -1061,7 +1061,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .widget-header-main.mod-expanded-mode {
-  flex: 1 0 50%;
+  flex: 1 0 45%;
 }
 
 .widget-header-content-filter.mod-expanded-mode {
@@ -1105,6 +1105,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: rgba(0,0,0,0.4);
   flex: 1 0 100%;
   line-height: 45px;
+  margin-right: 10px;
 }
 
 .widget-sort-menu.full-mode {
@@ -1136,6 +1137,13 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: black;
   font-size: 1.2rem;
   width: 185px;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .widget-header-filter-input.ui-inputfield {
+    width: 150px;
+  }
 }
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
@@ -1502,6 +1510,18 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   -o-transition: none;
   transition: none;
 }
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .case-widget-container .filter-widget {
+    width: 90%;
+  }
+
+  .case-widget-container .filter-add-container {
+    margin-top: 30px;
+    margin-left: auto;
+  }
+}
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/
@@ -1533,24 +1553,16 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   color: rgba(0,0,0,0.5) !important;
 }
 
-.case-header-data:before {
-  content: attr(data-content);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.case-show-detail-container .case-toggle-icon {
+  width: 5%;
+  display: block;
   text-align: center;
   font-size: 1.2rem;
-  opacity: 0;
-  transition: opacity .65s;
-}
-
-.case-header-data:hover:before {
-  opacity: .6;
-}
-
-.widget-content-list-item.mod-expanded .case-header-data:hover:before {
-  content: none;
+  transform: scale(1.5,1);
+  color: rgba(0,0,0,0.5) !important;
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
 }
 
 .case-body {
@@ -1794,6 +1806,7 @@ a.case-details-document-add-link {
 
 .case-show-detail-container {
   flex: 20;
+  cursor: pointer;
 }
 
 .case-header-name-desc-cell {
@@ -1808,7 +1821,6 @@ a.case-details-document-add-link {
   align-items: center;
   position: relative;
   font-size: 1.2rem;
-  cursor: pointer;
 }
 
 .case-header-data .case-header-default-cell {
@@ -1836,7 +1848,7 @@ a.case-details-document-add-link {
 }
 
 .case-header-action-cell {
-  flex: 0 0 100px;
+  flex: 0 0 85px;
   text-align: right;
 }
 
@@ -2460,7 +2472,7 @@ a.compact-task-start-link:hover {
 .task-start-info {
   flex: 1;
   padding-right: 10px;
-  min-width: 0;
+  min-width: 105px;
 }
 
 .task-start-list .default-task-cell {
@@ -2501,6 +2513,10 @@ a.compact-task-start-link:hover {
 
 .task-start-list .action-cell {
   text-align: right;
+}
+
+.task-start-list .task-custom-field-cell {
+  flex: 0 0 150px;
 }
 
 .task-start-list .without-button-labels {
@@ -2571,7 +2587,8 @@ a.compact-task-start-link:hover {
   background-color: rgba(0,0,0,0.04);
 }
 
-.show-task-detail-link{
+.show-task-detail-link,
+.show-case-detail-link{
   width: 5%;
   margin-left: -2.5%;
   position: absolute;
@@ -3626,17 +3643,47 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   color: #1A1A1A;
 }
 
-.compact-mode .jqplot-target {
-  width: 320px;
-}
-
 .statistic-widget .jqplot-target, .jqplot-target table.jqplot-table-legend {
   font-size: 1.2rem;
 }
 
 .statistic-carousel {
-  width: 35rem;
-  text-align: center;
+  margin: auto;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .statistic-carousel {
+    width: 27rem;
+    text-align: center;
+  }
+  .compact-mode .jqplot-target {
+    width: 25rem;
+  }
+}
+
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .statistic-carousel {
+    width: 30rem;
+    text-align: center;
+  }
+
+  .compact-mode .jqplot-target {
+    width: 28rem;
+  }
+}
+
+/* Large screen */
+@media (min-width: 1920px) {
+  .statistic-carousel {
+    width: 35rem;
+    text-align: center;
+  }
+
+  .compact-mode .jqplot-target {
+    width: 320px;
+  }
 }
 
 .statistic-carousel .ui-carousel-item .ui-panelgrid {
@@ -3691,15 +3738,33 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .statistic-selection .add-link {
   margin: auto;
-  width: 15rem;
 }
 
-.statistic-chart {
-  width: 34rem;
-  height: 34rem;
+/* Small screen */
+@media (max-width: 1365px) {
+  .statistic-chart {
+    width: 25rem;
+    height: 25rem;
+  }
 }
 
-.edit-statistic-container td {
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .statistic-chart {
+    width: 34rem;
+    height: 34rem;
+  }
+}
+
+/* Large screen */
+@media (min-width: 1920px) {
+  .statistic-chart {
+    width: 34rem;
+    height: 34rem;
+  }
+}
+
+.edit-statistic-container td:not(.align-bottom) {
   vertical-align: top;
 }
 
@@ -3728,7 +3793,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .statistic-filter-container {
   max-height: 20rem;
-  width: 25rem;
+  max-width: 25rem;
   margin-top: 1rem;
 }
 
@@ -4387,4 +4452,22 @@ margin-top
 
 .preview-users-datatable .ui-datatable-scrollable-body {
   overflow-x: hidden;
+}
+
+.config-columns-panel {
+  min-width: 250px;
+}
+
+.config-columns-button {
+  margin-top: 21px;
+}
+
+.config-checkbox-container {
+  border-bottom: 1px solid black;
+  margin: 3px 2px;
+  padding-bottom: 2px;
+}
+
+.config-columns-panel.ui-overlay-hidden {
+  display: none;
 }

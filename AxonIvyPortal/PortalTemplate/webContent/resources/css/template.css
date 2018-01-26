@@ -568,6 +568,10 @@
   border: none;
 }
 
+.second-level-menu-body .ui-treetable .ui-icon {
+  margin-right: 3px;
+}
+
 .second-level-menu-body .ui-treetable .ui-treetable-indent {
   width: 10px;
 }
@@ -606,7 +610,11 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   padding: 20px 7px 20px 15px;
 }
-
+.second-level-menu-body .ui-treetable table tbody tr[data-prk="root"] td .ui-treetable-toggler {
+  margin-top: -20px;
+  margin-bottom: -20px;
+  height: 35px;
+}
 .second-level-menu.on .second-level-menu-body .ui-treetable table tbody tr td {
   color: rgba(0, 0, 0, 0.5);
 }
@@ -620,20 +628,12 @@
   font-weight: bold;
 }
 
-.second-level-menu .second-level-menu-icon {
-  display: inline-block;
-  width: 6px;
-  margin-right: 3px;
-}
-
-.second-level-menu .ui-treetable-selectable-node.on:not(.collapsed) .second-level-menu-icon {
-  font-weight: bold;
-  transform: rotate(90deg);
-}
-
-.second-level-menu .ui-treetable .ui-treetable-toggler {
-  display: none;
-}
+/* .second-level-menu .second-level-menu-icon.ui-treetable-toggler { */
+/*   display: inline-block; */
+/*   width: 6px; */
+/*   margin-right: 3px; */
+/*   margin-top: 0; */
+/* } */
 
 .second-level-menu .ui-treetable-scrollable-body {
   padding-right: 0px !important;
@@ -653,6 +653,12 @@
 
 #second-level-menu .ui-treetable table tbody tr:not([data-prk="root"]) td {
     border-bottom: none;
+}
+
+#second-level-menu .ui-treetable table tbody tr:not([data-prk="root"]) td .ui-treetable-toggler {
+  margin-top: -10px;
+  margin-bottom: -10px;
+  height: 25px;
 }
 
 /* Responsive design */
@@ -728,7 +734,7 @@
     width: 26%;
   }
   .dashboard-main-content-2nd-col {
-    width: 36%;
+    width: auto;
   }
   .dashboard-main-content-3rd-col {
     display: block;
@@ -768,4 +774,37 @@
 
 .note-show-more-link {
     color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.additional-case-details-link {
+	font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.5) !important;
+	position: absolute;
+    bottom: 18px;
+    margin-left: 15px;
+}
+
+.additional-case-details-data-grid{
+	margin-left: 15px;
+}
+
+.additional-case-details-data-1st-column {
+	padding-right: 10px;
+	text-align: left;
+	word-break: normal;
+	white-space: nowrap;
+	font-size: 1.2rem;
+	color: rgba(0, 0, 0, 0.4);
+	line-height: 1.8rem;
+}
+
+.additional-case-details-data-2nd-column {
+	text-align: left;
+	font-family: 'robotomedium';
+	line-height: 1.8rem;
+	font-size: 1.2rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 400px;
 }

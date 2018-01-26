@@ -4,18 +4,20 @@ import java.util.Optional;
 
 public enum TestAccount {
 
-  DEMO_USER(nameOfDemoUser(), passwordOfDemoUser()),
+  DEMO_USER(nameOfDemoUser(), passwordOfDemoUser(), "Portal Demo User"),
 
-  ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser()),
+  ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser(), nameOfAdminUser()),
 
-  TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123");
+  TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "test_change_password_user");
   
   private String username;
   private String password;
+  private String fullName;
 
-  private TestAccount(String username, String password) {
+  private TestAccount(String username, String password, String fullName) {
     this.username = username;
     this.password = password;
+    this.fullName = fullName;
   }
 
   private static String nameOfDemoUser() {
@@ -46,4 +48,7 @@ public enum TestAccount {
     return password;
   }
 
+  public String getFullName() {
+    return fullName;
+  }
 }

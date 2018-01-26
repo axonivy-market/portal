@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <f:event listener="#{logic.findCaseCategory}" type="preRenderComponent" />
+    <h:inputHidden id="second-menu-state-info" value="#{menuStateBean.menuState}" />
+    <p:treeTable id="main-menu-container" selectionMode="single" value="#{caseMenuBean.rootNode}" var="menuItem"
+      selection="#{data.selectedNode}" nodeVar="node" scrollable="true">
+      <p:ajax event="select" global="false" listener="#{logic.loadCase}" process=":#{cc.clientId}:second-menu-state-info" />
+      <p:ajax event="expand" global="false" process="@none" oncomplete="wireListenerToSecondMenuItem()" />
+      <f:event listener="#{caseMenuDataBean.setPortalCaseMenuData(data)}" type="preRenderComponent" />
+      <f:event listener="#{caseMenuBean.initMenuBean(data, menuStateBean.menuState)}" type="preRenderComponent" />
+      <p:column styleClass="left-sidebar-animation">
+        <h:outputText value="#{menuItem.value}" class="js-second-level-menu" />
+      </p:column>
+    </p:treeTable>
+  </div>
+</cc:implementation>
+</html>

@@ -3,8 +3,7 @@
     <user>
         <username>demo</username>
         <password>+d3m0++</password>
-        <fullName>demo</fullName>
-        <role>Test Role</role>
+        <fullName>Portal Demo User</fullName>
     </user>
     <user>
         <username>portaladmin</username>

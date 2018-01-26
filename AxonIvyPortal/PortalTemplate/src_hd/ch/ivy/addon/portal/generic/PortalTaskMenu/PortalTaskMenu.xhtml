@@ -11,15 +11,14 @@
 <cc:implementation>
   <div id="#{cc.clientId}">
     <f:event listener="#{logic.findTaskCategory}" type="preRenderComponent" />
-    <h:inputHidden id="task-menu-state-info" value="#{menuStateBean.menuState}" />
+    <h:inputHidden id="second-menu-state-info" value="#{menuStateBean.menuState}" />
     <p:treeTable id="main-menu-container" selectionMode="single" value="#{taskMenuBean.rootNode}" var="menuItem"
       selection="#{data.selectedNode}" nodeVar="node" scrollable="true" >
-      <p:ajax event="select" global="false" listener="#{logic.loadTask}" process=":#{cc.clientId}:task-menu-state-info" />
+      <p:ajax event="select" global="false" listener="#{logic.loadTask}" process=":#{cc.clientId}:second-menu-state-info" />
+      <p:ajax event="expand" global="false" process="@none" oncomplete="wireListenerToSecondMenuItem()" />
       <f:event listener="#{taskMenuDataBean.setPortalTaskMenuData(data)}" type="preRenderComponent" />
-      <f:event listener="#{taskMenuBean.initMenuBean(data)}" type="preRenderComponent" />
+      <f:event listener="#{taskMenuBean.initMenuBean(data, menuStateBean.menuState)}" type="preRenderComponent" />
       <p:column styleClass="left-sidebar-animation">
-        <span
-          class="second-level-menu-icon fa fa-angle-right #{!empty node.children and !menuItem.firstCategoryNode ? '' : 'hide'}" />
         <h:outputText value="#{menuItem.value}" class="js-second-level-menu" />
       </p:column>
     </p:treeTable>

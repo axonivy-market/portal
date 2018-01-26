@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:define name="pageTitle">Customization Additional Case Details</ui:define>
+		<ui:define name="simplePageContent">
+			<div class="grid-item-header">Customization Additional Case Details</div>
+			<div class="Separator" />
+			<h:panelGrid id="additional-case-details-data-grid" styleClass="additional-case-details-data-grid" columns="2"
+				columnClasses="additional-case-details-data-1st-column, additional-case-details-data-2nd-column"
+				rowClasses="case-details-row-space">
+				<h:outputText value="Custom Varchar Field 1" />
+				<h:outputText id="custom-varchar-field-1" value="#{data.remoteCase.customVarCharField1}" />
+				<h:outputText value="Custom Varchar Field 2" />
+				<h:outputText id="custom-varchar-field-2" value="#{data.remoteCase.customVarCharField2}" />
+				<h:outputText value="Custom Varchar Field 3" />
+				<h:outputText id="custom-varchar-field-3" value="#{data.remoteCase.customVarCharField3}" />
+				<h:outputText value="Custom Varchar Field 4" />
+				<h:outputText id="custom-varchar-field-4" value="#{data.remoteCase.customVarCharField4}" />
+				<h:outputText value="Custom Varchar Field 5" />
+				<h:outputText id="custom-varchar-field-5" value="#{data.remoteCase.customVarCharField5}" />
+				<h:panelGroup />
+				<h:panelGroup />
+				<h:outputText value="Custom Decimal Field 1" />
+				<h:outputText id="custom-decimal-field-1" value="#{caseWidgetBean.isNaN(data.remoteCase.customDecimalField1) ? '' : data.remoteCase.customDecimalField1}" >
+					<f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
+				</h:outputText>
+				<h:outputText value="Custom Decimal Field 2" />
+				<h:outputText id="custom-decimal-field-2" value="#{caseWidgetBean.isNaN(data.remoteCase.customDecimalField2) ? '' : data.remoteCase.customDecimalField2}" >
+					<f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
+				</h:outputText>
+				<h:outputText value="Custom Decimal Field 3" />
+				<h:outputText id="custom-decimal-field-3" value="#{caseWidgetBean.isNaN(data.remoteCase.customDecimalField3) ? '' : data.remoteCase.customDecimalField3}" >
+					<f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
+				</h:outputText>
+				<h:outputText value="Custom Decimal Field 4" />
+				<h:outputText id="custom-decimal-field-4" value="#{caseWidgetBean.isNaN(data.remoteCase.customDecimalField4) ? '' : data.remoteCase.customDecimalField4}" >
+					<f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
+				</h:outputText>
+				<h:outputText value="Custom Decimal Field 5" />
+				<h:outputText id="custom-decimal-field-5" value="#{caseWidgetBean.isNaN(data.remoteCase.customDecimalField5) ? '' : data.remoteCase.customDecimalField5}" >
+					<f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
+				</h:outputText>
+				<h:panelGroup />
+				<h:panelGroup />
+				<h:outputText value="Custom Timestamp Field 1" />
+				<h:outputText id="custom-timestamp-field-1" value="#{data.remoteCase.customTimestampField1}">
+					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+				</h:outputText>
+				<h:outputText value="Custom Timestamp Field 2" />
+				<h:outputText id="custom-timestamp-field-2" value="#{data.remoteCase.customTimestampField2}">
+					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+				</h:outputText>
+				<h:outputText value="Custom Timestamp Field 3" />
+				<h:outputText id="custom-timestamp-field-3" value="#{data.remoteCase.customTimestampField3}">
+					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+				</h:outputText>
+				<h:outputText value="Custom Timestamp Field 4" />
+				<h:outputText id="custom-timestamp-field-4" value="#{data.remoteCase.customTimestampField4}">
+					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+				</h:outputText>
+				<h:outputText value="Custom Timestamp Field 5" />
+				<h:outputText id="custom-timestamp-field-5" value="#{data.remoteCase.customTimestampField5}">
+					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+				</h:outputText>
+
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

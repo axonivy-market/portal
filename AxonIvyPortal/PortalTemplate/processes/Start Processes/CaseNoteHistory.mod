@@ -37,8 +37,8 @@ Cy0 @PushWFArc f19 '' #zField
 >Proto Cy0 Cy0 CaseNoteHistory #zField
 Cy0 f0 outLink showCaseNoteHistory.ivp #txt
 Cy0 f0 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt
-Cy0 f0 inParamDecl '<java.lang.Long serverId,java.lang.Long remoteCaseId> param;' #txt
-Cy0 f0 inParamTable 'out.remoteCaseId=param.remoteCaseId;
+Cy0 f0 inParamDecl '<java.lang.Long serverId,java.lang.Long caseId> param;' #txt
+Cy0 f0 inParamTable 'out.remoteCaseId=param.caseId;
 out.serverId=param.serverId;
 ' #txt
 Cy0 f0 actionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;

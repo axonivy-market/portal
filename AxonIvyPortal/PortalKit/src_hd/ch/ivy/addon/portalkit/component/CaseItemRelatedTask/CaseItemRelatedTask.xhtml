@@ -17,9 +17,9 @@
     <div class="Separator" />
     
     <h:panelGrid rendered="#{empty data.relatedTasks and empty data.technicalCases}" columns="1" columnClasses="case-details-data-2nd-column" rowClasses="case-details-row-space">
-        <div class="grid-item-content-list-item">
+        <h:panelGroup styleClass="grid-item-content-list-item">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasksAndCases')}" />
-        </div>
+        </h:panelGroup>
     </h:panelGrid>
     
     <p:scrollPanel rendered="#{not empty data.relatedTasks or not empty data.technicalCases}" mode="native" styleClass="case-related-tasks-scrollpanel">

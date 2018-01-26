@@ -8,26 +8,28 @@
   <cc:attribute name="stateStyleClass" />
   <cc:attribute name="stateIconStyleClass" />
   <cc:attribute name="stateTooltipStyleClass" />
+  <cc:attribute name="dataModel" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="state" value="#{cc.attrs.state}" />
-
-  <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell js-state-cell default-task-cell #{cc.attrs.stateStyleClass}">
-    <h:panelGroup id="#{cc.attrs.componentId}-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}"
-      styleClass="fa fa-play-circle task-state-open #{cc.attrs.stateIconStyleClass}" />
-    <h:panelGroup id="#{cc.attrs.componentId}-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}"
-      styleClass="fa fa-play-circle task-state-in-progress #{cc.attrs.stateIconStyleClass}" />
-    <h:panelGroup id="#{cc.attrs.componentId}-done" rendered="#{state == 'DONE'}"
-      styleClass="fa fa-check-circle task-state-done #{cc.attrs.stateIconStyleClass}" />
-    <h:panelGroup id="#{cc.attrs.componentId}-reserved" rendered="#{state == 'PARKED'}"
-      styleClass="fa fa-pause-circle task-state-reserved #{cc.attrs.stateIconStyleClass}" />
-    <h:panelGroup id="#{cc.attrs.componentId}-destroyed" rendered="#{state == 'DESTROYED' or state == 'ZOMBIE'}"
-      styleClass="fa fa-exclamation-circle task-state-zombie-destroyed #{cc.attrs.stateIconStyleClass}" />
-    <h:panelGroup id="#{cc.attrs.componentId}-system"
-      rendered="#{state != 'SUSPENDED' and state != 'UNASSIGNED' and state != 'RESUMED' and state != 'CREATED'
-     and state != 'DONE' and state != 'PARKED' and state != 'DESTROYED' and state != 'ZOMBIE'}"
-      styleClass="fa fa-cog task-state-system #{cc.attrs.stateIconStyleClass}" />
+  <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('STATE')}" >
+    <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell js-state-cell default-task-cell #{cc.attrs.stateStyleClass}">
+      <h:panelGroup id="#{cc.attrs.componentId}-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}"
+        styleClass="fa fa-play-circle task-state-open #{cc.attrs.stateIconStyleClass}" />
+      <h:panelGroup id="#{cc.attrs.componentId}-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}"
+        styleClass="fa fa-play-circle task-state-in-progress #{cc.attrs.stateIconStyleClass}" />
+      <h:panelGroup id="#{cc.attrs.componentId}-done" rendered="#{state == 'DONE'}"
+        styleClass="fa fa-check-circle task-state-done #{cc.attrs.stateIconStyleClass}" />
+      <h:panelGroup id="#{cc.attrs.componentId}-reserved" rendered="#{state == 'PARKED'}"
+        styleClass="fa fa-pause-circle task-state-reserved #{cc.attrs.stateIconStyleClass}" />
+      <h:panelGroup id="#{cc.attrs.componentId}-destroyed" rendered="#{state == 'DESTROYED' or state == 'ZOMBIE'}"
+        styleClass="fa fa-exclamation-circle task-state-zombie-destroyed #{cc.attrs.stateIconStyleClass}" />
+      <h:panelGroup id="#{cc.attrs.componentId}-system"
+        rendered="#{state != 'SUSPENDED' and state != 'UNASSIGNED' and state != 'RESUMED' and state != 'CREATED'
+       and state != 'DONE' and state != 'PARKED' and state != 'DESTROYED' and state != 'ZOMBIE'}"
+        styleClass="fa fa-cog task-state-system #{cc.attrs.stateIconStyleClass}" />
+    </h:panelGroup>
   </h:panelGroup>
   <p:tooltip id="state-tooltip" for="#{cc.attrs.componentId}"
     value="#{taskBean.getUserFriendlyTaskState(state)} (#{taskBean.getTranslatedState(state)})" styleClass="#{cc.attrs.stateTooltipStyleClass}" />

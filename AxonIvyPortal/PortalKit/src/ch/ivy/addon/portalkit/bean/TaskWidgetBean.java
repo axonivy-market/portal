@@ -22,7 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class TaskWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private static final int DEFAULT_TASK_LIST_REFRESH_INTERVAL = 59;
+  private static final int DEFAULT_TASK_LIST_REFRESH_INTERVAL = 10000;
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private TaskLazyDataModel dataModel;

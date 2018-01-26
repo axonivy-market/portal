@@ -43,7 +43,7 @@
               #{dataModel.caseName}
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}" />
+                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title') : taskView.pageTitle}" />
             </f:facet>
 
             <f:facet name="taskListHeader">
@@ -66,19 +66,19 @@
 
               <ui:fragment rendered="#{not useOverrideHeader}">
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
-                  priority="#{task.priority}" />
+                  priority="#{task.priority}" dataModel="#{dataModel}" />
                 <div class="task-start-info">
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}"
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{dataModel}"
                     isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
                 </div>
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component"
-                  userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component"
-                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="js-create-cell" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component"
-                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{dataModel}"
+                  userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="activatior-column #{dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}" dataModel="#{dataModel}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{dataModel.isSelectedColumn('CREATION_TIME')}"
+                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{dataModel.isAutoHideColumns()?'js-create-cell':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{dataModel.isSelectedColumn('EXPIRY_TIME')}"
+                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="#{dataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{dataModel}"
                   state="#{task.state}" />
               </ui:fragment>
             </f:facet>

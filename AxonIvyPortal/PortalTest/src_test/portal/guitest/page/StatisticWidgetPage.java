@@ -2,12 +2,16 @@ package portal.guitest.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class StatisticWidgetPage extends TemplatePage {
   private WebElement statisticWidget;
   private final static String TASK_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_1";
 
   public StatisticWidgetPage() {
+    WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget")));
     statisticWidget = findElementById("statistics-widget");
   }
 

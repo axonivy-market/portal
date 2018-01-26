@@ -224,11 +224,13 @@ Ce0 @StartSub f210 '' #zField
 Ce0 @WSElement f211 '' #zField
 Ce0 @PushWFArc f212 '' #zField
 Ce0 @PushWFArc f213 '' #zField
-Ce0 @PushWFArc f214 '' #zField
 Ce0 @PushWFArc f215 '' #zField
 Ce0 @PushWFArc f216 '' #zField
 Ce0 @PushWFArc f217 '' #zField
 Ce0 @PushWFArc f218 '' #zField
+Ce0 @GridStep f219 '' #zField
+Ce0 @PushWFArc f220 '' #zField
+Ce0 @PushWFArc f214 '' #zField
 >Proto Ce0 Ce0 CaseServiceIntegrator #zField
 Ce0 f10 .resExport export #txt
 Ce0 f10 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
@@ -2945,18 +2947,18 @@ out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f206 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ce0 f206 timeout 0 #txt
-Ce0 f206 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+Ce0 f206 beanConfig 'KEY_PASSWORD=<%\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
+KEY_USERNAME=<%\=in.server.username%>
 KEY_OPERATION=findCaseCategoriesByCriteria
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA="arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria","arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"' #txt
 Ce0 f206 returningObjectList '[wsResponse]' #txt
 Ce0 f206 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2978,7 +2980,7 @@ out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f207 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ce0 f207 timeout 0 #txt
-Ce0 f207 beanConfig '"KEY_PASSWORD=
+Ce0 f207 beanConfig 'KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
@@ -2989,7 +2991,7 @@ KEY_OPERATION=findCaseCategoriesByCriteria
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA="arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria","arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"' #txt
 Ce0 f207 returningObjectList '[wsResponse]' #txt
 Ce0 f207 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3022,7 +3024,7 @@ Ce0 f210 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
 out.endpoint=param.endpoint;
 out.server=param.server;
 ' #txt
-Ce0 f210 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<java.lang.String> categories> result;
+Ce0 f210 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<ch.ivy.ws.addon.CategoryData> categories> result;
 ' #txt
 Ce0 f210 outParamTable 'result.errors=in.errors;
 result.categories=in.categories;
@@ -3034,8 +3036,8 @@ Ce0 f210 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData
 Ce0 f210 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findCaseCategoriesByCriteria(Server,String,CaseSearchCriteria)</name>
-        <nameStyle>62,5,7
+        <name>findCaseCategoriesByCriteria(String,CaseSearchCriteria,Server,String)</name>
+        <nameStyle>69,5,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -3051,18 +3053,18 @@ out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f211 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ce0 f211 timeout 0 #txt
-Ce0 f211 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+Ce0 f211 beanConfig 'KEY_PASSWORD=<%\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
-KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_DOMAIN=<%\=in.server.domain%>
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
+KEY_USERNAME=<%\=in.server.username%>
 KEY_OPERATION=findCaseCategoriesByCriteria
 KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
+KEY_HOST=<%\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA="arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria","arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"' #txt
 Ce0 f211 returningObjectList '[wsResponse]' #txt
 Ce0 f211 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3084,8 +3086,6 @@ Ce0 f213 expr in #txt
 Ce0 f213 2897 158 3043 242 #arcP
 Ce0 f213 1 3043 158 #addKink
 Ce0 f213 0 0.7875410210393261 0 0 #arcLabel
-Ce0 f214 expr out #txt
-Ce0 f214 2883 75 2883 144 #arcP
 Ce0 f215 expr out #txt
 Ce0 f215 3043 266 2896 350 #arcP
 Ce0 f215 1 3043 350 #addKink
@@ -3107,6 +3107,34 @@ Ce0 f218 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ce0 f218 2883 172 2883 242 #arcP
 Ce0 f218 0 0.6216297675645117 0 0 #arcLabel
+Ce0 f219 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f219 actionTable 'out=in;
+' #txt
+Ce0 f219 actionCode 'import java.util.Locale;
+
+Locale emailLanguage = ivy.cms.getDefaultLanguage();
+if (ivy.session.getSessionUser().getEMailLanguage() != null) {
+	emailLanguage = ivy.session.getSessionUser().getEMailLanguage();
+}
+
+in.language = emailLanguage.toLanguageTag();' #txt
+Ce0 f219 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f219 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get user language</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f219 2865 98 36 24 20 -2 #rect
+Ce0 f219 @|StepIcon #fIcon
+Ce0 f220 expr out #txt
+Ce0 f220 2883 75 2883 98 #arcP
+Ce0 f214 expr out #txt
+Ce0 f214 2883 122 2883 144 #arcP
 >Proto Ce0 .type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3373,11 +3401,13 @@ Ce0 f211 mainOut f217 tail #connect
 Ce0 f217 head f208 mainIn #connect
 Ce0 f207 mainOut f215 tail #connect
 Ce0 f215 head f208 mainIn #connect
-Ce0 f210 mainOut f214 tail #connect
-Ce0 f214 head f209 in #connect
 Ce0 f209 out f212 tail #connect
 Ce0 f212 head f206 mainIn #connect
 Ce0 f206 mainOut f216 tail #connect
 Ce0 f216 head f208 mainIn #connect
 Ce0 f209 out f213 tail #connect
 Ce0 f213 head f207 mainIn #connect
+Ce0 f210 mainOut f220 tail #connect
+Ce0 f220 head f219 mainIn #connect
+Ce0 f219 mainOut f214 tail #connect
+Ce0 f214 head f209 in #connect

@@ -53,6 +53,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public HomePage goToHomePage() {
     click(By.id("logo"));
+    waitForPageLoaded();
     return new HomePage();
   }
 
@@ -100,6 +101,11 @@ public abstract class TemplatePage extends AbstractPage {
       click(mainMenuToggle);
     }
     return new MainMenuPage();
+  }
+  
+  public void clickOnLogo() {
+    click(By.id("logo"));
+    waitAjaxIndicatorDisappear();
   }
 
   public WebElement findDisplayedElementById(String id) {

@@ -1,19 +1,19 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.Comparator;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
+import org.primefaces.util.TreeUtils;
 
 import ch.ivy.addon.portalkit.bo.CaseNode;
-import ch.ivy.addon.portalkit.bo.RemoteCase;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.enums.MenuKind;
+import ch.ivy.ws.addon.CategoryData;
 
 /**
  * Utilities for case tree.
- *
- * @author maonguyen
  */
 public class CaseTreeUtils {
 
@@ -25,60 +25,86 @@ public class CaseTreeUtils {
    * @param cases : list of case
    * @return {@link TreeNode}
    */
-  public static TreeNode convertToTreeNode(List<RemoteCase> cases) {
+  public static TreeNode convertToTreeNode(List<CategoryData> categories, String firstCategory, boolean isRootAllCase,
+      String menuState) {
     TreeNode root = new DefaultTreeNode();
+    TreeNode navigatorNode = root;
+    for (CategoryData category : categories) {
+      String categoryPath = category.getPath();
+      String[] nodeNames = categoryPath.split(DELIMITER);
 
-    CaseNode realRootData = new CaseNode();
-    realRootData.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseTree/allCases"));
-    TreeNode realRootNode = new DefaultTreeNode(realRootData, root);
-    realRootNode.setExpanded(true);
-    TreeNode current = realRootNode;
+      String categoryRawPath = category.getRawPath();
+      String[] nodePaths = category.getRawPath().split(DELIMITER);
 
-    for (RemoteCase aCase : cases) {
-      if (!StringUtils.isEmpty(aCase.getCustomVarCharField5())) {
-        // parse CustomVarCharField5, and build node
-        for (String nodeLabel : aCase.getCustomVarCharField5().split(DELIMITER)) {
-          current = buildCaseNode(current, nodeLabel, aCase);
-        }
-        current = realRootNode;
-      } else {
-        // path is empty , add case to node
-        // realRootData.addCase(aCase);
+      for (int i=0; i<nodeNames.length; i++) {
+        String nodeName = nodeNames[i];
+        String categoryName = categoryPath.substring(0, categoryPath.indexOf(nodeName) + nodeName.length());
+
+        String nodePath = nodePaths[i];
+        String rawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(nodePath) + nodePath.length());
+
+        String nodeType = firstCategory + DELIMITER + categoryName.replaceAll(" ", "_");
+        navigatorNode = buildCaseCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllCase, menuState);
       }
-    };
-
+      navigatorNode = root;
+    }
+    sortNode(root);
     return root;
   }
-
+  
+  private static void sortNode(TreeNode node) {
+    Comparator<TreeNode> comparator = new Comparator<TreeNode>() {
+      @Override
+      public int compare(TreeNode firstNode, TreeNode secondNode) {
+        CaseNode firstNodeData = (CaseNode) firstNode.getData();
+        CaseNode secondNodeData = (CaseNode) secondNode.getData();
+        return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
+      }
+    };
+    TreeUtils.sortNode(node, comparator);
+  }
 
   /**
-   * Build case node for current case. If node name exist, return node. Else add new node.
+   * Build task node for current task. If node name exist, return node. Else add new node
    * 
-   * @param currentNode
-   * @param nodeName
-   * @param currentCase
-   * @return {@link TreeNode}
+   * @param navigatorNode : Current tree node
+   * @param newNodeName : node name
+   * @return TreeNode : Tree node after add node
    */
-  private static TreeNode buildCaseNode(TreeNode currentNode, String nodeName, RemoteCase currentCase) {
-    for (TreeNode node : currentNode.getChildren()) {
-      CaseNode nodeData = (CaseNode) node.getData();
-      if (nodeData.getValue().equals(nodeName)) {
-        // nodeData.addCase(currentCase);
-        return node;
+  private static TreeNode buildCaseCategoryNode(TreeNode navigatorNode, String newNodeName, String nodeType,
+      String category, String rawPath, boolean isRootAllCase, String menuState) {
+    List<TreeNode> childNodes = navigatorNode.getChildren();
+    for (TreeNode childNode : childNodes) {
+      CaseNode childNodeData = (CaseNode) childNode.getData();
+      String childNodeName = childNodeData.getValue();
+      if (newNodeName.equalsIgnoreCase(childNodeName)) {
+        return childNode;
       }
     }
-    CaseNode currentNodeData = (CaseNode) currentNode.getData();
-    CaseNode caseNodeData = null;
-    // FIXME: OLD IMPLEMENTATION IN 5.0 (CONSIDER)
-    // if (currentNodeData.getNodePath() == null) {
-    // caseNodeData = new CaseNode(nodeName, currentCase);
-    // currentNode.setExpanded(true);
-    // } else {
-    // caseNodeData = new CaseNode(nodeName, currentCase,
-    // currentNodeData.getNodePath());
-    // }
 
-    TreeNode newNode = new DefaultTreeNode(caseNodeData, currentNode);
+    CaseNode newNodeData = new CaseNode();
+    newNodeData.setValue(newNodeName);
+    newNodeData.setMenuKind(MenuKind.CASE);
+    newNodeData.setCategory(category);
+    newNodeData.setCategoryRawPath(rawPath);
+    newNodeData.setRootNodeAllCase(isRootAllCase);
+    newNodeData.setFirstCategoryNode(false);
+    TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, navigatorNode);
+    newNode.setExpanded(true);
+    if (menuState.contains(nodeType)
+        && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
+      newNode.setExpanded(true);
+    } else {
+      newNode.setExpanded(false);
+    }
     return newNode;
+  }
+  
+  public static String getLastCategoryFromCategoryPath(String categoryPath) {
+    if (!StringUtils.isBlank(categoryPath)) {
+      String[] categories = categoryPath.split("/");
+      return categories[categories.length - 1];
+    }
+    return "";
   }
 }

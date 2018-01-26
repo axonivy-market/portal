@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -12,7 +14,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
-import portal.guitest.page.TaskWidgetPage;
 
 public class StatisticWidgetTest extends BaseTest {
 
@@ -47,10 +48,10 @@ public class StatisticWidgetTest extends BaseTest {
 
   @Test
   public void testCreateCharts() {
-    generateDataForElapsedTimeChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+    WebDriverWait wait = new WebDriverWait(statisticWidgetPage.getDriver(), 30);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget:widget-container")));
     statisticWidgetPage.switchCreateMode();
 
     createTaskByPriorityChart();
@@ -146,15 +147,5 @@ public class StatisticWidgetTest extends BaseTest {
     chartNameInput.sendKeys(ELAPSED_TIME_CHART_NAME);
     createChartButton.click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();
-  }
-
-  private void generateDataForElapsedTimeChart() {
-    navigateToUrl("internalSupport/14B2FC03D2E87141/CreateTaskWithSpecialCharacter.ivp");
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.filterTasksBy("Resource with ID 1212");
-    taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
-    homePage.waitForPageLoaded();
-
-    homePage = taskWidgetPage.goToHomePage();
   }
 }

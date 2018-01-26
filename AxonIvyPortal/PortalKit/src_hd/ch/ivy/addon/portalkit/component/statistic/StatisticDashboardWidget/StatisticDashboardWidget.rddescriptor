@@ -59,7 +59,7 @@
         <name>selectChart</name>
         <description></description>
         <inputParameter>
-            <name>statisticChart</name>
+            <name>chart</name>
             <description></description>
             <parameterType>ch.ivy.addon.portalkit.statistics.StatisticChart</parameterType>
             <nullPermitted>false</nullPermitted>

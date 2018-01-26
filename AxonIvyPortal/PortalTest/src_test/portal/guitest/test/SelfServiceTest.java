@@ -22,7 +22,7 @@ public class SelfServiceTest extends BaseTest {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
-    navigateToUrl(selfServiceProcessUrl);
+    redirectToRelativeLink(selfServiceProcessUrl);
   }
 
   @Test
@@ -73,17 +73,17 @@ public class SelfServiceTest extends BaseTest {
 
     TaskWidgetPage taskWidget = homePage.openTaskList();
     assertEquals(todoTask, taskWidget.getNameOfTaskAt(0));
-    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getFullName(), taskWidget.getResposibleOfTaskAt(0));
 
     taskWidget.startTask(0);
     SelfServiceTaskPage taskDefPage = new SelfServiceTaskPage();
-    taskDefPage.appendTask("appended task", TestAccount.DEMO_USER.getUsername());
-    taskDefPage.insertTask("inserted task", TestAccount.DEMO_USER.getUsername());
+    taskDefPage.appendTask("appended task", TestAccount.DEMO_USER.getFullName());
+    taskDefPage.insertTask("inserted task", TestAccount.DEMO_USER.getFullName());
 
     assertTrue(homePage.isDisplayed());
     taskWidget = homePage.openTaskList();
     assertEquals(insertedTask, taskWidget.getNameOfTaskAt(0));
-    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getFullName(), taskWidget.getResposibleOfTaskAt(0));
 
     taskWidget.startTask(0);
     taskDefPage.inputTaskComment("approved");
@@ -92,7 +92,7 @@ public class SelfServiceTest extends BaseTest {
     assertTrue(homePage.isDisplayed());
     taskWidget = homePage.openTaskList();
     assertEquals(todoTask, taskWidget.getNameOfTaskAt(0));
-    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getFullName(), taskWidget.getResposibleOfTaskAt(0));
     
     taskWidget.startTask(0);
     taskDefPage.clickDoneButton();
@@ -100,7 +100,7 @@ public class SelfServiceTest extends BaseTest {
     assertTrue(homePage.isDisplayed());
     taskWidget = homePage.openTaskList();    
     assertEquals(insertedTask, taskWidget.getNameOfTaskAt(0));
-    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getFullName(), taskWidget.getResposibleOfTaskAt(0));
     
     taskWidget.startTask(0);
     taskDefPage.inputTaskComment("approved");
@@ -109,7 +109,7 @@ public class SelfServiceTest extends BaseTest {
     assertTrue(homePage.isDisplayed());
     taskWidget = homePage.openTaskList();    
     assertEquals(todoTask, taskWidget.getNameOfTaskAt(0));
-    assertEquals(TestAccount.DEMO_USER.getUsername(), taskWidget.getResposibleOfTaskAt(0));
+    assertEquals(TestAccount.DEMO_USER.getFullName(), taskWidget.getResposibleOfTaskAt(0));
     
     taskWidget.startTask(0);
     taskDefPage.clickDoneButton();
