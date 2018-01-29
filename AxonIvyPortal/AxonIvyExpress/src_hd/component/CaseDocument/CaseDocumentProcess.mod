@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 11:05:27 ICT 2017]
 15795F163B7492E2 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 CaseDocumentProcess Big #zClass
@@ -78,7 +77,6 @@ in.selectedFile = null;
 
 FacesContext fc = FacesContext.getCurrentInstance();
 Integer maxFiles = fc.getApplication().evaluateExpressionGet(fc, "#{cc.attrs.fileLimit}",Integer.class) as Integer;
-ivy.log.debug("Number of Files:" + maxFiles);
 
 
 in.sizeLimitBytes = 10485760;
@@ -88,7 +86,6 @@ in.sizeLimitBytes = 10485760;
 in.allowedFileTypes = "/(\\.|\\/)(";
 
 for(String type: in.inputFileTypes){
-	ivy.log.debug("Inputfiletype: " + type);
 	if(type.startsWith("PDF")){
 		in.allowedFileTypes += "pdf|";
 	}else if(type.startsWith("Word")){
@@ -103,8 +100,6 @@ if(in.inputFileTypes != null && in.inputFileTypes.size() > 0){
 	 in.allowedFileTypes = in.allowedFileTypes.substring(0, in.allowedFileTypes.length()-1);
 }
 in.allowedFileTypes += ")$$/";
-
-ivy.log.debug("Allowed FiletypesString=" + in.allowedFileTypes);
 
 //("PDF (pdf)");
 //("Word (doc/docx)");
@@ -398,7 +393,6 @@ Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 Ds0 f0 inParameterMapAction 'out.numberOfFilesLimit=param.noOfFiles;
 ' #txt
 Ds0 f0 inActionCode 'out.caseId = ivy.case.getId();
-ivy.log.debug("xxxxx" + param.noOfFiles);
 out.toManyFiles = false;' #txt
 Ds0 f0 outParameterDecl '<java.lang.Integer noOfFiles> result;
 ' #txt

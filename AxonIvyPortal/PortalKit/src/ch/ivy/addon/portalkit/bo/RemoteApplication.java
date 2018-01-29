@@ -28,7 +28,6 @@ import ch.ivyteam.ivy.application.restricted.IEnvironment;
 import ch.ivyteam.ivy.application.restricted.IGlobalVariable;
 import ch.ivyteam.ivy.application.restricted.IWebService;
 import ch.ivyteam.ivy.application.value.QualifiedVersion;
-import ch.ivyteam.ivy.application.value.VersionRange;
 import ch.ivyteam.ivy.application.value.WebServiceAuthentication;
 import ch.ivyteam.ivy.event.ISystemEventListener;
 import ch.ivyteam.ivy.event.SystemEvent;
@@ -537,20 +536,6 @@ public class RemoteApplication implements IApplication {
 		throws PersistencyException {
 	// TODO Auto-generated method stub
 	return null;
-  }
-
-  @Override
-  public ILibrary findLibrary(String libraryId, VersionRange versionRange)
-      throws PersistencyException {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public ILibrary findReleasedLibrary(String libraryId)
-      throws PersistencyException {
-    // TODO Auto-generated method stub
-    return null;
   }
 
 }

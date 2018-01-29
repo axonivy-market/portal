@@ -708,7 +708,6 @@ for(ExpressFormElement element: formelements){
 	
 	//direct assignement makes an array list, which makes problems in the seriealization, workaround:
 	for(String optionx: optionsStrx){
-		ivy.log.debug("1" + optionx);
 		formelement.addOption(optionx);
 	}
 	

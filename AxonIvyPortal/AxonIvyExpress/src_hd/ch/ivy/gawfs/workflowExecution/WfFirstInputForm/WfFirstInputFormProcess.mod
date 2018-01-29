@@ -307,7 +307,6 @@ if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
 }
 
 //redirect to portal
-//ivy.log.debug("Link to Portal found:"+link);
 FacesContext.getCurrentInstance().getExternalContext().redirect(link);' #txt
 Ws0 f24 security system #txt
 Ws0 f24 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt
