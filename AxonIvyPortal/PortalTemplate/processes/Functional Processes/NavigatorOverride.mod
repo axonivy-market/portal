@@ -339,7 +339,6 @@ String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTit
 
 SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
 
-in.taskDataModel= new TaskLazyDataModel();
 in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
 in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
