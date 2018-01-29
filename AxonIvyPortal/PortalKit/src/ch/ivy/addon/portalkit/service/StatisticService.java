@@ -365,7 +365,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return generated data
    */
   public Map<String, Number> generateDataForTaskByPriorityChart(PriorityStatistic priorityStatistic) {
-    Map<String, Number> chartData = new HashMap<String, Number>();
+    Map<String, Number> chartData = new LinkedHashMap<String, Number>();
 
     if (priorityStatistic.getException() > 0) {
       chartData.put(Ivy.cms().co(EXCEPTION_PRIORITY_KEY), priorityStatistic.getException());
