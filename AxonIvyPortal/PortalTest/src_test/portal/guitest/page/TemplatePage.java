@@ -52,10 +52,14 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public HomePage goToHomePage() {
-    click(By.id("logo"));
-    waitForElementDisplayed(By.id("task-leave-warning-component:logo-task-losing-confirmation-dialog"), true);
-    WebElement leaveButton = findElementById("task-leave-warning-component:leave-button");
-    leaveButton.click();
+    clickOnLogo();
+    boolean hasLeaveButton = getDriver().findElements(By.id("task-leave-warning-component:leave-button")).size() > 0;
+
+    if (hasLeaveButton) {
+      WebElement leaveButton = findElementById("task-leave-warning-component:leave-button");
+      leaveButton.click();
+    }
+
     waitForPageLoaded();
     return new HomePage();
   }
