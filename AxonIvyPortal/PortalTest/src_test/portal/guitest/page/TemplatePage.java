@@ -53,6 +53,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   public HomePage goToHomePage() {
     click(By.id("logo"));
+    waitForElementDisplayed(By.id("task-leave-warning-component:logo-task-losing-confirmation-dialog"), true);
+    WebElement leaveButton = findElementById("task-leave-warning-component:leave-button");
+    leaveButton.click();
     waitForPageLoaded();
     return new HomePage();
   }
