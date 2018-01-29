@@ -114,10 +114,7 @@ parameters.put("currentPassword", in.currentPassword);
 parameters.put("newPassword", in.newPassword);
 Map response = IvyAdapterService.startSubProcess("changePassword(String, String)", parameters, Arrays.asList(PortalLibrary.PORTAL_KIT.getValue()));
 in.message = response.get("message") as String;
-in.status = response.get("status") as ChangePasswordStatus;
-
-ivy.log.error(in.status.name());
-ivy.log.error(in.message);' #txt
+in.status = response.get("status") as ChangePasswordStatus;' #txt
 Ps0 f10 type ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData #txt
 Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
