@@ -405,6 +405,8 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import org.primefaces.component.button.Button;
 import ch.ivy.addon.portalkit.service.ServerWorkingOnDetector;
+import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.application.IApplication;
 
 ServerWorkingOnDetector serverWorkingOnDetector = new ServerWorkingOnDetector();
 ApplicationService applicationService = new ApplicationService();
@@ -448,15 +450,20 @@ if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
 	if (numberOfIvyApplications == 0) {
 		menuItem.href = new PortalNavigator().getPortalStartUrlOfCurrentApplication();
 		menuItem.styleClass="ivy-active";
+		in.menuItems.add(0, menuItem);
 	} else {
-		menuItem.href = SecurityServiceUtils.getDefaultPortalStartUrl();
-		boolean isAllAppSelected = IApplication.PORTAL_APPLICATION_NAME.equals(ivy.request.getApplication().getName());
-		if (isAllAppSelected) {
-			menuItem.styleClass = "ivy-active";
+		IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(IApplication.PORTAL_APPLICATION_NAME);
+		if (portal != null && (portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE || portal.getSecurityContext().findUser(ivy.session.getSessionUserName()) != null)) {
+			menuItem.href = SecurityServiceUtils.getDefaultPortalStartUrl();
+			boolean isAllAppSelected = IApplication.PORTAL_APPLICATION_NAME.equals(ivy.request.getApplication().getName());
+			if (isAllAppSelected) {
+				menuItem.styleClass = "ivy-active";
+			}
+			in.menuItems.add(0, menuItem);
 		}
 	}
-	in.menuItems.add(0, menuItem);
 }' #txt
+As0 f92 security system #txt
 As0 f92 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
