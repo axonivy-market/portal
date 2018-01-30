@@ -84,7 +84,7 @@ public class TaskResponsibleFilter extends TaskFilter {
       List<RemoteUser> users =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
             public List<RemoteUser> call() throws Exception {
-              if (Ivy.request().getApplication().getName() == IApplication.PORTAL_APPLICATION_NAME) {
+              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
                 return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
                   .get("users", List.class);
               }
@@ -96,7 +96,7 @@ public class TaskResponsibleFilter extends TaskFilter {
       List<RemoteRole> roles =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
             public List<RemoteRole> call() throws Exception {
-              if (Ivy.request().getApplication().getName() == IApplication.PORTAL_APPLICATION_NAME) {
+              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
                 return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
                     .get("roles", List.class);
               }
