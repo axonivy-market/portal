@@ -51,7 +51,7 @@ public class CaseWidgetBeanTest {
     PowerMockito.when(IvyAdapterService.startSubProcess(Mockito.anyString(), Mockito.anyMap(), Mockito.anyList())).thenReturn(responses);
     UrlDetector detector = PowerMockito.mock(UrlDetector.class);
     PowerMockito.whenNew(UrlDetector.class).withNoArguments().thenReturn(detector);
-    PowerMockito.when(detector.getProcessStartUriWithCaseParameters(Mockito.any(), Mockito.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
+    PowerMockito.when(detector.getProcessStartUriWithCaseParameters(Mockito.any(RemoteCase.class), Mockito.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
     PowerMockito.when(detector.getHost(Mockito.anyString(), Mockito.any(Server.class))).thenReturn(HOST);
     Assert.assertEquals(HOST + DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(createRemoteCase())); 
   }
@@ -62,7 +62,7 @@ public class CaseWidgetBeanTest {
     mockStatic(IvyAdapterService.class);
     Map<String, Object> responses = new HashMap<>();
     responses.put(SUBPROCESS_PARAM_PROPERTY_VALUE, CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE);
-    Mockito.when(IvyAdapterService.startSubProcess(Mockito.anyString(), Mockito.anyMap(), Mockito.anyList())).thenReturn(responses);
+    PowerMockito.when(IvyAdapterService.startSubProcess(Mockito.anyString(), Mockito.anyMap(), Mockito.anyList())).thenReturn(responses);
     UrlDetector detector = PowerMockito.mock(UrlDetector.class);
     PowerMockito.whenNew(UrlDetector.class).withNoArguments().thenReturn(detector);
     PowerMockito.when(detector.getHost(Mockito.anyString(), Mockito.any(Server.class))).thenReturn(HOST);
@@ -75,6 +75,7 @@ public class CaseWidgetBeanTest {
     Server server = new Server();
     server.setId(new Long(1));
     remoteCase.setServer(server);
+    remoteCase.setServerUrl(HOST);
     return remoteCase;
   }
 }
