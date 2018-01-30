@@ -55,3 +55,4 @@ canDestroy Boolean #field
 canChangeDescription Boolean #field
 canChangeName Boolean #field
 isBusinessCase Boolean #field
+serverUrl String #field

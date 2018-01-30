@@ -307,6 +307,7 @@
           <xs:element minOccurs="0" name="processModelName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="processModelVersionNumber" type="xs:int"></xs:element>
           <xs:element minOccurs="0" name="processName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="serverUrl" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="startTimestamp" type="xs:dateTime"></xs:element>
           <xs:element minOccurs="0" name="state" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="subTypeCode" type="xs:string"></xs:element>

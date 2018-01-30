@@ -89,11 +89,13 @@ public class CaseWidgetTest extends BaseTest {
     assertEquals(numberOfTasks, taskOfCasePage.countTasks());
   }
   
+  @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails, LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
     validateAdditionalCaseDetailsPage(17, "CustomVarCharField 1");
   }
   
+  @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
     validateAdditionalCaseDetailsPage(17, "CustomizationAdditionalCaseDetails CustomVarCharField1");
