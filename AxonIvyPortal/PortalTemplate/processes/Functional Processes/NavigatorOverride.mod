@@ -205,7 +205,7 @@ in.taskDataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
 in.taskDataModel.setServerId(in.caseId.serverId());
 in.taskDataModel.setCaseName(in.caseName);
-in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission() || TaskUtils.checkTaskReadOwnCaseTasksPermission());
 in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
 
 in.taskView = TaskView.create()
