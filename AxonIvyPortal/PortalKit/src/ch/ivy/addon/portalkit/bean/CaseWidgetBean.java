@@ -74,7 +74,7 @@ public class CaseWidgetBean implements Serializable {
       additionalCaseDetailsPageUri = (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
     }
     try {
-      String host = (new UrlDetector()).getHost(remoteCase.getServer());
+      String host = (new UrlDetector()).getHost(remoteCase.getServerUrl(), remoteCase.getServer());
       WebLink webLink = UrlValidator.isValidUrl(additionalCaseDetailsPageUri) ? new WebLinkFactory().createFromContextRelative(additionalCaseDetailsPageUri) 
                                                                               : new WebLink(host + additionalCaseDetailsPageUri);
       return webLink.getAbsoluteEncoded();
