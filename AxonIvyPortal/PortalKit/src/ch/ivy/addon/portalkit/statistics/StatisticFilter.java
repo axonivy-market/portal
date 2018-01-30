@@ -18,7 +18,8 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -33,7 +34,7 @@ public class StatisticFilter {
   private List<String> caseCategories = new ArrayList<>();
   private List<String> selectedCaseCategories = new ArrayList<>();
 
-  private List<ISecurityMember> roles = new ArrayList<>();
+  private List<Object> roles = new ArrayList<>();
   private List<String> selectedRoles = new ArrayList<>();
 
   private List<CaseState> caseStates = new ArrayList<>();
@@ -57,9 +58,14 @@ public class StatisticFilter {
             }
           });
 
-      List<ISecurityMember> distinctRoles =
+      ISecurityContext securityContext = Ivy.request().getApplication().getSecurityContext();
+      List<RemoteRole> distinctRoles =
           roles.stream()
-          .filter(role -> Ivy.session().hasRole(role, false))
+          .filter(role -> {
+            IRole ivyRole = securityContext.findRole(role.getName());
+            return ivyRole != null && Ivy.session().hasRole(ivyRole, false);
+            }
+          )
           .collect(
               Collectors.collectingAndThen(
                   Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteRole::getMemberName))),
@@ -67,7 +73,9 @@ public class StatisticFilter {
 
       this.roles.add(Ivy.session().getSessionUser());
       this.roles.addAll(distinctRoles);
-      this.selectedRoles = new ArrayList<>(this.roles.stream().map(ISecurityMember::getMemberName).collect(Collectors.toList()));
+      
+      this.selectedRoles = new ArrayList<>(distinctRoles.stream().map(RemoteRole::getMemberName).collect(Collectors.toList()));
+      this.selectedRoles.add(0, Ivy.session().getSessionUser().getMemberName());
     } catch (Exception e) {
       Ivy.log().error("Can't get list roles statistic filter", e);
     }
@@ -130,11 +138,11 @@ public class StatisticFilter {
     this.selectedCaseCategories = selectedCaseCategories;
   }
 
-  public List<ISecurityMember> getRoles() {
+  public List<Object> getRoles() {
     return roles;
   }
 
-  public void setRoles(List<ISecurityMember> roles) {
+  public void setRoles(List<Object> roles) {
     this.roles = roles;
   }
 

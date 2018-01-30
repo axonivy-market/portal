@@ -1,18 +1,10 @@
 package ch.ivy.addon.portalkit.bo;
 
-import ch.ivyteam.api.IvyScriptVisibility;
-import ch.ivyteam.api.PublicAPI;
-import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.workflow.ITaskStart;
-import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
 /**
  * Bean for remote process start.
- *
- * @author maonguyen
  */
-public class RemoteProcessStart implements IProcessStart{
+public class RemoteProcessStart {
 
 	private String description;
 	private String fullRequestPath;
@@ -24,62 +16,23 @@ public class RemoteProcessStart implements IProcessStart{
 	private String processElementId;
   private Long serverId;
 	
-	@Override
-	@PublicAPI(IvyScriptVisibility.NOVICE)
-	public String getDescription() throws PersistencyException {
+	public String getDescription() {
 		return description;
 	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.ADVANCED)
-	public String getFullRequestPath() throws PersistencyException {
+	public String getFullRequestPath() {
 		return fullRequestPath;
 	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.ADVANCED)
-	public String getFullUserFriendlyRequestPath() throws PersistencyException {
+	public String getFullUserFriendlyRequestPath() {
 		return fullUserFriendlyRequestPath;
 	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.EXPERT)
 	public long getId() {
 		return id;
 	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.HIDDEN)
-	@Deprecated
-	public int getIdentifier() {
-		return 0;
-	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.NOVICE)
-	public String getName() throws PersistencyException {
+	public String getName() {
 		return name;
 	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.EXPERT)
-	public String getProcessElementId() throws PersistencyException {
+	public String getProcessElementId() {
 		return processElementId;
-	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.EXPERT)
-	public IWorkflowProcessModelVersion getProcessModelVersion()
-			throws PersistencyException {
-		return null;
-	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.ADVANCED)
-	public String getRequestPath() throws PersistencyException {
-		return null;
-	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.EXPERT)
-	public ITaskStart getTaskStart() throws PersistencyException {
-		return null;
-	}
-	@Override
-	@PublicAPI(IvyScriptVisibility.ADVANCED)
-	public String getUserFriendlyRequestPath() throws PersistencyException {
-		return null;
 	}
 	/**
 	 * Gets the startLink

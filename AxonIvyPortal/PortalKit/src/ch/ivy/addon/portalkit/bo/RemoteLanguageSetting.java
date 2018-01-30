@@ -15,8 +15,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * Object for remote language setting.
- * 
- * @author maonguyen
  */
 public class RemoteLanguageSetting {
   private String appName;

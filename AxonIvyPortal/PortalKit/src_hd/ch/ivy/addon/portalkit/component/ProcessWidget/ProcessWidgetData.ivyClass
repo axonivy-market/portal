@@ -7,7 +7,7 @@ userProcess PERSISTENT #fieldModifier
 synData List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> #field
 synData 'List contain userSetting and userProcess to synchronize with other servers' #fieldComment
 synData PERSISTENT #fieldModifier
-webStartables List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
+webStartables List<ch.ivy.addon.portalkit.bo.RemoteWebStartable> #field
 webStartables PERSISTENT #fieldModifier
 webStartableSearchCriteria ch.ivy.ws.addon.WebStartableSearchCriteria #field
 webStartableSearchCriteria PERSISTENT #fieldModifier
