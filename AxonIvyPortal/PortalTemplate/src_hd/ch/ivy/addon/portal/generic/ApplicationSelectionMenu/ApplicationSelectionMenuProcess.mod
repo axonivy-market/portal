@@ -453,7 +453,7 @@ if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
 		in.menuItems.add(0, menuItem);
 	} else {
 		IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(IApplication.PORTAL_APPLICATION_NAME);
-		if (portal != null && (portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE || portal.getSecurityContext().findUser(ivy.session.getSessionUserName()) != null)) {
+		if (portal != null && portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE && portal.getSecurityContext().findUser(ivy.session.getSessionUserName()) != null) {
 			menuItem.href = SecurityServiceUtils.getDefaultPortalStartUrl();
 			boolean isAllAppSelected = IApplication.PORTAL_APPLICATION_NAME.equals(ivy.request.getApplication().getName());
 			if (isAllAppSelected) {
