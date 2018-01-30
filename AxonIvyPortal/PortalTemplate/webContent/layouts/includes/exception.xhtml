@@ -13,7 +13,7 @@
 		<!-- Error Dialog shown if a view or session has expired -->
 		<p:confirmDialog id="viewExpiredExceptionDialog"
 			header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
-			message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried')}"
+			message="#{session.isNew()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}"
 			widgetVar="viewExpiredExceptionDialog" appendTo="@(body)" closable="false">
 			<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
 				type="button" styleClass="portal-ok-button" />
