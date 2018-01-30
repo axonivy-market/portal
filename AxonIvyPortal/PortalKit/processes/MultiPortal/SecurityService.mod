@@ -67,7 +67,7 @@ Pt0 @StartSub f6 '' #zField
 Pt0 @PushWFArc f22 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
 Pt0 f0 inParamDecl '<> param;' #txt
-Pt0 f0 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivyteam.ivy.security.IRole> roles> result;
+Pt0 f0 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.addon.portalkit.bo.RemoteRole> roles> result;
 ' #txt
 Pt0 f0 outParamTable 'result.errors=in.errors;
 result.roles=in.roles;
@@ -335,7 +335,7 @@ Pt0 f55 inParamDecl '<java.lang.String app> param;' #txt
 Pt0 f55 inParamTable 'out.apps=[param.app];
 out.hasAppsParam=true;
 ' #txt
-Pt0 f55 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivyteam.ivy.security.IRole> roles> result;
+Pt0 f55 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.addon.portalkit.bo.RemoteRole> roles> result;
 ' #txt
 Pt0 f55 outParamTable 'result.errors=in.errors;
 result.roles=in.roles;
@@ -719,10 +719,10 @@ Pt0 f6 inParamDecl '<java.lang.String app> param;' #txt
 Pt0 f6 inParamTable 'out.apps=[param.app];
 out.hasAppsParam=true;
 ' #txt
-Pt0 f6 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivyteam.ivy.security.IRole> roles> result;
+Pt0 f6 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.addon.portalkit.bo.RemoteUser> users> result;
 ' #txt
 Pt0 f6 outParamTable 'result.errors=in.errors;
-result.roles=in.roles;
+result.users=in.users;
 ' #txt
 Pt0 f6 actionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
 ' #txt

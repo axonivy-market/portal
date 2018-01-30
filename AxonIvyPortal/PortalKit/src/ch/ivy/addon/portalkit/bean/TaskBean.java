@@ -30,7 +30,6 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -180,7 +179,7 @@ public class TaskBean {
    * @param task Task need to be checked
    * @return true if user can start the task, false if otherwise
    */
-  public boolean checkStartableTask(ITask task) {
+  public boolean checkStartableTask(RemoteTask task) {
     boolean disableTaskStart;
     if (task != null) {
       TaskState state = task.getState();
@@ -192,7 +191,7 @@ public class TaskBean {
     return disableTaskStart;
   }
 
-  private boolean canStartInProgressTask(ITask task) {
+  private boolean canStartInProgressTask(RemoteTask task) {
     IWorkflowSession ivySession = Ivy.session();
     if (TaskState.RESUMED.equals(task.getState())) {
       if (ivySession.equals(task.getWorkerSession())) {
@@ -209,7 +208,7 @@ public class TaskBean {
    * @param task Task need to be checked
    * @return boolean True : Disable PARK , False : enable PARK
    */
-  public boolean checkDisablePark(ITask task) {
+  public boolean checkDisablePark(RemoteTask task) {
     boolean disableParkLink = false;
 
     if (task != null) {
@@ -234,7 +233,7 @@ public class TaskBean {
     return disableParkLink;
   }
 
-  public boolean isDelegatable(ITask task) {
+  public boolean isDelegatable(RemoteTask task) {
     if (task == null) {
       return false;
     }
@@ -263,7 +262,7 @@ public class TaskBean {
    * @param task : Task need to be checked
    * @return boolean : True : Disable RESET , False : enable RESET
    */
-  public boolean checkDisableReset(ITask task) {
+  public boolean checkDisableReset(RemoteTask task) {
     boolean disableResetLink = false;
 
     if (task != null) {
@@ -285,7 +284,7 @@ public class TaskBean {
 
   }
 
-  public boolean isTaskAbleToAddNote(ITask task) {
+  public boolean isTaskAbleToAddNote(RemoteTask task) {
     if (task == null) {
       return false;
     }
@@ -296,7 +295,7 @@ public class TaskBean {
     return true;
   }
 
-  public boolean isTaskAbleToChangeDeadline(ITask task) {
+  public boolean isTaskAbleToChangeDeadline(RemoteTask task) {
     if (task == null) {
       return false;
     }
@@ -316,7 +315,7 @@ public class TaskBean {
     return hasTaskWriteExpiryPermission;
   }
 
-  public boolean isTaskAbleToChangePriority(ITask task) {
+  public boolean isTaskAbleToChangePriority(RemoteTask task) {
     if (task == null) {
       return false;
     }
@@ -370,7 +369,7 @@ public class TaskBean {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
   }
   
-  public String displayRelatedTaskToolTip(ITask task) {
+  public String displayRelatedTaskToolTip(RemoteTask task) {
   	String taskResponsible = "";
   	if(task != null) {
   		taskResponsible = ((RemoteTask)task).getActivatorFullName();
@@ -380,17 +379,17 @@ public class TaskBean {
   }
   
   public String displayRelatedTaskToolTipSingleApp(ITask task) {
-  	String taskResponsible = "";
-  	if(task != null && task.getActivator() != null) {
-  		ISecurityMember taskActivor = task.getActivator();
-  		if(taskActivor.isUser()) {
-    		taskResponsible = ((IUser) taskActivor).getFullName();
-  		} else {
-  			taskResponsible = !((IRole)taskActivor).getDisplayName().isEmpty() ? ((IRole)taskActivor).getDisplayName() : ((IRole)taskActivor).getMemberName();
-  		}
-  	}
-  	List<Object> params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
-  	return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
+    String taskResponsible = "";
+    if(task != null && task.getActivator() != null) {
+      ISecurityMember taskActivor = task.getActivator();
+      if(taskActivor.isUser()) {
+        taskResponsible = ((IUser) taskActivor).getFullName();
+      } else {
+        taskResponsible = !((IRole)taskActivor).getDisplayName().isEmpty() ? ((IRole)taskActivor).getDisplayName() : ((IRole)taskActivor).getMemberName();
+      }
+    }
+    List<Object> params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
   
   public String getUserFriendlyTaskState(TaskState state) {
@@ -450,8 +449,8 @@ public class TaskBean {
     return stateDisplayOut;
   }
 
-  public String displayCaseName(ITask task) {
-    ICase iCase = task.getCase();
+  public String displayCaseName(RemoteTask task) {
+    RemoteCase iCase = task.getCase();
     String caseName = iCase.getName();
     return StringUtils.isNotEmpty(caseName) ? caseName : "#" + iCase.getId();
   }

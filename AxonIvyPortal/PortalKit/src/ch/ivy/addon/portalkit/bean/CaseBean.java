@@ -4,6 +4,7 @@ import static ch.ivyteam.ivy.security.IPermission.CASE_DESTROY;
 
 import javax.faces.bean.ManagedBean;
 
+import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.vo.CaseVO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
@@ -44,13 +45,24 @@ public class CaseBean {
     if (iCase == null) {
       return "";
     }
-     if (iCase.getState() == CaseState.CREATED || iCase.getState() == CaseState.RUNNING) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/RUNNING");
-    }
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + iCase.getState());
+    return getDisplayState(iCase.getState());
   }
 
-  public boolean isCaseAbleToAddNote(ICase iCase) {
+  public String getState(RemoteCase iCase) {
+    if (iCase == null) {
+      return "";
+    }
+    return getDisplayState(iCase.getState());
+  }
+  
+  private String getDisplayState(CaseState caseState) {
+    if (caseState == CaseState.CREATED || caseState == CaseState.RUNNING) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/RUNNING");
+    }
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + caseState);
+  }
+
+  public boolean isCaseAbleToAddNote(RemoteCase iCase) {
     if (iCase == null) {
       return false;
     }

@@ -33,7 +33,6 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
@@ -214,7 +213,7 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   public String getProcessDescription(String userProcessName) {
-    for (IWebStartable webStartable : webStartables) {
+    for (RemoteWebStartable webStartable : webStartables) {
       if (webStartable.getDisplayName().equals(userProcessName)) {
         return webStartable.getDescription();
       }
