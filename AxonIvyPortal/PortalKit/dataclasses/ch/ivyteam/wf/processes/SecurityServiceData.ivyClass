@@ -17,3 +17,5 @@ taskId Long #field
 tempErrors List<ch.ivy.ws.addon.WsException> #field
 username String #field
 users List<ch.ivy.addon.portalkit.bo.RemoteUser> #field
+hasAppsParam Boolean #field
+hasAppsParam 'Flag to check whether find data by apps from parameter' #fieldComment
