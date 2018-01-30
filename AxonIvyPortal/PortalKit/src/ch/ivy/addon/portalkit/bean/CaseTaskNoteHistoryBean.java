@@ -26,7 +26,7 @@ public class CaseTaskNoteHistoryBean {
     public String getCaseNoteHistoryLink(RemoteCase remoteCase) {
       String caseNoteHistoryUri = (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
       try {
-        String host = (new UrlDetector()).getHost(remoteCase.getServer());
+        String host = (new UrlDetector()).getHost(remoteCase.getServerUrl(), remoteCase.getServer());
         WebLink webLink = UrlValidator.isValidUrl(caseNoteHistoryUri) ? new WebLinkFactory().createFromContextRelative(caseNoteHistoryUri) 
                                                                                 : new WebLink(host + caseNoteHistoryUri);
         return webLink.getAbsoluteEncoded();
