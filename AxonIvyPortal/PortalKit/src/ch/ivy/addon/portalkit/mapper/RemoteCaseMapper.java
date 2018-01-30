@@ -2,13 +2,12 @@ package ch.ivy.addon.portalkit.mapper;
 
 import ch.ivy.addon.portalkit.bo.RemoteApplication;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.ws.addon.IvyCase;
 import ch.ivy.ws.addon.IvyTask;
 import ch.ivyteam.ivy.scripting.objects.List;
 import ch.ivyteam.ivy.workflow.CaseState;
-import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 
@@ -313,12 +312,12 @@ public class RemoteCaseMapper {
     return result;
   }
   
-  public static RemoteCase mapCaseFromTask(ITask ivyTask) {
+  public static RemoteCase mapCaseFromTask(RemoteTask ivyTask) {
     RemoteCase remoteCase = new RemoteCase();
 
     /* 1. GETTER + SETTER must be implemented in RemoteTask (overrides) */
 
-    ICase ivyCase = ivyTask.getCase();
+    RemoteCase ivyCase = ivyTask.getCase();
     remoteCase.setBusinessCorrespondentId(ivyCase.getBusinessCorrespondentId());
     remoteCase.setBusinessCreatorUser(ivyCase.getBusinessCreatorUser());
     remoteCase.setBusinessMainContactDocumentDatabaseCode(ivyCase.getBusinessMainContactDocumentDatabaseCode());

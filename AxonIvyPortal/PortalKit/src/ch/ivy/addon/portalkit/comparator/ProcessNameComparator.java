@@ -2,12 +2,12 @@ package ch.ivy.addon.portalkit.comparator;
 
 import java.util.Comparator;
 
-import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivy.addon.portalkit.bo.RemoteProcessStart;
 
-public class ProcessNameComparator implements Comparator<IProcessStart> {
+public class ProcessNameComparator implements Comparator<RemoteProcessStart> {
 
   @Override
-  public int compare(IProcessStart firstProcess, IProcessStart secondProcess) {
+  public int compare(RemoteProcessStart firstProcess, RemoteProcessStart secondProcess) {
     return firstProcess.getName().toLowerCase().compareTo(secondProcess.getName().toLowerCase());
   }
 
