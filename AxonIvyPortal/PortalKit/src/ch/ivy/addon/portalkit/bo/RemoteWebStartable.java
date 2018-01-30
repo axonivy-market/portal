@@ -1,14 +1,11 @@
 package ch.ivy.addon.portalkit.bo;
 
-import ch.ivyteam.ivy.model.value.WebLink;
-import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 /**
  * Bean for remote web startable.
  *
  */
-public class RemoteWebStartable implements IWebStartable {
+public class RemoteWebStartable {
 
   private String name;
   private String displayName;
@@ -17,24 +14,16 @@ public class RemoteWebStartable implements IWebStartable {
   private String activatorDisplayName;
   private String activatorMemberName;
 
-  @Override
   public String getName() {
     return name;
   }
   
-  @Override
   public String getDisplayName() {
     return displayName;
   }
 
-  @Override
   public String getDescription() {
     return description;
-  }
-
-  @Override
-  public ISecurityMember getActivator() {
-    return null;
   }
 
   public void setName(String name) {
@@ -73,14 +62,4 @@ public class RemoteWebStartable implements IWebStartable {
     this.startLink = startLink;
   }
 
-	@Override
-	public WebLink getLink() {
-		return null;
-	}
-
-	@Override
-	public int compareTo(IWebStartable arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

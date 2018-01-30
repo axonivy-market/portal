@@ -232,7 +232,7 @@ Ps0 f23 disableUIEvents false #txt
 Ps0 f23 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f23 outParameterDecl '<List<ch.ivyteam.ivy.workflow.start.IWebStartable> webStartables> result;
+Ps0 f23 outParameterDecl '<List<ch.ivy.addon.portalkit.bo.RemoteWebStartable> webStartables> result;
 ' #txt
 Ps0 f23 outParameterMapAction 'result.webStartables=in.webStartables;
 ' #txt

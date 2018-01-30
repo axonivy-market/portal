@@ -3,5 +3,5 @@ ch.ivy.add.portalkit #namespace
 hideBusinessCase Boolean #field
 caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
 serverId Long #field
-technicalCases java.util.List<ch.ivyteam.ivy.workflow.ICase> #field
+technicalCases java.util.List<ch.ivy.addon.portalkit.bo.RemoteCase> #field
 selectedCase ch.ivyteam.ivy.workflow.ICase #field

@@ -908,9 +908,9 @@ Ts0 f42 1 0.07754185619092568 0 0 #arcLabel
 Ts0 f59 expr out #txt
 Ts0 f59 1152 1164 1152 1246 #arcP
 Ts0 f37 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f37 processCall 'Functional Processes/CalculateTaskDelegate:call(ch.ivyteam.wf.processes.SecurityMemberData,ch.ivyteam.ivy.security.ISecurityMember,ch.ivyteam.ivy.workflow.ITask)' #txt
+Ts0 f37 processCall 'Functional Processes/CalculateTaskDelegate:call(ch.ivyteam.wf.processes.SecurityMemberData,ch.ivyteam.ivy.security.ISecurityMember,ch.ivy.addon.portalkit.bo.RemoteTask)' #txt
 Ts0 f37 doCall true #txt
-Ts0 f37 requestActionDecl '<ch.ivyteam.wf.processes.SecurityMemberData possibleTaskDelegates,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivyteam.ivy.workflow.ITask task> param;
+Ts0 f37 requestActionDecl '<ch.ivyteam.wf.processes.SecurityMemberData possibleTaskDelegates,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivy.addon.portalkit.bo.RemoteTask task> param;
 ' #txt
 Ts0 f37 requestMappingAction 'param.possibleTaskDelegates=in.securityMemberData;
 param.currentUser=ivy.session.getSessionUser();
