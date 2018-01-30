@@ -18,10 +18,19 @@
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/logout')}"
       styleClass="portal-cancel-button" actionListener="#{logic.logout}" oncomplete="returnHomePage()" />
   </p:confirmDialog>
+  
+  
+  <p:confirmDialog id="timeout-dialog"
+		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
+		message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried')}"
+		widgetVar="timeoutDialog" appendTo="@(body)" closable="false">
+		<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
+			type="button" styleClass="portal-ok-button" />
+	</p:confirmDialog>
 
   <h:form>
     <p:remoteCommand id="logout-and-show-dialog" name="logoutAndShowDialog" actionListener="#{logic.logout}"
-      onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('viewExpiredExceptionDialog').show()" />
+      onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeoutDialog').show()" />
   </h:form>
   <script type="text/javascript">
       var timeout = "#{cc.attrs.clientSideTimeOut}";
@@ -68,13 +77,13 @@
               timeOutSeconds--;
               document.cookie = createCookie('SessionCounter',timeOutSeconds);
               
-            } else {
+            }  else {
                 if (getCookie('isLogout') == "false") {
 				  document.cookie = createCookie('isLogout',true);
                   logoutAndShowDialog();
                 } else {
                   PF('timeout-warning-dialog').hide();
-                  PF('viewExpiredExceptionDialog').show();
+                  PF('timeoutDialog').show();
                   clearInterval(intervalCheckSessionTimeout);
                 } 
             }
