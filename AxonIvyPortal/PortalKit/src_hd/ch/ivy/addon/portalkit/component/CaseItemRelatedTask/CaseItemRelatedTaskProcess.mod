@@ -357,7 +357,10 @@ if(in.remoteCase.isBusinessCase()){
 	queryCriteria.setQueryByBusinessCaseId(true);
 }
 out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
-out.taskSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+out.taskSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission() || TaskUtils.checkTaskReadOwnCaseTasksPermission());
+ivy.log.error("User:" + ivy.session.getSessionUser().getDisplayName() + " TaskUtils.checkReadAllCasesPermission():" + TaskUtils.checkReadAllCasesPermission());
+ivy.log.error("User:" + ivy.session.getSessionUser().getDisplayName() + " TaskUtils.checkReadAllTasksPermission():" + TaskUtils.checkReadAllTasksPermission());
+ivy.log.error("User:" + ivy.session.getSessionUser().getDisplayName() + " TaskUtils.checkTaskReadOwnCaseTasksPermission():" + TaskUtils.checkTaskReadOwnCaseTasksPermission());
 out.taskSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());' #txt
 Cs0 f16 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

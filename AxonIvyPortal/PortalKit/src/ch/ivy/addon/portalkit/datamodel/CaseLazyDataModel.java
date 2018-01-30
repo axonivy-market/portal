@@ -35,6 +35,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.ws.addon.CaseSearchCriteria;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -72,8 +73,12 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     notDisplayedCaseMap = new HashMap<>();
     selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
-    searchCriteria = buildSearchCriteria();
-    queryCriteria = buildQueryCriteria();
+    searchCriteria = buildInitSearchCriteria();
+    queryCriteria = buildInitQueryCriteria();
+    setIgnoreInvolvedUser(TaskUtils.checkReadAllCasesPermission());
+    Ivy.log().error("User:" + Ivy.session().getSessionUser().getDisplayName() + " TaskUtils.checkReadAllCasesPermission():" + TaskUtils.checkReadAllCasesPermission());
+    Ivy.log().error("User:" + Ivy.session().getSessionUser().getDisplayName() + " TaskUtils.checkReadAllTasksPermission():" + TaskUtils.checkReadAllTasksPermission());
+    Ivy.log().error("User:" + Ivy.session().getSessionUser().getDisplayName() + " TaskUtils.checkTaskReadOwnCaseTasksPermission():" + TaskUtils.checkTaskReadOwnCaseTasksPermission());
   }
 
   @Override
@@ -117,11 +122,6 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       initFilterContainer();
       filters = filterContainer.getFilters();
       setValuesForCaseStateFilter(queryCriteria);
-      if (searchCriteria.getIgnoreInvolvedUser()) {
-        CaseStateFilter stateFilter = filterContainer.getStateFilter();
-        stateFilter.getSelectedFilteredStates().remove(CaseState.DONE);
-        stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
-      }
     }
   }
 
@@ -245,7 +245,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     return caseCount.intValue();
   }
 
-  private CaseSearchCriteria buildSearchCriteria() {
+  private CaseSearchCriteria buildInitSearchCriteria() {
     CaseSearchCriteria crit = new CaseSearchCriteria();
     crit.setInvolvedUsername(Ivy.session().getSessionUserName());
     crit.setBusinessCase(true);
@@ -338,9 +338,9 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     return queryCriteria;
   }
 
-  protected CaseQueryCriteria buildQueryCriteria() {
+  protected CaseQueryCriteria buildInitQueryCriteria() {
     CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
-    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING)));
+    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
     jsonQueryCriteria.setSortDescending(true);
     return jsonQueryCriteria;

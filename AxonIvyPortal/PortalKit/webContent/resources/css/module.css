@@ -2993,6 +2993,14 @@ a.task-details-document-add-link {
   display: block;
 }
 
+.additional-case-details-link {
+	font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.5) !important;
+	position: absolute;
+    bottom: 18px;
+    margin-left: 15px;
+}
+
 .related-task-content {
   padding: 0 10px 5px 10px !important;
 }
@@ -3053,6 +3061,12 @@ a.task-details-document-add-link {
   	text-overflow: ellipsis;
   	overflow: hidden;
   	max-width: 200px;
+}
+
+.related-task-show-all-tasks-link{
+	margin-left: 10px;
+	position: absolute;
+	bottom: 18px
 }
 
 .case-details-note-add {
