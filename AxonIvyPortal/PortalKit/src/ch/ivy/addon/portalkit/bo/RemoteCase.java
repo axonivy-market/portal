@@ -110,6 +110,8 @@ public class RemoteCase implements ICase {
   private boolean canChangeDescription;
   private boolean canChangeName;
   private boolean isBusinessCase;
+  
+  private String serverUrl;
 
   @Override
   @PublicAPI(IvyScriptVisibility.ADVANCED)
@@ -1063,7 +1065,15 @@ public class RemoteCase implements ICase {
 		this.isBusinessCase = isBusinessCase;
 	}
 	
-	@Override
+	public String getServerUrl() {
+    return serverUrl;
+  }
+
+  public void setServerUrl(String serverUrl) {
+    this.serverUrl = serverUrl;
+  }
+
+  @Override
 	public void attachToBusinessCase(long businessCaseId)
 			throws PersistencyException {
 		// TODO Auto-generated method stub

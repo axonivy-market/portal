@@ -67,7 +67,7 @@ public class UrlDetectorTest {
     PowerMockito.when(serverService.isMultiServers()).thenReturn(true);
     Server server = new Server();
     server.setPath("http://google.com");
-    Assert.assertEquals("http://google.com", detector.getHost(server));
+    Assert.assertEquals("http://google.com", detector.getHost(StringUtils.EMPTY, server));
   }
 
   private FacesContext mockBaseUrl(String scheme, String serverName, int serverPort, String contextPath) {
