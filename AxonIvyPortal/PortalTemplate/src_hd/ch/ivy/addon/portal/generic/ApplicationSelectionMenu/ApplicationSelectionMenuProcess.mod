@@ -80,6 +80,8 @@ As0 @PushWFArc f9 '' #zField
 As0 @RichDialogMethodStart f10 '' #zField
 As0 @RichDialogMethodStart f11 '' #zField
 As0 @PushWFArc f12 '' #zField
+As0 @GridStep f14 '' #zField
+As0 @PushWFArc f15 '' #zField
 As0 @PushWFArc f13 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f66 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -829,10 +831,31 @@ As0 f11 563 35 26 26 -18 15 #rect
 As0 f11 @|RichDialogMethodStartIcon #fIcon
 As0 f12 expr out #txt
 As0 f12 786 60 787 97 #arcP
+As0 f14 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f14 actionTable 'out=in;
+' #txt
+As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+
+TaskUtils.resetTask(ivy.task);' #txt
+As0 f14 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Leave and &#xD;
+reset task</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f14 520 90 112 44 -30 -16 #rect
+As0 f14 @|StepIcon #fIcon
+As0 f15 expr out #txt
+As0 f15 576 61 576 90 #arcP
+As0 f15 0 0.48807561678530004 0 0 #arcLabel
 As0 f13 expr out #txt
-As0 f13 576 61 773 173 #arcP
+As0 f13 576 134 773 173 #arcP
 As0 f13 1 576 173 #addKink
-As0 f13 1 0.197032312622628 0 0 #arcLabel
+As0 f13 1 0.302020000020303 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -919,5 +942,7 @@ As0 f3 mainOut f9 tail #connect
 As0 f9 head f6 mainIn #connect
 As0 f10 mainOut f12 tail #connect
 As0 f12 head f91 mainIn #connect
-As0 f11 mainOut f13 tail #connect
+As0 f11 mainOut f15 tail #connect
+As0 f15 head f14 mainIn #connect
+As0 f14 mainOut f13 tail #connect
 As0 f13 head f98 in #connect
