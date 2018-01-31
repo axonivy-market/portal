@@ -127,14 +127,19 @@ public class UserMenuBean {
       navigateToHomePage();
     }
   }
-
-  public void navigateToHomePage() throws Exception {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
-  }
   
+  public void resetTaskAndNavigateToHomePage() throws Exception {
+    TaskUtils.resetTask(Ivy.wfTask());
+    navigateToHomePage();
+  }
+
   public void reserveTaskAndNavigateToHomePage() throws Exception {
     TaskUtils.parkTask(Ivy.wfTask());
     navigateToHomePage();
+  }
+  
+  private void navigateToHomePage() throws Exception {
+    FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
   }
 
   private String getHomePageFromSetting() {
