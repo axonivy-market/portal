@@ -164,17 +164,57 @@
 				available.
 			</warning>
 			<important>
+				<para> There is 2 ways to configure portals: <code>two levels</code> and <code>single level</code></para>
 				<itemizedlist>
 					<listitem>
-						<para>If number of configured applications is more than one, the default Portal application must not be configured and it must be active. </para>
+						<para>Two levels portal</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/Settings/multi-application-with-portal.png" />
+							</imageobject>
+						</mediaobject>
+						<itemizedlist>
+							<listitem>
+								<para>Used for related applications where we need an overview of all tasks and cases.</para>
+							</listitem>
+							<listitem>
+								<para>There is default application Portal.</para>
+							</listitem>
+							<listitem>
+								<para>Create new applications: App1, App2, App3... Deploy portal (kit, template ..) to new applications.</para>
+							</listitem>
+							<listitem>
+								<para>Configure multi-apps Portal on single server: login by Portal Admin. Configure 1 server then configure applications: App1, App2, App3...</para>
+							</listitem>
+							<listitem>
+								<para>Note that, <code>do not</code> add default Portal application, the default application (Dashboard) is reserved for displaying all tasks/cases... from all configured applications.</para>
+							</listitem>
+							<listitem>
+								<para>Dashboard menu only visible when login user exists in Portal application.</para>
+							</listitem>
+						</itemizedlist>
 					</listitem>
 					<listitem>
-						<para>If the login user is existed in only one application, application menu shows only the menu item for that application.</para>
-					</listitem>
-					<listitem>
-						<para>If the login user is existed in more than one application, application menu shows menu items for those applications and Dashboard menu item.</para> 
-						<para>Dashboard menu item is used for displaying all tasks, cases, processes of configured applications.</para> 
-						<para>Dashboard menu item is linked to the default Portal application. Therefore, the default Portal application must be active.</para>
+						<para>Single level portal</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/Settings/multi-application-without-portal.png" />
+							</imageobject>
+						</mediaobject>
+						<itemizedlist>
+							<listitem>
+								<para>Used for independent applications.</para>
+							</listitem>
+							<listitem>
+								<para>Disable the default application Portal.</para>
+							</listitem>
+							<listitem>
+								<para>Create new applications: App1, App2, App3... Deploy portal(kit, template ..) to new applications.</para>
+							</listitem>
+							<listitem>
+								<para>Configure multi-apps Portal on single server: login by Portal Admin. Configure 1 server then configure applications: App1, App2, App3...</para>
+							</listitem>
+						</itemizedlist>
 					</listitem>
 				</itemizedlist>
 			</important>
