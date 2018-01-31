@@ -124,7 +124,9 @@
 
 						<pe:dynaFormControl type="InputFieldDate" for="inputFieldDate"
 							styleClass="calendar">
-							<p:calendar id="inputFieldDate" value="#{dynaData.value}"
+							<p:calendar 
+								locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" 
+								id="inputFieldDate" value="#{dynaData.value}"
 								required="#{dynaData.required}" showOn="button" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/genericErrMsg')}"/>
 						</pe:dynaFormControl>
 

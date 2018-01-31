@@ -51,18 +51,18 @@
 
 					<p:outputLabel for="von"
 						value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/from')}" />
-					<p:calendar id="von" value="#{data.Von}" pattern="dd.MM.yyyy"
-						size="10" required="true" locale="en_US"
+					<p:calendar id="von" value="#{data.Von}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"
+						size="10" required="true"
 						requiredMessage="Date From is required">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
+						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
 					</p:calendar>
 
 					<p:outputLabel for="bis"
 						value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/to')}" />
-					<p:calendar id="bis" value="#{data.Bis}" locale="en_US"
-						pattern="dd.MM.yyyy" size="10" required="true"
+					<p:calendar id="bis" value="#{data.Bis}"
+						 locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" size="10" required="true"
 						requiredMessage="Date To is required">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
+						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
 					</p:calendar>
 
 					<p:outputLabel for="art"

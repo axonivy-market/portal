@@ -42,13 +42,13 @@
 					<p:inputText id="mitarbeiter" value="#{data.Mitarbeiter}"></p:inputText>
 					
 					<p:outputLabel for="von" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/from')}"/>
-					<p:calendar id="von" value="#{data.Von}" pattern="dd.MM.yyyy" size="10">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
+					<p:calendar id="von" value="#{data.Von}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" size="10">
+						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
 					</p:calendar>
 					
 					<p:outputLabel for="bis" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/to')}"/>
-					<p:calendar id="bis" value="#{data.Bis}" pattern="dd.MM.yyyy" size="10">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
+					<p:calendar id="bis" value="#{data.Bis}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" size="10">
+						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
 					</p:calendar>
 					
 					<p:outputLabel for="art" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/type')}"/>
