@@ -28,9 +28,9 @@
                 <p:ajax event="itemSelect" update="portrait" />
               </p:autoComplete>
               <h:panelGrid columns="2" cellpadding="0">
-                <p:calendar id="taskTill" value="#{data.addTask.until}" required="false" pattern="dd.MM.yyyy HH:mm"
-                  size="20">
-                  <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                <p:calendar id="taskTill" value="#{data.addTask.until}" locale="#{localeBean.locale}" 
+                	required="false" pattern="#{dateTimePatternBean.dateTimePattern}" size="20">
+                  <f:convertDateTime pattern="#{dateTimePatternBean.dateTimePattern}" />
                 </p:calendar>
               </h:panelGrid>
             </h:panelGrid>
