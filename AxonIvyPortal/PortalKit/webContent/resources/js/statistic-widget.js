@@ -30,4 +30,7 @@ function chartExtender() {
     drawBorder : false,
     shadow: false
   };
+  this.cfg.seriesDefaults.rendererOptions.dataLabelFormatString = '%.4s%%';
+  this.cfg.seriesDefaults.rendererOptions.dataLabelThreshold = 0;
+
 }
