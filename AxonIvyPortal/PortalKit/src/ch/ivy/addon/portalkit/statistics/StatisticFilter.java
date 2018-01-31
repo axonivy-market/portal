@@ -11,6 +11,8 @@ import java.util.TreeSet;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
@@ -103,6 +105,7 @@ public class StatisticFilter {
     this.caseCategories = ((List<CategoryData>) response.get("result")).stream().map(CategoryData::getPath).collect(Collectors.toList());
     this.caseCategories = caseCategories.stream().distinct()
         .collect(Collectors.toList());
+    caseCategories.add(StringUtils.EMPTY);
     this.selectedCaseCategories = new ArrayList<>(this.caseCategories);
   }
 
