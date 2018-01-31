@@ -13,7 +13,7 @@
       <p:graphicImage value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" cache="false" />
     </p:commandLink>
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
-      leaveActionListener="#{userMenuBean.navigateToHomePage()}" reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
+      leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}" reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
       componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog" />
     <c:if test="#{!isNotRequiredLogin}">
       <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
