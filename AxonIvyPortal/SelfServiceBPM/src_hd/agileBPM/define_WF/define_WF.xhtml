@@ -91,9 +91,10 @@
                         <p:ajax event="mousedown" process="@this" listener="#{logic.initUserList(defineTask)}"
                           update="userList" oncomplete="PF('userList').show();" />
                       </p:inputText>
-                      <p:calendar id="taskTill" value="#{defineTask.until}" widgetVar="taskTill#{row.index}"
-                        required="false" pattern="dd.MM.yyyy HH:mm" size="18">
-                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                      <p:calendar id="taskTill" locale="#{localeBean.locale}" 
+                      	value="#{defineTask.until}" widgetVar="taskTill#{row.index}"
+                        required="false" pattern="#{dateTimePatternBean.dateTimePattern}" size="18">
+                        <f:convertDateTime pattern="#{dateTimePatternBean.dateTimePattern}" />
                       </p:calendar>
                     </h:panelGrid>
                   </h:panelGrid>

@@ -25,7 +25,7 @@
                     </p:column>
                     <p:column>
                       <p:calendar id="task-deadline-input" value="#{cc.attrs.task.expiryTimestamp}" 
-                        pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" />
+                        pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" showOn="button" />
                     </p:column>
                   </p:row>
                 </p:panelGrid>
