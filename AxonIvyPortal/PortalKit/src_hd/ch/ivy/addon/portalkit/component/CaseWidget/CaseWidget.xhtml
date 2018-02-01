@@ -121,6 +121,7 @@
         <p:commandButton id="filter-save-action"
           value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/saveFilter')}"
           styleClass="filter-add-button" icon="fa fa-save" iconPos="right" update="save-filter-set-dialog"
+          resetValues="true"
           oncomplete="PF('save-filter-set-dialog').show();" />
       </h:panelGroup>
     </h:panelGroup>
@@ -234,7 +235,7 @@
         <p:commandButton styleClass="portal-ok-button" id="filter-save-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
-          actionListener="#{logic.saveFilter}" update="#{cc.clientId}:case-widget-header">
+          actionListener="#{logic.saveFilter}" update="#{cc.clientId}:case-widget-header case-widget:filter-save-form">
         </p:commandButton>
         <p:spacer width="5px" />
         <p:commandButton type="button" styleClass="portal-cancel-button"
