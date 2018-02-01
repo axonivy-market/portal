@@ -76,9 +76,6 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     searchCriteria = buildInitSearchCriteria();
     queryCriteria = buildInitQueryCriteria();
     setIgnoreInvolvedUser(TaskUtils.checkReadAllCasesPermission());
-    Ivy.log().error("User:" + Ivy.session().getSessionUser().getDisplayName() + " TaskUtils.checkReadAllCasesPermission():" + TaskUtils.checkReadAllCasesPermission());
-    Ivy.log().error("User:" + Ivy.session().getSessionUser().getDisplayName() + " TaskUtils.checkReadAllTasksPermission():" + TaskUtils.checkReadAllTasksPermission());
-    Ivy.log().error("User:" + Ivy.session().getSessionUser().getDisplayName() + " TaskUtils.checkTaskReadOwnCaseTasksPermission():" + TaskUtils.checkTaskReadOwnCaseTasksPermission());
   }
 
   @Override
