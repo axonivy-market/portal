@@ -7,14 +7,14 @@
 	<ui:composition>
 
 		<!-- Exception Handler for ViewExpiredExceptions -->
-		<p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="viewExpiredExceptionDialog"
-			onexception="PF('viewExpiredExceptionDialog').show();" />
+		<p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="view-expired-exception-dialog"
+			onexception="PF('view-expired-exception-dialog').show();" />
 
 		<!-- Error Dialog shown if a view or session has expired -->
-		<p:confirmDialog id="viewExpiredExceptionDialog"
+		<p:confirmDialog id="view-expired-exception-dialog"
 			header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
 			message="#{session.isNew()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}"
-			widgetVar="viewExpiredExceptionDialog" appendTo="@(body)" closable="false">
+			widgetVar="view-expired-exception-dialog" appendTo="@(body)" closable="false">
 			<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
 				type="button" styleClass="portal-ok-button" />
 		</p:confirmDialog>
