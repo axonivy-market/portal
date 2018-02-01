@@ -67,7 +67,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public boolean isInformDialogShowAfterTimeout(){
-    waitForElementDisplayed(By.id("viewExpiredExceptionDialog"), true, 150);
-    return isElementDisplayed(By.id("viewExpiredExceptionDialog"));
+    waitForElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"), true, 150);
+    return isElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"));
   }
 }

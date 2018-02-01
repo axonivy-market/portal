@@ -23,14 +23,14 @@
   <p:confirmDialog id="timeout-dialog"
 		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
 		message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried')}"
-		widgetVar="timeoutDialog" appendTo="@(body)" closable="false">
+		widgetVar="timeout-dialog" appendTo="@(body)" closable="false">
 		<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
 			type="button" styleClass="portal-ok-button" />
 	</p:confirmDialog>
 
   <h:form>
     <p:remoteCommand id="logout-and-show-dialog" name="logoutAndShowDialog" actionListener="#{logic.logout}"
-      onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeoutDialog').show()" />
+      onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeout-dialog').show()" />
   </h:form>
   <script type="text/javascript">
       var timeout = "#{cc.attrs.clientSideTimeOut}";
@@ -83,7 +83,7 @@
                   logoutAndShowDialog();
                 } else {
                   PF('timeout-warning-dialog').hide();
-                  PF('timeoutDialog').show();
+                  PF('timeout-dialog').show();
                   clearInterval(intervalCheckSessionTimeout);
                 } 
             }
