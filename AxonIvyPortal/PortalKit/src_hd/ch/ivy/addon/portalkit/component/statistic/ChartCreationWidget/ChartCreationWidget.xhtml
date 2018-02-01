@@ -22,7 +22,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}" />
             <p:commandLink id="create-task-by-priority-link" styleClass="add-link fa fa-plus-circle"
               value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-              <p:ajax event="click" update="add-chart-dialog"
+              <p:ajax event="click" update="add-chart-dialog" resetValues="true"
                 listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
             </p:commandLink>
             <p:chart type="donut" model="#{taskByPriorityModel}" styleClass="statistic-chart" />
@@ -34,7 +34,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')}" />
             <p:commandLink id="create-case-by-state-link" styleClass="add-link fa fa-plus-circle"
               value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-              <p:ajax event="click" update="add-chart-dialog"
+              <p:ajax event="click" update="add-chart-dialog" resetValues="true"
                 listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
             </p:commandLink>
             <p:chart type="donut" model="#{caseByStateModel}" styleClass="statistic-chart" />
@@ -46,7 +46,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}" />
             <p:commandLink id="create-task-by-expiry-link" styleClass="add-link fa fa-plus-circle"
               value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-              <p:ajax event="click" update="add-chart-dialog"
+              <p:ajax event="click" update="add-chart-dialog" resetValues="true"
                 listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
             </p:commandLink>
             <p:chart type="bar" model="#{taskByExpiryModel}" styleClass="statistic-chart" />
@@ -58,7 +58,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')}" />
             <p:commandLink id="create-elapsed-time-link" styleClass="add-link fa fa-plus-circle"
               value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-              <p:ajax event="click" update="add-chart-dialog"
+              <p:ajax event="click" update="add-chart-dialog" resetValues="true"
                 listener="#{logic.updateBeforeAddElapsedTime}" oncomplete="PF('add-chart-dialog').show();" />
             </p:commandLink>
             <p:chart type="pie" model="#{elapsedTimeModel}" styleClass="statistic-chart" />
