@@ -15,12 +15,10 @@ He0 @TextInP .responsibility .responsibility #zField
 He0 @StartSub f0 '' #zField
 He0 @EndSub f1 '' #zField
 He0 @GridStep f12 '' #zField
-He0 @CallSub f14 '' #zField
-He0 @PushWFArc f15 '' #zField
 He0 @GridStep f3 '' #zField
-He0 @PushWFArc f6 '' #zField
 He0 @PushWFArc f2 '' #zField
 He0 @PushWFArc f5 '' #zField
+He0 @PushWFArc f4 '' #zField
 >Proto He0 He0 HideSystemCase #zField
 He0 f0 inParamDecl '<java.lang.Long serverId,java.lang.Boolean hideBusinessCase> param;' #txt
 He0 f0 inParamTable 'out.hideBusinessCase=param.#hideBusinessCase is initialized ? param.hideBusinessCase : false;
@@ -77,32 +75,6 @@ related technical cases</name>
 ' #txt
 He0 f12 192 106 192 44 -75 -16 #rect
 He0 f12 @|StepIcon #fIcon
-He0 f14 type ch.ivy.add.portalkit.HideSystemCaseData #txt
-He0 f14 processCall MultiPortal/CaseService:findCasesByCriteria(Long,Integer,Integer,ch.ivy.ws.addon.CaseSearchCriteria) #txt
-He0 f14 doCall true #txt
-He0 f14 requestActionDecl '<java.lang.Long serverId,java.lang.Integer startIndex,java.lang.Integer count,ch.ivy.ws.addon.CaseSearchCriteria caseSearchCriteria> param;
-' #txt
-He0 f14 requestMappingAction 'param.serverId=in.serverId;
-param.caseSearchCriteria=in.caseSearchCriteria;
-' #txt
-He0 f14 responseActionDecl 'ch.ivy.add.portalkit.HideSystemCaseData out;
-' #txt
-He0 f14 responseMappingAction 'out=in;
-out.technicalCases=result.cases;
-' #txt
-He0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CaseService</name>
-        <nameStyle>11,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-He0 f14 448 106 112 44 -35 -8 #rect
-He0 f14 @|CallSubIcon #fIcon
-He0 f15 expr out #txt
-He0 f15 384 128 448 128 #arcP
 He0 f3 actionDecl 'ch.ivy.add.portalkit.HideSystemCaseData out;
 ' #txt
 He0 f3 actionTable 'out=in;
@@ -131,21 +103,19 @@ and related tasks</name>
 ' #txt
 He0 f3 640 106 128 44 -44 -16 #rect
 He0 f3 @|StepIcon #fIcon
-He0 f6 expr out #txt
-He0 f6 560 128 640 128 #arcP
 He0 f2 expr out #txt
 He0 f2 111 128 192 128 #arcP
 He0 f5 expr out #txt
 He0 f5 768 128 1041 128 #arcP
+He0 f4 expr out #txt
+He0 f4 384 128 640 128 #arcP
 >Proto He0 .type ch.ivy.add.portalkit.HideSystemCaseData #txt
 >Proto He0 .processKind CALLABLE_SUB #txt
 >Proto He0 0 0 32 24 18 0 #rect
 >Proto He0 @|BIcon #fIcon
-He0 f12 mainOut f15 tail #connect
-He0 f15 head f14 mainIn #connect
-He0 f14 mainOut f6 tail #connect
-He0 f6 head f3 mainIn #connect
 He0 f0 mainOut f2 tail #connect
 He0 f2 head f12 mainIn #connect
 He0 f3 mainOut f5 tail #connect
 He0 f5 head f1 mainIn #connect
+He0 f12 mainOut f4 tail #connect
+He0 f4 head f3 mainIn #connect
