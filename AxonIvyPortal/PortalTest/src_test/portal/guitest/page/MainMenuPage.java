@@ -5,8 +5,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainMenuPage extends TemplatePage {
 
@@ -103,9 +101,8 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
-    WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")")));
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")").click();
+    waitForElementDisplayed(By.id("statistics-widget:create-chart-link-label"), true);
     return new StatisticWidgetPage();
   }
 
