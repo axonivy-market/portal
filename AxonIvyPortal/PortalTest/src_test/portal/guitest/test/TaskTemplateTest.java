@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -68,7 +71,7 @@ public class TaskTemplateTest extends BaseTest {
     HomePage homePage = dialogPage.leaveTask();
     TaskWidgetPage taskWidget = homePage.getTaskWidget();
     String state = taskWidget.getStateInCompactMode(0);
-    assertEquals("IN PROGRESS", state);
+    assertEquals("OPEN", state);
   }
   
   @Test
