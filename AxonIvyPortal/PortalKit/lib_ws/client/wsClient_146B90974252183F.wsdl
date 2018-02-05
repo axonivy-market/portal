@@ -1,57 +1,93 @@
-<?xml version="1.0" ?><wsdl:definitions name="TaskServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="ch.ivyteam.ivy.webservice.process" name="TaskServiceService" targetNamespace="http://addon.ws.ivy.ch/">
   <wsdl:types>
-<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-<xs:element name="analyzeExpiryStatistic" type="tns:analyzeExpiryStatistic"></xs:element>
-<xs:element name="analyzeExpiryStatisticResponse" type="tns:analyzeExpiryStatisticResponse"></xs:element>
-<xs:element name="analyzePriorityStatistic" type="tns:analyzePriorityStatistic"></xs:element>
-<xs:element name="analyzePriorityStatisticResponse" type="tns:analyzePriorityStatisticResponse"></xs:element>
-<xs:element name="canUserResumeTask" type="tns:canUserResumeTask"></xs:element>
-<xs:element name="canUserResumeTaskResponse" type="tns:canUserResumeTaskResponse"></xs:element>
-<xs:element name="countTasksByCriteria" type="tns:countTasksByCriteria"></xs:element>
-<xs:element name="countTasksByCriteriaResponse" type="tns:countTasksByCriteriaResponse"></xs:element>
-<xs:element name="createTaskNote" type="tns:createTaskNote"></xs:element>
-<xs:element name="createTaskNoteResponse" type="tns:createTaskNoteResponse"></xs:element>
-<xs:element name="delegateTask" type="tns:delegateTask"></xs:element>
-<xs:element name="delegateTaskResponse" type="tns:delegateTaskResponse"></xs:element>
-<xs:element name="findCategories" type="tns:findCategories"></xs:element>
-<xs:element name="findCategoriesResponse" type="tns:findCategoriesResponse"></xs:element>
-<xs:element name="findGroupTaskCategories" type="tns:findGroupTaskCategories"></xs:element>
-<xs:element name="findGroupTaskCategoriesResponse" type="tns:findGroupTaskCategoriesResponse"></xs:element>
-<xs:element name="findPersonalTaskCategories" type="tns:findPersonalTaskCategories"></xs:element>
-<xs:element name="findPersonalTaskCategoriesResponse" type="tns:findPersonalTaskCategoriesResponse"></xs:element>
-<xs:element name="findTaskNotes" type="tns:findTaskNotes"></xs:element>
-<xs:element name="findTaskNotesResponse" type="tns:findTaskNotesResponse"></xs:element>
-<xs:element name="findTasksByCriteria" type="tns:findTasksByCriteria"></xs:element>
-<xs:element name="findTasksByCriteriaResponse" type="tns:findTasksByCriteriaResponse"></xs:element>
-<xs:element name="findUnassignedTaskCategories" type="tns:findUnassignedTaskCategories"></xs:element>
-<xs:element name="findUnassignedTaskCategoriesResponse" type="tns:findUnassignedTaskCategoriesResponse"></xs:element>
-<xs:element name="parkTask" type="tns:parkTask"></xs:element>
-<xs:element name="parkTaskResponse" type="tns:parkTaskResponse"></xs:element>
-<xs:element name="resetTask" type="tns:resetTask"></xs:element>
-<xs:element name="resetTaskResponse" type="tns:resetTaskResponse"></xs:element>
-<xs:element name="save" type="tns:save"></xs:element>
-<xs:element name="saveResponse" type="tns:saveResponse"></xs:element>
-<xs:element name="setAdditionalProperty" type="tns:setAdditionalProperty"></xs:element>
-<xs:element name="setAdditionalPropertyResponse" type="tns:setAdditionalPropertyResponse"></xs:element>
-<xs:complexType name="analyzePriorityStatistic">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://addon.ws.ivy.ch/" elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0">
+
+  <xs:element name="analyzeExpiryStatistic" type="tns:analyzeExpiryStatistic"></xs:element>
+
+  <xs:element name="analyzeExpiryStatisticResponse" type="tns:analyzeExpiryStatisticResponse"></xs:element>
+
+  <xs:element name="analyzePriorityStatistic" type="tns:analyzePriorityStatistic"></xs:element>
+
+  <xs:element name="analyzePriorityStatisticResponse" type="tns:analyzePriorityStatisticResponse"></xs:element>
+
+  <xs:element name="canUserResumeTask" type="tns:canUserResumeTask"></xs:element>
+
+  <xs:element name="canUserResumeTaskResponse" type="tns:canUserResumeTaskResponse"></xs:element>
+
+  <xs:element name="countTasksByCriteria" type="tns:countTasksByCriteria"></xs:element>
+
+  <xs:element name="countTasksByCriteriaResponse" type="tns:countTasksByCriteriaResponse"></xs:element>
+
+  <xs:element name="createTaskNote" type="tns:createTaskNote"></xs:element>
+
+  <xs:element name="createTaskNoteResponse" type="tns:createTaskNoteResponse"></xs:element>
+
+  <xs:element name="delegateTask" type="tns:delegateTask"></xs:element>
+
+  <xs:element name="delegateTaskResponse" type="tns:delegateTaskResponse"></xs:element>
+
+  <xs:element name="findCategories" type="tns:findCategories"></xs:element>
+
+  <xs:element name="findCategoriesResponse" type="tns:findCategoriesResponse"></xs:element>
+
+  <xs:element name="findGroupTaskCategories" type="tns:findGroupTaskCategories"></xs:element>
+
+  <xs:element name="findGroupTaskCategoriesResponse" type="tns:findGroupTaskCategoriesResponse"></xs:element>
+
+  <xs:element name="findPersonalTaskCategories" type="tns:findPersonalTaskCategories"></xs:element>
+
+  <xs:element name="findPersonalTaskCategoriesResponse" type="tns:findPersonalTaskCategoriesResponse"></xs:element>
+
+  <xs:element name="findTaskNotes" type="tns:findTaskNotes"></xs:element>
+
+  <xs:element name="findTaskNotesResponse" type="tns:findTaskNotesResponse"></xs:element>
+
+  <xs:element name="findTasksByCriteria" type="tns:findTasksByCriteria"></xs:element>
+
+  <xs:element name="findTasksByCriteriaResponse" type="tns:findTasksByCriteriaResponse"></xs:element>
+
+  <xs:element name="findUnassignedTaskCategories" type="tns:findUnassignedTaskCategories"></xs:element>
+
+  <xs:element name="findUnassignedTaskCategoriesResponse" type="tns:findUnassignedTaskCategoriesResponse"></xs:element>
+
+  <xs:element name="parkTask" type="tns:parkTask"></xs:element>
+
+  <xs:element name="parkTaskResponse" type="tns:parkTaskResponse"></xs:element>
+
+  <xs:element name="resetTask" type="tns:resetTask"></xs:element>
+
+  <xs:element name="resetTaskResponse" type="tns:resetTaskResponse"></xs:element>
+
+  <xs:element name="save" type="tns:save"></xs:element>
+
+  <xs:element name="saveResponse" type="tns:saveResponse"></xs:element>
+
+  <xs:element name="setAdditionalProperty" type="tns:setAdditionalProperty"></xs:element>
+
+  <xs:element name="setAdditionalPropertyResponse" type="tns:setAdditionalPropertyResponse"></xs:element>
+
+  <xs:complexType name="analyzePriorityStatistic">
     <xs:sequence>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzePriorityStatisticResponse">
+
+  <xs:complexType name="analyzePriorityStatisticResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:analyzePriorityStatisticResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzePriorityStatisticResult">
+
+  <xs:complexType name="analyzePriorityStatisticResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="priorityStatistic" type="tns:priorityStatistic"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="wsException">
+
+  <xs:complexType name="wsException">
     <xs:complexContent>
       <xs:extension base="tns:exception">
         <xs:sequence>
@@ -68,22 +104,26 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="exception">
+
+  <xs:complexType name="exception">
     <xs:complexContent>
       <xs:extension base="tns:throwable">
         <xs:sequence></xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="throwable">
+
+  <xs:complexType name="throwable">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType final="extension restriction" name="stackTraceElement">
+
+  <xs:complexType final="extension restriction" name="stackTraceElement">
     <xs:sequence></xs:sequence>
   </xs:complexType>
-<xs:complexType name="priorityStatistic">
+
+  <xs:complexType name="priorityStatistic">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -95,38 +135,41 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType abstract="true" name="compositeObject">
+
+  <xs:complexType abstract="true" name="compositeObject">
     <xs:complexContent>
       <xs:extension base="tns:nestedObject">
         <xs:sequence></xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType abstract="true" name="nestedObject">
+
+  <xs:complexType abstract="true" name="nestedObject">
     <xs:sequence></xs:sequence>
   </xs:complexType>
-<xs:complexType final="extension restriction" name="dateTime">
-    <xs:sequence></xs:sequence>
-  </xs:complexType>
-<xs:complexType name="createTaskNote">
+
+  <xs:complexType name="createTaskNote">
     <xs:sequence>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="createTaskNoteResponse">
+
+  <xs:complexType name="createTaskNoteResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:createTaskNoteResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="createTaskNoteResult">
+
+  <xs:complexType name="createTaskNoteResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="note" type="tns:ivyNote"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyNote">
+
+  <xs:complexType name="ivyNote">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -139,25 +182,29 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="parkTask">
+
+  <xs:complexType name="parkTask">
     <xs:sequence>
       <xs:element minOccurs="0" name="isUrlBuiltFromSystemProperties" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="parkTaskResponse">
+
+  <xs:complexType name="parkTaskResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:parkTaskResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="parkTaskResult">
+
+  <xs:complexType name="parkTaskResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="error" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="ivyTask" type="tns:ivyTask"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyTask">
+
+  <xs:complexType name="ivyTask">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -310,7 +357,8 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="findGroupTaskCategories">
+
+  <xs:complexType name="findGroupTaskCategories">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
@@ -318,18 +366,21 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findGroupTaskCategoriesResponse">
+
+  <xs:complexType name="findGroupTaskCategoriesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findGroupTaskCategoriesResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findGroupTaskCategoriesResult">
+
+  <xs:complexType name="findGroupTaskCategoriesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="categoryData">
+
+  <xs:complexType name="categoryData">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -339,25 +390,29 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="analyzeExpiryStatistic">
+
+  <xs:complexType name="analyzeExpiryStatistic">
     <xs:sequence>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzeExpiryStatisticResponse">
+
+  <xs:complexType name="analyzeExpiryStatisticResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:analyzeExpiryStatisticResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="analyzeExpiryStatisticResult">
+
+  <xs:complexType name="analyzeExpiryStatisticResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="expiryStatistic" type="tns:expiryStatistic"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="expiryStatistic">
+
+  <xs:complexType name="expiryStatistic">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -366,19 +421,22 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="setAdditionalProperty">
+
+  <xs:complexType name="setAdditionalProperty">
     <xs:sequence>
       <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="setAdditionalPropertyResponse">
+
+  <xs:complexType name="setAdditionalPropertyResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findPersonalTaskCategories">
+
+  <xs:complexType name="findPersonalTaskCategories">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
@@ -386,18 +444,21 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findPersonalTaskCategoriesResponse">
+
+  <xs:complexType name="findPersonalTaskCategoriesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findPersonalTaskCategoriesResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findPersonalTaskCategoriesResult">
+
+  <xs:complexType name="findPersonalTaskCategoriesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCategories">
+
+  <xs:complexType name="findCategories">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
@@ -405,43 +466,50 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCategoriesResponse">
+
+  <xs:complexType name="findCategoriesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findCategoriesResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findCategoriesResult">
+
+  <xs:complexType name="findCategoriesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="resetTask">
+
+  <xs:complexType name="resetTask">
     <xs:sequence>
       <xs:element minOccurs="0" name="isUrlBuiltFromSystemProperties" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="currentUserName" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="resetTaskResponse">
+
+  <xs:complexType name="resetTaskResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:resetTaskResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="resetTaskResult">
+
+  <xs:complexType name="resetTaskResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="ivyTask" type="tns:ivyTask"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="delegateTask">
+
+  <xs:complexType name="delegateTask">
     <xs:sequence>
       <xs:element minOccurs="0" name="isUrlBuiltFromSystemProperties" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="ivySecurityMember" type="tns:ivySecurityMember"></xs:element>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivySecurityMember">
+
+  <xs:complexType name="ivySecurityMember">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -453,62 +521,73 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="delegateTaskResponse">
+
+  <xs:complexType name="delegateTaskResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:delegateTaskResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="delegateTaskResult">
+
+  <xs:complexType name="delegateTaskResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="ivyTask" type="tns:ivyTask"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findUnassignedTaskCategories">
+
+  <xs:complexType name="findUnassignedTaskCategories">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findUnassignedTaskCategoriesResponse">
+
+  <xs:complexType name="findUnassignedTaskCategoriesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findUnassignedTaskCategoriesResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findUnassignedTaskCategoriesResult">
+
+  <xs:complexType name="findUnassignedTaskCategoriesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findTaskNotes">
+
+  <xs:complexType name="findTaskNotes">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findTaskNotesResponse">
+
+  <xs:complexType name="findTaskNotesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findTaskNotesResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findTaskNotesResult">
+
+  <xs:complexType name="findTaskNotesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyNotes" nillable="true" type="tns:ivyNote"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="save">
+
+  <xs:complexType name="save">
     <xs:sequence>
       <xs:element minOccurs="0" name="task" type="tns:ivyTask"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="saveResponse">
+
+  <xs:complexType name="saveResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findTasksByCriteria">
+
+  <xs:complexType name="findTasksByCriteria">
     <xs:sequence>
       <xs:element minOccurs="0" name="isUrlBuiltFromSystemProperties" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="startIndex" type="xs:int"></xs:element>
@@ -516,71 +595,83 @@
       <xs:element minOccurs="0" name="taskSearchCriteria" type="tns:taskSearchCriteria"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="taskSearchCriteria">
+
+  <xs:complexType name="taskSearchCriteria">
     <xs:sequence>
       <xs:element name="ignoreInvolvedUser" type="xs:boolean"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="involvedApplications" nillable="true" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element name="queryByTaskId" type="xs:boolean"></xs:element>
+      <xs:element name="relatedTaskDisplayed" type="xs:boolean"></xs:element>
       <xs:element name="taskStartedByAnotherDisplayed" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findTasksByCriteriaResponse">
+
+  <xs:complexType name="findTasksByCriteriaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findTasksByCriteriaResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findTasksByCriteriaResult">
+
+  <xs:complexType name="findTasksByCriteriaResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="allIvyTasks" nillable="true" type="tns:ivyTask"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyTasks" nillable="true" type="tns:ivyTask"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="canUserResumeTask">
+
+  <xs:complexType name="canUserResumeTask">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
       <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="canUserResumeTaskResponse">
+
+  <xs:complexType name="canUserResumeTaskResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:canUserResumeTaskResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="canUserResumeTaskResult">
+
+  <xs:complexType name="canUserResumeTaskResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="canUserResumeTask" type="xs:boolean"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="workerUserName" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="countTasksByCriteria">
+
+  <xs:complexType name="countTasksByCriteria">
     <xs:sequence>
       <xs:element minOccurs="0" name="taskSearchCriteria" type="tns:taskSearchCriteria"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="countTasksByCriteriaResponse">
+
+  <xs:complexType name="countTasksByCriteriaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:countTasksByCriteriaResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="countTasksByCriteriaResult">
+
+  <xs:complexType name="countTasksByCriteriaResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="taskCount" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:simpleType name="wsErrorType">
+
+  <xs:simpleType name="wsErrorType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="INFO"></xs:enumeration>
       <xs:enumeration value="WARNING"></xs:enumeration>
       <xs:enumeration value="ERROR"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
+
 </xs:schema>
-<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="ch.ivyteam.ivy.webservice.process" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process">
   <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
 </xsd:schema>
   </wsdl:types>
