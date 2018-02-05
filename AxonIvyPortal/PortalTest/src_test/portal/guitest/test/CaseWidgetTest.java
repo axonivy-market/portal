@@ -86,7 +86,7 @@ public class CaseWidgetTest extends BaseTest {
     caseDetailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     int numberOfTasks = caseDetailsPage.countRelatedTasks();
     TaskWidgetPage taskOfCasePage = caseDetailsPage.openTasksOfCasePage(0);
-    assertEquals(numberOfTasks, taskOfCasePage.countTasks());
+    assertEquals(numberOfTasks + 1, taskOfCasePage.countTasks());// Add first system task
   }
   
   @Test
