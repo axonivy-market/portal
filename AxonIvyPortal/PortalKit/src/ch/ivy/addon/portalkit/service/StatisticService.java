@@ -50,50 +50,95 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
-  private static final String EXCEPTION_PRIORITY_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/exception";
-  private static final String HIGH_PRIORITY_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/high";
-  private static final String NORMAL_PRIORITY_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/normal";
-  private static final String LOW_PRIORITY_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/low";
+  private static final String EXCEPTION_PRIORITY_KEY =
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/exception";
+  private static final String HIGH_PRIORITY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/high";
+  private static final String NORMAL_PRIORITY_KEY =
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/normal";
+  private static final String LOW_PRIORITY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/low";
 
-  private static final String TODAY_EXPIRY_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/today";
-  private static final String TOMORROW_EXPIRY_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/tomorrow";
-  private static final String THIS_WEEK_EXPIRY_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisWeek";
-  private static final String THIS_MONTH_EXPIRY_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisMonth";
+  private static final String TODAY_EXPIRY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/today";
+  private static final String THIS_WEEK_EXPIRY_KEY =
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisWeek";
+  private static final String THIS_MONTH_EXPIRY_KEY =
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisMonth";
+  private static final String THIS_YEAR_EXPIRY_KEY =
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisYear";
 
-  private static final String CREATED_CASE_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/created";
-  private static final String RUNNING_CASE_KEY
-  = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/running";
-  private static final String DONE_CASE_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/done";
-  private static final String FAILED_CASE_KEY
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/failed";
+  private static final String CREATED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/created";
+  private static final String RUNNING_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/running";
+  private static final String DONE_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/done";
+  private static final String FAILED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/failed";
 
-  private static final String EXPIRY_PERIOD_CMS
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/expiryPeriod";
-  private static final String TASK_CMS
-    = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
-  private static final String TASK_DATATIP_CMS
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/tasks";
-  private static final String SECOND_DATATIP_CMS
-    = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/second";
+  private static final String EXPIRY_PERIOD_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/expiryPeriod";
+  private static final String TASK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
+  private static final String TASK_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/tasks";
+  private static final String SECOND_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/second";
 
-  private static final String NO_CATEGORY_CMS
-    = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory");
+  private static final String NO_CATEGORY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory");
 
   private static final String USER_ID = "userId";
   private static final String NAME = "name";
 
   private static final String JSON_QUERY = "jsonQuery";
   private static final String RESULT = "result";
+
+  private static final String JANUARY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/January");
+  private static final String FEBRUARY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/February");
+  private static final String MARCH_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/March");
+  private static final String APRIL_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/April");
+  private static final String MAY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/May");
+  private static final String JUNE_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/June");
+  private static final String JULY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/July");
+  private static final String AUGUST_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/August");
+  private static final String SEPTEMBER_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/September");
+  private static final String OCTOBER_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/October");
+  private static final String NOVEMBER_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/November");
+  private static final String DECEMBER_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/December");
+
+  private static final String FIRSTWEEK_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/firstWeek");
+  private static final String SECONDWEEK_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/secondWeek");
+  private static final String THIRDWEEK_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/thirdWeek");
+  private static final String FOURTHWEEK_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fourthWeek");
+
+  private static final String MONDAY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/monday");
+  private static final String TUESDAY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/tuesday");
+  private static final String WEDNESDAY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/wednesday");
+  private static final String THURSDAY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/thursday");
+  private static final String FRIDAY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/friday");
+  private static final String SATURDAY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/saturday");
+  private static final String SUNDAY_CMS = Ivy.cms().co(
+      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/sunday");
+
+  private static final String[] MONTHSOFYEAR = {JANUARY_CMS, FEBRUARY_CMS, MARCH_CMS, APRIL_CMS, MAY_CMS, JUNE_CMS,
+      JULY_CMS, AUGUST_CMS, SEPTEMBER_CMS, OCTOBER_CMS, NOVEMBER_CMS, DECEMBER_CMS};
+  private static final String[] WEEKSOFMONTH = {FIRSTWEEK_CMS, SECONDWEEK_CMS, THIRDWEEK_CMS, FOURTHWEEK_CMS};
+  private static final String[] DAYSOFWEEK = {MONDAY_CMS, TUESDAY_CMS, WEDNESDAY_CMS, THURSDAY_CMS, FRIDAY_CMS,
+      SATURDAY_CMS, SUNDAY_CMS};
+
 
   @Override
   public Class<StatisticChart> getType() {
@@ -106,7 +151,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setDonutChartModel(null);
     statisticChart.setPieChartModel(null);
     return super.save(statisticChart);
-    
+
   }
 
   /**
@@ -118,8 +163,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public List<StatisticChart> findStatisticChartsByUserId(long userId) {
     List<StatisticChart> result = new ArrayList<>();
     try {
-      Filter<StatisticChart> statisticChartQuery
-        = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
+      Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
       result = statisticChartQuery.orderBy().textField(NAME).ascending().execute().getAll();
       result = result.stream().sorted(Comparator.comparing(StatisticChart::getPosition)).collect(Collectors.toList());
       return result;
@@ -137,10 +181,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public long countStatisticChartsByUserId(long userId) {
     try {
-      Filter<StatisticChart> statisticChartQuery
-      = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
-    return statisticChartQuery.orderBy().textField(NAME).ascending().execute().count();
-  } catch (Exception e) {
+      Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
+      return statisticChartQuery.orderBy().textField(NAME).ascending().execute().count();
+    } catch (Exception e) {
       Ivy.log().error(e);
       return -1;
     }
@@ -176,19 +219,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       TaskQuery subTaskQueryForRoles = TaskQuery.create();
       IFilterQuery subTaskFilterForRoles = subTaskQueryForRoles.where();
 
-      selectedRoles.forEach(role ->
-        subTaskFilterForRoles.or().activatorName().isEqual(role));
+      selectedRoles.forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
       taskQuery.where().and(subTaskQueryForRoles);
     }
 
     // Filter by task priority
-    List<WorkflowPriority> selectedPriorities = Optional.ofNullable(filter.getSelectedTaskPriorities()).orElse(new ArrayList<>());
+    List<WorkflowPriority> selectedPriorities =
+        Optional.ofNullable(filter.getSelectedTaskPriorities()).orElse(new ArrayList<>());
     if (!selectedPriorities.isEmpty()) {
       TaskQuery subTaskQueryForPriority = TaskQuery.create();
       IFilterQuery subTaskFilterForPriority = subTaskQueryForPriority.where();
 
-      selectedPriorities.forEach(priority ->
-        subTaskFilterForPriority.or().priority().isEqual(priority));
+      selectedPriorities.forEach(priority -> subTaskFilterForPriority.or().priority().isEqual(priority));
       taskQuery.where().and(subTaskQueryForPriority);
     }
 
@@ -222,7 +264,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Date createdDateTo = filter.getCreatedDateTo();
     if (createdDateFrom != null || createdDateTo != null) {
       CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate = subCaseQueryForCreatedDate.where();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
+          subCaseQueryForCreatedDate.where();
       if (createdDateFrom != null) {
         subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(createdDateFrom);
       }
@@ -235,24 +278,25 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     // Filter by case state
     List<CaseState> selectedCaseStates = Optional.ofNullable(filter.getSelectedCaseStates()).orElse(new ArrayList<>());
     CaseQuery subCaseQueryForSelectedCaseStates = CaseQuery.create();
-    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseStates = subCaseQueryForSelectedCaseStates.where();
+    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseStates =
+        subCaseQueryForSelectedCaseStates.where();
 
     if (selectedCaseStates.isEmpty()) {
       List<CaseState> caseStates = Arrays.asList(CaseState.values());
-      caseStates.forEach(caseState ->
-        subCaseFilterForSelectedCaseStates.and().state().isNotEqual(caseState));
+      caseStates.forEach(caseState -> subCaseFilterForSelectedCaseStates.and().state().isNotEqual(caseState));
     } else if (forElapsedStatistic) {
       subCaseFilterForSelectedCaseStates.or().state().isEqual(CaseState.DONE);
     } else {
-      selectedCaseStates.forEach(caseState ->
-      subCaseFilterForSelectedCaseStates.or().state().isEqual(caseState));
+      selectedCaseStates.forEach(caseState -> subCaseFilterForSelectedCaseStates.or().state().isEqual(caseState));
     }
     caseQuery.where().and(subCaseQueryForSelectedCaseStates);
 
     // Filter by case category
-    List<String> selectedCaseCategories = Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
+    List<String> selectedCaseCategories =
+        Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
     CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
-    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories = subCaseQueryForSelectedCaseCategories.where();
+    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories =
+        subCaseQueryForSelectedCaseCategories.where();
     if (selectedCaseCategories.isEmpty()) {
       List<String> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
       caseCategories.forEach(category -> {
@@ -281,16 +325,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Date expiryFromDate = new Date();
     Date expiryToDate = new Date();
     Calendar calendar = Calendar.getInstance();
-    
+
     calendar.setTime(expiryFromDate);
     calendar.add(Calendar.DAY_OF_YEAR, 7);
     expiryToDate = calendar.getTime();
 
     TaskQuery taskQueryForExpiryDate = TaskQuery.create();
     IFilterQuery filterQueryForExpiryDate = taskQueryForExpiryDate.where();
-    filterQueryForExpiryDate.and().expiryTimestamp().isGreaterOrEqualThan(expiryFromDate)
-      .and().expiryTimestamp().isLowerOrEqualThan(expiryToDate)
-      .and().expiryTimestamp().isNotNull();
+    filterQueryForExpiryDate.and().expiryTimestamp().isGreaterOrEqualThan(expiryFromDate).and().expiryTimestamp()
+        .isLowerOrEqualThan(expiryToDate).and().expiryTimestamp().isNotNull();
 
     result.where().and(taskQueryForExpiryDate);
     return result;
@@ -306,8 +349,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Object> params = new HashMap<>();
     params.put(JSON_QUERY, jsonQuery);
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess("analyzePriorityStatistic(String)", params,
-        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("analyzePriorityStatistic(String)", params,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (PriorityStatistic) response.get(RESULT);
   }
 
@@ -322,8 +366,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Object> params = new HashMap<>();
     params.put(JSON_QUERY, jsonQuery);
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeExpiryStatistic(String)", params,
-        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("analyzeExpiryStatistic(String)", params,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (List<ExpiryStatistic>) response.get(RESULT);
   }
 
@@ -337,8 +382,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Object> params = new HashMap<>();
     params.put(JSON_QUERY, jsonQuery);
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeCaseStateStatistic(String)", params,
-        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("analyzeCaseStateStatistic(String)", params,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (CaseStateStatistic) response.get(RESULT);
   }
 
@@ -353,8 +399,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Object> params = new HashMap<>();
     params.put(JSON_QUERY, jsonQuery);
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeElapsedTimeStatistic(String)", params,
-        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("analyzeElapsedTimeStatistic(String)", params,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (List<ElapsedTimeStatistic>) response.get(RESULT);
   }
 
@@ -392,13 +439,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param expiryStatistic statistic data
    * @return generated data
    */
-  public Map<Object, Number> generateDataForTaskByExpiryOverviewChart(List<ExpiryStatistic> expiryStatistic) {
-    Map<Object, Number> chartData = new HashMap<Object, Number>();
+  public Map<Object, Number> generateDataForTaskByExpiryOverviewChart(List<ExpiryStatistic> expiryStatistic,
+      String selectedValue) {
 
-    //Convert result
+    // Convert result
     Map<Date, Long> statisticResultMap = new HashMap<Date, Long>();
     Gson gsonConverter = new Gson();
-    Type type = new TypeToken<Map<String, String>>(){}.getType();
+    Type type = new TypeToken<Map<String, String>>() {}.getType();
 
     expiryStatistic.forEach(statistic -> {
       if (StringUtils.isNotBlank(statistic.getResult())) {
@@ -415,25 +462,82 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     });
 
-    //Calculate result
+    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    if (StringUtils.containsIgnoreCase(selectedValue, "YEAR")) {
+      chartData = generateExpiryModelForDrilldownLevelYear(statisticResultMap);
+    } else if (selectMonthOfYear(selectedValue)) {
+      chartData = generateExpiryModelForDrilldownLevelMonth(statisticResultMap);
+    } else if (selectWeekOfMonth(selectedValue)) {
+      chartData = generateExpiryModelForDrilldownLevelWeek(statisticResultMap);
+    } else {
+      chartData = generateDefaultExpiryModel(statisticResultMap);
+    }
+
+    return chartData;
+  }
+
+  private Map<Object, Number> generateExpiryModelForDrilldownLevelWeek(Map<Date, Long> statisticResultMap) {
+    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    generateDefaultExpiryModel(statisticResultMap);
+    chartData.put(MONDAY_CMS, 10);
+    chartData.put(TUESDAY_CMS, 10);
+    chartData.put(WEDNESDAY_CMS, 10);
+    chartData.put(THURSDAY_CMS, 10);
+    chartData.put(FRIDAY_CMS, 10);
+    chartData.put(SATURDAY_CMS, 10);
+    chartData.put(SUNDAY_CMS, 10);
+    return chartData;
+  }
+
+  private Map<Object, Number> generateExpiryModelForDrilldownLevelMonth(Map<Date, Long> statisticResultMap) {
+    generateDefaultExpiryModel(statisticResultMap);
+    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    chartData.put(FIRSTWEEK_CMS, 10);
+    chartData.put(SECONDWEEK_CMS, 10);
+    chartData.put(THIRDWEEK_CMS, 10);
+    chartData.put(FOURTHWEEK_CMS, 10);
+    return chartData;
+  }
+
+  private Map<Object, Number> generateExpiryModelForDrilldownLevelYear(Map<Date, Long> statisticResultMap) {
+    generateDefaultExpiryModel(statisticResultMap);
+    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    chartData.put(JANUARY_CMS, 10);
+    chartData.put(FEBRUARY_CMS, 10);
+    chartData.put(MARCH_CMS, 10);
+    chartData.put(APRIL_CMS, 10);
+    chartData.put(MAY_CMS, 10);
+    chartData.put(JUNE_CMS, 10);
+    chartData.put(JULY_CMS, 10);
+    chartData.put(AUGUST_CMS, 10);
+    chartData.put(SEPTEMBER_CMS, 10);
+    chartData.put(OCTOBER_CMS, 10);
+    chartData.put(NOVEMBER_CMS, 10);
+    chartData.put(DECEMBER_CMS, 10);
+    return chartData;
+  }
+
+  private Map<Object, Number> generateDefaultExpiryModel(Map<Date, Long> statisticResultMap) {
+    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    // Calculate result
     Long taskExpireToday = new Long(0L);
-    Long taskExpireTomorrow = new Long(0L);
     Long taskExpireThisWeek = new Long(0L);
     Long taskExpireThisMonth = new Long(0L);
+    Long taskExpireThisYear = new Long(0L);
 
     Date today = truncateMinutesPart(new Date());
     Date firstDateOfWeek = truncateMinutesPart(getFirstDateOfThisWeek());
     Date firstDateOfNextWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfWeek, 1));
     Date firstDateOfMonth = truncateMinutesPart(getFirstDateOfThisMonth());
     Date firsDateOfNextMonth = truncateMinutesPart(DateUtils.addMonths(firstDateOfMonth, 1));
+    Date firsDateOfYear = truncateMinutesPart(getFirstDateOfThisYear());
+    Date firsDateOfNextYear = truncateMinutesPart(DateUtils.addYears(firsDateOfYear, 1));
 
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = truncateMinutesPart(result.getKey());
 
       if (today.compareTo(resultDate) == 0) {
         taskExpireToday += result.getValue();
-      } else if (DateUtils.addDays(today, 1).compareTo(resultDate) == 0) {
-        taskExpireTomorrow += result.getValue();
       }
 
       if (firstDateOfWeek.compareTo(resultDate) <= 0 && firstDateOfNextWeek.compareTo(resultDate) > 0) {
@@ -442,13 +546,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       if (firstDateOfMonth.compareTo(resultDate) <= 0 && firsDateOfNextMonth.compareTo(resultDate) > 0) {
         taskExpireThisMonth += result.getValue();
       }
+      if (firsDateOfYear.compareTo(resultDate) <= 0 && firsDateOfNextYear.compareTo(resultDate) > 0) {
+        taskExpireThisYear += result.getValue();
+      }
     }
 
     chartData.put(Ivy.cms().co(TODAY_EXPIRY_KEY), taskExpireToday);
-    chartData.put(Ivy.cms().co(TOMORROW_EXPIRY_KEY), taskExpireTomorrow);
     chartData.put(Ivy.cms().co(THIS_WEEK_EXPIRY_KEY), taskExpireThisWeek);
     chartData.put(Ivy.cms().co(THIS_MONTH_EXPIRY_KEY), taskExpireThisMonth);
-
+    chartData.put(Ivy.cms().co(THIS_YEAR_EXPIRY_KEY), taskExpireThisYear);
     return chartData;
   }
 
@@ -492,7 +598,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     // Convert result
     Gson gsonConverter = new Gson();
-    Type type = new TypeToken<Map<String, String>>(){}.getType();
+    Type type = new TypeToken<Map<String, String>>() {}.getType();
 
     elapsedTimeStatistic.forEach(statistic -> {
       if (StringUtils.isNotBlank(statistic.getResult())) {
@@ -505,7 +611,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     });
 
-    for(Entry<String, Number> entry : chartDataTemp.entrySet()) {
+    for (Entry<String, Number> entry : chartDataTemp.entrySet()) {
       String key = entry.getKey().toString();
       if (StringUtils.isBlank(key)) {
         key = NO_CATEGORY_CMS;
@@ -530,7 +636,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param creatorId Id of the creator
    * @return Added statistic chart
    */
-  public StatisticChart createStatisticChart(StatisticFilter filter, String chartName, StatisticChartType chartType, long creatorId) {
+  public StatisticChart createStatisticChart(StatisticFilter filter, String chartName, StatisticChartType chartType,
+      long creatorId) {
     StatisticChart statisticChart = new StatisticChart();
 
     statisticChart.setUserId(creatorId);
@@ -584,7 +691,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.setSliceMargin(3);
     model.setLegendRows(1);
     if (!isEmptyData) {
-    	model.setSeriesColors(Colors.getPriorityColors(chartData));
+      model.setSeriesColors(Colors.getPriorityColors(chartData));
     }
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
@@ -601,13 +708,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param isSetDefaultName
    * @return chart model for "Task By Expiry" chart
    */
-  public BarChartModel generateTaskByExpiryModel(List<ExpiryStatistic> statisticData, boolean isSetDefaultName) {
-    Map<Object, Number> chartData = generateDataForTaskByExpiryOverviewChart(statisticData);
+  public BarChartModel generateTaskByExpiryModel(List<ExpiryStatistic> statisticData, boolean isSetDefaultName,
+      String selectedValue) {
+    Map<Object, Number> chartData = generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue);
     BarChartModel model = new BarChartModel();
     ChartSeries chartSeries = new ChartSeries();
 
     if (chartData.size() != 0) {
-      
+
       chartSeries.setData(chartData);
       model.setExtender("barChartExtender");
       model.setShadow(false);
@@ -653,7 +761,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.setSliceMargin(3);
     model.setLegendRows(1);
     if (!isEmptyData) {
-    	model.setSeriesColors(Colors.getCaseStateColors(chartData));
+      model.setSeriesColors(Colors.getCaseStateColors(chartData));
     }
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
@@ -719,42 +827,92 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public void generateChartModelForStatisticCharts(List<StatisticChart> statisticChartList) {
     for (StatisticChart statisticChart : statisticChartList) {
       switch (statisticChart.getType()) {
-      case TASK_BY_PRIORITY:
-        PriorityStatistic taskByPriorityData = getPriorityStatisticData(statisticChart.getJsonQuery());
-        statisticChart.setDonutChartModel(generateTaskByPriorityModel(taskByPriorityData, true));
-        break;
-      case TASK_BY_EXPIRY:
-        List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(statisticChart.getJsonQuery());
-        statisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true));
-        break;
-      case CASES_BY_STATE:
-        CaseStateStatistic caseStateData = getCaseStateStatisticData(statisticChart.getJsonQuery());
-        statisticChart.setDonutChartModel(generateCaseByStateModel(caseStateData, true));
-        break;
-      case ELAPSED_TIME_BY_CASE_CATEGORY:
-        List<ElapsedTimeStatistic> elapsedTimeData = getElapsedTimeStatisticData(statisticChart.getJsonQuery());
-        statisticChart.setPieChartModel(generateElapsedTimeModel(elapsedTimeData, true));
-        break;
-      default:
-        break;
+        case TASK_BY_PRIORITY:
+          PriorityStatistic taskByPriorityData = getPriorityStatisticData(statisticChart.getJsonQuery());
+          statisticChart.setDonutChartModel(generateTaskByPriorityModel(taskByPriorityData, true));
+          break;
+        case TASK_BY_EXPIRY:// TO BE REFACTOR
+          List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(statisticChart.getJsonQuery());
+          statisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY));
+          break;
+        case CASES_BY_STATE:
+          CaseStateStatistic caseStateData = getCaseStateStatisticData(statisticChart.getJsonQuery());
+          statisticChart.setDonutChartModel(generateCaseByStateModel(caseStateData, true));
+          break;
+        case ELAPSED_TIME_BY_CASE_CATEGORY:
+          List<ElapsedTimeStatistic> elapsedTimeData = getElapsedTimeStatisticData(statisticChart.getJsonQuery());
+          statisticChart.setPieChartModel(generateElapsedTimeModel(elapsedTimeData, true));
+          break;
+        default:
+          break;
       }
     }
   }
 
+  public boolean isDrilldownToTaskList(String expiryLastDrilldownLevel, String selectedItem) {
+    // day
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "DAY") && (selectDayOfWeek(selectedItem))) {
+      return true;
+    }
+    // week
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "WEEK")
+        && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem))) {
+      return true;
+    }
+    // month
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "MONTH")
+        && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem) || selectMonthOfYear(selectedItem))) {
+      return true;
+    }
+    //year
+    if(StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "YEAR")){
+      return true;
+    }
+    return false;
+  }
+
+  private boolean selectMonthOfYear(String selectedItem) {
+    if (selectedItem.isEmpty()) {
+      return false;
+    }
+    return Arrays.asList(MONTHSOFYEAR).contains(selectedItem)
+        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY));
+  }
+
+  private boolean selectWeekOfMonth(String selectedItem) {
+    if (selectedItem.isEmpty()) {
+      return false;
+    }
+    return Arrays.asList(WEEKSOFMONTH).contains(selectedItem)
+        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY));
+  }
+
+  private boolean selectDayOfWeek(String selectedItem) {
+    if (selectedItem.isEmpty()) {
+      return false;
+    }
+    return Arrays.asList(DAYSOFWEEK).contains(selectedItem)
+        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(TODAY_EXPIRY_KEY));
+  }
+
+  public void drilldownExpiryChart(String selectedValue, StatisticChart selectedChart) {
+    List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(selectedChart.getJsonQuery());
+    selectedChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue));
+  }
+
   private String getSelectedValueOfDonutChart(ItemSelectEvent event) {
     try {
-      DonutChartModel model = (DonutChartModel)((Chart)event.getSource()).getModel();
-      int index= event.getItemIndex();
+      DonutChartModel model = (DonutChartModel) ((Chart) event.getSource()).getModel();
+      int index = event.getItemIndex();
       return model.getData().get(0).keySet().toArray()[index].toString();
     } catch (Exception e) {
       return "";
     }
-    
   }
 
-  private String getSelectedValueOfBarChart(ItemSelectEvent event) {
+  public String getSelectedValueOfBarChart(ItemSelectEvent event) {
     try {
-      BarChartModel model = (BarChartModel)((Chart)event.getSource()).getModel();
+      BarChartModel model = (BarChartModel) ((Chart) event.getSource()).getModel();
       int index = event.getItemIndex();
       return model.getSeries().get(0).getData().keySet().toArray()[index].toString();
     } catch (Exception e) {
@@ -772,7 +930,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private Date getFirstDateOfThisMonth() {
     Calendar calendar = Calendar.getInstance();
-    while(calendar.get(Calendar.DAY_OF_MONTH) > 1) {
+    while (calendar.get(Calendar.DAY_OF_MONTH) > 1) {
+      calendar.add(Calendar.DATE, -1);
+    }
+    return calendar.getTime();
+  }
+
+  private Date getFirstDateOfThisYear() {
+    Calendar calendar = Calendar.getInstance();
+    while (calendar.get(Calendar.DAY_OF_YEAR) > 1) {
       calendar.add(Calendar.DATE, -1);
     }
     return calendar.getTime();
@@ -817,18 +983,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedValue.equals(Ivy.cms().co(TODAY_EXPIRY_KEY))) {
       Date tomorrow = DateUtils.addDays(today, 1);
       query.where().and().expiryTimestamp().isGreaterOrEqualThan(today).and().expiryTimestamp().isLowerThan(tomorrow);
-    } else if (selectedValue.equals(Ivy.cms().co(TOMORROW_EXPIRY_KEY))) {
-      Date dateAfterTomorrow = DateUtils.addDays(today, 2);
-      Date tomorrow = DateUtils.addDays(today, 1);
-      query.where().and().expiryTimestamp().isGreaterOrEqualThan(tomorrow).and().expiryTimestamp().isLowerThan(dateAfterTomorrow);
     } else if (selectedValue.equals(Ivy.cms().co(THIS_WEEK_EXPIRY_KEY))) {
       Date firstDateOfWeek = truncateMinutesPart(getFirstDateOfThisWeek());
       Date firstDateOfNextWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfWeek, 1));
-      query.where().and().expiryTimestamp().isGreaterOrEqualThan(firstDateOfWeek).and().expiryTimestamp().isLowerThan(firstDateOfNextWeek);
+      query.where().and().expiryTimestamp().isGreaterOrEqualThan(firstDateOfWeek).and().expiryTimestamp()
+          .isLowerThan(firstDateOfNextWeek);
     } else if (selectedValue.equals(Ivy.cms().co(THIS_MONTH_EXPIRY_KEY))) {
       Date firstDateOfMonth = truncateMinutesPart(getFirstDateOfThisMonth());
       Date firsDateOfNextMonth = truncateMinutesPart(DateUtils.addMonths(firstDateOfMonth, 1));
-      query.where().and().expiryTimestamp().isGreaterOrEqualThan(firstDateOfMonth).and().expiryTimestamp().isLowerThan(firsDateOfNextMonth);
+      query.where().and().expiryTimestamp().isGreaterOrEqualThan(firstDateOfMonth).and().expiryTimestamp()
+          .isLowerThan(firsDateOfNextMonth);
     }
 
     return query;
@@ -860,9 +1024,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public boolean checkStatisticChartNameExisted(long userId, String chartName) {
     List<StatisticChart> statisticChartList = findStatisticChartsByUserId(userId);
-    return statisticChartList.stream()
-        .filter(chart -> StringUtils.equals(chart.getName(), chartName))
-        .findFirst().isPresent();
+    return statisticChartList.stream().filter(chart -> StringUtils.equals(chart.getName(), chartName)).findFirst()
+        .isPresent();
   }
 
   private Date truncateMinutesPart(Date date) {
