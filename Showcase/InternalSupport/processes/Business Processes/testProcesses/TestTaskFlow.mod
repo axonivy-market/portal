@@ -122,6 +122,9 @@ Tt0 @PushWFArc f110 '' #zField
 Tt0 @PushWFArc f112 '' #zField
 Tt0 @PushWFArc f113 '' #zField
 Tt0 @TkArc f102 '' #zField
+Tt0 @RichDialog f106 '' #zField
+Tt0 @PushWFArc f111 '' #zField
+Tt0 @PushWFArc f114 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -1604,8 +1607,8 @@ Tt0 f93 actionDecl 'internaltest.Data out;
 ' #txt
 Tt0 f93 actionTable 'out=in1;
 ' #txt
-Tt0 f93 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
-Tt0 f93 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
+Tt0 f93 outTypes "internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data" #txt
+Tt0 f93 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp","TaskD.ivp" #txt
 Tt0 f93 caseData case.category=CaseListPermission #txt
 Tt0 f93 taskData 'TaskA.CATEGORY=AnnualLeave
 TaskA.DESC=Annual Leave Request Description
@@ -1613,7 +1616,7 @@ TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
-TaskA.NAM=Annual Leave Request Custom Case Details Page
+TaskA.NAM=Annual Leave Request Custom Case Details Page (UserA)
 TaskA.PRI=2
 TaskA.ROL="UserA"
 TaskA.SKIP_TASK_LIST=false
@@ -1626,7 +1629,7 @@ TaskB.EXP=new Duration("1D")
 TaskB.EXPRI=2
 TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
-TaskB.NAM=Sick Leave Request Custom Case Details Page
+TaskB.NAM=Sick Leave Request Custom Case Details Page (UserB)
 TaskB.PRI=1
 TaskB.ROL="UserB"
 TaskB.SKIP_TASK_LIST=false
@@ -1639,13 +1642,22 @@ TaskC.EXP=new Duration("2D")
 TaskC.EXPRI=2
 TaskC.EXROL=Everybody
 TaskC.EXTYPE=0
-TaskC.NAM=Maternity Leave Request Custom Case Details Page
+TaskC.NAM=Maternity Leave Request Custom Case Details Page (UserC)
 TaskC.PRI=3
 TaskC.ROL="UserC"
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=3
 TaskC.customFields.varchar.1="Interior"
-TaskC.customFields.varchar.5="Anh Nguyen"' #txt
+TaskC.customFields.varchar.5="Anh Nguyen"
+TaskD.DESC=Maternity Leave Request Description
+TaskD.EXPRI=2
+TaskD.EXROL=Everybody
+TaskD.EXTYPE=0
+TaskD.NAM=Annual Leave Request Custom Case Details Page (UserA)
+TaskD.PRI=2
+TaskD.ROL="UserA"
+TaskD.SKIP_TASK_LIST=false
+TaskD.TYPE=3' #txt
 Tt0 f93 type internaltest.Data #txt
 Tt0 f93 template "" #txt
 Tt0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1820,6 +1832,42 @@ Tt0 f102 expr out #txt
 Tt0 f102 type internaltest.Data #txt
 Tt0 f102 var in1 #txt
 Tt0 f102 631 825 631 929 #arcP
+Tt0 f106 targetWindow NEW:card: #txt
+Tt0 f106 targetDisplay TOP #txt
+Tt0 f106 richDialogId internaltest.TaskForm #txt
+Tt0 f106 startMethod start() #txt
+Tt0 f106 type internaltest.Data #txt
+Tt0 f106 requestActionDecl '<> param;' #txt
+Tt0 f106 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f106 responseMappingAction 'out=in;
+' #txt
+Tt0 f106 windowConfiguration '* ' #txt
+Tt0 f106 isAsynch false #txt
+Tt0 f106 isInnerRd false #txt
+Tt0 f106 userContext '* ' #txt
+Tt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>6,7
+9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f106 878 987 36 24 20 -2 #rect
+Tt0 f106 @|RichDialogIcon #fIcon
+Tt0 f111 expr data #txt
+Tt0 f111 outCond ivp=="TaskD.ivp" #txt
+Tt0 f111 645 943 896 987 #arcP
+Tt0 f111 1 896 943 #addKink
+Tt0 f111 0 0.6165429083795134 0 0 #arcLabel
+Tt0 f114 expr out #txt
+Tt0 f114 896 1011 643 1063 #arcP
+Tt0 f114 1 896 1064 #addKink
+Tt0 f114 1 0.36673298908246516 0 0 #arcLabel
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1945,3 +1993,7 @@ Tt0 f101 mainOut f109 tail #connect
 Tt0 f109 head f105 mainIn #connect
 Tt0 f100 mainOut f102 tail #connect
 Tt0 f102 head f93 in #connect
+Tt0 f93 out f111 tail #connect
+Tt0 f111 head f106 mainIn #connect
+Tt0 f106 mainOut f114 tail #connect
+Tt0 f114 head f105 mainIn #connect
