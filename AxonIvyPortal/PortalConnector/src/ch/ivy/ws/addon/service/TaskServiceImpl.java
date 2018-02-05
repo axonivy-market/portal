@@ -316,6 +316,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               ivyTasks.add(ivyTask);
             } else if (canUserResumeTask || taskSearchCriteria.isTaskStartedByAnotherDisplayed()) {
               ivyTasks.add(ivyTask);
+            } else if (taskSearchCriteria.isRelatedTaskDisplayed() && isTaskDoneByInvolveUser(involvedUsername, task)){
+              ivyTasks.add(ivyTask);
             }
 
             if (taskSearchCriteria.isIgnoreInvolvedUser()) {
@@ -772,6 +774,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       return user.equals(task.getWorkerUser());
     }
     return false;
+  }
+  
+  private boolean isTaskDoneByInvolveUser(String userName, ITask task) {
+    IUser user = findUser(userName, task);
+    return TaskState.DONE.equals(task.getState()) && user.equals(task.getWorkerUser());
   }
 
   private boolean hasPermissionToChangeExpiry(String username, ITask task) {

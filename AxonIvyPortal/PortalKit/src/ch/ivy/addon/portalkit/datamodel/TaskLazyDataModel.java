@@ -179,6 +179,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     data.clear();
     displayedTaskMap.clear();
     notDisplayedTaskMap.clear();
+    if (searchCriteria.getRelatedTaskDisplayed()){
+      queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+      setValuesForStateFilter(queryCriteria);
+    }
     buildQueryToSearchCriteria();
     setRowCount(getTaskCount(criteria));
   }
@@ -638,6 +642,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     if (filterContainer != null) {
       filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(querycriteria.getIncludedStates()));
       filterContainer.getStateFilter().setSelectedFilteredStates(querycriteria.getIncludedStates());
+      filterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(querycriteria.getIncludedStates());
     }
   }
 
