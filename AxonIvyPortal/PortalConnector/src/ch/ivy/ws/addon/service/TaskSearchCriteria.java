@@ -13,6 +13,7 @@ public class TaskSearchCriteria {
   private boolean queryByTaskId;
   private boolean ignoreInvolvedUser;
   private boolean isTaskStartedByAnotherDisplayed = false;
+  private boolean isRelatedTaskDisplayed = false;
 
   public boolean isEmpty() {
     return !hasInvolvedUsername()&& !hasInvolvedApplications() && !hasJsonQuery();
@@ -78,4 +79,11 @@ public class TaskSearchCriteria {
     this.isTaskStartedByAnotherDisplayed = isTaskStartedByAnotherDisplayed;
   }
 
+  public boolean isRelatedTaskDisplayed() {
+    return isRelatedTaskDisplayed;
+  }
+
+  public void setRelatedTaskDisplayed(boolean isRelatedTaskDisplayed) {
+    this.isRelatedTaskDisplayed = isRelatedTaskDisplayed;
+  }
 }

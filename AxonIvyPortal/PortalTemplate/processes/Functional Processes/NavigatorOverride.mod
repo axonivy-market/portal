@@ -187,7 +187,8 @@ Nr0 f14 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f14 actionTable 'out=in;
 ' #txt
-Nr0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+Nr0 f14 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -207,6 +208,7 @@ in.taskDataModel.setServerId(in.caseId.serverId());
 in.taskDataModel.setCaseName(in.caseName);
 in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission() || TaskUtils.checkTaskReadOwnCaseTasksPermission());
 in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
+in.taskDataModel.searchCriteria.setRelatedTaskDisplayed(true);
 
 in.taskView = TaskView.create()
 											.category(category)

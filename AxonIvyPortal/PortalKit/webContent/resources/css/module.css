@@ -1595,7 +1595,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .case-details {
   display: table;
   vertical-align: middle;
-  word-break: break-all;
 }
 
 .case-details-header {
@@ -3067,6 +3066,12 @@ a.task-details-document-add-link {
 	margin-left: 10px;
 	position: absolute;
 	bottom: 18px
+}
+
+.no-related-task-and-case-permission{
+	word-break: normal ;
+	word-wrap: break-word;	
+	white-space: normal;	
 }
 
 .case-details-note-add {
