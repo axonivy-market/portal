@@ -554,36 +554,6 @@ public final class TaskUtils {
   }
 
   /**
-   * Check if current user has read all tasks permission
-   * 
-   * @return True : has read all tasks permission, False : do not have read all tasks permission
-   */
-  public static boolean checkReadAllTasksPermission() {
-    return Ivy.session() .hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-                ch.ivyteam.ivy.security.IPermission.TASK_READ_ALL);
-  }
-
-  /**
-   * Check if current user has read all tasks permission
-   * 
-   * @return True : has read all tasks permission, False : do not have read all tasks permission
-   */
-  public static boolean checkReadAllCasesPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-                ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL);
-  }
-
-  /**
-   * Check if current user has read all tasks permission
-   * 
-   * @return True : has read all tasks permission, False : do not have read all tasks permission
-   */
-  public static boolean checkTaskReadOwnCaseTasksPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-                ch.ivyteam.ivy.security.IPermission.TASK_READ_OWN_CASE_TASKS);
-  }
-  
-  /**
    * Find waiting tasks by task code.
    * 
    * @param kindCode to find waiting tasks
@@ -736,7 +706,7 @@ public final class TaskUtils {
     if (isHistory) {
       queryResult = ivy.session.findWorkedOnTasks(taskFilter, taskPropertyOrder, startIndex, pageSize, true);
     } else {
-      if (checkReadAllTasksPermission()) {
+      if (PermissionUtils.checkReadAllTasksPermission()) {
         IPropertyFilter<TaskProperty> filter =
             Ivy.wf().createTaskPropertyFilter(TaskProperty.STATE, RelationalOperator.EQUAL,
                 TaskState.SUSPENDED.intValue());

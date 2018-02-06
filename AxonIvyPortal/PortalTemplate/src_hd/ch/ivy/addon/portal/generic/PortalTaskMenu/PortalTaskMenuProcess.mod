@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Aug 07 17:11:15 ICT 2017]
 156F869FC3FCD1D9 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
@@ -128,9 +127,9 @@ Ps0 f9 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData
 ' #txt
 Ps0 f9 actionTable 'out=in;
 ' #txt
-Ps0 f9 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+Ps0 f9 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 in.loginUser = ivy.session.getSessionUserName();
-in.hasReadAllTasksPermisson = TaskUtils.checkReadAllTasksPermission();' #txt
+in.hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();' #txt
 Ps0 f9 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -187,7 +186,7 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 in.selectedMenuItem = in.selectedNode.getData() as MainMenuNode;
 TaskNode categoryMenu = in.selectedMenuItem as TaskNode;
@@ -196,7 +195,7 @@ in.dataModel.setCategory(categoryMenu.categoryRawPath);
 
 if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
-	in.hasReadAllTasksPermisson = TaskUtils.checkReadAllTasksPermission();
+	in.hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
 	in.dataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_MY_TASKS)) {
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.USER);
