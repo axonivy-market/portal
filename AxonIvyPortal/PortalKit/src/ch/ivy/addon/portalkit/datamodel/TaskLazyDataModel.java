@@ -37,8 +37,8 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -565,7 +565,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public boolean hasReadAllTasksPermisson() {
-    return TaskUtils.checkReadAllTasksPermission();
+    return PermissionUtils.checkReadAllTasksPermission();
   }
 
   public void hideInProgressFilter() {

@@ -482,10 +482,10 @@ As0 f93 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.Applica
 ' #txt
 As0 f93 actionTable 'out=in;
 ' #txt
-As0 f93 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+As0 f93 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 
-in.hasReadAllTasksPermisson = TaskUtils.checkReadAllTasksPermission();
-in.hasReadAllCasesPermission = TaskUtils.checkReadAllCasesPermission();' #txt
+in.hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
+in.hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();' #txt
 As0 f93 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
