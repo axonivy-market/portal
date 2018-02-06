@@ -8,6 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="simplePageContent">
           <h:form>
             <h:outputText value="Click to Test button to show Portal custom error handler" style="display:block;font-size:2em"/>

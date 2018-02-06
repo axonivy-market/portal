@@ -8,6 +8,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="menuState" value="#{data.menuState}" />
+    <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portal.generic/CustomLinkGenerator/dashboard')}</ui:define>
 
     <ui:define name="simplePageContent">

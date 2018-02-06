@@ -12,6 +12,7 @@
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
 		<ui:param name="errorMessage" value="#{flash.keep.errorMessage}"/> 
 		<ui:param name="errorStackTrace" value="#{flash.keep.errorStackTrace}"/>
+		<ui:param name="isNotRequiredLogin" value="false" />
 		
 		<ui:define name="pageTitle">Error Page</ui:define>
 		<ui:define name="pageContent">
