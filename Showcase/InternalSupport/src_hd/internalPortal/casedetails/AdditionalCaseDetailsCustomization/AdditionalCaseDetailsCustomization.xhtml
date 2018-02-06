@@ -8,8 +8,8 @@
 		<ui:define name="simplePageContent">
 			<div class="grid-item-header">Customization Additional Case Details</div>
 			<div class="Separator" />
-			<h:panelGrid id="additional-case-details-data-grid" styleClass="additional-case-details-data-grid" columns="2"
-				columnClasses="additional-case-details-data-1st-column, additional-case-details-data-2nd-column"
+			<h:panelGrid id="additional-case-details-data-grid" styleClass="additional-case-details-data-grid" columns="6"
+				columnClasses="additional-case-details-data-1st-column, additional-case-details-data-2nd-column, additional-case-details-data-1st-column, additional-case-details-data-2nd-column, additional-case-details-data-1st-column, additional-case-details-data-2nd-column"
 				rowClasses="case-details-row-space">
 				<h:outputText value="Custom Varchar Field 1" />
 				<h:outputText id="custom-varchar-field-1" value="#{data.remoteCase.customVarCharField1}" />
@@ -21,8 +21,6 @@
 				<h:outputText id="custom-varchar-field-4" value="#{data.remoteCase.customVarCharField4}" />
 				<h:outputText value="Custom Varchar Field 5" />
 				<h:outputText id="custom-varchar-field-5" value="#{data.remoteCase.customVarCharField5}" />
-				<h:panelGroup />
-				<h:panelGroup />
 				<h:outputText value="Custom Decimal Field 1" />
 				<h:outputText id="custom-decimal-field-1" value="#{caseWidgetBean.isNaN(data.remoteCase.customDecimalField1) ? '' : data.remoteCase.customDecimalField1}" >
 					<f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
@@ -43,8 +41,6 @@
 				<h:outputText id="custom-decimal-field-5" value="#{caseWidgetBean.isNaN(data.remoteCase.customDecimalField5) ? '' : data.remoteCase.customDecimalField5}" >
 					<f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
 				</h:outputText>
-				<h:panelGroup />
-				<h:panelGroup />
 				<h:outputText value="Custom Timestamp Field 1" />
 				<h:outputText id="custom-timestamp-field-1" value="#{data.remoteCase.customTimestampField1}">
 					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
