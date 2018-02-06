@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -18,17 +18,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.maven.shared.invoker.DefaultInvocationRequest;
-import org.apache.maven.shared.invoker.DefaultInvoker;
-import org.apache.maven.shared.invoker.InvocationRequest;
-import org.apache.maven.shared.invoker.Invoker;
-import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.primefaces.event.FileUploadEvent;
 
 import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
+
+import com.inet.lib.less.Less;
 
 @ManagedBean
 @ViewScoped
@@ -37,6 +34,8 @@ public class DesignChooserBean {
   private final static String PORTALSTYLE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalStyle";
   private static final String COLORS_LESS_PATH = "/resources/less/colors.less";
   private static final String CUSTOMIZATION_LESS_PATH = "/resources/less/customization.less";
+  private static final String THEME_LESS_PATH = "/resources/less/theme.less";
+  private static final String THEME_CSS_PATH = "/resources/css/theme.min.css";
   private static final String HOME_LOGO_CMS = "/images/logo/CorporateLogo";
   private static final String LOGIN_LOGO_CMS = "/images/logo/loginLogo";
   private static final String MAIN_COLOR_ATTRIBUTE = "@menu-color: ";
@@ -70,7 +69,7 @@ public class DesignChooserBean {
     uploadLogo(event, HOME_LOGO_CMS);
   }
 
-  public void applyNewColors() throws IOException, MavenInvocationException {
+  public void applyNewColors() throws IOException {
     Optional<Path> path = loader.findResource(CUSTOMIZATION_LESS_PATH);
     if (path.isPresent()) {
       try (Stream<String> lineStream = Files.lines(path.get())) {
@@ -91,15 +90,17 @@ public class DesignChooserBean {
     }
   }
   
-  private void compileThemeLess() throws MavenInvocationException {
-    Optional<Path> portalStylePom = loader.getPom();
-    if (portalStylePom.isPresent()) {
-      InvocationRequest request = new DefaultInvocationRequest();
-      request.setPomFile(portalStylePom.get().toFile());
-      request.setGoals(Collections.singletonList("lesscss:compile"));
-      
-      Invoker invoker = new DefaultInvoker();
-      invoker.execute(request);
+  private void compileThemeLess() throws IOException {
+    Optional<Path> themeLessFilePath = loader.findResource(THEME_LESS_PATH);
+    Optional<Path> themeFilePath = loader.findResource(THEME_CSS_PATH);
+
+    if (themeLessFilePath.isPresent()) {
+      String compiledContent = Less.compile(themeLessFilePath.get().toFile(), true);
+      if (themeFilePath.isPresent() && StringUtils.isNotBlank(compiledContent)) {
+        List<String> content = new ArrayList<>();
+        content.add(compiledContent);
+        Files.write(themeFilePath.get(), content);
+      }
     }
   }
 
