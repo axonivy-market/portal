@@ -26,7 +26,6 @@ import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
-import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
@@ -35,7 +34,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.ws.addon.CaseSearchCriteria;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -75,7 +74,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     this.caseWidgetComponentId = caseWidgetComponentId;
     searchCriteria = buildInitSearchCriteria();
     queryCriteria = buildInitQueryCriteria();
-    setIgnoreInvolvedUser(TaskUtils.checkReadAllCasesPermission());
+    setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
   }
 
   @Override
