@@ -1,6 +1,7 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 public class AdminSettingsPage extends TemplatePage {
@@ -25,6 +26,31 @@ public class AdminSettingsPage extends TemplatePage {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
     settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
+  }
+  
+  public void openDesignTab(){
+    WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:designTab']");
+    settingTabLink.click();
+    waitForElementPresent(By.id("adminui:adminTabView:colorForm"), true);
+  }
+  
+  public void chooseMainColor(String color) {
+    click(By.id("adminui:adminTabView:colorForm:main-color-chooser_button"));
+    waitForElementDisplayed(By.className("ui-colorpicker-container"), true);
+    WebElement input = findElementByCssSelector("div.ui-colorpicker_hex > input");
+    for (int i = 0; i < 6; i++) {
+      input.sendKeys(Keys.BACK_SPACE);
+    }
+    input.sendKeys(color);
+  }
+  
+  public String getMainColor() {
+    return findElementById("adminui:adminTabView:colorForm:main-color-chooser_input").getText();
+  }
+  
+  public HomePage applyNewColor() {
+    click(By.id("adminui:adminTabView:colorForm:apply-colors-button"));
+    return new HomePage();
   }
   
   private void clickAddNewGlobalVariable(){
