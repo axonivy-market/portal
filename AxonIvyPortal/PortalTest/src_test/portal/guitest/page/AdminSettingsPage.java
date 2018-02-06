@@ -50,6 +50,7 @@ public class AdminSettingsPage extends TemplatePage {
   
   public HomePage applyNewColor() {
     click(By.id("adminui:adminTabView:colorForm:apply-colors-button"));
+    waitForElementPresent(By.id("adminui:adminTabView:settingForm"), false);
     return new HomePage();
   }
   
