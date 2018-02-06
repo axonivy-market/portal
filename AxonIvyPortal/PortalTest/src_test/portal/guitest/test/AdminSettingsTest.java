@@ -29,4 +29,24 @@ public class AdminSettingsTest extends BaseTest {
     HomePage homePage = new HomePage();
     assertFalse("Admin Settings menu item is displayed", homePage.isAdminSettingsMenuItemPresent());
   }
+  
+  @Test
+  public void shouldChangeColor() {
+    String expectedMainColor = "abcdef";
+    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+    HomePage homePage = new HomePage();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.openDesignTab();
+    String mainColor = adminSettingsPage.getMainColor();
+    adminSettingsPage.chooseMainColor(expectedMainColor);
+    homePage = adminSettingsPage.applyNewColor();
+    adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.openDesignTab();
+    assertEquals(expectedMainColor, adminSettingsPage.getMainColor());
+    
+    adminSettingsPage.chooseMainColor(mainColor);
+    adminSettingsPage.applyNewColor();
+  }
 }
