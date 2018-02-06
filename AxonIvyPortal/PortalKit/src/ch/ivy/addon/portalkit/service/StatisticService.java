@@ -477,7 +477,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelWeek(Map<Date, Long> statisticResultMap) {
-    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
     
     Long taskExpireOnMonday = new Long(0L);
     Long taskExpireOnTuesday = new Long(0L);
@@ -522,7 +522,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelMonth(Map<Date, Long> statisticResultMap) {
-    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
     chartData.put(FIRSTWEEK_CMS, 10);
     chartData.put(SECONDWEEK_CMS, 10);
     chartData.put(THIRDWEEK_CMS, 10);
@@ -531,7 +531,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelYear(Map<Date, Long> statisticResultMap) {
-    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
     
     Long taskExpireOnJanuary = new Long(0L);
     Long taskExpireOnFebruary = new Long(0L);
@@ -594,7 +594,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private Map<Object, Number> generateDefaultExpiryModel(Map<Date, Long> statisticResultMap) {
-    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
     // Calculate result
     Long taskExpireToday = new Long(0L);
     Long taskExpireThisWeek = new Long(0L);
@@ -626,11 +626,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         taskExpireThisYear += result.getValue();
       }
     }
-
+    
     chartData.put(Ivy.cms().co(TODAY_EXPIRY_KEY), taskExpireToday);
     chartData.put(Ivy.cms().co(THIS_WEEK_EXPIRY_KEY), taskExpireThisWeek);
     chartData.put(Ivy.cms().co(THIS_MONTH_EXPIRY_KEY), taskExpireThisMonth);
     chartData.put(Ivy.cms().co(THIS_YEAR_EXPIRY_KEY), taskExpireThisYear);
+
     return chartData;
   }
 
