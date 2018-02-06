@@ -5,16 +5,20 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import ch.ivy.addon.portalkit.bo.Contact;
+import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.vo.CaseVO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
 import ch.ivyteam.ivy.persistence.OrderDirection;
+import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseProperty;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IPropertyFilter;
 import ch.ivyteam.ivy.workflow.PropertyOrder;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -682,5 +686,16 @@ public final class CaseUtils {
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
     iCase.setAdditionalProperty(HIDE, null);
+  }
+  
+  public static String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    String urlParameters = "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
+    try {
+      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
+    } catch (Exception e) {
+      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
+      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
+    }
   }
 }

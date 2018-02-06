@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.ServerService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
@@ -21,7 +19,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 
 public class UrlDetector {
 
@@ -122,16 +119,5 @@ public class UrlDetector {
       return -1;
     }
     return port;
-  }
-  
-  public String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-    String urlParameters = "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
-    try {
-      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
-    } catch (Exception e) {
-      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
-    }
   }
 }
