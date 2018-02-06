@@ -451,7 +451,7 @@ Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData ou
 Ts0 f4 actionTable 'out=in;
 ' #txt
 Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 in.dataModel.compactMode = !in.dataModel.compactMode;
 if (!in.dataModel.compactMode && in.dataModel.#filterContainer is initialized) {
@@ -460,7 +460,7 @@ if (!in.dataModel.compactMode && in.dataModel.#filterContainer is initialized) {
 	}
 }
 
-in.dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission() && !in.dataModel.compactMode);
+in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission() && !in.dataModel.compactMode);
 in.dataModel.initFilters();
 ' #txt
 Ts0 f4 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
