@@ -13,6 +13,7 @@
 		<ui:param name="actualStepIndex" value="#{data.actualStepIndex}"/>
 		<ui:param name="steps" value="#{data.steps}"/>
 		<ui:param name="homeLink" value="#{ivy.html.startref('Start Processes/InternalSupportPortalHome/start.ivp')}"/>
+		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="title">bookRequest</ui:define>
 		<ui:define name="taskName">
 			<span class="fa fa-wordpress"/><h:outputText value="#{ivy.task.name} #(#{ivy.task.id})" ></h:outputText>

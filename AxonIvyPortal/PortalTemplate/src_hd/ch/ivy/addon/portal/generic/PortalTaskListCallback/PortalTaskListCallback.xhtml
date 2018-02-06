@@ -4,6 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+  	<ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="title">PortalTaskListCallback</ui:define>
     <ui:define name="simplePageContent">
       <f:event type="preRenderView" listener="#{logic.redirect}" />
