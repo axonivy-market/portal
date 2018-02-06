@@ -444,12 +444,12 @@ Nr0 f31 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 Nr0 f31 actionTable 'out=in;
 ' #txt
 Nr0 f31 actionCode 'import ch.ivy.addon.portal.generic.view.CaseView;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/relatedStatisticHeader") + in.chartName;
 
 in.caseDataModel.getSearchCriteria().setBusinessCase(true);
-in.caseDataModel.setIgnoreInvolvedUser(CaseUtils.checkReadAllCasesPermission());
+in.caseDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
 in.caseDataModel.getQueryCriteria().setCaseQuery(in.caseQuery);
 
 in.caseView = CaseView.create()
