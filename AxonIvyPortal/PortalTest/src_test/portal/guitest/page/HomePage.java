@@ -1,5 +1,7 @@
 package portal.guitest.page;
 
+import org.openqa.selenium.support.Color;
+
 
 public class HomePage extends TemplatePage {
 
@@ -22,5 +24,9 @@ public class HomePage extends TemplatePage {
 
   public StatisticWidgetPage getStatisticsWidget() {
     return new StatisticWidgetPage();
+  }
+  
+  public String getMainColor() {
+    return Color.fromString(findElementById("app-menu-panel").getCssValue("background-color")).asHex().substring(1);
   }
 }

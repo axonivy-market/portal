@@ -37,16 +37,15 @@ public class AdminSettingsTest extends BaseTest {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
+    String originalMainColor = homePage.getMainColor();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openDesignTab();
-    String mainColor = adminSettingsPage.getMainColor();
     adminSettingsPage.chooseMainColor(expectedMainColor);
     homePage = adminSettingsPage.applyNewColor();
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.openDesignTab();
-    assertEquals(expectedMainColor, adminSettingsPage.getMainColor());
     
-    adminSettingsPage.chooseMainColor(mainColor);
+    assertEquals(expectedMainColor, homePage.getMainColor());
+    
+    adminSettingsPage.chooseMainColor(originalMainColor);
     adminSettingsPage.applyNewColor();
   }
 }
