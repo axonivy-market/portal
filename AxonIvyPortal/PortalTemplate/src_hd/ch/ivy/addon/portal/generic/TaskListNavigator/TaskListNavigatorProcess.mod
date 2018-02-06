@@ -140,9 +140,9 @@ Ss0 f10 actionTable 'out=in;
 ' #txt
 Ss0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portal.generic.view.TaskView;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
-in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.taskDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 in.taskView = TaskView.create().dataModel(in.taskDataModel).noTaskFoundMessage("").showHeaderToolbar(false).createNewTaskView();' #txt

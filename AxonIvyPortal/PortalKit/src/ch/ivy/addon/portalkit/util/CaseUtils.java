@@ -303,7 +303,7 @@ public final class CaseUtils {
    * @return list {@link ICase}
    */
   public static List<ICase> findICases(IPropertyFilter<CaseProperty> filter) {
-    boolean hasReadAllCasesPermission = checkReadAllCasesPermission();
+    boolean hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();
     List<ICase> cases;
     if (!hasReadAllCasesPermission) {
       cases = Ivy.session().findInvolvedCases(filter, null, 0, -1, true).getResultList();
@@ -578,21 +578,6 @@ public final class CaseUtils {
       Ivy.log().error(e);
       return false;
     }
-  }
-
-
-  /**
-   * Check if current session has read all cases permission
-   * 
-   * @return hasReadAkkCasesPermission True : has read all cases permission, False : do not have read all cases
-   *         permission
-   */
-  public static boolean checkReadAllCasesPermission() {
-    boolean hasReadAllCasesPermission =
-        Ivy.session()
-            .hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-                ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL);
-    return hasReadAllCasesPermission;
   }
 
   /**

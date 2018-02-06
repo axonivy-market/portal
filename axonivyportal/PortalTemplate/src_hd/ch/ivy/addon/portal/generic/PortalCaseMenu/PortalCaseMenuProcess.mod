@@ -119,9 +119,9 @@ Ps0 f9 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData
 ' #txt
 Ps0 f9 actionTable 'out=in;
 ' #txt
-Ps0 f9 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+Ps0 f9 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 in.loginUser = ivy.session.getSessionUserName();
-in.hasReadAllCasesPermisson = CaseUtils.checkReadAllCasesPermission();' #txt
+in.hasReadAllCasesPermisson = PermissionUtils.checkReadAllCasesPermission();' #txt
 Ps0 f9 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -174,7 +174,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portal.generic.view.CaseView;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
@@ -186,7 +186,7 @@ in.dataModel.setCategory(categoryMenu.categoryRawPath);
 
 if(in.selectedNode.type.startsWith(TreeNodeType.CASES_ALL_CASES)){
 	in.dataModel.setCaseAssigneeType(CaseAssigneeType.ALL);
-	in.hasReadAllCasesPermisson = CaseUtils.checkReadAllCasesPermission();
+	in.hasReadAllCasesPermisson = PermissionUtils.checkReadAllCasesPermission();
 	in.dataModel.setIgnoreInvolvedUser(in.hasReadAllCasesPermisson);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.CASES_MY_CASES)) {
 	in.dataModel.setCaseAssigneeType(CaseAssigneeType.USER);
