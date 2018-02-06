@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.UrlValidator;
 import ch.ivyteam.ivy.model.value.WebLink;
-import ch.ivyteam.ivy.request.restricted.WebLinkFactory;
 
 @ManagedBean
 @ViewScoped
@@ -73,7 +72,7 @@ public class CaseWidgetBean implements Serializable {
     }
     try {
       String host = (new UrlDetector()).getHost(remoteCase.getServerUrl(), remoteCase.getServer());
-      WebLink webLink = UrlValidator.isValidUrl(additionalCaseDetailsPageUri) ? new WebLinkFactory().createFromContextRelative(additionalCaseDetailsPageUri) 
+      WebLink webLink = UrlValidator.isValidUrl(additionalCaseDetailsPageUri) ? new WebLink(additionalCaseDetailsPageUri)
                                                                               : new WebLink(host + additionalCaseDetailsPageUri);
       return webLink.getAbsoluteEncoded();
     } catch (MalformedURLException e) {
