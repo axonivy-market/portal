@@ -8,6 +8,7 @@
     <ui:param name="menuState" value="#{data.menuState}" />
     <ui:param name="useOverrideFilter" value="true" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
+    <ui:param name="isNotRequiredLogin" value="false" />
     
     <ui:define name="caseFilter">
 	  	<c:set var="filterContainer" value="#{caseView.getDataModel().filterContainer}" />
