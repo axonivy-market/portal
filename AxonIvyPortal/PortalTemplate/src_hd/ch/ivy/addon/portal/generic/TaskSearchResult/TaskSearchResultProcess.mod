@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Aug 07 17:17:57 ICT 2017]
 15498A84F89ACDE7 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskSearchResultProcess Big #zClass
@@ -103,7 +102,7 @@ Ts0 f23 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResul
 Ts0 f23 actionTable 'out=in;
 ' #txt
 Ts0 f23 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
@@ -114,7 +113,7 @@ String pageTitle = category.value;
 
 in.dataModel.setServerId(in.foundTask.applicationRegister.serverId);
 in.dataModel.setKeyword(in.keyword);
-in.dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 in.dataModel.queryCriteria.newQueryCreated = true;
 out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(in.keyword).remoteTaskId(in.foundTask.getId()).dataModel(in.dataModel).showHeaderToolbar(false).createNewTaskView();
 
