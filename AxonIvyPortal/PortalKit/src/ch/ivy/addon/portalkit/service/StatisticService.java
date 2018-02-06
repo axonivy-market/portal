@@ -478,19 +478,50 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelWeek(Map<Date, Long> statisticResultMap) {
     Map<Object, Number> chartData = new HashMap<Object, Number>();
-    generateDefaultExpiryModel(statisticResultMap);
-    chartData.put(MONDAY_CMS, 10);
-    chartData.put(TUESDAY_CMS, 10);
-    chartData.put(WEDNESDAY_CMS, 10);
-    chartData.put(THURSDAY_CMS, 10);
-    chartData.put(FRIDAY_CMS, 10);
-    chartData.put(SATURDAY_CMS, 10);
-    chartData.put(SUNDAY_CMS, 10);
+    
+    Long taskExpireOnMonday = new Long(0L);
+    Long taskExpireOnTuesday = new Long(0L);
+    Long taskExpireOnWednesday = new Long(0L);
+    Long taskExpireOnThursday = new Long(0L);
+    Long taskExpireOnFriday = new Long(0L);
+    Long taskExpireOnSaturday = new Long(0L);
+    Long taskExpireOnSunday = new Long(0L);
+    
+    for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
+      Date resultDate = truncateMinutesPart(result.getKey());
+      Calendar cal = Calendar.getInstance();
+      cal.setTime(resultDate);
+      
+      if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+        taskExpireOnMonday += result.getValue();
+      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
+        taskExpireOnTuesday += result.getValue();
+      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
+        taskExpireOnWednesday += result.getValue();
+      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
+        taskExpireOnThursday += result.getValue();
+      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
+        taskExpireOnFriday += result.getValue();
+      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+        taskExpireOnSaturday += result.getValue();
+      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+        taskExpireOnSunday += result.getValue();
+      }
+      
+    }
+
+    chartData.put(MONDAY_CMS, taskExpireOnMonday);
+    chartData.put(TUESDAY_CMS, taskExpireOnTuesday);
+    chartData.put(WEDNESDAY_CMS, taskExpireOnWednesday);
+    chartData.put(THURSDAY_CMS, taskExpireOnThursday);
+    chartData.put(FRIDAY_CMS, taskExpireOnFriday);
+    chartData.put(SATURDAY_CMS, taskExpireOnSaturday);
+    chartData.put(SUNDAY_CMS, taskExpireOnSunday);
+    
     return chartData;
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelMonth(Map<Date, Long> statisticResultMap) {
-    generateDefaultExpiryModel(statisticResultMap);
     Map<Object, Number> chartData = new HashMap<Object, Number>();
     chartData.put(FIRSTWEEK_CMS, 10);
     chartData.put(SECONDWEEK_CMS, 10);
@@ -500,20 +531,65 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelYear(Map<Date, Long> statisticResultMap) {
-    generateDefaultExpiryModel(statisticResultMap);
     Map<Object, Number> chartData = new HashMap<Object, Number>();
-    chartData.put(JANUARY_CMS, 10);
-    chartData.put(FEBRUARY_CMS, 10);
-    chartData.put(MARCH_CMS, 10);
-    chartData.put(APRIL_CMS, 10);
-    chartData.put(MAY_CMS, 10);
-    chartData.put(JUNE_CMS, 10);
-    chartData.put(JULY_CMS, 10);
-    chartData.put(AUGUST_CMS, 10);
-    chartData.put(SEPTEMBER_CMS, 10);
-    chartData.put(OCTOBER_CMS, 10);
-    chartData.put(NOVEMBER_CMS, 10);
-    chartData.put(DECEMBER_CMS, 10);
+    
+    Long taskExpireOnJanuary = new Long(0L);
+    Long taskExpireOnFebruary = new Long(0L);
+    Long taskExpireOnMarch = new Long(0L);
+    Long taskExpireOnApril = new Long(0L);
+    Long taskExpireOnMay = new Long(0L);
+    Long taskExpireOnJune = new Long(0L);
+    Long taskExpireOnJuly = new Long(0L);
+    Long taskExpireOnAugust = new Long(0L);
+    Long taskExpireOnSeptember = new Long(0L);
+    Long taskExpireOnOctober = new Long(0L);
+    Long taskExpireOnNovember = new Long(0L);
+    Long taskExpireOnDecember = new Long(0L);
+
+    for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
+      Date resultDate = truncateMinutesPart(result.getKey());
+      Calendar cal = Calendar.getInstance();
+      cal.setTime(resultDate);
+      
+      if(cal.get(Calendar.MONTH) == Calendar.JANUARY){
+        taskExpireOnJanuary += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.FEBRUARY){
+        taskExpireOnFebruary += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.MARCH){
+        taskExpireOnMarch += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.APRIL){
+        taskExpireOnApril += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.MAY){
+        taskExpireOnMay += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.JUNE){
+        taskExpireOnJune += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.JULY){
+        taskExpireOnJuly += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.AUGUST){
+        taskExpireOnAugust += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.SEPTEMBER){
+        taskExpireOnSeptember += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.OCTOBER){
+        taskExpireOnOctober += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.NOVEMBER){
+        taskExpireOnNovember += result.getValue();
+      }else if(cal.get(Calendar.MONTH) == Calendar.DECEMBER){
+        taskExpireOnDecember += result.getValue();
+      }
+    }
+    
+    chartData.put(JANUARY_CMS, taskExpireOnJanuary);
+    chartData.put(FEBRUARY_CMS, taskExpireOnFebruary);
+    chartData.put(MARCH_CMS, taskExpireOnMarch);
+    chartData.put(APRIL_CMS, taskExpireOnApril);
+    chartData.put(MAY_CMS, taskExpireOnMay);
+    chartData.put(JUNE_CMS, taskExpireOnJune);
+    chartData.put(JULY_CMS, taskExpireOnJuly);
+    chartData.put(AUGUST_CMS, taskExpireOnAugust);
+    chartData.put(SEPTEMBER_CMS, taskExpireOnSeptember);
+    chartData.put(OCTOBER_CMS, taskExpireOnOctober);
+    chartData.put(NOVEMBER_CMS, taskExpireOnNovember);
+    chartData.put(DECEMBER_CMS, taskExpireOnDecember);
     return chartData;
   }
 
@@ -879,7 +955,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY));
   }
 
-  private boolean selectWeekOfMonth(String selectedItem) {
+  public boolean selectWeekOfMonth(String selectedItem) {
     if (selectedItem.isEmpty()) {
       return false;
     }
@@ -994,7 +1070,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       query.where().and().expiryTimestamp().isGreaterOrEqualThan(firstDateOfMonth).and().expiryTimestamp()
           .isLowerThan(firsDateOfNextMonth);
     }
-
+    
     return query;
   }
 
