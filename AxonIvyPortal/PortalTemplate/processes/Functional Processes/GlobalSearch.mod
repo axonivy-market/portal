@@ -126,7 +126,7 @@ Gh0 f8 actionTable 'out=in;
 ' #txt
 Gh0 f8 actionCode 'import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -138,7 +138,7 @@ List<TaskState> states = new List<TaskState>();
 states.add(TaskState.SUSPENDED);
 states.add(TaskState.RESUMED);
 states.add(TaskState.PARKED);
-if (TaskUtils.checkReadAllTasksPermission() == true){
+if (PermissionUtils.checkReadAllTasksPermission() == true){
 	states.add(TaskState.UNASSIGNED);
 	states.add(TaskState.DONE);
 }
@@ -149,7 +149,7 @@ queryCriteria.setSortField(TaskSortField.NAME.toString());
 queryCriteria.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 in.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
-in.taskSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.taskSearchCriteria.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 
 if (in.#applicationName is initialized) {
@@ -177,7 +177,7 @@ Gh0 f10 actionCode 'import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivyteam.ivy.workflow.CaseState;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import java.util.Arrays;
 
 in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
@@ -188,8 +188,8 @@ states.add(CaseState.RUNNING);
 
 in.caseSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());
 in.caseSearchCriteria.setBusinessCase(true);
-in.caseSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllCasesPermission());
-if (TaskUtils.checkReadAllCasesPermission() == true){
+in.caseSearchCriteria.setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
+if (PermissionUtils.checkReadAllCasesPermission() == true){
 	states.add(CaseState.DONE);
 }
 if (in.#applicationName is initialized) {
