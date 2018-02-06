@@ -12,7 +12,7 @@
     widgetVar="task-delegate-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
     appendTo="@(body)" styleClass="task-delegate-dialog">
     <c:choose>
-      <c:when test="#{data.canDelegateTask}">
+      <c:when test="#{data.canDelegateTask != null and data.canDelegateTask}">
         <h:form id="task-delegate-form">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}" />
           <h:panelGroup id="activator-panel" layout="block" styleClass="delegate-dialog-activator-panel"
