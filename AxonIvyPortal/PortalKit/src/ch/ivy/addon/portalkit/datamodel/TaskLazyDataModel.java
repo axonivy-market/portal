@@ -83,6 +83,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
+  private boolean isRelatedTaskDisplayed = false;
 
   public TaskLazyDataModel() {
     super();
@@ -117,13 +118,13 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void initFilters() {
     if (filterContainer == null) {
-      if (searchCriteria.getRelatedTaskDisplayed() && !queryCriteria.getIncludedStates().contains(TaskState.DONE)){
+      if (isRelatedTaskDisplayed && !queryCriteria.getIncludedStates().contains(TaskState.DONE)){
         queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
       } 
       initFilterContainer();
       filters = filterContainer.getFilters();
       setValuesForStateFilter(queryCriteria);
-      if (searchCriteria.getIgnoreInvolvedUser() && !searchCriteria.getRelatedTaskDisplayed()) {
+      if (searchCriteria.getIgnoreInvolvedUser() && !isRelatedTaskDisplayed) {
         TaskStateFilter stateFilter = filterContainer.getStateFilter();
         stateFilter.getSelectedFilteredStates().remove(TaskState.DONE);
         stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
@@ -787,5 +788,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
     this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
+  }
+
+  public boolean isRelatedTaskDisplayed()
+  {
+    return isRelatedTaskDisplayed;
+  }
+
+  public void setRelatedTaskDisplayed(boolean isRelatedTaskDisplayed)
+  {
+    this.isRelatedTaskDisplayed = isRelatedTaskDisplayed;
   }
 }

@@ -603,7 +603,6 @@
       <xs:element minOccurs="0" name="involvedUsername" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
       <xs:element name="queryByTaskId" type="xs:boolean"></xs:element>
-      <xs:element name="relatedTaskDisplayed" type="xs:boolean"></xs:element>
       <xs:element name="taskStartedByAnotherDisplayed" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -1134,7 +1133,7 @@
   </wsdl:binding>
   <wsdl:service name="TaskServiceService">
     <wsdl:port binding="tns:TaskServiceServiceSoapBinding" name="TaskServicePort">
-      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/1380566F9095B9C4"></soap:address>
+      <soap:address location="http://localhost:8081/ivy/ws/designer/portalConnector/1380566F9095B9C4"></soap:address>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
