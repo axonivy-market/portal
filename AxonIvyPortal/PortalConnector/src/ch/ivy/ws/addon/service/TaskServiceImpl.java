@@ -316,7 +316,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               ivyTasks.add(ivyTask);
             } else if (canUserResumeTask || taskSearchCriteria.isTaskStartedByAnotherDisplayed()) {
               ivyTasks.add(ivyTask);
-            } else if (taskSearchCriteria.isRelatedTaskDisplayed() && isTaskDoneByInvolveUser(involvedUsername, task)){
+            } else if (isTaskDoneByInvolveUser(involvedUsername, task)){
               ivyTasks.add(ivyTask);
             }
 

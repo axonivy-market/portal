@@ -208,7 +208,7 @@ in.taskDataModel.setServerId(in.caseId.serverId());
 in.taskDataModel.setCaseName(in.caseName);
 in.taskDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission());
 in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
-in.taskDataModel.searchCriteria.setRelatedTaskDisplayed(true);
+in.taskDataModel.setRelatedTaskDisplayed(true);
 
 in.taskView = TaskView.create()
 											.category(category)
