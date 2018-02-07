@@ -43,6 +43,7 @@ public class AdminSettingsTest extends BaseTest {
     adminSettingsPage.chooseMainColor(expectedMainColor);
     homePage = adminSettingsPage.applyNewColor();
     
+    
     assertEquals(expectedMainColor, homePage.getMainColor());
     
     adminSettingsPage.chooseMainColor(originalMainColor);

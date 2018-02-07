@@ -1,8 +1,11 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import ch.xpertline.base.client.Browser;
 
 public class AdminSettingsPage extends TemplatePage {
   
@@ -37,21 +40,19 @@ public class AdminSettingsPage extends TemplatePage {
   public void chooseMainColor(String color) {
     click(By.id("adminui:adminTabView:colorForm:main-color-chooser_button"));
     waitForElementDisplayed(By.className("ui-colorpicker-container"), true);
-    WebElement input = findElementByCssSelector("div.ui-colorpicker_hex > input");
-    for (int i = 0; i < 6; i++) {
-      input.sendKeys(Keys.BACK_SPACE);
-    }
-    input.sendKeys(color);
+    
+    WebDriver driver = Browser.getBrowser().getDriver();
+    JavascriptExecutor jse = (JavascriptExecutor)driver;
+    jse.executeScript("document.querySelector('div.ui-colorpicker_hex > input').value='"+ color +"';");
+    jse.executeScript("document.getElementById('adminui:adminTabView:colorForm:main-color-chooser_input').value='"+ color +"';");
   }
   
   public String getMainColor() {
     return findElementById("adminui:adminTabView:colorForm:main-color-chooser_input").getText();
   }
   
-  public HomePage applyNewColor() {
+  public HomePage applyNewColor(){
     click(By.id("adminui:adminTabView:colorForm:apply-colors-button"));
-    waitForElementPresent(By.id("adminui:adminTabView:settingForm"), false);
-    waitForPageLoaded();
     return new HomePage();
   }
   
