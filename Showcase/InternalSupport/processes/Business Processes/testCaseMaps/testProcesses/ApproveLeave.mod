@@ -31,12 +31,14 @@ Ae0 @PushWFArc f12 '' #zField
 Ae0 @TaskSwitchSimple f15 '' #zField
 Ae0 @TkArc f18 '' #zField
 Ae0 @PushWFArc f19 '' #zField
+Ae0 @TaskSwitch f21 '' #zField
+Ae0 @PushWFArc f23 '' #zField
+Ae0 @PushWFArc f20 '' #zField
 Ae0 @PushWFArc f10 '' #zField
 Ae0 @CallSub f22 '' #zField
-Ae0 @TaskSwitch f21 '' #zField
-Ae0 @PushWFArc f20 '' #zField
-Ae0 @PushWFArc f23 '' #zField
-Ae0 @TkArc f24 '' #zField
+Ae0 @CallSub f25 '' #zField
+Ae0 @PushWFArc f24 '' #zField
+Ae0 @TkArc f26 '' #zField
 >Proto Ae0 Ae0 ApproveLeave #zField
 Ae0 f0 outLink start.ivp #txt
 Ae0 f0 type internaltest.Data #txt
@@ -177,7 +179,7 @@ Ae0 f8 @C|.responsibility Everybody #txt
 Ae0 f8 81 337 30 30 -36 17 #rect
 Ae0 f8 @|StartRequestIcon #fIcon
 Ae0 f9 type internaltest.Data #txt
-Ae0 f9 625 177 30 30 0 15 #rect
+Ae0 f9 761 177 30 30 0 15 #rect
 Ae0 f9 @|EndIcon #fIcon
 Ae0 f11 type internaltest.Data #txt
 Ae0 f11 401 337 30 30 0 15 #rect
@@ -273,31 +275,6 @@ Ae0 f18 111 448 209 448 #arcP
 Ae0 f19 expr data #txt
 Ae0 f19 outCond ivp=="TaskA.ivp" #txt
 Ae0 f19 239 448 401 448 #arcP
-Ae0 f10 expr out #txt
-Ae0 f10 560 192 625 192 #arcP
-Ae0 f22 type internaltest.Data #txt
-Ae0 f22 processCall 'Functional Processes/HideSystemCase:call(Long,Boolean)' #txt
-Ae0 f22 doCall true #txt
-Ae0 f22 requestActionDecl '<java.lang.Long serverId,java.lang.Boolean hideBusinessCase> param;
-' #txt
-Ae0 f22 requestMappingAction 'param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
-param.hideBusinessCase=true;
-' #txt
-Ae0 f22 responseActionDecl 'internaltest.Data out;
-' #txt
-Ae0 f22 responseMappingAction 'out=in;
-' #txt
-Ae0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>HideSystemCase</name>
-        <nameStyle>14,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ae0 f22 448 170 112 44 -48 -8 #rect
-Ae0 f22 @|CallSubIcon #fIcon
 Ae0 f21 actionDecl 'internaltest.Data out;
 ' #txt
 Ae0 f21 actionTable 'out=in1;
@@ -324,21 +301,71 @@ TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0' #txt
 Ae0 f21 type internaltest.Data #txt
 Ae0 f21 template "" #txt
-Ae0 f21 368 176 32 32 0 16 #rect
+Ae0 f21 504 176 32 32 0 16 #rect
 Ae0 f21 @|TaskSwitchIcon #fIcon
-Ae0 f20 expr data #txt
-Ae0 f20 outCond ivp=="TaskA.ivp" #txt
-Ae0 f20 400 192 448 192 #arcP
 Ae0 f23 expr data #txt
 Ae0 f23 outCond ivp=="TaskB.ivp" #txt
-Ae0 f23 384 208 640 207 #arcP
-Ae0 f23 1 384 256 #addKink
-Ae0 f23 2 640 256 #addKink
+Ae0 f23 520 208 776 207 #arcP
+Ae0 f23 1 520 256 #addKink
+Ae0 f23 2 776 256 #addKink
 Ae0 f23 1 0.5013020833333334 0 0 #arcLabel
+Ae0 f20 expr data #txt
+Ae0 f20 outCond ivp=="TaskA.ivp" #txt
+Ae0 f20 536 192 584 192 #arcP
+Ae0 f10 expr out #txt
+Ae0 f10 696 192 761 192 #arcP
+Ae0 f22 type internaltest.Data #txt
+Ae0 f22 processCall 'Functional Processes/HideSystemCase:call(Long,Boolean)' #txt
+Ae0 f22 doCall true #txt
+Ae0 f22 requestActionDecl '<java.lang.Long serverId,java.lang.Boolean hideBusinessCase> param;
+' #txt
+Ae0 f22 requestMappingAction 'param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
+param.hideBusinessCase=true;
+' #txt
+Ae0 f22 responseActionDecl 'internaltest.Data out;
+' #txt
+Ae0 f22 responseMappingAction 'out=in;
+' #txt
+Ae0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HideSystemCase</name>
+        <nameStyle>14,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f22 584 170 112 44 -48 -8 #rect
+Ae0 f22 @|CallSubIcon #fIcon
+Ae0 f25 type internaltest.Data #txt
+Ae0 f25 processCall 'Functional Processes/HideSystemCase:call(Long,Boolean)' #txt
+Ae0 f25 doCall true #txt
+Ae0 f25 requestActionDecl '<java.lang.Long serverId,java.lang.Boolean hideBusinessCase> param;
+' #txt
+Ae0 f25 requestMappingAction 'param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
+param.hideBusinessCase=true;
+' #txt
+Ae0 f25 responseActionDecl 'internaltest.Data out;
+' #txt
+Ae0 f25 responseMappingAction 'out=in;
+' #txt
+Ae0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HideSystemCase</name>
+        <nameStyle>14,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f25 342 173 112 44 -48 -8 #rect
+Ae0 f25 @|CallSubIcon #fIcon
 Ae0 f24 expr out #txt
-Ae0 f24 type internaltest.Data #txt
-Ae0 f24 var in1 #txt
-Ae0 f24 304 192 368 192 #arcP
+Ae0 f24 304 192 342 195 #arcP
+Ae0 f26 expr out #txt
+Ae0 f26 type internaltest.Data #txt
+Ae0 f26 var in1 #txt
+Ae0 f26 454 195 504 192 #arcP
 >Proto Ae0 .type internaltest.Data #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 0 0 32 24 18 0 #rect
@@ -364,4 +391,6 @@ Ae0 f20 head f22 mainIn #connect
 Ae0 f21 out f23 tail #connect
 Ae0 f23 head f9 mainIn #connect
 Ae0 f6 mainOut f24 tail #connect
-Ae0 f24 head f21 in #connect
+Ae0 f24 head f25 mainIn #connect
+Ae0 f25 mainOut f26 tail #connect
+Ae0 f26 head f21 in #connect
