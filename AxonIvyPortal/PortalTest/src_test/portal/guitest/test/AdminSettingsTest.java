@@ -46,6 +46,8 @@ public class AdminSettingsTest extends BaseTest {
     
     assertEquals(expectedMainColor, homePage.getMainColor());
     
+    adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.openDesignTab();
     adminSettingsPage.chooseMainColor(originalMainColor);
     adminSettingsPage.applyNewColor();
   }
