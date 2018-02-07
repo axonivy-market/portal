@@ -79,12 +79,20 @@ He0 f3 actionDecl 'ch.ivy.add.portalkit.HideSystemCaseData out;
 ' #txt
 He0 f3 actionTable 'out=in;
 ' #txt
-He0 f3 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+He0 f3 actionCode 'import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 
 CaseUtils.setHidePropertyToHideInPortal(in.selectedCase);
+
+CaseQuery query = CaseQuery.create();
+query.where().and().isNotBusinessCase().and().businessCaseId().isEqual(in.selectedCase.getId());
+List technicalCases = ivy.wf.getCaseQueryExecutor().getResults(query) as List;
+for(ICase technicalCase : technicalCases) {
+	CaseUtils.setHidePropertyToHideInPortal(technicalCase);
+}
 
 for(ITask task : in.selectedCase.getTasks()) {
 	TaskUtils.setHidePropertyToHideInPortal(task);
