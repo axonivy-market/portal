@@ -45,7 +45,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
   
   @Test
-  public void testShowRelatedTasksWithTaskReadAllPermission() {
+  public void testShowRelatedTasksWithTaskReadAllPermissionAndClickingShowAllTasks() {
     grantTaskReadAllPermissionsToCurrentUser();
     openCaseDetail();
     TaskWidgetPage taskWidgetPage = detailsPage.clickShowAllTasks();
@@ -62,7 +62,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
   
   @Test
-  public void testShowRelatedTasksWithTaskReadOwnCaseTasksPermission() {
+  public void testShowRelatedTasksWithTaskReadOwnCaseTasksPermissionAndClickingShowAllTasks() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     TaskWidgetPage taskWidgetPage = detailsPage.clickShowAllTasks();
@@ -79,7 +79,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
   
   @Test
-  public void testShowRelatedTasksWithNoPermission() {
+  public void testShowRelatedTasksWithNoPermissionAndClickingShowAllTasks() {
     denyReadAllPermissionFromCurrentUser();
     openCaseDetail();
     TaskWidgetPage taskWidgetPage = detailsPage.clickShowAllTasks();
