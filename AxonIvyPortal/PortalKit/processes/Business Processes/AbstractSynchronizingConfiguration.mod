@@ -568,12 +568,11 @@ An0 f1 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
 An0 f1 817 449 30 30 0 15 #rect
 An0 f1 @|EndIcon #fIcon
 An0 f2 type ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData #txt
-An0 f2 processCall 'Functional Processes/HideSystemCase:call(Long,Boolean)' #txt
+An0 f2 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
 An0 f2 doCall true #txt
-An0 f2 requestActionDecl '<java.lang.Long serverId,java.lang.Boolean hideBusinessCase> param;
+An0 f2 requestActionDecl '<java.lang.Boolean hideBusinessCase> param;
 ' #txt
-An0 f2 requestMappingAction 'param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
-param.hideBusinessCase=true;
+An0 f2 requestMappingAction 'param.hideBusinessCase=true;
 ' #txt
 An0 f2 responseActionDecl 'ch.ivy.add.portalkit.AbstractSynchronizingConfigurationData out;
 ' #txt
