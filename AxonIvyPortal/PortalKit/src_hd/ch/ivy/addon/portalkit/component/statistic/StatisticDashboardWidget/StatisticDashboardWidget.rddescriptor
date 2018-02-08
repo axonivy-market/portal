@@ -10,12 +10,6 @@
             <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.statistics.StatisticChart&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
-        <inputParameter>
-            <name>expiryLastDrilldownLevel</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
     </method>
     <method>
         <name>moveUp</name>

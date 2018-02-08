@@ -6,7 +6,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.PieChartModel;
@@ -67,7 +66,7 @@ public class StatisticChartCreationBean implements Serializable {
   public void updateTaskByExpiryModel(StatisticFilter filter) {
     String jsonQuery = statisticService.generateTaskQueryForExpiry(filter).asJson();
     List<ExpiryStatistic> result = statisticService.getExpiryStatisticData(jsonQuery);
-    taskByExpiryModel = statisticService.generateTaskByExpiryModel(result, false, StringUtils.EMPTY);
+    taskByExpiryModel = statisticService.generateTaskByExpiryModel(result, false);
   }
 
   /**
