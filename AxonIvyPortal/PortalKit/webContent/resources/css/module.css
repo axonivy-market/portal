@@ -1677,6 +1677,10 @@ a.case-details-document-add-link {
 .case-header-padding {
   padding-bottom: 10px;
 }
+
+.history-note .task-note-link{
+	color: rgba(0,0,0,0.5) !important;
+}
 /********************************** CASE ITEM SIMIlAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
   margin: 0;
