@@ -24,6 +24,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   
   private CaseDetailsPage detailsPage;
   private HomePage homePage;
+  NoteHistoryPage caseHistoryPage;
 
   @Before
   public void setup() {
@@ -32,6 +33,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
+    caseHistoryPage = new NoteHistoryPage();
     denyReadAllPermissionFromCurrentUser();
   }
   
@@ -118,7 +120,6 @@ public class ShowRelatedTasksTest extends BaseTest {
     String doneTaskName = detailsPage.openDoneTask(0);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
-    NoteHistoryPage caseHistoryPage = new NoteHistoryPage();
     int numberOfNotes;
     try {
         numberOfNotes = caseHistoryPage.countNotes();
