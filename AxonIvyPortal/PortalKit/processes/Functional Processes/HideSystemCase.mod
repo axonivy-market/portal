@@ -52,7 +52,7 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 ICase selectedCase = in.hideBusinessCase ? ivy.wf.findCase(ivy.case.getBusinessCase().getId()) : ivy.case;
 CaseUtils.setHidePropertyToHideInPortal(selectedCase);
 
-if(in.hideBusinessCase) {
+if(selectedCase.isBusinessCase()) {
 	CaseQuery query = CaseQuery.create();
 	query.where().and().isNotBusinessCase().and().businessCaseId().isEqual(selectedCase.getId());
 	List technicalCases = ivy.wf.getCaseQueryExecutor().getResults(query) as List;
