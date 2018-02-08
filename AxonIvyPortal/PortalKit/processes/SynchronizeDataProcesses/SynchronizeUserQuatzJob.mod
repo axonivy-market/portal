@@ -128,12 +128,11 @@ Sb0 f9 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Sb0 f9 208 136 329 136 #arcP
 Sb0 f9 0 0.5702479338842975 0 -10 #arcLabel
 Sb0 f10 type ch.ivy.add.portalkit.Data #txt
-Sb0 f10 processCall 'Functional Processes/HideSystemCase:call(Long,Boolean)' #txt
+Sb0 f10 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
 Sb0 f10 doCall true #txt
-Sb0 f10 requestActionDecl '<java.lang.Long serverId,java.lang.Boolean hideBusinessCase> param;
+Sb0 f10 requestActionDecl '<java.lang.Boolean hideBusinessCase> param;
 ' #txt
-Sb0 f10 requestMappingAction 'param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
-param.hideBusinessCase=false;
+Sb0 f10 requestMappingAction 'param.hideBusinessCase=false;
 ' #txt
 Sb0 f10 responseActionDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
