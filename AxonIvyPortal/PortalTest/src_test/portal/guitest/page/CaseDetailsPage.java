@@ -121,6 +121,13 @@ public class CaseDetailsPage extends TemplatePage {
     click(By.cssSelector("a[id$='tasks:" + index + ":task-name']"));
     return new TaskWidgetPage();
   }
+  
+  public String openDoneTask(int index) {
+    WebElement showTaskNoteLink = caseItem.findElements(By.cssSelector("a[id$='show-task-note-link']")).get(index);
+    String taskName = showTaskNoteLink.getText();
+    showTaskNoteLink.click();
+    return taskName;
+  }
 
   public String getHistoryAuthor() {
     return findElementByCssSelector(AUTHOR_USER_CSS_SELECTOR).getText();
@@ -268,5 +275,10 @@ public class CaseDetailsPage extends TemplatePage {
             caseIndex);
     WebElement caseNameInplace = findElementById(caseNameInplaceId);
     caseNameInplace.click();
+  }
+  
+  public TaskWidgetPage clickShowAllTasks() {
+    caseItem.findElement(By.cssSelector("a[id$='show-all-tasks']")).click();
+    return new TaskWidgetPage();
   }
 }
