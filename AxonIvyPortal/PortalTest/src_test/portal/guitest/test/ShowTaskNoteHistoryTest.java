@@ -59,7 +59,7 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
             return ;
         }
         assertEquals(1, numberOfNotes);
-        assertEquals(noteContent, taskHistoryPage.getNoteContentOfFirstRow());
+        assertEquals(noteContent, taskHistoryPage.getNoteContentOfRow(0));
     }
 
 }
