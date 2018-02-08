@@ -127,6 +127,26 @@ public class BaseTest extends SeleneseTestBase {
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
   
+  public void grantTaskReadAllPermissionsToCurrentUser() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantTaskReadAllPermissionsToCurrentUser.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+  
+  public void grantCaseReadAllPermissionsToCurrentUser() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantCaseReadAllPermissionsToCurrentUser.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+  
+  public void grantTaskReadOwnCaseTaskPermissionsToCurrentUser() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+
+  public void denyReadAllPermissionFromCurrentUser() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyReadAllPermissionFromCurrentUser.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+  
   public void cleanUpGlobalVariables(){
     String cleanUpURL = "portalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";
     redirectToRelativeLink(cleanUpURL);
