@@ -46,11 +46,8 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated')}" trackMouse="true" />
         </div>
         <div class="truncate-note history-note u-italic-font">
-          <p:commandLink
-            value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
-            id="task-name" actionListener="#{logic.openPortalTasks}" rendered="#{history.type eq 'TASK'}" disabled="#{history.taskState.toString() eq 'CREATED'}">
-            <f:attribute name="taskId" value="#{history.id}" />
-          </p:commandLink>
+          <p:link id="show-task-note-link" value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
+	      	target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}" rendered="#{history.type eq 'TASK'}" styleClass="task-note-link"/>
           <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
             <p:commandLink id="note-content" value="#{history.content}" rendered="#{history.type eq 'NOTE'}"
               oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
