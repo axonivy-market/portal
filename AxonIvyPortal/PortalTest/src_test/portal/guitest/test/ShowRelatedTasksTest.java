@@ -29,9 +29,10 @@ public class ShowRelatedTasksTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+    navigateToUrl("portalKitTestHelper/153CACC26D0D4C3D/createRelatedTasksTestUser.ivp");
     navigateToUrl(createTestingTasksUrl);
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    LoginPage loginPage = new LoginPage(TestAccount.TEST_RELATED_TASKS_USER);
     loginPage.login();
     caseHistoryPage = new NoteHistoryPage();
     denyReadAllPermissionFromCurrentUser();
@@ -84,7 +85,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     openCaseDetail();
     TaskWidgetPage taskWidgetPage = detailsPage.clickShowAllTasks();
     int numberOfTasks = taskWidgetPage.countTasks();
-    assertTrue(numberOfTasks == 3);
+    assertTrue(numberOfTasks == 2);
     boolean hasDoneTask = false;
     for (int i = 0; i < numberOfTasks; i++) {
       if (taskWidgetPage.getTaskState(i).equals(TaskState.DONE)) {

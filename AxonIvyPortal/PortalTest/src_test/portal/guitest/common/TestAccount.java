@@ -8,7 +8,11 @@ public enum TestAccount {
 
   ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser(), nameOfAdminUser()),
 
-  TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "test_change_password_user");
+  TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "test_change_password_user"),
+  
+  TEST_RELATED_TASKS_USER("test_related_tasks_user", "+d3m0++", "test_related_tasks_user");
+  
+  
   
   private String username;
   private String password;
