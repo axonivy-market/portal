@@ -12,8 +12,8 @@ public class StickyTaskListService {
     return service;
   }
 
-  public String getTaskEndInfoSessionAttributeKey(String taskId) {
+  public String getTaskEndInfoSessionAttributeKey(Long taskId) {
     Server server = new ServerWorkingOnDetector().getServerWorkingOn();
-    return SessionAttribute.TASK_END_INFO + server.getId().toString() + taskId;
+    return SessionAttribute.TASK_END_INFO + server.getId().toString() + taskId.toString();
   }
 }

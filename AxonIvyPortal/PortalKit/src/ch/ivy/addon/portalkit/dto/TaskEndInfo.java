@@ -5,7 +5,8 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 public class TaskEndInfo {
 
   private TaskLazyDataModel dataModel;
-  private boolean isPortalHomeLastPage;
+
+  private Boolean isFromPortalHome;
 
   public TaskLazyDataModel getDataModel() {
     return dataModel;
@@ -15,12 +16,13 @@ public class TaskEndInfo {
     this.dataModel = dataModel;
   }
 
-  public boolean isPortalHomeLastPage() {
-    return isPortalHomeLastPage;
+  public Boolean getIsFromPortalHome() {
+    return isFromPortalHome;
   }
 
-  public void setPortalHomeLastPage(boolean isPortalHomeLastPage) {
-    this.isPortalHomeLastPage = isPortalHomeLastPage;
+  public void setIsFromPortalHome(Boolean isFromPortalHome) {
+    this.isFromPortalHome = isFromPortalHome;
   }
+
 
 }
