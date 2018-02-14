@@ -628,6 +628,9 @@
            <para>
            		If you have added new language to Portal by adding cms entry <code>/AppInfo/SupportedLanguages</code> in your project. Please move this entry to Portal Style.  
            </para>
+           <para>
+           		There's some changes in PortalStart process of Portal Template. If you have customized this process in your project, please copy the new PortalStart from Portal Template to your project and re-apply your customization. 
+           </para>
 		</sect2>
 		<sect2>
 			<title>Migrate 6.x to 7.0</title>
