@@ -275,13 +275,15 @@ Pt0 f41 466 110 32 32 -59 18 #rect
 Pt0 f41 @|AlternativeIcon #fIcon
 Pt0 f25 outLink restorePortalTaskList.ivp #txt
 Pt0 f25 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f25 inParamDecl '<> param;' #txt
+Pt0 f25 inParamDecl '<java.lang.Number endedTaskId> param;' #txt
+Pt0 f25 inParamTable 'out.endedTaskId=param.endedTaskId;
+' #txt
 Pt0 f25 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f25 guid 15DBBC83FFA20596 #txt
 Pt0 f25 requestEnabled true #txt
 Pt0 f25 triggerEnabled false #txt
-Pt0 f25 callSignature restorePortalTaskList() #txt
+Pt0 f25 callSignature restorePortalTaskList(Number) #txt
 Pt0 f25 persist false #txt
 Pt0 f25 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
@@ -333,15 +335,15 @@ Pt0 f2 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f2 actionTable 'out=in;
 ' #txt
 Pt0 f2 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
-import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 
-String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.endedTaskId.toString());
+String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.endedTaskId);
 TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
+
 in.dataModel = taskEndInfo.dataModel;
-in.portalPage = taskEndInfo.portalHomeLastPage ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
+in.portalPage = taskEndInfo.isFromPortalHome ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
 SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
 Pt0 f2 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -409,6 +411,7 @@ if  (#task is initialized) {
 
 if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
 	out.callbackUrl = callbackUrl + "?endedTaskId=" + in.endedTaskId;
+	ivy.log.error(out.callbackUrl);
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
 }' #txt

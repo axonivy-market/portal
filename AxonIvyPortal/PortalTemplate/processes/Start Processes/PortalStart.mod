@@ -169,15 +169,15 @@ Pt0 f2 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f2 actionTable 'out=in;
 ' #txt
 Pt0 f2 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
-import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 
-String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.endedTaskId.toString());
+String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.endedTaskId);
 TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
+
 in.dataModel = taskEndInfo.dataModel;
-in.portalPage = taskEndInfo.portalHomeLastPage ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
+in.portalPage = taskEndInfo.isFromPortalHome ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
 SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
 Pt0 f2 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
