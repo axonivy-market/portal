@@ -423,10 +423,21 @@ Ts0 f10 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 ' #txt
 Ts0 f10 actionTable 'out=in;
 ' #txt
-Ts0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Ts0 f10 actionCode 'import ch.ivy.addon.portalkit.service.StickyTaskListService;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.dto.TaskEndInfo;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import java.util.Map;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString(), in.dataModel);' #txt
+Map params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+String taskId = params.get("taskId") as String;
+TaskEndInfo taskEndInfo = new TaskEndInfo();
+taskEndInfo.setDataModel(in.dataModel);
+taskEndInfo.setPortalHomeLastPage(in.dataModel.compactMode);
+String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskId);
+SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);' #txt
 Ts0 f10 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

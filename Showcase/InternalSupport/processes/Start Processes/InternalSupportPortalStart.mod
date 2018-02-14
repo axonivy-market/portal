@@ -332,20 +332,17 @@ Pt0 f2 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f2 actionTable 'out=in;
 ' #txt
-Pt0 f2 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+Pt0 f2 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.service.StickyTaskListService;
+import ch.ivy.addon.portalkit.dto.TaskEndInfo;
+import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
-if (SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) is initialized) {
-	in.dataModel = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString()) as TaskLazyDataModel;
-	in.portalPage = in.#dataModel is initialized ? in.portalPage = SecurityServiceUtils.getSessionAttribute(SessionAttribute.LAST_PAGE.toString()) as PortalPage : PortalPage.HOME_PAGE;
-	
-	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString());
-} else {
-	in.portalPage = PortalPage.HOME_PAGE;
-	SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), in.portalPage);
-}' #txt
+String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.endedTaskId.toString());
+TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
+in.dataModel = taskEndInfo.dataModel;
+in.portalPage = taskEndInfo.portalHomeLastPage ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
+SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
 Pt0 f2 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -411,10 +408,9 @@ if  (#task is initialized) {
 }
 
 if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
-	out.callbackUrl = callbackUrl;
+	out.callbackUrl = callbackUrl + "?endedTaskId=" + in.endedTaskId;
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
-	SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), in.portalPage);
 }' #txt
 Pt0 f11 security system #txt
 Pt0 f11 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -443,9 +439,7 @@ String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardP
 if (StringUtils.isBlank(defaultEndPage)) {
 	String defaultProcessLibraryName = "ch.ivyteam.ivy.project.portal:portalTemplate";
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, defaultProcessLibraryName);
-}
-
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), in.portalPage);' #txt
+}' #txt
 Pt0 f20 security system #txt
 Pt0 f20 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
