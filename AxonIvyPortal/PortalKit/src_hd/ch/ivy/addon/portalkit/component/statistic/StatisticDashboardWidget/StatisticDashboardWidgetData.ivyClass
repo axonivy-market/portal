@@ -18,3 +18,5 @@ selectedItem String #field
 selectedItem PERSISTENT #fieldModifier
 isDrilldownToTaskList Boolean #field
 isDrilldownToTaskList PERSISTENT #fieldModifier
+selectedCaseCategory String #field
+selectedCaseCategory PERSISTENT #fieldModifier
