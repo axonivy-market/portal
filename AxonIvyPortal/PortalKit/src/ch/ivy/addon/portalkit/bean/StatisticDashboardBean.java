@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.PieChartModel;
@@ -56,7 +57,7 @@ public class StatisticDashboardBean {
    */
   public BarChartModel generateTaskByExpiryModel(StatisticChart statisticChart) {
     List<ExpiryStatistic> statisticData = statisticService.getExpiryStatisticData(statisticChart.getJsonQuery());
-    return statisticService.generateTaskByExpiryModel(statisticData, true);
+    return statisticService.generateTaskByExpiryModel(statisticData, true, StringUtils.EMPTY);
   }
 
   /**

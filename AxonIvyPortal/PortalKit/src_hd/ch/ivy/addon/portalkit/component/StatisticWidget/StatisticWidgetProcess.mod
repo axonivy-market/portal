@@ -29,6 +29,12 @@ Cs0 @RichDialogMethodStart f9 '' #zField
 Cs0 @RichDialogProcessEnd f11 '' #zField
 Cs0 @PushWFArc f14 '' #zField
 Cs0 @PushWFArc f13 '' #zField
+Cs0 @RichDialogProcessEnd f15 '' #zField
+Cs0 @RichDialogProcessStart f16 '' #zField
+Cs0 @PushWFArc f17 '' #zField
+Cs0 @RichDialogProcessEnd f18 '' #zField
+Cs0 @RichDialogProcessStart f19 '' #zField
+Cs0 @PushWFArc f20 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
@@ -160,6 +166,52 @@ Cs0 f14 expr out #txt
 Cs0 f14 109 160 275 160 #arcP
 Cs0 f13 expr out #txt
 Cs0 f13 109 448 275 448 #arcP
+Cs0 f15 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f15 275 532 26 26 0 12 #rect
+Cs0 f15 @|RichDialogProcessEndIcon #fIcon
+Cs0 f16 guid 161BBCEDA1C24D09 #txt
+Cs0 f16 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f16 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f16 actionTable 'out=in;
+out.isDrilldownElapsedTime=false;
+' #txt
+Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>switchDrilldownMode</name>
+        <nameStyle>19,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f16 83 532 26 26 -58 15 #rect
+Cs0 f16 @|RichDialogProcessStartIcon #fIcon
+Cs0 f17 expr out #txt
+Cs0 f17 109 545 275 545 #arcP
+Cs0 f18 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f18 273 628 26 26 0 12 #rect
+Cs0 f18 @|RichDialogProcessEndIcon #fIcon
+Cs0 f19 guid 161BBD78F902AFC2 #txt
+Cs0 f19 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f19 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f19 actionTable 'out=in;
+out.isDrilldownElapsedTime=true;
+' #txt
+Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownElapsedTimeListener</name>
+        <nameStyle>28,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f19 81 628 26 26 -84 15 #rect
+Cs0 f19 @|RichDialogProcessStartIcon #fIcon
+Cs0 f20 expr out #txt
+Cs0 f20 107 641 273 641 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -174,3 +226,7 @@ Cs0 f12 mainOut f13 tail #connect
 Cs0 f13 head f10 mainIn #connect
 Cs0 f9 mainOut f14 tail #connect
 Cs0 f14 head f11 mainIn #connect
+Cs0 f16 mainOut f17 tail #connect
+Cs0 f17 head f15 mainIn #connect
+Cs0 f19 mainOut f20 tail #connect
+Cs0 f20 head f18 mainIn #connect
