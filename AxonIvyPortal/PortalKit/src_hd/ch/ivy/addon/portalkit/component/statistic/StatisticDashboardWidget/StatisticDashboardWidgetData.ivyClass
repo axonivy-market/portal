@@ -12,3 +12,9 @@ caseQuery ch.ivyteam.ivy.workflow.query.CaseQuery #field
 caseQuery PERSISTENT #fieldModifier
 hasStatistic Boolean #field
 hasStatistic PERSISTENT #fieldModifier
+expiryLastDrilldownLevel String #field
+expiryLastDrilldownLevel PERSISTENT #fieldModifier
+selectedItem String #field
+selectedItem PERSISTENT #fieldModifier
+isDrilldownToTaskList Boolean #field
+isDrilldownToTaskList PERSISTENT #fieldModifier
