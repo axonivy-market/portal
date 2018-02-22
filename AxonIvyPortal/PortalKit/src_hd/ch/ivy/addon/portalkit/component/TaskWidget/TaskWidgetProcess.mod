@@ -39,10 +39,6 @@ Ts0 @CallSub f69 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 Ts0 @PushWFArc f7 '' #zField
-Ts0 @RichDialogMethodStart f8 '' #zField
-Ts0 @GridStep f10 '' #zField
-Ts0 @PushWFArc f11 '' #zField
-Ts0 @PushWFArc f12 '' #zField
 Ts0 @GridStep f4 '' #zField
 Ts0 @PushWFArc f5 '' #zField
 Ts0 @PushWFArc f6 '' #zField
@@ -401,51 +397,6 @@ Ts0 f2 expr out #txt
 Ts0 f2 752 184 752 237 #arcP
 Ts0 f7 expr out #txt
 Ts0 f7 752 83 752 160 #arcP
-Ts0 f8 guid 15B8AD1D7AD576DC #txt
-Ts0 f8 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f8 method storeConfiguration() #txt
-Ts0 f8 disableUIEvents false #txt
-Ts0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f8 outParameterDecl '<> result;
-' #txt
-Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>storeConfiguration()</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f8 629 341 22 22 14 0 #rect
-Ts0 f8 @|RichDialogMethodStartIcon #fIcon
-Ts0 f10 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
-' #txt
-Ts0 f10 actionTable 'out=in;
-' #txt
-Ts0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString(), in.dataModel);' #txt
-Ts0 f10 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>store task
-list''s configuration</name>
-        <nameStyle>31
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f10 622 396 36 24 20 -2 #rect
-Ts0 f10 @|StepIcon #fIcon
-Ts0 f11 expr out #txt
-Ts0 f11 640 363 640 396 #arcP
-Ts0 f12 expr out #txt
-Ts0 f12 640 420 83 448 #arcP
-Ts0 f12 1 640 448 #addKink
-Ts0 f12 1 0.4606959193892842 0 0 #arcLabel
 Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f4 actionTable 'out=in;
@@ -965,10 +916,6 @@ Ts0 f69 mainOut f2 tail #connect
 Ts0 f2 head f67 mainIn #connect
 Ts0 f68 mainOut f7 tail #connect
 Ts0 f7 head f69 mainIn #connect
-Ts0 f8 mainOut f11 tail #connect
-Ts0 f11 head f10 mainIn #connect
-Ts0 f10 mainOut f12 tail #connect
-Ts0 f12 head f83 mainIn #connect
 Ts0 f82 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
 Ts0 f4 mainOut f6 tail #connect

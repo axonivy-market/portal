@@ -8,11 +8,12 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
+  <cc:attribute name="expiryLastDrilldownLevel" default="DAY"/>
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList)}" type="preRenderComponent" />
+  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.expiryLastDrilldownLevel)}" type="preRenderComponent" />
   <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" rendered="#{!cc.attrs.compactMode and data.hasStatistic}" styleClass="statistic-dashboard-expand-mode">
     <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}">
       <c:set var="index" value="#{data.statisticChartList.indexOf(chart)}" />
@@ -54,7 +55,7 @@
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" update="#{p:component('widget-container')}" />
         </p:chart>
 
         <p:chart type="donut" styleClass="statistic-chart"
@@ -85,7 +86,7 @@
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" update="#{p:component('widget-container')}"/>
         </p:chart>
 
         <p:chart type="donut" styleClass="statistic-chart"
@@ -110,7 +111,6 @@
       </h:panelGroup>
       <cc:renderFacet name="emptyDataPlace" />
     </h:panelGroup>
-
   <p:confirmDialog id="delete-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmation')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmationHeader')}"
