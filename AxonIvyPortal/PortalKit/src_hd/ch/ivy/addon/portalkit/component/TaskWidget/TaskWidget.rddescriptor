@@ -70,10 +70,6 @@
         </outputParameter>
     </method>
     <method>
-        <name>storeConfiguration</name>
-        <description></description>
-    </method>
-    <method>
         <name>deleteFilter</name>
         <description></description>
     </method>

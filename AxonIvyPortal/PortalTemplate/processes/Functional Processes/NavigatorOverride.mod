@@ -199,7 +199,6 @@ import java.util.Arrays;
 
 MainMenuNode category = new MainMenuNode();
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
 
 in.taskDataModel.setCaseId(in.caseId.id());
 in.taskDataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
@@ -338,8 +337,6 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
-
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
 
 in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
 in.taskDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
