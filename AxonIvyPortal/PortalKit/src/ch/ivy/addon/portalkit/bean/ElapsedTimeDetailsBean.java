@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,7 +27,9 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 @ManagedBean
 @ViewScoped
-public class ElapsedTimeDetailsBean {
+public class ElapsedTimeDetailsBean implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   private static final String ROLE_EVERYBODY = "Everybody";
 
   private StatisticService statisticService = new StatisticService();
