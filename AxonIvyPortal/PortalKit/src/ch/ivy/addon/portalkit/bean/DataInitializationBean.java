@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -8,7 +10,8 @@ import ch.ivy.addon.portalkit.util.RoleUtils;
 
 @ManagedBean
 @SessionScoped
-public class DataInitializationBean {
+public class DataInitializationBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   @PostConstruct
   public void init() {

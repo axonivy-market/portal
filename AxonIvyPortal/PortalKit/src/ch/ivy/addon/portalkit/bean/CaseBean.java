@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.bean;
 
 import static ch.ivyteam.ivy.security.IPermission.CASE_DESTROY;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 
 import ch.ivy.addon.portalkit.bo.RemoteCase;
@@ -13,7 +15,8 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 @ManagedBean(name = "caseBean")
-public class CaseBean {
+public class CaseBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   /**
    * Get the font-awesome class of specified CaseState

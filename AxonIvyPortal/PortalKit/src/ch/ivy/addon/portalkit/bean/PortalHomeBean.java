@@ -1,13 +1,16 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class PortalHomeBean {
-  
+public class PortalHomeBean implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   public boolean showAllTask;
   public String styleClass;
   public static final String DEFAULT_STYLECLASS = "Wid50 Fleft";
