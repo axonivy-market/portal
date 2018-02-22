@@ -4,6 +4,7 @@ import static ch.ivyteam.ivy.workflow.TaskState.PARKED;
 import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
 import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Stream;
 
@@ -25,6 +27,7 @@ import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.bo.TaskServiceResult;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
 import ch.ivy.ws.addon.transformer.IvyTaskTransformer;
+import ch.ivy.ws.addon.types.ElapsedTimeStatistic;
 import ch.ivy.ws.addon.types.ExpiryStatistic;
 import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvySecurityMember;
@@ -620,6 +623,49 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
+  @Override
+  public TaskServiceResult analyzeElapsedTimeOfTasks(String jsonQuery, List<String> apps) throws WSException {
+    List<WSException> errors = Collections.emptyList();
+    try {
+      return securityManager().executeAsSystem(
+          () -> {
+            TaskQuery elapsedTimeQuery =
+                StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
+
+            elapsedTimeQuery.where().and(queryForInvolvedApplications(apps));
+            queryExcludeHiddenTasks(elapsedTimeQuery);
+
+            elapsedTimeQuery.where().and().businessRuntime().isNotNull();
+            elapsedTimeQuery.aggregate().avgBusinessRuntime()
+            .groupBy().category();
+
+            Recordset recordSet = taskQueryExecutor().getRecordset(elapsedTimeQuery);
+            HashMap<String, Long> recordMap = new HashMap<String, Long>();
+            if (recordSet != null) {
+              recordSet.getRecords().forEach(record -> {
+                String categoryName = record.getField("CATEGORY").toString();
+                BigDecimal averageElapsedTime
+                  = Optional.ofNullable((BigDecimal)record.getField("AVGBUSINESSRUNTIME")).orElse(new BigDecimal(0));
+                long averageElapsedTimeValue = averageElapsedTime.longValue();
+                recordMap.put(categoryName, averageElapsedTimeValue);
+              });
+            }
+
+            ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
+            Gson gsonConverter = new Gson();
+            String json = "";
+            if (recordMap.size() != 0) {
+              json = gsonConverter.toJson(recordMap);
+            }
+            elapsedTimeStatistic.setResult(json);
+
+            return result(elapsedTimeStatistic, errors);
+          });
+    } catch (Exception e) {
+      throw new WSException(10054, e);
+    }
+  }
+
   private TaskQuery createTaskQuery(TaskSearchCriteria taskSearchCriteria) throws Exception {
     TaskQuery finalQuery = TaskQuery.fromJson(taskSearchCriteria.getJsonQuery());
 
@@ -839,6 +885,13 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   private TaskServiceResult result(ExpiryStatistic expiryStatistic, List<WSException> errors) {
     TaskServiceResult result = new TaskServiceResult();
     result.setExpiryStatistic(expiryStatistic);
+    result.setErrors(errors);
+    return result;
+  }
+
+  private TaskServiceResult result(ElapsedTimeStatistic elapsedTimeStatistic, List<WSException> errors) {
+    TaskServiceResult result = new TaskServiceResult();
+    result.setElapsedTimeStatistic(elapsedTimeStatistic);
     result.setErrors(errors);
     return result;
   }

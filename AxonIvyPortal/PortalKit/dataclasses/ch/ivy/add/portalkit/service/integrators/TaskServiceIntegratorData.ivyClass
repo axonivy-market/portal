@@ -34,3 +34,4 @@ name String #field
 name 'Additional property''s name' #fieldComment
 value String #field
 value 'Additional property''s value' #fieldComment
+elapsedTimeStatistic ch.ivy.ws.addon.ElapsedTimeStatistic #field
