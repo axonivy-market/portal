@@ -62,8 +62,25 @@ body {
   background-color: fade(@menu-color, 80%);
 }
 
-.ui-widget.ui-button.ui-state-disabled:not(.portal-ok-button, .portal-cancel-button, .ui-inplace-save, .ui-inplace-cancel, .ui-fileupload-cancel) {
+.ui-widget.ui-button.ui-state-disabled:not(.portal-cancel-button, .ui-inplace-cancel, .ui-fileupload-cancel) {
   background-color: fade(@menu-color, 20%);
+  opacity: 0;
+}
+
+.portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
+  background-color: fade(@cancel-button-background-color, 50%);
+}
+
+.portal-cancel-button.ui-widget.ui-button.ui-state-hover, .portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover, .ui-inplace-cancel.ui-widget.ui-button.ui-state-hover, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-hover {
+  background-color: fade(@cancel-button-background-color, 60%) !important;
+}
+
+.portal-cancel-button.ui-widget.ui-button.ui-state-focus, .ui-inplace-cancel.ui-widget.ui-button.ui-state-focus, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-focus {
+  background-color: fade(@cancel-button-background-color, 80%);
+}
+
+.portal-cancel-button.ui-widget.ui-button.ui-state-disabled, .ui-inplace-cancel.ui-widget.ui-button.ui-state-disabled, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-disabled {
+  background-color: fade(@cancel-button-background-color, 20%);
   opacity: 0;
 }
 
