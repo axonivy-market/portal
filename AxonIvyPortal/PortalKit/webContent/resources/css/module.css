@@ -3829,7 +3829,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .statistic-dashboard-container {
-  width: 76rem;
+  width: 100%;
   margin: auto;
   display: flex;
   flex-flow: row wrap;
@@ -3889,6 +3889,28 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .add-statistic-panel .add-statistic-panel-column-2 .ui-inputfield.ui-inputtext {
   width: 100%;
+}
+
+.compare-roles-panel .ui-outputlabel {
+  margin-right: 20px;
+}
+
+.compare-items-panel .ui-widget.ui-button {
+  float: right;
+  margin-top: 10px;
+}
+
+.big-horizontal-statistic-chart {
+  width: 50%;
+}
+
+.compare-result-panel {
+  width: 50%;
+}
+
+.compare-result-panel .export-button {
+  float: right;
+  margin-bottom: 10px;
 }
 
 /********************************** END STATISTIC WIDGET **********************************/
