@@ -9,6 +9,7 @@ import static ch.ivyteam.ivy.workflow.TaskState.DONE;
 import static ch.ivyteam.ivy.workflow.TaskState.FAILED;
 import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +45,8 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
  *
  */
 @ManagedBean(name = "taskBean")
-public class TaskBean {
+public class TaskBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   private static final String SHARP = "#";
   private static final String FORMAT_DATE = "dd.MM.yyyy HH:mm";

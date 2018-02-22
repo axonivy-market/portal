@@ -24,6 +24,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 @ManagedBean
 @ViewScoped
 public class TaskTemplateBean implements Serializable{
+  private static final long serialVersionUID = 1L;
 
   private String linkToTask;
   private List<IStartableSideStep> sideStepList;
