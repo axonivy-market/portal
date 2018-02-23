@@ -378,7 +378,7 @@ if (in.statisticChartList.size() != 0) {
 	if(in.selectedItem.isEmpty()){
 		service.generateChartModelForStatisticCharts(in.statisticChartList);
 	}else{
-		service.drilldownExpiryChart(in.selectedItem,in.selectedStatisticChart);
+		service.drilldownExpiryChart(in.selectedItem,in.selectedStatisticChart,in.previousDrilldownLevel);
 		in.statisticChartList.clear();
 		in.statisticChartList.add(in.selectedStatisticChart);
 	}
@@ -542,6 +542,7 @@ import org.primefaces.event.ItemSelectEvent;
 
 out.event = event as ItemSelectEvent;
 String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
+in.previousDrilldownLevel = in.selectedItem;
 
 for (StatisticChart chart : out.statisticChartList) {
 	if (chart.id == selectedChartId) {
