@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -29,7 +30,8 @@ import com.inet.lib.less.Less;
 
 @ManagedBean
 @ViewScoped
-public class DesignChooserBean {
+public class DesignChooserBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   private final static String PORTALSTYLE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalStyle";
   private static final String COLORS_LESS_PATH = "/resources/less/colors.less";

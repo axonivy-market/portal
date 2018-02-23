@@ -2,6 +2,10 @@
   <wsdl:types>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://addon.ws.ivy.ch/" elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0">
 
+  <xs:element name="analyzeElapsedTimeStatistic" type="tns:analyzeElapsedTimeStatistic"></xs:element>
+
+  <xs:element name="analyzeElapsedTimeStatisticResponse" type="tns:analyzeElapsedTimeStatisticResponse"></xs:element>
+
   <xs:element name="analyzeExpiryStatistic" type="tns:analyzeExpiryStatistic"></xs:element>
 
   <xs:element name="analyzeExpiryStatisticResponse" type="tns:analyzeExpiryStatisticResponse"></xs:element>
@@ -556,6 +560,36 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="analyzeElapsedTimeStatistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="analyzeElapsedTimeStatisticResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:analyzeElapsedTimeStatisticResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="analyzeElapsedTimeStatisticResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="elapsedTimeStatistic" type="tns:elapsedTimeStatistic"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="elapsedTimeStatistic">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="result" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
   <xs:complexType name="findTaskNotes">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
@@ -678,6 +712,10 @@
     <wsdl:part element="tns:saveResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="analyzeElapsedTimeStatisticResponse">
+    <wsdl:part element="tns:analyzeElapsedTimeStatisticResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="createTaskNote">
     <wsdl:part element="tns:createTaskNote" name="parameters">
     </wsdl:part>
@@ -696,6 +734,10 @@
   </wsdl:message>
   <wsdl:message name="delegateTask">
     <wsdl:part element="tns:delegateTask" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="analyzeElapsedTimeStatistic">
+    <wsdl:part element="tns:analyzeElapsedTimeStatistic" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="delegateTaskResponse">
@@ -895,6 +937,14 @@
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="analyzeElapsedTimeStatistic">
+      <wsdl:input message="tns:analyzeElapsedTimeStatistic" name="analyzeElapsedTimeStatistic">
+    </wsdl:input>
+      <wsdl:output message="tns:analyzeElapsedTimeStatisticResponse" name="analyzeElapsedTimeStatisticResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="findTaskNotes">
       <wsdl:input message="tns:findTaskNotes" name="findTaskNotes">
     </wsdl:input>
@@ -1070,6 +1120,18 @@
         <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="analyzeElapsedTimeStatistic">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="analyzeElapsedTimeStatistic">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="analyzeElapsedTimeStatisticResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="findTaskNotes">
       <soap:operation soapAction="" style="document"></soap:operation>
       <wsdl:input name="findTaskNotes">
@@ -1133,7 +1195,7 @@
   </wsdl:binding>
   <wsdl:service name="TaskServiceService">
     <wsdl:port binding="tns:TaskServiceServiceSoapBinding" name="TaskServicePort">
-      <soap:address location="http://localhost:8081/ivy/ws/designer/portalConnector/1380566F9095B9C4"></soap:address>
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/1380566F9095B9C4"></soap:address>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
