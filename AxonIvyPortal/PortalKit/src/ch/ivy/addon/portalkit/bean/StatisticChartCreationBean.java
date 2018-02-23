@@ -67,7 +67,7 @@ public class StatisticChartCreationBean implements Serializable {
   public void updateTaskByExpiryModel(StatisticFilter filter) {
     String jsonQuery = statisticService.generateTaskQueryForExpiry(filter).asJson();
     List<ExpiryStatistic> result = statisticService.getExpiryStatisticData(jsonQuery);
-    taskByExpiryModel = statisticService.generateTaskByExpiryModel(result, false, StringUtils.EMPTY);
+    taskByExpiryModel = statisticService.generateTaskByExpiryModel(result, false, StringUtils.EMPTY, StringUtils.EMPTY);
   }
 
   /**
