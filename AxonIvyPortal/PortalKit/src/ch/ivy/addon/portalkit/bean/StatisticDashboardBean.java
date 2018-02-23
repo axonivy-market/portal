@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +22,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class StatisticDashboardBean {
+public class StatisticDashboardBean implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   private StatisticService statisticService = new StatisticService();
   private List<StatisticChart> statisticChartList;
 

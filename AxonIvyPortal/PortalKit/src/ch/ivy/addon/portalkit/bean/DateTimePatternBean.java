@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -8,7 +10,8 @@ import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 
 @ManagedBean
 @SessionScoped
-public class DateTimePatternBean {
+public class DateTimePatternBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   private DateTimeGlobalSettingService dateTimePatternService;
   
