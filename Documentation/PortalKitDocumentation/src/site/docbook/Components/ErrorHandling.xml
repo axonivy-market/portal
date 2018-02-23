@@ -37,7 +37,7 @@
 			<title>Result</title>
 			<mediaobject>
 				<imageobject>
-					<imagedata fileref="images/ErrorHandling/portalAjaxErrorHandler.png" />
+					<imagedata fileref="images/ErrorHandling/portalAjaxErrorHandler.PNG" />
 				</imageobject>
 			</mediaobject>
 		</sect3>
