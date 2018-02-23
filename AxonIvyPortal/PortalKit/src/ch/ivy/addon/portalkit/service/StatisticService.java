@@ -456,7 +456,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return generated data
    */
   public Map<Object, Number> generateDataForTaskByExpiryOverviewChart(List<ExpiryStatistic> expiryStatistic,
-      String selectedValue) {
+      String selectedValue, String previousDrilldownLevel) {
 
     // Convert result
     Map<Date, Long> statisticResultMap = new HashMap<Date, Long>();
@@ -482,9 +482,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (StringUtils.containsIgnoreCase(selectedValue, "YEAR")) {
       chartData = generateExpiryModelForDrilldownLevelYear(statisticResultMap);
     } else if (selectMonthOfYear(selectedValue)) {
-      chartData = generateExpiryModelForDrilldownLevelMonth(statisticResultMap);
+      chartData = generateExpiryModelForDrilldownLevelMonth(statisticResultMap, selectedValue);
     } else if (selectWeekOfMonth(selectedValue)) {
-      chartData = generateExpiryModelForDrilldownLevelWeek(statisticResultMap);
+      chartData = generateExpiryModelForDrilldownLevelWeek(statisticResultMap, selectedValue, previousDrilldownLevel);
     } else {
       chartData = generateDefaultExpiryModel(statisticResultMap);
     }
@@ -492,9 +492,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return chartData;
   }
 
-  private Map<Object, Number> generateExpiryModelForDrilldownLevelWeek(Map<Date, Long> statisticResultMap) {
+  private Map<Object, Number> generateExpiryModelForDrilldownLevelWeek(Map<Date, Long> statisticResultMap,
+      String selectedWeek, String previousDrilldownLevel) {
     Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
-    
+
+    Date firstDateOfSelectedWeek = getFirstDateOfWeek(selectedWeek, previousDrilldownLevel);
+    Date lasfDateOfSelectedWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfSelectedWeek, 1));
+
     Long taskExpireOnMonday = new Long(0L);
     Long taskExpireOnTuesday = new Long(0L);
     Long taskExpireOnWednesday = new Long(0L);
@@ -502,28 +506,29 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Long taskExpireOnFriday = new Long(0L);
     Long taskExpireOnSaturday = new Long(0L);
     Long taskExpireOnSunday = new Long(0L);
-    
+
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = truncateMinutesPart(result.getKey());
       Calendar cal = Calendar.getInstance();
       cal.setTime(resultDate);
-      
-      if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-        taskExpireOnMonday += result.getValue();
-      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
-        taskExpireOnTuesday += result.getValue();
-      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
-        taskExpireOnWednesday += result.getValue();
-      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
-        taskExpireOnThursday += result.getValue();
-      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
-        taskExpireOnFriday += result.getValue();
-      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
-        taskExpireOnSaturday += result.getValue();
-      }else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
-        taskExpireOnSunday += result.getValue();
+
+      if (firstDateOfSelectedWeek.compareTo(resultDate) <= 0 && lasfDateOfSelectedWeek.compareTo(resultDate) > 0) {
+        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+          taskExpireOnMonday += result.getValue();
+        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {
+          taskExpireOnTuesday += result.getValue();
+        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
+          taskExpireOnWednesday += result.getValue();
+        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
+          taskExpireOnThursday += result.getValue();
+        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
+          taskExpireOnFriday += result.getValue();
+        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+          taskExpireOnSaturday += result.getValue();
+        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+          taskExpireOnSunday += result.getValue();
+        }
       }
-      
     }
 
     chartData.put(MONDAY_CMS, taskExpireOnMonday);
@@ -533,17 +538,103 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     chartData.put(FRIDAY_CMS, taskExpireOnFriday);
     chartData.put(SATURDAY_CMS, taskExpireOnSaturday);
     chartData.put(SUNDAY_CMS, taskExpireOnSunday);
+
+    return chartData;
+  }
+  
+  private Date getFirstDateOfWeek(String selectedWeek, String selectedMonth) {
+
+    Date firstDateOfWeek = new Date();
+    if(StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY))){
+      firstDateOfWeek = getFirstDateOfThisWeek();
+    } else {
+      Date firstDateOfMonth = getFirstDateOfMonth(selectedMonth);
+      if(StringUtils.containsIgnoreCase(selectedWeek, FIRSTWEEK_CMS)){
+        firstDateOfWeek = firstDateOfMonth;
+      } else if(StringUtils.containsIgnoreCase(selectedWeek, SECONDWEEK_CMS)){
+        firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfMonth, 1));
+      } else if(StringUtils.containsIgnoreCase(selectedWeek, THIRDWEEK_CMS)){
+        firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfMonth, 2));
+      } else if(StringUtils.containsIgnoreCase(selectedWeek, FOURTHWEEK_CMS)){
+        firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfMonth, 3));
+      }
+    }
     
+    return firstDateOfWeek;
+  }
+
+  private Map<Object, Number> generateExpiryModelForDrilldownLevelMonth(Map<Date, Long> statisticResultMap,
+      String selectedValue) {
+    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
+
+    Long taskExpireOnFirstWeek = new Long(0L);
+    Long taskExpireOnSecondWeek = new Long(0L);
+    Long taskExpireOnThirdWeek = new Long(0L);
+    Long taskExpireOnFourthWeek = new Long(0L);
+
+    Date firstDateOfSelectedMonth = getFirstDateOfMonth(selectedValue);
+
+    Date firstDateOfFirstWeek = truncateMinutesPart(firstDateOfSelectedMonth);
+    Date firstDateOfSecondWeek = truncateMinutesPart(DateUtils.addDays(firstDateOfFirstWeek, 7));
+    Date firstDateOfThirdWeek = truncateMinutesPart(DateUtils.addDays(firstDateOfSecondWeek, 7));
+    Date firstDateOfFourthWeek = truncateMinutesPart(DateUtils.addDays(firstDateOfThirdWeek, 7));
+    Date lastDateOfMonth = truncateMinutesPart(DateUtils.addMonths(firstDateOfSelectedMonth, 1));
+
+    for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
+      Date resultDate = truncateMinutesPart(result.getKey());
+      if (firstDateOfFirstWeek.compareTo(resultDate) <= 0 && firstDateOfSecondWeek.compareTo(resultDate) > 0) {
+        taskExpireOnFirstWeek += result.getValue();
+      }
+      if (firstDateOfSecondWeek.compareTo(resultDate) <= 0 && firstDateOfThirdWeek.compareTo(resultDate) > 0) {
+        taskExpireOnSecondWeek += result.getValue();
+      }
+      if (firstDateOfThirdWeek.compareTo(resultDate) <= 0 && firstDateOfFourthWeek.compareTo(resultDate) > 0) {
+        taskExpireOnThirdWeek += result.getValue();
+      }
+      if (firstDateOfFourthWeek.compareTo(resultDate) <= 0 && lastDateOfMonth.compareTo(resultDate) > 0) {
+        taskExpireOnFourthWeek += result.getValue();
+      }
+    }
+
+    chartData.put(FIRSTWEEK_CMS, taskExpireOnFirstWeek);
+    chartData.put(SECONDWEEK_CMS, taskExpireOnSecondWeek);
+    chartData.put(THIRDWEEK_CMS, taskExpireOnThirdWeek);
+    chartData.put(FOURTHWEEK_CMS, taskExpireOnFourthWeek);
     return chartData;
   }
 
-  private Map<Object, Number> generateExpiryModelForDrilldownLevelMonth(Map<Date, Long> statisticResultMap) {
-    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
-    chartData.put(FIRSTWEEK_CMS, 10);
-    chartData.put(SECONDWEEK_CMS, 10);
-    chartData.put(THIRDWEEK_CMS, 10);
-    chartData.put(FOURTHWEEK_CMS, 10);
-    return chartData;
+  private Date getFirstDateOfMonth(String selectedMonth) {
+    if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY))) {
+      return getFirstDateOfThisMonth();
+    }
+    Calendar cal = Calendar.getInstance();
+    cal.set(Calendar.DAY_OF_MONTH, 1);
+    if (StringUtils.containsIgnoreCase(selectedMonth, JANUARY_CMS)) {
+      cal.set(Calendar.MONTH, 0);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, FEBRUARY_CMS)) {
+      cal.set(Calendar.MONTH, 1);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, MARCH_CMS)) {
+      cal.set(Calendar.MONTH, 2);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, APRIL_CMS)) {
+      cal.set(Calendar.MONTH, 3);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, MAY_CMS)) {
+      cal.set(Calendar.MONTH, 4);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, JUNE_CMS)) {
+      cal.set(Calendar.MONTH, 5);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, JULY_CMS)) {
+      cal.set(Calendar.MONTH, 6);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, AUGUST_CMS)) {
+      cal.set(Calendar.MONTH, 7);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, SEPTEMBER_CMS)) {
+      cal.set(Calendar.MONTH, 8);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, OCTOBER_CMS)) {
+      cal.set(Calendar.MONTH, 9);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, NOVEMBER_CMS)) {
+      cal.set(Calendar.MONTH, 10);
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, DECEMBER_CMS)) {
+      cal.set(Calendar.MONTH, 11);
+    }
+    return cal.getTime();
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelYear(Map<Date, Long> statisticResultMap) {
@@ -802,8 +893,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return chart model for "Task By Expiry" chart
    */
   public BarChartModel generateTaskByExpiryModel(List<ExpiryStatistic> statisticData, boolean isSetDefaultName,
-      String selectedValue) {
-    Map<Object, Number> chartData = generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue);
+      String selectedValue, String previousDrilldownLevel) {
+    Map<Object, Number> chartData = generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue, previousDrilldownLevel);
     BarChartModel model = new BarChartModel();
     ChartSeries chartSeries = new ChartSeries();
 
@@ -926,7 +1017,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           break;
         case TASK_BY_EXPIRY:// TO BE REFACTOR
           List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(statisticChart.getJsonQuery());
-          statisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY));
+          statisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY, StringUtils.EMPTY));
           break;
         case CASES_BY_STATE:
           CaseStateStatistic caseStateData = getCaseStateStatisticData(statisticChart.getJsonQuery());
@@ -988,9 +1079,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(TODAY_EXPIRY_KEY));
   }
 
-  public void drilldownExpiryChart(String selectedValue, StatisticChart selectedChart) {
+  public void drilldownExpiryChart(String selectedValue, StatisticChart selectedChart, String previousDrilldownLevel) {
     List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(selectedChart.getJsonQuery());
-    selectedChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue));
+    selectedChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue, previousDrilldownLevel));
   }
 
   private String getSelectedValueOfDonutChart(ItemSelectEvent event) {
