@@ -110,30 +110,6 @@
   right: 0;
   margin-right: 0;
 }
-
-.portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
-  background-color: #ff7878;
-}
-
-.portal-cancel-button.ui-widget.ui-button.ui-state-hover, .portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover, .ui-inplace-cancel.ui-widget.ui-button.ui-state-hover, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-hover {
-  background-color: #ff8a8a !important;
-}
-
-.portal-cancel-button.ui-widget.ui-button.ui-state-focus, .ui-inplace-cancel.ui-widget.ui-button.ui-state-focus, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-focus {
-  background-color: #ff6464;
-}
-
-.portal-ok-button.ui-widget.ui-button, .ui-inplace-save.ui-widget.ui-button {
-  background-color: #acdf5b;
-}
-
-.portal-ok-button.ui-widget.ui-button.ui-state-hover, .portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover, .ui-inplace-save.ui-widget.ui-button.ui-state-hover {
-  background-color: #bfea7a !important;
-}
-
-.portal-ok-button.ui-widget.ui-button.ui-state-focus, .ui-inplace-save.ui-widget.ui-button.ui-state-focus {
-  background-color: #acd73c;
-}
 /* =================== END PORTAL BUTTONS ====================== */
 
 /* =================== RADIO BUTTON ====================== */
@@ -4515,4 +4491,26 @@ margin-top
 
 .config-columns-panel.ui-overlay-hidden {
   display: none;
+}
+
+/*********** Styles for ui-inplace ***********/
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check, .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
+  background-image: none !important;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: none repeat scroll 0 0 transparent !important;
+  text-indent: 0 !important;}
+
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check:before {
+  font-family: 'FontAwesome' !important;
+  content: '\f00c';
+}
+
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
+  font-family: 'FontAwesome' !important;
+  content: '\f00d';
 }
