@@ -1,4 +1,4 @@
-co: name={deleteProcess} description={} changed={2017-10-31 07:59:38 CET} changedby={chnam} visualorder={0} guid={15F713A78763A22F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A78784D087} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7882D9C52} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-10 12:02:32 CET} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A787DC468B} datatype={} isdefault={true} langid={en} description={} validfrom={2015-11-10 12:02:17 CET} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
+co: name={deleteProcess} description={} changed={2018-02-23 10:24:56 CET} changedby={mnhnam} visualorder={0} guid={161C1F9F310CB4BE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={161C1F9F31BE3C5E} datatype={} isdefault={true} langid={en} description={} validfrom={2018-02-23 10:23:58 CET} validto={} changed={2018-02-23 10:23:58 CET} changedby={mnhnam} properties={} id={}
+val: guid={161C1FAB7097935C} datatype={} isdefault={false} langid={de} description={} validfrom={2018-02-23 10:24:15 CET} validto={} changed={2018-02-23 10:24:56 CET} changedby={mnhnam} properties={} id={}
+val: guid={161C1FAB85F5D9F5} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-02-23 10:24:25 CET} validto={} changed={2018-02-23 10:24:56 CET} changedby={mnhnam} properties={} id={}
