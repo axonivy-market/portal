@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -13,7 +15,8 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
  */
 @ManagedBean
 @RequestScoped
-public class PermissionBean {
+public class PermissionBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   private static final String AXONIVY_PORTAL_ADMIN = "AXONIVY_PORTAL_ADMIN";
 

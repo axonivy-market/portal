@@ -105,4 +105,14 @@ public interface ITaskService {
    * @throws WSException
    */
   public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
+
+  /**
+   * Get statistic data about elapsed time of done tasks
+   * 
+   * @param jsonQuery
+   * @param apps
+   * @return statistic data
+   * @throws WSException
+   */
+  public TaskServiceResult analyzeElapsedTimeOfTasks(String jsonQuery, List<String> apps) throws WSException;
 }

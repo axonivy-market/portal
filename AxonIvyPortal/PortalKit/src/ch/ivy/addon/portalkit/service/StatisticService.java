@@ -406,6 +406,22 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   /**
+   * Call web service to get Elapsed time of related tasks by Case Category
+   * 
+   * @param jsonQuery
+   * @return Elapsed time by Case Category data
+   */
+  @SuppressWarnings("unchecked")
+  public List<ElapsedTimeStatistic> getElapsedTimeOfTasksStatisticData(String jsonQuery) {
+    Map<String, Object> params = new HashMap<>();
+    params.put(JSON_QUERY, jsonQuery);
+
+    Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeElapsedTimeOfTasks(String)", params,
+        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    return (List<ElapsedTimeStatistic>) response.get(RESULT);
+  }
+
+  /**
    * generate data for "Task by Priority" chart
    * 
    * @param priorityStatistic statistic data
@@ -997,6 +1013,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
   }
 
+  public String getSelectedValueOfPieChart(ItemSelectEvent event) {
+    try {
+      PieChartModel model = (PieChartModel) ((Chart) event.getSource()).getModel();
+      int index = event.getItemIndex();
+      return model.getData().keySet().toArray()[index].toString();
+    } catch (Exception e) {
+      return "";
+    }
+  }
+
   private Date getFirstDateOfThisWeek() {
     Calendar calendar = Calendar.getInstance();
     while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getFirstDayOfWeek()) {
@@ -1076,6 +1102,22 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   /**
+   * Get task query for Elapsed Time by Case Category chart based on selected item
+   * 
+   * @param caseCategory
+   * @return task query for Elapsed Time by Case Category chart
+   */
+  public TaskQuery getQueryForSelectedItemElapsedTime(String caseCategory) {
+    CaseQuery caseQuery = CaseQuery.create();
+    caseQuery.where().state().isEqual(CaseState.DONE).and().category().isEqual(caseCategory);
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+
+    return query;
+  }
+
+  /**
    * Get updated task query for Case by State chart based on selected item
    * 
    * @param event
@@ -1108,4 +1150,5 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Date truncateMinutesPart(Date date) {
     return DateUtils.truncate(date, Calendar.DATE);
   }
+
 }

@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 
 import javax.faces.bean.ManagedBean;
@@ -22,8 +23,9 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
-public class CaseTaskNoteHistoryBean {
-    
+public class CaseTaskNoteHistoryBean implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public String getCaseNoteHistoryLink(RemoteCase remoteCase) {
       String caseNoteHistoryUri = CaseUtils.getProcessStartUriWithCaseParameters(remoteCase, "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
       try {
