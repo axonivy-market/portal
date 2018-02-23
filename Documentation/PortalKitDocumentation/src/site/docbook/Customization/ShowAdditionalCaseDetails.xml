@@ -18,7 +18,7 @@
 					<para>Create a new additional case details UI and a start process which will display the new UI.</para>
 					<mediaobject>
 						<imageobject>
-							<imagedata fileref="images/AdditionalCaseDetailsPage/CustomizationAdditionalCaseDetailsPage.PNG" />
+							<imagedata fileref="images/AdditionalCaseDetailsPage/CustomizationAdditionalCaseDetailsPage.png" />
 						</imageobject>
 					</mediaobject>
 				</listitem>
@@ -27,7 +27,7 @@
 					<para>Store the URL in "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additional property of case.</para> 
 					<mediaobject>
 						<imageobject>
-							<imagedata fileref="images/AdditionalCaseDetailsPage/StoreRelativeUrlInCase.PNG" />
+							<imagedata fileref="images/AdditionalCaseDetailsPage/StoreRelativeUrlInCase.png" />
 						</imageobject>
 					</mediaobject>
 				</listitem>
