@@ -13,7 +13,7 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
     widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
-      styleClass="portal-ok-button" actionListener="#{logic.extendSession}"
+      styleClass="" actionListener="#{logic.extendSession}"
       oncomplete="hideWarningDialog();resetCounterAndTimeout();" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/logout')}"
       styleClass="portal-cancel-button" actionListener="#{logic.logout}" oncomplete="returnHomePage()" />
@@ -25,7 +25,7 @@
 		message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried')}"
 		widgetVar="timeout-dialog" appendTo="@(body)" closable="false">
 		<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
-			type="button" styleClass="portal-ok-button" />
+			type="button" styleClass="" />
 	</p:confirmDialog>
 
   <h:form>

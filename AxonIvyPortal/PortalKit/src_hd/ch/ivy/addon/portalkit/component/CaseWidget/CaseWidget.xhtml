@@ -232,7 +232,7 @@
         </p:selectOneRadio>
       </h:panelGrid>
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-        <p:commandButton styleClass="portal-ok-button" id="filter-save-command"
+        <p:commandButton styleClass="" id="filter-save-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
           actionListener="#{logic.saveFilter}" update="#{cc.clientId}:case-widget-header case-widget:filter-save-form">
@@ -251,7 +251,7 @@
     header="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterDeletionConfirmationHeader')}"
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.deleteFilter()}" styleClass="portal-ok-button"
+      actionListener="#{logic.deleteFilter()}" styleClass=""
       oncomplete="PF('delete-filter-confirmation-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader();"
       update="case-basic-filter-form advanced-filter-container filter-selection-form case-list filter-add-form" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
@@ -271,7 +271,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" widgetVar="destroy-case-dialog"
     appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.destroyCase(caseWidgetBean.deletingCase)}" styleClass="portal-ok-button"
+      actionListener="#{logic.destroyCase(caseWidgetBean.deletingCase)}" styleClass=""
       oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();PF('destroy-case-dialog').hide()"
       update="case-list" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
