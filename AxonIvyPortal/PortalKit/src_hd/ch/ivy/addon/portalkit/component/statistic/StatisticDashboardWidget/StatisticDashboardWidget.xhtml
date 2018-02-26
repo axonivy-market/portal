@@ -129,7 +129,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmationHeader')}"
     widgetVar="delete-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.deleteChart()}" styleClass="portal-ok-button"
+      actionListener="#{logic.deleteChart()}" styleClass=""
       oncomplete="PF('delete-confirmation-dialog').hide();"
       update="@([id$='statistic-dashboard-container']) @([id$='statistic-widget-empty-state']) " />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"

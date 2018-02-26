@@ -189,7 +189,7 @@
         <ic:ch.ivy.addon.portalkit.component.IconSelection tabindex="3" value="#{processWidgetBean.editingProcess.icon}" />
       </div>
       <div class="ui-dialog-footer u-dialog-footer">
-        <p:commandButton id="add-process-command" tabindex="3" styleClass="portal-ok-button"
+        <p:commandButton id="add-process-command" tabindex="3" styleClass=""
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}" process="@form"
           actionListener="#{processWidgetBean.saveNewUserProcess}"
           update="@form #{p:component('process-list')} #{p:component('process-widget-action')}"
@@ -211,7 +211,7 @@
       <br />
       <h:outputText value="#{processWidgetBean.editingProcess.processName}" styleClass="FontBold" />
       <div class="ui-dialog-footer u-dialog-footer">
-        <p:commandButton styleClass="portal-ok-button" global="false" process="@this"
+        <p:commandButton styleClass="" global="false" process="@this"
           update="#{cc.clientId}:process-list" actionListener="#{processWidgetBean.deleteExpressWorkflow}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           oncomplete="PF('remove-express-workflow-dialog').hide();callSynchronizeDataToPortalServer();" />
