@@ -2149,12 +2149,17 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
-Tt0 f130 caseData businessCase.attach=true #txt
+Tt0 f130 caseData 'case.name=Sale Information
+case.description=Sale Information
+businessCase.attach=true' #txt
 Tt0 f130 showInStartList 1 #txt
 Tt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SaleDepartment.ivp</name>
+        <nameStyle>18,5,7
+</nameStyle>
+        <desc>Sale Information</desc>
     </language>
 </elementInfo>
 ' #txt
