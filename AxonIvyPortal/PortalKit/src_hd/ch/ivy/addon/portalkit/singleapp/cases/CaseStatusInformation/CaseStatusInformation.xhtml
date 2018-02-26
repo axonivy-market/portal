@@ -137,7 +137,7 @@
           updateElement="@form" />
       </p:outputPanel>
       <f:facet name="footer">
-	      <p:commandButton styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" type="button"
+	      <p:commandButton styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" type="button"
 	        onclick="PF('taskInforDialog').hide()" />
       </f:facet>
     </p:dialog>
@@ -154,7 +154,7 @@
       widgetVar="confirmation">
       <p:commandButton id="proceed-remove-delay-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}"
-        styleClass="Fs14 case-status-proceed-remove-delay-command portal-ok-button" actionListener="#{logic.submitResetTask}"
+        styleClass="Fs14 case-status-proceed-remove-delay-command" actionListener="#{logic.submitResetTask}"
         oncomplete="goBackHome()">
       </p:commandButton>
       <p:spacer width="5px" />

@@ -93,7 +93,7 @@
 				header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
 				severity="alert" widgetVar="cannotDeleteServer">
 				<div class="delete-server-warning-buttons">
-					<p:commandButton styleClass="portal-ok-button"
+					<p:commandButton styleClass=""
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 						onclick="PF('cannotDeleteServer').hide()" type="button" />
 				</div>
@@ -413,7 +413,7 @@
 				<h:panelGroup layout="block" styleClass="Fright">
 					<p:commandButton
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-						actionListener="#{logic.saveServer}" styleClass="portal-ok-button"
+						actionListener="#{logic.saveServer}" styleClass=""
 						oncomplete="if (!args.validationFailed){ PF('serverDialogVar').hide();}"
 						update=":#{p:component('serverForm')} :#{p:component('applicationTable')} @form"
 						process="@form" widgetVar="saveServerButton"
@@ -617,7 +617,7 @@
 				<!-- Two buttons OK, Cancel -->
 				<h:panelGroup layout="block"
 					styleClass="u-dialog-footer ui-dialog-footer">
-					<p:commandButton styleClass="portal-ok-button"
+					<p:commandButton styleClass=""
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 						actionListener="#{logic.saveApplication}"
 						oncomplete="if (!args.validationFailed){ PF('appDialog').hide()}"
@@ -676,7 +676,7 @@
 					styleClass="u-dialog-footer ui-dialog-footer">
 					<p:commandButton id="save-setting"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-						actionListener="#{logic.saveSetting}" styleClass="portal-ok-button"
+						actionListener="#{logic.saveSetting}" styleClass=""
 						oncomplete="if (!args.validationFailed){ PF('settingDialog').hide()}"
 						update=":#{p:component('settingForm')} @form" process="@form"
 						widgetVar="saveSettingButton"
@@ -696,21 +696,21 @@
 		message="#{data.confirmMsg}" appendTo="@(body)"
 		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
 		severity="alert" widgetVar="deleteConfirmation">
-		<p:commandButton styleClass="portal-ok-button"
+		<p:commandButton styleClass=""
 			value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 			actionListener="#{logic.delete}"
 			oncomplete="PF('deleteConfirmation').hide();"
 			update=":#{p:component('serverForm')}"
 			rendered="#{data.objToDelete=='1'}" />
 		<p:spacer width="5px" />
-		<p:commandButton styleClass="portal-ok-button"
+		<p:commandButton styleClass=""
 			value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 			actionListener="#{logic.delete}"
 			oncomplete="PF('deleteConfirmation').hide();"
 			update=":#{p:component('applicationForm')}"
 			rendered="#{data.objToDelete=='2'}" />
 		<p:spacer width="5px" rendered="#{data.objToDelete=='2'}" />
-		<p:commandButton styleClass="portal-ok-button"
+		<p:commandButton styleClass=""
 			value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 			actionListener="#{logic.delete}"
 			oncomplete="PF('deleteConfirmation').hide();"
@@ -761,7 +761,7 @@
 			<p:column>
 				<p:commandButton
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/select')}"
-					actionListener="#{logic.selectApplication(app)}" styleClass="portal-ok-button"
+					actionListener="#{logic.selectApplication(app)}" styleClass=""
 					update="${cc.clientId}:appDialogForm" resetValues="true"
 					oncomplete="PF('applicationSelectionDialog').hide()" />
 			</p:column>
@@ -795,7 +795,7 @@
 			</h:dataTable>
 
 			<div class="u-dialog-footer ui-dialog-footer">
-				<p:commandButton styleClass="portal-ok-button"
+				<p:commandButton styleClass=""
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 					process="@form"
 					update="#{cc.clientId}:appDisplayName #{cc.clientId}:appDisplayName3rd"

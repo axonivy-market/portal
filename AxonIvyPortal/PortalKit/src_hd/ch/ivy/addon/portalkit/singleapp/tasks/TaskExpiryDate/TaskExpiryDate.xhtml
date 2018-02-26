@@ -34,7 +34,7 @@
           </p:row>
         </div>
         <div class="MarTop10 Fright">
-          <p:commandButton id="proceed-set-deadline-command" styleClass="portal-ok-button"
+          <p:commandButton id="proceed-set-deadline-command" styleClass=""
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             actionListener="#{logic.saveExpiryDate(cc.attrs.task)}" process=":#{p:component('expiryDatePanel')}"
             update="#{cc.attrs.updateElement}" oncomplete="PF('taskExpiryDateDialog').hide()" />
