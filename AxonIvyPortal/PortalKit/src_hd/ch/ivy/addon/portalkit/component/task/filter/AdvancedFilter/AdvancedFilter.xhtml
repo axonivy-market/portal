@@ -60,7 +60,7 @@
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer"
           rendered="#{cc.attrs.displayFooterButtons}">
-          <p:commandButton id="update-command" styleClass="portal-ok-button" global="false"
+          <p:commandButton id="update-command" styleClass="" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{taskFilter.validate()}"
             update="#{cc.clientId}:filter-open-form @form"

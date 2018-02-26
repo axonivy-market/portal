@@ -245,7 +245,7 @@
               <p:inputTextarea id="note-input" value="#{data.newNoteMessage}" styleClass="Wid100 note-input" />
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
-              <p:commandButton id="proceed-add-note-command" styleClass="portal-ok-button"
+              <p:commandButton id="proceed-add-note-command" styleClass=""
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-input"
                 update="note-input :#{p:component('task-notes-view')}"
                 actionListener="#{logic.createTaskNote(cc.attrs.task)}" onsuccess="PF('addTaskNoteDialog').hide()" />
@@ -331,7 +331,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
           </f:facet>
           <h:panelGroup>
-            <p:commandButton actionListener="#{logic.startTask(cc.attrs.task)}" styleClass="portal-ok-button"
+            <p:commandButton actionListener="#{logic.startTask(cc.attrs.task)}" styleClass=""
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
             <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />

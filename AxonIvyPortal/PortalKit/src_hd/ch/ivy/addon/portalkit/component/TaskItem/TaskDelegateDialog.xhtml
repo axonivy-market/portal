@@ -56,7 +56,7 @@
           </h:panelGroup>
 
           <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
-            <p:commandButton id="proceed-task-delegate-command" styleClass="portal-ok-button"
+            <p:commandButton id="proceed-task-delegate-command" styleClass=""
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateButton')}"
               actionListener="#{logic.delegateTask}" process=":#{p:component('activator-panel')}"
               disabled="#{data.disabledDelegateButton}" update="@(.task-view-container)"
