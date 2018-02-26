@@ -20,5 +20,7 @@ isDrilldownToTaskList Boolean #field
 isDrilldownToTaskList PERSISTENT #fieldModifier
 selectedCaseCategory String #field
 selectedCaseCategory PERSISTENT #fieldModifier
-previousDrilldownLevel String #field
-previousDrilldownLevel PERSISTENT #fieldModifier
+previousSelectedMonth String #field
+previousSelectedMonth PERSISTENT #fieldModifier
+previousSelectedWeek String #field
+previousSelectedWeek PERSISTENT #fieldModifier
