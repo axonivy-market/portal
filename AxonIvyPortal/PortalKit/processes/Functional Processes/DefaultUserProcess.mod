@@ -94,13 +94,20 @@ OUT: defaultUserProcesses: List&lt;UserProcess&gt;
 HINT: how to build a process url
 - Absolute path: ivy.html.startref(...)
 - Relative path: RequestUriFactory.createProcessStartUri(...)
-</name>
-        <nameStyle>521
+- We provide method to get startable link by UserFriendlyRequestPath (If user don''t have permission to start this link, the method will return empty string)
+ProcessStartCollector.findStartableLinkByUserFriendlyRequestPath(...)
+Example: 
+ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+String newEmployeeLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
+        <nameStyle>521,7
+226,7
+1,7
+223,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 184 98 624 252 -304 -120 #rect
+Ds0 f5 264 66 832 316 -413 -152 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
