@@ -39,6 +39,7 @@ public final class CaseUtils {
 
   /** default key to store case details process start link in ICase object */
   public static final String CASE_DETAIL_PROCESS = "CASE_DETAIL_PROCESS";
+  public static final String CASE_BUSINESS_ENTITY_PROPERTY = "BusinessEntityId";
   private static String fullNameFormat = "%s (%s)";
   private static final String HIDE = "HIDE";
 
