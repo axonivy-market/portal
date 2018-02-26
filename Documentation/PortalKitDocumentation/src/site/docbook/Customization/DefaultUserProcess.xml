@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.defaultuserprocess">
-	<title>Default user process</title>
+	<title xml:id="axonivyportal.customization.defaultuserprocess.title">Default user process</title>
 	<sect2 xml:id="axonivyportal.customization.defaultuserprocess.introduction">
 		<title>Introduction</title>
 		<para>
@@ -22,5 +22,9 @@
 				</imageobject>
 			</mediaobject>
 		</para>
+		<tip>
+			We provide the method to generate link from UserFriendlyRequestPath in <code>ProcessStartCollector</code> class: <code>findStartableLinkByUserFriendlyRequestPath(String requestPath)</code>.
+			This method will return startable link if user has permission to start the process, otherwise return emtpy string.
+		</tip>
 	</sect2>
 </sect1>
