@@ -135,7 +135,7 @@
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
       <p:commandButton id="save-settings" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.save}"
-        update="@widgetVar(errorDialogEmail)" styleClass="portal-ok-button"
+        update="@widgetVar(errorDialogEmail)" styleClass=""
         oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();updateGrowlEmail();} else {PF('#{cc.attrs.dialogName}').hide();PF('errorDialogEmail').show();}" />
       <p:spacer width="5px" />
       <p:commandButton id="cancel-settings" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
