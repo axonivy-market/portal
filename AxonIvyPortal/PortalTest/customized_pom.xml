@@ -92,7 +92,7 @@
               <goal>deploy-iar</goal>
             </goals>
             <configuration>
-              <deployIarFile>..\..\Showcase\InternalSupport\target\internalSupport-7.0.0.0-SNAPSHOT.iar</deployIarFile>
+              <deployIarFile>..\..\Showcase\InternalSupport\target\internalSupport-${portal.version}.iar</deployIarFile>
               <deployToEngineApplication>Portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>

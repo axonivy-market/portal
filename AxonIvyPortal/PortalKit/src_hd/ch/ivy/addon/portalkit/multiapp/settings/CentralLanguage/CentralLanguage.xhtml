@@ -35,7 +35,7 @@
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
       
       <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        actionListener="#{logic.save}" styleClass="portal-ok-button"
+        actionListener="#{logic.save}" styleClass=""
         oncomplete="if (args &amp;&amp; !args.validationFailed) { 
         if (args.mailLanguageNotFound === false) {window.location.reload();}  
         else {PF('#{cc.attrs.dialogName}').hide();PF('mailLanguageDialog').show();}} 
