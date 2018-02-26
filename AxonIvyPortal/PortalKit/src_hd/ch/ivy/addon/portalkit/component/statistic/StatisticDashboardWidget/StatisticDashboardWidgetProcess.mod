@@ -433,7 +433,7 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-in.taskQuery = service.getQueryForSelectedItemOfTaskByExpiryChart(in.event, in.selectedStatisticChart);
+in.taskQuery = service.getQueryForSelectedItemOfTaskByExpiryChart(in.event, in.selectedStatisticChart, in.previousSelectedMonth, in.previousSelectedWeek, in.previousSelectedDay);
 in.selectedItem = StringUtils.EMPTY;
 ' #txt
 Ss0 f36 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
@@ -547,6 +547,8 @@ if (service.selectMonthOfYear(in.selectedItem))  {
 	in.previousSelectedMonth = in.selectedItem;
 } else if (service.selectWeekOfMonth(in.selectedItem))  {
 	in.previousSelectedWeek = in.selectedItem;
+} else if (service.selectDayOfWeek(in.selectedItem)) {
+	in.previousSelectedDay = in.selectedItem;
 }
 
 for (StatisticChart chart : out.statisticChartList) {
