@@ -118,7 +118,7 @@
       message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" appendTo="@(body)"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
       widgetVar="deleteAbsenceConfirmation" rendered="#{absenceBean.ownAbsencesDeletable}">
-      <p:commandButton process="@this" id="confirm-action" styleClass="portal-ok-button"
+      <p:commandButton process="@this" id="confirm-action" styleClass=""
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.deleteAbsence}"
         oncomplete="PF('deleteAbsenceConfirmation').hide();" update=":#{p:component('absence-form')}" />
       <p:commandButton id="cancel-confirmation-action" styleClass="portal-cancel-button"
