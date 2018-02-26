@@ -60,7 +60,7 @@ public class StatisticDashboardBean implements Serializable {
    */
   public BarChartModel generateTaskByExpiryModel(StatisticChart statisticChart) {
     List<ExpiryStatistic> statisticData = statisticService.getExpiryStatisticData(statisticChart.getJsonQuery());
-    return statisticService.generateTaskByExpiryModel(statisticData, true, StringUtils.EMPTY, StringUtils.EMPTY);
+    return statisticService.generateTaskByExpiryModel(statisticData, true, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
   }
 
   /**

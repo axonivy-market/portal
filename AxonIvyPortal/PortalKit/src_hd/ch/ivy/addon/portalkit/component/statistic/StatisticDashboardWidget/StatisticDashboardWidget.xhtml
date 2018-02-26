@@ -8,7 +8,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
-  <cc:attribute name="expiryLastDrilldownLevel" default="DAY"/>
+  <cc:attribute name="expiryLastDrilldownLevel" default="HOUR"/>
   <cc:attribute name="drilldownListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
   <cc:attribute name="isDrilldownElapsedTime" default="false" />
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
