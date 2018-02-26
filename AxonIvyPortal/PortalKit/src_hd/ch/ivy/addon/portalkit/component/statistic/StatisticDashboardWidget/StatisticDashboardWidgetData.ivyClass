@@ -24,3 +24,5 @@ previousSelectedMonth String #field
 previousSelectedMonth PERSISTENT #fieldModifier
 previousSelectedWeek String #field
 previousSelectedWeek PERSISTENT #fieldModifier
+previousSelectedDay String #field
+previousSelectedDay PERSISTENT #fieldModifier
