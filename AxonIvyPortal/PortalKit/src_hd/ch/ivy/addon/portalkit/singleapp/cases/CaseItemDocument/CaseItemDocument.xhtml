@@ -66,7 +66,7 @@
     <p:confirmDialog widgetVar="document-deletion-dialog"
       message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
-      <p:commandButton styleClass="document-deletion-command portal-ok-button" id="document-deletion-command"
+      <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
         update="case-details-documents" actionListener="#{logic.deleteDocument}"
         oncomplete="PF('document-deletion-dialog').hide()" />
