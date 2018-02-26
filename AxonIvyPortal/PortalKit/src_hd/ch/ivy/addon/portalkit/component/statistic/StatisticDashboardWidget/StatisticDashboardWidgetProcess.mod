@@ -378,7 +378,7 @@ if (in.statisticChartList.size() != 0) {
 	if(in.selectedItem.isEmpty()){
 		service.generateChartModelForStatisticCharts(in.statisticChartList);
 	}else{
-		service.drilldownExpiryChart(in.selectedItem,in.selectedStatisticChart,in.previousDrilldownLevel);
+		service.drilldownExpiryChart(in.selectedItem,in.selectedStatisticChart,in.previousSelectedMonth, in.previousSelectedWeek);
 		in.statisticChartList.clear();
 		in.statisticChartList.add(in.selectedStatisticChart);
 	}
@@ -542,7 +542,12 @@ import org.primefaces.event.ItemSelectEvent;
 
 out.event = event as ItemSelectEvent;
 String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-in.previousDrilldownLevel = in.selectedItem;
+StatisticService service = new StatisticService();
+if (service.selectMonthOfYear(in.selectedItem))  {
+	in.previousSelectedMonth = in.selectedItem;
+} else if (service.selectWeekOfMonth(in.selectedItem))  {
+	in.previousSelectedWeek = in.selectedItem;
+}
 
 for (StatisticChart chart : out.statisticChartList) {
 	if (chart.id == selectedChartId) {
@@ -551,7 +556,6 @@ for (StatisticChart chart : out.statisticChartList) {
 	}
 }
 
-StatisticService service = new StatisticService();
 out.selectedItem = service.getSelectedValueOfBarChart(out.event);
 out.isDrilldownToTaskList = service.isDrilldownToTaskList(in.expiryLastDrilldownLevel,in.selectedItem);' #txt
 Ss0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
