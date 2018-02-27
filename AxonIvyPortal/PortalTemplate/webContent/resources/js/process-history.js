@@ -3,6 +3,7 @@ function CaseWidget() {
   var isSelectedClass = 'is-selected';
   var MEDIUM_RESPONSIVE_THRESHOLD = 950;
   var LARGE_RESPONSIVE_THRESHOLD = 1550;
+  
   this.setupHeader = function() {
     $processHistoryListHeader = $('.js-case-widget-column-header');
     $uiDatascrollerContent = $('.process-history-list .ui-datascroller-content');
@@ -86,5 +87,13 @@ function CaseWidget() {
   function responsiveButton($itemColumn, $caseItem) {
     var theClass = $itemColumn.attr('class').match(/js[\w-]*[\w-]column\b/);
     return $('.' + theClass + '-responsive-button', $caseItem);
+  }
+}
+
+function processHistory() {
+  this.setup = function() {
+    var caseWidget = new CaseWidget();
+    caseWidget.setupHeader();
+    caseWidget.setupCaseBody();
   }
 }
