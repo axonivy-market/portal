@@ -14,8 +14,8 @@ hasStatistic Boolean #field
 hasStatistic PERSISTENT #fieldModifier
 expiryLastDrilldownLevel String #field
 expiryLastDrilldownLevel PERSISTENT #fieldModifier
-selectedItem String #field
-selectedItem PERSISTENT #fieldModifier
+selectedItemOfDrilldown String #field
+selectedItemOfDrilldown PERSISTENT #fieldModifier
 isDrilldownToTaskList Boolean #field
 isDrilldownToTaskList PERSISTENT #fieldModifier
 selectedCaseCategory String #field
