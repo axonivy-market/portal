@@ -15,7 +15,7 @@ public class ProcessHistoryBean {
   public void initData(String businessEntityId) {
     dataModel = new CaseHistoryLazyDataModel(businessEntityId);
   }
-
+  
   public CaseHistoryLazyDataModel getDataModel() {
     return dataModel;
   }
