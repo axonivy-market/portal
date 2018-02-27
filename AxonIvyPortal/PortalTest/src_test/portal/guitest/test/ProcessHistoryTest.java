@@ -10,9 +10,9 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessHistoryPage;
 
 public class ProcessHistoryTest extends BaseTest {
-  private static final String CREATE_CASE_LINK = "InternalSupport/16193718E2B3D6C4/InspectResource.ivp";
+  private static final String CREATE_CASE_LINK = "internalSupport/16193718E2B3D6C4/InspectResource.ivp";
   private static final String DISPLAY_PROCESS_HISTORY_PAGE =
-      "InternalSupport/16193718E2B3D6C4/viewProcessHistoryOfResource.ivp";
+      "internalSupport/16193718E2B3D6C4/viewProcessHistoryOfResource.ivp";
 
   @Before
   public void setup() {
