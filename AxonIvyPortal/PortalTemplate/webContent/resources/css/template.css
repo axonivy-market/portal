@@ -856,3 +856,8 @@
 .not-display {
 	display: none;
 }
+
+.process-history-empty-message .ui-outputlabel {
+	font-size: 1.2rem;
+	color: black;
+}
