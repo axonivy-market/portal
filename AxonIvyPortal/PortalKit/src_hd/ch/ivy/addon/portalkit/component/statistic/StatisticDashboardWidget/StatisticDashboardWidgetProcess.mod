@@ -407,7 +407,7 @@ Ss0 f7 processCall 'Functional Processes/Navigator:viewTaskForAnalytic(String,ch
 Ss0 f7 doCall true #txt
 Ss0 f7 requestActionDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;
 ' #txt
-Ss0 f7 requestMappingAction 'param.chartName=in.selectedStatisticChart.name;
+Ss0 f7 requestMappingAction 'param.chartName=in.taskListName;
 param.taskQuery=in.taskQuery;
 ' #txt
 Ss0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
@@ -437,6 +437,10 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
 in.taskQuery = service.getQueryForSelectedItemOfTaskByExpiryChart(in.event, in.selectedStatisticChart, in.previousSelectedMonth, in.previousSelectedWeek, in.previousSelectedDay);
+in.taskListName = in.selectedStatisticChart.name + " - " + in.selectedItemOfDrilldown;
+if (service.selectHourOfDay(in.selectedItemOfDrilldown)) {
+	in.taskListName += " " + ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
+}
 in.selectedItemOfDrilldown = StringUtils.EMPTY;
 ' #txt
 Ss0 f36 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
