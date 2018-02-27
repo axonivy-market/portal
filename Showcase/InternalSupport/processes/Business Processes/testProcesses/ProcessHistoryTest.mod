@@ -26,6 +26,11 @@ Pt0 @PushWFArc f2 '' #zField
 Pt0 @GridStep f19 '' #zField
 Pt0 @PushWFArc f20 '' #zField
 Pt0 @PushWFArc f5 '' #zField
+Pt0 @EndTask f10 '' #zField
+Pt0 @RichDialog f11 '' #zField
+Pt0 @StartRequest f12 '' #zField
+Pt0 @PushWFArc f13 '' #zField
+Pt0 @PushWFArc f14 '' #zField
 >Proto Pt0 Pt0 ProcessHistoryTest #zField
 Pt0 f0 outLink viewProcessHistoryOfResource.ivp #txt
 Pt0 f0 type internaltest.Data #txt
@@ -75,7 +80,7 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
-Pt0 f3 caseData 'case.name=Resource
+Pt0 f3 caseData 'case.name=Resource A247
 businessCase.attach=true' #txt
 Pt0 f3 showInStartList 1 #txt
 Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -88,7 +93,7 @@ Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f3 @C|.responsibility Everybody #txt
-Pt0 f3 81 177 30 30 -56 17 #rect
+Pt0 f3 105 265 30 30 -56 17 #rect
 Pt0 f3 @|StartRequestIcon #fIcon
 Pt0 f4 type internaltest.Data #txt
 Pt0 f4 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
@@ -108,10 +113,10 @@ Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f4 320 170 128 44 -55 -8 #rect
+Pt0 f4 344 258 128 44 -55 -8 #rect
 Pt0 f4 @|CallSubIcon #fIcon
 Pt0 f8 type internaltest.Data #txt
-Pt0 f8 689 177 30 30 0 15 #rect
+Pt0 f8 713 265 30 30 0 15 #rect
 Pt0 f8 @|EndIcon #fIcon
 Pt0 f6 actionDecl 'internaltest.Data out;
 ' #txt
@@ -138,15 +143,15 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f6 561 177 30 30 -48 17 #rect
+Pt0 f6 585 265 30 30 -48 17 #rect
 Pt0 f6 @|TaskSwitchSimpleIcon #fIcon
 Pt0 f7 expr out #txt
 Pt0 f7 type internaltest.Data #txt
 Pt0 f7 var in1 #txt
-Pt0 f7 448 192 561 192 #arcP
+Pt0 f7 472 280 585 280 #arcP
 Pt0 f9 expr data #txt
 Pt0 f9 outCond ivp=="TaskA.ivp" #txt
-Pt0 f9 591 192 689 192 #arcP
+Pt0 f9 615 280 713 280 #arcP
 Pt0 f17 targetWindow NEW #txt
 Pt0 f17 targetDisplay TOP #txt
 Pt0 f17 richDialogId internaltest.ProcessHistoryOfResource #txt
@@ -190,12 +195,73 @@ code name</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f19 168 170 112 44 -33 -16 #rect
+Pt0 f19 192 258 112 44 -33 -16 #rect
 Pt0 f19 @|StepIcon #fIcon
 Pt0 f20 expr out #txt
-Pt0 f20 111 192 168 192 #arcP
+Pt0 f20 135 280 192 280 #arcP
 Pt0 f5 expr out #txt
-Pt0 f5 280 192 320 192 #arcP
+Pt0 f5 304 280 344 280 #arcP
+Pt0 f10 type internaltest.Data #txt
+Pt0 f10 425 134 30 30 0 15 #rect
+Pt0 f10 @|EndIcon #fIcon
+Pt0 f11 targetWindow NEW #txt
+Pt0 f11 targetDisplay TOP #txt
+Pt0 f11 richDialogId internaltest.ProcessHistoryAsDialogOfResource #txt
+Pt0 f11 startMethod start() #txt
+Pt0 f11 type internaltest.Data #txt
+Pt0 f11 requestActionDecl '<> param;' #txt
+Pt0 f11 responseActionDecl 'internaltest.Data out;
+' #txt
+Pt0 f11 responseMappingAction 'out=in;
+' #txt
+Pt0 f11 isAsynch false #txt
+Pt0 f11 isInnerRd false #txt
+Pt0 f11 userContext '* ' #txt
+Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Process History</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f11 256 127 112 44 -43 -8 #rect
+Pt0 f11 @|RichDialogIcon #fIcon
+Pt0 f12 outLink viewProcessHistoryAsDialogOfResource.ivp #txt
+Pt0 f12 type internaltest.Data #txt
+Pt0 f12 inParamDecl '<> param;' #txt
+Pt0 f12 actionDecl 'internaltest.Data out;
+' #txt
+Pt0 f12 guid 161D525D72055D77 #txt
+Pt0 f12 requestEnabled true #txt
+Pt0 f12 triggerEnabled false #txt
+Pt0 f12 callSignature viewProcessHistoryAsDialogOfResource() #txt
+Pt0 f12 persist false #txt
+Pt0 f12 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Pt0 f12 caseData businessCase.attach=true #txt
+Pt0 f12 showInStartList 1 #txt
+Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewProcessHistoryAsDialogOfResource.ivp</name>
+        <nameStyle>40,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f12 @C|.responsibility Everybody #txt
+Pt0 f12 121 134 30 30 -121 17 #rect
+Pt0 f12 @|StartRequestIcon #fIcon
+Pt0 f13 expr out #txt
+Pt0 f13 368 149 425 149 #arcP
+Pt0 f14 expr out #txt
+Pt0 f14 151 149 256 149 #arcP
 >Proto Pt0 .type internaltest.Data #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -212,3 +278,7 @@ Pt0 f3 mainOut f20 tail #connect
 Pt0 f20 head f19 mainIn #connect
 Pt0 f19 mainOut f5 tail #connect
 Pt0 f5 head f4 mainIn #connect
+Pt0 f12 mainOut f14 tail #connect
+Pt0 f14 head f11 mainIn #connect
+Pt0 f11 mainOut f13 tail #connect
+Pt0 f13 head f10 mainIn #connect

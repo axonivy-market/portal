@@ -90,7 +90,6 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
     List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
 
     storeDisplayedCases(notDisplayedCases);
-
     return displayedCases;
   }
 
