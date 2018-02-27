@@ -1239,9 +1239,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return Arrays.asList(HOURSOFDAY).contains(selectedItem);
   }
 
-  public void drilldownExpiryChart(String selectedValue, StatisticChart selectedChart, String previousSelectedMonth, String previousSelectedWeek) {
+  public StatisticChart drilldownExpiryChart(String selectedValue, StatisticChart selectedChart, String previousSelectedMonth, String previousSelectedWeek) {
     List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(selectedChart.getJsonQuery());
-    selectedChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue, previousSelectedMonth, previousSelectedWeek));
+    StatisticChart newStatisticChart = new StatisticChart();
+    newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue);
+    newStatisticChart.setName(selectedValue);
+    newStatisticChart.setJsonQuery(selectedChart.getJsonQuery());
+    newStatisticChart.setType(StatisticChartType.TASK_BY_EXPIRY);
+    newStatisticChart.setUserId(selectedChart.getUserId());
+    newStatisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue, previousSelectedMonth, previousSelectedWeek));
+    return newStatisticChart;
   }
 
   private String getSelectedValueOfDonutChart(ItemSelectEvent event) {
