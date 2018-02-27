@@ -8,6 +8,8 @@
 	<cc:attribute name="businessEntityId" required="true" />
 	<cc:attribute name="chunkSize" default="20" />
 	<cc:attribute name="scrollHeight" />
+	<cc:attribute name="emptyMessage"
+		default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/defaultEmptyMessage')}" />
 </cc:interface>
 
 <cc:implementation>
@@ -115,10 +117,17 @@
 			</ic:ch.ivy.addon.portalkit.component.CaseItem>
 		</p:dataScroller>
 	</h:panelGroup>
+	<h:panelGroup id="process-history-empty-data-panel" rendered="#{processHistoryBean.dataModel.rowCount eq 0}"
+		class="process-history-empty-message">
+		<p:outputLabel value="#{cc.attrs.emptyMessage}" />
+	</h:panelGroup>
 	<h:outputScript name="process-history.js" library="js" />
 	<script type="text/javascript">
     var caseWidget = new CaseWidget();
-    caseWidget.setupHeader();
+    caseWidget.hideListIfEmptyCase(#{processHistoryBean.dataModel.rowCount eq 0});
+    if(#{processHistoryBean.dataModel.rowCount ne 0}) {
+    	caseWidget.setupHeader();
+    }
   </script>
 </cc:implementation>
 </html>
