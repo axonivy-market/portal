@@ -135,12 +135,13 @@ Ss0 f0 expr out #txt
 Ss0 f0 141 64 243 64 #arcP
 Ss0 f1 guid 1604F3D5F5A87086 #txt
 Ss0 f1 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,String) #txt
+Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,String,Boolean) #txt
 Ss0 f1 disableUIEvents false #txt
 Ss0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.String expiryLastDrilldownLevel> param = methodEvent.getInputArguments();
+<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.String expiryLastDrilldownLevel,java.lang.Boolean showTaskListImmediately> param = methodEvent.getInputArguments();
 ' #txt
 Ss0 f1 inParameterMapAction 'out.expiryLastDrilldownLevel=param.expiryLastDrilldownLevel;
+out.showTaskListImmediately=param.showTaskListImmediately;
 out.statisticChartList=param.statisticChartList;
 ' #txt
 Ss0 f1 outParameterDecl '<> result;
@@ -637,7 +638,7 @@ Ss0 f39 @|AlternativeIcon #fIcon
 Ss0 f41 expr out #txt
 Ss0 f41 141 304 208 304 #arcP
 Ss0 f37 expr in #txt
-Ss0 f37 outCond in.isDrilldownToTaskList #txt
+Ss0 f37 outCond 'in.showTaskListImmediately || in.isDrilldownToTaskList' #txt
 Ss0 f37 240 304 288 304 #arcP
 Ss0 f46 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f46 531 211 26 26 0 12 #rect
