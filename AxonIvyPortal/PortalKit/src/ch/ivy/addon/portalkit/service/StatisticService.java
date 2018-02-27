@@ -495,7 +495,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     });
 
     Map<Object, Number> chartData = new HashMap<Object, Number>();
-    if (StringUtils.containsIgnoreCase(selectedValue, "YEAR")) {
+    if (selectThisYear(selectedValue)) {
       chartData = generateExpiryModelForDrilldownLevelYear(statisticResultMap);
     } else if (selectMonthOfYear(selectedValue)) {
       chartData = generateExpiryModelForDrilldownLevelMonth(statisticResultMap, selectedValue);
@@ -1054,7 +1054,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       model.setShadow(false);
 
       Axis xAxis = model.getAxis(AxisType.X);
-      xAxis.setLabel(Ivy.cms().co(EXPIRY_PERIOD_CMS));
+      String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
+      if (selectDayOfWeek(selectedValue)) {
+        label = label + " " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
+      }
+      xAxis.setLabel(label);
+
       Axis yAxis = model.getAxis(AxisType.Y);
       yAxis.setLabel(Ivy.cms().co(TASK_CMS));
 
@@ -1208,6 +1213,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return false;
   }
 
+  public boolean selectThisYear(String selectedItem) {
+    return StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_YEAR_EXPIRY_KEY));
+  }
+
   public boolean selectMonthOfYear(String selectedItem) {
     if (selectedItem.isEmpty()) {
       return false;
@@ -1232,7 +1241,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(TODAY_EXPIRY_KEY));
   }
 
-  private boolean selectHourOfDay(String selectedItem) {
+  public boolean selectHourOfDay(String selectedItem) {
     if (selectedItem.isEmpty()) {
       return false;
     }
@@ -1242,8 +1251,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public StatisticChart drilldownExpiryChart(String selectedValue, StatisticChart selectedChart, String previousSelectedMonth, String previousSelectedWeek) {
     List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(selectedChart.getJsonQuery());
     StatisticChart newStatisticChart = new StatisticChart();
-    newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue);
-    newStatisticChart.setName(selectedValue);
+    newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue); //chart with format: id + _ + suffix is lower level (month/week/day/hour) chart when drill down
+    newStatisticChart.setName(selectedChart.getName() + " - " + selectedValue);
     newStatisticChart.setJsonQuery(selectedChart.getJsonQuery());
     newStatisticChart.setType(StatisticChartType.TASK_BY_EXPIRY);
     newStatisticChart.setUserId(selectedChart.getUserId());

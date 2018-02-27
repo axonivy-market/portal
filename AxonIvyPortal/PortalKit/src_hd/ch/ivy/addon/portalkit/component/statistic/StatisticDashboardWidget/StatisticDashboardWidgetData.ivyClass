@@ -28,3 +28,5 @@ previousSelectedDay String #field
 previousSelectedDay PERSISTENT #fieldModifier
 showTaskListImmediately Boolean #field
 showTaskListImmediately PERSISTENT #fieldModifier
+taskListName String #field
+taskListName PERSISTENT #fieldModifier
