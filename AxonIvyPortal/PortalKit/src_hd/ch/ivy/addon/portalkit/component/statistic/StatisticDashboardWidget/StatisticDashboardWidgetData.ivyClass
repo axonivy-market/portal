@@ -26,3 +26,5 @@ previousSelectedWeek String #field
 previousSelectedWeek PERSISTENT #fieldModifier
 previousSelectedDay String #field
 previousSelectedDay PERSISTENT #fieldModifier
+showTaskListImmediately Boolean #field
+showTaskListImmediately PERSISTENT #fieldModifier
