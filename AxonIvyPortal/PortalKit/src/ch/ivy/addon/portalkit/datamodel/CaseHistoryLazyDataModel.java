@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.ws.addon.CaseSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -66,6 +67,10 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
     CaseSearchCriteria crit = new CaseSearchCriteria();
     crit.setInvolvedUsername(Ivy.session().getSessionUserName());
     crit.setBusinessCase(true);
+    String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
+    if(applicationName != null) {
+      crit.setInvolvedApplications(new String[] {applicationName});
+    }
     return crit;
   }
 
