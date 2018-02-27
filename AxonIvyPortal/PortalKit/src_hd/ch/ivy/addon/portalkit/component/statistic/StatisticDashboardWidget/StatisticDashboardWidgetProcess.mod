@@ -375,12 +375,14 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = true;
 	StatisticService service = new StatisticService();
-	if(in.selectedItem.isEmpty()){
+	if(in.selectedItemOfDrilldown.isEmpty()){
 		service.generateChartModelForStatisticCharts(in.statisticChartList);
 	}else{
-		service.drilldownExpiryChart(in.selectedItem,in.selectedStatisticChart,in.previousSelectedMonth, in.previousSelectedWeek);
+	  StatisticChart newChart = service.drilldownExpiryChart(in.selectedItemOfDrilldown,in.selectedStatisticChart,in.previousSelectedMonth, in.previousSelectedWeek);
+	  service.drilldownExpiryChart(in.selectedItemOfDrilldown,in.selectedStatisticChart,in.previousSelectedMonth, in.previousSelectedWeek);
 		in.statisticChartList.clear();
 		in.statisticChartList.add(in.selectedStatisticChart);
+		in.statisticChartList.add(newChart);
 	}
 } else {
 	in.hasStatistic = false;
@@ -434,7 +436,7 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
 in.taskQuery = service.getQueryForSelectedItemOfTaskByExpiryChart(in.event, in.selectedStatisticChart, in.previousSelectedMonth, in.previousSelectedWeek, in.previousSelectedDay);
-in.selectedItem = StringUtils.EMPTY;
+in.selectedItemOfDrilldown = StringUtils.EMPTY;
 ' #txt
 Ss0 f36 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -543,12 +545,12 @@ import org.primefaces.event.ItemSelectEvent;
 out.event = event as ItemSelectEvent;
 String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
 StatisticService service = new StatisticService();
-if (service.selectMonthOfYear(in.selectedItem))  {
-	in.previousSelectedMonth = in.selectedItem;
-} else if (service.selectWeekOfMonth(in.selectedItem))  {
-	in.previousSelectedWeek = in.selectedItem;
-} else if (service.selectDayOfWeek(in.selectedItem)) {
-	in.previousSelectedDay = in.selectedItem;
+if (service.selectMonthOfYear(in.selectedItemOfDrilldown))  {
+	in.previousSelectedMonth = in.selectedItemOfDrilldown;
+} else if (service.selectWeekOfMonth(in.selectedItemOfDrilldown))  {
+	in.previousSelectedWeek = in.selectedItemOfDrilldown;
+} else if (service.selectDayOfWeek(in.selectedItemOfDrilldown)) {
+	in.previousSelectedDay = in.selectedItemOfDrilldown;
 }
 
 for (StatisticChart chart : out.statisticChartList) {
@@ -558,8 +560,8 @@ for (StatisticChart chart : out.statisticChartList) {
 	}
 }
 
-out.selectedItem = service.getSelectedValueOfBarChart(out.event);
-out.isDrilldownToTaskList = service.isDrilldownToTaskList(in.expiryLastDrilldownLevel,in.selectedItem);' #txt
+out.selectedItemOfDrilldown = service.getSelectedValueOfBarChart(out.event);
+out.isDrilldownToTaskList = service.isDrilldownToTaskList(in.expiryLastDrilldownLevel,in.selectedItemOfDrilldown);' #txt
 Ss0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
