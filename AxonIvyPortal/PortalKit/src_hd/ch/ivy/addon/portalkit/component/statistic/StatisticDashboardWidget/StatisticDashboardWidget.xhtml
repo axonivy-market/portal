@@ -24,7 +24,7 @@
       <p:panel id="chart-panel" styleClass="dashboard-chart-panel">
         <f:facet name="header">
           <h:outputLabel id="chart-name" styleClass="chart-name" value="#{chart.name}" for="chart-#{chart.id}" />
-          <h:panelGroup layout="block" styleClass="chart-actions-container">
+          <h:panelGroup layout="block" styleClass="chart-actions-container" rendered="#{statisticDashboardBean.shouldRenderArrows(data.statisticChartList)}">
             <p:commandLink styleClass="fa fa-arrow-down chart-action"
               actionListener="#{logic.moveDown(chart)}"
               update="@([id$='statistic-dashboard-container'])"
@@ -56,6 +56,7 @@
         </p:chart>
 
         <p:chart type="bar" styleClass="statistic-chart"
+          style="#{statisticDashboardBean.getChartWidthStyle(data.statisticChartList)}"
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
