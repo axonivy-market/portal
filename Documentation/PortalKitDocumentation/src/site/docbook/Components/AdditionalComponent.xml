@@ -7,7 +7,8 @@
 		<sect3 xml:id="axonivyportal.components.additionalcomponent.processhistory.introduction">
 			<title>Introduction</title>
 			<para>
-				This component is a lazy loading list which displays all cases of a business entity in your application. You
+				This component is a lazy loading list which displays all business cases of a business entity in your
+				application. You
 				can
 				include this
 				component
@@ -81,6 +82,13 @@
 					<code>&lt;/p:dialog></code>
 				</para>
 			</note>
+			<important>
+				If your process use a Trigger component or send a signal to start another process, the current case will become a
+				technical case which will not be loaded into the process history list.
+				You need to call the
+				<code>SetBusinessEntityId</code>
+				after the first Trigger or signal sending step to set the business id to the business case again.
+			</important>
 		</sect3>
 	</sect2>
 </sect1>
