@@ -37,7 +37,8 @@
 				First you need to link the cases to the business entity. Call the subprocess
 				<code>SetBusinessEntityId</code>
 				in the process which need to be linked
-				and input an identifier unique to your business entity.
+				and input an identifier unique to your business entity. The subprocess will
+				set the id to an additional property of the business case.
 			</para>
 			<mediaobject>
 				<imageobject>
@@ -83,11 +84,17 @@
 				</para>
 			</note>
 			<important>
-				If your process use a Trigger component or send a signal to start another process, the current case will become a
-				technical case which will not be loaded into the process history list.
-				You need to call the
+				If your process has a Trigger component or sends a signal to start another process with the option "Attach to
+				Business
+				Case that triggered this process" selected, the current case of the process will become a
+				technical case and
+				will not be loaded into
+				the process history list. In this case
+				You
+				need to call the
 				<code>SetBusinessEntityId</code>
-				after the first Trigger or signal sending step to set the business id to the business case again.
+				subprocess
+				after the first Trigger or signal sending step.
 			</important>
 		</sect3>
 	</sect2>
