@@ -140,6 +140,11 @@ Tt0 @PushWFArc f126 '' #zField
 Tt0 @PushWFArc f127 '' #zField
 Tt0 @PushWFArc f128 '' #zField
 Tt0 @TkArc f129 '' #zField
+Tt0 @StartRequest f130 '' #zField
+Tt0 @EndTask f131 '' #zField
+Tt0 @UserTask f132 '' #zField
+Tt0 @TkArc f133 '' #zField
+Tt0 @PushWFArc f134 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -2128,6 +2133,68 @@ Tt0 f129 expr out #txt
 Tt0 f129 type internaltest.Data #txt
 Tt0 f129 var in1 #txt
 Tt0 f129 1890 550 1890 581 #arcP
+Tt0 f130 outLink SaleDepartment.ivp #txt
+Tt0 f130 type internaltest.Data #txt
+Tt0 f130 inParamDecl '<> param;' #txt
+Tt0 f130 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f130 guid 161D0718BFB91043 #txt
+Tt0 f130 requestEnabled true #txt
+Tt0 f130 triggerEnabled false #txt
+Tt0 f130 callSignature SaleDepartment() #txt
+Tt0 f130 persist false #txt
+Tt0 f130 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f130 caseData 'case.name=Sale Information
+case.description=Sale Information
+businessCase.attach=true' #txt
+Tt0 f130 showInStartList 1 #txt
+Tt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SaleDepartment.ivp</name>
+        <nameStyle>18,5,7
+</nameStyle>
+        <desc>Sale Information</desc>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f130 @C|.responsibility Sales #txt
+Tt0 f130 1137 801 30 30 -54 17 #rect
+Tt0 f130 @|StartRequestIcon #fIcon
+Tt0 f131 type internaltest.Data #txt
+Tt0 f131 1137 1009 30 30 0 15 #rect
+Tt0 f131 @|EndIcon #fIcon
+Tt0 f132 richDialogId internaltest.ui.SaleDepartment #txt
+Tt0 f132 startMethod start() #txt
+Tt0 f132 requestActionDecl '<> param;' #txt
+Tt0 f132 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f132 responseMappingAction 'out=in;
+' #txt
+Tt0 f132 outLinks "TaskA.ivp" #txt
+Tt0 f132 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Sale Department Info
+TaskA.PRI=2
+TaskA.ROL=Everybody
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f132 type internaltest.Data #txt
+Tt0 f132 1096 906 112 44 0 -8 #rect
+Tt0 f132 @|UserTaskIcon #fIcon
+Tt0 f133 expr out #txt
+Tt0 f133 type internaltest.Data #txt
+Tt0 f133 var in1 #txt
+Tt0 f133 1152 831 1152 906 #arcP
+Tt0 f134 expr data #txt
+Tt0 f134 outCond ivp=="TaskA.ivp" #txt
+Tt0 f134 1152 950 1152 1009 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2273,3 +2340,7 @@ Tt0 f117 mainOut f128 tail #connect
 Tt0 f128 head f119 mainIn #connect
 Tt0 f119 mainOut f129 tail #connect
 Tt0 f129 head f121 in #connect
+Tt0 f130 mainOut f133 tail #connect
+Tt0 f133 head f132 in #connect
+Tt0 f132 out f134 tail #connect
+Tt0 f134 head f131 mainIn #connect

@@ -24,8 +24,10 @@ public class ProcessStartCollector {
   private final IApplication application;
   private final String ACM_FRIENDLY_REQUEST_PATH = "BusinessProcesses/AdHocWF/start.ivp";
   private final String EXPRESS_CREATE_FRIENDLY_REQUEST_PATH = "Start Processes/CreateWorkflow/AxonIvyExpressWF.ivp";
-  private final String EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH = "Start Processes/GenericPredefinedWorkflowStart/GenericPredefinedProcessStart.ivp";
-  private final String EXPRESS_WORKFLOW_EDIT_REQUEST_PATH = "Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp";
+  private final String EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH =
+      "Start Processes/GenericPredefinedWorkflowStart/GenericPredefinedProcessStart.ivp";
+  private final String EXPRESS_WORKFLOW_EDIT_REQUEST_PATH =
+      "Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp";
 
   public ProcessStartCollector(IApplication application) {
     this.application = application;
@@ -65,7 +67,8 @@ public class ProcessStartCollector {
     IProcessStart processStart = null;
     if (isActive(application)) {
       if (Ivy.request().getApplication().equals(application)) {
-        processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.wfTask().getProcessModelVersion());
+        processStart =
+            findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.wfTask().getProcessModelVersion());
       }
       if (processStart != null) {
         return processStart;
@@ -89,7 +92,31 @@ public class ProcessStartCollector {
     }
     return processStart;
   }
+  
+  public IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) throws Exception {
+    if (isActive(application)) {
+      List<IProcessModel> processModels = application.getProcessModelsSortedByName();
 
+      for (IProcessModel processModel : processModels) {
+
+        if (isActive(processModel)) {
+          IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
+
+          if (isActive(processModelVersion)) {
+            IWorkflowProcessModelVersion workflowPmv =
+                WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+            List<IProcessStart> sessionStartableProcessStarts = Ivy.session().getStartableProcessStarts();
+            IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
+            if (processStart != null && sessionStartableProcessStarts.contains(processStart)) {
+              return processStart;
+            }
+          }
+        }
+      }
+    }
+    return null;
+  }
+  
   private IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
       IProcessModelVersion processModelVersion) {
     IWorkflowProcessModelVersion workflowPmv =
@@ -97,8 +124,9 @@ public class ProcessStartCollector {
     IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
     return processStart;
   }
-  
-  private List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPmv(String keyword, IProcessModelVersion processModelVersion) {
+
+  private List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPmv(String keyword,
+      IProcessModelVersion processModelVersion) {
     IWorkflowProcessModelVersion workflowPmv =
         WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
     return workflowPmv.getProcessStarts().stream()
@@ -123,8 +151,7 @@ public class ProcessStartCollector {
       @Override
       public String call() throws Exception {
         ProcessStartCollector collector = new ProcessStartCollector(application);
-        IProcessStart process =
-            collector.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
+        IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
         if (process != null) {
           return RequestUriFactory.createProcessStartUri(
               ServerFactory.getServer().getApplicationConfigurationManager(), process).toString();
@@ -150,8 +177,7 @@ public class ProcessStartCollector {
       @Override
       public String call() throws Exception {
         ProcessStartCollector collector = new ProcessStartCollector(application);
-        IProcessStart process =
-            collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
+        IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
         if (process != null) {
           Pair<String, String> workflowIdParam = new Pair<String, String>("workflowID", workflowId);
           return RequestUriFactory.createProcessStartUri(
@@ -160,6 +186,22 @@ public class ProcessStartCollector {
         return StringUtils.EMPTY;
       }
     });
+  }
+
+  public String findStartableLinkByUserFriendlyRequestPath(String requestPath) throws Exception {
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
+
+      @Override
+      public String call() throws Exception {
+        IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(requestPath);
+        if(processStart != null) {
+          return RequestUriFactory.createProcessStartUri(
+              ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
+        }
+        return StringUtils.EMPTY;
+      }
+    });
+
   }
 
   private boolean isActive(IProcessModelVersion processModelVersion) {

@@ -628,6 +628,14 @@
            <para>
            		If you have added new language to Portal by adding cms entry <code>/AppInfo/SupportedLanguages</code> in your project. Please move this entry to Portal Style.  
            </para>
+           <para>
+           		There are some changes in PortalStart process of Portal Template. If you have customized this process in your project, please copy the new PortalStart from Portal Template to your project and re-apply your customization. 
+           </para>
+		   <para>
+           		We introduce new method <code>findStartableLinkByUserFriendlyRequestPath(String requestPath)</code> in <code>ProcessStartCollector</code> class. If your project has cutomized 
+				<link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" />, please use this method to generate link to your process.
+				If user doesn't have permission to start the process, this method will return empty string.
+           </para>
 		</sect2>
 		<sect2>
 			<title>Migrate 6.x to 7.0</title>
@@ -839,6 +847,9 @@
 					</listitem>
 					<listitem>
 						<para>Axon ivy express has custom end page. It can be turned off or customized.</para>
+					</listitem>
+					<listitem>
+						<para>User can create default start process with permission check. If the user doesn't have permission to start the process, it won't appear in favorite processes. Please refer to <link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" /> for detail.</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
