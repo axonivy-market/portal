@@ -39,14 +39,13 @@
       <p:column id="task-description-header" width="200" filterBy="#{task.description}" filterMatchMode="contains"
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}"
         sortBy="#{task.description}">
-        <h:outputText value="#{task.description}" id="task-description-value" title="#{task.description}" escape="false" />
+        <h:outputText value="#{task.description}" id="task-description-value" title="#{task.description}" />
       </p:column>
 
       <p:column id="case-description-header" width="200" filterBy="#{task.caseDescription}" filterMatchMode="contains"
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/caseDescription')}"
         sortBy="#{task.caseDescription}">
-        <h:outputText value="#{task.caseDescription}" id="case-description-value" title="#{task.caseDescription}"
-          escape="false" />
+        <h:outputText value="#{task.caseDescription}" id="case-description-value" title="#{task.caseDescription}" />
       </p:column>
 
       <p:column id="created-date-header" width="150" filterBy="#{task.createdOn}" filterMatchMode="contains"

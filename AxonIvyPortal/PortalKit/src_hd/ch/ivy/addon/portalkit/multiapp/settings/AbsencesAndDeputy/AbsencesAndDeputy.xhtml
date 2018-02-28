@@ -14,8 +14,7 @@
   <f:event listener="#{logic.openAbsence()}" type="preRenderComponent" />
 
   <div id="#{cc.clientId}">
-    <p:growl id="error-growl" showDetail="true" sticky="false" severity="info" life="400" widgetVar="growl"
-      escape="false" />
+    <p:growl id="error-growl" showDetail="true" sticky="false" severity="info" life="400" widgetVar="growl" />
 
     <h:panelGroup layout="block" id="absences-container">
       <h:form id="absence-form">
@@ -26,7 +25,7 @@
 
         <h:panelGroup layout="block" id="absence-setting-container">
           <!-- Absence -->
-          <p:messages widgetVar="growl" escape="false" showDetail="true" closable="true" id="absences-msg" />
+          <p:messages widgetVar="growl" showDetail="true" closable="true" id="absences-msg" />
 
           <h:panelGroup layout="block" styleClass="absence-command-container">
             <p:selectBooleanCheckbox styleClass="absence-in-the-past-command" id="show-absence-in-the-past"
@@ -101,7 +100,7 @@
 
         <p:dialog id="error-substitue-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
           styleClass="substitude-exception-dialog" widgetVar="errorDialogSubstitue" modal="true" appendTo="@(body)">
-          <p:messages id="errorsMessageE" widgetVar="messagInfo" severity="info" escape="false" showDetail="true"
+          <p:messages id="errorsMessageE" widgetVar="messagInfo" severity="info" showDetail="true"
             closable="true" />
 
           <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
