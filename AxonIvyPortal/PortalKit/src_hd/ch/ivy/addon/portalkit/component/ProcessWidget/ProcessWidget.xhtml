@@ -167,11 +167,11 @@
           <p:ajax event="query" global="false" />
           <p:ajax event="itemSelect" update="@form" resetValues="true" />
           <p:column>
-            <h:outputText styleClass="autocomplete-tooltip" value="#{userProcess.processName}" escape="false"
+            <h:outputText styleClass="autocomplete-tooltip" value="#{userProcess.processName}"
               title="#{processWidgetBean.getProcessDescription(userProcess.processName)}" />
           </p:column>
         </p:autoComplete>
-        <p:tooltip globalSelector=".autocomplete-tooltip" escape="false" />
+        <p:tooltip globalSelector=".autocomplete-tooltip" />
         <p:message for="new-process-name" />
       </div>
       <div class="field-group">
