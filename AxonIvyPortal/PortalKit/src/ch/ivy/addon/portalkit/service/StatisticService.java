@@ -157,6 +157,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private static final String[] HOURSOFDAY = {BEFORE_8, IN_8, IN_9, IN_10, IN_11, IN_12, IN_13, IN_14, IN_15, IN_16, IN_17, AFTER_18};
 
 
+  public static final String DRILLDOWN_LEVEL_YEAR = "YEAR";
+  public static final String DRILLDOWN_LEVEL_MONTH = "MONTH";
+  public static final String DRILLDOWN_LEVEL_WEEK = "WEEK";
+  public static final String DRILLDOWN_LEVEL_DAY = "DAY";
+  public static final String DRILLDOWN_LEVEL_HOUR = "HOUR";
+
+  public static final String[] DRILLDOWN_LEVELS = {DRILLDOWN_LEVEL_YEAR, DRILLDOWN_LEVEL_MONTH, DRILLDOWN_LEVEL_WEEK, DRILLDOWN_LEVEL_DAY, DRILLDOWN_LEVEL_HOUR};
+
   @Override
   public Class<StatisticChart> getType() {
     return StatisticChart.class;
@@ -1189,25 +1197,25 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public boolean isDrilldownToTaskList(String expiryLastDrilldownLevel, String selectedItem) {
     // hour
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "HOUR") && (selectHourOfDay(selectedItem))) {
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_HOUR) && (selectHourOfDay(selectedItem))) {
       return true;
     }
     // day
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "DAY") && (selectDayOfWeek(selectedItem))) {
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_DAY) && (selectDayOfWeek(selectedItem))) {
       return true;
     }
     // week
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "WEEK")
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_WEEK)
         && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem))) {
       return true;
     }
     // month
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "MONTH")
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_MONTH)
         && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem) || selectMonthOfYear(selectedItem))) {
       return true;
     }
     //year
-    if(StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, "YEAR")){
+    if(StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_YEAR)){
       return true;
     }
     return false;

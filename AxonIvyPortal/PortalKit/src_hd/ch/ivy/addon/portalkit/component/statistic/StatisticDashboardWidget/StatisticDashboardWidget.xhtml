@@ -8,7 +8,6 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
-  <cc:attribute name="expiryLastDrilldownLevel" default="HOUR"/>
   <cc:attribute name="drilldownListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
   <cc:attribute name="isDrilldownElapsedTime" default="false" />
   <cc:attribute name="showTaskListImmediately" default="false" />
@@ -16,7 +15,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.expiryLastDrilldownLevel,cc.attrs.showTaskListImmediately)}" type="preRenderComponent" />
+  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately)}" type="preRenderComponent" />
   <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" styleClass="statistic-dashboard-expand-mode"
     rendered="#{!cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
     <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}">

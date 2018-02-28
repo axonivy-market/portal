@@ -11,12 +11,6 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
-            <name>expiryLastDrilldownLevel</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
             <name>showTaskListImmediately</name>
             <description></description>
             <parameterType>Boolean</parameterType>
