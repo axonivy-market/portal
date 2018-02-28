@@ -64,8 +64,7 @@
 
       <p:column id="case-description" filterBy="#{case.description}" sortBy="#{case.description}"
         filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/description')}">
-        <h:outputText id="case-description-value" value="#{case.description == '' ? '-/-' : case.description}"
-          escape="false" />
+        <h:outputText id="case-description-value" value="#{case.description == '' ? '-/-' : case.description}" />
       </p:column>
 
       <p:column id="command" styleClass="TexAlCenter Wid10"
