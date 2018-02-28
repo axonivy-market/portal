@@ -129,8 +129,7 @@
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/description')}:" />
                 </p:column>
                 <p:column>
-                  <h:outputText id="description" styleClass="FontBold" escape="false"
-                    value="#{cc.attrs.task.getDescription()}" />
+                  <h:outputText id="description" styleClass="FontBold" value="#{cc.attrs.task.getDescription()}" />
                 </p:column>
               </p:row>
               <p:row>
@@ -267,7 +266,7 @@
           <p:outputPanel id="task-note-container" styleClass="Hei100">
             <p:panel id="task-note-details"
               header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noteDetail')}" styleClass="Hei80">
-              <h:outputText value="#{data.selectedNote.message}" escape="false" styleClass="u-break-word" />
+              <h:outputText value="#{data.selectedNote.message}" styleClass="u-break-word" />
             </p:panel>
           </p:outputPanel>
 		  <f:facet name="footer">
