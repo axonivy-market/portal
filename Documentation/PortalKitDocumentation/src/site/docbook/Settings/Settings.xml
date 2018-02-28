@@ -152,6 +152,13 @@
 								Display the custom end page at the end of each Express process. Default is true.
 							</entry>
 						</row>
+						<row>
+							<entry>EXPIRY_CHART_LAST_DRILLDOWN_LEVEL</entry>
+							<entry>One of these values: HOUR/DAY/WEEK/MONTH/YEAR</entry>
+							<entry>
+								Determine last drilldown level using in Task by expiry chart. Default value is HOUR.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
