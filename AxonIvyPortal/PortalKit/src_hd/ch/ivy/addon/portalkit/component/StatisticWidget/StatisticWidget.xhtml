@@ -7,7 +7,6 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
-  <cc:attribute name="expiryLastDrilldownLevel" />
   <cc:attribute name="showTaskListImmediately" default="false"/>
 </cc:interface>
 
@@ -46,7 +45,7 @@
       <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="statistic-dashboard-container"
         rendered="#{!data.createMode}">
         <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget" showTaskListImmediately="#{cc.attrs.showTaskListImmediately}"
-          compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}" expiryLastDrilldownLevel="#{cc.attrs.expiryLastDrilldownLevel}"
+          compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}"
           drilldownListener="#{logic.drilldownElapsedTimeListener}" isDrilldownElapsedTime="#{data.isDrilldownElapsedTime}"/>
       </h:panelGroup>
 
