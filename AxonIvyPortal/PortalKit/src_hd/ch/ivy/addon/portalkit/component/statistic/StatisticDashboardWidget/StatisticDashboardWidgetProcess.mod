@@ -135,13 +135,12 @@ Ss0 f0 expr out #txt
 Ss0 f0 141 64 243 64 #arcP
 Ss0 f1 guid 1604F3D5F5A87086 #txt
 Ss0 f1 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,String,Boolean) #txt
+Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean) #txt
 Ss0 f1 disableUIEvents false #txt
 Ss0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.String expiryLastDrilldownLevel,java.lang.Boolean showTaskListImmediately> param = methodEvent.getInputArguments();
+<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.Boolean showTaskListImmediately> param = methodEvent.getInputArguments();
 ' #txt
-Ss0 f1 inParameterMapAction 'out.expiryLastDrilldownLevel=param.expiryLastDrilldownLevel;
-out.showTaskListImmediately=param.showTaskListImmediately;
+Ss0 f1 inParameterMapAction 'out.showTaskListImmediately=param.showTaskListImmediately;
 out.statisticChartList=param.statisticChartList;
 ' #txt
 Ss0 f1 outParameterDecl '<> result;
@@ -543,7 +542,10 @@ Ss0 f44 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboar
 ' #txt
 Ss0 f44 actionTable 'out=in;
 ' #txt
-Ss0 f44 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+Ss0 f44 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import org.primefaces.event.ItemSelectEvent;
 
@@ -565,8 +567,12 @@ for (StatisticChart chart : out.statisticChartList) {
 	}
 }
 
+String expiryLastDrilldownLevel = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPIRY_CHART_LAST_DRILLDOWN_LEVEL);
+if (StringUtils.isEmpty(expiryLastDrilldownLevel) || !StatisticService.DRILLDOWN_LEVELS.contains(expiryLastDrilldownLevel.toUpperCase())) {
+	expiryLastDrilldownLevel = StatisticService.DRILLDOWN_LEVEL_HOUR;
+}
 out.selectedItemOfDrilldown = service.getSelectedValueOfBarChart(out.event);
-out.isDrilldownToTaskList = service.isDrilldownToTaskList(in.expiryLastDrilldownLevel,in.selectedItemOfDrilldown);' #txt
+out.isDrilldownToTaskList = service.isDrilldownToTaskList(expiryLastDrilldownLevel,in.selectedItemOfDrilldown);' #txt
 Ss0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
