@@ -193,26 +193,10 @@ public class ProcessStartCollector {
 
       @Override
       public String call() throws Exception {
-        if (isActive(application)) {
-          List<IProcessModel> processModels = application.getProcessModelsSortedByName();
-
-          for (IProcessModel processModel : processModels) {
-
-            if (isActive(processModel)) {
-              IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
-
-              if (isActive(processModelVersion)) {
-                IWorkflowProcessModelVersion workflowPmv =
-                    WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
-                List<IProcessStart> sessionStartableProcessStarts = Ivy.session().getStartableProcessStarts();
-                IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
-                if (processStart != null && sessionStartableProcessStarts.contains(processStart)) {
-                  return RequestUriFactory.createProcessStartUri(
-                      ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
-                }
-              }
-            }
-          }
+        IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(requestPath);
+        if(processStart != null) {
+          return RequestUriFactory.createProcessStartUri(
+              ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
         }
         return StringUtils.EMPTY;
       }
