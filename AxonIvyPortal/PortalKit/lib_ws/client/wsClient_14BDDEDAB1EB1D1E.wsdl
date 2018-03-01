@@ -1,37 +1,58 @@
-<?xml version="1.0" ?><wsdl:definitions name="UserServiceService" targetNamespace="http://addon.ws.ivy.ch/" xmlns:ns1="ch.ivyteam.ivy.webservice.process" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="ch.ivyteam.ivy.webservice.process" name="UserServiceService" targetNamespace="http://addon.ws.ivy.ch/">
   <wsdl:types>
-<xs:schema elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-<xs:element name="changePassword" type="tns:changePassword"></xs:element>
-<xs:element name="changePasswordResponse" type="tns:changePasswordResponse"></xs:element>
-<xs:element name="findUserSetting" type="tns:findUserSetting"></xs:element>
-<xs:element name="findUserSettingResponse" type="tns:findUserSettingResponse"></xs:element>
-<xs:element name="getEmailSetttings" type="tns:getEmailSetttings"></xs:element>
-<xs:element name="getEmailSetttingsResponse" type="tns:getEmailSetttingsResponse"></xs:element>
-<xs:element name="getLanguagesSettings" type="tns:getLanguagesSettings"></xs:element>
-<xs:element name="getLanguagesSettingsResponse" type="tns:getLanguagesSettingsResponse"></xs:element>
-<xs:element name="getSubstitutes" type="tns:getSubstitutes"></xs:element>
-<xs:element name="getSubstitutesResponse" type="tns:getSubstitutesResponse"></xs:element>
-<xs:element name="saveUserSetting" type="tns:saveUserSetting"></xs:element>
-<xs:element name="saveUserSettingResponse" type="tns:saveUserSettingResponse"></xs:element>
-<xs:element name="setEMailSettings" type="tns:setEMailSettings"></xs:element>
-<xs:element name="setEMailSettingsResponse" type="tns:setEMailSettingsResponse"></xs:element>
-<xs:element name="setLanguagesSettings" type="tns:setLanguagesSettings"></xs:element>
-<xs:element name="setLanguagesSettingsResponse" type="tns:setLanguagesSettingsResponse"></xs:element>
-<xs:element name="setSubstitutes" type="tns:setSubstitutes"></xs:element>
-<xs:element name="setSubstitutesResponse" type="tns:setSubstitutesResponse"></xs:element>
-<xs:complexType name="changePassword">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://addon.ws.ivy.ch/" elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0">
+
+  <xs:element name="changePassword" type="tns:changePassword"></xs:element>
+
+  <xs:element name="changePasswordResponse" type="tns:changePasswordResponse"></xs:element>
+
+  <xs:element name="findUserSetting" type="tns:findUserSetting"></xs:element>
+
+  <xs:element name="findUserSettingResponse" type="tns:findUserSettingResponse"></xs:element>
+
+  <xs:element name="getEmailSetttings" type="tns:getEmailSetttings"></xs:element>
+
+  <xs:element name="getEmailSetttingsResponse" type="tns:getEmailSetttingsResponse"></xs:element>
+
+  <xs:element name="getLanguagesSettings" type="tns:getLanguagesSettings"></xs:element>
+
+  <xs:element name="getLanguagesSettingsResponse" type="tns:getLanguagesSettingsResponse"></xs:element>
+
+  <xs:element name="getSubstitutes" type="tns:getSubstitutes"></xs:element>
+
+  <xs:element name="getSubstitutesResponse" type="tns:getSubstitutesResponse"></xs:element>
+
+  <xs:element name="saveUserSetting" type="tns:saveUserSetting"></xs:element>
+
+  <xs:element name="saveUserSettingResponse" type="tns:saveUserSettingResponse"></xs:element>
+
+  <xs:element name="setEMailSettings" type="tns:setEMailSettings"></xs:element>
+
+  <xs:element name="setEMailSettingsResponse" type="tns:setEMailSettingsResponse"></xs:element>
+
+  <xs:element name="setLanguagesSettings" type="tns:setLanguagesSettings"></xs:element>
+
+  <xs:element name="setLanguagesSettingsResponse" type="tns:setLanguagesSettingsResponse"></xs:element>
+
+  <xs:element name="setSubstitutes" type="tns:setSubstitutes"></xs:element>
+
+  <xs:element name="setSubstitutesResponse" type="tns:setSubstitutesResponse"></xs:element>
+
+  <xs:complexType name="changePassword">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="username" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="password" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="changePasswordResponse">
+
+  <xs:complexType name="changePasswordResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="wsException">
+
+  <xs:complexType name="wsException">
     <xs:complexContent>
       <xs:extension base="tns:exception">
         <xs:sequence>
@@ -48,42 +69,46 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="exception">
+
+  <xs:complexType name="exception">
     <xs:complexContent>
       <xs:extension base="tns:throwable">
         <xs:sequence></xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="throwable">
+
+  <xs:complexType name="throwable">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType final="extension restriction" name="stackTraceElement">
+
+  <xs:complexType final="extension restriction" name="stackTraceElement">
     <xs:sequence></xs:sequence>
   </xs:complexType>
-<xs:complexType final="extension restriction" name="dateTime">
-    <xs:sequence></xs:sequence>
-  </xs:complexType>
-<xs:complexType name="findUserSetting">
+
+  <xs:complexType name="findUserSetting">
     <xs:sequence>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findUserSettingResponse">
+
+  <xs:complexType name="findUserSettingResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:findUserSettingResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="findUserSettingResult">
+
+  <xs:complexType name="findUserSettingResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element minOccurs="0" name="userSetting" type="tns:ivyUserSetting"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyUserSetting">
+
+  <xs:complexType name="ivyUserSetting">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -102,23 +127,27 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType abstract="true" name="compositeObject">
+
+  <xs:complexType abstract="true" name="compositeObject">
     <xs:complexContent>
       <xs:extension base="tns:nestedObject">
         <xs:sequence></xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType abstract="true" name="nestedObject">
+
+  <xs:complexType abstract="true" name="nestedObject">
     <xs:sequence></xs:sequence>
   </xs:complexType>
-<xs:complexType name="setSubstitutes">
+
+  <xs:complexType name="setSubstitutes">
     <xs:sequence>
       <xs:element minOccurs="0" name="username" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="substitutes" type="tns:ivySubstitute"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivySubstitute">
+
+  <xs:complexType name="ivySubstitute">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -131,18 +160,21 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="setSubstitutesResponse">
+
+  <xs:complexType name="setSubstitutesResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="setLanguagesSettings">
+
+  <xs:complexType name="setLanguagesSettings">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="settings" type="tns:ivyLanguageSetting"></xs:element>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyLanguageSetting">
+
+  <xs:complexType name="ivyLanguageSetting">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -153,47 +185,55 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="setLanguagesSettingsResponse">
+
+  <xs:complexType name="setLanguagesSettingsResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getLanguagesSettings">
+
+  <xs:complexType name="getLanguagesSettings">
     <xs:sequence>
       <xs:element minOccurs="0" name="serverId" type="xs:long"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getLanguagesSettingsResponse">
+
+  <xs:complexType name="getLanguagesSettingsResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:getLanguagesSettingsResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getLanguagesSettingsResult">
+
+  <xs:complexType name="getLanguagesSettingsResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="settings" nillable="true" type="tns:ivyLanguageSetting"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getEmailSetttings">
+
+  <xs:complexType name="getEmailSetttings">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getEmailSetttingsResponse">
+
+  <xs:complexType name="getEmailSetttingsResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:getEmailSetttingsResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getEmailSetttingsResult">
+
+  <xs:complexType name="getEmailSetttingsResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="settings" nillable="true" type="tns:ivyEmailSetting"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyEmailSetting">
+
+  <xs:complexType name="ivyEmailSetting">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -212,37 +252,43 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="saveUserSetting">
+
+  <xs:complexType name="saveUserSetting">
     <xs:sequence>
       <xs:element minOccurs="0" name="userSetting" type="tns:ivyUserSetting"></xs:element>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="saveUserSettingResponse">
+
+  <xs:complexType name="saveUserSettingResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getSubstitutes">
+
+  <xs:complexType name="getSubstitutes">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getSubstitutesResponse">
+
+  <xs:complexType name="getSubstitutesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="result" type="tns:getSubstitutesResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="getSubstitutesResult">
+
+  <xs:complexType name="getSubstitutesResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="applicationUsers" nillable="true" type="tns:ivyUser"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="substitutes" nillable="true" type="tns:ivySubstitute"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="ivyUser">
+
+  <xs:complexType name="ivyUser">
     <xs:complexContent>
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
@@ -254,26 +300,30 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-<xs:complexType name="setEMailSettings">
+
+  <xs:complexType name="setEMailSettings">
     <xs:sequence>
       <xs:element minOccurs="0" name="user" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="settings" type="tns:ivyEmailSetting"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="setEMailSettingsResponse">
+
+  <xs:complexType name="setEMailSettingsResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:wsException"></xs:element>
     </xs:sequence>
   </xs:complexType>
-<xs:simpleType name="wsErrorType">
+
+  <xs:simpleType name="wsErrorType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="INFO"></xs:enumeration>
       <xs:enumeration value="WARNING"></xs:enumeration>
       <xs:enumeration value="ERROR"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
+
 </xs:schema>
-<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process" xmlns:tns="ch.ivyteam.ivy.webservice.process" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="ch.ivyteam.ivy.webservice.process" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process">
   <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
 </xsd:schema>
   </wsdl:types>
