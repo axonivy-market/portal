@@ -53,7 +53,11 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
   public void compare(RemoteRole firstRoleToCompare, RemoteRole secondRoleToCompare) {
     comparisonDataModel = new ArrayList<>();
-    TaskQuery taskQuery = statisticService.getQueryForSelectedItemElapsedTime(selectedCaseCategory);
+    String caseCategory = selectedCaseCategory;
+    if (selectedCaseCategory.equals(StatisticService.NO_CATEGORY_CMS)) {
+      caseCategory = StringUtils.EMPTY;
+    }
+    TaskQuery taskQuery = statisticService.getQueryForSelectedItemElapsedTime(caseCategory);
     HorizontalBarChartModel result = new HorizontalBarChartModel();
 
     ChartSeries chartSeriesOfFirstRole = generateChartDataForCompareRole(taskQuery, firstRoleToCompare);
@@ -73,11 +77,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     Map<Object, Number> resultOfFirstRole = chartSeriesOfFirstRole.getData();
     for (Map.Entry<Object, Number> entryOfFirstRole : resultOfFirstRole.entrySet()) {
       ElapsedTimeComparison comparisonRow = new ElapsedTimeComparison();
-      String category = (String) entryOfFirstRole.getKey();
-      if (StringUtils.isBlank(category)) {
-        category = StatisticService.NO_CATEGORY_CMS;
-      }
-      comparisonRow.setCategory(category);
+      comparisonRow.setCategory((String) entryOfFirstRole.getKey());
       comparisonRow.setElapsedTimeOfFirstRole(entryOfFirstRole.getValue());
       comparisonDataModel.add(comparisonRow);
     }
@@ -85,7 +85,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     List<String> categoryList = comparisonDataModel.stream().map(ElapsedTimeComparison::getCategory).collect(Collectors.toList());
     Map<Object, Number> resultOfSecondRole = chartSeriesOfSecondRole.getData();
     for (Map.Entry<Object, Number> entryOfSecondRole : resultOfSecondRole.entrySet()) {
-      String category = StringUtils.isBlank(entryOfSecondRole.getKey().toString()) ? StatisticService.NO_CATEGORY_CMS : entryOfSecondRole.getKey().toString();
+      String category = entryOfSecondRole.getKey().toString();
       if (categoryList.contains(category)) {
         comparisonDataModel.stream()
           .filter(comparison -> comparison.getCategory().equals(category))
