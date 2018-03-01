@@ -104,16 +104,8 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
       }
 
       private String getUserLanguage(IApplication app, IUser user) {
-        String userLanguage;
-        // default user settings
-        if (user.getEMailNotificationSettings().isUseApplicationDefault()) {
-          Ivy.log().debug("default languages for user :{0} with app :{1}", user.getName(), app.getName());
-          userLanguage = app.getDefaultEMailLanguage().toLanguageTag();                
-        } else {
-          userLanguage = user.getEMailLanguage() != null? 
-              user.getEMailLanguage().toLanguageTag(): Locale.ENGLISH.toLanguageTag();
-        }
-        return userLanguage;
+        return user.getEMailLanguage() != null? 
+            user.getEMailLanguage().toLanguageTag(): Locale.ENGLISH.toLanguageTag();
       }
       
       private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs, IServer server){
