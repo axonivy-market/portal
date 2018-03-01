@@ -76,7 +76,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private static final String TASK_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/tasks";
   private static final String SECOND_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/second";
 
-  private static final String NO_CATEGORY_CMS = Ivy.cms().co(
+  public static final String NO_CATEGORY_CMS = Ivy.cms().co(
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory");
 
   private static final String USER_ID = "userId";
