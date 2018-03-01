@@ -73,7 +73,7 @@
               <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
             </p:selectManyCheckbox>
           </p:scrollPanel>
-          <h:outputText value="There is no roles" styleClass="no-data-message" rendered="#{empty filter.roles}" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noRoles')}" styleClass="no-data-message" rendered="#{empty filter.roles}" />
         </p:column>
       </p:row>
 
