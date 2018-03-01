@@ -17,7 +17,7 @@
     <h:panelGrid id="compare-items-panel" styleClass="compare-items-panel" columns="1">
       <h:panelGrid id="compare-roles-panel" styleClass="compare-roles-panel" columns="2">
 
-        <p:outputLabel value="Compare Role:" />
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/compareRole')}" />
         <p:selectOneMenu value="#{data.firstRoleToCompare}" id="first-role-to-compare" filter="true" filterMatchMode="contains" converter="ivy.ListItem">
           <f:selectItems value="#{elapsedTimeDetailsBean.rolesForCompareElapsedTime}" var="member" itemLabel="#{member.displayName}" itemValue="#{member}" />
         </p:selectOneMenu>
@@ -44,9 +44,9 @@
       </p:commandButton>
 
       <p:dataTable  id="compare-table" widgetVar="comparisonTable" value="#{elapsedTimeDetailsBean.comparisonDataModel}"
-        var="comparison" emptyMessage="No entries found with given criteria"
+        var="comparison" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/noEntriesFound')}"
         scrollable="true" scrollHeight="200">
-        <p:column headerText="Task category">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/taskCategory')}">
           <h:outputText value="#{comparison.category}" />
         </p:column>
         <p:column headerText="#{data.firstRoleToCompare.displayName}">
