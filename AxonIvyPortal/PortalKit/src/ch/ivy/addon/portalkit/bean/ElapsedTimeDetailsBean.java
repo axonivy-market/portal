@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -23,6 +24,7 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.ElapsedTimeComparison;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 @ManagedBean
@@ -38,6 +40,11 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private List<RemoteRole> rolesForCompareElapsedTime;
   private List<ElapsedTimeComparison> comparisonDataModel;
   private RemoteRole defaultRole;
+
+  private static final String DAYS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/days");
+  private static final String HOURS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/hours");
+  private static final String MINUTES_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/minutes");
+  private static final String SECONDS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/seconds");
 
   @SuppressWarnings("unchecked")
   public void initialize(String caseCategory) {
@@ -78,7 +85,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     for (Map.Entry<Object, Number> entryOfFirstRole : resultOfFirstRole.entrySet()) {
       ElapsedTimeComparison comparisonRow = new ElapsedTimeComparison();
       comparisonRow.setCategory((String) entryOfFirstRole.getKey());
-      comparisonRow.setElapsedTimeOfFirstRole(entryOfFirstRole.getValue());
+      comparisonRow.setElapsedTimeOfFirstRole(calculateElapsedTime(entryOfFirstRole.getValue()));
       comparisonDataModel.add(comparisonRow);
     }
 
@@ -90,9 +97,31 @@ public class ElapsedTimeDetailsBean implements Serializable {
         comparisonDataModel.stream()
           .filter(comparison -> comparison.getCategory().equals(category))
           .findFirst().get()
-          .setElapsedTimeOfSecondRole(entryOfSecondRole.getValue());
+          .setElapsedTimeOfSecondRole(calculateElapsedTime(entryOfSecondRole.getValue()));
       }
     }
+  }
+
+  String calculateElapsedTime(Number value) {
+    long timeInSeconds = value.longValue();
+    int days = (int)TimeUnit.SECONDS.toDays(timeInSeconds);
+    long hours = TimeUnit.SECONDS.toHours(timeInSeconds) - (days *24);
+    long minutes = TimeUnit.SECONDS.toMinutes(timeInSeconds) - (TimeUnit.SECONDS.toHours(timeInSeconds)* 60);
+    long seconds = TimeUnit.SECONDS.toSeconds(timeInSeconds) - (TimeUnit.SECONDS.toMinutes(timeInSeconds) *60);
+    StringBuilder elapsedTime = new StringBuilder();
+    if (days > 0) {
+      elapsedTime.append(days + " " + DAYS_CMS + " - ");
+    }
+    if (hours > 0) {
+      elapsedTime.append(hours + " " + HOURS_CMS + " - ");
+    }
+    if (minutes > 0) {
+      elapsedTime.append(minutes + " " + MINUTES_CMS + " - ");
+    }
+    if (seconds > 0) {
+      elapsedTime.append(seconds + " " + SECONDS_CMS);
+    }
+    return elapsedTime.toString();
   }
 
   private ChartSeries generateChartDataForCompareRole(TaskQuery taskQuery, RemoteRole roleToCompare) {
