@@ -2016,6 +2016,7 @@ Ce0 f113 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Applicatio
 import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.ws.addon.IvyApplication;
 import ch.ivy.addon.portalkit.service.UserService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 in.apps.clear();
 
@@ -2034,7 +2035,8 @@ if (in.apps.isEmpty()) {
 }
 
 in.caseSearchCriteria.involvedApplications = in.apps;
-in.caseSearchCriteria.businessCase = true;' #txt
+in.caseSearchCriteria.businessCase = true;
+in.caseSearchCriteria.ignoreInvolvedUser = PermissionUtils.checkReadAllCasesPermission();' #txt
 Ce0 f113 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
