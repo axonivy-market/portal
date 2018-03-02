@@ -10,6 +10,8 @@ function CaseWidget() {
     $uiDatascrollerlist = $('.process-history-list .ui-datascroller-content .ui-datascroller-list');
     if ($uiDatascrollerContent.width() > $uiDatascrollerlist.width()) {
       $processHistoryListHeader.css("padding-right", "20px");
+    } else {
+      $processHistoryListHeader.css("padding-right", "2px");
     }
   }
 
