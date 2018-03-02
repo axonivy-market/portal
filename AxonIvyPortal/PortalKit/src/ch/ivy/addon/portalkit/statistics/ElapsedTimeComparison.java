@@ -2,8 +2,8 @@ package ch.ivy.addon.portalkit.statistics;
 
 public class ElapsedTimeComparison {
   private String category;
-  private Number elapsedTimeOfFirstRole;
-  private Number elapsedTimeOfSecondRole;
+  private String elapsedTimeOfFirstRole;
+  private String elapsedTimeOfSecondRole;
 
   public String getCategory() {
     return category;
@@ -13,19 +13,19 @@ public class ElapsedTimeComparison {
     this.category = category;
   }
 
-  public Number getElapsedTimeOfFirstRole() {
+  public String getElapsedTimeOfFirstRole() {
     return elapsedTimeOfFirstRole;
   }
 
-  public void setElapsedTimeOfFirstRole(Number elapsedTimeOfFirstRole) {
+  public void setElapsedTimeOfFirstRole(String elapsedTimeOfFirstRole) {
     this.elapsedTimeOfFirstRole = elapsedTimeOfFirstRole;
   }
 
-  public Number getElapsedTimeOfSecondRole() {
+  public String getElapsedTimeOfSecondRole() {
     return elapsedTimeOfSecondRole;
   }
 
-  public void setElapsedTimeOfSecondRole(Number elapsedTimeOfSecondRole) {
+  public void setElapsedTimeOfSecondRole(String elapsedTimeOfSecondRole) {
     this.elapsedTimeOfSecondRole = elapsedTimeOfSecondRole;
   }
 }
