@@ -2033,7 +2033,8 @@ if (in.apps.isEmpty()) {
 	in.apps = applicationService.getApplicationNames(in.applications);
 }
 
-in.caseSearchCriteria.involvedApplications = in.apps;' #txt
+in.caseSearchCriteria.involvedApplications = in.apps;
+in.caseSearchCriteria.businessCase = true;' #txt
 Ce0 f113 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
