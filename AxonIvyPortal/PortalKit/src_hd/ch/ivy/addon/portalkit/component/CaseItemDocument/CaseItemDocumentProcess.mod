@@ -31,7 +31,6 @@ Cs0 @PushWFArc f14 '' #zField
 Cs0 @PushWFArc f9 '' #zField
 Cs0 @PushWFArc f17 '' #zField
 Cs0 @PushWFArc f44 '' #zField
-Cs0 @PushWFArc f15 '' #zField
 Cs0 @RichDialogProcessEnd f20 '' #zField
 Cs0 @RichDialogMethodStart f8 '' #zField
 Cs0 @GridStep f26 '' #zField
@@ -64,10 +63,15 @@ Cs0 @RichDialogMethodStart f34 '' #zField
 Cs0 @RichDialogProcessEnd f37 '' #zField
 Cs0 @CallSub f80 '' #zField
 Cs0 @PushWFArc f39 '' #zField
-Cs0 @PushWFArc f40 '' #zField
 Cs0 @GridStep f41 '' #zField
 Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f19 '' #zField
+Cs0 @GridStep f46 '' #zField
+Cs0 @PushWFArc f50 '' #zField
+Cs0 @PushWFArc f40 '' #zField
+Cs0 @GridStep f51 '' #zField
+Cs0 @PushWFArc f53 '' #zField
+Cs0 @PushWFArc f15 '' #zField
 >Proto Cs0 Cs0 CaseItemDocumentProcess #zField
 Cs0 f0 guid 1533610171B77F44 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
@@ -209,7 +213,7 @@ Cs0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f56 414 148 36 24 -69 16 #rect
 Cs0 f56 @|StepIcon #fIcon
 Cs0 f11 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f11 525 485 22 22 14 0 #rect
+Cs0 f11 520 581 22 22 14 0 #rect
 Cs0 f11 @|RichDialogProcessEndIcon #fIcon
 Cs0 f43 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f43 processCall MultiPortal/CaseService:findDocuments(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
@@ -234,7 +238,7 @@ find documents</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f43 518 340 36 24 -28 14 #rect
+Cs0 f43 513 340 36 24 -28 14 #rect
 Cs0 f43 @|CallSubIcon #fIcon
 Cs0 f13 expr out #txt
 Cs0 f13 536 99 536 146 #arcP
@@ -250,14 +254,12 @@ Cs0 f9 expr in #txt
 Cs0 f9 432 366 432 420 #arcP
 Cs0 f9 0 0.22905215465364628 0 0 #arcLabel
 Cs0 f17 expr out #txt
-Cs0 f17 450 432 536 485 #arcP
-Cs0 f17 1 536 432 #addKink
+Cs0 f17 432 444 520 592 #arcP
+Cs0 f17 1 432 592 #addKink
 Cs0 f17 0 0.7224816120006017 0 0 #arcLabel
 Cs0 f44 expr in #txt
 Cs0 f44 outCond in.errors.isEmpty() #txt
-Cs0 f44 446 352 518 352 #arcP
-Cs0 f15 expr out #txt
-Cs0 f15 536 364 536 485 #arcP
+Cs0 f44 446 352 513 352 #arcP
 Cs0 f20 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f20 733 365 22 22 14 0 #rect
 Cs0 f20 @|RichDialogProcessEndIcon #fIcon
@@ -544,7 +546,7 @@ Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f34 197 85 22 22 14 0 #rect
 Cs0 f34 @|RichDialogMethodStartIcon #fIcon
 Cs0 f37 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f37 197 285 22 22 14 0 #rect
+Cs0 f37 197 373 22 22 14 0 #rect
 Cs0 f37 @|RichDialogProcessEndIcon #fIcon
 Cs0 f80 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f80 processCall MultiPortal/CaseService:findDocuments(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
@@ -573,8 +575,6 @@ Cs0 f80 190 156 36 24 -28 14 #rect
 Cs0 f80 @|CallSubIcon #fIcon
 Cs0 f39 expr out #txt
 Cs0 f39 208 107 208 156 #arcP
-Cs0 f40 expr out #txt
-Cs0 f40 208 180 208 285 #arcP
 Cs0 f41 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
 ' #txt
 Cs0 f41 actionTable 'out=in;
@@ -598,9 +598,73 @@ Cs0 f45 550 160 624 260 #arcP
 Cs0 f45 1 624 160 #addKink
 Cs0 f45 1 0.8365402140487286 0 0 #arcLabel
 Cs0 f19 expr out #txt
-Cs0 f19 624 284 547 496 #arcP
-Cs0 f19 1 624 496 #addKink
+Cs0 f19 624 284 542 592 #arcP
+Cs0 f19 1 624 592 #addKink
 Cs0 f19 1 0.8365402140487286 0 0 #arcLabel
+Cs0 f46 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
+' #txt
+Cs0 f46 actionTable 'out=in;
+' #txt
+Cs0 f46 actionCode 'import ch.ivy.ws.addon.IvyDocument;
+import org.apache.commons.collections.CollectionUtils;
+import java.util.ArrayList;
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
+
+if (!CollectionUtils.isEmpty(in.documents)) {
+	List expressDocs = new ArrayList();
+	for (IvyDocument doc : in.documents) {
+		if (!doc.getPath().toString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER)) {
+			expressDocs.add(doc);
+		}
+	}
+	in.documents.removeAll(expressDocs);
+}' #txt
+Cs0 f46 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
+Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>filter</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f46 152 266 112 44 -11 -8 #rect
+Cs0 f46 @|StepIcon #fIcon
+Cs0 f50 expr out #txt
+Cs0 f50 208 180 208 266 #arcP
+Cs0 f40 expr out #txt
+Cs0 f40 208 310 208 373 #arcP
+Cs0 f51 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
+' #txt
+Cs0 f51 actionTable 'out=in;
+' #txt
+Cs0 f51 actionCode 'import ch.ivy.ws.addon.IvyDocument;
+import org.apache.commons.collections.CollectionUtils;
+import java.util.ArrayList;
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
+
+if (!CollectionUtils.isEmpty(in.documents)) {
+	List expressDocs = new ArrayList();
+	for (IvyDocument doc : in.documents) {
+		if (!doc.getPath().toString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER)) {
+			expressDocs.add(doc);
+		}
+	}
+	in.documents.removeAll(expressDocs);
+}' #txt
+Cs0 f51 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
+Cs0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>filter</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f51 475 492 112 44 -11 -8 #rect
+Cs0 f51 @|StepIcon #fIcon
+Cs0 f53 expr out #txt
+Cs0 f53 531 364 531 492 #arcP
+Cs0 f15 expr out #txt
+Cs0 f15 531 536 531 581 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -621,8 +685,6 @@ Cs0 f17 head f11 mainIn #connect
 Cs0 f28 out f44 tail #connect
 Cs0 f44 head f43 mainIn #connect
 Cs0 f28 out f9 tail #connect
-Cs0 f43 mainOut f15 tail #connect
-Cs0 f15 head f11 mainIn #connect
 Cs0 f24 mainOut f27 tail #connect
 Cs0 f27 head f26 mainIn #connect
 Cs0 f8 mainOut f25 tail #connect
@@ -649,9 +711,15 @@ Cs0 f6 mainOut f5 tail #connect
 Cs0 f5 head f4 mainIn #connect
 Cs0 f34 mainOut f39 tail #connect
 Cs0 f39 head f80 mainIn #connect
-Cs0 f80 mainOut f40 tail #connect
-Cs0 f40 head f37 mainIn #connect
 Cs0 f35 out f45 tail #connect
 Cs0 f45 head f41 mainIn #connect
 Cs0 f41 mainOut f19 tail #connect
 Cs0 f19 head f11 mainIn #connect
+Cs0 f80 mainOut f50 tail #connect
+Cs0 f50 head f46 mainIn #connect
+Cs0 f46 mainOut f40 tail #connect
+Cs0 f40 head f37 mainIn #connect
+Cs0 f43 mainOut f53 tail #connect
+Cs0 f53 head f51 mainIn #connect
+Cs0 f51 mainOut f15 tail #connect
+Cs0 f15 head f11 mainIn #connect
