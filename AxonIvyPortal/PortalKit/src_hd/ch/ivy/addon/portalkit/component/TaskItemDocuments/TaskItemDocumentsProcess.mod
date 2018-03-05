@@ -63,11 +63,13 @@ Ts0 @PushWFArc f55 '' #zField
 Ts0 @PushWFArc f63 '' #zField
 Ts0 @PushWFArc f61 '' #zField
 Ts0 @PushWFArc f20 '' #zField
-Ts0 @PushWFArc f10 '' #zField
 Ts0 @PushWFArc f3 '' #zField
 Ts0 @GridStep f4 '' #zField
 Ts0 @PushWFArc f5 '' #zField
 Ts0 @PushWFArc f7 '' #zField
+Ts0 @GridStep f8 '' #zField
+Ts0 @PushWFArc f9 '' #zField
+Ts0 @PushWFArc f10 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
 Ts0 f0 guid 1549452C02A2D7AA #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
@@ -503,7 +505,7 @@ deleteDocument</name>
 Ts0 f42 1422 140 36 24 20 -2 #rect
 Ts0 f42 @|CallSubIcon #fIcon
 Ts0 f18 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f18 173 245 22 22 14 0 #rect
+Ts0 f18 173 357 22 22 14 0 #rect
 Ts0 f18 @|RichDialogProcessEndIcon #fIcon
 Ts0 f22 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f22 733 269 22 22 14 0 #rect
@@ -594,8 +596,6 @@ Ts0 f61 expr out #txt
 Ts0 f61 1208 196 1208 277 #arcP
 Ts0 f20 expr out #txt
 Ts0 f20 456 380 456 413 #arcP
-Ts0 f10 expr out #txt
-Ts0 f10 184 188 184 245 #arcP
 Ts0 f3 expr out #txt
 Ts0 f3 1440 292 1440 341 #arcP
 Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
@@ -634,6 +634,38 @@ Ts0 f7 expr out #txt
 Ts0 f7 392 300 445 424 #arcP
 Ts0 f7 1 392 424 #addKink
 Ts0 f7 1 0.1 -12 0 #arcLabel
+Ts0 f8 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f8 actionTable 'out=in;
+' #txt
+Ts0 f8 actionCode 'import ch.ivy.ws.addon.IvyDocument;
+import org.apache.commons.collections.CollectionUtils;
+import java.util.ArrayList;
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
+
+if (!CollectionUtils.isEmpty(in.documents)) {
+	List expressDocs = new ArrayList();
+	for (IvyDocument doc : in.documents) {
+		if (!doc.getPath().toString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER)) {
+			expressDocs.add(doc);
+		}
+	}
+	in.documents.removeAll(expressDocs);
+}' #txt
+Ts0 f8 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>filter</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f8 128 250 112 44 -11 -8 #rect
+Ts0 f8 @|StepIcon #fIcon
+Ts0 f9 expr out #txt
+Ts0 f9 184 188 184 250 #arcP
+Ts0 f10 expr out #txt
+Ts0 f10 184 294 184 357 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -680,11 +712,13 @@ Ts0 f57 mainOut f63 tail #connect
 Ts0 f63 head f62 mainIn #connect
 Ts0 f62 mainOut f61 tail #connect
 Ts0 f61 head f60 mainIn #connect
-Ts0 f16 mainOut f10 tail #connect
-Ts0 f10 head f18 mainIn #connect
 Ts0 f47 mainOut f3 tail #connect
 Ts0 f3 head f40 mainIn #connect
 Ts0 f35 out f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
 Ts0 f4 mainOut f7 tail #connect
 Ts0 f7 head f54 mainIn #connect
+Ts0 f16 mainOut f9 tail #connect
+Ts0 f9 head f8 mainIn #connect
+Ts0 f8 mainOut f10 tail #connect
+Ts0 f10 head f18 mainIn #connect

@@ -17,6 +17,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.vo.DocumentFile;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -29,8 +30,6 @@ import ch.ivyteam.ivy.workflow.document.IDocumentService;
  */
 public class DocumentFileUtils {
 	
-  static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
-  
 	/**
 	 * @param currentCase root folder 
 	 * @param inputStream file to check exist
@@ -41,7 +40,7 @@ public class DocumentFileUtils {
 		String originalFileName = FilenameUtils.getName(fileName);
 		IDocumentService documentService = currentCase.documents();
 		List<IDocument> documents = documentService.getAll();
-		documents = documents.stream().filter(document -> document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER) && document.getPath().asString().contains(originalFileName)).collect(Collectors.toList());
+		documents = documents.stream().filter(document -> document.getPath().asString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER) && document.getPath().asString().contains(originalFileName)).collect(Collectors.toList());
 		return !documents.isEmpty();
 	}
 	/**
@@ -67,7 +66,7 @@ public class DocumentFileUtils {
 	public static List<DocumentFile> listFileInDirectory(ICase currentCase){
 		IDocumentService documentService = currentCase.documents();
 		List<IDocument> documents = documentService.getAll();
-		documents = documents.stream().filter(document -> document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER)).collect(Collectors.toList());
+		documents = documents.stream().filter(document -> document.getPath().asString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER)).collect(Collectors.toList());
 		List<DocumentFile> listFile = new ArrayList<DocumentFile>();
 		if (documents != null){
 			for (IDocument document : documents){
@@ -93,7 +92,7 @@ public class DocumentFileUtils {
 		IDocumentService documentService = currentCase.documents();
 		String originalFileName = FilenameUtils.getName(fileName);
 		try {
-			documentService.add(EXPRESS_UPLOAD_FOLDER + "/" + originalFileName).write().withContentFrom(inputStream);
+			documentService.add(CaseDocumentService.EXPRESS_UPLOAD_FOLDER + "/" + originalFileName).write().withContentFrom(inputStream);
 			return true;
 		} catch (Exception e) {
 			return false;
