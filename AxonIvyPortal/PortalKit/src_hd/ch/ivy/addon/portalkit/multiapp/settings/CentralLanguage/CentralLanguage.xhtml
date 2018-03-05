@@ -16,7 +16,7 @@
   <div id="#{cc.clientId}">
   	
     <h:panelGroup id="setting-grid" layout="block">     
-      <p:messages id="errors-message" severity="error" showDetail="true"
+      <p:messages id="errors-message" severity="error" showDetail="true" escape="false"
         closable="true" />
       <p:dataTable id="language-setting-table" value="#{data.remoteLanguageSettings}" var="ivyLanguage"
         scrollable="true" scrollHeight="100" styleClass="language-table">
@@ -49,7 +49,7 @@
 
     <p:dialog id="exception-handler-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
       styleClass="language-settings-exception-dialog" widgetVar="errorLanguageDialog" modal="true" appendTo="@(body)">
-      <p:messages id="info-messages" severity="info" showDetail="true" closable="true" />
+      <p:messages id="info-messages" severity="info" showDetail="true" closable="true" escape="false" />
 
       <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
       <f:facet name="footer">
