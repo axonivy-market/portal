@@ -33,6 +33,8 @@ public class CaseDocumentService {
       "ps1", "ps1xml", "ps2", "ps2xml", "psc1", "psc2", "msh", "msh1", "msh2", "mshxml", "msh1xml", "msh2xml", "scf",
       "lnk", "inf", "reg"};
 
+  public static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
+  
   public CaseDocumentService(long caseId) {
     this.caseId = caseId;
   }
@@ -53,7 +55,9 @@ public class CaseDocumentService {
     List<IDocument> documents = documentsOf(iCase).getAll();
     List<DocumentVO> documentVOs = new ArrayList<>();
     for (IDocument document : documents) {
-      documentVOs.add(convertDocumentToVO(document));
+      if (!document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER)) {
+        documentVOs.add(convertDocumentToVO(document));
+      }
     }
     return documentVOs;
   }
