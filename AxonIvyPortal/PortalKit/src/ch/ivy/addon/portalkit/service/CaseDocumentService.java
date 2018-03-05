@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -20,10 +22,16 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.document.IDocumentService;
 import ch.ivyteam.ivy.workflow.document.Path;
+import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class CaseDocumentService {
 
   private long caseId;
+
+  private static final String[] forbiddenUploadingFileTypes = {"exe", "pif", "application", "gadget", "msi", "msp",
+      "com", "scr", "hta", "cpl", "msc", "bat", "cmd", "vb", "vbs", "vbe", "js", "jse", "wf", "wsf", "wsc", "wsh",
+      "ps1", "ps1xml", "ps2", "ps2xml", "psc1", "psc2", "msh", "msh1", "msh2", "mshxml", "msh1xml", "msh2xml", "scf",
+      "lnk", "inf", "reg"};
 
   public CaseDocumentService(long caseId) {
     this.caseId = caseId;
@@ -78,6 +86,11 @@ public class CaseDocumentService {
     ICase iCase = CaseUtils.findcase(caseId);
     IDocument document = documentsOf(iCase).get(new Path(filename));
     return document != null;
+  }
+
+  public static boolean isDocumentTypeValid(String filename) {
+    String fileType = FilenameUtils.getExtension(filename);
+    return !Arrays.asList(forbiddenUploadingFileTypes).contains(StringUtils.lowerCase(fileType));
   }
 
   private IDocumentService documentsOf(ICase iCase) {

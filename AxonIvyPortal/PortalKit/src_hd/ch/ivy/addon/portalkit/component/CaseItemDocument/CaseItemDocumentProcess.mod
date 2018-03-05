@@ -30,7 +30,6 @@ Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f14 '' #zField
 Cs0 @PushWFArc f9 '' #zField
 Cs0 @PushWFArc f17 '' #zField
-Cs0 @PushWFArc f19 '' #zField
 Cs0 @PushWFArc f44 '' #zField
 Cs0 @PushWFArc f15 '' #zField
 Cs0 @RichDialogProcessEnd f20 '' #zField
@@ -66,6 +65,9 @@ Cs0 @RichDialogProcessEnd f37 '' #zField
 Cs0 @CallSub f80 '' #zField
 Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f40 '' #zField
+Cs0 @GridStep f41 '' #zField
+Cs0 @PushWFArc f45 '' #zField
+Cs0 @PushWFArc f19 '' #zField
 >Proto Cs0 Cs0 CaseItemDocumentProcess #zField
 Cs0 f0 guid 1533610171B77F44 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
@@ -242,7 +244,7 @@ Cs0 f59 432 172 432 252 #arcP
 Cs0 f29 expr out #txt
 Cs0 f29 432 276 432 338 #arcP
 Cs0 f14 expr in #txt
-Cs0 f14 outCond 'in.documentUploadEvent.getFile() != null && in.documentUploadEvent.getFile().getSize() > 0' #txt
+Cs0 f14 outCond 'in.documentUploadEvent.getFile() != null && in.documentUploadEvent.getFile().getSize() > 0 && ch.ivy.addon.portalkit.service.CaseDocumentService.isDocumentTypeValid(in.documentUploadEvent.getFile().getFileName())' #txt
 Cs0 f14 522 160 450 160 #arcP
 Cs0 f9 expr in #txt
 Cs0 f9 432 366 432 420 #arcP
@@ -251,11 +253,6 @@ Cs0 f17 expr out #txt
 Cs0 f17 450 432 536 485 #arcP
 Cs0 f17 1 536 432 #addKink
 Cs0 f17 0 0.7224816120006017 0 0 #arcLabel
-Cs0 f19 expr in #txt
-Cs0 f19 550 160 547 496 #arcP
-Cs0 f19 1 624 160 #addKink
-Cs0 f19 2 624 496 #addKink
-Cs0 f19 2 0.8365402140487286 0 0 #arcLabel
 Cs0 f44 expr in #txt
 Cs0 f44 outCond in.errors.isEmpty() #txt
 Cs0 f44 446 352 518 352 #arcP
@@ -578,6 +575,32 @@ Cs0 f39 expr out #txt
 Cs0 f39 208 107 208 156 #arcP
 Cs0 f40 expr out #txt
 Cs0 f40 208 180 208 285 #arcP
+Cs0 f41 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
+' #txt
+Cs0 f41 actionTable 'out=in;
+' #txt
+Cs0 f41 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage"), null));' #txt
+Cs0 f41 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
+Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>show error message</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f41 608 260 32 24 -40 22 #rect
+Cs0 f41 @|StepIcon #fIcon
+Cs0 f45 expr in #txt
+Cs0 f45 550 160 624 260 #arcP
+Cs0 f45 1 624 160 #addKink
+Cs0 f45 1 0.8365402140487286 0 0 #arcLabel
+Cs0 f19 expr out #txt
+Cs0 f19 624 284 547 496 #arcP
+Cs0 f19 1 624 496 #addKink
+Cs0 f19 1 0.8365402140487286 0 0 #arcLabel
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -595,8 +618,6 @@ Cs0 f14 head f56 mainIn #connect
 Cs0 f9 head f30 mainIn #connect
 Cs0 f30 mainOut f17 tail #connect
 Cs0 f17 head f11 mainIn #connect
-Cs0 f35 out f19 tail #connect
-Cs0 f19 head f11 mainIn #connect
 Cs0 f28 out f44 tail #connect
 Cs0 f44 head f43 mainIn #connect
 Cs0 f28 out f9 tail #connect
@@ -630,3 +651,7 @@ Cs0 f34 mainOut f39 tail #connect
 Cs0 f39 head f80 mainIn #connect
 Cs0 f80 mainOut f40 tail #connect
 Cs0 f40 head f37 mainIn #connect
+Cs0 f35 out f45 tail #connect
+Cs0 f45 head f41 mainIn #connect
+Cs0 f41 mainOut f19 tail #connect
+Cs0 f19 head f11 mainIn #connect
