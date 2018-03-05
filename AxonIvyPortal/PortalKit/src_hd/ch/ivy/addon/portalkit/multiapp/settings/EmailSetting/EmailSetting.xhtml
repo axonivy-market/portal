@@ -17,12 +17,12 @@
 
     <h:panelGrid>
       <p:growl id="change-email-setting-info" showDetail="true" sticky="false" life="400" severity="info"
-        widgetVar="growl" />
+        widgetVar="growl" escape="false"/>
     </h:panelGrid>
     <p:remoteCommand name="updateGrowlEmail" actionListener="#{logic.updateGrowl}" update="change-email-setting-info" />
 
     <h:panelGroup layout="block" id="email-setting-container">
-      <p:messages showDetail="true" closable="true" id="email-messages" />
+      <p:messages showDetail="true" closable="true" id="email-messages" escape="false" />
       <h:panelGrid>
 
         <h:panelGrid columns="2">
@@ -123,7 +123,7 @@
 
       <p:dialog id="exception-message-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
         styleClass="email-setting-exception-dialog" widgetVar="errorDialogEmail" modal="true" appendTo="@(body)">
-        <p:messages id="errorsMessageE" severity="info" showDetail="true" closable="true" />
+        <p:messages id="errorsMessageE" severity="info" showDetail="true" closable="true" escape="false"/>
         <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
         <f:facet name="footer">
         	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
