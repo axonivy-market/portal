@@ -516,12 +516,9 @@ Ts0 f30 actionCode 'import ch.ivy.ws.addon.WsException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-//for (WsException error : in.errors) {
-//	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, error.userText, null));
-//}
-
-
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "aa", null));
+for (WsException error : in.errors) {
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, error.userText, null));
+}
 ' #txt
 Ts0 f30 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
