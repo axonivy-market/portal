@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Thu Nov 19 14:42:10 ICT 2015]
-1511EB944BC67A1A 3.18 #module
+1511EB944BC67A1A 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 CaseDocumentProcess Big #zClass
 Ds0 RD #cInfo
@@ -42,11 +41,13 @@ Ds0 @PushWFArc f32 '' #zField
 Ds0 @PushWFArc f20 '' #zField
 Ds0 @PushWFArc f33 '' #zField
 Ds0 @PushWFArc f30 '' #zField
-Ds0 @PushWFArc f34 '' #zField
 Ds0 @PushWFArc f9 '' #zField
 Ds0 @Alternative f29 '' #zField
 Ds0 @PushWFArc f14 '' #zField
 Ds0 @RichDialogMethodStart f12 '' #zField
+Ds0 @GridStep f18 '' #zField
+Ds0 @PushWFArc f22 '' #zField
+Ds0 @PushWFArc f27 '' #zField
 >Proto Ds0 Ds0 CaseDocumentProcess #zField
 Ds0 f0 guid 14DD6789B76C9299 #txt
 Ds0 f0 type ch.ivy.addon.portalkit.singleapp.cases.CaseDocument.CaseDocumentData #txt
@@ -273,7 +274,7 @@ Ds0 f28 expr out #txt
 Ds0 f28 312 83 312 220 #arcP
 Ds0 f28 0 0.7392162041749724 0 0 #arcLabel
 Ds0 f25 type ch.ivy.addon.portalkit.singleapp.cases.CaseDocument.CaseDocumentData #txt
-Ds0 f25 541 149 22 22 14 0 #rect
+Ds0 f25 541 165 22 22 14 0 #rect
 Ds0 f25 @|RichDialogProcessEndIcon #fIcon
 Ds0 f3 guid 1511A1DC42BEBDB1 #txt
 Ds0 f3 type ch.ivy.addon.portalkit.singleapp.cases.CaseDocument.CaseDocumentData #txt
@@ -338,21 +339,8 @@ Ds0 f33 410 232 330 232 #arcP
 Ds0 f33 0 0.4375 0 -9 #arcLabel
 Ds0 f30 expr out #txt
 Ds0 f30 424 83 424 106 #arcP
-Ds0 f34 expr in #txt
-Ds0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f34 438 120 552 149 #arcP
-Ds0 f34 1 552 120 #addKink
-Ds0 f34 0 0.42334384858044166 1 -12 #arcLabel
 Ds0 f9 expr in #txt
-Ds0 f9 outCond 'in.selectedFile != null && in.selectedFile.getSize() > 0' #txt
+Ds0 f9 outCond 'in.selectedFile != null && in.selectedFile.getSize() > 0 && ch.ivy.addon.portalkit.service.CaseDocumentService.isDocumentTypeValid(in.selectedFile.getFileName())' #txt
 Ds0 f9 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -403,6 +391,39 @@ Ds0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f12 661 61 22 22 14 0 #rect
 Ds0 f12 @|RichDialogMethodStartIcon #fIcon
+Ds0 f18 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseDocument.CaseDocumentData out;
+' #txt
+Ds0 f18 actionTable 'out=in;
+' #txt
+Ds0 f18 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+FacesContext.getCurrentInstance().addMessage("choose-uploading-file", new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage"), null));' #txt
+Ds0 f18 type ch.ivy.addon.portalkit.singleapp.cases.CaseDocument.CaseDocumentData #txt
+Ds0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>show error msg</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f18 532 108 40 24 12 15 #rect
+Ds0 f18 @|StepIcon #fIcon
+Ds0 f22 expr in #txt
+Ds0 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f22 438 120 532 120 #arcP
+Ds0 f22 0 0.3374909002669256 1 -11 #arcLabel
+Ds0 f27 expr out #txt
+Ds0 f27 552 132 552 165 #arcP
+Ds0 f27 0 0.42334384858044166 1 -12 #arcLabel
 >Proto Ds0 .type ch.ivy.addon.portalkit.singleapp.cases.CaseDocument.CaseDocumentData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -427,8 +448,6 @@ Ds0 f24 mainOut f28 tail #connect
 Ds0 f28 head f26 mainIn #connect
 Ds0 f29 out f9 tail #connect
 Ds0 f9 head f8 mainIn #connect
-Ds0 f29 out f34 tail #connect
-Ds0 f34 head f25 mainIn #connect
 Ds0 f3 mainOut f30 tail #connect
 Ds0 f30 head f29 in #connect
 Ds0 f8 mainOut f32 tail #connect
@@ -437,3 +456,7 @@ Ds0 f31 out f20 tail #connect
 Ds0 f20 head f21 mainIn #connect
 Ds0 f31 out f33 tail #connect
 Ds0 f33 head f26 mainIn #connect
+Ds0 f29 out f22 tail #connect
+Ds0 f22 head f18 mainIn #connect
+Ds0 f18 mainOut f27 tail #connect
+Ds0 f27 head f25 mainIn #connect
