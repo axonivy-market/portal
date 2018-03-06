@@ -6,6 +6,7 @@ import java.util.concurrent.Callable;
 
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.SecurityServiceResult;
+import ch.ivy.ws.addon.comparator.IvyRoleDisplayNameComparator;
 import ch.ivy.ws.addon.comparator.IvyUserDisplayNameComparator;
 import ch.ivy.ws.addon.transformer.IvyRoleTransformer;
 import ch.ivy.ws.addon.transformer.IvyUserTransformer;
@@ -144,7 +145,8 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
             }
             ivyRoles.add(roleTransformer.transform(role, null));
           }
-
+          Collections.sort(ivyRoles, new IvyRoleDisplayNameComparator());
+          
           for (IUser user : users) {
             if (!SYSTEM_USER.equals(user.getName())) {
               ivyUsers.add(IvyUserTransformer.transform(user, null));
