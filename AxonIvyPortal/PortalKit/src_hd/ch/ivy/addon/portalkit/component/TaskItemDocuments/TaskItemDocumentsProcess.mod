@@ -642,11 +642,14 @@ Ts0 f8 actionCode 'import ch.ivy.ws.addon.IvyDocument;
 import org.apache.commons.collections.CollectionUtils;
 import java.util.ArrayList;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivyteam.ivy.workflow.ICase;
 
 if (!CollectionUtils.isEmpty(in.documents)) {
+	ICase iCase = CaseUtils.findcase(in.task.case.getId());
 	List expressDocs = new ArrayList();
 	for (IvyDocument doc : in.documents) {
-		if (!doc.getPath().toString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER)) {
+		if (iCase.documents().get(doc.getId()).getPath().asString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER)) {
 			expressDocs.add(doc);
 		}
 	}

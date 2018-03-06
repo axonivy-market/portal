@@ -89,7 +89,7 @@ public class CaseDocumentService {
   public boolean doesDocumentExist(String filename) {
     ICase iCase = CaseUtils.findcase(caseId);
     IDocument document = documentsOf(iCase).get(new Path(filename));
-    return document != null;
+    return document != null && !document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER);
   }
 
   public static boolean isDocumentTypeValid(String filename) {
