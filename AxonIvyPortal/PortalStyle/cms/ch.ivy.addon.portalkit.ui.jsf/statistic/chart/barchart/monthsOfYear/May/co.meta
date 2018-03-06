@@ -1,2 +1,4 @@
-co: name={May} description={} changed={2018-02-05 04:42:59 CET} changedby={tntanh} visualorder={0} guid={16163D90E0A492B4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={May} description={} changed={2018-03-06 04:36:27 CET} changedby={tdnguyen} visualorder={0} guid={16163D90E0A492B4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={16163D90E0D85922} datatype={} isdefault={true} langid={en} description={} validfrom={2018-02-05 03:34:38 CET} validto={} changed={2018-02-05 03:43:44 CET} changedby={tntanh} properties={} id={}
+val: guid={161F958911BB05FA} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-06 04:26:25 CET} validto={} changed={2018-03-06 04:36:27 CET} changedby={tdnguyen} properties={} id={}
+val: guid={161F95891EAE8B27} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-06 04:26:23 CET} validto={} changed={2018-03-06 04:36:27 CET} changedby={tdnguyen} properties={} id={}
