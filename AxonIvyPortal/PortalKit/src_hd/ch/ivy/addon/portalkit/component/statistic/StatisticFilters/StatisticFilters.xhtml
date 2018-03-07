@@ -27,14 +27,14 @@
             <p:calendar id="filter-from" value="#{filter.createdDateFrom}"
               pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-              <p:ajax event="dateSelect" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+              <p:ajax event="change" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
             </p:calendar>
 
             <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/createdTo')} " />
             <p:calendar id="filter-to" value="#{filter.createdDateTo}"
               pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-              <p:ajax event="dateSelect" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+              <p:ajax event="change" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
             </p:calendar>
 
           </h:panelGrid>
