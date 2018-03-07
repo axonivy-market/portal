@@ -38,7 +38,7 @@
 				<code>SetBusinessEntityId</code>
 				in the process which need to be linked
 				and input an identifier unique to your business entity. The subprocess will
-				set the id to an additional property of the business case.
+				set the id to the additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 			</para>
 			<mediaobject>
 				<imageobject>
