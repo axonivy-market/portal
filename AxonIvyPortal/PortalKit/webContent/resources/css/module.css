@@ -3805,7 +3805,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .statistic-dashboard-container {
-  width: 100%;
+  width: 76rem;
   margin: auto;
   display: flex;
   flex-flow: row wrap;
