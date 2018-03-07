@@ -560,9 +560,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                   priorityStatistic.setException(numberOfTasks);
                 } else if (priority == WorkflowPriority.HIGH.intValue()) {
                   priorityStatistic.setHigh(numberOfTasks);
-                } else if (priority == WorkflowPriority.NORMAL.intValue())
+                } else if (priority == WorkflowPriority.NORMAL.intValue()) {
                   priorityStatistic.setNormal(numberOfTasks);
-                else {
+                } else {
                   priorityStatistic.setLow(numberOfTasks);
                 }
               });
