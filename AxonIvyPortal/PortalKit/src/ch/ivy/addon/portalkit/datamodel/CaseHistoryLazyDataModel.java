@@ -18,11 +18,11 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
-import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.ws.addon.CaseSearchCriteria;
@@ -69,7 +69,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
     crit.setInvolvedUsername(Ivy.session().getSessionUserName());
     crit.setBusinessCase(true);
     String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-    if(applicationName != null) {
+    if (applicationName != null) {
       crit.setInvolvedApplications(new String[] {applicationName});
     }
     return crit;
@@ -236,7 +236,8 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
   private void buildQueryToSearchCriteria() {
     if (queryCriteria.getCaseQuery() == null) {
       CaseQuery caseQuery = CaseQuery.create();
-      caseQuery.where().additionalProperty(CaseUtils.CASE_BUSINESS_ENTITY_PROPERTY).isEqual(businessEntityId);
+      caseQuery.where().additionalProperty(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString())
+          .isEqual(businessEntityId);
       queryCriteria.setCaseQuery(caseQuery);
     }
     queryCriteria.setIncludedStates(new ArrayList<>());
