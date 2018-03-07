@@ -47,6 +47,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
 
   public CaseHistoryLazyDataModel(String businessEntityId) {
     super();
+    serverId = SecurityServiceUtils.getServerIdFromSession();
     this.businessEntityId = businessEntityId;
     data = new ArrayList<>();
     displayedCaseMap = new HashMap<>();
