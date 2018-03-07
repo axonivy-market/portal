@@ -43,10 +43,10 @@ Sd0 f3 actionDecl 'ch.ivy.addon.portal.generic.SetBusinessEntityIdData out;
 ' #txt
 Sd0 f3 actionTable 'out=in;
 ' #txt
-Sd0 f3 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+Sd0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivyteam.ivy.workflow.ICase;
 
-ivy.case.getBusinessCase().setAdditionalProperty(CaseUtils.CASE_BUSINESS_ENTITY_PROPERTY, in.businessEntityId);' #txt
+ivy.case.getBusinessCase().setAdditionalProperty(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString(), in.businessEntityId);' #txt
 Sd0 f3 security system #txt
 Sd0 f3 type ch.ivy.addon.portal.generic.SetBusinessEntityIdData #txt
 Sd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
