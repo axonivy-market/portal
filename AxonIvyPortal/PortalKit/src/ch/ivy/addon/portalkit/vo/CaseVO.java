@@ -5,20 +5,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ch.ivy.addon.portalkit.bo.Contact;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * Object store ICase data, implement the {@link Serializable} interface to for sorting, filter ...
  *
- * @author lptchi
  */
 public class CaseVO implements Serializable {
 
 	/** default serialVersionUID */
 	private static final long serialVersionUID = 4030426883979789328L; 
-	
-	/** Format date for Case Table */
-	private final String DATE_FORMAT="dd.MM.yyyy";
 	
 	/** id of case*/
 	private long id;
@@ -188,9 +185,10 @@ public class CaseVO implements Serializable {
 	 * 
 	 * @return value as String
 	 */
-	public String getCreatedAtAsString(){
-		
-		 SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Ivy.session().getContentLocale());
-		 return dateFormat.format(this.createdAt);
-	}
+  public String getCreatedAtAsString() {
+    DateTimeGlobalSettingService dateTimeService = new DateTimeGlobalSettingService();
+    SimpleDateFormat dateFormat =
+        new SimpleDateFormat(dateTimeService.getDatePattern(), Ivy.session().getContentLocale());
+    return dateFormat.format(this.createdAt);
+  }
 }
