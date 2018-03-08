@@ -23,6 +23,7 @@ import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.vo.TaskVO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IProcessModelVersionRequest;
@@ -49,7 +50,6 @@ public class TaskBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private static final String SHARP = "#";
-  private static final String FORMAT_DATE = "dd.MM.yyyy HH:mm";
   
   /**
    * Check if task is high priority. return high priority icon css if task is high priority
@@ -439,7 +439,8 @@ public class TaskBean implements Serializable {
       return stateDisplayOut;
     if (TaskState.DELAYED == task.getState()) {
       ArrayList<Object> params = new ArrayList<Object>();
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT_DATE);
+      DateTimeGlobalSettingService dateTimeService = new DateTimeGlobalSettingService();
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateTimeService.getDateTimePattern());
       if (task.getDelayTimestamp() != null) {
         params.add(simpleDateFormat.format(task.getDelayTimestamp()));
         stateDisplayOut = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + task.getState(), params);
