@@ -666,13 +666,22 @@ Ss0 f50 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboar
 ' #txt
 Ss0 f50 actionTable 'out=in;
 ' #txt
-Ss0 f50 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+Ss0 f50 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.service.StatisticService;
 import org.primefaces.event.ItemSelectEvent;
 
 out.event = event as ItemSelectEvent;
 
+String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
 StatisticService service = new StatisticService();
-in.selectedCaseCategory = service.getSelectedValueOfPieChart(out.event);' #txt
+in.selectedCaseCategory = service.getSelectedValueOfPieChart(out.event);
+
+for (StatisticChart chart : out.statisticChartList) {
+	if (chart.id == selectedChartId) {
+		out.selectedStatisticChart = chart;
+		break;
+	}
+}' #txt
 Ss0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

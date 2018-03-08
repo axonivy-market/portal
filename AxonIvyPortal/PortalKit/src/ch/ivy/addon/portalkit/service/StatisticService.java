@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -1130,6 +1131,26 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     if (chartData.size() == 0) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseCategory"), 0);
+    }
+
+    float totalValue = 0;
+    float otherValue = 0;
+
+    for (Number number : chartData.values()) {
+      totalValue += number.floatValue();
+    }
+
+    for (Iterator<Entry<String, Number>> iterator = chartData.entrySet().iterator(); iterator.hasNext();) {
+      Entry<String, Number> chartDataEntry = iterator.next();
+      float floatValueOfChartData = chartDataEntry.getValue().floatValue();
+      if (floatValueOfChartData < totalValue * 0.02) {
+        otherValue = otherValue + floatValueOfChartData;
+        iterator.remove();
+      }
+    }
+
+    if (otherValue != 0) {
+      chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue);
     }
 
     model.setData(chartData);

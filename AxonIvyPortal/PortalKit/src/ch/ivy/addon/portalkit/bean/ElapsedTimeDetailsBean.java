@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -25,6 +26,7 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.ElapsedTimeComparison;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 @ManagedBean
@@ -40,6 +42,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private List<RemoteRole> rolesForCompareElapsedTime;
   private List<ElapsedTimeComparison> comparisonDataModel;
   private RemoteRole defaultRole;
+  private String caseQueryOfSelectedChart;
 
   private static final String DAYS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/days");
   private static final String HOURS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/hours");
@@ -47,8 +50,9 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private static final String SECONDS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/seconds");
 
   @SuppressWarnings("unchecked")
-  public void initialize(String caseCategory) {
+  public void initialize(String caseCategory, String caseQueryAsJson) {
     setSelectedCaseCategory(caseCategory);
+    setCaseQueryOfSelectedChart(caseQueryAsJson);
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("findAllRoles()", null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
@@ -61,10 +65,34 @@ public class ElapsedTimeDetailsBean implements Serializable {
   public void compare(RemoteRole firstRoleToCompare, RemoteRole secondRoleToCompare) {
     comparisonDataModel = new ArrayList<>();
     String caseCategory = selectedCaseCategory;
+    TaskQuery taskQuery = TaskQuery.create();
+
     if (selectedCaseCategory.equals(StatisticService.NO_CATEGORY_CMS)) {
       caseCategory = StringUtils.EMPTY;
     }
-    TaskQuery taskQuery = statisticService.getQueryForSelectedItemElapsedTime(caseCategory);
+
+    if (selectedCaseCategory.equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"))) {
+      List<ElapsedTimeStatistic> result = statisticService.getElapsedTimeStatisticData(getCaseQueryOfSelectedChart());
+      Map<String, Number> chartData = statisticService.generateDataForElapsedTimeChart(result);
+
+      float totalValue = 0;
+      for (Number number : chartData.values()) {
+        totalValue += number.floatValue();
+      }
+
+      CaseQuery caseQueryForCaseCategory = CaseQuery.create();
+      for (Iterator<Entry<String, Number>> iterator = chartData.entrySet().iterator(); iterator.hasNext();) {
+        Entry<String, Number> chartDataEntry = iterator.next();
+        float floatValueOfChartData = chartDataEntry.getValue().floatValue();
+        if (floatValueOfChartData < totalValue * 0.02) {
+          caseQueryForCaseCategory.where().or().category().isEqual(chartDataEntry.getKey());
+        }
+      }
+      taskQuery.where().cases(caseQueryForCaseCategory);
+    } else {
+      taskQuery = statisticService.getQueryForSelectedItemElapsedTime(caseCategory);
+    }
+
     HorizontalBarChartModel result = new HorizontalBarChartModel();
 
     ChartSeries chartSeriesOfFirstRole = generateChartDataForCompareRole(taskQuery, firstRoleToCompare);
@@ -212,5 +240,13 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
   public void setDefaultRole(RemoteRole defaultRole) {
     this.defaultRole = defaultRole;
+  }
+
+  public String getCaseQueryOfSelectedChart() {
+    return caseQueryOfSelectedChart;
+  }
+
+  public void setCaseQueryOfSelectedChart(String caseQueryOfSelectedChart) {
+    this.caseQueryOfSelectedChart = caseQueryOfSelectedChart;
   }
 }
