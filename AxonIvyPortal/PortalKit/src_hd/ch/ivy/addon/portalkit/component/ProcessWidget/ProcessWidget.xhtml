@@ -52,7 +52,7 @@
 
         <h:panelGroup layout="block" rendered="#{processWidgetBean.deleteMode}">
           <p:commandLink id="delete-process-command" styleClass="underline-on-hover"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcess')}"
             actionListener="#{processWidgetBean.deleteSelectedProcess}"
             update="@form #{cc.clientId}:process-list #{cc.clientId}:header"
             onsuccess="synchDataAfterDeleteProcesses();" />
