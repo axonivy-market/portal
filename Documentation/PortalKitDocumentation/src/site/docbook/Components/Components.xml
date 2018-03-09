@@ -7,5 +7,4 @@
 	<xi:include href="ErrorHandling.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="ExportFunction.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="AdditionalComponent.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-	<xi:include href="DrilldownForExpiryChart.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
