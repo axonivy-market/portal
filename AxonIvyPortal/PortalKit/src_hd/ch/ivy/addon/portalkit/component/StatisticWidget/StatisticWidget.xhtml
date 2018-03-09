@@ -7,7 +7,6 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
-  <cc:attribute name="showTaskListImmediately" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -27,15 +26,11 @@
 
     <h:panelGroup id="create-chart-header" layout="block" rendered="#{!cc.attrs.compactMode}"
       styleClass="statistic-actions-panel">
-      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container @this" rendered="#{!data.isDrilldownElapsedTime}">
+      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container @this">
         <h:outputText id="create-chart-link-label" rendered="#{!data.createMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
         <h:outputText id="back-to-dashboard-link-label" rendered="#{data.createMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
-      </p:commandLink>
-      <p:commandLink id="back-from-drilldown-link" actionListener="#{logic.switchDrilldownMode}" rendered="#{data.isDrilldownElapsedTime}"
-        update="#{p:component('widget-container')} create-chart-header">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
       </p:commandLink>
     </h:panelGroup>
 
@@ -44,9 +39,8 @@
 
       <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="statistic-dashboard-container"
         rendered="#{!data.createMode}">
-        <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget" showTaskListImmediately="#{cc.attrs.showTaskListImmediately}"
-          compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}"
-          drilldownListener="#{logic.drilldownElapsedTimeListener}" isDrilldownElapsedTime="#{data.isDrilldownElapsedTime}"/>
+        <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget"
+          compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}" />
       </h:panelGroup>
 
       <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container"
