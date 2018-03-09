@@ -1,2 +1,2 @@
-co: name={FooterText} description={} changed={2018-01-11 11:19:11 CET} changedby={ldnam} visualorder={0} guid={1178C04FFCF28718} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
-val: guid={1178C05004C41EBD} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-11 11:19:11 CET} validto={} changed={2018-01-11 11:19:11 CET} changedby={ldnam} properties={} id={}
+co: name={FooterText} description={} changed={2018-03-09 02:40:21 CET} changedby={chnam} visualorder={0} guid={1178C04FFCF28718} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
+val: guid={1178C05004C41EBD} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-09 02:40:21 CET} validto={} changed={2018-03-09 02:40:21 CET} changedby={chnam} properties={} id={}
