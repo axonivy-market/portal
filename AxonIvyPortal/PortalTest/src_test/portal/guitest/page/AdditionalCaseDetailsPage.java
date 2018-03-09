@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 public class AdditionalCaseDetailsPage extends TemplatePage {
   
-  private static final String TABLE_ROWS_PATH = "table[id*='additional-case-details-data-grid'] tbody>tr";
+  private static final String TABLE_ROWS_PATH = "table[id*='additional-case-details-data-grid'] tbody>tr>td";
   
   public int countFields() {
       waitForElementDisplayed(By.cssSelector("table[id*='additional-case-details-data-grid']"), true);
