@@ -10,5 +10,5 @@ ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:EXTENAL_BROWSER
 ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:NUMBER_OF_EXECUTIONS_FOR_WHICH_TO_KEEP_PROCESS_DATA_IN_HISTORY=10
 ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:NUMBER_OF_REQUESTS_FOR_WHICH_TO_KEEP_PROCESS_DATA_IN_HISTORY=10
 ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:useProjectSettings=true
-ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=71000
+ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=63000
 eclipse.preferences.version=1
