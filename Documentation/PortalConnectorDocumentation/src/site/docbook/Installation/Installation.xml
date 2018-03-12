@@ -19,7 +19,7 @@
 		<itemizedlist>
 			<listitem>
 				<para>
-					In <code>YOUR_ENGINE_NAME_FOLDER/bin</code> make copy of <code>Example.ilc</code> file.
+					In <code>YOUR_ENGINE_FOLDER/bin</code> make copy of <code>Example.ilc</code> file.
 				</para>
 			</listitem>
 			<listitem>
@@ -51,7 +51,7 @@
 			<itemizedlist>
 				<listitem>
 					<para>
-						On engine extract all files from <code>PortalConnector.iar</code> to <code>YOUR_ENGINE_NAME_FOLDER/applications/System/PortalConnector/1/</code>.
+						On engine extract all files from <code>PortalConnector.iar</code> to <code>YOUR_ENGINE_FOLDER/system/applications/System/PortalConnector/1/</code>.
 					</para>
 				</listitem>
 				<listitem>
