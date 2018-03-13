@@ -345,4 +345,12 @@ public class ProcessWidgetBean implements Serializable {
   public boolean isExpressWorkflowLink (String link) {
     return !StringUtils.isBlank(link) && link.contains(EXPRESS_WORKFLOW_ID_PARAM);
   }
+  
+  public void resetEditingProcess(){
+    if(editingProcess.isExternalLink()){
+      editingProcess.setUserName(userName);
+    }
+    editingProcess.setProcessName(StringUtils.EMPTY);
+    editingProcess.setLink(StringUtils.EMPTY);
+  }
 }
