@@ -25,6 +25,8 @@ import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.Binary;
+import ch.ivyteam.ivy.scripting.objects.File;
 
 import com.inet.lib.less.Less;
 
@@ -34,7 +36,7 @@ public class DesignChooserBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private final static String PORTALSTYLE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalStyle";
-  private static final String COLORS_LESS_PATH = "/resources/less/colors.less";
+  private static final String VARIABLES_LESS_PATH = "/resources/less/variables.less";
   private static final String CUSTOMIZATION_LESS_PATH = "/resources/less/customization.less";
   private static final String THEME_LESS_PATH = "/resources/less/theme.less";
   private static final String THEME_CSS_PATH = "/resources/css/theme.min.css";
@@ -47,31 +49,89 @@ public class DesignChooserBean implements Serializable {
   private static final String HASH_SIGN = "#";
   private static final String MAIN_COLOR_PATTERN = MAIN_COLOR_ATTRIBUTE + ANY_CHARACTERS_REGEX;
   private static final String BACKGROUND_COLOR_PATTERN = BACKGROUND_COLOR_ATTRIBUTE + ANY_CHARACTERS_REGEX;
+  private static final String HOME_LOGO_HEIGHT_ATTRIBUTE = "@home-logo-height:";
+  private static final String LOGIN_LOGO_HEIGHT_ATTRIBUTE = "@login-logo-height:";
+  private static final String HOME_LOGO_HEIGHT_PATTERN = HOME_LOGO_HEIGHT_ATTRIBUTE + ANY_CHARACTERS_REGEX;
+  private static final String LOGIN_LOGO_HEIGHT_PATTERN = LOGIN_LOGO_HEIGHT_ATTRIBUTE + ANY_CHARACTERS_REGEX;
 
   private String mainColor;
   private String backgroundColor;
+  private boolean uploadedHomeLogo; 
+  private String homeLogoHeight;
+  private boolean uploadedLoginLogo;
+  private String loginLogoHeight;
   private ResourceLoader loader;
+  private InputStream homeLogoStream;
+  private InputStream loginLogoStream;
 
   @PostConstruct
   public void init() {
     try {
       initWebContentLoader();
+      uploadedHomeLogo = false;
+      uploadedLoginLogo = false;
       mainColor = retrieveMainColorFromFile();
       backgroundColor = retrieveBackgroundColorFromFile();
+      homeLogoHeight = retrieveHomeLogoHeightFromFile();
+      loginLogoHeight = retrieveLoginLogoHeightFromFile();
     } catch (IOException e) {
       Ivy.log().error("Can't retrieve colors from less file", e);
     }
   }
+  
+  public String getLoginLogoImage() throws IOException {
+    return Ivy.html().fileref(new File("LoginLogo.png", true));
+  }
+
+  public String getHomeLogoImage() throws IOException {
+    return Ivy.html().fileref(new File("HomeLogo.png", true));
+  }
 
   public void uploadLoginLogo(FileUploadEvent event) throws IOException {
-    uploadLogo(event, LOGIN_LOGO_CMS);
+    uploadedLoginLogo = true;
+    loginLogoStream = event.getFile().getInputstream();
+    File file = new File("LoginLogo.png", true);
+    Binary content = new Binary(event.getFile().getContents());
+    file.writeBinary(content);
   }
 
   public void uploadHomeLogo(FileUploadEvent event) throws IOException {
-    uploadLogo(event, HOME_LOGO_CMS);
+    uploadedHomeLogo = true;
+    homeLogoStream = event.getFile().getInputstream();
+    File file = new File("HomeLogo.png", true);
+    Binary content = new Binary(event.getFile().getContents());
+    file.writeBinary(content);
   }
-
-  public void applyNewColors() throws IOException {
+  
+  public void apply() throws IOException {
+    applyNewColors();
+    uploadLogo(loginLogoStream, LOGIN_LOGO_CMS);
+    uploadLogo(homeLogoStream, HOME_LOGO_CMS);
+    scaleLogo();
+    compileThemeLess();
+  }
+  
+  private void scaleLogo() throws IOException {
+    Optional<Path> path = loader.findResource(CUSTOMIZATION_LESS_PATH);
+    if (path.isPresent()) {
+      try (Stream<String> lineStream = Files.lines(path.get())) {
+        String newLoginLogoHeight = LOGIN_LOGO_HEIGHT_ATTRIBUTE + " " + loginLogoHeight + SEMICOLON;
+        String newHomeLogoHeight = HOME_LOGO_HEIGHT_ATTRIBUTE + " " + homeLogoHeight + SEMICOLON;
+        
+        List<String> lines = lineStream.map(line -> line.replaceAll(LOGIN_LOGO_HEIGHT_PATTERN, newLoginLogoHeight))
+                  .map(line -> line.replaceAll(HOME_LOGO_HEIGHT_PATTERN, newHomeLogoHeight)).collect(Collectors.toList());
+        if (!lines.stream().anyMatch(Pattern.compile(LOGIN_LOGO_HEIGHT_PATTERN).asPredicate())) {
+          lines.add(newLoginLogoHeight);
+        }
+        if (!lines.stream().anyMatch(Pattern.compile(HOME_LOGO_HEIGHT_PATTERN).asPredicate())) {
+          lines.add(newHomeLogoHeight);
+        }
+        Files.write(path.get(), lines);
+      }
+    }
+  }
+  
+  private void applyNewColors() throws IOException {
     Optional<Path> path = loader.findResource(CUSTOMIZATION_LESS_PATH);
     if (path.isPresent()) {
       try (Stream<String> lineStream = Files.lines(path.get())) {
@@ -88,7 +148,6 @@ public class DesignChooserBean implements Serializable {
         }
         Files.write(path.get(), lines);
       }
-      compileThemeLess();
     }
   }
   
@@ -106,28 +165,35 @@ public class DesignChooserBean implements Serializable {
     }
   }
 
-  private void uploadLogo(FileUploadEvent event, String cms) throws IOException {
-    InputStream inputStream = event.getFile().getInputstream();
-    Ivy.cms().findContentObjectValue(cms, Locale.ENGLISH).setContent(inputStream, 0, null);
+  private void uploadLogo(InputStream is, String cms) throws IOException {
+    Ivy.cms().findContentObjectValue(cms, Locale.ENGLISH).setContent(is, 0, null);
+  }
+  
+  private String retrieveLoginLogoHeightFromFile() throws IOException {
+    return retrieveStyleValueFromLessFile(LOGIN_LOGO_HEIGHT_PATTERN);
+  }
+
+  private String retrieveHomeLogoHeightFromFile() throws IOException {
+    return retrieveStyleValueFromLessFile(HOME_LOGO_HEIGHT_PATTERN);
   }
 
   private String retrieveMainColorFromFile() throws IOException {
-    return retrieveColorValueFromLessFile(MAIN_COLOR_PATTERN);
+    return retrieveStyleValueFromLessFile(MAIN_COLOR_PATTERN);
   }
 
   private String retrieveBackgroundColorFromFile() throws IOException {
-    return retrieveColorValueFromLessFile(BACKGROUND_COLOR_PATTERN);
+    return retrieveStyleValueFromLessFile(BACKGROUND_COLOR_PATTERN);
   }
 
-  private String retrieveColorValueFromLessFile(String pattern) throws IOException {
-    String color = retrieveColorValueFromLessFile(pattern, CUSTOMIZATION_LESS_PATH);
+  private String retrieveStyleValueFromLessFile(String pattern) throws IOException {
+    String color = retrieveStyleValueFromLessFile(pattern, CUSTOMIZATION_LESS_PATH);
     if (StringUtils.isBlank(color)) {
-      color = retrieveColorValueFromLessFile(pattern, COLORS_LESS_PATH);
+      color = retrieveStyleValueFromLessFile(pattern, VARIABLES_LESS_PATH);
     }
     return color;
   }
-
-  private String retrieveColorValueFromLessFile(String pattern, String resource) throws IOException {
+  
+  private String retrieveStyleValueFromLessFile(String pattern, String resource) throws IOException {
     String color = StringUtils.EMPTY;
     Optional<Path> path = loader.findResource(resource);
     if (path.isPresent()) {
@@ -172,4 +238,37 @@ public class DesignChooserBean implements Serializable {
   public void setBackgroundColor(String backgroundColor) {
     this.backgroundColor = backgroundColor;
   }
+
+  public String getHomeLogoHeight() {
+    return homeLogoHeight;
+  }
+
+  public void setHomeLogoHeight(String homeLogoHeight) {
+    this.homeLogoHeight = homeLogoHeight;
+  }
+
+  public String getLoginLogoHeight() {
+    return loginLogoHeight;
+  }
+
+  public void setLoginLogoHeight(String loginLogoHeight) {
+    this.loginLogoHeight = loginLogoHeight;
+  }
+
+  public boolean isUploadedHomeLogo() {
+    return uploadedHomeLogo;
+  }
+
+  public void setUploadedHomeLogo(boolean uploadedHomeLogo) {
+    this.uploadedHomeLogo = uploadedHomeLogo;
+  }
+
+  public boolean isUploadedLoginLogo() {
+    return uploadedLoginLogo;
+  }
+
+  public void setUploadedLoginLogo(boolean uploadedLoginLogo) {
+    this.uploadedLoginLogo = uploadedLoginLogo;
+  }
+  
 }
