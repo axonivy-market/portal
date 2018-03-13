@@ -2194,6 +2194,12 @@ a.case-details-document-add-link {
   width: 90%;
 }
 
+.field-group .process-type label {
+	float: right;
+	text-align: left;
+	transform: translateY(35%);
+}
+
 .widget a.border-bottom-none {
   border-bottom: none;
 }

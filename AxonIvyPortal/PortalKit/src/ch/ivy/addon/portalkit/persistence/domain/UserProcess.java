@@ -11,6 +11,7 @@ public class UserProcess extends BusinessEntity {
   private String workflowId;
   private String description;
   private boolean defaultProcess;
+  private boolean isExternalLink;
 
   public UserProcess() {
 
@@ -76,6 +77,14 @@ public class UserProcess extends BusinessEntity {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+  
+  public boolean isExternalLink() {
+    return isExternalLink;
+  }
+
+  public void setExternalLink(boolean isExternalLink) {
+    this.isExternalLink = isExternalLink;
   }
 
   @Override
