@@ -61,7 +61,7 @@ public class ProcessWidgetTest extends BaseTest {
     String processName = "Google";
     String processLink = "google.com";
     processWidget = homePage.getProcessWidget();
-    createTestProcess(processName, processLink);
+    createExternalTestProcess(processName, processLink);
     int numberOfProcesses = processWidget.getNumberOfUserProcesses();
     processWidget.clickDeletionSwitchLink();
     int indexOfLastProcess = numberOfProcesses - 1;
@@ -77,10 +77,10 @@ public class ProcessWidgetTest extends BaseTest {
     String processLink = "google.com";
     processWidget = homePage.getProcessWidget();
     if (processWidget.getProcess(processName) == null) {
-      createTestProcess(processName, processLink);
+      createExternalTestProcess(processName, processLink);
     }
     assertEquals(1, homePage.countBrowserTab());
-
+    
     processWidget.startProcess(processName);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
@@ -105,9 +105,10 @@ public class ProcessWidgetTest extends BaseTest {
     assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
   }
 
-  private void createTestProcess(String processName, String processLink) {
+  private void createExternalTestProcess(String processName, String processLink) {
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.inputData(processName, processLink);
+    processWidget.selectProcessTypeExternal();
+    addNewProcessDialog.inputDataForExternalProcess(processName, processLink);
     addNewProcessDialog.submitForm();
   }
 }
