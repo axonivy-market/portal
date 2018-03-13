@@ -148,12 +148,11 @@ public class ProcessWidgetPage extends TemplatePage {
       processDialog = findElementById(PROCESS_DIALOG_ID);
     }
 
-    public void inputData(String processName, String processURL) {
-      String processNameInputSelector = "input[id*='process-widget:new-process-name']";
-      waitForElementDisplayed(By.cssSelector(processNameInputSelector), true);
+    public void inputDataForExternalProcess(String processName, String processURL) {
       String processLinkId = "process-widget:process-start-link";
       waitForElementDisplayed(By.id(processLinkId), true);
-      WebElement processNameInput = findElementByCssSelector(processNameInputSelector);
+      String processNameId = "process-widget:external-process-name";
+      WebElement processNameInput = findElementById(processNameId);
       type(processNameInput, processName);
       WebElement processURLInput = findElementById(processLinkId);
       type(processURLInput, processURL);
@@ -172,5 +171,11 @@ public class ProcessWidgetPage extends TemplatePage {
       findElementByCssSelector(processSelector).click();
       waitAjaxIndicatorDisappear();
     }
+  }
+
+  public void selectProcessTypeExternal() {
+    WebElement externalCheckboxLabel = findElementByXpath("//label[@for='process-widget:process-type:1']");
+    externalCheckboxLabel.click();
+    waitAjaxIndicatorDisappear();
   }
 }
