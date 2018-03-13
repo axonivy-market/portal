@@ -1395,10 +1395,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       Date dateWithoutTime = truncateMinutesPart(currentDate);
       if (selectedValue.equals(BEFORE_8)) {
         fromDate = dateWithoutTime;
-        toDate = DateUtils.setHours(dateWithoutTime, 7);
+        toDate = DateUtils.setHours(dateWithoutTime, 8);
       } else if (selectedValue.equals(AFTER_18)) {
-        fromDate = DateUtils.setHours(dateWithoutTime, 17);
-        toDate = DateUtils.setHours(dateWithoutTime, 23);
+        fromDate = DateUtils.setHours(dateWithoutTime, 18);
+        toDate = DateUtils.addDays(dateWithoutTime, 1);
       } else {
         fromDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue));
         toDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue) + 1);
