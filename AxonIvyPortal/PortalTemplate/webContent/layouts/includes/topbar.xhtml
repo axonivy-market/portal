@@ -10,7 +10,7 @@
   <div class="TexAlCenter">
 
     <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}">
-      <p:graphicImage value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" cache="false" />
+      <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" cache="false" />
     </p:commandLink>
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
       leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}" reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
@@ -116,7 +116,7 @@
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" width="90%"
       id="admin-ui-dialog" widgetVar="adminUI" closeOnEscape="true" resizable="false" modal="true" draggable="false" appendTo="@(body)"
-      dynamic="true" height="420" onHide="PF('dialogClosingInformation').show();">
+      dynamic="true" height="450" onHide="PF('dialogClosingInformation').show();">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
       <f:facet name="footer">
       	 <p:commandButton id="close-button" type="button"
