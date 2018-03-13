@@ -105,8 +105,12 @@ public class DesignChooserBean implements Serializable {
   
   public void apply() throws IOException {
     applyNewColors();
-    uploadLogo(loginLogoStream, LOGIN_LOGO_CMS);
-    uploadLogo(homeLogoStream, HOME_LOGO_CMS);
+    if (loginLogoStream != null) {
+      uploadLogo(loginLogoStream, LOGIN_LOGO_CMS);
+    }
+    if (homeLogoStream != null) {
+      uploadLogo(homeLogoStream, HOME_LOGO_CMS);
+    }
     scaleLogo();
     compileThemeLess();
   }
