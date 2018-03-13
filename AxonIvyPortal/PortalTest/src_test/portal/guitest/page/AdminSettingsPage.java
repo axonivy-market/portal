@@ -34,25 +34,25 @@ public class AdminSettingsPage extends TemplatePage {
   public void openDesignTab(){
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:designTab']");
     settingTabLink.click();
-    waitForElementPresent(By.id("adminui:adminTabView:colorForm"), true);
+    waitForElementPresent(By.id("adminui:adminTabView:logo-color-form"), true);
   }
   
   public void chooseMainColor(String color) {
-    click(By.id("adminui:adminTabView:colorForm:main-color-chooser_button"));
+    click(By.id("adminui:adminTabView:logo-color-form:main-color-chooser_button"));
     waitForElementDisplayed(By.className("ui-colorpicker-container"), true);
     
     WebDriver driver = Browser.getBrowser().getDriver();
     JavascriptExecutor jse = (JavascriptExecutor)driver;
     jse.executeScript("document.querySelector('div.ui-colorpicker_hex > input').value='"+ color +"';");
-    jse.executeScript("document.getElementById('adminui:adminTabView:colorForm:main-color-chooser_input').value='"+ color +"';");
+    jse.executeScript("document.getElementById('adminui:adminTabView:logo-color-form:main-color-chooser_input').value='"+ color +"';");
   }
   
   public String getMainColor() {
-    return findElementById("adminui:adminTabView:colorForm:main-color-chooser_input").getText();
+    return findElementById("adminui:adminTabView:logo-color-form:main-color-chooser_input").getText();
   }
   
   public HomePage applyNewColor(){
-    click(By.id("adminui:adminTabView:colorForm:apply-colors-button"));
+    click(By.id("adminui:adminTabView:logo-color-form:apply-button"));
     return new HomePage();
   }
   
