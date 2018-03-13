@@ -16,6 +16,11 @@
 						Modify cms entry <code>PortalStyle/images/logo/loginLogo.png</code> to update login logo.
 					</para>
 				</listitem>
+				<listitem>
+					<para>
+						Override the variables: @login-logo-height, @home-logo-height in <code>customization.less</code> to scale your logos.
+					</para>
+				</listitem>
 			</itemizedlist>
 		</para>
 	</sect2>
