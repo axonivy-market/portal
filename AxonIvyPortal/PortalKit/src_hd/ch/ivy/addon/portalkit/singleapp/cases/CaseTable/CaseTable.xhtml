@@ -68,7 +68,7 @@
       </p:column>
 
       <p:column id="command" styleClass="TexAlCenter Wid10"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseTreeTable/actions')}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
         <p:link rendered="#{not empty case.processCaseDetails || not empty cc.attrs.defaultCaseDetailsLink}"
           href="#{empty case.processCaseDetails ? cc.attrs.defaultCaseDetailsLink : case.processCaseDetails}?caseId=#{case.id}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"

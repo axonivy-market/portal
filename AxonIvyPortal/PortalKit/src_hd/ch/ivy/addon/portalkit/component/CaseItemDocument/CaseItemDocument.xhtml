@@ -42,13 +42,13 @@
       <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
         actionListener="#{data.setRemoteCase(case)}" oncomplete="PF('document-upload-dialog-#{case.id}').show()">
         <span class="fa fa-plus-circle case-details-document-add-link-icon" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocument')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
       </p:commandLink>
     </h:panelGroup>
   </div>
 
   <p:dialog id="document-upload-dialog-#{case.id}" widgetVar="document-upload-dialog-#{case.id}" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocument')}" modal="true" resizable="false"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" modal="true" resizable="false"
     showEffect="fade" hideEffect="fade" width="800" dynamic="true">
     <h:form id="document-upload-form">
       <p:messages id="upload-messages" />
