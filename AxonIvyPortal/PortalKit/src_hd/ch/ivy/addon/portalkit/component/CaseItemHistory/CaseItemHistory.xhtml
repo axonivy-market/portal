@@ -62,7 +62,7 @@
       <p:commandLink id="add-note-command" styleClass="case-details-document-add-link" 
         onclick="PF('add-note-dialog-#{case.id}').show()" actionListener="#{data.setRemoteCase(case)}">
         <span class="fa fa-plus-circle case-details-note-add-link-icon" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
       </p:commandLink>
       <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link"
       	target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}">
@@ -85,7 +85,7 @@
   </p:dialog>
 
   <p:dialog id="add-note-dialog-#{case.id}" widgetVar="add-note-dialog-#{case.id}" dynamic="true" closable="true"
-    closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}"
+    closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
     showEffect="fade" resizable="false" modal="true" width="40%" appendTo="@(body)">
     <h:form id="add-note-form">
       <h:panelGroup layout="block">

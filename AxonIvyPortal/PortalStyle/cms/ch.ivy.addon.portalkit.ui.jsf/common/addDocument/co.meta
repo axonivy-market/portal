@@ -1,0 +1,4 @@
+co: name={addDocument} description={} changed={2018-03-14 09:36:37 GMT} changedby={nttai} visualorder={0} guid={16223DE5B9F5E0C6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16223DE5BB91FA1D} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-09 05:00:49 GMT} validto={} changed={2018-03-14 09:36:37 GMT} changedby={nttai} properties={} id={}
+val: guid={16223DE5BC487864} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 09:49:06 GMT} validto={} changed={2018-03-14 09:36:37 GMT} changedby={nttai} properties={} id={}
+val: guid={16223DE5BABF9CF3} datatype={} isdefault={true} langid={en} description={} validfrom={2015-11-09 05:00:45 GMT} validto={} changed={2018-03-14 09:36:37 GMT} changedby={nttai} properties={} id={}
