@@ -52,7 +52,7 @@ public class RemoteAbsenceMapper {
   /**
    * Convert from ivyAbsence to RemoteAbsence.
    * 
-   * @param ivyAbsence web service absence
+   * @param remoteAbsence web service absence
    * @return RemoteAbsence remote absence
    * @see IvyAbsence
    * @see RemoteAbsence

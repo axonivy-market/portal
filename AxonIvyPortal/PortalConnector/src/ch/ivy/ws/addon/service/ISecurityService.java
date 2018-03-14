@@ -17,7 +17,8 @@ public interface ISecurityService {
 
 	/**
 	 * Find all users provided by ivy
-	 * @return
+	 * @param apps 
+	 * @return SecurityServiceResult
 	 * @throws WSException
 	 */
 	public SecurityServiceResult findAllUsers(List<String> apps) throws WSException;
@@ -25,7 +26,8 @@ public interface ISecurityService {
 	
 	/**
 	 * Find all ivy roles 
-	 * @return
+	 * @param apps 
+	 * @return SecurityServiceResult
 	 * @throws WSException
 	 */
 	public SecurityServiceResult findAllRoles(List<String> apps) throws WSException;
@@ -33,8 +35,9 @@ public interface ISecurityService {
 	
 	/**
 	 * Find all users for the role
+	 * @param app 
 	 * @param roleId
-	 * @return
+	 * @return SecurityServiceResult
 	 * @throws WSException
 	 */
 	public SecurityServiceResult findUsersByRoleId(String app, Long roleId) throws WSException;
@@ -43,7 +46,7 @@ public interface ISecurityService {
 	 /**
    * Find all ivy security members to delegate
    * @param task 
-   * @return
+   * @return SecurityServiceResult
    * @throws WSException
    */
   public SecurityServiceResult findSecurityMembersToDelegate(ITask task) throws WSException;

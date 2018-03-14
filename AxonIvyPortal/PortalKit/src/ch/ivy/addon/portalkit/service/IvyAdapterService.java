@@ -47,7 +47,7 @@ public class IvyAdapterService {
   public static <V> V executeCallableAsSystem(Callable<V> callable) {
     try {
       ISecurityManager securityManager = SecurityManagerFactory.getSecurityManager();
-      V callableResult = (V) securityManager.executeAsSystem(callable);
+      V callableResult = securityManager.executeAsSystem(callable);
       return callableResult;
     } catch (EnvironmentNotAvailableException e) {
       String message = "Environment not available.";
@@ -69,7 +69,7 @@ public class IvyAdapterService {
    * sub process with the given signature is expected.
    * 
    * @param subProcessSignature The signature of the sub process to be triggered.
-   * @param paramters The parameters to pass to the process.
+   * @param parameters The parameters to pass to the process.
    * @param excludedLibraries The subprocess from these libraries name will be excluded
    * @return The response of the process execution.
    */

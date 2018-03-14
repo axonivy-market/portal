@@ -12,6 +12,7 @@ public class ManagedBeans {
   /**
    * Returns the instance of the specified {@code beanName} from the current {@code FacesContext}.
    * If the bean cannot be obtained, {@code RuntimeException} will be thrown.
+   * @param beanName 
    * 
    * @return instance of the bean associating with {@code beanName}. Never returns {@code null}.
    * @throws NoSuchElementException if the bean is not present at the time of this invocation
@@ -34,6 +35,7 @@ public class ManagedBeans {
    * this method will not throw exception if the bean is not present. However, the client of this
    * method should check for present of the bean via the returned {@code Optional}, otherwise,
    * you'll get {@link NoSuchElementException}
+   * @param beanName 
    *
    * @return an instance of {@code Optional}. Never returns {@code null}
    */

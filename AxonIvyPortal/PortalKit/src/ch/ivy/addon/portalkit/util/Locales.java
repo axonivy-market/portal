@@ -10,7 +10,8 @@ public class Locales {
 	public Locale getCurrentLocale(){
 		try {
 			  return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Locale>() {
-				public Locale call() throws Exception {
+				@Override
+        public Locale call() throws Exception {
 					IUser user = Ivy.session().getSessionUser();
 					Locale emailLanguage = user.getEMailLanguage();
 					if (emailLanguage != null) {

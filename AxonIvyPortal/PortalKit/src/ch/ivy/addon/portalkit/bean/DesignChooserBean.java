@@ -169,7 +169,7 @@ public class DesignChooserBean implements Serializable {
     }
   }
 
-  private void uploadLogo(InputStream is, String cms) throws IOException {
+  private void uploadLogo(InputStream is, String cms) {
     Ivy.cms().findContentObjectValue(cms, Locale.ENGLISH).setContent(is, 0, null);
   }
   

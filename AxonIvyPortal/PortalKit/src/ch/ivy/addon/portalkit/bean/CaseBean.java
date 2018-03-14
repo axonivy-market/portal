@@ -41,7 +41,7 @@ public class CaseBean implements Serializable {
   /**
    * Get the state of case
    * 
-   * @param case to get the state
+   * @param iCase to get the state
    * @return the state of case
    */
   public String getState(ICase iCase) {

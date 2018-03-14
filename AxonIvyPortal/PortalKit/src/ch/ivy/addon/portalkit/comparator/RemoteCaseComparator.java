@@ -17,7 +17,7 @@ public final class RemoteCaseComparator {
     return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
   }
 
-  public static <U extends Comparable<String>> Comparator<RemoteCase> comparatorString(
+  public static Comparator<RemoteCase> comparatorString(
       Function<? super RemoteCase, String> function) {
     Collator collator = Collator.getInstance(Locale.GERMAN);
     function = function.andThen(s -> s == null ? StringUtils.EMPTY : s);

@@ -198,7 +198,7 @@ public final class AbsenceAndSubstituteUtils {
     }
 
     Date startDate = setTimeToMidnight(remoteAbsence.getStartDateInclusive());
-    Date stopDate = setTimeToMidnight(remoteAbsence.getStopDateInclusive());;
+    Date stopDate = setTimeToMidnight(remoteAbsence.getStopDateInclusive());
 
     if (remoteAbsence != null && remoteAbsence.getStopDateInclusive() != null
         && remoteAbsence.getStartDateInclusive() != null && (startDate.compareTo(stopDate) > 0)) {
