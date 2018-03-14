@@ -162,11 +162,11 @@ public class ElapsedTimeDetailsBean implements Serializable {
     Map<String, Number> elapsedTimeData = statisticService.generateDataForElapsedTimeChart(statisticData);
 
     for (Map.Entry<String, Number> entry : elapsedTimeData.entrySet()) {
-      result.put((Object)entry.getKey(), entry.getValue());
+      result.put(entry.getKey(), entry.getValue());
     }
 
     if (result.size() == 0) {
-      result.put((Object) StringUtils.EMPTY, 0);
+      result.put(StringUtils.EMPTY, 0);
     }
 
     ChartSeries series = new ChartSeries();

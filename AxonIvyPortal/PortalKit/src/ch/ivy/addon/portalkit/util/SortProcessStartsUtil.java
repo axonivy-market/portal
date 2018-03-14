@@ -27,7 +27,8 @@ public class SortProcessStartsUtil {
 	public static void SortProcessStarts(List<IProcessStart> list, Locale locale) {
 		final Collator collator = Collator.getInstance(locale);
 		Collections.sort(list, new Comparator<IProcessStart>() {
-			public int compare(IProcessStart o1, IProcessStart o2) {
+			@Override
+      public int compare(IProcessStart o1, IProcessStart o2) {
 				try {
 					String str1 = o1.getName();
 					String str2 = o2.getName();

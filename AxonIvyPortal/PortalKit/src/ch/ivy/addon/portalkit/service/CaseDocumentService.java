@@ -63,6 +63,7 @@ public class CaseDocumentService {
   }
 
   /**
+   * @param filename 
    * @throws IOException cannot find the file to delete
    */
   public void delete(String filename) throws IOException {
@@ -74,6 +75,8 @@ public class CaseDocumentService {
   }
 
   /**
+   * @param filename 
+   * @return streamed content
    * @throws IOException cannot find the file to download
    */
   public StreamedContent download(String filename) throws IOException {

@@ -85,7 +85,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
           List<IProcessModelVersion> activeReleasedPmvs = getActiveReleasedPmvs(app);          
           IUser user = app.getSecurityContext().findUser(username);
           if (user != null) {
-            String userLanguage = getUserLanguage(app, user);
+            String userLanguage = getUserLanguage(user);
             result.setUserLanguage(userLanguage.toLowerCase());
           } else {
             // user not found
@@ -103,7 +103,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
         return result;
       }
 
-      private String getUserLanguage(IApplication app, IUser user) {
+      private String getUserLanguage(IUser user) {
         return user.getEMailLanguage() != null? 
             user.getEMailLanguage().toLanguageTag(): Locale.ENGLISH.toLanguageTag();
       }
@@ -165,7 +165,6 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
    * 
    * @param appName
    * @param username
-   * @param absences : list of absences to save
    * @throws Exception
    */
   private List<WSException> saveLanguagesSettings(final String appName, final String username,

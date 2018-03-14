@@ -69,6 +69,7 @@ public class TaskCreationDateFilter extends TaskFilter {
     toCreationDate = null;
   }
   
+  @Override
   public void validate() {
     if (fromCreationDate != null && toCreationDate != null && (fromCreationDate.compareTo(toCreationDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();

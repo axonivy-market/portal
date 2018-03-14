@@ -112,6 +112,9 @@ public class UrlDetector {
    * If using default port of the protocol then return -1 to ignore port when
    * constructing URL. E.g: http://localhost/ivy instead of
    * http://localhost:80/ivy
+   * @param protocol 
+   * @param port 
+   * @return port
    */
   public int getPortForConstructingUrl(String protocol, int port) {
     if ((RequestUriFactory.HTTPS_PROTOCOL.equalsIgnoreCase(protocol) && port == RequestUriFactory.HTTPS_PORT)

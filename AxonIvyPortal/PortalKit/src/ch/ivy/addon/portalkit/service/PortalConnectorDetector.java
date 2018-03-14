@@ -96,7 +96,7 @@ public class PortalConnectorDetector {
     }
   }
 
-  public String getPortalConectorLocalhostURLFromSystemProperty() throws UnknownHostException {
+  public String getPortalConectorLocalhostURLFromSystemProperty() {
     IApplication portalConnectorApplication = getPortalConnectorApplication();
 
     Callable<String> getPortalConnectorURLCallable = () -> {
@@ -125,7 +125,7 @@ public class PortalConnectorDetector {
     return portalConnectorURL;
   }
 
-  public String getPortalConectorLocalhostURLFromRequestURL() throws UnknownHostException {
+  public String getPortalConectorLocalhostURLFromRequestURL() {
     IApplication portalConnectorApplication = getPortalConnectorApplication();
 
     Callable<String> getPortalConnectorURLCallable = () -> {

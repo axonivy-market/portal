@@ -11,6 +11,11 @@ public interface IWebStartableService {
 
   /**
    * Find all web starts by criteria
+   * @param webStartableSearchCriteria 
+   * @param language 
+   * @param isUrlBuiltFromSystemProperties 
+   * @return WebStartableServiceResult
+   * @throws WSException 
    */
   public WebStartableServiceResult findWebStartablesByCriteria(WebStartableSearchCriteria webStartableSearchCriteria,
       String language, Boolean isUrlBuiltFromSystemProperties) throws WSException;

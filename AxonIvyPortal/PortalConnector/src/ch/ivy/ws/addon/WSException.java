@@ -221,7 +221,7 @@ public class WSException extends Exception {
 	}
 	/**
 	 * gets the datetime of the error
-	 * @return
+	 * @return DateTime
 	 */
 	public DateTime getErrorDateTime() {
 		return errorDateTime;
@@ -275,7 +275,8 @@ public class WSException extends Exception {
 		this.userText = userText;
 	}
 	
-	public Throwable getCause(){
+	@Override
+  public Throwable getCause(){
 		if(this.exception != null && this.exception.getCause() != null){
 			return this.exception.getCause();
 		}else{
@@ -285,14 +286,14 @@ public class WSException extends Exception {
 
 	/**
 	 * checks if user message and help text are already initialized
-	 * @return
+	 * @return Boolean
 	 */
 	public Boolean isTextInitialized() {
 		return textInitialized;
 	}
 	/**
 	 * checks if the object was generated with an original 
-	 * @return
+	 * @return Boolean
 	 */
 	public Boolean isExceptionAvailable() {
 		return exceptionAvailable;

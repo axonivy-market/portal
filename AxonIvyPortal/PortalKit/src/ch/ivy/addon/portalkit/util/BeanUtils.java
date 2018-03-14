@@ -19,15 +19,12 @@ public final class BeanUtils {
   /**
    * Invoke method of another bean from which bean called this method by method
    * expression string</br> Exp: #{logic.plusTwoRealNumber}
-   * 
-   * @param methodEL
-   *          method expression string
-   * @param parameters
-   *          array of parameter of method
+   * @param methodExpresstion 
+   * @param params 
    * @return return value
    * @throws ELException
    *           if method expression string is invalid
-   * @throws ClassCaseException
+   * @throws ClassCastException
    *           if return type is wrong
    */
   @SuppressWarnings("unchecked")

@@ -109,8 +109,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * filterContainer = new CustomizedTaskFilterContainer();
    * </pre></code>
    * </p>
-   * 
-   * @return
    */
   protected void initFilterContainer() {
     filterContainer = new DefaultTaskFilterContainer();
@@ -163,7 +161,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * @param first
    * @param pageSize
    * @param criteria
-   * @return
+   * @return List<RemoteTask>
    */
   protected List<RemoteTask> findTasks(int first, int pageSize, TaskSearchCriteria criteria) {
     IvyComponentLogicCaller<List<RemoteTask>> findTaskCaller = new IvyComponentLogicCaller<>();
@@ -247,7 +245,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
   }
 
-  protected <U extends Comparable<String>> Comparator<RemoteTask> comparatorString(
+  protected Comparator<RemoteTask> comparatorString(
       Function<? super RemoteTask, String> function) {
     Collator collator = Collator.getInstance(Locale.GERMAN);
     return Comparator.comparing(function, Comparator.nullsLast(collator));
@@ -262,7 +260,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * Calls the countTasks logic of TaskWidget Html dialog to count the number of found tasks.
    * 
    * @param criteria
-   * @return
+   * @return task count
    */
   protected int getTaskCount(TaskSearchCriteria criteria) {
     IvyComponentLogicCaller<Long> countTaskCaller = new IvyComponentLogicCaller<>();
@@ -275,7 +273,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   /**
    * Initializes TaskSearchCriteria
    * 
-   * @return
+   * @return TaskSearchCriteria
    */
   protected TaskSearchCriteria buildCriteria() {
     TaskSearchCriteria criteria = new TaskSearchCriteria();
@@ -286,7 +284,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   /**
    * Initializes TaskQueryCriteria
    * 
-   * @return
+   * @return TaskQueryCriteria
    */
   protected TaskQueryCriteria buildQueryCriteria() {
     TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
@@ -315,9 +313,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * </p>
    * 
    * @param taskQuery
-   * @return
    */
-  protected void extendSort(TaskQuery taskQuery) {}
+  protected void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {}
 
   @Override
   public void setRowIndex(int index) {
@@ -508,6 +505,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * Save all filter settings to business data
+   * @param filterName 
+   * @param filterType 
+   * @param taskFilterGroupId 
+   * @return TaskFilterData
    */
   public TaskFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
     TaskFilterData taskFilterData = new TaskFilterData();
@@ -533,6 +534,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel}
+   * @param taskFilterData 
+   * @throws IllegalAccessException 
+   * @throws InvocationTargetException 
+   * @throws NoSuchMethodException 
    */
   public void applyFilter(TaskFilterData taskFilterData) throws IllegalAccessException, InvocationTargetException,
       NoSuchMethodException {
@@ -621,8 +626,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * }
    * </pre></code>
    * </p>
-   * 
-   * @return
    */
   protected void extendSortTasksInNotDisplayedTaskMap() {}
 
@@ -698,7 +701,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * Also the list of checkboxes in config columns panel
    * </p>
    * 
-   * @return
+   * @return default columns
    */
   protected List<String> getDefaultColumns() {
     return PORTAL_DEFAULT_COLUMNS;
@@ -712,8 +715,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * You can either add new entry to default folder below in PortalStyle or override this method to create your own folder
    * column must be the same with sortField
    * </p>
+   * @param column 
    * 
-   * @return
+   * @return column label
    */
   public String getColumnLabel(String column) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);

@@ -68,6 +68,7 @@ public class CaseCreationDateFilter extends CaseFilter {
 
   }
 
+  @Override
   public void validate() {
     if (fromCreationDate != null && toCreationDate != null && (fromCreationDate.compareTo(toCreationDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();

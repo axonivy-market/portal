@@ -106,7 +106,7 @@ public class RemoteTask {
   }
 
   /**
-   * @{link {@link ApplicationRegister} object that this task belongs to
+   * @{link {@link Application} object that this task belongs to
    */
   private Application applicationRegister;
 
@@ -407,6 +407,7 @@ public class RemoteTask {
 
   }
 
+  @SuppressWarnings("unused")
   public void setDelayTimestamp(Date newDelayTimestamp) {
 
   }
@@ -430,6 +431,7 @@ public class RemoteTask {
     this.expiryTimestamp = newExpiryTimestamp;
   }
 
+  @SuppressWarnings("unused")
   public void setKind(String kindCode, String kindName) {
 
   }
@@ -617,7 +619,7 @@ public class RemoteTask {
    * @param remoteApplication remote application
    */
   public void setApplication(RemoteApplication remoteApplication) {
-    this.remoteApplication = (RemoteApplication) remoteApplication;
+    this.remoteApplication = remoteApplication;
   }
 
   /**
@@ -626,7 +628,7 @@ public class RemoteTask {
    * @param remoteCase remote case
    */
   public void setCase(RemoteCase remoteCase) {
-    this.remoteCase = (RemoteCase) remoteCase;
+    this.remoteCase = remoteCase;
   }
 
   /**

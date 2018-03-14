@@ -24,10 +24,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.document.IDocumentService;
 
-/**
- * @author lptchi
- *
- */
 public class DocumentFileUtils {
 	
 	/**
@@ -36,7 +32,7 @@ public class DocumentFileUtils {
 	 * @param fileName file name to check exist
 	 * @return boolean check file is exist or not
 	 */
-	public static boolean checkFileExist(ICase currentCase, InputStream inputStream, String fileName){
+	public static boolean checkFileExist(ICase currentCase, @SuppressWarnings("unused") InputStream inputStream, String fileName){
 		String originalFileName = FilenameUtils.getName(fileName);
 		IDocumentService documentService = currentCase.documents();
 		List<IDocument> documents = documentService.getAll();

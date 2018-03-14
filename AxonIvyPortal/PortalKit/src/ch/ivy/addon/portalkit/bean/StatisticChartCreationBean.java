@@ -50,7 +50,6 @@ public class StatisticChartCreationBean implements Serializable {
    * Create model for "Task by Priority" chart from given statistic filter
    * 
    * @param filter statistic filter
-   * @return chart model
    */
   public void updateTaskByPriorityModel(StatisticFilter filter) {
     String jsonQuery = statisticService.generateTaskQuery(filter).asJson();
@@ -62,7 +61,6 @@ public class StatisticChartCreationBean implements Serializable {
    * Create model for "Task by Expiry Date" chart from given statistic filter
    * 
    * @param filter statistic filter
-   * @return chart model
    */
   public void updateTaskByExpiryModel(StatisticFilter filter) {
     String jsonQuery = statisticService.generateTaskQueryForExpiry(filter).asJson();
@@ -74,7 +72,6 @@ public class StatisticChartCreationBean implements Serializable {
    * Create model for "Case by State" chart from given statistic filter
    * 
    * @param filter statistic filter
-   * @return chart model
    */
   public void updateCaseByStateModel(StatisticFilter filter) {
     String jsonQuery = statisticService.generateCaseQuery(filter, false).asJson();
@@ -86,7 +83,6 @@ public class StatisticChartCreationBean implements Serializable {
    * Create model for "Elapsed time by Case Category" chart from given statistic filter
    * 
    * @param filter statistic filter
-   * @return chart model
    */
   public void updateElapsedTimeByCaseCategory(StatisticFilter filter) {
     String jsonQuery = statisticService.generateCaseQuery(filter, true).asJson();

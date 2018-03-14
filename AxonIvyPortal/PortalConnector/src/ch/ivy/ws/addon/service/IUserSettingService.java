@@ -17,7 +17,8 @@ public interface IUserSettingService {
 	/**
 	 * Find user settings for the passed user
 	 * @param username
-	 * @return
+	 * @param appName 
+	 * @return UserSettingServiceResult
 	 * @throws WSException
 	 */
 	public UserSettingServiceResult findUserSetting(String username, String appName) throws WSException;
@@ -26,6 +27,7 @@ public interface IUserSettingService {
 	 * Save the user settings for the passed user
 	 * @param username
 	 * @param setting
+	 * @param appName 
 	 * @throws WSException
 	 */
 	public void saveUserSetting(String username, IvyUserSetting setting, String appName) throws WSException;
@@ -53,7 +55,7 @@ public interface IUserSettingService {
    * @param apps
    * @param username
    * @param password
-   * @return
+   * @return List<WSException>
    * @throws WSException
    */
   public List<WSException> changePassword(List<String> apps, String username, String password) throws WSException;

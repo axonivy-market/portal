@@ -402,6 +402,7 @@ public class RemoteCaseMapper {
    * Map list of IvyCase to list of RemoteCase.
    * 
    * @param ivyCases list of {@link IvyCase}
+   * @param server 
    * @return list of {@link RemoteCase}
    * @see IvyCase
    * @see RemoteCase
@@ -424,6 +425,7 @@ public class RemoteCaseMapper {
    * Map IvyCase to RemoteCase.
    * 
    * @param ivyCase {@link IvyCase}
+   * @param server 
    * @return {@link RemoteCase}
    * @see IvyCase
    * @see RemoteCase
