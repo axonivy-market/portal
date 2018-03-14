@@ -106,8 +106,6 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
    * filterContainer = new CustomizedCaseFilterContainer();
    * </pre></code>
    * </p>
-   * 
-   * @return
    */
   protected void initFilterContainer() {
     filterContainer = new DefaultCaseFilterContainer();
@@ -401,6 +399,10 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   /**
    * Save all filter settings to business data
+   * @param filterName 
+   * @param filterType 
+   * @param filterGroupId 
+   * @return saved CaseFilterData
    */
   public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
     CaseFilterData filterData = new CaseFilterData();
@@ -427,6 +429,10 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   /**
    * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
+   * @param caseFilterData 
+   * @throws IllegalAccessException 
+   * @throws InvocationTargetException 
+   * @throws NoSuchMethodException 
    */
   public void applyFilter(CaseFilterData caseFilterData) throws IllegalAccessException, InvocationTargetException,
       NoSuchMethodException {
@@ -435,8 +441,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     applyCustomSettings(caseFilterData);
   }
 
-  private void applyCustomSettings(CaseFilterData caseFilterData) throws IllegalAccessException,
-      InvocationTargetException, NoSuchMethodException {
+  private void applyCustomSettings(CaseFilterData caseFilterData) {
     queryCriteria.setKeyword(caseFilterData.getKeyword());
   }
 

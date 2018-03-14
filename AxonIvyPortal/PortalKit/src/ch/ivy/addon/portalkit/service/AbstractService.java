@@ -18,7 +18,7 @@ class AbstractService<T extends BusinessEntity> {
   }
 
   /**
-   * Proxy constructor of {@link AbstratService} instance to implicitly pass PortalConnector
+   * Proxy constructor of {@link AbstractService} instance to implicitly pass PortalConnector
    * Application to {@link AbstractDao} property
    * 
    * @param daoClassType
@@ -67,6 +67,7 @@ class AbstractService<T extends BusinessEntity> {
 
   /**
    * Creates a new entity or updates an old entity in ivy application property.
+   * @param entity 
    * 
    * @return The newly created or updated entity.
    */
@@ -85,6 +86,8 @@ class AbstractService<T extends BusinessEntity> {
 
   /**
    * Gets entity object from ivy application property by id
+   * @param id 
+   * @return entity
    */
   public T findById(long id) {
     return getDao().findById(id);
@@ -92,6 +95,7 @@ class AbstractService<T extends BusinessEntity> {
 
   /**
    * Gets all entity object from ivy application property
+   * @return entities
    */
   public List<T> findAll() {
     return getDao().findAll();
@@ -99,6 +103,7 @@ class AbstractService<T extends BusinessEntity> {
 
   /**
    * Creates entities or updates old entities in ivy application property.
+   * @param entities 
    * 
    * @return The newly created or updated entity.
    */
@@ -108,8 +113,7 @@ class AbstractService<T extends BusinessEntity> {
 
   /**
    * Deletes entities in ivy application property
-   * 
-   * @param entity
+   * @param entities 
    */
   public void deleteAll(List<T> entities) {
     getDao().deleteAll(entities);

@@ -863,7 +863,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   private TaskServiceResult result(long taskCount, List<WSException> errors) {
     TaskServiceResult result = new TaskServiceResult();
-    result.setTaskCount(taskCount);;
+    result.setTaskCount(taskCount);
     result.setErrors(errors);
     return result;
   }
@@ -913,7 +913,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     return taskQuery;
   }
 
-  private TaskQuery queryForInvolvedApplications(List<String> apps) throws WSException {
+  private TaskQuery queryForInvolvedApplications(List<String> apps) {
     List<IvyApplication> applications = WsServiceFactory.getApplicationService().getApplicationsBy(apps);
     TaskQuery taskQuery = TaskQuery.create();
     applications.forEach(app -> taskQuery.where().or().applicationId().isEqual(app.getId()));
@@ -956,7 +956,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
    * @param query given {@link TaskQuery}
    * @param startIndex starts from 0
    * @param count used -1 to find all from startIndex
-   * @return
+   * @return List<ITask>
    */
   private List<ITask> executeTaskQuery(TaskQuery query, Integer startIndex, Integer count) {
     List<ITask> tasks = taskQueryExecutor().getResults(query, startIndex, count);

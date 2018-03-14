@@ -16,6 +16,7 @@ public class ServerUrlUtils {
   /**
    * Gets server url based on system properties. If the system properties are not configured properly, it will return
    * the default server url
+   * @return string
    */
   public static String buildUrlFromSystemProperties() {
     String externalProtocol = SystemProperties.getSystemPropertyValue(SystemProperties.EXTERNAL_PROTOCOL);

@@ -21,7 +21,7 @@ public final class Dates {
    * @param endDate1
    * @param startDate2
    * @param endDate2
-   * @return
+   * @return boolean
    */
   public static boolean isTwoPeriodsOfDateOverlapped(Date startDate1, Date endDate1, Date startDate2, Date endDate2) {
     int i1 = compareTruncatedByHour(startDate1, startDate2);
@@ -44,7 +44,7 @@ public final class Dates {
    * Return new Date object same date with given date but time is end of day (23h59m59s)
    * 
    * @param date
-   * @return
+   * @return end of date
    */
   public static Date toEndOfDate(Date date){
     Calendar c = Calendar.getInstance();

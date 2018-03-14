@@ -10,6 +10,11 @@ public interface ISideStepService {
 
   /**
    * Find all side step processes by the criteria
+   * @param sideStepSearchCriteria 
+   * @param language 
+   * @param isUrlBuiltFromSystemProperties 
+   * @return SideStepServiceResult
+   * @throws WSException 
    */
   public SideStepServiceResult findSideStepsByCriteria(SideStepSearchCriteria sideStepSearchCriteria, String language,
       Boolean isUrlBuiltFromSystemProperties) throws WSException;

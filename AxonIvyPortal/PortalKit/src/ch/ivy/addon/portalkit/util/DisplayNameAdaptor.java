@@ -26,7 +26,8 @@ public class DisplayNameAdaptor {
 		return convertor;
 	}
 
-	private boolean isValidJson(String jsonString) {
+	@SuppressWarnings("unused")
+  private boolean isValidJson(String jsonString) {
 		try {
 			new JSONObject(jsonString);
 		} catch (JSONException e) {

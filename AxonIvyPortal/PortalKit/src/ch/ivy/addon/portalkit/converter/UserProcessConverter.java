@@ -21,8 +21,8 @@ public class UserProcessConverter {
 
   /**
    * Converts list of {@link RemoteWebStartable} to list of {@link UserProcess}.
+   * @param webStartables 
    * 
-   * @param list of {@link RemoteWebStartable}
    * @return list of {@link UserProcess}
    */
   public List<UserProcess> convert(List<RemoteWebStartable> webStartables) {

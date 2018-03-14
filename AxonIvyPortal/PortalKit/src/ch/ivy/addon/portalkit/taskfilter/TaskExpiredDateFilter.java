@@ -69,6 +69,7 @@ public class TaskExpiredDateFilter extends TaskFilter {
     toExpiredDate = null;
   }
   
+  @Override
   public void validate() {
     if (fromExpiredDate != null && toExpiredDate != null && (fromExpiredDate.compareTo(toExpiredDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();

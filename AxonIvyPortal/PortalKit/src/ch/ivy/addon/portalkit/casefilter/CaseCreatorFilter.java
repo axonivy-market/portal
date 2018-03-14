@@ -77,6 +77,7 @@ public class CaseCreatorFilter extends CaseFilter {
     try {
       List<RemoteUser> users =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
+            @Override
             public List<RemoteUser> call() throws Exception {
               if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
                 return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()

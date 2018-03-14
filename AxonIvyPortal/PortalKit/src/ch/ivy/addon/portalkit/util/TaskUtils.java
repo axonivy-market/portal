@@ -153,6 +153,7 @@ public final class TaskUtils {
         || task.getState().equals(TaskState.PARKED) || task.getState().equals(TaskState.READY_FOR_JOIN)
         || task.getState().equals(TaskState.FAILED)) {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+        @Override
         public Boolean call() throws Exception {
           task.reset();
           return true;
@@ -197,6 +198,7 @@ public final class TaskUtils {
   public static Boolean removeTaskDelay(final ITask task) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+        @Override
         public Boolean call() {
           try {
             task.setDelayTimestamp(null);
@@ -217,7 +219,6 @@ public final class TaskUtils {
    * Generate a tree data for Universal Task List UI
    * 
    * @param tasks : list task need to build
-   * @param apps : list application
    * @return TreeNode : tree data for Universal Task List UI
    */
   public static TreeNode generateAppTree(List<ITask> tasks) {
@@ -272,6 +273,7 @@ public final class TaskUtils {
   public static ITask findTaskUserHasPermissionToSee(final long taskId) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ITask>() {
+        @Override
         public ITask call() throws Exception {
           try {
             TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
@@ -382,6 +384,7 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               String st = iTask.getActivator().getMemberName();
@@ -419,6 +422,7 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               String st = iTask.getActivator().getMemberName();
@@ -456,6 +460,7 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               String st = iTask.getActivator().getMemberName();
@@ -490,6 +495,7 @@ public final class TaskUtils {
   public static String getPhone(final IUser iUser) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+        @Override
         public String call() {
           try {
             return iUser.getProperty(UserUtils.PHONE);
@@ -514,6 +520,7 @@ public final class TaskUtils {
   public static String getMobile(final IUser iUser) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+        @Override
         public String call() {
           try {
             return iUser.getProperty(UserUtils.MOBILE);
@@ -538,6 +545,7 @@ public final class TaskUtils {
   public static String getEmailAddress(final IUser iUser) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+        @Override
         public String call() {
           try {
             return iUser.getEMailAddress();
@@ -562,6 +570,7 @@ public final class TaskUtils {
   public static List<ITask> findWaitingTaskByKindCode(final String kindCode) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<List<ITask>>() {
+        @Override
         public List<ITask> call() throws Exception {
           try {
             TaskQuery taskQuery =
@@ -593,6 +602,7 @@ public final class TaskUtils {
   public static ITask findTaskById(final long taskId) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ITask>() {
+        @Override
         public ITask call() throws Exception {
           ITask t = null;
           try {
@@ -619,6 +629,7 @@ public final class TaskUtils {
   public static Recordset findtasks(final TaskQuery taskQuery) {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Recordset>() {
+        @Override
         public Recordset call() throws Exception {
           return Ivy.wf().getTaskQueryExecutor().getRecordset(taskQuery);
         }
@@ -634,10 +645,12 @@ public final class TaskUtils {
    * Delegate a task
    * 
    * @param iTask task need to delegate
+   * @param iSecurityMember 
    */
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
+        @Override
         public Object call() throws Exception {
           iTask.setActivator(iSecurityMember);
           return null;
