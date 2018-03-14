@@ -57,6 +57,7 @@ public class UserUtils {
   public static List<IUser> getAllUsers() {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
+        @Override
         public List<IUser> call() throws Exception {
           ISecurityContext security = getIvySession().getSecurityContext();
           List<IUser> usersOut = new ArrayList<IUser>();
@@ -86,6 +87,7 @@ public class UserUtils {
   public static List<IUser> getAllUsersForDelegate() {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
+        @Override
         public List<IUser> call() throws Exception {
           ISecurityContext security = getIvySession().getSecurityContext();
           List<IUser> delegatedUsers = new ArrayList<IUser>();
@@ -141,10 +143,11 @@ public class UserUtils {
   public static void setLanguague() {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
+        @Override
         public Object call() throws Exception {
           IUser sessionUser = getIvySession().getSessionUser();
           Locale l = null;
-          if (sessionUser.getEMailLanguage() != null && sessionUser.getEMailLanguage() instanceof Locale) {
+          if (sessionUser.getEMailLanguage() != null) {
             l = sessionUser.getEMailLanguage();
           } else {
             // Application Default
@@ -179,6 +182,7 @@ public class UserUtils {
       final Locale eMailLanguage, final String eMailAddress, final String externalSecuritySystemName) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
+        @Override
         public Object call() throws Exception {
           Ivy.wf().getSecurityContext()
               .createUser(userName, fullUserName, password, eMailLanguage, eMailAddress, externalSecuritySystemName);
@@ -196,6 +200,7 @@ public class UserUtils {
   public static void deleteIvyUser(final String userName) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
+        @Override
         public Object call() throws Exception {
           Ivy.wf().getSecurityContext().deleteUser(userName);
           Ivy.log().info("Deleted Ivy user: " + userName);

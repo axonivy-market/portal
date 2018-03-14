@@ -360,8 +360,7 @@ public class TaskBean implements Serializable {
 
   /**
    * Get the state of task
-   * 
-   * @param task to get the state
+   * @param state 
    * @return the state of task
    */
   public String getTranslatedState(TaskState state) {
@@ -374,7 +373,7 @@ public class TaskBean implements Serializable {
   public String displayRelatedTaskToolTip(RemoteTask task) {
   	String taskResponsible = "";
   	if(task != null) {
-  		taskResponsible = ((RemoteTask)task).getActivatorFullName();
+  		taskResponsible = task.getActivatorFullName();
   	}
   	List<Object> params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
   	return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);

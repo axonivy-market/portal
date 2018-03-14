@@ -92,5 +92,5 @@ public abstract class AbstractFilter<T extends Query<?>> {
    * </code>
    * </p>
    */
-  public void validate() {};
+  public void validate() {}
 }

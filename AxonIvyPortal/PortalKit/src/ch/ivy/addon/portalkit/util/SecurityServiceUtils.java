@@ -57,7 +57,7 @@ public class SecurityServiceUtils {
         if (Ivy.request() instanceof IHttpRequest) {
           Set<IProcessStart> processStarts = Ivy.wf().findProcessStartsBySignature(processStartsSignature);
           if (processStarts.iterator() != null && processStarts.iterator().hasNext()) {
-            IProcessStart processStart = (IProcessStart) processStarts.iterator().next();
+            IProcessStart processStart = processStarts.iterator().next();
             String fullRequestPath = processStart.getFullRequestPath();
             requestUri = "/pro/" + fullRequestPath;
           }
@@ -72,7 +72,7 @@ public class SecurityServiceUtils {
    * Finds process url by request path in whole server
    * 
    * @param processStartSignature
-   * @return
+   * @return request path
    * @throws Exception
    */
   public static String findProcessByUserFriendlyRequestPath(String processStartSignature) throws Exception {
@@ -99,8 +99,7 @@ public class SecurityServiceUtils {
   /**
    * Finds portal home page of the default portal application
    * 
-   * @param IApplication
-   * @return
+   * @return string
    * @throws Exception
    */
   public static String getDefaultPortalStartUrl() throws Exception {

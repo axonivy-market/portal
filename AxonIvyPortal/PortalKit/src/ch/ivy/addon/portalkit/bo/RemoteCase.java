@@ -465,10 +465,12 @@ public class RemoteCase {
 
   }
 
+  @SuppressWarnings("unused")
   public void setProcess(String processCode, String processName) throws PersistencyException {
 
   }
 
+  @SuppressWarnings("unused")
   public void setProcessCategory(String processCategoryCode, String processCategoryName) throws PersistencyException {
 
   }

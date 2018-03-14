@@ -214,7 +214,7 @@ public class Formelement implements Serializable{
 		
 	}
 	
-	public void deleteOption(FormelementOption option){
+	public void deleteOption(@SuppressWarnings("unused") FormelementOption option){
 		this.options.remove(this.options.size()-1);
 	}
 

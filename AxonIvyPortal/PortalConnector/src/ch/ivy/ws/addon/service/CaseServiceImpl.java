@@ -133,7 +133,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               List<String> additionalPropertyNames = c.getAdditionalPropertyNames();
 
               List<IvyAdditionalProperty> properties = new ArrayList<IvyAdditionalProperty>();
-              new ArrayList<IvyAdditionalProperty>();
               for (String property : additionalPropertyNames) {
                 IvyAdditionalProperty p = new IvyAdditionalProperty();
                 p.setKey(property);
@@ -528,6 +527,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
 
+  @Override
   public CaseServiceResult findCasesByCriteria(CaseSearchCriteria caseSearchCriteria, Integer startIndex, Integer count)
       throws WSException {
     List<WSException> errors = Collections.emptyList();
@@ -720,7 +720,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
   private CaseServiceResult result(long caseCount, List<WSException> errors) {
     CaseServiceResult result = new CaseServiceResult();
-    result.setCaseCount(caseCount);;
+    result.setCaseCount(caseCount);
     result.setErrors(errors);
     return result;
   }
@@ -798,7 +798,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     return finalQuery;
   }
 
-  private CaseQuery queryForInvolvedApplications(List<String> apps) throws WSException {
+  private CaseQuery queryForInvolvedApplications(List<String> apps) {
     List<IvyApplication> applications = WsServiceFactory.getApplicationService().getApplicationsBy(apps);
     CaseQuery caseQuery = CaseQuery.create();
     applications.forEach(app -> caseQuery.where().or().applicationId().isEqual(app.getId()));

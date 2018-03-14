@@ -10,7 +10,7 @@ public interface IIsAliveService {
 	/**
 	 * Checking, if applications from list are active
 	 * @param apps
-	 * @return
+	 * @return IsAliveServiceResult
 	 * @throws WSException
 	 */
 	public IsAliveServiceResult isActive(List<String> apps) throws WSException;

@@ -54,6 +54,7 @@ public class StatisticFilter {
     try {
       List<RemoteRole> roles =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
+            @Override
             public List<RemoteRole> call() throws Exception {
               return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
                   .get("roles", List.class);

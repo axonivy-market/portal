@@ -37,7 +37,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   /**
    * 
    * @param user
-   * @return
+   * @return IvyUserSetting
    * @throws WSException
    */
   private IvyUserSetting findUserSetting(IUser user) throws WSException {
@@ -369,7 +369,6 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
    * 
    * @param user
    * @param setting
-   * @throws
    */
   private IUserEMailNotificationSettings convertFromIvyEmailSettingToIUserEMailNotificationSettings(IUser user,
       IvyEmailSetting setting) {

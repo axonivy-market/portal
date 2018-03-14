@@ -92,11 +92,11 @@ public class TaskMenuBean implements Serializable {
     }
   }
 
-  public void onNodeCollapse(NodeCollapseEvent event) {
+  public void onNodeCollapse(@SuppressWarnings("unused") NodeCollapseEvent event) {
 
   }
 
-  public void onNodeSelect(NodeSelectEvent event) {
+  public void onNodeSelect(@SuppressWarnings("unused") NodeSelectEvent event) {
 
   }
 
