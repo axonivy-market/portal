@@ -229,7 +229,7 @@
             </p:dataTable>
             <f:facet name="footer">
               <p:commandButton id="add-note-command"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/addNote')}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
                 onclick="PF('addTaskNoteDialog').show()"
                 rendered="#{!cc.attrs.isDialogMode and (taskBean.isTaskAbleToAddNote(cc.attrs.task))}" />
             </f:facet>
