@@ -32,7 +32,7 @@
       </p:column>
 
       <p:column id="case-id-header" width="80" filterBy="#{task.caseId}" filterMatchMode="contains"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/case')} #" sortBy="#{task.caseId}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')} #" sortBy="#{task.caseId}">
         <h:outputText value=" #{task.caseId}" id="case-id-value" />
       </p:column>
 
@@ -49,7 +49,7 @@
       </p:column>
 
       <p:column id="created-date-header" width="150" filterBy="#{task.createdOn}" filterMatchMode="contains"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/createdOn')}" sortBy="#{task.caseDescription}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" sortBy="#{task.caseDescription}">
         <h:outputText value="#{task.createdOn}" id="created-date-value">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>

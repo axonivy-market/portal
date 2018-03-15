@@ -52,7 +52,7 @@
           </pe:tooltip>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/description')}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
           sortBy="#{task.description}">
           <h:outputText id="summaryDes" styleClass="u-break-word"
             value="#{task.description.length() gt 200 ? task.description.substring(0,200).concat(' ...') : task.description}" />

@@ -400,19 +400,19 @@ public class TaskBean implements Serializable {
     switch (state) {
       case SUSPENDED:
       case UNASSIGNED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/task/taskState/open");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/OPEN");
       case CREATED:
       case RESUMED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/task/taskState/inProgress");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/INPROGRESS");
       case DONE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/task/taskState/done");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE");
       case PARKED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/task/taskState/reserved");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/PARKED");
       case DESTROYED:
       case ZOMBIE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/task/taskState/destroyed");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED");
       default:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/task/taskState/system");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
     }
   }
 

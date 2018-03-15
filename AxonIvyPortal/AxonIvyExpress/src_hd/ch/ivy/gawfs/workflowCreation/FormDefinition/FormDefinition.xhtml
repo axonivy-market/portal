@@ -51,14 +51,14 @@
 										</p:column>
 										<p:column styleClass="form-element-label">
 											<p:inputText id="InputFieldName" required="true" type="text"
-												value="#{data.createInputFieldTab.name}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"/>
+												value="#{data.createInputFieldTab.name}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
 										</p:column>
 										<p:column styleClass="form-element-attribute">
 											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')}:" for="InputFieldType" />
 										</p:column>
 										<p:column styleClass="form-element-attribute">
 											<p:selectOneMenu id="InputFieldType"
-												value="#{data.createInputFieldTab.type}" styleClass="form-element-input-field-type" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}">
+												value="#{data.createInputFieldTab.type}" styleClass="form-element-input-field-type" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 												<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputTypes/TextBox')}"
 													itemValue="InputFieldText" />
 												<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputTypes/NumberField')}"
@@ -76,7 +76,7 @@
 										</p:column>
 										<p:column styleClass="no-border">
 											<p:inputText id="InputFieldLabel" required="true"
-												value="#{data.createInputFieldTab.label}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"/>
+												value="#{data.createInputFieldTab.label}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
 										</p:column>
 										<p:column styleClass="no-border">
 
@@ -118,7 +118,7 @@
 												for="InputAreaName" />
 										</p:column>
 										<p:column styleClass="form-element-label">
-											<p:inputText id="InputAreaName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+											<p:inputText id="InputAreaName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 												value="#{data.createInputAreaTab.name}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 										</p:column>
 										<p:column styleClass="form-element-attribute">
@@ -136,7 +136,7 @@
 											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="InputAreaLabel" />
 										</p:column>
 										<p:column styleClass="no-border">
-											<p:inputText id="InputAreaLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+											<p:inputText id="InputAreaLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 												value="#{data.createInputAreaTab.label}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 										</p:column>
 										<p:column styleClass="no-border">
@@ -185,7 +185,7 @@
 			
 													</p:column>
 													<p:column styleClass="form-element-label">
-														<p:inputText id="ManyCheckboxName" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+														<p:inputText id="ManyCheckboxName" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 															type="text" value="#{data.createManyCheckboxTab.name}"
 															styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 													</p:column>
@@ -195,7 +195,7 @@
 														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="ManyCheckboxLabel" />
 													</p:column>
 													<p:column styleClass="no-border">
-														<p:inputText id="ManyCheckboxLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+														<p:inputText id="ManyCheckboxLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 															value="#{data.createManyCheckboxTab.label}"
 															styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 													</p:column>
@@ -216,8 +216,8 @@
 
 												<p:column styleClass="vertical-align-middle">
 
-													<p:inputText value="#{option.value}" styleClass="Wid70" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxPlaceholder')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
-														placeholder="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxPlaceholder')}" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}"/>
+													<p:inputText value="#{option.value}" styleClass="Wid70" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+														placeholder="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}"/>
 
 													<p:spacer width="14" height="16" />
 													<p:commandButton icon="fa fa-trash-o fa-2x" title="" styleClass="buttonDelegate placement-form-element-remove-btn"													
@@ -286,7 +286,7 @@
 			
 													</p:column>
 													<p:column styleClass="form-element-label">
-														<p:inputText id="OneRadioName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+														<p:inputText id="OneRadioName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 															value="#{data.createOneRadioTab.name}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 			
 													</p:column>
@@ -296,7 +296,7 @@
 														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="OneRadioLabel" />
 													</p:column>
 													<p:column styleClass="no-border">
-														<p:inputText id="OneRadioLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+														<p:inputText id="OneRadioLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 															value="#{data.createOneRadioTab.label}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 													</p:column>
 												</p:row>
@@ -316,7 +316,7 @@
 
 												<p:column>
 
-													<p:inputText value="#{option.value}" styleClass="Wid70" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoOptionboxFieldsYet')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+													<p:inputText value="#{option.value}" styleClass="Wid70" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoOptionboxFieldsYet')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 														placeholder="Option" required="true" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}"/>
 
 													<p:spacer width="14" height="16" />
@@ -382,7 +382,7 @@
 												for="FileUploadName" />
 										</p:column>
 										<p:column styleClass="form-element-label">
-											<p:inputText id="FileUploadName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+											<p:inputText id="FileUploadName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 												value="#{data.createFileUploadTab.name}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 										</p:column>
 										<p:column styleClass="form-element-attribute">
@@ -407,7 +407,7 @@
 											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="FileUploadLabel" />
 										</p:column>
 										<p:column styleClass="no-border">
-											<p:inputText id="FileUploadLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+											<p:inputText id="FileUploadLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 												value="#{data.createFileUploadTab.label}" styleClass="form-element-label-input" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
 										</p:column>
 										<p:column styleClass="no-border">
@@ -773,14 +773,14 @@
 
 						<pe:dynaFormControl type="InputFieldText" for="inputFieldText"  >
 							<p:inputText id="inputFieldText" value="#{dynaData.value}" 
-								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 								styleClass="Wid90"/>
 								
 						</pe:dynaFormControl>
 
 						<pe:dynaFormControl type="InputFieldNumber" for="inputFieldNumber">
 							<p:spinner id="inputFieldNumber" value="#{dynaData.value}"
-								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}" min="0" />
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" min="0" />
 						</pe:dynaFormControl>
 
 						<pe:dynaFormControl type="InputFieldDate" for="inputFieldDate"
@@ -788,25 +788,25 @@
 							<p:calendar
 								locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" 
 								id="inputFieldDate" value="#{dynaData.value}" styleClass="form-definition-calendar"
-								required="#{dynaData.required}" showOn="button" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"/>
+								required="#{dynaData.required}" showOn="button" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
 						</pe:dynaFormControl>
 
 						<pe:dynaFormControl type="InputTextArea" for="inputTextArea">
 							<p:inputTextarea id="inputTextArea" value="#{dynaData.value}"
-								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 								rows="#{dynaData.intSetting}" autoResize="false" />
 						</pe:dynaFormControl>
 
 						<pe:dynaFormControl type="ManyCheckbox" for="manyCheckbox">
 							<p:selectManyCheckbox id="manyCheckbox" value="#{dynaData.value}"
-								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}" layout="pageDirection">
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" layout="pageDirection">
 								<f:selectItems value="#{dynaData.optionsStr}" />
 							</p:selectManyCheckbox>
 						</pe:dynaFormControl>
 
 						<pe:dynaFormControl type="OneRadio" for="oneRadio">
 							<p:selectOneRadio id="oneRadio" value="#{dynaData.value}"
-								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 								layout="pageDirection">
 								<f:selectItems value="#{dynaData.optionsStr}" />
 							</p:selectOneRadio>
@@ -817,7 +817,7 @@
 								<ic:component.CaseDocument uploadPossible="false"
 								fileLimit="#{dynaData.intSetting}"
 								startMethod="start(#{dynaData.options})"
-								allowFiletypes="#{dynaData.options}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/genericErrMsg')}"/>
+								allowFiletypes="#{dynaData.options}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
 
 						</pe:dynaFormControl>
 

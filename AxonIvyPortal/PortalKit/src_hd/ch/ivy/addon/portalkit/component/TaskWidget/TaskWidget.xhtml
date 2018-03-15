@@ -131,7 +131,7 @@
 							</p:selectManyCheckbox>
 							<p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
 								rendered="#{!data.dataModel.hasReadAllTasksPermisson()}" value="#{data.dataModel.inProgressFilterDisplayed}"
-								itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/displayTaskInProgressFilter')}">
+								itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED')}">
 								<p:ajax global="false" update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
 									oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
 							</p:selectBooleanCheckbox>
@@ -255,7 +255,7 @@
 
 	<p:confirmDialog id="delete-filter-confirmation-dialog"
 		message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
-		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmationHeader')}"
+		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
 		widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
 		<p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
 			actionListener="#{logic.deleteFilter()}" styleClass=""

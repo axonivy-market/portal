@@ -3,7 +3,8 @@
 	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
 	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
 	<cc:attribute name="processCardStyle" />
@@ -38,18 +39,23 @@
 		</div>
 		<h:panelGroup id="process-widget-action" styleClass="process-widget-action">
 			<h:form rendered="#{processWidgetBean.compactMode}"
-				styleClass="js-compact-mode-element process-button-position process-action-button">
+				styleClass="js-compact-mode-element process-button-position process-action-button process-widget-action-form">
 				<h:panelGroup layout="block"
-					rendered="#{not processWidgetBean.editMode and (processWidgetBean.userProcesses.size() gt 0)}">
+					rendered="#{not processWidgetBean.editMode and (not empty processWidgetBean.userProcesses)}">
 					<p:commandLink id="show-adding-dialog-commmand"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
 						actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
 						update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()" />
-					<p:spacer width="20" />
+					<p:spacer width="10" />
 					<p:commandLink id="editing-switch-command"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editProcesses')}"
 						actionListener="#{processWidgetBean.switchEditMode}"
 						update="@form #{cc.clientId}:process-list #{cc.clientId}:header #{p:component('process-link')}" />
+					<p:spacer width="10" />
+					<p:commandLink id="name-sort-command" styleClass="name-sort-command"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
+						actionListener="#{processWidgetBean.sortUserProcessList(processWidgetBean.userProcesses)}"
+						update="@form #{cc.clientId}:process-list" />
 				</h:panelGroup>
 
 				<h:panelGroup layout="block" rendered="#{processWidgetBean.editMode}">
@@ -127,15 +133,16 @@
 									<span class="fa #{process.icon} fa-fw" />
 								</div>
 								<div class="process-start-list-item-name order-list-item-name">
-									<span class="u-truncate-text"> <h:outputText value="#{process.processName}" />
+									<span class="u-truncate-text"> <h:outputText value="#{process.processName}"
+											title="#{process.processName}" />
 									</span>
 								</div>
 								<div class="process-start-list-item-action">
-									<p:commandLink title="#{processWidgetBean.isProcessMarkedAsDeleting(process.link) ? 'Reset' : 'Remove'}"
+									<p:commandLink title="#{processWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'Reset' : 'Remove'}"
 										actionListener="#{processWidgetBean.selectDeletingProcess}" process="@form"
-										update="#{p:component('order-list-items')}">
-										<i class="fa #{processWidgetBean.isProcessMarkedAsDeleting(process.link) ? 'fa-undo' : 'fa-trash'} fa-lg" />
-										<f:param name="processLink" value="#{process.link}" />
+										update="#{p:component('order-list-items')}" id="process-delete-link">
+										<i class="fa #{processWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'fa-undo' : 'fa-trash'} fa-lg" />
+										<f:param name="processId" value="#{process.id}" />
 									</p:commandLink>
 								</div>
 							</div>
@@ -184,6 +191,16 @@
 			<div class="default-process-title">
 				<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/defaultProcesses')}" />
 			</div>
+			<h:panelGroup id="default-process-widget-action" styleClass="process-widget-action">
+				<h:form styleClass="process-button-position process-action-button process-widget-action-form">
+					<h:panelGroup layout="block">
+						<p:commandLink id="default-process-name-sort-command" styleClass="name-sort-command"
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
+							actionListener="#{processWidgetBean.sortUserProcessList(processWidgetBean.defaultUserProcesses)}"
+							update="#{cc.clientId}:user-default-process-list" />
+					</h:panelGroup>
+				</h:form>
+			</h:panelGroup>
 			<ui:repeat id="user-default-process-list-items" varStatus="status" var="process"
 				value="#{processWidgetBean.defaultUserProcesses}">
 				<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
