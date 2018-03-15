@@ -130,7 +130,7 @@ public class ProcessWidgetPage extends TemplatePage {
     click(findElementByCssSelector("[id$='name-sort-command']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
-  
+
   public void clickSortDefaultProcessByName() {
     waitForElementDisplayed(By.cssSelector("[id$='default-process-name-sort-command']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$='default-process-name-sort-command']"));
@@ -166,13 +166,11 @@ public class ProcessWidgetPage extends TemplatePage {
     liveSearchTextField = findElementById(searchInputField);
   }
 
-  public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
+  public void moveFavoriteProcess(int processToMoveIndex, int xOffset, int yOffset) {
     WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
-    WebElement destinationProcess =
-        findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
     Actions builder = new Actions(driver);
     Action moveProcessSequence =
-        builder.clickAndHold(processToMove).moveToElement(destinationProcess).release(processToMove).build();
+        builder.clickAndHold(processToMove).moveByOffset(xOffset, yOffset).release(processToMove).build();
     moveProcessSequence.perform();
   }
 
