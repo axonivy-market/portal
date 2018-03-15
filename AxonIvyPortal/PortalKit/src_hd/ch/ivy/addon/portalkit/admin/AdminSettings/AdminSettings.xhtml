@@ -31,7 +31,7 @@
 				<p:dataTable id="serverTable" value="#{logic.findAllServer()}" var="server" sortBy="#{server.name}"
 					styleClass="admin-table" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
 					scrollable="true" scrollHeight="150">
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/name')}">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
 						<h:outputText value="#{server.name}" />
 					</p:column>
 
@@ -123,7 +123,7 @@
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/thirdPartyApplication')}" />
 						</p:column>
 
-						<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/name')}">
+						<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
 							<h:outputText value="#{logic.getAppNameInCurrentLocale(app)}" />
 						</p:column>
 
