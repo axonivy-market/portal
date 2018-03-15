@@ -11,10 +11,10 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import portal.guitest.common.TaskState;
+
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
-
-import portal.guitest.common.TaskState;
 
 public class TaskWidgetPage extends TemplatePage {
 
@@ -408,6 +408,10 @@ public class TaskWidgetPage extends TemplatePage {
     });
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
+  }
+  
+  public boolean isAdvancedFilterDisplayed(String filterIdName) {
+    return isElementDisplayed(By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"));
   }
 
   public void filterByDescription(String text) {
