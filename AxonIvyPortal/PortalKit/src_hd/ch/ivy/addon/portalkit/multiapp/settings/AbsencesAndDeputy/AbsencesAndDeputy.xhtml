@@ -56,7 +56,7 @@
             value="#{data.displayedAbsences}" var="absence" sortBy="#{absence.startDateInclusive}"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
             <f:event listener="#{logic.filterDisplayedAbsences()}" type="preRenderComponent" />
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/name')}" width="150"
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" width="150"
               sortBy="#{absence.userFullName}">
               <h:outputText value="#{absenceBean.getDisplayedName(absence)}" />
             </p:column>
