@@ -167,7 +167,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     return filteredUserProcesses;
   }
 
-  private void sortUserProcessList(List<UserProcess> processes) {
+  public void sortUserProcessList(List<UserProcess> processes) {
     processes.sort((process1, process2) -> process1.getProcessName().toLowerCase()
         .compareTo(process2.getProcessName().toLowerCase()));
   }
@@ -252,6 +252,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
 
   public void switchEditMode() {
     editMode = !editMode;
+    userProcesses.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     clearSelectedUserProcess();
   }
 
