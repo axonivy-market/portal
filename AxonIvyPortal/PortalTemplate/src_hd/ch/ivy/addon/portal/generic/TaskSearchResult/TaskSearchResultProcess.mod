@@ -110,7 +110,7 @@ category.value = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchR
 String pageTitle = category.value;
 
 in.dataModel.setServerId(in.foundTask.applicationRegister.serverId);
-in.dataModel.setKeyword(in.keyword);
+in.dataModel.queryCriteria.setKeyword(in.keyword);
 in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 in.dataModel.queryCriteria.newQueryCreated = true;
 out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(in.keyword).remoteTaskId(in.foundTask.getId()).dataModel(in.dataModel).showHeaderToolbar(false).createNewTaskView();
