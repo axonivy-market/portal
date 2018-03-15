@@ -76,8 +76,8 @@
         <p:spacer styleClass="u-buttons-spacer" />
         <p:commandLink id="delete-case-command" styleClass="fa fa-trash-o"
           rendered="#{(caseBean.isCaseAbleToDelete(case))}" process="cases-view"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           actionListener="#{logic.confirmDeleteCase(case)}">
         </p:commandLink>
 

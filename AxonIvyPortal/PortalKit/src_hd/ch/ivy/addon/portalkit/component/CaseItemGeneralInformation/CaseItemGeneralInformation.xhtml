@@ -12,11 +12,11 @@
 <cc:implementation>
   <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-data-column #{cc.attrs.styleClass}">
     <c:set var="case" value="#{cc.attrs.case}" />
-    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/data')}</div>
+    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/data')}</div>
     <div class="Separator" />
     <h:panelGrid columns="2" columnClasses="case-details-data-1st-column, case-details-data-2nd-column"
       rowClasses="case-details-row-space">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/creator')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{case.creatorFullName}"
         username="#{case.creatorUserName}" />
 

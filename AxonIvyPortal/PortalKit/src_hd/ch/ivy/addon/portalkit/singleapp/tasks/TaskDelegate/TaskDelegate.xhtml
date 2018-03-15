@@ -21,7 +21,7 @@
             <p:column>
               <div>
                 <h:outputText
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderBoldLabel')}" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}" />
                 <br />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}" />
               </div>
@@ -77,7 +77,7 @@
         
         <div>
           <p:commandButton id="proceed-task-delegate-command"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateButton')}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             icon="fa fa-mail-forward" actionListener="#{logic.delegateTask(cc.attrs.task)}"
             process=":#{p:component('activatorPanel')}" update="#{cc.attrs.updateElement}"
             disabled="#{data.disabledDelegateButton}" styleClass=""
