@@ -19,7 +19,7 @@
           disabled="#{!task.canChangeDescription or taskBean.isDone(task)}"
           saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}">
+          emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}">
           <p:ajax event="save" listener="#{logic.updateTaskDescription(task)}"
             update="task-description-form #{cc.attrs.descriptionComponentToUpdate}" process="task-description-form" />
           <p:ajax event="cancel" resetValues="true" />
