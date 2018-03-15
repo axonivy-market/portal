@@ -13,7 +13,7 @@
 
 <cc:implementation>
   <div id="task-data" class="task-details-item js-task-details-item js-data-column #{cc.attrs.styleClass}">
-    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/data')}</div>
+    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/data')}</div>
     <div class="Separator" />
     <h:panelGrid columns="2" columnClasses="task-details-data-1st-column, task-details-data-2nd-column"
       rowClasses="task-details-row-space">
@@ -82,13 +82,13 @@
         <f:attribute name="selectedCase" value="#{task.remoteTechnicalCase}" />
       </p:commandLink>
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/createOn')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
       <h:outputText id="start-date" value="#{task.startTimestamp}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
       </h:outputText>
 
 
-      <h:outputText id="expiryLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expiry')}" />
+      <h:outputText id="expiryLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expiry')}" />
 
       <ui:fragment rendered="#{taskBean.isNotDone(task)}">
         <h:form id="expiry-form">

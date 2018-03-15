@@ -73,7 +73,7 @@ public class TaskStateFilter extends TaskFilter {
   }
 
   public String userFriendlyState(TaskState state) {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/userFriendlyTaskState/" + state);
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
   }
 
   public List<TaskState> getSelectedFilteredStates() {

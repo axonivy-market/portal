@@ -33,7 +33,7 @@
         <p:spacer width="5px" />
 
         <p:commandButton id="back-to-adsences"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/back')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           process="input-deputy-data-section" rendered="#{data.isLoadDeputy}" update="@form"
           oncomplete="PF('addNewAbsence').initPosition();">
           <f:setPropertyActionListener target="#{data.isLoadDeputy}" value="false" />
