@@ -11,11 +11,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Callable;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
 import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.ws.addon.IvyUser;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -48,6 +51,10 @@ public class UserUtils {
   public static final String MOBILE = "MOBILE";
   /** Property to get the hidden roles */
   private static final String HIDE_USERS_IN_DELEGATION = "HIDE_USERS_IN_DELEGATION";
+  
+  private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
+  private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
+  private static final String TASK_IN_PROGRESS_FILTER = "TASK_IN_PROGRESS_FILTER";
 
   /**
    * Get all users in current Ivy Server
@@ -326,5 +333,42 @@ public class UserUtils {
     result.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
       second.getDisplayName().toLowerCase()));
     return result;
+  }
+  
+  public static void setSessionAttribute(String key, Object value) {
+    Ivy.session().setAttribute(key, value);
+  }
+  
+  public static void setSessionTaskAdvancedFilterAttribute(List<TaskFilter> value) {
+    setSessionAttribute(SELECTED_TASK_FILTER, value);
+  }
+  
+  public static void setSessionTaskKeywordFilterAttribute(String keyword) {
+    setSessionAttribute(TASK_KEYWORD_FILTER, keyword);
+  }
+  
+  public static void setSessionTaskInProgressFilterAttribute(TaskInProgressByOthersFilter filter) {
+    setSessionAttribute(TASK_IN_PROGRESS_FILTER, filter);
+  }
+
+  @SuppressWarnings("unchecked")
+  public static List<TaskFilter> getSessionTaskAdvancedFilterAttribute() {
+    List<TaskFilter> filters = (List<TaskFilter>) Ivy.session().getAttribute(SELECTED_TASK_FILTER);
+    if (CollectionUtils.isEmpty(filters)) {
+      return new ArrayList<>();
+    }
+    return filters;
+  }
+  
+  public static String getSessionTaskKeywordFilterAttribute() {
+    String keyword = (String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER);
+    if (StringUtils.isBlank(keyword)) {
+      return "";
+    }
+    return keyword;
+  }
+  
+  public static TaskInProgressByOthersFilter getSessionTaskInProgressFilterAttribute() {
+    return (TaskInProgressByOthersFilter) Ivy.session().getAttribute(TASK_IN_PROGRESS_FILTER);
   }
 }
