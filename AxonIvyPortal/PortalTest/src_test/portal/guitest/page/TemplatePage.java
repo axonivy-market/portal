@@ -181,7 +181,7 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementPresent(By.cssSelector("div.js-task-list-container"), true);
     return new TaskWidgetPage();
   }
-
+  
   public CasePage openCaseList() {
     openMainMenu();
     WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
