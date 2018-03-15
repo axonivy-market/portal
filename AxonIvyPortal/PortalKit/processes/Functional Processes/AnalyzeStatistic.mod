@@ -398,7 +398,7 @@ ac0 f39 requestActionDecl '<java.lang.String jsonQuery,java.util.List<java.lang.
 ac0 f39 requestMappingAction 'param.jsonQuery=in.jsonQuery;
 param.apps=in.involvedApplications;
 param.serverId=in.serverId;
-param.userName=ivy.session.getSessionUserName();
+param.userName=ch.ivy.addon.portalkit.util.PermissionUtils.checkReadAllCasesPermission() ? null : ivy.session.getSessionUserName();
 ' #txt
 ac0 f39 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
