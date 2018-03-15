@@ -1,4 +1,0 @@
-co: name={GenericReqMsg} description={} changed={2017-11-22 03:14:59 CET} changedby={anhnguyenhoang} visualorder={0} guid={15FBEBC68579F35D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FBEBC68629ACD7} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEBC685ABA6D5} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:10:43 CEST} validto={} changed={2017-11-22 03:14:59 CET} changedby={anhnguyenhoang} properties={} id={}
-val: guid={15FBEBC686998CB0} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 01:44:43 CET} validto={} changed={2017-11-22 03:14:59 CET} changedby={anhnguyenhoang} properties={} id={}
