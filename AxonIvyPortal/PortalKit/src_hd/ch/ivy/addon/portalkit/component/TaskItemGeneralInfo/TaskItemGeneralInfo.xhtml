@@ -82,7 +82,7 @@
         <f:attribute name="selectedCase" value="#{task.remoteTechnicalCase}" />
       </p:commandLink>
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/createOn')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
       <h:outputText id="start-date" value="#{task.startTimestamp}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
       </h:outputText>

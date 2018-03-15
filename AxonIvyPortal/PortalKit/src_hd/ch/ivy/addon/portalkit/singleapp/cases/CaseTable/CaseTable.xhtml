@@ -47,7 +47,7 @@
 
       <p:column id="case-creation-date" filterBy="#{case.getCreatedAtAsString()}"
         sortBy="#{case.getCreatedAtAsString()}" filterMatchMode="contains" styleClass="case-view-table-column"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/created')}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}">
         <h:outputText id="case-creation-date-value" value="#{case.getCreatedAtAsString()}" />
       </p:column>
 
@@ -88,7 +88,7 @@
     <p:remoteCommand name="updateCaseTable" update="cases-view" actionListener="#{logic.update}" />
 
     <p:confirmDialog message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmDeleteMessage')}"
-      appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" severity="alert"
+      appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
       widgetVar="confirmation">
       <p:commandButton id="proceed-delete-case-command" styleClass=""
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}" icon="fa fa-check-circle-o"

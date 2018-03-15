@@ -17,7 +17,7 @@
         value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
       <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}" />
       <h:panelGroup layout="block" styleClass="task-start-info-footer">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/create')}: " />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}: " />
         <h:outputText value="#{task.startTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
