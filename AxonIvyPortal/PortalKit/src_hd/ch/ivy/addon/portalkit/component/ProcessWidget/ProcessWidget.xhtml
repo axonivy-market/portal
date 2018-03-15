@@ -3,7 +3,8 @@
 	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
 	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
 	<cc:attribute name="processCardStyle" />
@@ -38,18 +39,23 @@
 		</div>
 		<h:panelGroup id="process-widget-action" styleClass="process-widget-action">
 			<h:form rendered="#{processWidgetBean.compactMode}"
-				styleClass="js-compact-mode-element process-button-position process-action-button">
+				styleClass="js-compact-mode-element process-button-position process-action-button process-widget-action-form">
 				<h:panelGroup layout="block"
 					rendered="#{not processWidgetBean.editMode and (processWidgetBean.userProcesses.size() gt 0)}">
 					<p:commandLink id="show-adding-dialog-commmand"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
 						actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
 						update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()" />
-					<p:spacer width="20" />
+					<p:spacer width="10" />
 					<p:commandLink id="editing-switch-command"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editProcesses')}"
 						actionListener="#{processWidgetBean.switchEditMode}"
 						update="@form #{cc.clientId}:process-list #{cc.clientId}:header #{p:component('process-link')}" />
+					<p:spacer width="10" />
+					<p:commandLink id="alphabet-sort-command" styleClass="alphabet-sort-command"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortAlphabetical')}"
+						actionListener="#{processWidgetBean.sortUserProcessList(processWidgetBean.userProcesses)}"
+						update="@form #{cc.clientId}:process-list" />
 				</h:panelGroup>
 
 				<h:panelGroup layout="block" rendered="#{processWidgetBean.editMode}">
@@ -127,7 +133,8 @@
 									<span class="fa #{process.icon} fa-fw" />
 								</div>
 								<div class="process-start-list-item-name order-list-item-name">
-									<span class="u-truncate-text"> <h:outputText value="#{process.processName}" />
+									<span class="u-truncate-text"> <h:outputText value="#{process.processName}"
+											title="#{process.processName}" />
 									</span>
 								</div>
 								<div class="process-start-list-item-action">
