@@ -1,0 +1,4 @@
+co: name={eMail} description={} changed={2018-03-15 07:52:44 GMT} changedby={nttai} visualorder={0} guid={16228A598C6EF1EF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16228A598CA140C6} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 02:16:15 GMT} validto={} changed={2018-03-15 07:52:43 GMT} changedby={nttai} properties={} id={}
+val: guid={16228A598DB4E099} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-29 02:46:56 GMT} validto={} changed={2018-03-15 07:52:44 GMT} changedby={nttai} properties={} id={}
+val: guid={16228A598D3AF6FF} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 07:00:40 GMT} validto={} changed={2018-03-15 07:52:43 GMT} changedby={nttai} properties={} id={}

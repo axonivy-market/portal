@@ -11,7 +11,7 @@ public class TaskDescriptionFilter extends TaskFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/description");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
   }
 
   @Override

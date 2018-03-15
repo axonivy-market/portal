@@ -59,7 +59,7 @@
               </ui:repeat>
             </h:panelGroup> <h:panelGroup id="global-case-result" rendered="#{not empty userMenuBean.foundCases}" layout="block"
               styleClass="global-search-result">
-              <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cases')}</span>
+              <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</span>
               <ui:repeat id="found-cases" var="foundCase" value="#{userMenuBean.foundCases}">
                 <ic:ch.ivy.addon.portal.generic.CaseSearchResult foundCase="#{foundCase}"
                   keyword="#{userMenuBean.searchKeyword}" />
@@ -85,7 +85,7 @@
               onclick="PF('absenceSetting').show()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
 
           <li><p:link id="email-setting-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/emailSettings')}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
               onclick="PF('emailSetting').show()" /></li>
           <li><p:link id="language-setting-menu-item" href="#"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/languageSettings')}"

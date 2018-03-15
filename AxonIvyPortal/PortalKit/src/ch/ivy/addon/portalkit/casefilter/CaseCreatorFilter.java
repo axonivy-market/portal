@@ -31,7 +31,7 @@ public class CaseCreatorFilter extends CaseFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Creator");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/creator");
   }
 
   @Override

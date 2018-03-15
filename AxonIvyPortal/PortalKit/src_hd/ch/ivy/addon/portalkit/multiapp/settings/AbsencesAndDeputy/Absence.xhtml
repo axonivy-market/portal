@@ -34,14 +34,14 @@
     </p:row>
     <p:row>
       <p:column styleClass="new-absence-label">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}:" />
       </p:column>
       <p:column>
         <p:calendar id="absence-start-date" value="#{data.selectedAbsence.startDateInclusive}" locale="#{localeBean.locale}"
           showOn="button"
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromWrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
-          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromRequired')}">
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
           <p:ajax event="dateSelect" listener="#{logic.fromChange}" process="@this username absence-start-date comment"
             update="#{updateComponent}" />
         </p:calendar>
@@ -49,7 +49,7 @@
         <p:calendar id="absence-end-date" value="#{data.selectedAbsence.stopDateInclusive}" showOn="button" locale="#{localeBean.locale}"
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/tillWrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
-          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/tillRequired')}">
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
           <p:ajax event="dateSelect" listener="#{logic.tillChange}" process="@this username comment absence-start-date"
             update="#{updateComponent}" />
         </p:calendar>

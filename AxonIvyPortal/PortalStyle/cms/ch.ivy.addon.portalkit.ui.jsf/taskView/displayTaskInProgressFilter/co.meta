@@ -1,4 +1,0 @@
-co: name={displayTaskInProgressFilter} description={} changed={2017-10-31 07:59:42 CET} changedby={chnam} visualorder={0} guid={15F713A885CB9C40} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A886812B29} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A885EBC146} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A8863930D6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-11 05:25:39 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}

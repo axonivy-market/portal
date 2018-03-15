@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 11:05:27 ICT 2017]
 15795F163B7492E2 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 CaseDocumentProcess Big #zClass
@@ -251,7 +250,7 @@ if (uploadSuccesfully) {
 	context.addMessage("documentFile", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"), "" ));
 	ivy.log.debug("FileUpload erfolgreich" + ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"));
 } else {
-	context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/Dialogs/components/CaseDocument/uploadFailed"), "" ));
+	context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed"), "" ));
 	}
 
 ' #txt

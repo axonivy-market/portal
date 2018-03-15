@@ -37,7 +37,7 @@
 								<p:selectOneRadio id="processype" styleClass="Wid100"
 									value="#{data.data.processType}"
 									required="#{param['form:save']!=null}"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}">
+									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 									<f:selectItem
 										itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeAdHoc')}"
 										itemValue="AHWF" />
@@ -59,7 +59,7 @@
 									value="#{data.data.processName}"
 									required="#{param['form:save']!=null}"
 									maxlength="50"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processname')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}" />
+									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processname')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
 							</p:column>
 						</p:row>
 						<p:row>
@@ -73,7 +73,7 @@
 									value="#{data.data.processDescription}"
 									required="#{param['form:save']!=null}"
 									maxlength="60"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}" />
+									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
 							</p:column>
 						</p:row>
 					</p:panelGrid>
@@ -113,7 +113,7 @@
 											styleClass="dynamic-task-name-input"
 											required="#{param['form:save']!=null}"
 											maxlength="30"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskName')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}"></p:inputText>
+											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"></p:inputText>
 									</p:column>
 									<p:column colspan="1" rowspan="1"
 										styleClass="dynamic-task-description-label-col">
@@ -125,7 +125,7 @@
 										<p:inputText value="#{gtask.description}" styleClass="dynamic-task-description-input"
 											required="#{param['form:save']!=null}"
 											id="descriptionfield"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Taskdescription')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}"></p:inputText>
+											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Taskdescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"></p:inputText>
 									</p:column>
 								</p:row>
 								<p:row styleClass="u-no-border">
@@ -141,7 +141,7 @@
 										<p:inputText value="#{gtask.actorDisplayName}" id="actorfield"
 											styleClass="dynamic-task-actor-input" readonly="false"
 											required="#{param['form:save']!=null}"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/responsibleUser')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}">
+											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/responsibleUser')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 											<p:ajax event="mousedown"
 												listener="#{logic.initAssginement(gtask)}"
 												oncomplete="PF('chooseAssignee').show();"
