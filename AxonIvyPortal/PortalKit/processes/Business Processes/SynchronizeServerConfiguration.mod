@@ -172,7 +172,7 @@ TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXPRI=2
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationTaskName")%>
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription")%>
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.EXROL=Everybody' #txt
 Sn0 f6 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>
