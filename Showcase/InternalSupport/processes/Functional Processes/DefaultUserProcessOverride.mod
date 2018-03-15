@@ -98,7 +98,7 @@ if (!StringUtils.isEmpty(acmLink)) {
 	acmProcess.setLink(acmLink);
 	acmProcess.setProcessName("Axon.ivy Selfservice");
 	acmProcess.setIcon("fa-code-fork");
-	acmProcess.setIndex(2);
+	acmProcess.setIndex(3);
 	in.defaultUserProcesses.add(acmProcess);
 }
 
@@ -112,13 +112,23 @@ if (!StringUtils.isEmpty(saleLink)){
 	in.defaultUserProcesses.add(userProcess);
 }
 
-String saleLink1 = collector.findStartableLinkByUserFriendlyRequestPath("Business Processes/testProcesses/ProcessHistoryTest/InspectResource.ivp");
-if (!StringUtils.isEmpty(saleLink)){	
+String inspectResourceLink = collector.findStartableLinkByUserFriendlyRequestPath("Business Processes/testProcesses/ProcessHistoryTest/InspectResource.ivp");
+if (!StringUtils.isEmpty(inspectResourceLink)){	
 	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(saleLink);
+	userProcess.setLink(inspectResourceLink);
 	userProcess.setProcessName("Inspect Resource");
 	userProcess.setIcon("fa-gavel");
-	userProcess.setIndex(3);
+	userProcess.setIndex(1);
+	in.defaultUserProcesses.add(userProcess);
+}
+
+String viewResourceCasesLink = collector.findStartableLinkByUserFriendlyRequestPath("Business Processes/testProcesses/ProcessHistoryTest/viewProcessHistoryOfResource.ivp");
+if (!StringUtils.isEmpty(viewResourceCasesLink)){	
+	UserProcess userProcess = new UserProcess();
+	userProcess.setLink(viewResourceCasesLink);
+	userProcess.setProcessName("View Resource");
+	userProcess.setIcon("fa-magic");
+	userProcess.setIndex(2);
 	in.defaultUserProcesses.add(userProcess);
 }' #txt
 Ds0 f3 type internaltest.DefaultUserProcessOverrideData #txt
