@@ -14,7 +14,8 @@ public class TaskExpiryComparator implements Comparator<RemoteTask> {
 		return compareTaskExpiryTime(firstTaskExpiryTime, secondTaskExpiryTime);
 	}
 
-	private int compareTaskExpiryTime(Date firstExpiryTime, Date secondExpiryTime) {
+	@SuppressWarnings("null")
+  private int compareTaskExpiryTime(Date firstExpiryTime, Date secondExpiryTime) {
 		if(firstExpiryTime == null && secondExpiryTime == null) {
 			return 0;
 		}

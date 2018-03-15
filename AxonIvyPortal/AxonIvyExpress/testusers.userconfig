@@ -5,21 +5,13 @@
         <fullName>My role 1</fullName>
         <emailAddress>role1@axonactive.com</emailAddress>
         <role>AXONIVY_PORTAL_ADMIN</role>
-        <role>GAWFS_ADMIN</role>
-        <role>GAWFS_CREATOR</role>
-        <role>GAWFS_USER</role>
-        <role>GAWFS_ROLEADMIN</role>
     </user>
     <user>
         <username>Role2</username>
         <fullName>My role 2</fullName>
         <emailAddress>role2@axonactive.com</emailAddress>
-        <role>GAWFS_USER</role>
-        <role>GAWFS_CREATOR</role>
     </user>
     <user>
         <username>nam</username>
-        <role>Test1</role>
-        <role>GAWFS_USER</role>
     </user>
 </userConfig>

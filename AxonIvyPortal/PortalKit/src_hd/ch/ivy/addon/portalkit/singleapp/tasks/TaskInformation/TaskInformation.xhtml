@@ -27,8 +27,8 @@
 
 <cc:implementation>
   <div id="#{cc.clientId}">
-    <c:set var="isTaskAbleToChangeDeadline" value="#{(taskBean.isTaskAbleToChangeDeadline(cc.attrs.task))}" scope="view" />
-    <c:set var="isTaskAbleToChangePriority" value="#{(taskBean.isTaskAbleToChangePriority(cc.attrs.task))}" scope="view" />
+    <c:set var="isTaskAbleToChangeDeadline" value="#{taskBean.isTaskAbleToChangeDeadline(cc.attrs.task)}" scope="view" />
+    <c:set var="isTaskAbleToChangePriority" value="#{taskBean.isTaskAbleToChangePriority(cc.attrs.task)}" scope="view" />
     <script>
           function openTaskId() {
             var cookie = getCookie('action');
