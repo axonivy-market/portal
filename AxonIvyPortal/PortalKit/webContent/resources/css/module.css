@@ -1988,7 +1988,8 @@ a.case-details-document-add-link {
   position: relative;
 }
 
-.process-start-list-item:hover {
+.process-start-list-item:hover,
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
   background: rgba(255, 255, 255, 1);
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
@@ -2019,7 +2020,8 @@ a.case-details-document-add-link {
   padding-right: 15px;
 }
 
-.process-start-list-item:hover .process-start-list-item-icon {
+.process-start-list-item:hover .process-start-list-item-icon,
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   opacity: 1;
 }
 
@@ -2031,7 +2033,8 @@ a.case-details-document-add-link {
   align-items: center;
 }
 
-.process-start-list-item:hover .process-start-list-item-name {
+.process-start-list-item:hover .process-start-list-item-name,
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
   font-family: "robotomedium";
 }
 
@@ -2080,7 +2083,9 @@ a.case-details-document-add-link {
 }
 
 .process-start-list-item .ui-commandlink,
-.process-start-list-item .ui-link {
+.process-start-list-item .ui-link,
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-commandlink,
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-link {
   display: inline-flex;
   color: black !important;
 }
@@ -2091,8 +2096,69 @@ a.case-details-document-add-link {
   width: 100%;
 }
 
-.process-start-list-item:hover .process-start-list-item-action {
+.process-start-list-item:hover ,
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-action {
   opacity: 1;
+}
+
+.process-widget .favorite-process-title {
+  font-size: 1.2rem; 
+  margin-top: 14px;
+}
+
+.process-widget .default-process-title {
+  font-size: 1.2rem; 
+  margin-bottom: 14px;
+}
+
+.process-widget .user-default-process-list {
+  margin-top: 14px;
+}
+
+.process-widget .order-list-items.ui-orderlist {
+  border: none;
+  
+}
+
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list{
+  height: auto;
+  overflow: visible;
+  margin: 0px !important
+}
+
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
+  height: 50px;
+  margin-bottom: 5px !important;
+  padding: 0px !important;
+  background: rgba(0, 0, 0, 0.05);
+  background-image: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list table tr td {
+  color: black !important;
+}
+
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item.ui-state-hover tr td{
+  color: black !important;
+}
+
+.process-widget .ui-orderlist .ui-orderlist-list table {
+  table-layout: fixed;
+}
+
+.process-widget .ui-orderlist .ui-orderlist-list .order-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.process-widget .ui-orderlist .ui-orderlist-list .order-list-item .order-list-item-name {
+  width: 100%;
+  padding-right: 5px;
 }
 
 .autocomplete-process-description-tooltip {
