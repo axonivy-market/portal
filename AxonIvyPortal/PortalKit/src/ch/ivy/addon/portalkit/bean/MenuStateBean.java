@@ -31,8 +31,8 @@ public class MenuStateBean implements Serializable {
     this.menuState = menuState;
   }
 
-  public void initMenuState(String menuState) {
-    this.menuState = menuState;
+  public void initMenuState(String state) {
+    this.menuState = state;
   }
 
   public void clearMenuState() {
