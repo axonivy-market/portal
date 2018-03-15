@@ -53,7 +53,7 @@
       styleClass="Fs14" actionListener="#{logic.submitDelete}" oncomplete="PF('deleteFileConfirmation').hide();"
       update="#{p:component('document-table')}" />
     <p:commandButton styleClass="Fs14 portal-cancel-button" id="reject-delete-file"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/no')}" onclick="PF('deleteFileConfirmation').hide()"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('deleteFileConfirmation').hide()"
       type="button" />
   </p:confirmDialog>
 

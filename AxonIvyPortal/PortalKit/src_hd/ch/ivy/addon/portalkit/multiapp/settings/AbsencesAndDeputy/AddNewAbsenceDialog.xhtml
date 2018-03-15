@@ -26,7 +26,7 @@
 
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
         <p:commandButton id="next-to-deputy" styleClass=""
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/next')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
           disabled="#{data.validationError}" process="input-adsence-data-section" actionListener="#{logic.loadDeputy}"
           rendered="#{data.isLoadDeputy eq 'false'}" update="@form" oncomplete="PF('addNewAbsence').initPosition();" />
 
