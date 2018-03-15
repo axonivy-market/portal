@@ -17,7 +17,7 @@
     <div class="Separator" />
     <h:panelGrid columns="2" columnClasses="task-details-data-1st-column, task-details-data-2nd-column"
       rowClasses="task-details-row-space">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/priority')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}" />
       <h:panelGroup styleClass="task-details-priority">
         <ui:fragment rendered="#{taskBean.canChangeOriginalPriority(task)}">
           <h:form id="priority-form">
