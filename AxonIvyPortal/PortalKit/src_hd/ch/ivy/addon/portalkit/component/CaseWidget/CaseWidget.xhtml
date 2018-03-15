@@ -38,7 +38,7 @@
             <h:outputLabel value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filter')}"
               for="filter-name" />
             <p:commandLink id="filter-name" styleClass="filter-name"
-              value="#{data.dataModel.selectedFilterData == null ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/selectedFilterSetDefaultValue') : data.dataModel.selectedFilterData.filterName}"
+              value="#{data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}"
               global="false" />
             <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
               hideEffect="fade" my="left top" at="left bottom">
@@ -94,7 +94,7 @@
         <h:form id="case-basic-filter-form" onsubmit="return false;">
           <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.filteringKeyword}"
             listener="#{logic.filter()}" updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
-            placeholder="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/basicFilterPlaceHolder')}"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
         </h:form>
       </h:panelGroup>
@@ -141,7 +141,7 @@
         <ui:param name="sortedField" value="NAME" />
         <ui:param name="sortable" value="true" />
         <ui:param name="value"
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/NameAndDescription')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/nameAndDescription')}" />
       </ui:include>
       <ui:include src="ColumnHeader.xhtml">
         <ui:param name="id" value="id-column-header" />

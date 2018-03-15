@@ -27,7 +27,7 @@
 					<ui:fragment rendered="#{data.errorCode eq '500'}">
 						<div class="message-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500')}</div>
 						<div class="message-container">
-							#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500Message')}<span jsf:rendered="#{not empty errorMessage}">, </span> <p:link styleClass="message-detail u-hover-effect" rendered="#{not empty errorMessage}" href="#" onclick="PF('error-detail').show();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/moreDetails')}"/>
+							#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500Message')}<span jsf:rendered="#{not empty errorMessage}">, </span> <p:link styleClass="message-detail u-hover-effect" rendered="#{not empty errorMessage}" href="#" onclick="PF('error-detail').show();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"/>
 						</div>
 					</ui:fragment>
 					

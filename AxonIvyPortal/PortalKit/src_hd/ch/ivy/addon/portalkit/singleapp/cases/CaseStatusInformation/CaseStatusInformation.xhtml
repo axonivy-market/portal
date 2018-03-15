@@ -33,7 +33,7 @@
         </h:panelGroup>
 
         <p:outputLabel for="last-edit"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/lastEdit')}:" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/lastEdit')}:" />
         <h:outputText id="last-edit" value="#{data.caseInfo.endTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
@@ -159,7 +159,7 @@
       </p:commandButton>
       <p:spacer width="5px" />
       <p:commandButton id="cancel-remove-delay-command" styleClass="Fs14 portal-cancel-button"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/no')}" onclick="PF('confirmation').hide()"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('confirmation').hide()"
         type="button" />
     </p:confirmDialog>
   </div>
