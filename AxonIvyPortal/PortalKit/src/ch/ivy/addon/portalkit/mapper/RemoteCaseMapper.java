@@ -413,9 +413,7 @@ public class RemoteCaseMapper {
     for (IvyCase ivyCase : ivyCases) {
       RemoteCase remoteCase = mapCase(ivyCase);
       remoteCase.setServer(server);
-      if (null != remoteCase) {
-        remoteCases.add(remoteCase);
-      }
+      remoteCases.add(remoteCase);
     }
 
     return remoteCases;

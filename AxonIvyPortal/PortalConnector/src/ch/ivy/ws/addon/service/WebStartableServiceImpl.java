@@ -65,7 +65,7 @@ public class WebStartableServiceImpl extends AbstractService implements IWebStar
                   }
                 }
               } finally {
-                if (workflowSession != null && application != null && !workflowSession.isSessionUserSystemUser()) {
+                if (workflowSession != null && !workflowSession.isSessionUserSystemUser()) {
                   ISecurityContext securityContext = application.getSecurityContext();
                   securityContext.destroySession(workflowSession.getIdentifier());
                 }

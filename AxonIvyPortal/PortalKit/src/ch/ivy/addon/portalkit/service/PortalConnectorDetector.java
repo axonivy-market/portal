@@ -11,7 +11,7 @@ import java.util.concurrent.Callable;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.text.StrSubstitutor;
+import org.apache.commons.lang.text.StrSubstitutor;
 
 import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.addon.portalkit.service.exception.ApplicationNotFoundException;

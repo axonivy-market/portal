@@ -25,7 +25,7 @@
 
         <h:panelGroup layout="block" id="absence-setting-container">
           <!-- Absence -->
-          <p:messages widgetVar="growl" showDetail="true" closable="true" id="absences-msg" escape="false"/>
+          <p:messages showDetail="true" closable="true" id="absences-msg" escape="false"/>
 
           <h:panelGroup layout="block" styleClass="absence-command-container">
             <p:selectBooleanCheckbox styleClass="absence-in-the-past-command" id="show-absence-in-the-past"
@@ -100,7 +100,7 @@
 
         <p:dialog id="error-substitue-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
           styleClass="substitude-exception-dialog" widgetVar="errorDialogSubstitue" modal="true" appendTo="@(body)">
-          <p:messages id="errorsMessageE" widgetVar="messagInfo" severity="info" escape="false" showDetail="true"
+          <p:messages id="errorsMessageE" severity="info" escape="false" showDetail="true"
             closable="true" />
 
           <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />

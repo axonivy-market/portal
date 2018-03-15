@@ -31,6 +31,7 @@ import ch.ivy.ws.addon.service.WebStartableServiceImpl;
 /**
  * Service Factory for all services that are provided as web service
  */
+@SuppressWarnings("deprecation")
 public class WsServiceFactory {
 
   private static ICaseService caseService;
