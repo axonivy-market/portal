@@ -11,12 +11,12 @@
 <cc:implementation>
   <div id="#{cc.clientId}">
     <p:commandLink id="logout-menu-item"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/logOut')}"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
       rendered="#{!userMenuBean.hiddenLogout and !cc.attrs.isWorkingOnATask}" actionListener="#{logic.logout}"
       oncomplete="returnHomePage()" />
 
     <p:link id="logout-confirmation-menu-item" href="#"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/logOut')}"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
       rendered="#{!userMenuBean.hiddenLogout and cc.attrs.isWorkingOnATask}" onclick="PF('logoutConfirmation').show()" />
 
     <p:confirmDialog id="logout-confirmation-dialog"

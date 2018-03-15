@@ -46,7 +46,7 @@
 						<h:outputLabel rendered="#{not data.dataModel.compactMode}"
 							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" for="filter-name" />
 						<p:commandLink id="filter-name" styleClass="filter-name"
-							value="#{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/selectedFilterSetDefaultValue') : data.dataModel.selectedTaskFilterData.filterName}"
+							value="#{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}"
 							global="false" />
 						<p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
 							hideEffect="fade" my="left top" at="left bottom">
