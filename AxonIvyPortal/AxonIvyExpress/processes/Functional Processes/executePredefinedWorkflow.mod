@@ -372,7 +372,7 @@ ew0 f24 actionCode 'if(in.denied==true){
 	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Declined/TaskDescription");
 }else{
 	in.nextTask.subject = ivy.cms.co("/Dialogs/Tasks/Approved/TaskName");
-	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Approved/TaskDescription");
+	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Approved/TaskName");
 }
 
 
