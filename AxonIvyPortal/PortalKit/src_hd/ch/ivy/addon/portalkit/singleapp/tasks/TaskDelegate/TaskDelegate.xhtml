@@ -83,7 +83,7 @@
             disabled="#{data.disabledDelegateButton}" styleClass=""
             onsuccess="setCookie('delegated','#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/message/delegateSuccess')}');redirectToLastPage()" />
           <p:commandButton id="cancel-task-delegate-command"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/cancelButton')}" icon="fa fa-remove"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-remove"
             actionListener="#{logic.cancel}" immediate="true" styleClass="portal-cancel-button"
             oncomplete="PF('taskDelegateDialog').hide()" process="@this" />
         </div>

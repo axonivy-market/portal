@@ -1,4 +1,0 @@
-co: name={cancelButton} description={} changed={2017-10-31 07:59:39 CET} changedby={chnam} visualorder={0} guid={15F713A7CF9576B6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A7CFF76553} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 11:51:26 CEST} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7CFB53734} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-27 09:39:00 CET} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7D042094D} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}

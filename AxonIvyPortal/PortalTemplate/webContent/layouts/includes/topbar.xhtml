@@ -59,7 +59,7 @@
               </ui:repeat>
             </h:panelGroup> <h:panelGroup id="global-case-result" rendered="#{not empty userMenuBean.foundCases}" layout="block"
               styleClass="global-search-result">
-              <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cases')}</span>
+              <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</span>
               <ui:repeat id="found-cases" var="foundCase" value="#{userMenuBean.foundCases}">
                 <ic:ch.ivy.addon.portal.generic.CaseSearchResult foundCase="#{foundCase}"
                   keyword="#{userMenuBean.searchKeyword}" />
