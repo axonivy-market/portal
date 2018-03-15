@@ -100,7 +100,7 @@
                 <p:spacer
                   rendered="#{'DONE' == cc.attrs.task.getState() ? false : 'PARKED' == cc.attrs.task.getState()}" />
                 <p:commandButton id="more-action-command"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/more')}"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
                   rendered="#{isTaskAbleChangeDeadline or isTaskAbleToChangePriority}" />
                 <p:menu overlay="true" trigger="more-action-command" my="left top" id="more-action-menu"
                   at="left bottom">
