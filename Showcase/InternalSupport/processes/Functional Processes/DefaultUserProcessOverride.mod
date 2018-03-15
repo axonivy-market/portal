@@ -98,6 +98,7 @@ if (!StringUtils.isEmpty(acmLink)) {
 	acmProcess.setLink(acmLink);
 	acmProcess.setProcessName("Axon.ivy Selfservice");
 	acmProcess.setIcon("fa-code-fork");
+	acmProcess.setIndex(2);
 	in.defaultUserProcesses.add(acmProcess);
 }
 
@@ -107,6 +108,17 @@ if (!StringUtils.isEmpty(saleLink)){
 	userProcess.setLink(saleLink);
 	userProcess.setProcessName("Sale Information");
 	userProcess.setIcon("fa-th");
+	userProcess.setIndex(1);
+	in.defaultUserProcesses.add(userProcess);
+}
+
+String saleLink1 = collector.findStartableLinkByUserFriendlyRequestPath("Business Processes/testProcesses/ProcessHistoryTest/InspectResource.ivp");
+if (!StringUtils.isEmpty(saleLink)){	
+	UserProcess userProcess = new UserProcess();
+	userProcess.setLink(saleLink);
+	userProcess.setProcessName("Inspect Resource");
+	userProcess.setIcon("fa-gavel");
+	userProcess.setIndex(3);
 	in.defaultUserProcesses.add(userProcess);
 }' #txt
 Ds0 f3 type internaltest.DefaultUserProcessOverrideData #txt
