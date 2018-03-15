@@ -1,4 +1,0 @@
-co: name={deadlineTask} description={} changed={2017-10-31 07:59:41 CET} changedby={chnam} visualorder={0} guid={15F713A848DDF9AF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A84982BB16} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:10 CET} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A84949098D} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A848F789C6} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:10 CET} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
