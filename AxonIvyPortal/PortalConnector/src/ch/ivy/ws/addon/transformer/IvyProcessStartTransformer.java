@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.text.StrSubstitutor;
+import org.apache.commons.lang.text.StrSubstitutor;
 
 import ch.ivy.ws.addon.transformer.exception.IvyTransformerException;
 import ch.ivy.ws.addon.types.IvyProcessStart;
@@ -19,9 +19,6 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 
 /**
  * Transform a IProcessStart object to a IvyProcessStart object
- * 
- * @author mde
- *
  */
 public class IvyProcessStartTransformer {
 

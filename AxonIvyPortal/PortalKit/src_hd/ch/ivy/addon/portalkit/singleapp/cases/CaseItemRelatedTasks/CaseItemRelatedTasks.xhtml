@@ -16,7 +16,7 @@
         <div jsf:rendered="#{empty data.relatedTasks}" class="grid-item-content-list-item">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasks')}" />
         </div>
-        <ui:repeat id="tasks" var="task" value="#{data.relatedTasks}">
+        <ui:repeat var="task" value="#{data.relatedTasks}">
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item">
             <i class="fa #{taskBean.getStateIcon(task.state)} related-task-list-item-status" />
              <p:commandLink id="task-name" value="#{task.name}" actionListener="#{logic.openPortalTask}">

@@ -18,7 +18,7 @@
   <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately)}" type="preRenderComponent" />
   <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" styleClass="statistic-dashboard-expand-mode"
     rendered="#{!cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
-    <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}">
+    <ui:repeat var="chart" value="#{data.statisticChartList}">
       <c:set var="index" value="#{data.statisticChartList.indexOf(chart)}" />
       <p:panel id="chart-panel" styleClass="dashboard-chart-panel">
         <f:facet name="header">

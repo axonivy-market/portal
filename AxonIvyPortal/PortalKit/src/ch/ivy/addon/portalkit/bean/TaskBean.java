@@ -372,15 +372,19 @@ public class TaskBean implements Serializable {
   
   public String displayRelatedTaskToolTip(RemoteTask task) {
   	String taskResponsible = "";
-  	if(task != null) {
-  		taskResponsible = task.getActivatorFullName();
-  	}
-  	List<Object> params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
+  	List<Object> params;
+    if (task != null) {
+      taskResponsible = task.getActivatorFullName();
+      params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
+    } else {
+      params = new ArrayList<>();
+    }
   	return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
   
   public String displayRelatedTaskToolTipSingleApp(ITask task) {
     String taskResponsible = "";
+    List<Object> params;
     if(task != null && task.getActivator() != null) {
       ISecurityMember taskActivor = task.getActivator();
       if(taskActivor.isUser()) {
@@ -388,8 +392,10 @@ public class TaskBean implements Serializable {
       } else {
         taskResponsible = !((IRole)taskActivor).getDisplayName().isEmpty() ? ((IRole)taskActivor).getDisplayName() : ((IRole)taskActivor).getMemberName();
       }
+      params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
+    } else {
+      params = new ArrayList<>();
     }
-    List<Object> params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
   

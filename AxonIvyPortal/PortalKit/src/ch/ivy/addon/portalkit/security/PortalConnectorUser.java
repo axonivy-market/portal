@@ -6,7 +6,7 @@ import java.util.Locale;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang.RandomStringUtils;
 
 import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.application.IApplication;
