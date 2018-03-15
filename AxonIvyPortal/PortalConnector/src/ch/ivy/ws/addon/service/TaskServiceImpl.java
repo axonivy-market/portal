@@ -145,8 +145,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               userText.add(taskId);
               errors.add(new WSException(WSErrorType.WARNING, 10028, e, userText, null));
             }
-            t.setActivator(member);
-            t.setCustomTimestampField5(new Date());
+            if (t != null) {
+              t.setActivator(member);
+              t.setCustomTimestampField5(new Date());
+            }
             IvyTask ivyTask = new IvyTaskTransformer(isUrlBuiltFromSystemProperties).transform(t);
             result.setTask(ivyTask);
           }
@@ -698,15 +700,14 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           if (task != null) {
             boolean canUserResumeTask = canUserResumeTask(userName, task);
             result.setCanUserResumeTask(canUserResumeTask);
-          }
-
-          IUser workerUser = task.getWorkerUser();
-          if (workerUser != null) {
-            String fullName = workerUser.getFullName();
-            String workerName =
-                fullName == null || fullName.isEmpty() ? workerUser.getName() : workerUser.getFullName() + " ("
-                    + workerUser.getName() + ")";
-            result.setWorkerUserName(workerName);
+            IUser workerUser = task.getWorkerUser();
+            if (workerUser != null) {
+              String fullName = workerUser.getFullName();
+              String workerName =
+                  fullName == null || fullName.isEmpty() ? workerUser.getName() : workerUser.getFullName() + " ("
+                      + workerUser.getName() + ")";
+                  result.setWorkerUserName(workerName);
+            }
           }
           result.setErrors(errors);
           return result;

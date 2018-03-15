@@ -180,7 +180,7 @@ public class WSException extends Exception {
 	
 	@Override
 	//remove stack trace
-    public Throwable fillInStackTrace() {
+    public synchronized Throwable fillInStackTrace() {
         return null;
     } 
 	
@@ -276,7 +276,7 @@ public class WSException extends Exception {
 	}
 	
 	@Override
-  public Throwable getCause(){
+  public synchronized Throwable getCause(){
 		if(this.exception != null && this.exception.getCause() != null){
 			return this.exception.getCause();
 		}else{

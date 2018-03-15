@@ -95,7 +95,7 @@
 				</p>
 			</h:panelGroup>
 			<ui:fragment id="user-favorite-process-list" rendered="#{processWidgetBean.compactMode}">
-				<ui:repeat id="user-favorite-process-list-items" varStatus="status" var="process"
+				<ui:repeat varStatus="status" var="process"
 					value="#{processWidgetBean.userProcesses}">
 					<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
 					<c:set var="isExternalProcess"
@@ -156,7 +156,7 @@
 				</h:form>
 			</ui:fragment>
 			<ui:fragment id="full-process-list" rendered="#{!processWidgetBean.compactMode}">
-				<ui:repeat id="full-process-list-items" varStatus="status" var="process" value="#{processWidgetBean.userProcesses}">
+				<ui:repeat varStatus="status" var="process" value="#{processWidgetBean.userProcesses}">
 					<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
 					<c:set var="isExternalProcess"
 						value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
@@ -201,7 +201,7 @@
 					</h:panelGroup>
 				</h:form>
 			</h:panelGroup>
-			<ui:repeat id="user-default-process-list-items" varStatus="status" var="process"
+			<ui:repeat varStatus="status" var="process"
 				value="#{processWidgetBean.defaultUserProcesses}">
 				<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
 				<c:set var="isExternalProcess"

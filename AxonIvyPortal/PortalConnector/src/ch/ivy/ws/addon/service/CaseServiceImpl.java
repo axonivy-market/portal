@@ -73,7 +73,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userTextParams, null));
             }
 
-            if (cases.size() > 0 && cases.get(0) != null) {
+            if (cases != null && cases.size() > 0 && cases.get(0) != null) {
               ICase c = cases.get(0);
 
               for (int i = 0; i < additionalProperties.size(); i++) {
@@ -128,7 +128,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userTextParams, null));
             }
 
-            if (cases.size() > 0 && cases.get(0) != null) {
+            if (cases != null && cases.size() > 0 && cases.get(0) != null) {
               ICase c = cases.get(0);
               List<String> additionalPropertyNames = c.getAdditionalPropertyNames();
 

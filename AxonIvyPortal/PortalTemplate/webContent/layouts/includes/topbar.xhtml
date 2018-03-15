@@ -47,20 +47,20 @@
               id="global-process-result" rendered="#{not empty userMenuBean.foundWebStartables}" layout="block"
               styleClass="global-search-result">
               <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
-              <ui:repeat id="found-processes" var="foundProcess" value="#{userMenuBean.foundWebStartables}">
+              <ui:repeat var="foundProcess" value="#{userMenuBean.foundWebStartables}">
                 <ic:ch.ivy.addon.portal.generic.ProcessSearchResult foundProcess="#{foundProcess}" />
               </ui:repeat>
             </h:panelGroup> <h:panelGroup id="global-task-result" rendered="#{not empty userMenuBean.foundTasks}" layout="block"
               styleClass="global-search-result">
               <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
-              <ui:repeat id="found-tasks" var="foundTask" value="#{userMenuBean.foundTasks}">
+              <ui:repeat var="foundTask" value="#{userMenuBean.foundTasks}">
                 <ic:ch.ivy.addon.portal.generic.TaskSearchResult keyword="#{userMenuBean.searchKeyword}"
                   foundTask="#{foundTask}" />
               </ui:repeat>
             </h:panelGroup> <h:panelGroup id="global-case-result" rendered="#{not empty userMenuBean.foundCases}" layout="block"
               styleClass="global-search-result">
               <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</span>
-              <ui:repeat id="found-cases" var="foundCase" value="#{userMenuBean.foundCases}">
+              <ui:repeat var="foundCase" value="#{userMenuBean.foundCases}">
                 <ic:ch.ivy.addon.portal.generic.CaseSearchResult foundCase="#{foundCase}"
                   keyword="#{userMenuBean.searchKeyword}" />
               </ui:repeat>
