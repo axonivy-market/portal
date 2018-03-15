@@ -19,7 +19,7 @@ public class TaskCreationDateFilter extends TaskFilter {
   @Override
   public String label() {
     StringBuilder sb = new StringBuilder();
-    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/create"));
+    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/create"));
     sb.append(" (");
     sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/from"));
     sb.append("/");

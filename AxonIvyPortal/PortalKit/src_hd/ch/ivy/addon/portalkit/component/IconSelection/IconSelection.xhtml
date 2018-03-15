@@ -13,7 +13,7 @@
     <h:outputText id="awesome-icon-display" styleClass="fa #{cc.attrs.value} fa-2x u-vertical-align-center" />
     <p:inputText type="hidden" id="awesome-icon-hidden-value" value="#{cc.attrs.value}" />
     <p:commandLink styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/selectIcon')}" process="@this"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
       onclick="PF('select-icon-dialog').show()" />
   </h:panelGroup>
   <script>

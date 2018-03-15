@@ -1096,7 +1096,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     DonutChartModel model = new DonutChartModel();
 
     if (isEmptyData) {
-      chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/cases"), 0);
+      chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases"), 0);
     }
 
     model.addCircle(chartData);

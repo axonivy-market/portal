@@ -126,7 +126,7 @@
         <p:messages id="errorsMessageE" severity="info" showDetail="true" closable="true" escape="false"/>
         <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
         <f:facet name="footer">
-        	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+        	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
           		onclick="PF('errorDialogEmail').hide();" />
         </f:facet>
       </p:dialog>

@@ -20,7 +20,7 @@
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{case.creatorFullName}"
         username="#{case.creatorUserName}" />
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/created')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
       <h:outputText id="case-start-time" value="#{case.startTimestamp}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
       </h:outputText>
