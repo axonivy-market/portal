@@ -9,12 +9,12 @@
 
 <cc:implementation>
   <div class="grid-item" id="#{cc.clientId}">
-    <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/data')}</h2>
+    <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/data')}</h2>
     <div class="grid-item-content">
       <div class="grid-item-content-list">
         <div class="grid-item-content-list-item">
           <span class="grid-item-content-list-item-left"> <h:outputText
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/creator')}" />
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
           </span> <span class="grid-item-content-list-item-right"> <h:outputText id="case-creator-display-name"
               value="#{data.internalCase.creatorUser.displayName}" />
           </span>

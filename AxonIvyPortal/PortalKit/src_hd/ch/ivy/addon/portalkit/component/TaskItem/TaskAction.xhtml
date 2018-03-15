@@ -24,7 +24,7 @@
         <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" />
       </p:commandLink>
       <p:tooltip for="task-delegate-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTaskTooltip')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
         styleClass="task-command-tooltip" />
       <p:commandLink id="task-reserve-command"
         disabled="#{!task.canPark or task.state eq 'PARKED' or task.state eq 'RESUMED'}"
