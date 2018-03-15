@@ -10,7 +10,7 @@ public class CaseDescriptionFilter extends CaseFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/description");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
   }
 
   @Override

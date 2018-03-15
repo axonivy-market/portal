@@ -21,14 +21,14 @@
       <p:row>
         <p:column styleClass="Wid10">
           <p:outputLabel for="description" styleClass="Fright"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/description')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}:" />
         </p:column>
         <p:column>
           <h:outputText id="description" value="#{data.caseInfo.description}" />
         </p:column>
         <p:column styleClass="Wid20">
           <h:outputLabel for="created" styleClass="Fright"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/created')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}:" />
         </p:column>
         <p:column>
           <h:outputText id="created" value="#{data.caseInfo.startTimestamp}">
@@ -48,7 +48,7 @@
         </p:column>
         <p:column>
           <h:outputLabel styleClass="Fright" for="creator"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/creator')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}:" />
         </p:column>
         <p:column>
           <p:commandLink id="creator" value="#{data.creatorName}" styleClass="fa fa-info-circle" />

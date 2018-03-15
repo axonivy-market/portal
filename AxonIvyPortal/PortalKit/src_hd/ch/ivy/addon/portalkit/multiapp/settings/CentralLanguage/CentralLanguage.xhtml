@@ -53,7 +53,7 @@
 
       <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
           onclick="PF('errorLanguageDialog').hide();" />
       </f:facet>
     </p:dialog>
@@ -62,7 +62,7 @@
       styleClass="language-settings-exception-dialog" widgetVar="mailLanguageDialog" modal="true" appendTo="@(body)">
 		<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/cannotSetEmailLanguage')}" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
           onclick="window.location.reload();" />
       </f:facet>
     </p:dialog>

@@ -30,7 +30,7 @@
           <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/setting')}">
             <p:selectOneRadio id="select-setting-options" value="#{data.settingForAllApp}" layout="pageDirection"
               columns="1">
-              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApps')}"
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}"
                 itemValue="#{true}" />
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forEachApp')}"
                 itemValue="#{false}" />
@@ -126,7 +126,7 @@
         <p:messages id="errorsMessageE" severity="info" showDetail="true" closable="true" escape="false"/>
         <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
         <f:facet name="footer">
-        	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+        	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
           		onclick="PF('errorDialogEmail').hide();" />
         </f:facet>
       </p:dialog>

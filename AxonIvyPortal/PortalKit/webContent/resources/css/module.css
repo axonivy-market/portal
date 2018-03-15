@@ -1916,12 +1916,21 @@ a.case-details-document-add-link {
 }
 /********************************** END CASE ITEM **********************************/
 .process-widget-action {
-  line-height: 45px;
+  line-height: 20px;
+}
+
+.process-widget-action-form {
+  margin-top: 14px;
+  margin-bottom: 14px;
 }
 
 .process-widget-action .process-action-button.action-create-experss-workflow {
   line-height: 1.2rem;
   margin-top: 20px;
+}
+
+.process-widget-action .name-sort-command {
+  white-space: nowrap;
 }
 
 .process-empty-container {

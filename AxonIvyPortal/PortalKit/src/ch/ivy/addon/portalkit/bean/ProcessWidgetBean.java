@@ -158,7 +158,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
             .stream()
             .filter(
                 webStartable -> StringUtils.containsIgnoreCase(webStartable.getDisplayName(), query)
-                    && !isUserProcess(webStartable))
+                    && !isUserProcess(webStartable) && !isDefaultUserProcess(webStartable))
             .map(
                 webStartable -> new UserProcess(stripHtmlTags(webStartable.getDisplayName()), userName, webStartable
                     .getStartLink())).collect(Collectors.toList());
@@ -167,7 +167,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     return filteredUserProcesses;
   }
 
-  private void sortUserProcessList(List<UserProcess> processes) {
+  public void sortUserProcessList(List<UserProcess> processes) {
     processes.sort((process1, process2) -> process1.getProcessName().toLowerCase()
         .compareTo(process2.getProcessName().toLowerCase()));
   }
@@ -175,8 +175,8 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private List<UserProcess> getFilteredExpressWorkflows(String query) {
     List<UserProcess> workflow = new ArrayList<>();
     List<ExpressProcess> workflows =
-        ExpressServiceRegistry.getProcessService().findAllOrderByName().stream().filter(wf -> !isUserProcess(wf))
-            .collect(Collectors.toList());
+        ExpressServiceRegistry.getProcessService().findAllOrderByName().stream()
+            .filter(wf -> !isUserProcess(wf) && !isDefaultUserProcess(wf)).collect(Collectors.toList());
     for (ExpressProcess wf : workflows) {
       if (canStartWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
         workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf)));
@@ -215,8 +215,19 @@ public class ProcessWidgetBean implements Serializable, Converter {
         userProcess -> ((userProcess.getLink().toLowerCase()).contains(webStartable.getStartLink().toLowerCase())));
   }
 
+  private boolean isDefaultUserProcess(RemoteWebStartable webStartable) {
+    return defaultUserProcesses.stream().anyMatch(
+        userProcess -> ((userProcess.getLink().toLowerCase()).contains(webStartable.getStartLink().toLowerCase())));
+  }
+
   private boolean isUserProcess(ExpressProcess workflow) {
     return userProcesses.stream().anyMatch(
+        userProcess -> ((userProcess.getLink().toLowerCase()).contains(generateWorkflowStartLink(workflow)
+            .toLowerCase())));
+  }
+
+  private boolean isDefaultUserProcess(ExpressProcess workflow) {
+    return defaultUserProcesses.stream().anyMatch(
         userProcess -> ((userProcess.getLink().toLowerCase()).contains(generateWorkflowStartLink(workflow)
             .toLowerCase())));
   }
@@ -252,6 +263,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
 
   public void switchEditMode() {
     editMode = !editMode;
+    userProcesses.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     clearSelectedUserProcess();
   }
 
@@ -274,23 +286,22 @@ public class ProcessWidgetBean implements Serializable, Converter {
   }
 
   public void selectDeletingProcess() {
-    String processLink =
-        FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("processLink");
-    boolean isMarkedAsDeleting = isProcessMarkedAsDeleting(processLink);
+    String processId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("processId");
+    boolean isMarkedAsDeleting = isProcessMarkedAsDeleting(processId);
     if (!isMarkedAsDeleting) {
       Optional<UserProcess> selectedUserProcess =
-          userProcesses.stream().filter(userProcess -> userProcess.getLink().equals(processLink)).findFirst();
+          userProcesses.stream().filter(userProcess -> userProcess.getId().toString().equals(processId)).findFirst();
       if (selectedUserProcess.isPresent()) {
         selectedUserProcesses.add(selectedUserProcess.get());
       }
     } else {
-      selectedUserProcesses.removeIf(userProcess -> userProcess.getLink().equals(processLink));
+      selectedUserProcesses.removeIf(userProcess -> userProcess.getId().toString().equals(processId));
     }
   }
 
-  public boolean isProcessMarkedAsDeleting(String processLink) {
-    return selectedUserProcesses.stream().filter(userProcess -> userProcess.getLink().equals(processLink)).findAny()
-        .isPresent();
+  public boolean isProcessMarkedAsDeleting(String processId) {
+    return selectedUserProcesses.stream().filter(userProcess -> userProcess.getId().toString().equals(processId))
+        .findAny().isPresent();
   }
 
   public void cancelEditingProcess() {
