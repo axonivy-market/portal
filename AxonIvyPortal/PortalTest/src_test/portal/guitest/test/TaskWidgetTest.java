@@ -19,6 +19,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -57,7 +58,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.openTaskDetails(0);
 
     String relatedCaseName = taskWidgetPage.getRelatedCase();
-    CasePage casePage = taskWidgetPage.openRelatedCaseOfTask(0);
+    CasePage casePage = taskWidgetPage.openRelatedCaseOfTask();
 
     String caseName = casePage.getCaseName();
     assertEquals(relatedCaseName, caseName);

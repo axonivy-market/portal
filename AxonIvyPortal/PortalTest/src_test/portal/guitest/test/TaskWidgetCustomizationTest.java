@@ -16,6 +16,7 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   private static final String STATE_COLUMN_NAME = "State";
   private static final String CUSTOMER_NAME_COLUMN_HEADER = "Customer name";
 
+  @Override
   @Before
   public void setup() {
     super.setup();

@@ -11,6 +11,7 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 
 public class CaseFilterTest extends BaseTest {
+  @Override
   @Before
   public void setup() {
     super.setup();

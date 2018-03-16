@@ -14,6 +14,7 @@ import ch.ivyteam.ivy.workflow.ICase;
  * @author mde
  *
  */
+@SuppressWarnings("deprecation")
 public class IvyCaseTransformer {
 
   public static IvyCase transformToIvyCase(ICase iCase) {
