@@ -49,7 +49,7 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmDeleteMessage')}" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
     widgetVar="deleteFileConfirmation">
-    <p:commandButton id="confirm-delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}"
+    <p:commandButton id="confirm-delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       styleClass="Fs14" actionListener="#{logic.submitDelete}" oncomplete="PF('deleteFileConfirmation').hide();"
       update="#{p:component('document-table')}" />
     <p:commandButton styleClass="Fs14 portal-cancel-button" id="reject-delete-file"

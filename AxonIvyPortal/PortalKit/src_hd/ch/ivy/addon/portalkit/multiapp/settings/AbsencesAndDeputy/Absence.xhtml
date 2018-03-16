@@ -9,7 +9,7 @@
   <p:panelGrid id="absence-panel-grid" styleClass="new-absence-container">
     <p:row rendered="#{data.isSupervisor}">
       <p:column styleClass="new-absence-label">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/userName')}:" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}:" />
       </p:column>
       <p:column>
        <p:autoComplete scrollHeight="200" dropdown="true" id="username" size="35" 

@@ -115,7 +115,7 @@
 							</h:panelGroup>
 						</p:column>
 
-						<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/type')}"
+						<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}"
 							styleClass="application-table-type-column">
 							<h:outputText rendered="#{not empty app.serverId}"
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/ivyApplication')}" />
@@ -314,7 +314,7 @@
 					<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-3, ui-grid-col-9"
 						styleClass="u-no-border admin-settings-container ui-fluid"
 						rendered="#{data.selectedServer.wsAuthenticationType.value ne 'None'}">
-						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/username')}" for="username"
+						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" for="username"
 							styleClass="admin-settings-form-input-label" />
 						<p:inputText id="username" value="#{data.selectedServer.username}" required="true"
 							requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/usernameRequiredMsg')}"
@@ -382,7 +382,7 @@
 					styleClass="u-no-border admin-settings-container ui-fluid" id="applicationPanelGrid">
 					<!-- Application Type -->
 					<p:outputLabel styleClass="admin-settings-form-input-label"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/type')}" for="applicationType" />
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}" for="applicationType" />
 					<p:selectOneMenu id="applicationType" value="#{data.type}" required="true">
 						<f:selectItems value="#{masterDataBean.applicationTypes}" var="type" itemLabel="#{type.label}" />
 						<p:ajax event="change" listener="#{logic.appTypeChange}" oncomplete="PF('appDialog').initPosition()"
@@ -597,7 +597,7 @@
 			<p:dataTable value="#{data.usersApplicationList}" var="user" sortBy="#{user.userName}" scrollable="true"
 				filteredValue="#{data.filteredUsers}" scrollHeight="300" styleClass="preview-users-datatable"
 				emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-				<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/fullUserName')}"
+				<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
 					filterBy="#{user.userName}">
 					<h:outputText value="#{user.fullUserName}" />
 				</p:column>
