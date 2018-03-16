@@ -39,7 +39,7 @@
       <p:tooltip for="stage-info-#{counter.index}" value="#{stage.name}" trackMouse="true" />
       <c:if test="#{cc.attrs.stages.size() gt counter.index+1}">
         <div class="process-flow">
-          <span class="flow-txt"><div class="#{stage.isTerminating()  ? 'none' : 'visible'}" /></span>
+          <div class="flow-txt"><div class="#{stage.isTerminating()  ? 'none' : 'visible'}" /></div>
         </div>
       </c:if>
     </c:forEach>
