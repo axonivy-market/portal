@@ -24,7 +24,7 @@
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
     componentId="id-column-header" styleClass="id-column-header TexAlCenter #{cc.attrs.dataModel.isAutoHideColumns()?'js-id-column-header':''}"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskId')}"
     sortField="#{masterDataBean.taskSortFieldId}" />
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
@@ -39,7 +39,7 @@
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
     componentId="state-column-header" styleClass="state-column-header TexAlCenter"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/state')}"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}"
     sortField="#{masterDataBean.taskSortFieldState}" />
 </cc:implementation>
 </html>

@@ -106,7 +106,7 @@ import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
 
 MainMenuNode category = new MainMenuNode();
-category.value = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/task"), in.keyword));
+category.value = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", Arrays.asList(ivy.cms.co("/Labels/Task"), in.keyword));
 String pageTitle = category.value;
 
 in.dataModel.setServerId(in.foundTask.applicationRegister.serverId);

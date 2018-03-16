@@ -72,7 +72,7 @@
       </p:column>
 
       <p:column styleClass="TexAlCenter" width="100"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/actions')}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}">
         <p:commandLink id="show-detail" styleClass="fa fa-eye"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}"
           actionListener="#{logic.taskDetail(task.ivyTask)}" update=":#{p:component('taskInforDialog')}"

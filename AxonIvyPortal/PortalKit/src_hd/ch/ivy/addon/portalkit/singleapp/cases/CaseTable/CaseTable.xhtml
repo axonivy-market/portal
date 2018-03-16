@@ -35,7 +35,7 @@
       </p:column>
 
       <p:column id="case-status" styleClass="case-view-table-column" filterBy="#{case.status}" sortBy="#{case.status}"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/status')}" filterMatchMode="contains">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" filterMatchMode="contains">
         <h:outputText id="case-status-value" value="#{case.status}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseTreeTable/caseState')} #{case.status}" />
       </p:column>

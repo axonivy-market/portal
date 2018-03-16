@@ -26,7 +26,7 @@
         </h:outputText>
 
         <p:outputLabel for="state"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/status')}:" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}:" />
         <h:panelGroup>
           <span class="case-status-current-task-icon #{caseBean.getCaseStateIcon(data.caseInfo.state)}" />
           <h:outputText id="state" value="#{caseBean.getState(data.caseInfo)}" />
@@ -77,7 +77,7 @@
             <h:outputText id="priority" value="#{taskBean.getPriority(task.priority)}" />
           </p:column>
           <p:column styleClass="u-text-align-center"
-            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/state')}"
+            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}"
             sortBy="#{task.state.intValue()}">
             <span class="case-status-current-task-icon #{taskBean.getStateIcon(task.getState())}" />
             <h:outputText id="status" value="#{taskBean.getState(task)}" />

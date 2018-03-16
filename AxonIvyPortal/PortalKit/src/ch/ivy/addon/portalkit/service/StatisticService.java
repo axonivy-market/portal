@@ -74,7 +74,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private static final String EXPIRY_PERIOD_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/expiryPeriod";
   private static final String TASK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
-  private static final String TASK_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/tasks";
+  private static final String TASK_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
   private static final String SECOND_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/second";
 
   public static final String NO_CATEGORY_CMS = Ivy.cms().co(
