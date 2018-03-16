@@ -828,7 +828,7 @@ Bk0 f11 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 Bk0 f11 actionTable 'out=in;
 ' #txt
 Bk0 f11 actionCode 'ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
-ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskDescription"));
+ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
 
 ivy.case.setName(in.workflowName);
 ivy.case.setDescription(in.workflowDescription);' #txt
