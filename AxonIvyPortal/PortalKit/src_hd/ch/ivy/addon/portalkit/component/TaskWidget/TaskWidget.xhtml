@@ -183,7 +183,7 @@
 			<h:panelGroup id="filter-view">
 				<h:form id="filter-form" onsubmit="return false;" styleClass="task-filter-form widget-header-content-filter Fright"
 					rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}">
-					<ic:ch.ivy.addon.portalkit.component.Filter id="filter-container-#{data.dataModel.queryCriteria.keyword}" icon="fa fa-filter"
+					<ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" icon="fa fa-filter"
 						updateComponent="#{p:component('task-view-container')}"
 						placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
 						keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" styleClass="widget-header-filter-input"
@@ -239,7 +239,7 @@
 				</p:selectOneRadio>
 			</h:panelGrid>
 			<h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-				<p:commandButton styleClass="" id="filter-save-command"
+				<p:commandButton id="filter-save-command"
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
 					oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
 					actionListener="#{logic.saveFilter}" update="#{cc.clientId}:task-widget-header task-widget:filter-save-form">
