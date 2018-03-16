@@ -2116,7 +2116,7 @@ a.case-details-document-add-link {
 }
 
 .process-widget .default-process-title {
-  font-size: 1.2rem; 
+  font-size: 1.4rem; 
   margin-bottom: 14px;
 }
 
@@ -2146,6 +2146,10 @@ a.case-details-document-add-link {
   display: flex;
   position: relative;
   align-items: center;
+}
+
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
+  cursor: move;	
 }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list table tr td {
