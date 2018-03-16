@@ -200,6 +200,7 @@ Dt0 f35 1 296 152 #addKink
 Dt0 f35 1 0.4965635738831616 0 0 #arcLabel
 Dt0 f27 targetWindow NEW #txt
 Dt0 f27 targetDisplay TOP #txt
+Dt0 f27 richDialogId ch.ivy.addon.portalkit.test.DefaultDialog #txt
 Dt0 f27 startMethod start() #txt
 Dt0 f27 type portalKit_test.DataCreationData #txt
 Dt0 f27 requestActionDecl '<> param;' #txt
@@ -209,6 +210,7 @@ Dt0 f27 responseMappingAction 'out=in;
 ' #txt
 Dt0 f27 isAsynch false #txt
 Dt0 f27 isInnerRd false #txt
+Dt0 f27 userContext '* ' #txt
 Dt0 f27 382 252 36 24 20 -2 #rect
 Dt0 f27 @|RichDialogIcon #fIcon
 Dt0 f2 expr out #txt

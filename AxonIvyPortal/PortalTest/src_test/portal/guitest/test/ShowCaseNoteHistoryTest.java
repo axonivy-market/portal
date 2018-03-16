@@ -28,6 +28,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     private NoteHistoryPage caseHistoryPage;
     private static final String noteContent = "test"; 
     
+    @Override
     @Before
     public void setup() {
       super.setup();

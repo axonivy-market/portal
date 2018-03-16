@@ -17,6 +17,7 @@ public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate YESTERDAY = TODAY.minusDays(1);
 
+  @Override
   @Before
   public void setup() {
     super.setup();

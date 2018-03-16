@@ -15,6 +15,7 @@ public class SearchProcessTest extends BaseTest {
 
   private HomePage homePage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();

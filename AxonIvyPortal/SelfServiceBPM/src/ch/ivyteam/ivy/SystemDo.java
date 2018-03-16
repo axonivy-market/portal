@@ -38,6 +38,7 @@ public class SystemDo {
     });
   }
 
+  @SuppressWarnings("deprecation")
   public static void setProcess(final ICase icase, final String code, final String val) throws Exception {
     SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
       @Override
