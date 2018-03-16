@@ -17,7 +17,7 @@
           <div jsf:rendered="#{empty data.histories}" class="grid-item-content-list-item">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noHistories')}" />
           </div>
-          <ui:repeat var="history" value="#{data.histories}">
+          <ui:repeat id="histories" var="history" value="#{data.histories}">
             <div class="author truncate-author">
               <i class="fa fa-check-circle" jsf:id="done-task"
                 jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" /> <i
