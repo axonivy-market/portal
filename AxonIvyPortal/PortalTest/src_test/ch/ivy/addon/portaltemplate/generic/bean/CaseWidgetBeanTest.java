@@ -11,7 +11,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+import org.mockito.Matchers;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -55,10 +55,10 @@ public class CaseWidgetBeanTest {
     Map<String, Object> responses = new HashMap<>();
     responses.put(REMOTE_CASE_KEY, remoteCase);
     
-    PowerMockito.when(IvyAdapterService.startSubProcess(Mockito.anyString(), Mockito.anyMap(), Mockito.anyList())).thenReturn(responses);
+    PowerMockito.when(IvyAdapterService.startSubProcess(Matchers.anyString(), Matchers.anyMap(), Matchers.anyList())).thenReturn(responses);
     PowerMockito.whenNew(UrlDetector.class).withNoArguments().thenReturn(detector);
-    PowerMockito.when(CaseUtils.getProcessStartUriWithCaseParameters(Mockito.any(RemoteCase.class), Mockito.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
-    PowerMockito.when(detector.getHost(Mockito.anyString(), Mockito.any(Server.class))).thenReturn(HOST);
+    PowerMockito.when(CaseUtils.getProcessStartUriWithCaseParameters(Matchers.any(RemoteCase.class), Matchers.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
+    PowerMockito.when(detector.getHost(Matchers.anyString(), Matchers.any(Server.class))).thenReturn(HOST);
     Assert.assertEquals(HOST + DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(remoteCase)); 
   }
   
@@ -72,9 +72,9 @@ public class CaseWidgetBeanTest {
     Map<String, Object> responses = new HashMap<>();
     responses.put(REMOTE_CASE_KEY, remoteCase);
     
-    PowerMockito.when(IvyAdapterService.startSubProcess(Mockito.anyString(), Mockito.anyMap(), Mockito.anyList())).thenReturn(responses);
+    PowerMockito.when(IvyAdapterService.startSubProcess(Matchers.anyString(), Matchers.anyMap(), Matchers.anyList())).thenReturn(responses);
     PowerMockito.whenNew(UrlDetector.class).withNoArguments().thenReturn(detector);
-    PowerMockito.when(detector.getHost(Mockito.anyString(), Mockito.any(Server.class))).thenReturn(HOST);
+    PowerMockito.when(detector.getHost(Matchers.anyString(), Matchers.any(Server.class))).thenReturn(HOST);
     Assert.assertEquals(HOST + CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(remoteCase)); 
   }
   
