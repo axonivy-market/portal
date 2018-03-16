@@ -22,6 +22,7 @@ public class SelfServiceTest extends BaseTest {
       .getProperty("SelfServicePMName") : "selfServiceBPM";
   private String selfServiceProcessUrl = SELF_SERVICE_BPM + "/14232C3D829C4D71/start.ivp";
 
+  @Override
   @Before
   public void setup() {
     super.setup();
