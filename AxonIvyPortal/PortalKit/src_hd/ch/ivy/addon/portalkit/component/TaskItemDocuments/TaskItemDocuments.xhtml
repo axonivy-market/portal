@@ -46,7 +46,7 @@
     showEffect="fade" hideEffect="fade" width="800">
     <h:form id="document-upload-form">
       <p:messages id="upload-messages" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
         mode="advanced" dragDropSupport="true" multiple="true" oncomplete="documentTruncation.truncate();"
         update="upload-messages #{p:component('task-details-documents')}" auto="true"
