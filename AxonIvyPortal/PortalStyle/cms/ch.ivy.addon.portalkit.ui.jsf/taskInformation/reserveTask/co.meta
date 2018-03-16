@@ -1,4 +1,0 @@
-co: name={reserveTask} description={} changed={2017-10-31 07:59:40 CET} changedby={chnam} visualorder={0} guid={15F713A830EC175C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A8310B8B6B} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-27 08:29:27 CET} validto={} changed={2017-10-31 07:59:40 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A83195861E} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 12:01:08 CEST} validto={} changed={2017-10-31 07:59:40 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A831461A9B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-10-31 07:59:40 CET} changedby={chnam} properties={} id={}

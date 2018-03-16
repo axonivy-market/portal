@@ -64,7 +64,7 @@
 
       <p:column id="responsible-header" width="180"
         filterBy="#{task.activator.getDisplayName() !=''? task.activator.getDisplayName() :task.activator.getName()}"
-        filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/responsibe')}"
+        filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible')}"
         sortBy="#{task.activator.getDisplayName() !=''? task.activator.getDisplayName() :task.activator.getName()}">
         <span class="#{taskBean.checkActivator(task.activator.isUser())}" />
         <h:outputText id="responsible-value"

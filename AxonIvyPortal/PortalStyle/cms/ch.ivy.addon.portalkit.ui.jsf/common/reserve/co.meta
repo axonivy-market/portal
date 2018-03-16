@@ -1,4 +1,4 @@
-co: name={reserve} description={} changed={2017-10-31 07:59:35 CET} changedby={chnam} visualorder={0} guid={15F713A6BCA156FC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={reserve} description={} changed={2018-03-16 03:52:56 CET} changedby={nttai} visualorder={0} guid={15F713A6BCA156FC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15F713A6BD5FFD94} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-04 11:56:58 CEST} validto={} changed={2017-10-31 07:59:35 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A6BD02FEC0} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-04 11:56:56 CEST} validto={} changed={2017-10-31 07:59:34 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A6BD02FEC0} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-04 11:56:56 CEST} validto={} changed={2018-03-16 03:52:55 CET} changedby={nttai} properties={} id={}
 val: guid={15F713A6BCCE6727} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-04 11:56:31 CEST} validto={} changed={2017-10-31 07:59:34 CET} changedby={chnam} properties={} id={}
