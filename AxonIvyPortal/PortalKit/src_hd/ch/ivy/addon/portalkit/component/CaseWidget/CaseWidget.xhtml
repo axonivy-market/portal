@@ -35,7 +35,7 @@
         <h:form id="filter-selection-form" class="filter-selection-form" rendered="#{!cc.attrs.hideCaseFilter}">
           <p:outputPanel id="filter-selection-panel"
             rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
-            <h:outputLabel value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filter')}"
+            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
               for="filter-name" />
             <p:commandLink id="filter-name" styleClass="filter-name"
               value="#{data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}"
@@ -45,7 +45,7 @@
               <h:panelGroup id="private-filters" rendered="#{not empty data.publicFilters}">
                 <div class="filter-type-label">
                   <h:outputText
-                    value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/publicFilter')}" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                 </div>
                 <ui:repeat var="filterData" value="#{data.publicFilters}">
                   <h:panelGroup layout="block" styleClass="user-definied-filter-container">
@@ -68,7 +68,7 @@
               <h:panelGroup id="public-filters" rendered="#{not empty data.privateFilters}">
                 <div class="filter-type-label">
                   <h:outputText
-                    value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/privateFilter')}" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                 </div>
                 <ui:repeat var="filterData" value="#{data.privateFilters}">
                   <h:panelGroup layout="block" styleClass="user-definied-filter-container">
@@ -218,16 +218,16 @@
       <h:panelGrid columns="2" styleClass="save-filter-set-panel"
         columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">
         <p:outputLabel id="save-filter-set-name-label" for="save-filter-set-name-input"
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterName')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterName')}" />
         <p:inputText id="save-filter-set-name-input" value="#{data.filterSetName}" required="true" maxlength="20" />
         <p:outputLabel id="save-filter-type-label" for="save-filter-type-radio"
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterVisibility')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterVisibility')}" />
         <p:selectOneRadio id="save-filter-type-radio" value="#{data.filterType}">
           <f:selectItem id="only-me"
-            itemLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterTypeOnlyMe')}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterTypeOnlyMe')}"
             itemValue="ONLY_ME" />
           <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission()}"
-            itemLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterTypeAllUsers')}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterTypeAllUsers')}"
             itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
@@ -247,8 +247,8 @@
   </p:dialog>
 
   <p:confirmDialog id="delete-filter-confirmation-dialog"
-    message="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterDeletionConfirmation')}"
-    header="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterDeletionConfirmationHeader')}"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter()}" styleClass=""

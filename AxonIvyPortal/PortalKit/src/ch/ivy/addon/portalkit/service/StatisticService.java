@@ -59,7 +59,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/normal";
   private static final String LOW_PRIORITY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/low";
 
-  private static final String TODAY_EXPIRY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/today";
+  private static final String TODAY_EXPIRY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/today";
   private static final String THIS_WEEK_EXPIRY_KEY =
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisWeek";
   private static final String THIS_MONTH_EXPIRY_KEY =
@@ -67,10 +67,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private static final String THIS_YEAR_EXPIRY_KEY =
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisYear";
 
-  private static final String CREATED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/created";
-  private static final String RUNNING_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/running";
-  private static final String DONE_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/done";
-  private static final String FAILED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/failed";
+  private static final String CREATED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED";
+  private static final String RUNNING_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/RUNNING";
+  private static final String DONE_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE";
+  private static final String FAILED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/FAILED";
 
   private static final String EXPIRY_PERIOD_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/expiryPeriod";
   private static final String TASK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
