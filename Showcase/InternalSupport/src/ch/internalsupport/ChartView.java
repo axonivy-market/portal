@@ -62,7 +62,7 @@ public class ChartView {
     if (chartSeries.isPresent()) {
       barChartModel.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskExpiry"));
       barChartModel.setShadow(false);
-      String datatipFormat = "%2$.0f " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/tasks");
+      String datatipFormat = "%2$.0f " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
       barChartModel.setDatatipFormat(datatipFormat);
       Axis xAxis = barChartModel.getAxis(AxisType.X);
       xAxis.setLabel(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/expiryPeriod"));

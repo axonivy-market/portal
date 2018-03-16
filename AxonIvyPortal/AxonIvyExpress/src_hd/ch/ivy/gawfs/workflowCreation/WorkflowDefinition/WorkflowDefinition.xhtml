@@ -105,7 +105,7 @@
 									</p:column>
 									<p:column colspan="1" rowspan="1" styleClass="dynamic-task-name-label-col">
 										<p:outputLabel
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskName')}:"
+											value="#{ivy.cms.co('/Labels/Task')}:"
 											for="subjectfield" />
 									</p:column>
 									<p:column colspan="1" rowspan="1" styleClass="dynamic-task-name-input-col">
@@ -113,19 +113,19 @@
 											styleClass="dynamic-task-name-input"
 											required="#{param['form:save']!=null}"
 											maxlength="30"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"></p:inputText>
+											requiredMessage="#{ivy.cms.co('/Labels/Task')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"></p:inputText>
 									</p:column>
 									<p:column colspan="1" rowspan="1"
 										styleClass="dynamic-task-description-label-col">
 										<p:outputLabel
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Taskdescription')}:"
+											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}:"
 											for="descriptionfield" />
 									</p:column>
 									<p:column colspan="1" rowspan="1" styleClass="dynamic-task-description-input-col">
 										<p:inputText value="#{gtask.description}" styleClass="dynamic-task-description-input"
 											required="#{param['form:save']!=null}"
 											id="descriptionfield"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Taskdescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"></p:inputText>
+											requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"></p:inputText>
 									</p:column>
 								</p:row>
 								<p:row styleClass="u-no-border">
