@@ -1,4 +1,0 @@
-co: name={filterVisibility} description={} changed={2017-11-28 09:02:52 CET} changedby={lttung} visualorder={0} guid={16001A66D2AB8D58} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16001A66D2C1F10A} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-22 03:00:14 CET} validto={} changed={2017-11-28 09:02:52 CET} changedby={lttung} properties={} id={}
-val: guid={16001A66D585C1A9} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-30 12:13:52 CET} validto={} changed={2017-11-28 09:02:52 CET} changedby={lttung} properties={} id={}
-val: guid={16001A66D699D68F} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-22 03:00:14 CET} validto={} changed={2017-11-28 09:02:52 CET} changedby={lttung} properties={} id={}

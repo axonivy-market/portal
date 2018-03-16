@@ -1,4 +1,0 @@
-co: name={DescriptionDialogHeader} description={} changed={2017-12-26 03:48:09 CET} changedby={anhnguyenhoang} visualorder={0} guid={16090B85BEE19A24} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16090B85BF53FC5B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-14 03:25:31 CET} validto={} changed={2017-12-26 03:48:09 CET} changedby={anhnguyenhoang} properties={} id={}
-val: guid={16090B85BFF2F3D1} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-14 03:21:50 CET} validto={} changed={2017-12-26 03:48:09 CET} changedby={anhnguyenhoang} properties={} id={}
-val: guid={16090B85C05782E8} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-14 03:25:33 CET} validto={} changed={2017-12-26 03:48:09 CET} changedby={anhnguyenhoang} properties={} id={}
