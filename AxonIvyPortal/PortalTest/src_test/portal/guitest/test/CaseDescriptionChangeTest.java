@@ -13,6 +13,7 @@ import portal.guitest.page.MainMenuPage;
 
 public class CaseDescriptionChangeTest extends BaseTest {
   
+  @Override
   @Before
   public void setup() {
     super.setup();

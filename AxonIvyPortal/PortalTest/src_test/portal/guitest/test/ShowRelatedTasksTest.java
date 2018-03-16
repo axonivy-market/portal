@@ -26,6 +26,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   private HomePage homePage;
   NoteHistoryPage caseHistoryPage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();

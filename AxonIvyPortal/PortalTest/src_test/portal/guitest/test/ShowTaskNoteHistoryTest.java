@@ -25,6 +25,7 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
     private static final String noteContent = "test";
     private NoteHistoryPage taskHistoryPage;
     
+    @Override
     @Before
     public void setup() {
       super.setup();

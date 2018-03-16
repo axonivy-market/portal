@@ -26,6 +26,7 @@ public class StatisticWidgetTest extends BaseTest {
   private StatisticWidgetPage statisticWidgetPage;
   private MainMenuPage mainMenuPage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();
