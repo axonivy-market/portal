@@ -6,7 +6,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskInformationAction')}</ui:define>
+    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskInforDialogTitle')}</ui:define>
     <ui:define name="pageContent">
       <ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskInformation id="task-information" task="#{data.task}"
         visible="#{true}" isDialogMode="#{false}" taskNotFound="#{data.taskNotFound}" />

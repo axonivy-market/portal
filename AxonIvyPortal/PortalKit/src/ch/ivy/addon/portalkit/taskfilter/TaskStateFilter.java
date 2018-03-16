@@ -32,7 +32,7 @@ public class TaskStateFilter extends TaskFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/state");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/state");
   }
 
   @Override
