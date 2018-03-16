@@ -20,6 +20,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   private static final String KEYWORD_FILTER_SELECTOR =
       "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
+  private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
+          "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
   @Override
   protected String getLoadedLocator() {
@@ -93,6 +95,13 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void filterTasksBy(String keyword) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
+    keywordFilter.sendKeys(keyword);
+    Sleeper.sleepTight(2000);
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void filterTasksInExpendedModeBy(String keyword) {
+    WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
     keywordFilter.sendKeys(keyword);
     Sleeper.sleepTight(2000);
     waitAjaxIndicatorDisappear();
