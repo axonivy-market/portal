@@ -125,7 +125,7 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.selectIvyProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
     processWidget.clickEditSwitchLink();
-    processWidget.moveFavoriteProcess(3, 0, -110);
+    processWidget.moveFavoriteProcess(3, 1);
     processWidget.clickSaveProcess();
     assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(0));
     assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(2));

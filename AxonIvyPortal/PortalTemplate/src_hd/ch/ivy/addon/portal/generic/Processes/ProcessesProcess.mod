@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Fri Sep 16 20:29:29 ICT 2016]
-150D5B63F4513514 3.18 #module
+150D5B63F4513514 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessesProcess Big #zClass
 Ps0 RD #cInfo
@@ -55,7 +54,7 @@ Ps0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 ' #txt
 Ps0 f3 inParameterMapAction 'out.keyword=param.keyword;
 out.processStartLink=param.processStartLink;
-out.title=param.#keyword is initialized ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", java.util.Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/process"), param.keyword)) : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader");
+out.title=param.#keyword is initialized ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", java.util.Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/process"), param.keyword)) : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/processes");
 ' #txt
 Ps0 f3 outParameterDecl '<> result;
 ' #txt
