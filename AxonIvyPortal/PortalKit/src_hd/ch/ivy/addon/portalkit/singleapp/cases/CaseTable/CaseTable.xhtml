@@ -91,7 +91,7 @@
       appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
       widgetVar="confirmation">
       <p:commandButton id="proceed-delete-case-command" styleClass=""
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}" icon="fa fa-check-circle-o"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" icon="fa fa-check-circle-o"
         process="cases-view" actionListener="#{logic.deleteCase(data.selectedCase)}"
         oncomplete="PF('confirmation').hide();PF('caseTableVar').clearFilters()"
         update=":#{p:component('cases-view')} messages">

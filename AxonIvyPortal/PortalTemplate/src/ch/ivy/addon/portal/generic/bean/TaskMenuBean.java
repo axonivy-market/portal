@@ -118,7 +118,7 @@ public class TaskMenuBean implements Serializable {
 
   private DefaultTreeNode buildUnassignedTaskTree(List<CategoryData> unassignedTaskCategories, String menuState) {
     DefaultTreeNode unassignedTasks =
-        buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/UnassignedTasks"),
+        buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/UNASSIGNED"),
             unassignedTaskCategories, TreeNodeType.TASKS_UNASSIGNED_TASKS, menuState);
     return unassignedTasks;
   }
