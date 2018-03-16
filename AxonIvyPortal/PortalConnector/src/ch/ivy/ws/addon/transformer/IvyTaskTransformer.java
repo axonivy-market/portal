@@ -16,10 +16,8 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 /**
  * Transform a ITask object to an IvyTask object
- * 
- * @author mde
- *
  */
+@SuppressWarnings("deprecation")
 public class IvyTaskTransformer {
 
   private boolean isUrlBuiltFromSystemProperties;

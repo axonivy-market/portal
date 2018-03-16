@@ -15,6 +15,7 @@ import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class MenuTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();

@@ -17,6 +17,7 @@ public class ScreenshotFailedTestRule implements MethodRule {
   private static final String SCREENSHOT_FOLDER = "target" + File.separator + "test" + File.separator + "screenshot"
       + File.separator + "";
 
+  @Override
   public Statement apply(final Statement statement, final FrameworkMethod frameworkMethod, Object arg2) {
     return new Statement() {
       @Override

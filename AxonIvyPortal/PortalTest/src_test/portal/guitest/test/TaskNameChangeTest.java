@@ -11,7 +11,8 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskNameChangeTest extends BaseTest {
 	
-	@Before
+	@Override
+  @Before
 	public void setup() {
 		super.setup();
 		createTestingTasks();

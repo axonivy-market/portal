@@ -11,6 +11,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class CustomTaskDelegateTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();
