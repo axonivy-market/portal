@@ -11,7 +11,8 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskPriorityChangeTest extends BaseTest {
 	
-	@Before
+	@Override
+  @Before
 	public void setup() {
 		super.setup();
 		createTestingTasks();

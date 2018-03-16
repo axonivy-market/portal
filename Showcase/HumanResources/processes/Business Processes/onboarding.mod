@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue May 05 16:36:25 ICT 2015]
-14763D3609FFE486 3.17 #module
+14763D3609FFE486 3.20 #module
 >Proto >Proto Collection #zClass
 og0 onboarding Big #zClass
 og0 B #cInfo
@@ -104,15 +103,6 @@ type.code=
 type.name=
 ' #txt
 og0 f0 showInStartList 1 #txt
-og0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Human Ressources");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 og0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -278,26 +268,6 @@ TaskA.ROL=Human Ressources
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0
 ' #txt
-Ct0 f1 taskAction 'ivy.case.setName(engine.expandMacros("Onboarding Checklist Execution"));
-ivy.case.setDescription(engine.expandMacros("Distribute to Departments"));
-ivy.case.setProcessCategory(engine.expandMacros("Onboarding"), engine.expandMacros(""));
-import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Onboarding Checklist"));
-taskDef.setDescription(engine.expandMacros("Walk through onboarding Checklist and assign tasks to designated departments."));
-taskDef.setKindCode(engine.expandMacros("1"));
-taskDef.setKindName(engine.expandMacros("Distribution"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Human Ressources");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Human Ressources");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-' #txt
 Ct0 f1 type test003HumanRessources.onboarding #txt
 Ct0 f1 template "traffic-control.jsp" #txt
 Ct0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -389,41 +359,6 @@ TaskA.customFields.decimal.3=in1.Personalnummer
 TaskA.customFields.timestamp.1=new DateTime(in1.EntryDate)
 TaskA.customFields.varchar.1=in1.Mitarbeiter
 ' #txt
-Ct1 f1 taskAction 'ivy.case.setName(engine.expandMacros("Onboarding Status Entry"));
-ivy.case.setDescription(engine.expandMacros("Welcome Day"));
-ivy.case.setProcessCategory(engine.expandMacros("Onboarding"), engine.expandMacros(""));
-ivy.case.setBusinessMainContactId(in1.Personalnummer);
-ivy.case.setBusinessMainContactName(in1.Mitarbeiter);
-ivy.case.setBusinessMainContactType("Employee");
-ivy.case.setBusinessCorrespondentId(in1.Checklist_id);
-ivy.case.setCustomVarCharField1(in1.Mitarbeiter);
-ivy.case.setCustomDecimalField1(in1.Checklist_id);
-ivy.case.setCustomTimestampField1(new DateTime(in1.EntryDate));
-ivy.case.setCustomVarCharField2(in1.Manager);
-ivy.case.setCustomDecimalField2(in1.Personalnummer);
-import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Welcome Day"));
-taskDef.setDescription(engine.expandMacros("Employee gets first information, is introduced to working place. 
-Employee is equipped."));
-taskDef.setKindCode(engine.expandMacros("HR1"));
-taskDef.setKindName(engine.expandMacros("Employee Welcome Programme"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Manager");
-taskDef.setDelayPeriod(1000 * (new Duration(1)).toNumber());
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Manager");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField1(in1.Mitarbeiter);
-taskDef.setCustomTimestampField1(new DateTime(in1.EntryDate));
-taskDef.setCustomDecimalField2(in1.Checklist_id);
-taskDef.setCustomDecimalField3(in1.Personalnummer);
-taskDefinitions.add(taskDef);
-' #txt
 Ct1 f1 type test003HumanRessources.onboarding #txt
 Ct1 f1 template "traffic-control.jsp" #txt
 Ct1 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -440,7 +375,7 @@ Ct1 f1 @|TaskSwitchSimpleIcon #fIcon
 Ct1 f1 -1|-1|-9671572 #nodeStyle
 Ct1 f3 targetWindow NEW:card: #txt
 Ct1 f3 targetDisplay TOP #txt
-Ct1 f3 richDialogId ch.ivyteam.ivy.richdialog.rdpanels.basic.AutoRichDialog #txt
+Ct1 f3 richDialogId test.ui.DefaultDialog #txt
 Ct1 f3 startMethod start() #txt
 Ct1 f3 type test003HumanRessources.onboarding #txt
 Ct1 f3 requestActionDecl '<> param;' #txt

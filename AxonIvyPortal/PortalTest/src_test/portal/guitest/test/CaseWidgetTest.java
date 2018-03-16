@@ -32,6 +32,7 @@ public class CaseWidgetTest extends BaseTest {
   private CaseDetailsPage caseDetailsPage;
   private AdditionalCaseDetailsPage additionalCaseDetailsPage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();

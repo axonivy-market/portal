@@ -247,7 +247,8 @@ public class TaskBean implements Serializable {
     return true;
   }
 
-	private boolean isSessionUserHasDelegatePermission() {
+	@SuppressWarnings("deprecation")
+  private boolean isSessionUserHasDelegatePermission() {
 		IWorkflowSession ivySession = Ivy.session();
 		ISecurityDescriptor securityDescriptor = Ivy.request().getApplication()
 				.getSecurityDescriptor();
