@@ -44,22 +44,16 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public String getProcessNameFromFavoriteProcessList(int index) {
-    String id = "process-widget:user-favorite-process-list-items:" + index + ":process-item-form:process-name";
-    String name = null;
-    try {
-      name = findElementByCssSelector("span[id*='" + id + "']").getText();
-    } catch (Exception e) {
-    }
+    String id = index + ":process-item-form:process-name";
+    WebElement favoriteProcessList = findElementById("process-widget:process-list");
+    String name = findChildElementByCssSelector(favoriteProcessList, "span[id*='" + id + "']").getText();
     return name;
   }
 
   public String getProcessNameFromDefaultProcessList(int index) {
-    String id = "process-widget:user-default-process-list-items:" + index + ":process-item-form:process-name";
-    String name = null;
-    try {
-      name = findElementByCssSelector("span[id*='" + id + "']").getText();
-    } catch (Exception e) {
-    }
+    WebElement defaultProcessList = findElementById("process-widget:user-default-process-list");
+    String id = index + ":process-item-form:process-name";
+    String name = findChildElementByCssSelector(defaultProcessList, "span[id*='" + id + "']").getText();
     return name;
   }
 
@@ -120,8 +114,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public int getNumberOfFavoriteUserProcesses() {
-    List<WebElement> processes =
-        findListElementsByCssSelector("form[id*='process-widget:user-favorite-process-list-items']");
+    List<WebElement> processes = findListElementsByCssSelector("form[class*='favorite-process-list-item']");
     return processes.size();
   }
 
@@ -166,11 +159,13 @@ public class ProcessWidgetPage extends TemplatePage {
     liveSearchTextField = findElementById(searchInputField);
   }
 
-  public void moveFavoriteProcess(int processToMoveIndex, int xOffset, int yOffset) {
+  public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
     WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
+    WebElement destinationProcess =
+        findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
     Actions builder = new Actions(driver);
     Action moveProcessSequence =
-        builder.clickAndHold(processToMove).moveByOffset(xOffset, yOffset).release(processToMove).build();
+        builder.clickAndHold(processToMove).moveToElement(destinationProcess).release(processToMove).build();
     moveProcessSequence.perform();
   }
 
