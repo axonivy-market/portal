@@ -369,7 +369,7 @@ ew0 f24 actionTable 'out=in;
 ' #txt
 ew0 f24 actionCode 'if(in.denied==true){
 	in.nextTask.subject = ivy.cms.co("/Dialogs/Tasks/Declined/TaskName");
-	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Declined/TaskDescription");
+	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Declined/TaskName");
 }else{
 	in.nextTask.subject = ivy.cms.co("/Dialogs/Tasks/Approved/TaskName");
 	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Approved/TaskName");

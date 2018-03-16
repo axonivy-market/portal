@@ -104,7 +104,7 @@ import gawfs.TaskDef;
 import ch.ivyteam.ivy.security.IUser;
 
 
-ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskName"));
+ivy.task.setName(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep"));
 ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskDescription"));
 
 
