@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -114,7 +115,8 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public int getNumberOfFavoriteUserProcesses() {
-    List<WebElement> processes = findListElementsByCssSelector("form[class*='favorite-process-list-item']");
+    WebElement favoriteProcessList = findElementById("process-widget:process-list");
+    List<WebElement> processes = findChildElementsByCssSelector(favoriteProcessList, "form[id*='process-item-form']");
     return processes.size();
   }
 
@@ -160,6 +162,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
+    driver.manage().window().setSize(new Dimension(2576, 1416));
     WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
     WebElement destinationProcess =
         findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
