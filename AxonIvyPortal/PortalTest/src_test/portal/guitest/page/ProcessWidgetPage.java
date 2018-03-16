@@ -114,7 +114,8 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public int getNumberOfFavoriteUserProcesses() {
-    List<WebElement> processes = findListElementsByCssSelector("form[class*='favorite-process-list-item']");
+    WebElement favoriteProcessList = findElementById("process-widget:process-list");
+    List<WebElement> processes = findChildElementsByCssSelector(favoriteProcessList, "form[id*='process-item-form']");
     return processes.size();
   }
 
