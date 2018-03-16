@@ -11,6 +11,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskDescriptionChangeTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();

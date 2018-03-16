@@ -14,6 +14,7 @@ public class ProcessHistoryTest extends BaseTest {
   private static final String DISPLAY_PROCESS_HISTORY_PAGE =
       "internalSupport/16193718E2B3D6C4/viewProcessHistoryOfResource.ivp";
 
+  @Override
   @Before
   public void setup() {
     super.setup();

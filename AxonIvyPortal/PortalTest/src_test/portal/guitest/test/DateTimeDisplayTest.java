@@ -18,6 +18,7 @@ public class DateTimeDisplayTest extends BaseTest {
   private static final String DATE_TIME_REGEX_PATTERN = "\\d{1,2}\\.\\d{1,2}\\.\\d{4} \\d{2}:\\d{2}";
   private HomePage homePage;
   
+  @Override
   @Before
   public void setup(){
     super.setup();

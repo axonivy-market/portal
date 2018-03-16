@@ -11,6 +11,7 @@ import portal.guitest.page.LoginPage;
 
 public class ClientSideTimeoutTest extends BaseTest {
   
+  @Override
   @Before
   public void setup() {
     super.setup();
