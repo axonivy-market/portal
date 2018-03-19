@@ -56,14 +56,12 @@ public final class RoleUtils {
       });
     } catch (PersistencyException e) {
       Ivy.log().error(e);
-      return new ArrayList<>();
     } catch (EnvironmentNotAvailableException e) {
       Ivy.log().error(e);
-      return new ArrayList<>();
     } catch (Exception e) {
       Ivy.log().error(e);
-      return new ArrayList<>();
     }
+    return null;
   }
   
   /**
@@ -100,9 +98,12 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllHiddenRoles() {
-    return getAllRoles().stream()
-        .filter(isHiddenRole())
-        .collect(Collectors.toList());
+    List<IRole> allRoles = getAllRoles();
+    if (allRoles != null) {
+      return allRoles.stream().filter(isHiddenRole()).collect(Collectors.toList());
+    } else {
+      return new ArrayList<>();
+    }
   }
 
   /**
@@ -113,9 +114,13 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllVisibleRoles() {
-    return getAllRoles().stream()
-        .filter(isVisibleRole())
-        .collect(Collectors.toList());
+    List<IRole> allRoles = getAllRoles();
+    if (allRoles != null) {
+      return allRoles.stream().filter(isVisibleRole()).collect(Collectors.toList());
+    } else {
+      return new ArrayList<>();
+    }
+   
   }
 
   /**
