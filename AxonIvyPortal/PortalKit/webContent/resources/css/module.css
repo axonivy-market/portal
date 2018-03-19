@@ -3939,6 +3939,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin: auto;
 }
 
+.task-by-expiry-drilldown-mode {
+  text-align: center;
+}
+
 .add-statistic-panel .add-statistic-panel-column-1 {
   width: 20%;
 }
