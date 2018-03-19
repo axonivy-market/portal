@@ -76,16 +76,20 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
    * @return null if cannot find adhoc, otherwise return adhoc process
    */
   private IvySideStep createAdhocSideStep(ICase wfCase, boolean isUrlBuiltFromSystemProperties) throws Exception {
-    IApplication application = wfCase.getApplication();
-    ProcessStartCollector collector = new ProcessStartCollector(application);
-    String acmLink = collector.findACMLink();
-    if (StringUtils.EMPTY.equals(acmLink)) {
+    if (wfCase != null){
+      IApplication application = wfCase.getApplication();
+      ProcessStartCollector collector = new ProcessStartCollector(application);
+      String acmLink = collector.findACMLink();
+      if (StringUtils.EMPTY.equals(acmLink)) {
+        return null;
+      }
+      IvySideStep adhoc = new IvySideStep();
+      adhoc.setName(Ivy.cms().co("/ch/ivy/addon/portalconnector/sidestep/addAdhocTask"));
+      adhoc.setStartRequestUri(ServerUrlUtils.getStartLink(acmLink, isUrlBuiltFromSystemProperties));
+      adhoc.setIsAdhoc(true);
+      return adhoc;
+    } else {
       return null;
     }
-    IvySideStep adhoc = new IvySideStep();
-    adhoc.setName(Ivy.cms().co("/ch/ivy/addon/portalconnector/sidestep/addAdhocTask"));
-    adhoc.setStartRequestUri(ServerUrlUtils.getStartLink(acmLink, isUrlBuiltFromSystemProperties));
-    adhoc.setIsAdhoc(true);
-    return adhoc;
   }
 }
