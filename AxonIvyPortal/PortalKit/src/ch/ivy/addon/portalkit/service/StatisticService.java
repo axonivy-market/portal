@@ -121,6 +121,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fourthWeek");
   private static final String FIFTHWEEK_CMS = Ivy.cms().co(
           "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fifthWeek");
+  private static final String SIXTHWEEK_CMS = Ivy.cms().co(
+          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/sixthWeek");
 
   private static final String MONDAY_CMS = Ivy.cms().co(
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/monday");
@@ -152,7 +154,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private static final String[] MONTHSOFYEAR = {JANUARY_CMS, FEBRUARY_CMS, MARCH_CMS, APRIL_CMS, MAY_CMS, JUNE_CMS,
       JULY_CMS, AUGUST_CMS, SEPTEMBER_CMS, OCTOBER_CMS, NOVEMBER_CMS, DECEMBER_CMS};
-  private static final String[] WEEKSOFMONTH = {FIRSTWEEK_CMS, SECONDWEEK_CMS, THIRDWEEK_CMS, FOURTHWEEK_CMS, FIFTHWEEK_CMS};
+  private static final String[] WEEKSOFMONTH = {FIRSTWEEK_CMS, SECONDWEEK_CMS, THIRDWEEK_CMS, FOURTHWEEK_CMS, FIFTHWEEK_CMS, SIXTHWEEK_CMS};
   private static final String[] DAYSOFWEEK = {MONDAY_CMS, TUESDAY_CMS, WEDNESDAY_CMS, THURSDAY_CMS, FRIDAY_CMS,
       SATURDAY_CMS, SUNDAY_CMS};
   private static final String[] HOURSOFDAY = {BEFORE_8, IN_8, IN_9, IN_10, IN_11, IN_12, IN_13, IN_14, IN_15, IN_16, IN_17, AFTER_18};
@@ -681,7 +683,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     return chartData;
   }
-  
+
   private Date getFirstDateOfWeek(String selectedWeek, String selectedMonth) {
 
     Date firstDateOfWeek = new Date();
@@ -690,16 +692,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     } else {
       Date firstDateOfMonth = getFirstDateOfMonth(selectedMonth);
       Date firstDateOfFirstWeek = getFirstDateOfWeekContainsDate(firstDateOfMonth);
-      if(StringUtils.containsIgnoreCase(selectedWeek, FIRSTWEEK_CMS)){
+      if (StringUtils.containsIgnoreCase(selectedWeek, FIRSTWEEK_CMS)){
         firstDateOfWeek = firstDateOfFirstWeek;
-      } else if(StringUtils.containsIgnoreCase(selectedWeek, SECONDWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, SECONDWEEK_CMS)){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 1));
-      } else if(StringUtils.containsIgnoreCase(selectedWeek, THIRDWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, THIRDWEEK_CMS)){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 2));
-      } else if(StringUtils.containsIgnoreCase(selectedWeek, FOURTHWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, FOURTHWEEK_CMS)){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 3));
-      } else if(StringUtils.containsIgnoreCase(selectedWeek, FIFTHWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, FIFTHWEEK_CMS)){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 4));
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, SIXTHWEEK_CMS)) {
+        firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 5));
       }
     }
     
@@ -715,6 +719,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Long taskExpireOnThirdWeek = new Long(0L);
     Long taskExpireOnFourthWeek = new Long(0L);
     Long taskExpireOnFifthWeek = new Long(0L);
+    Long taskExpireOnSixthWeek = new Long(0L);
 
     Date firstDateOfSelectedMonth = getFirstDateOfMonth(selectedValue);
     Date firstDateOfWeek = getFirstDateOfWeekContainsDate(firstDateOfSelectedMonth);
@@ -724,6 +729,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Date firstDateOfThirdWeek = truncateMinutesPart(DateUtils.addDays(firstDateOfWeek, 14));
     Date firstDateOfFourthWeek = truncateMinutesPart(DateUtils.addDays(firstDateOfWeek, 21));
     Date firstDateOfFifthWeek = truncateMinutesPart(DateUtils.addDays(firstDateOfWeek, 28));
+    Date firstDateOfSixthWeek = truncateMinutesPart(DateUtils.addDays(firstDateOfWeek, 35));
     Date firstDateOfNextMonth = truncateMinutesPart(DateUtils.addMonths(firstDateOfSelectedMonth, 1));
 
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
@@ -740,8 +746,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       if (firstDateOfFourthWeek.compareTo(resultDate) <= 0 && firstDateOfFifthWeek.compareTo(resultDate) > 0) {
         taskExpireOnFourthWeek += result.getValue();
       }
-      if (firstDateOfFifthWeek.compareTo(resultDate) <= 0 && firstDateOfNextMonth.compareTo(resultDate) > 0) {
-        taskExpireOnFifthWeek += result.getValue();
+      if (firstDateOfSixthWeek.compareTo(firstDateOfNextMonth) < 0) {
+        if (firstDateOfFifthWeek.compareTo(resultDate) <= 0 && firstDateOfSixthWeek.compareTo(resultDate) > 0) {
+          taskExpireOnFifthWeek += result.getValue();
+        }
+        if (firstDateOfSixthWeek.compareTo(resultDate) <= 0 && firstDateOfNextMonth.compareTo(resultDate) > 0) {
+          taskExpireOnSixthWeek += result.getValue();
+        }
+      } else {
+        if (firstDateOfFifthWeek.compareTo(resultDate) <= 0 && firstDateOfNextMonth.compareTo(resultDate) > 0) {
+          taskExpireOnFifthWeek += result.getValue();
+        }
       }
     }
 
@@ -751,6 +766,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     chartData.put(FOURTHWEEK_CMS, taskExpireOnFourthWeek);
     if (firstDateOfNextMonth.compareTo(firstDateOfFifthWeek) > 0) {
       chartData.put(FIFTHWEEK_CMS, taskExpireOnFifthWeek);
+    }
+    if (firstDateOfNextMonth.compareTo(firstDateOfSixthWeek) > 0) {
+      chartData.put(SIXTHWEEK_CMS, taskExpireOnSixthWeek);
     }
     return chartData;
   }
