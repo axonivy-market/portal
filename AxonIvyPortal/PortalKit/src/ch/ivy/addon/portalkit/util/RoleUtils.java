@@ -51,18 +51,19 @@ public final class RoleUtils {
         @Override
         public List<IRole> call() throws Exception {
           ISecurityContext security = Ivy.wf().getSecurityContext();
-          List<IRole> roles = security.getRoles();
-          return roles;
+          return security.getRoles();
         }
       });
     } catch (PersistencyException e) {
       Ivy.log().error(e);
+      return new ArrayList<>();
     } catch (EnvironmentNotAvailableException e) {
       Ivy.log().error(e);
+      return new ArrayList<>();
     } catch (Exception e) {
       Ivy.log().error(e);
+      return new ArrayList<>();
     }
-    return null;
   }
   
   /**
