@@ -30,7 +30,8 @@
 			</div>
 			<h:panelGroup rendered="#{not processWidgetBean.compactMode}" styleClass="widget-header-sub">
 				<ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
-					styleClass="js-filter-process-widget-list-item" rendered="#{!cc.attrs.hideProcessFilter}" />
+					placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
+					styleClass="js-filter-process-widget-list-item" rendered="#{!cc.attrs.hideProcessFilter}"/>
 			</h:panelGroup>
 		</h:panelGroup>
 
