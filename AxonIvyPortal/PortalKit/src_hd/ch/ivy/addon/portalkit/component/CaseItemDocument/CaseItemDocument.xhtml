@@ -56,7 +56,7 @@
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
         mode="advanced" dragDropSupport="true" multiple="true" oncomplete="documentTruncation.truncate();"
         update="#{cc.clientId}:document-upload-form:upload-messages #{cc.clientId}:case-details-documents"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" auto="true" />
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" />
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button"
