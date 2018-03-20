@@ -19,7 +19,7 @@
       <p:row>
         <p:column>
           <p:outputLabel styleClass="label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/createdPeriod')}" />
-          <p:selectOneMenu id="period-time-selection" value="#{filter.timePeriodSelection}" style="margin-left: 10px">
+          <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
           	<f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
           	<p:ajax update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
           </p:selectOneMenu>
