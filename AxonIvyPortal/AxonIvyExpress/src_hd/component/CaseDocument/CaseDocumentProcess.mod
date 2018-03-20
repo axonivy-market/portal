@@ -129,7 +129,7 @@ Ds0 f8 actionDecl 'component.CaseDocument.CaseDocumentData out;
 Ds0 f8 actionTable 'out=in;
 ' #txt
 Ds0 f8 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
-in.uploadingFileExists = DocumentFileUtils.checkFileExist(ivy.case,in.selectedFile.getInputstream(),in.selectedFile.getFileName());' #txt
+in.uploadingFileExists = DocumentFileUtils.checkFileExist(ivy.case,in.selectedFile.getFileName());' #txt
 Ds0 f8 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
