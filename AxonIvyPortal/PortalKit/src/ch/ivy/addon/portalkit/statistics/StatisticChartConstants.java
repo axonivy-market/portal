@@ -84,8 +84,6 @@ public class StatisticChartConstants {
   public static final String DRILLDOWN_LEVEL_DAY = "DAY";
   public static final String DRILLDOWN_LEVEL_HOUR = "HOUR";
 
-  public static final String[] DRILLDOWN_LEVELS = {DRILLDOWN_LEVEL_YEAR, DRILLDOWN_LEVEL_MONTH, DRILLDOWN_LEVEL_WEEK, DRILLDOWN_LEVEL_DAY, DRILLDOWN_LEVEL_HOUR};
-
   public static final String EXCEPTION_PRIORITY_KEY =
           "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/exception";
   public static final String HIGH_PRIORITY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/high";
