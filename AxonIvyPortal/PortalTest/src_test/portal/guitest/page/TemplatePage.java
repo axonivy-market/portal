@@ -24,7 +24,7 @@ public abstract class TemplatePage extends AbstractPage {
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
         waitForElementDisplayed(getLoadedLocator(), true, 300L);
     } else {
-        waitForElementDisplayed(getLoadedLocator(), true, 30L);
+        waitForElementDisplayed(getLoadedLocator(), true, 300L);
     }
   }
 
