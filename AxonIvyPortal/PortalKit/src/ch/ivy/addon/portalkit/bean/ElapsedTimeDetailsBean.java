@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.ElapsedTimeComparison;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -69,7 +70,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     String caseCategory = selectedCaseCategory;
     TaskQuery taskQuery = TaskQuery.create();
 
-    if (selectedCaseCategory.equals(StatisticService.NO_CATEGORY_CMS)) {
+    if (selectedCaseCategory.equals(StatisticChartConstants.NO_CATEGORY_CMS)) {
       caseCategory = StringUtils.EMPTY;
     }
 

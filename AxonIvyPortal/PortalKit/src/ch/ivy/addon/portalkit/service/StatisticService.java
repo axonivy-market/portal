@@ -35,6 +35,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.ws.addon.CaseStateStatistic;
@@ -55,121 +56,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
-  private static final String EXCEPTION_PRIORITY_KEY =
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/exception";
-  private static final String HIGH_PRIORITY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/high";
-  private static final String NORMAL_PRIORITY_KEY =
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/normal";
-  private static final String LOW_PRIORITY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/low";
-
-  private static final String TODAY_EXPIRY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/today";
-  private static final String THIS_WEEK_EXPIRY_KEY =
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisWeek";
-  private static final String THIS_MONTH_EXPIRY_KEY =
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisMonth";
-  private static final String THIS_YEAR_EXPIRY_KEY =
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisYear";
-
-  private static final String CREATED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED";
-  private static final String RUNNING_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/RUNNING";
-  private static final String DONE_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE";
-  private static final String FAILED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/FAILED";
-
-  private static final String EXPIRY_PERIOD_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/expiryPeriod";
-  private static final String TASK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
-  private static final String TASK_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
-  private static final String SECOND_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/second";
-
-  public static final String NO_CATEGORY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory");
-
-  private static final String USER_ID = "userId";
-  private static final String NAME = "name";
-
-  private static final String JSON_QUERY = "jsonQuery";
-  private static final String RESULT = "result";
-
-  private static final String JANUARY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/January");
-  private static final String FEBRUARY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/February");
-  private static final String MARCH_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/March");
-  private static final String APRIL_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/April");
-  private static final String MAY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/May");
-  private static final String JUNE_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/June");
-  private static final String JULY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/July");
-  private static final String AUGUST_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/August");
-  private static final String SEPTEMBER_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/September");
-  private static final String OCTOBER_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/October");
-  private static final String NOVEMBER_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/November");
-  private static final String DECEMBER_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/December");
-
-  private static final String FIRSTWEEK_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/firstWeek");
-  private static final String SECONDWEEK_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/secondWeek");
-  private static final String THIRDWEEK_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/thirdWeek");
-  private static final String FOURTHWEEK_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fourthWeek");
-  private static final String FIFTHWEEK_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fifthWeek");
-  private static final String SIXTHWEEK_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/sixthWeek");
-
-  private static final String MONDAY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/monday");
-  private static final String TUESDAY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/tuesday");
-  private static final String WEDNESDAY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/wednesday");
-  private static final String THURSDAY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/thursday");
-  private static final String FRIDAY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/friday");
-  private static final String SATURDAY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/saturday");
-  private static final String SUNDAY_CMS = Ivy.cms().co(
-      "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/sunday");
-
-  private static final String BEFORE_8 = "<8";
-  private static final String IN_8 = "8";
-  private static final String IN_9 = "9";
-  private static final String IN_10 = "10";
-  private static final String IN_11 = "11";
-  private static final String IN_12 = "12";
-  private static final String IN_13 = "13";
-  private static final String IN_14 = "14";
-  private static final String IN_15 = "15";
-  private static final String IN_16 = "16";
-  private static final String IN_17 = "17";
-  private static final String AFTER_18 = ">18";
-
-  private static final String[] MONTHSOFYEAR = {JANUARY_CMS, FEBRUARY_CMS, MARCH_CMS, APRIL_CMS, MAY_CMS, JUNE_CMS,
-      JULY_CMS, AUGUST_CMS, SEPTEMBER_CMS, OCTOBER_CMS, NOVEMBER_CMS, DECEMBER_CMS};
-  private static final String[] WEEKSOFMONTH = {FIRSTWEEK_CMS, SECONDWEEK_CMS, THIRDWEEK_CMS, FOURTHWEEK_CMS, FIFTHWEEK_CMS, SIXTHWEEK_CMS};
-  private static final String[] DAYSOFWEEK = {MONDAY_CMS, TUESDAY_CMS, WEDNESDAY_CMS, THURSDAY_CMS, FRIDAY_CMS,
-      SATURDAY_CMS, SUNDAY_CMS};
-  private static final String[] HOURSOFDAY = {BEFORE_8, IN_8, IN_9, IN_10, IN_11, IN_12, IN_13, IN_14, IN_15, IN_16, IN_17, AFTER_18};
-
-
-  public static final String DRILLDOWN_LEVEL_YEAR = "YEAR";
-  public static final String DRILLDOWN_LEVEL_MONTH = "MONTH";
-  public static final String DRILLDOWN_LEVEL_WEEK = "WEEK";
-  public static final String DRILLDOWN_LEVEL_DAY = "DAY";
-  public static final String DRILLDOWN_LEVEL_HOUR = "HOUR";
-
-  public static final String[] DRILLDOWN_LEVELS = {DRILLDOWN_LEVEL_YEAR, DRILLDOWN_LEVEL_MONTH, DRILLDOWN_LEVEL_WEEK, DRILLDOWN_LEVEL_DAY, DRILLDOWN_LEVEL_HOUR};
 
   @Override
   public Class<StatisticChart> getType() {
@@ -194,8 +80,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public List<StatisticChart> findStatisticChartsByUserId(long userId) {
     List<StatisticChart> result = new ArrayList<>();
     try {
-      Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
-      result = statisticChartQuery.orderBy().textField(NAME).ascending().execute().getAll();
+      Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(StatisticChartConstants.USER_ID).isEqualTo(userId);
+      result = statisticChartQuery.orderBy().textField(StatisticChartConstants.NAME).ascending().execute().getAll();
       result = result.stream().sorted(Comparator.comparing(StatisticChart::getPosition)).collect(Collectors.toList());
       return result;
     } catch (Exception e) {
@@ -212,8 +98,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public long countStatisticChartsByUserId(long userId) {
     try {
-      Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
-      return statisticChartQuery.orderBy().textField(NAME).ascending().execute().count();
+      Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(StatisticChartConstants.USER_ID).isEqualTo(userId);
+      return statisticChartQuery.orderBy().textField(StatisticChartConstants.NAME).ascending().execute().count();
     } catch (Exception e) {
       Ivy.log().error(e);
       return -1;
@@ -379,7 +265,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedCaseCategories.isEmpty()) {
       List<String> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
       caseCategories.forEach(category -> {
-        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+        if (StringUtils.equals(category, StatisticChartConstants.NO_CATEGORY_CMS)) {
           subCaseFilterForSelectedCaseCategories.and().category().isNotNull();
         } else {
           subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category);
@@ -387,7 +273,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       });
     } else {
       selectedCaseCategories.forEach(category -> {
-        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+        if (StringUtils.equals(category, StatisticChartConstants.NO_CATEGORY_CMS)) {
           subCaseFilterForSelectedCaseCategories.or().category().isNull();
         } else {
           subCaseFilterForSelectedCaseCategories.or().category().isEqual(category);
@@ -484,7 +370,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedCaseCategories.isEmpty()) {
       List<String> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
       caseCategories.forEach(category -> {
-        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+        if (StringUtils.equals(category, StatisticChartConstants.NO_CATEGORY_CMS)) {
           subCaseFilterForSelectedCaseCategories.and().category().isNotNull();
         } else {
           subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category);
@@ -492,7 +378,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       });
     } else {
       selectedCaseCategories.forEach(category -> {
-        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+        if (StringUtils.equals(category, StatisticChartConstants.NO_CATEGORY_CMS)) {
           subCaseFilterForSelectedCaseCategories.or().category().isNull();
         } else {
           subCaseFilterForSelectedCaseCategories.or().category().isEqual(category);
@@ -593,12 +479,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public PriorityStatistic getPriorityStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put(JSON_QUERY, jsonQuery);
+    params.put(StatisticChartConstants.JSON_QUERY, jsonQuery);
 
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("analyzePriorityStatistic(String)", params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (PriorityStatistic) response.get(RESULT);
+    return (PriorityStatistic) response.get(StatisticChartConstants.RESULT);
   }
 
   /**
@@ -610,12 +496,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   @SuppressWarnings("unchecked")
   public List<ExpiryStatistic> getExpiryStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put(JSON_QUERY, jsonQuery);
+    params.put(StatisticChartConstants.JSON_QUERY, jsonQuery);
 
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("analyzeExpiryStatistic(String)", params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (List<ExpiryStatistic>) response.get(RESULT);
+    return (List<ExpiryStatistic>) response.get(StatisticChartConstants.RESULT);
   }
 
   /**
@@ -626,12 +512,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public CaseStateStatistic getCaseStateStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put(JSON_QUERY, jsonQuery);
+    params.put(StatisticChartConstants.JSON_QUERY, jsonQuery);
 
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("analyzeCaseStateStatistic(String)", params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (CaseStateStatistic) response.get(RESULT);
+    return (CaseStateStatistic) response.get(StatisticChartConstants.RESULT);
   }
   
   /**
@@ -643,12 +529,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   @SuppressWarnings("unchecked")
   public List<ElapsedTimeStatistic> getElapsedTimeStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put(JSON_QUERY, jsonQuery);
+    params.put(StatisticChartConstants.JSON_QUERY, jsonQuery);
 
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("analyzeElapsedTimeStatistic(String)", params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (List<ElapsedTimeStatistic>) response.get(RESULT);
+    return (List<ElapsedTimeStatistic>) response.get(StatisticChartConstants.RESULT);
   }
 
   /**
@@ -660,11 +546,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   @SuppressWarnings("unchecked")
   public List<ElapsedTimeStatistic> getElapsedTimeOfTasksStatisticData(String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put(JSON_QUERY, jsonQuery);
+    params.put(StatisticChartConstants.JSON_QUERY, jsonQuery);
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeElapsedTimeOfTasks(String)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (List<ElapsedTimeStatistic>) response.get(RESULT);
+    return (List<ElapsedTimeStatistic>) response.get(StatisticChartConstants.RESULT);
   }
 
   /**
@@ -677,19 +563,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Number> chartData = new LinkedHashMap<String, Number>();
 
     if (priorityStatistic.getException() > 0) {
-      chartData.put(Ivy.cms().co(EXCEPTION_PRIORITY_KEY), priorityStatistic.getException());
+      chartData.put(Ivy.cms().co(StatisticChartConstants.EXCEPTION_PRIORITY_KEY), priorityStatistic.getException());
     }
 
     if (priorityStatistic.getHigh() > 0) {
-      chartData.put(Ivy.cms().co(HIGH_PRIORITY_KEY), priorityStatistic.getHigh());
+      chartData.put(Ivy.cms().co(StatisticChartConstants.HIGH_PRIORITY_KEY), priorityStatistic.getHigh());
     }
 
     if (priorityStatistic.getNormal() > 0) {
-      chartData.put(Ivy.cms().co(NORMAL_PRIORITY_KEY), priorityStatistic.getNormal());
+      chartData.put(Ivy.cms().co(StatisticChartConstants.NORMAL_PRIORITY_KEY), priorityStatistic.getNormal());
     }
 
     if (priorityStatistic.getLow() > 0) {
-      chartData.put(Ivy.cms().co(LOW_PRIORITY_KEY), priorityStatistic.getLow());
+      chartData.put(Ivy.cms().co(StatisticChartConstants.LOW_PRIORITY_KEY), priorityStatistic.getLow());
     }
 
     return chartData;
@@ -794,25 +680,25 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       
     }
 
-    chartData.put(BEFORE_8, taskExpireBefore8);
-    chartData.put(IN_8, taskExpireIn8);
-    chartData.put(IN_9, taskExpireIn9);
-    chartData.put(IN_10, taskExpireIn10);
-    chartData.put(IN_11, taskExpireIn11);
-    chartData.put(IN_12, taskExpireIn12);
-    chartData.put(IN_13, taskExpireIn13);
-    chartData.put(IN_14, taskExpireIn14);
-    chartData.put(IN_15, taskExpireIn15);
-    chartData.put(IN_16, taskExpireIn16);
-    chartData.put(IN_17, taskExpireIn17);
-    chartData.put(AFTER_18, taskExpireAfter18);
+    chartData.put(StatisticChartConstants.BEFORE_8, taskExpireBefore8);
+    chartData.put(StatisticChartConstants.IN_8, taskExpireIn8);
+    chartData.put(StatisticChartConstants.IN_9, taskExpireIn9);
+    chartData.put(StatisticChartConstants.IN_10, taskExpireIn10);
+    chartData.put(StatisticChartConstants.IN_11, taskExpireIn11);
+    chartData.put(StatisticChartConstants.IN_12, taskExpireIn12);
+    chartData.put(StatisticChartConstants.IN_13, taskExpireIn13);
+    chartData.put(StatisticChartConstants.IN_14, taskExpireIn14);
+    chartData.put(StatisticChartConstants.IN_15, taskExpireIn15);
+    chartData.put(StatisticChartConstants.IN_16, taskExpireIn16);
+    chartData.put(StatisticChartConstants.IN_17, taskExpireIn17);
+    chartData.put(StatisticChartConstants.AFTER_18, taskExpireAfter18);
     
     return chartData;
   }
 
   private boolean isSameDay(Date resultDate, String selectedDay, String previousSelectedWeek, String previousSelectedMonth) {
     int shiftDays = 0;
-    if (StringUtils.containsIgnoreCase(selectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+    if (StringUtils.containsIgnoreCase(selectedDay, Ivy.cms().co(StatisticChartConstants.TODAY_EXPIRY_KEY))) {
       return DateUtils.isSameDay(resultDate, new Date());
     } else {
       shiftDays = getShiftDaysFromDayOfWeek(selectedDay);
@@ -827,19 +713,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private int getShiftDaysFromDayOfWeek(String dayOfWeek) {
     int shiftDays = 0;
-    if (dayOfWeek.equals(MONDAY_CMS)) {
+    if (dayOfWeek.equals(StatisticChartConstants.MONDAY_CMS)) {
       shiftDays = 0;
-    } else if (dayOfWeek.equals(TUESDAY_CMS)) {
+    } else if (dayOfWeek.equals(StatisticChartConstants.TUESDAY_CMS)) {
       shiftDays = 1;
-    } else if (dayOfWeek.equals(WEDNESDAY_CMS)) {
+    } else if (dayOfWeek.equals(StatisticChartConstants.WEDNESDAY_CMS)) {
       shiftDays = 2;
-    } else if (dayOfWeek.equals(THURSDAY_CMS)) {
+    } else if (dayOfWeek.equals(StatisticChartConstants.THURSDAY_CMS)) {
       shiftDays = 3;
-    } else if (dayOfWeek.equals(FRIDAY_CMS)) {
+    } else if (dayOfWeek.equals(StatisticChartConstants.FRIDAY_CMS)) {
       shiftDays = 4;
-    } else if (dayOfWeek.equals(SATURDAY_CMS)) {
+    } else if (dayOfWeek.equals(StatisticChartConstants.SATURDAY_CMS)) {
       shiftDays = 5;
-    } else if (dayOfWeek.equals(SUNDAY_CMS)) {
+    } else if (dayOfWeek.equals(StatisticChartConstants.SUNDAY_CMS)) {
       shiftDays = 6;
     }
     return shiftDays;
@@ -895,13 +781,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
-    chartData.put(MONDAY_CMS, taskExpireOnMonday);
-    chartData.put(TUESDAY_CMS, taskExpireOnTuesday);
-    chartData.put(WEDNESDAY_CMS, taskExpireOnWednesday);
-    chartData.put(THURSDAY_CMS, taskExpireOnThursday);
-    chartData.put(FRIDAY_CMS, taskExpireOnFriday);
-    chartData.put(SATURDAY_CMS, taskExpireOnSaturday);
-    chartData.put(SUNDAY_CMS, taskExpireOnSunday);
+    chartData.put(StatisticChartConstants.MONDAY_CMS, taskExpireOnMonday);
+    chartData.put(StatisticChartConstants.TUESDAY_CMS, taskExpireOnTuesday);
+    chartData.put(StatisticChartConstants.WEDNESDAY_CMS, taskExpireOnWednesday);
+    chartData.put(StatisticChartConstants.THURSDAY_CMS, taskExpireOnThursday);
+    chartData.put(StatisticChartConstants.FRIDAY_CMS, taskExpireOnFriday);
+    chartData.put(StatisticChartConstants.SATURDAY_CMS, taskExpireOnSaturday);
+    chartData.put(StatisticChartConstants.SUNDAY_CMS, taskExpireOnSunday);
 
     return chartData;
   }
@@ -909,22 +795,22 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Date getFirstDateOfWeek(String selectedWeek, String selectedMonth) {
 
     Date firstDateOfWeek = new Date();
-    if(StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY))){
+    if(StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(StatisticChartConstants.THIS_WEEK_EXPIRY_KEY))){
       firstDateOfWeek = getFirstDateOfWeekContainsDate(new Date());
     } else {
       Date firstDateOfMonth = getFirstDateOfMonth(selectedMonth);
       Date firstDateOfFirstWeek = getFirstDateOfWeekContainsDate(firstDateOfMonth);
-      if (StringUtils.containsIgnoreCase(selectedWeek, FIRSTWEEK_CMS)){
+      if (StringUtils.containsIgnoreCase(selectedWeek, StatisticChartConstants.FIRSTWEEK_CMS)){
         firstDateOfWeek = firstDateOfFirstWeek;
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, SECONDWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, StatisticChartConstants.SECONDWEEK_CMS)){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 1));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, THIRDWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, StatisticChartConstants.THIRDWEEK_CMS)){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 2));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, FOURTHWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, StatisticChartConstants.FOURTHWEEK_CMS)){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 3));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, FIFTHWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, StatisticChartConstants.FIFTHWEEK_CMS)){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 4));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, SIXTHWEEK_CMS)) {
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, StatisticChartConstants.SIXTHWEEK_CMS)) {
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 5));
       }
     }
@@ -982,48 +868,48 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
-    chartData.put(FIRSTWEEK_CMS, taskExpireOnFirstWeek);
-    chartData.put(SECONDWEEK_CMS, taskExpireOnSecondWeek);
-    chartData.put(THIRDWEEK_CMS, taskExpireOnThirdWeek);
-    chartData.put(FOURTHWEEK_CMS, taskExpireOnFourthWeek);
+    chartData.put(StatisticChartConstants.FIRSTWEEK_CMS, taskExpireOnFirstWeek);
+    chartData.put(StatisticChartConstants.SECONDWEEK_CMS, taskExpireOnSecondWeek);
+    chartData.put(StatisticChartConstants.THIRDWEEK_CMS, taskExpireOnThirdWeek);
+    chartData.put(StatisticChartConstants.FOURTHWEEK_CMS, taskExpireOnFourthWeek);
     if (firstDateOfNextMonth.compareTo(firstDateOfFifthWeek) > 0) {
-      chartData.put(FIFTHWEEK_CMS, taskExpireOnFifthWeek);
+      chartData.put(StatisticChartConstants.FIFTHWEEK_CMS, taskExpireOnFifthWeek);
     }
     if (firstDateOfNextMonth.compareTo(firstDateOfSixthWeek) > 0) {
-      chartData.put(SIXTHWEEK_CMS, taskExpireOnSixthWeek);
+      chartData.put(StatisticChartConstants.SIXTHWEEK_CMS, taskExpireOnSixthWeek);
     }
     return chartData;
   }
 
   private Date getFirstDateOfMonth(String selectedMonth) {
-    if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY))) {
+    if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(StatisticChartConstants.THIS_MONTH_EXPIRY_KEY))) {
       return getFirstDateOfThisMonth();
     }
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.DAY_OF_MONTH, 1);
-    if (StringUtils.containsIgnoreCase(selectedMonth, JANUARY_CMS)) {
+    if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.JANUARY_CMS)) {
       cal.set(Calendar.MONTH, 0);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, FEBRUARY_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.FEBRUARY_CMS)) {
       cal.set(Calendar.MONTH, 1);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, MARCH_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.MARCH_CMS)) {
       cal.set(Calendar.MONTH, 2);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, APRIL_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.APRIL_CMS)) {
       cal.set(Calendar.MONTH, 3);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, MAY_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.MAY_CMS)) {
       cal.set(Calendar.MONTH, 4);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, JUNE_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.JUNE_CMS)) {
       cal.set(Calendar.MONTH, 5);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, JULY_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.JULY_CMS)) {
       cal.set(Calendar.MONTH, 6);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, AUGUST_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.AUGUST_CMS)) {
       cal.set(Calendar.MONTH, 7);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, SEPTEMBER_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.SEPTEMBER_CMS)) {
       cal.set(Calendar.MONTH, 8);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, OCTOBER_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.OCTOBER_CMS)) {
       cal.set(Calendar.MONTH, 9);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, NOVEMBER_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.NOVEMBER_CMS)) {
       cal.set(Calendar.MONTH, 10);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, DECEMBER_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, StatisticChartConstants.DECEMBER_CMS)) {
       cal.set(Calendar.MONTH, 11);
     }
     return cal.getTime();
@@ -1080,18 +966,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
     
-    chartData.put(JANUARY_CMS, taskExpireOnJanuary);
-    chartData.put(FEBRUARY_CMS, taskExpireOnFebruary);
-    chartData.put(MARCH_CMS, taskExpireOnMarch);
-    chartData.put(APRIL_CMS, taskExpireOnApril);
-    chartData.put(MAY_CMS, taskExpireOnMay);
-    chartData.put(JUNE_CMS, taskExpireOnJune);
-    chartData.put(JULY_CMS, taskExpireOnJuly);
-    chartData.put(AUGUST_CMS, taskExpireOnAugust);
-    chartData.put(SEPTEMBER_CMS, taskExpireOnSeptember);
-    chartData.put(OCTOBER_CMS, taskExpireOnOctober);
-    chartData.put(NOVEMBER_CMS, taskExpireOnNovember);
-    chartData.put(DECEMBER_CMS, taskExpireOnDecember);
+    chartData.put(StatisticChartConstants.JANUARY_CMS, taskExpireOnJanuary);
+    chartData.put(StatisticChartConstants.FEBRUARY_CMS, taskExpireOnFebruary);
+    chartData.put(StatisticChartConstants.MARCH_CMS, taskExpireOnMarch);
+    chartData.put(StatisticChartConstants.APRIL_CMS, taskExpireOnApril);
+    chartData.put(StatisticChartConstants.MAY_CMS, taskExpireOnMay);
+    chartData.put(StatisticChartConstants.JUNE_CMS, taskExpireOnJune);
+    chartData.put(StatisticChartConstants.JULY_CMS, taskExpireOnJuly);
+    chartData.put(StatisticChartConstants.AUGUST_CMS, taskExpireOnAugust);
+    chartData.put(StatisticChartConstants.SEPTEMBER_CMS, taskExpireOnSeptember);
+    chartData.put(StatisticChartConstants.OCTOBER_CMS, taskExpireOnOctober);
+    chartData.put(StatisticChartConstants.NOVEMBER_CMS, taskExpireOnNovember);
+    chartData.put(StatisticChartConstants.DECEMBER_CMS, taskExpireOnDecember);
     return chartData;
   }
 
@@ -1129,10 +1015,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
     
-    chartData.put(Ivy.cms().co(TODAY_EXPIRY_KEY), taskExpireToday);
-    chartData.put(Ivy.cms().co(THIS_WEEK_EXPIRY_KEY), taskExpireThisWeek);
-    chartData.put(Ivy.cms().co(THIS_MONTH_EXPIRY_KEY), taskExpireThisMonth);
-    chartData.put(Ivy.cms().co(THIS_YEAR_EXPIRY_KEY), taskExpireThisYear);
+    chartData.put(Ivy.cms().co(StatisticChartConstants.TODAY_EXPIRY_KEY), taskExpireToday);
+    chartData.put(Ivy.cms().co(StatisticChartConstants.THIS_WEEK_EXPIRY_KEY), taskExpireThisWeek);
+    chartData.put(Ivy.cms().co(StatisticChartConstants.THIS_MONTH_EXPIRY_KEY), taskExpireThisMonth);
+    chartData.put(Ivy.cms().co(StatisticChartConstants.THIS_YEAR_EXPIRY_KEY), taskExpireThisYear);
 
     return chartData;
   }
@@ -1147,19 +1033,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Number> chartData = new LinkedHashMap<>();
 
     if (caseStateStatistic.getCreated() > 0) {
-      chartData.put(Ivy.cms().co(CREATED_CASE_KEY), caseStateStatistic.getCreated());
+      chartData.put(Ivy.cms().co(StatisticChartConstants.CREATED_CASE_KEY), caseStateStatistic.getCreated());
     }
 
     if (caseStateStatistic.getDone() > 0) {
-      chartData.put(Ivy.cms().co(DONE_CASE_KEY), caseStateStatistic.getDone());
+      chartData.put(Ivy.cms().co(StatisticChartConstants.DONE_CASE_KEY), caseStateStatistic.getDone());
     }
 
     if (caseStateStatistic.getFailed() > 0) {
-      chartData.put(Ivy.cms().co(FAILED_CASE_KEY), caseStateStatistic.getFailed());
+      chartData.put(Ivy.cms().co(StatisticChartConstants.FAILED_CASE_KEY), caseStateStatistic.getFailed());
     }
 
     if (caseStateStatistic.getRunning() > 0) {
-      chartData.put(Ivy.cms().co(RUNNING_CASE_KEY), caseStateStatistic.getRunning());
+      chartData.put(Ivy.cms().co(StatisticChartConstants.RUNNING_CASE_KEY), caseStateStatistic.getRunning());
     }
 
     return chartData;
@@ -1193,7 +1079,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     for (Entry<String, Number> entry : chartDataTemp.entrySet()) {
       String key = entry.getKey().toString();
       if (StringUtils.isBlank(key)) {
-        key = NO_CATEGORY_CMS;
+        key = StatisticChartConstants.NO_CATEGORY_CMS;
       }
       if (chartData.containsKey(key)) {
         Number updatedTime = new BigDecimal(chartData.get(key).longValue() + entry.getValue().longValue());
@@ -1304,16 +1190,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       model.setShadow(false);
 
       Axis xAxis = model.getAxis(AxisType.X);
-      String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
+      String label = Ivy.cms().co(StatisticChartConstants.EXPIRY_PERIOD_CMS);
       if (selectDayOfWeek(selectedValue)) {
         label = label + " " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
       }
       xAxis.setLabel(label);
 
       Axis yAxis = model.getAxis(AxisType.Y);
-      yAxis.setLabel(Ivy.cms().co(TASK_CMS));
+      yAxis.setLabel(Ivy.cms().co(StatisticChartConstants.TASK_CMS));
 
-      String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(TASK_DATATIP_CMS));
+      String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(StatisticChartConstants.TASK_DATATIP_CMS));
       model.setDatatipFormat(datatipFormat);
     }
     if (isSetDefaultName) {
@@ -1412,7 +1298,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.setSliceMargin(3);
     model.setLegendCols(1);
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
-    String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(SECOND_DATATIP_CMS));
+    String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(StatisticChartConstants.SECOND_DATATIP_CMS));
     model.setDatatipFormat(datatipFormat);
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY.getCmsUri()));
@@ -1502,63 +1388,63 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public boolean isDrilldownToTaskList(String expiryLastDrilldownLevel, String selectedItem) {
     // hour
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_HOUR) && (selectHourOfDay(selectedItem))) {
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, StatisticChartConstants.DRILLDOWN_LEVEL_HOUR) && (selectHourOfDay(selectedItem))) {
       return true;
     }
     // day
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_DAY) && (selectDayOfWeek(selectedItem))) {
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, StatisticChartConstants.DRILLDOWN_LEVEL_DAY) && (selectDayOfWeek(selectedItem))) {
       return true;
     }
     // week
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_WEEK)
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, StatisticChartConstants.DRILLDOWN_LEVEL_WEEK)
         && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem))) {
       return true;
     }
     // month
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_MONTH)
+    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, StatisticChartConstants.DRILLDOWN_LEVEL_MONTH)
         && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem) || selectMonthOfYear(selectedItem))) {
       return true;
     }
     //year
-    if(StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_YEAR)){
+    if(StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, StatisticChartConstants.DRILLDOWN_LEVEL_YEAR)){
       return true;
     }
     return false;
   }
 
   public boolean selectThisYear(String selectedItem) {
-    return StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_YEAR_EXPIRY_KEY));
+    return StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(StatisticChartConstants.THIS_YEAR_EXPIRY_KEY));
   }
 
   public boolean selectMonthOfYear(String selectedItem) {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    return Arrays.asList(MONTHSOFYEAR).contains(selectedItem)
-        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY));
+    return Arrays.asList(StatisticChartConstants.MONTHSOFYEAR).contains(selectedItem)
+        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(StatisticChartConstants.THIS_MONTH_EXPIRY_KEY));
   }
 
   public boolean selectWeekOfMonth(String selectedItem) {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    return Arrays.asList(WEEKSOFMONTH).contains(selectedItem)
-        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY));
+    return Arrays.asList(StatisticChartConstants.WEEKSOFMONTH).contains(selectedItem)
+        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(StatisticChartConstants.THIS_WEEK_EXPIRY_KEY));
   }
 
   public boolean selectDayOfWeek(String selectedItem) {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    return Arrays.asList(DAYSOFWEEK).contains(selectedItem)
-        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(TODAY_EXPIRY_KEY));
+    return Arrays.asList(StatisticChartConstants.DAYSOFWEEK).contains(selectedItem)
+        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(StatisticChartConstants.TODAY_EXPIRY_KEY));
   }
 
   public boolean selectHourOfDay(String selectedItem) {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    return Arrays.asList(HOURSOFDAY).contains(selectedItem);
+    return Arrays.asList(StatisticChartConstants.HOURSOFDAY).contains(selectedItem);
   }
 
   public StatisticChart drilldownExpiryChart(String selectedValue, StatisticChart selectedChart, String previousSelectedMonth, String previousSelectedWeek) {
@@ -1640,13 +1526,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     TaskQuery query = generateTaskQuery(statisticChart.getFilter());
     String selectedValue = getSelectedValueOfDonutChart(event);
 
-    if (selectedValue.equals(Ivy.cms().co(EXCEPTION_PRIORITY_KEY))) {
+    if (selectedValue.equals(Ivy.cms().co(StatisticChartConstants.EXCEPTION_PRIORITY_KEY))) {
       query.where().and().priority().isEqual(WorkflowPriority.EXCEPTION);
-    } else if (selectedValue.equals(Ivy.cms().co(HIGH_PRIORITY_KEY))) {
+    } else if (selectedValue.equals(Ivy.cms().co(StatisticChartConstants.HIGH_PRIORITY_KEY))) {
       query.where().and().priority().isEqual(WorkflowPriority.HIGH);
-    } else if (selectedValue.equals(Ivy.cms().co(NORMAL_PRIORITY_KEY))) {
+    } else if (selectedValue.equals(Ivy.cms().co(StatisticChartConstants.NORMAL_PRIORITY_KEY))) {
       query.where().and().priority().isEqual(WorkflowPriority.NORMAL);
-    } else if (selectedValue.equals(Ivy.cms().co(LOW_PRIORITY_KEY))) {
+    } else if (selectedValue.equals(Ivy.cms().co(StatisticChartConstants.LOW_PRIORITY_KEY))) {
       query.where().and().priority().isEqual(WorkflowPriority.LOW);
     }
 
@@ -1670,7 +1556,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Date toDate;
     if (selectHourOfDay(selectedValue)) {
       Date currentDate;
-      if (StringUtils.containsIgnoreCase(previousSelectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+      if (StringUtils.containsIgnoreCase(previousSelectedDay, Ivy.cms().co(StatisticChartConstants.TODAY_EXPIRY_KEY))) {
         currentDate = new Date();
       } else {
         int shiftDays = getShiftDaysFromDayOfWeek(previousSelectedDay);
@@ -1678,10 +1564,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
 
       Date dateWithoutTime = truncateMinutesPart(currentDate);
-      if (selectedValue.equals(BEFORE_8)) {
+      if (selectedValue.equals(StatisticChartConstants.BEFORE_8)) {
         fromDate = dateWithoutTime;
         toDate = DateUtils.setHours(dateWithoutTime, 8);
-      } else if (selectedValue.equals(AFTER_18)) {
+      } else if (selectedValue.equals(StatisticChartConstants.AFTER_18)) {
         fromDate = DateUtils.setHours(dateWithoutTime, 18);
         toDate = DateUtils.addDays(dateWithoutTime, 1);
       } else {
@@ -1689,7 +1575,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         toDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue) + 1);
       }
     } else if (selectDayOfWeek(selectedValue)) {
-      if (StringUtils.containsIgnoreCase(selectedValue, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+      if (StringUtils.containsIgnoreCase(selectedValue, Ivy.cms().co(StatisticChartConstants.TODAY_EXPIRY_KEY))) {
         fromDate = truncateMinutesPart(new Date());
       } else {
         int shiftDays = getShiftDaysFromDayOfWeek(selectedValue);
@@ -1752,13 +1638,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     CaseQuery query = generateCaseQuery(statisticChart.getFilter(), false);
     String selectedValue = getSelectedValueOfDonutChart(event);
 
-    if (selectedValue.equals(Ivy.cms().co(CREATED_CASE_KEY))) {
+    if (selectedValue.equals(Ivy.cms().co(StatisticChartConstants.CREATED_CASE_KEY))) {
       query.where().state().isEqual(CaseState.CREATED);
-    } else if (selectedValue.equals(Ivy.cms().co(RUNNING_CASE_KEY))) {
+    } else if (selectedValue.equals(Ivy.cms().co(StatisticChartConstants.RUNNING_CASE_KEY))) {
       query.where().state().isEqual(CaseState.RUNNING);
-    } else if (selectedValue.equals(Ivy.cms().co(DONE_CASE_KEY))) {
+    } else if (selectedValue.equals(Ivy.cms().co(StatisticChartConstants.DONE_CASE_KEY))) {
       query.where().state().isEqual(CaseState.DONE);
-    } else if (selectedValue.equals(Ivy.cms().co(FAILED_CASE_KEY))) {
+    } else if (selectedValue.equals(Ivy.cms().co(StatisticChartConstants.FAILED_CASE_KEY))) {
       query.where().state().isEqual(CaseState.DESTROYED).or().state().isEqual(CaseState.ZOMBIE);
     }
 
