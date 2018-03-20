@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -93,11 +92,7 @@ public class StatisticFilter {
     }
 
     // Initialize list of case states
-    if (PermissionUtils.checkReadAllCasesPermission()) {
-      this.caseStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE);
-    } else {
-      this.caseStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING);
-    }
+    this.caseStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE);
     this.selectedCaseStates = new ArrayList<>(this.caseStates);
 
     // Initialize list of task priorities
