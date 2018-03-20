@@ -11,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 public class PortalHomeBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public boolean showAllTask;
-  public String styleClass;
+  private boolean showAllTask;
+  private String styleClass;
   public static final String DEFAULT_STYLECLASS = "Wid50 Fleft";
   public static final String FULL_SCREEN_STYLECLASS = "Wid100 Fleft";
   
