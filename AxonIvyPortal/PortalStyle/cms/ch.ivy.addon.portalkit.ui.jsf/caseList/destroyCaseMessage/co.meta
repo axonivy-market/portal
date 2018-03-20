@@ -1,4 +1,4 @@
-co: name={destroyCaseMessage} description={} changed={2017-10-31 08:09:17 CET} changedby={chnam} visualorder={0} guid={15F714351057E923} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={destroyCaseMessage} description={} changed={2018-03-20 10:19:35 CET} changedby={nttai} visualorder={0} guid={15F714351057E923} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15F71435108A6270} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:02:54 CEST} validto={} changed={2017-10-31 08:09:17 CET} changedby={chnam} properties={} id={}
-val: guid={15F7143510D9BDBC} datatype={} isdefault={false} langid={de} description={} validfrom={2016-02-25 03:55:08 CET} validto={} changed={2017-10-31 08:09:17 CET} changedby={chnam} properties={} id={}
+val: guid={15F7143510D9BDBC} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-20 10:19:35 CET} validto={} changed={2018-03-20 10:19:35 CET} changedby={nttai} properties={} id={}
 val: guid={15F71435112B3EE2} datatype={} isdefault={true} langid={en} description={} validfrom={2016-02-25 03:54:05 CET} validto={} changed={2017-10-31 08:09:17 CET} changedby={chnam} properties={} id={}
