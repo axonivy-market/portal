@@ -3889,11 +3889,18 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .statistic-dashboard-container {
-  width: 76rem;
   margin: auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+}
+
+.statistic-dashboard-container-width {
+  width: 76rem;
+}
+
+.elapsed-time-detail-container-width {
+  width: 100% !important;
 }
 
 .dashboard-chart-panel {
