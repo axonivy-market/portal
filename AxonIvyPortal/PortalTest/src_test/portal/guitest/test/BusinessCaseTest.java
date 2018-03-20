@@ -17,6 +17,7 @@ public class BusinessCaseTest extends BaseTest {
   private static final String TECHNICAL_CASE_NAME = "TECH: Update checkin time";
   private static final String BUSINESS_CASE_NAME = "Update checkin time";
 
+  @Override
   @Before
   public void setup() {
     super.setup();

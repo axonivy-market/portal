@@ -108,6 +108,7 @@ public class SecurityUtils {
                                                                            // no additional
                                                                            // security issue
         new Callable<Boolean>() {
+          @Override
           public Boolean call() throws Exception {
             int t = 5; // number retries
             while (t >= 0) {
@@ -161,6 +162,7 @@ public class SecurityUtils {
                                                                            // no additional
                                                                            // security issue
         new Callable<Boolean>() {
+          @Override
           public Boolean call() throws Exception {
             int t = 5; // number retries
             while (t >= 0) {
@@ -227,6 +229,7 @@ public class SecurityUtils {
                                                                                // additional
                                                                                // security issue
           new Callable<List<IUser>>() {
+            @Override
             public List<IUser> call() throws Exception {
               List<IUser> result = new ArrayList<IUser>();
 
@@ -257,6 +260,7 @@ public class SecurityUtils {
                                                                                // additional
                                                                                // security issue
           new Callable<List<IUser>>() {
+            @Override
             public List<IUser> call() throws Exception {
               List<IUser> result = new ArrayList<IUser>();
 
@@ -273,15 +277,6 @@ public class SecurityUtils {
     }
     return result;
 
-  }
-
-  public static void grantAllPermissionsTo(IUser user) {
-    Ivy.wf()
-        .getApplication()
-        .getSecurityDescriptor()
-        .grantPermissions(
-            Ivy.wf().getApplication().getSecurityDescriptor().getSecurityDescriptorType().getRootPermissionGroup(),
-            Ivy.wf().getSecurityContext().getTopLevelRole());
   }
 
   private static void updatePermissionsOfAdminUser() {

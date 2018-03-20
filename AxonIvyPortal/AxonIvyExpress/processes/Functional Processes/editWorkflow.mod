@@ -110,7 +110,7 @@ ew0 f5 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f5 actionTable 'out=in;
 ' #txt
-ew0 f5 actionCode 'in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/StartStep"));
+ew0 f5 actionCode 'in.steps.add(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/start"));
 in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep"));
 in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/FormDefinitionStep"));
 in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/EndStep"));

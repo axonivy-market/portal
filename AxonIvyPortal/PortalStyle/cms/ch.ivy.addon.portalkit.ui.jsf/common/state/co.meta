@@ -1,0 +1,4 @@
+co: name={state} description={} changed={2018-03-16 03:53:59 GMT} changedby={nttai} visualorder={0} guid={1622CF162C57C80C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1622CF162C836F5B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-10-12 10:21:25 GMT} validto={} changed={2018-03-16 03:53:59 GMT} changedby={nttai} properties={} id={}
+val: guid={1622CF162CE3C5E6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 09:49:00 GMT} validto={} changed={2018-03-16 03:53:59 GMT} changedby={nttai} properties={} id={}
+val: guid={1622CF162DA7517F} datatype={} isdefault={false} langid={de} description={} validfrom={2016-10-12 10:23:35 GMT} validto={} changed={2018-03-16 03:53:59 GMT} changedby={nttai} properties={} id={}

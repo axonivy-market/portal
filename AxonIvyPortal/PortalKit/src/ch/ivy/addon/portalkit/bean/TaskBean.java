@@ -247,7 +247,8 @@ public class TaskBean implements Serializable {
     return true;
   }
 
-	private boolean isSessionUserHasDelegatePermission() {
+	@SuppressWarnings("deprecation")
+  private boolean isSessionUserHasDelegatePermission() {
 		IWorkflowSession ivySession = Ivy.session();
 		ISecurityDescriptor securityDescriptor = Ivy.request().getApplication()
 				.getSecurityDescriptor();
@@ -411,12 +412,12 @@ public class TaskBean implements Serializable {
       case RESUMED:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/INPROGRESS");
       case DONE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE_UPPERCASE");
       case PARKED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/PARKED");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESERVED");
       case DESTROYED:
       case ZOMBIE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED_UPPERCASE");
       default:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
     }

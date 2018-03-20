@@ -14,7 +14,7 @@
 	<cc:attribute name="highlightedProcessStartLink" />
 	<cc:attribute name="hideProcessFilter" default="false" shortDescription="Process filter text field is hidden or not"
 		type="java.lang.Boolean" />
-	<cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader')}" />
+	<cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
 </cc:interface>
 
 <cc:implementation>
@@ -30,7 +30,8 @@
 			</div>
 			<h:panelGroup rendered="#{not processWidgetBean.compactMode}" styleClass="widget-header-sub">
 				<ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
-					styleClass="js-filter-process-widget-list-item" rendered="#{!cc.attrs.hideProcessFilter}" />
+					placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
+					styleClass="js-filter-process-widget-list-item" rendered="#{!cc.attrs.hideProcessFilter}"/>
 			</h:panelGroup>
 		</h:panelGroup>
 
@@ -62,7 +63,7 @@
 					<p:commandLink id="save-process-command" styleClass="underline-on-hover"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
 						onclick="$('button[id$=\'save-process-button\']').click();" />
-					<p:spacer width="20" />
+					<p:spacer width="10" />
 					<p:commandLink id="cancel-editing-process-command" styleClass="underline-on-hover portal-cancel-button"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
 						actionListener="#{processWidgetBean.cancelEditingProcess}"
@@ -95,8 +96,7 @@
 				</p>
 			</h:panelGroup>
 			<ui:fragment id="user-favorite-process-list" rendered="#{processWidgetBean.compactMode}">
-				<ui:repeat varStatus="status" var="process"
-					value="#{processWidgetBean.userProcesses}">
+				<ui:repeat varStatus="status" var="process" value="#{processWidgetBean.userProcesses}">
 					<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
 					<c:set var="isExternalProcess"
 						value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
@@ -138,7 +138,8 @@
 									</span>
 								</div>
 								<div class="process-start-list-item-action">
-									<p:commandLink title="#{processWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'Reset' : 'Remove'}"
+									<p:commandLink
+										title="#{processWidgetBean.isProcessMarkedAsDeleting(process.id) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/reset') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
 										actionListener="#{processWidgetBean.selectDeletingProcess}" process="@form"
 										update="#{p:component('order-list-items')}" id="process-delete-link">
 										<i class="fa #{processWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'fa-undo' : 'fa-trash'} fa-lg" />
@@ -201,8 +202,7 @@
 					</h:panelGroup>
 				</h:form>
 			</h:panelGroup>
-			<ui:repeat varStatus="status" var="process"
-				value="#{processWidgetBean.defaultUserProcesses}">
+			<ui:repeat varStatus="status" var="process" value="#{processWidgetBean.defaultUserProcesses}">
 				<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
 				<c:set var="isExternalProcess"
 					value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />

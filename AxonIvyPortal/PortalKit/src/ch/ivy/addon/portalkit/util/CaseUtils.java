@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 import ch.ivy.addon.portalkit.bo.Contact;
@@ -27,10 +28,9 @@ import ch.ivyteam.logicalexpression.RelationalOperator;
 /**
  * This class is to build some function related to case such as find finish cases, find running case, filter by
  * category.
- * 
- * @author lptchi
  */
 
+@SuppressWarnings("deprecation")
 public final class CaseUtils {
 
   private CaseUtils() {
@@ -320,35 +320,38 @@ public final class CaseUtils {
    * @return CaseVO object hold data of ICase
    */
   public static CaseVO convertToCaseVO(ICase iCase) {
-    String caseDetailStartProcess = getCaseDetailProcess(iCase);
     CaseVO caseVO = new CaseVO();
-    caseVO.setProcessCaseDetails(caseDetailStartProcess);
-    caseVO.setCreatedAt(iCase.getStartTimestamp());
-    caseVO.setId(iCase.getId());
-    caseVO.setDescription(iCase.getDescription());
-    caseVO.setTitle(iCase.getName());
-    if (CaseState.CREATED.equals(iCase.getState())) {
-      caseVO.setStatus(CaseState.RUNNING.name());
-    } else {
-      caseVO.setStatus(iCase.getState().name());
-    }
-    if (iCase.getCreatorUser() != null && iCase.getCreatorUser().getFullName() != null) {
-      caseVO.setCreator(String.format(fullNameFormat, iCase.getCreatorUser().getFullName(), iCase.getCreatorUser()
-          .getName()));
-    } else {
-      caseVO.setCreator(iCase.getCreatorUserName());
-    }
-    Contact contact = new Contact(getEmailAddress(iCase));
-    String phone = getPhone(iCase);
-    if (phone != null) {
-      contact.setPhone(phone);
-    }
-    String mobile = getMobile(iCase);
-    if (mobile != null) {
-      contact.setMobilePhone(mobile);
-    }
-
-    caseVO.setCreatorContact(contact);
+    if (iCase != null){
+      String caseDetailStartProcess = getCaseDetailProcess(iCase);
+      caseVO.setProcessCaseDetails(caseDetailStartProcess);
+      caseVO.setCreatedAt(iCase.getStartTimestamp());
+      caseVO.setId(iCase.getId());
+      caseVO.setDescription(iCase.getDescription());
+      caseVO.setTitle(iCase.getName());
+      CaseState state = Optional.ofNullable(iCase).map(ICase::getState).orElse(null);
+      if (CaseState.CREATED.equals(state)) {
+        caseVO.setStatus(CaseState.RUNNING.name());
+      } else {
+        caseVO.setStatus(state == null ? null : state.name());
+      }
+      if (iCase.getCreatorUser() != null && iCase.getCreatorUser().getFullName() != null) {
+        caseVO.setCreator(String.format(fullNameFormat, iCase.getCreatorUser().getFullName(), iCase.getCreatorUser()
+            .getName()));
+      } else {
+        caseVO.setCreator(iCase.getCreatorUserName());
+      }
+      Contact contact = new Contact(getEmailAddress(iCase));
+      String phone = getPhone(iCase);
+      if (phone != null) {
+        contact.setPhone(phone);
+      }
+      String mobile = getMobile(iCase);
+      if (mobile != null) {
+        contact.setMobilePhone(mobile);
+      }
+  
+      caseVO.setCreatorContact(contact);
+    } 
     return caseVO;
   }
 
