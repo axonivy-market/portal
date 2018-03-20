@@ -22,10 +22,19 @@ public class TaskQueryCriteria {
   private String sortField;
   private boolean sortDescending;
   private TaskAssigneeType taskAssigneeType;
-  
+
   private TaskQuery taskQuery;
   private boolean isNewQueryCreated = false;
   private boolean isQueryByBusinessCaseId = false;
+  private boolean isQueryForUnassignedTask = false;
+
+  public boolean isQueryForUnassignedTask() {
+    return isQueryForUnassignedTask;
+  }
+
+  public void setQueryForUnassignedTask(boolean isQueryForUnassignedTask) {
+    this.isQueryForUnassignedTask = isQueryForUnassignedTask;
+  }
 
   public String getInvolvedUsername() {
     return involvedUsername;
@@ -113,7 +122,7 @@ public class TaskQueryCriteria {
   public void setTaskAssigneeType(TaskAssigneeType taskAssigneeType) {
     this.taskAssigneeType = taskAssigneeType;
   }
-  
+
   public TaskQuery getTaskQuery() {
     return taskQuery;
   }
@@ -159,11 +168,11 @@ public class TaskQueryCriteria {
   }
 
   public boolean isQueryByBusinessCaseId() {
-	return isQueryByBusinessCaseId;
+    return isQueryByBusinessCaseId;
   }
 
   public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
-	this.isQueryByBusinessCaseId = isQueryByBusinessCaseId;
+    this.isQueryByBusinessCaseId = isQueryByBusinessCaseId;
   }
-  
+
 }
