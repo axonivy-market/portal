@@ -112,7 +112,7 @@ StatisticService service = new StatisticService();
 out.chartName = out.chartName.trim();
 if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), out.chartName)) {
 	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
-	FacesContext.getCurrentInstance().addMessage("", message);
+	FacesContext.getCurrentInstance().addMessage("chart-name-input", message);
 	FacesContext.getCurrentInstance().validationFailed();
 	out.isChartNameExisted = true;
 } else {
@@ -122,7 +122,7 @@ if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(),
 	String growlTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle");
 	String growlDetail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg", Arrays.asList(out.chartName));
 	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);
-	FacesContext.getCurrentInstance().addMessage("success-message", message);
+	FacesContext.getCurrentInstance().addMessage(null, message);
 	
 }' #txt
 Cs0 f35 outParameterDecl '<> result;

@@ -570,7 +570,7 @@ for (StatisticChart chart : out.statisticChartList) {
 }
 
 String expiryLastDrilldownLevel = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPIRY_CHART_LAST_DRILLDOWN_LEVEL);
-if (StringUtils.isEmpty(expiryLastDrilldownLevel) || !StatisticChartConstants.DRILLDOWN_LEVELS.contains(expiryLastDrilldownLevel.toUpperCase())) {
+if (StringUtils.isEmpty(expiryLastDrilldownLevel) || !service.getDrilldownLevels().contains(expiryLastDrilldownLevel.toUpperCase())) {
 	expiryLastDrilldownLevel = StatisticChartConstants.DRILLDOWN_LEVEL_HOUR;
 }
 out.selectedItemOfDrilldown = service.getSelectedValueOfBarChart(out.event);
