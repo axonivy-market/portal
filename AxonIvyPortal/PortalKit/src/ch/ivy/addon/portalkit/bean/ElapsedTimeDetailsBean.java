@@ -93,7 +93,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
       }
       taskQuery.where().cases(caseQueryForCaseCategory);
     } else {
-      taskQuery = statisticService.getQueryForSelectedItemElapsedTime(caseCategory);
+      taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemElapsedTime(caseCategory);
     }
 
     HorizontalBarChartModel result = new HorizontalBarChartModel();
