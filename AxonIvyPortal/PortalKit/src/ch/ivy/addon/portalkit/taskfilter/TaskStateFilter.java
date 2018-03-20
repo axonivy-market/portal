@@ -25,7 +25,7 @@ public class TaskStateFilter extends TaskFilter {
    * Initialize the values of filteredStates: SUSPENDED, RESUMED, PARKED.
    */
   public TaskStateFilter() {
-    this.filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED);
+    this.filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE);
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
   }
@@ -37,10 +37,14 @@ public class TaskStateFilter extends TaskFilter {
 
   @Override
   public String value() {
+    if (isAllStatesSelected() && filteredStates.size() == 1) {
+      return userFriendlyState(selectedFilteredStates.get(0));
+    }
     if (CollectionUtils.isEmpty(selectedFilteredStates) || isAllStatesSelected()) {
       return ALL;
     }
     String value = userFriendlyState(selectedFilteredStates.get(0));
+
     for (int i = 1; i < selectedFilteredStates.size(); i++) {
       if (filteredStates.contains(selectedFilteredStates.get(i))) {
         value += COMMA + userFriendlyState(selectedFilteredStates.get(i));
@@ -57,7 +61,9 @@ public class TaskStateFilter extends TaskFilter {
 
   @Override
   public TaskQuery buildQuery() {
-    if (CollectionUtils.isEmpty(selectedFilteredStates)) {
+    if (CollectionUtils.isEmpty(selectedFilteredStates) && filteredStates.size() == 1) {
+      return null;
+    } else if (CollectionUtils.isEmpty(selectedFilteredStates)) {
       selectedFilteredStates = new ArrayList<>(filteredStates);
     }
 
