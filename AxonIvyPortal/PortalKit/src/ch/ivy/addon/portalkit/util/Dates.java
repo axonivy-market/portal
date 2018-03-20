@@ -1,5 +1,11 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -53,5 +59,64 @@ public final class Dates {
     c.set(Calendar.MINUTE, 59);
     c.set(Calendar.SECOND, 59);
     return c.getTime();
+  }
+  
+  /**
+   * return Monday of last week at start time of day (00:00:00)
+   * @return Monday of last week at start time of day (00:00:00)
+   */
+  public static Date getMondayOfLastWeek() {
+    LocalDate ld = LocalDate.now();
+    ld = ld.minusWeeks(1);
+    ld = ld.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+    return getLocalDateWithTime(ld, LocalTime.MIN);
+  }
+  
+  /**
+   * return Sunday of last week at end time of day (23:59:59)
+   * @return Sunday of last week at end time of day (23:59:59)
+   */
+  public static Date getSundayOfLastWeek() {
+    LocalDate ld = LocalDate.now();
+    ld = ld.minusWeeks(1);
+    ld = ld.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+    return getLocalDateWithTime(ld, LocalTime.MAX);
+  }
+  
+  /**
+   * return first day of last month at start time of day (00:00:00)
+   * @return first day of last month at start time of day (00:00:00)
+   */
+  public static Date getFirstDayOfLastMonth() {
+    LocalDate ld = LocalDate.now();
+    ld = ld.minusMonths(1);
+    ld = ld.with(TemporalAdjusters.firstDayOfMonth());
+    return getLocalDateWithTime(ld, LocalTime.MIN);
+  }
+  
+  /**
+   * return last day of last month at end time of day (23:59:59)
+   * @return last day of last month at end time of day (23:59:59)
+   */
+  public static Date getLastDayOfLastMonth() {
+    LocalDate ld = LocalDate.now();
+    ld = ld.minusMonths(1);
+    ld = ld.with(TemporalAdjusters.lastDayOfMonth());
+    return getLocalDateWithTime(ld, LocalTime.MAX);
+  }
+  
+  /**
+   * return the first day of 6 month ago, at start time of day (00:00:00)
+   * @return the first day of 6 month ago, at start time of day (00:00:00)
+   */
+  public static Date getFirstDayOfLast6Month() {
+    LocalDate ld = LocalDate.now();
+    ld = ld.minusMonths(6);
+    ld = ld.with(TemporalAdjusters.firstDayOfMonth());
+    return getLocalDateWithTime(ld, LocalTime.MIN);
+  }
+  
+  private static Date getLocalDateWithTime(LocalDate localDate,LocalTime localTime) {
+    return Date.from(LocalDateTime.of(localDate, localTime).atZone(ZoneId.systemDefault()).toInstant());
   }
 }

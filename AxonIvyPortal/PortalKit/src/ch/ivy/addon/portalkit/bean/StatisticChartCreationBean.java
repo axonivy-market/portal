@@ -11,6 +11,8 @@ import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.PieChartModel;
 
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
+import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.ws.addon.CaseStateStatistic;
@@ -26,6 +28,8 @@ public class StatisticChartCreationBean implements Serializable {
 
   private DonutChartModel taskByPriorityModel;
   private DonutChartModel caseByStateModel;
+  private DonutChartModel caseByFinishedTimeModel;
+  private DonutChartModel caseByFinishedTaskModel;
   private BarChartModel taskByExpiryModel;
   private PieChartModel elapsedTimeModel;
   StatisticService statisticService = new StatisticService();
@@ -40,10 +44,16 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter
    */
   public void updateChartModels(StatisticFilter filter) {
+    if(filter.getTimePeriodSelection() != StatisticTimePeriodSelection.CUSTOM) {
+      filter.setCreatedDateFrom(null);
+      filter.setCreatedDateTo(null);
+    }
     updateTaskByPriorityModel(filter);
     updateCaseByStateModel(filter);
     updateTaskByExpiryModel(filter);
     updateElapsedTimeByCaseCategory(filter);
+    updateCaseByFinishedTaskModel(filter);
+    updateCaseByFinishedTimeModel(filter);
   }
 
   /**
@@ -76,7 +86,27 @@ public class StatisticChartCreationBean implements Serializable {
   public void updateCaseByStateModel(StatisticFilter filter) {
     String jsonQuery = statisticService.generateCaseQuery(filter, false).asJson();
     CaseStateStatistic result = statisticService.getCaseStateStatisticData(jsonQuery);
-    caseByStateModel = statisticService.generateCaseByStateModel(result, false);
+    caseByStateModel = statisticService.generateCaseByStateModel(result,StatisticChartType.CASES_BY_STATE, false);
+  }
+  
+  /**
+   * Create model for "Case by Finished task" chart from given statistic filter
+   * @param filter
+   */
+  public void updateCaseByFinishedTaskModel(StatisticFilter filter) {
+    String jsonQuery = statisticService.generateCaseQueryForCaseHaveFinishedTask(filter).asJson();
+    CaseStateStatistic result = statisticService.getCaseStateStatisticData(jsonQuery);
+    caseByFinishedTaskModel = statisticService.generateCaseByStateModel(result, StatisticChartType.CASES_BY_FINISHED_TASK, false);
+  }
+  
+  /**
+   * Create model for "Case by Finished time" chart from given statistic filter
+   * @param filter
+   */
+  public void updateCaseByFinishedTimeModel(StatisticFilter filter) {
+    String jsonQuery = statisticService.generateCaseQueryByFinishedTime(filter).asJson();
+    CaseStateStatistic result = statisticService.getCaseStateStatisticData(jsonQuery);
+    caseByFinishedTimeModel = statisticService.generateCaseByStateModel(result, StatisticChartType.CASES_BY_FINISHED_TIME, false);
   }
 
   /**
@@ -120,5 +150,21 @@ public class StatisticChartCreationBean implements Serializable {
 
   public void setElapsedTimeModel(PieChartModel elapsedTimeModel) {
     this.elapsedTimeModel = elapsedTimeModel;
+  }
+
+  public DonutChartModel getCaseByFinishedTaskModel() {
+    return caseByFinishedTaskModel;
+  }
+
+  public void setCaseByFinishedTaskModel(DonutChartModel caseByFinishedTaskModel) {
+    this.caseByFinishedTaskModel = caseByFinishedTaskModel;
+  }
+
+  public DonutChartModel getCaseByFinishedTimeModel() {
+    return caseByFinishedTimeModel;
+  }
+
+  public void setCaseByFinishedTimeModel(DonutChartModel caseByFinishedTimeModel) {
+    this.caseByFinishedTimeModel = caseByFinishedTimeModel;
   }
 }
