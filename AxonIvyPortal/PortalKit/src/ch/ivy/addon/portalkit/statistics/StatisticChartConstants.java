@@ -78,14 +78,6 @@ public class StatisticChartConstants {
   public static final String IN_17 = "17";
   public static final String AFTER_18 = ">18";
 
-  public static final String[] MONTHSOFYEAR = {JANUARY_CMS, FEBRUARY_CMS, MARCH_CMS, APRIL_CMS, MAY_CMS, JUNE_CMS,
-          JULY_CMS, AUGUST_CMS, SEPTEMBER_CMS, OCTOBER_CMS, NOVEMBER_CMS, DECEMBER_CMS};
-  public static final String[] WEEKSOFMONTH = {FIRSTWEEK_CMS, SECONDWEEK_CMS, THIRDWEEK_CMS, FOURTHWEEK_CMS, FIFTHWEEK_CMS, SIXTHWEEK_CMS};
-  public static final String[] DAYSOFWEEK = {MONDAY_CMS, TUESDAY_CMS, WEDNESDAY_CMS, THURSDAY_CMS, FRIDAY_CMS,
-          SATURDAY_CMS, SUNDAY_CMS};
-  public static final String[] HOURSOFDAY = {BEFORE_8, IN_8, IN_9, IN_10, IN_11, IN_12, IN_13, IN_14, IN_15, IN_16, IN_17, AFTER_18};
-
-
   public static final String DRILLDOWN_LEVEL_YEAR = "YEAR";
   public static final String DRILLDOWN_LEVEL_MONTH = "MONTH";
   public static final String DRILLDOWN_LEVEL_WEEK = "WEEK";
