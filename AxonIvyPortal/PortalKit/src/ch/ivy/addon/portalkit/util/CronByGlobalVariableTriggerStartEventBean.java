@@ -48,6 +48,8 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
   private CronTrigger trigger = null;
   private String triggerIdentifier;
   private static final String RUNTIME_KEY = "eventRuntime";
+  private static final Object SYN_OBJECT = new Object();
+
 
   /**
    * Default constructor
@@ -72,7 +74,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
           // prevent racing condition.
           // E.g: two thread initialize Scheduler would cause 
           // SchedulerException: Scheduler with name 'DefaultQuartzScheduler' already exists.
-          synchronized (RUNTIME_KEY) {
+          synchronized (SYN_OBJECT) {
             sched = sf.getScheduler();
           }
           triggerIdentifier = String.format("CronJobIdentifier:%s", var.getName());
@@ -148,7 +150,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
         } catch (RequestException e) {
           eventRuntime.getRuntimeLogLogger().error(e);
         } catch (Exception e) {
-          e.printStackTrace();
+          getEventBeanRuntime().getRuntimeLogLogger().error(e);
         }
       }
     }
