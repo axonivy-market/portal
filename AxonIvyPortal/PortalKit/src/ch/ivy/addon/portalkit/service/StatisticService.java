@@ -48,7 +48,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RESULT;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SATURDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SECONDWEEK_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SECOND_DATATIP_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SEPTEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SIXTHWEEK_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SUNDAY_CMS;
@@ -878,14 +877,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.setData(chartData);
     model.setLegendPosition("s");
     model.setShowDataLabels(true);
-    model.setExtender("chartExtender");
+    model.setExtender("elapsedTimeChartExtender");
     model.setShadow(false);
     model.setDataFormat("percent");
     model.setSliceMargin(3);
     model.setLegendCols(1);
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
-    String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(SECOND_DATATIP_CMS));
-    model.setDatatipFormat(datatipFormat);
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY.getCmsUri()));
     }
