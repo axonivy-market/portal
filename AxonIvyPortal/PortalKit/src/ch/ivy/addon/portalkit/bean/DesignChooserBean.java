@@ -61,8 +61,8 @@ public class DesignChooserBean implements Serializable {
   private boolean uploadedLoginLogo;
   private String loginLogoHeight;
   private ResourceLoader loader;
-  private InputStream homeLogoStream;
-  private InputStream loginLogoStream;
+  private transient InputStream homeLogoStream;
+  private transient InputStream loginLogoStream;
 
   @PostConstruct
   public void init() {
