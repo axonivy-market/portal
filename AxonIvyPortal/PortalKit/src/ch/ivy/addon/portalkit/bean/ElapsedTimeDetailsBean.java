@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.ElapsedTimeComparison;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -50,9 +51,10 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private static final String SECONDS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/seconds");
 
   @SuppressWarnings("unchecked")
-  public void initialize(String caseCategory, String caseQueryAsJson) {
+  public void initialize(String caseCategory, StatisticChart statisticChart) {
+    StatisticService statisticService = new StatisticService();
     setSelectedCaseCategory(caseCategory);
-    setCaseQueryOfSelectedChart(caseQueryAsJson);
+    setCaseQueryOfSelectedChart(statisticService.generateCaseQuery(statisticChart.getFilter(), true).asJson());
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("findAllRoles()", null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
