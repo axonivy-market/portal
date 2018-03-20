@@ -148,7 +148,7 @@
 
   <h:panelGroup id="elapsed-time-details" layout="block" rendered="#{cc.attrs.isDrilldownElapsedTime}" styleClass="statistic-dashboard-expand-mode">
     <ic:ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails
-      selectedCaseCategory="#{data.selectedCaseCategory}" selectedCaseQuery="#{data.selectedStatisticChart.jsonQuery}" />
+      selectedCaseCategory="#{data.selectedCaseCategory}" statisticChart="#{data.selectedStatisticChart}" />
   </h:panelGroup>
 
   <p:confirmDialog id="delete-confirmation-dialog"

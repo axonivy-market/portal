@@ -10,7 +10,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.selectedCaseCategory, cc.attrs.selectedCaseQuery)}" type="preRenderComponent" />
+  <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.selectedCaseCategory, cc.attrs.statisticChart)}" type="preRenderComponent" />
   <f:event listener="#{data.setFirstRoleToCompare(elapsedTimeDetailsBean.defaultRole)}" type="preRenderComponent" />
   <f:event listener="#{data.setSecondRoleToCompare(elapsedTimeDetailsBean.defaultRole)}" type="preRenderComponent" />
   <h:form id="compare-elapsed-time-form">
