@@ -35,35 +35,12 @@ public class DragAndDropController implements Serializable{
       
     
     public DragAndDropController() {
-    	
     	availableFormelements = new ArrayList<Formelement>();    	
-   
-    	//for Testing only
-//    	List<String> exampleData = Arrays.asList("Value 1", "Value 2", "Value 3");   	
-//    	availableFormelements.add(new Formelement("10", "InputFieldText", "InputFieldTextName1", "InputFieldTextLabel1", true, 0, exampleData));
-//    	availableFormelements.add(new Formelement("11", "InputFieldText", "InputFieldTextName2", "InputFieldTextLabel2", true, null, exampleData));
-//    	availableFormelements.add(new Formelement("4", "InputTextArea", "InputTextAreaName1", "InputTextAreaLabel1", false, 3, exampleData));
-//    	availableFormelements.add(new Formelement("4", "InputTextArea", "InputTextAreaName2", "InputTextAreaLabel2", false, 3, exampleData));
-//    	availableFormelements.add(new Formelement("2", "InputFieldNumber", "InputFieldNumberName1", "InputFieldNumberLabel1", false, null, exampleData));
-//    	availableFormelements.add(new Formelement("2", "InputFieldNumber", "InputFieldNumberName2", "InputFieldNumberLabel2", false, null, exampleData)); 
-//    	availableFormelements.add(new Formelement("3", "InputFieldDate", "InputFieldDateName1", "InputFieldDateLabel1", false, null, exampleData));  
-//    	availableFormelements.add(new Formelement("3", "InputFieldDate", "InputFieldDateName2", "InputFieldDateLabel2", false, null, exampleData));  	
-//    	availableFormelements.add(new Formelement("5", "ManyCheckbox", "ManyCheckboxName1", "ManyCheckboxLabel1", false, null, exampleData));
-//    	availableFormelements.add(new Formelement("5", "ManyCheckbox", "ManyCheckboxName2", "ManyCheckboxLabel2", false, null, exampleData));    	
-//    	availableFormelements.add(new Formelement("6", "OneRadio", "OneRadioName1", "OneRadioLabel1", false, null, exampleData));
-//    	availableFormelements.add(new Formelement("6", "OneRadio", "OneRadioName2", "OneRadioLabel2", false, null, exampleData));   	
-//    	availableFormelements.add(new Formelement("7", "FileUpload", "FileUploadName", "FileUploadLabel", false, 2, exampleData));
-
-    	
-    			
-    			
-    			
     	selectedFormelementsHeader = new ArrayList<Formelement>();
     	selectedFormelementsLeftPanel = new ArrayList<Formelement>();
     	selectedFormelementsRightPanel = new ArrayList<Formelement>();
     	selectedFormelementsFooter = new ArrayList<Formelement>();
     	finalUsedFormelements = new ArrayList<Formelement>();
-        
 	}
     
     
