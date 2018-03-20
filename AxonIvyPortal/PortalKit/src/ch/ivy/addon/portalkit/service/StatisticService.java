@@ -1269,8 +1269,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseCategory"), 0);
     }
 
-    float totalValue = 0;
-    float otherValue = 0;
+    float totalValue = 0f;
+    float otherValue = 0f;
 
     for (Number number : chartData.values()) {
       totalValue += number.floatValue();
@@ -1285,7 +1285,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
-    if (otherValue != 0) {
+    
+    if (Float.compare(otherValue, 0f) != 0) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue);
     }
 
@@ -1306,7 +1307,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     return model;
   }
-
+  
   public boolean isTaskByPriority(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.TASK_BY_PRIORITY;
   }
