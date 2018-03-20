@@ -20,7 +20,7 @@ import com.google.gson.JsonParser;
 public final class PasswordUtils {
   private static final String SERVER_KEY_PREFIX = "AxonIvyPortal.Server";
   private static final String SERVER_PATH = "path";
-  private static final String SERVER_PASSWORD = "password";
+  private static final String SERVER_PWD_KEY = "password";
 
   private PasswordUtils() {}
 
@@ -80,7 +80,7 @@ public final class PasswordUtils {
     String path = getServerPath(serverAsString);
     String password = PasswordUtils.find(path);
     if (Objects.nonNull(password)) {
-      jsonObject.addProperty(SERVER_PASSWORD, password);
+      jsonObject.addProperty(SERVER_PWD_KEY, password);
     }
     return jsonObject.toString();
   }

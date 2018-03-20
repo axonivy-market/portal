@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.ElapsedTimeComparison;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
+import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -53,9 +54,8 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
   @SuppressWarnings("unchecked")
   public void initialize(String caseCategory, StatisticChart statisticChart) {
-    StatisticService statisticService = new StatisticService();
     setSelectedCaseCategory(caseCategory);
-    setCaseQueryOfSelectedChart(statisticService.generateCaseQuery(statisticChart.getFilter(), true).asJson());
+    setCaseQueryOfSelectedChart(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true).asJson());
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("findAllRoles()", null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
@@ -93,7 +93,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
       }
       taskQuery.where().cases(caseQueryForCaseCategory);
     } else {
-      taskQuery = statisticService.getQueryForSelectedItemElapsedTime(caseCategory);
+      taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemElapsedTime(caseCategory);
     }
 
     HorizontalBarChartModel result = new HorizontalBarChartModel();

@@ -14,6 +14,7 @@ import org.primefaces.model.chart.PieChartModel;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.ws.addon.CaseStateStatistic;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
@@ -62,7 +63,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateTaskByPriorityModel(StatisticFilter filter) {
-    String jsonQuery = statisticService.generateTaskQuery(filter).asJson();
+    String jsonQuery = StatisticChartQueryUtils.generateTaskQuery(filter).asJson();
     PriorityStatistic result = statisticService.getPriorityStatisticData(jsonQuery);
     taskByPriorityModel = statisticService.generateTaskByPriorityModel(result, false);
   }
@@ -73,7 +74,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateTaskByExpiryModel(StatisticFilter filter) {
-    String jsonQuery = statisticService.generateTaskQueryForExpiry(filter).asJson();
+    String jsonQuery = StatisticChartQueryUtils.generateTaskQueryForExpiry(filter).asJson();
     List<ExpiryStatistic> result = statisticService.getExpiryStatisticData(jsonQuery);
     taskByExpiryModel = statisticService.generateTaskByExpiryModel(result, false, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
   }
@@ -84,7 +85,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateCaseByStateModel(StatisticFilter filter) {
-    String jsonQuery = statisticService.generateCaseQuery(filter, false).asJson();
+    String jsonQuery = StatisticChartQueryUtils.generateCaseQuery(filter, false).asJson();
     CaseStateStatistic result = statisticService.getCaseStateStatisticData(jsonQuery);
     caseByStateModel = statisticService.generateCaseByStateModel(result,StatisticChartType.CASES_BY_STATE, false);
   }
@@ -94,7 +95,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter
    */
   public void updateCaseByFinishedTaskModel(StatisticFilter filter) {
-    String jsonQuery = statisticService.generateCaseQueryForCaseHaveFinishedTask(filter).asJson();
+    String jsonQuery = StatisticChartQueryUtils.generateCaseQueryForCaseHaveFinishedTask(filter).asJson();
     CaseStateStatistic result = statisticService.getCaseStateStatisticData(jsonQuery);
     caseByFinishedTaskModel = statisticService.generateCaseByStateModel(result, StatisticChartType.CASES_BY_FINISHED_TASK, false);
   }
@@ -104,7 +105,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter
    */
   public void updateCaseByFinishedTimeModel(StatisticFilter filter) {
-    String jsonQuery = statisticService.generateCaseQueryByFinishedTime(filter).asJson();
+    String jsonQuery = StatisticChartQueryUtils.generateCaseQueryByFinishedTime(filter).asJson();
     CaseStateStatistic result = statisticService.getCaseStateStatisticData(jsonQuery);
     caseByFinishedTimeModel = statisticService.generateCaseByStateModel(result, StatisticChartType.CASES_BY_FINISHED_TIME, false);
   }
@@ -115,7 +116,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateElapsedTimeByCaseCategory(StatisticFilter filter) {
-    String jsonQuery = statisticService.generateCaseQuery(filter, true).asJson();
+    String jsonQuery = StatisticChartQueryUtils.generateCaseQuery(filter, true).asJson();
     List<ElapsedTimeStatistic> result = statisticService.getElapsedTimeStatisticData(jsonQuery);
     setElapsedTimeModel(statisticService.generateElapsedTimeModel(result, false));
   }
