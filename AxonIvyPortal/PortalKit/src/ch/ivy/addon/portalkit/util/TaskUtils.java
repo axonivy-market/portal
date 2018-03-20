@@ -567,6 +567,7 @@ public final class TaskUtils {
    * @param kindCode to find waiting tasks
    * @return list of task.
    */
+  @SuppressWarnings("deprecation")
   public static List<ITask> findWaitingTaskByKindCode(final String kindCode) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<List<ITask>>() {

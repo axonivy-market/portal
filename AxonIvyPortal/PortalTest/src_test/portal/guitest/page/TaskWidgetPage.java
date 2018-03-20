@@ -20,6 +20,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   private static final String KEYWORD_FILTER_SELECTOR =
       "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
+  private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
+          "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
   @Override
   protected String getLoadedLocator() {
@@ -97,6 +99,13 @@ public class TaskWidgetPage extends TemplatePage {
     Sleeper.sleepTight(2000);
     waitAjaxIndicatorDisappear();
   }
+  
+  public void filterTasksInExpendedModeBy(String keyword) {
+    WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
+    keywordFilter.sendKeys(keyword);
+    Sleeper.sleepTight(2000);
+    waitAjaxIndicatorDisappear();
+  }
 
   public boolean isFilterDisplayed() {
     return isElementPresent(By.cssSelector(KEYWORD_FILTER_SELECTOR));
@@ -110,7 +119,7 @@ public class TaskWidgetPage extends TemplatePage {
     return Long.valueOf(text);
   }
 
-  public CasePage openRelatedCaseOfTask(int taskId) {
+  public CasePage openRelatedCaseOfTask() {
     click(findElementByCssSelector("*[id$='task-details-container'] *[id$='related-case']"));
     waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
     return new CasePage();
