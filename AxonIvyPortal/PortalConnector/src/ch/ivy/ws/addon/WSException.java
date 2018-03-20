@@ -7,8 +7,6 @@ import ch.ivyteam.ivy.scripting.objects.DateTime;
 /**
  * Custom OPC Exception
  * 
- * @author mde
- *
  */
 public class WSException extends Exception {
 
@@ -22,8 +20,8 @@ public class WSException extends Exception {
 	private Exception exception;
 	private String userText;
 	private String helpText;
-	private List<Object> userTextData;
-	private List<Object> helpTextData;
+	private transient List<Object> userTextData;
+	private transient List<Object> helpTextData;
 	private DateTime errorDateTime = new DateTime();
 	private String server;
 	
