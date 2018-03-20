@@ -31,6 +31,14 @@
         <name>updateBeforeAddElapsedTime</name>
         <description></description>
     </method>
+    <method>
+        <name>updateBeforeAddCaseByFinishedTask</name>
+        <description></description>
+    </method>
+    <method>
+        <name>updateBeforeAddCaseByFinishedTime</name>
+        <description></description>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
