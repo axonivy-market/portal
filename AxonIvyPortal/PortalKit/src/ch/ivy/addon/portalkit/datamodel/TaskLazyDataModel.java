@@ -97,11 +97,13 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
     serverId = SecurityServiceUtils.getServerIdFromSession();
-    inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
-    if (inProgressFilter != null) {
-      isInProgressFilterDisplayed = true;
-    } else {
-      inProgressFilter = new TaskInProgressByOthersFilter();
+    if (!this.queryCriteria.getIncludedStates().equals(Arrays.asList(TaskState.UNASSIGNED))) {
+      inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
+      if (inProgressFilter != null) {
+        isInProgressFilterDisplayed = true;
+      } else {
+        inProgressFilter = new TaskInProgressByOthersFilter();
+      }
     }
 
     autoInitForNoAppConfiguration();
@@ -140,12 +142,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
-    List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
-    for (TaskFilter filter : filters) {
-      for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
-        if (sessionTaskFilter.getClass() == filter.getClass()) {
-          BeanUtils.copyProperties(filter, sessionTaskFilter);
-          selectedFilters.add(filter);
+    if (!this.queryCriteria.getIncludedStates().equals(Arrays.asList(TaskState.UNASSIGNED))) {
+      List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
+      for (TaskFilter filter : filters) {
+        for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
+          if (sessionTaskFilter.getClass() == filter.getClass()) {
+            BeanUtils.copyProperties(filter, sessionTaskFilter);
+            selectedFilters.add(filter);
+          }
         }
       }
     }
@@ -313,7 +317,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         TaskState.PARKED)));
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
-    jsonQuerycriteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
+    if (this.queryCriteria != null && !this.queryCriteria.getIncludedStates().equals(Arrays.asList(TaskState.UNASSIGNED))) {
+      jsonQuerycriteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
+    }
     return jsonQuerycriteria;
   }
 
@@ -676,13 +682,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         filterQuery.and(subQuery);
       }
     });
-    UserUtils.setSessionTaskKeywordFilterAttribute(queryCriteria.getKeyword());
-    if (!compactMode) {
-      UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);
-      if (isInProgressFilterDisplayed) {
-        UserUtils.setSessionTaskInProgressFilterAttribute(inProgressFilter);
-      } else {
-        UserUtils.setSessionTaskInProgressFilterAttribute(null);
+    if (!this.queryCriteria.getIncludedStates().equals(Arrays.asList(TaskState.UNASSIGNED))) {
+      UserUtils.setSessionTaskKeywordFilterAttribute(queryCriteria.getKeyword());
+      if (!compactMode) {
+        UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);
+        if (isInProgressFilterDisplayed) {
+          UserUtils.setSessionTaskInProgressFilterAttribute(inProgressFilter);
+        } else {
+          UserUtils.setSessionTaskInProgressFilterAttribute(null);
+        }
       }
     }
     return taskQuery;
