@@ -12,6 +12,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class PageRefreshingTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -33,7 +34,7 @@ public class PageRefreshingTest extends BaseTest {
 
 
   @Test
-  public void testTasksInPortalTaskPageUpdatedAfterReloading() throws InterruptedException {
+  public void testTasksInPortalTaskPageUpdatedAfterReloading() {
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
 

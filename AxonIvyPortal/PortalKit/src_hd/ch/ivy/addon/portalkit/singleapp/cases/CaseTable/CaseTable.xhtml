@@ -35,7 +35,7 @@
       </p:column>
 
       <p:column id="case-status" styleClass="case-view-table-column" filterBy="#{case.status}" sortBy="#{case.status}"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/status')}" filterMatchMode="contains">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" filterMatchMode="contains">
         <h:outputText id="case-status-value" value="#{case.status}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseTreeTable/caseState')} #{case.status}" />
       </p:column>
@@ -91,7 +91,7 @@
       appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
       widgetVar="confirmation">
       <p:commandButton id="proceed-delete-case-command" styleClass=""
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}" icon="fa fa-check-circle-o"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" icon="fa fa-check-circle-o"
         process="cases-view" actionListener="#{logic.deleteCase(data.selectedCase)}"
         oncomplete="PF('confirmation').hide();PF('caseTableVar').clearFilters()"
         update=":#{p:component('cases-view')} messages">

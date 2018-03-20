@@ -25,7 +25,7 @@
           <h:outputText value="#{task.type}" />
         </p:column>
 
-        <p:column styleClass="Wid10" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/state')}"
+        <p:column styleClass="Wid10" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}"
           sortBy="#{task.state.intValue()}">
           <span class="#{taskBean.getStateIcon(task.getState())}" />
           <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/'.concat(task.getState()))}"
@@ -42,7 +42,7 @@
         <p:column styleClass="Wid10" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/Editor')}"
           sortBy="#{task.editorName}">
           <h:outputText id="editor" rendered="#{task.editorName == null || !task.editor.isUser()}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/system')}" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM')}" />
 
           <p:commandLink id="show-contact" styleClass="fa fa-info-circle" value="#{task.editorName}"
             rendered="#{task.editorName != null and task.editor.isUser()}" />

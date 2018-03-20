@@ -369,7 +369,7 @@ ew0 f24 actionTable 'out=in;
 ' #txt
 ew0 f24 actionCode 'if(in.denied==true){
 	in.nextTask.subject = ivy.cms.co("/Dialogs/Tasks/Declined/TaskName");
-	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Declined/TaskDescription");
+	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Declined/TaskName");
 }else{
 	in.nextTask.subject = ivy.cms.co("/Dialogs/Tasks/Approved/TaskName");
 	in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/Approved/TaskName");
@@ -828,7 +828,7 @@ Bk0 f11 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 Bk0 f11 actionTable 'out=in;
 ' #txt
 Bk0 f11 actionCode 'ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
-ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskDescription"));
+ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
 
 ivy.case.setName(in.workflowName);
 ivy.case.setDescription(in.workflowDescription);' #txt

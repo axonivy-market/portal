@@ -1,4 +1,0 @@
-co: name={addChartNameInput} description={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} visualorder={0} guid={160B9993D2B65344} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={160B99997B1DD462} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:13 CET} validto={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} properties={} id={}
-val: guid={160B9993D3A5657B} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-03 02:18:35 CET} validto={} changed={2018-01-03 02:18:35 CET} changedby={mnhnam} properties={} id={}
-val: guid={160B999960F5051F} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:13 CET} validto={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} properties={} id={}

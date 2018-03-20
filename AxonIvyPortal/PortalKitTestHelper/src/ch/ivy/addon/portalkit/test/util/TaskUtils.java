@@ -20,6 +20,7 @@ public class TaskUtils {
   public static List<ICase> destroyAllCase() {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<List<ICase>>() {
+        @Override
         public List<ICase> call() {
           try {
             IPropertyFilter<CaseProperty> noFilter = null;
@@ -51,6 +52,7 @@ public class TaskUtils {
   public static boolean resumeFirstTask() {
     try {
       SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+        @Override
         public Boolean call() {
           try {
             IPropertyFilter<TaskProperty> filter = null;
@@ -76,6 +78,7 @@ public class TaskUtils {
 
   public static void deleteCompletedCases() throws Exception {
     SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
+      @Override
       public Void call() {
         IPropertyFilter<CaseProperty> noFilter = null;
         IQueryResult<ICase> qr = Ivy.wf().findCases(noFilter, null, 0, -1, true);

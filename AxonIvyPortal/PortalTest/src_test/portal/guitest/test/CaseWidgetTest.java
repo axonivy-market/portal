@@ -32,6 +32,7 @@ public class CaseWidgetTest extends BaseTest {
   private CaseDetailsPage caseDetailsPage;
   private AdditionalCaseDetailsPage additionalCaseDetailsPage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -45,8 +46,9 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.ADMIN_USER);
     
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.filterTasksBy("Report and hide case");
-    taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
+    taskWidgetPage.expand();
+    taskWidgetPage.filterTasksInExpendedModeBy("Report and hide case");
+    taskWidgetPage.findElementByCssSelector("*[id$='" + 0 + ":task-item:task-info']").click();
 
     homePage = taskWidgetPage.goToHomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();

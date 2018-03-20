@@ -12,7 +12,7 @@ public class HomePage extends TemplatePage {
   @Override
   protected String getLoadedLocator() {
     return TASK_SWITCH_MODE_BTN_LOCATOR;
-  };
+  }
 
   public TaskWidgetPage getTaskWidget() {
     return new TaskWidgetPage();

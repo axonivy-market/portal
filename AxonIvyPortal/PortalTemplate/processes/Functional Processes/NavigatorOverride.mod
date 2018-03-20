@@ -339,7 +339,6 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
 
 in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
-in.taskDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 in.taskView = TaskView

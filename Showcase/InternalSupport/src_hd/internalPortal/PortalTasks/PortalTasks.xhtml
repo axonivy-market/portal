@@ -26,12 +26,12 @@
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
         componentId="responsible-column-header"
         styleClass="responsible-column-header activatior-column #{taskView.dataModel.isAutoHideColumns()?'js-responsible-column-header hidden-sm':''}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible')}"
         sortField="#{masterDataBean.taskSortFieldActivator}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
         componentId="id-column-header" styleClass="id-column-header TexAlCenter #{taskView.dataModel.isAutoHideColumns()?'js-id-column-header':''}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskId')}"
         sortField="#{masterDataBean.taskSortFieldId}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"

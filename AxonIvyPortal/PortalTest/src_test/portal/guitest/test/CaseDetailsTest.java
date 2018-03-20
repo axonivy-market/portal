@@ -16,6 +16,7 @@ public class CaseDetailsTest extends BaseTest {
 
   private CaseDetailsPage detailsPage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();

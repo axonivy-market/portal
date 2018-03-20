@@ -51,8 +51,7 @@ public final class RoleUtils {
         @Override
         public List<IRole> call() throws Exception {
           ISecurityContext security = Ivy.wf().getSecurityContext();
-          List<IRole> roles = security.getRoles();
-          return roles;
+          return security.getRoles();
         }
       });
     } catch (PersistencyException e) {
@@ -99,9 +98,12 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllHiddenRoles() {
-    return getAllRoles().stream()
-        .filter(isHiddenRole())
-        .collect(Collectors.toList());
+    List<IRole> allRoles = getAllRoles();
+    if (allRoles != null) {
+      return allRoles.stream().filter(isHiddenRole()).collect(Collectors.toList());
+    } else {
+      return new ArrayList<>();
+    }
   }
 
   /**
@@ -112,9 +114,13 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllVisibleRoles() {
-    return getAllRoles().stream()
-        .filter(isVisibleRole())
-        .collect(Collectors.toList());
+    List<IRole> allRoles = getAllRoles();
+    if (allRoles != null) {
+      return allRoles.stream().filter(isVisibleRole()).collect(Collectors.toList());
+    } else {
+      return new ArrayList<>();
+    }
+   
   }
 
   /**

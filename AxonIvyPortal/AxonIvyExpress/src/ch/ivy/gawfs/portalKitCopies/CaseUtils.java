@@ -24,10 +24,9 @@ import ch.ivyteam.logicalexpression.RelationalOperator;
 /**
  * This class is to build some function related to case such as find finish cases, find running case, filter by
  * category.
- * 
- * @author lptchi
  */
 
+@SuppressWarnings("deprecation")
 public final class CaseUtils {
 
   private CaseUtils() {

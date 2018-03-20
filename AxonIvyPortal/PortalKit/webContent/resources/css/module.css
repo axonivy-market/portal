@@ -1916,12 +1916,12 @@ a.case-details-document-add-link {
 }
 /********************************** END CASE ITEM **********************************/
 .process-widget-action {
-  line-height: 20px;
+  line-height: 15px;
 }
 
 .process-widget-action-form {
-  margin-top: 14px;
-  margin-bottom: 14px;
+  margin-top: 6px;
+  margin-bottom: 8px;
 }
 
 .process-widget-action .process-action-button.action-create-experss-workflow {
@@ -2111,17 +2111,16 @@ a.case-details-document-add-link {
 }
 
 .process-widget .favorite-process-title {
-  font-size: 1.2rem; 
-  margin-top: 14px;
+  font-size: 1.4rem; 
+  margin-top: 8px;
 }
 
 .process-widget .default-process-title {
-  font-size: 1.2rem; 
-  margin-bottom: 14px;
+  font-size: 1.4rem; 
 }
 
 .process-widget .user-default-process-list {
-  margin-top: 14px;
+  margin-top: 8px;
 }
 
 .process-widget .order-list-items.ui-orderlist {
@@ -2146,6 +2145,10 @@ a.case-details-document-add-link {
   display: flex;
   position: relative;
   align-items: center;
+}
+
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
+  cursor: move;	
 }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list table tr td {
@@ -3934,6 +3937,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .statistic-dashboard-expand-mode {
   margin: auto;
+}
+
+.task-by-expiry-drilldown-mode {
+  text-align: center;
 }
 
 .add-statistic-panel .add-statistic-panel-column-1 {
