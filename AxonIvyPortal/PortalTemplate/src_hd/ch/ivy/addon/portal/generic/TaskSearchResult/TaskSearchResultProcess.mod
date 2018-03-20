@@ -99,7 +99,8 @@ Ts0 f23 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResul
 ' #txt
 Ts0 f23 actionTable 'out=in;
 ' #txt
-Ts0 f23 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
+Ts0 f23 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivy.addon.portalkit.util.MenuUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
@@ -112,6 +113,8 @@ String pageTitle = category.value;
 in.dataModel.setServerId(in.foundTask.applicationRegister.serverId);
 in.dataModel.queryCriteria.setKeyword(in.keyword);
 in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
+in.dataModel.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+in.dataModel.setSearchTaskDisplayed(true);
 in.dataModel.queryCriteria.newQueryCreated = true;
 out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(in.keyword).remoteTaskId(in.foundTask.getId()).dataModel(in.dataModel).showHeaderToolbar(false).createNewTaskView();
 
