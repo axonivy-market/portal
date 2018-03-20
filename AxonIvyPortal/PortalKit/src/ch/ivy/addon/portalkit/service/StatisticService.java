@@ -32,9 +32,11 @@ import org.primefaces.model.chart.PieChartModel;
 
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
+import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.ws.addon.CaseStateStatistic;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivy.ws.addon.ExpiryStatistic;
@@ -43,6 +45,7 @@ import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -227,20 +230,42 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     TaskQuery taskQuery = TaskQuery.create();
 
     // Filter by created date
-    Date createdDateFrom = filter.getCreatedDateFrom();
-    Date createdDateTo = filter.getCreatedDateTo();
-    if (createdDateFrom != null || createdDateTo != null) {
+    if(filter.getTimePeriodSelection() == null || filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM){
+      Date createdDateFrom = filter.getCreatedDateFrom();
+      Date createdDateTo = filter.getCreatedDateTo();
+      if (createdDateFrom != null || createdDateTo != null) {
+        TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
+        IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
+        if (createdDateFrom != null) {
+          subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(createdDateFrom);
+        }
+        if (createdDateTo != null) {
+          subTaskFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(createdDateTo);
+        }
+        taskQuery.where().and(subTaskQueryForCreatedDate);
+      }
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
       TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
       IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
-      if (createdDateFrom != null) {
-        subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(createdDateFrom);
-      }
-      if (createdDateTo != null) {
-        subTaskFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(createdDateTo);
-      }
+      subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
+      subTaskFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
       taskQuery.where().and(subTaskQueryForCreatedDate);
     }
-
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
+      TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
+      IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
+      subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      subTaskFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
+      taskQuery.where().and(subTaskQueryForCreatedDate);
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH){
+      TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
+      IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
+      subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
+      taskQuery.where().and(subTaskQueryForCreatedDate);
+    }
+    
     // Filter by roles
     List<String> selectedRoles = Optional.ofNullable(filter.getSelectedRoles()).orElse(new ArrayList<>());
     if (!selectedRoles.isEmpty()) {
@@ -289,18 +314,43 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     CaseQuery caseQuery = CaseQuery.create();
 
     // Filter by created date
-    Date createdDateFrom = filter.getCreatedDateFrom();
-    Date createdDateTo = filter.getCreatedDateTo();
-    if (createdDateFrom != null || createdDateTo != null) {
+    if(filter.getTimePeriodSelection() == null || filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM){
+      Date createdDateFrom = filter.getCreatedDateFrom();
+      Date createdDateTo = filter.getCreatedDateTo();
+      if (createdDateFrom != null || createdDateTo != null) {
+        CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
+        ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
+            subCaseQueryForCreatedDate.where();
+        if (createdDateFrom != null) {
+          subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(createdDateFrom);
+        }
+        if (createdDateTo != null) {
+          subCaseFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(createdDateTo);
+        }
+        caseQuery.where().and(subCaseQueryForCreatedDate);
+      }
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
       CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
       ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
           subCaseQueryForCreatedDate.where();
-      if (createdDateFrom != null) {
-        subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(createdDateFrom);
-      }
-      if (createdDateTo != null) {
-        subCaseFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(createdDateTo);
-      }
+      subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
+      subCaseFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
+      caseQuery.where().and(subCaseQueryForCreatedDate);
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
+      CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
+          subCaseQueryForCreatedDate.where();
+      subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      subCaseFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
+      caseQuery.where().and(subCaseQueryForCreatedDate);
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH) {
+      CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
+          subCaseQueryForCreatedDate.where();
+      subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
       caseQuery.where().and(subCaseQueryForCreatedDate);
     }
 
@@ -348,7 +398,179 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     return caseQuery;
   }
+  
+  /**
+   * generate case query for case which having finished task
+   * @param filter
+   * @return case query for case which having finished task
+   */
+  public CaseQuery generateCaseQueryForCaseHaveFinishedTask(StatisticFilter filter) {
+      CaseQuery caseQuery = generateCaseQuery(filter, false);
+      caseQuery.where().and().tasks(generateTaskQueryForFinishedTask(filter));
+      return caseQuery;
+  }
+  
+  /**
+   * generate case query by finished time
+   * @param filter
+   * @return case query by finished time
+   */
+  public CaseQuery generateCaseQueryByFinishedTime(StatisticFilter filter) {
+    CaseQuery caseQuery = CaseQuery.create();
+    // Filter by finished date
+    if(filter.getTimePeriodSelection() == null || filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM){
+      Date startTimePeriod = filter.getCreatedDateFrom();
+      Date endTimePeriod = filter.getCreatedDateTo();
+      if (startTimePeriod != null || endTimePeriod != null) {
+        CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
+        ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
+            subCaseQueryForCreatedDate.where();
+        if (startTimePeriod != null) {
+          subCaseFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(startTimePeriod);
+        }
+        if (endTimePeriod != null) {
+          subCaseFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(endTimePeriod);
+        }
+        caseQuery.where().and(subCaseQueryForCreatedDate);
+      }
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
+      CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
+          subCaseQueryForCreatedDate.where();
+      subCaseFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
+      subCaseFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
+      caseQuery.where().and(subCaseQueryForCreatedDate);
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
+      CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
+          subCaseQueryForCreatedDate.where();
+      subCaseFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      subCaseFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
+      caseQuery.where().and(subCaseQueryForCreatedDate);
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH) {
+      CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
+          subCaseQueryForCreatedDate.where();
+      subCaseFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      caseQuery.where().and(subCaseQueryForCreatedDate);
+    }
+    caseQuery.where().and().endTimestamp().isNotNull();
+    
+    // Filter by case state
+    List<CaseState> selectedCaseStates = Optional.ofNullable(filter.getSelectedCaseStates()).orElse(new ArrayList<>());
+    CaseQuery subCaseQueryForSelectedCaseStates = CaseQuery.create();
+    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseStates =
+        subCaseQueryForSelectedCaseStates.where();
 
+    if (selectedCaseStates.contains(CaseState.DONE)) {
+      subCaseFilterForSelectedCaseStates.and().state().isEqual(CaseState.DONE);
+    }
+    else {
+      //if user don't choose Done state, generate query to get no information
+      subCaseFilterForSelectedCaseStates.and().state().isEqual(CaseState.DONE);
+      subCaseFilterForSelectedCaseStates.and().state().isEqual(CaseState.RUNNING);
+    }
+    caseQuery.where().and(subCaseQueryForSelectedCaseStates);
+    
+    // Filter by case category
+    List<String> selectedCaseCategories =
+        Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
+    CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
+    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories =
+        subCaseQueryForSelectedCaseCategories.where();
+    if (selectedCaseCategories.isEmpty()) {
+      List<String> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
+      caseCategories.forEach(category -> {
+        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+          subCaseFilterForSelectedCaseCategories.and().category().isNotNull();
+        } else {
+          subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category);
+        }
+      });
+    } else {
+      selectedCaseCategories.forEach(category -> {
+        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+          subCaseFilterForSelectedCaseCategories.or().category().isNull();
+        } else {
+          subCaseFilterForSelectedCaseCategories.or().category().isEqual(category);
+        }
+      });
+    }
+    caseQuery.where().and(subCaseQueryForSelectedCaseCategories);
+    
+    return caseQuery;
+  }
+  
+  private TaskQuery generateTaskQueryForFinishedTask(StatisticFilter filter) {
+    TaskQuery taskQuery = TaskQuery.create();
+    
+    // Filter by end date
+    if(filter.getTimePeriodSelection() == null || filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM){
+      Date createdDateFrom = filter.getCreatedDateFrom();
+      Date createdDateTo = filter.getCreatedDateTo();
+      if (createdDateFrom != null || createdDateTo != null) {
+        TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
+        IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
+        if (createdDateFrom != null) {
+          subTaskFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(createdDateFrom);
+        }
+        if (createdDateTo != null) {
+          subTaskFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(createdDateTo);
+        }
+        taskQuery.where().and(subTaskQueryForCreatedDate);
+      }
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
+      TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
+      IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
+      subTaskFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
+      subTaskFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
+      taskQuery.where().and(subTaskQueryForCreatedDate);
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
+      TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
+      IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
+      subTaskFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      subTaskFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
+      taskQuery.where().and(subTaskQueryForCreatedDate);
+    }
+    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH){
+      TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
+      IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
+      subTaskFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
+      taskQuery.where().and(subTaskQueryForCreatedDate);
+    }
+    
+    //Filter by DONE state
+    taskQuery.where().and().state().isEqual(TaskState.DONE);
+    
+    // Filter by roles
+    List<String> selectedRoles = Optional.ofNullable(filter.getSelectedRoles()).orElse(new ArrayList<>());
+    if (!selectedRoles.isEmpty()) {
+      TaskQuery subTaskQueryForRoles = TaskQuery.create();
+      IFilterQuery subTaskFilterForRoles = subTaskQueryForRoles.where();
+
+      selectedRoles.forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
+      taskQuery.where().and(subTaskQueryForRoles);
+    }
+
+    // Filter by task priority
+    List<WorkflowPriority> selectedPriorities =
+        Optional.ofNullable(filter.getSelectedTaskPriorities()).orElse(new ArrayList<>());
+    if (!selectedPriorities.isEmpty()) {
+      TaskQuery subTaskQueryForPriority = TaskQuery.create();
+      IFilterQuery subTaskFilterForPriority = subTaskQueryForPriority.where();
+
+      selectedPriorities.forEach(priority -> subTaskFilterForPriority.or().priority().isEqual(priority));
+      taskQuery.where().and(subTaskQueryForPriority);
+    }
+    
+    return taskQuery;
+  }
+  
   private TaskQuery filterOnlyTasksExpireInThisYear(TaskQuery taskQuery) {
     TaskQuery result = TaskQuery.fromJson(taskQuery.asJson());
     Date firsDateOfThisYear = truncateMinutesPart(getFirstDateOfThisYear());
@@ -411,7 +633,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (CaseStateStatistic) response.get(RESULT);
   }
-
+  
   /**
    * Call web service to get Elapsed time by Case Category data
    * 
@@ -1001,7 +1223,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setType(chartType);
     statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
-
+    statisticChart.setFilter(filter);
+/*
     switch (chartType) {
       case TASK_BY_PRIORITY:
         statisticChart.setJsonQuery(generateTaskQuery(filter).asJson());
@@ -1018,7 +1241,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       default:
         break;
     }
-
+*/
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
     return findById(info.getId());
   }
@@ -1105,10 +1328,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * Generate chart model for "Case By State" chart
    * 
    * @param statisticData statistic data
+   * @param chartType statistic chart type
    * @param isSetDefaultName
    * @return chart model for "Case By State" chart
    */
-  public DonutChartModel generateCaseByStateModel(CaseStateStatistic statisticData, boolean isSetDefaultName) {
+  public DonutChartModel generateCaseByStateModel(CaseStateStatistic statisticData, StatisticChartType chartType, boolean isSetDefaultName) {
     Map<String, Number> chartData = generateDataForCaseStateChart(statisticData);
     boolean isEmptyData = chartData.isEmpty();
     DonutChartModel model = new DonutChartModel();
@@ -1130,7 +1354,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
     model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
-      model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
+      if(chartType == StatisticChartType.CASES_BY_STATE){
+        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
+      }
+      else if(chartType == StatisticChartType.CASES_BY_FINISHED_TASK){
+        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TASK.getCmsUri()));
+      }
+      else if(chartType == StatisticChartType.CASES_BY_FINISHED_TIME){
+        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TIME.getCmsUri()));
+      }
     }
 
     return model;
@@ -1204,6 +1436,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public boolean isElapsedTimeByCaseCategory(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY;
   }
+  
+  public boolean isCaseByFinishedTask(StatisticChart statisticChart) {
+    return statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TASK;
+  }
+  
+  public boolean isCaseByFinishedTime(StatisticChart statisticChart) {
+    return statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TIME;
+  }
 
   /**
    * 
@@ -1213,20 +1453,46 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     for (StatisticChart statisticChart : statisticChartList) {
       switch (statisticChart.getType()) {
         case TASK_BY_PRIORITY:
-          PriorityStatistic taskByPriorityData = getPriorityStatisticData(statisticChart.getJsonQuery());
+          PriorityStatistic taskByPriorityData = new PriorityStatistic();
+          if(statisticChart.getFilter() != null) {
+            taskByPriorityData = getPriorityStatisticData(generateTaskQuery(statisticChart.getFilter()).asJson());
+          }
           statisticChart.setDonutChartModel(generateTaskByPriorityModel(taskByPriorityData, true));
           break;
         case TASK_BY_EXPIRY:
-          List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(statisticChart.getJsonQuery());
+          List<ExpiryStatistic> taskByExpiryData = new ArrayList<>();
+          if(statisticChart.getFilter() != null){
+            taskByExpiryData = getExpiryStatisticData(generateTaskQueryForExpiry(statisticChart.getFilter()).asJson());
+          }
           statisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
           break;
         case CASES_BY_STATE:
-          CaseStateStatistic caseStateData = getCaseStateStatisticData(statisticChart.getJsonQuery());
-          statisticChart.setDonutChartModel(generateCaseByStateModel(caseStateData, true));
+          CaseStateStatistic caseStateData = new CaseStateStatistic();
+          if(statisticChart.getFilter() != null) {
+            caseStateData = getCaseStateStatisticData(generateCaseQuery(statisticChart.getFilter(), false).asJson());
+          }
+          statisticChart.setDonutChartModel(generateCaseByStateModel(caseStateData, StatisticChartType.CASES_BY_STATE,  true));
           break;
         case ELAPSED_TIME_BY_CASE_CATEGORY:
-          List<ElapsedTimeStatistic> elapsedTimeData = getElapsedTimeStatisticData(statisticChart.getJsonQuery());
+          List<ElapsedTimeStatistic> elapsedTimeData = new ArrayList<>();
+          if(statisticChart.getFilter() != null) {
+            elapsedTimeData = getElapsedTimeStatisticData(generateCaseQuery(statisticChart.getFilter(), true).asJson());
+          }
           statisticChart.setPieChartModel(generateElapsedTimeModel(elapsedTimeData, true));
+          break;
+        case CASES_BY_FINISHED_TASK:
+          CaseStateStatistic caseByFinishedTaskData = new CaseStateStatistic();
+          if(statisticChart.getFilter() != null) {
+            caseByFinishedTaskData = getCaseStateStatisticData(generateCaseQueryForCaseHaveFinishedTask(statisticChart.getFilter()).asJson());
+          }
+          statisticChart.setDonutChartModel(generateCaseByStateModel(caseByFinishedTaskData, StatisticChartType.CASES_BY_FINISHED_TASK, true));
+          break;
+        case CASES_BY_FINISHED_TIME:
+          CaseStateStatistic caseByFinishedTimeData = new CaseStateStatistic();
+          if(statisticChart.getFilter() != null) {
+            caseByFinishedTimeData = getCaseStateStatisticData(generateCaseQueryByFinishedTime(statisticChart.getFilter()).asJson());
+          }
+          statisticChart.setDonutChartModel(generateCaseByStateModel(caseByFinishedTimeData, StatisticChartType.CASES_BY_FINISHED_TIME, true));
           break;
         default:
           break;
@@ -1296,11 +1562,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public StatisticChart drilldownExpiryChart(String selectedValue, StatisticChart selectedChart, String previousSelectedMonth, String previousSelectedWeek) {
-    List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(selectedChart.getJsonQuery());
+    List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(generateTaskQuery(selectedChart.getFilter()).asJson());
     StatisticChart newStatisticChart = new StatisticChart();
     newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue); //chart with format: id + _ + suffix is lower level (month/week/day/hour) chart when drill down
     newStatisticChart.setName(selectedChart.getName() + " - " + selectedValue);
-    newStatisticChart.setJsonQuery(selectedChart.getJsonQuery());
+    newStatisticChart.setFilter(selectedChart.getFilter());
+//    newStatisticChart.setJsonQuery(selectedChart.getJsonQuery());
     newStatisticChart.setType(StatisticChartType.TASK_BY_EXPIRY);
     newStatisticChart.setUserId(selectedChart.getUserId());
     newStatisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue, previousSelectedMonth, previousSelectedWeek));
@@ -1370,7 +1637,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return updated task query
    */
   public TaskQuery getQueryForSelectedItemOfTaskByPriorityChart(ItemSelectEvent event, StatisticChart statisticChart) {
-    TaskQuery query = TaskQuery.fromJson(statisticChart.getJsonQuery());
+    TaskQuery query = generateTaskQuery(statisticChart.getFilter());
     String selectedValue = getSelectedValueOfDonutChart(event);
 
     if (selectedValue.equals(Ivy.cms().co(EXCEPTION_PRIORITY_KEY))) {
@@ -1397,7 +1664,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return updated task query
    */
   public TaskQuery getQueryForSelectedItemOfTaskByExpiryChart(ItemSelectEvent event, StatisticChart statisticChart, String previousSelectedMonth, String previousSelectedWeek, String previousSelectedDay) {
-    TaskQuery query = TaskQuery.fromJson(statisticChart.getJsonQuery());
+    TaskQuery query = generateTaskQueryForExpiry(statisticChart.getFilter());
     String selectedValue = getSelectedValueOfBarChart(event);
     Date fromDate;
     Date toDate;
@@ -1482,7 +1749,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return case query for selected item by case state
    */
   public CaseQuery getQueryForSelectedItemByCaseByState(ItemSelectEvent event, StatisticChart statisticChart) {
-    CaseQuery query = CaseQuery.fromJson(statisticChart.getJsonQuery());
+    CaseQuery query = generateCaseQuery(statisticChart.getFilter(), false);
     String selectedValue = getSelectedValueOfDonutChart(event);
 
     if (selectedValue.equals(Ivy.cms().co(CREATED_CASE_KEY))) {
