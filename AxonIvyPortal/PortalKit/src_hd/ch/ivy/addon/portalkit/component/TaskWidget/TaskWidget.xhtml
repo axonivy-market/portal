@@ -12,7 +12,7 @@
 	<cc:attribute name="styleClass" />
 	<cc:attribute name="dataModel" />
 	<cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
-	<cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}" />
+	<cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
 	<cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
 	<cc:attribute name="hideTaskFilter" default="false" shortDescription="Task filter text field is hidden or not"
 		type="java.lang.Boolean" />
@@ -104,7 +104,7 @@
 			<h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and !data.dataModel.compactMode}"
 				styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
 				<h:form id="expanded-mode-filter-form" onsubmit="return false;">
-					<ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container-#{data.dataModel.queryCriteria.keyword}"
+					<ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container"
 						icon="fa fa-filter" updateComponent="#{p:component('task-view-container')}"
 						placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
 						keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" styleClass="widget-header-filter-input"
@@ -183,7 +183,7 @@
 			<h:panelGroup id="filter-view">
 				<h:form id="filter-form" onsubmit="return false;" styleClass="task-filter-form widget-header-content-filter Fright"
 					rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}">
-					<ic:ch.ivy.addon.portalkit.component.Filter id="filter-container-#{data.dataModel.queryCriteria.keyword}" icon="fa fa-filter"
+					<ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" icon="fa fa-filter"
 						updateComponent="#{p:component('task-view-container')}"
 						placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
 						keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" styleClass="widget-header-filter-input"
@@ -218,7 +218,7 @@
 	</div>
 
 	<p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
-		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterSavingHeader')}" resizable="false"
+		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
 		width="420" modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
 		<p:messages autoUpdate="true" />
 		<h:form id="filter-save-form">
@@ -239,7 +239,7 @@
 				</p:selectOneRadio>
 			</h:panelGrid>
 			<h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-				<p:commandButton styleClass="" id="filter-save-command"
+				<p:commandButton id="filter-save-command"
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
 					oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
 					actionListener="#{logic.saveFilter}" update="#{cc.clientId}:task-widget-header task-widget:filter-save-form">

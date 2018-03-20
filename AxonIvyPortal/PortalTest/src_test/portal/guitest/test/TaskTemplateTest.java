@@ -13,6 +13,7 @@ import portal.guitest.page.WorkingTaskDialogPage;
 
 public class TaskTemplateTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();

@@ -13,6 +13,7 @@
   <f:event listener="#{logic.initialize}" type="preRenderComponent" />
   <f:event listener="#{statisticChartCreationBean.updateChartModels(data.statisticFilter)}" type="preRenderComponent" />
   <h:form id="chart-management-form">
+  	<p:growl autoUpdate="true" id="success-message" showDetail="true" showSummary="true" /> 
     <h:panelGrid columns="2" styleClass="edit-statistic-container">
       <h:panelGrid columns="1" styleClass="chart-container">
         <p:panelGrid columns="2" columnClasses="statistic-selection, statistic-selection">
@@ -79,7 +80,7 @@
       <p:messages autoUpdate="true" />
       <h:form id="add-statistic-form">
         <h:panelGrid columns="2" styleClass="add-statistic-panel" columnClasses="add-statistic-panel-column-1, add-statistic-panel-column-2 ">
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/addChartNameInput')}" for="chart-name-input" />
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnName')}" for="chart-name-input" />
           <p:inputText id="chart-name-input" value="#{data.chartName}" required="true" />
         </h:panelGrid>
         <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">

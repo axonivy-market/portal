@@ -13,6 +13,7 @@ import portal.guitest.page.TemplatePage.GlobalSearch;
 public class SearchTaskTest extends BaseTest {
   private HomePage homePage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();
