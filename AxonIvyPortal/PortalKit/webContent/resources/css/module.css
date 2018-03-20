@@ -3815,19 +3815,15 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   padding: 20px !important;
 }
 
-.statistic-selection .label {
-  display: block;
-}
-
-.statistic-selection .add-link {
-  margin: auto;
-}
-
 /* Small screen */
 @media (max-width: 1365px) {
   .statistic-chart {
-    width: 25rem;
-    height: 25rem;
+    width: 24rem;
+    height: 24rem;
+  }
+
+  .edit-statistic-container {
+    width: 90rem;
   }
 }
 
@@ -3845,6 +3841,37 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     width: 34rem;
     height: 34rem;
   }
+}
+
+.edit-statistic-container .chart-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  max-width: 130rem;
+}
+
+.edit-statistic-container .chart-list .chart-container {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.edit-statistic-container .chart-list .chart-container {
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.edit-statistic-container .chart-list .chart-container .label,
+.edit-statistic-container .chart-list .chart-container .add-link {
+  display: block;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 5px;
+  font-family: 'robotoregular';
+}
+
+.edit-statistic-container .chart-list .chart-container .add-link:before {
+  font-size: 1.4rem;
+  font: normal normal normal 14px/1 FontAwesome;
 }
 
 .edit-statistic-container td:not(.align-bottom) {
@@ -3878,6 +3905,26 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   max-height: 20rem;
   max-width: 25rem;
   margin-top: 1rem;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .filter-container .ui-inputfield.hasDatepicker {
+    width: 15.5rem;
+    margin-right: 1rem;
+  }
+
+  .statistic-filter-container {
+    max-height: 20rem;
+    max-width: 18rem;
+    margin: auto;
+    margin-top: 1rem;
+  }
+
+  .edit-statistic-container .chart-list .chart-container {
+    margin: auto;
+    margin-bottom: 20px;
+  }
 }
 
 .statistic-filter-container.scrollable {
