@@ -212,7 +212,7 @@
 								value="#{designChooserBean.uploadedLoginLogo ? designChooserBean.loginLogoImage : resource['ivy-cms:images/logo/loginLogo']}" />
 							<p:fileUpload id="login-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
 								update="login-logo-preview" invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
-								label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" styleClass="login-logo-chooser"
+								label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" styleClass="login-logo-chooser"
 								fileUploadListener="#{designChooserBean.uploadLoginLogo}" />
 						</h:panelGrid>
 						<h:panelGrid columns="2">
@@ -231,7 +231,7 @@
 							<p:fileUpload id="home-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
 								update="home-logo-preview" styleClass="home-logo-chooser"
 								invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
-								label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}"
+								label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
 								fileUploadListener="#{designChooserBean.uploadHomeLogo}" />
 						</h:panelGrid>
 						<h:panelGrid columns="2">
@@ -415,7 +415,7 @@
 						<f:validateRegex pattern="^[a-zA-Z0-9_]*$" />
 					</p:inputText>
 					<p:commandButton rendered="#{data.isAddMode and data.isIvyApplicationType}"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/select')}"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
 						process="serverSelection" update=":#{p:component('applicationSelectionDialog')} appDialogForm"
 						actionListener="#{logic.getApplicationList}" />
 					<p:spacer rendered="#{!data.isAddMode and data.isIvyApplicationType}" />
@@ -619,7 +619,7 @@
 				<h:outputText value="#{app.isActive}" />
 			</p:column>
 			<p:column>
-				<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/select')}"
+				<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
 					actionListener="#{logic.selectApplication(app)}" styleClass="" update="${cc.clientId}:appDialogForm"
 					resetValues="true" oncomplete="PF('applicationSelectionDialog').hide()" />
 			</p:column>
