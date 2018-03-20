@@ -25,14 +25,14 @@ import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.document.IDocumentService;
 
 public class DocumentFileUtils {
-	
+	private DocumentFileUtils(){}
+  
 	/**
 	 * @param currentCase root folder 
-	 * @param inputStream file to check exist
 	 * @param fileName file name to check exist
 	 * @return boolean check file is exist or not
 	 */
-	public static boolean checkFileExist(ICase currentCase, @SuppressWarnings("unused") InputStream inputStream, String fileName){
+	public static boolean checkFileExist(ICase currentCase, String fileName){
 		String originalFileName = FilenameUtils.getName(fileName);
 		IDocumentService documentService = currentCase.documents();
 		List<IDocument> documents = documentService.getAll();
@@ -63,7 +63,7 @@ public class DocumentFileUtils {
 		IDocumentService documentService = currentCase.documents();
 		List<IDocument> documents = documentService.getAll();
 		documents = documents.stream().filter(document -> document.getPath().asString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER)).collect(Collectors.toList());
-		List<DocumentFile> listFile = new ArrayList<DocumentFile>();
+		List<DocumentFile> listFile = new ArrayList<>();
 		if (documents != null){
 			for (IDocument document : documents){
 				DocumentFile documentFile = new DocumentFile();
@@ -91,6 +91,7 @@ public class DocumentFileUtils {
 			documentService.add(CaseDocumentService.EXPRESS_UPLOAD_FOLDER + "/" + originalFileName).write().withContentFrom(inputStream);
 			return true;
 		} catch (Exception e) {
+		  Ivy.log().error(e);
 			return false;
 		}
 	}
@@ -111,7 +112,7 @@ public class DocumentFileUtils {
 			try{
 				 output = new DefaultStreamedContent(new FileInputStream(fileInputStream), contentType, fileName);
 			 }catch(IOException e){
-				 Ivy.log().debug(e);
+				 Ivy.log().error(e);
 			 }
 		}
 		 
