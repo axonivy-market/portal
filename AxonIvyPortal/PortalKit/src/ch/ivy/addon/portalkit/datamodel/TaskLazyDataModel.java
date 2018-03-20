@@ -77,15 +77,17 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private TaskInProgressByOthersFilter inProgressFilter;
   private boolean isInProgressFilterDisplayed = false;
   private TaskFilterData selectedTaskFilterData;
-  
+
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+  private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME",
+      "EXPIRY_TIME", "STATE");
   private List<String> PORTAL_REQUIRED_COLUMNS = Arrays.asList("NAME");
-  
+
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
   private boolean isRelatedTaskDisplayed = false;
+  private boolean isSearchTaskDisplayed = false;
 
   public TaskLazyDataModel() {
     super();
@@ -97,7 +99,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
     serverId = SecurityServiceUtils.getServerIdFromSession();
-    if (!this.queryCriteria.getIncludedStates().equals(Arrays.asList(TaskState.UNASSIGNED))) {
+    if (shouldSaveAndLoadSessionFilters()) {
       inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       if (inProgressFilter != null) {
         isInProgressFilterDisplayed = true;
@@ -107,7 +109,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
 
     autoInitForNoAppConfiguration();
-    initColumnsConfiguration(); 
+    initColumnsConfiguration();
   }
 
   /**
@@ -126,15 +128,19 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void initFilters() throws IllegalAccessException, InvocationTargetException {
     if (filterContainer == null) {
-      if (isRelatedTaskDisplayed && !queryCriteria.getIncludedStates().contains(TaskState.DONE)){
-        queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-      } 
+      if (isRelatedTaskDisplayed) {
+        if (!queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
+          queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+        }
+        if (!queryCriteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
+          queryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+        }
+      }
       initFilterContainer();
       filters = filterContainer.getFilters();
       setValuesForStateFilter(queryCriteria);
       if (searchCriteria.getIgnoreInvolvedUser() && !isRelatedTaskDisplayed) {
         TaskStateFilter stateFilter = filterContainer.getStateFilter();
-        stateFilter.getSelectedFilteredStates().remove(TaskState.DONE);
         stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
       }
       restoreSessionAdvancedFilters();
@@ -142,7 +148,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
-    if (!this.queryCriteria.getIncludedStates().equals(Arrays.asList(TaskState.UNASSIGNED))) {
+    if (shouldSaveAndLoadSessionFilters()) {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
       for (TaskFilter filter : filters) {
         for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
@@ -153,6 +159,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         }
       }
     }
+  }
+
+  private boolean shouldSaveAndLoadSessionFilters() {
+    return !this.queryCriteria.isQueryForUnassignedTask() && !isRelatedTaskDisplayed && !isSearchTaskDisplayed;
   }
 
   @Override
@@ -270,12 +280,11 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
   }
 
-  protected Comparator<RemoteTask> comparatorString(
-      Function<? super RemoteTask, String> function) {
+  protected Comparator<RemoteTask> comparatorString(Function<? super RemoteTask, String> function) {
     Collator collator = Collator.getInstance(Locale.GERMAN);
     return Comparator.comparing(function, Comparator.nullsLast(collator));
   }
-  
+
   protected String keyOfTask(RemoteTask task) {
     String keyOfTask = "serverId=" + task.getApplicationRegister().getServerId() + ";taskId=" + task.getId();
     return keyOfTask;
@@ -313,11 +322,12 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    */
   protected TaskQueryCriteria buildQueryCriteria() {
     TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
+    jsonQuerycriteria.setQueryForUnassignedTask(false);
     jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED,
         TaskState.PARKED)));
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
-    if (this.queryCriteria != null && !this.queryCriteria.getIncludedStates().equals(Arrays.asList(TaskState.UNASSIGNED))) {
+    if (this.queryCriteria != null && shouldSaveAndLoadSessionFilters()) {
       jsonQuerycriteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
     }
     return jsonQuerycriteria;
@@ -376,7 +386,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
     if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
-      queryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED, TaskState.DONE));
+      queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
       setValuesForStateFilter(queryCriteria);
     }
     searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
@@ -529,9 +539,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * Save all filter settings to business data
-   * @param filterName 
-   * @param filterType 
-   * @param taskFilterGroupId 
+   * 
+   * @param filterName
+   * @param filterType
+   * @param taskFilterGroupId
    * @return TaskFilterData
    */
   public TaskFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
@@ -558,10 +569,11 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel}
-   * @param taskFilterData 
-   * @throws IllegalAccessException 
-   * @throws InvocationTargetException 
-   * @throws NoSuchMethodException 
+   * 
+   * @param taskFilterData
+   * @throws IllegalAccessException
+   * @throws InvocationTargetException
+   * @throws NoSuchMethodException
    */
   public void applyFilter(TaskFilterData taskFilterData) throws IllegalAccessException, InvocationTargetException,
       NoSuchMethodException {
@@ -682,7 +694,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         filterQuery.and(subQuery);
       }
     });
-    if (!this.queryCriteria.getIncludedStates().equals(Arrays.asList(TaskState.UNASSIGNED))) {
+    if (shouldSaveAndLoadSessionFilters()) {
       UserUtils.setSessionTaskKeywordFilterAttribute(queryCriteria.getKeyword());
       if (!compactMode) {
         UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);
@@ -695,9 +707,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
     return taskQuery;
   }
-  
-  
-  protected void initColumnsConfiguration(){
+
+
+  protected void initColumnsConfiguration() {
     allColumns.addAll(getDefaultColumns());
     initSelectedColumns();
   }
@@ -705,23 +717,23 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private void initSelectedColumns() {
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     TaskColumnsConfigurationData data = new TaskColumnsConfigurationData();
-    Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null); 
-    Long applicationId = Ivy.request().getApplication().getId(); 
+    Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
+    Long applicationId = Ivy.request().getApplication().getId();
     Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
-    if(userId != null){
-      data = service.getConfiguration(serverId,applicationId,userId,taskColumnsConfigDataId);
-      if(data != null){
+    if (userId != null) {
+      data = service.getConfiguration(serverId, applicationId, userId, taskColumnsConfigDataId);
+      if (data != null) {
         selectedColumns = data.getSelectedColumns();
         isAutoHideColumns = data.isAutoHideColumns();
       }
     }
-    if(selectedColumns.isEmpty()){
+    if (selectedColumns.isEmpty()) {
       selectedColumns.addAll(getDefaultColumns());
       isAutoHideColumns = true;
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
-  
+
   /**
    * <p>
    * Your customized data model needs to override this method if your customized task list has new columns/fields.
@@ -730,10 +742,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * <b>Example: </b> <code><pre>
    * 
    * return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
-   *
-   * </pre></code>
-   * This list is the list of sortFields in TaskColumnHeader Portal component when you use it to add new column headers
-   * Also the list of checkboxes in config columns panel
+   * 
+   * </pre></code> This list is the list of sortFields in TaskColumnHeader Portal component when you use it to add new
+   * column headers Also the list of checkboxes in config columns panel
    * </p>
    * 
    * @return default columns
@@ -741,31 +752,34 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected List<String> getDefaultColumns() {
     return PORTAL_DEFAULT_COLUMNS;
   }
-  
+
   /**
    * <p>
    * In case you adds new columns, these columns need cms to show in config columns panel
    * </p>
    * <p>
-   * You can either add new entry to default folder below in PortalStyle or override this method to create your own folder
-   * column must be the same with sortField
+   * You can either add new entry to default folder below in PortalStyle or override this method to create your own
+   * folder column must be the same with sortField
    * </p>
-   * @param column 
+   * 
+   * @param column
    * 
    * @return column label
    */
   public String getColumnLabel(String column) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);
   }
-  
-  public void saveColumnsConfiguration(){
+
+  public void saveColumnsConfiguration() {
     selectedColumns.addAll(PORTAL_REQUIRED_COLUMNS);
     setAutoHideColumns(isDisableSelectionCheckboxes);
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long applicationId = Ivy.request().getApplication().getId();
     Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
-    TaskColumnsConfigurationData taskColumnsConfigurationData = service.getConfiguration(serverId,applicationId,Ivy.session().getSessionUser().getId(),taskColumnsConfigDataId);
-    if(taskColumnsConfigurationData != null){
+    TaskColumnsConfigurationData taskColumnsConfigurationData =
+        service.getConfiguration(serverId, applicationId, Ivy.session().getSessionUser().getId(),
+            taskColumnsConfigDataId);
+    if (taskColumnsConfigurationData != null) {
       updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
     } else {
       taskColumnsConfigurationData = createNewTaskColumnsConfigurationData();
@@ -786,7 +800,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   private void updateTaskColumnsConfigurationData(TaskColumnsConfigurationData taskColumnsConfigurationData) {
     taskColumnsConfigurationData.setAutoHideColumns(isAutoHideColumns);
-    if(isAutoHideColumns){
+    if (isAutoHideColumns) {
       taskColumnsConfigurationData.setSelectedColumns(getDefaultColumns());
     } else {
       taskColumnsConfigurationData.setSelectedColumns(selectedColumns);
@@ -800,16 +814,16 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public List<String> getSelectedColumns() {
     return selectedColumns;
   }
-  
+
   public List<String> getAllColumns() {
     return allColumns;
   }
 
-  public boolean isSelectedColumn(String column){
+  public boolean isSelectedColumn(String column) {
     return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
   }
-  
-  public List<String> getPortalRequiredColumns(){
+
+  public List<String> getPortalRequiredColumns() {
     return PORTAL_REQUIRED_COLUMNS;
   }
 
@@ -829,13 +843,23 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
   }
 
-  public boolean isRelatedTaskDisplayed()
-  {
+  public boolean isRelatedTaskDisplayed() {
     return isRelatedTaskDisplayed;
   }
 
-  public void setRelatedTaskDisplayed(boolean isRelatedTaskDisplayed)
-  {
+  public void setRelatedTaskDisplayed(boolean isRelatedTaskDisplayed) {
     this.isRelatedTaskDisplayed = isRelatedTaskDisplayed;
+  }
+
+  public boolean isSearchTaskDisplayed() {
+    return isSearchTaskDisplayed;
+  }
+
+  public void setSearchTaskDisplayed(boolean isSearchTaskDisplayed) {
+    this.isSearchTaskDisplayed = isSearchTaskDisplayed;
+  }
+
+  public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
+    this.queryCriteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
   }
 }

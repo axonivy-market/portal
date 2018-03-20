@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
@@ -34,7 +35,17 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator_start");
-    if (ajaxIndicatorStartState.isDisplayed()) {
+    boolean displayed = false;
+    try {
+      displayed = ajaxIndicatorStartState.isDisplayed();
+    } catch (Exception e) {
+      try {
+        displayed = ajaxIndicatorStartState.isDisplayed();
+      } catch (Exception e1) {
+        System.out.println("Cannot check if ajax indicator is displayed");
+      }
+    }
+    if (displayed) {
       waitForElementDisplayed(ajaxIndicatorStartState, false);
     }
   }
@@ -53,7 +64,12 @@ public abstract class TemplatePage extends AbstractPage {
 
   public HomePage goToHomePage() {
     clickOnLogo();
-    boolean hasLeaveButton = getDriver().findElements(By.id("task-leave-warning-component:leave-button")).size() > 0;
+    boolean hasLeaveButton = false;
+    try {
+      hasLeaveButton = getDriver().findElements(By.id("task-leave-warning-component:leave-button")).size() > 0;
+    } catch (NoSuchElementException e) {
+      // This should not happen, but at least it happens when running preintegration test on ivy 7
+    }
 
     if (hasLeaveButton) {
       WebElement leaveButton = findElementById("task-leave-warning-component:leave-button");

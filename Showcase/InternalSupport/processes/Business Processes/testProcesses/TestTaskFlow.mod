@@ -145,6 +145,11 @@ Tt0 @EndTask f131 '' #zField
 Tt0 @UserTask f132 '' #zField
 Tt0 @TkArc f133 '' #zField
 Tt0 @PushWFArc f134 '' #zField
+Tt0 @StartRequest f135 '' #zField
+Tt0 @TaskSwitchSimple f136 '' #zField
+Tt0 @EndTask f137 '' #zField
+Tt0 @TkArc f138 '' #zField
+Tt0 @PushWFArc f139 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -2195,6 +2200,65 @@ Tt0 f133 1152 831 1152 906 #arcP
 Tt0 f134 expr data #txt
 Tt0 f134 outCond ivp=="TaskA.ivp" #txt
 Tt0 f134 1152 950 1152 1009 #arcP
+Tt0 f135 outLink start.ivp #txt
+Tt0 f135 type internaltest.Data #txt
+Tt0 f135 inParamDecl '<> param;' #txt
+Tt0 f135 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f135 guid 16242E4A5E1409DA #txt
+Tt0 f135 requestEnabled true #txt
+Tt0 f135 triggerEnabled false #txt
+Tt0 f135 callSignature start() #txt
+Tt0 f135 persist false #txt
+Tt0 f135 startName 'Create unassigned task' #txt
+Tt0 f135 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f135 caseData businessCase.attach=true #txt
+Tt0 f135 showInStartList 1 #txt
+Tt0 f135 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>start.ivp</name>
+        <nameStyle>9,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f135 @C|.responsibility Everybody #txt
+Tt0 f135 193 1121 30 30 -21 17 #rect
+Tt0 f135 @|StartRequestIcon #fIcon
+Tt0 f136 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f136 actionTable 'out=in1;
+' #txt
+Tt0 f136 outTypes "internaltest.Data" #txt
+Tt0 f136 outLinks "TaskA.ivp" #txt
+Tt0 f136 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Arrange retro meeting
+TaskA.PRI=2
+TaskA.ROL="Not exist user"
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=3' #txt
+Tt0 f136 type internaltest.Data #txt
+Tt0 f136 template "" #txt
+Tt0 f136 193 1233 30 30 0 16 #rect
+Tt0 f136 @|TaskSwitchSimpleIcon #fIcon
+Tt0 f137 type internaltest.Data #txt
+Tt0 f137 193 1329 30 30 0 15 #rect
+Tt0 f137 @|EndIcon #fIcon
+Tt0 f138 expr out #txt
+Tt0 f138 type internaltest.Data #txt
+Tt0 f138 var in1 #txt
+Tt0 f138 208 1151 208 1233 #arcP
+Tt0 f139 expr data #txt
+Tt0 f139 outCond ivp=="TaskA.ivp" #txt
+Tt0 f139 208 1263 208 1329 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2344,3 +2408,7 @@ Tt0 f130 mainOut f133 tail #connect
 Tt0 f133 head f132 in #connect
 Tt0 f132 out f134 tail #connect
 Tt0 f134 head f131 mainIn #connect
+Tt0 f135 mainOut f138 tail #connect
+Tt0 f138 head f136 in #connect
+Tt0 f136 out f139 tail #connect
+Tt0 f139 head f137 mainIn #connect
