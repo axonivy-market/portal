@@ -196,22 +196,26 @@ in.hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
 if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 	in.dataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
+	in.dataModel.setQueryForUnassignedTask(false);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_MY_TASKS)) {
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.USER);
 	in.dataModel.setIgnoreInvolvedUser(false);
 	if (in.hasReadAllTasksPermisson) {
 		in.dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
 	}
+	in.dataModel.setQueryForUnassignedTask(false);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_GROUP_TASKS)) {
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ROLE);
 	in.dataModel.setIgnoreInvolvedUser(false);
 	if (in.hasReadAllTasksPermisson) {
 		in.dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
 	}
+	in.dataModel.setQueryForUnassignedTask(false);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_UNASSIGNED_TASKS)) {
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 	in.dataModel.setIgnoreInvolvedUser(true);
-	in.dataModel.setIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+	in.dataModel.setIncludedStates(Arrays.asList(TaskState.DONE));
+	in.dataModel.setQueryForUnassignedTask(true);
 }
 
 in.taskView = TaskView.create().category(categoryMenu).dataModel(in.dataModel).pageTitle(categoryMenu.value).showHeaderToolbar(false).createNewTaskView();' #txt
