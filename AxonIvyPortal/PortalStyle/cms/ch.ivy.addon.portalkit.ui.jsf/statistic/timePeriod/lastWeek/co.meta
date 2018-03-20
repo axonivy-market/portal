@@ -1,2 +1,4 @@
-co: name={lastWeek} description={} changed={2018-03-12 08:38:44 GMT} changedby={ldnam} visualorder={0} guid={162195CA31123179} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={162195CA313F0AE1} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-12 08:38:44 GMT} validto={} changed={2018-03-12 08:38:44 GMT} changedby={ldnam} properties={} id={}
+co: name={lastWeek} description={} changed={2018-03-20 11:02:05 CET} changedby={ldnam} visualorder={0} guid={162195CA31123179} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={162195CA313F0AE1} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-12 09:38:44 CET} validto={} changed={2018-03-12 09:38:44 CET} changedby={ldnam} properties={} id={}
+val: guid={16242DBD1166BAE6} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-20 11:02:03 CET} validto={} changed={2018-03-20 11:02:05 CET} changedby={ldnam} properties={} id={}
+val: guid={16242DBBD51C0E98} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-20 11:01:57 CET} validto={} changed={2018-03-20 11:02:00 CET} changedby={ldnam} properties={} id={}
