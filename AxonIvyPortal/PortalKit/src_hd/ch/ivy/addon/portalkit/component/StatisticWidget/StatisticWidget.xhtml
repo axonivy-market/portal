@@ -42,7 +42,7 @@
     <h:panelGroup id="widget-container" layout="block"
       styleClass="statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}">
 
-      <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="statistic-dashboard-container"
+      <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="statistic-dashboard-container #{data.isDrilldownElapsedTime ? 'elapsed-time-detail-container-width' : 'statistic-dashboard-container-width'}"
         rendered="#{!data.createMode}">
         <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget" showTaskListImmediately="#{cc.attrs.showTaskListImmediately}"
           compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}"
