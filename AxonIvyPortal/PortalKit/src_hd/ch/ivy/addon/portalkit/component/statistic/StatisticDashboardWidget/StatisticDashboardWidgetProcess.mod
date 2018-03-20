@@ -92,10 +92,9 @@ Ss0 f8 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboard
 Ss0 f8 actionTable 'out=in;
 ' #txt
 Ss0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 
-StatisticService service = new StatisticService();
-in.taskQuery = service.getQueryForSelectedItemOfTaskByPriorityChart(in.event, in.selectedStatisticChart);
+in.taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByPriorityChart(in.event, in.selectedStatisticChart);
 in.taskListName = in.selectedStatisticChart.name;' #txt
 Ss0 f8 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -434,11 +433,11 @@ Ss0 f36 actionTable 'out=in;
 Ss0 f36 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 
-StatisticService service = new StatisticService();
-in.taskQuery = service.getQueryForSelectedItemOfTaskByExpiryChart(in.event, in.selectedStatisticChart, in.previousSelectedMonth, in.previousSelectedWeek, in.previousSelectedDay);
+in.taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByExpiryChart(in.event, in.selectedStatisticChart, in.previousSelectedMonth, in.previousSelectedWeek, in.previousSelectedDay);
 in.taskListName = in.selectedStatisticChart.name + " - " + in.selectedItemOfDrilldown;
-if (service.selectHourOfDay(in.selectedItemOfDrilldown)) {
+if (StatisticService.selectHourOfDay(in.selectedItemOfDrilldown)) {
 	in.taskListName += " " + ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
 }
 in.selectedItemOfDrilldown = StringUtils.EMPTY;
@@ -466,9 +465,9 @@ Ss0 f40 actionTable 'out=in;
 Ss0 f40 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import org.primefaces.component.chart.Chart;
+import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 
-StatisticService service = new StatisticService();
-in.caseQuery = service.getQueryForSelectedItemByCaseByState(in.event, in.selectedStatisticChart);' #txt
+in.caseQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCaseByState(in.event, in.selectedStatisticChart);' #txt
 Ss0 f40 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -554,11 +553,11 @@ import org.primefaces.event.ItemSelectEvent;
 out.event = event as ItemSelectEvent;
 String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
 StatisticService service = new StatisticService();
-if (service.selectMonthOfYear(in.selectedItemOfDrilldown))  {
+if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
 	in.previousSelectedMonth = in.selectedItemOfDrilldown;
-} else if (service.selectWeekOfMonth(in.selectedItemOfDrilldown))  {
+} else if (StatisticService.selectWeekOfMonth(in.selectedItemOfDrilldown))  {
 	in.previousSelectedWeek = in.selectedItemOfDrilldown;
-} else if (service.selectDayOfWeek(in.selectedItemOfDrilldown)) {
+} else if (StatisticService.selectDayOfWeek(in.selectedItemOfDrilldown)) {
 	in.previousSelectedDay = in.selectedItemOfDrilldown;
 }
 
@@ -573,7 +572,7 @@ String expiryLastDrilldownLevel = new GlobalSettingService().findGlobalSettingVa
 if (StringUtils.isEmpty(expiryLastDrilldownLevel) || !service.getDrilldownLevels().contains(expiryLastDrilldownLevel.toUpperCase())) {
 	expiryLastDrilldownLevel = StatisticChartConstants.DRILLDOWN_LEVEL_HOUR;
 }
-out.selectedItemOfDrilldown = service.getSelectedValueOfBarChart(out.event);
+out.selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(out.event);
 out.isDrilldownToTaskList = service.isDrilldownToTaskList(expiryLastDrilldownLevel,in.selectedItemOfDrilldown);' #txt
 Ss0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -674,8 +673,7 @@ import org.primefaces.event.ItemSelectEvent;
 out.event = event as ItemSelectEvent;
 
 String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-StatisticService service = new StatisticService();
-in.selectedCaseCategory = service.getSelectedValueOfPieChart(out.event);
+in.selectedCaseCategory = StatisticService.getSelectedValueOfPieChart(out.event);
 
 for (StatisticChart chart : out.statisticChartList) {
 	if (chart.id == selectedChartId) {

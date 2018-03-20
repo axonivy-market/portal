@@ -1,6 +1,17 @@
 package ch.ivy.addon.portalkit.statistics;
 
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AFTER_18;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXCEPTION_PRIORITY_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.FAILED_CASE_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.HIGH_PRIORITY_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.LOW_PRIORITY_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_CASE_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EXPIRY_KEY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,9 +21,13 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.primefaces.event.ItemSelectEvent;
 
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
+import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -22,6 +37,152 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 
 public class StatisticChartQueryUtils {
+
+  /**
+   * Get updated task query for Task by Priority chart based on selected item
+   * 
+   * @param event
+   * @param statisticChart
+   * @return updated task query
+   */
+  public static TaskQuery getQueryForSelectedItemOfTaskByPriorityChart(ItemSelectEvent event, StatisticChart statisticChart) {
+    TaskQuery query = StatisticChartQueryUtils.generateTaskQuery(statisticChart.getFilter());
+    String selectedValue = StatisticService.getSelectedValueOfDonutChart(event);
+
+    if (selectedValue.equals(Ivy.cms().co(EXCEPTION_PRIORITY_KEY))) {
+      query.where().and().priority().isEqual(WorkflowPriority.EXCEPTION);
+    } else if (selectedValue.equals(Ivy.cms().co(HIGH_PRIORITY_KEY))) {
+      query.where().and().priority().isEqual(WorkflowPriority.HIGH);
+    } else if (selectedValue.equals(Ivy.cms().co(NORMAL_PRIORITY_KEY))) {
+      query.where().and().priority().isEqual(WorkflowPriority.NORMAL);
+    } else if (selectedValue.equals(Ivy.cms().co(LOW_PRIORITY_KEY))) {
+      query.where().and().priority().isEqual(WorkflowPriority.LOW);
+    }
+
+    return query;
+  }
+
+  /**
+   * Get updated task query for Task by Expiry chart based on selected item
+   * 
+   * @param event
+   * @param statisticChart statistic chart
+   * @param previousSelectedMonth previous selected month
+   * @param previousSelectedWeek previous selected week
+   * @param previousSelectedDay previous selected day
+   * @return updated task query
+   */
+  public static TaskQuery getQueryForSelectedItemOfTaskByExpiryChart(ItemSelectEvent event, StatisticChart statisticChart, String previousSelectedMonth, String previousSelectedWeek, String previousSelectedDay) {
+    TaskQuery query = StatisticChartQueryUtils.generateTaskQueryForExpiry(statisticChart.getFilter());
+    String selectedValue = StatisticService.getSelectedValueOfBarChart(event);
+    Date fromDate;
+    Date toDate;
+    if (StatisticService.selectHourOfDay(selectedValue)) {
+      Date currentDate;
+      if (StringUtils.containsIgnoreCase(previousSelectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+        currentDate = new Date();
+      } else {
+        int shiftDays = StatisticChartTimeUtils.getShiftDaysFromDayOfWeek(previousSelectedDay);
+        currentDate = DateUtils.addDays(StatisticChartTimeUtils.getFirstDateOfWeek(previousSelectedWeek, previousSelectedMonth), shiftDays);
+      }
+
+      Date dateWithoutTime = StatisticChartTimeUtils.truncateMinutesPart(currentDate);
+      if (selectedValue.equals(BEFORE_8)) {
+        fromDate = dateWithoutTime;
+        toDate = DateUtils.setHours(dateWithoutTime, 8);
+      } else if (selectedValue.equals(AFTER_18)) {
+        fromDate = DateUtils.setHours(dateWithoutTime, 18);
+        toDate = DateUtils.addDays(dateWithoutTime, 1);
+      } else {
+        fromDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue));
+        toDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue) + 1);
+      }
+    } else if (StatisticService.selectDayOfWeek(selectedValue)) {
+      if (StringUtils.containsIgnoreCase(selectedValue, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+        fromDate = StatisticChartTimeUtils.truncateMinutesPart(new Date());
+      } else {
+        int shiftDays = StatisticChartTimeUtils.getShiftDaysFromDayOfWeek(selectedValue);
+        fromDate = DateUtils.addDays(StatisticChartTimeUtils.getFirstDateOfWeek(previousSelectedWeek, previousSelectedMonth), shiftDays);
+        fromDate = StatisticChartTimeUtils.truncateMinutesPart(fromDate);
+      }
+      toDate = DateUtils.addDays(fromDate, 1);
+    } else if (StatisticService.selectWeekOfMonth(selectedValue)) {
+      fromDate = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeek(selectedValue, previousSelectedMonth));
+      toDate = DateUtils.addWeeks(fromDate, 1);
+
+      if (!StringUtils.isEmpty(previousSelectedMonth)) {
+        Date firstDateOfMonth = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfMonth(previousSelectedMonth));
+        if (firstDateOfMonth.compareTo(fromDate) > 0) {
+          fromDate = firstDateOfMonth;
+        }
+        Date firstDayOfNextMonth = DateUtils.addMonths(firstDateOfMonth, 1);
+        if (toDate.compareTo(firstDayOfNextMonth) > 0) {
+          toDate = firstDayOfNextMonth;
+        }
+      }
+    } else if (StatisticService.selectMonthOfYear(selectedValue)) {
+      fromDate = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfMonth(selectedValue));
+      toDate = DateUtils.addMonths(fromDate, 1);
+    } else {
+      fromDate = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfThisYear());
+      toDate = DateUtils.addYears(fromDate, 1);
+    }
+
+    query.where().and().expiryTimestamp().isGreaterOrEqualThan(fromDate).and().expiryTimestamp()
+    .isLowerThan(toDate);
+
+    return query;
+  }
+
+  /**
+   * Get task query for Elapsed Time by Case Category chart based on selected item
+   * 
+   * @param caseCategory
+   * @return task query for Elapsed Time by Case Category chart
+   */
+  public static TaskQuery getQueryForSelectedItemElapsedTime(String caseCategory) {
+    CaseQuery caseQuery = CaseQuery.create();
+    caseQuery.where().state().isEqual(CaseState.DONE).and().category().isEqual(caseCategory);
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+
+    return query;
+  }
+
+  /**
+   * Get updated task query for Case by State chart based on selected item
+   * 
+   * @param event
+   * @param statisticChart
+   * @return case query for selected item by case state
+   */
+  public static CaseQuery getQueryForSelectedItemByCaseByState(ItemSelectEvent event, StatisticChart statisticChart) {
+    CaseQuery query = CaseQuery.create();
+    if(statisticChart.getType() == StatisticChartType.CASES_BY_STATE){
+      query = StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), false);
+    }
+    else if(statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TIME) {
+      query = StatisticChartQueryUtils.generateCaseQueryByFinishedTime(statisticChart.getFilter());
+    }
+    else if(statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TASK) {
+      query = StatisticChartQueryUtils.generateCaseQueryForCaseHaveFinishedTask(statisticChart.getFilter());
+    }
+    
+    String selectedValue = StatisticService.getSelectedValueOfDonutChart(event);
+
+    if (selectedValue.equals(Ivy.cms().co(CREATED_CASE_KEY))) {
+      query.where().state().isEqual(CaseState.CREATED);
+    } else if (selectedValue.equals(Ivy.cms().co(RUNNING_CASE_KEY))) {
+      query.where().state().isEqual(CaseState.RUNNING);
+    } else if (selectedValue.equals(Ivy.cms().co(DONE_CASE_KEY))) {
+      query.where().state().isEqual(CaseState.DONE);
+    } else if (selectedValue.equals(Ivy.cms().co(FAILED_CASE_KEY))) {
+      query.where().state().isEqual(CaseState.DESTROYED).or().state().isEqual(CaseState.ZOMBIE);
+    }
+
+    return query;
+  }
 
   /**
    * Generate task query for statistic
