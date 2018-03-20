@@ -439,6 +439,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     //Filter by DONE state
     taskQuery.where().and().state().isEqual(TaskState.DONE);
     
+    //Filter by role which finished task
     generateTaskQueryForRoles(filter, taskQuery);
 
     // Filter by task priority
@@ -477,6 +478,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       subTaskFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
       taskQuery.where().and(subTaskQueryForCreatedDate);
     }
+    taskQuery.where().and().endTimestamp().isNotNull();
   }
 
   private void generateTaskQueryForTaskPriority(StatisticFilter filter, TaskQuery taskQuery) {
@@ -1651,7 +1653,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return case query for selected item by case state
    */
   public CaseQuery getQueryForSelectedItemByCaseByState(ItemSelectEvent event, StatisticChart statisticChart) {
-    CaseQuery query = generateCaseQuery(statisticChart.getFilter(), false);
+    CaseQuery query = CaseQuery.create();
+    if(statisticChart.getType() == StatisticChartType.CASES_BY_STATE){
+      query = generateCaseQuery(statisticChart.getFilter(), false);
+    }
+    else if(statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TIME) {
+      query = generateCaseQueryByFinishedTime(statisticChart.getFilter());
+    }
+    else if(statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TASK) {
+      query = generateCaseQueryForCaseHaveFinishedTask(statisticChart.getFilter());
+    }
+    
     String selectedValue = getSelectedValueOfDonutChart(event);
 
     if (selectedValue.equals(Ivy.cms().co(CREATED_CASE_KEY))) {
