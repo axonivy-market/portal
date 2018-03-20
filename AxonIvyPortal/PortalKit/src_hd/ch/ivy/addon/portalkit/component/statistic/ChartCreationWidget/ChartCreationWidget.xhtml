@@ -13,7 +13,7 @@
   <f:event listener="#{logic.initialize}" type="preRenderComponent" />
   <f:event listener="#{statisticChartCreationBean.updateChartModels(data.statisticFilter)}" type="preRenderComponent" />
   <h:form id="chart-management-form">
-  	<p:growl autoUpdate="true" id="success-message" showDetail="true" showSummary="true" />
+  	<p:growl autoUpdate="true" globalOnly="true" showDetail="true" showSummary="true" />
     <h:panelGrid columns="2" styleClass="edit-statistic-container">
       <h:panelGroup id="chart-list" layout="block" styleClass="chart-list">
         <c:set var="taskByPriorityModel" value="#{statisticChartCreationBean.taskByPriorityModel}" />
@@ -98,7 +98,7 @@
     <p:dialog id="add-chart-dialog" widgetVar="add-chart-dialog" styleClass="add-chart-dialog"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChartDialogHeader')}"
       modal="true" closeOnEscape="true" width="auto" resizable="false">
-      <p:messages autoUpdate="true" />
+      <p:messages autoUpdate="true" for="chart-name-input" />
       <h:form id="add-statistic-form">
         <h:panelGrid columns="2" styleClass="add-statistic-panel" columnClasses="add-statistic-panel-column-1, add-statistic-panel-column-2 ">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnName')}" for="chart-name-input" />
@@ -113,8 +113,7 @@
           <p:spacer width="5px" />
           <p:commandButton type="button" styleClass="portal-cancel-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
-            <p:ajax event="click" process="chart-name-input" update="chart-name-input"
-              listener="#{logic.clearChartInput}" oncomplete="PF('add-chart-dialog').hide();" />
+            <p:ajax event="click" update="chart-name-input" listener="#{logic.clearChartInput}" oncomplete="PF('add-chart-dialog').hide();" />
           </p:commandButton>
         </h:panelGroup>
       </h:form>
