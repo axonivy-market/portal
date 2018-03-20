@@ -42,6 +42,13 @@ Ca0 @EndTask f21 '' #zField
 Ca0 @GridStep f23 '' #zField
 Ca0 @PushWFArc f24 '' #zField
 Ca0 @PushWFArc f22 '' #zField
+Ca0 @StartRequest f25 '' #zField
+Ca0 @TaskSwitch f26 '' #zField
+Ca0 @TkArc f27 '' #zField
+Ca0 @EndTask f28 '' #zField
+Ca0 @PushWFArc f29 '' #zField
+Ca0 @EndTask f30 '' #zField
+Ca0 @PushWFArc f31 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
 Ca0 f0 type portalKit_test.Data #txt
@@ -345,6 +352,68 @@ Ca0 f24 expr out #txt
 Ca0 f24 864 111 864 170 #arcP
 Ca0 f22 expr out #txt
 Ca0 f22 864 214 864 273 #arcP
+Ca0 f25 outLink start.ivp #txt
+Ca0 f25 type portalKit_test.Data #txt
+Ca0 f25 inParamDecl '<> param;' #txt
+Ca0 f25 actionDecl 'portalKit_test.Data out;
+' #txt
+Ca0 f25 guid 162422C527D92CF0 #txt
+Ca0 f25 requestEnabled true #txt
+Ca0 f25 triggerEnabled false #txt
+Ca0 f25 callSignature start() #txt
+Ca0 f25 caseData businessCase.attach=true #txt
+Ca0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>start.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f25 @C|.responsibility Everybody #txt
+Ca0 f25 657 545 30 30 -21 17 #rect
+Ca0 f25 @|StartRequestIcon #fIcon
+Ca0 f26 actionDecl 'portalKit_test.Data out;
+' #txt
+Ca0 f26 actionTable 'out=in1;
+' #txt
+Ca0 f26 outTypes "portalKit_test.Data","portalKit_test.Data" #txt
+Ca0 f26 outLinks "TaskA.ivp","TaskB.ivp" #txt
+Ca0 f26 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=No user
+TaskA.PRI=2
+TaskA.ROL="asdasd"
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=3
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=No role
+TaskB.PRI=2
+TaskB.ROL="www"
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=2' #txt
+Ca0 f26 type portalKit_test.Data #txt
+Ca0 f26 template "" #txt
+Ca0 f26 784 544 32 32 0 16 #rect
+Ca0 f26 @|TaskSwitchIcon #fIcon
+Ca0 f27 expr out #txt
+Ca0 f27 type portalKit_test.Data #txt
+Ca0 f27 var in1 #txt
+Ca0 f27 687 560 784 560 #arcP
+Ca0 f28 type portalKit_test.Data #txt
+Ca0 f28 921 545 30 30 0 15 #rect
+Ca0 f28 @|EndIcon #fIcon
+Ca0 f29 expr data #txt
+Ca0 f29 outCond ivp=="TaskA.ivp" #txt
+Ca0 f29 816 560 921 560 #arcP
+Ca0 f30 type portalKit_test.Data #txt
+Ca0 f30 929 625 30 30 0 15 #rect
+Ca0 f30 @|EndIcon #fIcon
+Ca0 f31 expr data #txt
+Ca0 f31 outCond ivp=="TaskB.ivp" #txt
+Ca0 f31 810 566 930 632 #arcP
 >Proto Ca0 .type portalKit_test.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -373,3 +442,9 @@ Ca0 f20 mainOut f24 tail #connect
 Ca0 f24 head f23 mainIn #connect
 Ca0 f23 mainOut f22 tail #connect
 Ca0 f22 head f21 mainIn #connect
+Ca0 f25 mainOut f27 tail #connect
+Ca0 f27 head f26 in #connect
+Ca0 f26 out f29 tail #connect
+Ca0 f29 head f28 mainIn #connect
+Ca0 f26 out f31 tail #connect
+Ca0 f31 head f30 mainIn #connect
