@@ -1,0 +1,4 @@
+co: name={timePeriod} description={} changed={2018-03-20 11:04:05 CET} changedby={ldnam} visualorder={0} guid={160C08FC438C16E6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={160C09016A9C6A1B} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2018-03-20 11:04:05 CET} changedby={ldnam} properties={} id={}
+val: guid={160C08FC4432A8AB} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-04 10:45:35 CET} validto={} changed={2018-03-20 11:04:05 CET} changedby={ldnam} properties={} id={}
+val: guid={160C0901886882E5} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2018-03-20 11:04:05 CET} changedby={ldnam} properties={} id={}
