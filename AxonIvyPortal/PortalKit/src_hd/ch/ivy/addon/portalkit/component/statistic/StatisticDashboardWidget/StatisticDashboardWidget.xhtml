@@ -69,8 +69,8 @@
           <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
         </p:chart>
 
-        <p:chart type="pie" styleClass="statistic-chart"
-          model="#{chart.pieChartModel}"
+        <p:chart type="donut" styleClass="statistic-chart"
+          model="#{chart.donutChartModel}"
           rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
           <p:ajax listener="#{cc.attrs.drilldownListener}" update="@([id$='create-chart-header'])" />
@@ -119,8 +119,8 @@
           <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
         </p:chart>
 
-        <p:chart type="pie" styleClass="statistic-chart"
-          model="#{chart.pieChartModel}"
+        <p:chart type="donut" styleClass="statistic-chart"
+          model="#{chart.donutChartModel}"
           rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" />
           
         <p:chart type="donut" styleClass="statistic-chart"
