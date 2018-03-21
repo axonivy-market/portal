@@ -215,10 +215,23 @@
 								label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" styleClass="login-logo-chooser"
 								fileUploadListener="#{designChooserBean.uploadLoginLogo}" />
 						</h:panelGrid>
-						<h:panelGrid columns="2">
+						<h:panelGrid columns="3">
 							<p:outputLabel for="login-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/height')}:"
 								styleClass="MarRight10" />
-							<p:inputText id="login-logo-height" value="#{designChooserBean.loginLogoHeight}" />
+							<p:inputNumber padControl="false" thousandSeparator="" decimalSeparator="." id="login-logo-height" value="#{designChooserBean.loginLogoHeight}"
+								styleClass="logo-height" minValue="0" emptyValue="zero" />
+							<p:selectOneMenu value="#{designChooserBean.loginLogoHeightUnit}" styleClass="logo-height-unit">
+								<f:selectItem itemLabel="cm" itemValue="cm" />
+								<f:selectItem itemLabel="em" itemValue="em" />
+								<f:selectItem itemLabel="ex" itemValue="ex" />
+								<f:selectItem itemLabel="in" itemValue="in" />
+								<f:selectItem itemLabel="mm" itemValue="mm" />
+								<f:selectItem itemLabel="rem" itemValue="rem" />
+								<f:selectItem itemLabel="pc" itemValue="pc" />
+								<f:selectItem itemLabel="pt" itemValue="pt" />
+								<f:selectItem itemLabel="px" itemValue="px" />
+								<f:selectItem itemLabel="%" itemValue="%" />
+							</p:selectOneMenu>
 							<p:tooltip for="login-logo-height" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/admin/AdminSettings/LogoScalingTooltip')}" />
 						</h:panelGrid>
 
@@ -234,10 +247,23 @@
 								label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
 								fileUploadListener="#{designChooserBean.uploadHomeLogo}" />
 						</h:panelGrid>
-						<h:panelGrid columns="2">
+						<h:panelGrid columns="3">
 							<p:outputLabel for="home-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/height')}:"
 								styleClass="MarRight10" />
-							<p:inputText id="home-logo-height" value="#{designChooserBean.homeLogoHeight}" />
+							<p:inputNumber padControl="false" thousandSeparator="" decimalSeparator="." id="home-logo-height" value="#{designChooserBean.homeLogoHeight}"
+								styleClass="logo-height" minValue="0" emptyValue="zero" />
+							<p:selectOneMenu value="#{designChooserBean.homeLogoHeightUnit}" styleClass="logo-height-unit">
+								<f:selectItem itemLabel="cm" itemValue="cm" />
+								<f:selectItem itemLabel="em" itemValue="em" />
+								<f:selectItem itemLabel="ex" itemValue="ex" />
+								<f:selectItem itemLabel="in" itemValue="in" />
+								<f:selectItem itemLabel="mm" itemValue="mm" />
+								<f:selectItem itemLabel="rem" itemValue="rem" />
+								<f:selectItem itemLabel="pc" itemValue="pc" />
+								<f:selectItem itemLabel="pt" itemValue="pt" />
+								<f:selectItem itemLabel="px" itemValue="px" />
+								<f:selectItem itemLabel="%" itemValue="%" />
+							</p:selectOneMenu>
 							<p:tooltip for="home-logo-height" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/admin/AdminSettings/LogoScalingTooltip')}" />
 						</h:panelGrid>
 					</h:panelGrid>
