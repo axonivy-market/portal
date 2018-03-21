@@ -127,6 +127,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   public void clickOnLogo() {
+    waitForElementEnabled(By.id("logo"), true, DEFAULT_TIMEOUT);
     click(By.id("logo"));
     waitAjaxIndicatorDisappear();
   }
