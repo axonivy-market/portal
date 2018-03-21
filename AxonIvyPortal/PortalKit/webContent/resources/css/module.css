@@ -3977,13 +3977,30 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   padding: 10px 15px !important;
 }
 
-.dashboard-chart-panel .chart-name {
+.dashboard-chart-panel .ui-panel-titlebar .ui-panel-title {
+  display: flex;
+  justify-content: flex-end;
+  width: 32.4rem;
+}
+
+.dashboard-chart-panel .chart-name-container {
   font-weight: bold !important;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline;
+  min-width: 0;
+  flex: 1 0 100%;
+}
+
+.dashboard-chart-panel:hover .chart-name-container {
+  flex: 1 0 50%;
 }
 
 .dashboard-chart-panel .chart-actions-container {
   height: 25px;
   float: right;
+  flex: 1;
 }
 
 .dashboard-chart-panel:hover .chart-actions-container .chart-action {
@@ -3999,6 +4016,16 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .dashboard-chart-panel .chart-actions-container .chart-action.fa-close {
   margin-left: 20px;
+}
+
+.dashboard-chart-panel .chart-info {
+  color: #FFFFFF !important;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.dashboard-chart-panel .chart-info:hover {
+  color: #FFFFFF !important;
 }
 
 .add-statistic-panel {
@@ -4045,6 +4072,42 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .compare-result-panel .export-button {
   float: right;
   margin-bottom: 10px;
+}
+
+.chart-info-header {
+  display: block;
+  color: #656565;
+  font-family: 'robotoregular';
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-bottom: solid 1px;
+  padding-bottom: 2px;
+}
+
+.chart-info-container {
+  width: 100%;
+}
+
+.chart-info-container,
+.chart-info-container.ui-panelgrid tbody tr td {
+  vertical-align: top;
+}
+
+.chart-info-container label {
+  font-weight: bold !important;
+}
+
+.chart-info-container .label-column {
+  width: 30%;
+}
+
+.chart-info-container .list-container {
+  max-height: 11rem;
+  width: 100%;
+  overflow: auto;
 }
 
 /********************************** END STATISTIC WIDGET **********************************/
