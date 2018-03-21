@@ -22,7 +22,12 @@
       <c:set var="index" value="#{data.statisticChartList.indexOf(chart)}" />
       <p:panel id="chart-panel" styleClass="dashboard-chart-panel">
         <f:facet name="header">
-          <h:outputLabel id="chart-name" styleClass="chart-name" value="#{chart.name}" for="chart-#{chart.id}" />
+          <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
+            <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="fa fa-info-circle chart-info"
+              actionListener="#{logic.selectChart(chart)}"
+              oncomplete="PF('chart-details-dialog').show();" />
+            <h:outputLabel id="chart-name" styleClass="chart-name" value="#{chart.name}" for="chart-#{chart.id}" />
+          </h:panelGroup>
           <h:panelGroup layout="block" styleClass="chart-actions-container" rendered="#{statisticDashboardBean.shouldRenderArrows(data.statisticChartList)}">
             <p:commandLink styleClass="fa fa-arrow-down chart-action"
               actionListener="#{logic.moveDown(chart)}"
@@ -162,5 +167,17 @@
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
+
+  <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" header="Chart Details"
+    modal="true" appendTo="@(body)" closable="true" closeOnEscape="true" dynamic="true" hideEffect="fade" width="500" resizable="false">
+    <h:form id="chart-details-form">
+      <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
+      <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
+        <p:commandButton type="button" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('chart-details-dialog').hide();">
+        </p:commandButton>
+      </h:panelGroup>
+    </h:form>
+  </p:dialog>
 </cc:implementation>
 </html>

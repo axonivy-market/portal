@@ -1,15 +1,23 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -20,6 +28,9 @@ public class StatisticDashboardBean implements Serializable {
   private static final int MONTH_CHART_WIDTH = 500;
   private static final int WEEK_CHART_WIDTH = 600;
   private static final int DAY_CHART_WIDTH = 500;
+  private static final String GREATER_EQUAL = ">= %s";
+  private static final String LESS_EQUAL = "<= %s";
+  private static final String DASH = "%s - %s";
 
   private StatisticService statisticService = new StatisticService();
   private List<StatisticChart> statisticChartList;
@@ -82,6 +93,32 @@ public class StatisticDashboardBean implements Serializable {
       }
     }
     return true;
+  }
+
+  public String concatCreatedDate(StatisticFilter filter) {
+    StatisticTimePeriodSelection timeSelection = filter.getTimePeriodSelection();
+    if (!timeSelection.equals(StatisticTimePeriodSelection.CUSTOM)) {
+      return timeSelection.getLabel();
+    }
+
+    Date createdDateForm = filter.getCreatedDateFrom();
+    Date createdDateTo = filter.getCreatedDateTo();
+    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
+    DateFormat formatter = new SimpleDateFormat(service.getDateTimePattern());
+
+    if (createdDateForm != null && createdDateTo != null) {
+      return String.format(DASH, formatter.format(createdDateForm), formatter.format(createdDateTo));
+    }
+
+    if (createdDateForm != null) {
+      return String.format(GREATER_EQUAL, formatter.format(createdDateForm));
+    }
+
+    if (createdDateTo != null) {
+      return String.format(LESS_EQUAL, formatter.format(createdDateTo));
+    }
+
+    return StringUtils.EMPTY;
   }
 
   @PostConstruct
