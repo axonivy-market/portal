@@ -25,7 +25,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('task-widget:task-widget-sort-menu')";
+    return "id('task-widget:task-view')";
   }
 
   public void expand() {
