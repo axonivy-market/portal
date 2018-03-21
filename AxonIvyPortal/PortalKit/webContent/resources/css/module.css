@@ -3947,6 +3947,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   display: block;
 }
 
+.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+	background: none;
+}
 
 .statistic-dashboard-container {
   margin: auto;
