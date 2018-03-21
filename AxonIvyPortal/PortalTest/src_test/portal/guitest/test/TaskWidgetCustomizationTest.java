@@ -56,6 +56,6 @@ public class TaskWidgetCustomizationTest extends BaseTest {
 
     taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
+    assertTrue("Anh Nguyen".equals(taskWidgetPage.getTaskListCustomCellValue(3, CUSTOMER_NAME_COLUMN_ID)));
   }
 }

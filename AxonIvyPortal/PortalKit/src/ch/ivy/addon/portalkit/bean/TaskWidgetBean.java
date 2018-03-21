@@ -65,7 +65,7 @@ public class TaskWidgetBean implements Serializable {
   public String sanitizeHTML(String text) {
     String sanitizedText = sanitize(text);
     if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskDescriptionNotAvailable");
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
     }
     return sanitizedText;
   }
@@ -73,7 +73,7 @@ public class TaskWidgetBean implements Serializable {
   public String createTaskDescriptionInTaskStart(String text) {
     String extractedText = extractTextFromHtml(text);
     if (StringUtils.isBlank(extractedText)) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskDescriptionNotAvailable");
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
     }
     return extractedText;
   }
