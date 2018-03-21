@@ -9,7 +9,6 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.DonutChartModel;
-import org.primefaces.model.chart.PieChartModel;
 
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
@@ -32,7 +31,7 @@ public class StatisticChartCreationBean implements Serializable {
   private DonutChartModel caseByFinishedTimeModel;
   private DonutChartModel caseByFinishedTaskModel;
   private BarChartModel taskByExpiryModel;
-  private PieChartModel elapsedTimeModel;
+  private DonutChartModel elapsedTimeModel;
   StatisticService statisticService = new StatisticService();
 
   public StatisticChartCreationBean() {
@@ -145,11 +144,11 @@ public class StatisticChartCreationBean implements Serializable {
     this.taskByExpiryModel = taskByExpiryModel;
   }
 
-  public PieChartModel getElapsedTimeModel() {
+  public DonutChartModel getElapsedTimeModel() {
     return elapsedTimeModel;
   }
 
-  public void setElapsedTimeModel(PieChartModel elapsedTimeModel) {
+  public void setElapsedTimeModel(DonutChartModel elapsedTimeModel) {
     this.elapsedTimeModel = elapsedTimeModel;
   }
 
