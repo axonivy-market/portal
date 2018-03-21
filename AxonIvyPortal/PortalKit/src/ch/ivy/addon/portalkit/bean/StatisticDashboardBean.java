@@ -36,19 +36,19 @@ public class StatisticDashboardBean implements Serializable {
     }
     int maxWidth = 0;
     for (String suffix : chartIdSuffixes) {
-      if (statisticService.selectThisYear(suffix)) {
+      if (StatisticService.selectThisYear(suffix)) {
         if (maxWidth < YEAR_CHART_WIDTH) {
           maxWidth = YEAR_CHART_WIDTH;
         }
-      } else if (statisticService.selectWeekOfMonth(suffix)) {
+      } else if (StatisticService.selectWeekOfMonth(suffix)) {
         if (maxWidth < WEEK_CHART_WIDTH) {
           maxWidth = WEEK_CHART_WIDTH;
         }
-      } else if (statisticService.selectMonthOfYear(suffix)) {
+      } else if (StatisticService.selectMonthOfYear(suffix)) {
         if (maxWidth < MONTH_CHART_WIDTH) {
           maxWidth = MONTH_CHART_WIDTH;
         }
-      } else if (statisticService.selectDayOfWeek(suffix)) {
+      } else if (StatisticService.selectDayOfWeek(suffix)) {
         if (maxWidth < DAY_CHART_WIDTH) {
           maxWidth = DAY_CHART_WIDTH;
         }
