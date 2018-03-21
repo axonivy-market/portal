@@ -3935,14 +3935,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .statistic-filter-main-container .period-time-selection {
-  margin-left: 10px;
+  margin-bottom: 10px;
+  display: block;
 }
 
-@media (max-width: 1365px) {
-  .statistic-filter-main-container .period-time-selection {
-    display: block;
-  }
-}
 
 .statistic-dashboard-container {
   margin: auto;
