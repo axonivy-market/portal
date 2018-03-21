@@ -41,6 +41,9 @@
               <f:event listener="#{logic.autoCompleteForUserDelegate}" type="preRenderComponent" />
               <p:ajax event="query" global="false" />
               <p:ajax event="itemSelect" listener="#{logic.checkValue}" update="proceed-task-delegate-command" />
+              <p:column>
+					<h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}" />
+			  </p:column>
             </p:autoComplete>
 
             <p:autoComplete id="group-activator-select" rendered="#{!data.isUserDelegated}" scrollHeight="400" dropdown="true" 
