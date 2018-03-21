@@ -171,7 +171,7 @@
   <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" header="Chart Details"
     modal="true" appendTo="@(body)" closable="true" closeOnEscape="true" dynamic="true" hideEffect="fade" width="500" resizable="false">
     <h:form id="chart-details-form">
-      <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
+      <!-- <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" /> -->
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
         <p:commandButton type="button" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('chart-details-dialog').hide();">
