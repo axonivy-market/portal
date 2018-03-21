@@ -845,9 +845,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param isSetDefaultName
    * @return chart model for "Elapsed time by Case Category" chart
    */
-  public PieChartModel generateElapsedTimeModel(List<ElapsedTimeStatistic> statisticData, boolean isSetDefaultName) {
+  public DonutChartModel generateElapsedTimeModel(List<ElapsedTimeStatistic> statisticData, boolean isSetDefaultName) {
     Map<String, Number> chartData = generateDataForElapsedTimeChart(statisticData);
-    PieChartModel model = new PieChartModel();
+    DonutChartModel model = new DonutChartModel();
 
     if (chartData.size() == 0) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseCategory"), 0);
@@ -874,7 +874,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue);
     }
 
-    model.setData(chartData);
+    model.addCircle(chartData);
     model.setLegendPosition("s");
     model.setShowDataLabels(true);
     model.setExtender("elapsedTimeChartExtender");
@@ -947,7 +947,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           if(statisticChart.getFilter() != null) {
             elapsedTimeData = getElapsedTimeStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true).asJson());
           }
-          statisticChart.setPieChartModel(generateElapsedTimeModel(elapsedTimeData, true));
+          statisticChart.setDonutChartModel(generateElapsedTimeModel(elapsedTimeData, true));
           break;
         case CASES_BY_FINISHED_TASK:
           CaseStateStatistic caseByFinishedTaskData = new CaseStateStatistic();
