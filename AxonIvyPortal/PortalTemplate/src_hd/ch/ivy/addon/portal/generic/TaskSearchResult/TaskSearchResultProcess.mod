@@ -114,7 +114,7 @@ in.dataModel.setServerId(in.foundTask.applicationRegister.serverId);
 in.dataModel.queryCriteria.setKeyword(in.keyword);
 in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 in.dataModel.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
-in.dataModel.setSearchTaskDisplayed(true);
+in.dataModel.setNotKeepFilter(true);
 in.dataModel.queryCriteria.newQueryCreated = true;
 out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(in.keyword).remoteTaskId(in.foundTask.getId()).dataModel(in.dataModel).showHeaderToolbar(false).createNewTaskView();
 

@@ -87,7 +87,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
   private boolean isRelatedTaskDisplayed = false;
-  private boolean isSearchTaskDisplayed = false;
+  private boolean isNotKeepFilter = false;
 
   public TaskLazyDataModel() {
     super();
@@ -162,7 +162,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private boolean shouldSaveAndLoadSessionFilters() {
-    return !this.queryCriteria.isQueryForUnassignedTask() && !isRelatedTaskDisplayed && !isSearchTaskDisplayed;
+    return !this.queryCriteria.isQueryForUnassignedTask() && !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
   @Override
@@ -851,12 +851,12 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.isRelatedTaskDisplayed = isRelatedTaskDisplayed;
   }
 
-  public boolean isSearchTaskDisplayed() {
-    return isSearchTaskDisplayed;
+  public boolean isNotKeepFilter() {
+    return isNotKeepFilter;
   }
 
-  public void setSearchTaskDisplayed(boolean isSearchTaskDisplayed) {
-    this.isSearchTaskDisplayed = isSearchTaskDisplayed;
+  public void setNotKeepFilter(boolean isNotKeepFilter) {
+    this.isNotKeepFilter = isNotKeepFilter;
   }
 
   public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
