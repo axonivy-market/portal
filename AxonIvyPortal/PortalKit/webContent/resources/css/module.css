@@ -3458,6 +3458,14 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .color-button .ui-button.ui-widget {
   min-width: 0;
 }
+
+.logo-height input {
+  width: 90px;
+}
+
+.logo-height-unit {
+  line-height: 39px;
+}
 /********************************** ABSENCES AND DEPUTY **********************************/
 .absences-view-command-buttons {
   float: right;
