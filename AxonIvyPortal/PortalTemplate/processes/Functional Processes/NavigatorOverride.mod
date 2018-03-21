@@ -340,6 +340,7 @@ String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTit
 
 in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
+in.taskDataModel.setNotKeepFilter(true);
 
 in.taskView = TaskView
 								.create()
