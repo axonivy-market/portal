@@ -40,7 +40,7 @@
 
     <h:panelGrid id="compare-result-panel" styleClass="compare-result-panel" columns="1">
       <p:commandButton id="export-button" ajax="false" styleClass="export-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-        <p:dataExporter type="xls" target="compare-table" fileName="aaa" />
+        <p:dataExporter type="xls" target="compare-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
       </p:commandButton>
 
       <p:dataTable  id="compare-table" widgetVar="comparisonTable" value="#{elapsedTimeDetailsBean.comparisonDataModel}"
