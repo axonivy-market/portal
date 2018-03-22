@@ -100,6 +100,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     comparator = comparator(RemoteTask::getId);
     serverId = SecurityServiceUtils.getServerIdFromSession();
     if (shouldSaveAndLoadSessionFilters()) {
+      selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
       inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       if (inProgressFilter != null) {
         isInProgressFilterDisplayed = true;
@@ -162,7 +163,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private boolean shouldSaveAndLoadSessionFilters() {
-    return !this.queryCriteria.isQueryForUnassignedTask() && !isRelatedTaskDisplayed && !isNotKeepFilter;
+    return ((this.queryCriteria == null) || (this.queryCriteria != null && !this.queryCriteria
+        .isQueryForUnassignedTask())) && !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
   @Override
@@ -327,7 +329,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         TaskState.PARKED)));
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
-    if (this.queryCriteria != null && shouldSaveAndLoadSessionFilters()) {
+    if (shouldSaveAndLoadSessionFilters()) {
       jsonQuerycriteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
     }
     return jsonQuerycriteria;
@@ -695,6 +697,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       }
     });
     if (shouldSaveAndLoadSessionFilters()) {
+      UserUtils.setSessionSelectedTaskFilterSetAttribute(selectedTaskFilterData);
       UserUtils.setSessionTaskKeywordFilterAttribute(queryCriteria.getKeyword());
       if (!compactMode) {
         UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);

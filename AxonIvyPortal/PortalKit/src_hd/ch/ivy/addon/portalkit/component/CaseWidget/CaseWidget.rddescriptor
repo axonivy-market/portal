@@ -2,10 +2,6 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>filter</name>
-        <description></description>
-    </method>
-    <method>
         <name>setCases</name>
         <description></description>
         <inputParameter>
