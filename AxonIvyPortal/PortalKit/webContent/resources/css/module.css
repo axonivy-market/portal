@@ -4064,6 +4064,15 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   text-align: center;
 }
 
+.task-by-expiry-drilldown-mode .chart-info {
+  display: none;
+}
+
+.task-by-expiry-drilldown-mode .ui-panel-titlebar.ui-widget-header .ui-panel-title {
+  width: 100%;
+  text-align: left;
+}
+
 .add-statistic-panel .add-statistic-panel-column-1 {
   width: 20%;
 }
