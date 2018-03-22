@@ -58,10 +58,8 @@ public class DesignChooserBean implements Serializable {
   private String backgroundColor;
   private boolean uploadedHomeLogo; 
   private long homeLogoHeight;
-  private String homeLogoHeightUnit;
   private boolean uploadedLoginLogo;
   private long loginLogoHeight;
-  private String loginLogoHeightUnit;
   
   private ResourceLoader loader;
   private transient InputStream homeLogoStream;
@@ -77,10 +75,8 @@ public class DesignChooserBean implements Serializable {
       backgroundColor = retrieveBackgroundColorFromFile();
       String[] homeLogoHeightStyle = retrieveHomeLogoHeightFromFile().split("(?<=[0-9])(?=[^0-9])");
       homeLogoHeight = Long.parseLong(homeLogoHeightStyle[0]);
-      homeLogoHeightUnit = homeLogoHeightStyle[1];
       String[] loginLogoHeightStyle = retrieveLoginLogoHeightFromFile().split("(?<=[0-9])(?=[^0-9])");
       loginLogoHeight = Long.parseLong(loginLogoHeightStyle[0]);
-      loginLogoHeightUnit = loginLogoHeightStyle[1];
     } catch (IOException e) {
       Ivy.log().error("Can't retrieve colors from less file", e);
     }
@@ -126,8 +122,8 @@ public class DesignChooserBean implements Serializable {
     Optional<Path> path = loader.findResource(CUSTOMIZATION_LESS_PATH);
     if (path.isPresent()) {
       try (Stream<String> lineStream = Files.lines(path.get())) {
-        String newLoginLogoHeight = LOGIN_LOGO_HEIGHT_ATTRIBUTE + " " + loginLogoHeight + loginLogoHeightUnit + SEMICOLON;
-        String newHomeLogoHeight = HOME_LOGO_HEIGHT_ATTRIBUTE + " " + homeLogoHeight + homeLogoHeightUnit + SEMICOLON;
+        String newLoginLogoHeight = LOGIN_LOGO_HEIGHT_ATTRIBUTE + " " + loginLogoHeight + "px" + SEMICOLON;
+        String newHomeLogoHeight = HOME_LOGO_HEIGHT_ATTRIBUTE + " " + homeLogoHeight + "px" + SEMICOLON;
         
         List<String> lines = lineStream.map(line -> line.replaceAll(LOGIN_LOGO_HEIGHT_PATTERN, newLoginLogoHeight))
                   .map(line -> line.replaceAll(HOME_LOGO_HEIGHT_PATTERN, newHomeLogoHeight)).collect(Collectors.toList());
@@ -266,22 +262,6 @@ public class DesignChooserBean implements Serializable {
     this.loginLogoHeight = loginLogoHeight;
   }
   
-  public String getHomeLogoHeightUnit() {
-    return homeLogoHeightUnit;
-  }
-
-  public void setHomeLogoHeightUnit(String homeLogoHeightUnit) {
-    this.homeLogoHeightUnit = homeLogoHeightUnit;
-  }
-
-  public String getLoginLogoHeightUnit() {
-    return loginLogoHeightUnit;
-  }
-
-  public void setLoginLogoHeightUnit(String loginLogoHeightUnit) {
-    this.loginLogoHeightUnit = loginLogoHeightUnit;
-  }
-
   public boolean isUploadedHomeLogo() {
     return uploadedHomeLogo;
   }
