@@ -560,6 +560,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     TaskFilterService taskFilterService = new TaskFilterService();
     BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
     taskFilterData = taskFilterService.findById(info.getId());
+    UserUtils.setSessionSelectedTaskFilterSetAttribute(taskFilterData);
     return taskFilterData;
   }
 
