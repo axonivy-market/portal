@@ -16,11 +16,6 @@ Cs0 @TextInP .xml .xml #zField
 Cs0 @TextInP .responsibility .responsibility #zField
 Cs0 @RichDialogInitStart f0 '' #zField
 Cs0 @RichDialogProcessEnd f1 '' #zField
-Cs0 @RichDialogMethodStart f6 '' #zField
-Cs0 @RichDialogProcessEnd f7 '' #zField
-Cs0 @GridStep f9 '' #zField
-Cs0 @PushWFArc f10 '' #zField
-Cs0 @PushWFArc f8 '' #zField
 Cs0 @RichDialogMethodStart f11 '' #zField
 Cs0 @RichDialogProcessEnd f12 '' #zField
 Cs0 @GridStep f3 '' #zField
@@ -109,49 +104,6 @@ Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f1 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f1 525 85 22 22 14 0 #rect
 Cs0 f1 @|RichDialogProcessEndIcon #fIcon
-Cs0 f6 guid 1530C78D050B0AA4 #txt
-Cs0 f6 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f6 method filter() #txt
-Cs0 f6 disableUIEvents false #txt
-Cs0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f6 outParameterDecl '<> result;
-' #txt
-Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>filter()</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f6 53 373 22 22 14 0 #rect
-Cs0 f6 @|RichDialogMethodStartIcon #fIcon
-Cs0 f7 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f7 525 373 22 22 14 0 #rect
-Cs0 f7 @|RichDialogProcessEndIcon #fIcon
-Cs0 f9 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
-Cs0 f9 actionTable 'out=in;
-' #txt
-Cs0 f9 actionCode in.dataModel.setKeyword(in.filteringKeyword); #txt
-Cs0 f9 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>filter cases 
-based on keyword</name>
-        <nameStyle>30,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f9 270 372 36 24 20 14 #rect
-Cs0 f9 @|StepIcon #fIcon
-Cs0 f10 expr out #txt
-Cs0 f10 75 384 270 384 #arcP
-Cs0 f8 expr out #txt
-Cs0 f8 306 384 525 384 #arcP
 Cs0 f11 guid 1530D5DA30DFC025 #txt
 Cs0 f11 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f11 method setCases(java.util.List<ch.ivy.addon.portalkit.bo.RemoteCase>) #txt
@@ -809,10 +761,6 @@ Cs0 f70 270 1280 337 1280 #arcP
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
-Cs0 f6 mainOut f10 tail #connect
-Cs0 f10 head f9 mainIn #connect
-Cs0 f9 mainOut f8 tail #connect
-Cs0 f8 head f7 mainIn #connect
 Cs0 f11 mainOut f4 tail #connect
 Cs0 f4 head f3 mainIn #connect
 Cs0 f3 mainOut f5 tail #connect
