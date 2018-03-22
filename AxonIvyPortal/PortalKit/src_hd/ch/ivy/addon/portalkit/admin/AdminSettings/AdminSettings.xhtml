@@ -220,18 +220,7 @@
 								styleClass="MarRight10" />
 							<p:inputNumber padControl="false" thousandSeparator="" decimalSeparator="." id="login-logo-height" value="#{designChooserBean.loginLogoHeight}"
 								styleClass="logo-height" minValue="0" emptyValue="zero" />
-							<p:selectOneMenu value="#{designChooserBean.loginLogoHeightUnit}" styleClass="logo-height-unit">
-								<f:selectItem itemLabel="cm" itemValue="cm" />
-								<f:selectItem itemLabel="em" itemValue="em" />
-								<f:selectItem itemLabel="ex" itemValue="ex" />
-								<f:selectItem itemLabel="in" itemValue="in" />
-								<f:selectItem itemLabel="mm" itemValue="mm" />
-								<f:selectItem itemLabel="rem" itemValue="rem" />
-								<f:selectItem itemLabel="pc" itemValue="pc" />
-								<f:selectItem itemLabel="pt" itemValue="pt" />
-								<f:selectItem itemLabel="px" itemValue="px" />
-								<f:selectItem itemLabel="%" itemValue="%" />
-							</p:selectOneMenu>
+							<h:outputText value=" (px)" />
 							<p:tooltip for="login-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoScalingTooltip')}" />
 						</h:panelGrid>
 
@@ -252,18 +241,7 @@
 								styleClass="MarRight10" />
 							<p:inputNumber padControl="false" thousandSeparator="" decimalSeparator="." id="home-logo-height" value="#{designChooserBean.homeLogoHeight}"
 								styleClass="logo-height" minValue="0" emptyValue="zero" />
-							<p:selectOneMenu value="#{designChooserBean.homeLogoHeightUnit}" styleClass="logo-height-unit">
-								<f:selectItem itemLabel="cm" itemValue="cm" />
-								<f:selectItem itemLabel="em" itemValue="em" />
-								<f:selectItem itemLabel="ex" itemValue="ex" />
-								<f:selectItem itemLabel="in" itemValue="in" />
-								<f:selectItem itemLabel="mm" itemValue="mm" />
-								<f:selectItem itemLabel="rem" itemValue="rem" />
-								<f:selectItem itemLabel="pc" itemValue="pc" />
-								<f:selectItem itemLabel="pt" itemValue="pt" />
-								<f:selectItem itemLabel="px" itemValue="px" />
-								<f:selectItem itemLabel="%" itemValue="%" />
-							</p:selectOneMenu>
+							<h:outputText value=" (px)" />
 							<p:tooltip for="home-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoScalingTooltip')}" />
 						</h:panelGrid>
 					</h:panelGrid>
