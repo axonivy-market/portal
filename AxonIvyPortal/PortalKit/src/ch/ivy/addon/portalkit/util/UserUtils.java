@@ -17,7 +17,9 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
 import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
+import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.ws.addon.IvyUser;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
@@ -52,9 +54,12 @@ public class UserUtils {
   /** Property to get the hidden roles */
   private static final String HIDE_USERS_IN_DELEGATION = "HIDE_USERS_IN_DELEGATION";
   
+  private static final String SELECTED_TASK_FILTER_SET = "SELECTED_TASK_FILTER_SET";
   private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
   private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
   private static final String TASK_IN_PROGRESS_FILTER = "TASK_IN_PROGRESS_FILTER";
+  private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
+  private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
 
   /**
    * Get all users in current Ivy Server
@@ -339,6 +344,10 @@ public class UserUtils {
     Ivy.session().setAttribute(key, value);
   }
   
+  public static void setSessionSelectedTaskFilterSetAttribute(TaskFilterData value) {
+    setSessionAttribute(SELECTED_TASK_FILTER_SET, value);
+  }
+  
   public static void setSessionTaskAdvancedFilterAttribute(List<TaskFilter> value) {
     setSessionAttribute(SELECTED_TASK_FILTER, value);
   }
@@ -349,6 +358,10 @@ public class UserUtils {
   
   public static void setSessionTaskInProgressFilterAttribute(TaskInProgressByOthersFilter filter) {
     setSessionAttribute(TASK_IN_PROGRESS_FILTER, filter);
+  }
+  
+  public static TaskFilterData getSessionSelectedTaskFilterSetAttribute() {
+    return (TaskFilterData) Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
   }
 
   @SuppressWarnings("unchecked")
@@ -370,5 +383,30 @@ public class UserUtils {
   
   public static TaskInProgressByOthersFilter getSessionTaskInProgressFilterAttribute() {
     return (TaskInProgressByOthersFilter) Ivy.session().getAttribute(TASK_IN_PROGRESS_FILTER);
+  }
+  
+  public static void setSessionCaseAdvancedFilterAttribute(List<CaseFilter> value) {
+    setSessionAttribute(SELECTED_CASE_FILTER, value);
+  }
+  
+  public static void setSessionCaseKeywordFilterAttribute(String keyword) {
+    setSessionAttribute(CASE_KEYWORD_FILTER, keyword);
+  }
+  
+  @SuppressWarnings("unchecked")
+  public static List<CaseFilter> getSessionCaseAdvancedFilterAttribute() {
+    List<CaseFilter> filters = (List<CaseFilter>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
+    if (CollectionUtils.isEmpty(filters)) {
+      return new ArrayList<>();
+    }
+    return filters;
+  }
+  
+  public static String getSessionCaseKeywordFilterAttribute() {
+    String keyword = (String) Ivy.session().getAttribute(CASE_KEYWORD_FILTER);
+    if (StringUtils.isBlank(keyword)) {
+      return "";
+    }
+    return keyword;
   }
 }

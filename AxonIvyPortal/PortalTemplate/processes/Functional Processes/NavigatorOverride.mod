@@ -117,6 +117,7 @@ String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHe
 
 in.caseDataModel.setCaseId(in.caseId.id());
 in.caseDataModel.getSearchCriteria().setBusinessCase(in.caseId.isBusinessCase());
+in.caseDataModel.setNotKeepFilter(true);
 in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).autoSelectIfExists(in.caseId).buildNewView();' #txt
 Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -448,6 +449,7 @@ String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTit
 in.caseDataModel.getSearchCriteria().setBusinessCase(true);
 in.caseDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
 in.caseDataModel.getQueryCriteria().setCaseQuery(in.caseQuery);
+in.caseDataModel.setNotKeepFilter(true);
 
 in.caseView = CaseView.create()
 								.dataModel(in.caseDataModel)

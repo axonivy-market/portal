@@ -122,8 +122,9 @@ RemoteCase remoteCase = Attrs.currentContext().get("foundCase") as RemoteCase;
 
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", java.util.Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/case"), keyword));
 GlobalCaseId caseId = GlobalCaseId.inServer(remoteCase.server.id).caseId(remoteCase.id).build();
-in.caseDataModel.setKeyword(keyword);
+in.caseDataModel.queryCriteria.setKeyword(keyword);
 in.caseDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
+in.caseDataModel.setNotKeepFilter(true);
 out.view = ch.ivy.addon.portal.generic.view.CaseView.create().dataModel(in.caseDataModel).withTitle(title).autoSelectIfExists(caseId).buildNewView();' #txt
 Cs0 f7 type ch.ivy.addon.portal.generic.CaseSearchResult.CaseSearchResultData #txt
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
