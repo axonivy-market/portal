@@ -46,6 +46,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private List<ElapsedTimeComparison> comparisonDataModel;
   private RemoteRole defaultRole;
   private String caseQueryOfSelectedChart;
+  private String chartName;
 
   private static final String DAYS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/days");
   private static final String HOURS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/hours");
@@ -63,6 +64,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
     defaultRole = rolesForCompareElapsedTime.stream().findFirst().filter((role) -> ROLE_EVERYBODY.equals(role.getName())).get();
     compare(defaultRole, defaultRole);
+    chartName = statisticChart.getName();
   }
 
   public void compare(RemoteRole firstRoleToCompare, RemoteRole secondRoleToCompare) {
@@ -251,5 +253,10 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
   public void setCaseQueryOfSelectedChart(String caseQueryOfSelectedChart) {
     this.caseQueryOfSelectedChart = caseQueryOfSelectedChart;
+  }
+
+  public String getExcelFileName() {
+    String fileName = chartName + "_" + selectedCaseCategory;
+    return fileName.replace(" ", "_");
   }
 }
