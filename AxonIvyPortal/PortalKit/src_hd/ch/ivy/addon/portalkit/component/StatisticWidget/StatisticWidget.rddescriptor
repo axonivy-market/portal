@@ -15,19 +15,15 @@
         <name>switchMode</name>
         <description></description>
     </method>
-    <method>
-        <name>intialize</name>
-        <description></description>
+    <startMethod>
+        <name>start</name>
+        <description>Default dialog start method.</description>
         <inputParameter>
             <name>statisticChartList</name>
             <description></description>
             <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.statistics.StatisticChart&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
     </startMethod>
     <property>
         <name>guid</name>
