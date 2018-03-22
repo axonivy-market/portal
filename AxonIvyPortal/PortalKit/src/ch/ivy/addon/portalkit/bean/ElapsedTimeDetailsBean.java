@@ -116,8 +116,12 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
     Map<Object, Number> resultOfFirstRole = chartSeriesOfFirstRole.getData();
     for (Map.Entry<Object, Number> entryOfFirstRole : resultOfFirstRole.entrySet()) {
+      String category = (String) entryOfFirstRole.getKey();
+      if (StringUtils.EMPTY.equals(category)) {
+        continue ;
+      }
       ElapsedTimeComparison comparisonRow = new ElapsedTimeComparison();
-      comparisonRow.setCategory((String) entryOfFirstRole.getKey());
+      comparisonRow.setCategory(category);
       comparisonRow.setElapsedTimeOfFirstRole(calculateElapsedTime(entryOfFirstRole.getValue()));
       comparisonDataModel.add(comparisonRow);
     }
