@@ -13,7 +13,6 @@
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
-  <f:event listener="#{logic.intialize(cc.attrs.statisticChartList)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main">
