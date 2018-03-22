@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
 import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
+import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
@@ -58,6 +59,7 @@ public class UserUtils {
   private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
   private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
   private static final String TASK_IN_PROGRESS_FILTER = "TASK_IN_PROGRESS_FILTER";
+  private static final String SELECTED_CASE_FILTER_SET = "SELECTED_CASE_FILTER_SET";
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
 
@@ -385,12 +387,20 @@ public class UserUtils {
     return (TaskInProgressByOthersFilter) Ivy.session().getAttribute(TASK_IN_PROGRESS_FILTER);
   }
   
+  public static void setSessionSelectedCaseFilterSetAttribute(CaseFilterData value) {
+    setSessionAttribute(SELECTED_CASE_FILTER_SET, value);
+  }
+  
   public static void setSessionCaseAdvancedFilterAttribute(List<CaseFilter> value) {
     setSessionAttribute(SELECTED_CASE_FILTER, value);
   }
   
   public static void setSessionCaseKeywordFilterAttribute(String keyword) {
     setSessionAttribute(CASE_KEYWORD_FILTER, keyword);
+  }
+  
+  public static CaseFilterData getSessionSelectedCaseFilterSetAttribute() {
+    return (CaseFilterData) Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
   }
   
   @SuppressWarnings("unchecked")

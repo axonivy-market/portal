@@ -78,6 +78,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     searchCriteria = buildInitSearchCriteria();
     queryCriteria = buildInitQueryCriteria();
     setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
+    selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
   }
 
   @Override
@@ -398,6 +399,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       }
     });
     if (!isNotKeepFilter) {
+      UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
       UserUtils.setSessionCaseKeywordFilterAttribute(queryCriteria.getKeyword());
       UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
     }
@@ -423,6 +425,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     CaseFilterService filterService = new CaseFilterService();
     BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
     filterData = filterService.findById(info.getId());
+    UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
     return filterData;
   }
 
