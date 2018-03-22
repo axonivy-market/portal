@@ -257,6 +257,10 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
   public String getExcelFileName() {
     String fileName = chartName + "_" + selectedCaseCategory;
-    return fileName.replace(" ", "_");
+    fileName = fileName.replace(" ", "_");
+    if (StatisticChartConstants.NO_CATEGORY_CMS.equals(selectedCaseCategory)) {
+      fileName = fileName.replace("[", "").replace("]", "");
+    }
+    return fileName;
   }
 }
