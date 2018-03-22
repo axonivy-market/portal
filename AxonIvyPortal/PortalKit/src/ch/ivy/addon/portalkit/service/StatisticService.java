@@ -930,6 +930,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           break;
         case TASK_BY_EXPIRY:
           List<ExpiryStatistic> taskByExpiryData = new ArrayList<>();
+          if (statisticChart.getId().contains("_")) {
+            break;
+          }
           if(statisticChart.getFilter() != null){
             taskByExpiryData = getExpiryStatisticData(StatisticChartQueryUtils.generateTaskQueryForExpiry(statisticChart.getFilter()).asJson());
           }
@@ -1036,7 +1039,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue); //chart with format: id + _ + suffix is lower level (month/week/day/hour) chart when drill down
     newStatisticChart.setName(selectedChart.getName() + " - " + selectedValue);
     newStatisticChart.setFilter(selectedChart.getFilter());
-//    newStatisticChart.setJsonQuery(selectedChart.getJsonQuery());
     newStatisticChart.setType(StatisticChartType.TASK_BY_EXPIRY);
     newStatisticChart.setUserId(selectedChart.getUserId());
     newStatisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue, previousSelectedMonth, previousSelectedWeek));

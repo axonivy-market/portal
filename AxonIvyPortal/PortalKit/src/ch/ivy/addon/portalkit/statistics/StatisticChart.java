@@ -53,14 +53,6 @@ public class StatisticChart {
     this.type = type;
   }
 
-/*  public String getJsonQuery() {
-    return jsonQuery;
-  }
-
-  public void setJsonQuery(String jsonQuery) {
-    this.jsonQuery = jsonQuery;
-  }
-*/
   public long getPosition() {
     return position;
   }
