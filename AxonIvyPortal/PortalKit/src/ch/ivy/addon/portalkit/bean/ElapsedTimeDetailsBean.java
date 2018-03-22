@@ -154,6 +154,9 @@ public class ElapsedTimeDetailsBean implements Serializable {
     if (seconds > 0) {
       elapsedTime.append(seconds + " " + SECONDS_CMS);
     }
+    if (elapsedTime.toString().isEmpty()) {
+      return 0 + " " + SECONDS_CMS;
+    }
     return elapsedTime.toString();
   }
 
@@ -257,6 +260,10 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
   public String getExcelFileName() {
     String fileName = chartName + "_" + selectedCaseCategory;
-    return fileName.replace(" ", "_");
+    fileName = fileName.replace(" ", "_");
+    if (StatisticChartConstants.NO_CATEGORY_CMS.equals(selectedCaseCategory)) {
+      fileName = fileName.replace("[", "").replace("]", "");
+    }
+    return fileName;
   }
 }
