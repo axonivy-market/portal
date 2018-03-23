@@ -113,12 +113,6 @@ import com.google.gson.reflect.TypeToken;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
 
-  private static final String[] MONTHSOFYEAR = {JANUARY_CMS, FEBRUARY_CMS, MARCH_CMS, APRIL_CMS, MAY_CMS, JUNE_CMS,
-    JULY_CMS, AUGUST_CMS, SEPTEMBER_CMS, OCTOBER_CMS, NOVEMBER_CMS, DECEMBER_CMS};
-  private static final String[] WEEKSOFMONTH = {FIRSTWEEK_CMS, SECONDWEEK_CMS, THIRDWEEK_CMS, FOURTHWEEK_CMS, FIFTHWEEK_CMS, SIXTHWEEK_CMS};
-  private static final String[] DAYSOFWEEK = {MONDAY_CMS, TUESDAY_CMS, WEDNESDAY_CMS, THURSDAY_CMS, FRIDAY_CMS,
-    SATURDAY_CMS, SUNDAY_CMS};
-  private static final String[] HOURSOFDAY = {BEFORE_8, IN_8, IN_9, IN_10, IN_11, IN_12, IN_13, IN_14, IN_15, IN_16, IN_17, AFTER_18};
   private static final String[] DRILLDOWN_LEVELS = {DRILLDOWN_LEVEL_YEAR, DRILLDOWN_LEVEL_MONTH, DRILLDOWN_LEVEL_WEEK, DRILLDOWN_LEVEL_DAY, DRILLDOWN_LEVEL_HOUR};
 
   @Override
@@ -444,13 +438,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
-    chartData.put(MONDAY_CMS, taskExpireOnMonday);
-    chartData.put(TUESDAY_CMS, taskExpireOnTuesday);
-    chartData.put(WEDNESDAY_CMS, taskExpireOnWednesday);
-    chartData.put(THURSDAY_CMS, taskExpireOnThursday);
-    chartData.put(FRIDAY_CMS, taskExpireOnFriday);
-    chartData.put(SATURDAY_CMS, taskExpireOnSaturday);
-    chartData.put(SUNDAY_CMS, taskExpireOnSunday);
+    chartData.put(Ivy.cms().co(MONDAY_CMS), taskExpireOnMonday);
+    chartData.put(Ivy.cms().co(TUESDAY_CMS), taskExpireOnTuesday);
+    chartData.put(Ivy.cms().co(WEDNESDAY_CMS), taskExpireOnWednesday);
+    chartData.put(Ivy.cms().co(THURSDAY_CMS), taskExpireOnThursday);
+    chartData.put(Ivy.cms().co(FRIDAY_CMS), taskExpireOnFriday);
+    chartData.put(Ivy.cms().co(SATURDAY_CMS), taskExpireOnSaturday);
+    chartData.put(Ivy.cms().co(SUNDAY_CMS), taskExpireOnSunday);
 
     return chartData;
   }
@@ -505,15 +499,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
-    chartData.put(FIRSTWEEK_CMS, taskExpireOnFirstWeek);
-    chartData.put(SECONDWEEK_CMS, taskExpireOnSecondWeek);
-    chartData.put(THIRDWEEK_CMS, taskExpireOnThirdWeek);
-    chartData.put(FOURTHWEEK_CMS, taskExpireOnFourthWeek);
+    chartData.put(Ivy.cms().co(FIRSTWEEK_CMS), taskExpireOnFirstWeek);
+    chartData.put(Ivy.cms().co(SECONDWEEK_CMS), taskExpireOnSecondWeek);
+    chartData.put(Ivy.cms().co(THIRDWEEK_CMS), taskExpireOnThirdWeek);
+    chartData.put(Ivy.cms().co(FOURTHWEEK_CMS), taskExpireOnFourthWeek);
     if (firstDateOfNextMonth.compareTo(firstDateOfFifthWeek) > 0) {
-      chartData.put(FIFTHWEEK_CMS, taskExpireOnFifthWeek);
+      chartData.put(Ivy.cms().co(FIFTHWEEK_CMS), taskExpireOnFifthWeek);
     }
     if (firstDateOfNextMonth.compareTo(firstDateOfSixthWeek) > 0) {
-      chartData.put(SIXTHWEEK_CMS, taskExpireOnSixthWeek);
+      chartData.put(Ivy.cms().co(SIXTHWEEK_CMS), taskExpireOnSixthWeek);
     }
     return chartData;
   }
@@ -569,18 +563,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
     
-    chartData.put(JANUARY_CMS, taskExpireOnJanuary);
-    chartData.put(FEBRUARY_CMS, taskExpireOnFebruary);
-    chartData.put(MARCH_CMS, taskExpireOnMarch);
-    chartData.put(APRIL_CMS, taskExpireOnApril);
-    chartData.put(MAY_CMS, taskExpireOnMay);
-    chartData.put(JUNE_CMS, taskExpireOnJune);
-    chartData.put(JULY_CMS, taskExpireOnJuly);
-    chartData.put(AUGUST_CMS, taskExpireOnAugust);
-    chartData.put(SEPTEMBER_CMS, taskExpireOnSeptember);
-    chartData.put(OCTOBER_CMS, taskExpireOnOctober);
-    chartData.put(NOVEMBER_CMS, taskExpireOnNovember);
-    chartData.put(DECEMBER_CMS, taskExpireOnDecember);
+    chartData.put(Ivy.cms().co(JANUARY_CMS), taskExpireOnJanuary);
+    chartData.put(Ivy.cms().co(FEBRUARY_CMS), taskExpireOnFebruary);
+    chartData.put(Ivy.cms().co(MARCH_CMS), taskExpireOnMarch);
+    chartData.put(Ivy.cms().co(APRIL_CMS), taskExpireOnApril);
+    chartData.put(Ivy.cms().co(MAY_CMS), taskExpireOnMay);
+    chartData.put(Ivy.cms().co(JUNE_CMS), taskExpireOnJune);
+    chartData.put(Ivy.cms().co(JULY_CMS), taskExpireOnJuly);
+    chartData.put(Ivy.cms().co(AUGUST_CMS), taskExpireOnAugust);
+    chartData.put(Ivy.cms().co(SEPTEMBER_CMS), taskExpireOnSeptember);
+    chartData.put(Ivy.cms().co(OCTOBER_CMS), taskExpireOnOctober);
+    chartData.put(Ivy.cms().co(NOVEMBER_CMS), taskExpireOnNovember);
+    chartData.put(Ivy.cms().co(DECEMBER_CMS), taskExpireOnDecember);
     return chartData;
   }
 
@@ -682,7 +676,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     for (Entry<String, Number> entry : chartDataTemp.entrySet()) {
       String key = entry.getKey().toString();
       if (StringUtils.isBlank(key)) {
-        key = NO_CATEGORY_CMS;
+        key = Ivy.cms().co(NO_CATEGORY_CMS);
       }
       if (chartData.containsKey(key)) {
         Number updatedTime = new BigDecimal(chartData.get(key).longValue() + entry.getValue().longValue());
@@ -1006,7 +1000,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    return Arrays.asList(MONTHSOFYEAR).contains(selectedItem)
+    String[] monthsOfYear = {Ivy.cms().co(JANUARY_CMS), Ivy.cms().co(FEBRUARY_CMS), Ivy.cms().co(MARCH_CMS), Ivy.cms().co(APRIL_CMS), Ivy.cms().co(MAY_CMS), Ivy.cms().co(JUNE_CMS),
+            Ivy.cms().co(JULY_CMS), Ivy.cms().co(AUGUST_CMS), Ivy.cms().co(SEPTEMBER_CMS), Ivy.cms().co(OCTOBER_CMS), Ivy.cms().co(NOVEMBER_CMS), Ivy.cms().co(DECEMBER_CMS)};
+
+    return Arrays.asList(monthsOfYear).contains(selectedItem)
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY));
   }
 
@@ -1014,7 +1011,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    return Arrays.asList(WEEKSOFMONTH).contains(selectedItem)
+    String[] weeksOfMonth = {Ivy.cms().co(FIRSTWEEK_CMS), Ivy.cms().co(SECONDWEEK_CMS), Ivy.cms().co(THIRDWEEK_CMS), Ivy.cms().co(FOURTHWEEK_CMS), Ivy.cms().co(FIFTHWEEK_CMS), Ivy.cms().co(SIXTHWEEK_CMS)};
+
+    return Arrays.asList(weeksOfMonth).contains(selectedItem)
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY));
   }
 
@@ -1022,7 +1021,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    return Arrays.asList(DAYSOFWEEK).contains(selectedItem)
+    String[] daysOfWeek = {Ivy.cms().co(MONDAY_CMS), Ivy.cms().co(TUESDAY_CMS), Ivy.cms().co(WEDNESDAY_CMS), Ivy.cms().co(THURSDAY_CMS), Ivy.cms().co(FRIDAY_CMS),
+            Ivy.cms().co(SATURDAY_CMS), Ivy.cms().co(SUNDAY_CMS)};
+
+    return Arrays.asList(daysOfWeek).contains(selectedItem)
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(TODAY_EXPIRY_KEY));
   }
 
@@ -1030,7 +1032,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    return Arrays.asList(HOURSOFDAY).contains(selectedItem);
+    String[] hoursOfDay = {BEFORE_8, IN_8, IN_9, IN_10, IN_11, IN_12, IN_13, IN_14, IN_15, IN_16, IN_17, AFTER_18};
+
+    return Arrays.asList(hoursOfDay).contains(selectedItem);
   }
 
   public StatisticChart drilldownExpiryChart(String selectedValue, StatisticChart selectedChart, String previousSelectedMonth, String previousSelectedWeek) {

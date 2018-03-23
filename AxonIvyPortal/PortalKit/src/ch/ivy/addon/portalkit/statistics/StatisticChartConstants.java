@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.statistics;
 
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class StatisticChartConstants {
 
@@ -12,58 +11,33 @@ public class StatisticChartConstants {
   public static final String THIS_YEAR_EXPIRY_KEY =
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/thisYear";
   
-  public static final String JANUARY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/January");
-  public static final String FEBRUARY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/February");
-  public static final String MARCH_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/March");
-  public static final String APRIL_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/April");
-  public static final String MAY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/May");
-  public static final String JUNE_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/June");
-  public static final String JULY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/July");
-  public static final String AUGUST_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/August");
-  public static final String SEPTEMBER_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/September");
-  public static final String OCTOBER_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/October");
-  public static final String NOVEMBER_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/November");
-  public static final String DECEMBER_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/December");
+  public static final String JANUARY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/January";
+  public static final String FEBRUARY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/February";
+  public static final String MARCH_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/March";
+  public static final String APRIL_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/April";
+  public static final String MAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/May";
+  public static final String JUNE_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/June";
+  public static final String JULY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/July";
+  public static final String AUGUST_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/August";
+  public static final String SEPTEMBER_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/September";
+  public static final String OCTOBER_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/October";
+  public static final String NOVEMBER_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/November";
+  public static final String DECEMBER_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/monthsOfYear/December";
 
-  public static final String FIRSTWEEK_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/firstWeek");
-  public static final String SECONDWEEK_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/secondWeek");
-  public static final String THIRDWEEK_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/thirdWeek");
-  public static final String FOURTHWEEK_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fourthWeek");
-  public static final String FIFTHWEEK_CMS = Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fifthWeek");
-  public static final String SIXTHWEEK_CMS = Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/sixthWeek");
+  public static final String FIRSTWEEK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/firstWeek";
+  public static final String SECONDWEEK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/secondWeek";
+  public static final String THIRDWEEK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/thirdWeek";
+  public static final String FOURTHWEEK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fourthWeek";
+  public static final String FIFTHWEEK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/fifthWeek";
+  public static final String SIXTHWEEK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/weeksOfMonth/sixthWeek";
 
-  public static final String MONDAY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/monday");
-  public static final String TUESDAY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/tuesday");
-  public static final String WEDNESDAY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/wednesday");
-  public static final String THURSDAY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/thursday");
-  public static final String FRIDAY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/friday");
-  public static final String SATURDAY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/saturday");
-  public static final String SUNDAY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/sunday");
+  public static final String MONDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/monday";
+  public static final String TUESDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/tuesday";
+  public static final String WEDNESDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/wednesday";
+  public static final String THURSDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/thursday";
+  public static final String FRIDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/friday";
+  public static final String SATURDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/saturday";
+  public static final String SUNDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/sunday";
 
   public static final String BEFORE_8 = "<8";
   public static final String IN_8 = "8";
@@ -101,10 +75,9 @@ public class StatisticChartConstants {
   public static final String TASK_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
   public static final String SECOND_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/second";
 
-  public static final String NO_CATEGORY_CMS = Ivy.cms().co(
-          "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory");
+  public static final String NO_CATEGORY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory";
 
-  public static final String ELAPSED_TIME_DETAIL_CHART_NAME = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/elapsedTimeInSeconds");
+  public static final String ELAPSED_TIME_DETAIL_CHART_NAME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/elapsedTimeInSeconds";
 
   public static final String USER_ID = "userId";
   public static final String NAME = "name";

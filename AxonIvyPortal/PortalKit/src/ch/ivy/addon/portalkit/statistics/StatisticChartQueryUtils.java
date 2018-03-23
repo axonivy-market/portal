@@ -291,7 +291,7 @@ public class StatisticChartQueryUtils {
     if (selectedCaseCategories.isEmpty()) {
       List<String> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
       caseCategories.forEach(category -> {
-        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+        if (StringUtils.equals(category, Ivy.cms().co(NO_CATEGORY_CMS))) {
           subCaseFilterForSelectedCaseCategories.and().category().isNotNull();
         } else {
           subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category);
@@ -299,7 +299,7 @@ public class StatisticChartQueryUtils {
       });
     } else {
       selectedCaseCategories.forEach(category -> {
-        if (StringUtils.equals(category, NO_CATEGORY_CMS)) {
+        if (StringUtils.equals(category, Ivy.cms().co(NO_CATEGORY_CMS))) {
           subCaseFilterForSelectedCaseCategories.or().category().isNull();
         } else {
           subCaseFilterForSelectedCaseCategories.or().category().isEqual(category);
