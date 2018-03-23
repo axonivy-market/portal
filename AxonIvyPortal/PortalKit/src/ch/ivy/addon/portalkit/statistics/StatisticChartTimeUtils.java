@@ -41,19 +41,19 @@ public class StatisticChartTimeUtils {
 
   public static int getShiftDaysFromDayOfWeek(String dayOfWeek) {
     int shiftDays = 0;
-    if (dayOfWeek.equals(MONDAY_CMS)) {
+    if (dayOfWeek.equals(Ivy.cms().co(MONDAY_CMS))) {
       shiftDays = 0;
-    } else if (dayOfWeek.equals(TUESDAY_CMS)) {
+    } else if (dayOfWeek.equals(Ivy.cms().co(TUESDAY_CMS))) {
       shiftDays = 1;
-    } else if (dayOfWeek.equals(WEDNESDAY_CMS)) {
+    } else if (dayOfWeek.equals(Ivy.cms().co(WEDNESDAY_CMS))) {
       shiftDays = 2;
-    } else if (dayOfWeek.equals(THURSDAY_CMS)) {
+    } else if (dayOfWeek.equals(Ivy.cms().co(THURSDAY_CMS))) {
       shiftDays = 3;
-    } else if (dayOfWeek.equals(FRIDAY_CMS)) {
+    } else if (dayOfWeek.equals(Ivy.cms().co(FRIDAY_CMS))) {
       shiftDays = 4;
-    } else if (dayOfWeek.equals(SATURDAY_CMS)) {
+    } else if (dayOfWeek.equals(Ivy.cms().co(SATURDAY_CMS))) {
       shiftDays = 5;
-    } else if (dayOfWeek.equals(SUNDAY_CMS)) {
+    } else if (dayOfWeek.equals(Ivy.cms().co(SUNDAY_CMS))) {
       shiftDays = 6;
     }
     return shiftDays;
@@ -73,29 +73,29 @@ public class StatisticChartTimeUtils {
     }
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.DAY_OF_MONTH, 1);
-    if (StringUtils.containsIgnoreCase(selectedMonth, JANUARY_CMS)) {
+    if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(JANUARY_CMS))) {
       cal.set(Calendar.MONTH, 0);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, FEBRUARY_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(FEBRUARY_CMS))) {
       cal.set(Calendar.MONTH, 1);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, MARCH_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(MARCH_CMS))) {
       cal.set(Calendar.MONTH, 2);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, APRIL_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(APRIL_CMS))) {
       cal.set(Calendar.MONTH, 3);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, MAY_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(MAY_CMS))) {
       cal.set(Calendar.MONTH, 4);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, JUNE_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(JUNE_CMS))) {
       cal.set(Calendar.MONTH, 5);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, JULY_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(JULY_CMS))) {
       cal.set(Calendar.MONTH, 6);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, AUGUST_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(AUGUST_CMS))) {
       cal.set(Calendar.MONTH, 7);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, SEPTEMBER_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(SEPTEMBER_CMS))) {
       cal.set(Calendar.MONTH, 8);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, OCTOBER_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(OCTOBER_CMS))) {
       cal.set(Calendar.MONTH, 9);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, NOVEMBER_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(NOVEMBER_CMS))) {
       cal.set(Calendar.MONTH, 10);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, DECEMBER_CMS)) {
+    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(DECEMBER_CMS))) {
       cal.set(Calendar.MONTH, 11);
     }
     return cal.getTime();
@@ -109,17 +109,17 @@ public class StatisticChartTimeUtils {
     } else {
       Date firstDateOfMonth = getFirstDateOfMonth(selectedMonth);
       Date firstDateOfFirstWeek = getFirstDateOfWeekContainsDate(firstDateOfMonth);
-      if (StringUtils.containsIgnoreCase(selectedWeek, FIRSTWEEK_CMS)){
+      if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(FIRSTWEEK_CMS))){
         firstDateOfWeek = firstDateOfFirstWeek;
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, SECONDWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(SECONDWEEK_CMS))){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 1));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, THIRDWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(THIRDWEEK_CMS))){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 2));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, FOURTHWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(FOURTHWEEK_CMS))){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 3));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, FIFTHWEEK_CMS)){
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(FIFTHWEEK_CMS))){
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 4));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, SIXTHWEEK_CMS)) {
+      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(SIXTHWEEK_CMS))) {
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 5));
       }
     }
