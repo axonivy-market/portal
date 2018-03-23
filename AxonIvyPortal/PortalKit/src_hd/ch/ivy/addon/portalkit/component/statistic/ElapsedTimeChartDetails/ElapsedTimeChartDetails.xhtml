@@ -22,13 +22,14 @@
           <f:selectItems value="#{elapsedTimeDetailsBean.rolesForCompareElapsedTime}" var="member" itemLabel="#{member.displayName}" itemValue="#{member}" />
         </p:selectOneMenu>
   
-          <p:outputLabel value="with Role:" />
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/withRole')}" />
           <p:selectOneMenu value="#{data.secondRoleToCompare}" id="second-role-to-compare" filter="true" filterMatchMode="contains" converter="ivy.ListItem">
             <f:selectItems value="#{elapsedTimeDetailsBean.rolesForCompareElapsedTime}" var="member" itemLabel="#{member.displayName}" itemValue="#{member}" />
           </p:selectOneMenu>
       </h:panelGrid>
 
-      <p:commandButton id="compare-elapsed-time-button" styleClass="compare-elapsed-time-button" update="compare-elapsed-time-form" value="Compare"
+      <p:commandButton id="compare-elapsed-time-button" styleClass="compare-elapsed-time-button" update="compare-elapsed-time-form"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/compareButton')}"
           actionListener="#{elapsedTimeDetailsBean.compare(data.firstRoleToCompare, data.secondRoleToCompare)}" />
     </h:panelGrid>
 
