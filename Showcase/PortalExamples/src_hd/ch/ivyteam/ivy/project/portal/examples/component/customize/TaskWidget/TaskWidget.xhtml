@@ -11,6 +11,7 @@
     <ui:param name="useOverrideListHeader" value="true" />
     <ui:param name="useOverrideHeader" value="true" />
     <ui:param name="useOverrideFilter" value="true" />
+    <ui:param name="useOverrideBody" value="true" />
 
     <ui:define name="taskListHeader">
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
@@ -84,6 +85,21 @@
       </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
     </ui:define>
 
+    <ui:define name="taskBody">
+        <!-- Reuse some components -->
+        <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-description" task="#{task}"
+          descriptionComponentToUpdate="#{p:component('task-description')}" />
+        <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="task-general-info" task="#{task}"
+          priorityComponentToUpdate="#{p:component('task-priority')}"
+          componentToUpdate="#{p:component('task-details-notes')}" />
+        <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
+        
+        <!-- Add new panel -->
+        <div class="task-details-item custom-task-details-panel">
+          <p>Custom panel</p>
+        </div>
+    </ui:define>
+    
     <ui:define name="css">
       <h:outputStylesheet library="css" name="examples.css" />
     </ui:define>
