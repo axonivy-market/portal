@@ -28,6 +28,7 @@ Ae0 @PushWFArc f10 '' #zField
 Ae0 @PushWFArc f11 '' #zField
 Ae0 @PushWFArc f225 '' #zField
 Ae0 @PushWFArc f12 '' #zField
+Ae0 @InfoButton f13 '' #zField
 >Proto Ae0 Ae0 AdditionalCaseDetailPage #zField
 Ae0 f0 outLink createInvestmentRequest.ivp #txt
 Ae0 f0 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
@@ -68,7 +69,7 @@ Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f0 @C|.responsibility Everybody #txt
-Ae0 f0 89 169 30 30 -79 17 #rect
+Ae0 f0 121 169 30 30 -79 17 #rect
 Ae0 f0 @|StartRequestIcon #fIcon
 Ae0 f1 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f1 537 169 30 30 0 15 #rect
@@ -114,14 +115,14 @@ Ae0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ae0 f5 208 162 176 44 -80 -8 #rect
+Ae0 f5 232 162 176 44 -80 -8 #rect
 Ae0 f5 @|CallSubIcon #fIcon
 Ae0 f6 expr out #txt
-Ae0 f6 119 184 208 184 #arcP
+Ae0 f6 151 184 232 184 #arcP
 Ae0 f4 expr out #txt
 Ae0 f4 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f4 var in1 #txt
-Ae0 f4 384 184 441 184 #arcP
+Ae0 f4 408 184 441 184 #arcP
 Ae0 f7 outLink showInvestmentRequestCustomFields.ivp #txt
 Ae0 f7 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f7 inParamDecl '<java.lang.Long serverId,java.lang.Long caseId> param;' #txt
@@ -153,7 +154,7 @@ Ae0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f7 @C|.responsibility Everybody #txt
-Ae0 f7 97 49 30 30 -116 17 #rect
+Ae0 f7 129 49 30 30 -116 17 #rect
 Ae0 f7 @|StartRequestIcon #fIcon
 Ae0 f8 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f8 701 49 30 30 0 15 #rect
@@ -234,7 +235,29 @@ Ae0 f11 668 64 701 64 #arcP
 Ae0 f225 expr out #txt
 Ae0 f225 352 64 392 64 #arcP
 Ae0 f12 expr out #txt
-Ae0 f12 127 64 312 64 #arcP
+Ae0 f12 159 64 312 64 #arcP
+Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>EXAMPLE HOW TO CUSTOMIZE CASE DETAIL PAGE
+We need to do 2 steps:
+
+1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFields.ivp
+
+2. For case you want to have customized case detail page, store the URL of custom page to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additonal property.
+We also provide  the callable process "SetAdditionalCaseDetailPage", you could use this if you just need information from case only.
+Input for this process is friendly URL of your customized case detail page. Example: Start Processes/CustomizedCaseDetail/example.ivp
+
+
+</name>
+        <nameStyle>42,7
+568,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f13 768 18 928 188 -459 -88 #rect
+Ae0 f13 @|IBIcon #fIcon
 >Proto Ae0 .type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
