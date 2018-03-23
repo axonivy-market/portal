@@ -65,6 +65,7 @@ public class RemoteTaskMapper {
       result.setExpiryPriority(WorkflowPriority.valueOf(ivyTask.getExpirePriority()));
       result.setOriginalPriority(WorkflowPriority.valueOf(ivyTask.getOriginalPriority()));
     } catch (Exception e) {
+      Ivy.log().error(e);
     }
 
     /*

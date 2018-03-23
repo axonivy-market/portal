@@ -149,7 +149,6 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
         }
       }
     } catch (Exception e) {
-      // Ivy.log().error(e);
       throw new WSException(10019, e);
     }
   }
@@ -184,7 +183,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
         saveUserSetting(users.get(0), setting);
       }
     } catch (Exception e) {
-      throw new WSException();
+      throw new WSException(10019, e);
     }
 
   }

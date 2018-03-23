@@ -8,6 +8,7 @@ import java.util.Comparator;
 
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.List;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -22,6 +23,7 @@ public class Helper {
 				try {
 					return (u1.getDisplayName().toLowerCase().compareTo(u2.getDisplayName().toLowerCase()));
 				} catch (Exception ex) {
+				  Ivy.log().error(ex);
 					return 0;
 				}
 			}
@@ -36,6 +38,7 @@ public class Helper {
 				try {
 					return (r1.getDisplayName().toLowerCase().compareTo(r2.getDisplayName().toLowerCase()));
 				} catch (Exception ex) {
+				  Ivy.log().error(ex);
 					return 0;
 				}
 			}
@@ -63,6 +66,7 @@ public class Helper {
 					try {
 						return (m1.getDisplayName().toLowerCase().compareTo(m2.getDisplayName().toLowerCase()));
 					} catch (Exception ex) {
+					  Ivy.log().error(ex);
 						return 0;
 					}
 			}
@@ -101,6 +105,7 @@ public class Helper {
 				try {
 					return (t1.getCount().compareTo(t2.getCount()));
 				} catch (Exception ex) {
+				  Ivy.log().error(ex);
 					return 0;
 				}
 			}
