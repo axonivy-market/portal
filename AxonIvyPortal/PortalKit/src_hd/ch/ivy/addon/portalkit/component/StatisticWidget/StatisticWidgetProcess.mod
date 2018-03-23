@@ -32,6 +32,12 @@ Cs0 @PushWFArc f17 '' #zField
 Cs0 @RichDialogProcessEnd f18 '' #zField
 Cs0 @RichDialogProcessStart f19 '' #zField
 Cs0 @PushWFArc f20 '' #zField
+Cs0 @RichDialogProcessStart f9 '' #zField
+Cs0 @RichDialogProcessEnd f11 '' #zField
+Cs0 @PushWFArc f14 '' #zField
+Cs0 @RichDialogProcessEnd f21 '' #zField
+Cs0 @RichDialogProcessStart f22 '' #zField
+Cs0 @PushWFArc f23 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
@@ -190,6 +196,54 @@ Cs0 f19 81 532 26 26 -84 15 #rect
 Cs0 f19 @|RichDialogProcessStartIcon #fIcon
 Cs0 f20 expr out #txt
 Cs0 f20 107 545 273 545 #arcP
+Cs0 f9 guid 16250B3D0BF56AEB #txt
+Cs0 f9 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f9 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f9 actionTable 'out=in;
+out.isBackFromDrilldown=true;
+out.isDrilldownExpiryChart=false;
+' #txt
+Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>switchDrilldownExpiryChartMode</name>
+        <nameStyle>30,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f9 85 634 26 26 -89 15 #rect
+Cs0 f9 @|RichDialogProcessStartIcon #fIcon
+Cs0 f11 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f11 277 634 26 26 0 12 #rect
+Cs0 f11 @|RichDialogProcessEndIcon #fIcon
+Cs0 f14 expr out #txt
+Cs0 f14 111 647 277 647 #arcP
+Cs0 f21 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f21 271 731 26 26 0 12 #rect
+Cs0 f21 @|RichDialogProcessEndIcon #fIcon
+Cs0 f22 guid 16250B4E6A641072 #txt
+Cs0 f22 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f22 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f22 actionTable 'out=in;
+out.isBackFromDrilldown=false;
+out.isDrilldownExpiryChart=true;
+' #txt
+Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownExpiryChartListener</name>
+        <nameStyle>28,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f22 79 731 26 26 -78 15 #rect
+Cs0 f22 @|RichDialogProcessStartIcon #fIcon
+Cs0 f23 expr out #txt
+Cs0 f23 105 744 271 744 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -206,3 +260,7 @@ Cs0 f16 mainOut f17 tail #connect
 Cs0 f17 head f15 mainIn #connect
 Cs0 f19 mainOut f20 tail #connect
 Cs0 f20 head f18 mainIn #connect
+Cs0 f9 mainOut f14 tail #connect
+Cs0 f14 head f11 mainIn #connect
+Cs0 f22 mainOut f23 tail #connect
+Cs0 f23 head f21 mainIn #connect
