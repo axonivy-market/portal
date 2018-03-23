@@ -135,7 +135,7 @@
               <p:row>
                 <p:column>
                   <p:outputLabel for="priority"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}:" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}:" />
                 </p:column>
                 <p:column>
                   <span class="#{taskBean.getPriorityIcon(cc.attrs.task.getPriority())}" />
@@ -154,7 +154,7 @@
               </p:row>
               <p:row>
                 <p:column>
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}:" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}:" />
                 </p:column>
                 <p:column>
                   <span class="#{taskBean.getStateIcon(cc.attrs.task.getState())}" />
@@ -163,7 +163,7 @@
               </p:row>
               <p:row>
                 <p:column>
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible')}:" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                 </p:column>
                 <p:column>
                   <span class="#{taskBean.checkActivator(cc.attrs.task.activator.isUser())}" />
@@ -192,7 +192,7 @@
               </p:row>
               <p:row>
                 <p:column>
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskId')}:" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}:" />
                 </p:column>
                 <p:column>
                   <h:outputText id="task-id" value="##{cc.attrs.task.id}" />

@@ -141,7 +141,7 @@
         <ui:param name="sortedField" value="NAME" />
         <ui:param name="sortable" value="true" />
         <ui:param name="value"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/nameAndDescription')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/NAME')}" />
       </ui:include>
       <ui:include src="ColumnHeader.xhtml">
         <ui:param name="id" value="id-column-header" />
@@ -187,7 +187,7 @@
         <ui:param name="componentToBeUpdated" value="" />
         <ui:param name="sortedField" value="STATE" />
         <ui:param name="sortable" value="true" />
-        <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}" />
+        <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
       </ui:include>
     </h:panelGroup>
     <div class="widget-content">

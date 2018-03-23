@@ -692,6 +692,7 @@ public final class CaseUtils {
     try {
       return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
     } catch (Exception e) {
+      Ivy.log().error(e);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
       return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
     }
