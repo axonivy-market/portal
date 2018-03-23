@@ -122,10 +122,11 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
 
   @Override
   public void setRowIndex(int index) {
+    int rowIndex = index;
     if (index >= data.size()) {
-      index = -1;
+      rowIndex = -1;
     }
-    this.rowIndex = index;
+    this.rowIndex = rowIndex;
   }
 
   @Override
