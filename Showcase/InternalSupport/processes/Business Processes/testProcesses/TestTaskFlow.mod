@@ -93,9 +93,6 @@ Tt0 @PushWFArc f79 '' #zField
 Tt0 @PushWFArc f80 '' #zField
 Tt0 @PushWFArc f81 '' #zField
 Tt0 @PushWFArc f82 '' #zField
-Tt0 @GridStep f84 '' #zField
-Tt0 @PushWFArc f85 '' #zField
-Tt0 @TkArc f83 '' #zField
 Tt0 @RichDialog f86 '' #zField
 Tt0 @RichDialog f87 '' #zField
 Tt0 @EndTask f89 '' #zField
@@ -150,6 +147,9 @@ Tt0 @TaskSwitchSimple f136 '' #zField
 Tt0 @EndTask f137 '' #zField
 Tt0 @TkArc f138 '' #zField
 Tt0 @PushWFArc f139 '' #zField
+Tt0 @CallSub f83 '' #zField
+Tt0 @PushWFArc f84 '' #zField
+Tt0 @TkArc f85 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -1380,38 +1380,6 @@ Tt0 f82 expr out #txt
 Tt0 f82 1208 700 1085 752 #arcP
 Tt0 f82 1 1208 752 #addKink
 Tt0 f82 1 0.07231812892046431 0 0 #arcLabel
-Tt0 f84 actionDecl 'internaltest.Data out;
-' #txt
-Tt0 f84 actionTable 'out=in;
-' #txt
-Tt0 f84 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.support.UrlDetector;
-import ch.ivy.addon.portalkit.service.ServerWorkingOnDetector;
-import ch.ivy.addon.portalkit.persistence.domain.Server;
-
-Server server = (new ServerWorkingOnDetector()).getServerWorkingOn();
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-String casePageUrl = collector.findLinkByFriendlyRequestPath("Start Processes/AdditionalCaseDetails/showAdditionalCaseDetails.ivp")  
-											+ "?caseId=" + ivy.case.getId() + "&serverId=" + server.getId();
-ivy.case.setAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString(), casePageUrl);' #txt
-Tt0 f84 security system #txt
-Tt0 f84 type internaltest.Data #txt
-Tt0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>set customization flag</name>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f84 1008 551 128 44 -59 -8 #rect
-Tt0 f84 @|StepIcon #fIcon
-Tt0 f85 expr out #txt
-Tt0 f85 1072 514 1072 551 #arcP
-Tt0 f83 expr out #txt
-Tt0 f83 type internaltest.Data #txt
-Tt0 f83 var in1 #txt
-Tt0 f83 1072 595 1072 618 #arcP
 Tt0 f86 targetWindow NEW:card: #txt
 Tt0 f86 targetDisplay TOP #txt
 Tt0 f86 richDialogId internaltest.TaskForm #txt
@@ -2259,6 +2227,32 @@ Tt0 f138 208 1151 208 1233 #arcP
 Tt0 f139 expr data #txt
 Tt0 f139 outCond ivp=="TaskA.ivp" #txt
 Tt0 f139 208 1263 208 1329 #arcP
+Tt0 f83 type internaltest.Data #txt
+Tt0 f83 processCall 'Functional Processes/SetAdditonalCaseDetailPage:call(String)' #txt
+Tt0 f83 doCall true #txt
+Tt0 f83 requestActionDecl '<java.lang.String linkToAddtionalCaseDetailPage> param;
+' #txt
+Tt0 f83 requestMappingAction 'param.linkToAddtionalCaseDetailPage="Start Processes/AdditionalCaseDetails/showAdditionalCaseDetails.ivp";
+' #txt
+Tt0 f83 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f83 responseMappingAction 'out=in;
+' #txt
+Tt0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SetAdditonalCaseDetailPage</name>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f83 984 538 176 44 -80 -8 #rect
+Tt0 f83 @|CallSubIcon #fIcon
+Tt0 f84 expr out #txt
+Tt0 f84 1072 514 1072 538 #arcP
+Tt0 f85 expr out #txt
+Tt0 f85 type internaltest.Data #txt
+Tt0 f85 var in1 #txt
+Tt0 f85 1072 582 1072 618 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2352,10 +2346,6 @@ Tt0 f76 mainOut f80 tail #connect
 Tt0 f80 head f74 mainIn #connect
 Tt0 f72 mainOut f82 tail #connect
 Tt0 f82 head f74 mainIn #connect
-Tt0 f71 mainOut f85 tail #connect
-Tt0 f85 head f84 mainIn #connect
-Tt0 f84 mainOut f83 tail #connect
-Tt0 f83 head f75 in #connect
 Tt0 f90 out f99 tail #connect
 Tt0 f99 head f91 mainIn #connect
 Tt0 f90 out f94 tail #connect
@@ -2412,3 +2402,7 @@ Tt0 f135 mainOut f138 tail #connect
 Tt0 f138 head f136 in #connect
 Tt0 f136 out f139 tail #connect
 Tt0 f139 head f137 mainIn #connect
+Tt0 f71 mainOut f84 tail #connect
+Tt0 f84 head f83 mainIn #connect
+Tt0 f83 mainOut f85 tail #connect
+Tt0 f85 head f75 in #connect
