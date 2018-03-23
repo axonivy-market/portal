@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -149,9 +150,8 @@ public final class TaskUtils {
   public static void resetTask(final ITask task) throws PersistencyException, EnvironmentNotAvailableException,
       Exception {
     // must be in RESUMED, CREATED, PARKED, READY_FOR_JOIN, FAILED
-    if (task.getState().equals(TaskState.RESUMED) || (task.getState().equals(TaskState.CREATED))
-        || task.getState().equals(TaskState.PARKED) || task.getState().equals(TaskState.READY_FOR_JOIN)
-        || task.getState().equals(TaskState.FAILED)) {
+    if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, 
+        TaskState.READY_FOR_JOIN, TaskState.FAILED).contains(task.getState())){
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Boolean>() {
         @Override
         public Boolean call() throws Exception {
@@ -171,15 +171,15 @@ public final class TaskUtils {
   public static void parkTask(final ITask task) throws Exception {
     ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
       @Override
-      public Void call() throws Exception {
+      public Void call() throws PersistencyException {
         IWorkflowSession iWorkflowSession = Ivy.session();
         // Resume a task if it's suspended.
-        if (task.getState().equals(TaskState.SUSPENDED)) {
+        if (task.getState() == TaskState.SUSPENDED) {
           iWorkflowSession.resumeTask(task.getId());
         }
 
         // If the task is resumed or created, then park task.
-        if (task.getState().equals(TaskState.RESUMED) || (task.getState().equals(TaskState.CREATED))) {
+        if (task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
           iWorkflowSession.parkTask(task);
         }
 
@@ -329,7 +329,7 @@ public final class TaskUtils {
     List<TaskVO> currentTasks = new ArrayList<TaskVO>();
     if (iCase != null && iCase.getTasks() != null && iCase.getTasks().size() > 0) {
       for (ITask iTask : iCase.getTasks()) {
-        if (TaskState.DONE.equals(iTask.getState())) {
+        if (TaskState.DONE == iTask.getState()) {
           currentTasks.add(ConverterUtils.convertITaskToTaskVO(iTask));
         }
       }
@@ -348,7 +348,7 @@ public final class TaskUtils {
     List<ITask> currentTasks = new ArrayList<ITask>();
     if (iCase != null && iCase.getTasks() != null && iCase.getTasks().size() > 0) {
       for (ITask iTask : iCase.getTasks()) {
-        if (iTask != null && TaskState.DONE.equals(iTask.getState())) {
+        if (iTask != null && TaskState.DONE == iTask.getState()) {
           currentTasks.add(iTask);
         }
       }

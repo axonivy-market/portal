@@ -37,18 +37,18 @@ public interface IUserSettingService {
 	 * @param applications
 	 * @param user
 	 * @return UserSettingServiceResult 
-	 * @throws Exception 
+	 * @throws WSException 
 	 */
-	public UserSettingServiceResult getEMailSettings(List<String> applications, String user) throws Exception;
+	public UserSettingServiceResult getEMailSettings(List<String> applications, String user) throws WSException;
 
 	/**
 	 * Set email settings for all applications
 	 * @param settings
 	 * @param user
 	 * @return List<WSException>
-	 * @throws Exception 
+	 * @throws WSException 
 	 */
-	public List<WSException> setEMailSettings(List<IvyEmailSetting> settings, String user) throws Exception;
+	public List<WSException> setEMailSettings(List<IvyEmailSetting> settings, String user) throws WSException;
 
   /**
    * Change password of a user in applications
