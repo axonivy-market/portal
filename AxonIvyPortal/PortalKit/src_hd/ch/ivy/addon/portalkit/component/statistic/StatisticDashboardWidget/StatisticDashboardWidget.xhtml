@@ -9,13 +9,16 @@
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
   <cc:attribute name="drilldownListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
+  <cc:attribute name="drilldownExpiryChartListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
   <cc:attribute name="isDrilldownElapsedTime" default="false" />
+  <cc:attribute name="isDrilldownExpiryChart" default="false" />
   <cc:attribute name="showTaskListImmediately" default="false" />
+  <cc:attribute name="isBackFromDrilldown" default="false" />
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately)}" type="preRenderComponent" />
+  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown)}" type="preRenderComponent" />
   <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" styleClass="statistic-dashboard-expand-mode #{statisticDashboardBean.getAdditionalStyleForChart(data.statisticChartList)}"
     rendered="#{!cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
     <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}">
@@ -65,6 +68,7 @@
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax listener="#{cc.attrs.drilldownExpiryChartListener}" update="@([id$='create-chart-header'])" />
           <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" update="#{p:component('widget-container')}" />
         </p:chart>
 
