@@ -59,10 +59,8 @@ public class StatisticDashboardBean implements Serializable {
         if (maxWidth < MONTH_CHART_WIDTH) {
           maxWidth = MONTH_CHART_WIDTH;
         }
-      } else if (StatisticService.selectDayOfWeek(suffix)) {
-        if (maxWidth < DAY_CHART_WIDTH) {
-          maxWidth = DAY_CHART_WIDTH;
-        }
+      } else if (StatisticService.selectDayOfWeek(suffix) && maxWidth < DAY_CHART_WIDTH) {
+        maxWidth = DAY_CHART_WIDTH;
       }
     }
     if (maxWidth > 0) {

@@ -2,6 +2,10 @@ package ch.ivy.addon.portalkit.statistics;
 
 
 public class StatisticChartConstants {
+  
+  private StatisticChartConstants() {
+    
+  }
 
   public static final String TODAY_EXPIRY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/today";
   public static final String THIS_WEEK_EXPIRY_KEY =

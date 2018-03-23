@@ -38,6 +38,10 @@ import org.apache.commons.lang3.time.DateUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class StatisticChartTimeUtils {
+  
+  private StatisticChartTimeUtils() {
+    
+  }
 
   public static int getShiftDaysFromDayOfWeek(String dayOfWeek) {
     int shiftDays = 0;
