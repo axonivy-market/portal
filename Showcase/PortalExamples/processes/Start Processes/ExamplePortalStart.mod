@@ -72,7 +72,7 @@ Pt0 f0 requestEnabled true #txt
 Pt0 f0 triggerEnabled false #txt
 Pt0 f0 callSignature PortalStart(String,String) #txt
 Pt0 f0 persist false #txt
-Pt0 f0 startName <%=ivy.cms.co("/Processes/portalHome")%> #txt
+Pt0 f0 startName 'Portal home for task list customization' #txt
 Pt0 f0 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
 TaskTriggered.EXTYPE=0
 TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
