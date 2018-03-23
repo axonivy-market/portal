@@ -17,7 +17,7 @@
     <div class="Separator" />
     <h:panelGrid columns="2" columnClasses="task-details-data-1st-column, task-details-data-2nd-column"
       rowClasses="task-details-row-space">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" />
       <h:panelGroup styleClass="task-details-priority">
         <ui:fragment rendered="#{taskBean.canChangeOriginalPriority(task)}">
           <h:form id="priority-form">
@@ -62,7 +62,7 @@
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.workerFullName}"
         username="#{task.workerUserName}" />
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.activatorFullName}"
         username="#{task.activatorUserName}" />
 
@@ -88,7 +88,7 @@
       </h:outputText>
 
 
-      <h:outputText id="expiryLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expiry')}" />
+      <h:outputText id="expiryLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
 
       <ui:fragment rendered="#{taskBean.isNotDone(task)}">
         <h:form id="expiry-form">
