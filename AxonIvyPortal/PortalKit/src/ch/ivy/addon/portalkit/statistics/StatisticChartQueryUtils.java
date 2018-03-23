@@ -264,17 +264,17 @@ public class StatisticChartQueryUtils {
    * Generate case query for statistic
    * 
    * @param filter statistic filter
-   * @param forElapsedStatistic for elapsed statistic
+   * @param isElapsedStatistic for elapsed statistic
    * @return generated case query
    */
-  public static CaseQuery generateCaseQuery(StatisticFilter filter, boolean forElapsedStatistic) {
+  public static CaseQuery generateCaseQuery(StatisticFilter filter, boolean isElapsedStatistic) {
     CaseQuery caseQuery = CaseQuery.create();
 
     // Filter by created date
     generateCaseQueryForStartTimestamp(filter, caseQuery);
 
     // Filter by case state
-    generateCaseQueryForCaseState(filter, forElapsedStatistic, caseQuery);
+    generateCaseQueryForCaseState(filter, isElapsedStatistic, caseQuery);
 
     // Filter by case category
     generateCaseQueryForCaseCategory(filter, caseQuery);
