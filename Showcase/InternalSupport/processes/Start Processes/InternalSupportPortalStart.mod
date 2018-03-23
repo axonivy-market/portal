@@ -348,6 +348,7 @@ TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSe
 in.dataModel = taskEndInfo.dataModel;
 in.portalPage = taskEndInfo.isFromPortalHome ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
 SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
+Pt0 f2 security system #txt
 Pt0 f2 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
