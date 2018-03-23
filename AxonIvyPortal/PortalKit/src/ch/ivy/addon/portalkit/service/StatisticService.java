@@ -1051,6 +1051,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       int index = event.getItemIndex();
       return model.getData().get(0).keySet().toArray()[index].toString();
     } catch (Exception e) {
+      Ivy.log().error(e);
       return "";
     }
   }
@@ -1061,6 +1062,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       int index = event.getItemIndex();
       return model.getSeries().get(0).getData().keySet().toArray()[index].toString();
     } catch (Exception e) {
+      Ivy.log().error(e);
       return "";
     }
   }
@@ -1071,6 +1073,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       int index = event.getItemIndex();
       return model.getData().keySet().toArray()[index].toString();
     } catch (Exception e) {
+      Ivy.log().error(e);
       return "";
     }
   }
