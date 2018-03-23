@@ -111,7 +111,8 @@ public final class Dates {
    */
   public static Date getFirstDayOfLast6Month() {
     LocalDate ld = LocalDate.now();
-    ld = ld.minusMonths(6);
+    //Because we include current month, so just minus 5 month
+    ld = ld.minusMonths(5);
     ld = ld.with(TemporalAdjusters.firstDayOfMonth());
     return getLocalDateWithTime(ld, LocalTime.MIN);
   }
