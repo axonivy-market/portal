@@ -16,3 +16,5 @@ emptySetting Boolean #field
 emptySetting PERSISTENT #fieldModifier
 errorLink String #field
 errorLink PERSISTENT #fieldModifier
+defaultRemoteEmailSettings java.util.List<ch.ivy.addon.portalkit.bo.RemoteEmailSetting> #field
+defaultRemoteEmailSettings PERSISTENT #fieldModifier
