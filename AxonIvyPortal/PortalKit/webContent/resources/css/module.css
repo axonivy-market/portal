@@ -3920,6 +3920,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     width: 24rem;
     height: 24rem;
   }
+  
+  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+	background: none;
+	width: 165px;
+	padding: 8px 0 !important;
+  }
 
   .edit-statistic-container {
     width: 78rem;
@@ -3948,6 +3954,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     width: 34rem;
     height: 34rem;
   }
+  
+  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+	background: none;
+	width: 190px;
+	padding: 8px 0 !important;
+  }
 }
 
 /* Large screen */
@@ -3955,6 +3967,11 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .statistic-chart {
     width: 34rem;
     height: 34rem;
+  }
+  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+	background: none;
+	width: 190px;
+	padding: 8px 0 !important;
   }
 }
 
@@ -3971,9 +3988,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   display: block;
 }
 
-.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-	background: none;
-}
 
 .statistic-dashboard-container {
   margin: auto;
