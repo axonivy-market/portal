@@ -19,7 +19,7 @@
 
 <cc:implementation>
   <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown)}" type="preRenderComponent" />
-  <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" styleClass="statistic-dashboard-expand-mode #{statisticDashboardBean.getAdditionalStyleForChart(data.statisticChartList)}"
+  <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" styleClass="statistic-dashboard-expand-mode #{cc.attrs.isDrilldownExpiryChart ? 'task-by-expiry-drilldown-mode' : ''}"
     rendered="#{!cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
     <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}">
       <c:set var="index" value="#{data.statisticChartList.indexOf(chart)}" />
@@ -32,7 +32,7 @@
               oncomplete="PF('chart-details-dialog').show();" />
             <h:outputLabel id="chart-name" styleClass="chart-name" value="#{chart.name}" for="chart-#{chart.id}" />
           </h:panelGroup>
-          <h:panelGroup layout="block" styleClass="chart-actions-container" rendered="#{statisticDashboardBean.shouldRenderArrows(data.statisticChartList)}">
+          <h:panelGroup layout="block" styleClass="chart-actions-container" rendered="#{!cc.attrs.isDrilldownExpiryChart}">
             <p:commandLink styleClass="fa fa-arrow-down chart-action"
               actionListener="#{logic.moveDown(chart)}"
               update="@([id$='statistic-dashboard-container'])"
