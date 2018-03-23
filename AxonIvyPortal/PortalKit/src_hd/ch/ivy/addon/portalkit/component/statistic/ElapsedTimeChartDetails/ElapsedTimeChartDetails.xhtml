@@ -33,7 +33,7 @@
     </h:panelGrid>
 
     <p:spacer height="30" />
-    <p:chart id="elapsed-tasks-chart" type="bar"
+    <p:chart id="elapsed-tasks-chart" type="bar" rendered="#{!elapsedTimeDetailsBean.getDataEmpty()}"
       styleClass="big-horizontal-statistic-chart" model="#{elapsedTimeDetailsBean.elapsedTimeOfTasksModel}" />
 
     <p:spacer height="30" />
