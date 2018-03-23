@@ -47,6 +47,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private RemoteRole defaultRole;
   private String caseQueryOfSelectedChart;
   private String chartName;
+  private boolean dataEmpty;
 
   private static final String DAYS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/days");
   private static final String HOURS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/hours");
@@ -65,6 +66,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     defaultRole = rolesForCompareElapsedTime.stream().findFirst().filter((role) -> ROLE_EVERYBODY.equals(role.getName())).get();
     compare(defaultRole, defaultRole);
     chartName = statisticChart.getName();
+    dataEmpty = false;
   }
 
   public void compare(RemoteRole firstRoleToCompare, RemoteRole secondRoleToCompare) {
@@ -102,6 +104,12 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
     ChartSeries chartSeriesOfFirstRole = generateChartDataForCompareRole(taskQuery, firstRoleToCompare);
     ChartSeries chartSeriesOfSecondRole = generateChartDataForCompareRole(taskQuery, secondRoleToCompare);
+    if (chartSeriesOfFirstRole.getData().size() == 0 && chartSeriesOfSecondRole.getData().size() == 0) {
+      dataEmpty = true;
+      return ;
+    } else {
+      dataEmpty = false;
+    }
     populateDataForChartSeries(chartSeriesOfFirstRole, chartSeriesOfSecondRole);
 
     result.addSeries(chartSeriesOfFirstRole);
@@ -176,10 +184,6 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
     for (Map.Entry<String, Number> entry : elapsedTimeData.entrySet()) {
       result.put(entry.getKey(), entry.getValue());
-    }
-
-    if (result.size() == 0) {
-      result.put(StringUtils.EMPTY, 0);
     }
 
     ChartSeries series = new ChartSeries();
@@ -270,5 +274,9 @@ public class ElapsedTimeDetailsBean implements Serializable {
       fileName = fileName.replace("[", "").replace("]", "");
     }
     return fileName;
+  }
+
+  public boolean getDataEmpty() {
+    return dataEmpty;
   }
 }
