@@ -15,6 +15,10 @@
         <name>switchMode</name>
         <description></description>
     </method>
+    <method>
+        <name>drillDownExpiryListener</name>
+        <description></description>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
