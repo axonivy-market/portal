@@ -234,13 +234,13 @@ out.isDrilldownExpiryChart=true;
 Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>drilldownExpiryChartListener</name>
-        <nameStyle>28,5,7
+        <name>drilldownExpiryListener</name>
+        <nameStyle>23,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f22 79 731 26 26 -78 15 #rect
+Cs0 f22 79 731 26 26 -63 15 #rect
 Cs0 f22 @|RichDialogProcessStartIcon #fIcon
 Cs0 f23 expr out #txt
 Cs0 f23 105 744 271 744 #arcP
