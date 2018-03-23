@@ -135,12 +135,13 @@ Ss0 f0 expr out #txt
 Ss0 f0 141 64 243 64 #arcP
 Ss0 f1 guid 1604F3D5F5A87086 #txt
 Ss0 f1 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean) #txt
+Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean,Boolean) #txt
 Ss0 f1 disableUIEvents false #txt
 Ss0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.Boolean showTaskListImmediately> param = methodEvent.getInputArguments();
+<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.Boolean showTaskListImmediately,java.lang.Boolean isBackFromDrilldown> param = methodEvent.getInputArguments();
 ' #txt
-Ss0 f1 inParameterMapAction 'out.showTaskListImmediately=param.showTaskListImmediately;
+Ss0 f1 inParameterMapAction 'out.isBackFromDrilldown=param.isBackFromDrilldown;
+out.showTaskListImmediately=param.showTaskListImmediately;
 out.statisticChartList=param.statisticChartList;
 ' #txt
 Ss0 f1 outParameterDecl '<> result;
@@ -372,9 +373,14 @@ Ss0 f30 actionCode 'import org.omg.CORBA.INITIALIZE;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
+StatisticService service = new StatisticService();
+if (in.isBackFromDrilldown) {
+	in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
+	in.selectedItemOfDrilldown = null;
+}
+
 if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = true;
-	StatisticService service = new StatisticService();
 	if(in.selectedItemOfDrilldown.isEmpty()){
 		service.generateChartModelForStatisticCharts(in.statisticChartList);
 	}else{
