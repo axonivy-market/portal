@@ -10,6 +10,7 @@
     <ui:param name="isNotRequiredLogin" value="false" />
     <ui:param name="useOverrideListHeader" value="true" />
     <ui:param name="useOverrideHeader" value="true" />
+    <ui:param name="useOverrideFilter" value="true" />
 
     <ui:define name="taskListHeader">
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
@@ -43,6 +44,44 @@
       <h:outputText id="customer-type" styleClass="TexAlCenter custom-datetime" value="#{task.customTimestampField1}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
       </h:outputText>
+    </ui:define>
+
+    <ui:define name="taskFilter">
+      <c:set var="filterContainer" value="#{taskView.dataModel.filterContainer}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCreationDateFilter
+        filter="#{filterContainer.creationDateFilter}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskExpiredDateFilter
+        filter="#{filterContainer.expiredDateFilter}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskDescriptionFilter
+        filter="#{filterContainer.descriptionFilter}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter
+        filter="#{filterContainer.responsibleFilter}" dataModel="#{taskView.dataModel}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="customer-name-filter"
+        dataModel="#{taskView.dataModel}" taskFilter="#{filterContainer.customerNameFilter}">
+        <p:inputText id="customVarChar5" value="#{filterContainer.customerNameFilter.customerName}" />
+      </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="shipment-date-filter"
+        dataModel="#{taskView.dataModel}" taskFilter="#{filterContainer.shipmentDateFilter}"
+        dismissableOverlayPanel="false" >
+        <h:panelGrid columns="3">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
+            for="from-shipment-calendar" />
+          <p:spacer width="5" />
+          <p:calendar id="from-shipment-calendar" value="#{filterContainer.shipmentDateFilter.fromShipmentDate}"
+            pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+            converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
+            for="to-shipment-calendar" />
+          <p:spacer width="5" />
+          <p:calendar id="to-shipment-calendar" value="#{filterContainer.shipmentDateFilter.toShipmentDate}"
+            pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+            converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+        </h:panelGrid>
+      </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
     </ui:define>
 
     <ui:define name="css">
