@@ -1,0 +1,4 @@
+InvestmentRequestCaseDetailPageData #class
+ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage #namespace
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+remoteCase PERSISTENT #fieldModifier

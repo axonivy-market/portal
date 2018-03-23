@@ -1,0 +1,3 @@
+SetAdditonalCaseDetailPageData #class
+ch.ivy.addon.portal.generic #namespace
+linkToAdditonalCaseDetailPage String #field
