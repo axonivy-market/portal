@@ -1,0 +1,6 @@
+AdditionalCaseDetailPage #class
+ch.ivyteam.ivy.project.portal.examples.customization #namespace
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+remoteCaseId Long #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+serverId Long #field

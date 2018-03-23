@@ -3459,8 +3459,32 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   min-width: 0;
 }
 
+.logo-chooser-container {
+  display: inline;
+  margin-right: 30px;
+}
+
+.logo-chooser-container,
+.logo-chooser-container td,
+.logo-chooser-container .ui-panelgrid {
+  border: none !important;
+}
+
+.logo-chooser-container .label {
+  vertical-align: middle;
+}
+
+.logo-chooser-container .logo-size-recommendation {
+  padding-left: 10px;
+}
+
+.logo-height {
+  padding-left: 10px;
+}
+
 .logo-height input {
-  width: 90px;
+  width: 70px;
+  text-align: center;
 }
 
 .logo-height-unit {
@@ -4038,6 +4062,15 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .task-by-expiry-drilldown-mode {
   text-align: center;
+}
+
+.task-by-expiry-drilldown-mode .chart-info {
+  display: none;
+}
+
+.task-by-expiry-drilldown-mode .ui-panel-titlebar.ui-widget-header .ui-panel-title {
+  width: 100%;
+  text-align: left;
 }
 
 .add-statistic-panel .add-statistic-panel-column-1 {
