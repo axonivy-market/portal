@@ -32,7 +32,17 @@
 					</mediaobject>
 				</listitem>
 			</orderedlist>
-			
+		</para>
+		<para>
+			<tip>
+			If you simply want display information from case, you could use <code>SetAdditonalCaseDetailPage.mod</code> callable process.
+			You just need input the friendly URL of process.
+			</tip>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/AdditionalCaseDetailsPage/SetAdditonalCaseDetailPageCallableProcess.png" />
+				</imageobject>
+			</mediaobject>
 		</para>
 	</sect2>
 </sect1>
