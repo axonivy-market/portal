@@ -71,30 +71,6 @@ public class StatisticDashboardBean implements Serializable {
     return "";
   }
 
-  public String getAdditionalStyleForChart(List<StatisticChart> chartList) {
-    boolean isDrilldownModeOfExpiryChart = false;
-    for (StatisticChart chart : chartList) {
-      if (chart.getId().contains("_")) {
-      //chart with format: id + _ + suffix is lower level (month/week/day/hour) chart when drill down
-        isDrilldownModeOfExpiryChart = true;
-        break;
-      }
-    }
-    if (isDrilldownModeOfExpiryChart) {
-      return "task-by-expiry-drilldown-mode";
-    }
-    return "";
-  }
-
-  public boolean shouldRenderArrows(List<StatisticChart> chartList) {
-    for (StatisticChart chart : chartList) {
-      if (chart.getId().contains("_")) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   public String concatCreatedDate(StatisticFilter filter) {
     StatisticTimePeriodSelection timeSelection = filter.getTimePeriodSelection();
     if (!timeSelection.equals(StatisticTimePeriodSelection.CUSTOM)) {
