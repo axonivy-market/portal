@@ -22,7 +22,7 @@ Cs0 @PushWFArc f3 '' #zField
 Cs0 @PushWFArc f6 '' #zField
 Cs0 @PushWFArc f8 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
-Cs0 f0 outLink createTasksWithCustomVarCharAndCustomDateField.ivp #txt
+Cs0 f0 outLink createTasksForTaskListCustomization.ivp #txt
 Cs0 f0 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f0 inParamDecl '<> param;' #txt
 Cs0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
@@ -30,9 +30,10 @@ Cs0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
 Cs0 f0 guid 162511D258ADC37F #txt
 Cs0 f0 requestEnabled true #txt
 Cs0 f0 triggerEnabled false #txt
-Cs0 f0 callSignature createTasksWithCustomVarCharAndCustomDateField() #txt
+Cs0 f0 callSignature createTasksForTaskListCustomization() #txt
 Cs0 f0 persist false #txt
-Cs0 f0 startName createTasksWithCustomVarCharAndCustomDateField #txt
+Cs0 f0 startName 'Create Tasks For Task List Customization' #txt
+Cs0 f0 startDescription 'Create 3 tasks, each task has customVarcharField5 and customTimestampField1' #txt
 Cs0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
@@ -44,8 +45,8 @@ Cs0 f0 showInStartList 1 #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>createTasksWithCustomVarCharAndCustomDateField.ivp</name>
-        <nameStyle>50,5,7
+        <name>createTasksForTaskListCustomization.ivp</name>
+        <nameStyle>39,5,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -95,7 +96,7 @@ TaskB.PRI=1
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.timestamp.1=new DateTime()
+TaskB.customFields.timestamp.1=new DateTime("2080-03-23 11\:11\:11")
 TaskB.customFields.varchar.1="Interior"
 TaskB.customFields.varchar.5="Tung Le"
 TaskC.CATEGORY=Food
