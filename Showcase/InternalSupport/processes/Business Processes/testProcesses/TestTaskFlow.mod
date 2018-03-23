@@ -150,6 +150,34 @@ Tt0 @PushWFArc f139 '' #zField
 Tt0 @CallSub f83 '' #zField
 Tt0 @PushWFArc f84 '' #zField
 Tt0 @TkArc f85 '' #zField
+Tt0 @StartRequest f140 '' #zField
+Tt0 @TaskSwitchSimple f141 '' #zField
+Tt0 @TkArc f142 '' #zField
+Tt0 @EndTask f145 '' #zField
+Tt0 @TaskSwitch f147 '' #zField
+Tt0 @TaskSwitchSimple f144 '' #zField
+Tt0 @EndTask f149 '' #zField
+Tt0 @RichDialog f151 '' #zField
+Tt0 @PushWFArc f152 '' #zField
+Tt0 @TkArc f148 '' #zField
+Tt0 @RichDialog f153 '' #zField
+Tt0 @PushWFArc f154 '' #zField
+Tt0 @RichDialog f155 '' #zField
+Tt0 @PushWFArc f156 '' #zField
+Tt0 @TkArc f146 '' #zField
+Tt0 @RichDialog f157 '' #zField
+Tt0 @PushWFArc f158 '' #zField
+Tt0 @PushWFArc f150 '' #zField
+Tt0 @RichDialog f159 '' #zField
+Tt0 @PushWFArc f160 '' #zField
+Tt0 @TaskSwitch f161 '' #zField
+Tt0 @TkArc f162 '' #zField
+Tt0 @TkArc f143 '' #zField
+Tt0 @TaskSwitchSimple f163 '' #zField
+Tt0 @TkArc f164 '' #zField
+Tt0 @RichDialog f165 '' #zField
+Tt0 @PushWFArc f166 '' #zField
+Tt0 @PushWFArc f167 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -2253,6 +2281,292 @@ Tt0 f85 expr out #txt
 Tt0 f85 type internaltest.Data #txt
 Tt0 f85 var in1 #txt
 Tt0 f85 1072 582 1072 618 #arcP
+Tt0 f140 outLink ProcessWithSkipTaskListTask.ivp #txt
+Tt0 f140 type internaltest.Data #txt
+Tt0 f140 inParamDecl '<> param;' #txt
+Tt0 f140 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f140 guid 1625108E6DE16D70 #txt
+Tt0 f140 requestEnabled true #txt
+Tt0 f140 triggerEnabled false #txt
+Tt0 f140 callSignature ProcessWithSkipTaskListTask() #txt
+Tt0 f140 persist false #txt
+Tt0 f140 startName 'Start Sprint meetings' #txt
+Tt0 f140 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f140 caseData businessCase.attach=true #txt
+Tt0 f140 showInStartList 1 #txt
+Tt0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ProcessWithSkipTaskListTask.ivp</name>
+        <nameStyle>31,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f140 @C|.responsibility Everybody #txt
+Tt0 f140 449 1169 30 30 -93 17 #rect
+Tt0 f140 @|StartRequestIcon #fIcon
+Tt0 f141 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f141 actionTable 'out=in1;
+' #txt
+Tt0 f141 outTypes "internaltest.Data" #txt
+Tt0 f141 outLinks "TaskA.ivp" #txt
+Tt0 f141 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Planning meeting
+TaskA.PRI=2
+TaskA.ROL=Sales
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f141 type internaltest.Data #txt
+Tt0 f141 template "" #txt
+Tt0 f141 593 1169 30 30 0 16 #rect
+Tt0 f141 @|TaskSwitchSimpleIcon #fIcon
+Tt0 f142 expr out #txt
+Tt0 f142 type internaltest.Data #txt
+Tt0 f142 var in1 #txt
+Tt0 f142 479 1184 593 1184 #arcP
+Tt0 f145 type internaltest.Data #txt
+Tt0 f145 1481 1137 30 30 0 15 #rect
+Tt0 f145 @|EndIcon #fIcon
+Tt0 f147 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f147 actionTable 'out=in1;
+' #txt
+Tt0 f147 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
+Tt0 f147 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
+Tt0 f147 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Planning meeting 2
+TaskA.PRI=2
+TaskA.ROL=Sales
+TaskA.SKIP_TASK_LIST=true
+TaskA.TYPE=0
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Estimation meeting
+TaskB.PRI=2
+TaskB.ROL=Sales
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0
+TaskC.EXPRI=2
+TaskC.EXROL=Everybody
+TaskC.EXTYPE=0
+TaskC.NAM=Planning meeting 3
+TaskC.PRI=2
+TaskC.ROL=Sales
+TaskC.SKIP_TASK_LIST=false
+TaskC.TYPE=0' #txt
+Tt0 f147 type internaltest.Data #txt
+Tt0 f147 template "" #txt
+Tt0 f147 848 1168 32 32 0 16 #rect
+Tt0 f147 @|TaskSwitchIcon #fIcon
+Tt0 f144 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f144 actionTable 'out=in1;
+' #txt
+Tt0 f144 outTypes "internaltest.Data" #txt
+Tt0 f144 outLinks "TaskA.ivp" #txt
+Tt0 f144 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Estimation meeting 2
+TaskA.PRI=2
+TaskA.ROL=Sales
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f144 type internaltest.Data #txt
+Tt0 f144 template "" #txt
+Tt0 f144 985 1265 30 30 0 16 #rect
+Tt0 f144 @|TaskSwitchSimpleIcon #fIcon
+Tt0 f149 type internaltest.Data #txt
+Tt0 f149 1209 1265 30 30 0 15 #rect
+Tt0 f149 @|EndIcon #fIcon
+Tt0 f151 targetWindow NEW #txt
+Tt0 f151 targetDisplay TOP #txt
+Tt0 f151 richDialogId internaltest.ui.SaleDepartment #txt
+Tt0 f151 startMethod start() #txt
+Tt0 f151 type internaltest.Data #txt
+Tt0 f151 requestActionDecl '<> param;' #txt
+Tt0 f151 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f151 responseMappingAction 'out=in;
+' #txt
+Tt0 f151 isAsynch false #txt
+Tt0 f151 isInnerRd false #txt
+Tt0 f151 userContext '* ' #txt
+Tt0 f151 720 1172 32 24 0 -8 #rect
+Tt0 f151 @|RichDialogIcon #fIcon
+Tt0 f152 expr data #txt
+Tt0 f152 outCond ivp=="TaskA.ivp" #txt
+Tt0 f152 623 1184 720 1184 #arcP
+Tt0 f148 expr out #txt
+Tt0 f148 type internaltest.Data #txt
+Tt0 f148 var in1 #txt
+Tt0 f148 752 1184 848 1184 #arcP
+Tt0 f153 targetWindow NEW #txt
+Tt0 f153 targetDisplay TOP #txt
+Tt0 f153 richDialogId internaltest.ui.SaleDepartment #txt
+Tt0 f153 startMethod start() #txt
+Tt0 f153 type internaltest.Data #txt
+Tt0 f153 requestActionDecl '<> param;' #txt
+Tt0 f153 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f153 responseMappingAction 'out=in;
+' #txt
+Tt0 f153 isAsynch false #txt
+Tt0 f153 isInnerRd false #txt
+Tt0 f153 userContext '* ' #txt
+Tt0 f153 972 1172 40 24 0 -8 #rect
+Tt0 f153 @|RichDialogIcon #fIcon
+Tt0 f154 expr data #txt
+Tt0 f154 outCond ivp=="TaskA.ivp" #txt
+Tt0 f154 880 1184 972 1184 #arcP
+Tt0 f155 targetWindow NEW #txt
+Tt0 f155 targetDisplay TOP #txt
+Tt0 f155 richDialogId internaltest.ui.SaleDepartment #txt
+Tt0 f155 startMethod start() #txt
+Tt0 f155 type internaltest.Data #txt
+Tt0 f155 requestActionDecl '<> param;' #txt
+Tt0 f155 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f155 responseMappingAction 'out=in;
+' #txt
+Tt0 f155 isAsynch false #txt
+Tt0 f155 isInnerRd false #txt
+Tt0 f155 userContext '* ' #txt
+Tt0 f155 844 1268 40 24 0 -8 #rect
+Tt0 f155 @|RichDialogIcon #fIcon
+Tt0 f156 expr data #txt
+Tt0 f156 outCond ivp=="TaskB.ivp" #txt
+Tt0 f156 864 1200 864 1268 #arcP
+Tt0 f146 expr out #txt
+Tt0 f146 type internaltest.Data #txt
+Tt0 f146 var in1 #txt
+Tt0 f146 884 1280 985 1280 #arcP
+Tt0 f157 targetWindow NEW #txt
+Tt0 f157 targetDisplay TOP #txt
+Tt0 f157 richDialogId internaltest.ui.SaleDepartment #txt
+Tt0 f157 startMethod start() #txt
+Tt0 f157 type internaltest.Data #txt
+Tt0 f157 requestActionDecl '<> param;' #txt
+Tt0 f157 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f157 responseMappingAction 'out=in;
+' #txt
+Tt0 f157 isAsynch false #txt
+Tt0 f157 isInnerRd false #txt
+Tt0 f157 userContext '* ' #txt
+Tt0 f157 1076 1268 40 24 0 -8 #rect
+Tt0 f157 @|RichDialogIcon #fIcon
+Tt0 f158 expr data #txt
+Tt0 f158 outCond ivp=="TaskA.ivp" #txt
+Tt0 f158 1015 1280 1076 1280 #arcP
+Tt0 f150 expr out #txt
+Tt0 f150 1116 1280 1209 1280 #arcP
+Tt0 f159 targetWindow NEW #txt
+Tt0 f159 targetDisplay TOP #txt
+Tt0 f159 richDialogId internaltest.ui.SaleDepartment #txt
+Tt0 f159 startMethod start() #txt
+Tt0 f159 type internaltest.Data #txt
+Tt0 f159 requestActionDecl '<> param;' #txt
+Tt0 f159 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f159 responseMappingAction 'out=in;
+' #txt
+Tt0 f159 isAsynch false #txt
+Tt0 f159 isInnerRd false #txt
+Tt0 f159 userContext '* ' #txt
+Tt0 f159 969 1115 40 24 0 -8 #rect
+Tt0 f159 @|RichDialogIcon #fIcon
+Tt0 f160 expr data #txt
+Tt0 f160 outCond ivp=="TaskC.ivp" #txt
+Tt0 f160 864 1168 969 1127 #arcP
+Tt0 f160 1 864 1127 #addKink
+Tt0 f160 1 0.2515694100427992 0 0 #arcLabel
+Tt0 f161 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f161 actionTable 'out=in1;
+' #txt
+Tt0 f161 outTypes "internaltest.Data" #txt
+Tt0 f161 outLinks "TaskA.ivp" #txt
+Tt0 f161 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Wait for implementation
+TaskA.PRI=2
+TaskA.ROL=SYSTEM
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f161 type internaltest.Data #txt
+Tt0 f161 template "" #txt
+Tt0 f161 1168 1136 32 32 0 16 #rect
+Tt0 f161 @|TaskSwitchIcon #fIcon
+Tt0 f162 expr out #txt
+Tt0 f162 type internaltest.Data #txt
+Tt0 f162 var in1 #txt
+Tt0 f162 1009 1127 1184 1136 #arcP
+Tt0 f162 1 1184 1127 #addKink
+Tt0 f162 0 0.5745039539640175 0 0 #arcLabel
+Tt0 f143 expr out #txt
+Tt0 f143 type internaltest.Data #txt
+Tt0 f143 var in2 #txt
+Tt0 f143 1012 1184 1184 1168 #arcP
+Tt0 f143 1 1184 1184 #addKink
+Tt0 f143 0 0.5962380544025979 0 0 #arcLabel
+Tt0 f163 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f163 actionTable 'out=in1;
+' #txt
+Tt0 f163 outTypes "internaltest.Data" #txt
+Tt0 f163 outLinks "TaskA.ivp" #txt
+Tt0 f163 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Review meeting
+TaskA.PRI=2
+TaskA.ROL=Sales
+TaskA.SKIP_TASK_LIST=true
+TaskA.TYPE=0' #txt
+Tt0 f163 type internaltest.Data #txt
+Tt0 f163 template "" #txt
+Tt0 f163 1265 1137 30 30 0 16 #rect
+Tt0 f163 @|TaskSwitchSimpleIcon #fIcon
+Tt0 f164 expr data #txt
+Tt0 f164 outCond ivp=="TaskA.ivp" #txt
+Tt0 f164 type internaltest.Data #txt
+Tt0 f164 var in1 #txt
+Tt0 f164 1200 1152 1265 1152 #arcP
+Tt0 f165 targetWindow NEW #txt
+Tt0 f165 targetDisplay TOP #txt
+Tt0 f165 richDialogId internaltest.ui.SaleDepartment #txt
+Tt0 f165 startMethod start() #txt
+Tt0 f165 type internaltest.Data #txt
+Tt0 f165 requestActionDecl '<> param;' #txt
+Tt0 f165 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f165 responseMappingAction 'out=in;
+' #txt
+Tt0 f165 isAsynch false #txt
+Tt0 f165 isInnerRd false #txt
+Tt0 f165 userContext '* ' #txt
+Tt0 f165 1376 1140 32 24 0 -8 #rect
+Tt0 f165 @|RichDialogIcon #fIcon
+Tt0 f166 expr data #txt
+Tt0 f166 outCond ivp=="TaskA.ivp" #txt
+Tt0 f166 1295 1152 1376 1152 #arcP
+Tt0 f167 expr out #txt
+Tt0 f167 1408 1152 1481 1152 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2406,3 +2720,31 @@ Tt0 f71 mainOut f84 tail #connect
 Tt0 f84 head f83 mainIn #connect
 Tt0 f83 mainOut f85 tail #connect
 Tt0 f85 head f75 in #connect
+Tt0 f140 mainOut f142 tail #connect
+Tt0 f142 head f141 in #connect
+Tt0 f141 out f152 tail #connect
+Tt0 f152 head f151 mainIn #connect
+Tt0 f151 mainOut f148 tail #connect
+Tt0 f148 head f147 in #connect
+Tt0 f147 out f154 tail #connect
+Tt0 f154 head f153 mainIn #connect
+Tt0 f147 out f156 tail #connect
+Tt0 f156 head f155 mainIn #connect
+Tt0 f155 mainOut f146 tail #connect
+Tt0 f146 head f144 in #connect
+Tt0 f144 out f158 tail #connect
+Tt0 f158 head f157 mainIn #connect
+Tt0 f157 mainOut f150 tail #connect
+Tt0 f150 head f149 mainIn #connect
+Tt0 f147 out f160 tail #connect
+Tt0 f160 head f159 mainIn #connect
+Tt0 f159 mainOut f162 tail #connect
+Tt0 f162 head f161 in #connect
+Tt0 f153 mainOut f143 tail #connect
+Tt0 f143 head f161 in #connect
+Tt0 f161 out f164 tail #connect
+Tt0 f164 head f163 in #connect
+Tt0 f163 out f166 tail #connect
+Tt0 f166 head f165 mainIn #connect
+Tt0 f165 mainOut f167 tail #connect
+Tt0 f167 head f145 mainIn #connect
