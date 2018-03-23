@@ -35,7 +35,6 @@ Es0 @GridStep f15 '' #zField
 Es0 @PushWFArc f26 '' #zField
 Es0 @PushWFArc f2 '' #zField
 Es0 @RichDialogProcessEnd f4 '' #zField
-Es0 @PushWFArc f5 '' #zField
 Es0 @GridStep f27 '' #zField
 Es0 @PushWFArc f28 '' #zField
 Es0 @PushWFArc f13 '' #zField
@@ -46,6 +45,9 @@ Es0 @PushWFArc f32 '' #zField
 Es0 @PushWFArc f33 '' #zField
 Es0 @RichDialogMethodStart f34 '' #zField
 Es0 @PushWFArc f22 '' #zField
+Es0 @GridStep f23 '' #zField
+Es0 @PushWFArc f5 '' #zField
+Es0 @PushWFArc f35 '' #zField
 >Proto Es0 Es0 EmailSettingProcess #zField
 Es0 f0 guid 14BD8AF4A523241B #txt
 Es0 f0 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
@@ -136,6 +138,7 @@ Es0 f14 requestMappingAction 'param.user=in.user;
 Es0 f14 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
 ' #txt
 Es0 f14 responseMappingAction 'out=in;
+out.defaultRemoteEmailSettings=result.emailSettings;
 out.errors=result.errors;
 out.remoteEmailSettings=result.emailSettings;
 ' #txt
@@ -310,8 +313,6 @@ Es0 f2 184 268 184 310 #arcP
 Es0 f4 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f4 782 182 20 20 13 0 #rect
 Es0 f4 @|RichDialogProcessEndIcon #fIcon
-Es0 f5 expr out #txt
-Es0 f5 792 74 792 182 #arcP
 Es0 f27 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
 ' #txt
 Es0 f27 actionTable 'out=in;
@@ -404,6 +405,30 @@ Es0 f34 171 51 26 26 -51 15 #rect
 Es0 f34 @|RichDialogMethodStartIcon #fIcon
 Es0 f22 expr out #txt
 Es0 f22 184 77 184 116 #arcP
+Es0 f23 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
+' #txt
+Es0 f23 actionTable 'out=in;
+' #txt
+Es0 f23 actionCode 'in.remoteEmailSettings = in.defaultRemoteEmailSettings;
+if (!in.remoteEmailSettings.isEmpty()) {
+	in.generalEmailSetting = in.remoteEmailSettings.get(0);
+}
+
+in.settingForAllApp = false;' #txt
+Es0 f23 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
+Es0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Reset to default settings</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f23 772 116 36 24 20 -2 #rect
+Es0 f23 @|StepIcon #fIcon
+Es0 f5 expr out #txt
+Es0 f5 791 73 790 116 #arcP
+Es0 f35 expr out #txt
+Es0 f35 790 140 791 182 #arcP
 >Proto Es0 .type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -437,8 +462,6 @@ Es0 f16 mainOut f26 tail #connect
 Es0 f26 head f15 mainIn #connect
 Es0 f15 mainOut f2 tail #connect
 Es0 f2 head f1 mainIn #connect
-Es0 f3 mainOut f5 tail #connect
-Es0 f5 head f4 mainIn #connect
 Es0 f18 mainOut f28 tail #connect
 Es0 f28 head f27 mainIn #connect
 Es0 f27 mainOut f13 tail #connect
@@ -449,3 +472,7 @@ Es0 f31 mainOut f33 tail #connect
 Es0 f33 head f30 mainIn #connect
 Es0 f34 mainOut f22 tail #connect
 Es0 f22 head f14 mainIn #connect
+Es0 f3 mainOut f5 tail #connect
+Es0 f5 head f23 mainIn #connect
+Es0 f23 mainOut f35 tail #connect
+Es0 f35 head f4 mainIn #connect
