@@ -9,7 +9,7 @@
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
   <cc:attribute name="drilldownListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
-  <cc:attribute name="drilldownExpiryChartListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
+  <cc:attribute name="drillDownExpiryChartListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
   <cc:attribute name="isDrilldownElapsedTime" default="false" />
   <cc:attribute name="isDrilldownExpiryChart" default="false" />
   <cc:attribute name="showTaskListImmediately" default="false" />
@@ -68,7 +68,7 @@
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax listener="#{cc.attrs.drilldownExpiryChartListener}" update="@([id$='create-chart-header'])" />
+          <p:ajax listener="#{cc.attrs.drillDownExpiryChartListener}" update="@([id$='create-chart-header'])" />
           <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" update="#{p:component('widget-container')}" />
         </p:chart>
 
