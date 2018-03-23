@@ -168,17 +168,21 @@ Pt0 f2 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f2 actionTable 'out=in;
 ' #txt
-Pt0 f2 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+Pt0 f2 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 
-String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.endedTaskId);
+ITask task = ivy.wf.findTask(in.endedTaskId);
+ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
 TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
 
 in.dataModel = taskEndInfo.dataModel;
 in.portalPage = taskEndInfo.isFromPortalHome ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
 SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
+Pt0 f2 security system #txt
 Pt0 f2 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -299,7 +303,8 @@ Pt0 f11 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f11 actionTable 'out=in;
 ' #txt
-Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.service.StickyTaskListService;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import org.apache.commons.lang3.StringUtils;
@@ -307,15 +312,18 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ITask;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
+ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
 boolean isTaskStarted = false;
 String callbackUrl;
 if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
-	callbackUrl = task.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
+	if(#taskWithTaskEndInfo is initialized) {
+		callbackUrl = taskWithTaskEndInfo.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
+	}
 }
 
 if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
-	out.callbackUrl = callbackUrl + "?endedTaskId=" + in.endedTaskId;
+	out.callbackUrl = callbackUrl + "?endedTaskId=" + taskWithTaskEndInfo.getId();
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
 }' #txt
