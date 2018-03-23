@@ -28,3 +28,5 @@ showTaskListImmediately Boolean #field
 showTaskListImmediately PERSISTENT #fieldModifier
 taskListName String #field
 taskListName PERSISTENT #fieldModifier
+isBackFromDrilldown Boolean #field
+isBackFromDrilldown PERSISTENT #fieldModifier

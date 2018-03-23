@@ -1,4 +1,4 @@
-co: name={as3rdPerson} description={} changed={2017-11-15 09:12:21 CET} changedby={chnam} visualorder={0} guid={15FBEBC6EE1D1F9F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FBEBC6EEBF1860} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-29 03:46:56 CET} validto={} changed={2017-11-15 09:12:21 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEBC6EF2298BD} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2017-11-15 09:12:21 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEBC6EE3652D5} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 04:14:51 CEST} validto={} changed={2017-11-15 09:12:21 CET} changedby={chnam} properties={} id={}
+co: name={as3rdPerson} description={} changed={2018-03-23 04:21:08 CET} changedby={Daniel Rafyi} visualorder={0} guid={15FBEBC6EE1D1F9F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEBC6EEBF1860} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-23 04:17:14 CET} validto={} changed={2018-03-23 04:17:14 CET} changedby={Daniel Rafyi} properties={} id={}
+val: guid={15FBEBC6EF2298BD} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:40 CEST} validto={} changed={2018-03-23 04:21:08 CET} changedby={Daniel Rafyi} properties={} id={}
+val: guid={15FBEBC6EE3652D5} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 04:14:51 CEST} validto={} changed={2018-03-23 04:21:08 CET} changedby={Daniel Rafyi} properties={} id={}

@@ -439,26 +439,30 @@ Pt0 f30 487 600 753 600 #arcP
 Pt0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>createAlphaCompany =&gt;  create alpha company business case
+        <name>In this example, we create case for Alpha Company, then create a new page to view the process history of Alpha Company
+
+createAlphaCompany =&gt;  create alpha company business case
 viewProcessHistoryOfAlphaCompany =&gt; view process history of alpha company in new page</name>
-        <nameStyle>143,7
+        <nameStyle>263,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f33 864 60 512 72 -252 -16 #rect
+Pt0 f33 784 58 672 76 -331 -32 #rect
 Pt0 f33 @|IBIcon #fIcon
 Pt0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>createBetaCompany =&gt;  create beta company business case (with signal)
+        <name>In this example, we create case for Beta Company by sending a signal, then create a dialog to view the process history of Beta Company
+
+createBetaCompany =&gt;  create beta company business case (with signal)
 viewProcessHistoryOfBetaCompany =&gt; view process history of beta company in a dialog</name>
-        <nameStyle>153,7
+        <nameStyle>289,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f34 872 324 496 72 -241 -16 #rect
+Pt0 f34 792 322 752 76 -370 -32 #rect
 Pt0 f34 @|IBIcon #fIcon
 >Proto Pt0 .type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 >Proto Pt0 .processKind NORMAL #txt

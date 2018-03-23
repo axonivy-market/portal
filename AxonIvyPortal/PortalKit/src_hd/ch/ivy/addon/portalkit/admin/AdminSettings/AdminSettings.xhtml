@@ -204,51 +204,93 @@
 		<p:tab id="designTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/design')}">
 			<h:form id="logo-color-form">
 				<p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/logos')}" styleClass="MarBot10">
-					<h:panelGrid columns="2" styleClass="Wid100">
-						<h:panelGrid columns="3">
-							<p:outputLabel for="login-logo-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}:"
-								styleClass="MarRight10" />
-							<p:graphicImage id="login-logo-preview" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" height="40" cache="false" 
-								value="#{designChooserBean.uploadedLoginLogo ? designChooserBean.loginLogoImage : resource['ivy-cms:images/logo/loginLogo']}" />
-							<p:fileUpload id="login-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
-								update="login-logo-preview" invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
-								label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" styleClass="login-logo-chooser"
-								fileUploadListener="#{designChooserBean.uploadLoginLogo}" />
-						</h:panelGrid>
-						<h:panelGrid columns="3">
-							<p:outputLabel for="login-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/height')}:"
-								styleClass="MarRight10" />
-							<p:inputNumber padControl="false" thousandSeparator="" decimalSeparator="." id="login-logo-height" value="#{designChooserBean.loginLogoHeight}"
-								styleClass="logo-height" minValue="0" emptyValue="zero" />
-							<h:outputText value=" (px)" />
-							<p:tooltip for="login-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoScalingTooltip')}" />
-						</h:panelGrid>
+					<p:panelGrid id="login-logo-chooser-container" styleClass="logo-chooser-container Wid50">
+						<p:row>
+							<p:column>
+								<p:outputLabel for="login-logo-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}:"
+									styleClass="label" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2">
+									<p:graphicImage id="login-logo-preview" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" height="40" cache="false" 
+										value="#{designChooserBean.uploadedLoginLogo ? designChooserBean.loginLogoImage : resource['ivy-cms:images/logo/loginLogo']}" />
+									<p:fileUpload id="login-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
+										update="login-logo-preview" invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
+										label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" styleClass="login-logo-chooser"
+										fileUploadListener="#{designChooserBean.uploadLoginLogo}" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel for="login-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/height')}:" />
+							</p:column>
+							<p:column>
+								<p:inputNumber padControl="false" thousandSeparator="" decimalSeparator="." id="login-logo-height" value="#{designChooserBean.loginLogoHeight}"
+									styleClass="logo-height" minValue="0" emptyValue="zero" />
+								<h:outputText value=" (px)" />
+								<p:tooltip for="login-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoScalingTooltip')}" />
 
-						<h:panelGrid columns="3">
-							<p:outputLabel for="home-logo-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}:"
+								<h:outputText id="login-logo-size-recommendation" styleClass="fa fa-info-circle logo-size-recommendation" />
+								<p:tooltip for="login-logo-size-recommendation">
+									<p>
+										#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoSizeRecommendation/sizeRecommendation')}
+										<br />
+										#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoSizeRecommendation/loginSquareSize')}
+										<br />
+										#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoSizeRecommendation/loginRectangleSize')}
+									</p>
+								</p:tooltip>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+
+					<p:panelGrid id="home-logo-chooser-container" styleClass="logo-chooser-container Wid50">
+						<p:row>
+							<p:column>
+								<p:outputLabel for="home-logo-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}:"
 								styleClass="MarRight10" />
-							<p:graphicImage id="home-logo-preview" 
-								value="#{designChooserBean.uploadedHomeLogo ? designChooserBean.homeLogoImage : resource['ivy-cms:images/logo/CorporateLogo']}"
-								alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" height="40" cache="false" />
-							<p:fileUpload id="home-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
-								update="home-logo-preview" styleClass="home-logo-chooser"
-								invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
-								label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-								fileUploadListener="#{designChooserBean.uploadHomeLogo}" />
-						</h:panelGrid>
-						<h:panelGrid columns="3">
-							<p:outputLabel for="home-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/height')}:"
-								styleClass="MarRight10" />
-							<p:inputNumber padControl="false" thousandSeparator="" decimalSeparator="." id="home-logo-height" value="#{designChooserBean.homeLogoHeight}"
-								styleClass="logo-height" minValue="0" emptyValue="zero" />
-							<h:outputText value=" (px)" />
-							<p:tooltip for="home-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoScalingTooltip')}" />
-						</h:panelGrid>
-					</h:panelGrid>
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2">
+									<p:graphicImage id="home-logo-preview" 
+										value="#{designChooserBean.uploadedHomeLogo ? designChooserBean.homeLogoImage : resource['ivy-cms:images/logo/CorporateLogo']}"
+										alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" height="40" cache="false" />
+									<p:fileUpload id="home-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
+										update="home-logo-preview" styleClass="home-logo-chooser"
+										invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
+										label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
+										fileUploadListener="#{designChooserBean.uploadHomeLogo}" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel for="home-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/height')}:" />
+							</p:column>
+							<p:column>
+								<p:inputNumber padControl="false" thousandSeparator="" decimalSeparator="." id="home-logo-height" value="#{designChooserBean.homeLogoHeight}"
+									styleClass="logo-height" minValue="0" emptyValue="zero" />
+								<h:outputText value=" (px)" />
+								<p:tooltip for="home-logo-height" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoScalingTooltip')}" />
+
+								<h:outputText id="home-logo-size-recommendation" styleClass="fa fa-info-circle logo-size-recommendation" />
+								<p:tooltip for="home-logo-size-recommendation">
+									<p>
+										#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoSizeRecommendation/sizeRecommendation')}
+										<br />
+										#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoSizeRecommendation/homeSquareSize')}
+										<br />
+										#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/logoSizeRecommendation/homeRectangleSize')}
+									</p>
+								</p:tooltip>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
 				</p:fieldset>
 
 				<p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/colors')}">
-					<h:panelGrid columns="2" columnClasses=",TexAlCenter" styleClass="Wid100">
+					<h:panelGrid columns="2" columnClasses=",TexAlCenter" styleClass="Wid70">
 						<h:panelGrid columns="2">
 							<p:outputLabel for="main-color-chooser" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/mainColor')}:"
 								styleClass="MarRight10" />
