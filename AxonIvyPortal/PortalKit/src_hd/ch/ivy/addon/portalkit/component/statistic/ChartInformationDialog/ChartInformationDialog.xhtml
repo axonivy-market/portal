@@ -28,7 +28,7 @@
       </p:column>
     </p:row>
   </p:panelGrid>
-  <h:outputText styleClass="chart-info-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/header')}" />
+  <h:outputText styleClass="chart-info-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" />
     <c:set var="filter" value="#{cc.attrs.selectedStatisticChart.filter}" />
     <p:panelGrid id="chart-filter-container" styleClass="chart-info-container">
       <p:row rendered="#{!(filter.timePeriodSelection eq 'CUSTOM' and empty filter.createdDateFrom and empty filter.createdDateTo)}">

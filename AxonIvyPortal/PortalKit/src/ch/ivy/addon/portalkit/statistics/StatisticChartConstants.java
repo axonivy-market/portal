@@ -104,6 +104,8 @@ public class StatisticChartConstants {
   public static final String NO_CATEGORY_CMS = Ivy.cms().co(
           "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory");
 
+  public static final String ELAPSED_TIME_DETAIL_CHART_NAME = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/elapsedTimeInSeconds");
+
   public static final String USER_ID = "userId";
   public static final String NAME = "name";
 
