@@ -55,6 +55,11 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
     return Ivy.cms().co("/DefaultColumns/" + column);
   }
   
-//  =======================================
+//  ===================Extend filters====================
+  
+  @Override
+  protected void initFilterContainer() {
+    filterContainer = new CustomizedTaskFilterContainer();
+  }
 
 }
