@@ -75,7 +75,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     String caseCategory = selectedCaseCategory;
     TaskQuery taskQuery = TaskQuery.create();
 
-    if (selectedCaseCategory.equals(StatisticChartConstants.NO_CATEGORY_CMS)) {
+    if (selectedCaseCategory.equals(Ivy.cms().co((StatisticChartConstants.NO_CATEGORY_CMS)))) {
       caseCategory = StringUtils.EMPTY;
     }
 
@@ -120,7 +120,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     String datatipFormat = StringUtils.join("%1$.0f ", Ivy.cms().co(StatisticChartConstants.SECOND_DATATIP_CMS));
     result.setDatatipFormat(datatipFormat);
     Axis axis = result.getAxis(AxisType.X);
-    axis.setLabel(StatisticChartConstants.ELAPSED_TIME_DETAIL_CHART_NAME);
+    axis.setLabel(Ivy.cms().co(StatisticChartConstants.ELAPSED_TIME_DETAIL_CHART_NAME_CMS));
     axis.setTickAngle(-45);
     result.setExtender("chartExtender");
 
@@ -273,7 +273,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
   public String getExcelFileName() {
     String fileName = chartName + "_" + selectedCaseCategory;
     fileName = fileName.replace(" ", "_");
-    if (StatisticChartConstants.NO_CATEGORY_CMS.equals(selectedCaseCategory)) {
+    if (Ivy.cms().co(StatisticChartConstants.NO_CATEGORY_CMS).equals(selectedCaseCategory)) {
       fileName = fileName.replace("[", "").replace("]", "");
     }
     return fileName;
