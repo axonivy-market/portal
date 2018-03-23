@@ -139,7 +139,7 @@
 								</div>
 								<div class="process-start-list-item-action">
 									<p:commandLink
-										title="#{processWidgetBean.isProcessMarkedAsDeleting(process.id) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/reset') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
+										title="#{processWidgetBean.isProcessMarkedAsDeleting(process.id) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
 										actionListener="#{processWidgetBean.selectDeletingProcess}" process="@form"
 										update="#{p:component('order-list-items')}" id="process-delete-link">
 										<i class="fa #{processWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'fa-undo' : 'fa-trash'} fa-lg" />

@@ -71,13 +71,13 @@
           <p:column styleClass="u-text-align-center" headerText="#">
             <h:outputText id="id" value="#{task.id}" />
           </p:column>
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}"
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}"
             sortBy="#{task.priority.intValue()}">
             <span class="case-status-current-task-icon #{taskBean.getPriorityIcon(task.getPriority())}" />
             <h:outputText id="priority" value="#{taskBean.getPriority(task.priority)}" />
           </p:column>
           <p:column styleClass="u-text-align-center"
-            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}"
+            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"
             sortBy="#{task.state.intValue()}">
             <span class="case-status-current-task-icon #{taskBean.getStateIcon(task.getState())}" />
             <h:outputText id="status" value="#{taskBean.getState(task)}" />
