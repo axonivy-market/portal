@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.HorizontalBarChartModel;
@@ -118,7 +119,9 @@ public class ElapsedTimeDetailsBean implements Serializable {
     result.setAnimate(true);
     String datatipFormat = StringUtils.join("%1$.0f ", Ivy.cms().co(StatisticChartConstants.SECOND_DATATIP_CMS));
     result.setDatatipFormat(datatipFormat);
-    result.getAxis(AxisType.X).setLabel(StatisticChartConstants.ELAPSED_TIME_DETAIL_CHART_NAME);
+    Axis axis = result.getAxis(AxisType.X);
+    axis.setLabel(StatisticChartConstants.ELAPSED_TIME_DETAIL_CHART_NAME);
+    axis.setTickAngle(-45);
     result.setExtender("chartExtender");
 
     setElapsedTimeOfTasksModel(result);
