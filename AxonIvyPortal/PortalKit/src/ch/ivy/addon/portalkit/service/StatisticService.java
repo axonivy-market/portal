@@ -252,7 +252,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @return generated data
    */
   public Map<String, Number> generateDataForTaskByPriorityChart(PriorityStatistic priorityStatistic) {
-    Map<String, Number> chartData = new LinkedHashMap<String, Number>();
+    Map<String, Number> chartData = new LinkedHashMap<>();
 
     if (priorityStatistic.getException() > 0) {
       chartData.put(Ivy.cms().co(EXCEPTION_PRIORITY_KEY), priorityStatistic.getException());
@@ -305,7 +305,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     });
 
-    Map<Object, Number> chartData = new HashMap<Object, Number>();
+    Map<Object, Number> chartData;
     if (selectThisYear(selectedValue)) {
       chartData = generateExpiryModelForDrilldownLevelYear(statisticResultMap);
     } else if (selectMonthOfYear(selectedValue)) {
@@ -322,7 +322,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelDay(Map<Date, Long> statisticResultMap, String selectedDay, String previousSelectedWeek, String previousSelectedMonth) {
-    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<>();
     
     Long taskExpireBefore8 = new Long(0L);
     Long taskExpireIn8 = new Long(0L);
@@ -390,7 +390,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelWeek(Map<Date, Long> statisticResultMap,
       String selectedWeek, String previousSelectedMonth) {
-    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<>();
 
     Date firstDateOfSelectedWeek = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeek(selectedWeek, previousSelectedMonth));
     Date firstDateOfNextWeek = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addWeeks(firstDateOfSelectedWeek, 1));
@@ -451,7 +451,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelMonth(Map<Date, Long> statisticResultMap,
       String selectedValue) {
-    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<>();
 
     Long taskExpireOnFirstWeek = new Long(0L);
     Long taskExpireOnSecondWeek = new Long(0L);
@@ -513,7 +513,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelYear(Map<Date, Long> statisticResultMap) {
-    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<>();
     
     Long taskExpireOnJanuary = new Long(0L);
     Long taskExpireOnFebruary = new Long(0L);
@@ -579,7 +579,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   private Map<Object, Number> generateDefaultExpiryModel(Map<Date, Long> statisticResultMap) {
-    Map<Object, Number> chartData = new LinkedHashMap<Object, Number>();
+    Map<Object, Number> chartData = new LinkedHashMap<>();
     // Calculate result
     Long taskExpireToday = new Long(0L);
     Long taskExpireThisWeek = new Long(0L);
