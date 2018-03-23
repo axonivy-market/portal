@@ -7,6 +7,8 @@ import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 public class DisplayNameAdaptor {
 
 	private DisplayNameConvertor convertor;
@@ -17,23 +19,24 @@ public class DisplayNameAdaptor {
 		this.convertor = parseJson(jsonString, currentLocale);
 	}
 
-	private DisplayNameConvertor parseJson(String jsonString, Locale currentLocale) throws JSONException {
+	private DisplayNameConvertor parseJson(String jsonString, Locale locale) throws JSONException {
 		if (isValidJson(jsonString)) {
 			return DisplayNameConvertor.parseJson(jsonString);
 		}
-		DisplayNameConvertor convertor = new DisplayNameConvertor();
-		convertor.add(currentLocale, jsonString);
-		return convertor;
+		DisplayNameConvertor displayNameConvertor = new DisplayNameConvertor();
+		displayNameConvertor.add(locale, jsonString);
+		return displayNameConvertor;
 	}
 
-	@SuppressWarnings("unused")
   private boolean isValidJson(String jsonString) {
 		try {
 			new JSONObject(jsonString);
 		} catch (JSONException e) {
+		  Ivy.log().error(e);
 			try {
 				new JSONArray(jsonString);
 			} catch(JSONException e1) {
+			  Ivy.log().error(e1);
 				return false;
 			}
 		}

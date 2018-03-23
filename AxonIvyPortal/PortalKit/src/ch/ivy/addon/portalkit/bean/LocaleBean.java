@@ -18,6 +18,7 @@ public class LocaleBean implements Serializable {
     try {
       return Ivy.session().getContentLocale().getLanguage();
     } catch (EnvironmentNotAvailableException e) {
+      Ivy.log().error(e);
       return Locale.ENGLISH.getLanguage();
     }
   }
