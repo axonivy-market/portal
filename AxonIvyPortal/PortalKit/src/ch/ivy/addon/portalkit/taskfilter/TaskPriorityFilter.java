@@ -26,7 +26,7 @@ public class TaskPriorityFilter extends TaskFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/priority");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY");
   }
 
   @Override

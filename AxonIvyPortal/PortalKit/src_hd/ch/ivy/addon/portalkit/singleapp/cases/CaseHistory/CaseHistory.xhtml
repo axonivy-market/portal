@@ -25,7 +25,7 @@
           <h:outputText value="#{task.type}" />
         </p:column>
 
-        <p:column styleClass="Wid10" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}"
+        <p:column styleClass="Wid10" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"
           sortBy="#{task.state.intValue()}">
           <span class="#{taskBean.getStateIcon(task.getState())}" />
           <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/'.concat(task.getState()))}"
