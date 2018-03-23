@@ -38,6 +38,10 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class StatisticChartQueryUtils {
 
+  private StatisticChartQueryUtils() {
+    
+  }
+
   /**
    * Get updated task query for Task by Priority chart based on selected item
    * 
