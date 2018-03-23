@@ -62,10 +62,11 @@ public class SubMenuItem {
   }
 
   private String correctProcessLink(String link) {
-    if (link != null && !hasProtocolOrIsARelativeLink(link)) {
-      link = Protocol.HTTP.getValue() + link;
+    String processLink = link;
+    if (processLink != null && !hasProtocolOrIsARelativeLink(processLink)) {
+      processLink = Protocol.HTTP.getValue() + processLink;
     }
-    return link;
+    return processLink;
   }
 
   private boolean hasProtocolOrIsARelativeLink(String link) {
