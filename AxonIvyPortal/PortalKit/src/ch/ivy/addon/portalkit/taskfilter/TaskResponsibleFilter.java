@@ -34,7 +34,7 @@ public class TaskResponsibleFilter extends TaskFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR");
   }
 
   @Override

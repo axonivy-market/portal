@@ -35,7 +35,7 @@ public class PermissionBean implements Serializable {
       IRole adminRole = Ivy.wf().getSecurityContext().findRole(AXONIVY_PORTAL_ADMIN);
       return sessionUser.hasRole(adminRole, true);
     } catch (Exception e) {
-      Ivy.log().error(e.getMessage());
+      Ivy.log().error(e);
       return false;
     }
   }

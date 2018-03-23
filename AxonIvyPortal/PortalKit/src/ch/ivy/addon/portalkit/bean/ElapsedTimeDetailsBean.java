@@ -118,7 +118,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     result.setAnimate(true);
     String datatipFormat = StringUtils.join("%1$.0f ", Ivy.cms().co(StatisticChartConstants.SECOND_DATATIP_CMS));
     result.setDatatipFormat(datatipFormat);
-    result.getAxis(AxisType.X).setLabel("Elapsed time in seconds");
+    result.getAxis(AxisType.X).setLabel(StatisticChartConstants.ELAPSED_TIME_DETAIL_CHART_NAME);
     result.setExtender("chartExtender");
 
     setElapsedTimeOfTasksModel(result);
