@@ -297,10 +297,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         if (taskSearchCriteria.isEmpty() && StringUtils.isBlank(taskSearchCriteria.getJsonQuery())) {
           return result(noErrors());
         }
-
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
         queryExcludeHiddenTasks(taskQuery);
-
         List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
         List<IvyTask> ivyTasks = new ArrayList<>();
         List<IvyTask> allIvyTasks = new ArrayList<>();
@@ -324,16 +322,13 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             } else if (isTaskDoneByInvolveUser(involvedUsername, task)){
               ivyTasks.add(ivyTask);
             }
-
             if (taskSearchCriteria.isIgnoreInvolvedUser()) {
               allIvyTasks.add(ivyTask);
             }
           } else {
             ivyTasks.add(ivyTask);
           }
-
         });
-
         return result(ivyTasks, allIvyTasks, errors);
       });
     } catch (Exception e) {
