@@ -56,6 +56,7 @@ ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getAppli
 String casePageUrl = collector.findLinkByFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)  
 											+ "?caseId=" + ivy.case.getId() + "&serverId=" + server.getId();
 ivy.case.setAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString(), casePageUrl);' #txt
+Se0 f3 security system #txt
 Se0 f3 type ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData #txt
 Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
