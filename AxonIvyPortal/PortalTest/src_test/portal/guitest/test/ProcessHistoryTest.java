@@ -10,9 +10,12 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessHistoryPage;
 
 public class ProcessHistoryTest extends BaseTest {
-  private static final String CREATE_CASE_LINK = "internalSupport/16193718E2B3D6C4/InspectResource.ivp";
-  private static final String DISPLAY_PROCESS_HISTORY_PAGE =
-      "internalSupport/16193718E2B3D6C4/viewProcessHistoryOfResource.ivp";
+  private static final String CREATE_ALPHA_COMPANY_CASE_LINK = "PortalExamples/1624C1C79661758C/createAlphaCompany.ivp";
+  private static final String CREATE_BETA_COMPANY_CASE_LINK = "PortalExamples/1624C1C79661758C/createBetaCompany.ivp";
+  private static final String DISPLAY_PROCESS_HISTORY_ALPHA_COMPANY_PAGE =
+      "PortalExamples/1624C1C79661758C/viewProcessHistoryOfAlphaCompany.ivp";
+  private static final String DISPLAY_PROCESS_HISTORY_BETA_COMPANY_PAGE =
+      "PortalExamples/1624C1C79661758C/viewProcessHistoryOfBetaCompany.ivp";
 
   @Override
   @Before
@@ -26,21 +29,36 @@ public class ProcessHistoryTest extends BaseTest {
 
   @Test
   public void testDisplayProcessHistory() {
-    redirectToRelativeLink(CREATE_CASE_LINK);
-    redirectToRelativeLink(CREATE_CASE_LINK);
-    redirectToRelativeLink(CREATE_CASE_LINK);
+    redirectToRelativeLink(CREATE_ALPHA_COMPANY_CASE_LINK);
+    redirectToRelativeLink(CREATE_ALPHA_COMPANY_CASE_LINK);
+    redirectToRelativeLink(CREATE_ALPHA_COMPANY_CASE_LINK);
 
-    redirectToRelativeLink(DISPLAY_PROCESS_HISTORY_PAGE);
+    redirectToRelativeLink(DISPLAY_PROCESS_HISTORY_ALPHA_COMPANY_PAGE);
 
     ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
     processHistoryPage.waitForPageLoaded();
 
     assertEquals(3, processHistoryPage.countCases());
+    
   }
+  
+  @Test
+  public void testDisplayProcessHistoryDialog() {
+    redirectToRelativeLink(CREATE_BETA_COMPANY_CASE_LINK);
+    redirectToRelativeLink(CREATE_BETA_COMPANY_CASE_LINK);
+    
+    redirectToRelativeLink(DISPLAY_PROCESS_HISTORY_BETA_COMPANY_PAGE);
+    
+    ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
+    processHistoryPage.waitForPageLoaded();
+    
+    assertEquals(2, processHistoryPage.openDialogAndCountCases());
 
+  }
+  
   @Test
   public void testDisplayEmptyMessage() {
-    redirectToRelativeLink(DISPLAY_PROCESS_HISTORY_PAGE);
+    redirectToRelativeLink(DISPLAY_PROCESS_HISTORY_ALPHA_COMPANY_PAGE);
 
     ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
     processHistoryPage.waitForPageLoaded();
