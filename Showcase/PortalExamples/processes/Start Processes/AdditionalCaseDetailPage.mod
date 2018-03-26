@@ -248,15 +248,19 @@ We need to do 2 steps:
 We also provide  the callable process "SetAdditionalCaseDetailPage", you could use this if you just need information from case only.
 Input for this process is friendly URL of your customized case detail page. Example: Start Processes/CustomizedCaseDetail/example.ivp
 
+HOW TO RUN THIS EXAMPLE:
+1. Run createInvestmentRequest.ivp process
+2. Enter Portal case list, expand Investment Request case, then click to "Show details" button. New tab will open, showing customized case detail page.
+
 
 </name>
         <nameStyle>42,7
-568,7
+789,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ae0 f13 768 18 928 188 -459 -88 #rect
+Ae0 f13 768 10 928 252 -459 -120 #rect
 Ae0 f13 @|IBIcon #fIcon
 >Proto Ae0 .type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 >Proto Ae0 .processKind NORMAL #txt
