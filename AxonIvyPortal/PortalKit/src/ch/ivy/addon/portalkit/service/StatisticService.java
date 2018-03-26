@@ -357,16 +357,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
 
     chartData.put(BEFORE_8, taskExpireBefore8);
-    chartData.put(IN_8, taskExpireIn8);
-    chartData.put(IN_9, taskExpireIn9);
-    chartData.put(IN_10, taskExpireIn10);
-    chartData.put(IN_11, taskExpireIn11);
-    chartData.put(IN_12, taskExpireIn12);
-    chartData.put(IN_13, taskExpireIn13);
-    chartData.put(IN_14, taskExpireIn14);
-    chartData.put(IN_15, taskExpireIn15);
-    chartData.put(IN_16, taskExpireIn16);
-    chartData.put(IN_17, taskExpireIn17);
+    chartData.put(IN_8, taskExpireInHour[0]);
+    chartData.put(IN_9, taskExpireInHour[1]);
+    chartData.put(IN_10, taskExpireInHour[2]);
+    chartData.put(IN_11, taskExpireInHour[3]);
+    chartData.put(IN_12, taskExpireInHour[4]);
+    chartData.put(IN_13, taskExpireInHour[5]);
+    chartData.put(IN_14, taskExpireInHour[6]);
+    chartData.put(IN_15, taskExpireInHour[7]);
+    chartData.put(IN_16, taskExpireInHour[8]);
+    chartData.put(IN_17, taskExpireInHour[9]);
     chartData.put(AFTER_18, taskExpireAfter18);
     
     return chartData;
@@ -407,20 +407,20 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       if (checkIfDateBetweenRange(firstDateOfSelectedWeek, firstDateOfNextWeek, resultDate)) {
         int dayOfWeekIndex = cal.get(Calendar.DAY_OF_WEEK);
         if (dayOfWeekIndex == 1) { //SUNDAY
-          taskExpireOnSunday += result.getValue();
+          taskExpireOnDaysOfWeek[6] += result.getValue(); //index 6 means taskExpireOnSunday
         } else {// MONDAY TO SATURDAY - day of week index from 2 to 7
           taskExpireOnDaysOfWeek[dayOfWeekIndex - 2] += result.getValue(); 
         }
       }
     }
 
-    chartData.put(Ivy.cms().co(MONDAY_CMS), taskExpireOnMonday);
-    chartData.put(Ivy.cms().co(TUESDAY_CMS), taskExpireOnTuesday);
-    chartData.put(Ivy.cms().co(WEDNESDAY_CMS), taskExpireOnWednesday);
-    chartData.put(Ivy.cms().co(THURSDAY_CMS), taskExpireOnThursday);
-    chartData.put(Ivy.cms().co(FRIDAY_CMS), taskExpireOnFriday);
-    chartData.put(Ivy.cms().co(SATURDAY_CMS), taskExpireOnSaturday);
-    chartData.put(Ivy.cms().co(SUNDAY_CMS), taskExpireOnSunday);
+    chartData.put(Ivy.cms().co(MONDAY_CMS), taskExpireOnDaysOfWeek[0]);
+    chartData.put(Ivy.cms().co(TUESDAY_CMS), taskExpireOnDaysOfWeek[1]);
+    chartData.put(Ivy.cms().co(WEDNESDAY_CMS), taskExpireOnDaysOfWeek[2]);
+    chartData.put(Ivy.cms().co(THURSDAY_CMS), taskExpireOnDaysOfWeek[3]);
+    chartData.put(Ivy.cms().co(FRIDAY_CMS), taskExpireOnDaysOfWeek[4]);
+    chartData.put(Ivy.cms().co(SATURDAY_CMS), taskExpireOnDaysOfWeek[5]);
+    chartData.put(Ivy.cms().co(SUNDAY_CMS), taskExpireOnDaysOfWeek[6]);
 
     return chartData;
   }
@@ -532,18 +532,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
     
-    chartData.put(Ivy.cms().co(JANUARY_CMS), taskExpireOnJanuary);
-    chartData.put(Ivy.cms().co(FEBRUARY_CMS), taskExpireOnFebruary);
-    chartData.put(Ivy.cms().co(MARCH_CMS), taskExpireOnMarch);
-    chartData.put(Ivy.cms().co(APRIL_CMS), taskExpireOnApril);
-    chartData.put(Ivy.cms().co(MAY_CMS), taskExpireOnMay);
-    chartData.put(Ivy.cms().co(JUNE_CMS), taskExpireOnJune);
-    chartData.put(Ivy.cms().co(JULY_CMS), taskExpireOnJuly);
-    chartData.put(Ivy.cms().co(AUGUST_CMS), taskExpireOnAugust);
-    chartData.put(Ivy.cms().co(SEPTEMBER_CMS), taskExpireOnSeptember);
-    chartData.put(Ivy.cms().co(OCTOBER_CMS), taskExpireOnOctober);
-    chartData.put(Ivy.cms().co(NOVEMBER_CMS), taskExpireOnNovember);
-    chartData.put(Ivy.cms().co(DECEMBER_CMS), taskExpireOnDecember);
+    chartData.put(Ivy.cms().co(JANUARY_CMS), takExpireOnMonths[0]);
+    chartData.put(Ivy.cms().co(FEBRUARY_CMS), takExpireOnMonths[1]);
+    chartData.put(Ivy.cms().co(MARCH_CMS), takExpireOnMonths[2]);
+    chartData.put(Ivy.cms().co(APRIL_CMS), takExpireOnMonths[3]);
+    chartData.put(Ivy.cms().co(MAY_CMS), takExpireOnMonths[4]);
+    chartData.put(Ivy.cms().co(JUNE_CMS), takExpireOnMonths[5]);
+    chartData.put(Ivy.cms().co(JULY_CMS), takExpireOnMonths[6]);
+    chartData.put(Ivy.cms().co(AUGUST_CMS), takExpireOnMonths[7]);
+    chartData.put(Ivy.cms().co(SEPTEMBER_CMS), takExpireOnMonths[8]);
+    chartData.put(Ivy.cms().co(OCTOBER_CMS), takExpireOnMonths[9]);
+    chartData.put(Ivy.cms().co(NOVEMBER_CMS), takExpireOnMonths[10]);
+    chartData.put(Ivy.cms().co(DECEMBER_CMS), takExpireOnMonths[11]);
     return chartData;
   }
 
