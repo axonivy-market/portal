@@ -16,6 +16,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EX
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,8 @@ public class StatisticChartQueryUtils {
     
   }
 
+  private static final String FROM_DATE_KEY = "fromDate";
+  private static final String TO_DATE_KEY = "toDate";
   /**
    * Get updated task query for Task by Priority chart based on selected item
    * 
@@ -81,52 +84,23 @@ public class StatisticChartQueryUtils {
     String selectedValue = StatisticService.getSelectedValueOfBarChart(event);
     Date fromDate;
     Date toDate;
+    HashMap<String, Date> fromToDateMap;
     if (StatisticService.selectHourOfDay(selectedValue)) {
-      Date currentDate;
-      if (StringUtils.containsIgnoreCase(previousSelectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
-        currentDate = new Date();
-      } else {
-        int shiftDays = StatisticChartTimeUtils.getShiftDaysFromDayOfWeek(previousSelectedDay);
-        currentDate = DateUtils.addDays(StatisticChartTimeUtils.getFirstDateOfWeek(previousSelectedWeek, previousSelectedMonth), shiftDays);
-      }
-
-      Date dateWithoutTime = StatisticChartTimeUtils.truncateMinutesPart(currentDate);
-      if (selectedValue.equals(BEFORE_8)) {
-        fromDate = dateWithoutTime;
-        toDate = DateUtils.setHours(dateWithoutTime, 8);
-      } else if (selectedValue.equals(AFTER_18)) {
-        fromDate = DateUtils.setHours(dateWithoutTime, 18);
-        toDate = DateUtils.addDays(dateWithoutTime, 1);
-      } else {
-        fromDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue));
-        toDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue) + 1);
-      }
+      fromToDateMap = calculateTimeRangeOfSelectedHour(selectedValue, previousSelectedMonth, previousSelectedWeek, previousSelectedDay);
+      fromDate = fromToDateMap.get(FROM_DATE_KEY);
+      toDate = fromToDateMap.get(TO_DATE_KEY);
     } else if (StatisticService.selectDayOfWeek(selectedValue)) {
-      if (StringUtils.containsIgnoreCase(selectedValue, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
-        fromDate = StatisticChartTimeUtils.truncateMinutesPart(new Date());
-      } else {
-        int shiftDays = StatisticChartTimeUtils.getShiftDaysFromDayOfWeek(selectedValue);
-        fromDate = DateUtils.addDays(StatisticChartTimeUtils.getFirstDateOfWeek(previousSelectedWeek, previousSelectedMonth), shiftDays);
-        fromDate = StatisticChartTimeUtils.truncateMinutesPart(fromDate);
-      }
-      toDate = DateUtils.addDays(fromDate, 1);
+      fromToDateMap = calculateTimeRangeOfSelectedDay(selectedValue, previousSelectedMonth, previousSelectedWeek);
+      fromDate = fromToDateMap.get(FROM_DATE_KEY);
+      toDate = fromToDateMap.get(TO_DATE_KEY);
     } else if (StatisticService.selectWeekOfMonth(selectedValue)) {
-      fromDate = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeek(selectedValue, previousSelectedMonth));
-      toDate = DateUtils.addWeeks(fromDate, 1);
-
-      if (!StringUtils.isEmpty(previousSelectedMonth)) {
-        Date firstDateOfMonth = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfMonth(previousSelectedMonth));
-        if (firstDateOfMonth.compareTo(fromDate) > 0) {
-          fromDate = firstDateOfMonth;
-        }
-        Date firstDayOfNextMonth = DateUtils.addMonths(firstDateOfMonth, 1);
-        if (toDate.compareTo(firstDayOfNextMonth) > 0) {
-          toDate = firstDayOfNextMonth;
-        }
-      }
+      fromToDateMap = calculateTimeRangeOfSelectedWeek(selectedValue, previousSelectedMonth);
+      fromDate = fromToDateMap.get(FROM_DATE_KEY);
+      toDate = fromToDateMap.get(TO_DATE_KEY);
     } else if (StatisticService.selectMonthOfYear(selectedValue)) {
-      fromDate = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfMonth(selectedValue));
-      toDate = DateUtils.addMonths(fromDate, 1);
+      fromToDateMap = calculateTimeRangeOfSelectedMonth(selectedValue);
+      fromDate = fromToDateMap.get(FROM_DATE_KEY);
+      toDate = fromToDateMap.get(TO_DATE_KEY);
     } else {
       fromDate = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfThisYear());
       toDate = DateUtils.addYears(fromDate, 1);
@@ -136,6 +110,84 @@ public class StatisticChartQueryUtils {
     .isLowerThan(toDate);
 
     return query;
+  }
+
+  private static HashMap<String, Date>  calculateTimeRangeOfSelectedHour(String selectedValue, String previousSelectedMonth, String previousSelectedWeek, String previousSelectedDay) {
+    Date fromDate;
+    Date toDate;
+    HashMap<String, Date> fromToDate = new HashMap<>();
+    Date currentDate;
+    if (StringUtils.containsIgnoreCase(previousSelectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+      currentDate = new Date();
+    } else {
+      int shiftDays = StatisticChartTimeUtils.getShiftDaysFromDayOfWeek(previousSelectedDay);
+      currentDate = DateUtils.addDays(StatisticChartTimeUtils.getFirstDateOfWeek(previousSelectedWeek, previousSelectedMonth), shiftDays);
+    }
+
+    Date dateWithoutTime = StatisticChartTimeUtils.truncateMinutesPart(currentDate);
+    if (selectedValue.equals(BEFORE_8)) {
+      fromDate = dateWithoutTime;
+      toDate = DateUtils.setHours(dateWithoutTime, 8);
+    } else if (selectedValue.equals(AFTER_18)) {
+      fromDate = DateUtils.setHours(dateWithoutTime, 18);
+      toDate = DateUtils.addDays(dateWithoutTime, 1);
+    } else {
+      fromDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue));
+      toDate = DateUtils.setHours(dateWithoutTime, Integer.parseInt(selectedValue) + 1);
+    }
+    fromToDate.put(FROM_DATE_KEY, fromDate);
+    fromToDate.put(TO_DATE_KEY, toDate);
+    return fromToDate;
+  }
+
+  private static HashMap<String, Date>  calculateTimeRangeOfSelectedDay(String selectedValue, String previousSelectedMonth, String previousSelectedWeek) {
+    Date fromDate;
+    Date toDate;
+    HashMap<String, Date> fromToDate = new HashMap<>();
+    if (StringUtils.containsIgnoreCase(selectedValue, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+      fromDate = StatisticChartTimeUtils.truncateMinutesPart(new Date());
+    } else {
+      int shiftDays = StatisticChartTimeUtils.getShiftDaysFromDayOfWeek(selectedValue);
+      fromDate = DateUtils.addDays(StatisticChartTimeUtils.getFirstDateOfWeek(previousSelectedWeek, previousSelectedMonth), shiftDays);
+      fromDate = StatisticChartTimeUtils.truncateMinutesPart(fromDate);
+    }
+    toDate = DateUtils.addDays(fromDate, 1);
+    fromToDate.put(FROM_DATE_KEY, fromDate);
+    fromToDate.put(TO_DATE_KEY, toDate);
+    return fromToDate;
+  }
+
+  private static HashMap<String, Date>  calculateTimeRangeOfSelectedWeek(String selectedValue, String previousSelectedMonth) {
+    Date fromDate;
+    Date toDate;
+    HashMap<String, Date> fromToDate = new HashMap<>();
+    fromDate = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeek(selectedValue, previousSelectedMonth));
+    toDate = DateUtils.addWeeks(fromDate, 1);
+
+    if (!StringUtils.isEmpty(previousSelectedMonth)) {
+      Date firstDateOfMonth = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfMonth(previousSelectedMonth));
+      if (firstDateOfMonth.compareTo(fromDate) > 0) {
+        fromDate = firstDateOfMonth;
+      }
+      Date firstDayOfNextMonth = DateUtils.addMonths(firstDateOfMonth, 1);
+      if (toDate.compareTo(firstDayOfNextMonth) > 0) {
+        toDate = firstDayOfNextMonth;
+      }
+    }
+    fromToDate.put(FROM_DATE_KEY, fromDate);
+    fromToDate.put(TO_DATE_KEY, toDate);
+    return fromToDate;
+  }
+
+  private static HashMap<String, Date>  calculateTimeRangeOfSelectedMonth(String selectedValue) {
+    Date fromDate;
+    Date toDate;
+    HashMap<String, Date> fromToDate = new HashMap<>();
+    fromDate = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfMonth(selectedValue));
+    toDate = DateUtils.addMonths(fromDate, 1);
+    fromToDate.put(FROM_DATE_KEY, fromDate);
+    fromToDate.put(TO_DATE_KEY, toDate);
+    return fromToDate;
   }
 
   /**
