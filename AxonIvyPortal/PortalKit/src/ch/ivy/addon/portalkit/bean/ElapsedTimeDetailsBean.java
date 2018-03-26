@@ -127,6 +127,14 @@ public class ElapsedTimeDetailsBean implements Serializable {
     setElapsedTimeOfTasksModel(result);
 
     Map<Object, Number> resultOfFirstRole = chartSeriesOfFirstRole.getData();
+    calculateElapsedTimeOfFirstRole(resultOfFirstRole);
+
+    List<String> categoryList = comparisonDataModel.stream().map(ElapsedTimeComparison::getCategory).collect(Collectors.toList());
+    Map<Object, Number> resultOfSecondRole = chartSeriesOfSecondRole.getData();
+    calculateElapsedTimeOfSecondRole(categoryList, resultOfSecondRole);
+  }
+
+  private void calculateElapsedTimeOfFirstRole(Map<Object, Number> resultOfFirstRole) {
     for (Map.Entry<Object, Number> entryOfFirstRole : resultOfFirstRole.entrySet()) {
       String category = (String) entryOfFirstRole.getKey();
       if (StringUtils.EMPTY.equals(category)) {
@@ -137,9 +145,9 @@ public class ElapsedTimeDetailsBean implements Serializable {
       comparisonRow.setElapsedTimeOfFirstRole(calculateElapsedTime(entryOfFirstRole.getValue()));
       comparisonDataModel.add(comparisonRow);
     }
+  }
 
-    List<String> categoryList = comparisonDataModel.stream().map(ElapsedTimeComparison::getCategory).collect(Collectors.toList());
-    Map<Object, Number> resultOfSecondRole = chartSeriesOfSecondRole.getData();
+  private void calculateElapsedTimeOfSecondRole(List<String> categoryList, Map<Object, Number> resultOfSecondRole) {
     for (Map.Entry<Object, Number> entryOfSecondRole : resultOfSecondRole.entrySet()) {
       String category = entryOfSecondRole.getKey().toString();
       if (categoryList.contains(category)) {
