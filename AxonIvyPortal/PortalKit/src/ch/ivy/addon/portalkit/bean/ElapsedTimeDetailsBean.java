@@ -167,12 +167,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     if (minutes > 0) {
       elapsedTime.append(minutes + " " + MINUTES_CMS + " - ");
     }
-    if (seconds > 0) {
-      elapsedTime.append(seconds + " " + SECONDS_CMS);
-    }
-    if (elapsedTime.toString().isEmpty()) {
-      return 0 + " " + SECONDS_CMS;
-    }
+    elapsedTime.append(seconds + " " + SECONDS_CMS);
     return elapsedTime.toString();
   }
 
