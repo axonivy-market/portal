@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+@PrepareForTest({LocalDate.class, Dates.class})
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(LocalDate.class)
 public class DatesTest {
 
   @Test
@@ -103,7 +103,7 @@ public class DatesTest {
   @Test
   public void testGetModayOfLastWeek() {
     //today is Mar 23rd, 2018
-    LocalDate today = LocalDate.of(2018, 2, 23);
+    LocalDate today = LocalDate.of(2018, 3, 23);
     mockStatic(LocalDate.class);
     when(LocalDate.now()).thenReturn(today);
     Date mondayOfLastWeek = Dates.getMondayOfLastWeek();
@@ -114,7 +114,7 @@ public class DatesTest {
   @Test
   public void testGetSundayOfLastWeek() {
     //today is Mar 23rd, 2018
-    LocalDate today = LocalDate.of(2018, 2, 23);
+    LocalDate today = LocalDate.of(2018, 3, 23);
     mockStatic(LocalDate.class);
     when(LocalDate.now()).thenReturn(today);
     Date sundayOfLastWeek = Dates.getSundayOfLastWeek();
@@ -125,7 +125,7 @@ public class DatesTest {
   @Test
   public void testFirstDayOfLastMonth() {
     //today is Mar 23rd, 2018
-    LocalDate today = LocalDate.of(2018, 2, 23);
+    LocalDate today = LocalDate.of(2018, 3, 23);
     mockStatic(LocalDate.class);
     when(LocalDate.now()).thenReturn(today);
     Date firstDayOfLastMonth = Dates.getFirstDayOfLastMonth();
@@ -136,7 +136,7 @@ public class DatesTest {
   @Test
   public void testLastDayOfLastMonth() {
     //today is Mar 23rd, 2018
-    LocalDate today = LocalDate.of(2018, 2, 23);
+    LocalDate today = LocalDate.of(2018, 3, 23);
     mockStatic(LocalDate.class);
     when(LocalDate.now()).thenReturn(today);
     Date lastDayOfLastMonth = Dates.getLastDayOfLastMonth();
@@ -147,7 +147,7 @@ public class DatesTest {
   @Test
   public void testFirstDayOfLast6Month() {
     //today is Mar 23rd, 2018
-    LocalDate today = LocalDate.of(2018, 2, 23);
+    LocalDate today = LocalDate.of(2018, 3, 23);
     mockStatic(LocalDate.class);
     when(LocalDate.now()).thenReturn(today);
     Date lastDayOfLastMonth = Dates.getFirstDayOfLast6Month();
