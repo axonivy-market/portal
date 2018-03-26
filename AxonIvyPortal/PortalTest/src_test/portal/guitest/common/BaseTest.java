@@ -48,7 +48,7 @@ public class BaseTest extends SeleneseTestBase {
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "internalSupport/15C7B30FB93C827E/repairComputer.ivp";
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
-  protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/CustomizationAdditionalCaseDetails.ivp";
+  protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "PortalExamples/1624D1F5CBEA5332/createInvestmentRequest.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
 
   @Rule

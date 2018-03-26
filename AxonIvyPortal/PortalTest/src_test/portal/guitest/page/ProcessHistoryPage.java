@@ -13,4 +13,10 @@ public class ProcessHistoryPage extends TemplatePage {
   public boolean isEmptyMessageDisplay() {
     return isElementDisplayed(By.className("process-history-empty-message"));
   }
+  
+  public int openDialogAndCountCases() {
+    findElementById("process-history-dialog-button").click();
+    WebElement caseList = findElementByClassName("ui-datascroller-list");
+    return caseList.findElements(By.className("ui-datascroller-item")).size();
+  }
 }

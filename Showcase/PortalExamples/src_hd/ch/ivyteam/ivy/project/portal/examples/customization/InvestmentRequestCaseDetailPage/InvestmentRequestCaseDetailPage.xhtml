@@ -11,13 +11,13 @@
 		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="title">Investment Request Case Detail Page</ui:define>
 		<ui:define name="simplePageContent">
-			<p:panelGrid columns="2">
+			<p:panelGrid columns="2" id="additional-case-details-data-grid">
 			    <f:facet name="header">
 			        <h:outputText value="Investment Request Custom Fields"/>
 			    </f:facet>
 			 
 			    <h:outputText value="Company name (CustomVarCharField1)" />
-			    <h:outputText value="#{data.remoteCase.customVarCharField1}" />
+			    <h:outputText id="custom-varchar-field-1" value="#{data.remoteCase.customVarCharField1}" />
 			 
 			    <h:outputText value="Request Type (CustomVarCharField2)" />
 			    <h:outputText value="#{data.remoteCase.customVarCharField2}" />

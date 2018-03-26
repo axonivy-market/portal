@@ -22,7 +22,7 @@ import com.jayway.awaitility.Duration;
 
 public class CaseWidgetTest extends BaseTest {
 
-  private static final String LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request Customization Case Details Page";
+  private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";
   private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   
@@ -99,8 +99,8 @@ public class CaseWidgetTest extends BaseTest {
   
   @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
-    openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(17, "CustomizationAdditionalCaseDetails CustomVarCharField1");
+    openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
+    validateAdditionalCaseDetailsPage(6, "Apartment A");
   }
   
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){

@@ -442,13 +442,17 @@ Pt0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>In this example, we create case for Alpha Company, then create a new page to view the process history of Alpha Company
 
 createAlphaCompany =&gt;  create alpha company business case
-viewProcessHistoryOfAlphaCompany =&gt; view process history of alpha company in new page</name>
-        <nameStyle>263,7
+viewProcessHistoryOfAlphaCompany =&gt; view process history of alpha company in new page
+
+HOW TO RUN THIS EXAMPLE:
+1. Run createAlphaCompany.ivp process
+2. Enter viewProcessHistoryOfAlphaCompany.ivp process, process history of Alpha Company will be shown</name>
+        <nameStyle>429,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f33 784 58 672 76 -331 -32 #rect
+Pt0 f33 872 58 672 140 -331 -64 #rect
 Pt0 f33 @|IBIcon #fIcon
 Pt0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -456,13 +460,17 @@ Pt0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>In this example, we create case for Beta Company by sending a signal, then create a dialog to view the process history of Beta Company
 
 createBetaCompany =&gt;  create beta company business case (with signal)
-viewProcessHistoryOfBetaCompany =&gt; view process history of beta company in a dialog</name>
-        <nameStyle>289,7
+viewProcessHistoryOfBetaCompany =&gt; view process history of beta company in a dialog
+
+HOW TO RUN THIS EXAMPLE:
+1. Run createBetaCompany.ivp process
+2. Run viewProcessHistoryOfBetaCompany.ivp process, then click "Open process history dialog" button. Process history of Beta company will be shown</name>
+        <nameStyle>499,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f34 792 322 752 76 -370 -32 #rect
+Pt0 f34 872 322 832 140 -412 -64 #rect
 Pt0 f34 @|IBIcon #fIcon
 >Proto Pt0 .type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 >Proto Pt0 .processKind NORMAL #txt

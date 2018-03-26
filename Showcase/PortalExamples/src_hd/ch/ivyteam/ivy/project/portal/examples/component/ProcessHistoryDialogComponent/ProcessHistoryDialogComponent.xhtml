@@ -8,7 +8,7 @@
 		<ui:define name="pageTitle">Beta Company Process History</ui:define>
 		<ui:define name="simplePageContent">
 			<h1>Process history of Beta Company</h1>
-			<p:commandButton value="Open process history dialog" process="@this" oncomplete="PF('process-history-dialog').show()"
+			<p:commandButton id="process-history-dialog-button" value="Open process history dialog" process="@this" oncomplete="PF('process-history-dialog').show()"
 				update="process-history-dialog" />
 			<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" resizable="false"
 				header="Process history of Beta Company" modal="true" onShow="processHistory.setup();">
