@@ -461,7 +461,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       if (checkIfDateBetweenRange(firstDateOfFourthWeek, firstDateOfFifthWeek, resultDate)) {
         taskExpireOnFourthWeek += result.getValue();
       }
-      Long[] taskOfFifthAndSixWeek = calculateTaskExpireOnFifthAndSixWeek(firstDateOfFifthWeek, firstDateOfSixthWeek, firstDateOfNextMonth, resultDate, result.getValue());
+      Long[] taskOfFifthAndSixWeek = calculateTaskExpireOnFifthAndSixthWeek(firstDateOfFifthWeek, firstDateOfSixthWeek, firstDateOfNextMonth, resultDate, result.getValue());
       taskExpireOnFifthWeek += taskOfFifthAndSixWeek[0];
       taskExpireOnSixthWeek += taskOfFifthAndSixWeek[1];
     }
@@ -479,7 +479,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return chartData;
   }
 
-  private Long[] calculateTaskExpireOnFifthAndSixWeek(Date firstDateOfFifthWeek, Date firstDateOfSixthWeek, Date firstDateOfNextMonth, Date resultDate, Long resultValue) {
+  private Long[] calculateTaskExpireOnFifthAndSixthWeek(Date firstDateOfFifthWeek, Date firstDateOfSixthWeek, Date firstDateOfNextMonth, Date resultDate, Long resultValue) {
     Long taskExpireOnFifthWeek = new Long(0L);
     Long taskExpireOnSixthWeek = new Long(0L);
     if (firstDateOfSixthWeek.compareTo(firstDateOfNextMonth) < 0) {
@@ -939,11 +939,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public boolean isDrilldownToTaskList(String expiryLastDrilldownLevel, String selectedItem) {
-    return isDrilldownToHour(expiryLastDrilldownLevel, selectedItem)
-            || isDrilldownToDay(expiryLastDrilldownLevel, selectedItem)
+    return isDrilldownToHourOrDay(expiryLastDrilldownLevel, selectedItem)
             || isDrilldownToWeek(expiryLastDrilldownLevel, selectedItem)
             || isDrilldownToMonth(expiryLastDrilldownLevel, selectedItem)
             || isDrilldownToYear(expiryLastDrilldownLevel);
+  }
+
+  private boolean isDrilldownToHourOrDay(String expiryLastDrilldownLevel, String selectedItem) {
+    //this method is just used to avoid sonar issue about number of conditional operators used in expression
+    return isDrilldownToHour(expiryLastDrilldownLevel, selectedItem)
+            || isDrilldownToDay(expiryLastDrilldownLevel, selectedItem);
   }
 
   private boolean isDrilldownToHour(String expiryLastDrilldownLevel, String selectedItem) {
