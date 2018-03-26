@@ -3923,7 +3923,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   
   .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
 	background: none;
-	width: 165px;
+	width: 15.5rem;
 	padding: 8px 0 !important;
   }
 
@@ -3932,8 +3932,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   }
 
   .filter-container .ui-inputfield.hasDatepicker {
-    width: 15.5rem;
-    margin-right: 1rem;
+    width: 15.5rem !important;
   }
 
   .statistic-filter-container {
@@ -3957,7 +3956,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   
   .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
 	background: none;
-	width: 190px;
+	width: 20rem;
 	padding: 8px 0 !important;
   }
 }
@@ -3970,7 +3969,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   }
   .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
 	background: none;
-	width: 190px;
+	width: 20rem;
 	padding: 8px 0 !important;
   }
 }
@@ -3981,6 +3980,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .statistic-filter-main-container .ui-calendar .ui-inputfield.hasDatepicker {
   transition: none !important;
+  width: 20rem;
 }
 
 .statistic-filter-main-container .period-time-selection {
