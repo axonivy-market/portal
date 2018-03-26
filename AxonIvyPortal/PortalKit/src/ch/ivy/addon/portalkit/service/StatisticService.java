@@ -336,6 +336,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Long taskExpireIn16 = new Long(0L);
     Long taskExpireIn17 = new Long(0L);
     Long taskExpireAfter18 = new Long(0L);
+    Long[] taskExpireInHour = {taskExpireIn8, taskExpireIn9, taskExpireIn10, taskExpireIn11, taskExpireIn12, taskExpireIn13, taskExpireIn14, taskExpireIn15, taskExpireIn16, taskExpireIn17};
     
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = result.getKey();
@@ -343,30 +344,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       cal.setTime(resultDate);
       
       if (StatisticChartTimeUtils.isSameDay(resultDate, selectedDay, previousSelectedWeek, previousSelectedMonth)) {
-        if(cal.get(Calendar.HOUR_OF_DAY) < 8){
+        if(cal.get(Calendar.HOUR_OF_DAY) < 8) {
           taskExpireBefore8 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 8) {
-          taskExpireIn8 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 9) {
-          taskExpireIn9 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 10) {
-          taskExpireIn10 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 11) {
-          taskExpireIn11 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 12) {
-          taskExpireIn12 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 13){
-          taskExpireIn13 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 14){
-          taskExpireIn14 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 15){
-          taskExpireIn15 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 16){
-          taskExpireIn16 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) == 17){
-          taskExpireIn17 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) >= 18){
+        } else if(cal.get(Calendar.HOUR_OF_DAY) >= 18) {
           taskExpireAfter18 += result.getValue();
+        } else {
+          int hourIndex = cal.get(Calendar.HOUR_OF_DAY);
+          taskExpireInHour[hourIndex - 8] += result.getValue(); //example: hourIndex = 8 => taskExpireInHour[ 8 - 8] = taskExpireInHour[0] = taskExpireIn8 += result.getValue() ...
         }
       }
       
@@ -413,27 +397,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Long taskExpireOnFriday = new Long(0L);
     Long taskExpireOnSaturday = new Long(0L);
     Long taskExpireOnSunday = new Long(0L);
+    Long[] taskExpireOnDaysOfWeek = {taskExpireOnMonday, taskExpireOnTuesday, taskExpireOnWednesday, taskExpireOnThursday, taskExpireOnFriday, taskExpireOnSaturday, taskExpireOnSunday};
 
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
       Calendar cal = Calendar.getInstance();
       cal.setTime(resultDate);
 
-      if (firstDateOfSelectedWeek.compareTo(resultDate) <= 0 && firstDateOfNextWeek.compareTo(resultDate) > 0) {
-        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
-          taskExpireOnMonday += result.getValue();
-        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {
-          taskExpireOnTuesday += result.getValue();
-        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
-          taskExpireOnWednesday += result.getValue();
-        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
-          taskExpireOnThursday += result.getValue();
-        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
-          taskExpireOnFriday += result.getValue();
-        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
-          taskExpireOnSaturday += result.getValue();
-        } else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+      if (checkIfDateBetweenRange(firstDateOfSelectedWeek, firstDateOfNextWeek, resultDate)) {
+        int dayOfWeekIndex = cal.get(Calendar.DAY_OF_WEEK);
+        if (dayOfWeekIndex == 1) { //SUNDAY
           taskExpireOnSunday += result.getValue();
+        } else {// MONDAY TO SATURDAY - day of week index from 2 to 7
+          taskExpireOnDaysOfWeek[dayOfWeekIndex - 2] += result.getValue(); 
         }
       }
     }
@@ -485,18 +461,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       if (checkIfDateBetweenRange(firstDateOfFourthWeek, firstDateOfFifthWeek, resultDate)) {
         taskExpireOnFourthWeek += result.getValue();
       }
-      if (firstDateOfSixthWeek.compareTo(firstDateOfNextMonth) < 0) {
-        if (checkIfDateBetweenRange(firstDateOfFifthWeek, firstDateOfSixthWeek, resultDate)) {
-          taskExpireOnFifthWeek += result.getValue();
-        }
-        if (checkIfDateBetweenRange(firstDateOfSixthWeek, firstDateOfNextMonth, resultDate)) {
-          taskExpireOnSixthWeek += result.getValue();
-        }
-      } else {
-        if (checkIfDateBetweenRange(firstDateOfFifthWeek, firstDateOfNextMonth, resultDate)) {
-          taskExpireOnFifthWeek += result.getValue();
-        }
-      }
+      Long[] taskOfFifthAndSixWeek = calculateTaskExpireOnFifthAndSixWeek(firstDateOfFifthWeek, firstDateOfSixthWeek, firstDateOfNextMonth, resultDate, result.getValue());
+      taskExpireOnFifthWeek += taskOfFifthAndSixWeek[0];
+      taskExpireOnSixthWeek += taskOfFifthAndSixWeek[1];
     }
 
     chartData.put(Ivy.cms().co(FIRSTWEEK_CMS), taskExpireOnFirstWeek);
@@ -510,6 +477,25 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co(SIXTHWEEK_CMS), taskExpireOnSixthWeek);
     }
     return chartData;
+  }
+
+  private Long[] calculateTaskExpireOnFifthAndSixWeek(Date firstDateOfFifthWeek, Date firstDateOfSixthWeek, Date firstDateOfNextMonth, Date resultDate, Long resultValue) {
+    Long taskExpireOnFifthWeek = new Long(0L);
+    Long taskExpireOnSixthWeek = new Long(0L);
+    if (firstDateOfSixthWeek.compareTo(firstDateOfNextMonth) < 0) {
+      if (checkIfDateBetweenRange(firstDateOfFifthWeek, firstDateOfSixthWeek, resultDate)) {
+        taskExpireOnFifthWeek = resultValue;
+      }
+      if (checkIfDateBetweenRange(firstDateOfSixthWeek, firstDateOfNextMonth, resultDate)) {
+        taskExpireOnSixthWeek = resultValue;
+      }
+    } else {
+      if (checkIfDateBetweenRange(firstDateOfFifthWeek, firstDateOfNextMonth, resultDate)) {
+        taskExpireOnFifthWeek = resultValue;
+      }
+    }
+    Long[] taskForFifthAndSixthWeek = {taskExpireOnFifthWeek, taskExpireOnSixthWeek};
+    return taskForFifthAndSixthWeek;
   }
 
   private boolean checkIfDateBetweenRange(Date startDate, Date endDate, Date resultDate) {
@@ -531,7 +517,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Long taskExpireOnOctober = new Long(0L);
     Long taskExpireOnNovember = new Long(0L);
     Long taskExpireOnDecember = new Long(0L);
-
+    Long[] takExpireOnMonths = {taskExpireOnJanuary, taskExpireOnFebruary, taskExpireOnMarch, taskExpireOnApril, taskExpireOnMay, taskExpireOnJune,
+            taskExpireOnJuly, taskExpireOnAugust, taskExpireOnSeptember, taskExpireOnOctober, taskExpireOnNovember, taskExpireOnDecember};
+    
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
       Calendar cal = Calendar.getInstance();
@@ -539,31 +527,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       
       int thisYear = Year.now().getValue();
       if (cal.get(Calendar.YEAR) == thisYear) {
-        if(cal.get(Calendar.MONTH) == Calendar.JANUARY){
-          taskExpireOnJanuary += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.FEBRUARY){
-          taskExpireOnFebruary += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.MARCH){
-          taskExpireOnMarch += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.APRIL){
-          taskExpireOnApril += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.MAY){
-          taskExpireOnMay += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.JUNE){
-          taskExpireOnJune += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.JULY){
-          taskExpireOnJuly += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.AUGUST){
-          taskExpireOnAugust += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.SEPTEMBER){
-          taskExpireOnSeptember += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.OCTOBER){
-          taskExpireOnOctober += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.NOVEMBER){
-          taskExpireOnNovember += result.getValue();
-        } else if(cal.get(Calendar.MONTH) == Calendar.DECEMBER){
-          taskExpireOnDecember += result.getValue();
-        }
+        int monthIndex = cal.get(Calendar.MONTH); // from JANUARY to DECEMBER, month index from 0 to 11  
+        takExpireOnMonths[monthIndex] += result.getValue();
       }
     }
     
@@ -974,29 +939,33 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public boolean isDrilldownToTaskList(String expiryLastDrilldownLevel, String selectedItem) {
-    // hour
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_HOUR) && (selectHourOfDay(selectedItem))) {
-      return true;
-    }
-    // day
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_DAY) && (selectDayOfWeek(selectedItem))) {
-      return true;
-    }
-    // week
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_WEEK)
-        && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem))) {
-      return true;
-    }
-    // month
-    if (StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_MONTH)
-        && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem) || selectMonthOfYear(selectedItem))) {
-      return true;
-    }
-    //year
-    if(StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_YEAR)){
-      return true;
-    }
-    return false;
+    return isDrilldownToHour(expiryLastDrilldownLevel, selectedItem)
+            || isDrilldownToDay(expiryLastDrilldownLevel, selectedItem)
+            || isDrilldownToWeek(expiryLastDrilldownLevel, selectedItem)
+            || isDrilldownToMonth(expiryLastDrilldownLevel, selectedItem)
+            || isDrilldownToYear(expiryLastDrilldownLevel);
+  }
+
+  private boolean isDrilldownToHour(String expiryLastDrilldownLevel, String selectedItem) {
+    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_HOUR) && (selectHourOfDay(selectedItem));
+  }
+
+  private boolean isDrilldownToDay(String expiryLastDrilldownLevel, String selectedItem) {
+    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_DAY) && (selectDayOfWeek(selectedItem));
+  }
+
+  private boolean isDrilldownToWeek(String expiryLastDrilldownLevel, String selectedItem) {
+    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_WEEK)
+            && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem));
+  }
+
+  private boolean isDrilldownToMonth(String expiryLastDrilldownLevel, String selectedItem) {
+    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_MONTH)
+            && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem) || selectMonthOfYear(selectedItem));
+  }
+
+  private boolean isDrilldownToYear(String expiryLastDrilldownLevel) {
+    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_YEAR);
   }
 
   public static boolean selectThisYear(String selectedItem) {
