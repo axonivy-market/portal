@@ -1,4 +1,4 @@
-co: name={favoriteProcesses} description={} changed={2018-03-20 10:19:37 CET} changedby={nttai} visualorder={0} guid={162273D6477C2C20} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={favoriteProcesses} description={} changed={2018-03-26 10:05:40 CEST} changedby={nttai} visualorder={0} guid={162273D6477C2C20} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={162273D6864CA124} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-20 10:19:37 CET} validto={} changed={2018-03-20 10:19:37 CET} changedby={nttai} properties={} id={}
-val: guid={16227402391ADD74} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-15 02:22:10 CET} validto={} changed={2018-03-15 02:22:17 CET} changedby={anhnguyenhoang} properties={} id={}
+val: guid={16227402391ADD74} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-26 10:05:40 CEST} validto={} changed={2018-03-26 10:05:40 CEST} changedby={nttai} properties={} id={}
 val: guid={16227402298406AD} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-20 10:19:37 CET} validto={} changed={2018-03-20 10:19:37 CET} changedby={nttai} properties={} id={}
