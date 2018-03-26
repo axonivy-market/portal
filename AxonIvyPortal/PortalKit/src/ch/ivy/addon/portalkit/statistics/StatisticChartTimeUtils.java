@@ -29,6 +29,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EX
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TUESDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.WEDNESDAY_CMS;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -77,31 +78,10 @@ public class StatisticChartTimeUtils {
     }
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.DAY_OF_MONTH, 1);
-    if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(JANUARY_CMS))) {
-      cal.set(Calendar.MONTH, 0);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(FEBRUARY_CMS))) {
-      cal.set(Calendar.MONTH, 1);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(MARCH_CMS))) {
-      cal.set(Calendar.MONTH, 2);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(APRIL_CMS))) {
-      cal.set(Calendar.MONTH, 3);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(MAY_CMS))) {
-      cal.set(Calendar.MONTH, 4);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(JUNE_CMS))) {
-      cal.set(Calendar.MONTH, 5);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(JULY_CMS))) {
-      cal.set(Calendar.MONTH, 6);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(AUGUST_CMS))) {
-      cal.set(Calendar.MONTH, 7);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(SEPTEMBER_CMS))) {
-      cal.set(Calendar.MONTH, 8);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(OCTOBER_CMS))) {
-      cal.set(Calendar.MONTH, 9);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(NOVEMBER_CMS))) {
-      cal.set(Calendar.MONTH, 10);
-    } else if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(DECEMBER_CMS))) {
-      cal.set(Calendar.MONTH, 11);
-    }
+    String[] monthsOfYear = {Ivy.cms().co(JANUARY_CMS), Ivy.cms().co(FEBRUARY_CMS), Ivy.cms().co(MARCH_CMS), Ivy.cms().co(APRIL_CMS), Ivy.cms().co(MAY_CMS), Ivy.cms().co(JUNE_CMS),
+            Ivy.cms().co(JULY_CMS), Ivy.cms().co(AUGUST_CMS), Ivy.cms().co(SEPTEMBER_CMS), Ivy.cms().co(OCTOBER_CMS), Ivy.cms().co(NOVEMBER_CMS), Ivy.cms().co(DECEMBER_CMS)};
+    int monthIndex = Arrays.asList(monthsOfYear).indexOf(selectedMonth);
+    cal.set(Calendar.MONTH, monthIndex);
     return cal.getTime();
   }
 
