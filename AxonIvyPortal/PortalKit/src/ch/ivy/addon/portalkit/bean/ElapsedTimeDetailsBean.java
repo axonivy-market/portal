@@ -50,10 +50,10 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private String chartName;
   private boolean dataEmpty;
 
-  private static final String DAYS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/days");
-  private static final String HOURS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/hours");
-  private static final String MINUTES_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/minutes");
-  private static final String SECONDS_CMS = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/seconds");
+  private static final String DAYS_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/days";
+  private static final String HOURS_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/hours";
+  private static final String MINUTES_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/minutes";
+  private static final String SECONDS_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/seconds";
 
   @SuppressWarnings("unchecked")
   public void initialize(String caseCategory, StatisticChart statisticChart) {
@@ -167,15 +167,15 @@ public class ElapsedTimeDetailsBean implements Serializable {
     long seconds = TimeUnit.SECONDS.toSeconds(timeInSeconds) - (TimeUnit.SECONDS.toMinutes(timeInSeconds) *60);
     StringBuilder elapsedTime = new StringBuilder();
     if (days > 0) {
-      elapsedTime.append(days + " " + DAYS_CMS + " - ");
+      elapsedTime.append(days + " " + Ivy.cms().co(DAYS_CMS) + " - ");
     }
     if (hours > 0) {
-      elapsedTime.append(hours + " " + HOURS_CMS + " - ");
+      elapsedTime.append(hours + " " + Ivy.cms().co(HOURS_CMS) + " - ");
     }
     if (minutes > 0) {
-      elapsedTime.append(minutes + " " + MINUTES_CMS + " - ");
+      elapsedTime.append(minutes + " " + Ivy.cms().co(MINUTES_CMS) + " - ");
     }
-    elapsedTime.append(seconds + " " + SECONDS_CMS);
+    elapsedTime.append(seconds + " " + Ivy.cms().co(SECONDS_CMS));
     return elapsedTime.toString();
   }
 
