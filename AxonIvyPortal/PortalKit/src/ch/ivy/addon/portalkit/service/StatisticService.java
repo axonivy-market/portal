@@ -473,27 +473,27 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
-      if (firstDateOfFirstWeek.compareTo(resultDate) <= 0 && firstDateOfSecondWeek.compareTo(resultDate) > 0) {
+      if (checkIfDateBetweenRange(firstDateOfFirstWeek, firstDateOfSecondWeek, resultDate)) {
         taskExpireOnFirstWeek += result.getValue();
       }
-      if (firstDateOfSecondWeek.compareTo(resultDate) <= 0 && firstDateOfThirdWeek.compareTo(resultDate) > 0) {
+      if (checkIfDateBetweenRange(firstDateOfSecondWeek, firstDateOfThirdWeek, resultDate)) {
         taskExpireOnSecondWeek += result.getValue();
       }
-      if (firstDateOfThirdWeek.compareTo(resultDate) <= 0 && firstDateOfFourthWeek.compareTo(resultDate) > 0) {
+      if (checkIfDateBetweenRange(firstDateOfThirdWeek, firstDateOfFourthWeek, resultDate)) {
         taskExpireOnThirdWeek += result.getValue();
       }
-      if (firstDateOfFourthWeek.compareTo(resultDate) <= 0 && firstDateOfFifthWeek.compareTo(resultDate) > 0) {
+      if (checkIfDateBetweenRange(firstDateOfFourthWeek, firstDateOfFifthWeek, resultDate)) {
         taskExpireOnFourthWeek += result.getValue();
       }
       if (firstDateOfSixthWeek.compareTo(firstDateOfNextMonth) < 0) {
-        if (firstDateOfFifthWeek.compareTo(resultDate) <= 0 && firstDateOfSixthWeek.compareTo(resultDate) > 0) {
+        if (checkIfDateBetweenRange(firstDateOfFifthWeek, firstDateOfSixthWeek, resultDate)) {
           taskExpireOnFifthWeek += result.getValue();
         }
-        if (firstDateOfSixthWeek.compareTo(resultDate) <= 0 && firstDateOfNextMonth.compareTo(resultDate) > 0) {
+        if (checkIfDateBetweenRange(firstDateOfSixthWeek, firstDateOfNextMonth, resultDate)) {
           taskExpireOnSixthWeek += result.getValue();
         }
       } else {
-        if (firstDateOfFifthWeek.compareTo(resultDate) <= 0 && firstDateOfNextMonth.compareTo(resultDate) > 0) {
+        if (checkIfDateBetweenRange(firstDateOfFifthWeek, firstDateOfNextMonth, resultDate)) {
           taskExpireOnFifthWeek += result.getValue();
         }
       }
@@ -510,6 +510,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co(SIXTHWEEK_CMS), taskExpireOnSixthWeek);
     }
     return chartData;
+  }
+
+  private boolean checkIfDateBetweenRange(Date startDate, Date endDate, Date resultDate) {
+    return startDate.compareTo(resultDate) <= 0 && endDate.compareTo(resultDate) > 0;
   }
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelYear(Map<Date, Long> statisticResultMap) {
@@ -923,14 +927,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           statisticChart.setDonutChartModel(generateTaskByPriorityModel(taskByPriorityData, true));
           break;
         case TASK_BY_EXPIRY:
-          List<ExpiryStatistic> taskByExpiryData = new ArrayList<>();
-          if (statisticChart.getId().contains("_")) {
-            break;
-          }
-          if(statisticChart.getFilter() != null){
-            taskByExpiryData = getExpiryStatisticData(StatisticChartQueryUtils.generateTaskQueryForExpiry(statisticChart.getFilter()).asJson());
-          }
-          statisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
+          generateChartModelForTaskByExpiryChart(statisticChart);
           break;
         case CASES_BY_STATE:
           CaseStateStatistic caseStateData = new CaseStateStatistic();
@@ -963,6 +960,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         default:
           break;
       }
+    }
+  }
+
+  private void generateChartModelForTaskByExpiryChart(StatisticChart statisticChart) {
+    if (!statisticChart.getId().contains("_")) {
+      List<ExpiryStatistic> taskByExpiryData = new ArrayList<>();
+      if(statisticChart.getFilter() != null){
+        taskByExpiryData = getExpiryStatisticData(StatisticChartQueryUtils.generateTaskQueryForExpiry(statisticChart.getFilter()).asJson());
+      }
+      statisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
     }
   }
 
