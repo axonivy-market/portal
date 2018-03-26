@@ -22,14 +22,16 @@ public class StickyTaskListService {
   }
 
   public ITask getPreviousTaskWithTaskEndInfo(ITask task) {
-    String taskEndAttributeKey = getTaskEndInfoSessionAttributeKey(task.getId());
-    if (Objects.isNull(task) || isTaskWithTaskEndInfo(taskEndAttributeKey)) {
-      return task;
-    }
-    for (ITask previousTask : task.getStartSwitchEvent().getEndedTasks()) {
-      ITask t = getPreviousTaskWithTaskEndInfo(previousTask);
-      if (t != null) {
-        return t;
+    if (task != null) {
+      String taskEndAttributeKey = getTaskEndInfoSessionAttributeKey(task.getId());
+      if (Objects.isNull(task) || isTaskWithTaskEndInfo(taskEndAttributeKey)) {
+        return task;
+      }
+      for (ITask previousTask : task.getStartSwitchEvent().getEndedTasks()) {
+        ITask t = getPreviousTaskWithTaskEndInfo(previousTask);
+        if (t != null) {
+          return t;
+        }
       }
     }
     return null;

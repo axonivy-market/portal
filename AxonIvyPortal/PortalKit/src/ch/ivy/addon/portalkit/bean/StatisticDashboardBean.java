@@ -48,25 +48,26 @@ public class StatisticDashboardBean implements Serializable {
     int maxWidth = 0;
     for (String suffix : chartIdSuffixes) {
       if (StatisticService.selectThisYear(suffix)) {
-        if (maxWidth < YEAR_CHART_WIDTH) {
-          maxWidth = YEAR_CHART_WIDTH;
-        }
+        maxWidth = calculateMaxWidth(maxWidth, YEAR_CHART_WIDTH);
       } else if (StatisticService.selectWeekOfMonth(suffix)) {
-        if (maxWidth < WEEK_CHART_WIDTH) {
-          maxWidth = WEEK_CHART_WIDTH;
-        }
+        maxWidth = calculateMaxWidth(maxWidth, WEEK_CHART_WIDTH);
       } else if (StatisticService.selectMonthOfYear(suffix)) {
-        if (maxWidth < MONTH_CHART_WIDTH) {
-          maxWidth = MONTH_CHART_WIDTH;
-        }
-      } else if (StatisticService.selectDayOfWeek(suffix) && maxWidth < DAY_CHART_WIDTH) {
-        maxWidth = DAY_CHART_WIDTH;
+        maxWidth = calculateMaxWidth(maxWidth, MONTH_CHART_WIDTH);
+      } else if (StatisticService.selectDayOfWeek(suffix)) {
+        maxWidth = calculateMaxWidth(maxWidth, DAY_CHART_WIDTH);
       }
     }
     if (maxWidth > 0) {
       return "width: " + maxWidth + "px";
     }
     return "";
+  }
+
+  private int calculateMaxWidth(int currentMaxWidth, int widthToCompare) {
+    if (currentMaxWidth < widthToCompare) {
+      return widthToCompare;
+    }
+    return currentMaxWidth;
   }
 
   public String concatCreatedDate(StatisticFilter filter) {
