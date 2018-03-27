@@ -39,7 +39,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project. This process is new home page and administrator should register this link by global
+						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project. This process is new home page and administrator should register this link by global.  Point PortalHome element to your custom homepage in next step.
 					</para>
 				</listitem>
 				<listitem>
@@ -97,8 +97,12 @@
 										<listitem>
 											<para>To add cms for checkboxes's label, add new entries to folder /ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ in PortalStyle  or override method getColumnLabel (see the methods' Javadoc comments)</para>
 										</listitem>
+                                        <listitem>
+                                            <para>In <code>taskListHeader</code> section, use <code>TaskColumnHeader</code> component</para>
+                                        </listitem>
 										<listitem>
 											<para>In <code>taskHeader</code> section, use <code>TaskCustomField</code> component for each additional columns. This component will handle display/hide new columns on task list.</para>
+                                            <para>Currently, TaskCustomField only supports text field. If you want to create your own component, remember to add rendered="#{taskView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}" </para>
 											<para>
 												For example: Show custom field <code>customer name</code> which stored in <code>task.customVarCharField5</code>
 												<para>
@@ -250,12 +254,10 @@
 						<para>In your customized portal tasks HTMLDialog, the customized data model and filter container should be passed as parameters to components (refer to <code>PortalTasks.xhtml</code>).</para>
 					</listitem>
 					<listitem>
-						<para>Portal supports storing/restoring filters. Your filter class (extends <code>TaskFilter</code>) is stored in business data.
-							Properties stored user input values should be persisted, properties controlled logic should not be persisted to reduce persisted data size in business data.
-							Use annotation <code>@JsonIgnore</code> to exclude properties.
-							By default, Portal takes care storing/restoring filters. If you want to customize storing/restoring filter data, do it in your data model class (extends <code>TaskLazyDataModel</code> class).</para>
-					</listitem>
-					<listitem>
+                        <para><emphasis role="strong">Advanced usage:</emphasis> Portal supports storing/restoring filters. Your filter class (extends <code>TaskFilter</code>) is stored in business data.
+                            Properties stored user input values should be persisted, properties controlled logic should not be persisted to reduce persisted data size in business data.
+                            Use annotation <code>@JsonIgnore</code> to exclude properties.
+                            By default, Portal takes care storing/restoring filters. If you want to customize storing/restoring filter data, do it in your data model class (extends <code>TaskLazyDataModel</code> class).</para>
 						<para>By default, filters are stored/restored in process model level. You can change this by setting the ui:param <code>filterGroupId</code> in <code>PortalTasks.xhtml</code> to a new Long value.
 							<tip>
 								<para>If you have multiple case lists in your project, you may want to set <code>filterGroupId</code> to an unique identifier for each of your <code>PortalTasks.xhtml across your projects</code></para>

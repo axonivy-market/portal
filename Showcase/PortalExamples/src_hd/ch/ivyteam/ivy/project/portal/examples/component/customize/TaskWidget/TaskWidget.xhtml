@@ -41,8 +41,9 @@
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.state}" />
 
       <!-- New field -->
-      <h:outputText id="customer-name" styleClass="TexAlCenter custom-varchar" value="#{task.customVarCharField5}" rendered="#{taskView.dataModel.isSelectedColumn('customVarcharField5')}" />
-      <h:outputText id="customer-type" styleClass="TexAlCenter custom-datetime" value="#{task.customTimestampField1}" rendered="#{taskView.dataModel.isSelectedColumn('customTimestampField1')}" >
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
+        labelValue="#{task.customVarCharField5}" />
+      <h:outputText id="shipment-date" styleClass="TexAlCenter custom-datetime" value="#{task.customTimestampField1}" rendered="#{taskView.dataModel.isSelectedColumn('customTimestampField1')}" >
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
       </h:outputText>
     </ui:define>
