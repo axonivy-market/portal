@@ -124,16 +124,16 @@ public class ServerDao extends AbstractDao<Server> {
     }
   }
 
-  private Application toApplication(Server server, IApplication ivyApplication) {
+  private Application toApplication(Server server, IApplication iApplication) {
     Application application = new Application();
     application.setIsOnline(true);
     application.setIsSupportAbsenceSettings(true);
     application.setIsSupportEmailSettings(true);
     application.setIsVisible(true);
-    application.setName(ivyApplication.getName());
-    application.setDisplayName(ivyApplication.getName());
+    application.setName(iApplication.getName());
+    application.setDisplayName(iApplication.getName());
     application.setServerId(server.getId());
-    application.setId(ivyApplication.getId());
+    application.setId(iApplication.getId());
     return application;
   }
 }
