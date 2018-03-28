@@ -1,5 +1,5 @@
 [Ivy]
-1624D1F5CBEA5332 3.20 #module
+1624D1F5CBEA5332 3.23 #module
 >Proto >Proto Collection #zClass
 Ae0 AdditionalCaseDetailPage Big #zClass
 Ae0 B #cInfo
@@ -239,28 +239,29 @@ Ae0 f12 159 64 312 64 #arcP
 Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>EXAMPLE HOW TO CUSTOMIZE CASE DETAIL PAGE
+        <name>HOW TO CUSTOMIZE CASE DETAIL PAGE:
 We need to do 2 steps:
 
 1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFields.ivp
 
-2. For case you want to have customized case detail page, store the URL of custom page to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additonal property.
-We also provide  the callable process "SetAdditionalCaseDetailPage", you could use this if you just need information from case only.
-Input for this process is friendly URL of your customized case detail page. Example: Start Processes/CustomizedCaseDetail/example.ivp
+2. If you want to have customized case detail page, store the URL of custom page to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additonal property.
+We also provide  the callable process "SetAdditionalCaseDetailPage", you could use this if you need information from case only.
+Input for this process is the friendly URL of your customized case detail page. Example: Start Processes/CustomizedCaseDetail/example.ivp
 
 HOW TO RUN THIS EXAMPLE:
 1. Run createInvestmentRequest.ivp process
+
 2. Enter Portal case list, expand Investment Request case, then click to "Show details" button. New tab will open, showing customized case detail page.
 
 
 </name>
-        <nameStyle>42,7
-789,7
+        <nameStyle>35,7
+783,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ae0 f13 768 10 928 252 -459 -120 #rect
+Ae0 f13 784 2 896 268 -438 -128 #rect
 Ae0 f13 @|IBIcon #fIcon
 >Proto Ae0 .type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 >Proto Ae0 .processKind NORMAL #txt
