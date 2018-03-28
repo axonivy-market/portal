@@ -25,7 +25,7 @@ public class RemoteLibraryMapper {
   public static RemoteLibrary mapLibrary(ILibrary library) {
     RemoteLibrary result = new RemoteLibrary();
     result.setId(library.getId());
-    result.setProjectName(library.getProcessModelVersion().getProjectName());
+    result.setProjectName(library.getProcessModelVersion().getProcessModel().getName());
     result.setProjectVersion(library.getQualifiedVersion().toString());
     return result;
   }
