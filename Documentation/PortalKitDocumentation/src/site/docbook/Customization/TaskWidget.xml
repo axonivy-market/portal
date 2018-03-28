@@ -30,7 +30,7 @@
 	</important>
 	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverideui">
 		<title>How to override task widget's UI</title>
-        <para>Refer to <code>PortalExamples<code/> project for examples</para>
+        <para>Refer to <code>PortalExamples</code> project for examples</para>
 		<para>
 			<orderedlist>
 				<listitem>
