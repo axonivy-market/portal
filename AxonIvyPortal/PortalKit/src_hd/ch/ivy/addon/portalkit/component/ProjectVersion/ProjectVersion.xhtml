@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}" class="ui-g">
+    <div class="ui-g-3">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/engineVersion')}:" />
+    </div>
+    <div class="ui-g-9">
+      <h:outputText value="#{projectVersionBean.engineVersion}" />
+    </div>
+
+    <div class="ui-g-3">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/portalVersion')}:" />
+    </div>
+    <div class="ui-g-9">
+      <h:outputText value="#{projectVersionBean.portalVersion}" />
+    </div>
+
+    <h:panelGroup rendered="#{not empty projectVersionBean.projectLibraries}">
+      <ui:repeat value="#{projectVersionBean.projectLibraries.entrySet().toArray()}" var="entry">
+        <div class="ui-g-3">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/applicationProjectVersion')}" rendered="#{empty entry.key}" />
+          <h:outputText value="#{entry.key}:" rendered="#{not empty entry.key}" />
+        </div>
+        <div class="ui-g-9">
+          <p:dataTable value="#{entry.value}" var="library">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
+              <h:outputText value="#{library.projectName}" />
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}">
+              <h:outputText value="#{library.projectVersion}" />
+            </p:column>
+          </p:dataTable>
+        </div>
+      </ui:repeat>
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+</html>
