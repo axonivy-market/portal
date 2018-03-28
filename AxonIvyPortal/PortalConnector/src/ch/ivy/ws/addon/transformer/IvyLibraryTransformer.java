@@ -11,7 +11,7 @@ public class IvyLibraryTransformer {
   public static IvyLibrary transform(ILibrary library, String application) {
     IvyLibrary result = new IvyLibrary();
     result.setId(library.getId());
-    result.setProjectName(library.getName());
+    result.setProjectName(library.getProcessModelVersion().getProjectName());
     result.setProjectName(library.getQualifiedVersion().toString());
     result.setApplication(application);
     return result;
