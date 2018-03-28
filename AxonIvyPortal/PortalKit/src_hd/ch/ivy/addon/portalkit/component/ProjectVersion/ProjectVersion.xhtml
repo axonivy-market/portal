@@ -28,8 +28,7 @@
     <h:panelGroup rendered="#{not empty projectVersionBean.projectLibraries}">
       <ui:repeat value="#{projectVersionBean.projectLibraries.entrySet().toArray()}" var="entry">
         <div class="ui-g-3">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/applicationProjectVersion')}" rendered="#{empty entry.key}" />
-          <h:outputText value="#{entry.key}:" rendered="#{not empty entry.key}" />
+          <h:outputText value="#{entry.key}:" />
         </div>
         <div class="ui-g-9">
           <p:dataTable value="#{entry.value}" var="library">
