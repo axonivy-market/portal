@@ -38,9 +38,11 @@
         fullName="#{task.activatorFullName}" styleClass="hidden-sm" dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
-        value="#{task.startTimestamp}" styleClass="js-create-cell" />
+        value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}"
+        rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
-        value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
+        value="#{task.expiryTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}"
+        rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.state}" />
 
       <!-- New field -->

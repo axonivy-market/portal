@@ -30,6 +30,7 @@
 	</important>
 	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverideui">
 		<title>How to override task widget's UI</title>
+        <para>Refer to <code>PortalExamples<code/> project for examples</para>
 		<para>
 			<orderedlist>
 				<listitem>
@@ -39,14 +40,14 @@
 				</listitem>
 				<listitem>
 					<para>
-						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project. This process is new home page and administrator should register this link by global.  Point PortalHome element to your custom homepage in next step.
+						To customize task widget, you must customize Portal Home first. Refer to <link linkend="axonivyportal.customization.portalhome">Customize Portal home</link> to set new home page.
 					</para>
 				</listitem>
-				<listitem>
-					<para>
-						Refer to <link linkend="axonivyportal.customization.portalhome">Customize Portal home</link> to set new home page.
-					</para>
-				</listitem>
+                <listitem>
+                  <para>
+                    Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project. Point PortalHome element to your custom home page in previous step. This process is new home page and administrator should register this link by Portal's Admin Settings.  
+                  </para>
+                </listitem>
 				<listitem>
 					<para>
 						Override Task widget in: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
