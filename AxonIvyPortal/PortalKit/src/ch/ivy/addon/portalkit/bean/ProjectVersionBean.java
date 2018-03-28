@@ -8,8 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portalkit.bo.RemoteLibrary;
-import ch.ivy.addon.portalkit.datacollecting.factory.AbstractLibraryFactory;
-import ch.ivy.addon.portalkit.datacollecting.factory.FactoryCreator;
+import ch.ivy.addon.portalkit.datacollecting.factory.LibraryServiceFactory;
 import ch.ivy.addon.portalkit.datacollecting.service.AbstractLibraryService;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -34,8 +33,7 @@ public class ProjectVersionBean {
   }
 
   private Map<String, List<RemoteLibrary>> retrieveProjectLibraries() {
-    AbstractLibraryFactory factory = FactoryCreator.getLibraryFactory();
-    AbstractLibraryService service = factory.createService();
+    AbstractLibraryService service = LibraryServiceFactory.getLibraryService();
     return service.collectLibraries();
   }
 
