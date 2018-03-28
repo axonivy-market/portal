@@ -41,6 +41,11 @@ public class ApplicationService extends AbstractService<Application> {
   public List<Application> findOnlineApplicationByServerId(Long serverId) {
     return getDao().findOnlineAppByServerId(serverId);
   }
+  
+  public List<Application> findOnlineIvyApps() {
+    return getDao().findOnlineIvyApps();
+  }
+  
 
   public Application findByName(String name) {
     return getDao().findByName(name);
