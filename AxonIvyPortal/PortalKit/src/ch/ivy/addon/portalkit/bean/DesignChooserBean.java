@@ -53,6 +53,8 @@ public class DesignChooserBean implements Serializable {
   private static final String LOGIN_LOGO_HEIGHT_ATTRIBUTE = "@login-logo-height:";
   private static final String HOME_LOGO_HEIGHT_PATTERN = HOME_LOGO_HEIGHT_ATTRIBUTE + ANY_CHARACTERS_REGEX;
   private static final String LOGIN_LOGO_HEIGHT_PATTERN = LOGIN_LOGO_HEIGHT_ATTRIBUTE + ANY_CHARACTERS_REGEX;
+  private static final String LOGIN_LOGO = "LoginLogo.png";
+  private static final String HOME_LOGO = "HomeLogo.png";
 
   private String mainColor;
   private String backgroundColor;
@@ -73,27 +75,35 @@ public class DesignChooserBean implements Serializable {
       uploadedLoginLogo = false;
       mainColor = retrieveMainColorFromFile();
       backgroundColor = retrieveBackgroundColorFromFile();
-      String[] homeLogoHeightStyle = retrieveHomeLogoHeightFromFile().split("(?<=[0-9])(?=[^0-9])");
-      homeLogoHeight = Long.parseLong(homeLogoHeightStyle[0]);
-      String[] loginLogoHeightStyle = retrieveLoginLogoHeightFromFile().split("(?<=[0-9])(?=[^0-9])");
-      loginLogoHeight = Long.parseLong(loginLogoHeightStyle[0]);
-    } catch (IOException e) {
-      Ivy.log().error("Can't retrieve colors from less file", e);
+      String regex = "(?<=[0-9])(?=[^0-9])";
+      String[] homeLogoHeightStyle = retrieveHomeLogoHeightFromFile().split(regex);
+      if (homeLogoHeightStyle.length > 0){
+        homeLogoHeight = Long.parseLong(homeLogoHeightStyle[0]);
+      }
+      String[] loginLogoHeightStyle = retrieveLoginLogoHeightFromFile().split(regex);
+      if (loginLogoHeightStyle.length > 0){
+        loginLogoHeight = Long.parseLong(loginLogoHeightStyle[0]);
+      }
+    } catch (IOException e1) {
+      Ivy.log().error("Can't retrieve colors from less file", e1);
+    } catch (NumberFormatException e2) {
+      Ivy.log().error("Can't retrieve colors from less file", e2);
     }
   }
   
+  
   public String getLoginLogoImage() throws IOException {
-    return Ivy.html().fileref(new File("LoginLogo.png", true));
+    return Ivy.html().fileref(new File(LOGIN_LOGO, true));
   }
 
   public String getHomeLogoImage() throws IOException {
-    return Ivy.html().fileref(new File("HomeLogo.png", true));
+    return Ivy.html().fileref(new File(HOME_LOGO, true));
   }
 
   public void uploadLoginLogo(FileUploadEvent event) throws IOException {
     uploadedLoginLogo = true;
     loginLogoStream = event.getFile().getInputstream();
-    File file = new File("LoginLogo.png", true);
+    File file = new File(LOGIN_LOGO, true);
     Binary content = new Binary(event.getFile().getContents());
     file.writeBinary(content);
   }
@@ -101,7 +111,7 @@ public class DesignChooserBean implements Serializable {
   public void uploadHomeLogo(FileUploadEvent event) throws IOException {
     uploadedHomeLogo = true;
     homeLogoStream = event.getFile().getInputstream();
-    File file = new File("HomeLogo.png", true);
+    File file = new File(HOME_LOGO, true);
     Binary content = new Binary(event.getFile().getContents());
     file.writeBinary(content);
   }
@@ -193,15 +203,15 @@ public class DesignChooserBean implements Serializable {
   }
 
   private String retrieveStyleValueFromLessFile(String pattern) throws IOException {
-    String color = retrieveStyleValueFromLessFile(pattern, CUSTOMIZATION_LESS_PATH);
-    if (StringUtils.isBlank(color)) {
-      color = retrieveStyleValueFromLessFile(pattern, VARIABLES_LESS_PATH);
+    String styleValue = retrieveStyleValueFromLessFile(pattern, CUSTOMIZATION_LESS_PATH);
+    if (StringUtils.isBlank(styleValue)) {
+      styleValue = retrieveStyleValueFromLessFile(pattern, VARIABLES_LESS_PATH);
     }
-    return color;
+    return styleValue;
   }
   
   private String retrieveStyleValueFromLessFile(String pattern, String resource) throws IOException {
-    String color = StringUtils.EMPTY;
+    String styleValue = StringUtils.EMPTY;
     Optional<Path> path = loader.findResource(resource);
     if (path.isPresent()) {
       try (Stream<String> lines = Files.lines(path.get())) {
@@ -209,11 +219,11 @@ public class DesignChooserBean implements Serializable {
         Optional<Matcher> matcher = lines.map(p::matcher).filter(Matcher::matches).findFirst();
         if (matcher.isPresent()) {
           String colorLine = matcher.get().group(1);
-          color = colorLine.substring(colorLine.indexOf(": ") + 2, colorLine.length() - 1);
+          styleValue = colorLine.substring(colorLine.indexOf(": ") + 2, colorLine.length() - 1);
         }
       }
     }
-    return color;
+    return styleValue;
   }
 
   private void initWebContentLoader() {
@@ -277,5 +287,4 @@ public class DesignChooserBean implements Serializable {
   public void setUploadedLoginLogo(boolean uploadedLoginLogo) {
     this.uploadedLoginLogo = uploadedLoginLogo;
   }
-  
 }
