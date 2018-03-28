@@ -84,6 +84,19 @@ public class ApplicationDao extends AbstractDao<Application> {
 
     return applications;
   }
+  
+  @ExecuteAsSystem
+  public List<Application> findOnlineIvyApps() {
+    repo =
+        Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.SERVER_ID.toString())
+            .build(Long.class, Application.class).init(findAll());
+    Criterion<Long> objectFilterForIsOnline = ObjectFilter.eq(EntityProperty.IS_ONLINE, true);
+    List<Application> applications = repo.query(objectFilterForIsOnline);
+
+    setRelationShipDataFor(applications);
+
+    return applications;
+  }
 
   @ExecuteAsSystem
   public Application findByDisplayNameAndNameAndServerId(String displayName, String applicationName, Long serverId) {
