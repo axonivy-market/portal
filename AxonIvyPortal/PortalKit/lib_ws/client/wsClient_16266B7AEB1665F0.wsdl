@@ -1,0 +1,144 @@
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://addon.ws.ivy.ch/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="ch.ivyteam.ivy.webservice.process" name="LibraryServiceService" targetNamespace="http://addon.ws.ivy.ch/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://addon.ws.ivy.ch/" elementFormDefault="unqualified" targetNamespace="http://addon.ws.ivy.ch/" version="1.0">
+
+  <xs:element name="getLibraries" type="tns:getLibraries"></xs:element>
+
+  <xs:element name="getLibrariesResponse" type="tns:getLibrariesResponse"></xs:element>
+
+  <xs:complexType name="getLibraries">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getLibrariesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getLibrariesResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getLibrariesResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="libraries" nillable="true" type="tns:ivyLibrary"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="wsException">
+    <xs:complexContent>
+      <xs:extension base="tns:exception">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="errorDateTime" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="errorType" type="tns:wsErrorType"></xs:element>
+          <xs:element minOccurs="0" name="exception" type="tns:exception"></xs:element>
+          <xs:element minOccurs="0" name="helpText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="helpTextData" nillable="true" type="xs:anyType"></xs:element>
+          <xs:element minOccurs="0" name="server" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="userText" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userTextData" nillable="true" type="xs:anyType"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="exception">
+    <xs:complexContent>
+      <xs:extension base="tns:throwable">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stackTrace" nillable="true" type="tns:stackTraceElement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType final="extension restriction" name="stackTraceElement">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ivyLibrary">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="application" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="id" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="projectName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="projectVersion" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType abstract="true" name="compositeObject">
+    <xs:complexContent>
+      <xs:extension base="tns:nestedObject">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType abstract="true" name="nestedObject">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="wsErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INFO"></xs:enumeration>
+      <xs:enumeration value="WARNING"></xs:enumeration>
+      <xs:enumeration value="ERROR"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="ch.ivyteam.ivy.webservice.process" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process">
+  <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getLibraries">
+    <wsdl:part element="tns:getLibraries" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLibrariesResponse">
+    <wsdl:part element="tns:getLibrariesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceProcessTechnicalException">
+    <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LibraryService">
+    <wsdl:operation name="getLibraries">
+      <wsdl:input message="tns:getLibraries" name="getLibraries">
+    </wsdl:input>
+      <wsdl:output message="tns:getLibrariesResponse" name="getLibrariesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LibraryServiceServiceSoapBinding" type="tns:LibraryService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getLibraries">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLibraries">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLibrariesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LibraryServiceService">
+    <wsdl:port binding="tns:LibraryServiceServiceSoapBinding" name="LibraryServicePort">
+      <soap:address location="http://localhost:8081/ivy/ws/designer/PortalConnector/162668C788FE23AD"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
