@@ -1,0 +1,4 @@
+co: name={applicationProjectVersion} description={} changed={2018-03-26 06:37:14 CEST} changedby={dhtlong} visualorder={0} guid={16260986BB7FC93A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16260986BC5BB181} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-26 06:37:04 CEST} validto={} changed={2018-03-26 06:37:11 CEST} changedby={dhtlong} properties={} id={}
+val: guid={16260986BBF33DB9} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-26 06:37:04 CEST} validto={} changed={2018-03-26 06:37:04 CEST} changedby={dhtlong} properties={} id={}
+val: guid={16260986BBA5927B} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-26 06:37:04 CEST} validto={} changed={2018-03-26 06:37:14 CEST} changedby={dhtlong} properties={} id={}

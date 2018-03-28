@@ -1,0 +1,4 @@
+co: name={engineVersion} description={} changed={2018-03-26 06:36:05 CEST} changedby={dhtlong} visualorder={0} guid={16260973E3B9EC96} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16260973E45D50C6} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-26 06:35:47 CEST} validto={} changed={2018-03-26 06:35:47 CEST} changedby={dhtlong} properties={} id={}
+val: guid={16260973E4C16760} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-26 06:35:47 CEST} validto={} changed={2018-03-26 06:36:02 CEST} changedby={dhtlong} properties={} id={}
+val: guid={16260973E3F35A8A} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-26 06:35:47 CEST} validto={} changed={2018-03-26 06:36:05 CEST} changedby={dhtlong} properties={} id={}

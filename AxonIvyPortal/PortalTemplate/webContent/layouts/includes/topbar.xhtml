@@ -99,7 +99,11 @@
                 <p:resetInput target=":change-password-dialog" />
               </p:commandLink>
           </li>
-          
+
+          <li><p:link id="project-info-menu-item" href="#"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
+              onclick="PF('project-info-dialog').show()" /></li>
+
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
           </li>
         </ul></li>
@@ -162,6 +166,18 @@
         <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start"
           dialogName="languageDialogVar" />
       </h:form>
+    </p:dialog>
+
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}"
+      widgetVar="project-info-dialog" id="project-info-dialog" closeOnEscape="true" resizable="false" modal="true"
+      draggable="false" appendTo="@(body)" dynamic="true" width="800">
+      <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
+
+      <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
+        <p:commandButton id="project-version-close-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+          onclick="PF('project-info-dialog').hide();" />
+      </h:panelGroup>
     </p:dialog>
   </ui:insert>
   <c:if test="#{enablesChat eq true}">

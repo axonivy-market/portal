@@ -495,4 +495,30 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
         </wsdlGeneratedInfo>
         <webServiceVersion/>
     </webServiceConfig>
+    <webServiceConfig>
+        <name>libraryService</name>
+        <id>16266B7AEB1665F0</id>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/162668C788FE23AD?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsCallLibrary>AXIS_2_0</wsCallLibrary>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>LibraryServicePort="getLibraries"</axisOperationsToPort>
+            <axisEndPointForPortType>LibraryServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>LibraryServicePortgetLibraries="arg0__@@__ch.ivy.ws.addon.GetLibrariesE__@@__"</axisParameterProperties>
+            <axisPortList>LibraryServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.LibraryServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>LibraryServicePortgetLibraries=ch.ivy.ws.addon.GetLibrariesResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.LibraryServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\GetLibraries.java","ch\\ivy\\ws\\addon\\GetLibrariesE.java","ch\\ivy\\ws\\addon\\GetLibrariesResponse.java","ch\\ivy\\ws\\addon\\GetLibrariesResponseE.java","ch\\ivy\\ws\\addon\\GetLibrariesResult.java","ch\\ivy\\ws\\addon\\IvyLibrary.java","ch\\ivy\\ws\\addon\\LibraryServiceService.java","ch\\ivy\\ws\\addon\\LibraryServiceServiceStub.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1522141790498</codeGenerationTimestamp>
+            <wsdlWebserviceName>LibraryServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
 </webServiceConfigurationNode>
