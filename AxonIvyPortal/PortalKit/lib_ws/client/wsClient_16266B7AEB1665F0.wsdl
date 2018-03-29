@@ -6,6 +6,10 @@
 
   <xs:element name="getLibrariesResponse" type="tns:getLibrariesResponse"></xs:element>
 
+  <xs:element name="getLibrary" type="tns:getLibrary"></xs:element>
+
+  <xs:element name="getLibraryResponse" type="tns:getLibraryResponse"></xs:element>
+
   <xs:complexType name="getLibraries">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
@@ -86,6 +90,26 @@
     <xs:sequence></xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="getLibrary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="libraryId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="appName" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getLibraryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:getLibraryResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getLibraryResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element minOccurs="0" name="library" type="tns:ivyLibrary"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:simpleType name="wsErrorType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="INFO"></xs:enumeration>
@@ -111,11 +135,27 @@
     <wsdl:part element="ns1:TechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getLibraryResponse">
+    <wsdl:part element="tns:getLibraryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLibrary">
+    <wsdl:part element="tns:getLibrary" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="LibraryService">
     <wsdl:operation name="getLibraries">
       <wsdl:input message="tns:getLibraries" name="getLibraries">
     </wsdl:input>
       <wsdl:output message="tns:getLibrariesResponse" name="getLibrariesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLibrary">
+      <wsdl:input message="tns:getLibrary" name="getLibrary">
+    </wsdl:input>
+      <wsdl:output message="tns:getLibraryResponse" name="getLibraryResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -129,6 +169,18 @@
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="getLibrariesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLibrary">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLibrary">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLibraryResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">

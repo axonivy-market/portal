@@ -1,5 +1,5 @@
 [Ivy]
-16266C24CFBD7885 3.20 #module
+16266C24CFBD7885 3.23 #module
 >Proto >Proto Collection #zClass
 Ar0 LibraryServiceIntergrator Big #zClass
 Ar0 B #cInfo
@@ -30,6 +30,19 @@ Ar0 @PushWFArc f25 '' #zField
 Ar0 @PushWFArc f26 '' #zField
 Ar0 @PushWFArc f21 '' #zField
 Ar0 @PushWFArc f35 '' #zField
+Ar0 @StartSub f1 '' #zField
+Ar0 @WSElement f2 '' #zField
+Ar0 @WSElement f3 '' #zField
+Ar0 @EndSub f4 '' #zField
+Ar0 @WSElement f5 '' #zField
+Ar0 @Alternative f6 '' #zField
+Ar0 @PushWFArc f7 '' #zField
+Ar0 @PushWFArc f8 '' #zField
+Ar0 @PushWFArc f10 '' #zField
+Ar0 @PushWFArc f11 '' #zField
+Ar0 @PushWFArc f12 '' #zField
+Ar0 @PushWFArc f13 '' #zField
+Ar0 @PushWFArc f14 '' #zField
 >Proto Ar0 Ar0 LibraryServiceIntergrator #zField
 Ar0 f17 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
 Ar0 f17 actionDecl 'ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData out;
@@ -39,19 +52,14 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f17 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f17 timeout 0 #txt
-Ar0 f17 beanConfig 'KEY_PASSWORD=
-KEY_AXIS_PORTNAME=LibraryServicePort
-KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=getLibraries
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.getLibraries.apps__@@__Array<String>__@@__in.applicationNames"' #txt
+Ar0 f17 clientId 16266B7AEB1665F0 #txt
+Ar0 f17 port LibraryServicePort #txt
+Ar0 f17 operation getLibraries #txt
+Ar0 f17 properties 'AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ar0 f17 inputParams 'arg0.getLibraries.apps=in.applicationNames;
+' #txt
 Ar0 f17 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f17 returningObjectList '[wsResponse]' #txt
 Ar0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -86,19 +94,19 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f9 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f9 timeout 0 #txt
-Ar0 f9 beanConfig 'KEY_PASSWORD=<%\=in.server.password%>
-KEY_AXIS_PORTNAME=LibraryServicePort
-KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
-KEY_DOMAIN=<%\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\=in.server.username%>
-KEY_OPERATION=getLibraries
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.getLibraries.apps__@@__Array<String>__@@__in.applicationNames"' #txt
+Ar0 f9 clientId 16266B7AEB1665F0 #txt
+Ar0 f9 port LibraryServicePort #txt
+Ar0 f9 operation getLibraries #txt
+Ar0 f9 properties 'authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ar0 f9 inputParams 'arg0.getLibraries.apps=in.applicationNames;
+' #txt
 Ar0 f9 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f9 returningObjectList '[wsResponse]' #txt
 Ar0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -177,10 +185,10 @@ Ar0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f30 755 51 26 26 14 0 #rect
+Ar0 f30 195 555 26 26 14 0 #rect
 Ar0 f30 @|ExceptionIcon #fIcon
 Ar0 f31 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
-Ar0 f31 755 259 26 26 14 0 #rect
+Ar0 f31 195 763 26 26 14 0 #rect
 Ar0 f31 @|EndSubIcon #fIcon
 Ar0 f33 actionDecl 'ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData out;
 ' #txt
@@ -209,13 +217,13 @@ Ar0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f33 696 136 144 48 -53 -8 #rect
+Ar0 f33 136 640 144 48 -53 -8 #rect
 Ar0 f33 @|StepIcon #fIcon
 Ar0 f34 expr out #txt
-Ar0 f34 768 77 768 136 #arcP
+Ar0 f34 208 581 208 640 #arcP
 Ar0 f34 0 0.5007315431205012 0 0 #arcLabel
 Ar0 f32 expr out #txt
-Ar0 f32 768 184 768 259 #arcP
+Ar0 f32 208 688 208 763 #arcP
 Ar0 f24 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
 Ar0 f24 actionDecl 'ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData out;
 ' #txt
@@ -224,19 +232,17 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f24 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f24 timeout 0 #txt
-Ar0 f24 beanConfig 'KEY_PASSWORD=<%\=in.server.password%>
-KEY_AXIS_PORTNAME=LibraryServicePort
-KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\=in.server.username%>
-KEY_OPERATION=getLibraries
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.getLibraries.apps__@@__Array<String>__@@__in.applicationNames"' #txt
+Ar0 f24 clientId 16266B7AEB1665F0 #txt
+Ar0 f24 port LibraryServicePort #txt
+Ar0 f24 operation getLibraries #txt
+Ar0 f24 properties 'authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ar0 f24 inputParams 'arg0.getLibraries.apps=in.applicationNames;
+' #txt
 Ar0 f24 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f24 returningObjectList '[wsResponse]' #txt
 Ar0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -284,6 +290,201 @@ Ar0 f21 1 576 192 #addKink
 Ar0 f21 0 0.7986561412607155 -1 -11 #arcLabel
 Ar0 f35 expr out #txt
 Ar0 f35 352 77 352 178 #arcP
+Ar0 f1 inParamDecl '<java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String appName,java.lang.String libraryId> param;' #txt
+Ar0 f1 inParamTable 'out.appName=param.appName;
+out.endpoint=param.endpoint;
+out.libraryId=param.libraryId;
+out.server=param.server;
+' #txt
+Ar0 f1 outParamDecl '<ch.ivy.ws.addon.IvyLibrary library,List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Ar0 f1 outParamTable 'result.library=in.library;
+result.errors=in.errors;
+' #txt
+Ar0 f1 actionDecl 'ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData out;
+' #txt
+Ar0 f1 callSignature getLibrary(String,ch.ivy.addon.portalkit.persistence.domain.Server,String,String) #txt
+Ar0 f1 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
+Ar0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>getLibrary(String,Server,String,String)</name>
+        <nameStyle>39,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ar0 f1 1116 52 24 24 14 0 #rect
+Ar0 f1 @|StartSubIcon #fIcon
+Ar0 f2 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
+Ar0 f2 actionDecl 'ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData out;
+' #txt
+Ar0 f2 actionTable 'out=in;
+out.errors=wsResponse.getLibraryResponse.result.errors;
+out.library=wsResponse.getLibraryResponse.result.library;
+' #txt
+Ar0 f2 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
+Ar0 f2 clientId 16266B7AEB1665F0 #txt
+Ar0 f2 port LibraryServicePort #txt
+Ar0 f2 operation getLibrary #txt
+Ar0 f2 properties 'AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ar0 f2 inputParams 'arg0.getLibrary.appName=in.appName;
+arg0.getLibrary.libraryId=in.libraryId;
+' #txt
+Ar0 f2 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
+Ar0 f2 returningObjectList '[wsResponse]' #txt
+Ar0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Call ApplicationService
+with default settings</name>
+        <nameStyle>45
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ar0 f2 1273 299 160 56 -59 -16 #rect
+Ar0 f2 @|WebServiceIcon #fIcon
+Ar0 f3 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
+Ar0 f3 actionDecl 'ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData out;
+' #txt
+Ar0 f3 actionTable 'out=in;
+out.errors=wsResponse.getLibraryResponse.result.errors;
+out.library=wsResponse.getLibraryResponse.result.library;
+' #txt
+Ar0 f3 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
+Ar0 f3 clientId 16266B7AEB1665F0 #txt
+Ar0 f3 port LibraryServicePort #txt
+Ar0 f3 operation getLibrary #txt
+Ar0 f3 properties 'authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ar0 f3 inputParams 'arg0.getLibrary.appName=in.appName;
+arg0.getLibrary.libraryId=in.libraryId;
+' #txt
+Ar0 f3 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
+Ar0 f3 returningObjectList '[wsResponse]' #txt
+Ar0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Call ApplicationService
+with NTLM Override
+and Global Variable Settings</name>
+        <nameStyle>71
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ar0 f3 1041 297 176 60 -70 -24 #rect
+Ar0 f3 @|WebServiceIcon #fIcon
+Ar0 f4 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
+Ar0 f4 1116 442 26 26 14 0 #rect
+Ar0 f4 @|EndSubIcon #fIcon
+Ar0 f5 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
+Ar0 f5 actionDecl 'ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData out;
+' #txt
+Ar0 f5 actionTable 'out=in;
+out.errors=wsResponse.getLibraryResponse.result.errors;
+out.library=wsResponse.getLibraryResponse.result.library;
+' #txt
+Ar0 f5 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
+Ar0 f5 clientId 16266B7AEB1665F0 #txt
+Ar0 f5 port LibraryServicePort #txt
+Ar0 f5 operation getLibrary #txt
+Ar0 f5 properties 'authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ar0 f5 inputParams 'arg0.getLibrary.appName=in.appName;
+arg0.getLibrary.libraryId=in.libraryId;
+' #txt
+Ar0 f5 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
+Ar0 f5 returningObjectList '[wsResponse]' #txt
+Ar0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Call ApplicationService
+with HTTP Basic</name>
+        <nameStyle>39
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ar0 f5 825 305 160 44 -59 -16 #rect
+Ar0 f5 @|WebServiceIcon #fIcon
+Ar0 f6 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
+Ar0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ar0 f6 1115 177 28 28 8 -28 #rect
+Ar0 f6 @|AlternativeIcon #fIcon
+Ar0 f7 expr out #txt
+Ar0 f7 1353 355 1141 455 #arcP
+Ar0 f7 1 1353 456 #addKink
+Ar0 f7 0 0.561886529604993 0 0 #arcLabel
+Ar0 f8 expr out #txt
+Ar0 f8 905 349 1116 455 #arcP
+Ar0 f8 1 905 455 #addKink
+Ar0 f8 1 0.2688637914256368 0 0 #arcLabel
+Ar0 f10 expr out #txt
+Ar0 f10 1129 357 1129 442 #arcP
+Ar0 f11 expr in #txt
+Ar0 f11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>None</name>
+        <nameStyle>4
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ar0 f11 1143 191 1353 299 #arcP
+Ar0 f11 1 1353 191 #addKink
+Ar0 f11 0 0.7986561412607155 -1 -11 #arcLabel
+Ar0 f12 expr in #txt
+Ar0 f12 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Ar0 f12 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ar0 f12 1129 205 1129 297 #arcP
+Ar0 f12 0 0.2608695652173913 -20 0 #arcLabel
+Ar0 f13 expr in #txt
+Ar0 f13 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Ar0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ar0 f13 1115 191 905 305 #arcP
+Ar0 f13 1 905 191 #addKink
+Ar0 f13 0 0.7196013786683974 0 -10 #arcLabel
+Ar0 f14 expr out #txt
+Ar0 f14 1128 75 1129 177 #arcP
 >Proto Ar0 .type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
 >Proto Ar0 .processKind CALLABLE_SUB #txt
 >Proto Ar0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -311,3 +512,17 @@ Ar0 f15 out f21 tail #connect
 Ar0 f21 head f17 mainIn #connect
 Ar0 f0 mainOut f35 tail #connect
 Ar0 f35 head f15 in #connect
+Ar0 f6 out f12 tail #connect
+Ar0 f12 head f3 mainIn #connect
+Ar0 f3 mainOut f10 tail #connect
+Ar0 f10 head f4 mainIn #connect
+Ar0 f2 mainOut f7 tail #connect
+Ar0 f7 head f4 mainIn #connect
+Ar0 f6 out f13 tail #connect
+Ar0 f13 head f5 mainIn #connect
+Ar0 f5 mainOut f8 tail #connect
+Ar0 f8 head f4 mainIn #connect
+Ar0 f6 out f11 tail #connect
+Ar0 f11 head f2 mainIn #connect
+Ar0 f1 mainOut f14 tail #connect
+Ar0 f14 head f6 in #connect
