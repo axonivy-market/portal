@@ -1,5 +1,5 @@
 [Ivy]
-14C2C99A2B54EEF3 3.20 #module
+14C2C99A2B54EEF3 3.23 #module
 >Proto >Proto Collection #zClass
 Es0 CentralLanguageProcess Big #zClass
 Es0 RD #cInfo
@@ -19,9 +19,6 @@ Es0 @RichDialogProcessEnd f9 '' #zField
 Es0 @CallSub f11 '' #zField
 Es0 @RichDialogProcessEnd f14 '' #zField
 Es0 @RichDialogProcessStart f15 '' #zField
-Es0 @GridStep f17 '' #zField
-Es0 @PushWFArc f18 '' #zField
-Es0 @PushWFArc f16 '' #zField
 Es0 @RichDialogProcessEnd f19 '' #zField
 Es0 @CallSub f21 '' #zField
 Es0 @PushWFArc f6 '' #zField
@@ -36,6 +33,7 @@ Es0 @PushWFArc f28 '' #zField
 Es0 @PushWFArc f23 '' #zField
 Es0 @RichDialogMethodStart f29 '' #zField
 Es0 @PushWFArc f20 '' #zField
+Es0 @PushWFArc f8 '' #zField
 >Proto Es0 Es0 CentralLanguageProcess #zField
 Es0 f0 guid 14BD8AF4A523241B #txt
 Es0 f0 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
@@ -125,27 +123,6 @@ Es0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Es0 f15 606 62 20 20 13 -8 #rect
 Es0 f15 @|RichDialogProcessStartIcon #fIcon
-Es0 f17 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
-' #txt
-Es0 f17 actionTable 'out=in;
-' #txt
-Es0 f17 actionCode in.ivyLanguagesSettings.clear(); #txt
-Es0 f17 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
-Es0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Clear Language Settings</name>
-        <nameStyle>23,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Es0 f17 598 124 36 24 20 -7 #rect
-Es0 f17 @|StepIcon #fIcon
-Es0 f18 expr out #txt
-Es0 f18 616 82 616 124 #arcP
-Es0 f16 expr out #txt
-Es0 f16 616 148 616 198 #arcP
 Es0 f19 type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
 Es0 f19 214 534 20 20 13 0 #rect
 Es0 f19 @|RichDialogProcessEndIcon #fIcon
@@ -279,6 +256,8 @@ Es0 f29 211 339 26 26 -63 15 #rect
 Es0 f29 @|RichDialogMethodStartIcon #fIcon
 Es0 f20 expr out #txt
 Es0 f20 224 365 224 396 #arcP
+Es0 f8 expr out #txt
+Es0 f8 616 82 616 198 #arcP
 >Proto Es0 .type ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -296,10 +275,6 @@ Es0 f20 224 365 224 396 #arcP
 ' #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
 >Proto Es0 '' #fIcon
-Es0 f15 mainOut f18 tail #connect
-Es0 f18 head f17 mainIn #connect
-Es0 f17 mainOut f16 tail #connect
-Es0 f16 head f14 mainIn #connect
 Es0 f0 mainOut f6 tail #connect
 Es0 f6 head f1 mainIn #connect
 Es0 f2 mainOut f4 tail #connect
@@ -316,3 +291,5 @@ Es0 f27 mainOut f23 tail #connect
 Es0 f23 head f5 mainIn #connect
 Es0 f29 mainOut f20 tail #connect
 Es0 f20 head f21 mainIn #connect
+Es0 f15 mainOut f8 tail #connect
+Es0 f8 head f14 mainIn #connect
