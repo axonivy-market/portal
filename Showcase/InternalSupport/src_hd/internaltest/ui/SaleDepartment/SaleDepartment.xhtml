@@ -8,8 +8,9 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 	<ui:composition template="/layouts/TaskTemplate.xhtml">
-		<ui:define name="title">SaleDepartment</ui:define>
+		<ui:define name="title">Task: #{ivy.task.name}</ui:define>
 		<ui:param name="isNotRequiredLogin" value="false" />
+		<ui:param name="task" value="#{ivy.task}" />
 		<ui:define name="taskForm">
 			<h3>
 			This is private page for Sale employees
