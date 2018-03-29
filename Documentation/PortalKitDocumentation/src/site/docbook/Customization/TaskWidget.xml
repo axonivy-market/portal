@@ -96,7 +96,7 @@
 											<para>In case you has new columns, override method <code>getDefaultColumns</code> of the extended class from TaskLazyDataModel to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
 										</listitem>
 										<listitem>
-											<para>To add cms for checkboxes's label, add new entries to folder /ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ in PortalStyle  or override method getColumnLabel (see the methods' Javadoc comments)</para>
+											<para>To add cms for checkboxes's label, add new entries to folder <code>/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/</code> in <code>PortalStyle</code> or override method <code>getColumnLabel</code>(see the methods' Javadoc comments)</para>
 										</listitem>
                                         <listitem>
                                             <para>In <code>taskListHeader</code> section, use <code>TaskColumnHeader</code> component</para>
