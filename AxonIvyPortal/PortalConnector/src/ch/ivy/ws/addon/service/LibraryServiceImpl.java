@@ -3,7 +3,6 @@ package ch.ivy.ws.addon.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -14,7 +13,6 @@ import ch.ivy.ws.addon.bo.LibraryServiceResult;
 import ch.ivy.ws.addon.transformer.IvyLibraryTransformer;
 import ch.ivy.ws.addon.types.IvyLibrary;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class LibraryServiceImpl implements ILibraryService {
@@ -53,44 +51,10 @@ public class LibraryServiceImpl implements ILibraryService {
         }
       });
     }
-
+    
     result.setLibraries(ivyLibraries);
     result.setErrors(errors);
     return null;
-  }
-
-  @Override
-  public LibraryServiceResult getLibrary(String libraryId, String appName) throws WSException {
-    LibraryServiceResult result = new LibraryServiceResult();
-    List<WSException> errors = new ArrayList<>();
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<LibraryServiceResult>() {
-        @Override
-        public LibraryServiceResult call() throws Exception {
-          IApplication application =
-              ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
-          if (application != null) {
-            ILibrary library = application.findReleasedLibrary(libraryId);
-            if (library != null) {
-              result.setLibrary(IvyLibraryTransformer.transform(library, appName));
-            } else {
-              List<Object> userText = new ArrayList<Object>();
-              userText.add(libraryId);
-              errors.add(new WSException(WSErrorType.WARNING, 10054, userText, null));
-            }
-          } else {
-            List<Object> userText = new ArrayList<Object>();
-            userText.add(appName);
-            errors.add(new WSException(WSErrorType.WARNING, 10054, userText, null));
-          }
-          result.setErrors(errors);
-          return result;
-        }
-      });
-    } catch (Exception e) {
-      List<Object> userTextParams = new ArrayList<Object>();
-      throw new WSException(WSErrorType.WARNING, 10054, e, userTextParams, null);
-    }
   }
 
 }
