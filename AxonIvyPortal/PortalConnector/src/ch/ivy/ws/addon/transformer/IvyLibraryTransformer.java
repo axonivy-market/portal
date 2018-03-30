@@ -12,7 +12,7 @@ public class IvyLibraryTransformer {
     IvyLibrary result = new IvyLibrary();
     result.setId(library.getId());
     result.setProjectName(library.getProcessModelVersion().getProcessModel().getName());
-    result.setProjectVersion(library.getQualifiedVersion().toString());
+    result.setProjectName(library.getQualifiedVersion().toString());
     result.setApplication(application);
     return result;
   }
