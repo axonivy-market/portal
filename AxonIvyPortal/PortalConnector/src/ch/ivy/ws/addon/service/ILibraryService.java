@@ -14,13 +14,4 @@ public interface ILibraryService {
 	 * @throws WSException
 	 */
 	public LibraryServiceResult getLibraries(List<String> apps) throws WSException;
-	
-	/**
-	 * Find project library of an application by id 
-	 * @param libraryId
-	 * @param appName
-	 * @return LibraryServiceResult
-	 * @throws WSException
-	 */
-	public LibraryServiceResult getLibrary(String libraryId, String appName) throws WSException;
 }

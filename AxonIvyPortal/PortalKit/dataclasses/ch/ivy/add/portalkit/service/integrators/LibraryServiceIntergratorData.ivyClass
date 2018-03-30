@@ -5,6 +5,3 @@ libraries List<ch.ivy.ws.addon.IvyLibrary> #field
 endpoint String #field
 errors List<ch.ivy.ws.addon.WsException> #field
 server ch.ivy.addon.portalkit.persistence.domain.Server #field
-appName String #field
-libraryId String #field
-library ch.ivy.ws.addon.IvyLibrary #field
