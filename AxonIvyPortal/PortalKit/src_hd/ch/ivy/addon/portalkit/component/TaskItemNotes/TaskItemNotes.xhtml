@@ -40,7 +40,7 @@
       <p:commandLink id="add-note-command" styleClass="task-details-note-add-link"
         actionListener="#{data.setTask(task)}" oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()">
         <span class="fa fa-plus-circle task-details-note-add-link-icon" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNote')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
       </p:commandLink>
       <cc:renderFacet name="showTaskNoteHistory" />
     </h:panelGroup>
@@ -59,7 +59,7 @@
   </p:dialog>
 
   <p:dialog id="add-new-note-dialog" widgetVar="#{cc.clientId}:addNewNoteDialog" dynamic="true" closable="false" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNote')}" showEffect="fade" resizable="false"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false"
     modal="true" width="40%" appendTo="@(body)">
     <h:form id="add-new-note-form">
       <h:panelGroup layout="block">
