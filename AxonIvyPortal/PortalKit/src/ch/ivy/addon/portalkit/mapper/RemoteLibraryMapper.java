@@ -9,7 +9,7 @@ import ch.ivyteam.ivy.application.ILibrary;
 
 public class RemoteLibraryMapper {
 
-  public static RemoteLibrary mapLibrary(IvyLibrary ivyLibrary) {
+  protected static RemoteLibrary mapLibrary(IvyLibrary ivyLibrary) {
     RemoteLibrary result = new RemoteLibrary();
     result.setId(ivyLibrary.getId());
     result.setProjectName(ivyLibrary.getProjectName());
