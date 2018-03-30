@@ -62,7 +62,7 @@
       <h:panelGroup layout="block" styleClass="grid-item-footer">
         <p:commandLink id="add-note-command" onclick="PF('add-note-dialog').show()">
           <i class="fa fa-plus-circle grid-item-footer-icon" />
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
         </p:commandLink>
         <cc:renderFacet name="showCaseNoteHistory" />
       </h:panelGroup>
@@ -82,7 +82,7 @@
     </p:dialog>
 
     <p:dialog id="add-note-dialog" widgetVar="add-note-dialog" dynamic="true" closable="true" closeOnEscape="true"
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" showEffect="fade" resizable="false"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false"
       modal="true" width="40%" appendTo="@(body)">
       <h:form id="add-note-form">
         <h:panelGroup layout="block">

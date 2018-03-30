@@ -84,12 +84,21 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
               onclick="PF('absenceSetting').show()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
 
-          <li><p:link id="email-setting-menu-item" href="#"
+          <li><p:commandLink id="email-setting-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
-              onclick="PF('emailSetting').show()" /></li>
-          <li><p:link id="language-setting-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}"
-              onclick="PF('languageDialogVar').show()" /></li>
+              oncomplete="PF('emailSetting').show();"
+              resetValues="true" update="applications-email-setting-form">
+                <p:resetInput target=":applications-email-setting-dialog" />
+              </p:commandLink>
+            
+          </li>
+          <li><p:commandLink id="language-setting-menu-item"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" 
+              oncomplete="PF('languageDialogVar').show();" 
+              resetValues="true" update="language-settings-form" >
+                <p:resetInput target=":language-setting-dialog" />
+              </p:commandLink>
+          </li>
 
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
