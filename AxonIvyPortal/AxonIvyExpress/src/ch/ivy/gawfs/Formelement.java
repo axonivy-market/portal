@@ -26,6 +26,7 @@ public class Formelement implements Serializable{
 	private List<FormelementOption> options;		//list of options for ManyCheckbox or OneMenu, but also allowed File-Formats
 	private String type;				//Formelement Typ	InputFieldText,	InputFieldDate, InputFieldNumber, InputTextArea, ManyCheckbox, OneRadio, FileUpload
 	private List<String> optionsStr;	//String List representation of options
+	private Object value;        //Value of the Formelement, later Userinput
 	
 	public List<String> getOptionsStr() {
 		this.optionsStr.clear();
@@ -189,4 +190,12 @@ public class Formelement implements Serializable{
 	public void deleteOption(@SuppressWarnings("unused") FormelementOption option){
 		this.options.remove(this.options.size()-1);
 	}
+	
+	public Object getValue() {
+    return value;
+  }
+
+  public void setValue(Object value) {
+    this.value = value;
+  }
 }
