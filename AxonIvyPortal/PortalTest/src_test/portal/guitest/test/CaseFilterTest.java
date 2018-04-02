@@ -73,7 +73,6 @@ public class CaseFilterTest extends BaseTest {
 
     assertFalse(casePage.isFilterSelectionVisible());
 
-    casePage.openAdvancedFilter("Description", "description");
     casePage.filterByDescription("Leave");
     casePage.saveFilter(filterName);
 
