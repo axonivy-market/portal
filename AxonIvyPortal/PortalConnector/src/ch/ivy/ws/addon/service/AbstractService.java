@@ -39,27 +39,31 @@ public abstract class AbstractService {
    * @param apps
    * @param username
    * @return list of {@link IUser}
-   * @throws Exception
+   * @throws WSException
    */
-  protected List<IUser> findUsers(final java.util.List<String> apps, final String username) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
-      @Override
-      public List<IUser> call() throws Exception {
-        List<IUser> result = new ArrayList<IUser>();
+  protected List<IUser> findUsers(final java.util.List<String> apps, final String username) throws WSException {
+    try {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
+        @Override
+        public List<IUser> call() throws Exception {
+          List<IUser> result = new ArrayList<IUser>();
 
-        IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
+          IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
 
-        for (IApplication i : server.getApplicationConfigurationManager().getApplications()) {
-          if (apps.contains(i.getName())) {
-            if (i.getSecurityContext().findUser(username) != null) {
-              result.add(i.getSecurityContext().findUser(username));
+          for (IApplication i : server.getApplicationConfigurationManager().getApplications()) {
+            if (apps.contains(i.getName())) {
+              if (i.getSecurityContext().findUser(username) != null) {
+                result.add(i.getSecurityContext().findUser(username));
+              }
             }
           }
-        }
 
-        return result;
-      }
-    });
+          return result;
+        }
+      });
+    } catch (Exception e) {
+      throw new WSException(10010, e);
+    }
   }
 
   /**
