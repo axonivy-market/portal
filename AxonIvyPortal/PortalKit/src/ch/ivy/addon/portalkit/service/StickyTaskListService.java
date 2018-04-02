@@ -37,7 +37,7 @@ public class StickyTaskListService {
     return null;
   }
 
-  private boolean isTaskWithTaskEndInfo(String task) {
-    return SecurityServiceUtils.getSessionAttribute(task) != null;
+  private boolean isTaskWithTaskEndInfo(String taskEndInfoSessionAttributeKey) {
+    return SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) != null;
   }
 }
