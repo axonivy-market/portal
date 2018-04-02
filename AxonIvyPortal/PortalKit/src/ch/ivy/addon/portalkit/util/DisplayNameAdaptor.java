@@ -7,8 +7,6 @@ import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
 
-import ch.ivyteam.ivy.environment.Ivy;
-
 public class DisplayNameAdaptor {
 
 	private DisplayNameConvertor convertor;
@@ -32,11 +30,9 @@ public class DisplayNameAdaptor {
 		try {
 			new JSONObject(jsonString);
 		} catch (JSONException e) {
-		  Ivy.log().error(e);
 			try {
 				new JSONArray(jsonString);
 			} catch(JSONException e1) {
-			  Ivy.log().error(e1);
 				return false;
 			}
 		}
