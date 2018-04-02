@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -31,6 +32,7 @@ public class AdminSettingsTest extends BaseTest {
   }
   
   @Test
+  @Ignore
   public void shouldChangeColor() {
     String expectedMainColor = "abcdef";
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
