@@ -97,6 +97,17 @@
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
+		  <execution>
+            <id>portalexamples.deploy</id>
+            <goals>
+              <goal>deploy-iar</goal>
+            </goals>
+            <configuration>
+              <deployIarFile>..\..\Showcase\PortalExamples\target\portalExamples-${portal.version}.iar</deployIarFile>
+              <deployToEngineApplication>Portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
           <execution>
             <id>stop.test.engine</id>
             <goals>

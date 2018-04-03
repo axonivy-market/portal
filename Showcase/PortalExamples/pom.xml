@@ -59,8 +59,12 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>${build.plugin.version}</version>
+        <version>7.0.0</version>
         <extensions>true</extensions>
+        <configuration>
+          <engineDirectory>${settings.localRepository}/.cache/ivy/${ivy.engine.version}</engineDirectory>
+          <encoding>UTF-8</encoding>
+        </configuration>
       </plugin>
     </plugins>
   </build>
