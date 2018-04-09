@@ -1,5 +1,5 @@
 [Ivy]
-14FEEC13F8B8E7D2 3.20 #module
+14FEEC13F8B8E7D2 3.23 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
 Ps0 RD #cInfo
@@ -528,7 +528,8 @@ Ps0 f50 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidget
 ' #txt
 Ps0 f50 actionTable 'out=in;
 ' #txt
-Ps0 f50 actionCode 'import ch.ivyteam.ivy.security.ISecurityMember;
+Ps0 f50 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -542,23 +543,17 @@ String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (!StringUtils.isEmpty(expressStartLink)) {
 	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
 	for(ExpressProcess wf : workflows) {
-		Boolean isWorkflowAssignee = false;
-		ISecurityMember permittedRole = ivy.request.getApplication().getSecurityContext().findSecurityMember(wf.processPermission);
-		if(#permittedRole is initialized) {
-			isWorkflowAssignee = permittedRole.isUser() ? ivy.session.canActAsUser(permittedRole as IUser) : ivy.session.hasRole(permittedRole as IRole, false);
-		}
-		IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
-		if(isWorkflowAssignee || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
-		  	UserProcess userProcess = new UserProcess();
-		  	userProcess.setProcessName(wf.processName);
-		  	userProcess.setUserName(wf.processOwner);
+		if (PermissionUtils.canStartExpressWorkflow(wf)) {
+			UserProcess userProcess = new UserProcess();
+		  userProcess.setProcessName(wf.processName);
+		  userProcess.setUserName(wf.processOwner);
 			String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
-		  	userProcess.setLink(startLink);
-		  	userProcess.setDefaultProcess(false);
-			userProcess.setIcon("fa-code-fork");
+		  userProcess.setLink(startLink);
+		  userProcess.setDefaultProcess(false);
+		  userProcess.setIcon("fa-code-fork");
 			userProcess.setWorkflowId(wf.id);
 			userProcess.setDescription(wf.processDescription);
-		  	in.processes.add(userProcess);
+		  in.processes.add(userProcess);
 		}
 	}	
 }
