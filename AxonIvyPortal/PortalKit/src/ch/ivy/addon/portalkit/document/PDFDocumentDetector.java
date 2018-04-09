@@ -35,7 +35,7 @@ public class PDFDocumentDetector implements DocumentDetector{
         }
       }
     } catch (Exception e) {
-      Ivy.log().error(e.getMessage());
+      Ivy.log().error(e);
       safeState = false;
     }
     return safeState;
