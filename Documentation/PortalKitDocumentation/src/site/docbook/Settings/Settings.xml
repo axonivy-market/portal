@@ -159,6 +159,29 @@
 								Determine last drilldown level using in Task by expiry chart. Default value is HOUR.
 							</entry>
 						</row>
+						<row>
+							<entry>ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to <code>TRUE</code> to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, MS Doc.
+							</entry>
+						</row>
+						<row>
+							<entry>UPLOAD_DOCUMENT_WHITELIST_EXTENSION</entry>
+							<entry>Empty or List of allowed extensions when upload document in Portal, which are separated by comma</entry>
+							<entry>
+								<para>
+									Leave value empty if you allow all extensions.
+								</para>
+								<para>
+									If just allow some extensions, list out extensions here, separated by comma. Example: <code>pdf, txt, doc, docx</code>
+								</para>
+								<para>
+									If admin doesn't configure this setting, Portal will use the default extension list: 
+									<code>doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt ,zip, jpg, jpeg, bmp, png</code>
+								</para>
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
