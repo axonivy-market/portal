@@ -29,23 +29,24 @@ public class PDFDocumentDetector implements DocumentDetector{
           PdfDictionary root = reader.getCatalog();
           PdfDictionary names = root.getAsDict(PdfName.NAMES);
           PdfArray namesArray = null;
-          namesArray = checkEmbeddedFilesInPDF(names, namesArray);
+          namesArray = checkEmbeddedFilesInPDF(names);
           // Get safe state from number of embedded files
           safeState = ((namesArray == null) || namesArray.isEmpty());
         }
       }
     } catch (Exception e) {
-      Ivy.log().error("Can't read input stream");
+      Ivy.log().error(e.getMessage());
       safeState = false;
     }
     return safeState;
   }
 
-  private PdfArray checkEmbeddedFilesInPDF(PdfDictionary names, PdfArray namesArray) {
+  private PdfArray checkEmbeddedFilesInPDF(PdfDictionary names) {
+    PdfArray namesArr = null;
     if (names != null) {
       PdfDictionary embeddedFiles = names.getAsDict(PdfName.EMBEDDEDFILES);
-      namesArray = embeddedFiles.getAsArray(PdfName.NAMES);
+      namesArr = embeddedFiles.getAsArray(PdfName.NAMES);
     }
-    return namesArray;
+    return namesArr;
   }
 }
