@@ -7,40 +7,66 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
-		<h:form id="userListForm" styleClass="user-list-form">
+	<h:form id="assignee-selection-form">
+		<p:messages id="error-message" showSummary="false" showDetail="true" />
+		<p:panelGrid id="assignee-selection-panel" columns="1" styleClass="assignee-selection-panel">
+			<p:selectOneRadio id="assignee-type" value="#{data.isAssignToUser}">
+				<f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}"
+					itemValue="true" itemDisabled="#{empty workflowDefinitionBean.availableUsers}" />
+				<f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}"
+					itemValue="false" itemDisabled="#{empty workflowDefinitionBean.availableRoles}" />
+				<p:ajax event="change" listener="#{logic.changeAssigneeType}" update="assignee-selection-form" />
+			</p:selectOneRadio>
 
-			<p:autoComplete id="user-selection" scrollHeight="400" dropdown="true" styleClass="user-selection"
-				value="#{data.selectedRoleOrUser}" completeMethod="#{logic.autoCompleteFilter}" var="securityMember"
-				itemLabel="#{securityMember.getDisplayName().length() ne 0 ? securityMember.getDisplayName() : securityMember.getMemberName()}"
-				itemValue="#{securityMember}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
-				moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
-				<f:event listener="#{logic.autoCompleteFilter}" type="preRenderComponent" />
-				<p:ajax event="query" global="false" />
-				<p:ajax event="itemSelect" update="userListForm" process="userListForm" />
-				<p:column styleClass="select-responsible-icon-column">
-					<p:outputPanel rendered="#{securityMember.user}">
-						<i class="fa fa-user" aria-hidden="true" />
-					</p:outputPanel>
-					<p:outputPanel rendered="#{!securityMember.user}">
-						<i class="fa fa-users" aria-hidden="true" />
-					</p:outputPanel>
-				</p:column>
+			<h:panelGroup id="select-assignee" layout="block" styleClass="select-assignee">
+				<p:autoComplete id="user-selection" rendered="#{data.isAssignToUser}" scrollHeight="400" dropdown="true"
+					value="#{data.selectedUser}" completeMethod="#{workflowDefinitionBean.populateUserAutoComplete}" var="user" itemLabel="#{user.displayName}"
+					itemValue="#{user}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
+					moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
+					<f:event listener="#{workflowDefinitionBean.populateUserAutoComplete}" type="preRenderComponent" />
+					<p:ajax event="query" global="false" />
+					<p:ajax event="itemSelect" update="add-assignee-button" />
+					<p:column>
+						<h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName.substring(1))}" />
+					</p:column>
+				</p:autoComplete>
 
-				<p:column>
-					<h:outputText
-						value="#{securityMember.getDisplayName().length() ne 0 ? securityMember.getDisplayName() : securityMember.getMemberName()}" />
-				</p:column>
-			</p:autoComplete>
+				<p:autoComplete id="role-selection" rendered="#{!data.isAssignToUser}" scrollHeight="400" dropdown="true" 
+					value="#{data.selectedRole}" completeMethod="#{workflowDefinitionBean.populateRoleAutoComplete}" var="role"
+					itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
+					itemValue="#{role}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100" selectLimit="100"
+					moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." >
+					<f:event listener="#{workflowDefinitionBean.populateRoleAutoComplete}" type="preRenderComponent" />
+					<p:ajax event="query" global="false" />
+					<p:ajax event="itemSelect" update="add-assignee-button" />
+				</p:autoComplete>
+				<p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+					disabled="#{data.selectedUser == null and data.selectedRole == null}"
+					actionListener="#{logic.addAssignee}" global="false" update="error-message assignee-selection" ignoreAutoUpdate="true" />
+			</h:panelGroup>
+
+			<p:fieldset legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/SelectedAssigneesFieldSet')}" styleClass="selected-assignee-panel">
+				<p:selectManyMenu id="assignee-selection" value="#{data.selectedAssigneeList}" var="assignee" showCheckbox="true" scrollHeight="202"
+					filter="true" filterMatchMode="contains" converter="ivy.ListItem" styleClass="assignee-selection">
+					<f:selectItems value="#{data.selectedAssigneeList}" var="user" itemValue="#{user}"
+						itemLabel="#{user.getDisplayName().length() ne 0 ? user.getDisplayName() : user.getName()}" />
+					<p:column styleClass="assignee-name-col">
+						<h:outputText value="#{assignee.getDisplayName().length() ne 0 ? assignee.getDisplayName() : assignee.getName()}" />
+					</p:column>
+					<p:column styleClass="assignee-type-col">
+						<h:outputText id="assign-type-icon" class="fa #{assignee.isUser() ? 'fa-user' : 'fa-users'} " />
+					</p:column>
+					<p:ajax update="assignee-selection-form error-message" process="@this" />
+				</p:selectManyMenu>
+			</p:fieldset>
 			<p:outputPanel styleClass="TexAlRight">
-
-				<p:commandButton
-					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-					process="form:processFlowField"
-					update="form:processFlowField" styleClass=""
-					actionListener="#{logic.updateAssignement}" icon="fa fa-check"
-					oncomplete="PF('chooseAssignee').hide();" /> 
+				<p:commandButton id="save-assignee-button" styleClass="save-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+					actionListener="#{logic.updateResponsibles}" icon="fa fa-check" oncomplete="PF('choose-responsible-dialog').hide();" update="form choose-responsible-dialog">
+					<p:resetInput target="choose-responsible-dialog" />
+				</p:commandButton> 
 			</p:outputPanel>
-		</h:form>
+		</p:panelGrid>
+	</h:form>
 </h:body>
 
 </html>
