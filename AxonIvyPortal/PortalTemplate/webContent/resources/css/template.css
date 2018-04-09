@@ -144,7 +144,7 @@
 .global-search-icon {
 	position: absolute;
     top: 15%;
-    right: 105px;
+    right: 15px;
     font-size: 1.4rem;
 }
 
@@ -156,6 +156,8 @@
 
 .global-search {
 	padding-right: 10px;
+	position: relative;
+	display: flex;
 }
 
 .setting-container {
