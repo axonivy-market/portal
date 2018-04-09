@@ -43,11 +43,7 @@ public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
             .init(findAll());
     List<GlobalSetting> globalSettings = repo.query(ObjectFilter.eq(EntityProperty.KEY.toString(), variableName));
     GlobalSetting globalSetting = globalSettings.get(0);
-    if(globalSetting == null){
-      return false;
-    }else{
-      return true;
-    }
+    return globalSetting != null;
     
   }
 }

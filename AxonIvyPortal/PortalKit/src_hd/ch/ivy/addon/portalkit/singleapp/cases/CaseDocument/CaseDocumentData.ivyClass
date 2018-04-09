@@ -12,3 +12,7 @@ selectedFilePath String #field
 selectedFilePath PERSISTENT #fieldModifier
 uploadingFileExists Boolean #field
 uploadingFileExists PERSISTENT #fieldModifier
+uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
+uploadDocumentCheckStatus PERSISTENT #fieldModifier
+uploadDocumentCheckMessage String #field
+uploadDocumentCheckMessage PERSISTENT #fieldModifier
