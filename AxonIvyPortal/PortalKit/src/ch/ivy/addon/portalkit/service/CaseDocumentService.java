@@ -115,7 +115,7 @@ public class CaseDocumentService {
         try {
           return documentDetector.isSafe(uploadedFile.getInputstream());
         } catch (IOException e) {
-          Ivy.log().error("Can't read input stream");
+          Ivy.log().error(e.getMessage());
           return false;
         }
       }
