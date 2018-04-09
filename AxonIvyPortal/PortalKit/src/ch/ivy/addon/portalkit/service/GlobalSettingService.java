@@ -19,4 +19,8 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
   public String findGlobalSettingValue(String variableName) {
     return getDao().findGlobalSettingValue(variableName);
   }
+  
+  public boolean isGlobalSettingAvailable(String variableName) {
+    return getDao().isGlobalSettingAvailable(variableName);   
+  }
 }
