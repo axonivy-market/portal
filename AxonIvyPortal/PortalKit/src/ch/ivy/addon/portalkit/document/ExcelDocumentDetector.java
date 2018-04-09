@@ -25,10 +25,10 @@ public class ExcelDocumentDetector implements DocumentDetector{
     }
     catch(IllegalArgumentException ex) {
       //Not contain any VBA script
-      Ivy.log().debug(ex.getMessage());
+      Ivy.log().debug(ex);
       return false;
     } catch (IOException e) {
-      Ivy.log().error(e.getMessage());
+      Ivy.log().error(e);
       return false;
     }
   }
