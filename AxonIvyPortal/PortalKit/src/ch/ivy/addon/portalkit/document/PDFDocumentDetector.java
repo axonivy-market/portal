@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.document;
 
 import java.io.InputStream;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 import com.itextpdf.text.pdf.PdfArray;
 import com.itextpdf.text.pdf.PdfDictionary;
 import com.itextpdf.text.pdf.PdfName;
@@ -27,17 +29,23 @@ public class PDFDocumentDetector implements DocumentDetector{
           PdfDictionary root = reader.getCatalog();
           PdfDictionary names = root.getAsDict(PdfName.NAMES);
           PdfArray namesArray = null;
-          if (names != null) {
-            PdfDictionary embeddedFiles = names.getAsDict(PdfName.EMBEDDEDFILES);
-            namesArray = embeddedFiles.getAsArray(PdfName.NAMES);
-          }
+          namesArray = checkEmbeddedFilesInPDF(names, namesArray);
           // Get safe state from number of embedded files
           safeState = ((namesArray == null) || namesArray.isEmpty());
         }
       }
     } catch (Exception e) {
+      Ivy.log().error("Can't read input stream");
       safeState = false;
     }
     return safeState;
+  }
+
+  private PdfArray checkEmbeddedFilesInPDF(PdfDictionary names, PdfArray namesArray) {
+    if (names != null) {
+      PdfDictionary embeddedFiles = names.getAsDict(PdfName.EMBEDDEDFILES);
+      namesArray = embeddedFiles.getAsArray(PdfName.NAMES);
+    }
+    return namesArray;
   }
 }
