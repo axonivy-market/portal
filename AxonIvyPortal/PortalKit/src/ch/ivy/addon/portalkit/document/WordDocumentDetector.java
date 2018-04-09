@@ -11,11 +11,7 @@ public class WordDocumentDetector implements DocumentDetector{
   
   @Override
   public boolean isSafe(InputStream inputStream) {
-    if (hasMacro(inputStream)) {
-      return false;
-    }
-
-    return true;
+    return !hasMacro(inputStream);
   }
 
 
@@ -24,10 +20,10 @@ public class WordDocumentDetector implements DocumentDetector{
       return vbaMacroReader.readMacros() != null && !vbaMacroReader.readMacros().isEmpty();
     } catch (IllegalArgumentException ex) {
       // Not contain any VBA script
-      Ivy.log().debug("This file doesn't contain any macro");
+      Ivy.log().debug(ex.getMessage());
       return false;
     } catch (IOException e) {
-      Ivy.log().error("Can't read input stream");
+      Ivy.log().error(e.getMessage());
       return false;
     }
   }
