@@ -1,6 +1,5 @@
 package ch.ivy.gawfs;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang.StringUtils;
+
+import ch.ivy.gawfs.enums.FormElementType;
 
 @ManagedBean(name = "Formelement")
 @ViewScoped
@@ -24,7 +25,7 @@ public class Formelement implements Serializable{
 	private Boolean required;			//Is the Field a reqired field?
 	private Integer intSetting;			//settting like number of rows or number of files
 	private List<FormelementOption> options;		//list of options for ManyCheckbox or OneMenu, but also allowed File-Formats
-	private String type;				//Formelement Typ	InputFieldText,	InputFieldDate, InputFieldNumber, InputTextArea, ManyCheckbox, OneRadio, FileUpload
+	private FormElementType type;				//Form element type
 	private List<String> optionsStr;	//String List representation of options
 	private Object value;        //Value of the Formelement, later Userinput
 	
@@ -75,7 +76,7 @@ public class Formelement implements Serializable{
 		this.id = id;
 	}
 
-	public Formelement(String id, String type, String name,
+	public Formelement(String id, FormElementType type, String name,
 			String label, Boolean required, Integer intSetting,
 			List<String> options) {
 		super();
@@ -142,11 +143,11 @@ public class Formelement implements Serializable{
 		this.intSetting = intSetting;
 	}
 
-	public String getType() {
+	public FormElementType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(FormElementType type) {
 		this.type = type;
 	}
 
