@@ -102,4 +102,11 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     }
   }
 
+  public List<T> getAllPrivateFilters() {
+    Filter<T> privateFilterQuery =
+            repo().search(getType())
+                .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
+    return privateFilterQuery.execute().getAll();
+  }
+
 }

@@ -148,6 +148,21 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   /**
+   * Find all statistic charts
+   * 
+   * @return all statistic charts
+   */
+  public List<StatisticChart> findAllStatisticCharts() {
+    List<StatisticChart> result = new ArrayList<>();
+    try {
+      result = repo().search(getType()).execute().getAll();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+    }
+    return result;
+  }
+
+  /**
    * Count all statistic charts by user id
    * 
    * @param userId user id
