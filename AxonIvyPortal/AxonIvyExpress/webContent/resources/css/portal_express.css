@@ -1,6 +1,28 @@
+/* WORKFLOW DEFINITION */
 .process-property-container {
   width: 100%;
   border: none;
+}
+
+.process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
+  text-align: right;
+  padding-right: 40px;
+}
+
+.process-property-input-col .radio-group,
+.process-property-input-col .radio-group td {
+  width: 50%;
+}
+
+@media (max-width: 1365px) {
+  .process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
+    width: 21.3%;
+    padding-right: 20px;
+  }
+
+  .process-property-input-col .radio-group {
+    width: 100%;
+  }
 }
 
 .process-property-label-col {
@@ -13,12 +35,16 @@
 }
 
 .process-property-input-col {
-  width: 75%;
+  width: 71.5%;
   border: none !important;
 }
 
 .process-property-input {
   width: 98%;
+}
+
+.process-property-input.ui-inputfield.ui-inputtext {
+  width: 99.4%;
 }
 
 .process-flow-container {
@@ -32,10 +58,18 @@
   border: none;
 }
 
+.process-flow-field {
+  margin-top: 20px;
+}
+
 .dynamic-task-panel-grid {
   border: none;
   text-align: left;
   width: 100%;
+}
+
+.dynamic-task-panel-grid td:not(.dynamic-task-title-col) {
+  border: none !important;
 }
 
 .dynamic-task-title-col {
@@ -44,35 +78,69 @@
 }
 
 .dynamic-task-arrow {
-  border: none !important;
-  width: 15px;
   padding-top: 15px !important;
 }
 
-.dynamic-task-name-label-col, .dynamic-task-description-label-col {
-  width: 15%;
-  border: none !important;
-  padding-top: 15px !important;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) {
+  text-align: right;
 }
 
-.dynamic-task-name-input-col, .dynamic-task-description-input-col {
-  width: 35%;
-  border: none !important;
-  padding-top: 15px !important;
+.dynamic-task-panel-grid .first-col {
+  width: 30%;
 }
 
-.dynamic-task-name-input, .dynamic-task-description-input, .dynamic-task-actor-input {
-  width: 70%;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-inputfield.ui-inputtext {
+  width: 30rem;
 }
 
-.dynamic-task-name-input, .dynamic-task-actor-input {
-  margin-left: -11px;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-selectonemenu {
+  width: 24.3rem;
+}
+
+.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-outputlabel {
+  margin-right: 50px;
+}
+
+.dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
+  margin-right: 13.1rem;
+}
+
+@media (max-width: 1365px) {
+  .dynamic-task-panel-grid .first-col {
+    width: 45%;
+  }
+
+  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-inputfield.ui-inputtext {
+    width: 16rem;
+  }
+
+  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-selectonemenu {
+    width: 10rem;
+    min-width: 10rem !important;
+  }
+
+  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-outputlabel {
+    margin-right: 20px;
+  }
+
+  .dynamic-task-panel-grid .merged-col {
+    width: 100%;
+  }
+
+  .dynamic-task-panel-grid .merged-col .ui-inputfield.ui-spinner-input {
+    width: 16.2rem;
+  }
+
+  .dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
+    margin-right: 0;
+  }
 }
 
 .dynamic-task-action-container {
   border: none !important;
   text-align: left;
   width: 100%;
+  margin-top: 20px;
 }
 
 .dynamic-task-left-action {
@@ -224,4 +292,60 @@
 
 .floatLeft {
 	float: left !important;
+}
+
+/* SELECT RESPONSIBLE DIALOG */
+
+.assignee-selection-panel,
+.assignee-selection-panel tbody tr td {
+  border: none !important;
+}
+
+.assignee-selection-panel .select-assignee .ui-autocomplete {
+  width: 100%;
+}
+
+.assignee-selection-panel .select-assignee .ui-autocomplete-input {
+  width: 92%;
+}
+
+.assignee-selection-panel .add-assignee-button {
+  float: right;
+  margin-top: 15px;
+}
+
+.assignee-selection-panel .selected-assignee-panel {
+  padding: .6em 0 !important;
+}
+
+.assignee-selection-panel .selected-assignee-panel .ui-fieldset-legend {
+  margin-left: 1em;
+}
+
+.assignee-selection-panel .selected-assignee-panel .assignee-selection {
+  width: 100%;
+  border: none !important;
+}
+
+.assignee-selection-panel .selected-assignee-panel .assignee-selection .ui-selectlistbox-filter-container {
+  padding-top: 0 !important;
+}
+
+.assignee-selection-panel .selected-assignee-panel .assignee-selection .ui-selectlistbox-filter-container .ui-icon-search {
+  top: 5px;
+}
+
+.assignee-selection-panel .assignee-name-col {
+  width: 90%;
+}
+
+
+.assignee-selection-panel .assignee-type-col .fa {
+  text-align: center;
+  width: 3rem;
+  font-size: 1.8rem;
+}
+
+.assignee-selection-panel .save-assignee-button {
+  margin-top: 10px;
 }
