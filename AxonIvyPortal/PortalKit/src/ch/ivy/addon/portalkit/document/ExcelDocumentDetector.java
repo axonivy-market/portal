@@ -5,6 +5,8 @@ import java.io.InputStream;
 
 import org.apache.poi.poifs.macros.VBAMacroReader;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 public class ExcelDocumentDetector implements DocumentDetector{
   
   @Override
@@ -23,9 +25,10 @@ public class ExcelDocumentDetector implements DocumentDetector{
     }
     catch(IllegalArgumentException ex) {
       //Not contain any VBA script
+      Ivy.log().debug("This file doesn't contain any macro");
       return false;
     } catch (IOException e) {
-      //Can not read this stream
+      Ivy.log().error("Can't read input stream");
       return false;
     }
   }
