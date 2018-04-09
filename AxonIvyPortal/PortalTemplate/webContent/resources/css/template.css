@@ -14,9 +14,9 @@
 #top-menu {
 	transition: margin-right .3s;
 	position: absolute;
-	top: 0;
+	top: 10px;
 	right: 0;
-	margin-top: 15px;
+	margin-top: 5px;
 	overflow: initial;
 }
 
@@ -136,9 +136,30 @@
 
 #global-search-result-container {
 	height: auto;
-	max-height: 75vh;
 	position: relative;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: visible;
+}
+
+.global-search-icon {
+	position: absolute;
+    top: 15%;
+    right: 105px;
+    font-size: 1.4rem;
+}
+
+#global-search-data {
+	font-size: 1.4rem;
+    padding: 3px 0 !important;
+    width: 300px;
+}
+
+.global-search {
+	padding-right: 10px;
+}
+
+.setting-container {
+	transform: translateY(25%);
 }
 
 #user-setting-container.active-menu {
@@ -863,4 +884,37 @@
 
 .login-logo-chooser .ui-fileupload-content, .home-logo-chooser .ui-fileupload-content {
   display: none;
+}
+
+.global-search-result-overlay {
+	min-width: 200px;
+	left: -500px;
+	right: 105px;
+	max-height: 75vh;
+	top: 35px !important;
+	border-radius: 5px !important;
+	background-color: #FFFFFF;
+	overflow-y: auto;
+}
+
+.global-search-result-overlay .ui-overlaypanel-content {
+	background-color: white !important;
+	overflow-x: hidden;
+}
+
+.ui-commandlink.search-result-item {
+	display: block;
+	color: black !important;
+}
+
+.underline-section {
+	display: block;
+    width: 100%;
+	border-bottom: 1px solid #D1D3D4;
+	margin: 10px 0;
+	line-height: 2;
+}
+
+.underline-section:first-child {
+	margin-top: 0;
 }
