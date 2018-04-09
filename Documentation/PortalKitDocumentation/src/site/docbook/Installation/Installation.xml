@@ -545,6 +545,18 @@
 							<entry>500</entry>
 							<entry>The delay time of search function at top menu.</entry>
 						</row>
+						<row>
+							<entry>PortalStartTimeCleanObsoletedDataExpression</entry>
+							<entry>0 0 6 * * ?</entry>
+							<entry>
+								Cron expression define the time to clean up data of obsoleted users. E.g.: expression for at 6AM every
+								day is
+								<code>0 0 6 * * ?</code>
+								. Refer to
+								<link xlink:href="http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger">crontrigger</link>
+								. Please restart Ivy engine after changing this variable.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
