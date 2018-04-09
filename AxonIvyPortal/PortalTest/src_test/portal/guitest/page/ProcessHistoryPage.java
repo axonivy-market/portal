@@ -16,6 +16,7 @@ public class ProcessHistoryPage extends TemplatePage {
   
   public int openDialogAndCountCases() {
     findElementById("process-history-dialog-button").click();
+    waitAjaxIndicatorDisappear();
     WebElement caseList = findElementByClassName("ui-datascroller-list");
     return caseList.findElements(By.className("ui-datascroller-item")).size();
   }
