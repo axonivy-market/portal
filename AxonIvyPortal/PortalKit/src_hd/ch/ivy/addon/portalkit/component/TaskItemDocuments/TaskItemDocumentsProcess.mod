@@ -67,7 +67,6 @@ Ts0 @GridStep f4 '' #zField
 Ts0 @PushWFArc f7 '' #zField
 Ts0 @GridStep f8 '' #zField
 Ts0 @PushWFArc f9 '' #zField
-Ts0 @PushWFArc f10 '' #zField
 Ts0 @CallSub f11 '' #zField
 Ts0 @PushWFArc f12 '' #zField
 Ts0 @Alternative f19 '' #zField
@@ -77,6 +76,9 @@ Ts0 @PushWFArc f34 '' #zField
 Ts0 @GridStep f37 '' #zField
 Ts0 @PushWFArc f38 '' #zField
 Ts0 @PushWFArc f5 '' #zField
+Ts0 @GridStep f41 '' #zField
+Ts0 @PushWFArc f64 '' #zField
+Ts0 @PushWFArc f10 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
 Ts0 f0 guid 1549452C02A2D7AA #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
@@ -512,7 +514,7 @@ deleteDocument</name>
 Ts0 f42 1422 140 36 24 20 -2 #rect
 Ts0 f42 @|CallSubIcon #fIcon
 Ts0 f18 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f18 173 357 22 22 14 0 #rect
+Ts0 f18 173 453 22 22 14 0 #rect
 Ts0 f18 @|RichDialogProcessEndIcon #fIcon
 Ts0 f22 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f22 733 269 22 22 14 0 #rect
@@ -648,8 +650,6 @@ Ts0 f8 128 250 112 44 -11 -8 #rect
 Ts0 f8 @|StepIcon #fIcon
 Ts0 f9 expr out #txt
 Ts0 f9 184 188 184 250 #arcP
-Ts0 f10 expr out #txt
-Ts0 f10 184 294 184 357 #arcP
 Ts0 f11 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f11 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
 Ts0 f11 doCall true #txt
@@ -749,6 +749,35 @@ Ts0 f38 1 0.4111111111111111 12 0 #arcLabel
 Ts0 f5 expr out #txt
 Ts0 f5 328 278 328 436 #arcP
 Ts0 f5 0 0.10000000000000002 -12 0 #arcLabel
+Ts0 f41 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f41 actionTable 'out=in;
+' #txt
+Ts0 f41 actionCode 'import ch.ivyteam.ivy.workflow.CaseState;
+
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
+GlobalSettingService globalSettingSerive = new GlobalSettingService();
+String isHideUploadDocumentForDoneCaseString =
+        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
+boolean isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCaseString);
+in.isShowUploadDocumentButton =  !(in.task.case.state == CaseState.DONE && isHideUploadDocumentForDoneCase);' #txt
+Ts0 f41 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init show&#xD;
+upload doc</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f41 128 346 112 44 -30 -16 #rect
+Ts0 f41 @|StepIcon #fIcon
+Ts0 f64 expr out #txt
+Ts0 f64 184 294 184 346 #arcP
+Ts0 f10 expr out #txt
+Ts0 f10 184 390 184 453 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -799,8 +828,6 @@ Ts0 f4 mainOut f7 tail #connect
 Ts0 f7 head f54 mainIn #connect
 Ts0 f16 mainOut f9 tail #connect
 Ts0 f9 head f8 mainIn #connect
-Ts0 f8 mainOut f10 tail #connect
-Ts0 f10 head f18 mainIn #connect
 Ts0 f35 out f12 tail #connect
 Ts0 f12 head f11 mainIn #connect
 Ts0 f11 mainOut f33 tail #connect
@@ -813,3 +840,7 @@ Ts0 f35 out f38 tail #connect
 Ts0 f38 head f37 mainIn #connect
 Ts0 f37 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
+Ts0 f8 mainOut f64 tail #connect
+Ts0 f64 head f41 mainIn #connect
+Ts0 f41 mainOut f10 tail #connect
+Ts0 f10 head f18 mainIn #connect

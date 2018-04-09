@@ -46,7 +46,6 @@ Cs0 @PushWFArc f32 '' #zField
 Cs0 @PushWFArc f36 '' #zField
 Cs0 @PushWFArc f10 '' #zField
 Cs0 @PushWFArc f16 '' #zField
-Cs0 @PushWFArc f2 '' #zField
 Cs0 @PushWFArc f38 '' #zField
 Cs0 @RichDialogMethodStart f12 '' #zField
 Cs0 @RichDialogProcessEnd f18 '' #zField
@@ -79,6 +78,9 @@ Cs0 @PushWFArc f61 '' #zField
 Cs0 @GridStep f62 '' #zField
 Cs0 @PushWFArc f63 '' #zField
 Cs0 @PushWFArc f45 '' #zField
+Cs0 @GridStep f64 '' #zField
+Cs0 @PushWFArc f65 '' #zField
+Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 CaseItemDocumentProcess #zField
 Cs0 f0 guid 1533610171B77F44 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
@@ -99,7 +101,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f0 53 85 22 22 14 0 #rect
 Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f1 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f1 53 213 22 22 14 0 #rect
+Cs0 f1 53 277 22 22 14 0 #rect
 Cs0 f1 @|RichDialogProcessEndIcon #fIcon
 Cs0 f7 guid 153361C617411F60 #txt
 Cs0 f7 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
@@ -456,8 +458,6 @@ Cs0 f10 0 0.7661028618229209 0 0 #arcLabel
 Cs0 f16 expr in #txt
 Cs0 f16 outCond in.errors.isEmpty() #txt
 Cs0 f16 1024 286 1024 316 #arcP
-Cs0 f2 expr out #txt
-Cs0 f2 64 107 64 213 #arcP
 Cs0 f38 expr out #txt
 Cs0 f38 1024 99 1024 148 #arcP
 Cs0 f12 guid 1533A91996E2DD65 #txt
@@ -761,12 +761,36 @@ Cs0 f63 1 0.8365402140487286 0 0 #arcLabel
 Cs0 f45 expr out #txt
 Cs0 f45 624 310 624 428 #arcP
 Cs0 f45 0 0.8365402140487286 0 0 #arcLabel
+Cs0 f64 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
+' #txt
+Cs0 f64 actionTable 'out=in;
+' #txt
+Cs0 f64 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
+GlobalSettingService globalSettingSerive = new GlobalSettingService();
+String isHideUploadDocumentForDoneCase =
+        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
+in.isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCase);' #txt
+Cs0 f64 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
+Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init hide&#xD;
+add document</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f64 8 170 112 44 -39 -16 #rect
+Cs0 f64 @|StepIcon #fIcon
+Cs0 f65 expr out #txt
+Cs0 f65 64 107 64 170 #arcP
+Cs0 f2 expr out #txt
+Cs0 f2 64 214 64 277 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
-Cs0 f0 mainOut f2 tail #connect
-Cs0 f2 head f1 mainIn #connect
 Cs0 f58 mainOut f29 tail #connect
 Cs0 f29 head f28 in #connect
 Cs0 f9 head f30 mainIn #connect
@@ -827,3 +851,7 @@ Cs0 f35 out f63 tail #connect
 Cs0 f63 head f62 mainIn #connect
 Cs0 f62 mainOut f45 tail #connect
 Cs0 f45 head f41 mainIn #connect
+Cs0 f0 mainOut f65 tail #connect
+Cs0 f65 head f64 mainIn #connect
+Cs0 f64 mainOut f2 tail #connect
+Cs0 f2 head f1 mainIn #connect
