@@ -1,5 +1,5 @@
 [Ivy]
-15798655494F25E1 3.20 #module
+15798655494F25E1 3.23 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
 cw0 B #cInfo
@@ -15,8 +15,8 @@ cw0 @TextInP .responsibility .responsibility #zField
 cw0 @StartRequest f0 '' #zField
 cw0 @EndTask f1 '' #zField
 cw0 @CallSub f3 '' #zField
-cw0 @PushWFArc f4 '' #zField
 cw0 @PushWFArc f2 '' #zField
+cw0 @PushWFArc f4 '' #zField
 >Proto cw0 cw0 CreateWorkflow #zField
 cw0 f0 outLink AxonIvyExpressWF.ivp #txt
 cw0 f0 type gawfs.createWorkflowData #txt
@@ -76,10 +76,10 @@ cw0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 cw0 f3 216 42 112 44 -35 -8 #rect
 cw0 f3 @|CallSubIcon #fIcon
-cw0 f4 expr out #txt
-cw0 f4 111 64 216 64 #arcP
 cw0 f2 expr out #txt
 cw0 f2 328 64 401 64 #arcP
+cw0 f4 expr out #txt
+cw0 f4 111 64 216 64 #arcP
 >Proto cw0 .type gawfs.createWorkflowData #txt
 >Proto cw0 .processKind NORMAL #txt
 >Proto cw0 0 0 32 24 18 0 #rect
