@@ -827,8 +827,20 @@
 	</sect1>
 	<sect1 xml:id="axonivyportal.installation.releasenotes">
 		<title>Release notes</title>
+		
 		<para>
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
+			<sect2>
+				<title>Changes in 7.2</title>
+				<itemizedlist>
+					<listitem>
+						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal.</para>
+					</listitem>
+					<listitem>
+						<para>Support script checking function for upload file. You can enable/disable this function by configuring ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT setting.</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
 			<sect2>
 				<title>Changes in 7.1</title>
 				<itemizedlist>

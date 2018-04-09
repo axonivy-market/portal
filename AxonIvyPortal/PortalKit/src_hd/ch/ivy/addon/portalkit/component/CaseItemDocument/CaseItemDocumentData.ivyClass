@@ -14,3 +14,7 @@ errors List<ch.ivy.ws.addon.WsException> #field
 errors PERSISTENT #fieldModifier
 documentFile org.primefaces.model.StreamedContent #field
 documentFile PERSISTENT #fieldModifier
+uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
+uploadDocumentCheckStatus PERSISTENT #fieldModifier
+uploadDocumentCheckMessage String #field
+uploadDocumentCheckMessage PERSISTENT #fieldModifier
