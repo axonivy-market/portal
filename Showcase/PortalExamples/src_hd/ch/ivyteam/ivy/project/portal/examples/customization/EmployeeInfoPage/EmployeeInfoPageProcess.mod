@@ -27,10 +27,7 @@ Es0 @RichDialogProcessStart f7 '' #zField
 Es0 @RichDialogProcessEnd f13 '' #zField
 Es0 @GridStep f5 '' #zField
 Es0 @PushWFArc f15 '' #zField
-Es0 @PushWFArc f12 '' #zField
 Es0 @Alternative f14 '' #zField
-Es0 @PushWFArc f18 '' #zField
-Es0 @PushWFArc f16 '' #zField
 Es0 @GridStep f19 '' #zField
 Es0 @PushWFArc f20 '' #zField
 Es0 @RichDialogEnd f21 '' #zField
@@ -38,6 +35,11 @@ Es0 @PushWFArc f22 '' #zField
 Es0 @GridStep f8 '' #zField
 Es0 @PushWFArc f23 '' #zField
 Es0 @PushWFArc f17 '' #zField
+Es0 @GridStep f24 '' #zField
+Es0 @PushWFArc f26 '' #zField
+Es0 @PushWFArc f25 '' #zField
+Es0 @PushWFArc f16 '' #zField
+Es0 @PushWFArc f12 '' #zField
 >Proto Es0 Es0 EmployeeInfoPageProcess #zField
 Es0 f0 guid 16285274E802BB78 #txt
 Es0 f0 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
@@ -90,7 +92,7 @@ Es0 f3 83 147 26 26 -18 15 #rect
 Es0 f3 @|RichDialogProcessStartIcon #fIcon
 Es0 f4 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
 Es0 f4 guid 16285274E9FD891D #txt
-Es0 f4 627 243 26 26 0 12 #rect
+Es0 f4 779 291 26 26 0 12 #rect
 Es0 f4 @|RichDialogEndIcon #fIcon
 Es0 f6 guid 16285AB3E76C08B3 #txt
 Es0 f6 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
@@ -112,7 +114,7 @@ Es0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f6 83 243 26 26 -13 15 #rect
+Es0 f6 83 291 26 26 -13 15 #rect
 Es0 f6 @|RichDialogProcessStartIcon #fIcon
 Es0 f9 guid 16285AC67CD29971 #txt
 Es0 f9 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
@@ -164,10 +166,10 @@ Es0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f7 83 339 26 26 -6 15 #rect
+Es0 f7 83 387 26 26 -6 15 #rect
 Es0 f7 @|RichDialogProcessStartIcon #fIcon
 Es0 f13 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
-Es0 f13 627 147 26 26 0 12 #rect
+Es0 f13 899 147 26 26 0 12 #rect
 Es0 f13 @|RichDialogProcessEndIcon #fIcon
 Es0 f5 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData out;
 ' #txt
@@ -191,8 +193,6 @@ Es0 f5 456 138 112 44 -45 -8 #rect
 Es0 f5 @|StepIcon #fIcon
 Es0 f15 expr out #txt
 Es0 f15 109 160 456 160 #arcP
-Es0 f12 expr out #txt
-Es0 f12 568 160 627 160 #arcP
 Es0 f14 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
 Es0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -203,16 +203,8 @@ Es0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f14 368 240 32 32 -57 18 #rect
+Es0 f14 368 288 32 32 -57 18 #rect
 Es0 f14 @|AlternativeIcon #fIcon
-Es0 f18 expr in #txt
-Es0 f18 outCond 'ivy.task.getState() == ch.ivyteam.ivy.workflow.TaskState.CREATED' #txt
-Es0 f18 400 256 627 256 #arcP
-Es0 f18 0 0.31901784977223685 0 0 #arcLabel
-Es0 f16 expr in #txt
-Es0 f16 396 252 512 182 #arcP
-Es0 f16 1 512 216 #addKink
-Es0 f16 0 0.8103878303149148 0 0 #arcLabel
 Es0 f19 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData out;
 ' #txt
 Es0 f19 actionTable 'out=in;
@@ -229,17 +221,17 @@ Es0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f19 177 330 112 44 -41 -8 #rect
+Es0 f19 177 378 112 44 -41 -8 #rect
 Es0 f19 @|StepIcon #fIcon
 Es0 f20 expr out #txt
-Es0 f20 109 352 177 352 #arcP
+Es0 f20 109 400 177 400 #arcP
 Es0 f20 0 0.5046816618705158 0 0 #arcLabel
 Es0 f21 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
 Es0 f21 guid 162AD937B36EE268 #txt
-Es0 f21 499 339 26 26 0 12 #rect
+Es0 f21 499 387 26 26 0 12 #rect
 Es0 f21 @|RichDialogEndIcon #fIcon
 Es0 f22 expr out #txt
-Es0 f22 289 352 499 352 #arcP
+Es0 f22 289 400 499 400 #arcP
 Es0 f22 0 0.5046816618705158 0 0 #arcLabel
 Es0 f8 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData out;
 ' #txt
@@ -257,13 +249,41 @@ Es0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f8 177 234 112 44 -41 -8 #rect
+Es0 f8 177 282 112 44 -41 -8 #rect
 Es0 f8 @|StepIcon #fIcon
 Es0 f23 expr out #txt
-Es0 f23 109 256 177 256 #arcP
+Es0 f23 109 304 177 304 #arcP
 Es0 f23 0 0.69246261000053 0 0 #arcLabel
 Es0 f17 expr out #txt
-Es0 f17 289 256 368 256 #arcP
+Es0 f17 289 304 368 304 #arcP
+Es0 f24 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData out;
+' #txt
+Es0 f24 actionTable 'out=in;
+' #txt
+Es0 f24 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+TaskUtils.resetTask(ivy.task);' #txt
+Es0 f24 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
+Es0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reset task</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f24 672 138 112 44 -27 -8 #rect
+Es0 f24 @|StepIcon #fIcon
+Es0 f26 expr in #txt
+Es0 f26 outCond 'ivy.task.getState() == ch.ivyteam.ivy.workflow.TaskState.CREATED' #txt
+Es0 f26 400 304 779 304 #arcP
+Es0 f26 0 0.31901784977223685 0 0 #arcLabel
+Es0 f25 expr in #txt
+Es0 f25 396 300 512 182 #arcP
+Es0 f25 1 512 264 #addKink
+Es0 f25 1 0.36603669130543987 0 0 #arcLabel
+Es0 f16 expr out #txt
+Es0 f16 568 160 672 160 #arcP
+Es0 f12 expr out #txt
+Es0 f12 784 160 899 160 #arcP
 >Proto Es0 .type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
@@ -274,12 +294,6 @@ Es0 f9 mainOut f11 tail #connect
 Es0 f11 head f10 mainIn #connect
 Es0 f3 mainOut f15 tail #connect
 Es0 f15 head f5 mainIn #connect
-Es0 f5 mainOut f12 tail #connect
-Es0 f12 head f13 mainIn #connect
-Es0 f14 out f18 tail #connect
-Es0 f18 head f4 mainIn #connect
-Es0 f14 out f16 tail #connect
-Es0 f16 head f5 mainIn #connect
 Es0 f7 mainOut f20 tail #connect
 Es0 f20 head f19 mainIn #connect
 Es0 f19 mainOut f22 tail #connect
@@ -288,3 +302,11 @@ Es0 f6 mainOut f23 tail #connect
 Es0 f23 head f8 mainIn #connect
 Es0 f8 mainOut f17 tail #connect
 Es0 f17 head f14 in #connect
+Es0 f14 out f26 tail #connect
+Es0 f26 head f4 mainIn #connect
+Es0 f14 out f25 tail #connect
+Es0 f25 head f5 mainIn #connect
+Es0 f5 mainOut f16 tail #connect
+Es0 f16 head f24 mainIn #connect
+Es0 f24 mainOut f12 tail #connect
+Es0 f12 head f13 mainIn #connect
