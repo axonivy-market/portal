@@ -10,33 +10,33 @@
 </cc:interface>
 
 <cc:implementation>
-  <div id="#{cc.clientId}" class="ui-g">
+  <div id="#{cc.clientId}" class="ui-g project-version-container">
     <div class="ui-g-3">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/engineVersion')}:" />
+      <h:outputText id="engine-version-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/engineVersion')}:" />
     </div>
     <div class="ui-g-9">
-      <h:outputText value="#{projectVersionBean.engineVersion}" />
+      <h:outputText id="engine-version" value="#{projectVersionBean.engineVersion}" />
     </div>
 
     <div class="ui-g-3">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/portalVersion')}:" />
+      <h:outputText id="portal-version-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/portalVersion')}:" />
     </div>
     <div class="ui-g-9">
-      <h:outputText value="#{projectVersionBean.portalVersion}" />
+      <h:outputText id="portal-version" value="#{projectVersionBean.portalVersion}" />
     </div>
 
     <h:panelGroup rendered="#{not empty projectVersionBean.projectLibraries}">
-      <ui:repeat value="#{projectVersionBean.projectLibraries.entrySet().toArray()}" var="entry">
+      <ui:repeat id="application-list" value="#{projectVersionBean.projectLibraries.entrySet().toArray()}" var="entry">
         <div class="ui-g-3">
-          <h:outputText value="#{entry.key}:" />
+          <h:outputText id="application-name" value="#{entry.key}:" />
         </div>
         <div class="ui-g-9">
-          <p:dataTable value="#{entry.value}" var="library">
+          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
-              <h:outputText value="#{library.projectName}" />
+              <h:outputText id="project-name" value="#{library.projectName}" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}">
-              <h:outputText value="#{library.projectVersion}" />
+              <h:outputText id="project-version" value="#{library.projectVersion}" />
             </p:column>
           </p:dataTable>
         </div>
