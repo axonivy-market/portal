@@ -14,7 +14,7 @@
 </cc:interface>
 
 <cc:implementation>
-	<p:commandLink id="found-task" value="#{cc.attrs.foundTask.name}" styleClass="Fs15 u-truncate-text" actionListener="#{logic.openPortalTasks}">
+	<p:commandLink id="found-task" value="#{cc.attrs.foundTask.name}" styleClass="Fs15 u-truncate-text search-result-item" actionListener="#{logic.openPortalTasks}">
 		<f:attribute name="keyword" value="#{cc.attrs.keyword}"/>
 		<f:attribute name="foundTask" value="#{cc.attrs.foundTask}"/>
 	</p:commandLink>

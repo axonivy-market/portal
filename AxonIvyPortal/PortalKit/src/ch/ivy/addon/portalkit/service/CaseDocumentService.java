@@ -11,7 +11,12 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 
+import ch.ivy.addon.portalkit.document.DocumentDetector;
+import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
+import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.vo.DocumentVO;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -27,11 +32,6 @@ import edu.emory.mathcs.backport.java.util.Arrays;
 public class CaseDocumentService {
 
   private long caseId;
-
-  private static final String[] forbiddenUploadingFileTypes = {"exe", "pif", "application", "gadget", "msi", "msp",
-      "com", "scr", "hta", "cpl", "msc", "bat", "cmd", "vb", "vbs", "vbe", "js", "jse", "wf", "wsf", "wsc", "wsh",
-      "ps1", "ps1xml", "ps2", "ps2xml", "psc1", "psc2", "msh", "msh1", "msh2", "mshxml", "msh1xml", "msh2xml", "scf",
-      "lnk", "inf", "reg"};
 
   public static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
   
@@ -97,9 +97,40 @@ public class CaseDocumentService {
 
   public static boolean isDocumentTypeValid(String filename) {
     String fileType = FilenameUtils.getExtension(filename);
-    return !Arrays.asList(forbiddenUploadingFileTypes).contains(StringUtils.lowerCase(fileType));
+    List<String> allowedFileType = getAllowedUploadFileType();
+    //If admin leave the config blank, mean all the file type are accepted
+    if(allowedFileType.isEmpty()) {
+      return true;
+    }
+    else{
+      return allowedFileType.contains(StringUtils.lowerCase(fileType));
+    }
   }
 
+  public static boolean isDocumentSafe(UploadedFile uploadedFile) {
+    if(uploadedFile != null){
+      DocumentDetectorFactory documentDetectorFactory = new DocumentDetectorFactory();
+      DocumentDetector documentDetector = documentDetectorFactory.getDocumentDetector(FilenameUtils.getExtension(StringUtils.lowerCase(uploadedFile.getFileName())));
+      if(documentDetector != null) {
+        try {
+          return documentDetector.isSafe(uploadedFile.getInputstream());
+        } catch (IOException e) {
+          Ivy.log().error(e);
+          return false;
+        }
+      }
+      //File type doesn't support for scanning inside script
+      else return true;
+    }
+    return false;
+  }
+  
+  public static boolean enableScriptCheckingForUploadedDocument() {
+    GlobalSettingService globalSettingSerive = new GlobalSettingService();
+    String enableScriptCheckingForUploadedDocument = globalSettingSerive.findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
+    return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
+  }
+  
   private IDocumentService documentsOf(ICase iCase) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<IDocumentService>() {
@@ -129,6 +160,21 @@ public class CaseDocumentService {
     return contentType;
   }
 
-
-
+  @SuppressWarnings("unchecked")
+  private static List<String> getAllowedUploadFileType() {
+    GlobalSettingService globalSettingSerive = new GlobalSettingService();
+    if(globalSettingSerive.isGlobalSettingAvailable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION)){
+      String supportedFileType = globalSettingSerive.findGlobalSettingValue(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION);
+      if(StringUtils.EMPTY.equals(supportedFileType)){
+        return new ArrayList<>();
+      }
+      else{
+        String[] supportedFileTypeArr = supportedFileType.toLowerCase().split("\\s*,[,\\s]*");
+        return Arrays.asList(supportedFileTypeArr);
+      }
+    }
+    return DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION;
+    
+  }
+  
 }

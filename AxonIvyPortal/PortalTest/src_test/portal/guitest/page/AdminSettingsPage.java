@@ -25,7 +25,7 @@ public class AdminSettingsPage extends TemplatePage {
     return findElementById(DIALOG_TITLE).isDisplayed();
   }
   
-  private void clickToSettingTab(){
+  private void openSettingTab(){
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
     settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
@@ -36,6 +36,7 @@ public class AdminSettingsPage extends TemplatePage {
     settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:logo-color-form"), true);
   }
+  
   
   public void chooseMainColor(String color) {
     click(By.id("adminui:adminTabView:logo-color-form:main-color-chooser_button"));
@@ -62,11 +63,11 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementPresent(By.id("adminui:settingDialogForm"), true);
   }
 
-  private void setClientSideTimeoutVar(String timeout){
+  private void addGlobalVariable(String key, String value){
     WebElement keyInput = findElementById("adminui:keySetting");
-    keyInput.sendKeys("CLIENT_SIDE_TIMEOUT");
+    keyInput.sendKeys(key);
     WebElement valueInput = findElementById("adminui:valueSetting");
-    valueInput.sendKeys(timeout);
+    valueInput.sendKeys(value);
     WebElement saveButton = findElementById("adminui:save-setting");
     saveButton.click();
   }
@@ -83,9 +84,25 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void setClientSideTimeout(String timeout){
-    clickToSettingTab();
+    openSettingTab();
     clickAddNewGlobalVariable();
-    setClientSideTimeoutVar(timeout);
+    addGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout);
+    closeAdminSettingDialog();
+    closeInformConfigDialog();
+  }
+  
+  public void setEnableScriptCheckingGlobalVariable(){
+    openSettingTab();
+    clickAddNewGlobalVariable();
+    addGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true");
+    closeAdminSettingDialog();
+    closeInformConfigDialog();
+  }
+  
+  public void setFileExtensionWhiteList(){
+    openSettingTab();
+    clickAddNewGlobalVariable();
+    addGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", "abc, pdf, doc");
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }

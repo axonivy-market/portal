@@ -1,7 +1,13 @@
 package portal.guitest.page;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
@@ -281,4 +287,45 @@ public class CaseDetailsPage extends TemplatePage {
     caseItem.findElement(By.cssSelector("a[id$='show-all-tasks']")).click();
     return new TaskWidgetPage();
   }
+  
+  public void uploadDocumentWithoutError(String pathToFile) {
+    openAddDocumentDialogAndUploadDocument(0, pathToFile);
+    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-close-command", 0)));
+  }
+  
+  public String uploadDocumentWithError(String pathToFile){
+    openAddDocumentDialogAndUploadDocument(0, pathToFile);
+    WebElement errorMsg = findElementByXpath(String.format("//*[@id='case-widget:case-list-scroller:%d:case-item:document:document-upload-form:upload-messages']/div/ul/li/span", 0));
+    String returnMsg = StringUtils.EMPTY;
+    if(errorMsg.isDisplayed()){
+      returnMsg =  errorMsg.getText();
+    }
+    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-close-command", 0)));
+    return returnMsg;
+  }
+  
+  private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
+    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:add-document-command", index)));
+    String uploadDialogId =
+        String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-dialog-", index);
+    waitForElementDisplayed(By.id(uploadDialogId), true);
+    click(By.className("ui-fileupload-choose"));
+    StringSelection ss = new StringSelection(pathToFile);
+    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+    Robot robot;
+    try {
+      robot = new Robot();
+      robot.keyPress(KeyEvent.VK_CONTROL);
+      robot.keyPress(KeyEvent.VK_V);
+      robot.keyRelease(KeyEvent.VK_V);
+      robot.keyRelease(KeyEvent.VK_CONTROL);
+      robot.keyPress(KeyEvent.VK_ENTER);
+      robot.keyRelease(KeyEvent.VK_ENTER);
+    } catch (AWTException e) {
+      e.printStackTrace();
+    }
+    //Wait 2 seconds for file uploaded, currently haven't found solution to check when the file upload finish
+    Sleeper.sleepTight(5000);
+  }
+  
 }
