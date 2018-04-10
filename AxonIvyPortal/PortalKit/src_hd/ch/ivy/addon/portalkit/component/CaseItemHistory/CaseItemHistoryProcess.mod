@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Apr 18 11:46:36 ICT 2017]
-153362B0AC312EFB 3.20 #module
+153362B0AC312EFB 3.23 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -22,7 +21,6 @@ Cs0 @RichDialogMethodStart f3 '' #zField
 Cs0 @RichDialogProcessEnd f4 '' #zField
 Cs0 @CallSub f66 '' #zField
 Cs0 @GridStep f78 '' #zField
-Cs0 @PushWFArc f5 '' #zField
 Cs0 @PushWFArc f7 '' #zField
 Cs0 @GridStep f64 '' #zField
 Cs0 @RichDialogProcessEnd f70 '' #zField
@@ -48,6 +46,9 @@ Cs0 @CallSub f11 '' #zField
 Cs0 @GridStep f23 '' #zField
 Cs0 @PushWFArc f14 '' #zField
 Cs0 @PushWFArc f13 '' #zField
+Cs0 @CallSub f15 '' #zField
+Cs0 @PushWFArc f17 '' #zField
+Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 CaseItemHistoryProcess #zField
 Cs0 f0 guid 153362B0ADC5C7D8 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
@@ -95,7 +96,7 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f3 165 85 22 22 14 0 #rect
 Cs0 f3 @|RichDialogMethodStartIcon #fIcon
 Cs0 f4 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
-Cs0 f4 165 341 22 22 14 0 #rect
+Cs0 f4 165 389 22 22 14 0 #rect
 Cs0 f4 @|RichDialogProcessEndIcon #fIcon
 Cs0 f66 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f66 processCall MultiPortal/TaskService:findTasksByCriteria(Long,ch.ivy.ws.addon.TaskSearchCriteria,Integer,Integer) #txt
@@ -142,12 +143,10 @@ from tasks and notes</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f78 158 284 36 24 20 -1 #rect
+Cs0 f78 158 332 36 24 20 -1 #rect
 Cs0 f78 @|StepIcon #fIcon
-Cs0 f5 expr out #txt
-Cs0 f5 176 236 176 284 #arcP
 Cs0 f7 expr out #txt
-Cs0 f7 176 308 176 341 #arcP
+Cs0 f7 176 356 176 389 #arcP
 Cs0 f64 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
 Cs0 f64 actionTable 'out=in;
@@ -444,14 +443,41 @@ Cs0 f14 expr out #txt
 Cs0 f14 128 459 128 500 #arcP
 Cs0 f13 expr out #txt
 Cs0 f13 128 524 128 548 #arcP
+Cs0 f15 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
+Cs0 f15 processCall MultiPortal/CaseService:findCase(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Cs0 f15 doCall true #txt
+Cs0 f15 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
+' #txt
+Cs0 f15 requestMappingAction 'param.server=in.remoteCase.server;
+param.caseId=in.remoteCase.id;
+' #txt
+Cs0 f15 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
+' #txt
+Cs0 f15 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.remoteCase=result.remoteCase;
+' #txt
+Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CaseService</name>
+        <nameStyle>11,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f15 136 260 80 40 -35 -8 #rect
+Cs0 f15 @|CallSubIcon #fIcon
+Cs0 f17 expr out #txt
+Cs0 f17 176 236 176 260 #arcP
+Cs0 f5 expr out #txt
+Cs0 f5 176 300 176 332 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
 Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
-Cs0 f66 mainOut f5 tail #connect
-Cs0 f5 head f78 mainIn #connect
 Cs0 f78 mainOut f7 tail #connect
 Cs0 f7 head f4 mainIn #connect
 Cs0 f63 mainOut f68 tail #connect
@@ -478,3 +504,7 @@ Cs0 f10 mainOut f14 tail #connect
 Cs0 f14 head f23 mainIn #connect
 Cs0 f23 mainOut f13 tail #connect
 Cs0 f13 head f11 mainIn #connect
+Cs0 f66 mainOut f17 tail #connect
+Cs0 f17 head f15 mainIn #connect
+Cs0 f15 mainOut f5 tail #connect
+Cs0 f5 head f78 mainIn #connect

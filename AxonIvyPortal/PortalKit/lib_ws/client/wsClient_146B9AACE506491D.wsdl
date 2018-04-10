@@ -412,6 +412,7 @@
   <xs:complexType name="uploadDocument">
     <xs:sequence>
       <xs:element minOccurs="0" name="caseID" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="documentName" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="documentContent" type="xs:base64Binary"></xs:element>
     </xs:sequence>
@@ -456,6 +457,7 @@
 
   <xs:complexType name="removeDocument">
     <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="caseID" type="xs:long"></xs:element>
       <xs:element minOccurs="0" name="documentId" type="xs:long"></xs:element>
     </xs:sequence>
