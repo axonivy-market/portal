@@ -286,7 +286,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             errors.add(new WSException(WSErrorType.WARNING, 10034, userText, null));
           } else {
             IvyNoteTransformer noteTransformer = new IvyNoteTransformer();
-
+            
             CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
             ICase c = null;
 
@@ -384,7 +384,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
 
   @Override
-  public CaseServiceResult uploadDocument(Integer caseId, String documentName, Binary documentContent)
+  public CaseServiceResult uploadDocument(String username, Integer caseId, String documentName, Binary documentContent)
       throws WSException {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<CaseServiceResult>() {
@@ -410,6 +410,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                 IvyDocumentTransformer transformer = new IvyDocumentTransformer();
                 IDocument document = iCase.documents().add(documentName).write().withContentFrom(documentContent);
                 result.setDocument(transformer.transform(document));
+                createNoteWhenUploadDocument(username, caseId, documentName);
               } catch (Exception e) {
                 List<Object> userText = new ArrayList<Object>();
                 userText.add(documentName);
@@ -426,6 +427,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           result.setErrors(errors);
 
           return result;
+        }
+
+        private void createNoteWhenUploadDocument(String username, Integer caseId, String documentName)
+            throws WSException {
+          List<Object> parameter = Arrays.asList(username, documentName);
+          String uploadDocumentMessage = Ivy.cms().co("/ch/ivy/addon/portalconnector/document/uploadDocumentNote", parameter);
+          createNote(username, caseId, uploadDocumentMessage);
         }
       });
     } catch (Exception e) {
@@ -481,7 +489,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
 
   @Override
-  public CaseServiceResult removeDocument(Integer caseId, Integer documentId) throws WSException {
+  public CaseServiceResult removeDocument(String userName, Integer caseId, Integer documentId) throws WSException {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<CaseServiceResult>() {
         @Override
@@ -503,7 +511,11 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
             if (iCase != null) {
               try {
+                IDocument document = iCase.documents().get(documentId);
                 iCase.documents().delete(documentId);
+                if(document != null){
+                  createNoteWhenDeleteDocument(userName, caseId, document);
+                }
               } catch (Exception e) {
                 List<Object> userText = new ArrayList<Object>();
                 userText.add(e.getMessage());
@@ -520,6 +532,15 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           result.setErrors(errors);
 
           return result;
+        }
+
+        private void createNoteWhenDeleteDocument(String userName, Integer caseId, IDocument document)
+            throws WSException {
+          String documentName = document.getName();
+          List<Object> parameter = Arrays.asList(userName, documentName);
+          String removeDocumentMessage = 
+              Ivy.cms().co("/ch/ivy/addon/portalconnector/document/deleteDocumentNote", parameter);
+          createNote(userName, caseId, removeDocumentMessage);
         }
       });
     } catch (Exception e) {
