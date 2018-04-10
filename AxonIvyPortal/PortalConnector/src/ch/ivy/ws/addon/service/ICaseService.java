@@ -84,7 +84,7 @@ public interface ICaseService {
    * @return CaseServiceResult
    * @throws WSException
    */
-  public CaseServiceResult uploadDocument(Integer caseId, String documentName, Binary documentContent)
+  public CaseServiceResult uploadDocument(String username, Integer caseId, String documentName, Binary documentContent)
       throws WSException;
 
   /**
@@ -105,7 +105,7 @@ public interface ICaseService {
    * @return CaseServiceResult
    * @throws WSException
    */
-  public CaseServiceResult removeDocument(Integer caseId, Integer documentId) throws WSException;
+  public CaseServiceResult removeDocument(String userName, Integer caseId, Integer documentId) throws WSException;
 
   public void destroyCase(final Integer caseId) throws WSException;
 
