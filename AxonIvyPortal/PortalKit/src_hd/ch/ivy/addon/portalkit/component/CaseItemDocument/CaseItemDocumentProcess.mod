@@ -138,11 +138,12 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f35 522 194 28 28 -34 15 #rect
 Cs0 f35 @|AlternativeIcon #fIcon
 Cs0 f58 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f58 processCall MultiPortal/CaseService:uploadDocument(String,javax.activation.DataHandler,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Cs0 f58 processCall MultiPortal/CaseService:uploadDocument(String,String,javax.activation.DataHandler,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Cs0 f58 doCall true #txt
-Cs0 f58 requestActionDecl '<java.lang.String documentName,javax.activation.DataHandler documentContent,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
+Cs0 f58 requestActionDecl '<java.lang.String userName,java.lang.String documentName,javax.activation.DataHandler documentContent,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
 ' #txt
-Cs0 f58 requestMappingAction 'param.documentName=in.documentContent.getName();
+Cs0 f58 requestMappingAction 'param.userName=ivy.session.getSessionUserName();
+param.documentName=in.documentContent.getName();
 param.documentContent=in.documentContent;
 param.server=in.remoteCase.server;
 param.caseId=in.remoteCase.getId();
@@ -388,11 +389,12 @@ Cs0 f33 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentD
 Cs0 f33 1013 389 22 22 14 0 #rect
 Cs0 f33 @|RichDialogProcessEndIcon #fIcon
 Cs0 f42 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f42 processCall MultiPortal/CaseService:deleteDocument(ch.ivy.addon.portalkit.persistence.domain.Server,Long,Long) #txt
+Cs0 f42 processCall MultiPortal/CaseService:deleteDocument(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long,Long) #txt
 Cs0 f42 doCall true #txt
-Cs0 f42 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long documentId,java.lang.Long caseId> param;
+Cs0 f42 requestActionDecl '<java.lang.String userName,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long documentId,java.lang.Long caseId> param;
 ' #txt
-Cs0 f42 requestMappingAction 'param.server=in.remoteCase.server;
+Cs0 f42 requestMappingAction 'param.userName=ivy.session.getSessionUserName();
+param.server=in.remoteCase.server;
 param.documentId=in.document.id;
 param.caseId=in.remoteCase.getId();
 ' #txt
