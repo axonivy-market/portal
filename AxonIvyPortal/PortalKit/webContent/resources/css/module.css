@@ -4761,6 +4761,15 @@ margin-top
   display: none;
 }
 
+.project-version-table.ui-datatable table thead tr th {
+  padding: 5px 10px;
+}
+
+.project-version-container {
+  max-height: 80vh;
+  overflow: auto;
+}
+
 /*********** Styles for ui-inplace ***********/
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check, .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
   background-image: none !important;
