@@ -95,7 +95,7 @@
                 <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-info" task="#{task}"
                   priorityComponentToUpdate="#{p:component('task-priority')}"
                   componentToUpdate="#{p:component('task-details-notes')} #{p:component('expiry-time')}" />
-                <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" />
+                <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" componentToUpdate="#{p:component('task-details-notes')}"/>
                 <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}" >
                   <f:facet name="showTaskNoteHistory">
                     <p:link id="show-more-note-link" styleClass="task-details-note-add-link note-show-more-link"

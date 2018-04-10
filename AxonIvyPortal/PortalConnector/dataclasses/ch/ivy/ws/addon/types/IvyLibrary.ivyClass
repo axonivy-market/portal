@@ -4,4 +4,3 @@ projectName String #field
 projectVersion String #field
 application String #field
 id String #field
-id PERSISTENT #fieldModifier

@@ -1,5 +1,5 @@
 [Ivy]
-14715F955CC5A35F 3.20 #module
+14715F955CC5A35F 3.23 #module
 >Proto >Proto Collection #zClass
 Ce0 CaseService Big #zClass
 Ce0 B #cInfo
@@ -506,11 +506,12 @@ Ce0 f46 expr out #txt
 Ce0 f46 1248 220 1248 260 #arcP
 Ce0 f47 expr out #txt
 Ce0 f47 1248 156 1248 196 #arcP
-Ce0 f48 inParamDecl '<java.lang.String documentName,javax.activation.DataHandler documentContent,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;' #txt
+Ce0 f48 inParamDecl '<java.lang.String userName,java.lang.String documentName,javax.activation.DataHandler documentContent,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;' #txt
 Ce0 f48 inParamTable 'out.caseId=param.caseId;
 out.documentContent=param.documentContent;
 out.documentName=param.documentName;
 out.server=param.server;
+out.username=param.userName;
 ' #txt
 Ce0 f48 outParamDecl '<ch.ivy.ws.addon.IvyDocument document,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
@@ -519,7 +520,7 @@ result.errors=in.errors;
 ' #txt
 Ce0 f48 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
-Ce0 f48 callSignature uploadDocument(String,javax.activation.DataHandler,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Ce0 f48 callSignature uploadDocument(String,String,javax.activation.DataHandler,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ce0 f48 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -534,11 +535,12 @@ Ce0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ce0 f48 1443 43 26 26 14 0 #rect
 Ce0 f48 @|StartSubIcon #fIcon
 Ce0 f50 type ch.ivyteam.wf.processes.CaseServiceData #txt
-Ce0 f50 processCall ServiceIntegrators/CaseServiceIntegrator:uploadDocument(String,javax.activation.DataHandler,String,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
+Ce0 f50 processCall ServiceIntegrators/CaseServiceIntegrator:uploadDocument(String,String,javax.activation.DataHandler,String,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
 Ce0 f50 doCall true #txt
-Ce0 f50 requestActionDecl '<java.lang.String documentName,javax.activation.DataHandler documentContent,java.lang.String endpoint,java.lang.Long caseId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;
+Ce0 f50 requestActionDecl '<java.lang.String userName,java.lang.String documentName,javax.activation.DataHandler documentContent,java.lang.String endpoint,java.lang.Long caseId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;
 ' #txt
-Ce0 f50 requestMappingAction 'param.documentName=in.documentName;
+Ce0 f50 requestMappingAction 'param.userName=in.username;
+param.documentName=in.documentName;
 param.documentContent=in.documentContent;
 param.endpoint=in.endpoint;
 param.caseId=in.caseId;
@@ -1106,11 +1108,12 @@ Ce0 f93 @|CallSubIcon #fIcon
 Ce0 f109 expr out #txt
 Ce0 f109 320 572 320 604 #arcP
 Ce0 f99 type ch.ivyteam.wf.processes.CaseServiceData #txt
-Ce0 f99 processCall ServiceIntegrators/CaseServiceIntegrator:removeDocument(String,Long,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
+Ce0 f99 processCall ServiceIntegrators/CaseServiceIntegrator:removeDocument(String,String,Long,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
 Ce0 f99 doCall true #txt
-Ce0 f99 requestActionDecl '<java.lang.String endpoint,java.lang.Long documentId,java.lang.Long caseId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;
+Ce0 f99 requestActionDecl '<java.lang.String userName,java.lang.String endpoint,java.lang.Long documentId,java.lang.Long caseId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;
 ' #txt
-Ce0 f99 requestMappingAction 'param.endpoint=in.endpoint;
+Ce0 f99 requestMappingAction 'param.userName=in.username;
+param.endpoint=in.endpoint;
 param.documentId=in.documentId;
 param.caseId=in.caseId;
 param.server=in.server;
@@ -1131,10 +1134,11 @@ Ce0 f99 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ce0 f99 1926 196 36 24 20 -2 #rect
 Ce0 f99 @|CallSubIcon #fIcon
-Ce0 f108 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long documentId,java.lang.Long caseId> param;' #txt
+Ce0 f108 inParamDecl '<java.lang.String userName,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long documentId,java.lang.Long caseId> param;' #txt
 Ce0 f108 inParamTable 'out.caseId=param.caseId;
 out.documentId=param.documentId;
 out.server=param.server;
+out.username=param.userName;
 ' #txt
 Ce0 f108 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
@@ -1142,12 +1146,14 @@ Ce0 f108 outParamTable 'result.errors=in.errors;
 ' #txt
 Ce0 f108 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
-Ce0 f108 callSignature deleteDocument(ch.ivy.addon.portalkit.persistence.domain.Server,Long,Long) #txt
+Ce0 f108 callSignature deleteDocument(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long,Long) #txt
 Ce0 f108 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>deleteDocument(Server,Long,Long)</name>
+        <nameStyle>32,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt

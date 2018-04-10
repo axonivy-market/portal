@@ -68,6 +68,14 @@
 	<sect1 xml:id="portalconnectordocumentation.releasenotes.changes">
 		<title>Changes</title>
 		<sect2>
+			<title>Changes in 7.2</title>
+			<itemizedlist>
+				<listitem>
+					<para>Introduced the LibraryService WS to get the project version</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+		<sect2>
 			<title>Changes in 7.0</title>
 			<itemizedlist>
 				<listitem>
