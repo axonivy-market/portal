@@ -106,12 +106,17 @@ public abstract class TemplatePage extends AbstractPage {
     return new ChangePasswordPage();
   }
   
+  public ProjectVersionPage openProjectVersionPage() {
+    clickUserMenuItem("project-info-menu-item");
+    return new ProjectVersionPage();
+  }
+  
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     findElementById("user-settings-menu").click();
     waitForElementDisplayed(By.id(menuItemSelector), true);
     findElementById(menuItemSelector).click();
-    waitAjaxIndicatorDisappear();
+    waitAjaxIndicatorDisappear(); 
   }
 
   public boolean isAdminSettingsMenuItemPresent() {
