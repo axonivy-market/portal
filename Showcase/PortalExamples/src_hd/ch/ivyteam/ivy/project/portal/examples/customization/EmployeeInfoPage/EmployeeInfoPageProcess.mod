@@ -181,6 +181,7 @@ String homePageUrl = new UserMenuBean().getHomePageURL();
 
 FacesContext.getCurrentInstance().getExternalContext().redirect(homePageUrl);
 ' #txt
+Es0 f5 security system #txt
 Es0 f5 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
 Es0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -213,6 +214,7 @@ Es0 f19 actionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
 
 out.employeeInfo = ivy.persistence.employee.merge(out.employeeInfo) as Employee; 
 ' #txt
+Es0 f19 security system #txt
 Es0 f19 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
 Es0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -241,6 +243,7 @@ Es0 f8 actionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
 
 out.employeeInfo = ivy.persistence.employee.merge(out.employeeInfo) as Employee; 
 ' #txt
+Es0 f8 security system #txt
 Es0 f8 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
 Es0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -262,6 +265,7 @@ Es0 f24 actionTable 'out=in;
 ' #txt
 Es0 f24 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 TaskUtils.resetTask(ivy.task);' #txt
+Es0 f24 security system #txt
 Es0 f24 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
 Es0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
