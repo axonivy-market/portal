@@ -195,9 +195,10 @@
 					</para>
 				</listitem>
 			</itemizedlist>
+            There are 2 of task templates in portal: TaskTemplate and TaskTemplateMultipleTab. They are very similar and the only difference is: TaskTemplate.xhtml doesn't support multiple tabs in same level can save data while TaskTemplateMultipleTab can do it. 
 		</para>
 		<sect3 xml:id="axonivyportal.components.layouttemplates.tasktemplate.howtousetasktemplate">
-			<title>How to use task template</title>
+			<title>How to use template TaskTemplate.xhtml</title>
 			<orderedlist>
 				<listitem>
 					<para>
@@ -252,7 +253,8 @@
 				</listitem>
 				<listitem>
 					<para>
-						Inserts some new tabs, refers some segment of code as below. It is optional.
+						Inserts some new tabs, refers some segment of code as below. It is optional, good for read only data. Please mind information here can not be persisted properly. 
+                        If you need to do so, use TaskTemplateMultipleTab instead.
 						<para>
 							<code>&lt;ui:define name="dynamicTabs"&gt;</code>
 						</para>
@@ -331,6 +333,75 @@
 				</listitem>
 			</orderedlist>
 		</sect3>
+        <sect3 xml:id="axonivyportal.components.layouttemplates.tasktemplate.howtousetasktemplatemultipletab">
+            <title>How to use template TaskTemplateMultipleTab.xhtml</title>
+            <orderedlist>
+              <listitem>
+                <para>
+                  Create a new HTML User Dialog and then use <code>ui:composition</code> to define template which you use inside.
+                  <para>
+                    <code>&lt;ui:composition template="/layouts/TaskTemplateMultipleTab.xhtml"&gt;</code>
+                  </para>
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  Set <code>actualStepIndex</code>, <code>steps</code>, <code>caseId</code>,<code>taskName</code>, <code>errorsZone</code>, <code>infoZone</code> value exactly the same as TaskTemplate.
+                </para>
+              </listitem>
+              <listitem>
+                <para> Create multiple tabs, don't put any <code>h:form</code> tag here, it already exists in template. Otherwise you will face nested forms.
+                  <para>
+                    <code>&lt;ui:define name="dynamicTabs"&gt;</code>
+                  </para>
+                  <para>
+                    <code>&lt;p:tab title="My first tab"&gt;</code> 
+                  </para>
+                  <para>
+                    <code>&lt;p:inputText id="first-name" value="#{data.firstname}"/&gt;</code>
+                  </para>
+                    <code>&lt;/p:tab&gt;</code>
+                  <para>
+                    
+                  </para>
+                  
+                  <para>
+                    <code>&lt;p:tab title="My second tab"&gt;</code>
+                  </para>
+                  <para>
+                    <code>&lt;p:inputText id="last-name" value="#{data.lastname}"/&gt;</code>
+                  </para>
+                  <para>
+                    <code>&lt;/p:tab&gt;</code>
+                  </para>
+                  <para>
+                    <code>&lt;/ui:define&gt;</code>
+                  </para>
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  Inserts left buttons or right buttons which stay at the bottom of the page. It will handle save data in tabs, don't put any <code>h:form</code> tag here, it already exists in template
+                  <para>
+                    <code>&lt;ui:define name="rightButtons"&gt;</code>
+                  </para>
+                  <para>
+                    <code>&lt;p:commandButton value="Save" actionListener="#{logic.save}" partialSubmit="true" 
+	          		process=":main-form:first-name :main-form:last-name" update=":main-form:first-name :main-form:last-name" /&gt;</code>
+                  </para>
+                  <para>
+                    <code>&lt;p:commandButton value="Cancel" actionListener="#{logic.cancel}" id="cancel-button" immediate="true" /&gt;</code>
+                  </para>
+                  <para>
+                    <code>&lt;/ui:define&gt;</code>
+                  <para>
+                    <code>main-form</code> is id of form in template, either use action listener as ivy logic or managed bean.
+                  </para>
+                  </para>
+                </para>
+              </listitem>
+            </orderedlist>
+          </sect3>
 	</sect2>
 	<sect2 xml:id="axonivyportal.components.layouttemplates.casetemplate">
 		<title>Case template</title>
