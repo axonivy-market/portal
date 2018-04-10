@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Aug 23 10:10:13 ICT 2017]
-1574EBDBE9576CED 3.20 #module
+1574EBDBE9576CED 3.23 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
 Ds0 RD #cInfo
@@ -104,38 +103,25 @@ Ds0 f6 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionDa
 ' #txt
 Ds0 f6 actionTable 'out=in;
 ' #txt
-Ds0 f6 actionCode 'import ch.ivy.gawfs.FormelementOption;
+Ds0 f6 actionCode 'import ch.ivy.gawfs.enums.FormElementType;
+import ch.ivy.gawfs.DynaFormController;
+import ch.ivy.gawfs.FormelementOption;
 import ch.ivy.gawfs.Formelement;
 
-in.createInputFieldTab = new Formelement();
+in.createFileUploadTab = DynaFormController.initializeFileUploadElement();
 
-in.createFileUploadTab = new Formelement();
-	in.createFileUploadTab.type="FileUpload";
-	in.createFileUploadTab.intSetting = 0; //initial value for number of files allowed
-	FormelementOption erlaubtesDateiformat1 = new FormelementOption(ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/UploadFileFormat/PDF"));
-	FormelementOption erlaubtesDateiformat2 = new FormelementOption(ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/UploadFileFormat/Word"));
-	FormelementOption erlaubtesDateiformat3 = new FormelementOption(ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/UploadFileFormat/Excel"));
-	FormelementOption erlaubtesDateiformat4 = new FormelementOption(ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/UploadFileFormat/OtherFormats"));
-	in.createFileUploadTab.addOption(erlaubtesDateiformat1);
-	in.createFileUploadTab.addOption(erlaubtesDateiformat2);
-	in.createFileUploadTab.addOption(erlaubtesDateiformat3);
-	in.createFileUploadTab.addOption(erlaubtesDateiformat4);
-	
-	in.createInputFieldTab.required=false;
+in.createInputFieldTab.required=false;
 
 in.createInputAreaTab = new Formelement();
-	in.createInputAreaTab.intSetting = 2; //initial value for number of rows
-	in.createInputAreaTab.type = "InputTextArea";
-	in.createInputAreaTab.required = false;
+in.createInputAreaTab.intSetting = 2; //initial value for number of rows
+in.createInputAreaTab.type = FormElementType.INPUT_TEXT_AREA;
+in.createInputAreaTab.required = false;
 
 in.createManyCheckboxTab = new Formelement();
-in.createManyCheckboxTab.type="ManyCheckbox";
+in.createManyCheckboxTab.type = FormElementType.CHECKBOX;
 
 in.createOneRadioTab = new Formelement();
-in.createOneRadioTab.type="OneRadio";
-
-
-' #txt
+in.createOneRadioTab.type = FormElementType.RADIO_BUTTON;' #txt
 Ds0 f6 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -330,9 +316,8 @@ Ds0 f20 expr out #txt
 Ds0 f20 432 64 592 64 #arcP
 Ds0 f22 expr out #txt
 Ds0 f22 575 224 608 80 #arcP
-Ds0 f22 1 616 224 #addKink
-Ds0 f22 2 608 224 #addKink
-Ds0 f22 2 0.3515094270353499 0 0 #arcLabel
+Ds0 f22 1 608 224 #addKink
+Ds0 f22 1 0.3515094270353499 0 0 #arcLabel
 Ds0 f24 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f24 595 499 26 26 0 12 #rect
 Ds0 f24 @|RichDialogProcessEndIcon #fIcon

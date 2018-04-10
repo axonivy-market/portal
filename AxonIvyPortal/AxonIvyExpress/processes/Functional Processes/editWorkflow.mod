@@ -1,5 +1,5 @@
 [Ivy]
-15791C23B125821B 3.20 #module
+15791C23B125821B 3.23 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
 ew0 B #cInfo
@@ -174,7 +174,7 @@ import ch.ivy.gawfs.Formelement;
 	in.processRepository.processDescription = in.processDescription;
 	in.processRepository.processType = in.processType;
 	in.processRepository.processOwner = ivy.session.getSessionUser().getMemberName();
-	in.processRepository.processPermission = in.definedTasks.get(0).actor;
+	in.processRepository.processPermissions = in.definedTasks.get(0).responsibles;
 	BusinessDataInfo info = ExpressServiceRegistry.getProcessService().save(in.processRepository);
 	in.processRepository.id = info.getId();
 
@@ -189,12 +189,11 @@ ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(in.processID
 ExpressServiceRegistry.getFormElementService().deleteByProcessId(in.processID);
 
 //save all formelements with ID, location and order
-
 for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
 		ExpressFormElement x = new ExpressFormElement();
 		x.elementID = e.id;
 		x.elementPosition = "HEADER";
-		x.elementType = e.type;
+		x.elementType = e.type.getValue();
 		x.intSetting = e.intSetting;
 		x.label = e.label;
 		x.name = e.name;
@@ -209,7 +208,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
 		ExpressFormElement x = new ExpressFormElement();
 		x.elementID = e.id;
 		x.elementPosition = "LEFTPANEL";
-		x.elementType = e.type;
+		x.elementType = e.type.getValue();
 		x.intSetting = e.intSetting;
 		x.label = e.label;
 		x.name = e.name;
@@ -222,7 +221,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
 		ExpressFormElement x = new ExpressFormElement();
 		x.elementID = e.id;
 		x.elementPosition = "RIGHTPANEL";
-		x.elementType = e.type;
+		x.elementType = e.type.getValue();
 		x.intSetting = e.intSetting;
 		x.label = e.label;
 		x.name = e.name;
@@ -235,7 +234,7 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
 		ExpressFormElement x = new ExpressFormElement();
 		x.elementID = e.id;
 		x.elementPosition = "FOOTER";
-		x.elementType = e.type;
+		x.elementType = e.type.getValue();
 		x.intSetting = e.intSetting;
 		x.label = e.label;
 		x.name = e.name;
@@ -245,15 +244,14 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
 		ExpressServiceRegistry.getFormElementService().save(x);}
 
 //save the taskdefinition with the order of the tasks
-
 for (TaskDef t: in.definedTasks){
 		ExpressTaskDefinition tp = new ExpressTaskDefinition();
 		tp.subject = t.subject;
 		tp.description = t.description;		
-		tp.taskActor = t.actor;
+		tp.responsibles = t.responsibles;
 		tp.untilDays = t.untilDays;
 		tp.processID = processID;
-		tp.taskCount = t.count;
+		tp.taskPosition = t.position;
 		ExpressServiceRegistry.getTaskDefinitionService().save(tp);
 }
 ' #txt
@@ -526,20 +524,26 @@ Ct0 f28 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f28 actionTable 'out=in;
 ' #txt
-Ct0 f28 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Ct0 f28 actionCode 'import ch.ivy.gawfs.enums.FormElementType;
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
+import ch.ivy.gawfs.Formelement;
 
 List<ExpressFormElement> formelements = ExpressServiceRegistry.getFormElementService().findByProcessId(in.processID);
 
 for (ExpressFormElement element: formelements){
-	ch.ivy.gawfs.Formelement formelement;
-	
+	Formelement formelement;
+
 	formelement.id = element.elementID;
 	formelement.intSetting = element.intSetting;
 	formelement.label = element.label;
 	formelement.name = element.name;
 	formelement.required = element.required;
-	formelement.type = element.elementType;
+	for (FormElementType type : FormElementType.values()) {
+		if (type.getValue() == element.elementType) {
+			formelement.type = type;
+		}
+	}
 
 	List<String> optionsStrx = element.optionsStr.split(":",-1);
 	
@@ -594,25 +598,12 @@ List<ExpressTaskDefinition> taskSteps = ExpressServiceRegistry.getTaskDefinition
 for(ExpressTaskDefinition task: taskSteps){
 	TaskDef xtask = new TaskDef();
 	
-	xtask.actor = task.taskActor;
-	xtask.count = task.taskCount;
+	xtask.responsibles = task.responsibles;
+	xtask.position = task.taskPosition;
 	xtask.description = task.description;
 	xtask.subject = task.subject;
 	xtask.untilDays = task.untilDays;
-	xtask.actorDisplayName = "";
-	
-	if(task.taskActor.startsWith("#")){
-		IUser user = ivy.wf.getSecurityContext().findUser(task.taskActor.substring(1));
-		if(#user is initialized) { 
-		  xtask.actorDisplayName = ivy.wf.getSecurityContext().findUser(task.taskActor.substring(1)).getDisplayName();
-		}
-	}else{
-		IRole role =  ivy.wf.getSecurityContext().findRole(task.taskActor);
-		if(#role is initialized) {
-		  xtask.actorDisplayName = ivy.wf.getSecurityContext().findRole(task.taskActor).getDisplayName();
-		}
-	}
-	
+	xtask.responsibleDisplayName = task.responsibleDisplayName;
 	in.definedTasks.add(xtask);
 }
 

@@ -1,15 +1,19 @@
 TaskDef #class
 gawfs #namespace
-actor String #field
-actor PERSISTENT #fieldModifier
+responsibles java.util.List<ch.ivyteam.ivy.security.ISecurityMember> #field
+responsibles PERSISTENT #fieldModifier
 subject String #field
 subject PERSISTENT #fieldModifier
 prio Number #field
 prio PERSISTENT #fieldModifier
 description String #field
 description PERSISTENT #fieldModifier
-count Integer #field
-count PERSISTENT #fieldModifier
+position Integer #field
+position 'Position of defined task in the express process' #fieldComment
+position PERSISTENT #fieldModifier
 untilDays Number #field
 untilDays PERSISTENT #fieldModifier
-actorDisplayName String #field
+taskType ch.ivy.gawfs.enums.TaskType #field
+taskType PERSISTENT #fieldModifier
+responsibleDisplayName String #field
+responsibleDisplayName PERSISTENT #fieldModifier

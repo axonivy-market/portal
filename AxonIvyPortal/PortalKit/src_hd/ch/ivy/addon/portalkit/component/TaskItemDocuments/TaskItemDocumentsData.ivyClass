@@ -16,3 +16,9 @@ errors List<ch.ivy.ws.addon.WsException> #field
 errors PERSISTENT #fieldModifier
 task ch.ivy.addon.portalkit.bo.RemoteTask #field
 task PERSISTENT #fieldModifier
+uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
+uploadDocumentCheckStatus PERSISTENT #fieldModifier
+uploadDocumentCheckMessage String #field
+uploadDocumentCheckMessage PERSISTENT #fieldModifier
+isShowUploadDocumentButton Boolean #field
+isShowUploadDocumentButton PERSISTENT #fieldModifier
