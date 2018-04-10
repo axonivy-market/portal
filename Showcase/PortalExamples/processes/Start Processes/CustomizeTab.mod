@@ -38,8 +38,8 @@ Cb0 f0 requestEnabled true #txt
 Cb0 f0 triggerEnabled false #txt
 Cb0 f0 callSignature CustomizeTab() #txt
 Cb0 f0 persist false #txt
-Cb0 f0 startName 'Customize tab on same level (Create db before run). Check process for more detail' #txt
-Cb0 f0 startDescription 'Please create database before run this process, go to start process CustomizeTab for more detail' #txt
+Cb0 f0 startName 'Customize tab on same level. Check process for more detail' #txt
+Cb0 f0 startDescription 'In designer, please create database before run this process, go to start process CustomizeTab for more detail' #txt
 Cb0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
