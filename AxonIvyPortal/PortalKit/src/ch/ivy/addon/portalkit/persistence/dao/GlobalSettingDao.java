@@ -34,4 +34,16 @@ public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
     }
     
   }
+  
+  @SuppressWarnings("unchecked")
+  @ExecuteAsSystem
+  public boolean isGlobalSettingAvailable(String variableName) {
+    repo =
+        Repos.builder().primaryKey(EntityProperty.KEY.toString()).build(String.class, GlobalSetting.class)
+            .init(findAll());
+    List<GlobalSetting> globalSettings = repo.query(ObjectFilter.eq(EntityProperty.KEY.toString(), variableName));
+    GlobalSetting globalSetting = globalSettings.get(0);
+    return globalSetting != null;
+    
+  }
 }
