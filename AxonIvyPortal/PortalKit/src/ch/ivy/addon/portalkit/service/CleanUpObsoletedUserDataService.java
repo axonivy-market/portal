@@ -14,7 +14,6 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class CleanUpObsoletedUserDataService {
@@ -61,24 +60,13 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserTaskCaseFilter() {
-    List<Long> processModelIds;
-    try {
-      processModelIds = ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<Long>>() {
-        @Override
-        public List<Long> call() throws Exception {
-          return Ivy.request().getApplication().getProcessModels().stream().map(processModel -> processModel.getId()).collect(Collectors.toList());
-        }
-      });
-    } catch (Exception e) {
-      Ivy.log().error("Can't get process models of application", e);
-      processModelIds = new ArrayList<>();
-    }
+    long applicationId = Ivy.request().getApplication().getId();
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
     List<TaskFilterData> allPrivateTaskFilters = taskFilterService.getAllPrivateFilters();
     if (allPrivateTaskFilters != null) {
       for (TaskFilterData privateTaskFilter : allPrivateTaskFilters) {
-        if (processModelIds.contains(privateTaskFilter.getFilterGroupId()) && !userIds.contains(privateTaskFilter.getUserId())) {
+        if (Ivy.repo().getInfo(privateTaskFilter).getCreatedByAppId() == applicationId && !userIds.contains(privateTaskFilter.getUserId())) {
           taskFilterService.delete(privateTaskFilter.getId());
         }
       }
@@ -87,7 +75,7 @@ public class CleanUpObsoletedUserDataService {
     List<CaseFilterData> allPrivateCaseFilters = caseFilterService.getAllPrivateFilters();
     if (allPrivateCaseFilters != null) {
       for (CaseFilterData privateCaseFilter : allPrivateCaseFilters) {
-        if (processModelIds.contains(privateCaseFilter.getFilterGroupId()) && !userIds.contains(privateCaseFilter.getUserId())) {
+        if (Ivy.repo().getInfo(privateCaseFilter).getCreatedByAppId() == applicationId && !userIds.contains(privateCaseFilter.getUserId())) {
           caseFilterService.delete(privateCaseFilter.getId());
         }
       }
@@ -115,23 +103,8 @@ public class CleanUpObsoletedUserDataService {
     List<StatisticChart> allStatisticCharts = statisticService.findAllStatisticCharts();
     if (allStatisticCharts != null) {
       for (StatisticChart chart : allStatisticCharts) {
-        long userId = chart.getUserId();
-        boolean isUserIdInApp = false;
-        try
-        {
-          isUserIdInApp = ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-              IUser user = Ivy.request().getApplication().getSecurityContext().findUser(userId);
-              return user != null;
-            }
-          });
-        }
-        catch (Exception e)
-        {
-          Ivy.log().error("Can't check user belongs to app or not", e);
-        }
-        if (isUserIdInApp && !userIds.contains(userId)) {
+        Long applicationId = Ivy.request().getApplication().getId();
+        if (Ivy.repo().getInfo(chart).getCreatedByAppId() == applicationId && !userIds.contains(chart.getUserId())) {
           statisticService.delete(chart.getId());
         }
       }
