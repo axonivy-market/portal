@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -10,15 +11,14 @@ import javax.faces.bean.ViewScoped;
 import ch.ivy.addon.portalkit.bo.RemoteLibrary;
 import ch.ivy.addon.portalkit.datacollecting.factory.LibraryServiceFactory;
 import ch.ivy.addon.portalkit.datacollecting.service.AbstractLibraryService;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class ProjectVersionBean {
+public class ProjectVersionBean implements Serializable {
 
-  private final static String PORTAL_KIT_LIBRARY = "ch.ivyteam.ivy.project.portal:portalKit";
-  
   private String engineVersion;
   private String portalVersion;
   private Map<String, List<RemoteLibrary>> projectLibraries;
@@ -27,7 +27,7 @@ public class ProjectVersionBean {
   @PostConstruct
   private void init() {
     engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
-    ILibrary portalLibrary = Ivy.wf().getApplication().findReleasedLibrary(PORTAL_KIT_LIBRARY);
+    ILibrary portalLibrary = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
     portalVersion = portalLibrary.getQualifiedVersion().toString();
     projectLibraries = retrieveProjectLibraries();
   }
