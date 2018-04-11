@@ -2074,9 +2074,10 @@ a.case-details-document-add-link {
 }
 
 
-.process-start-list-item  .open-icon {
+.process-start-list-item .ui-commandlink.open-icon {
   padding-right: 15px;
   align-items: center;
+  color: rgba(0,0,0,0.5) !important;
 }
 
 .process-start-list-item .process-start-list-item-action .express-workflow {
