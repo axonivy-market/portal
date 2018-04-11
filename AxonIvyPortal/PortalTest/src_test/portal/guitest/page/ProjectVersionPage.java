@@ -6,7 +6,7 @@ public class ProjectVersionPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "project-version:engine-version-label";
+    return "id('project-version:engine-version-label')";
   }
   
   public boolean isEngineVersionDisplayed() {
