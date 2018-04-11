@@ -75,7 +75,7 @@ public class CleanUpObsoletedUserDataService {
     if (allPrivateCaseFilters != null) {
       for (CaseFilterData privateCaseFilter : allPrivateCaseFilters) {
         if (!userIds.contains(privateCaseFilter.getUserId())) {
-          taskFilterService.delete(privateCaseFilter.getId());
+          caseFilterService.delete(privateCaseFilter.getId());
         }
       }
     }
