@@ -61,7 +61,18 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserTaskCaseFilter() {
-    List<Long> processModelIds = Ivy.request().getApplication().getProcessModels().stream().map(processModel -> processModel.getId()).collect(Collectors.toList());
+    List<Long> processModelIds;
+    try {
+      processModelIds = ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<Long>>() {
+        @Override
+        public List<Long> call() throws Exception {
+          return Ivy.request().getApplication().getProcessModels().stream().map(processModel -> processModel.getId()).collect(Collectors.toList());
+        }
+      });
+    } catch (Exception e) {
+      Ivy.log().error("Can't get process models of application", e);
+      processModelIds = new ArrayList<>();
+    }
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
     List<TaskFilterData> allPrivateTaskFilters = taskFilterService.getAllPrivateFilters();
