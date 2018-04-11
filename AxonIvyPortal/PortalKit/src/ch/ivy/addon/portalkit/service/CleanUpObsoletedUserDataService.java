@@ -43,6 +43,9 @@ public class CleanUpObsoletedUserDataService {
   }
 
   public void cleanUpData() {
+    if (CollectionUtils.isEmpty(currentUsers)) {
+      return ;
+    }
     cleanUpUserFavouriteProcess();
     cleanUpUserTaskCaseFilter();
     cleanUpUserTaskColumnsConfigData();
@@ -50,9 +53,6 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserFavouriteProcess() {
-    if (CollectionUtils.isEmpty(currentUsers)) {
-      return ;
-    }
     List<String> userNames = currentUsers.stream().map(RemoteUser::getUsername).distinct().collect(Collectors.toList());
     UserProcessService userProcessService = new UserProcessService();
     List<UserProcess> userProcesses = userProcessService.findAll();
@@ -68,9 +68,6 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserTaskCaseFilter() {
-    if (CollectionUtils.isEmpty(currentUsers)) {
-      return ;
-    }
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
     List<TaskFilterData> allPrivateTaskFilters = taskFilterService.getAllPrivateFilters();
@@ -93,9 +90,6 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserTaskColumnsConfigData() {
-    if (CollectionUtils.isEmpty(currentUsers)) {
-      return ;
-    }
     Long serverId = SecurityServiceUtils.getServerIdFromSession();
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     Long applicationId = Ivy.request().getApplication().getId();
@@ -111,9 +105,6 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserStatisticChartData() {
-    if (CollectionUtils.isEmpty(currentUsers)) {
-      return ;
-    }
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     StatisticService statisticService = new StatisticService();
     List<StatisticChart> allStatisticCharts = statisticService.findAllStatisticCharts();
