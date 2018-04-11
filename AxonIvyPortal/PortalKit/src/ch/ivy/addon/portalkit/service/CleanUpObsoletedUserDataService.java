@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
-
 import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
@@ -23,11 +21,11 @@ public class CleanUpObsoletedUserDataService {
   private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
   List<RemoteUser> currentUsers;
 
-  @SuppressWarnings("unchecked")
-  public CleanUpObsoletedUserDataService() {
+  public void cleanUpData() {
     try {
       currentUsers =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
+            @SuppressWarnings("unchecked")
             @Override
             public List<RemoteUser> call() throws Exception {
               return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
@@ -38,12 +36,6 @@ public class CleanUpObsoletedUserDataService {
 
     } catch (Exception e) {
       Ivy.log().error("Can't get list of users", e);
-      currentUsers = new ArrayList<>();
-    }
-  }
-
-  public void cleanUpData() {
-    if (CollectionUtils.isEmpty(currentUsers)) {
       return ;
     }
     cleanUpUserFavouriteProcess();
