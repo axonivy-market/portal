@@ -23,7 +23,7 @@ public class MultiServerLibraryService extends AbstractLibraryService {
 
             @SuppressWarnings("unchecked")
             @Override
-            public List<RemoteLibrary> call() throws Exception {
+            public List<RemoteLibrary> call() {
               return SubProcessCall.withPath(LIBRARY_SERVICE_CALLABLE).withStartName("getLibraries")
                   .withParam("username", Ivy.session().getSessionUserName()).call().get("libraries", List.class);
             }
