@@ -20,10 +20,12 @@ public class MultiAppLibraryService extends AbstractLibraryService {
     ApplicationService applicationService = new ApplicationService();
     for (Application app : applicationService.findOnlineIvyApps()) {
       IApplication ivyApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(app.getName());
-      libraries.put(
-          app.getName(),
-          ivyApplication.getLibraries().stream().filter(lib -> !portalLibraryStrings.contains(lib.getId()))
-              .map(RemoteLibraryMapper::mapLibrary).collect(Collectors.toList()));
+      if (ivyApplication != null) {
+        libraries.put(
+            app.getName(),
+            ivyApplication.getLibraries().stream().filter(lib -> !portalLibraryStrings.contains(lib.getId()))
+                .map(RemoteLibraryMapper::mapLibrary).collect(Collectors.toList()));
+      }
     }
     return libraries;
   }
