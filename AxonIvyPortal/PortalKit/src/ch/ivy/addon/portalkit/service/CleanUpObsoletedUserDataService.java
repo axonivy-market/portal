@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
@@ -41,6 +43,9 @@ public class CleanUpObsoletedUserDataService {
   }
 
   public void cleanUpData() {
+    if (CollectionUtils.isEmpty(currentUsers)) {
+      return ;
+    }
     cleanUpUserFavouriteProcess();
     cleanUpUserTaskCaseFilter();
     cleanUpUserTaskColumnsConfigData();
