@@ -150,7 +150,7 @@
 
 #global-search-data {
 	font-size: 1.4rem;
-    padding: 3px 0 !important;
+    padding: 3px 25px 3px 0 !important;
     width: 300px;
 }
 
@@ -161,7 +161,7 @@
 }
 
 .setting-container {
-	transform: translateY(25%);
+	transform: translateY(15%);
 }
 
 #user-setting-container.active-menu {
@@ -891,7 +891,8 @@
 .global-search-result-overlay {
 	min-width: 200px;
 	left: -500px;
-	right: 105px;
+	right: 9px;
+	max-width: 60rem;
 	max-height: 75vh;
 	top: 35px !important;
 	border-radius: 5px !important;
@@ -909,12 +910,17 @@
 	color: black !important;
 }
 
+.ui-commandlink.search-result-item:hover {
+	color: black !important;
+	background-color: #f5f5f5;
+}
+
 .underline-section {
 	display: block;
     width: 100%;
 	border-bottom: 1px solid #D1D3D4;
 	margin: 10px 0;
-	line-height: 2;
+	line-height: 3;
 }
 
 .underline-section:first-child {
