@@ -8,7 +8,7 @@
 		</important>
 	</sect1>
 	<sect1 xml:id="portalconnectordocumentation.installation.redeployportalconnector">
-		<title>Re-deploy Portal Connector</title>
+		<title>Re-deploy Portal Connector (Work only with engine version 7.0.3 and older)</title>
 		<important>
 			Portal Connector is deployed to SYSTEM application. Therefore, you cannot use AdminUI to re-deploy it.
 			If you customize Portal Connector or use another Portal Connector, you can re-deploy by this way.
