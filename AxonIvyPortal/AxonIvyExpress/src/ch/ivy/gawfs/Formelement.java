@@ -27,7 +27,7 @@ public class Formelement implements Serializable{
 	private List<FormelementOption> options;		//list of options for ManyCheckbox or OneMenu, but also allowed File-Formats
 	private FormElementType type;				//Form element type
 	private List<String> optionsStr;	//String List representation of options
-	private Object value;        //Value of the Formelement, later Userinput
+	private transient Object value;        //Value of the Formelement, later Userinput
 	
 	public List<String> getOptionsStr() {
 		this.optionsStr.clear();
