@@ -56,7 +56,6 @@ public class BusinessCaseTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     GlobalSearch globalSearch = homePage.getGlobalSearch();
-    globalSearch.clickOnGlobalSearchIcon();
     globalSearch.inputSearchKeyword(BUSINESS_CASE_NAME);
     assertEquals(1, globalSearch.countFoundCases());
     assertEquals(BUSINESS_CASE_NAME, globalSearch.getCaseResult());

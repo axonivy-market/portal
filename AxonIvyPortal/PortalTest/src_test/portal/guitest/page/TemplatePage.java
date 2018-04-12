@@ -204,8 +204,6 @@ public abstract class TemplatePage extends AbstractPage {
   public class GlobalSearch {
     private static final String GLOBAL_SEARCH_RESULT_CONTAINER_ELEMENT_ID = "global-search-result-container";
     private static final String GLOBAL_SEARCH_DATA_ELEMENT_ID = "global-search-data";
-    private static final String GLOBAL_SEARCH_CONTAINER_ELEMENT_ID = "global-search-container";
-    private static final String GLOBAL_SEARCH_ELEMENT_ID = "global-search";
     private static final String EMPTY_SEARCH_RESULT_ELEMENT_ID = "empty-search-result";
     private static final String GLOBAL_TASK_RESULT_ELEMENT_ID = "global-task-result";
     private static final String GLOBAL_PROCESS_RESULT_ELEMENT_ID = "global-process-result";
@@ -214,7 +212,7 @@ public abstract class TemplatePage extends AbstractPage {
 
     public GlobalSearch() {
       final String SELECT_PARENT_NODE_XPATH = "..";
-      searchWebElement = findElementById(GLOBAL_SEARCH_ELEMENT_ID).findElement(By.xpath(SELECT_PARENT_NODE_XPATH));
+      searchWebElement = findElementById(GLOBAL_SEARCH_DATA_ELEMENT_ID).findElement(By.xpath(SELECT_PARENT_NODE_XPATH));
     }
 
     public boolean isDisplayed() {
@@ -223,19 +221,6 @@ public abstract class TemplatePage extends AbstractPage {
 
     public WebElement getSearch() {
       return searchWebElement;
-    }
-
-    public void clickOnGlobalSearchIcon() {
-      click(getGlobalSearchIcon());
-      waitForElementDisplayed(getSearchContainer(), true);
-    }
-
-    public WebElement getGlobalSearchIcon() {
-      return findChildElementById(searchWebElement, GLOBAL_SEARCH_ELEMENT_ID);
-    }
-
-    public WebElement getSearchContainer() {
-      return findChildElementById(searchWebElement, GLOBAL_SEARCH_CONTAINER_ELEMENT_ID);
     }
 
     public WebElement getSearchInputData() {

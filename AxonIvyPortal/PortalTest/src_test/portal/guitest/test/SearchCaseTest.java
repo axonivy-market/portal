@@ -34,7 +34,6 @@ public class SearchCaseTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch(); 
     assertTrue(globalSearch.isDisplayed());
 
-    globalSearch.clickOnGlobalSearchIcon();
     globalSearch.inputSearchKeyword("Leave Request");
 
     String caseName = "Leave Request";
@@ -51,7 +50,6 @@ public class SearchCaseTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    globalSearch.clickOnGlobalSearchIcon();
     globalSearch.inputSearchKeyword("Öst");
 
     String caseName = "Österreich Resource with ID 1212";
@@ -67,8 +65,6 @@ public class SearchCaseTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    globalSearch.clickOnGlobalSearchIcon();
-    homePage.waitForElementDisplayed(globalSearch.getSearchContainer(), true);
     globalSearch.inputSearchKeyword("no case found");
 
     WebElement caseResult = globalSearch.getEmptySearchResult();
