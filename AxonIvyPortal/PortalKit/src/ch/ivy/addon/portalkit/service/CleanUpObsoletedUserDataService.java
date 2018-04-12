@@ -14,6 +14,8 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class CleanUpObsoletedUserDataService {
@@ -51,12 +53,25 @@ public class CleanUpObsoletedUserDataService {
     List<UserProcess> obsoletedUserProcess = new ArrayList<>();
     if (userProcesses != null) {
       for (UserProcess userProcess : userProcesses) {
-        if (!userNames.contains(userProcess.getUserName())) {
+        String processUserName = userProcess.getUserName();
+        if (checkIfUserBelongToCurrentApp(processUserName) && !userNames.contains(processUserName)) {
           obsoletedUserProcess.add(userProcess);
         }
       }
     }
     userProcessService.deleteAll(obsoletedUserProcess);
+  }
+
+  private boolean checkIfUserBelongToCurrentApp(String userName) {
+    try {
+          return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+            IUser user = Ivy.request().getApplication().getSecurityContext().findUser(userName);
+            return user != null;
+          });
+    } catch (Exception e) {
+          Ivy.log().error("Check user belongs to current app failed ", e);
+          return false;
+    }
   }
 
   private void cleanUpUserTaskCaseFilter() {
