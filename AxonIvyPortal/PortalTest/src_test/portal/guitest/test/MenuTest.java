@@ -71,8 +71,6 @@ public class MenuTest extends BaseTest {
     HomePage homePage = new HomePage();
 
     GlobalSearch globalSearch = homePage.getGlobalSearch();
-    globalSearch.clickOnGlobalSearchIcon();
-    homePage.waitForElementDisplayed(globalSearch.getSearchContainer(), true);
     globalSearch.inputSearchKeyword("Sick Leave Request");
 
     homePage.waitAjaxIndicatorDisappear();
