@@ -37,12 +37,7 @@
 								<p:selectOneRadio id="process-type" styleClass="radio-group"
 									value="#{data.data.processType}" required="#{param['form:save']!=null}"
 									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-									<f:selectItem
-										itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeAdHoc')}"
-										itemValue="AHWF" />
-									<f:selectItem
-										itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeRepeating')}"
-										itemValue="AMWF" />
+									<f:selectItems value="#{workflowDefinitionBean.processTypes}" var="processType" itemValue="#{processType}" itemLabel="#{processType.label}" />
 								</p:selectOneRadio>
 							</p:column>
 						</p:row>
@@ -54,7 +49,7 @@
 							</p:column>
 							<p:column styleClass="process-property-input-col">
 								<p:selectOneRadio id="user-interface" styleClass="radio-group"
-									value="#{data.isUseDefault}" required="#{param['form:save']!=null}"
+									value="#{data.data.isUseDefaultUI}" required="#{param['form:save']!=null}"
 									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 									<f:selectItem
 										itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}"

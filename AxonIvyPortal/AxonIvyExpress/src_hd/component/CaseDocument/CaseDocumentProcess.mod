@@ -1,5 +1,5 @@
 [Ivy]
-15795F163B7492E2 3.20 #module
+15795F163B7492E2 3.23 #module
 >Proto >Proto Collection #zClass
 Ds0 CaseDocumentProcess Big #zClass
 Ds0 RD #cInfo
@@ -102,8 +102,6 @@ if(in.inputFileTypes != null && in.inputFileTypes.size() > 0){
 	 in.allowedFileTypes = in.allowedFileTypes.substring(0, in.allowedFileTypes.length()-1);
 }
 in.allowedFileTypes += ")$$/";
-
-ivy.log.debug("Allowed FiletypesString=" + in.allowedFileTypes);
 
 //("PDF (pdf)");
 //("Word (doc/docx)");
@@ -397,7 +395,6 @@ Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 Ds0 f0 inParameterMapAction 'out.numberOfFilesLimit=param.noOfFiles;
 ' #txt
 Ds0 f0 inActionCode 'out.caseId = ivy.case.getId();
-ivy.log.debug("xxxxx" + param.noOfFiles);
 out.toManyFiles = false;' #txt
 Ds0 f0 outParameterDecl '<java.lang.Integer noOfFiles> result;
 ' #txt
