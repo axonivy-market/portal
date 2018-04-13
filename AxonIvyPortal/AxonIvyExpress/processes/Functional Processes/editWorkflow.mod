@@ -35,9 +35,6 @@ ew0 @PushWFArc f23 '' #zField
 ew0 @StartSub f21 '' #zField
 ew0 @PushWFArc f33 '' #zField
 ew0 @PushWFArc f34 '' #zField
-ew0 @GridStep f24 '' #zField
-ew0 @PushWFArc f25 '' #zField
-ew0 @PushWFArc f6 '' #zField
 ew0 @EndSub f32 '' #zField
 ew0 @Alternative f41 '' #zField
 ew0 @PushWFArc f42 '' #zField
@@ -52,6 +49,7 @@ ew0 @PushWFArc f12 '' #zField
 ew0 @PushWFArc f49 '' #zField
 ew0 @PushWFArc f10 '' #zField
 ew0 @PushWFArc f19 '' #zField
+ew0 @PushWFArc f6 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -61,17 +59,13 @@ Ct0 @MessageFlowInP-0n messageIn messageIn #zField
 Ct0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ct0 @TextInP .xml .xml #zField
 Ct0 @TextInP .responsibility .responsibility #zField
-Ct0 @GridStep f27 '' #zField
-Ct0 @GridStep f28 '' #zField
-Ct0 @PushWFArc f29 '' #zField
-Ct0 @PushWFArc f30 '' #zField
 Ct0 @GridStep f25 '' #zField
-Ct0 @PushWFArc f31 '' #zField
 Ct0 @GridStep f26 '' #zField
 Ct0 @PushTrueWFInG-01 g0 '' #zField
-Ct0 @PushWFArc f0 '' #zField
 Ct0 @PushTrueWFOutG-01 g1 '' #zField
 Ct0 @PushWFArc f1 '' #zField
+Ct0 @PushWFArc f0 '' #zField
+Ct0 @PushWFArc f2 '' #zField
 >Proto Ct0 Ct0 Component #zField
 ew0 S10 .resExport export #txt
 ew0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -115,7 +109,8 @@ in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPr
 in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/FormDefinitionStep"));
 in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/EndStep"));
 
-in.directExecutionFlag = false;' #txt
+in.directExecutionFlag = false;
+in.discard = false;' #txt
 ew0 f5 security system #txt
 ew0 f5 type gawfs.Data #txt
 ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -160,7 +155,9 @@ ew0 f9 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f9 actionTable 'out=in;
 ' #txt
-ew0 f9 actionCode 'import ch.ivy.addon.portalkit.bo.ExpressProcess;
+ew0 f9 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
+import ch.ivy.gawfs.Helper;
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
@@ -169,104 +166,19 @@ import gawfs.TaskDef;
 import ch.ivy.gawfs.Formelement;
 
 //save workflowdescription
-	in.processRepository = ExpressServiceRegistry.getProcessService().findById(in.processID) as ExpressProcess;
-	in.processRepository.processName = in.processName;
-	in.processRepository.processDescription = in.processDescription;
-	in.processRepository.processType = in.processType;
-	in.processRepository.processOwner = ivy.session.getSessionUser().getMemberName();
-	in.processRepository.processPermissions = in.definedTasks.get(0).responsibles;
-	BusinessDataInfo info = ExpressServiceRegistry.getProcessService().save(in.processRepository);
-	in.processRepository.id = info.getId();
+ExpressProcessUtils utils = new ExpressProcessUtils();
 
-
-
-//get process ID to save with other values
-String processID = in.processRepository.id;
-in.processID = processID;
-
-//delete all other fields
-ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(in.processID);
-ExpressServiceRegistry.getFormElementService().deleteByProcessId(in.processID);
-
-//save all formelements with ID, location and order
-for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
-		ExpressFormElement x = new ExpressFormElement();
-		x.elementID = e.id;
-		x.elementPosition = "HEADER";
-		x.elementType = e.type.getValue();
-		x.intSetting = e.intSetting;
-		x.label = e.label;
-		x.name = e.name;
-		x.required = e.required;
-		x.processID =  processID;
-		x.optionsStr = e.getOptionsAsString();
-
-		ExpressServiceRegistry.getFormElementService().save(x);
-}
-
-for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
-		ExpressFormElement x = new ExpressFormElement();
-		x.elementID = e.id;
-		x.elementPosition = "LEFTPANEL";
-		x.elementType = e.type.getValue();
-		x.intSetting = e.intSetting;
-		x.label = e.label;
-		x.name = e.name;
-		x.required = e.required;
-		x.processID = processID;
-		x.optionsStr = e.getOptionsAsString();
-		ExpressServiceRegistry.getFormElementService().save(x);}
-
-for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
-		ExpressFormElement x = new ExpressFormElement();
-		x.elementID = e.id;
-		x.elementPosition = "RIGHTPANEL";
-		x.elementType = e.type.getValue();
-		x.intSetting = e.intSetting;
-		x.label = e.label;
-		x.name = e.name;
-		x.required = e.required;
-		x.processID = processID;
-		x.optionsStr = e.getOptionsAsString();
-		ExpressServiceRegistry.getFormElementService().save(x);}
-
-for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
-		ExpressFormElement x = new ExpressFormElement();
-		x.elementID = e.id;
-		x.elementPosition = "FOOTER";
-		x.elementType = e.type.getValue();
-		x.intSetting = e.intSetting;
-		x.label = e.label;
-		x.name = e.name;
-		x.required = e.required;
-		x.processID = processID;
-		x.optionsStr = e.getOptionsAsString();
-		ExpressServiceRegistry.getFormElementService().save(x);}
-
-//save the taskdefinition with the order of the tasks
-for (TaskDef t: in.definedTasks){
-		ExpressTaskDefinition tp = new ExpressTaskDefinition();
-		tp.subject = t.subject;
-		tp.description = t.description;		
-		tp.responsibles = t.responsibles;
-		tp.untilDays = t.untilDays;
-		tp.processID = processID;
-		tp.taskPosition = t.position;
-		ExpressServiceRegistry.getTaskDefinitionService().save(tp);
-}
-' #txt
+in.processRepository = utils.saveProcess(in.processID, in.processName, in.processDescription, in.processType, in.isUseDefaultUI, in.definedTasks);' #txt
 ew0 f9 security system #txt
 ew0 f9 type gawfs.Data #txt
 ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>update Workflow to Persistence DB</name>
-        <nameStyle>33,7
-</nameStyle>
+        <name>Save workflow to Database</name>
     </language>
 </elementInfo>
 ' #txt
-ew0 f9 1272 138 208 44 -96 -8 #rect
+ew0 f9 1296 138 160 44 -74 -8 #rect
 ew0 f9 @|StepIcon #fIcon
 ew0 f3 targetWindow NEW:card: #txt
 ew0 f3 targetDisplay TOP #txt
@@ -336,16 +248,14 @@ for AHWF</name>
 ew0 f18 1096 144 32 32 -33 -49 #rect
 ew0 f18 @|AlternativeIcon #fIcon
 ew0 f20 type gawfs.Data #txt
-ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,String,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String)' #txt
+ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String)' #txt
 ew0 f20 doCall true #txt
-ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;
+ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;
 ' #txt
 ew0 f20 requestMappingAction 'param.definedTasks=in.definedTasks;
 param.processName=in.processName;
 param.processDescription=in.processDescription;
 param.processType=in.processType;
-param.dragAndDropController=in.dragAndDropController;
-param.dynaFormController=in.dynaFormController;
 param.processID=in.processID;
 ' #txt
 ew0 f20 responseActionDecl 'gawfs.Data out;
@@ -403,39 +313,6 @@ ew0 f33 expr out #txt
 ew0 f33 95 288 312 288 #arcP
 ew0 f34 368 266 368 182 #arcP
 ew0 f34 0 0.37027027027027026 0 0 #arcLabel
-ew0 f24 actionDecl 'gawfs.Data out;
-' #txt
-ew0 f24 actionTable 'out=in;
-' #txt
-ew0 f24 actionCode 'import ch.ivy.gawfs.FormelementOption;
-import ch.ivy.gawfs.DynaFormController;
-import ch.ivy.gawfs.DragAndDropController;
-
-in.dragAndDropController = new DragAndDropController();
-
-in.dynaFormController = new DynaFormController(in.dragAndDropController);
-in.dragAndDropController.setDynaFormController(in.dynaFormController);
-
-in.discard = false;
-
-in.dynaFormController.createForm();' #txt
-ew0 f24 security system #txt
-ew0 f24 type gawfs.Data #txt
-ew0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>init Controllers</name>
-        <nameStyle>16,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ew0 f24 152 138 112 44 -40 -8 #rect
-ew0 f24 @|StepIcon #fIcon
-ew0 f25 expr out #txt
-ew0 f25 95 160 152 160 #arcP
-ew0 f6 expr out #txt
-ew0 f6 264 160 312 160 #arcP
 ew0 f32 type gawfs.Data #txt
 ew0 f32 1553 241 30 30 0 15 #rect
 ew0 f32 @|EndSubIcon #fIcon
@@ -484,159 +361,55 @@ ew0 f48 944 160 968 160 #arcP
 ew0 f12 expr in #txt
 ew0 f12 1000 160 1032 160 #arcP
 ew0 f49 expr in #txt
-ew0 f49 1128 160 1272 160 #arcP
+ew0 f49 1128 160 1296 160 #arcP
 ew0 f10 expr out #txt
-ew0 f10 1480 160 1553 160 #arcP
+ew0 f10 1456 160 1553 160 #arcP
 ew0 f19 expr out #txt
 ew0 f19 1464 256 1553 256 #arcP
+ew0 f6 expr out #txt
+ew0 f6 95 160 312 160 #arcP
 >Proto ew0 .type gawfs.Data #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
 >Proto ew0 @|BIcon #fIcon
-Ct0 f27 actionDecl 'gawfs.Data out;
-' #txt
-Ct0 f27 actionTable 'out=in;
-' #txt
-Ct0 f27 actionCode 'import ch.ivy.gawfs.FormelementOption;
-import ch.ivy.gawfs.DynaFormController;
-import ch.ivy.gawfs.DragAndDropController;
-
-in.dragAndDropController = new DragAndDropController();
-
-in.dynaFormController = new DynaFormController(in.dragAndDropController);
-in.dragAndDropController.setDynaFormController(in.dynaFormController);
-
-in.dynaFormController.createForm();' #txt
-Ct0 f27 security system #txt
-Ct0 f27 type gawfs.Data #txt
-Ct0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>init Controllers</name>
-        <nameStyle>16,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ct0 f27 152 138 112 44 -40 -8 #rect
-Ct0 f27 @|StepIcon #fIcon
-Ct0 f28 actionDecl 'gawfs.Data out;
-' #txt
-Ct0 f28 actionTable 'out=in;
-' #txt
-Ct0 f28 actionCode 'import ch.ivy.gawfs.enums.FormElementType;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
-import ch.ivy.addon.portalkit.bo.ExpressFormElement;
-import ch.ivy.gawfs.Formelement;
-
-List<ExpressFormElement> formelements = ExpressServiceRegistry.getFormElementService().findByProcessId(in.processID);
-
-for (ExpressFormElement element: formelements){
-	Formelement formelement;
-
-	formelement.id = element.elementID;
-	formelement.intSetting = element.intSetting;
-	formelement.label = element.label;
-	formelement.name = element.name;
-	formelement.required = element.required;
-	for (FormElementType type : FormElementType.values()) {
-		if (type.getValue() == element.elementType) {
-			formelement.type = type;
-		}
-	}
-
-	List<String> optionsStrx = element.optionsStr.split(":",-1);
-	
-	//direct assignement makes an array list, which makes problems in the seriealization, workaround:
-	for(String optionx: optionsStrx){
-		formelement.addOption(optionx);
-	}
-	
-	if(element.elementPosition=="HEADER"){
-		in.dragAndDropController.selectedFormelementsHeader.add(formelement);
-	}else if(element.elementPosition=="LEFTPANEL"){
-		in.dragAndDropController.selectedFormelementsLeftPanel.add(formelement);
-	}else if(element.elementPosition=="RIGHTPANEL"){
-		in.dragAndDropController.selectedFormelementsRightPanel.add(formelement);
-	}else{
-		in.dragAndDropController.selectedFormelementsFooter.add(formelement);
-	}
-	
-	
-}' #txt
-Ct0 f28 security system #txt
-Ct0 f28 type gawfs.Data #txt
-Ct0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get formelements</name>
-        <nameStyle>16,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ct0 f28 152 330 112 44 -48 -8 #rect
-Ct0 f28 @|StepIcon #fIcon
-Ct0 f29 expr out #txt
-Ct0 f29 208 278 208 330 #arcP
-Ct0 f30 expr out #txt
-Ct0 f30 208 182 208 234 #arcP
 Ct0 f25 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f25 actionTable 'out=in;
 ' #txt
-Ct0 f25 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
-import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivy.gawfs.Helper;
-import ch.ivyteam.ivy.security.IUser;
-import gawfs.TaskDef;
+Ct0 f25 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
 
-List<ExpressTaskDefinition> taskSteps = ExpressServiceRegistry.getTaskDefinitionService().findByProcessId(in.processID);
-
-
-for(ExpressTaskDefinition task: taskSteps){
-	TaskDef xtask = new TaskDef();
-	
-	xtask.responsibles = task.responsibles;
-	xtask.position = task.taskPosition;
-	xtask.description = task.description;
-	xtask.subject = task.subject;
-	xtask.untilDays = task.untilDays;
-	xtask.responsibleDisplayName = task.responsibleDisplayName;
-	in.definedTasks.add(xtask);
-}
-
-in.definedTasks = Helper.sortTasks(in.definedTasks);' #txt
+ExpressProcessUtils utils = new ExpressProcessUtils();
+in.definedTasks = utils.getDefinedTasks(in.processID);' #txt
 Ct0 f25 security system #txt
 Ct0 f25 type gawfs.Data #txt
 Ct0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>get Tasksteps</name>
-        <nameStyle>13,7
-</nameStyle>
+        <name>Get defined tasks</name>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f25 152 402 112 44 -39 -8 #rect
+Ct0 f25 152 290 112 44 -48 -8 #rect
 Ct0 f25 @|StepIcon #fIcon
-Ct0 f31 expr out #txt
-Ct0 f31 208 374 208 402 #arcP
 Ct0 f26 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f26 actionTable 'out=in;
 ' #txt
-Ct0 f26 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Ct0 f26 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 
 ExpressProcess workflow =ExpressServiceRegistry.getProcessService().findById(in.processID) as ExpressProcess;
+
 in.processDescription = workflow.processDescription;
 in.processName = workflow.processName;
-in.processType = workflow.processType;
+in.isUseDefaultUI = workflow.useDefaultUI;
 
-
-' #txt
+for(ProcessType type : ProcessType.values()) {
+	if (type.getValue() == workflow.processType) {
+	 	in.processType = type;
+	}
+}' #txt
 Ct0 f26 security system #txt
 Ct0 f26 type gawfs.Data #txt
 Ct0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -648,7 +421,7 @@ Ct0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f26 136 234 144 44 -68 -8 #rect
+Ct0 f26 136 194 144 44 -68 -8 #rect
 Ct0 f26 @|StepIcon #fIcon
 Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -657,10 +430,8 @@ Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 g0 67 91 26 26 0 5 #rect
+Ct0 g0 195 91 26 26 0 5 #rect
 Ct0 g0 @|MIGIcon #fIcon
-Ct0 f0 93 104 208 138 #arcP
-Ct0 f0 1 208 104 #addKink
 Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -668,10 +439,13 @@ Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 g1 195 507 26 26 0 5 #rect
+Ct0 g1 195 403 26 26 0 5 #rect
 Ct0 g1 @|MOGIcon #fIcon
 Ct0 f1 expr out #txt
-Ct0 f1 208 446 208 507 #arcP
+Ct0 f1 208 334 208 403 #arcP
+Ct0 f0 208 117 208 194 #arcP
+Ct0 f2 expr out #txt
+Ct0 f2 208 238 208 290 #arcP
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 ew0 f5 mainOut f14 tail #connect
@@ -690,10 +464,6 @@ ew0 f33 head S10 g0 #connect
 ew0 S10 g1 f34 tail #connect
 ew0 f34 head f5 mainIn #connect
 ew0 f21 mainOut f33 tail #connect
-ew0 f0 mainOut f25 tail #connect
-ew0 f25 head f24 mainIn #connect
-ew0 f24 mainOut f6 tail #connect
-ew0 f6 head f5 mainIn #connect
 ew0 f7 mainOut f42 tail #connect
 ew0 f42 head f41 in #connect
 ew0 f41 out f4 tail #connect
@@ -712,14 +482,12 @@ ew0 f9 mainOut f10 tail #connect
 ew0 f10 head f1 mainIn #connect
 ew0 f20 mainOut f19 tail #connect
 ew0 f19 head f32 mainIn #connect
-Ct0 f28 mainOut f31 tail #connect
-Ct0 f31 head f25 mainIn #connect
-Ct0 f27 mainOut f30 tail #connect
-Ct0 f30 head f26 mainIn #connect
-Ct0 f26 mainOut f29 tail #connect
-Ct0 f29 head f28 mainIn #connect
-Ct0 g0 m f0 tail #connect
-Ct0 f0 head f27 mainIn #connect
+ew0 f0 mainOut f6 tail #connect
+ew0 f6 head f5 mainIn #connect
 Ct0 f1 head g1 m #connect
 Ct0 f25 mainOut f1 tail #connect
-Ct0 0 0 416 608 0 #ivRect
+Ct0 g0 m f0 tail #connect
+Ct0 f0 head f26 mainIn #connect
+Ct0 f26 mainOut f2 tail #connect
+Ct0 f2 head f25 mainIn #connect
+Ct0 0 0 424 512 0 #ivRect

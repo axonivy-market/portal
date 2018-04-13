@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import ch.ivy.gawfs.Helper;
+import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -18,9 +19,6 @@ import ch.ivyteam.ivy.security.IUser;
 @RequestScoped
 public class WorkflowDefinitionBean implements Serializable {
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = 8119703742579630358L;
   private static final String SYSTEM = "SYSTEM";
   private static final String HIDE_PROPERTY = "HIDE";
@@ -32,6 +30,14 @@ public class WorkflowDefinitionBean implements Serializable {
   public void init() {
     populateAvailableRoles();
     populateAvailableUsers();
+  }
+
+  public TaskType[] getTaskTypes() {
+    return TaskType.values();
+  }
+
+  public ProcessType[] getProcessTypes() {
+    return ProcessType.values();
   }
 
   private void populateAvailableRoles() {
@@ -56,10 +62,6 @@ public class WorkflowDefinitionBean implements Serializable {
 
   public List<IRole> populateRoleAutoComplete(String query) {
     return Helper.filterRoles(getAvailableRoles(), query);
-  }
-
-  public TaskType[] getTaskTypes() {
-    return TaskType.values();
   }
 
   public List<IRole> getAvailableRoles() {
