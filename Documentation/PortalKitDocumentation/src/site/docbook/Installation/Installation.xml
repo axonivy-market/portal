@@ -846,7 +846,7 @@
 				<title>Changes in 7.2</title>
 				<itemizedlist>
 					<listitem>
-						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal.</para>
+						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal. This function can be configured by UPLOAD_DOCUMENT_WHITELIST_EXTENSION setting.</para>
 					</listitem>
 					<listitem>
 						<para>Support script checking function for upload file. You can enable/disable this function by configuring ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT setting.</para>
