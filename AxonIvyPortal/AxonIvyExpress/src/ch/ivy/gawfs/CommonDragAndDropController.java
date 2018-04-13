@@ -1,13 +1,12 @@
 package ch.ivy.gawfs;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.primefaces.event.DragDropEvent;
 
-public abstract class CommonDragAndDropController implements Serializable {
+public abstract class CommonDragAndDropController {
 
   protected static final int NUMBER_DROP_EVENT_INFO = 2;
   protected static final int NUMBER_DRAG_EVENT_INFO = 4;
@@ -20,7 +19,7 @@ public abstract class CommonDragAndDropController implements Serializable {
   protected Formelement selectedFormelement;
 
   protected DynaFormController dynaFormController;
-  
+
   public void onFieldDrop(DragDropEvent ddEvent) {
     throw new NotImplementedException(ddEvent.getDragId() + SEPARATOR_CHAR + ddEvent.getDropId());
   }
