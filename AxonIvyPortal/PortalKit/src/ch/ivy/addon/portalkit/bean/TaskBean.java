@@ -360,6 +360,16 @@ public class TaskBean implements Serializable {
   }
 
   /**
+   * Get task notification based on AI accepted rules
+   * 
+   * @return nice notifications
+   */
+  public List<String> getAITaskNotification() {
+    return Arrays.asList("This task is being executed now for 2 weeks, meanwhile 95% of tasks are executed within 1 week",
+        "One task has been delegated 3x already, meanwhile 95% of tasks are not even delegated once");
+  }
+  
+  /**
    * Get the state of task
    * @param state 
    * @return the state of task
