@@ -17,8 +17,19 @@
   <c:set var="expanded" value="#{case.id eq caseWidgetBean.expandedCaseId or active}" />
 
   <h:panelGroup class="case-header-name-desc-cell">
-    <h:outputText styleClass="case-header-name-cell" rendered="#{!expanded or case.state eq 'DONE'}"
-      value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"></h:outputText>
+  		<h:panelGrid columns="4">
+			<h:outputText styleClass="case-header-name-cell" rendered="#{!expanded or case.state eq 'DONE'}"
+				value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"></h:outputText>
+			<h:panelGroup id="ai-notification-task-icon" rendered="#{!expanded}">
+				<i class="fa fa-exclamation-triangle task-start-info-header" style="color: red;" />
+			</h:panelGroup>
+			<p:tooltip for="ai-notification-task-icon" trackMouse="true" rendered="#{!expanded}">
+				<ui:repeat value="#{taskBean.getAITaskNotification()}" var="rule">
+					<h:outputText value="#{rule}"></h:outputText>
+					<br />
+				</ui:repeat>
+			</p:tooltip>
+		</h:panelGrid>
     <span class="case-header-name-cell">
       <h:form id="case-name-form">
       <p:inplace id="case-name-edit-inplace" editor="true" rendered="#{expanded and case.state ne 'DONE'}"
