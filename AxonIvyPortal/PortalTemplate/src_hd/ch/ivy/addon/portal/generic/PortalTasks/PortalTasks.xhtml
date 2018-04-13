@@ -28,7 +28,7 @@
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" />
         <div class="task-start-info">
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}"
-            isSelected="#{taskView.remoteTaskId eq task.id and taskView.serverId eq task.getApplicationRegister().serverId}" />
+            isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
         </div>
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
           fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
