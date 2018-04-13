@@ -32,7 +32,7 @@
         dataModel="#{taskView.dataModel}" />
       <div class="task-start-info">
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}"
-          isSelected="#{taskView.remoteTaskId eq task.id and taskView.serverId eq task.getApplicationRegister().serverId}" />
+          isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
       </div>
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
         fullName="#{task.activatorFullName}" styleClass="hidden-sm" dataModel="#{taskView.dataModel}" />
