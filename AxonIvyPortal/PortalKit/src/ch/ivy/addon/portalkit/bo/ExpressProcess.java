@@ -2,16 +2,15 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.List;
 
-import ch.ivyteam.ivy.security.ISecurityMember;
-
 public class ExpressProcess {
 
   private String id;
   private String processName;
   private String processDescription;
   private String processType;
-  private List<ISecurityMember> processPermissions;
+  private List<String> processPermissions;
   private String processOwner;
+  private boolean isUseDefaultUI;
 
   public String getId() {
     return id;
@@ -45,11 +44,11 @@ public class ExpressProcess {
     this.processType = processType;
   }
 
-  public List<ISecurityMember> getProcessPermissions() {
+  public List<String> getProcessPermissions() {
     return processPermissions;
   }
 
-  public void setProcessPermissions(List<ISecurityMember> processPermissions) {
+  public void setProcessPermissions(List<String> processPermissions) {
     this.processPermissions = processPermissions;
   }
 
@@ -59,6 +58,14 @@ public class ExpressProcess {
 
   public void setProcessOwner(String processOwner) {
     this.processOwner = processOwner;
+  }
+
+  public boolean isUseDefaultUI() {
+    return isUseDefaultUI;
+  }
+
+  public void setUseDefaultUI(boolean isUseDefaultUI) {
+    this.isUseDefaultUI = isUseDefaultUI;
   }
 
 }
