@@ -2,13 +2,12 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.List;
 
-import ch.ivyteam.ivy.security.ISecurityMember;
-
 public class ExpressTaskDefinition {
 
   private String id;
   private String processID;
-  private List<ISecurityMember> responsibles;
+  private String type;
+  private List<String> responsibles;
   private String subject;
   private String prio;
   private String description;
@@ -32,11 +31,19 @@ public class ExpressTaskDefinition {
     this.processID = processID;
   }
 
-  public List<ISecurityMember> getResponsibles() {
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public List<String> getResponsibles() {
     return responsibles;
   }
 
-  public void setResponsibles(List<ISecurityMember> responsibles) {
+  public void setResponsibles(List<String> responsibles) {
     this.responsibles = responsibles;
   }
 
