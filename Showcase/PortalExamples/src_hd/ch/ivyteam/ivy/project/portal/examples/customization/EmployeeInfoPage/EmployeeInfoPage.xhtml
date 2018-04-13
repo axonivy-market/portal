@@ -7,23 +7,13 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
-	<ui:composition template="/layouts/TaskTemplateMultipleTab.xhtml">
+	<ui:composition template="/layouts/TaskTemplate.xhtml">
 	
 	<ui:param name="task" value="#{ivy.task}" />
     <ui:param name="isNotRequiredLogin" value="false" />
-    <ui:param name="caseId" value="#{ivy.case.id}" />
+    <ui:param name="caseId" value="#{ivy.case.getBusinessCase().getId()}" />
     <ui:param name="showCaseStatusInfoTab" value="true" />
-	
-	<!-- <ui:param name="actionButtonStyle" value="Fright" />
-	<ui:param name="renderSaveButton" value="true" />
-	<ui:param name="processComponent" value=":main-form:employee-info :main-form:company-info"/>
-	<ui:param name="updateComponent" value=":main-form"/>
-	<ui:param name="saveButtonLabel" value="Save" />
-	<ui:param name="renderOkButton" value="true" />
-	<ui:param name="okButtonLabel" value="OK" />
-	<ui:param name="renderCancelButton" value="true" />
-	<ui:param name="cancelButtonLabel" value="Cancel" /> -->
-	
+	<ui:param name="showTaskFormTab" value="false" />
 		<ui:define name="dynamicTabs">
 			<p:tab title="Employee information">
 				<h:panelGrid columns="3" id="employee-info">
@@ -59,11 +49,11 @@
 		<ui:define name="rightButtons" >
 			<h:panelGroup styleClass="MarTop5 DispBlock" id="command-group" >
 				<p:commandButton value="Save" actionListener="#{logic.save}" id="save-button" partialSubmit="true" 
-	          		process=":main-form:employee-info :main-form:company-info" update=":main-form:employee-info :main-form:company-info">
+	          		process="employee-info company-info" update="employee-info company-info">
 	          	</p:commandButton>
 	          		
 				<p:commandButton value="OK" actionListener="#{logic.ok}" id="ok-button" partialSubmit="true"
-	          		process=":main-form:employee-info :main-form:company-info" update=":main-form:employee-info :main-form:company-info" />
+	          		process="employee-info company-info" update="employee-info company-info" />
 	          			          		
 	          	<p:commandButton value="Cancel" actionListener="#{logic.cancel}" id="cancel-button" immediate="true" />
 	         </h:panelGroup>
