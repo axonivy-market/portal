@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:ic="http://ivyteam.ch/jsf/component"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      
+  <cc:interface componentType="IvyComponent">
+  	<cc:attribute name="email" required="true" type="ch.ivy.gawmfs.UserEmail" />
+  </cc:interface>
+  
+  <cc:implementation>
+    <c:set var="email" value="#{cc.attrs.email}" />
+    <f:event listener="#{emailBean.init(email)}" type="preRenderComponent" />
+    <h:panelGroup id="email-container" styleClass="ui-g">
+			<div class="ui-g-12">
+				<h:outputLabel styleClass="ui-g-1" value="E-Mail Address: "/>
+				<p:inputText styleClass="ui-g-4"  disabled="true" value="#{email.recipients}" />
+			</div>
+			<div class="ui-g-12">
+				<h:outputLabel styleClass="ui-g-1" value="Response to: "/>
+				<p:inputText styleClass="ui-g-4" value="#{email.responseTo}" />
+			</div>
+			<div class="ui-g-12">
+				<h:outputLabel styleClass="ui-g-1" value="Subject:"/>
+				<p:inputText styleClass="ui-g-4" value="#{email.subject}" />
+			</div>
+			<div class="ui-g-12">
+				<h:outputLabel styleClass="ui-g-1" value="Email text: "/>
+				<p:textEditor styleClass="ui-g-8 text-editor-send-email" height="300" value="#{email.content}" >
+					<f:facet name="toolbar">
+			             <span class="ql-formats">
+			                <button class="ql-bold"></button>
+			                <button class="ql-italic"></button>
+			                <button class="ql-underline"></button>
+			                <button class="ql-strike"></button>
+			            </span>
+			            <span class="ql-formats">
+			                <select class="ql-font"></select>
+			                <select class="ql-size"></select>
+			            </span>
+			        </f:facet>
+				</p:textEditor>
+			</div>
+			<div class="ui-g-12">
+				<h:outputLabel styleClass="ui-g-1" value="Attachment: "/>
+				<p:dataTable id="attachment-table" value="#{email.attachments}"
+					var="attachment"
+					emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}"
+					styleClass="MarTop5" widgetVar="fileTableVar">
+					<p:column
+						headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}">
+						<h:outputText value="#{attachment.name}"
+							title="#{attachment.name}" />
+					</p:column>
+					<p:column
+						headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}">
+						<h:outputText value="#{attachment.size}"
+							title="#{attachment.size}" />
+					</p:column>
+		
+					<p:column styleClass="u-text-align-center"
+						headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
+		
+						<!-- <p:commandLink id="download" styleClass="fa fa-download MarRight10"
+							immediate="true" ajax="false" process="@widgetVar(fileTableVar)"
+							actionListener="#{logic.downloadFile(attachment)}"
+							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
+							<p:fileDownload value="#{data.downloadFile}" />
+						</p:commandLink>
+		 -->
+						<p:spacer width="20px"></p:spacer>
+						<!-- <p:commandLink id="document-delete" styleClass="fa fa-trash-o"
+							actionListener="#{logic.deleteFile(document.downloadPath)}"
+							rendered="#{cc.attrs.uploadPossible}"
+							update="document-table"
+							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
+						</p:commandLink> -->
+					</p:column>
+				</p:dataTable>
+				<p:message id="document-message" for="attachment-table" />
+			</div>
+			<div class="ui-g-12">
+				<p:fileUpload id="choose-uploading-file" styleClass="Fright"
+					mode="advanced" auto="true" dragDropSupport="true"
+					fileUploadListener="#{emailBean.uploadAttachment}" update="attachment-table"
+					label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
+					invalidSizeMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidSizeMessage')}"
+					cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
+				<f:attribute name="panelId" value="#{cc.clientId}:attachment-table" />
+				</p:fileUpload>
+			</div>
+			
+		</h:panelGroup>
+    
+  </cc:implementation>
+</html>
