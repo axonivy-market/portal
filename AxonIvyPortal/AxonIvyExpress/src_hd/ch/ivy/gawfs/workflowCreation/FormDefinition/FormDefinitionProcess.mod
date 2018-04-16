@@ -75,6 +75,7 @@ Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 ' #txt
 Ds0 f0 inParameterMapAction 'out.data=param.data;
 ' #txt
+Ds0 f0 inActionCode 'out.email = new ch.ivy.gawfs.UserEmail();' #txt
 Ds0 f0 outParameterDecl '<gawfs.Data data> result;
 ' #txt
 Ds0 f0 outParameterMapAction 'result.data=in.data;
