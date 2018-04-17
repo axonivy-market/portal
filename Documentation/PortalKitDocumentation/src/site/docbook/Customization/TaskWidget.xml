@@ -270,7 +270,7 @@
 		</para>
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverridedataquery">
-		<title>How to override task widget's data query</title>
+		<title xml:id="axonivyportal.customization.taskwidget.howtooverridedataquery.title">How to override task widget's data query</title>
 		<para>
 			Override the <code>BuildTaskJsonQuery</code> callable process of PortalKit and build your own query to effect the data of task widget, task categories and statistic widget.
 		</para>
