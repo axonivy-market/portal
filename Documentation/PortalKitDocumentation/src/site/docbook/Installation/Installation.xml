@@ -851,9 +851,6 @@
 					<listitem>
 						<para>Support script checking function for upload file. You can enable/disable this function by configuring ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT setting.</para>
 					</listitem>
-                    <listitem>
-                        <para>Support multiple tabs in 1 level by using new task template TaskTemplateMultipleTab.</para>
-                    </listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
