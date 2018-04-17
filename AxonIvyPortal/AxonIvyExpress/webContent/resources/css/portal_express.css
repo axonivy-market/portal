@@ -374,3 +374,7 @@
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
   background-color: #afca05 !important;
 }
+
+.text-editor-send-email {
+	padding-left: 0px;
+}

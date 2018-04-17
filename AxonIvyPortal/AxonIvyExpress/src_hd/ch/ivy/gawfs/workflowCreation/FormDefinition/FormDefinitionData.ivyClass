@@ -22,3 +22,7 @@ dynaFormController ch.ivy.gawfs.DynaFormController #field
 dynaFormController PERSISTENT #fieldModifier
 activeTaskIndex Integer #field
 activeTaskIndex PERSISTENT #fieldModifier
+attachments java.util.List<ch.ivy.addon.portalkit.dto.AttachmentDTO> #field
+attachments PERSISTENT #fieldModifier
+email ch.ivy.gawfs.UserEmail #field
+email PERSISTENT #fieldModifier

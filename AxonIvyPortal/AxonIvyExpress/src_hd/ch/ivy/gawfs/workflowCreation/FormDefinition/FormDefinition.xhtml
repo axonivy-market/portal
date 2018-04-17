@@ -15,28 +15,33 @@
 		<ui:param name="actualStepIndex" value="2" />
 		<ui:param name="isShowStartAdhocButton" value="false" />
 		<ui:param name="isNotRequiredLogin" value="false" />
-
+		<ui:param name="showTaskFormTab" value="false" />
 
 		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
-		<ui:define name="taskForm">
-
-			<!-- BREADCRUMB SECTION -->
-			<h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container">
-				<ui:repeat value="#{data.data.definedTasks}" var="definedTask" varStatus="status">
-					<p:commandButton id="defined-task-button" value="#{definedTask.subject}"
-						styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''}"
-						actionListener="#{logic.moveToTask(status.index)}" update="form defined-task-container" process="form" resetValues="true">
-					</p:commandButton>
-				</ui:repeat>
-			</h:panelGroup>
-
-			<h:form id="form">
-				<ui:include src="FormElementFieldset.xhtml" />
-				<ui:include src="DragAndDropFieldset.xhtml" />
-				<ui:include src="PreviewFieldset.xhtml" />
-
-			</h:form>
-
+		<ui:define name="dynamicTabs">
+			
+				<p:tab id="express-request-tab" title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/requestTabTitle')}">
+				<!-- BREADCRUMB SECTION -->
+				<h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container">
+					<ui:repeat value="#{data.data.definedTasks}" var="definedTask" varStatus="status">
+						<p:commandButton id="defined-task-button" value="#{definedTask.subject}"
+							styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''}"
+							actionListener="#{logic.moveToTask(status.index)}" update="form defined-task-container" process="form" resetValues="true">
+						</p:commandButton>
+					</ui:repeat>
+				</h:panelGroup>
+				<h:form id="form">
+					<ui:include src="FormElementFieldset.xhtml" />
+					<ui:include src="DragAndDropFieldset.xhtml" />
+					<ui:include src="PreviewFieldset.xhtml" />
+				</h:form>
+				</p:tab>
+				<p:tab id="email-tab" title="Email">
+					<h:form id="form2">
+						<ic:ch.ivy.gawfs.component.Email id="information-email" email="#{data.email}"/>
+					</h:form>
+				</p:tab>
+				
 				<!-- BUTTONS SECTION -->
 				<p:outputPanel id="buttons-container" styleClass="TexAlRight">
 					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left"
