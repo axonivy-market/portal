@@ -1,6 +1,5 @@
 package ch.ivy.gawfs.beans;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.primefaces.model.UploadedFile;
 
 import ch.ivy.addon.portalkit.dto.AttachmentDTO;
 import ch.ivy.gawfs.UserEmail;
+import ch.ivy.gawfs.enums.EmailAttachmentStatus;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -28,7 +28,7 @@ public class EmailBean {
 	  }
   }
   
-  public void uploadAttachment(FileUploadEvent event) throws IOException {
+  public void uploadAttachment(FileUploadEvent event) {
     UploadedFile uploadedFile = event.getFile();
     List<AttachmentDTO> attachments = userEmail.getAttachments();
     boolean isDuplicatedName =
@@ -46,12 +46,13 @@ public class EmailBean {
     FacesContext.getCurrentInstance().addMessage(panelId, message);
   }
   
-  private void uploadAttachmentTemporarily(FileUploadEvent event) throws IOException {
+  private void uploadAttachmentTemporarily(FileUploadEvent event) {
     UploadedFile uploadedFile = event.getFile();
     AttachmentDTO attachmentDTO = new AttachmentDTO();
     attachmentDTO.setContent(uploadedFile.getContents());
     attachmentDTO.setName(uploadedFile.getFileName());
     attachmentDTO.setSize(getFileSize(uploadedFile.getSize()));
+    attachmentDTO.setStatus(EmailAttachmentStatus.ADDED);
     userEmail.getAttachments().add(attachmentDTO);
   }
   
