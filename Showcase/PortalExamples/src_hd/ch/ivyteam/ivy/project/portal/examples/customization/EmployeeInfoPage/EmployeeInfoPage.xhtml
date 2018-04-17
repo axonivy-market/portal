@@ -15,6 +15,7 @@
     <ui:param name="showCaseStatusInfoTab" value="true" />
 	<ui:param name="showTaskFormTab" value="false" />
 		<ui:define name="dynamicTabs">
+			<!-- Define your tabs here -->
 			<p:tab title="Employee information">
 				<h:panelGrid columns="3" id="employee-info">
 				<p:outputLabel value="First name" for="first-name"/>
@@ -47,6 +48,7 @@
 		</ui:define>
 		
 		<ui:define name="rightButtons" >
+			<!-- Define action buttons -->
 			<h:panelGroup styleClass="MarTop5 DispBlock" id="command-group" >
 				<p:commandButton value="Save" actionListener="#{logic.save}" id="save-button" partialSubmit="true" 
 	          		process="employee-info company-info" update="employee-info company-info">
