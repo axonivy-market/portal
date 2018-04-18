@@ -27,7 +27,6 @@ public class Formelement implements Serializable{
 	private List<FormelementOption> options;		//list of options for ManyCheckbox or OneMenu, but also allowed File-Formats
 	private FormElementType type;				//Form element type
 	private List<String> optionsStr;	//String List representation of options
-	private int taskPosition;  //Position of the task which this element belonged to
 	private transient Object value;        //Value of the Formelement, later Userinput
 	
 	public List<String> getOptionsStr() {
@@ -193,15 +192,7 @@ public class Formelement implements Serializable{
 		this.options.remove(this.options.size()-1);
 	}
 	
-	public int getTaskPosition() {
-    return taskPosition;
-  }
-
-  public void setTaskPosition(int taskPosition) {
-    this.taskPosition = taskPosition;
-  }
-
-  public Object getValue() {
+	public Object getValue() {
     return value;
   }
 
