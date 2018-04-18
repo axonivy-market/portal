@@ -61,7 +61,7 @@
 			</p:fieldset>
 			<p:outputPanel styleClass="TexAlRight">
 				<p:commandButton id="save-assignee-button" styleClass="save-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-					actionListener="#{logic.updateResponsibles}" icon="fa fa-check" oncomplete="PF('choose-responsible-dialog').hide();" update="#{data.selectedResponsibleFieldId} choose-responsible-dialog">
+					actionListener="#{logic.updateResponsibles}" icon="fa fa-check" oncomplete="PF('choose-responsible-dialog').hide();" update="form choose-responsible-dialog">
 					<p:resetInput target="choose-responsible-dialog" />
 				</p:commandButton> 
 			</p:outputPanel>

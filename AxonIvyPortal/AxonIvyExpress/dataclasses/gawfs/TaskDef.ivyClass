@@ -17,7 +17,3 @@ taskType ch.ivy.gawfs.enums.TaskType #field
 taskType PERSISTENT #fieldModifier
 responsibleDisplayName String #field
 responsibleDisplayName PERSISTENT #fieldModifier
-dynaFormController ch.ivy.gawfs.DynaFormController #field
-dynaFormController PERSISTENT #fieldModifier
-dragAndDropController ch.ivy.gawfs.DragAndDropController #field
-dragAndDropController PERSISTENT #fieldModifier

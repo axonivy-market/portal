@@ -1,5 +1,5 @@
 CaseDocumentData #class
-ch.ivy.gawfs.component.CaseDocument #namespace
+component.CaseDocument #namespace
 selectedFile org.primefaces.model.UploadedFile #field
 selectedFile PERSISTENT #fieldModifier
 caseId Long #field
