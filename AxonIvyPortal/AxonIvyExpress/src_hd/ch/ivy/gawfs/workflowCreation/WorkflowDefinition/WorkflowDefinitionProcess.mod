@@ -261,8 +261,6 @@ Fs0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent method
 ' #txt
 Fs0 f16 inParameterMapAction 'out.taskDefinition=param.taskDefinition;
 ' #txt
-Fs0 f16 inActionCode 'int indexOfSelectedTaskDef = out.data.definedTasks.indexOf(param.taskDefinition);
-out.selectedResponsibleFieldId =  "form:defined-tasks-list:" + indexOfSelectedTaskDef + ":task-responsible";' #txt
 Fs0 f16 outParameterDecl '<> result;
 ' #txt
 Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

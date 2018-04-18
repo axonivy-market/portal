@@ -1,5 +1,5 @@
 [Ivy]
-15795F163B7492E2 3.23 #module
+15795F163B7492E2 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 CaseDocumentProcess Big #zClass
 Ds0 RD #cInfo
@@ -55,13 +55,13 @@ Ds0 @PushWFArc f39 '' #zField
 Ds0 @PushWFArc f23 '' #zField
 Ds0 @PushWFArc f33 '' #zField
 >Proto Ds0 Ds0 CaseDocumentProcess #zField
-Ds0 f1 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f1 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f1 85 429 22 22 14 0 #rect
 Ds0 f1 @|RichDialogProcessEndIcon #fIcon
-Ds0 f4 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f4 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f4 741 181 22 22 14 0 #rect
 Ds0 f4 @|RichDialogProcessEndIcon #fIcon
-Ds0 f6 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
+Ds0 f6 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f6 actionTable 'out=in;
 ' #txt
@@ -103,12 +103,14 @@ if(in.inputFileTypes != null && in.inputFileTypes.size() > 0){
 }
 in.allowedFileTypes += ")$$/";
 
+ivy.log.debug("Allowed FiletypesString=" + in.allowedFileTypes);
+
 //("PDF (pdf)");
 //("Word (doc/docx)");
 //("Excel(xls/xlsx)");
 //("Andere Dateiformate");
 //allowTypes="/(\.|\/)(gif|jpe?g|png)$$/"' #txt
-Ds0 f6 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f6 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -122,13 +124,13 @@ Ds0 f6 78 340 36 24 -37 -35 #rect
 Ds0 f6 @|StepIcon #fIcon
 Ds0 f2 expr out #txt
 Ds0 f2 96 364 96 429 #arcP
-Ds0 f8 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
+Ds0 f8 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f8 actionTable 'out=in;
 ' #txt
 Ds0 f8 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
 in.uploadingFileExists = DocumentFileUtils.checkFileExist(ivy.case,in.selectedFile.getFileName());' #txt
-Ds0 f8 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f8 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -141,7 +143,7 @@ Ds0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f8 486 156 36 24 23 -10 #rect
 Ds0 f8 @|StepIcon #fIcon
 Ds0 f5 guid 14DD74D612721654 #txt
-Ds0 f5 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f5 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f5 method downloadFile(String,String) #txt
 Ds0 f5 disableUIEvents false #txt
 Ds0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
@@ -164,7 +166,7 @@ Ds0 f5 741 53 22 22 14 0 #rect
 Ds0 f5 @|RichDialogMethodStartIcon #fIcon
 Ds0 f11 expr out #txt
 Ds0 f11 752 75 752 181 #arcP
-Ds0 f16 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
+Ds0 f16 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f16 actionTable 'out=in;
 ' #txt
@@ -178,7 +180,7 @@ FacesContext context = FacesContext.getCurrentInstance();
 DocumentFileUtils.deleteFile(in.selectedFilePath, ivy.case);
 in.selectedFilePath = "";
 context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/deleteSuceed"), ""));' #txt
-Ds0 f16 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f16 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -194,7 +196,7 @@ Ds0 f19 expr out #txt
 Ds0 f19 224 204 114 352 #arcP
 Ds0 f19 1 224 352 #addKink
 Ds0 f19 0 0.5352887443931681 0 0 #arcLabel
-Ds0 f21 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
+Ds0 f21 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f21 actionTable 'out=in;
 ' #txt
@@ -203,7 +205,7 @@ import javax.faces.context.FacesContext;
 
 FacesContext context = FacesContext.getCurrentInstance();
 context.addMessage("choose-uploading-file", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Die Datei " + in.selectedFile.getFileName() + " exisitert bereits!" ,null));' #txt
-Ds0 f21 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f21 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -216,7 +218,7 @@ Ds0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f21 622 276 36 24 24 -7 #rect
 Ds0 f21 @|StepIcon #fIcon
 Ds0 f24 guid 14DD7D57754BAFCF #txt
-Ds0 f24 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f24 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f24 method overrideFile() #txt
 Ds0 f24 disableUIEvents false #txt
 Ds0 f24 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
@@ -233,7 +235,7 @@ Ds0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f24 373 53 22 22 14 0 #rect
 Ds0 f24 @|RichDialogMethodStartIcon #fIcon
-Ds0 f26 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
+Ds0 f26 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f26 actionTable 'out=in;
 ' #txt
@@ -252,7 +254,7 @@ if (uploadSuccesfully) {
 	}
 
 ' #txt
-Ds0 f26 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f26 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -269,11 +271,11 @@ Ds0 f10 366 352 114 352 #arcP
 Ds0 f28 expr out #txt
 Ds0 f28 384 75 384 340 #arcP
 Ds0 f28 0 0.7392162041749724 0 0 #arcLabel
-Ds0 f25 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f25 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f25 621 149 22 22 14 0 #rect
 Ds0 f25 @|RichDialogProcessEndIcon #fIcon
 Ds0 f3 guid 1511A1DC42BEBDB1 #txt
-Ds0 f3 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f3 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f3 method submitUpload(org.primefaces.event.FileUploadEvent) #txt
 Ds0 f3 disableUIEvents false #txt
 Ds0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
@@ -294,7 +296,7 @@ Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f3 493 53 22 22 14 0 #rect
 Ds0 f3 @|RichDialogMethodStartIcon #fIcon
-Ds0 f31 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f31 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -347,7 +349,7 @@ Ds0 f9 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f9 504 134 504 156 #arcP
 Ds0 f9 0 0.36666666666666664 13 0 #arcLabel
-Ds0 f29 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f29 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -360,7 +362,7 @@ Ds0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f29 490 106 28 28 -66 -9 #rect
 Ds0 f29 @|AlternativeIcon #fIcon
 Ds0 f12 guid 14DD7586B15ADC83 #txt
-Ds0 f12 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f12 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f12 method deleteFile(String) #txt
 Ds0 f12 disableUIEvents false #txt
 Ds0 f12 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
@@ -386,7 +388,7 @@ Ds0 f18 224 75 224 180 #arcP
 Ds0 f7 expr out #txt
 Ds0 f7 96 75 96 340 #arcP
 Ds0 f0 guid 14DD6789B76C9299 #txt
-Ds0 f0 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f0 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f0 method start(java.lang.Integer) #txt
 Ds0 f0 disableUIEvents true #txt
 Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
@@ -395,6 +397,7 @@ Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 Ds0 f0 inParameterMapAction 'out.numberOfFilesLimit=param.noOfFiles;
 ' #txt
 Ds0 f0 inActionCode 'out.caseId = ivy.case.getId();
+ivy.log.debug("xxxxx" + param.noOfFiles);
 out.toManyFiles = false;' #txt
 Ds0 f0 outParameterDecl '<java.lang.Integer noOfFiles> result;
 ' #txt
@@ -410,7 +413,7 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f0 85 53 22 22 14 0 #rect
 Ds0 f0 @|RichDialogInitStartIcon #fIcon
 Ds0 f13 guid 15AFC23DB22ECD19 #txt
-Ds0 f13 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f13 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f13 method setFileLimit(java.lang.Integer) #txt
 Ds0 f13 disableUIEvents false #txt
 Ds0 f13 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
@@ -430,12 +433,12 @@ Ds0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f13 948 52 24 24 -55 15 #rect
 Ds0 f13 @|RichDialogMethodStartIcon #fIcon
-Ds0 f14 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f14 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f14 947 179 26 26 0 12 #rect
 Ds0 f14 @|RichDialogProcessEndIcon #fIcon
 Ds0 f15 expr out #txt
 Ds0 f15 960 76 960 179 #arcP
-Ds0 f17 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
+Ds0 f17 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f17 actionTable 'out=in;
 ' #txt
@@ -460,7 +463,7 @@ if(in.numberOfFilesLimit!=0){
 
 ivy.log.debug("Number of Files check result:" + in.toManyFiles);' #txt
 Ds0 f17 security system #txt
-Ds0 f17 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f17 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -474,7 +477,7 @@ of files</name>
 ' #txt
 Ds0 f17 484 372 40 24 26 -15 #rect
 Ds0 f17 @|StepIcon #fIcon
-Ds0 f32 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
+Ds0 f32 actionDecl 'component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f32 actionTable 'out=in;
 ' #txt
@@ -483,7 +486,7 @@ import javax.faces.context.FacesContext;
 
 FacesContext context = FacesContext.getCurrentInstance();
 context.addMessage("choose-uploading-file", new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/Dialogs/components/CaseDocument/fileLimitMessage") + " (max." + in.numberOfFilesLimit + ")"  ,null));' #txt
-Ds0 f32 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f32 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -495,7 +498,7 @@ Ds0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f32 624 468 32 24 35 -6 #rect
 Ds0 f32 @|StepIcon #fIcon
-Ds0 f35 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f35 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f35 488 464 32 32 0 16 #rect
 Ds0 f35 @|AlternativeIcon #fIcon
 Ds0 f36 expr out #txt
@@ -515,7 +518,7 @@ Ds0 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f22 520 480 624 480 #arcP
 Ds0 f22 0 0.4807692307692308 0 -8 #arcLabel
-Ds0 f27 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f27 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f27 627 371 26 26 0 12 #rect
 Ds0 f27 @|RichDialogProcessEndIcon #fIcon
 Ds0 f38 expr out #txt
@@ -548,7 +551,7 @@ Ds0 f33 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f33 488 480 384 364 #arcP
 Ds0 f33 1 384 480 #addKink
 Ds0 f33 0 0.3942307692307692 0 -10 #arcLabel
->Proto Ds0 .type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+>Proto Ds0 .type component.CaseDocument.CaseDocumentData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
 >Proto Ds0 '' #fIcon
