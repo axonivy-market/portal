@@ -5,8 +5,8 @@ public enum PortalLibrary {
   PORTAL_STYLE("ch.ivyteam.ivy.project.portal:portalStyle"),
   PORTAL_KIT("ch.ivyteam.ivy.project.portal:portalKit"), 
   PORTAL_TEMPLATE("ch.ivyteam.ivy.project.portal:portalTemplate"),
-  SELF_SERVICE("ch.ivyteam.ivy.project.portal:selfService"),
-  AXON_EXPRESS("ch.ivyteam.ivy.project.portal:axonIvyExpress");
+  AXON_EXPRESS("ch.ivyteam.ivy.project.portal:axonIvyExpress"),
+  SELF_SERVICE("ch.ivyteam.ivy.project.portal:selfService");
 
   private String value;
 

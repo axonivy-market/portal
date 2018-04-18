@@ -59,3 +59,7 @@ filteredUsers List<ch.ivy.addon.portalkit.persistence.domain.User> #field
 filteredUsers PERSISTENT #fieldModifier
 serverExternalHost String #field
 serverExternalHost PERSISTENT #fieldModifier
+isServerCompatible Boolean #field
+isServerCompatible PERSISTENT #fieldModifier
+remotePortalConnector ch.ivy.addon.portalkit.bo.RemoteLibrary #field
+remotePortalConnector PERSISTENT #fieldModifier
