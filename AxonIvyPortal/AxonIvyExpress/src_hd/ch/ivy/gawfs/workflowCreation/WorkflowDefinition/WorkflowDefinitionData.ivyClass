@@ -8,6 +8,8 @@ taskDefinition gawfs.TaskDef #field
 taskDefinition PERSISTENT #fieldModifier
 autoCompleteQuery String #field
 autoCompleteQuery PERSISTENT #fieldModifier
+isUseDefault Boolean #field
+isUseDefault PERSISTENT #fieldModifier
 selectedAssigneeList java.util.List<ch.ivyteam.ivy.security.ISecurityMember> #field
 selectedAssigneeList PERSISTENT #fieldModifier
 isAssignToUser Boolean #field
@@ -18,5 +20,3 @@ selectedRole ch.ivyteam.ivy.security.IRole #field
 selectedRole PERSISTENT #fieldModifier
 isValidAssignee Boolean #field
 isValidAssignee PERSISTENT #fieldModifier
-selectedResponsibleFieldId String #field
-selectedResponsibleFieldId PERSISTENT #fieldModifier

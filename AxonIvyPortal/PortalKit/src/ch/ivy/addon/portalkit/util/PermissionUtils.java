@@ -53,8 +53,7 @@ public class PermissionUtils {
       return true;
     }
 
-    for (String memberName : workflow.getProcessPermissions()) {
-      ISecurityMember member = Ivy.session().getSecurityContext().findSecurityMember(memberName);
+    for (ISecurityMember member : workflow.getProcessPermissions()) {
       boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
       boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
       if (isAssignedUser || hasAssignedRole) {

@@ -416,7 +416,7 @@ ew0 f27 expr out #txt
 ew0 f27 648 86 648 378 #arcP
 ew0 f27 0 0.257219996276489 0 0 #arcLabel
 ew0 f13 704 400 744 400 #arcP
-ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;' #txt
+ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,java.lang.String processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;' #txt
 ew0 f16 inParamTable 'out.definedTasks=param.definedTasks;
 out.dragAndDropController=param.dragAndDropController;
 out.dynaFormController=param.dynaFormController;
@@ -429,7 +429,7 @@ ew0 f16 outParamDecl '<> result;
 ' #txt
 ew0 f16 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
-ew0 f16 callSignature call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String) #txt
+ew0 f16 callSignature call(List<gawfs.TaskDef>,String,String,String,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String) #txt
 ew0 f16 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -746,8 +746,7 @@ Bk0 f5 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f5 actionTable 'out=in;
 ' #txt
-Bk0 f5 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Bk0 f5 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
 import ch.ivy.gawfs.Helper;
 import gawfs.TaskDef;
@@ -755,11 +754,10 @@ import gawfs.TaskDef;
 Helper helper = new Helper();
 
 List<ExpressTaskDefinition> taskSteps = ExpressServiceRegistry.getTaskDefinitionService().findByProcessId(in.workflowID);
-ExpressProcessUtils utils = new ch.ivy.gawfs.ExpressProcessUtils();
 
 for(ExpressTaskDefinition task: taskSteps){
 	TaskDef xtask = new TaskDef();
-	xtask.responsibles = utils.getSecurityMembers(task.responsibles);
+	xtask.responsibles = task.responsibles;
 	xtask.position = task.taskPosition;
 	xtask.description = task.description;
 	xtask.subject = task.subject;
@@ -785,8 +783,7 @@ Bk0 f8 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f8 actionTable 'out=in;
 ' #txt
-Bk0 f8 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Bk0 f8 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 
 
@@ -794,12 +791,7 @@ ExpressProcess workflow = ExpressServiceRegistry.getProcessService().findById(in
 
 in.workflowDescription = workflow.processDescription;
 in.workflowName = workflow.processName;
-
-for(ProcessType type : ProcessType.values()) {
-	if (type.getValue() == workflow.processType) {
-	 	in.workflowType = type;
-	}
-}
+in.workflowType = workflow.processType;
 
 
 ' #txt
