@@ -78,6 +78,7 @@ public interface ICaseService {
   /**
    * Upload the given document into the case
    * 
+   * @param username 
    * @param caseId
    * @param documentName
    * @param documentContent
@@ -100,6 +101,7 @@ public interface ICaseService {
   /**
    * Remove the given document
    * 
+   * @param userName 
    * @param caseId
    * @param documentId
    * @return CaseServiceResult
