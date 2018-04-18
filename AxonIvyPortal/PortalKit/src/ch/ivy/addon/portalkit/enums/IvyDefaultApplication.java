@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.enums;
 
 public enum IvyDefaultApplication {
-  DESIGNER("designer"), SYSTEM("system");
+  DESIGNER("designer"), SYSTEM("System");
 
   private String value;
 
