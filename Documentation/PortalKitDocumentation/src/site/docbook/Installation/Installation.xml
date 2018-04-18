@@ -633,7 +633,7 @@
 		<sect2>
 			<title>General guidelines</title>
 			<important>In order to migrate Portal, you need to migrate Axon.ivy, refer <link xlink:href="https://developer.axonivy.com/doc/latest/MigrationNotes.html">Axon.ivy migration notes</link>. 
-				Changes in Axon.ivy could lead to problems in the customer project if it is not migrated properly.</important>
+				Changes in Axon.ivy could lead to problems if the customer project is not migrated properly.</important>
 			<sect3>
 				<title>In designer</title>
 				<itemizedlist>
@@ -669,7 +669,7 @@
 					<itemizedlist>
 						<listitem>If compilation error "The type org.apache.axis2.databinding.ADBBean cannot be resolved" occurs, 
 							refer <link xlink:href="https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath">Project compilation classpath</link> to fix.</listitem>
-						<listitem>Replace your customized portal start process by the new one in Axon.ivy <code>7.0.0</code>, then customize it if needed.</listitem>
+						<listitem>Replace your customized Portal start process by the new one in Axon.ivy <code>7.0.0</code>, then customize it if needed.</listitem>
 						<listitem>If Portal Home is customized, merge changes and replace the call to <code>ch.ivy.addon.portal.generic.PortalHome</code> dialog 
 							by calling the customized Home page.</listitem>
 						<listitem>If you customize <code>TaskLazyDataModel</code>, remove that customized class and customize as 
@@ -715,7 +715,7 @@
 		<title xml:id="axonivyportal.installation.migrationnotes.title">Migration notes</title>
 		<para>
 			This document informs you in detail about incompatibilities that were introduced between Portal versions and
-			tells you what needs to be done to made your existing Portal working with current Axon.ivy engine.
+			tells you what needs to be done to make your existing Portal working with current Axon.ivy engine.
 		</para>
 		<sect2>
 			<title>Migrate 7.0.3 to 7.0.5 (or 7.1.0)</title>
