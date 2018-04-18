@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	ZeroClipboard.config({
-		swfPath : flashFileDirectory
+		swfPath : typeof flashFileDirectory !== 'undefined' ? flashFileDirectory : ''
 	});
 	
 	
