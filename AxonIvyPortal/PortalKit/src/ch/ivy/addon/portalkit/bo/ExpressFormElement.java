@@ -5,7 +5,6 @@ public class ExpressFormElement {
   private String id;
   private String processID;
   private String elementID;
-  private int taskPosition;
   private String name;
   private String label;
   private boolean required;
@@ -37,14 +36,6 @@ public class ExpressFormElement {
 
   public void setElementID(String elementID) {
     this.elementID = elementID;
-  }
-
-  public int getTaskPosition() {
-    return taskPosition;
-  }
-
-  public void setTaskPosition(int taskPosition) {
-    this.taskPosition = taskPosition;
   }
 
   public String getName() {
