@@ -3141,10 +3141,9 @@ String portalKitVersion = portalKit.getQualifiedVersion().toString();
 in.isServerCompatible = portalKitVersion.equals(in.remotePortalConnector.projectVersion);
 
 if(in.errors.size() > 0) {
-	String checkCompatibilityFailMessage = "Can not check server compatibility";
-	for(WsException error : in.errors) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,checkCompatibilityFailMessage, null));
-	}
+	List<Object> params = Arrays.asList(portalKitVersion);
+	String checkCompatibilityFailMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testCompatibilityFail", params);
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,checkCompatibilityFailMessage, null));
 } else if(!in.isServerCompatible) {
 	List<Object> params = Arrays.asList(in.remotePortalConnector.projectVersion, portalKitVersion);
 	String connectionSuccessMessage = ivy.cms.co("/errors/compatibility/message", params);
