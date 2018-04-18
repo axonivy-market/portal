@@ -1,20 +1,15 @@
 package ch.ivy.addon.portalkit.bo;
 
-import java.util.List;
-
-import ch.ivyteam.ivy.security.ISecurityMember;
-
 public class ExpressTaskDefinition {
 
   private String id;
   private String processID;
-  private List<ISecurityMember> responsibles;
+  private String taskActor;
   private String subject;
   private String prio;
   private String description;
-  private int taskPosition;
+  private int taskCount;
   private int untilDays;
-  private String responsibleDisplayName;
 
   public String getId() {
     return id;
@@ -32,12 +27,12 @@ public class ExpressTaskDefinition {
     this.processID = processID;
   }
 
-  public List<ISecurityMember> getResponsibles() {
-    return responsibles;
+  public String getTaskActor() {
+    return taskActor;
   }
 
-  public void setResponsibles(List<ISecurityMember> responsibles) {
-    this.responsibles = responsibles;
+  public void setTaskActor(String taskActor) {
+    this.taskActor = taskActor;
   }
 
   public String getSubject() {
@@ -64,12 +59,12 @@ public class ExpressTaskDefinition {
     this.description = description;
   }
 
-  public int getTaskPosition() {
-    return taskPosition;
+  public int getTaskCount() {
+    return taskCount;
   }
 
-  public void setTaskPosition(int taskPosition) {
-    this.taskPosition = taskPosition;
+  public void setTaskCount(int taskCount) {
+    this.taskCount = taskCount;
   }
 
   public int getUntilDays() {
@@ -78,14 +73,6 @@ public class ExpressTaskDefinition {
 
   public void setUntilDays(int untilDays) {
     this.untilDays = untilDays;
-  }
-
-  public String getResponsibleDisplayName() {
-    return responsibleDisplayName;
-  }
-
-  public void setResponsibleDisplayName(String responsibleDisplayName) {
-    this.responsibleDisplayName = responsibleDisplayName;
   }
 
 

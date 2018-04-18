@@ -1,5 +1,5 @@
 [Ivy]
-15781632FDA1EB9E 3.23 #module
+15781632FDA1EB9E 3.20 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
 ew0 B #cInfo
@@ -105,7 +105,6 @@ Bk1 @TkArc f8 '' #zField
 Bk1 @GridStep f9 '' #zField
 Bk1 @PushWFArc f10 '' #zField
 Bk1 @TkArc f1 '' #zField
-Bk1 @InfoButton f11 '' #zField
 >Proto Bk1 Bk1 BpmnUserTask #zField
 ew0 f0 inParamDecl '<java.lang.String workflowID> param;' #txt
 ew0 f0 inParamTable 'out.workflowID=param.workflowID;
@@ -690,8 +689,7 @@ Bk0 f3 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f3 actionTable 'out=in;
 ' #txt
-Bk0 f3 actionCode 'import ch.ivy.gawfs.enums.FormElementType;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Bk0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 List<ExpressFormElement> formelements = ExpressServiceRegistry.getFormElementService().findByProcessId(in.workflowID);
 
@@ -703,13 +701,9 @@ for(ExpressFormElement element: formelements){
 	formelement.label = element.label;
 	formelement.name = element.name;
 	formelement.required = element.required;
-
-	for (FormElementType type : FormElementType.values()) {
-		if (type.getValue() == element.getElementType()) {
-			formelement.type = type;
-		}
-	}
+	formelement.type = element.elementType;
 	
+	ivy.log.debug("element.optionsStr");
 	List<String> optionsStrx = element.optionsStr.split(":",-1);
 	
 	//direct assignement makes an array list, which makes problems in the seriealization, workaround:
@@ -757,8 +751,8 @@ List<ExpressTaskDefinition> taskSteps = ExpressServiceRegistry.getTaskDefinition
 
 for(ExpressTaskDefinition task: taskSteps){
 	TaskDef xtask = new TaskDef();
-	xtask.responsibles = task.responsibles;
-	xtask.position = task.taskPosition;
+	xtask.actor = task.taskActor;
+	xtask.count = task.taskCount;
 	xtask.description = task.description;
 	xtask.subject = task.subject;
 	xtask.untilDays = task.untilDays;
@@ -965,12 +959,12 @@ Bk1 f9 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk1 f9 actionTable 'out=in;
 ' #txt
-Bk1 f9 actionCode '//in.nextTask.actor = in.nextTask.actor.substring(1);' #txt
+Bk1 f9 actionCode 'in.nextTask.actor = in.nextTask.actor.substring(1);' #txt
 Bk1 f9 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk1 f9 424 272 96 32 0 -8 #rect
 Bk1 f9 @|StepIcon #fIcon
 Bk1 f10 expr in #txt
-Bk1 f10 outCond in.nextTask.responsibles.get(0).isUser() #txt
+Bk1 f10 outCond 'in.nextTask.actor.startsWith("#")' #txt
 Bk1 f10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -988,18 +982,6 @@ Bk1 f1 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk1 f1 var in1 #txt
 Bk1 f1 472 304 472 338 #arcP
 Bk1 f1 0 0.9254675491835372 0 0 #arcLabel
-Bk1 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>NEED UPDATE HERE:
-FROM NOW ON, TASK CAN BE ASSIGNED TO MULTI ROLES AND USERS</name>
-        <nameStyle>76
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Bk1 f11 48 114 416 44 -204 -16 #rect
-Bk1 f11 @|IBIcon #fIcon
 >Proto Bk1 0 0 32 24 18 0 #rect
 >Proto Bk1 @|BpmnUserTaskIcon #fIcon
 ew0 f12 head f9 mainIn #connect
