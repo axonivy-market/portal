@@ -73,7 +73,7 @@ public class UploadDocumentTest extends BaseTest{
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     int numberOfDocument = countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
-    assertEquals(numberOfDocument + 1, countNumberOfDocument());;
+    assertEquals(numberOfDocument + 1, countNumberOfDocument());
     
   }
   

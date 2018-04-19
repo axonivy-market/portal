@@ -23,7 +23,7 @@
   <ui:insert name="menu-bar">
 
     <ul id="top-menu" class="js-top-menu">
-      <li><h:form prependId="false" styleClass="global-search" onsubmit="return false;">
+      <li><h:form prependId="false" styleClass="global-search" onsubmit="return false;" rendered="#{showGlobalSearch}">
           <p:inputText id="global-search-data" value="#{userMenuBean.searchKeyword}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
             <p:ajax event="keyup" delay="#{mainMenuBean.searchDelayTime}" listener="#{userMenuBean.search}"
