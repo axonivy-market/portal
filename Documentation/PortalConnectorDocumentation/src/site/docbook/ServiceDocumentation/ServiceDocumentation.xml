@@ -685,6 +685,34 @@
 								</para>
 							</entry>
 						</row>
+						<row>
+							<entry>
+								<para>
+									getLibrary
+								</para>
+							</entry>
+							<entry>
+								<para>
+									libraryId (String)
+								</para>
+								<para>
+									appName (String)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									library (IvyLibraries)
+								</para>
+								<para>
+									errors (List of WSExceptions)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									Get projects name/version by libraryId and application name.
+								</para>
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
