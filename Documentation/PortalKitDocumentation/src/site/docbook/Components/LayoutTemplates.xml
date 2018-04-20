@@ -320,7 +320,7 @@
                 </listitem>
 				<listitem>
 					<para>
-						Inserts left buttons and right buttons which stay at the bottom of the page. It is optional. You can use it to define your action button.
+						Inserts left buttons and right buttons which stay at the bottom of the page. It is optional. You can use it to define your action button. Consider using <code>partialSubmit</code> to submit your data im tabs.    
 						<para>
 							<code>&lt;ui:define name="leftButtons"&gt;</code>
 						</para>
