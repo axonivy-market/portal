@@ -1,4 +1,4 @@
-co: name={uploadDocumentNote} description={} changed={2018-04-10 05:03:42 CEST} changedby={tntanh} visualorder={0} guid={162AD8255B1DF9E7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={162AD8255B55942F} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-04-10 04:25:01 CEST} validto={} changed={2018-04-10 05:03:42 CEST} changedby={tntanh} properties={} id={}
+co: name={uploadDocumentNote} description={} changed={2018-04-20 14:02:07 CEST} changedby={tdnguyen} visualorder={0} guid={162AD8255B1DF9E7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={162AD8255B55942F} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-04-10 04:25:01 CEST} validto={} changed={2018-04-20 14:02:07 CEST} changedby={tdnguyen} properties={} id={}
 val: guid={162AD8255C4EE343} datatype={} isdefault={true} langid={en} description={} validfrom={2018-04-10 04:24:31 CEST} validto={} changed={2018-04-10 05:03:42 CEST} changedby={tntanh} properties={} id={}
-val: guid={162AD8255BC1034B} datatype={} isdefault={false} langid={de} description={} validfrom={2018-04-10 04:24:59 CEST} validto={} changed={2018-04-10 05:03:42 CEST} changedby={tntanh} properties={} id={}
+val: guid={162AD8255BC1034B} datatype={} isdefault={false} langid={de} description={} validfrom={2018-04-10 04:24:59 CEST} validto={} changed={2018-04-20 14:01:59 CEST} changedby={tdnguyen} properties={} id={}
