@@ -142,6 +142,12 @@ public class TaskWidgetPage extends TemplatePage {
         String.format("task-widget:task-list-scroller:0:task-item:task-action:task-reset-command", taskId);
     click(findElementById(resetCommandButton));
   }
+  
+  public boolean isTaskStartEnabled(int taskId) {
+    String startCommandButton =
+        String.format("task-widget:task-list-scroller:0:task-item:task-action:task-start-command", taskId);
+    return isElementEnabled(By.id(startCommandButton));
+  }
 
   public TaskState getTaskState(int taskId) {
     WebElement stateCell =

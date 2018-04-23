@@ -25,12 +25,12 @@ public class TaskWidgetTest extends BaseTest {
     super.setup();
     createTestingTasks();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
   }
   
   @Test
   public void testShowHideTaskDetailOnExpandedMode() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 
     taskWidgetPage.expand();
@@ -43,6 +43,8 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     assertEquals(3, taskWidgetPage.countTasks());
 
@@ -53,6 +55,8 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testOpenRelatedCaseOfTask() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(0);
@@ -66,6 +70,8 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testReserveTask() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.reserveTask(0);
@@ -78,6 +84,8 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testChangeTaskDeadline() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
     int firstTask = 0;
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
     String tomorrowStringLiteral = tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
@@ -121,6 +129,8 @@ public class TaskWidgetTest extends BaseTest {
   
   @Test
   public void testStickyTaskListOnCancel(){
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openTaskList();
     taskWidgetPage.startAndCancelTask();
@@ -128,4 +138,15 @@ public class TaskWidgetTest extends BaseTest {
     Assert.assertTrue(taskWidgetPage.isTaskListShown());
   }
   
+  @Test
+  public void testStartButtonStatus() {
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.expand();
+    taskWidgetPage.filterTasksBy("Annual Leave Request");
+    Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
+    taskWidgetPage.filterTasksBy("Sick Leave Request");
+    Assert.assertTrue(taskWidgetPage.isTaskStartEnabled(0));
+  }
 }
