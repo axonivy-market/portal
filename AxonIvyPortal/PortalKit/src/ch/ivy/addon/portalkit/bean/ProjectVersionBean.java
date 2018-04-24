@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.bo.RemoteLibrary;
 import ch.ivy.addon.portalkit.datacollecting.factory.LibraryServiceFactory;
 import ch.ivy.addon.portalkit.datacollecting.service.AbstractLibraryService;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.util.LibraryUtils;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -27,7 +28,7 @@ public class ProjectVersionBean implements Serializable {
   @PostConstruct
   private void init() {
     engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
-    ILibrary portalLibrary = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
+    ILibrary portalLibrary = LibraryUtils.findReleasedLibrary(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
     portalVersion = portalLibrary.getQualifiedVersion().toString();
     projectLibraries = retrieveProjectLibraries();
   }

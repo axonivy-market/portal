@@ -1,15 +1,11 @@
 package ch.ivy.addon.portalkit.util;
 
-import java.util.List;
 import java.util.Objects;
-
-import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.service.PortalConnectorDetector;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.restricted.IDefaultWebService;
 import ch.ivyteam.ivy.application.restricted.IWebService;
-import ch.ivyteam.ivy.application.restricted.IWebServiceProperty;
+import ch.ivyteam.ivy.application.value.WebServiceAuthentication;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -30,21 +26,19 @@ public final class PasswordUtils {
 
   public static String find(String id) {
     IWebService ws = findWebService(id);
-    if (Objects.isNull(ws)) {
+    if (Objects.isNull(ws) || Objects.isNull(ws.getAuthentication())) {
       return null;
     }
-    List<IWebServiceProperty> properties = ws.getProperties();
-    return properties.stream().filter(property -> StringUtils.equalsIgnoreCase(SERVER_PWD_KEY, property.getName()))
-        .map(IWebServiceProperty::getValue).findFirst().orElse(null);
+    return ws.getAuthentication().getPassword();
   }
 
   public static void save(String id, String password) {
     IWebService ws = findWebService(id);
+    WebServiceAuthentication auth = new WebServiceAuthentication("", "", password);
     if (Objects.nonNull(ws)) {
-      ws.createPasswordProperty(SERVER_PWD_KEY, password);
+      ws.setAuthentication(auth);
     } else {
-      IDefaultWebService createWebService = app().createWebService(id, "", "", "", "");
-      createWebService.createPasswordProperty(SERVER_PWD_KEY, password);
+      app().createWebService(id, "", "", "", "", false, 0, "", "", 0, auth);
     }
   }
 

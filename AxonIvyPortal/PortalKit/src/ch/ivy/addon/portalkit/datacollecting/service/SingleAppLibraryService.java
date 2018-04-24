@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.RemoteLibrary;
 import ch.ivy.addon.portalkit.mapper.RemoteLibraryMapper;
+import ch.ivy.addon.portalkit.util.LibraryUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -30,7 +31,7 @@ public class SingleAppLibraryService extends AbstractLibraryService {
     IServer server = ServerFactory.getServer();
     IApplication app = server.getApplicationConfigurationManager().findApplication(appName);
     if (app != null) {
-      ILibrary library = app.findReleasedLibrary(libraryId);
+      ILibrary library = LibraryUtils.findReleasedLibrary(app, libraryId);
       return library;
     }
     return null;

@@ -13,6 +13,7 @@ import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.LibraryServiceResult;
 import ch.ivy.ws.addon.transformer.IvyLibraryTransformer;
 import ch.ivy.ws.addon.types.IvyLibrary;
+import ch.ivy.ws.addon.util.LibraryUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -70,7 +71,7 @@ public class LibraryServiceImpl implements ILibraryService {
           IApplication application =
               ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
           if (application != null) {
-            ILibrary library = application.findReleasedLibrary(libraryId);
+            ILibrary library = LibraryUtils.findReleasedLibrary(application, libraryId);
             if (library != null) {
               result.setLibrary(IvyLibraryTransformer.transform(library, appName));
             } else {

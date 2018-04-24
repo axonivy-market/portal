@@ -625,98 +625,44 @@
 			</itemizedlist>
 		</sect2>
 	</sect1>
-	<sect1 xml:id="axonivyportal.installation.migrationguidelines">
-		<title xml:id="axonivyportal.installation.migrationguidelines.title">Migration guidelines</title>
-		<para>
-			This document describes steps how to make your existing Portal working with current Axon.ivy engine.
-		</para>
-		<sect2>
-			<title>General guidelines</title>
-			<important>In order to migrate Portal, you need to migrate Axon.ivy, refer <link xlink:href="https://developer.axonivy.com/doc/latest/MigrationNotes.html">Axon.ivy migration notes</link>. 
-				Changes in Axon.ivy could lead to problems if the customer project is not migrated properly.</important>
-			<sect3>
-				<title>In designer</title>
-				<itemizedlist>
-					<listitem>Replace all Portal projects</listitem>
-					<listitem>Update PortalTemplate dependency of customer project in pom.xml.</listitem>
-					<listitem>If PortalStyle is customized, copy logo, customization.less, font-faces.less, customized stuff from old to new PortalStyle, run maven to compile CSS.</listitem>
-					<listitem>Follow migration notes.</listitem>
-					<listitem>If customization needs copying code from Portal, merge changes between 2 version of Portal for copied code.</listitem>
-				</itemizedlist>
-			</sect3>
-			<sect3>
-				<title>In engine</title>
-				<itemizedlist>
-					<listitem>Convert database schema if needed.</listitem>
-					<listitem>Deactivate standard Portal application if it is not needed.</listitem>
-					<listitem>Redeploy Portal projects (exclude PortalConnector) and customer project.</listitem>
-					<listitem>Follow migration notes to migrate data, if any.</listitem>
-				</itemizedlist>
-			</sect3>
-		</sect2>
-		<sect2 xml:id="axonivyportal.installation.migrationguidelines.supportedcustomization">
-			<title>Migrate one customer project without customization</title>
-			<para>Follow general guidelines. In designer, do not need to care migration notes</para>
-		</sect2>
-		<sect2>
-			<title xml:id="axonivyportal.installation.migrationguidelines.supportedcustomization.title">Migrate one customer project with supported customization</title>
-			<para>Follow general guidelines. You may refer to below samples.</para>
-			<sect3>
-				<title>Migrate 6.4 to 7.0.0</title>
-				<para>Follow general guidelines and perform below steps.</para>
-				<sect4>
-					<title>In designer</title>
-					<itemizedlist>
-						<listitem>If compilation error "The type org.apache.axis2.databinding.ADBBean cannot be resolved" occurs, 
-							refer <link xlink:href="https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath">Project compilation classpath</link> to fix.</listitem>
-						<listitem>Replace your customized Portal start process by the new one in Axon.ivy <code>7.0.0</code>, then customize it if needed.</listitem>
-						<listitem>If Portal Home is customized, merge changes and replace the call to <code>ch.ivy.addon.portal.generic.PortalHome</code> dialog 
-							by calling the customized Home page.</listitem>
-						<listitem>If you customize <code>TaskLazyDataModel</code>, remove that customized class and customize as 
-							<link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />.</listitem>
-						<listitem>If there are customized default user proceses, append context path at the beginning. E.g. in Portal <code>6.4</code>, it is 
-							/pro/.../PortalStart.ivp. In Portal <code>7.0.0</code>, change it to /ivy/pro/.../PortalStart.ivp. 
-							You can use : ivy.html.startref(...) or RequestUriFactory.createProcessStartUri(...) to generate links.</listitem>
-					</itemizedlist>
-				</sect4>
-			</sect3>
-			<sect3>
-				<title>Migrate 7.0.0 to 7.0.1</title>
-				<para>Follow general guidelines.</para>
-			</sect3>
-			<sect3>
-				<title>Migrate 7.0.1 to 7.0.2</title>
-				<para>Follow general guidelines and perform below steps.</para>
-				<sect4>
-					<title>In designer</title>
-					<itemizedlist>
-						<listitem>Copy logo, customization.less, font-faces.less, customized stuff from old to new PortalStyle. In PortalStyle\pom.xml, 
-							update project-build-plugin version to <code>7.1.0 </code>and run maven to compile CSS.</listitem>
-						<listitem>If changing password is customized, change method call <code>PasswordService.mod#changePassword(String,String)</code> to 
-							<code>PasswordService.mod#changePasswordService(String, String)</code> in this customization.</listitem>
-					</itemizedlist>
-				</sect4>
-			</sect3>
-			<sect3>
-				<title>Migrate 7.0.2 to 7.0.3</title>
-				<para>Follow general guidelines.</para>
-			</sect3>
-		</sect2>
-		<sect2>
-			<title>Migrate one customer project with (un)supported customization</title>
-			<itemizedlist>
-				<listitem>To migrate supported customization, refer to migration for 
-					<link linkend="axonivyportal.installation.migrationguidelines.supportedcustomization" endterm="axonivyportal.installation.migrationguidelines.supportedcustomization.title" />.</listitem>
-				<listitem>If unsupported customization needs copying code from Portal, merge changes between 2 versions of Portal for copied code. Take care your own unsupported customization.</listitem>
-			</itemizedlist>
-		</sect2>
-	</sect1>
 	<sect1 xml:id="axonivyportal.installation.migrationnotes">
 		<title xml:id="axonivyportal.installation.migrationnotes.title">Migration notes</title>
 		<para>
 			This document informs you in detail about incompatibilities that were introduced between Portal versions and
 			tells you what needs to be done to make your existing Portal working with current Axon.ivy engine.
 		</para>
+		<sect2>
+			<title>How to migrate</title>
+			<important>In order to migrate Portal, you need to migrate Axon.ivy, refer <link xlink:href="https://developer.axonivy.com/doc/latest/MigrationNotes.html">Axon.ivy migration notes</link>. 
+				Changes in Axon.ivy could lead to problems if the customer project is not migrated properly.</important>
+			<sect3>
+				<title>In designer</title>
+				<orderedlist>
+					<listitem>Replace all Portal projects</listitem>
+					<listitem>Update PortalTemplate dependency of customer project in pom.xml.</listitem>
+					<listitem>If PortalStyle is customized, copy logo, customization.less, font-faces.less, customized stuff from old to new PortalStyle, run maven to compile CSS.</listitem>
+					<listitem>Follow migration notes.</listitem>
+					<listitem>If customization needs copying code from Portal, merge changes between 2 version of Portal for copied code.</listitem>
+				</orderedlist>
+				<important>
+					<itemizedlist>
+						<listitem>Scenario migrating one customer project without customization: Follow the guidelines to step 2.</listitem>
+						<listitem>Scenario migrating one customer project with supported customization: Follow the guidelines.</listitem>
+						<listitem>Scenario migrating one customer project with (un)supported customization: Follow the guidelines for supported customization. 
+							If unsupported customization needs copying code from Portal, merge changes between 2 versions of Portal for copied code. Take care your own unsupported customization.</listitem>
+					</itemizedlist>
+				</important>
+			</sect3>
+			<sect3>
+				<title>In engine</title>
+				<orderedlist>
+					<listitem>Convert database schema if needed.</listitem>
+					<listitem>Deactivate standard Portal application if it is not needed.</listitem>
+					<listitem>Redeploy Portal projects (exclude PortalConnector) and customer project.</listitem>
+					<listitem>Follow migration notes to migrate data, if any.</listitem>
+				</orderedlist>
+			</sect3>
+		</sect2>
 		<sect2>
 			<title>Migrate 7.0.3 to 7.0.5 (or 7.1.0)</title>
 			<para>
@@ -729,14 +675,17 @@
 			</para>
 		</sect2>
 		<sect2>
-			<title>Migrate 7.0.2 to 7.0.3 (or 7.1.0)</title>
+			<title>Migrate 7.0.2 to 7.0.3</title>
 			<para>
 				If you have additional columns in your customized task widget, refer <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">Task widget</link> to adapt your 
 				customization in <code>taskHeader</code> section.
 			</para>
 		</sect2>
 		<sect2>
-			<title>Migrate 7.0.1 to 7.0.2 (or 7.1.0)</title>
+			<title>Migrate 7.0.1 to 7.0.2</title>
+			<para>In PortalStyle\pom.xml, update project-build-plugin version to <code>7.1.0 </code>and run maven to compile CSS.</para>
+			<para>If changing password is customized, change method call <code>PasswordService.mod#changePassword(String,String)</code> to 
+				<code>PasswordService.mod#changePasswordService(String, String)</code> in this customization.</para>
 			<para>
 				Custom fields in Portal task list can now be sorted properly. The method <code>extendSort()</code> of <code>TaskLazyDataModel</code> is changed
 				to have a <code>taskQuery</code> parameter. If you override this method, please change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
@@ -750,7 +699,7 @@
 			</para>
 		</sect2>
 		<sect2>
-			<title>Migrate 7.0.0 to 7.0.1 (or 7.1.0)</title>
+			<title>Migrate 7.0.0 to 7.0.1</title>
 			<para>
 				<emphasis role="bold">Ajax error handling</emphasis>: By default, Portal handles all exceptions from ajax requests. Old configuration, customization of ajax error handling should be removed.
 			</para>
@@ -830,20 +779,26 @@
 		</sect2>
 		<sect2>
 			<title>Migrate 6.4 or 6.5 to 6.6</title>
-			<para>
-				Task header is supported to be customized. The
-				<code>useOverride</code>
-				param, which is used to override the task item's body, is changed to
-				<code>useOverrideBody</code>
-			</para>
+			<itemizedlist>
+				<listitem>Task header is supported to be customized. The
+					<code>useOverride</code>
+					param, which is used to override the task item's body, is changed to
+					<code>useOverrideBody</code></listitem>
+				<listitem>If you customize <code>TaskLazyDataModel</code>, remove that customized class and customize as 
+					<link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />.</listitem>
+			</itemizedlist>
+			
 		</sect2>
 		<sect2>
 			<title>Migrate 6.4 to 6.5</title>
-			<para>The relative link in default user processes starts with ivy context path instead of "pro". If there are customized default user proceses, 
-			append context path at the beginning. E.g. in Portal <code>6.4</code>, it is /pro/CustomizedPortal/PortalExamples/1624CFBB822FB1C9/PortalStart.ivp. 
-			In Portal <code>6.5</code>, change it to /ivy/pro/CustomizedPortal/PortalExamples/1624CFBB822FB1C9/PortalStart.ivp. 
-			You may use : <code>ivy.html.startref(...)</code> or <code>RequestUriFactory.createProcessStartUri(...)</code> to generate links.
-			</para>
+			<itemizedlist>
+				<listitem>If compilation error "The type org.apache.axis2.databinding.ADBBean cannot be resolved" occurs, 
+					refer <link xlink:href="https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath">Project compilation classpath</link> to fix.</listitem>
+				<listitem>The relative link in default user processes starts with ivy context path instead of "pro". If there are customized default user proceses, 
+					append context path at the beginning. E.g. in Portal <code>6.4</code>, it is /pro/.../PortalStart.ivp. 
+					In Portal <code>6.5</code>, change it to /ivy/pro/.../PortalStart.ivp. 
+					You may use : <code>ivy.html.startref(...)</code> or <code>RequestUriFactory.createProcessStartUri(...)</code> to generate links.</listitem>
+			</itemizedlist>
 		</sect2>
 		<sect2>
 			<title>Migrate 6.x (x &lt; 4) to 6.4 (Jakobshorn)</title>

@@ -1,5 +1,5 @@
 [Ivy]
-150F0B4F8F3CB2CB 3.23 #module
+150F0B4F8F3CB2CB 3.20 #module
 >Proto >Proto Collection #zClass
 As0 AdminUIProcess Big #zClass
 As0 RD #cInfo
@@ -3129,14 +3129,15 @@ As0 f258 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsDat
 ' #txt
 As0 f258 actionTable 'out=in;
 ' #txt
-As0 f258 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
+As0 f258 actionCode 'import ch.ivy.addon.portalkit.util.LibraryUtils;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import java.util.Arrays;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivy.ws.addon.WsException;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-ILibrary portalKit = ivy.wf.getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
+ILibrary portalKit = LibraryUtils.findReleasedLibrary(ivy.wf.getApplication(), PortalLibrary.PORTAL_KIT.getValue());
 String portalKitVersion = portalKit.getQualifiedVersion().toString();
 in.isServerCompatible = portalKitVersion.equals(in.remotePortalConnector.projectVersion);
 
@@ -3159,6 +3160,8 @@ As0 f258 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>check compatibility&#xD;
  and show message if any</name>
+        <nameStyle>45,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt

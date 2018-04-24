@@ -7,24 +7,13 @@
         <id>146B90974252183F</id>
         <description></description>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/1380566F9095B9C4?WSDL</wsdlUrl>
-        <wsCallLibrary>AXIS_2_0</wsCallLibrary>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.TaskServiceService</serviceClass>
-            <port>
-                <name>TaskServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>TaskServicePort="save","findTaskNotes","createTaskNote","delegateTask","setAdditionalProperty","canUserResumeTask","findCategories","countTasksByCriteria","findPersonalTaskCategories","findGroupTaskCategories","findUnassignedTaskCategories","analyzePriorityStatistic","analyzeExpiryStatistic","findTasksByCriteria","resetTask","parkTask","analyzeElapsedTimeStatistic"</axisOperationsToPort>
+            <axisEndPointForPortType>TaskServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>TaskServicePortcreateNote="arg0__@@__ch.ivy.ws.addon.CreateNoteE__@@__"
 TaskServicePortfindNotes="arg0__@@__ch.ivy.ws.addon.FindNotesE__@@__"
 TaskServicePortfindGroupTaskCategories="arg0__@@__ch.ivy.ws.addon.FindGroupTaskCategoriesE__@@__"
@@ -94,30 +83,20 @@ TaskServicePortresetTask=ch.ivy.ws.addon.ResetTaskResponseE</axisReturnTypes>
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>caseService</name>
         <id>146B9AACE506491D</id>
         <description></description>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD8C8C617F9?WSDL</wsdlUrl>
-        <wsCallLibrary>AXIS_2_0</wsCallLibrary>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.CaseServiceService</serviceClass>
-            <port>
-                <name>CaseServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>CaseServicePort="createNote","findCase","removeDocument","uploadDocument","saveCase","findDocuments","findNotes","destroyCase","downloadDocument","findCaseCategoriesByCriteria","findCasesByCriteria","analyzeElapsedTimeByCaseCategory","countCasesByCriteria","setAdditionalProperties","getAddtionalProperties","analyzeCaseStateStatistic"</axisOperationsToPort>
+            <axisEndPointForPortType>CaseServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>CaseServicePortdownloadDocument="arg0__@@__ch.ivy.ws.addon.DownloadDocumentE__@@__"
 CaseServicePortsave="arg0__@@__ch.ivy.ws.addon.SaveE__@@__"
 CaseServicePortfindDoneByFilter="arg0__@@__ch.ivy.ws.addon.FindDoneByFilterE__@@__"
@@ -175,29 +154,20 @@ CaseServicePortfindCase=ch.ivy.ws.addon.FindCaseResponseE</axisReturnTypes>
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>isAlive</name>
         <id>146C8FD0DD5620DA</id>
         <description></description>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/14684B7E15F81BA6?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.IsAliveServiceService</serviceClass>
-            <port>
-                <name>IsAliveServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>IsAliveServicePort="isAlive"</axisOperationsToPort>
+            <axisEndPointForPortType>IsAliveServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>IsAliveServicePortisAlive="arg0__@@__ch.ivy.ws.addon.IsAliveE__@@__"</axisParameterProperties>
             <axisPortList>IsAliveServicePort</axisPortList>
             <axisStubClassnameList>ch.ivy.ws.addon.IsAliveServiceServiceStub</axisStubClassnameList>
@@ -209,29 +179,20 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>processStartsService</name>
         <id>1473A1D4EEBABA93</id>
         <description></description>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD0988B83E7?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.ProcessStartServiceService</serviceClass>
-            <port>
-                <name>ProcessStartServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>ProcessStartServicePort="findProcessesStartsByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>ProcessStartServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>ProcessStartServicePortfindProcessStarts="arg0__@@__ch.ivy.ws.addon.FindProcessStartsE__@@__"
 ProcessStartServicePortfindAllProcessStarts="arg0__@@__ch.ivy.ws.addon.FindAllProcessStartsE__@@__"
 ProcessStartServicePortfindProcessesStartsByKeyword="arg0__@@__ch.ivy.ws.addon.FindProcessesStartsByKeywordE__@@__"
@@ -249,29 +210,20 @@ ProcessStartServicePortfindProcessesStartsByCriteria=ch.ivy.ws.addon.FindProcess
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>SecurityService</name>
         <id>1485F2F441BFB375</id>
         <description>Web Service to get Security Data from the Portal Connector</description>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/138056017E3F98C2?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.SecurityServiceService</serviceClass>
-            <port>
-                <name>SecurityServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>SecurityServicePort="findSecurityMembersToDelegate","findAllRoles","findAllUsers","findUsersByRoleId"</axisOperationsToPort>
+            <axisEndPointForPortType>SecurityServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>SecurityServicePortfindAllUsers="arg0__@@__ch.ivy.ws.addon.FindAllUsersE__@@__"
 SecurityServicePortfindUsersByRoleId="arg0__@@__ch.ivy.ws.addon.FindUsersByRoleIdE__@@__"
 SecurityServicePortfindAllRoles="arg0__@@__ch.ivy.ws.addon.FindAllRolesE__@@__"
@@ -289,30 +241,20 @@ SecurityServicePortfindSecurityMembersToDelegate=ch.ivy.ws.addon.FindSecurityMem
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>userService</name>
         <id>14BDDEDAB1EB1D1E</id>
         <description></description>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/138D76541AF4C4CF?WSDL</wsdlUrl>
-        <wsCallLibrary>AXIS_2_0</wsCallLibrary>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.UserServiceService</serviceClass>
-            <port>
-                <name>UserServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>UserServicePort="changePassword","getSubstitutes","getEmailSetttings","setLanguagesSettings","getLanguagesSettings","findUserSetting","setEMailSettings","setSubstitutes","saveUserSetting"</axisOperationsToPort>
+            <axisEndPointForPortType>UserServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>UserServicePortsaveUserSetting="arg0__@@__ch.ivy.ws.addon.SaveUserSettingE__@@__"
 UserServicePortgetLanguagesSettings="arg0__@@__ch.ivy.ws.addon.GetLanguagesSettingsE__@@__"
 UserServicePortgetSubstitutes="arg0__@@__ch.ivy.ws.addon.GetSubstitutesE__@@__"
@@ -344,29 +286,20 @@ UserServicePortchangePassword=ch.ivy.ws.addon.ChangePasswordResponseE</axisRetur
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>getSupportedLanguages</name>
         <id>14E91368EA389FD7</id>
         <description></description>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/14E90F0F6A258B63?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.SupportedLanguageServiceService</serviceClass>
-            <port>
-                <name>SupportedLanguageServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>SupportedLanguageServicePort="getSupportedLanguages"</axisOperationsToPort>
+            <axisEndPointForPortType>SupportedLanguageServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>SupportedLanguageServicePortgetSupportedLanguages="arg0__@@__ch.ivy.ws.addon.GetSupportedLanguagesE__@@__"</axisParameterProperties>
             <axisPortList>SupportedLanguageServicePort</axisPortList>
             <axisStubClassnameList>ch.ivy.ws.addon.SupportedLanguageServiceServiceStub</axisStubClassnameList>
@@ -378,29 +311,20 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>absenceService</name>
         <id>14EFDA6C3FD72228</id>
         <description></description>
         <wsdlUrl>http://127.0.0.1:8081/ivy/ws/designer/PortalConnector/14EFD6DC6E4A27E6?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.AbsenceServiceService</serviceClass>
-            <port>
-                <name>AbsenceServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>AbsenceServicePort="getAbsences","getAbsencesOfAllUsers","setAbsences"</axisOperationsToPort>
+            <axisEndPointForPortType>AbsenceServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>AbsenceServicePortgetAbsences="arg0__@@__ch.ivy.ws.addon.GetAbsencesE__@@__"
 AbsenceServicePortsetAbsences="arg0__@@__ch.ivy.ws.addon.SetAbsencesE__@@__"
 AbsenceServicePortgetAbsencesOfAllUsers="arg0__@@__ch.ivy.ws.addon.GetAbsencesOfAllUsersE__@@__"
@@ -418,29 +342,20 @@ AbsenceServicePorttestWS=ch.ivy.ws.addon.TestWSResponseE</axisReturnTypes>
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>synchronizePortalDataService</name>
         <id>1503AE0FAA915FAA</id>
         <description></description>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/150374D567D113F5?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.PortalDataServiceService</serviceClass>
-            <port>
-                <name>PortalDataServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>PortalDataServicePort="delete","deleteByPrefixThenUpdate","deleteManyProperties","addOrUpdate","deleteByPrefix"</axisOperationsToPort>
+            <axisEndPointForPortType>PortalDataServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>PortalDataServicePortdeleteAll="arg0__@@__ch.ivy.ws.addon.DeleteAllE__@@__"
 PortalDataServicePortdeleteByPrefix="arg0__@@__ch.ivy.ws.addon.DeleteByPrefixE__@@__"
 PortalDataServicePortdeleteManyProperties="arg0__@@__ch.ivy.ws.addon.DeleteManyPropertiesE__@@__"
@@ -462,28 +377,19 @@ PortalDataServicePortdelete=ch.ivy.ws.addon.DeleteResponseE</axisReturnTypes>
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>applicationService</name>
         <id>154F091E0FE17F3C</id>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/154F054217050170?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.ApplicationServiceService</serviceClass>
-            <port>
-                <name>ApplicationServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>ApplicationServicePort="getAllApplications","getApplicationsByAppNames"</axisOperationsToPort>
+            <axisEndPointForPortType>ApplicationServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>ApplicationServicePortgetAllApplications="arg0__@@__ch.ivy.ws.addon.GetAllApplicationsE__@@__"
 ApplicationServicePortgetAllApplication="arg0__@@__ch.ivy.ws.addon.GetAllApplicationE__@@__"
 ApplicationServicePortgetApplicationsByAppNames="arg0__@@__ch.ivy.ws.addon.GetApplicationsByAppNamesE__@@__"</axisParameterProperties>
@@ -499,28 +405,19 @@ ApplicationServicePortgetApplicationsByAppNames=ch.ivy.ws.addon.GetApplicationsB
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>serverService</name>
         <id>155B8E8D03D38D19</id>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/155B8D3292AB7784?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.ServerServiceService</serviceClass>
-            <port>
-                <name>ServerServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>ServerServicePort="getExternalHost"</axisOperationsToPort>
+            <axisEndPointForPortType>ServerServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>ServerServicePortgetExternalHost="arg0__@@__ch.ivy.ws.addon.GetExternalHostE__@@__"</axisParameterProperties>
             <axisPortList>ServerServicePort</axisPortList>
             <axisStubClassnameList>ch.ivy.ws.addon.ServerServiceServiceStub</axisStubClassnameList>
@@ -532,28 +429,19 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>sideStepService</name>
         <id>15C7646A4BDA62E7</id>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/15C62875FD98F850?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.SideStepProcessServiceService</serviceClass>
-            <port>
-                <name>SideStepProcessServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>SideStepProcessServicePort="findSideStepsByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>SideStepProcessServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>SideStepProcessServicePortfindSideStepsByCriteria="arg0__@@__ch.ivy.ws.addon.FindSideStepsByCriteriaE__@@__"</axisParameterProperties>
             <axisPortList>SideStepProcessServicePort</axisPortList>
             <axisStubClassnameList>ch.ivy.ws.addon.SideStepProcessServiceServiceStub</axisStubClassnameList>
@@ -565,28 +453,19 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>webStartableService</name>
         <id>15CD313699949A45</id>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/15CD2EB4E7714D02?WSDL</wsdlUrl>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.WebStartableServiceService</serviceClass>
-            <port>
-                <name>WebStartableServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>WebStartableServicePort="findWebStartablesByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>WebStartableServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>WebStartableServicePortfindWebStartablesByCriteria="arg0__@@__ch.ivy.ws.addon.FindWebStartablesByCriteriaE__@@__"</axisParameterProperties>
             <axisPortList>WebStartableServicePort</axisPortList>
             <axisStubClassnameList>ch.ivy.ws.addon.WebStartableServiceServiceStub</axisStubClassnameList>
@@ -598,29 +477,19 @@ ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespa
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
     <webServiceConfig>
         <name>libraryService</name>
         <id>16266B7AEB1665F0</id>
         <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/162668C788FE23AD?WSDL</wsdlUrl>
-        <wsCallLibrary>AXIS_2_0</wsCallLibrary>
-        <property>
-            <name>session.handlingMode</name>
-            <value>APPLICATION</value>
-            <password>false</password>
-        </property>
-        <service>
-            <serviceClass>ch.ivy.ws.addon.LibraryServiceService</serviceClass>
-            <port>
-                <name>LibraryServicePort</name>
-                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
-            </port>
-        </service>
+        <transportSession>false</transportSession>
         <wsdlGeneratedInfo>
             <axisLocatorClassname></axisLocatorClassname>
             <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
 ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
             <axisOperationsToPort>LibraryServicePort="getLibraries","getLibrary"</axisOperationsToPort>
+            <axisEndPointForPortType>LibraryServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
             <axisParameterProperties>LibraryServicePortgetLibrary="arg0__@@__ch.ivy.ws.addon.GetLibraryE__@@__"
 LibraryServicePortgetLibraries="arg0__@@__ch.ivy.ws.addon.GetLibrariesE__@@__"</axisParameterProperties>
             <axisPortList>LibraryServicePort</axisPortList>
@@ -628,11 +497,12 @@ LibraryServicePortgetLibraries="arg0__@@__ch.ivy.ws.addon.GetLibrariesE__@@__"</
             <axisReturnTypes>LibraryServicePortgetLibraries=ch.ivy.ws.addon.GetLibrariesResponseE
 LibraryServicePortgetLibrary=ch.ivy.ws.addon.GetLibraryResponseE</axisReturnTypes>
             <axisServiceClassname>ch.ivy.ws.addon.LibraryServiceService</axisServiceClassname>
-            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\GetLibraries.java","ch\\ivy\\ws\\addon\\GetLibrariesE.java","ch\\ivy\\ws\\addon\\GetLibrariesResponse.java","ch\\ivy\\ws\\addon\\GetLibrariesResponseE.java","ch\\ivy\\ws\\addon\\GetLibrariesResult.java","ch\\ivy\\ws\\addon\\GetLibrary.java","ch\\ivy\\ws\\addon\\GetLibraryE.java","ch\\ivy\\ws\\addon\\GetLibraryResponse.java","ch\\ivy\\ws\\addon\\GetLibraryResponseE.java","ch\\ivy\\ws\\addon\\GetLibraryResult.java","ch\\ivy\\ws\\addon\\IvyLibrary.java","ch\\ivy\\ws\\addon\\LibraryServiceService.java","ch\\ivy\\ws\\addon\\LibraryServiceServiceStub.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
-            <codeGenerationTimestamp>1524014145708</codeGenerationTimestamp>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\GetLibraries.java","ch\\ivy\\ws\\addon\\GetLibrariesE.java","ch\\ivy\\ws\\addon\\GetLibrariesResponse.java","ch\\ivy\\ws\\addon\\GetLibrariesResponseE.java","ch\\ivy\\ws\\addon\\GetLibrariesResult.java","ch\\ivy\\ws\\addon\\GetLibrary.java","ch\\ivy\\ws\\addon\\GetLibraryE.java","ch\\ivy\\ws\\addon\\GetLibraryResponse.java","ch\\ivy\\ws\\addon\\GetLibraryResponseE.java","ch\\ivy\\ws\\addon\\GetLibraryResult.java","ch\\ivy\\ws\\addon\\IvyLibrary.java","ch\\ivy\\ws\\addon\\LibraryServiceService.java","ch\\ivy\\ws\\addon\\LibraryServiceServiceStub.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1524537598702</codeGenerationTimestamp>
             <wsdlWebserviceName>LibraryServiceService</wsdlWebserviceName>
             <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
             <jarPacked>true</jarPacked>
         </wsdlGeneratedInfo>
+        <webServiceVersion/>
     </webServiceConfig>
 </webServiceConfigurationNode>

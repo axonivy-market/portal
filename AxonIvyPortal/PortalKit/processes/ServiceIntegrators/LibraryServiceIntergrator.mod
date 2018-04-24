@@ -1,5 +1,5 @@
 [Ivy]
-16266C24CFBD7885 3.23 #module
+16266C24CFBD7885 3.20 #module
 >Proto >Proto Collection #zClass
 Ar0 LibraryServiceIntergrator Big #zClass
 Ar0 B #cInfo
@@ -52,14 +52,19 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f17 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f17 clientId 16266B7AEB1665F0 #txt
-Ar0 f17 port LibraryServicePort #txt
-Ar0 f17 operation getLibraries #txt
-Ar0 f17 properties 'AXIS.mapNullValues=false;
-AXIS2.autoInitFirstLevelFields=true;
-' #txt
-Ar0 f17 inputParams 'arg0.getLibraries.apps=in.applicationNames;
-' #txt
+Ar0 f17 timeout 0 #txt
+Ar0 f17 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=LibraryServicePort
+KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=getLibraries
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getLibraries.apps__@@__Array<String>__@@__in.applicationNames"""' #txt
 Ar0 f17 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f17 returningObjectList '[wsResponse]' #txt
 Ar0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -67,12 +72,12 @@ Ar0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Call ApplicationService
 with default settings</name>
-        <nameStyle>45
+        <nameStyle>45,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f17 496 292 160 56 -59 -16 #rect
+Ar0 f17 496 298 160 44 -59 -16 #rect
 Ar0 f17 @|WebServiceIcon #fIcon
 Ar0 f15 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
 Ar0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -94,19 +99,19 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f9 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f9 clientId 16266B7AEB1665F0 #txt
-Ar0 f9 port LibraryServicePort #txt
-Ar0 f9 operation getLibraries #txt
-Ar0 f9 properties 'authType="NTLM";
-username=in.server.username;
-password=in.server.password;
-NTLM.domain=in.server.domain;
-NTLM.workstation=in.server.host;
-AXIS.mapNullValues=false;
-AXIS2.autoInitFirstLevelFields=true;
-' #txt
-Ar0 f9 inputParams 'arg0.getLibraries.apps=in.applicationNames;
-' #txt
+Ar0 f9 timeout 0 #txt
+Ar0 f9 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=LibraryServicePort
+KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=getLibraries
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getLibraries.apps__@@__Array<String>__@@__in.applicationNames"""' #txt
 Ar0 f9 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f9 returningObjectList '[wsResponse]' #txt
 Ar0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -115,7 +120,7 @@ Ar0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>Call ApplicationService
 with NTLM Override
 and Global Variable Settings</name>
-        <nameStyle>71
+        <nameStyle>71,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -141,7 +146,7 @@ Ar0 f19 0 0.27380952380952384 -13 0 #arcLabel
 Ar0 f20 expr out #txt
 Ar0 f20 352 350 352 435 #arcP
 Ar0 f22 expr out #txt
-Ar0 f22 576 348 365 448 #arcP
+Ar0 f22 576 342 365 448 #arcP
 Ar0 f22 1 576 448 #addKink
 Ar0 f22 0 0.5636261753528126 0 0 #arcLabel
 Ar0 f0 inParamDecl '<List<java.lang.String> apps,java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
@@ -232,17 +237,19 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f24 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f24 clientId 16266B7AEB1665F0 #txt
-Ar0 f24 port LibraryServicePort #txt
-Ar0 f24 operation getLibraries #txt
-Ar0 f24 properties 'authType="HTTP_BASIC";
-username=in.server.username;
-password=in.server.password;
-AXIS.mapNullValues=false;
-AXIS2.autoInitFirstLevelFields=true;
-' #txt
-Ar0 f24 inputParams 'arg0.getLibraries.apps=in.applicationNames;
-' #txt
+Ar0 f24 timeout 0 #txt
+Ar0 f24 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=LibraryServicePort
+KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=getLibraries
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getLibraries.apps__@@__Array<String>__@@__in.applicationNames"""' #txt
 Ar0 f24 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f24 returningObjectList '[wsResponse]' #txt
 Ar0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -250,7 +257,7 @@ Ar0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Call ApplicationService
 with HTTP Basic</name>
-        <nameStyle>39
+        <nameStyle>39,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -285,7 +292,7 @@ Ar0 f21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f21 366 192 576 292 #arcP
+Ar0 f21 366 192 576 298 #arcP
 Ar0 f21 1 576 192 #addKink
 Ar0 f21 0 0.7986561412607155 -1 -11 #arcLabel
 Ar0 f35 expr out #txt
@@ -324,15 +331,19 @@ out.errors=wsResponse.getLibraryResponse.result.errors;
 out.library=wsResponse.getLibraryResponse.result.library;
 ' #txt
 Ar0 f2 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f2 clientId 16266B7AEB1665F0 #txt
-Ar0 f2 port LibraryServicePort #txt
-Ar0 f2 operation getLibrary #txt
-Ar0 f2 properties 'AXIS.mapNullValues=false;
-AXIS2.autoInitFirstLevelFields=true;
-' #txt
-Ar0 f2 inputParams 'arg0.getLibrary.appName=in.appName;
-arg0.getLibrary.libraryId=in.libraryId;
-' #txt
+Ar0 f2 timeout 0 #txt
+Ar0 f2 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=LibraryServicePort
+KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=getLibrary
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getLibrary.appName__@@__String__@@__in.appName"",""arg0.getLibrary.libraryId__@@__String__@@__in.libraryId"""' #txt
 Ar0 f2 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f2 returningObjectList '[wsResponse]' #txt
 Ar0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -340,12 +351,12 @@ Ar0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Call ApplicationService
 with default settings</name>
-        <nameStyle>45
+        <nameStyle>45,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f2 1273 299 160 56 -59 -16 #rect
+Ar0 f2 1273 305 160 44 -59 -16 #rect
 Ar0 f2 @|WebServiceIcon #fIcon
 Ar0 f3 type ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData #txt
 Ar0 f3 actionDecl 'ch.ivy.add.portalkit.service.integrators.LibraryServiceIntergratorData out;
@@ -355,20 +366,19 @@ out.errors=wsResponse.getLibraryResponse.result.errors;
 out.library=wsResponse.getLibraryResponse.result.library;
 ' #txt
 Ar0 f3 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f3 clientId 16266B7AEB1665F0 #txt
-Ar0 f3 port LibraryServicePort #txt
-Ar0 f3 operation getLibrary #txt
-Ar0 f3 properties 'authType="NTLM";
-username=in.server.username;
-password=in.server.password;
-NTLM.domain=in.server.domain;
-NTLM.workstation=in.server.host;
-AXIS.mapNullValues=false;
-AXIS2.autoInitFirstLevelFields=true;
-' #txt
-Ar0 f3 inputParams 'arg0.getLibrary.appName=in.appName;
-arg0.getLibrary.libraryId=in.libraryId;
-' #txt
+Ar0 f3 timeout 0 #txt
+Ar0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=LibraryServicePort
+KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=getLibrary
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getLibrary.appName__@@__String__@@__in.appName"",""arg0.getLibrary.libraryId__@@__String__@@__in.libraryId"""' #txt
 Ar0 f3 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f3 returningObjectList '[wsResponse]' #txt
 Ar0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -377,7 +387,7 @@ Ar0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>Call ApplicationService
 with NTLM Override
 and Global Variable Settings</name>
-        <nameStyle>71
+        <nameStyle>71,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -395,18 +405,19 @@ out.errors=wsResponse.getLibraryResponse.result.errors;
 out.library=wsResponse.getLibraryResponse.result.library;
 ' #txt
 Ar0 f5 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f5 clientId 16266B7AEB1665F0 #txt
-Ar0 f5 port LibraryServicePort #txt
-Ar0 f5 operation getLibrary #txt
-Ar0 f5 properties 'authType="HTTP_BASIC";
-username=in.server.username;
-password=in.server.password;
-AXIS.mapNullValues=false;
-AXIS2.autoInitFirstLevelFields=true;
-' #txt
-Ar0 f5 inputParams 'arg0.getLibrary.appName=in.appName;
-arg0.getLibrary.libraryId=in.libraryId;
-' #txt
+Ar0 f5 timeout 0 #txt
+Ar0 f5 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=LibraryServicePort
+KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=getLibrary
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getLibrary.appName__@@__String__@@__in.appName"",""arg0.getLibrary.libraryId__@@__String__@@__in.libraryId"""' #txt
 Ar0 f5 exceptionHandler 16266C24CFBD7885-f30-buffer #txt
 Ar0 f5 returningObjectList '[wsResponse]' #txt
 Ar0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -414,7 +425,7 @@ Ar0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Call ApplicationService
 with HTTP Basic</name>
-        <nameStyle>39
+        <nameStyle>39,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -434,8 +445,8 @@ Ar0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ar0 f6 1115 177 28 28 8 -28 #rect
 Ar0 f6 @|AlternativeIcon #fIcon
 Ar0 f7 expr out #txt
-Ar0 f7 1353 355 1141 455 #arcP
-Ar0 f7 1 1353 456 #addKink
+Ar0 f7 1353 349 1142 455 #arcP
+Ar0 f7 1 1353 455 #addKink
 Ar0 f7 0 0.561886529604993 0 0 #arcLabel
 Ar0 f8 expr out #txt
 Ar0 f8 905 349 1116 455 #arcP
@@ -453,7 +464,7 @@ Ar0 f11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f11 1143 191 1353 299 #arcP
+Ar0 f11 1143 191 1353 305 #arcP
 Ar0 f11 1 1353 191 #addKink
 Ar0 f11 0 0.7986561412607155 -1 -11 #arcLabel
 Ar0 f12 expr in #txt

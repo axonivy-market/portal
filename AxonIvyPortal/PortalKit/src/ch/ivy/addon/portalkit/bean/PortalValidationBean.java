@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 
 import ch.ivy.addon.portalkit.datacollecting.service.SingleAppLibraryService;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.util.LibraryUtils;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -37,7 +38,7 @@ public class PortalValidationBean {
     String portalKitVersion = "";
     String portalConnectorVersion = "";
 
-    ILibrary portalKit = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
+    ILibrary portalKit = LibraryUtils.findReleasedLibrary(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
     ILibrary portalConnector = service.findLibraryFromApp(SYSTEM.getValue(), PortalLibrary.PORTAL_CONNECTOR.getValue());
     // for designer
     if (portalConnector == null) {
