@@ -1,2 +1,5 @@
 Data #class
 ch.ivyteam.ivy.project.portal.examples #namespace
+employeeInfo ch.ivyteam.ivy.project.portal.examples.Employee #field
+employeeInfo PERSISTENT #fieldModifier
+userAction ch.ivyteam.ivy.project.portal.examples.enums.UserAction #field
