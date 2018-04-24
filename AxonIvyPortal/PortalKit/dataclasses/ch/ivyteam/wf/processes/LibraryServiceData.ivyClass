@@ -1,0 +1,16 @@
+LibraryServiceData #class
+ch.ivyteam.wf.processes #namespace
+endpoint String #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+ivyLibraries java.util.List<ch.ivy.ws.addon.IvyLibrary> #field
+errors List<ch.ivy.ws.addon.WsException> #field
+listIterator java.util.ListIterator #field
+libraries java.util.List<ch.ivy.addon.portalkit.bo.RemoteLibrary> #field
+apps List<String> #field
+username String #field
+applications List<ch.ivy.ws.addon.IvyApplication> #field
+tempErrors List<ch.ivy.ws.addon.WsException> #field
+library ch.ivy.addon.portalkit.bo.RemoteLibrary #field
+appName String #field
+libraryId String #field
+ivyLibrary ch.ivy.ws.addon.IvyLibrary #field

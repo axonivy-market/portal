@@ -1,0 +1,6 @@
+IvyLibrary #class
+ch.ivy.ws.addon.types #namespace
+projectName String #field
+projectVersion String #field
+application String #field
+id String #field

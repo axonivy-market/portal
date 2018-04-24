@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+	<cc:attribute name="businessEntityId" required="true" />
+	<cc:attribute name="chunkSize" default="20" />
+	<cc:attribute name="scrollHeight" />
+	<cc:attribute name="emptyMessage"
+		default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/defaultEmptyMessage')}" />
+</cc:interface>
+
+<cc:implementation>
+	<h:panelGroup id="widget-column-header" class="process-history-column-header js-case-widget-column-header ">
+		<ui:include src="ColumnHeader.xhtml">
+			<ui:param name="id" value="name-desc-column-header" />
+			<ui:param name="styleClass" value="process-history-list-name-header" />
+			<ui:param name="sortedField" value="NAME" />
+			<ui:param name="sortable" value="true" />
+			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
+		</ui:include>
+		<ui:include src="ColumnHeader.xhtml">
+			<ui:param name="id" value="id-column-header" />
+			<ui:param name="styleClass" value="process-history-list-header-default" />
+			<ui:param name="sortedField" value="ID" />
+			<ui:param name="sortable" value="true" />
+			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}" />
+		</ui:include>
+		<ui:include src="ColumnHeader.xhtml">
+			<ui:param name="id" value="pm-column-header" />
+			<ui:param name="styleClass" value="process-history-list-header-default process-history-list-width-120" />
+			<ui:param name="sortedField" value="PROCESS_NAME" />
+			<ui:param name="sortable" value="true" />
+			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" />
+		</ui:include>
+		<ui:include src="ColumnHeader.xhtml">
+			<ui:param name="id" value="created-date-column-header" />
+			<ui:param name="styleClass" value="process-history-list-header-default" />
+			<ui:param name="sortedField" value="START_TIME" />
+			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
+			<ui:param name="sortable" value="true" />
+		</ui:include>
+		<ui:include src="ColumnHeader.xhtml">
+			<ui:param name="id" value="creator-column-header" />
+			<ui:param name="styleClass" value="process-history-list-header-default process-history-list-width-120" />
+			<ui:param name="sortedField" value="CREATOR" />
+			<ui:param name="sortable" value="true" />
+			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
+		</ui:include>
+		<ui:include src="ColumnHeader.xhtml">
+			<ui:param name="id" value="state-column-header" />
+			<ui:param name="styleClass" value="process-history-list-header-default" />
+			<ui:param name="sortedField" value="STATE" />
+			<ui:param name="sortable" value="true" />
+			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
+		</ui:include>
+	</h:panelGroup>
+	<h:panelGroup id="process-history-list" layout="block" styleClass="process-history-list">
+		<f:event type="preRenderComponent" listener="#{processHistoryBean.initData(cc.attrs.businessEntityId)}" />
+		<p:dataScroller id="case-list-scroller" value="#{processHistoryBean.dataModel}" var="case"
+			scrollHeight="#{cc.attrs.scrollHeight}" chunkSize="#{cc.attrs.chunkSize}" lazy="true" mode="inline"
+			rowIndexVar="rowIndex" styleClass="js-case-list" buffer="70" widgetVar="process-history-scroller">
+			<ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item" enableCaseAction="false"
+				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}"
+				expandCallback="caseWidget.setupHeader();caseWidget.setupCaseBody();">
+				<f:facet name="caseHeader">
+					<h:panelGroup class="case-header-name-desc-cell">
+						<h:outputText styleClass="case-header-name-cell"
+							value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}" />
+					</h:panelGroup>
+					<h:outputText styleClass="process-history-list-cell-default" value="#{case.id}" />
+					<h:outputText styleClass="process-history-list-cell-default process-history-list-width-120"
+						value="#{case.processName}" />
+					<h:outputText value="#{case.startTimestamp}" styleClass="process-history-list-cell-default">
+						<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+					</h:outputText>
+					<ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText
+						styleClass="process-history-list-cell-default process-history-list-width-120" fullname="#{case.creatorFullName}"
+						username="#{case.creatorUserName}" />
+					<h:panelGroup id="case-state-cell" styleClass="process-history-list-cell-default">
+						<h:panelGroup styleClass="fa fa-play-circle case-state-in-progress"
+							rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
+						<h:panelGroup styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="caseBody">
+					<ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+					<ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
+					<ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
+					<ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
+					<ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" />
+					<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="not-display">
+						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+							icon="fa fa-share-alt js-related-task-column-responsive-button" displayedSelectors="['.js-related-task-column']"
+							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
+							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+							icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
+							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
+							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+							icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
+							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
+							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+							icon="fa fa-clipboard js-description-column-responsive-button" displayedSelectors="['.js-description-column']"
+							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
+							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+					</ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+				</f:facet>
+			</ic:ch.ivy.addon.portalkit.component.CaseItem>
+		</p:dataScroller>
+	</h:panelGroup>
+	<h:panelGroup id="process-history-empty-data-panel" rendered="#{processHistoryBean.dataModel.rowCount eq 0}"
+		class="process-history-empty-message">
+		<p:outputLabel value="#{cc.attrs.emptyMessage}" />
+	</h:panelGroup>
+	<h:outputScript name="process-history.js" library="js" />
+	<script type="text/javascript">
+    var caseWidget = new CaseWidget();
+    var processHistory = new processHistory;
+    processHistory.setup();
+    caseWidget.hideListIfEmptyCase(#{processHistoryBean.dataModel.rowCount eq 0});
+  </script>
+</cc:implementation>
+</html>

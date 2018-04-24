@@ -1,0 +1,7 @@
+{
+  /RICH_DIALOG *
+  /PROCESS {
+    /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
+    /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
+  }
+}

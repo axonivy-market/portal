@@ -1,0 +1,8 @@
+ElapsedTimeChartDetailsData #class
+ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails #namespace
+firstRoleToCompare ch.ivy.addon.portalkit.bo.RemoteRole #field
+firstRoleToCompare PERSISTENT #fieldModifier
+secondRoleToCompare ch.ivy.addon.portalkit.bo.RemoteRole #field
+secondRoleToCompare PERSISTENT #fieldModifier
+exportedFileName String #field
+exportedFileName PERSISTENT #fieldModifier

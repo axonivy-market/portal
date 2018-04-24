@@ -1,0 +1,6 @@
+EmployeeInfoPageData #class
+ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage #namespace
+employeeInfo ch.ivyteam.ivy.project.portal.examples.Employee #field
+employeeInfo PERSISTENT #fieldModifier
+userAction ch.ivyteam.ivy.project.portal.examples.enums.UserAction #field
+userAction PERSISTENT #fieldModifier

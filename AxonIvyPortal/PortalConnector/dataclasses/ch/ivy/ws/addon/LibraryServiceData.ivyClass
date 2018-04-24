@@ -1,0 +1,8 @@
+LibraryServiceData #class
+ch.ivy.ws.addon #namespace
+apps java.util.List<String> #field
+errors List<ch.ivy.ws.addon.WSException> #field
+libraries List<ch.ivy.ws.addon.types.IvyLibrary> #field
+library ch.ivy.ws.addon.types.IvyLibrary #field
+appName String #field
+libraryId String #field

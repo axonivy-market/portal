@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+
+<!-- In this HTML dialog, we override task list header, task header, task filter, and task body -->
+
+  <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
+    <ui:param name="menuState" value="#{data.menuState}" />
+    <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
+    <ui:param name="isNotRequiredLogin" value="false" />
+    <ui:param name="useOverrideListHeader" value="true" />
+    <ui:param name="useOverrideHeader" value="true" />
+    <ui:param name="useOverrideFilter" value="true" />
+    <ui:param name="useOverrideBody" value="true" />
+
+    <ui:define name="taskListHeader">
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customVarcharField5"
+        value="#{ivy.cms.co('/DefaultColumns/customVarcharField5')}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
+        value="#{ivy.cms.co('/DefaultColumns/customTimestampField1')}" />
+    </ui:define>
+
+    <ui:define name="taskHeader">
+      <!-- Flexbox is applied, so please set your column's width by flex style. The TaskName column takes the remaining width. -->
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}"
+        dataModel="#{taskView.dataModel}" />
+      <div class="task-start-info">
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}"
+          isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
+      </div>
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
+        fullName="#{task.activatorFullName}" styleClass="hidden-sm" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
+        value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}"
+        rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
+        value="#{task.expiryTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}"
+        rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.state}" />
+
+      <!-- New field -->
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
+        labelValue="#{task.customVarCharField5}" />
+      <h:outputText id="shipment-date" styleClass="TexAlCenter custom-datetime" value="#{task.customTimestampField1}" rendered="#{taskView.dataModel.isSelectedColumn('customTimestampField1')}" >
+        <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+      </h:outputText>
+    </ui:define>
+
+    <ui:define name="taskFilter">
+      <c:set var="filterContainer" value="#{taskView.dataModel.filterContainer}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCreationDateFilter
+        filter="#{filterContainer.creationDateFilter}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskExpiredDateFilter
+        filter="#{filterContainer.expiredDateFilter}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskDescriptionFilter
+        filter="#{filterContainer.descriptionFilter}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter
+        filter="#{filterContainer.responsibleFilter}" dataModel="#{taskView.dataModel}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="customer-name-filter"
+        dataModel="#{taskView.dataModel}" taskFilter="#{filterContainer.customerNameFilter}">
+        <p:inputText id="customVarChar5" value="#{filterContainer.customerNameFilter.customerName}" />
+      </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="shipment-date-filter"
+        dataModel="#{taskView.dataModel}" taskFilter="#{filterContainer.shipmentDateFilter}"
+        dismissableOverlayPanel="false" >
+        <h:panelGrid columns="3">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
+            for="from-shipment-calendar" />
+          <p:spacer width="5" />
+          <p:calendar id="from-shipment-calendar" value="#{filterContainer.shipmentDateFilter.fromShipmentDate}"
+            pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+            converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
+            for="to-shipment-calendar" />
+          <p:spacer width="5" />
+          <p:calendar id="to-shipment-calendar" value="#{filterContainer.shipmentDateFilter.toShipmentDate}"
+            pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+            converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+        </h:panelGrid>
+      </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
+    </ui:define>
+
+    <ui:define name="taskBody">
+        <!-- Reuse some components -->
+        <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-description" task="#{task}"
+          descriptionComponentToUpdate="#{p:component('task-description')}" />
+        <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="task-general-info" task="#{task}"
+          priorityComponentToUpdate="#{p:component('task-priority')}"
+          componentToUpdate="#{p:component('task-details-notes')}" />
+        <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
+        
+        <!-- Add new panel -->
+        <div class="task-details-item custom-task-details-panel">
+          <p>Custom panel</p>
+        </div>
+    </ui:define>
+    
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="examples.css" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

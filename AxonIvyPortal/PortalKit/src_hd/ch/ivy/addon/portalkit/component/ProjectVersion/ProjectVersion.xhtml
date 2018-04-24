@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}" class="ui-g project-version-container">
+    <div class="ui-g-3">
+      <h:outputText id="engine-version-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/engineVersion')}:" />
+    </div>
+    <div class="ui-g-9">
+      <h:outputText id="engine-version" value="#{projectVersionBean.engineVersion}" />
+    </div>
+
+    <div class="ui-g-3">
+      <h:outputText id="portal-version-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/portalVersion')}:" />
+    </div>
+    <div class="ui-g-9">
+      <h:outputText id="portal-version" value="#{projectVersionBean.portalVersion}" />
+    </div>
+
+    <h:panelGroup rendered="#{not empty projectVersionBean.projectLibraries}">
+      <ui:repeat id="application-list" value="#{projectVersionBean.projectLibraries.entrySet().toArray()}" var="entry">
+        <div class="ui-g-3">
+          <h:outputText id="application-name" value="#{entry.key}:" />
+        </div>
+        <div class="ui-g-9">
+          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
+              <h:outputText id="project-name" value="#{library.projectName}" />
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}">
+              <h:outputText id="project-version" value="#{library.projectVersion}" />
+            </p:column>
+          </p:dataTable>
+        </div>
+      </ui:repeat>
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+</html>

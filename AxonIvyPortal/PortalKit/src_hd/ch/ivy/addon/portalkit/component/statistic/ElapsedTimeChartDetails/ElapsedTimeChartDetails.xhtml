@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="selectedCaseCategory" required="true" />
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.selectedCaseCategory, cc.attrs.statisticChart)}" type="preRenderComponent" />
+  <f:event listener="#{data.setFirstRoleToCompare(elapsedTimeDetailsBean.defaultRole)}" type="preRenderComponent" />
+  <f:event listener="#{data.setSecondRoleToCompare(elapsedTimeDetailsBean.defaultRole)}" type="preRenderComponent" />
+  <h:form id="compare-elapsed-time-form">
+    <h:panelGrid id="compare-items-panel" styleClass="compare-items-panel" columns="1">
+      <h:panelGrid id="compare-roles-panel" styleClass="compare-roles-panel" columns="2">
+
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/compareRole')}" />
+        <p:selectOneMenu value="#{data.firstRoleToCompare}" id="first-role-to-compare" filter="true" filterMatchMode="contains" converter="ivy.ListItem">
+          <f:selectItems value="#{elapsedTimeDetailsBean.rolesForCompareElapsedTime}" var="member" itemLabel="#{member.displayName}" itemValue="#{member}" />
+        </p:selectOneMenu>
+  
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/withRole')}" />
+          <p:selectOneMenu value="#{data.secondRoleToCompare}" id="second-role-to-compare" filter="true" filterMatchMode="contains" converter="ivy.ListItem">
+            <f:selectItems value="#{elapsedTimeDetailsBean.rolesForCompareElapsedTime}" var="member" itemLabel="#{member.displayName}" itemValue="#{member}" />
+          </p:selectOneMenu>
+      </h:panelGrid>
+
+      <p:commandButton id="compare-elapsed-time-button" styleClass="compare-elapsed-time-button" update="compare-elapsed-time-form"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/compareButton')}"
+          actionListener="#{elapsedTimeDetailsBean.compare(data.firstRoleToCompare, data.secondRoleToCompare)}" />
+    </h:panelGrid>
+
+    <p:spacer height="30" />
+    <p:chart id="elapsed-tasks-chart" type="bar" rendered="#{!elapsedTimeDetailsBean.getDataEmpty()}"
+      styleClass="big-horizontal-statistic-chart" model="#{elapsedTimeDetailsBean.elapsedTimeOfTasksModel}" />
+
+    <p:spacer height="30" />
+
+    <h:panelGrid id="compare-result-panel" styleClass="compare-result-panel" columns="1">
+      <p:commandButton id="export-button" ajax="false" styleClass="export-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
+        <p:dataExporter type="xls" target="compare-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
+      </p:commandButton>
+
+      <p:dataTable  id="compare-table" widgetVar="comparisonTable" value="#{elapsedTimeDetailsBean.comparisonDataModel}"
+        var="comparison" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/noEntriesFound')}"
+        scrollable="true" scrollHeight="200">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/taskCategory')}">
+          <h:outputText value="#{comparison.category}" />
+        </p:column>
+        <p:column headerText="#{data.firstRoleToCompare.displayName}">
+          <h:outputText value="#{comparison.elapsedTimeOfFirstRole}" />
+        </p:column>
+        <p:column headerText="#{data.secondRoleToCompare.displayName}">
+          <h:outputText value="#{comparison.elapsedTimeOfSecondRole}" />
+        </p:column>
+      </p:dataTable>
+    </h:panelGrid>
+
+  </h:form>
+</cc:implementation>
+</html>

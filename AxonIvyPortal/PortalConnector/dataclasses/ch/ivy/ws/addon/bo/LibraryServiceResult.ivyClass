@@ -1,0 +1,5 @@
+LibraryServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+libraries java.util.List<ch.ivy.ws.addon.types.IvyLibrary> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+library ch.ivy.ws.addon.types.IvyLibrary #field
