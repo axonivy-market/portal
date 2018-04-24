@@ -102,7 +102,7 @@ Es0 f6 actionTable 'out=in;
 out.userAction=ch.ivyteam.ivy.project.portal.examples.enums.UserAction.SAVE;
 ' #txt
 Es0 f6 actionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
-out.employeeInfo = ivy.persistence.employee.merge(out.employeeInfo) as Employee; 
+out.employeeInfo = ivy.persistence.PersistenceSample.merge(out.employeeInfo) as Employee; 
 
 ' #txt
 Es0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -212,7 +212,7 @@ Es0 f19 actionTable 'out=in;
 ' #txt
 Es0 f19 actionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
 
-out.employeeInfo = ivy.persistence.employee.merge(out.employeeInfo) as Employee; 
+out.employeeInfo = ivy.persistence.PersistenceSample.merge(out.employeeInfo) as Employee; 
 ' #txt
 Es0 f19 security system #txt
 Es0 f19 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
@@ -241,7 +241,7 @@ Es0 f8 actionTable 'out=in;
 ' #txt
 Es0 f8 actionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
 
-out.employeeInfo = ivy.persistence.employee.merge(out.employeeInfo) as Employee; 
+out.employeeInfo = ivy.persistence.PersistenceSample.merge(out.employeeInfo) as Employee; 
 ' #txt
 Es0 f8 security system #txt
 Es0 f8 type ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage.EmployeeInfoPageData #txt
