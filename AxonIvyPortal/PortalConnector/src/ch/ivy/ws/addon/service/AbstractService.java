@@ -38,7 +38,7 @@ public abstract class AbstractService {
   /**
    * @param apps
    * @param username
-   * @return
+   * @return list of {@link IUser}
    * @throws Exception
    */
   protected List<IUser> findUsers(final java.util.List<String> apps, final String username) throws Exception {
@@ -160,7 +160,7 @@ public abstract class AbstractService {
   /**
    * 
    * @param username
-   * @return
+   * @return user workflow session
    * @throws Exception
    */
   protected IWorkflowSession findUserWorkflowSession(final String username, final IApplication app) throws Exception {
@@ -189,7 +189,7 @@ public abstract class AbstractService {
   /**
    * 
    * @param name
-   * @return
+   * @return application
    * @throws Exception
    */
   protected IvyApplication isApplicationActive(final String name) throws Exception {
@@ -214,7 +214,7 @@ public abstract class AbstractService {
   /**
    * Returns String representation of given List<String> items. String are separated by ", ".
    * 
-   * @param java .util.List<String> dataList
+   * @param dataList
    * @return String resultData
    */
   protected String parseList(java.util.List<String> dataList) {

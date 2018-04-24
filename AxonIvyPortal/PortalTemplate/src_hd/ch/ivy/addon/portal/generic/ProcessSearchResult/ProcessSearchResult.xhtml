@@ -11,7 +11,7 @@
 <cc:implementation>
 
   <p:commandLink actionListener="#{logic.startProcess(cc.attrs.foundProcess.startLink)}" id="found-process"
-    value="#{cc.attrs.foundProcess.displayName}" styleClass="Fs15 u-truncate-text" />
-  <p:tooltip for="found-process" value="#{cc.attrs.foundProcess.description}" escape="false" trackMouse="true" />
+    value="#{cc.attrs.foundProcess.displayName}" styleClass="Fs15 u-truncate-text search-result-item" />
+  <p:tooltip for="found-process" value="#{cc.attrs.foundProcess.description}" trackMouse="true" />
 </cc:implementation>
 </html>

@@ -336,7 +336,7 @@ Cs0 f16 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseIte
 ' #txt
 Cs0 f16 actionTable 'out=in;
 ' #txt
-Cs0 f16 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+Cs0 f16 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
@@ -357,7 +357,7 @@ if(in.remoteCase.isBusinessCase()){
 	queryCriteria.setQueryByBusinessCaseId(true);
 }
 out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();
-out.taskSearchCriteria.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+out.taskSearchCriteria.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission());
 out.taskSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());' #txt
 Cs0 f16 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

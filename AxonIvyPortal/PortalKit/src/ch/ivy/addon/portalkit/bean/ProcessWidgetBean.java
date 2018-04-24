@@ -4,21 +4,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
 import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
+import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
@@ -33,20 +35,20 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
-public class ProcessWidgetBean implements Serializable {
+public class ProcessWidgetBean implements Serializable, Converter {
 
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
-  private static final String EXPRESS_WORKFLOW_ID_PARAM ="?workflowID=";
+  private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private static final long serialVersionUID = -5889375917550618261L;
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
   private List<UserProcess> userProcesses;
+  private List<UserProcess> defaultUserProcesses;
   private boolean compactMode;
-  private boolean deleteMode;
+  private boolean editMode;
   private String userName;
   private List<UserProcess> selectedUserProcesses;
   private List<RemoteWebStartable> webStartables;
@@ -59,9 +61,12 @@ public class ProcessWidgetBean implements Serializable {
     userProcessService = new UserProcessService();
     String compactModeAttribute = Attrs.currentContext().get("compactMode");
     compactMode = compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
-    deleteMode = false;
+    editMode = false;
     selectedUserProcesses = new ArrayList<UserProcess>();
     userName = UserUtils.getSessionUserName();
+    if (compactMode) {
+      defaultUserProcesses = findDefaultProcessUserCanStart();
+    }
     userProcesses = findUserProcessBaseOnUIMode(compactMode);
 
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
@@ -72,21 +77,13 @@ public class ProcessWidgetBean implements Serializable {
     }
   }
 
-  private List<UserProcess> findFavoriteProcessUserCanStart() {
-
+  private List<UserProcess> findDefaultProcessUserCanStart() {
     IvyComponentLogicCaller<List<UserProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-
-    List<UserProcess> userProcesses =
+    List<UserProcess> processes =
         ivyComponentLogicCaller.invokeComponentLogic(processWidgetComnponentId, "#{logic.collectDefaultProcesses}",
             new Object[] {});
-
-    userProcesses.forEach(defaultProcess -> {
-        defaultProcess.setUserName(userName);
-        defaultProcess.setDefaultProcess(true);
-    });
-
-    userProcesses.addAll(userProcessService.findByUserName(userName));
-    return userProcesses;
+    processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
+    return processes;
   }
 
   private List<UserProcess> findAllProcesses() {
@@ -95,9 +92,9 @@ public class ProcessWidgetBean implements Serializable {
         new Object[] {});
   }
 
-  public void preRenderProcessAutoComplete(List<RemoteWebStartable> webStartables) {
+  public void preRenderProcessAutoComplete(List<RemoteWebStartable> remoteWebStartables) {
     if (this.webStartables == null) {
-      this.webStartables = webStartables;
+      this.webStartables = remoteWebStartables;
     }
   }
 
@@ -111,10 +108,22 @@ public class ProcessWidgetBean implements Serializable {
     userProcesses = findUserProcessBaseOnUIMode(compactMode);
   }
 
-  private List<UserProcess> findUserProcessBaseOnUIMode(Boolean compactMode) {
-    List<UserProcess> userProcesses = compactMode ? findFavoriteProcessUserCanStart() : findAllProcesses();
-    sortUserProcessList(userProcesses);
-    return userProcesses;
+  private List<UserProcess> findUserProcessBaseOnUIMode(Boolean isCompactMode) {
+    List<UserProcess> processes = isCompactMode ? userProcessService.findByUserName(userName) : findAllProcesses();
+    if (!isCompactMode) {
+      sortUserProcessList(processes);
+    } else {
+      processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
+    }
+    return processes;
+  }
+
+  private void setIndex(List<UserProcess> userProcesses) {
+    int index = 0;
+    for (UserProcess process : userProcesses) {
+      process.setIndex(index);
+      index++;
+    }
   }
 
   public void addNewUserProcess(String clientId) {
@@ -124,9 +133,9 @@ public class ProcessWidgetBean implements Serializable {
 
   public void saveNewUserProcess() {
     correctProcessLink();
+    editingProcess.setIndex(userProcesses.size());
     editingProcess = userProcessService.save(editingProcess);
     userProcesses.add(editingProcess);
-    sortUserProcessList(userProcesses);
   }
 
   private void correctProcessLink() {
@@ -149,7 +158,7 @@ public class ProcessWidgetBean implements Serializable {
             .stream()
             .filter(
                 webStartable -> StringUtils.containsIgnoreCase(webStartable.getDisplayName(), query)
-                    && !isUserProcess(webStartable))
+                    && !isUserProcess(webStartable) && !isDefaultUserProcess(webStartable))
             .map(
                 webStartable -> new UserProcess(stripHtmlTags(webStartable.getDisplayName()), userName, webStartable
                     .getStartLink())).collect(Collectors.toList());
@@ -158,16 +167,16 @@ public class ProcessWidgetBean implements Serializable {
     return filteredUserProcesses;
   }
 
-  private void sortUserProcessList(List<UserProcess> userProcesses) {
-    userProcesses.sort((process1, process2) -> process1.getProcessName().toLowerCase()
+  public void sortUserProcessList(List<UserProcess> processes) {
+    processes.sort((process1, process2) -> process1.getProcessName().toLowerCase()
         .compareTo(process2.getProcessName().toLowerCase()));
   }
 
   private List<UserProcess> getFilteredExpressWorkflows(String query) {
     List<UserProcess> workflow = new ArrayList<>();
     List<ExpressProcess> workflows =
-        ExpressServiceRegistry.getProcessService().findAllOrderByName().stream().filter(wf -> !isUserProcess(wf))
-            .collect(Collectors.toList());
+        ExpressServiceRegistry.getProcessService().findAllOrderByName().stream()
+            .filter(wf -> !isUserProcess(wf) && !isDefaultUserProcess(wf)).collect(Collectors.toList());
     for (ExpressProcess wf : workflows) {
       if (canStartWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
         workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf)));
@@ -178,9 +187,12 @@ public class ProcessWidgetBean implements Serializable {
 
   private boolean canStartWorkflow(ExpressProcess workflow) {
     boolean isWorkflowAssignee = false;
-    ISecurityMember permittedRole = Ivy.request().getApplication().getSecurityContext().findSecurityMember(workflow.getProcessPermission());
-    if(!Objects.isNull(permittedRole)) {
-      isWorkflowAssignee = permittedRole.isUser() ? Ivy.session().canActAsUser((IUser) permittedRole) : Ivy.session().hasRole((IRole) permittedRole, false); 
+    ISecurityMember permittedRole =
+        Ivy.request().getApplication().getSecurityContext().findSecurityMember(workflow.getProcessPermission());
+    if (!Objects.isNull(permittedRole)) {
+      isWorkflowAssignee =
+          permittedRole.isUser() ? Ivy.session().canActAsUser((IUser) permittedRole) : Ivy.session().hasRole(
+              (IRole) permittedRole, false);
     }
     IUser owner = Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1));
     return isWorkflowAssignee
@@ -203,8 +215,19 @@ public class ProcessWidgetBean implements Serializable {
         userProcess -> ((userProcess.getLink().toLowerCase()).contains(webStartable.getStartLink().toLowerCase())));
   }
 
+  private boolean isDefaultUserProcess(RemoteWebStartable webStartable) {
+    return defaultUserProcesses.stream().anyMatch(
+        userProcess -> ((userProcess.getLink().toLowerCase()).contains(webStartable.getStartLink().toLowerCase())));
+  }
+
   private boolean isUserProcess(ExpressProcess workflow) {
     return userProcesses.stream().anyMatch(
+        userProcess -> ((userProcess.getLink().toLowerCase()).contains(generateWorkflowStartLink(workflow)
+            .toLowerCase())));
+  }
+
+  private boolean isDefaultUserProcess(ExpressProcess workflow) {
+    return defaultUserProcesses.stream().anyMatch(
         userProcess -> ((userProcess.getLink().toLowerCase()).contains(generateWorkflowStartLink(workflow)
             .toLowerCase())));
   }
@@ -214,7 +237,7 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   public String getProcessDescription(String userProcessName) {
-    for (IWebStartable webStartable : webStartables) {
+    for (RemoteWebStartable webStartable : webStartables) {
       if (webStartable.getDisplayName().equals(userProcessName)) {
         return webStartable.getDescription();
       }
@@ -238,55 +261,51 @@ public class ProcessWidgetBean implements Serializable {
     return compactMode;
   }
 
-  public void switchDeleteMode() {
-    deleteMode = !deleteMode;
+  public void switchEditMode() {
+    editMode = !editMode;
+    userProcesses.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     clearSelectedUserProcess();
   }
 
-  public boolean isDeleteMode() {
-    return deleteMode;
+  public boolean isEditMode() {
+    return editMode;
   }
 
-  public void deleteSelectedProcess() {
-    List<UserProcess> defaultUserProcesses =
-        selectedUserProcesses.stream().filter(userProcess -> userProcess.isDefaultProcess())
-            .collect(Collectors.toList());
-    if (!defaultUserProcesses.isEmpty()) {
-      userProcessService.saveAll(defaultUserProcesses);
+  public void saveProcesses() {
+    if (!selectedUserProcesses.isEmpty()) {
+      userProcessService.deleteAll(selectedUserProcesses);
     }
-
-    @SuppressWarnings("unchecked")
-    List<UserProcess> nonDefaultUserProcesses =
-        (List<UserProcess>) CollectionUtils.subtract(selectedUserProcesses, defaultUserProcesses);
-    if (!nonDefaultUserProcesses.isEmpty()) {
-      userProcessService.deleteAll(nonDefaultUserProcesses);
-    }
-
     userProcesses.removeAll(selectedUserProcesses);
-    deleteMode = false;
+    setIndex(userProcesses);
+    userProcessService.saveAll(userProcesses);
+    editMode = false;
   }
 
   private void clearSelectedUserProcess() {
     selectedUserProcesses.clear();
   }
 
-  public void selectDeletingProcess(AjaxBehaviorEvent event) {
-    SelectBooleanCheckbox booleanCheckbox = (SelectBooleanCheckbox) event.getComponent();
-    UserProcess selectedUserProcess = (UserProcess) booleanCheckbox.getAttributes().get("selectedProcess");
-    if (booleanCheckbox.isSelected()) {
-      boolean processExisted =
-          selectedUserProcesses.stream()
-              .filter(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink())).findAny().isPresent();
-      if (!processExisted) {
-        selectedUserProcesses.add(selectedUserProcess);
+  public void selectDeletingProcess() {
+    String processId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("processId");
+    boolean isMarkedAsDeleting = isProcessMarkedAsDeleting(processId);
+    if (!isMarkedAsDeleting) {
+      Optional<UserProcess> selectedUserProcess =
+          userProcesses.stream().filter(userProcess -> userProcess.getId().toString().equals(processId)).findFirst();
+      if (selectedUserProcess.isPresent()) {
+        selectedUserProcesses.add(selectedUserProcess.get());
       }
     } else {
-      selectedUserProcesses.removeIf(userProcess -> userProcess.getLink().equals(selectedUserProcess.getLink()));
+      selectedUserProcesses.removeIf(userProcess -> userProcess.getId().toString().equals(processId));
     }
   }
 
-  public void cancelDeletingProcess() {
-    deleteMode = false;
+  public boolean isProcessMarkedAsDeleting(String processId) {
+    return selectedUserProcesses.stream().filter(userProcess -> userProcess.getId().toString().equals(processId))
+        .findAny().isPresent();
+  }
+
+  public void cancelEditingProcess() {
+    editMode = false;
     clearSelectedUserProcess();
   }
 
@@ -298,16 +317,16 @@ public class ProcessWidgetBean implements Serializable {
     this.selectedUserProcesses = selectedUserProcesses;
   }
 
-  public boolean isExpressWorkflow (UserProcess process) {
+  public boolean isExpressWorkflow(UserProcess process) {
     return !StringUtils.isBlank(process.getWorkflowId());
   }
 
-  public String getEditLinkOfExpressWorkflow (UserProcess process) {
+  public String getEditLinkOfExpressWorkflow(UserProcess process) {
     String editLink = Ivy.html().startref("Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp");
     return editLink + EXPRESS_WORKFLOW_ID_PARAM + process.getWorkflowId();
   }
 
-  public void deleteExpressWorkflow () {
+  public void deleteExpressWorkflow() {
     String workflowId = editingProcess.getWorkflowId();
     ExpressServiceRegistry.getProcessService().delete(workflowId);
     ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
@@ -322,7 +341,8 @@ public class ProcessWidgetBean implements Serializable {
       public String call() throws Exception {
         if (createExpressWorkflowProcessStart != null) {
           return RequestUriFactory.createProcessStartUri(
-              ServerFactory.getServer().getApplicationConfigurationManager(), createExpressWorkflowProcessStart).toString();
+              ServerFactory.getServer().getApplicationConfigurationManager(), createExpressWorkflowProcessStart)
+              .toString();
         }
         return StringUtils.EMPTY;
       }
@@ -333,8 +353,7 @@ public class ProcessWidgetBean implements Serializable {
     return createExpressWorkflowProcessStart;
   }
 
-  public void setCreateExpressWorkflowProcessStart(
-      IProcessStart createExpressWorkflowProcessStart) {
+  public void setCreateExpressWorkflowProcessStart(IProcessStart createExpressWorkflowProcessStart) {
     this.createExpressWorkflowProcessStart = createExpressWorkflowProcessStart;
   }
 
@@ -343,7 +362,50 @@ public class ProcessWidgetBean implements Serializable {
     return result;
   }
 
-  public boolean isExpressWorkflowLink (String link) {
+  public boolean isExpressWorkflowLink(String link) {
     return !StringUtils.isBlank(link) && link.contains(EXPRESS_WORKFLOW_ID_PARAM);
   }
+
+  public void resetEditingProcess() {
+    if (editingProcess.isExternalLink()) {
+      editingProcess.setUserName(userName);
+    }
+    editingProcess.setProcessName(StringUtils.EMPTY);
+    editingProcess.setLink(StringUtils.EMPTY);
+  }
+
+  public void setDefaultUserProcesses(List<UserProcess> defaultUserProcesses) {
+    this.defaultUserProcesses = defaultUserProcesses;
+  }
+
+  public List<UserProcess> getDefaultUserProcesses() {
+    return defaultUserProcesses;
+  }
+
+  public void setUserProcesses(List<UserProcess> userProcesses) {
+    this.userProcesses = userProcesses;
+  }
+
+  @Override
+  public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    if (value.isEmpty()) {
+      return null;
+    }
+    for (UserProcess item : userProcesses) {
+      if (item.getId().toString().equals(value)) {
+        return item;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public String getAsString(FacesContext context, UIComponent component, Object value) {
+    if (value == null) {
+      return "";
+    }
+    UserProcess process = (UserProcess) value;
+    return process.getId() == null ? "" : process.getId().toString();
+  }
+
 }

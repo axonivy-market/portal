@@ -17,6 +17,7 @@
 		<ui:param name="showCaseStatusInfoTab" value="false" />
 		<ui:param name="showHistoryTab" value="false" />
 		<ui:param name="showDocumentTab" value="false" />
+		<ui:param name="isNotRequiredLogin" value="false" />
 
 		<ui:define name="login">
 			<ic:internaltest.ui.CustomLogin />
@@ -45,7 +46,7 @@
 					<p:inputText id="cancelReason" value="#{data.cancelReason}"></p:inputText>
 				</h:panelGrid>
 				 <h:panelGroup styleClass="MarTop20 DispBlock">
-					<p:commandButton value="Submit" styleClass="portal-ok-button"
+					<p:commandButton value="Submit" styleClass=""
 						icon="fa fa-paper-plane" actionListener="#{logic.cancelApprovalRequest(ivy.case.getBusinessCase().getId())}" />
 					<p:spacer width="5px"/>
 	      		</h:panelGroup>

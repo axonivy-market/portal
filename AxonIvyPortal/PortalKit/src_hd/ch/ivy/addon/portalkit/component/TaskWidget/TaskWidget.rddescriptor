@@ -2,10 +2,6 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>filter</name>
-        <description></description>
-    </method>
-    <method>
         <name>sortByPriority</name>
         <description></description>
     </method>
@@ -68,10 +64,6 @@
             <parameterType>java.lang.Long</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
-    </method>
-    <method>
-        <name>storeConfiguration</name>
-        <description></description>
     </method>
     <method>
         <name>deleteFilter</name>

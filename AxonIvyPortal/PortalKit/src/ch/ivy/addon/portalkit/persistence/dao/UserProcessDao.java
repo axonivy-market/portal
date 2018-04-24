@@ -31,17 +31,4 @@ public class UserProcessDao extends AbstractDao<UserProcess> {
             ObjectFilter.eqBoolean(EntityProperty.DEFAULT_PROCESS.toString(), false));
     return new ArrayList<>(userProcesses);
   }
-
-  @SuppressWarnings("unchecked")
-  @ExecuteAsSystem
-  public List<UserProcess> findDeletedDefaultProcessesByUserName(String userName) {
-    repo =
-        Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.USER_NAME.toString())
-            .build(long.class, UserProcess.class).init(findAll());
-
-    List<UserProcess> userProcesses =
-        repo.query(ObjectFilter.eq(EntityProperty.USER_NAME.toString(), userName),
-            ObjectFilter.eqBoolean(EntityProperty.DEFAULT_PROCESS.toString(), true));
-    return new ArrayList<>(userProcesses);
-  }
 }

@@ -86,6 +86,7 @@ UserProcess userProcess = new UserProcess();
 userProcess.setLink(&lt;PROCESS_LINK&gt;); //Absolute path or relative path starts with: /&lt;CONTEXT_PATH&gt;/pro/...
 userProcess.setProcessName(&lt;PROCESS_NAME&gt;);
 userProcess.setIcon(&lt;PROCESS_ICON&gt;); //Icons in Font Awesome
+userProcess.setIndex(1); // Set the index of the process on the default process list
 
 in.defaultUserProcesses.add(userProcess);
 
@@ -94,13 +95,21 @@ OUT: defaultUserProcesses: List&lt;UserProcess&gt;
 HINT: how to build a process url
 - Absolute path: ivy.html.startref(...)
 - Relative path: RequestUriFactory.createProcessStartUri(...)
-</name>
-        <nameStyle>521
+- The default processes are sorted by their index attribute. If this attribute is not set, the process will be put at the bottom of the list.
+- We provide method to get startable link by UserFriendlyRequestPath (If user don''t have permission to start this link, the method will return empty string)
+ProcessStartCollector.findStartableLinkByUserFriendlyRequestPath(...)
+Example: 
+ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+String newEmployeeLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
+        <nameStyle>748,7
+226,7
+1,7
+223,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 184 98 624 252 -304 -120 #rect
+Ds0 f5 264 50 832 348 -413 -168 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt

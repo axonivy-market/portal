@@ -20,7 +20,7 @@ import ch.ivy.addon.portal.generic.common.TreeNodeType;
 import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -59,7 +59,7 @@ public class CaseMenuBean implements Serializable {
   }
 
   private void addCasesMenuItem(PortalCaseMenuData portalCaseMenuData, String menuState) {
-    if (CaseUtils.checkReadAllCasesPermission()) {
+    if (PermissionUtils.checkReadAllCasesPermission()) {
       DefaultTreeNode allCaseNode = buildAllCaseTree(portalCaseMenuData.getAllCaseCategories(), menuState);
       allCaseNode.setParent(rootNode);
       rootNode.getChildren().add(allCaseNode);

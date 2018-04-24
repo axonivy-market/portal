@@ -32,25 +32,24 @@
       </p:column>
 
       <p:column id="case-id-header" width="80" filterBy="#{task.caseId}" filterMatchMode="contains"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/case')} #" sortBy="#{task.caseId}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')} #" sortBy="#{task.caseId}">
         <h:outputText value=" #{task.caseId}" id="case-id-value" />
       </p:column>
 
       <p:column id="task-description-header" width="200" filterBy="#{task.description}" filterMatchMode="contains"
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}"
         sortBy="#{task.description}">
-        <h:outputText value="#{task.description}" id="task-description-value" title="#{task.description}" escape="false" />
+        <h:outputText value="#{task.description}" id="task-description-value" title="#{task.description}" />
       </p:column>
 
       <p:column id="case-description-header" width="200" filterBy="#{task.caseDescription}" filterMatchMode="contains"
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/caseDescription')}"
         sortBy="#{task.caseDescription}">
-        <h:outputText value="#{task.caseDescription}" id="case-description-value" title="#{task.caseDescription}"
-          escape="false" />
+        <h:outputText value="#{task.caseDescription}" id="case-description-value" title="#{task.caseDescription}" />
       </p:column>
 
       <p:column id="created-date-header" width="150" filterBy="#{task.createdOn}" filterMatchMode="contains"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/createdOn')}" sortBy="#{task.caseDescription}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" sortBy="#{task.caseDescription}">
         <h:outputText value="#{task.createdOn}" id="created-date-value">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
@@ -65,7 +64,7 @@
 
       <p:column id="responsible-header" width="180"
         filterBy="#{task.activator.getDisplayName() !=''? task.activator.getDisplayName() :task.activator.getName()}"
-        filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/responsibe')}"
+        filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
         sortBy="#{task.activator.getDisplayName() !=''? task.activator.getDisplayName() :task.activator.getName()}">
         <span class="#{taskBean.checkActivator(task.activator.isUser())}" />
         <h:outputText id="responsible-value"
@@ -73,7 +72,7 @@
       </p:column>
 
       <p:column styleClass="TexAlCenter" width="100"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/actions')}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}">
         <p:commandLink id="show-detail" styleClass="fa fa-eye"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}"
           actionListener="#{logic.taskDetail(task.ivyTask)}" update=":#{p:component('taskInforDialog')}"

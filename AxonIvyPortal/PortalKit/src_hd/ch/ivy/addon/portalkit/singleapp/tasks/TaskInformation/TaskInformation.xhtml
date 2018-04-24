@@ -27,8 +27,8 @@
 
 <cc:implementation>
   <div id="#{cc.clientId}">
-    <c:set var="isTaskAbleToChangeDeadline" value="#{(taskBean.isTaskAbleToChangeDeadline(cc.attrs.task))}" scope="view" />
-    <c:set var="isTaskAbleToChangePriority" value="#{(taskBean.isTaskAbleToChangePriority(cc.attrs.task))}" scope="view" />
+    <c:set var="isTaskAbleToChangeDeadline" value="#{taskBean.isTaskAbleToChangeDeadline(cc.attrs.task)}" scope="view" />
+    <c:set var="isTaskAbleToChangePriority" value="#{taskBean.isTaskAbleToChangePriority(cc.attrs.task)}" scope="view" />
     <script>
           function openTaskId() {
             var cookie = getCookie('action');
@@ -84,7 +84,7 @@
                   actionListener="#{logic.buttonDelegateClicked}" update=":#{p:component('task-information-container')}" />
                 <p:spacer width="5px" rendered="#{(taskBean.isDelegatable(cc.attrs.task))}" />
                 <p:commandButton id="reserve-task-command"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTask')}" process="@this"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" process="@this"
                   actionListener="#{logic.parkTask(cc.attrs.task)}"
                   update="msgTaskInfo task-detail-container top-button-header :#{p:component('task-comment-form')}"
                   rendered="#{'DONE' == cc.attrs.task.getState() ? false : !('PARKED' == cc.attrs.task.getState())}"
@@ -92,7 +92,7 @@
                 <p:spacer width="5px"
                   rendered="#{'DONE' == cc.attrs.task.getState() ? false : !('PARKED' == cc.attrs.task.getState())}" />
                 <p:commandButton id="reset-task-command"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/backToGroup')}" process="@this"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" process="@this"
                   actionListener="#{logic.resetTask(cc.attrs.task)}"
                   update="msgTaskInfo task-detail-container top-button-header :#{p:component('task-comment-form')}"
                   disabled="#{(taskBean.checkDisableReset(cc.attrs.task))}"
@@ -100,7 +100,7 @@
                 <p:spacer
                   rendered="#{'DONE' == cc.attrs.task.getState() ? false : 'PARKED' == cc.attrs.task.getState()}" />
                 <p:commandButton id="more-action-command"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/more')}"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
                   rendered="#{isTaskAbleChangeDeadline or isTaskAbleToChangePriority}" />
                 <p:menu overlay="true" trigger="more-action-command" my="left top" id="more-action-menu"
                   at="left bottom">
@@ -126,17 +126,16 @@
               <p:row>
                 <p:column styleClass="Wid30">
                   <p:outputLabel for="description" id="description-label"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/description')}:" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}:" />
                 </p:column>
                 <p:column>
-                  <h:outputText id="description" styleClass="FontBold" escape="false"
-                    value="#{cc.attrs.task.getDescription()}" />
+                  <h:outputText id="description" styleClass="FontBold" value="#{cc.attrs.task.getDescription()}" />
                 </p:column>
               </p:row>
               <p:row>
                 <p:column>
                   <p:outputLabel for="priority"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}:" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}:" />
                 </p:column>
                 <p:column>
                   <span class="#{taskBean.getPriorityIcon(cc.attrs.task.getPriority())}" />
@@ -145,7 +144,7 @@
               </p:row>
               <p:row>
                 <p:column>
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/deadlineTask')}:" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/deadline')}:" />
                 </p:column>
                 <p:column>
                   <h:outputText id="deadline" value="#{cc.attrs.task.expiryTimestamp}">
@@ -155,7 +154,7 @@
               </p:row>
               <p:row>
                 <p:column>
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/state')}:" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}:" />
                 </p:column>
                 <p:column>
                   <span class="#{taskBean.getStateIcon(cc.attrs.task.getState())}" />
@@ -164,7 +163,7 @@
               </p:row>
               <p:row>
                 <p:column>
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible')}:" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                 </p:column>
                 <p:column>
                   <span class="#{taskBean.checkActivator(cc.attrs.task.activator.isUser())}" />
@@ -183,7 +182,7 @@
               </p:row>
               <p:row>
                 <p:column>
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/createdAt')}:" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}:" />
                 </p:column>
                 <p:column>
                   <h:outputText id="creation-date" value="#{cc.attrs.task.startTimestamp}">
@@ -193,7 +192,7 @@
               </p:row>
               <p:row>
                 <p:column>
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskId')}:" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}:" />
                 </p:column>
                 <p:column>
                   <h:outputText id="task-id" value="##{cc.attrs.task.id}" />
@@ -230,7 +229,7 @@
             </p:dataTable>
             <f:facet name="footer">
               <p:commandButton id="add-note-command"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/addNote')}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
                 onclick="PF('addTaskNoteDialog').show()"
                 rendered="#{!cc.attrs.isDialogMode and (taskBean.isTaskAbleToAddNote(cc.attrs.task))}" />
             </f:facet>
@@ -245,7 +244,7 @@
               <p:inputTextarea id="note-input" value="#{data.newNoteMessage}" styleClass="Wid100 note-input" />
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
-              <p:commandButton id="proceed-add-note-command" styleClass="portal-ok-button"
+              <p:commandButton id="proceed-add-note-command" styleClass=""
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-input"
                 update="note-input :#{p:component('task-notes-view')}"
                 actionListener="#{logic.createTaskNote(cc.attrs.task)}" onsuccess="PF('addTaskNoteDialog').hide()" />
@@ -267,7 +266,7 @@
           <p:outputPanel id="task-note-container" styleClass="Hei100">
             <p:panel id="task-note-details"
               header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noteDetail')}" styleClass="Hei80">
-              <h:outputText value="#{data.selectedNote.message}" escape="false" styleClass="u-break-word" />
+              <h:outputText value="#{data.selectedNote.message}" styleClass="u-break-word" />
             </p:panel>
           </p:outputPanel>
 		  <f:facet name="footer">
@@ -278,7 +277,7 @@
         <!-- End Task Comment -->
 
         <p:dialog id="taskDelegateDialog"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTitleDialog')}"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
           widgetVar="taskDelegateDialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade"
           resizable="false" appendTo="@(body)" styleClass="Wid30">
           <p:ajax event="close" global="false" onstart="onHideDelegateDialog()" process="@this" />
@@ -331,7 +330,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
           </f:facet>
           <h:panelGroup>
-            <p:commandButton actionListener="#{logic.startTask(cc.attrs.task)}" styleClass="portal-ok-button"
+            <p:commandButton actionListener="#{logic.startTask(cc.attrs.task)}" styleClass=""
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
             <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />

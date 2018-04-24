@@ -16,12 +16,14 @@
         for="from-finished-calendar" />
       <p:spacer width="5" />
       <p:calendar id="from-finished-calendar" value="#{cc.attrs.filter.fromFinishedDate}"
+      	locale="#{localeBean.locale}"
         pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-finished-calendar" />
       <p:spacer width="5" />
       <p:calendar id="to-finished-calendar" value="#{cc.attrs.filter.toFinishedDate}"
+      	locale="#{localeBean.locale}"
         pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
     </h:panelGrid>

@@ -2,13 +2,13 @@ package ch.ivy.addon.portalkit.mapper;
 
 import ch.ivy.addon.portalkit.bo.RemoteApplication;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.ws.addon.IvyCase;
 import ch.ivy.ws.addon.IvyTask;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.List;
 import ch.ivyteam.ivy.workflow.CaseState;
-import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 
@@ -51,21 +51,12 @@ public class RemoteCaseMapper {
     result.setCreatorUserName(ivyCase.getCreatorUserName());
     result.setCreatorFullName(ivyCase.getCreatorFullName());
 
-    // if(c.getCustomDecimalField1() != null){
     result.setCustomDecimalField1(ivyCase.getCustomDecimalField1());
-    // }
-    // if(c.getCustomDecimalField2() != null){
     result.setCustomDecimalField2(ivyCase.getCustomDecimalField2());
-    // }
-    // if(c.getCustomDecimalField3() != null){
     result.setCustomDecimalField3(ivyCase.getCustomDecimalField3());
-    // }
-    // if(c.getCustomDecimalField4() != null){
     result.setCustomDecimalField4(ivyCase.getCustomDecimalField4());
-    // }
-    // if(c.getCustomDecimalField5() != null){
     result.setCustomDecimalField5(ivyCase.getCustomDecimalField5());
-    // }
+    
     result.setCustomTimestampField1(ivyCase.getCustomTimestampField1() == null ? null : ivyCase
         .getCustomTimestampField1().getTime());
     result.setCustomTimestampField2(ivyCase.getCustomTimestampField2() == null ? null : ivyCase
@@ -120,6 +111,7 @@ public class RemoteCaseMapper {
     result.setCanChangeDescription(ivyCase.getCanChangeDescription());
     result.setCanChangeName(ivyCase.getCanChangeName());
     result.setBusinessCase(ivyCase.getIsBusinessCase());
+    result.setServerUrl(ivyCase.getServerUrl());
     
     return result;
 
@@ -186,7 +178,7 @@ public class RemoteCaseMapper {
     try {
       result.setPriority(WorkflowPriority.valueOf(ivyTask.getTechnicalCasePriority()));
     } catch (Exception e) {
-
+      Ivy.log().error(e);
     }
 
     /*
@@ -312,12 +304,12 @@ public class RemoteCaseMapper {
     return result;
   }
   
-  public static RemoteCase mapCaseFromTask(ITask ivyTask) {
+  public static RemoteCase mapCaseFromTask(RemoteTask ivyTask) {
     RemoteCase remoteCase = new RemoteCase();
 
     /* 1. GETTER + SETTER must be implemented in RemoteTask (overrides) */
 
-    ICase ivyCase = ivyTask.getCase();
+    RemoteCase ivyCase = ivyTask.getCase();
     remoteCase.setBusinessCorrespondentId(ivyCase.getBusinessCorrespondentId());
     remoteCase.setBusinessCreatorUser(ivyCase.getBusinessCreatorUser());
     remoteCase.setBusinessMainContactDocumentDatabaseCode(ivyCase.getBusinessMainContactDocumentDatabaseCode());
@@ -367,7 +359,7 @@ public class RemoteCaseMapper {
     try {
       remoteCase.setPriority(ivyCase.getPriority());
     } catch (Exception e) {
-
+      Ivy.log().error(e);
     }
 
     /*
@@ -402,6 +394,7 @@ public class RemoteCaseMapper {
    * Map list of IvyCase to list of RemoteCase.
    * 
    * @param ivyCases list of {@link IvyCase}
+   * @param server 
    * @return list of {@link RemoteCase}
    * @see IvyCase
    * @see RemoteCase
@@ -412,9 +405,7 @@ public class RemoteCaseMapper {
     for (IvyCase ivyCase : ivyCases) {
       RemoteCase remoteCase = mapCase(ivyCase);
       remoteCase.setServer(server);
-      if (null != remoteCase) {
-        remoteCases.add(remoteCase);
-      }
+      remoteCases.add(remoteCase);
     }
 
     return remoteCases;
@@ -424,6 +415,7 @@ public class RemoteCaseMapper {
    * Map IvyCase to RemoteCase.
    * 
    * @param ivyCase {@link IvyCase}
+   * @param server 
    * @return {@link RemoteCase}
    * @see IvyCase
    * @see RemoteCase

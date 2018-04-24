@@ -2,7 +2,6 @@ package ch.ivy.ws.addon.service;
 
 import java.util.List;
 
-import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.LanguagesSettingsServiceResult;
 import ch.ivy.ws.addon.types.IvyLanguageSetting;
 
@@ -17,8 +16,8 @@ public interface ILanguagesSettingsService {
 	 * Get Languages settings for the passed user
 	 * @param username
 	 * @param apps
-	 * @return
-	 * @throws WSException
+	 * @param serverId 
+	 * @return LanguagesSettingsServiceResult
 	 */
 	public LanguagesSettingsServiceResult getLanguagesSettings(String username, List<String> apps, Long serverId);
 	
@@ -26,8 +25,7 @@ public interface ILanguagesSettingsService {
 	 * set Languages settings for the passed user
 	 * @param username
 	 * @param settings
-	 * @return
-	 * @throws WSException
+	 * @return LanguagesSettingsServiceResult
 	 */
 	public LanguagesSettingsServiceResult setLanguagesSettings(String username, List<IvyLanguageSetting> settings);
 		

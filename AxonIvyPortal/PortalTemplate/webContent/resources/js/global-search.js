@@ -1,25 +1,19 @@
 $(function() {
-  $('#global-search-container').clickOff(resetGlobalSearch);
-  $('#global-search').mouseenter(resetGlobalSearch);
-  $('#global-search').click(focusInSearchText);
+  $('#global-search-data').click(hideUserSettingMenu);
 });
 
-function resetGlobalSearch() {
-  var searchInput = $(PF('global-search-data').jqId);
-  var isNotActiveMenu = !($('#global-search-container').hasClass('active-menu'));
-  var canResetSearchData = isNotActiveMenu && (searchInput.val().length > 0);
-  if (canResetSearchData) {
-     searchInput.val(null);
-     resetSearch();
-  }
+function showHideOverlayPanel(){
+   var searchInputValue =$('#global-search-data')[0].value;
+   if(searchInputValue != ""){
+     PF('search-result-overlay-panel').show();
+   } else {
+     PF('search-result-overlay-panel').hide();
+   }
 }
 
-function updateScrollbar() {
-  $("#global-search-result-container").perfectScrollbar({
-    suppressScrollX : true
-  });
-}
-
-function focusInSearchText() {
-  $(PF('global-search-data').jqId).focus();
+function hideUserSettingMenu(){
+	var userSettingContainer =$('#user-setting-container');
+	if(userSettingContainer.hasClass('active-menu')){
+		userSettingContainer.removeClass('active-menu');
+	}
 }

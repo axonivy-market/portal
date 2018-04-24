@@ -2,10 +2,9 @@ package ch.ivy.addon.portalkit.bo;
 
 import javax.servlet.http.HttpServletRequest;
 
-import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.model.value.WebLink;
 
-public class RemoteSideStep implements IStartableSideStep {
+public class RemoteSideStep {
 
 	private String name;
 	private WebLink webLink;
@@ -15,7 +14,6 @@ public class RemoteSideStep implements IStartableSideStep {
 		this.name = name;
 	}
 
-	@Override
 	public String getName() {
 		return name;
 	}
@@ -24,13 +22,11 @@ public class RemoteSideStep implements IStartableSideStep {
 		this.webLink = webLink;
 	}
 
-	@Override
 	public WebLink getStartLink() {
 		return webLink;
 	}
 
-	@Override
-	public WebLink getStartLink(HttpServletRequest arg0) {
+	public WebLink getStartLink(@SuppressWarnings("unused") HttpServletRequest arg0) {
 		return webLink;
 	}
 

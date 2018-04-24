@@ -10,6 +10,9 @@ import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UserSynchronizationService {
+
+  private UserSynchronizationService() {}
+
   /**
    * Helps prevent multi-application synchronizing users, only 1 application is allowed to synchronize users. <br>
    * 

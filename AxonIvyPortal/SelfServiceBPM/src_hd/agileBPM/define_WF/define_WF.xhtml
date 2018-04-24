@@ -7,6 +7,7 @@
     <ui:param name="caseId" value="#{ivy.case.id}" />
     <ui:param name="task" value="#{ivy.task}" />
     <ui:param name="isShowStartAdhocButton" value="false"/>
+    <ui:param name="isNotRequiredLogin" value="false" />
 
     <ui:define name="pageTitle">Self Service Workflow</ui:define>
     <ui:define name="taskForm">
@@ -91,9 +92,10 @@
                         <p:ajax event="mousedown" process="@this" listener="#{logic.initUserList(defineTask)}"
                           update="userList" oncomplete="PF('userList').show();" />
                       </p:inputText>
-                      <p:calendar id="taskTill" value="#{defineTask.until}" widgetVar="taskTill#{row.index}"
-                        required="false" pattern="dd.MM.yyyy HH:mm" size="18">
-                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                      <p:calendar id="taskTill" locale="#{localeBean.locale}" 
+                      	value="#{defineTask.until}" widgetVar="taskTill#{row.index}"
+                        required="false" pattern="#{dateTimePatternBean.dateTimePattern}" size="18">
+                        <f:convertDateTime pattern="#{dateTimePatternBean.dateTimePattern}" />
                       </p:calendar>
                     </h:panelGrid>
                   </h:panelGrid>
@@ -142,7 +144,7 @@
         widgetVar="userList" modal="true" appendTo="@(body)" width="400">
         <ui:include src="responsibleUser.xhtml" />
       </p:dialog>
-      <p:dialog id="taskDesription" header="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/DescriptionDialogHeader')}"
+      <p:dialog id="taskDesription" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}"
         widgetVar="taskDesription" modal="true" appendTo="@(body)">
         <ui:include src="taskDescription.xhtml" />
       </p:dialog>

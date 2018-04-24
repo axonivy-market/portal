@@ -4,6 +4,7 @@
 	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="pageTitle">Customization Additional Case Details</ui:define>
 		<ui:define name="simplePageContent">
 			<div class="grid-item-header">Customization Additional Case Details</div>
@@ -21,9 +22,9 @@
 				<h:outputText id="custom-varchar-field-4" value="#{data.remoteCase.customVarCharField4}" />
 				<h:outputText value="Custom Varchar Field 5" />
 				<h:outputText id="custom-varchar-field-5" value="#{data.remoteCase.customVarCharField5}" />
-				<h:panelGroup />
-				<h:panelGroup />
 				<h:outputText value="Custom Decimal Field 1" />
+				<h:panelGroup />
+				<h:panelGroup />
 				<h:outputText id="custom-decimal-field-1" value="#{caseWidgetBean.isNaN(data.remoteCase.customDecimalField1) ? '' : data.remoteCase.customDecimalField1}" >
 					<f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
 				</h:outputText>

@@ -69,6 +69,7 @@ public class CaseFinishedDateFilter extends CaseFilter {
     toFinishedDate = null;
   }
 
+  @Override
   public void validate() {
     if (fromFinishedDate != null && toFinishedDate != null && (fromFinishedDate.compareTo(toFinishedDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();

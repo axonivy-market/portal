@@ -49,6 +49,11 @@ Dt0 @GridStep f16 '' #zField
 Dt0 @EndTask f17 '' #zField
 Dt0 @PushWFArc f18 '' #zField
 Dt0 @PushWFArc f19 '' #zField
+Dt0 @StartRequest f20 '' #zField
+Dt0 @EndTask f21 '' #zField
+Dt0 @GridStep f22 '' #zField
+Dt0 @PushWFArc f36 '' #zField
+Dt0 @PushWFArc f38 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -195,6 +200,7 @@ Dt0 f35 1 296 152 #addKink
 Dt0 f35 1 0.4965635738831616 0 0 #arcLabel
 Dt0 f27 targetWindow NEW #txt
 Dt0 f27 targetDisplay TOP #txt
+Dt0 f27 richDialogId ch.ivy.addon.portalkit.test.DefaultDialog #txt
 Dt0 f27 startMethod start() #txt
 Dt0 f27 type portalKit_test.DataCreationData #txt
 Dt0 f27 requestActionDecl '<> param;' #txt
@@ -204,6 +210,7 @@ Dt0 f27 responseMappingAction 'out=in;
 ' #txt
 Dt0 f27 isAsynch false #txt
 Dt0 f27 isInnerRd false #txt
+Dt0 f27 userContext '* ' #txt
 Dt0 f27 382 252 36 24 20 -2 #rect
 Dt0 f27 @|RichDialogIcon #fIcon
 Dt0 f2 expr out #txt
@@ -419,6 +426,53 @@ Dt0 f18 expr out #txt
 Dt0 f18 264 576 321 576 #arcP
 Dt0 f19 expr out #txt
 Dt0 f19 111 576 152 576 #arcP
+Dt0 f20 outLink createRelatedTasksTestUser.ivp #txt
+Dt0 f20 type portalKit_test.DataCreationData #txt
+Dt0 f20 inParamDecl '<> param;' #txt
+Dt0 f20 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f20 guid 16178D3DE23E3373 #txt
+Dt0 f20 requestEnabled true #txt
+Dt0 f20 triggerEnabled false #txt
+Dt0 f20 callSignature createRelatedTasksTestUser() #txt
+Dt0 f20 persist false #txt
+Dt0 f20 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f20 caseData businessCase.attach=true #txt
+Dt0 f20 showInStartList 1 #txt
+Dt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createRelatedTasksTestUser.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f20 @C|.responsibility Everybody #txt
+Dt0 f20 65 721 30 30 -75 23 #rect
+Dt0 f20 @|StartRequestIcon #fIcon
+Dt0 f21 type portalKit_test.DataCreationData #txt
+Dt0 f21 337 721 30 30 0 15 #rect
+Dt0 f21 @|EndIcon #fIcon
+Dt0 f22 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f22 actionTable 'out=in;
+' #txt
+Dt0 f22 actionCode 'if (ivy.wf.getSecurityContext().findUser("test_related_tasks_user") != null) {
+	ivy.wf.getSecurityContext().deleteUser("test_related_tasks_user");
+}
+ivy.wf.getSecurityContext().createUser("test_related_tasks_user", "Related Tasks User", "+d3m0++", java.util.Locale.ENGLISH, "", "");' #txt
+Dt0 f22 security system #txt
+Dt0 f22 type portalKit_test.DataCreationData #txt
+Dt0 f22 168 714 112 44 0 -8 #rect
+Dt0 f22 @|StepIcon #fIcon
+Dt0 f36 expr out #txt
+Dt0 f36 95 736 168 736 #arcP
+Dt0 f38 expr out #txt
+Dt0 f38 280 736 337 736 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -462,3 +516,7 @@ Dt0 f16 mainOut f18 tail #connect
 Dt0 f18 head f17 mainIn #connect
 Dt0 f15 mainOut f19 tail #connect
 Dt0 f19 head f16 mainIn #connect
+Dt0 f20 mainOut f36 tail #connect
+Dt0 f36 head f22 mainIn #connect
+Dt0 f22 mainOut f38 tail #connect
+Dt0 f38 head f21 mainIn #connect

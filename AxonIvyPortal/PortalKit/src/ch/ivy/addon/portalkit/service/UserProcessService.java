@@ -24,10 +24,6 @@ public class UserProcessService extends AbstractService<UserProcess> {
     return getDao().findByUserName(userName);
   }
 
-  public List<UserProcess> findDeletedDefaultProcessesByUserName(String userName) {
-    return getDao().findDeletedDefaultProcessesByUserName(userName);
-  }
-
   public List<UserProcess> createDefaultUserProcesses(List<UserProcess> defaultUserProcesses, String userName) {
     defaultUserProcesses.stream().forEach(defaultUserProcess -> {
       defaultUserProcess.setUserName(userName);

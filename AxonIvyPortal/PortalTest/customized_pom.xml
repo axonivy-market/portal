@@ -10,6 +10,7 @@
 	<powermock.version>1.6.6</powermock.version>
 	<ivy.engine.version>7.0.0</ivy.engine.version>
 	<portal.version>${portal.released.version}</portal.version>
+	<build.plugin.version>7.0.1</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -60,7 +61,7 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>7.0.1</version>
+        <version>${build.plugin.version}</version>
         <extensions>true</extensions>
         <configuration>					
 			<engineDirectory>../../engine</engineDirectory>										
@@ -92,6 +93,17 @@
             </goals>
             <configuration>
               <deployIarFile>..\..\Showcase\InternalSupport\target\internalSupport-${portal.version}.iar</deployIarFile>
+              <deployToEngineApplication>Portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+		  <execution>
+            <id>portalexamples.deploy</id>
+            <goals>
+              <goal>deploy-iar</goal>
+            </goals>
+            <configuration>
+              <deployIarFile>..\..\Showcase\PortalExamples\target\portalExamples-${portal.version}.iar</deployIarFile>
               <deployToEngineApplication>Portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>

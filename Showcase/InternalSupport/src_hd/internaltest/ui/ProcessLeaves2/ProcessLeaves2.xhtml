@@ -19,6 +19,7 @@
 		<ui:param name="showCaseStatusInfoTab" value="false" />
 		<ui:param name="showHistoryTab" value="false" />
 		<ui:param name="showDocumentTab" value="false" />
+		<ui:param name="isNotRequiredLogin" value="false" />
 
 		<ui:define name="login">
 			<ic:internaltest.ui.CustomLogin />
@@ -37,7 +38,7 @@
 
 		<ui:define name="documentIframe">
 			<iframe id="iframeCenter" src="https://www.eonenergy.com/"
-				width="100%" height="500" frameborder="0"> </iframe>
+				width="100%" height="500"> </iframe>
 		</ui:define>
 
 		<ui:define name="taskForm">
@@ -51,18 +52,18 @@
 
 					<p:outputLabel for="von"
 						value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/from')}" />
-					<p:calendar id="von" value="#{data.Von}" pattern="dd.MM.yyyy"
-						size="10" required="true" locale="en_US"
+					<p:calendar id="von" value="#{data.Von}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"
+						size="10" required="true"
 						requiredMessage="Date From is required">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
+						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
 					</p:calendar>
 
 					<p:outputLabel for="bis"
 						value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/to')}" />
-					<p:calendar id="bis" value="#{data.Bis}" locale="en_US"
-						pattern="dd.MM.yyyy" size="10" required="true"
+					<p:calendar id="bis" value="#{data.Bis}"
+						 locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" size="10" required="true"
 						requiredMessage="Date To is required">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
+						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
 					</p:calendar>
 
 					<p:outputLabel for="art"
@@ -90,7 +91,7 @@
 		<ui:define name="rightButtons">
           <h:panelGroup styleClass="MarTop5 DispBlock">
 		  <h:form>
-				<p:commandButton value="Send Request" styleClass="portal-ok-button"
+				<p:commandButton value="Send Request" styleClass=""
 					icon="fa fa-paper-plane" onclick="leaveRequest()" />
 				<p:spacer width="5px"/>
 				<p:commandButton value="Cancel" styleClass="portal-cancel-button"

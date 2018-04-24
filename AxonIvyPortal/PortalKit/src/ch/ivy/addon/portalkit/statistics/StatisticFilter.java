@@ -11,14 +11,17 @@ import java.util.TreeSet;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -27,18 +30,26 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class StatisticFilter {
+  
+  private StatisticTimePeriodSelection timePeriodSelection;
+  @JsonIgnore
+  private List<StatisticTimePeriodSelection> allTimePeriodSelection;
   private Date createdDateFrom;
   private Date createdDateTo;
 
+  @JsonIgnore
   private List<String> caseCategories = new ArrayList<>();
   private List<String> selectedCaseCategories = new ArrayList<>();
 
-  private List<ISecurityMember> roles = new ArrayList<>();
+  @JsonIgnore
+  private List<Object> roles = new ArrayList<>();
   private List<String> selectedRoles = new ArrayList<>();
 
+  @JsonIgnore
   private List<CaseState> caseStates = new ArrayList<>();
   private List<CaseState> selectedCaseStates = new ArrayList<>();
-
+  
+  @JsonIgnore
   private List<WorkflowPriority> taskPriorities = new ArrayList<>();
   private List<WorkflowPriority> selectedTaskPriorities = new ArrayList<>();
 
@@ -49,17 +60,23 @@ public class StatisticFilter {
   public StatisticFilter() {
     // Initialize list of available roles
     try {
-      List<RemoteRole> roles =
+      List<RemoteRole> remoteRoles =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
+            @Override
             public List<RemoteRole> call() throws Exception {
               return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
                   .get("roles", List.class);
             }
           });
 
-      List<ISecurityMember> distinctRoles =
-          roles.stream()
-          .filter(role -> Ivy.session().hasRole(role, false))
+      ISecurityContext securityContext = Ivy.request().getApplication().getSecurityContext();
+      List<RemoteRole> distinctRoles =
+          remoteRoles.stream()
+          .filter(role -> {
+            IRole ivyRole = securityContext.findRole(role.getName());
+            return ivyRole != null && Ivy.session().hasRole(ivyRole, false);
+            }
+          )
           .collect(
               Collectors.collectingAndThen(
                   Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteRole::getMemberName))),
@@ -67,17 +84,15 @@ public class StatisticFilter {
 
       this.roles.add(Ivy.session().getSessionUser());
       this.roles.addAll(distinctRoles);
-      this.selectedRoles = new ArrayList<>(this.roles.stream().map(ISecurityMember::getMemberName).collect(Collectors.toList()));
+      
+      this.selectedRoles = new ArrayList<>(distinctRoles.stream().map(RemoteRole::getMemberName).collect(Collectors.toList()));
+      this.selectedRoles.add(0, Ivy.session().getSessionUser().getMemberName());
     } catch (Exception e) {
       Ivy.log().error("Can't get list roles statistic filter", e);
     }
 
     // Initialize list of case states
-    if (CaseUtils.checkReadAllCasesPermission()) {
-      this.caseStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE);
-    } else {
-      this.caseStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING);
-    }
+    this.caseStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE);
     this.selectedCaseStates = new ArrayList<>(this.caseStates);
 
     // Initialize list of task priorities
@@ -95,7 +110,10 @@ public class StatisticFilter {
     this.caseCategories = ((List<CategoryData>) response.get("result")).stream().map(CategoryData::getPath).collect(Collectors.toList());
     this.caseCategories = caseCategories.stream().distinct()
         .collect(Collectors.toList());
+    caseCategories.add(StringUtils.EMPTY);
     this.selectedCaseCategories = new ArrayList<>(this.caseCategories);
+    this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
+    this.allTimePeriodSelection = Arrays.asList(StatisticTimePeriodSelection.CUSTOM, StatisticTimePeriodSelection.LAST_WEEK, StatisticTimePeriodSelection.LAST_MONTH, StatisticTimePeriodSelection.LAST_6_MONTH);
   }
 
   public Date getCreatedDateFrom() {
@@ -130,11 +148,11 @@ public class StatisticFilter {
     this.selectedCaseCategories = selectedCaseCategories;
   }
 
-  public List<ISecurityMember> getRoles() {
+  public List<Object> getRoles() {
     return roles;
   }
 
-  public void setRoles(List<ISecurityMember> roles) {
+  public void setRoles(List<Object> roles) {
     this.roles = roles;
   }
 
@@ -185,4 +203,21 @@ public class StatisticFilter {
   public String getPriorityName(WorkflowPriority priority) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority);
   }
+
+  public StatisticTimePeriodSelection getTimePeriodSelection() {
+    return timePeriodSelection;
+  }
+
+  public void setTimePeriodSelection(StatisticTimePeriodSelection timePeriodSelection) {
+    this.timePeriodSelection = timePeriodSelection;
+  }
+
+  public List<StatisticTimePeriodSelection> getAllTimePeriodSelection() {
+    return allTimePeriodSelection;
+  }
+
+  public void setAllTimePeriodSelection(List<StatisticTimePeriodSelection> allTimePeriodSelection) {
+    this.allTimePeriodSelection = allTimePeriodSelection;
+  }
+  
 }

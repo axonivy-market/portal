@@ -4,47 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivyteam.api.IvyScriptVisibility;
-import ch.ivyteam.api.PublicAPI;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IProcessModel;
-import ch.ivyteam.ivy.application.calendar.IBusinessCalendar;
-import ch.ivyteam.ivy.application.calendar.IDefaultBusinessCalendar;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.location.ILocationService;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.scripting.objects.BusinessDuration;
-import ch.ivyteam.ivy.scripting.objects.CompositeObject;
-import ch.ivyteam.ivy.scripting.objects.Duration;
-import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.security.ISession;
-import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.IIntermediateEvent;
-import ch.ivyteam.ivy.workflow.INote;
-import ch.ivyteam.ivy.workflow.IPageArchive;
-import ch.ivyteam.ivy.workflow.IProcessData;
-import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.ITaskEnd;
-import ch.ivyteam.ivy.workflow.ITaskStart;
-import ch.ivyteam.ivy.workflow.ITaskSwitchEvent;
-import ch.ivyteam.ivy.workflow.IWorkflowContext;
-import ch.ivyteam.ivy.workflow.IWorkflowEvent;
-import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
-import ch.ivyteam.ivy.workflow.ResumeTaskResult;
-import ch.ivyteam.ivy.workflow.TaskProperty;
 import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import ch.ivyteam.ivy.workflow.category.Category;
 
 /**
  * Bean for remote task.
- *
- * @author maonguyen
  */
-public class RemoteTask implements ITask {
+public class RemoteTask {
 
   private String name;
 
@@ -136,7 +106,7 @@ public class RemoteTask implements ITask {
   }
 
   /**
-   * @{link {@link ApplicationRegister} object that this task belongs to
+   * @{link {@link Application} object that this task belongs to
    */
   private Application applicationRegister;
 
@@ -148,785 +118,330 @@ public class RemoteTask implements ITask {
     super();
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public INote createNote(IWorkflowSession session, String message) throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void deleteNote(INote note) throws PersistencyException {
-
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public List<INote> getNotes() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public boolean hasNotes() throws PersistencyException {
-    return false;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public String getAdditionalProperty(String name) throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public List<String> getAdditionalPropertyNames() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setAdditionalProperty(String name, String value) throws PersistencyException {
-
-  }
-
-  @Override
-  public Object getPropertyValue(TaskProperty arg0) throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void destroy() throws PersistencyException {
-
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public ISecurityMember getActivator() throws PersistencyException {
+  public RemoteSecurityMember getActivator() {
     return activator;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getActivatorName() throws PersistencyException {
+  public String getActivatorName() {
     return null;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public List<IUser> getActivatorUserCandidates() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public IApplication getApplication() throws PersistencyException {
+  public RemoteApplication getApplication() {
     return remoteApplication;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.HIDDEN)
-  public IDefaultBusinessCalendar getBusinessCalendar() {
-    return null;
-  }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getBusinessCreatorUser() throws PersistencyException {
+  public String getBusinessCreatorUser() {
     return businessCreatorUser;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public Integer getBusinessMainContactId() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getBusinessMainContactName() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public Date getBusinessMilestoneTimestamp() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getBusinessObjectCode() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public BusinessDuration getBusinessRuntime() {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public Date getBusinessStartTimestamp() throws PersistencyException {
-    return null;
-
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public ICase getCase() throws PersistencyException {
+  public RemoteCase getCase() {
     return remoteCase;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Number getCustomDecimalField1() throws PersistencyException {
+  public Number getCustomDecimalField1() {
     return customDecimalField1;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Number getCustomDecimalField2() throws PersistencyException {
+  public Number getCustomDecimalField2() {
     return customDecimalField2;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Number getCustomDecimalField3() throws PersistencyException {
+  public Number getCustomDecimalField3() {
     return customDecimalField3;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Number getCustomDecimalField4() throws PersistencyException {
+  public Number getCustomDecimalField4() {
     return customDecimalField4;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Number getCustomDecimalField5() throws PersistencyException {
+  public Number getCustomDecimalField5() {
     return customDecimalField5;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Date getCustomTimestampField1() throws PersistencyException {
+  public Date getCustomTimestampField1() {
     return customTimestampField1;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Date getCustomTimestampField2() throws PersistencyException {
+  public Date getCustomTimestampField2() {
     return customTimestampField2;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Date getCustomTimestampField3() throws PersistencyException {
+  public Date getCustomTimestampField3() {
     return customTimestampField3;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Date getCustomTimestampField4() throws PersistencyException {
+  public Date getCustomTimestampField4() {
     return customTimestampField4;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public Date getCustomTimestampField5() throws PersistencyException {
+  public Date getCustomTimestampField5() {
     return customTimestampField5;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public String getCustomVarCharField1() throws PersistencyException {
+  public String getCustomVarCharField1() {
     return customVarCharField1;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public String getCustomVarCharField2() throws PersistencyException {
+  public String getCustomVarCharField2() {
     return customVarCharField2;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public String getCustomVarCharField3() throws PersistencyException {
+  public String getCustomVarCharField3() {
     return customVarCharField3;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public String getCustomVarCharField4() throws PersistencyException {
+  public String getCustomVarCharField4() {
     return customVarCharField4;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public String getCustomVarCharField5() throws PersistencyException {
+  public String getCustomVarCharField5() {
     return customVarCharField5;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public Date getDelayTimestamp() throws PersistencyException {
+  public Date getDelayTimestamp() {
     return null;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getDescription() throws PersistencyException {
+  public String getDescription() {
     return description;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public String getDisplayDescriptionTemplate() throws PersistencyException {
+  public String getDisplayDescriptionTemplate() {
     return displayDescriptionTemplate;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public String getDisplayNameTemplate() throws PersistencyException {
+  public String getDisplayNameTemplate() {
     return displayNameTemplate;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public ITaskEnd getEnd() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public CompositeObject getEndProcessData() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public ITaskSwitchEvent getEndSwitchEvent() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public Date getEndTimestamp() throws PersistencyException {
+  public Date getEndTimestamp() {
     return endTimestamp;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public ITask getExpiredCreatorTask() throws PersistencyException {
+  public RemoteTask getExpiredCreatorTask() {
     return expiredCreatorTask;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
   public BusinessDuration getExpiresInBusinessDuration() {
     return expiresInBusinessDuration;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public ISecurityMember getExpiryActivator() throws PersistencyException {
+  public RemoteSecurityMember getExpiryActivator() {
     return expiryActivator;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getExpiryActivatorName() throws PersistencyException {
+  public String getExpiryActivatorName() {
     return expiryActivatorName;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public WorkflowPriority getExpiryPriority() throws PersistencyException {
+  public WorkflowPriority getExpiryPriority() {
     return expiryPriority;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public String getExpiryTaskStartElementPid() throws PersistencyException {
+  public String getExpiryTaskStartElementPid() {
     return expiryTaskStartElementPid;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public Date getExpiryTimestamp() throws PersistencyException {
+  public Date getExpiryTimestamp() {
     return expiryTimestamp;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public String getFullRequestPath() throws PersistencyException {
+  public String getFullRequestPath() {
     return fullRequestPath;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
   public long getId() {
     return id;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.HIDDEN)
-  @Deprecated
-  public int getIdentifier() {
-    return 0;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public IIntermediateEvent getIntermediateEvent() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  public IProcessData getInternalProcessData() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  public IProcessData getInternalProcessElementProcessData(String arg0) throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  public IProcessData getInternalStartProcessData() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getKindCode() throws PersistencyException {
+  public String getKindCode() {
     return kindCode;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getKindName() throws PersistencyException {
+  public String getKindName() {
     return kindName;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getName() throws PersistencyException {
+  public String getName() {
     return name;
   }
 
-  @Override
-  public int getNumberOfFailures() throws PersistencyException {
+  public int getNumberOfFailures() {
     return 0;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public Integer getNumberOfResumes() {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public ISecurityMember getOriginalActivator() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getOriginalActivatorName() throws PersistencyException {
+  public String getOriginalActivatorName() {
     return originalActivatorName;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public WorkflowPriority getOriginalPriority() throws PersistencyException {
+  public WorkflowPriority getOriginalPriority() {
     return originalPriority;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public IPageArchive getPageArchive(long pageArchiveIdentifier) throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.HIDDEN)
-  @Deprecated
-  public IPageArchive getPageArchive(int arg0) throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public List<IPageArchive> getPageArchives() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public WorkflowPriority getPriority() throws PersistencyException {
+  public WorkflowPriority getPriority() {
     return priority;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getProcessCategoryCode() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getProcessCategoryName() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getProcessCode() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public IProcessModel getProcessModel() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public IWorkflowProcessModelVersion getProcessModelVersion() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getProcessName() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public String getRequestPath() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public ITaskStart getStart() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public CompositeObject getStartProcessData() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public ITaskSwitchEvent getStartSwitchEvent() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public Date getStartTimestamp() throws PersistencyException {
+  public Date getStartTimestamp() {
     return startTimestamp;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public TaskState getState() throws PersistencyException {
+  public TaskState getState() {
     return state;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getSubTypeCode() throws PersistencyException {
+  public String getSubTypeCode() {
     return subTypeCode;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getSubTypeName() throws PersistencyException {
+  public String getSubTypeName() {
     return subTypeName;
   }
 
-  @Override
-  public IIntermediateEvent getTimeoutedCreatorIntermediateEvent() throws PersistencyException {
+  public IWorkflowSession getWorkerSession() {
     return null;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getTypeCode() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getTypeName() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public IWorkflowSession getWorkerSession() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public IUser getWorkerUser() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public String getWorkerUserName() throws PersistencyException {
+  public String getWorkerUserName() {
     return workerUserName;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public IWorkflowContext getWorkflowContext() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public List<IWorkflowEvent> getWorkflowEvents() throws PersistencyException {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public Duration getWorkingTime() {
-    return null;
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.NOVICE)
-  public boolean isExpired() throws PersistencyException {
+  public boolean isExpired() {
     return expired;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public boolean isExpiryTask() throws PersistencyException {
+  public boolean isExpiryTask() {
     return false;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
   public boolean isPersistent() {
     return false;
   }
 
-  @Override
-  public boolean isUpdatedOnStart() throws PersistencyException {
+  public boolean isUpdatedOnStart() {
     return false;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void reset() throws PersistencyException {
+  public void reset() {
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void setActivator(ISecurityMember activator) throws PersistencyException {
-    this.activator = (RemoteSecurityMember) activator;
+  public void setActivator(RemoteSecurityMember activator) {
+    this.activator = activator;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void setBusinessCalendar(IBusinessCalendar calendar) {
-
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setBusinessMilestoneTimestamp(Date businessMilestoneTimestamp) throws PersistencyException {
-
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomDecimalField1(Number customDecimalField1) throws PersistencyException {
+  public void setCustomDecimalField1(Number customDecimalField1) {
     this.customDecimalField1 = customDecimalField1;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomDecimalField2(Number customDecimalField2) throws PersistencyException {
+  public void setCustomDecimalField2(Number customDecimalField2) {
     this.customDecimalField2 = customDecimalField2;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomDecimalField3(Number customDecimalField3) throws PersistencyException {
+  public void setCustomDecimalField3(Number customDecimalField3) {
     this.customDecimalField3 = customDecimalField3;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomDecimalField4(Number customDecimalField4) throws PersistencyException {
+  public void setCustomDecimalField4(Number customDecimalField4) {
     this.customDecimalField4 = customDecimalField4;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomDecimalField5(Number customDecimalField5) throws PersistencyException {
+  public void setCustomDecimalField5(Number customDecimalField5) {
     this.customDecimalField5 = customDecimalField5;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomTimestampField1(Date customTimestampField1) throws PersistencyException {
+  public void setCustomTimestampField1(Date customTimestampField1) {
     this.customTimestampField1 = customTimestampField1;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomTimestampField2(Date customTimestampField2) throws PersistencyException {
+  public void setCustomTimestampField2(Date customTimestampField2) {
     this.customTimestampField2 = customTimestampField2;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomTimestampField3(Date customTimestampField3) throws PersistencyException {
+  public void setCustomTimestampField3(Date customTimestampField3) {
     this.customTimestampField3 = customTimestampField3;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomTimestampField4(Date customTimestampField4) throws PersistencyException {
+  public void setCustomTimestampField4(Date customTimestampField4) {
     this.customTimestampField4 = customTimestampField4;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomTimestampField5(Date customTimestampField5) throws PersistencyException {
+  public void setCustomTimestampField5(Date customTimestampField5) {
     this.customTimestampField5 = customTimestampField5;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomVarCharField1(String customVarCharField1) throws PersistencyException {
+  public void setCustomVarCharField1(String customVarCharField1) {
     this.customVarCharField1 = customVarCharField1;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomVarCharField2(String customVarCharField2) throws PersistencyException {
+  public void setCustomVarCharField2(String customVarCharField2) {
     this.customVarCharField2 = customVarCharField2;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomVarCharField3(String customVarCharField3) throws PersistencyException {
+  public void setCustomVarCharField3(String customVarCharField3) {
     this.customVarCharField3 = customVarCharField3;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomVarCharField4(String customVarCharField4) throws PersistencyException {
+  public void setCustomVarCharField4(String customVarCharField4) {
     this.customVarCharField4 = customVarCharField4;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setCustomVarCharField5(String customVarCharField5) throws PersistencyException {
+  public void setCustomVarCharField5(String customVarCharField5) {
     this.customVarCharField5 = customVarCharField5;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void setDelayTimestamp(Date newDelayTimestamp) throws PersistencyException {
+  @SuppressWarnings("unused")
+  public void setDelayTimestamp(Date newDelayTimestamp) {
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setDescription(String description) throws PersistencyException {
+  public void setDescription(String description) {
     this.description = description;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void setExpiryActivator(ISecurityMember expiryActivator) throws PersistencyException {
-    this.expiryActivator = (RemoteSecurityMember) expiryActivator;
+  public void setExpiryActivator(RemoteSecurityMember expiryActivator) {
+    this.expiryActivator = expiryActivator;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void setExpiryPriority(WorkflowPriority expiryPriority) throws PersistencyException {
+  public void setExpiryPriority(WorkflowPriority expiryPriority) {
     this.expiryPriority = expiryPriority;
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void setExpiryTimestamp(Date newExpiryTimestamp) throws PersistencyException {
+  public void setExpiryTimestamp(Date newExpiryTimestamp) {
     this.expiryTimestamp = newExpiryTimestamp;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setKind(String kindCode, String kindName) throws PersistencyException {
+  @SuppressWarnings("unused")
+  public void setKind(String kindCode, String kindName) {
 
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.ADVANCED)
-  public void setName(String name) throws PersistencyException {
+  public void setName(String name) {
     this.name = name;
   }
 
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void setOriginalActivator(ISecurityMember activator) throws PersistencyException {
-
-  }
-
-  @Override
-  @PublicAPI(IvyScriptVisibility.EXPERT)
-  public void setOriginalPriority(WorkflowPriority originalPriority) throws PersistencyException {
+  public void setOriginalPriority(WorkflowPriority originalPriority) {
     this.originalPriority = originalPriority;
-
-  }
-
-  @Override
-  public void updateTask(TaskUpdateDefinition arg0, ISecurityMember arg1) throws PersistencyException {
-
-  }
-
-  @Override
-  public void writeInternalStartProcessData(IProcessData arg0) throws PersistencyException {
 
   }
 
@@ -936,7 +451,7 @@ public class RemoteTask implements ITask {
    * @param startTimestamp start time stamp
    * @throws PersistencyException PersistencyException
    */
-  public void setStartTimestamp(Date startTimestamp) throws PersistencyException {
+  public void setStartTimestamp(Date startTimestamp) {
     this.startTimestamp = startTimestamp;
   }
   
@@ -946,7 +461,7 @@ public class RemoteTask implements ITask {
    * @param endTimestamp end time stamp
    * @throws PersistencyException PersistencyException
    */
-  public void setEndTimestamp(Date endTimestamp) throws PersistencyException {
+  public void setEndTimestamp(Date endTimestamp) {
     this.endTimestamp = endTimestamp;
   }
 
@@ -956,7 +471,7 @@ public class RemoteTask implements ITask {
    * @param businessCreatorUser business creator user
    * @throws PersistencyException PersistencyException
    */
-  public void setBusinessCreatorUser(String businessCreatorUser) throws PersistencyException {
+  public void setBusinessCreatorUser(String businessCreatorUser) {
     this.businessCreatorUser = businessCreatorUser;
   }
 
@@ -966,7 +481,7 @@ public class RemoteTask implements ITask {
    * @param displayDescriptionTemplate display description template
    * @throws PersistencyException PersistencyException
    */
-  public void setDisplayDescriptionTemplate(String displayDescriptionTemplate) throws PersistencyException {
+  public void setDisplayDescriptionTemplate(String displayDescriptionTemplate) {
     this.displayDescriptionTemplate = displayDescriptionTemplate;
   }
 
@@ -976,7 +491,7 @@ public class RemoteTask implements ITask {
    * @param displayNameTemplate display name template
    * @throws PersistencyException PersistencyException
    */
-  public void setDisplayNameTemplate(String displayNameTemplate) throws PersistencyException {
+  public void setDisplayNameTemplate(String displayNameTemplate) {
     this.displayNameTemplate = displayNameTemplate;
   }
 
@@ -986,7 +501,7 @@ public class RemoteTask implements ITask {
    * @param expiryActivatorName expriry activator name
    * @throws PersistencyException PersistencyException
    */
-  public void setExpiryActivatorName(String expiryActivatorName) throws PersistencyException {
+  public void setExpiryActivatorName(String expiryActivatorName) {
     this.expiryActivatorName = expiryActivatorName;
   }
 
@@ -996,7 +511,7 @@ public class RemoteTask implements ITask {
    * @param id task id
    * @throws PersistencyException PersistencyException
    */
-  public void setId(Long id) throws PersistencyException {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -1006,7 +521,7 @@ public class RemoteTask implements ITask {
    * @param expired expired or not
    * @throws PersistencyException PersistencyException
    */
-  public void setIsExpired(boolean expired) throws PersistencyException {
+  public void setIsExpired(boolean expired) {
     this.expired = expired;
   }
 
@@ -1016,7 +531,7 @@ public class RemoteTask implements ITask {
    * @param priority task priority
    * @throws PersistencyException PersistencyException
    */
-  public void setPriority(WorkflowPriority priority) throws PersistencyException {
+  public void setPriority(WorkflowPriority priority) {
     this.priority = priority;
   }
 
@@ -1026,7 +541,7 @@ public class RemoteTask implements ITask {
    * @param fullRequestPath full request path
    * @throws PersistencyException PersistencyException
    */
-  public void setFullRequestPath(String fullRequestPath) throws PersistencyException {
+  public void setFullRequestPath(String fullRequestPath) {
     this.fullRequestPath = fullRequestPath;
   }
 
@@ -1036,7 +551,7 @@ public class RemoteTask implements ITask {
    * @param kindCode kind code
    * @throws PersistencyException PersistencyException
    */
-  public void setKindCode(String kindCode) throws PersistencyException {
+  public void setKindCode(String kindCode) {
     this.kindCode = kindCode;
   }
 
@@ -1046,7 +561,7 @@ public class RemoteTask implements ITask {
    * @param kindName kind name.
    * @throws PersistencyException PersistencyException
    */
-  public void setKindName(String kindName) throws PersistencyException {
+  public void setKindName(String kindName) {
     this.kindName = kindName;
   }
 
@@ -1056,7 +571,7 @@ public class RemoteTask implements ITask {
    * @param originalActivatorName original activator name
    * @throws PersistencyException PersistencyException
    */
-  public void setOriginalActivatorName(String originalActivatorName) throws PersistencyException {
+  public void setOriginalActivatorName(String originalActivatorName) {
     this.originalActivatorName = originalActivatorName;
   }
 
@@ -1066,7 +581,7 @@ public class RemoteTask implements ITask {
    * @param state task state
    * @throws PersistencyException PersistencyException
    */
-  public void setState(TaskState state) throws PersistencyException {
+  public void setState(TaskState state) {
     this.state = state;
   }
 
@@ -1076,7 +591,7 @@ public class RemoteTask implements ITask {
    * @param workerUserName username of worker
    * @throws PersistencyException PersistencyException
    */
-  public void setWorkerUserName(String workerUserName) throws PersistencyException {
+  public void setWorkerUserName(String workerUserName) {
     this.workerUserName = workerUserName;
   }
 
@@ -1103,8 +618,8 @@ public class RemoteTask implements ITask {
    *
    * @param remoteApplication remote application
    */
-  public void setApplication(IApplication remoteApplication) {
-    this.remoteApplication = (RemoteApplication) remoteApplication;
+  public void setApplication(RemoteApplication remoteApplication) {
+    this.remoteApplication = remoteApplication;
   }
 
   /**
@@ -1112,8 +627,8 @@ public class RemoteTask implements ITask {
    *
    * @param remoteCase remote case
    */
-  public void setCase(ICase remoteCase) {
-    this.remoteCase = (RemoteCase) remoteCase;
+  public void setCase(RemoteCase remoteCase) {
+    this.remoteCase = remoteCase;
   }
 
   /**
@@ -1121,8 +636,8 @@ public class RemoteTask implements ITask {
    *
    * @param expiredCreatorTask expired task
    */
-  public void setExpiredCreatorTask(ITask expiredCreatorTask) {
-    this.expiredCreatorTask = (RemoteTask) expiredCreatorTask;
+  public void setExpiredCreatorTask(RemoteTask expiredCreatorTask) {
+    this.expiredCreatorTask = expiredCreatorTask;
   }
 
   /**
@@ -1177,16 +692,6 @@ public class RemoteTask implements ITask {
    */
   public void setApplicationRegister(Application applicationRegister) {
     this.applicationRegister = applicationRegister;
-  }
-
-  @Override
-  public String getFailReason() {
-    return null;
-  }
-
-  @Override
-  public boolean isOfflineTask() throws PersistencyException {
-    return false;
   }
 
   public List<RemoteNote> getRemoteNotes() {
@@ -1308,43 +813,4 @@ public class RemoteTask implements ITask {
   public void setRemoteTechnicalCase(RemoteCase remoteTechnicalCase) {
     this.remoteTechnicalCase = remoteTechnicalCase;
   }
-  
-  @Override
-  public ResumeTaskResult canUserResumeTask(ISession session)
-		throws PersistencyException {
-	// TODO Auto-generated method stub
-	return null;
-  }
-
-  @Override
-	public ResumeTaskResult canResumeWithRequestPath(String requestPath)
-		throws PersistencyException {
-	// TODO Auto-generated method stub
-	return null;
-	}
-
-  @Override
-  public ILocationService locations() {
-	// TODO Auto-generated method stub
-	return null;
-  }
-
-	@Override
-	public void setCategoryPath(String categoryPath) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public String getCategoryPath() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public Category getCategory() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

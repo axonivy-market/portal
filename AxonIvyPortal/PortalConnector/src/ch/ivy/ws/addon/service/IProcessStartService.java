@@ -10,6 +10,11 @@ public interface IProcessStartService {
 
   /**
    * Find all process starts by criteria
+   * @param processSearchCriteria 
+   * @param language 
+   * @param isUrlBuiltFromSystemProperties 
+   * @return ProcessStartServiceResult
+   * @throws WSException 
    */
   public ProcessStartServiceResult findProcessStartsByCriteria(ProcessSearchCriteria processSearchCriteria,
       String language, Boolean isUrlBuiltFromSystemProperties) throws WSException;

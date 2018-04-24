@@ -37,7 +37,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
    * @param entity
    */
   @ExecuteAsSystem
-  protected void setRelationshipDataFor(T entity){};
+  protected void setRelationshipDataFor(@SuppressWarnings("unused") T entity){}
 
   protected enum EntityProperty {
     ID("id"), NAME("name"), SERVER_ID("serverId"), USER_NAME("userName"), APPLICATION_ID("applicationId"), IS_ONLINE(
@@ -49,6 +49,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
       this.value = value;
     }
 
+    @Override
     public String toString() {
       return value;
     }
@@ -57,7 +58,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   /**
    * Gets all data in portal database. In case there is no data, it will return empty list.
    * 
-   * @return {@link List<Property>}
+   * @return {@link List}
    */
   @ExecuteAsSystem
   public List<Property> getAllPortalDataProperties() {
@@ -207,7 +208,6 @@ public abstract class AbstractDao<T extends BusinessEntity> {
    * get another {@code ICustomProperty} which we do not allow.
    * 
    * @return {@code ICustomProperties}
-   * @throws Exception
    */
   private ICustomProperties customProperties() {
     return ivyApplication.customProperties();

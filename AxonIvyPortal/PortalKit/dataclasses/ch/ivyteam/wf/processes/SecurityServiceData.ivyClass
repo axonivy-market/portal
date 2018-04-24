@@ -9,7 +9,7 @@ ivyRoles List<ch.ivy.ws.addon.IvyRole> #field
 ivyUsers List<ch.ivy.ws.addon.IvyUser> #field
 listIterator java.util.ListIterator #field
 portalConfig ch.ivy.addon.portalkit.bo.PortalConfiguration #field
-roles List<ch.ivyteam.ivy.security.IRole> #field
+roles List<ch.ivy.addon.portalkit.bo.RemoteRole> #field
 securityMemberData ch.ivyteam.wf.processes.SecurityMemberData #field
 securityMembers List<ch.ivyteam.ivy.security.ISecurityMember> #field
 server ch.ivy.addon.portalkit.persistence.domain.Server #field
@@ -17,3 +17,5 @@ taskId Long #field
 tempErrors List<ch.ivy.ws.addon.WsException> #field
 username String #field
 users List<ch.ivy.addon.portalkit.bo.RemoteUser> #field
+hasAppsParam Boolean #field
+hasAppsParam 'Flag to check whether find data by apps from parameter' #fieldComment

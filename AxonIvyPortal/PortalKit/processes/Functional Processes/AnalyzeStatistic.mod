@@ -57,6 +57,13 @@ ac0 @GridStep f31 '' #zField
 ac0 @GridStep f25 '' #zField
 ac0 @GridStep f21 '' #zField
 ac0 @GridStep f41 '' #zField
+ac0 @StartSub f45 '' #zField
+ac0 @GridStep f46 '' #zField
+ac0 @EndSub f47 '' #zField
+ac0 @CallSub f49 '' #zField
+ac0 @PushWFArc f50 '' #zField
+ac0 @PushWFArc f52 '' #zField
+ac0 @PushWFArc f48 '' #zField
 >Proto ac0 ac0 AnalyzeStatistic #zField
 ac0 f0 inParamDecl '<java.lang.String jsonQuery> param;' #txt
 ac0 f0 inParamTable 'out.jsonQuery=param.jsonQuery;
@@ -391,7 +398,7 @@ ac0 f39 requestActionDecl '<java.lang.String jsonQuery,java.util.List<java.lang.
 ac0 f39 requestMappingAction 'param.jsonQuery=in.jsonQuery;
 param.apps=in.involvedApplications;
 param.serverId=in.serverId;
-param.userName=ivy.session.getSessionUserName();
+param.userName=ch.ivy.addon.portalkit.util.PermissionUtils.checkReadAllCasesPermission() ? null : ivy.session.getSessionUserName();
 ' #txt
 ac0 f39 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
@@ -568,6 +575,84 @@ ac0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ac0 f41 224 426 112 44 -22 -8 #rect
 ac0 f41 @|StepIcon #fIcon
+ac0 f45 inParamDecl '<java.lang.String jsonQuery> param;' #txt
+ac0 f45 inParamTable 'out.jsonQuery=param.jsonQuery;
+' #txt
+ac0 f45 outParamDecl '<java.util.List<ch.ivy.ws.addon.ElapsedTimeStatistic> result> result;
+' #txt
+ac0 f45 outParamTable 'result.result=in.elapsedTimeStatisticResult;
+' #txt
+ac0 f45 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f45 callSignature analyzeElapsedTimeOfTasks(String) #txt
+ac0 f45 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeElapsedTimeOfTasks(String)</name>
+        <nameStyle>33,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ac0 f45 113 529 30 30 -100 17 #rect
+ac0 f45 @|StartSubIcon #fIcon
+ac0 f46 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f46 actionTable 'out=in;
+' #txt
+ac0 f46 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+in.serverId = SecurityServiceUtils.getServerIdFromSession();
+String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
+if (#applicationName is initialized) {
+	in.involvedApplications = [applicationName];
+}' #txt
+ac0 f46 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize</name>
+        <nameStyle>10
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ac0 f46 224 522 112 44 -22 -8 #rect
+ac0 f46 @|StepIcon #fIcon
+ac0 f47 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f47 753 529 30 30 0 15 #rect
+ac0 f47 @|EndSubIcon #fIcon
+ac0 f49 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f49 processCall MultiPortal/TaskService:analyzeElapsedTimeStatistic(String,List<String>,Long,String) #txt
+ac0 f49 doCall true #txt
+ac0 f49 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
+' #txt
+ac0 f49 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+param.apps=in.involvedApplications;
+param.serverId=in.serverId;
+param.userName=ivy.session.getSessionUserName();
+' #txt
+ac0 f49 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f49 responseMappingAction 'out=in;
+out.elapsedTimeStatisticResult=result.elapsedTimeStatistic;
+' #txt
+ac0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskService</name>
+    </language>
+</elementInfo>
+' #txt
+ac0 f49 576 522 112 44 -33 -8 #rect
+ac0 f49 @|CallSubIcon #fIcon
+ac0 f50 expr out #txt
+ac0 f50 143 544 224 544 #arcP
+ac0 f52 expr out #txt
+ac0 f52 688 544 753 544 #arcP
+ac0 f48 expr out #txt
+ac0 f48 336 544 576 544 #arcP
 >Proto ac0 .type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 >Proto ac0 .processKind CALLABLE_SUB #txt
 >Proto ac0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -617,3 +702,9 @@ ac0 f36 mainOut f43 tail #connect
 ac0 f43 head f41 mainIn #connect
 ac0 f39 mainOut f44 tail #connect
 ac0 f44 head f37 mainIn #connect
+ac0 f45 mainOut f50 tail #connect
+ac0 f50 head f46 mainIn #connect
+ac0 f49 mainOut f52 tail #connect
+ac0 f52 head f47 mainIn #connect
+ac0 f46 mainOut f48 tail #connect
+ac0 f48 head f49 mainIn #connect

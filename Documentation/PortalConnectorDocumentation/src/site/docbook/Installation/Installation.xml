@@ -8,7 +8,7 @@
 		</important>
 	</sect1>
 	<sect1 xml:id="portalconnectordocumentation.installation.redeployportalconnector">
-		<title>Re-deploy Portal Connector</title>
+		<title>Re-deploy Portal Connector (Work only with engine version 7.0.3 and older)</title>
 		<important>
 			Portal Connector is deployed to SYSTEM application. Therefore, you cannot use AdminUI to re-deploy it.
 			If you customize Portal Connector or use another Portal Connector, you can re-deploy by this way.
@@ -19,7 +19,7 @@
 		<itemizedlist>
 			<listitem>
 				<para>
-					In <code>YOUR_ENGINE_NAME_FOLDER/bin</code> make copy of <code>Example.ilc</code> file.
+					In <code>YOUR_ENGINE_FOLDER/bin</code> make copy of <code>Example.ilc</code> file.
 				</para>
 			</listitem>
 			<listitem>
@@ -51,7 +51,7 @@
 			<itemizedlist>
 				<listitem>
 					<para>
-						On engine extract all files from <code>PortalConnector.iar</code> to <code>YOUR_ENGINE_NAME_FOLDER/applications/System/PortalConnector/1/</code>.
+						On engine extract all files from <code>PortalConnector.iar</code> to <code>YOUR_ENGINE_FOLDER/system/applications/System/PortalConnector/1/</code>.
 					</para>
 				</listitem>
 				<listitem>

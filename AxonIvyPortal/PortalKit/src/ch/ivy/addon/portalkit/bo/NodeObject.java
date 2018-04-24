@@ -3,10 +3,9 @@ package ch.ivy.addon.portalkit.bo;
 import java.io.Serializable;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivyteam.ivy.workflow.ITask;
 
 /**
- * A wrapper class for ITask or Application.
+ * A wrapper class for Task or Application.
  * 
  * @author ptanh
  *
@@ -15,7 +14,7 @@ public class NodeObject implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private ITask task;
+	private RemoteTask task;
 	private Application application;
 	
 	/**
@@ -24,8 +23,8 @@ public class NodeObject implements Serializable {
 	 * @param obj application to add to node.
 	 */
 	public NodeObject(Object obj){
-		if(obj instanceof ITask){
-			task = (ITask)obj;
+		if(obj instanceof RemoteTask){
+			task = (RemoteTask)obj;
 		}else if(obj instanceof Application){
 			application = (Application)obj;
 		}
@@ -36,7 +35,7 @@ public class NodeObject implements Serializable {
 	 *
 	 * @return Returns the task
 	 */
-	public ITask getTask() {
+	public RemoteTask getTask() {
 		return task;
 	}
 
@@ -45,7 +44,7 @@ public class NodeObject implements Serializable {
 	 *
 	 * @param task The task to set
 	 */
-	public void setTask(ITask task) {
+	public void setTask(RemoteTask task) {
 		this.task = task;
 	}
 

@@ -20,7 +20,7 @@ Ce0 @PushWFArc f2 '' #zField
 Ce0 @InfoButton f7 '' #zField
 Ce0 @AnnotationArc f5 '' #zField
 >Proto Ce0 Ce0 CalculateTaskDelegate #zField
-Ce0 f0 inParamDecl '<ch.ivyteam.wf.processes.SecurityMemberData possibleTaskDelegates,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ce0 f0 inParamDecl '<ch.ivyteam.wf.processes.SecurityMemberData possibleTaskDelegates,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivy.addon.portalkit.bo.RemoteTask task> param;' #txt
 Ce0 f0 inParamTable 'out.currentUser=param.currentUser;
 out.roles=param.possibleTaskDelegates.ivyRoles;
 out.task=param.task;
@@ -33,14 +33,12 @@ result.roles=in.roles;
 ' #txt
 Ce0 f0 actionDecl 'internaltest.CalculateTaskDelegateOverrideData out;
 ' #txt
-Ce0 f0 callSignature call(ch.ivyteam.wf.processes.SecurityMemberData,ch.ivyteam.ivy.security.ISecurityMember,ch.ivyteam.ivy.workflow.ITask) #txt
+Ce0 f0 callSignature call(ch.ivyteam.wf.processes.SecurityMemberData,ch.ivyteam.ivy.security.ISecurityMember,ch.ivy.addon.portalkit.bo.RemoteTask) #txt
 Ce0 f0 type internaltest.CalculateTaskDelegateOverrideData #txt
 Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>call(SecurityMemberData,ISecurityMember,ITask)</name>
-        <nameStyle>46,5,7
-</nameStyle>
+        <name>call(SecurityMemberData,ISecurityMember,RemoteTask)</name>
     </language>
 </elementInfo>
 ' #txt

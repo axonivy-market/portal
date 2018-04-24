@@ -21,8 +21,11 @@ public class CaseTreeUtils {
 
   /**
    * Convert field CustomVarCharField5 of cases to TreeNode
+   * @param categories 
+   * @param firstCategory 
+   * @param isRootAllCase 
+   * @param menuState 
    * 
-   * @param cases : list of case
    * @return {@link TreeNode}
    */
   public static TreeNode convertToTreeNode(List<CategoryData> categories, String firstCategory, boolean isRootAllCase,

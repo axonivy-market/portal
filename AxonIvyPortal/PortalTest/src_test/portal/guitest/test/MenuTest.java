@@ -15,6 +15,7 @@ import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class MenuTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -70,8 +71,6 @@ public class MenuTest extends BaseTest {
     HomePage homePage = new HomePage();
 
     GlobalSearch globalSearch = homePage.getGlobalSearch();
-    globalSearch.clickOnGlobalSearchIcon();
-    homePage.waitForElementDisplayed(globalSearch.getSearchContainer(), true);
     globalSearch.inputSearchKeyword("Sick Leave Request");
 
     homePage.waitAjaxIndicatorDisappear();

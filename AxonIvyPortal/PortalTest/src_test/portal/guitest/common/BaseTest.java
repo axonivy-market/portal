@@ -48,7 +48,7 @@ public class BaseTest extends SeleneseTestBase {
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "internalSupport/15C7B30FB93C827E/repairComputer.ivp";
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
-  protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/CustomizationAdditionalCaseDetails.ivp";
+  protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "portalExamples/1624D1F5CBEA5332/createInvestmentRequest.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
 
   @Rule
@@ -124,6 +124,26 @@ public class BaseTest extends SeleneseTestBase {
   
   public void grantAllPermissionsToCurrentUser() {
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantAllPermissionsToCurrentUser.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+  
+  public void grantTaskReadAllPermissionsToCurrentUser() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantTaskReadAllPermissionsToCurrentUser.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+  
+  public void grantCaseReadAllPermissionsToCurrentUser() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantCaseReadAllPermissionsToCurrentUser.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+  
+  public void grantTaskReadOwnCaseTaskPermissionsToCurrentUser() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
+
+  public void denyReadAllPermissionFromCurrentUser() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyReadAllPermissionFromCurrentUser.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
   

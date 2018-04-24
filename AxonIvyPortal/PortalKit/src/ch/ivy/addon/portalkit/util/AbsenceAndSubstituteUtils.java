@@ -35,6 +35,7 @@ public final class AbsenceAndSubstituteUtils {
    * @param ivyUsers : List ivy user in current system
    * @return TreeNode : Substitute treeNode for an application
    */
+  @SuppressWarnings("unused")
   public static TreeNode buildSustitute(List<RemoteSubstitute> ivySubtitutes, List<RemoteApplicationUser> ivyUsers) {
     // Add Group list Ivy user to map by application name
     Map<String, List<RemoteApplicationUser>> mapUser = new HashMap<String, List<RemoteApplicationUser>>();
@@ -64,7 +65,7 @@ public final class AbsenceAndSubstituteUtils {
       String appName = app.substring(0, app.indexOf(" - "));
       for (RemoteSubstitute remoteSubstitute : ivySubtitutes) {
 
-        if (app != null && remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())) {
+        if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())) {
           if (StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
             new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
                 "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask"), remoteSubstitute, users, true),
@@ -76,7 +77,7 @@ public final class AbsenceAndSubstituteUtils {
 
       for (RemoteSubstitute remoteSubstitute : ivySubtitutes) {
 
-        if (app != null && remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())
+        if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())
             && !StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
           String nodeName = getNodeName(remoteSubstitute);
           new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
@@ -198,9 +199,9 @@ public final class AbsenceAndSubstituteUtils {
     }
 
     Date startDate = setTimeToMidnight(remoteAbsence.getStartDateInclusive());
-    Date stopDate = setTimeToMidnight(remoteAbsence.getStopDateInclusive());;
+    Date stopDate = setTimeToMidnight(remoteAbsence.getStopDateInclusive());
 
-    if (remoteAbsence != null && remoteAbsence.getStopDateInclusive() != null
+    if (remoteAbsence.getStopDateInclusive() != null
         && remoteAbsence.getStartDateInclusive() != null && (startDate.compareTo(stopDate) > 0)) {
       FacesContext.getCurrentInstance().addMessage(
           null,

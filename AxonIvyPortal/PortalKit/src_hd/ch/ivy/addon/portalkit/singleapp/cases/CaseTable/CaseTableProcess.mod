@@ -164,7 +164,7 @@ if (in.#selectedCase != null){
 	if (deleteResult){
 			in.selectedCase.setStatus(CaseState.DESTROYED.toString());
 			FacesMessage fm = new FacesMessage();
-			fm.summary = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/information");;
+			fm.summary = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/information");;
 			fm.detail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroysucceed");
 			fm.severity = FacesMessage.SEVERITY_INFO;
 			FacesContext.getCurrentInstance().addMessage(null,fm);

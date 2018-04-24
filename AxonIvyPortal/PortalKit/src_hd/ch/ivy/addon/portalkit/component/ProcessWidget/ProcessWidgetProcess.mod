@@ -36,17 +36,9 @@ Ps0 @RichDialogInitStart f12 '' #zField
 Ps0 @GridStep f0 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 Ps0 @GridStep f13 '' #zField
-Ps0 @GridStep f16 '' #zField
-Ps0 @PushWFArc f31 '' #zField
-Ps0 @Alternative f33 '' #zField
-Ps0 @PushWFArc f34 '' #zField
-Ps0 @Trigger f36 '' #zField
-Ps0 @PushWFArc f37 '' #zField
 Ps0 @Alternative f22 '' #zField
-Ps0 @PushWFArc f38 '' #zField
 Ps0 @PushWFArc f39 '' #zField
 Ps0 @PushWFArc f40 '' #zField
-Ps0 @PushWFArc f41 '' #zField
 Ps0 @PushWFArc f42 '' #zField
 Ps0 @PushWFArc f14 '' #zField
 Ps0 @PushWFArc f15 '' #zField
@@ -71,6 +63,7 @@ Ps0 @PushWFArc f55 '' #zField
 Ps0 @GridStep f53 '' #zField
 Ps0 @PushWFArc f44 '' #zField
 Ps0 @PushWFArc f25 '' #zField
+Ps0 @PushWFArc f16 '' #zField
 >Proto Ps0 Ps0 ProcessWidgetProcess #zField
 Ps0 f1 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f1 85 213 22 22 14 0 #rect
@@ -183,7 +176,7 @@ Ps0 f17 disableUIEvents false #txt
 Ps0 f17 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> userProcesses> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f17 inParameterMapAction 'out.processes=param.userProcesses;
+Ps0 f17 inParameterMapAction 'out.processesToBeDeleted=param.userProcesses;
 ' #txt
 Ps0 f17 outParameterDecl '<> result;
 ' #txt
@@ -199,7 +192,7 @@ Ps0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f17 517 309 22 22 14 -1 #rect
 Ps0 f17 @|RichDialogMethodStartIcon #fIcon
 Ps0 f18 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f18 517 693 22 22 14 0 #rect
+Ps0 f18 517 509 22 22 14 0 #rect
 Ps0 f18 @|RichDialogProcessEndIcon #fIcon
 Ps0 f21 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f21 processCall 'Business Processes/AbstractSynchronizingConfiguration:deleteManyProperties(List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity>)' #txt
@@ -221,10 +214,10 @@ Ps0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f21 510 628 36 24 20 -2 #rect
+Ps0 f21 510 444 36 24 20 -2 #rect
 Ps0 f21 @|TriggerIcon #fIcon
 Ps0 f19 expr out #txt
-Ps0 f19 528 652 528 693 #arcP
+Ps0 f19 528 468 528 509 #arcP
 Ps0 f23 guid 151D8B55F244B7CD #txt
 Ps0 f23 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f23 method collectAllProcessStarts() #txt
@@ -232,7 +225,7 @@ Ps0 f23 disableUIEvents false #txt
 Ps0 f23 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f23 outParameterDecl '<List<ch.ivyteam.ivy.workflow.start.IWebStartable> webStartables> result;
+Ps0 f23 outParameterDecl '<List<ch.ivy.addon.portalkit.bo.RemoteWebStartable> webStartables> result;
 ' #txt
 Ps0 f23 outParameterMapAction 'result.webStartables=in.webStartables;
 ' #txt
@@ -401,68 +394,6 @@ Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f13 78 436 36 24 20 -2 #rect
 Ps0 f13 @|StepIcon #fIcon
-Ps0 f16 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
-' #txt
-Ps0 f16 actionTable 'out=in;
-' #txt
-Ps0 f16 actionCode 'import java.util.Iterator;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-
-in.processesToBeDeleted.clear();
-
-Iterator<UserProcess> i = in.processes.iterator();
-while (i.hasNext()) {
-	UserProcess process = i.next() as UserProcess;
-	if (!process.defaultProcess) {
-		in.processesToBeDeleted.add(process);
-		i.remove();
-	}
-}' #txt
-Ps0 f16 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f16 510 372 36 24 20 -2 #rect
-Ps0 f16 @|StepIcon #fIcon
-Ps0 f31 expr out #txt
-Ps0 f31 528 331 528 372 #arcP
-Ps0 f33 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>has default
-processes deleted?</name>
-        <nameStyle>30
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f33 514 434 28 28 14 0 #rect
-Ps0 f33 @|AlternativeIcon #fIcon
-Ps0 f34 expr out #txt
-Ps0 f34 528 396 528 434 #arcP
-Ps0 f36 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
-Ps0 f36 processCall 'Business Processes/AbstractSynchronizingConfiguration:addOrUpdateMany(List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity>)' #txt
-Ps0 f36 doCall true #txt
-Ps0 f36 requestActionDecl '<List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> businessEntities> param;
-' #txt
-Ps0 f36 requestMappingAction 'param.businessEntities=in.processes;
-' #txt
-Ps0 f36 responseActionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
-' #txt
-Ps0 f36 responseMappingAction 'out=in;
-' #txt
-Ps0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>AbstractSynchronizingConfiguration</name>
-        <nameStyle>34,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f36 510 500 36 24 20 -2 #rect
-Ps0 f36 @|TriggerIcon #fIcon
-Ps0 f37 expr in #txt
-Ps0 f37 outCond !in.processes.isEmpty() #txt
-Ps0 f37 528 462 528 500 #arcP
 Ps0 f22 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -474,23 +405,16 @@ non default processes?</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f22 514 562 28 28 14 0 #rect
+Ps0 f22 514 378 28 28 14 0 #rect
 Ps0 f22 @|AlternativeIcon #fIcon
-Ps0 f38 expr out #txt
-Ps0 f38 528 524 528 562 #arcP
 Ps0 f39 expr in #txt
 Ps0 f39 outCond !in.processesToBeDeleted.isEmpty() #txt
-Ps0 f39 528 590 528 628 #arcP
+Ps0 f39 528 406 528 444 #arcP
 Ps0 f40 expr in #txt
-Ps0 f40 514 576 517 704 #arcP
-Ps0 f40 1 448 576 #addKink
-Ps0 f40 2 448 704 #addKink
+Ps0 f40 514 392 517 520 #arcP
+Ps0 f40 1 448 392 #addKink
+Ps0 f40 2 448 520 #addKink
 Ps0 f40 1 0.51171875 0 0 #arcLabel
-Ps0 f41 expr in #txt
-Ps0 f41 542 448 542 576 #arcP
-Ps0 f41 1 608 448 #addKink
-Ps0 f41 2 608 576 #addKink
-Ps0 f41 1 0.5 0 0 #arcLabel
 Ps0 f42 expr out #txt
 Ps0 f42 96 331 96 370 #arcP
 Ps0 f14 expr out #txt
@@ -522,9 +446,7 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 
 UserProcessService userProcessService = new UserProcessService();
 String userName = UserUtils.getSessionUserName();
-List<UserProcess> processesFromSubProcess = userProcessService.getDefaultUserProcessesFromSubProcess();
-List<UserProcess> deletedDefaultProcesses = userProcessService.findDeletedDefaultProcessesByUserName(userName);
-out.processes = userProcessService.subtractByLink(processesFromSubProcess, deletedDefaultProcesses);' #txt
+out.processes = userProcessService.getDefaultUserProcessesFromSubProcess();' #txt
 Ps0 f45 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -705,6 +627,8 @@ Ps0 f44 expr out #txt
 Ps0 f44 640 172 640 213 #arcP
 Ps0 f25 expr out #txt
 Ps0 f25 96 524 96 565 #arcP
+Ps0 f16 expr out #txt
+Ps0 f16 528 331 528 378 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -723,20 +647,10 @@ Ps0 f8 mainOut f2 tail #connect
 Ps0 f2 head f0 mainIn #connect
 Ps0 f0 mainOut f32 tail #connect
 Ps0 f32 head f11 mainIn #connect
-Ps0 f17 mainOut f31 tail #connect
-Ps0 f31 head f16 mainIn #connect
-Ps0 f16 mainOut f34 tail #connect
-Ps0 f34 head f33 in #connect
-Ps0 f33 out f37 tail #connect
-Ps0 f37 head f36 mainIn #connect
-Ps0 f36 mainOut f38 tail #connect
-Ps0 f38 head f22 in #connect
 Ps0 f22 out f39 tail #connect
 Ps0 f39 head f21 mainIn #connect
 Ps0 f22 out f40 tail #connect
 Ps0 f40 head f18 mainIn #connect
-Ps0 f33 out f41 tail #connect
-Ps0 f41 head f22 in #connect
 Ps0 f23 mainOut f42 tail #connect
 Ps0 f42 head f28 in #connect
 Ps0 f13 mainOut f14 tail #connect
@@ -761,3 +675,5 @@ Ps0 f53 mainOut f55 tail #connect
 Ps0 f55 head f61 mainIn #connect
 Ps0 f52 mainOut f54 tail #connect
 Ps0 f54 head f53 mainIn #connect
+Ps0 f17 mainOut f16 tail #connect
+Ps0 f16 head f22 in #connect

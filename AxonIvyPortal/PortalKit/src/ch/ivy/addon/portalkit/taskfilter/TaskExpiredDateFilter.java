@@ -19,7 +19,7 @@ public class TaskExpiredDateFilter extends TaskFilter {
   @Override
   public String label() {
     StringBuilder sb = new StringBuilder();
-    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/expiry"));
+    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME"));
     sb.append(" (");
     sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/from"));
     sb.append("/");
@@ -69,6 +69,7 @@ public class TaskExpiredDateFilter extends TaskFilter {
     toExpiredDate = null;
   }
   
+  @Override
   public void validate() {
     if (fromExpiredDate != null && toExpiredDate != null && (fromExpiredDate.compareTo(toExpiredDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();

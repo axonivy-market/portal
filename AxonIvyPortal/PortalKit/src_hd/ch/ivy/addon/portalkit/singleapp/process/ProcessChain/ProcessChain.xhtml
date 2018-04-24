@@ -23,7 +23,7 @@
           class="foreground-text-color process-step #{cc.attrs.actualStepIndex eq counter.index ? 'current' :  cc.attrs.actualStepIndex > counter.index ? 'visited' : 'waiting'}">
           <span class="step-title">${stepName}</span>
         </h:panelGroup>
-        <p:tooltip for="step-info-#{counter.index}" value="#{stepName}" escape="false" trackMouse="true" />
+        <p:tooltip for="step-info-#{counter.index}" value="#{stepName}" trackMouse="true" />
       </c:forEach>
     </div>
   </div>
@@ -36,10 +36,10 @@
         <span class="stage-title"><i class="#{stage.icon.cssClass eq '' ? 'fa fa-square' : stage.icon.cssClass}" /><br />
           <span class="stage-name">#{stage.name}</span></span>
       </h:panelGroup>
-      <p:tooltip for="stage-info-#{counter.index}" value="#{stage.name}" escape="false" trackMouse="true" />
+      <p:tooltip for="stage-info-#{counter.index}" value="#{stage.name}" trackMouse="true" />
       <c:if test="#{cc.attrs.stages.size() gt counter.index+1}">
         <div class="process-flow">
-          <span class="flow-txt"><div class="#{stage.isTerminating()  ? 'none' : 'visible'}" /></span>
+          <div class="flow-txt"><div class="#{stage.isTerminating()  ? 'none' : 'visible'}" /></div>
         </div>
       </c:if>
     </c:forEach>

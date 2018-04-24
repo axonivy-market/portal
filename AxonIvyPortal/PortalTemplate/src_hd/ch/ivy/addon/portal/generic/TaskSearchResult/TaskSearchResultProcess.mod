@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Aug 07 17:17:57 ICT 2017]
 15498A84F89ACDE7 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskSearchResultProcess Big #zClass
@@ -21,12 +20,10 @@ Ts0 @PushWFArc f2 '' #zField
 Ts0 @CallSub f4 '' #zField
 Ts0 @RichDialogProcessStart f6 '' #zField
 Ts0 @GridStep f23 '' #zField
-Ts0 @GridStep f16 '' #zField
-Ts0 @PushWFArc f7 '' #zField
-Ts0 @PushWFArc f5 '' #zField
 Ts0 @CallSub f8 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f3 '' #zField
+Ts0 @PushWFArc f5 '' #zField
 >Proto Ts0 Ts0 TaskSearchResultProcess #zField
 Ts0 f0 guid 15498A84FB37527F #txt
 Ts0 f0 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
@@ -73,7 +70,7 @@ Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f4 278 364 36 24 20 -2 #rect
+Ts0 f4 278 316 36 24 20 -2 #rect
 Ts0 f4 @|CallSubIcon #fIcon
 Ts0 f6 guid 15498BCDDAD82718 #txt
 Ts0 f6 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
@@ -102,19 +99,22 @@ Ts0 f23 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResul
 ' #txt
 Ts0 f23 actionTable 'out=in;
 ' #txt
-Ts0 f23 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+Ts0 f23 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivy.addon.portalkit.util.MenuUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
 
 MainMenuNode category = new MainMenuNode();
-category.value = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/task"), in.keyword));
+category.value = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResultsFor", Arrays.asList(ivy.cms.co("/Labels/Task"), in.keyword));
 String pageTitle = category.value;
 
 in.dataModel.setServerId(in.foundTask.applicationRegister.serverId);
-in.dataModel.setKeyword(in.keyword);
-in.dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.dataModel.queryCriteria.setKeyword(in.keyword);
+in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
+in.dataModel.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+in.dataModel.setNotKeepFilter(true);
 in.dataModel.queryCriteria.newQueryCreated = true;
 out.view = TaskView.create().category(category).pageTitle(pageTitle).keyword(in.keyword).remoteTaskId(in.foundTask.getId()).dataModel(in.dataModel).showHeaderToolbar(false).createNewTaskView();
 
@@ -131,34 +131,6 @@ Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f23 278 244 36 24 20 -2 #rect
 Ts0 f23 @|StepIcon #fIcon
-Ts0 f16 actionDecl 'ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData out;
-' #txt
-Ts0 f16 actionTable 'out=in;
-' #txt
-Ts0 f16 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalPage;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
-
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString());' #txt
-Ts0 f16 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
-Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Store the last page
-to session</name>
-        <nameStyle>30
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f16 232 290 128 44 -45 -16 #rect
-Ts0 f16 @|StepIcon #fIcon
-Ts0 f7 expr out #txt
-Ts0 f7 296 268 296 290 #arcP
-Ts0 f5 expr out #txt
-Ts0 f5 296 334 296 364 #arcP
 Ts0 f8 type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
 Ts0 f8 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
 Ts0 f8 doCall true #txt
@@ -182,17 +154,17 @@ Ts0 f9 expr out #txt
 Ts0 f9 296 116 296 154 #arcP
 Ts0 f3 expr out #txt
 Ts0 f3 296 198 296 244 #arcP
+Ts0 f5 expr out #txt
+Ts0 f5 296 268 296 316 #arcP
 >Proto Ts0 .type ch.ivy.addon.portal.generic.TaskSearchResult.TaskSearchResultData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
 Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
-Ts0 f23 mainOut f7 tail #connect
-Ts0 f7 head f16 mainIn #connect
-Ts0 f16 mainOut f5 tail #connect
-Ts0 f5 head f4 mainIn #connect
 Ts0 f6 mainOut f9 tail #connect
 Ts0 f9 head f8 mainIn #connect
 Ts0 f8 mainOut f3 tail #connect
 Ts0 f3 head f23 mainIn #connect
+Ts0 f23 mainOut f5 tail #connect
+Ts0 f5 head f4 mainIn #connect

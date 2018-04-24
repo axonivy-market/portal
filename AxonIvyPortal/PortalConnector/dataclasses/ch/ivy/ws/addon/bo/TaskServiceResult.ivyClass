@@ -10,3 +10,4 @@ taskCount Long #field
 categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 priorityStatistic ch.ivy.ws.addon.types.PriorityStatistic #field
 expiryStatistic ch.ivy.ws.addon.types.ExpiryStatistic #field
+elapsedTimeStatistic ch.ivy.ws.addon.types.ElapsedTimeStatistic #field

@@ -17,20 +17,20 @@
 
     <h:panelGrid>
       <p:growl id="change-email-setting-info" showDetail="true" sticky="false" life="400" severity="info"
-        widgetVar="growl" escape="false" />
+        widgetVar="growl" escape="false"/>
     </h:panelGrid>
     <p:remoteCommand name="updateGrowlEmail" actionListener="#{logic.updateGrowl}" update="change-email-setting-info" />
 
     <h:panelGroup layout="block" id="email-setting-container">
-      <p:messages escape="false" showDetail="true" closable="true" id="email-messages" />
+      <p:messages showDetail="true" closable="true" id="email-messages" escape="false" />
       <h:panelGrid>
 
         <h:panelGrid columns="2">
           <!--  SETTING -->
-          <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/setting')}">
+          <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
             <p:selectOneRadio id="select-setting-options" value="#{data.settingForAllApp}" layout="pageDirection"
               columns="1">
-              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApps')}"
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}"
                 itemValue="#{true}" />
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forEachApp')}"
                 itemValue="#{false}" />
@@ -123,10 +123,10 @@
 
       <p:dialog id="exception-message-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
         styleClass="email-setting-exception-dialog" widgetVar="errorDialogEmail" modal="true" appendTo="@(body)">
-        <p:messages id="errorsMessageE" severity="info" escape="false" showDetail="true" closable="true" />
+        <p:messages id="errorsMessageE" severity="info" showDetail="true" closable="true" escape="false"/>
         <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
         <f:facet name="footer">
-        	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+        	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
           		onclick="PF('errorDialogEmail').hide();" />
         </f:facet>
       </p:dialog>
@@ -135,12 +135,12 @@
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
       <p:commandButton id="save-settings" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.save}"
-        update="@widgetVar(errorDialogEmail)" styleClass="portal-ok-button"
+        update="@widgetVar(errorDialogEmail)" styleClass=""
         oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();updateGrowlEmail();} else {PF('#{cc.attrs.dialogName}').hide();PF('errorDialogEmail').show();}" />
       <p:spacer width="5px" />
       <p:commandButton id="cancel-settings" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
-        onclick="PF('#{cc.attributes.dialogName}').hide();" styleClass="portal-cancel-button" />
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.cancel}"
+        update="email-setting-container" oncomplete="PF('#{cc.attrs.dialogName}').hide();" styleClass="portal-cancel-button" />
     </h:panelGroup>
   </div>
 </cc:implementation>

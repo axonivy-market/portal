@@ -13,11 +13,11 @@
 
 <cc:implementation>
   <div id="task-data" class="task-details-item js-task-details-item js-data-column #{cc.attrs.styleClass}">
-    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/data')}</div>
+    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/data')}</div>
     <div class="Separator" />
     <h:panelGrid columns="2" columnClasses="task-details-data-1st-column, task-details-data-2nd-column"
       rowClasses="task-details-row-space">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/priority')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" />
       <h:panelGroup styleClass="task-details-priority">
         <ui:fragment rendered="#{taskBean.canChangeOriginalPriority(task)}">
           <h:form id="priority-form">
@@ -62,7 +62,7 @@
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.workerFullName}"
         username="#{task.workerUserName}" />
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/responsible')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.activatorFullName}"
         username="#{task.activatorUserName}" />
 
@@ -82,13 +82,13 @@
         <f:attribute name="selectedCase" value="#{task.remoteTechnicalCase}" />
       </p:commandLink>
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/createOn')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
       <h:outputText id="start-date" value="#{task.startTimestamp}">
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
       </h:outputText>
 
 
-      <h:outputText id="expiryLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expiry')}" />
+      <h:outputText id="expiryLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
 
       <ui:fragment rendered="#{taskBean.isNotDone(task)}">
         <h:form id="expiry-form">
@@ -99,7 +99,7 @@
             <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="#{cc.attrs.componentToUpdate}" />
             <p:ajax event="cancel" resetValues="true" />
             <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}"
-              pattern="#{dateTimePatternBean.configuredPattern}">
+              pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
               <f:validator validatorId="taskExpiryTimestampValidator" />
             </p:calendar>
           </p:inplace>

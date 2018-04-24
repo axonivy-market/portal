@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.comparator.RemoteRoleComparator;
 import ch.ivy.addon.portalkit.comparator.RemoteUserComparator;
 import ch.ivy.addon.portalkit.mapper.RemoteSecurityMemberMapper;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -33,7 +34,7 @@ public class TaskResponsibleFilter extends TaskFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR");
   }
 
   @Override
@@ -82,15 +83,27 @@ public class TaskResponsibleFilter extends TaskFilter {
     try {
       List<RemoteUser> users =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
+            @Override
             public List<RemoteUser> call() throws Exception {
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
+              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+                return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
+                  .get("users", List.class);
+              }
+              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
+                  .call(Ivy.request().getApplication().getName())
                   .get("users", List.class);
             }
           });
       List<RemoteRole> roles =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
+            @Override
             public List<RemoteRole> call() throws Exception {
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
+              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+                return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
+                    .get("roles", List.class);
+              }
+              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRolesByApplication")
+                  .call(Ivy.request().getApplication().getName())
                   .get("roles", List.class);
             }
           });

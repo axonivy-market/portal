@@ -2,19 +2,24 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 import ch.ivy.addon.portalkit.bo.Contact;
+import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.vo.CaseVO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
 import ch.ivyteam.ivy.persistence.OrderDirection;
+import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseProperty;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IPropertyFilter;
 import ch.ivyteam.ivy.workflow.PropertyOrder;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -23,10 +28,9 @@ import ch.ivyteam.logicalexpression.RelationalOperator;
 /**
  * This class is to build some function related to case such as find finish cases, find running case, filter by
  * category.
- * 
- * @author lptchi
  */
 
+@SuppressWarnings("deprecation")
 public final class CaseUtils {
 
   private CaseUtils() {
@@ -299,7 +303,7 @@ public final class CaseUtils {
    * @return list {@link ICase}
    */
   public static List<ICase> findICases(IPropertyFilter<CaseProperty> filter) {
-    boolean hasReadAllCasesPermission = checkReadAllCasesPermission();
+    boolean hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();
     List<ICase> cases;
     if (!hasReadAllCasesPermission) {
       cases = Ivy.session().findInvolvedCases(filter, null, 0, -1, true).getResultList();
@@ -316,35 +320,38 @@ public final class CaseUtils {
    * @return CaseVO object hold data of ICase
    */
   public static CaseVO convertToCaseVO(ICase iCase) {
-    String caseDetailStartProcess = getCaseDetailProcess(iCase);
     CaseVO caseVO = new CaseVO();
-    caseVO.setProcessCaseDetails(caseDetailStartProcess);
-    caseVO.setCreatedAt(iCase.getStartTimestamp());
-    caseVO.setId(iCase.getId());
-    caseVO.setDescription(iCase.getDescription());
-    caseVO.setTitle(iCase.getName());
-    if (CaseState.CREATED.equals(iCase.getState())) {
-      caseVO.setStatus(CaseState.RUNNING.name());
-    } else {
-      caseVO.setStatus(iCase.getState().name());
-    }
-    if (iCase.getCreatorUser() != null && iCase.getCreatorUser().getFullName() != null) {
-      caseVO.setCreator(String.format(fullNameFormat, iCase.getCreatorUser().getFullName(), iCase.getCreatorUser()
-          .getName()));
-    } else {
-      caseVO.setCreator(iCase.getCreatorUserName());
-    }
-    Contact contact = new Contact(getEmailAddress(iCase));
-    String phone = getPhone(iCase);
-    if (phone != null) {
-      contact.setPhone(phone);
-    }
-    String mobile = getMobile(iCase);
-    if (mobile != null) {
-      contact.setMobilePhone(mobile);
-    }
-
-    caseVO.setCreatorContact(contact);
+    if (iCase != null){
+      String caseDetailStartProcess = getCaseDetailProcess(iCase);
+      caseVO.setProcessCaseDetails(caseDetailStartProcess);
+      caseVO.setCreatedAt(iCase.getStartTimestamp());
+      caseVO.setId(iCase.getId());
+      caseVO.setDescription(iCase.getDescription());
+      caseVO.setTitle(iCase.getName());
+      CaseState state = Optional.ofNullable(iCase).map(ICase::getState).orElse(null);
+      if (CaseState.CREATED.equals(state)) {
+        caseVO.setStatus(CaseState.RUNNING.name());
+      } else {
+        caseVO.setStatus(state == null ? null : state.name());
+      }
+      if (iCase.getCreatorUser() != null && iCase.getCreatorUser().getFullName() != null) {
+        caseVO.setCreator(String.format(fullNameFormat, iCase.getCreatorUser().getFullName(), iCase.getCreatorUser()
+            .getName()));
+      } else {
+        caseVO.setCreator(iCase.getCreatorUserName());
+      }
+      Contact contact = new Contact(getEmailAddress(iCase));
+      String phone = getPhone(iCase);
+      if (phone != null) {
+        contact.setPhone(phone);
+      }
+      String mobile = getMobile(iCase);
+      if (mobile != null) {
+        contact.setMobilePhone(mobile);
+      }
+  
+      caseVO.setCreatorContact(contact);
+    } 
     return caseVO;
   }
 
@@ -376,6 +383,7 @@ public final class CaseUtils {
     if (cases != null && cases.size() > 0) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+          @Override
           public Boolean call() {
             try {
               ICase ic = cases.get(0);
@@ -407,6 +415,7 @@ public final class CaseUtils {
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               return iCase.getCreatorUser().getEMailAddress();
@@ -436,6 +445,7 @@ public final class CaseUtils {
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               return iCase.getCreatorUser().getProperty(UserUtils.MOBILE);
@@ -465,6 +475,7 @@ public final class CaseUtils {
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               return iCase.getCreatorUser().getProperty(UserUtils.PHONE);
@@ -492,6 +503,7 @@ public final class CaseUtils {
   public static ICase getCaseById(final Integer caseId) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ICase>() {
+        @Override
         public ICase call() {
           try {
             return Ivy.wf().findCase(new Long(caseId));
@@ -534,6 +546,7 @@ public final class CaseUtils {
   public static boolean setCaseDetailsProcess(final ICase iCase, final String value) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+        @Override
         public Boolean call() {
           try {
             iCase.setAdditionalProperty(CASE_DETAIL_PROCESS, value);
@@ -560,6 +573,7 @@ public final class CaseUtils {
   public static boolean setCaseMainContactFolderId(final ICase iCase, final String value) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+        @Override
         public Boolean call() {
           try {
             iCase.setBusinessMainContactFolderId(value);
@@ -574,21 +588,6 @@ public final class CaseUtils {
       Ivy.log().error(e);
       return false;
     }
-  }
-
-
-  /**
-   * Check if current session has read all cases permission
-   * 
-   * @return hasReadAkkCasesPermission True : has read all cases permission, False : do not have read all cases
-   *         permission
-   */
-  public static boolean checkReadAllCasesPermission() {
-    boolean hasReadAllCasesPermission =
-        Ivy.session()
-            .hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-                ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL);
-    return hasReadAllCasesPermission;
   }
 
   /**
@@ -617,6 +616,7 @@ public final class CaseUtils {
   public static Recordset findcases(final CaseQuery caseQuery) {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Recordset>() {
+        @Override
         public Recordset call() throws Exception {
           return Ivy.wf().getCaseQueryExecutor().getRecordset(caseQuery);
         }
@@ -637,6 +637,7 @@ public final class CaseUtils {
   public static ICase findcase(final long id) {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<ICase>() {
+        @Override
         public ICase call() throws Exception {
           return Ivy.wf().findCase(id);
         }
@@ -657,6 +658,7 @@ public final class CaseUtils {
   public static IQueryResult<ICase> findcases(final IPropertyFilter<CaseProperty> caseFilter) {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IQueryResult<ICase>>() {
+        @Override
         public IQueryResult<ICase> call() throws Exception {
           return Ivy.wf().findCases(caseFilter, PropertyOrder.create(CaseProperty.ID, OrderDirection.DESCENDING), 0, 1,
               true);
@@ -682,5 +684,17 @@ public final class CaseUtils {
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
     iCase.setAdditionalProperty(HIDE, null);
+  }
+  
+  public static String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    String urlParameters = "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
+    try {
+      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
+      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
+    }
   }
 }

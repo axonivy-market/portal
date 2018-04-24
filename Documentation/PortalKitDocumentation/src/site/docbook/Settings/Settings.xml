@@ -152,6 +152,43 @@
 								Display the custom end page at the end of each Express process. Default is true.
 							</entry>
 						</row>
+						<row>
+							<entry>EXPIRY_CHART_LAST_DRILLDOWN_LEVEL</entry>
+							<entry>One of these values: HOUR/DAY/WEEK/MONTH/YEAR</entry>
+							<entry>
+								Determine last drilldown level using in Task by expiry chart. Default value is HOUR.
+							</entry>
+						</row>
+						<row>
+							<entry>ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to <code>TRUE</code> to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, MS Doc.
+							</entry>
+						</row>
+						<row>
+							<entry>UPLOAD_DOCUMENT_WHITELIST_EXTENSION</entry>
+							<entry>Empty or List of allowed extensions when upload document in Portal, which are separated by comma</entry>
+							<entry>
+								<para>
+									Leave value empty if you allow all extensions.
+								</para>
+								<para>
+									If just allow some extensions, list out extensions here, separated by comma. Example: <code>pdf, txt, doc, docx</code>
+								</para>
+								<para>
+									If admin doesn't configure this setting, Portal will use the default extension list: 
+									<code>doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt ,zip, jpg, jpeg, bmp, png</code>
+								</para>
+							</entry>
+						</row>
+                        <row>
+                          <entry>HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE</entry>
+                          <entry>TRUE/FALSE</entry>
+                          <entry>
+                           Set to <code>TRUE</code> to deny upload document after a case is done. By default, user can upload document independent of case status. 
+                          </entry>
+                        </row>
 					</tbody>
 				</tgroup>
 			</table>
@@ -164,17 +201,57 @@
 				available.
 			</warning>
 			<important>
+				<para> There is 2 ways to configure portals: <code>two levels</code> and <code>single level</code></para>
 				<itemizedlist>
 					<listitem>
-						<para>If number of configured applications is more than one, the default Portal application must not be configured and it must be active. </para>
+						<para>Two levels portal</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/Settings/multi-application-with-portal.png" />
+							</imageobject>
+						</mediaobject>
+						<itemizedlist>
+							<listitem>
+								<para>Used for related applications where we need an overview of all tasks and cases.</para>
+							</listitem>
+							<listitem>
+								<para>There is default application Portal.</para>
+							</listitem>
+							<listitem>
+								<para>Create new applications: App1, App2, App3... Deploy portal (kit, template ..) to new applications.</para>
+							</listitem>
+							<listitem>
+								<para>Configure multi-apps Portal on single server: login by Portal Admin. Configure 1 server then configure applications: App1, App2, App3...</para>
+							</listitem>
+							<listitem>
+								<para>Note that, <code>do not</code> add default Portal application, the default application (Dashboard) is reserved for displaying all tasks/cases... from all configured applications.</para>
+							</listitem>
+							<listitem>
+								<para>Dashboard menu only visible when login user exists in Portal application.</para>
+							</listitem>
+						</itemizedlist>
 					</listitem>
 					<listitem>
-						<para>If the login user is existed in only one application, application menu shows only the menu item for that application.</para>
-					</listitem>
-					<listitem>
-						<para>If the login user is existed in more than one application, application menu shows menu items for those applications and Dashboard menu item.</para> 
-						<para>Dashboard menu item is used for displaying all tasks, cases, processes of configured applications.</para> 
-						<para>Dashboard menu item is linked to the default Portal application. Therefore, the default Portal application must be active.</para>
+						<para>Single level portal</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/Settings/multi-application-without-portal.png" />
+							</imageobject>
+						</mediaobject>
+						<itemizedlist>
+							<listitem>
+								<para>Used for independent applications.</para>
+							</listitem>
+							<listitem>
+								<para>Disable the default application Portal.</para>
+							</listitem>
+							<listitem>
+								<para>Create new applications: App1, App2, App3... Deploy portal(kit, template ..) to new applications.</para>
+							</listitem>
+							<listitem>
+								<para>Configure multi-apps Portal on single server: login by Portal Admin. Configure 1 server then configure applications: App1, App2, App3...</para>
+							</listitem>
+						</itemizedlist>
 					</listitem>
 				</itemizedlist>
 			</important>

@@ -16,6 +16,7 @@ import java.util.function.Function;
 
 import javax.faces.event.ValueChangeEvent;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.LazyDataModel;
@@ -26,7 +27,6 @@ import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
-import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
@@ -35,6 +35,8 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivy.ws.addon.CaseSearchCriteria;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -60,6 +62,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   protected List<CaseFilter> selectedFilters;
   protected CaseFilterContainer filterContainer;
   private CaseFilterData selectedFilterData;
+  private boolean isNotKeepFilter = false;
 
   public CaseLazyDataModel() {
     this("case-widget");
@@ -72,8 +75,10 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     notDisplayedCaseMap = new HashMap<>();
     selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
-    searchCriteria = buildSearchCriteria();
-    queryCriteria = buildQueryCriteria();
+    searchCriteria = buildInitSearchCriteria();
+    queryCriteria = buildInitQueryCriteria();
+    setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
+    selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
   }
 
   @Override
@@ -105,23 +110,17 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
    * filterContainer = new CustomizedCaseFilterContainer();
    * </pre></code>
    * </p>
-   * 
-   * @return
    */
   protected void initFilterContainer() {
     filterContainer = new DefaultCaseFilterContainer();
   }
 
-  public void initFilters() {
+  public void initFilters() throws IllegalAccessException, InvocationTargetException {
     if (filterContainer == null) {
       initFilterContainer();
       filters = filterContainer.getFilters();
       setValuesForCaseStateFilter(queryCriteria);
-      if (searchCriteria.getIgnoreInvolvedUser()) {
-        CaseStateFilter stateFilter = filterContainer.getStateFilter();
-        stateFilter.getSelectedFilteredStates().remove(CaseState.DONE);
-        stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
-      }
+      restoreSessionAdvancedFilters();
     }
   }
 
@@ -245,7 +244,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     return caseCount.intValue();
   }
 
-  private CaseSearchCriteria buildSearchCriteria() {
+  private CaseSearchCriteria buildInitSearchCriteria() {
     CaseSearchCriteria crit = new CaseSearchCriteria();
     crit.setInvolvedUsername(Ivy.session().getSessionUserName());
     crit.setBusinessCase(true);
@@ -276,10 +275,6 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       return false;
     }
     return rowIndex >= 0 && rowIndex < data.size();
-  }
-
-  public void setKeyword(String keyWord) {
-    queryCriteria.setKeyword(keyWord.trim());
   }
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
@@ -338,11 +333,14 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     return queryCriteria;
   }
 
-  protected CaseQueryCriteria buildQueryCriteria() {
+  protected CaseQueryCriteria buildInitQueryCriteria() {
     CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
-    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING)));
+    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
     jsonQueryCriteria.setSortDescending(true);
+    if (!isNotKeepFilter) {
+      jsonQueryCriteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
+    }
     return jsonQueryCriteria;
   }
 
@@ -400,11 +398,20 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
         filterQuery.and(subQuery);
       }
     });
+    if (!isNotKeepFilter) {
+      UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
+      UserUtils.setSessionCaseKeywordFilterAttribute(queryCriteria.getKeyword());
+      UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
+    }
     return caseQuery;
   }
 
   /**
    * Save all filter settings to business data
+   * @param filterName 
+   * @param filterType 
+   * @param filterGroupId 
+   * @return saved CaseFilterData
    */
   public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
     CaseFilterData filterData = new CaseFilterData();
@@ -418,6 +425,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     CaseFilterService filterService = new CaseFilterService();
     BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
     filterData = filterService.findById(info.getId());
+    UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
     return filterData;
   }
 
@@ -431,6 +439,10 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   /**
    * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
+   * @param caseFilterData 
+   * @throws IllegalAccessException 
+   * @throws InvocationTargetException 
+   * @throws NoSuchMethodException 
    */
   public void applyFilter(CaseFilterData caseFilterData) throws IllegalAccessException, InvocationTargetException,
       NoSuchMethodException {
@@ -439,9 +451,29 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     applyCustomSettings(caseFilterData);
   }
 
-  private void applyCustomSettings(CaseFilterData caseFilterData) throws IllegalAccessException,
-      InvocationTargetException, NoSuchMethodException {
+  private void applyCustomSettings(CaseFilterData caseFilterData) {
     queryCriteria.setKeyword(caseFilterData.getKeyword());
   }
 
+  public boolean isNotKeepFilter() {
+    return isNotKeepFilter;
+  }
+
+  public void setNotKeepFilter(boolean isNotKeepFilter) {
+    this.isNotKeepFilter = isNotKeepFilter;
+  }
+
+  private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
+    if (!isNotKeepFilter) {
+      List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
+      for (CaseFilter filter : filters) {
+        for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
+          if (sessionCaseFilter.getClass() == filter.getClass()) {
+            BeanUtils.copyProperties(filter, sessionCaseFilter);
+            selectedFilters.add(filter);
+          }
+        }
+      }
+    }
+  }
 }

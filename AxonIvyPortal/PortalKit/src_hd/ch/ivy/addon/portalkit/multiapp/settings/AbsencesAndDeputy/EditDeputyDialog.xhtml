@@ -18,7 +18,7 @@
         <p:commandButton process="@form" id="save-deputy"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           actionListener="#{logic.saveModifiedSubstitute}" update=":#{p:component('absence-table')}"
-          oncomplete="PF('editDeputy').hide();" styleClass="portal-ok-button" />
+          oncomplete="PF('editDeputy').hide();" styleClass="" />
         <p:spacer styleClass="u-buttons-spacer" />
         <p:commandButton type="button" id="close-edit-deputy-dialog" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('editDeputy').hide();" />

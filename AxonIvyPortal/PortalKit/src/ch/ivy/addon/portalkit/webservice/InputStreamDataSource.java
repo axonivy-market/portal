@@ -23,18 +23,22 @@ public class InputStreamDataSource implements DataSource {
     this.name = name;
   }
 
+  @Override
   public String getContentType() {
     return contentType;
   }
 
+  @Override
   public InputStream getInputStream() throws IOException {
     return is;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public OutputStream getOutputStream() throws IOException {
     throw new UnsupportedOperationException();
   }

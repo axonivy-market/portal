@@ -87,7 +87,6 @@ Ts0 @PushWFArc f38 '' #zField
 Ts0 @GridStep f44 '' #zField
 Ts0 @PushWFArc f53 '' #zField
 Ts0 @CallSub f54 '' #zField
-Ts0 @PushWFArc f49 '' #zField
 Ts0 @GridStep f56 '' #zField
 Ts0 @PushWFArc f58 '' #zField
 Ts0 @PushWFArc f57 '' #zField
@@ -120,6 +119,12 @@ Ts0 @PushWFArc f99 '' #zField
 Ts0 @CallSub f104 '' #zField
 Ts0 @PushWFArc f105 '' #zField
 Ts0 @PushWFArc f101 '' #zField
+Ts0 @GridStep f106 '' #zField
+Ts0 @PushWFArc f107 '' #zField
+Ts0 @PushWFArc f49 '' #zField
+Ts0 @RichDialogMethodStart f108 '' #zField
+Ts0 @RichDialogProcessEnd f109 '' #zField
+Ts0 @PushWFArc f110 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f0 guid 150CB86EFDA88218 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -531,16 +536,17 @@ Ts0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f47 612 780 36 24 20 -2 #rect
+Ts0 f47 614 876 36 24 20 -2 #rect
 Ts0 f47 @|StepIcon #fIcon
 Ts0 f45 guid 154B7C678FCFF10D #txt
 Ts0 f45 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f45 method openTask(ch.ivy.addon.portalkit.bo.RemoteTask) #txt
+Ts0 f45 method openTask(ch.ivy.addon.portalkit.bo.RemoteTask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
 Ts0 f45 disableUIEvents false #txt
 Ts0 f45 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.bo.RemoteTask task> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.bo.RemoteTask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f45 inParameterMapAction 'out.selectedTask=param.task;
+Ts0 f45 inParameterMapAction 'out.dataModel=param.dataModel;
+out.selectedTask=param.task;
 ' #txt
 Ts0 f45 outParameterDecl '<> result;
 ' #txt
@@ -586,7 +592,7 @@ Ts0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f73 612 468 36 24 20 -2 #rect
 Ts0 f73 @|CallSubIcon #fIcon
 Ts0 f46 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f46 619 853 22 22 14 0 #rect
+Ts0 f46 621 949 22 22 14 0 #rect
 Ts0 f46 @|RichDialogProcessEndIcon #fIcon
 Ts0 f79 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
@@ -629,7 +635,7 @@ Ts0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f79 740 724 36 24 20 -2 #rect
 Ts0 f79 @|StepIcon #fIcon
 Ts0 f50 expr out #txt
-Ts0 f50 630 804 630 853 #arcP
+Ts0 f50 632 900 632 949 #arcP
 Ts0 f78 expr out #txt
 Ts0 f78 630 492 630 530 #arcP
 Ts0 f80 expr in #txt
@@ -637,8 +643,8 @@ Ts0 f80 644 544 758 724 #arcP
 Ts0 f80 1 758 544 #addKink
 Ts0 f80 0 0.7790944249033374 0 0 #arcLabel
 Ts0 f81 expr out #txt
-Ts0 f81 758 748 641 864 #arcP
-Ts0 f81 1 758 864 #addKink
+Ts0 f81 758 748 643 960 #arcP
+Ts0 f81 1 758 960 #addKink
 Ts0 f81 1 0.22090557509666262 0 0 #arcLabel
 Ts0 f22 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f22 215 277 22 22 14 0 #rect
@@ -908,9 +914,9 @@ Ts0 f42 1 0.07754185619092568 0 0 #arcLabel
 Ts0 f59 expr out #txt
 Ts0 f59 1152 1164 1152 1246 #arcP
 Ts0 f37 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f37 processCall 'Functional Processes/CalculateTaskDelegate:call(ch.ivyteam.wf.processes.SecurityMemberData,ch.ivyteam.ivy.security.ISecurityMember,ch.ivyteam.ivy.workflow.ITask)' #txt
+Ts0 f37 processCall 'Functional Processes/CalculateTaskDelegate:call(ch.ivyteam.wf.processes.SecurityMemberData,ch.ivyteam.ivy.security.ISecurityMember,ch.ivy.addon.portalkit.bo.RemoteTask)' #txt
 Ts0 f37 doCall true #txt
-Ts0 f37 requestActionDecl '<ch.ivyteam.wf.processes.SecurityMemberData possibleTaskDelegates,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivyteam.ivy.workflow.ITask task> param;
+Ts0 f37 requestActionDecl '<ch.ivyteam.wf.processes.SecurityMemberData possibleTaskDelegates,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivy.addon.portalkit.bo.RemoteTask task> param;
 ' #txt
 Ts0 f37 requestMappingAction 'param.possibleTaskDelegates=in.securityMemberData;
 param.currentUser=ivy.session.getSessionUser();
@@ -990,8 +996,6 @@ additional property</name>
 ' #txt
 Ts0 f54 574 674 112 44 -50 -20 #rect
 Ts0 f54 @|CallSubIcon #fIcon
-Ts0 f49 expr out #txt
-Ts0 f49 630 718 630 780 #arcP
 Ts0 f56 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f56 actionTable 'out=in;
@@ -1242,12 +1246,13 @@ Ts0 f95 expr out #txt
 Ts0 f95 1600 429 1600 563 #arcP
 Ts0 f97 guid 1602EFA80B079E1D #txt
 Ts0 f97 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f97 method validate(ch.ivy.addon.portalkit.bo.RemoteTask) #txt
+Ts0 f97 method validate(ch.ivy.addon.portalkit.bo.RemoteTask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
 Ts0 f97 disableUIEvents false #txt
 Ts0 f97 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.bo.RemoteTask task> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.bo.RemoteTask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f97 inParameterMapAction 'out.selectedTask=param.task;
+Ts0 f97 inParameterMapAction 'out.dataModel=param.dataModel;
+out.selectedTask=param.task;
 ' #txt
 Ts0 f97 outParameterDecl '<> result;
 ' #txt
@@ -1260,10 +1265,10 @@ Ts0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f97 1011 51 26 26 -60 15 #rect
+Ts0 f97 1035 51 26 26 9 11 #rect
 Ts0 f97 @|RichDialogMethodStartIcon #fIcon
 Ts0 f98 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f98 1011 275 26 26 0 12 #rect
+Ts0 f98 1035 275 26 26 0 12 #rect
 Ts0 f98 @|RichDialogProcessEndIcon #fIcon
 Ts0 f100 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
@@ -1299,10 +1304,10 @@ Ts0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f100 968 186 112 44 -22 -8 #rect
+Ts0 f100 992 186 112 44 -22 -8 #rect
 Ts0 f100 @|StepIcon #fIcon
 Ts0 f99 expr out #txt
-Ts0 f99 1024 230 1024 275 #arcP
+Ts0 f99 1048 230 1048 275 #arcP
 Ts0 f104 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f104 processCall MultiPortal/TaskService:canUserResumeTask(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ts0 f104 doCall true #txt
@@ -1328,12 +1333,71 @@ Ts0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f104 968 114 112 44 -33 -8 #rect
+Ts0 f104 992 114 112 44 -33 -8 #rect
 Ts0 f104 @|CallSubIcon #fIcon
 Ts0 f105 expr out #txt
-Ts0 f105 1024 77 1024 114 #arcP
+Ts0 f105 1048 77 1048 114 #arcP
 Ts0 f101 expr out #txt
-Ts0 f101 1024 158 1024 186 #arcP
+Ts0 f101 1048 158 1048 186 #arcP
+Ts0 f106 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f106 actionTable 'out=in;
+' #txt
+Ts0 f106 actionCode 'import ch.ivy.addon.portalkit.dto.TaskEndInfo;
+import ch.ivy.addon.portalkit.service.StickyTaskListService;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import java.util.Map;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+TaskEndInfo taskEndInfo = new TaskEndInfo();
+taskEndInfo.setDataModel(in.dataModel);
+taskEndInfo.setIsFromPortalHome(in.dataModel.compactMode);
+String taskDataModelSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.selectedTask.getId());
+SecurityServiceUtils.setSessionAttribute(taskDataModelSessionAttributeKey, taskEndInfo);' #txt
+Ts0 f106 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Store task end info</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f106 612 780 40 24 3 19 #rect
+Ts0 f106 @|StepIcon #fIcon
+Ts0 f107 expr out #txt
+Ts0 f107 630 718 632 780 #arcP
+Ts0 f49 expr out #txt
+Ts0 f49 632 804 632 876 #arcP
+Ts0 f108 guid 161932E544273665 #txt
+Ts0 f108 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f108 method setSelectedTaskAndDataModel(ch.ivy.addon.portalkit.bo.RemoteTask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
+Ts0 f108 disableUIEvents false #txt
+Ts0 f108 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.bo.RemoteTask selectedTask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f108 inParameterMapAction 'out.dataModel=param.dataModel;
+out.selectedTask=param.selectedTask;
+' #txt
+Ts0 f108 outParameterDecl '<> result;
+' #txt
+Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>setSelectedTaskAndDataModel(RemoteTask,TaskLazyDataModel)</name>
+        <nameStyle>57,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f108 1363 51 26 26 -174 -27 #rect
+Ts0 f108 @|RichDialogMethodStartIcon #fIcon
+Ts0 f109 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f109 1363 259 26 26 0 12 #rect
+Ts0 f109 @|RichDialogProcessEndIcon #fIcon
+Ts0 f110 expr out #txt
+Ts0 f110 1376 77 1376 259 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -1399,8 +1463,6 @@ Ts0 f51 mainOut f38 tail #connect
 Ts0 f38 head f37 mainIn #connect
 Ts0 f37 mainOut f53 tail #connect
 Ts0 f53 head f44 mainIn #connect
-Ts0 f54 mainOut f49 tail #connect
-Ts0 f49 head f47 mainIn #connect
 Ts0 f45 mainOut f58 tail #connect
 Ts0 f58 head f73 mainIn #connect
 Ts0 f77 out f57 tail #connect
@@ -1434,3 +1496,9 @@ Ts0 f97 mainOut f105 tail #connect
 Ts0 f105 head f104 mainIn #connect
 Ts0 f104 mainOut f101 tail #connect
 Ts0 f101 head f100 mainIn #connect
+Ts0 f54 mainOut f107 tail #connect
+Ts0 f107 head f106 mainIn #connect
+Ts0 f106 mainOut f49 tail #connect
+Ts0 f49 head f47 mainIn #connect
+Ts0 f108 mainOut f110 tail #connect
+Ts0 f110 head f109 mainIn #connect

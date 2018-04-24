@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,8 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
 @ViewScoped
-public class TaskTemplateBean {
+public class TaskTemplateBean implements Serializable{
+  private static final long serialVersionUID = 1L;
 
   private String linkToTask;
   private List<IStartableSideStep> sideStepList;
@@ -51,6 +53,7 @@ public class TaskTemplateBean {
     PortalNavigator portalNavigator = new PortalNavigator();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
     String url = processStartCollector.findACMLink();
+    Ivy.log().error("ACM Link is {0}", url);
     url = url + "?originalTaskId=" + Ivy.wfTask().getId();
     portalNavigator.redirect(url);
   }

@@ -11,19 +11,21 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import portal.guitest.common.TaskState;
+
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
-
-import portal.guitest.common.TaskState;
 
 public class TaskWidgetPage extends TemplatePage {
 
   private static final String KEYWORD_FILTER_SELECTOR =
       "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
+  private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
+          "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
   @Override
   protected String getLoadedLocator() {
-    return "id('task-widget:task-widget-sort-menu')";
+    return "id('task-widget:task-view')";
   }
 
   public void expand() {
@@ -93,6 +95,14 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void filterTasksBy(String keyword) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
+    keywordFilter.clear();
+    keywordFilter.sendKeys(keyword);
+    Sleeper.sleepTight(2000);
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void filterTasksInExpendedModeBy(String keyword) {
+    WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
     keywordFilter.sendKeys(keyword);
     Sleeper.sleepTight(2000);
     waitAjaxIndicatorDisappear();
@@ -110,7 +120,7 @@ public class TaskWidgetPage extends TemplatePage {
     return Long.valueOf(text);
   }
 
-  public CasePage openRelatedCaseOfTask(int taskId) {
+  public CasePage openRelatedCaseOfTask() {
     click(findElementByCssSelector("*[id$='task-details-container'] *[id$='related-case']"));
     waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
     return new CasePage();
@@ -408,6 +418,10 @@ public class TaskWidgetPage extends TemplatePage {
     });
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
+  }
+  
+  public boolean isAdvancedFilterDisplayed(String filterIdName) {
+    return isElementDisplayed(By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"));
   }
 
   public void filterByDescription(String text) {

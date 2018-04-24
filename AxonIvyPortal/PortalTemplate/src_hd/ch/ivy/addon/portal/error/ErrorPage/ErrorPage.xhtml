@@ -12,6 +12,7 @@
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
 		<ui:param name="errorMessage" value="#{flash.keep.errorMessage}"/> 
 		<ui:param name="errorStackTrace" value="#{flash.keep.errorStackTrace}"/>
+		<ui:param name="isNotRequiredLogin" value="false" />
 		
 		<ui:define name="pageTitle">Error Page</ui:define>
 		<ui:define name="pageContent">
@@ -26,7 +27,7 @@
 					<ui:fragment rendered="#{data.errorCode eq '500'}">
 						<div class="message-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500')}</div>
 						<div class="message-container">
-							#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500Message')}<span jsf:rendered="#{not empty errorMessage}">, </span> <p:link styleClass="message-detail u-hover-effect" rendered="#{not empty errorMessage}" href="#" onclick="PF('error-detail').show();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/moreDetails')}"/>
+							#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500Message')}<span jsf:rendered="#{not empty errorMessage}">, </span> <p:link styleClass="message-detail u-hover-effect" rendered="#{not empty errorMessage}" href="#" onclick="PF('error-detail').show();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"/>
 						</div>
 					</ui:fragment>
 					

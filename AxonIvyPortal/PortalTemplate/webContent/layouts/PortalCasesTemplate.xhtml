@@ -9,12 +9,12 @@
     <ui:param name="caseView" value="#{data.caseView}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
 
-    <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}</ui:define>
+    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</ui:define>
 
     <ui:define name="secondLevelMenu">
       <div id="second-level-menu" class="second-level-menu js-left-sidebar-second left-sidebar-animation ">
         <a href="#" class="second-level-menu-header"> <i class="fa fa-angle-left icon-left left-sidebar-animation" />
-          <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portal.generic/SecondLevelMenu/Cases')}</span> <i
+          <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</span> <i
           class="fa fa-angle-right icon-right left-sidebar-animation" />
         </a>
         <div class="second-level-menu-body">
@@ -28,7 +28,7 @@
     <ui:define name="pageContent">
       <div class="js-case-default-widget-container case-default-widget-container js-simple-container">
         <div class="js-simple-main-col case-main-container">
-          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{data.caseView.getTitle() != '' ? data.caseView.getTitle() : ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}"
+          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{data.caseView.getTitle() != '' ? data.caseView.getTitle() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"
             dataModel="#{caseView.getDataModel()}" hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"
             autoSelectCaseId="#{caseView.getAutoSelectCaseId()}" filterGroupId="#{filterGroupId}">
             <f:facet name="caseHeader">
@@ -40,7 +40,7 @@
                 <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
                 <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
                 <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
-                <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}"/>
                 <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}"
                   descriptionComponentToUpdate="#{p:component('description-cell')}" />
                 <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">

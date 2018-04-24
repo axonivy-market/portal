@@ -14,22 +14,10 @@ import ch.ivy.ws.addon.IvyUser;
 import ch.ivyteam.ivy.scripting.objects.List;
 
 /**
- * Map between Map between Ivy role and RemoteRole.
- * 
- * @author bolt
- *
+ * Map between Map between Ivy user and RemoteApplicationUser.
  */
 public class RemoteApplicationUserMapper {
 	
-	/**
-	 * Convert from ivyAbsence to RemoteAbsence.
-	 * 
-	 * @param ivyAbsence web service absence
-	 * @return remote application user
-	 * @throws JSONException 
-	 * @see IvyAbsence
-	 * @see RemoteAbsence
-	 */
 	protected static RemoteApplicationUser mapToRemoteApplicationUser(IvyUser ivyUser, Server server) throws JSONException{
 		RemoteApplicationUser result = new RemoteApplicationUser();
 		for (Application application: server.getApplications()) {
@@ -51,16 +39,6 @@ public class RemoteApplicationUserMapper {
 		return result;
 	}
 	
-	/**
-	 * Map list of IvyAbsence to list of RemoteAbsence.
-	 * 
-	 * @param ivyUsers list of web service user.
-	 * @param server ivy server working on 
-	 * @return list of {@link RemoteApplicationUser}
-	 * @throws JSONException 
-	 * @see IvyUser
-	 * @see RemoteApplicationUser
-	 */
 	public static List<RemoteApplicationUser> mapToRemoteApplicationUsers(List<IvyUser> ivyUsers, Server server) throws JSONException{
 		List<RemoteApplicationUser> outUsers = List.create(RemoteApplicationUser.class);
 

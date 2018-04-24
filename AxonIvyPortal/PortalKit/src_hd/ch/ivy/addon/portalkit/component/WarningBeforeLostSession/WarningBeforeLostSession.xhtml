@@ -13,15 +13,24 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
     widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
-      styleClass="portal-ok-button" actionListener="#{logic.extendSession}"
+      styleClass="" actionListener="#{logic.extendSession}"
       oncomplete="hideWarningDialog();resetCounterAndTimeout();" />
-    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/logout')}"
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
       styleClass="portal-cancel-button" actionListener="#{logic.logout}" oncomplete="returnHomePage()" />
   </p:confirmDialog>
+  
+  
+  <p:confirmDialog id="timeout-dialog"
+		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
+		message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried')}"
+		widgetVar="timeout-dialog" appendTo="@(body)" closable="false">
+		<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
+			type="button" styleClass="" />
+	</p:confirmDialog>
 
   <h:form>
     <p:remoteCommand id="logout-and-show-dialog" name="logoutAndShowDialog" actionListener="#{logic.logout}"
-      onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('viewExpiredExceptionDialog').show()" />
+      onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeout-dialog').show()" />
   </h:form>
   <script type="text/javascript">
       var timeout = "#{cc.attrs.clientSideTimeOut}";
@@ -68,13 +77,13 @@
               timeOutSeconds--;
               document.cookie = createCookie('SessionCounter',timeOutSeconds);
               
-            } else {
+            }  else {
                 if (getCookie('isLogout') == "false") {
 				  document.cookie = createCookie('isLogout',true);
                   logoutAndShowDialog();
                 } else {
                   PF('timeout-warning-dialog').hide();
-                  PF('viewExpiredExceptionDialog').show();
+                  PF('timeout-dialog').show();
                   clearInterval(intervalCheckSessionTimeout);
                 } 
             }

@@ -22,7 +22,7 @@
             rendered="#{displayProcessWidget}">
             <h:panelGroup layout="block" styleClass="js-process-widget">
               <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader')}" showBackButton="true">
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" showBackButton="true">
                 <f:facet name="headerToolbar">
                   <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
                     label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
@@ -37,7 +37,7 @@
             styleClass="js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col"
             rendered="#{displayTaskWidget}">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}"
               keyword="#{dataModel.queryCriteria.keyword}" compactMode="#{dataModel.compactMode}"
               componentToUpdateWhenInCompactMode="#{displayStatisticWidget ? 'statistic-widget-container' : ''}">
               <f:facet name="headerToolbar">
@@ -53,7 +53,7 @@
             styleClass="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col"
             rendered="#{displayStatisticWidget}">
             <h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">
-              <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
+              <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" showTaskListImmediately="true"
                 statisticChartList="#{statisticChartList}">
                 <f:facet name="headerToolbar">
                   <ic:ch.ivy.addon.portal.generic.StatisticNavigator id="statistic-link"

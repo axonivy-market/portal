@@ -22,17 +22,17 @@ public class CaseStateFilter extends CaseFilter {
   private List<CaseState> selectedFilteredStatesAtBeginning;
 
   /**
-   * Initialize the values of filteredStates: CREATED, RUNNING
+   * Initialize the values of filteredStates: CREATED, RUNNING, DONE
    */
   public CaseStateFilter() {
-    this.filteredStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING);
+    this.filteredStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE);
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
   }
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/state");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE");
   }
 
   @Override

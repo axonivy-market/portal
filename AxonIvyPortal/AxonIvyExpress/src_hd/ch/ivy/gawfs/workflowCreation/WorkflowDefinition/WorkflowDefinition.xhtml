@@ -13,6 +13,7 @@
 		<ui:param name="steps" value="#{data.data.steps}" />
 		<ui:param name="actualStepIndex" value="1" />
 		<ui:param name="isShowStartAdhocButton" value="false" />
+		<ui:param name="isNotRequiredLogin" value="false" />
 
 
 		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
@@ -36,7 +37,7 @@
 								<p:selectOneRadio id="processype" styleClass="Wid100"
 									value="#{data.data.processType}"
 									required="#{param['form:save']!=null}"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}">
+									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 									<f:selectItem
 										itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeAdHoc')}"
 										itemValue="AHWF" />
@@ -50,7 +51,7 @@
 						<p:row>
 							<p:column styleClass="process-property-label-col">
 								<p:outputLabel
-									value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processname')}:"
+									value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}:"
 									for="processname" />
 							</p:column>
 							<p:column styleClass="process-property-input-col">
@@ -58,7 +59,7 @@
 									value="#{data.data.processName}"
 									required="#{param['form:save']!=null}"
 									maxlength="50"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processname')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}" />
+									requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
 							</p:column>
 						</p:row>
 						<p:row>
@@ -72,7 +73,7 @@
 									value="#{data.data.processDescription}"
 									required="#{param['form:save']!=null}"
 									maxlength="60"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}" />
+									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
 							</p:column>
 						</p:row>
 					</p:panelGrid>
@@ -104,7 +105,7 @@
 									</p:column>
 									<p:column colspan="1" rowspan="1" styleClass="dynamic-task-name-label-col">
 										<p:outputLabel
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskName')}:"
+											value="#{ivy.cms.co('/Labels/Task')}:"
 											for="subjectfield" />
 									</p:column>
 									<p:column colspan="1" rowspan="1" styleClass="dynamic-task-name-input-col">
@@ -112,25 +113,25 @@
 											styleClass="dynamic-task-name-input"
 											required="#{param['form:save']!=null}"
 											maxlength="30"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskName')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}"></p:inputText>
+											requiredMessage="#{ivy.cms.co('/Labels/Task')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"></p:inputText>
 									</p:column>
 									<p:column colspan="1" rowspan="1"
 										styleClass="dynamic-task-description-label-col">
 										<p:outputLabel
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Taskdescription')}:"
+											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}:"
 											for="descriptionfield" />
 									</p:column>
 									<p:column colspan="1" rowspan="1" styleClass="dynamic-task-description-input-col">
 										<p:inputText value="#{gtask.description}" styleClass="dynamic-task-description-input"
 											required="#{param['form:save']!=null}"
 											id="descriptionfield"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Taskdescription')} #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}"></p:inputText>
+											requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"></p:inputText>
 									</p:column>
 								</p:row>
 								<p:row styleClass="u-no-border">
 									<p:column colspan="1" rowspan="1" styleClass="u-no-border">
 										<p:outputLabel
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/responsibleUser')}:"
+											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:"
 											rendered="#{gtask.count gt 1}" for="actorfield" />
 										<p:outputLabel
 											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}:"
@@ -140,7 +141,7 @@
 										<p:inputText value="#{gtask.actorDisplayName}" id="actorfield"
 											styleClass="dynamic-task-actor-input" readonly="false"
 											required="#{param['form:save']!=null}"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/responsibleUser')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/requiredMsgs/ReqMsgGeneric')}">
+											requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 											<p:ajax event="mousedown"
 												listener="#{logic.initAssginement(gtask)}"
 												oncomplete="PF('chooseAssignee').show();"
@@ -192,9 +193,9 @@
 				<p:outputPanel styleClass="TexAlRight">
 
 					<p:commandButton id="save" actionListener="#{logic.close}"
-						value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Continue')}"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
 						update="form" icon="fa fa-check"
-						styleClass="buttonDelegate portal-ok-button" />
+						styleClass="buttonDelegate" />
 					<p:spacer width="5"/>
 					<p:commandButton
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"

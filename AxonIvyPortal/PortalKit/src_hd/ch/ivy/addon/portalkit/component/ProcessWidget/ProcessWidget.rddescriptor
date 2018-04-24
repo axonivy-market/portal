@@ -37,7 +37,7 @@
         <outputParameter>
             <name>webStartables</name>
             <description></description>
-            <parameterType>List&lt;ch.ivyteam.ivy.workflow.start.IWebStartable&gt;</parameterType>
+            <parameterType>List&lt;ch.ivy.addon.portalkit.bo.RemoteWebStartable&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>

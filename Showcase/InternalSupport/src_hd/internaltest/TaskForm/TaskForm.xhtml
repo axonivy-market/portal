@@ -12,6 +12,7 @@
     <ui:param name="homeLink" value="#{ivy.html.startref('Start Processes/InternalSupportPortalHome/start.ivp')}" />
     <ui:param name="steps" value="#{data.steps}" />
     <ui:param name="task" value="#{ivy.task}" />
+    <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="taskForm">
       <h:form id="leave-request">
         <p:focus></p:focus>
@@ -22,16 +23,16 @@
           <p:message id="fullname-msg" for="fullname" />
 
           <p:outputLabel for="from" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/from')}" />
-          <p:calendar id="from" value="" pattern="dd.MM.yyyy" required="true" locale="en_US"
-            requiredMessage="#{ivy.cms.co('/ProcessPages/TestTask/isRequired')}">
-            <f:convertDateTime pattern="dd.MM.yyyy" />
+          <p:calendar id="from" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"  
+          	required="true" requiredMessage="#{ivy.cms.co('/ProcessPages/TestTask/isRequired')}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
           </p:calendar>
           <p:message id="from-msg" for="from" />
 
           <p:outputLabel for="to" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/to')}" />
-          <p:calendar id="to" value="" locale="en_US" pattern="dd.MM.yyyy" required="true"
-            requiredMessage="#{ivy.cms.co('/ProcessPages/TestTask/isRequired')}">
-            <f:convertDateTime pattern="dd.MM.yyyy" />
+          <p:calendar id="to" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"  
+          	required="true" requiredMessage="#{ivy.cms.co('/ProcessPages/TestTask/isRequired')}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
           </p:calendar>
           <p:message id="to-msg" for="to" />
 
@@ -49,12 +50,12 @@
     </ui:define>
 
     <ui:define name="rightButtons">
-      <h:form>
-        <h:panelGroup styleClass="MarTop5 DispBlock">
-          <p:commandButton value="Send" styleClass="portal-ok-button" icon="fa fa-send-o" partialSubmit="true"
+      <h:form id="command-form">
+        <h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
+          <p:commandButton value="Send" styleClass="" icon="fa fa-send-o" partialSubmit="true" id="button-submit"
             actionListener="#{logic.close}" process=":leave-request" update=":leave-request" />
           <p:spacer width="5px" />
-          <p:commandButton value="Cancel" styleClass="mod-cancel-button portal-cancel-button" icon="fa fa-ban"
+          <p:commandButton value="Cancel" styleClass="mod-cancel-button portal-cancel-button" icon="fa fa-ban" id="button-cancel"
             actionListener="#{logic.cancel}" partialSubmit="true" process="@this" />
         </h:panelGroup>
       </h:form>

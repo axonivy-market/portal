@@ -10,7 +10,9 @@ public class UserProcess extends BusinessEntity {
   private String link;
   private String workflowId;
   private String description;
+  private Integer index;
   private boolean defaultProcess;
+  private boolean isExternalLink;
 
   public UserProcess() {
 
@@ -61,7 +63,7 @@ public class UserProcess extends BusinessEntity {
   public void setDefaultProcess(boolean defaultProcess) {
     this.defaultProcess = defaultProcess;
   }
-  
+
   public String getWorkflowId() {
     return workflowId;
   }
@@ -77,13 +79,29 @@ public class UserProcess extends BusinessEntity {
   public void setDescription(String description) {
     this.description = description;
   }
+  
+  public boolean isExternalLink() {
+    return isExternalLink;
+  }
+
+  public void setExternalLink(boolean isExternalLink) {
+    this.isExternalLink = isExternalLink;
+  }
+
+  public Integer getIndex() {
+    return index;
+  }
+
+  public void setIndex(Integer index) {
+    this.index = index;
+  }
 
   @Override
   public String toString() {
     return "UserProcess {userName=" + userName + ", processName=" + processName + ", icon=" + icon + ", link=" + link
         + ", isDefaultProcess=" + defaultProcess + ", id=" + getId() + "}";
   }
-  
+
   @Override
   public int hashCode() {
     return Objects.hash(defaultProcess, icon, link, processName, userName);

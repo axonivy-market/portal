@@ -22,6 +22,7 @@ public interface ICaseService {
    * 
    * @param caseId to look for
    * @return case instance
+   * @throws WSException 
    */
   public CaseServiceResult findCase(Integer caseId) throws WSException;
 
@@ -47,9 +48,10 @@ public interface ICaseService {
 
   /**
    * Create note for case
-   * 
-   * @param note
-   * @return
+   * @param username 
+   * @param caseId 
+   * @param message 
+   * @return NoteServiceResult
    * @throws WSException
    */
   public NoteServiceResult createNote(String username, Integer caseId, String message) throws WSException;
@@ -68,7 +70,7 @@ public interface ICaseService {
    * Find all documents for the case
    * 
    * @param caseId
-   * @return
+   * @return CaseServiceResult
    * @throws WSException
    */
   public CaseServiceResult findDocuments(Integer caseId) throws WSException;
@@ -76,13 +78,14 @@ public interface ICaseService {
   /**
    * Upload the given document into the case
    * 
+   * @param username 
    * @param caseId
    * @param documentName
    * @param documentContent
-   * @return
+   * @return CaseServiceResult
    * @throws WSException
    */
-  public CaseServiceResult uploadDocument(Integer caseId, String documentName, Binary documentContent)
+  public CaseServiceResult uploadDocument(String username, Integer caseId, String documentName, Binary documentContent)
       throws WSException;
 
   /**
@@ -90,7 +93,7 @@ public interface ICaseService {
    * 
    * @param caseId
    * @param documentId
-   * @return
+   * @return CaseServiceResult
    * @throws WSException
    */
   public CaseServiceResult downloadDocument(Integer caseId, Integer documentId) throws WSException;
@@ -98,12 +101,13 @@ public interface ICaseService {
   /**
    * Remove the given document
    * 
+   * @param userName 
    * @param caseId
    * @param documentId
-   * @return
+   * @return CaseServiceResult
    * @throws WSException
    */
-  public CaseServiceResult removeDocument(Integer caseId, Integer documentId) throws WSException;
+  public CaseServiceResult removeDocument(String userName, Integer caseId, Integer documentId) throws WSException;
 
   public void destroyCase(final Integer caseId) throws WSException;
 

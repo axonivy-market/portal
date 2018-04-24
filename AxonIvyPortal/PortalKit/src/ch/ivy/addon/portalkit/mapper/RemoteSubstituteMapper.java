@@ -58,7 +58,6 @@ public class RemoteSubstituteMapper {
   /**
    * Convert from IvySubstitute to RemoteSubstitute
    * 
-   * @param IvySubstitute
    * @return RemoteSubstitute
    * @see IvySubstitute
    * @see RemoteSubstitute

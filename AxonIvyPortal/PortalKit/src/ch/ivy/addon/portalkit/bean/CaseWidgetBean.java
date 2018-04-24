@@ -18,21 +18,18 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.UrlValidator;
 import ch.ivyteam.ivy.model.value.WebLink;
-import ch.ivyteam.ivy.request.restricted.WebLinkFactory;
 
 @ManagedBean
 @ViewScoped
 public class CaseWidgetBean implements Serializable {
 
   private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/CaseWidget/showAdditionalCaseDetails.ivp";
-  private static final String SUBPROCESS_SIGNATURE_GET_CASE_ADDITIONAL_PROPERTY_VALUE = "getCaseAdditionalPropertyValue(Long,Long,String)";
-  private static final String SUBPROCESS_PARAM_PROPERTY_VALUE = "propertyValue";
-  private static final String SUBPROCESS_PARAM_PROPERTY_NAME = "propertyName";
-  private static final String SUBPROCESS_PARAM_CASE_ID = "caseId";
-  private static final String SUBPROCESS_PARAM_SERVER_ID = "serverId";
+  private static final String SUBPROCESS_SIGNATURE_LOAD_CASE_ADDITIONAL_PROPERTIES = "loadCaseAdditionalProperties(ch.ivy.addon.portalkit.bo.RemoteCase)";
+  private static final String SUBPROCESS_PARAM_REMOTE_CASE = "remoteCase";
   
   private static final long serialVersionUID = 1L;
 
@@ -71,11 +68,11 @@ public class CaseWidgetBean implements Serializable {
   public String getAdditionalCaseDetailsPageUri(RemoteCase remoteCase) {
     String additionalCaseDetailsPageUri = getAdditionalCaseDetailsPageUriFromAdditionalProperty(remoteCase);
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
-      additionalCaseDetailsPageUri = (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
+      additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(remoteCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
     }
     try {
-      String host = (new UrlDetector()).getHost(remoteCase.getServer());
-      WebLink webLink = UrlValidator.isValidUrl(additionalCaseDetailsPageUri) ? new WebLinkFactory().createFromContextRelative(additionalCaseDetailsPageUri) 
+      String host = (new UrlDetector()).getHost(remoteCase.getServerUrl(), remoteCase.getServer());
+      WebLink webLink = UrlValidator.isValidUrl(additionalCaseDetailsPageUri) ? new WebLink(additionalCaseDetailsPageUri)
                                                                               : new WebLink(host + additionalCaseDetailsPageUri);
       return webLink.getAbsoluteEncoded();
     } catch (MalformedURLException e) {
@@ -85,12 +82,11 @@ public class CaseWidgetBean implements Serializable {
 
   private String getAdditionalCaseDetailsPageUriFromAdditionalProperty(RemoteCase remoteCase) {
     Map<String, Object> params = new HashMap<>();
-    params.put(SUBPROCESS_PARAM_SERVER_ID, remoteCase.getServer().getId());
-    params.put(SUBPROCESS_PARAM_CASE_ID, remoteCase.getId());
-    params.put(SUBPROCESS_PARAM_PROPERTY_NAME, AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString());
-    Map<String, Object> response = IvyAdapterService.startSubProcess(SUBPROCESS_SIGNATURE_GET_CASE_ADDITIONAL_PROPERTY_VALUE, params,
+    params.put(SUBPROCESS_PARAM_REMOTE_CASE, remoteCase);
+    Map<String, Object> response = IvyAdapterService.startSubProcess(SUBPROCESS_SIGNATURE_LOAD_CASE_ADDITIONAL_PROPERTIES, params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (String) response.get(SUBPROCESS_PARAM_PROPERTY_VALUE);
+    RemoteCase responseRemoteCase = (RemoteCase) response.get(SUBPROCESS_PARAM_REMOTE_CASE);
+    return responseRemoteCase.getAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString());
   }
   
   public boolean isNaN(Number number){

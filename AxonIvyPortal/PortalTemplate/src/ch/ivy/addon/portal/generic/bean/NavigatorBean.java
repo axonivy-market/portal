@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,8 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 
 @ManagedBean
 @RequestScoped
-public class NavigatorBean {
+public class NavigatorBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   public void navigateToCaseDetail(String caseName, long caseId, long serverId) throws Exception {
     PortalNavigator portalNavigator = new PortalNavigator();

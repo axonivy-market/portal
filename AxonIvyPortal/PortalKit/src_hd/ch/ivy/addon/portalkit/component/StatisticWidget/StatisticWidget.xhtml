@@ -7,12 +7,12 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
+  <cc:attribute name="showTaskListImmediately" default="false"/>
 </cc:interface>
 
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
-  <f:event listener="#{logic.intialize(cc.attrs.statisticChartList)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main">
@@ -26,21 +26,32 @@
 
     <h:panelGroup id="create-chart-header" layout="block" rendered="#{!cc.attrs.compactMode}"
       styleClass="statistic-actions-panel">
-      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container @this">
+      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container @this" rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}">
         <h:outputText id="create-chart-link-label" rendered="#{!data.createMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
         <h:outputText id="back-to-dashboard-link-label" rendered="#{data.createMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
+      </p:commandLink>
+      <p:commandLink id="back-from-drilldown-link" actionListener="#{logic.switchDrilldownMode}" rendered="#{data.isDrilldownElapsedTime}"
+        update="#{p:component('widget-container')} create-chart-header">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
+      </p:commandLink>
+      <p:commandLink id="back-from-drilldown-expiry-chart-link" actionListener="#{logic.switchDrilldownExpiryChartMode}" rendered="#{data.isDrilldownExpiryChart}"
+        update="#{p:component('widget-container')} create-chart-header">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
       </p:commandLink>
     </h:panelGroup>
 
     <h:panelGroup id="widget-container" layout="block"
       styleClass="statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}">
 
-      <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="statistic-dashboard-container"
+      <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="statistic-dashboard-container #{data.isDrilldownElapsedTime ? 'elapsed-time-detail-container-width' : 'statistic-dashboard-container-width'}"
         rendered="#{!data.createMode}">
-        <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget"
-          compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}" />
+        <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget" showTaskListImmediately="#{cc.attrs.showTaskListImmediately}"
+          compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}"
+          drilldownListener="#{logic.drilldownElapsedTimeListener}" drillDownExpiryChartListener="#{logic.drillDownExpiryListener()}"
+          isDrilldownElapsedTime="#{data.isDrilldownElapsedTime}" isDrilldownExpiryChart="#{data.isDrilldownExpiryChart}"
+          isBackFromDrilldown="#{data.isBackFromDrilldown}"/>
       </h:panelGroup>
 
       <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container"

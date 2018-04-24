@@ -29,7 +29,7 @@ public class TaskQueryService {
       finalQuery = TaskQuery.fromJson(criteria.getTaskQuery().asJson());
     }
 
-    if (criteria.hasIncludedStates()) {
+    if (criteria.hasIncludedStates() && !criteria.isQueryForUnassignedTask()) {
       finalQuery.where().and(queryForStates(criteria.getIncludedStates()));
     }
 
@@ -52,7 +52,9 @@ public class TaskQueryService {
       finalQuery.where().and(queryForKeyword(criteria.getKeyword()));
     }
 
-    if (criteria.getTaskAssigneeType() == TaskAssigneeType.ROLE) {
+    if (criteria.isQueryForUnassignedTask()) {
+      finalQuery.where().and().activatorUserId().isNull().and().activatorRoleId().isNull();
+    } else if (criteria.getTaskAssigneeType() == TaskAssigneeType.ROLE) {
       finalQuery.where().and().activatorRoleId().isNotNull();
     } else if (criteria.getTaskAssigneeType() == TaskAssigneeType.USER) {
       TaskQuery personalTaskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
@@ -72,25 +74,27 @@ public class TaskQueryService {
     finalQuery = appender.appendSorting(criteria).toQuery();
     return finalQuery;
   }
-  
-  public TaskQuery findNewTasks(TaskQuery currentQuerry, Date timeStamp, Boolean ignoreInvolvedUser){
+
+  public TaskQuery findNewTasks(TaskQuery currentQuerry, Date timeStamp, Boolean ignoreInvolvedUser) {
     TaskQuery returnQuery = currentQuerry;
     TaskQuery subQuery = TaskQuery.create();
-    if (ignoreInvolvedUser){
+    if (ignoreInvolvedUser) {
       subQuery.where().startTimestamp().isGreaterThan(timeStamp);
     } else {
       // task when delegate or reset, delegate time will write to customTimestampField5
-      subQuery.where().startTimestamp().isGreaterThan(timeStamp).or().customTimestampField5().isGreaterOrEqualThan(timeStamp);
+      subQuery.where().startTimestamp().isGreaterThan(timeStamp).or().customTimestampField5()
+          .isGreaterOrEqualThan(timeStamp);
     }
     currentQuerry.where().and(subQuery);
-    
+
     return returnQuery;
   }
 
   private TaskQuery queryForKeyword(String keyword) {
     String containingKeyword = String.format("%%%s%%", keyword);
     TaskQuery filterByKeywordQuery =
-        TaskQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword);
+        TaskQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or().description()
+            .isLikeIgnoreCase(containingKeyword);
 
     try {
       long idKeyword = Long.parseLong(keyword);

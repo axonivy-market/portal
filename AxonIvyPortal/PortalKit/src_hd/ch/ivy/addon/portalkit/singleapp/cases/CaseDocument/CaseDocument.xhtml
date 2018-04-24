@@ -22,7 +22,7 @@
       </p:column>
 
       <p:column styleClass="Fs14 TexAlCenter"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseTreeTable/actions')}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
         <p:commandLink id="document-download" styleClass="fa fa-download MarRight10" immediate="true" ajax="false"
           actionListener="#{logic.downloadFile(document.name)}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
@@ -31,8 +31,8 @@
         </p:commandLink>
         <p:commandLink id="document-delete" styleClass="fa fa-trash-o"
           actionListener="#{logic.deleteFile(document.name)}"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}">
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
         </p:commandLink>
       </p:column>
     </p:dataTable>
@@ -41,19 +41,19 @@
       <p:messages id="uploading-file-message" for="choose-uploading-file" closable="true" />
       <p:fileUpload id="choose-uploading-file" mode="advanced" dragDropSupport="true" multiple="true"
         update="#{p:component('document-table')} uploading-file-message" fileUploadListener="#{logic.submitUpload}" 
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" auto="true" />
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" />
     </div>
   </h:form>
 
   <p:confirmDialog id="delete-file-confirmation"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmDeleteMessage')}" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" severity="alert"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
     widgetVar="deleteFileConfirmation">
-    <p:commandButton id="confirm-delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}"
-      styleClass="Fs14 portal-ok-button" actionListener="#{logic.submitDelete}" oncomplete="PF('deleteFileConfirmation').hide();"
+    <p:commandButton id="confirm-delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+      styleClass="Fs14" actionListener="#{logic.submitDelete}" oncomplete="PF('deleteFileConfirmation').hide();"
       update="#{p:component('document-table')}" />
     <p:commandButton styleClass="Fs14 portal-cancel-button" id="reject-delete-file"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/no')}" onclick="PF('deleteFileConfirmation').hide()"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('deleteFileConfirmation').hide()"
       type="button" />
   </p:confirmDialog>
 

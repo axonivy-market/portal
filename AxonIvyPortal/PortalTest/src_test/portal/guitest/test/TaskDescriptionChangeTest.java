@@ -11,6 +11,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskDescriptionChangeTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -36,8 +37,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
         "<b>HTML</b> description could contain malicious script <script>alert('Attacking')</script> but it will be sanitized.",
         "HTML description could contain malicious script but it will be sanitized.",
         "HTML description could contain malicious script but it will be sanitized.", taskWidgetPage);
-    testChangeTaskDescription(firstTask, "", "[no description is available]", "[no description is available]",
-        taskWidgetPage);
+    testChangeTaskDescription(firstTask, "", "No description", "No description", taskWidgetPage);
     testChangeTaskDescription(firstTask, "And you can change description if it is empty",
         "And you can change description if it is empty", "And you can change description if it is empty",
         taskWidgetPage);

@@ -250,14 +250,11 @@ As0 @PushWFArc f153 '' #zField
 As0 @PushWFArc f154 '' #zField
 As0 @PushWFArc f182 '' #zField
 As0 @RichDialogMethodStart f183 '' #zField
-As0 @RichDialogProcessEnd f247 '' #zField
 As0 @CallSub f251 '' #zField
-As0 @PushWFArc f253 '' #zField
 As0 @GridStep f249 '' #zField
 As0 @PushWFArc f250 '' #zField
 As0 @GridStep f252 '' #zField
 As0 @PushWFArc f255 '' #zField
-As0 @PushWFArc f248 '' #zField
 As0 @GridStep f259 '' #zField
 As0 @PushWFArc f260 '' #zField
 As0 @PushWFArc f50 '' #zField
@@ -275,6 +272,17 @@ As0 @GridStep f39 '' #zField
 As0 @PushWFArc f264 '' #zField
 As0 @PushWFArc f203 '' #zField
 As0 @PushWFArc f265 '' #zField
+As0 @PushWFArc f19 '' #zField
+As0 @CallSub f253 '' #zField
+As0 @GridStep f258 '' #zField
+As0 @PushWFArc f266 '' #zField
+As0 @RichDialogProcessEnd f267 '' #zField
+As0 @PushWFArc f247 '' #zField
+As0 @Alternative f254 '' #zField
+As0 @PushWFArc f268 '' #zField
+As0 @PushWFArc f248 '' #zField
+As0 @RichDialogProcessEnd f269 '' #zField
+As0 @PushWFArc f270 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 As0 f0 guid 14B6C3C6330883A7 #txt
 As0 f0 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -2900,9 +2908,6 @@ As0 f183 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f183 1205 1461 22 22 14 0 #rect
 As0 f183 @|RichDialogMethodStartIcon #fIcon
-As0 f247 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f247 1205 1733 22 22 14 0 #rect
-As0 f247 @|RichDialogProcessEndIcon #fIcon
 As0 f251 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f251 processCall MultiPortal/ServerService:getExternalHost(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
 As0 f251 doCall true #txt
@@ -2927,8 +2932,6 @@ As0 f251 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f251 1198 1540 36 24 20 -2 #rect
 As0 f251 @|CallSubIcon #fIcon
-As0 f253 expr out #txt
-As0 f253 1216 1483 1216 1540 #arcP
 As0 f249 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f249 actionTable 'out=in;
@@ -2963,9 +2966,6 @@ if(in.errors.size() > 0) {
 	for(WsException error : in.errors) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,connectionFailMessage, null));
 	}
-} else {
-	String connectionSuccessMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testConnectionSuccess");
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO ,connectionSuccessMessage, null));
 }' #txt
 As0 f252 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f252 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2981,8 +2981,6 @@ As0 f252 1198 1668 36 24 20 -2 #rect
 As0 f252 @|StepIcon #fIcon
 As0 f255 expr out #txt
 As0 f255 1216 1628 1216 1668 #arcP
-As0 f248 expr out #txt
-As0 f248 1216 1692 1216 1733 #arcP
 As0 f259 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f259 actionTable 'out=in;
@@ -3099,6 +3097,105 @@ As0 f203 1488 276 1488 316 #arcP
 As0 f265 expr out #txt
 As0 f265 96 58 96 182 #arcP
 As0 f265 0 0.4862440103228913 0 0 #arcLabel
+As0 f19 expr out #txt
+As0 f19 1216 1483 1216 1540 #arcP
+As0 f253 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f253 processCall MultiPortal/LibraryService:getLibrary(ch.ivy.addon.portalkit.persistence.domain.Server,String,String) #txt
+As0 f253 doCall true #txt
+As0 f253 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String appName,java.lang.String libraryId> param;
+' #txt
+As0 f253 requestMappingAction 'param.server=in.selectedServer;
+param.appName=ch.ivyteam.ivy.Advisor.getAdvisor().isDesigner() ? ch.ivy.addon.portalkit.enums.IvyDefaultApplication.DESIGNER.getValue() : ch.ivy.addon.portalkit.enums.IvyDefaultApplication.SYSTEM.getValue();
+param.libraryId=ch.ivy.addon.portalkit.enums.PortalLibrary.PORTAL_CONNECTOR.getValue();
+' #txt
+As0 f253 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f253 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.remotePortalConnector=result.library;
+' #txt
+As0 f253 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>LibraryService</name>
+        <nameStyle>14,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f253 1196 1860 40 24 29 -11 #rect
+As0 f253 @|CallSubIcon #fIcon
+As0 f258 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f258 actionTable 'out=in;
+' #txt
+As0 f258 actionCode 'import ch.ivy.addon.portalkit.util.LibraryUtils;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import java.util.Arrays;
+import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivy.ws.addon.WsException;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+ILibrary portalKit = LibraryUtils.findReleasedLibrary(ivy.wf.getApplication(), PortalLibrary.PORTAL_KIT.getValue());
+String portalKitVersion = portalKit.getQualifiedVersion().toString();
+in.isServerCompatible = portalKitVersion.equals(in.remotePortalConnector.projectVersion);
+
+if(in.errors.size() > 0) {
+	List<Object> params = Arrays.asList(portalKitVersion);
+	String checkCompatibilityFailMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testCompatibilityFail", params);
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,checkCompatibilityFailMessage, null));
+} else if(!in.isServerCompatible) {
+	List<Object> params = Arrays.asList(in.remotePortalConnector.projectVersion, portalKitVersion);
+	String connectionSuccessMessage = ivy.cms.co("/errors/compatibility/message", params);
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,connectionSuccessMessage, null));
+} else {
+	String connectionSuccessMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testConnectionSuccess");
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO ,connectionSuccessMessage, null));
+}' #txt
+As0 f258 security system #txt
+As0 f258 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f258 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>check compatibility&#xD;
+ and show message if any</name>
+        <nameStyle>45,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f258 1196 1932 40 24 24 -1 #rect
+As0 f258 @|StepIcon #fIcon
+As0 f266 expr out #txt
+As0 f266 1216 1884 1216 1932 #arcP
+As0 f267 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f267 1203 2027 26 26 0 12 #rect
+As0 f267 @|RichDialogProcessEndIcon #fIcon
+As0 f247 expr out #txt
+As0 f247 1216 1956 1216 2027 #arcP
+As0 f254 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f254 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is connection ok?</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f254 1200 1760 32 32 -48 18 #rect
+As0 f254 @|AlternativeIcon #fIcon
+As0 f268 expr out #txt
+As0 f268 1216 1692 1216 1760 #arcP
+As0 f248 expr in #txt
+As0 f248 outCond 'in.errors.size() == 0' #txt
+As0 f248 1216 1792 1216 1860 #arcP
+As0 f269 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f269 1363 1763 26 26 0 12 #rect
+As0 f269 @|RichDialogProcessEndIcon #fIcon
+As0 f270 expr in #txt
+As0 f270 1232 1776 1363 1776 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3327,14 +3424,10 @@ As0 f98 mainOut f154 tail #connect
 As0 f154 head f100 mainIn #connect
 As0 f94 mainOut f182 tail #connect
 As0 f182 head f123 mainIn #connect
-As0 f183 mainOut f253 tail #connect
-As0 f253 head f251 mainIn #connect
 As0 f251 mainOut f250 tail #connect
 As0 f250 head f249 mainIn #connect
 As0 f249 mainOut f255 tail #connect
 As0 f255 head f252 mainIn #connect
-As0 f252 mainOut f248 tail #connect
-As0 f248 head f247 mainIn #connect
 As0 f164 out f260 tail #connect
 As0 f260 head f259 mainIn #connect
 As0 f164 out f87 tail #connect
@@ -3364,3 +3457,15 @@ As0 f39 mainOut f203 tail #connect
 As0 f203 head f46 mainIn #connect
 As0 f0 mainOut f265 tail #connect
 As0 f265 head f1 mainIn #connect
+As0 f183 mainOut f19 tail #connect
+As0 f19 head f251 mainIn #connect
+As0 f253 mainOut f266 tail #connect
+As0 f266 head f258 mainIn #connect
+As0 f258 mainOut f247 tail #connect
+As0 f247 head f267 mainIn #connect
+As0 f252 mainOut f268 tail #connect
+As0 f268 head f254 in #connect
+As0 f254 out f248 tail #connect
+As0 f248 head f253 mainIn #connect
+As0 f254 out f270 tail #connect
+As0 f270 head f269 mainIn #connect

@@ -73,7 +73,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userTextParams, null));
             }
 
-            if (cases.size() > 0 && cases.get(0) != null) {
+            if (cases != null && cases.size() > 0 && cases.get(0) != null) {
               ICase c = cases.get(0);
 
               for (int i = 0; i < additionalProperties.size(); i++) {
@@ -128,12 +128,11 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userTextParams, null));
             }
 
-            if (cases.size() > 0 && cases.get(0) != null) {
+            if (cases != null && cases.size() > 0 && cases.get(0) != null) {
               ICase c = cases.get(0);
               List<String> additionalPropertyNames = c.getAdditionalPropertyNames();
 
               List<IvyAdditionalProperty> properties = new ArrayList<IvyAdditionalProperty>();
-              new ArrayList<IvyAdditionalProperty>();
               for (String property : additionalPropertyNames) {
                 IvyAdditionalProperty p = new IvyAdditionalProperty();
                 p.setKey(property);
@@ -287,7 +286,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             errors.add(new WSException(WSErrorType.WARNING, 10034, userText, null));
           } else {
             IvyNoteTransformer noteTransformer = new IvyNoteTransformer();
-
+            
             CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
             ICase c = null;
 
@@ -385,7 +384,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
 
   @Override
-  public CaseServiceResult uploadDocument(Integer caseId, String documentName, Binary documentContent)
+  public CaseServiceResult uploadDocument(String username, Integer caseId, String documentName, Binary documentContent)
       throws WSException {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<CaseServiceResult>() {
@@ -411,6 +410,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                 IvyDocumentTransformer transformer = new IvyDocumentTransformer();
                 IDocument document = iCase.documents().add(documentName).write().withContentFrom(documentContent);
                 result.setDocument(transformer.transform(document));
+                createNoteWhenUploadDocument(username, caseId, documentName);
               } catch (Exception e) {
                 List<Object> userText = new ArrayList<Object>();
                 userText.add(documentName);
@@ -427,6 +427,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           result.setErrors(errors);
 
           return result;
+        }
+
+        private void createNoteWhenUploadDocument(String username, Integer caseId, String documentName)
+            throws WSException {
+          List<Object> parameter = Arrays.asList(username, documentName);
+          String uploadDocumentMessage = Ivy.cms().co("/ch/ivy/addon/portalconnector/document/uploadDocumentNote", parameter);
+          createNote(username, caseId, uploadDocumentMessage);
         }
       });
     } catch (Exception e) {
@@ -482,7 +489,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
 
   @Override
-  public CaseServiceResult removeDocument(Integer caseId, Integer documentId) throws WSException {
+  public CaseServiceResult removeDocument(String userName, Integer caseId, Integer documentId) throws WSException {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<CaseServiceResult>() {
         @Override
@@ -504,7 +511,11 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
             if (iCase != null) {
               try {
+                IDocument document = iCase.documents().get(documentId);
                 iCase.documents().delete(documentId);
+                if(document != null){
+                  createNoteWhenDeleteDocument(userName, caseId, document);
+                }
               } catch (Exception e) {
                 List<Object> userText = new ArrayList<Object>();
                 userText.add(e.getMessage());
@@ -522,12 +533,22 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
           return result;
         }
+
+        private void createNoteWhenDeleteDocument(String userName, Integer caseId, IDocument document)
+            throws WSException {
+          String documentName = document.getName();
+          List<Object> parameter = Arrays.asList(userName, documentName);
+          String removeDocumentMessage = 
+              Ivy.cms().co("/ch/ivy/addon/portalconnector/document/deleteDocumentNote", parameter);
+          createNote(userName, caseId, removeDocumentMessage);
+        }
       });
     } catch (Exception e) {
       throw new WSException(10005, e);
     }
   }
 
+  @Override
   public CaseServiceResult findCasesByCriteria(CaseSearchCriteria caseSearchCriteria, Integer startIndex, Integer count)
       throws WSException {
     List<WSException> errors = Collections.emptyList();
@@ -720,7 +741,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
   private CaseServiceResult result(long caseCount, List<WSException> errors) {
     CaseServiceResult result = new CaseServiceResult();
-    result.setCaseCount(caseCount);;
+    result.setCaseCount(caseCount);
     result.setErrors(errors);
     return result;
   }
@@ -798,7 +819,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     return finalQuery;
   }
 
-  private CaseQuery queryForInvolvedApplications(List<String> apps) throws WSException {
+  private CaseQuery queryForInvolvedApplications(List<String> apps) {
     List<IvyApplication> applications = WsServiceFactory.getApplicationService().getApplicationsBy(apps);
     CaseQuery caseQuery = CaseQuery.create();
     applications.forEach(app -> caseQuery.where().or().applicationId().isEqual(app.getId()));

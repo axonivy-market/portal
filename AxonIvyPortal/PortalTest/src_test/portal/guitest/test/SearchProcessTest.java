@@ -15,6 +15,7 @@ public class SearchProcessTest extends BaseTest {
 
   private HomePage homePage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -30,8 +31,6 @@ public class SearchProcessTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    globalSearch.clickOnGlobalSearchIcon();
-    homePage.waitForElementDisplayed(globalSearch.getSearchContainer(), true);
     globalSearch.inputSearchKeyword("Employee Leave Request");
 
     homePage.waitAjaxIndicatorDisappear();
@@ -50,8 +49,6 @@ public class SearchProcessTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    globalSearch.clickOnGlobalSearchIcon();
-    homePage.waitForElementDisplayed(globalSearch.getSearchContainer(), true);
     globalSearch.inputSearchKeyword(caseMapName);
 
     homePage.waitAjaxIndicatorDisappear();
@@ -64,8 +61,6 @@ public class SearchProcessTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    globalSearch.clickOnGlobalSearchIcon();
-    homePage.waitForElementDisplayed(globalSearch.getSearchContainer(), true);
     globalSearch.inputSearchKeyword("no process found");
 
     homePage.waitAjaxIndicatorDisappear();

@@ -6,12 +6,16 @@ import org.primefaces.model.chart.PieChartModel;
 
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class StatisticChart {
   private String id;
   private String name;
   private long userId;
   private StatisticChartType type;
+  @JsonIgnore
   private String jsonQuery;
+  private StatisticFilter filter;
   private long position;
   private DonutChartModel donutChartModel;
   private BarChartModel barChartModel;
@@ -49,14 +53,6 @@ public class StatisticChart {
     this.type = type;
   }
 
-  public String getJsonQuery() {
-    return jsonQuery;
-  }
-
-  public void setJsonQuery(String jsonQuery) {
-    this.jsonQuery = jsonQuery;
-  }
-
   public long getPosition() {
     return position;
   }
@@ -88,4 +84,13 @@ public class StatisticChart {
   public void setPieChartModel(PieChartModel pieChartModel) {
     this.pieChartModel = pieChartModel;
   }
+
+  public StatisticFilter getFilter() {
+    return filter;
+  }
+
+  public void setFilter(StatisticFilter filter) {
+    this.filter = filter;
+  }
+  
 }

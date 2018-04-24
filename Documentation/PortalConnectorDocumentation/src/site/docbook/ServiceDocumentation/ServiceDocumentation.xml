@@ -646,6 +646,77 @@
 				</tgroup>
 			</table>
 		</sect2>
+		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.services.libraryservices">
+			<title>Library services</title>
+			<table>
+				<title>Library services</title>
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Web service name</entry>
+							<entry>Input parameters</entry>
+							<entry>Output parameters</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<para>
+									getLibraries
+								</para>
+							</entry>
+							<entry>
+								<para>
+									apps (List of strings)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									libraries (List of IvyLibraries)
+								</para>
+								<para>
+									errors (List of WSExceptions)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									Get all projects name/version except Portal projects.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>
+									getLibrary
+								</para>
+							</entry>
+							<entry>
+								<para>
+									libraryId (String)
+								</para>
+								<para>
+									appName (String)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									library (IvyLibraries)
+								</para>
+								<para>
+									errors (List of WSExceptions)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									Get projects name/version by libraryId and application name.
+								</para>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
 		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.services.processstartservices">
 			<title>Process start services</title>
 			<table>
@@ -2533,6 +2604,54 @@
 							</entry>
 						</row>
 
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
+		<sect2 xml:id="portalconnectordocumentation.servicedocumentation.objects.ivylibrarysetting">
+			<title>IvyLibrarySetting</title>
+			<table>
+				<title>IvyLibrarySetting</title>
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Type</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<para>id</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>projectName</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>projectVersion</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>application</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>

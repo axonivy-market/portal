@@ -44,6 +44,10 @@ Cs0 @PushWFArc f19 '' #zField
 Cs0 @PushWFArc f20 '' #zField
 Cs0 @PushWFArc f14 '' #zField
 Cs0 @RichDialogProcessStart f10 '' #zField
+Cs0 @RichDialogMethodStart f22 '' #zField
+Cs0 @PushWFArc f23 '' #zField
+Cs0 @RichDialogMethodStart f24 '' #zField
+Cs0 @PushWFArc f25 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
@@ -101,18 +105,25 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import ch.ivy.addon.portalkit.service.StatisticService;
+import java.util.Arrays;
 
 out.isChartNameExisted = false;
 StatisticService service = new StatisticService();
 out.chartName = out.chartName.trim();
 if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), out.chartName)) {
 	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
-	FacesContext.getCurrentInstance().addMessage("", message);
+	FacesContext.getCurrentInstance().addMessage("chart-name-input", message);
 	FacesContext.getCurrentInstance().validationFailed();
 	out.isChartNameExisted = true;
 } else {
 	StatisticChart newChart = service.createStatisticChart(out.statisticFilter, out.chartName, out.chartType, ivy.session.getSessionUser().getId());
 	param.statisticChartList.add(newChart);
+	
+	String growlTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle");
+	String growlDetail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg", Arrays.asList(out.chartName));
+	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);
+	FacesContext.getCurrentInstance().addMessage(null, message);
+	
 }' #txt
 Cs0 f35 outParameterDecl '<> result;
 ' #txt
@@ -125,7 +136,7 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f35 115 723 26 26 -111 15 #rect
+Cs0 f35 115 859 26 26 -111 15 #rect
 Cs0 f35 @|RichDialogMethodStartIcon #fIcon
 Cs0 f40 guid 1601F9BADD2EC1C0 #txt
 Cs0 f40 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
@@ -233,7 +244,7 @@ Cs0 f8 334 256 435 256 #arcP
 Cs0 f9 expr out #txt
 Cs0 f9 141 64 435 64 #arcP
 Cs0 f11 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
-Cs0 f11 435 819 26 26 0 12 #rect
+Cs0 f11 435 955 26 26 0 12 #rect
 Cs0 f11 @|RichDialogProcessEndIcon #fIcon
 Cs0 f44 expr out #txt
 Cs0 f44 141 352 448 483 #arcP
@@ -276,10 +287,10 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f13 232 810 112 44 -47 -8 #rect
+Cs0 f13 232 946 112 44 -47 -8 #rect
 Cs0 f13 @|StepIcon #fIcon
 Cs0 f12 expr out #txt
-Cs0 f12 344 832 435 832 #arcP
+Cs0 f12 344 968 435 968 #arcP
 Cs0 f17 guid 160485D2143D0001 #txt
 Cs0 f17 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f17 method updateBeforeAddElapsedTime() #txt
@@ -308,19 +319,19 @@ Cs0 f18 141 640 448 509 #arcP
 Cs0 f18 1 448 640 #addKink
 Cs0 f18 0 0.8015192349629681 0 0 #arcLabel
 Cs0 f21 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
-Cs0 f21 272 720 32 32 0 16 #rect
+Cs0 f21 272 856 32 32 0 16 #rect
 Cs0 f21 @|AlternativeIcon #fIcon
 Cs0 f16 expr out #txt
-Cs0 f16 141 736 272 736 #arcP
+Cs0 f16 141 872 272 872 #arcP
 Cs0 f19 expr in #txt
 Cs0 f19 outCond !in.isChartNameExisted #txt
-Cs0 f19 288 752 288 810 #arcP
+Cs0 f19 288 888 288 946 #arcP
 Cs0 f20 expr in #txt
-Cs0 f20 304 736 448 819 #arcP
-Cs0 f20 1 448 736 #addKink
+Cs0 f20 304 872 448 955 #arcP
+Cs0 f20 1 448 872 #addKink
 Cs0 f20 0 0.7991119562493567 0 0 #arcLabel
 Cs0 f14 expr out #txt
-Cs0 f14 141 832 232 832 #arcP
+Cs0 f14 141 968 232 968 #arcP
 Cs0 f10 guid 160911F3882D9937 #txt
 Cs0 f10 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f10 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
@@ -336,8 +347,60 @@ Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f10 115 819 26 26 -42 15 #rect
+Cs0 f10 115 955 26 26 -42 15 #rect
 Cs0 f10 @|RichDialogProcessStartIcon #fIcon
+Cs0 f22 guid 1621EDBADBEB0978 #txt
+Cs0 f22 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
+Cs0 f22 method updateBeforeAddCaseByFinishedTask() #txt
+Cs0 f22 disableUIEvents false #txt
+Cs0 f22 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+Cs0 f22 inActionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
+
+out.chartType = StatisticChartType.CASES_BY_FINISHED_TASK;' #txt
+Cs0 f22 outParameterDecl '<> result;
+' #txt
+Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>updateBeforeAddCaseByFinishedTask()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f22 99 723 26 26 -95 16 #rect
+Cs0 f22 @|RichDialogMethodStartIcon #fIcon
+Cs0 f23 expr out #txt
+Cs0 f23 125 736 448 509 #arcP
+Cs0 f23 1 448 736 #addKink
+Cs0 f23 0 0.8576523140311042 0 0 #arcLabel
+Cs0 f24 guid 162233637AE65F94 #txt
+Cs0 f24 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
+Cs0 f24 method updateBeforeAddCaseByFinishedTime() #txt
+Cs0 f24 disableUIEvents false #txt
+Cs0 f24 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+Cs0 f24 inActionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
+
+out.chartType = StatisticChartType.CASES_BY_FINISHED_TIME;' #txt
+Cs0 f24 outParameterDecl '<> result;
+' #txt
+Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>updateBeforeAddCaseByFinishedTime()</name>
+        <nameStyle>35,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f24 99 795 26 26 -111 15 #rect
+Cs0 f24 @|RichDialogMethodStartIcon #fIcon
+Cs0 f25 expr out #txt
+Cs0 f25 125 808 448 509 #arcP
+Cs0 f25 1 448 808 #addKink
+Cs0 f25 0 0.9649071720549873 0 0 #arcLabel
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -374,3 +437,7 @@ Cs0 f21 out f20 tail #connect
 Cs0 f20 head f11 mainIn #connect
 Cs0 f10 mainOut f14 tail #connect
 Cs0 f14 head f13 mainIn #connect
+Cs0 f22 mainOut f23 tail #connect
+Cs0 f23 head f43 mainIn #connect
+Cs0 f24 mainOut f25 tail #connect
+Cs0 f25 head f43 mainIn #connect

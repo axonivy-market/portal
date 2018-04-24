@@ -25,7 +25,7 @@
                 <p:row>
                   <p:column>
                     <h:outputLabel for="task-priority-input"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskPriorityDialog/setPriority')} " />
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/setPriority')} " />
                   </p:column>
                   <p:column>
                     <p:selectOneMenu id="task-priority-input" value="#{data.currentPriority}">
@@ -40,13 +40,13 @@
         </p:row>
       </div>
       <div class="MarTop10 Fright">
-        <p:commandButton id="proceed-set-priority-command" styleClass="portal-ok-button"
+        <p:commandButton id="proceed-set-priority-command" styleClass=""
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           actionListener="#{logic.savePriority(cc.attrs.task)}" update="#{cc.attrs.updateElement}"
           oncomplete="PF('taskPriorityDialog').hide()" />
         <p:spacer width="5px" />
         <p:commandButton id="cancel-set-priority-command" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/cancelButton')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           actionListener="#{logic.cancel}" immediate="true" oncomplete="PF('taskPriorityDialog').hide()" process="@this" />
       </div>
     </h:form>

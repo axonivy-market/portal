@@ -59,7 +59,7 @@ public class ProcessStartServiceImpl extends AbstractService implements IProcess
                   }
                 }
               } finally {
-                if (workflowSession != null && application != null && !workflowSession.isSessionUserSystemUser()) {
+                if (workflowSession != null && !workflowSession.isSessionUserSystemUser()) {
                   ISecurityContext securityContext = application.getSecurityContext();
                   securityContext.destroySession(workflowSession.getIdentifier());
                 }

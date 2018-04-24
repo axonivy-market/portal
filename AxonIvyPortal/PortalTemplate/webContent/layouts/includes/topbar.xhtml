@@ -10,10 +10,10 @@
   <div class="TexAlCenter">
 
     <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}">
-      <p:graphicImage value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" cache="false" />
+      <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" cache="false" />
     </p:commandLink>
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
-      leaveActionListener="#{userMenuBean.navigateToHomePage()}" reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
+      leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}" reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
       componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog" />
     <c:if test="#{!isNotRequiredLogin}">
       <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
@@ -23,73 +23,79 @@
   <ui:insert name="menu-bar">
 
     <ul id="top-menu" class="js-top-menu">
-      <li><a id="global-search" class="ripplelink"> <i class="fa fa-search" />
-      </a>
-        <ul id="global-search-container">
-          <li><span> <h:form prependId="false" onsubmit="return false;">
-                <p:remoteCommand global="false" actionListener="#{userMenuBean.resetSearchData}"
-                  update="global-search-data global-search-result-container" name="resetSearch" />
-                <p:remoteCommand global="false" onstart="PF('globalSearchButton').disable();" name="globalSearch"
-                  delay="#{mainMenuBean.searchDelayTime}" partialSubmit="true" actionListener="#{userMenuBean.search}"
-                  process="global-search-data" update="global-search-result-container"
-                  oncomplete="updateScrollbar(); PF('globalSearchButton').enable();" />
-                <p:inputText widgetVar="global-search-data" id="global-search-data" autocomplete="off"
-                  styleClass="Wid100" value="#{userMenuBean.searchKeyword}"
-                  placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
-                  <f:passThroughAttribute name="oninput" value="globalSearch();" />
-                </p:inputText>
-                <p:commandButton global="false" styleClass="DispNone" widgetVar="globalSearchButton"
-                  partialSubmit="true" actionListener="#{userMenuBean.search}" process="global-search-data"
-                  update="global-search-result-container" oncomplete="updateScrollbar()" />
-              </h:form>
-          </span></li>
-          <li jsf:id="global-search-result-container" class="global-search-result-container"><h:panelGroup
-              id="global-process-result" rendered="#{not empty userMenuBean.foundWebStartables}" layout="block"
-              styleClass="global-search-result">
-              <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
-              <ui:repeat id="found-processes" var="foundProcess" value="#{userMenuBean.foundWebStartables}">
-                <ic:ch.ivy.addon.portal.generic.ProcessSearchResult foundProcess="#{foundProcess}" />
-              </ui:repeat>
-            </h:panelGroup> <h:panelGroup id="global-task-result" rendered="#{not empty userMenuBean.foundTasks}" layout="block"
-              styleClass="global-search-result">
-              <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
-              <ui:repeat id="found-tasks" var="foundTask" value="#{userMenuBean.foundTasks}">
-                <ic:ch.ivy.addon.portal.generic.TaskSearchResult keyword="#{userMenuBean.searchKeyword}"
-                  foundTask="#{foundTask}" />
-              </ui:repeat>
-            </h:panelGroup> <h:panelGroup id="global-case-result" rendered="#{not empty userMenuBean.foundCases}" layout="block"
-              styleClass="global-search-result">
-              <span class="Fs12">> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cases')}</span>
-              <ui:repeat id="found-cases" var="foundCase" value="#{userMenuBean.foundCases}">
-                <ic:ch.ivy.addon.portal.generic.CaseSearchResult foundCase="#{foundCase}"
-                  keyword="#{userMenuBean.searchKeyword}" />
-              </ui:repeat>
-            </h:panelGroup> <h:panelGroup id="empty-search-result" layout="block" rendered="#{userMenuBean.hasNoRecordsFound}"
-              styleClass="global-search-result">
-              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" />
-            </h:panelGroup></li>
-        </ul></li>
-
-      <li><a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span jsf:id="server-infor"
+      <li><h:form prependId="false" styleClass="global-search" onsubmit="return false;" rendered="#{showGlobalSearch}">
+          <p:inputText id="global-search-data" value="#{userMenuBean.searchKeyword}"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
+            <p:ajax event="keyup" delay="#{mainMenuBean.searchDelayTime}" listener="#{userMenuBean.search}"
+              update="global-search-result-container" oncomplete="showHideOverlayPanel()"/>
+          </p:inputText>
+          <i class="global-search-icon fa fa-search" />
+          <p:overlayPanel for="global-search-data" styleClass="global-search-result-overlay"
+            my="left top" at="left bottom" dynamic="true" showEvent="none" hideEvent="none" widgetVar="search-result-overlay-panel">
+            <h:panelGroup id="global-search-result-container" styleClass="global-search-result-container">
+              <h:panelGroup id="global-process-result" rendered="#{not empty userMenuBean.foundWebStartables}"
+                layout="block" styleClass="global-search-result">
+                <span class="Fs12 underline-section">>
+                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
+                <ui:repeat id="found-processes" var="foundProcess" value="#{userMenuBean.foundWebStartables}">
+                  <ic:ch.ivy.addon.portal.generic.ProcessSearchResult foundProcess="#{foundProcess}" />
+                </ui:repeat>
+              </h:panelGroup>
+              <h:panelGroup id="global-task-result" rendered="#{not empty userMenuBean.foundTasks}" layout="block"
+                styleClass="global-search-result">
+                <span class="Fs12 underline-section">>
+                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
+                <ui:repeat id="found-tasks" var="foundTask" value="#{userMenuBean.foundTasks}">
+                  <ic:ch.ivy.addon.portal.generic.TaskSearchResult keyword="#{userMenuBean.searchKeyword}"
+                    foundTask="#{foundTask}" />
+                </ui:repeat>
+              </h:panelGroup>
+              <h:panelGroup id="global-case-result" rendered="#{not empty userMenuBean.foundCases}" layout="block"
+                styleClass="global-search-result">
+                <span class="Fs12 underline-section">>
+                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</span>
+                <ui:repeat id="found-cases" var="foundCase" value="#{userMenuBean.foundCases}">
+                  <ic:ch.ivy.addon.portal.generic.CaseSearchResult foundCase="#{foundCase}"
+                    keyword="#{userMenuBean.searchKeyword}" />
+                </ui:repeat>
+              </h:panelGroup>
+              <h:panelGroup id="empty-search-result" layout="block" rendered="#{userMenuBean.hasNoRecordsFound}"
+                styleClass="global-search-result">
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" />
+              </h:panelGroup>
+            </h:panelGroup>
+          </p:overlayPanel>
+        </h:form>
+      </li>
+      <li class="setting-container" ><a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span jsf:id="server-infor"
           class="TexAlLeft DispBlock Fs11">Host: #{serverInformationBean.host} Env:
             #{serverInformationBean.environment}</span> <span class="TexAlLeft DispBlock Fs17"><b class="dropdown-icon">#{userMenuBean.userName}</b></span>
       </a> <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
           class="dropdown-icon user-name js-user-name">#{userMenuBean.userName}</span>
       </a>
         <ul id="user-setting-container">
-          <li><p:link id="adminui-menu-item" href="#" rendered="#{permissionBean.hasAdminPermission()}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
-              onclick="PF('adminUI').show()" /></li>
+          <li><p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
+              	value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
+              	update="admin-ui-dialog" oncomplete="PF('adminUI').show()" /></li>
           <li><p:link id="absence-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/absences')}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
               onclick="PF('absenceSetting').show()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
 
-          <li><p:link id="email-setting-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/emailSettings')}"
-              onclick="PF('emailSetting').show()" /></li>
-          <li><p:link id="language-setting-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/languageSettings')}"
-              onclick="PF('languageDialogVar').show()" /></li>
+          <li><p:commandLink id="email-setting-menu-item"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
+              oncomplete="PF('emailSetting').show();"
+              resetValues="true" update="applications-email-setting-form">
+                <p:resetInput target=":applications-email-setting-dialog" />
+              </p:commandLink>
+            
+          </li>
+          <li><p:commandLink id="language-setting-menu-item"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" 
+              oncomplete="PF('languageDialogVar').show();" 
+              resetValues="true" update="language-settings-form" >
+                <p:resetInput target=":language-setting-dialog" />
+              </p:commandLink>
+          </li>
 
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
@@ -99,7 +105,11 @@
                 <p:resetInput target=":change-password-dialog" />
               </p:commandLink>
           </li>
-          
+
+          <li><p:link id="project-info-menu-item" href="#"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
+              onclick="PF('project-info-dialog').show()" /></li>
+
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
           </li>
         </ul></li>
@@ -116,7 +126,7 @@
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" width="90%"
       id="admin-ui-dialog" widgetVar="adminUI" closeOnEscape="true" resizable="false" modal="true" draggable="false" appendTo="@(body)"
-      dynamic="true" height="420" onHide="PF('dialogClosingInformation').show();">
+      dynamic="true" height="450" onHide="PF('dialogClosingInformation').show();">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
       <f:facet name="footer">
       	 <p:commandButton id="close-button" type="button"
@@ -131,7 +141,7 @@
       <p:outputLabel
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
       <f:facet name="footer">
-        <p:commandButton id="close-dialog-button" type="button" onclick="PF('dialogClosingInformation').hide();" styleClass="portal-ok-button"
+        <p:commandButton id="close-dialog-button" type="button" onclick="PF('dialogClosingInformation').hide();" styleClass=""
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
       </f:facet>
     </p:dialog>
@@ -162,6 +172,18 @@
         <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start"
           dialogName="languageDialogVar" />
       </h:form>
+    </p:dialog>
+
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}"
+      widgetVar="project-info-dialog" id="project-info-dialog" closeOnEscape="true" resizable="false" modal="true"
+      draggable="false" appendTo="@(body)" dynamic="true" width="800">
+      <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
+
+      <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
+        <p:commandButton id="project-version-close-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+          onclick="PF('project-info-dialog').hide();" />
+      </h:panelGroup>
     </p:dialog>
   </ui:insert>
   <c:if test="#{enablesChat eq true}">

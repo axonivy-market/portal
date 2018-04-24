@@ -32,22 +32,23 @@
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
   <h:outputStylesheet library="css" name="theme.min.css" />
-  
+
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
 
   <h:outputScript library="js" name="jquery.colourbrightness.min.js" />
-  
+
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
-  <h:outputScript name="portal-components.js" library="js" /> 
-  <h:outputScript name="portal.js" library="js"/>  
-  <h:outputScript name="viewport.js" library="js"/>
+  <h:outputScript name="portal-components.js" library="js" />
+  <h:outputScript name="portal.js" library="js" />
+  <h:outputScript name="viewport.js" library="js" />
   <ui:insert name="head" />
 </h:head>
 
 <h:body>
 
+  <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
   <c:choose>
     <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
       <ui:insert name="login">
@@ -61,19 +62,21 @@
       <f:event type="preRenderView"
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
       <f:event listener="#{menuStateBean.initMenuState(menuState)}" type="preRenderView" />
-    
+
       <div class="topbar-container">
         <ui:include src="/layouts/includes/topbar.xhtml">
           <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
           <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
           <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
+          <ui:param name="showGlobalSearch" value="#{empty portalValidationBean.errorMessages}" />
           <ui:param name="enablesChat" value="#{enablesChat}" />
         </ui:include>
       </div>
-    
+
       <div class="left-sidebar-container u-invisibility" id="left-menu">
-        <h:outputText id="output-menu-state-info" value="#{menuStateBean.menuState}" styleClass="hide"/>
-        <div id="app-menu-panel" class="left-sidebar js-left-sidebar u-shadow-effect left-sidebar-color left-sidebar-animation">
+        <h:outputText id="output-menu-state-info" value="#{menuStateBean.menuState}" styleClass="hide" />
+        <div id="app-menu-panel"
+          class="left-sidebar js-left-sidebar u-shadow-effect left-sidebar-color left-sidebar-animation">
           <c:choose>
             <c:when test="#{isNotRequiredLogin}">
               <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu
@@ -87,23 +90,35 @@
             </c:otherwise>
           </c:choose>
         </div>
-        
-         <ui:insert name="secondLevelMenu">
-         </ui:insert>
-      </div>
-    
-      <div class="container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
-        <ui:insert name="pageContent">
-          <div class="simple-container js-simple-container #{simpleContainerClass}">
-            <div class="js-simple-main-col #{simpleMainColClass}">
-              <ui:insert name="simplePageContent">
-              </ui:insert>
-            </div>
-          </div>
+
+        <ui:insert name="secondLevelMenu">
         </ui:insert>
       </div>
-      
-    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session" clientSideTimeOut="#{userMenuBean.clientSideTimeout}"/>
+
+      <ui:fragment rendered="#{empty portalValidationBean.errorMessages}">
+        <div class="container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
+          <ui:insert name="pageContent">
+            <div class="simple-container js-simple-container #{simpleContainerClass}">
+              <div class="js-simple-main-col #{simpleMainColClass}">
+                <ui:insert name="simplePageContent">
+                </ui:insert>
+              </div>
+            </div>
+          </ui:insert>
+        </div>
+      </ui:fragment>
+      <ui:fragment rendered="#{not empty portalValidationBean.errorMessages}">
+        <div class="error-container">
+          <ui:repeat var="error" value="#{portalValidationBean.errorMessages}">
+            <div class="message">
+              <div class="message-container">#{error}</div>
+            </div>
+          </ui:repeat>
+        </div>
+      </ui:fragment>
+
+      <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
+        clientSideTimeOut="#{userMenuBean.clientSideTimeout}" />
     </c:otherwise>
   </c:choose>
 
@@ -112,19 +127,21 @@
   </ui:insert>
 
   <ic:ch.ivy.addon.portalkit.component.GlobalAjaxStatus id="ajax-indicator" />
- 
-  
+
+
   <ui:insert name="css" />
   <ui:insert name="footer">
     <script type="text/javascript">
-          $(function() {
-            var simpleLargeScreen = new SimpleLargeScreen();
-            var simpleMediumScreen = new SimpleMediumScreen();
-            var simpleSmallScreen = new SimpleSmallScreen();
-            var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
-            Portal.init(responsiveToolkit);
-          });
-        </script>
+					$(function() {
+						var simpleLargeScreen = new SimpleLargeScreen();
+						var simpleMediumScreen = new SimpleMediumScreen();
+						var simpleSmallScreen = new SimpleSmallScreen();
+						var responsiveToolkit = ResponsiveToolkit(
+								simpleLargeScreen, simpleMediumScreen,
+								simpleSmallScreen);
+						Portal.init(responsiveToolkit);
+					});
+				</script>
   </ui:insert>
 </h:body>
 </html>

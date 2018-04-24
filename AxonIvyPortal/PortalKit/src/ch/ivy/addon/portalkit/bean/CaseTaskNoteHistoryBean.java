@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 
 import javax.faces.bean.ManagedBean;
@@ -11,6 +12,7 @@ import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.UrlValidator;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.model.value.WebLink;
@@ -21,12 +23,13 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
-public class CaseTaskNoteHistoryBean {
-    
+public class CaseTaskNoteHistoryBean implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public String getCaseNoteHistoryLink(RemoteCase remoteCase) {
-      String caseNoteHistoryUri = (new UrlDetector()).getProcessStartUriWithCaseParameters(remoteCase, "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
+      String caseNoteHistoryUri = CaseUtils.getProcessStartUriWithCaseParameters(remoteCase, "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
       try {
-        String host = (new UrlDetector()).getHost(remoteCase.getServer());
+        String host = (new UrlDetector()).getHost(remoteCase.getServerUrl(), remoteCase.getServer());
         WebLink webLink = UrlValidator.isValidUrl(caseNoteHistoryUri) ? new WebLinkFactory().createFromContextRelative(caseNoteHistoryUri) 
                                                                                 : new WebLink(host + caseNoteHistoryUri);
         return webLink.getAbsoluteEncoded();

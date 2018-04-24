@@ -25,15 +25,15 @@
       </h:panelGroup>
 
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
-        <p:commandButton id="next-to-deputy" styleClass="portal-ok-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/next')}"
+        <p:commandButton id="next-to-deputy" styleClass=""
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
           disabled="#{data.validationError}" process="input-adsence-data-section" actionListener="#{logic.loadDeputy}"
           rendered="#{data.isLoadDeputy eq 'false'}" update="@form" oncomplete="PF('addNewAbsence').initPosition();" />
 
         <p:spacer width="5px" />
 
         <p:commandButton id="back-to-adsences"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/back')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           process="input-deputy-data-section" rendered="#{data.isLoadDeputy}" update="@form"
           oncomplete="PF('addNewAbsence').initPosition();">
           <f:setPropertyActionListener target="#{data.isLoadDeputy}" value="false" />
@@ -41,7 +41,7 @@
 
         <p:spacer width="5px" rendered="#{data.isLoadDeputy}" />
 
-        <p:commandButton process="@form" id="save-new-absence" rendered="#{data.isLoadDeputy}" styleClass="portal-ok-button"
+        <p:commandButton process="@form" id="save-new-absence" rendered="#{data.isLoadDeputy}" styleClass=""
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.saveNewAbsence}"
           update=":#{p:component('absence-table')}" oncomplete="PF('addNewAbsence').hide();" />
 

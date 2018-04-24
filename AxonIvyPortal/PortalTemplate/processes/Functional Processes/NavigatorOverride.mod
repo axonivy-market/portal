@@ -117,6 +117,7 @@ String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHe
 
 in.caseDataModel.setCaseId(in.caseId.id());
 in.caseDataModel.getSearchCriteria().setBusinessCase(in.caseId.isBusinessCase());
+in.caseDataModel.setNotKeepFilter(true);
 in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).autoSelectIfExists(in.caseId).buildNewView();' #txt
 Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -187,7 +188,8 @@ Nr0 f14 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f14 actionTable 'out=in;
 ' #txt
-Nr0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+Nr0 f14 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -198,15 +200,15 @@ import java.util.Arrays;
 
 MainMenuNode category = new MainMenuNode();
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
 
 in.taskDataModel.setCaseId(in.caseId.id());
 in.taskDataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
 in.taskDataModel.setServerId(in.caseId.serverId());
 in.taskDataModel.setCaseName(in.caseName);
-in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.taskDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission());
 in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
+in.taskDataModel.setRelatedTaskDisplayed(true);
 
 in.taskView = TaskView.create()
 											.category(category)
@@ -327,7 +329,7 @@ Nr0 f20 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 Nr0 f20 actionTable 'out=in;
 ' #txt
 Nr0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portal.generic.view.TaskView;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
@@ -337,11 +339,9 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
 
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
-
 in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
-in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
+in.taskDataModel.setNotKeepFilter(true);
 
 in.taskView = TaskView
 								.create()
@@ -442,13 +442,14 @@ Nr0 f31 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 Nr0 f31 actionTable 'out=in;
 ' #txt
 Nr0 f31 actionCode 'import ch.ivy.addon.portal.generic.view.CaseView;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/relatedStatisticHeader") + in.chartName;
 
 in.caseDataModel.getSearchCriteria().setBusinessCase(true);
-in.caseDataModel.setIgnoreInvolvedUser(CaseUtils.checkReadAllCasesPermission());
+in.caseDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
 in.caseDataModel.getQueryCriteria().setCaseQuery(in.caseQuery);
+in.caseDataModel.setNotKeepFilter(true);
 
 in.caseView = CaseView.create()
 								.dataModel(in.caseDataModel)

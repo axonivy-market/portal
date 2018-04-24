@@ -25,6 +25,7 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
     private static final String noteContent = "test";
     private NoteHistoryPage taskHistoryPage;
     
+    @Override
     @Before
     public void setup() {
       super.setup();
@@ -59,7 +60,7 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
             return ;
         }
         assertEquals(1, numberOfNotes);
-        assertEquals(noteContent, taskHistoryPage.getNoteContentOfFirstRow());
+        assertEquals(noteContent, taskHistoryPage.getNoteContentOfRow(0));
     }
 
 }

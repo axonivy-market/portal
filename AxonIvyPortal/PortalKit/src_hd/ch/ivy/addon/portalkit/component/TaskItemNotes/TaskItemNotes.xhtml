@@ -40,14 +40,14 @@
       <p:commandLink id="add-note-command" styleClass="task-details-note-add-link"
         actionListener="#{data.setTask(task)}" oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()">
         <span class="fa fa-plus-circle task-details-note-add-link-icon" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNote')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
       </p:commandLink>
       <cc:renderFacet name="showTaskNoteHistory" />
     </h:panelGroup>
   </div>
 
   <p:dialog id="view-note-dialog" widgetVar="#{cc.clientId}:view-note-dialog" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/note')}" width="40%" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" width="40%" appendTo="@(body)"
     modal="true" resizable="false" dynamic="true">
       <h:panelGroup layout="block">
         <h:outputText value="#{data.fullNote}" />
@@ -59,19 +59,19 @@
   </p:dialog>
 
   <p:dialog id="add-new-note-dialog" widgetVar="#{cc.clientId}:addNewNoteDialog" dynamic="true" closable="false" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNote')}" showEffect="fade" resizable="false"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false"
     modal="true" width="40%" appendTo="@(body)">
     <h:form id="add-new-note-form">
       <h:panelGroup layout="block">
         <p:messages id="create-note-msg" for="note-content" />
         <p:inputTextarea id="note-content" value="#{data.noteContent}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNoteHelpText')}"
           styleClass="note-content-textarea" autoResize="false" />
       </h:panelGroup>
       
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
-        <p:commandButton styleClass="add-new-note-save-command portal-ok-button" id="save-add-note-command"
+        <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
           update="note-content create-note-msg #{p:component('task-details-notes')}"
           actionListener="#{logic.createNote()}"

@@ -14,8 +14,7 @@
   <f:event listener="#{logic.openAbsence()}" type="preRenderComponent" />
 
   <div id="#{cc.clientId}">
-    <p:growl id="error-growl" showDetail="true" sticky="false" severity="info" life="400" widgetVar="growl"
-      escape="false" />
+    <p:growl id="error-growl" showDetail="true" sticky="false" severity="info" life="400" widgetVar="growl" escape="false"/>
 
     <h:panelGroup layout="block" id="absences-container">
       <h:form id="absence-form">
@@ -26,7 +25,7 @@
 
         <h:panelGroup layout="block" id="absence-setting-container">
           <!-- Absence -->
-          <p:messages widgetVar="growl" escape="false" showDetail="true" closable="true" id="absences-msg" />
+          <p:messages widgetVar="growl" showDetail="true" closable="true" id="absences-msg" escape="false"/>
 
           <h:panelGroup layout="block" styleClass="absence-command-container">
             <p:selectBooleanCheckbox styleClass="absence-in-the-past-command" id="show-absence-in-the-past"
@@ -57,11 +56,11 @@
             value="#{data.displayedAbsences}" var="absence" sortBy="#{absence.startDateInclusive}"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
             <f:event listener="#{logic.filterDisplayedAbsences()}" type="preRenderComponent" />
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/name')}" width="150"
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" width="150"
               sortBy="#{absence.userFullName}">
               <h:outputText value="#{absenceBean.getDisplayedName(absence)}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}" width="100"
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" width="100"
               styleClass="absence-date-field" sortBy="#{absence.startDateInclusive}">
               <h:outputText value="#{absence.startDateInclusive}">
                 <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
@@ -106,7 +105,7 @@
 
           <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
           <f:facet name="footer">
-          	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+          	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
             	onclick="PF('errorDialogSubstitue').hide();" />
            </f:facet>
         </p:dialog>
@@ -118,7 +117,7 @@
       message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" appendTo="@(body)"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
       widgetVar="deleteAbsenceConfirmation" rendered="#{absenceBean.ownAbsencesDeletable}">
-      <p:commandButton process="@this" id="confirm-action" styleClass="portal-ok-button"
+      <p:commandButton process="@this" id="confirm-action" styleClass=""
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.deleteAbsence}"
         oncomplete="PF('deleteAbsenceConfirmation').hide();" update=":#{p:component('absence-form')}" />
       <p:commandButton id="cancel-confirmation-action" styleClass="portal-cancel-button"

@@ -20,31 +20,50 @@ public class TaskFilterTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
-   @Test
-   public void testFilterTask() {
-   LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-   loginPage.login();
+  @Test
+  public void testFilterTask() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
+
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    assertEquals(3, taskWidgetPage.countTasks());
+    taskWidgetPage.filterTasksBy("Maternity");
+    assertEquals(1, taskWidgetPage.countTasks());
+    taskWidgetPage.filterTasksBy("Sick Leave Request Description");
+    assertEquals(1, taskWidgetPage.countTasks());
+  }
+
+  @Test
+  public void testAdvancedFilterTask() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
+
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    assertEquals(3, taskWidgetPage.countTasks());
+
+    taskWidgetPage.openAdvancedFilter("Description", "description");
+    taskWidgetPage.filterByDescription("Maternity");
+
+    assertEquals(1, taskWidgetPage.countTasks());
+  }
   
-   TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-   assertEquals(3, taskWidgetPage.countTasks());
-   taskWidgetPage.filterTasksBy("Maternity");
-   assertEquals(1, taskWidgetPage.countTasks());
-   }
-  
-   @Test
-   public void testAdvancedFilterTask() {
-   LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-   loginPage.login();
-  
-   MainMenuPage mainMenuPage = new MainMenuPage();
-   TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-   assertEquals(3, taskWidgetPage.countTasks());
-  
-   taskWidgetPage.openAdvancedFilter("Description", "description");
-   taskWidgetPage.filterByDescription("Maternity");
-  
-   assertEquals(1, taskWidgetPage.countTasks());
-   }
+  @Test
+  public void testKeepSessionFilter() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
+
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    taskWidgetPage.openAdvancedFilter("Description", "description");
+    taskWidgetPage.filterByDescription("Maternity");
+    assertEquals(1, taskWidgetPage.countTasks());
+    
+    mainMenuPage.openCaseList();
+    taskWidgetPage = mainMenuPage.openTaskList();
+    assertEquals(1, taskWidgetPage.countTasks());
+    assertTrue(taskWidgetPage.isAdvancedFilterDisplayed("description"));
+  }
 
   @Test
   public void testSaveTaskFilter() {
@@ -52,39 +71,39 @@ public class TaskFilterTest extends BaseTest {
     loginPage.login();
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    
+
     String filterName = "Maternity";
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByDescription(filterName);
     taskWidgetPage.saveFilter(filterName);
-    
+
     mainMenuPage.selectCaseMenu();
     taskWidgetPage = mainMenuPage.openTaskList();
     assertEquals(filterName, taskWidgetPage.getFilterName());
   }
-  
+
   @Test
   public void testSaveTaskFilterOnDifferentTaskList() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    
+
     String filterName = "MyFilter";
-    
+
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByDescription("Sick");
     taskWidgetPage.saveFilter(filterName);
-    
+
     redirectToRelativeLink(HomePage.INTERNAL_SUPPORT_HOME_PAGE_URL);
     taskWidgetPage = mainMenuPage.openTaskList();
-    
+
     assertFalse(taskWidgetPage.isFilterSelectionVisible());
-    
+
     taskWidgetPage.openAdvancedFilter("Customer name", "customer-name");
     taskWidgetPage.filterByCustomerName("Anh");
     taskWidgetPage.saveFilter(filterName);
-    
+
     mainMenuPage.selectCaseMenu();
     taskWidgetPage = mainMenuPage.openTaskList();
     assertEquals(filterName, taskWidgetPage.getFilterName());

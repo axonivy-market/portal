@@ -1,18 +1,10 @@
 package ch.ivy.addon.portalkit.bo;
 
-import ch.ivyteam.api.IvyScriptVisibility;
-import ch.ivyteam.api.PublicAPI;
-import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.security.IUserToken;
 
 /**
- * Bean for remote security memeber.
- *
- * @author maonguyen
+ * Bean for remote security member.
  */
-public class RemoteSecurityMember implements ISecurityMember{
+public class RemoteSecurityMember {
 
 	private String displayName;
 	
@@ -38,46 +30,18 @@ public class RemoteSecurityMember implements ISecurityMember{
 		this.memberName = _memberName;
 	}
 	
-	@Override
-	@PublicAPI(IvyScriptVisibility.NOVICE)
-	public String getDisplayName() throws PersistencyException {
+	public String getDisplayName() {
 		return displayName;
 	}
 
-	@Override
-	@PublicAPI(IvyScriptVisibility.EXPERT)
 	public long getId() {
 		return 0;
 	}
 
-	@Override
-	@PublicAPI(IvyScriptVisibility.HIDDEN)
-	@Deprecated
-	public int getIdentifier() {
-		return 0;
-	}
-
-	@Override
-	@PublicAPI(IvyScriptVisibility.NOVICE)
-	public String getMemberName() throws PersistencyException {
+	public String getMemberName() {
 		return this.memberName;
 	}
 
-	@Override
-	@PublicAPI(IvyScriptVisibility.EXPERT)
-	public ISecurityContext getSecurityContext() throws PersistencyException {
-		return null;
-	}
-
-	@Override
-	@PublicAPI(IvyScriptVisibility.EXPERT)
-	public boolean isMember(IUserToken userToken, boolean useSessionRoles)
-			throws PersistencyException {
-		return false;
-	}
-
-	@Override
-	@PublicAPI(IvyScriptVisibility.NOVICE)
 	public boolean isUser() {
 		if((memberName != null && memberName.startsWith("#")) || isUser){
 			return true;
@@ -101,12 +65,6 @@ public class RemoteSecurityMember implements ISecurityMember{
 	 */
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
-	}
-
-	@Override
-	public String getName() throws PersistencyException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
   public void setUser(boolean isUser) {

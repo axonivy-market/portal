@@ -3,18 +3,19 @@ package ch.ivy.addon.portalkit.comparator;
 import java.util.Comparator;
 import java.util.Date;
 
-import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.addon.portalkit.bo.RemoteTask;
 
-public class TaskExpiryComparator implements Comparator<ITask> {
+public class TaskExpiryComparator implements Comparator<RemoteTask> {
 
 	@Override
-	public int compare(ITask firstTask, ITask secondTask) {
+	public int compare(RemoteTask firstTask, RemoteTask secondTask) {
 		Date firstTaskExpiryTime = firstTask.getExpiryTimestamp();
 		Date secondTaskExpiryTime = secondTask.getExpiryTimestamp();
 		return compareTaskExpiryTime(firstTaskExpiryTime, secondTaskExpiryTime);
 	}
 
-	private int compareTaskExpiryTime(Date firstExpiryTime, Date secondExpiryTime) {
+	@SuppressWarnings("null")
+  private int compareTaskExpiryTime(Date firstExpiryTime, Date secondExpiryTime) {
 		if(firstExpiryTime == null && secondExpiryTime == null) {
 			return 0;
 		}

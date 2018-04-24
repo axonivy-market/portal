@@ -18,7 +18,6 @@
       moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
       <f:event listener="#{data.setResponsibles(cc.attrs.filter.responsibles)}" type="preRenderComponent" />
-      <p:ajax event="itemSelect" global="false" />
       <p:ajax event="query" global="false" />
       <p:column>
         <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />

@@ -18,7 +18,7 @@
 					<para>Create a new additional case details UI and a start process which will display the new UI.</para>
 					<mediaobject>
 						<imageobject>
-							<imagedata fileref="images/AdditionalCaseDetailsPage/CustomizationAdditionalCaseDetailsPage.PNG" />
+							<imagedata fileref="images/AdditionalCaseDetailsPage/CustomizationAdditionalCaseDetailsPage.png" />
 						</imageobject>
 					</mediaobject>
 				</listitem>
@@ -27,12 +27,22 @@
 					<para>Store the URL in "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additional property of case.</para> 
 					<mediaobject>
 						<imageobject>
-							<imagedata fileref="images/AdditionalCaseDetailsPage/StoreRelativeUrlInCase.PNG" />
+							<imagedata fileref="images/AdditionalCaseDetailsPage/StoreRelativeUrlInCase.png" />
 						</imageobject>
 					</mediaobject>
 				</listitem>
 			</orderedlist>
-			
+		</para>
+		<para>
+			<tip>
+			If you simply want display information from case, you could use <code>SetAdditonalCaseDetailPage.mod</code> callable process.
+			You just need input the friendly URL of process.
+			</tip>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/AdditionalCaseDetailsPage/SetAdditonalCaseDetailPageCallableProcess.png" />
+				</imageobject>
+			</mediaobject>
 		</para>
 	</sect2>
 </sect1>

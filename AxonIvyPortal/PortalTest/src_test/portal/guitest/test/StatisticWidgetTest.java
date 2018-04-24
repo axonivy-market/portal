@@ -21,11 +21,14 @@ public class StatisticWidgetTest extends BaseTest {
   private static final String CASE_BY_STATE_CHART_NAME = "Case by state chart";
   private static final String TASK_BY_EXPIRY_CHART_NAME = "Task by expiry chart";
   private static final String ELAPSED_TIME_CHART_NAME = "Elapsed time chart";
+  private static final String CASE_BY_FINISHED_TASK_CHART_NAME = "Case by finished task chart";
+  private static final String CASE_BY_FINISHED_TIME_CHART_NAME = "Case by finished time chart";
 
   private HomePage homePage;
   private StatisticWidgetPage statisticWidgetPage;
   private MainMenuPage mainMenuPage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -58,6 +61,8 @@ public class StatisticWidgetTest extends BaseTest {
     createTaskByExpiryChart();
     createCaseByStateChart();
     createElapsedTimeChart();
+    createCaseByFinishedTask();
+    createCaseByFinishTime();
 
     statisticWidgetPage.switchCreateMode();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
@@ -70,11 +75,17 @@ public class StatisticWidgetTest extends BaseTest {
       = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name");
     WebElement elapsedTimeChartName
       = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:3:chart-name");
+    WebElement caseByFinishedTaskChartName
+      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:4:chart-name");
+    WebElement caseByFinishedTimeChartName
+      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:5:chart-name");
 
     assertEquals(TASK_BY_PRIORITY_CHART_NAME, taskByPriorityChartName.getText());
     assertEquals(TASK_BY_EXPIRY_CHART_NAME, taskByExpiryChartName.getText());
     assertEquals(CASE_BY_STATE_CHART_NAME, caseByStateChartName.getText());
     assertEquals(ELAPSED_TIME_CHART_NAME, elapsedTimeChartName.getText());
+    assertEquals(CASE_BY_FINISHED_TASK_CHART_NAME, caseByFinishedTaskChartName.getText());
+    assertEquals(CASE_BY_FINISHED_TIME_CHART_NAME, caseByFinishedTimeChartName.getText());
   }
 
   private void createTaskByPriorityChart() {
@@ -145,6 +156,42 @@ public class StatisticWidgetTest extends BaseTest {
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-save-command");
 
     chartNameInput.sendKeys(ELAPSED_TIME_CHART_NAME);
+    createChartButton.click();
+    statisticWidgetPage.waitAjaxIndicatorDisappear();
+  }
+  
+  private void createCaseByFinishedTask() {
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link"), true, 30);
+    WebElement createCaseByFinishedTaskLink
+      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link");
+    createCaseByFinishedTaskLink.click();
+    statisticWidgetPage.waitAjaxIndicatorDisappear();
+
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 30);
+    WebElement chartNameInput
+      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-name-input");
+    WebElement createChartButton
+      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-save-command");
+
+    chartNameInput.sendKeys(CASE_BY_FINISHED_TASK_CHART_NAME);
+    createChartButton.click();
+    statisticWidgetPage.waitAjaxIndicatorDisappear();
+  }
+  
+  private void createCaseByFinishTime() {
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link"), true, 30);
+    WebElement createCaseByFinishedTaskLink
+      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link");
+    createCaseByFinishedTaskLink.click();
+    statisticWidgetPage.waitAjaxIndicatorDisappear();
+
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 30);
+    WebElement chartNameInput
+      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-name-input");
+    WebElement createChartButton
+      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-save-command");
+
+    chartNameInput.sendKeys(CASE_BY_FINISHED_TIME_CHART_NAME);
     createChartButton.click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();
   }

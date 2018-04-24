@@ -11,12 +11,12 @@
 <cc:implementation>
   <div id="#{cc.clientId}">
     <p:commandLink id="logout-menu-item"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/logOut')}"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
       rendered="#{!userMenuBean.hiddenLogout and !cc.attrs.isWorkingOnATask}" actionListener="#{logic.logout}"
       oncomplete="returnHomePage()" />
 
     <p:link id="logout-confirmation-menu-item" href="#"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/logOut')}"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
       rendered="#{!userMenuBean.hiddenLogout and cc.attrs.isWorkingOnATask}" onclick="PF('logoutConfirmation').show()" />
 
     <p:confirmDialog id="logout-confirmation-dialog"
@@ -32,10 +32,10 @@
         <h:panelGroup styleClass="Fs14">
           <p:commandButton actionListener="#{logic.logout()}" process="@this"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-            styleClass="ui-confirmdialog-yes portal-ok-button u-mar-right-5" oncomplete="returnHomePage()" />
+            styleClass="ui-confirmdialog-yes u-mar-right-5" oncomplete="returnHomePage()" />
           <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask()}" process="@this"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
-            styleClass="ui-confirmdialog-yes portal-ok-button u-mar-right-5" oncomplete="returnHomePage()" />
+            styleClass="ui-confirmdialog-yes u-mar-right-5" oncomplete="returnHomePage()" />
           <p:tooltip for="reserve-task-button" trackMouse="true"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
           <p:commandButton onclick="PF('logoutConfirmation').hide()"

@@ -15,7 +15,7 @@
     shortDescription="A message when the cases are empty" />
   <cc:attribute name="hideCaseFilter" default="false" shortDescription="Case filter text field is hidden or not"
     type="java.lang.Boolean" />
-  <cc:attribute name="title" default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" />
   <cc:attribute name="autoSelectCaseId" />
   <cc:attribute name="filterGroupId" />
   <cc:facet name="emptyMessage" />
@@ -35,17 +35,17 @@
         <h:form id="filter-selection-form" class="filter-selection-form" rendered="#{!cc.attrs.hideCaseFilter}">
           <p:outputPanel id="filter-selection-panel"
             rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
-            <h:outputLabel value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filter')}"
+            <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
               for="filter-name" />
             <p:commandLink id="filter-name" styleClass="filter-name"
-              value="#{data.dataModel.selectedFilterData == null ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/selectedFilterSetDefaultValue') : data.dataModel.selectedFilterData.filterName}"
+              value="#{data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}"
               global="false" />
             <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
               hideEffect="fade" my="left top" at="left bottom">
               <h:panelGroup id="private-filters" rendered="#{not empty data.publicFilters}">
                 <div class="filter-type-label">
                   <h:outputText
-                    value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/publicFilter')}" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                 </div>
                 <ui:repeat var="filterData" value="#{data.publicFilters}">
                   <h:panelGroup layout="block" styleClass="user-definied-filter-container">
@@ -68,7 +68,7 @@
               <h:panelGroup id="public-filters" rendered="#{not empty data.privateFilters}">
                 <div class="filter-type-label">
                   <h:outputText
-                    value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/privateFilter')}" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                 </div>
                 <ui:repeat var="filterData" value="#{data.privateFilters}">
                   <h:panelGroup layout="block" styleClass="user-definied-filter-container">
@@ -92,9 +92,9 @@
       </div>
       <h:panelGroup styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
         <h:form id="case-basic-filter-form" onsubmit="return false;">
-          <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.filteringKeyword}"
-            listener="#{logic.filter()}" updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
-            placeholder="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/basicFilterPlaceHolder')}"
+          <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.dataModel.queryCriteria.keyword}"
+            updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
         </h:form>
       </h:panelGroup>
@@ -119,8 +119,9 @@
           </h:form>
         </p:overlayPanel>
         <p:commandButton id="filter-save-action"
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/saveFilter')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
           styleClass="filter-add-button" icon="fa fa-save" iconPos="right" update="save-filter-set-dialog"
+          resetValues="true"
           oncomplete="PF('save-filter-set-dialog').show();" />
       </h:panelGroup>
     </h:panelGroup>
@@ -140,7 +141,7 @@
         <ui:param name="sortedField" value="NAME" />
         <ui:param name="sortable" value="true" />
         <ui:param name="value"
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/NameAndDescription')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/NAME')}" />
       </ui:include>
       <ui:include src="ColumnHeader.xhtml">
         <ui:param name="id" value="id-column-header" />
@@ -148,7 +149,7 @@
         <ui:param name="componentToBeUpdated" value="" />
         <ui:param name="sortedField" value="ID" />
         <ui:param name="sortable" value="true" />
-        <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Id')}" />
+        <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}" />
       </ui:include>
       <ui:include src="ColumnHeader.xhtml">
         <ui:param name="id" value="creator-column-header" />
@@ -156,14 +157,14 @@
         <ui:param name="componentToBeUpdated" value="" />
         <ui:param name="sortedField" value="CREATOR" />
         <ui:param name="sortable" value="true" />
-        <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Creator')}" />
+        <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
       </ui:include>
       <ui:include src="ColumnHeader.xhtml">
         <ui:param name="id" value="created-date-column-header" />
         <ui:param name="styleClass" value="TexAlCenter case-list-header-cell" />
         <ui:param name="componentToBeUpdated" value="" />
         <ui:param name="sortedField" value="START_TIME" />
-        <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Created')}" />
+        <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
         <ui:param name="sortable" value="true" />
       </ui:include>
       <ui:include src="ColumnHeader.xhtml">
@@ -186,7 +187,7 @@
         <ui:param name="componentToBeUpdated" value="" />
         <ui:param name="sortedField" value="STATE" />
         <ui:param name="sortable" value="true" />
-        <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/State')}" />
+        <ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
       </ui:include>
     </h:panelGroup>
     <div class="widget-content">
@@ -195,7 +196,7 @@
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
           <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
             initialActive="#{case.id eq cc.attrs.autoSelectCaseId.id() and case.server.id eq cc.attrs.autoSelectCaseId.serverId()}"
-            onDestroyComplete="PF('destroy-case-dialog').show()"
+            onDestroyComplete="PF('destroy-case-dialog').show()" expandCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
             <cc:insertFacet name="caseHeader" />
             <cc:insertFacet name="caseBody" />
@@ -210,31 +211,31 @@
   </div>
 
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog"
-    header="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterSavingHeader')}" resizable="false"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
     width="420" modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
     <p:messages autoUpdate="true" />
     <h:form id="filter-save-form">
       <h:panelGrid columns="2" styleClass="save-filter-set-panel"
         columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">
         <p:outputLabel id="save-filter-set-name-label" for="save-filter-set-name-input"
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterName')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterName')}" />
         <p:inputText id="save-filter-set-name-input" value="#{data.filterSetName}" required="true" maxlength="20" />
         <p:outputLabel id="save-filter-type-label" for="save-filter-type-radio"
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterVisibility')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterVisibility')}" />
         <p:selectOneRadio id="save-filter-type-radio" value="#{data.filterType}">
           <f:selectItem id="only-me"
-            itemLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterTypeOnlyMe')}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterTypeOnlyMe')}"
             itemValue="ONLY_ME" />
           <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission()}"
-            itemLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterTypeAllUsers')}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterTypeAllUsers')}"
             itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-        <p:commandButton styleClass="portal-ok-button" id="filter-save-command"
+        <p:commandButton styleClass="" id="filter-save-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
-          actionListener="#{logic.saveFilter}" update="#{cc.clientId}:case-widget-header">
+          actionListener="#{logic.saveFilter}" update="#{cc.clientId}:case-widget-header case-widget:filter-save-form">
         </p:commandButton>
         <p:spacer width="5px" />
         <p:commandButton type="button" styleClass="portal-cancel-button"
@@ -246,11 +247,11 @@
   </p:dialog>
 
   <p:confirmDialog id="delete-filter-confirmation-dialog"
-    message="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterDeletionConfirmation')}"
-    header="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/filterDeletionConfirmationHeader')}"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.deleteFilter()}" styleClass="portal-ok-button"
+      actionListener="#{logic.deleteFilter()}" styleClass=""
       oncomplete="PF('delete-filter-confirmation-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader();"
       update="case-basic-filter-form advanced-filter-container filter-selection-form case-list filter-add-form" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
@@ -267,10 +268,10 @@
     </script>
   <p:confirmDialog id="destroy-case-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" widgetVar="destroy-case-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="destroy-case-dialog"
     appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.destroyCase(caseWidgetBean.deletingCase)}" styleClass="portal-ok-button"
+      actionListener="#{logic.destroyCase(caseWidgetBean.deletingCase)}" styleClass=""
       oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();PF('destroy-case-dialog').hide()"
       update="case-list" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"

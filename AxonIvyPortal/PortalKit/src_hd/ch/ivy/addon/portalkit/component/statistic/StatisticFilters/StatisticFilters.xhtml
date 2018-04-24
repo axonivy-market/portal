@@ -14,27 +14,31 @@
 <cc:implementation>
   <c:set var="filter" value="#{cc.attrs.filter}" />
 
-  <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/header')}" styleClass="statistic-filter-main-container">
+  <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" styleClass="statistic-filter-main-container">
     <h:panelGrid columns="1" cellpadding="10">
       <p:row>
         <p:column>
-          <p:outputLabel styleClass="label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/createdPeriod')}" />
+          <p:outputLabel styleClass="label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" />
+          <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
+          	<f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
+          	<p:ajax update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+          </p:selectOneMenu>
         </p:column>
         <p:column>
           <h:panelGrid columns="2" columnClasses="align-bottom, align-bottom">
 
-            <p:outputLabel styleClass="item-label" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/createdFrom')} " />
-            <p:calendar id="filter-from" value="#{filter.createdDateFrom}"
-              pattern="#{dateTimePatternBean.configuredPattern}"
+            <p:outputLabel styleClass="item-label" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')} " />
+            <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
+              pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-              <p:ajax event="dateSelect" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+              <p:ajax event="change" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
             </p:calendar>
 
-            <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/createdTo')} " />
-            <p:calendar id="filter-to" value="#{filter.createdDateTo}"
-              pattern="#{dateTimePatternBean.configuredPattern}"
+            <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " />
+            <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
+              pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-              <p:ajax event="dateSelect" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+              <p:ajax event="change" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
             </p:calendar>
 
           </h:panelGrid>
@@ -55,7 +59,6 @@
               <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
             </p:selectManyCheckbox>
           </p:scrollPanel>
-          <h:outputText value="There is no case category" styleClass="no-data-message" rendered="#{empty filter.caseCategories}" />
         </p:column>
       </p:row>
 
@@ -74,7 +77,7 @@
               <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
             </p:selectManyCheckbox>
           </p:scrollPanel>
-          <h:outputText value="There is no roles" styleClass="no-data-message" rendered="#{empty filter.roles}" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noRoles')}" styleClass="no-data-message" rendered="#{empty filter.roles}" />
         </p:column>
       </p:row>
 

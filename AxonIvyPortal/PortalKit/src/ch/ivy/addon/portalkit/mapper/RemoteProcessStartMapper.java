@@ -33,6 +33,8 @@ public class RemoteProcessStartMapper {
    * Convert from list of {@link IvyProcessStart} to {@link RemoteProcessStart}.
    *
    * @param ivyProcessStarts list of {@link IvyProcessStart}
+   * @param serverId 
+   * @param host 
    * @return list of {@link RemoteProcessStart}
    */
   public static List<RemoteProcessStart> mapProcessStarts(List<IvyProcessStart> ivyProcessStarts, Long serverId,

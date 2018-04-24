@@ -21,14 +21,14 @@
       <p:row>
         <p:column styleClass="Wid10">
           <p:outputLabel for="description" styleClass="Fright"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/description')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}:" />
         </p:column>
         <p:column>
-          <h:outputText id="description" value="#{data.caseInfo.description}" escape="false" />
+          <h:outputText id="description" value="#{data.caseInfo.description}" />
         </p:column>
         <p:column styleClass="Wid20">
           <h:outputLabel for="created" styleClass="Fright"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/created')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}:" />
         </p:column>
         <p:column>
           <h:outputText id="created" value="#{data.caseInfo.startTimestamp}">
@@ -40,7 +40,7 @@
       <p:row>
         <p:column>
           <p:outputLabel for="state" styleClass="Fright"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/status')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}:" />
         </p:column>
         <p:column>
           <span class="#{caseBean.getCaseStateIcon(data.caseInfo.state)}" />
@@ -48,7 +48,7 @@
         </p:column>
         <p:column>
           <h:outputLabel styleClass="Fright" for="creator"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/creator')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}:" />
         </p:column>
         <p:column>
           <p:commandLink id="creator" value="#{data.creatorName}" styleClass="fa fa-info-circle" />
@@ -61,7 +61,7 @@
       <p:row>
         <p:column>
           <p:outputLabel for="lastEdit" styleClass="Fright"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/lastEdit')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/lastEdit')}:" />
         </p:column>
         <p:column>
           <h:outputText id="lastEdit" value="#{data.caseInfo.endTimestamp}">
@@ -70,7 +70,7 @@
         </p:column>
         <p:column>
           <h:outputLabel styleClass="Fright" for="processModel"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/processModel')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModel')}:" />
         </p:column>
         <p:column>
           <p:commandLink id="processModel" value="#{data.caseInfo.processModel.name}" />

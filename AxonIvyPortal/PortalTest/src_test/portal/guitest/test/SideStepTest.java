@@ -14,6 +14,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class SideStepTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();

@@ -8,6 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskHistoryPageTitle')}</ui:define>
 		<ui:define name="simplePageContent">
 			
@@ -17,7 +18,7 @@
 					<p:column width="15%" sortBy="#{note.creatorFullName}" filterBy="#{note.creatorFullName}" filterMatchMode="contains">
 						<f:facet name="header">
 							<h:outputText
-								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnName')}" />
+								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
 						</f:facet>
 						<h:outputText value="#{note.creatorFullName}" />
 					</p:column>
@@ -28,7 +29,7 @@
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}" />
 						</f:facet>
 						<f:facet name="filter">
-							<p:calendar pattern="#{ivy.cms.co('/patterns/datePattern')}">
+							<p:calendar pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}">
 								<p:ajax event="dateSelect"
 									oncomplete="PF('notesTable').filter()" />
 								<p:ajax event="change" oncomplete="PF('notesTable').filter()" />

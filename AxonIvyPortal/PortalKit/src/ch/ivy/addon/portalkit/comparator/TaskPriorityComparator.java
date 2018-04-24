@@ -2,12 +2,12 @@ package ch.ivy.addon.portalkit.comparator;
 
 import java.util.Comparator;
 
-import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.addon.portalkit.bo.RemoteTask;
 
-public class TaskPriorityComparator implements Comparator<ITask>{
+public class TaskPriorityComparator implements Comparator<RemoteTask>{
 
 	@Override
-	public int compare(ITask firstTask, ITask secondTask) {
+	public int compare(RemoteTask firstTask, RemoteTask secondTask) {
 		return firstTask.getPriority().compareTo(secondTask.getPriority());
 	}
 

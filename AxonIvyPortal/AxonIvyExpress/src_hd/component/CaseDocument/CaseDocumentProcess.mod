@@ -77,6 +77,7 @@ in.selectedFile = null;
 
 FacesContext fc = FacesContext.getCurrentInstance();
 Integer maxFiles = fc.getApplication().evaluateExpressionGet(fc, "#{cc.attrs.fileLimit}",Integer.class) as Integer;
+ivy.log.debug("Number of Files:" + maxFiles);
 
 
 in.sizeLimitBytes = 10485760;
@@ -86,6 +87,7 @@ in.sizeLimitBytes = 10485760;
 in.allowedFileTypes = "/(\\.|\\/)(";
 
 for(String type: in.inputFileTypes){
+	ivy.log.debug("Inputfiletype: " + type);
 	if(type.startsWith("PDF")){
 		in.allowedFileTypes += "pdf|";
 	}else if(type.startsWith("Word")){
@@ -100,6 +102,8 @@ if(in.inputFileTypes != null && in.inputFileTypes.size() > 0){
 	 in.allowedFileTypes = in.allowedFileTypes.substring(0, in.allowedFileTypes.length()-1);
 }
 in.allowedFileTypes += ")$$/";
+
+ivy.log.debug("Allowed FiletypesString=" + in.allowedFileTypes);
 
 //("PDF (pdf)");
 //("Word (doc/docx)");
@@ -125,7 +129,7 @@ Ds0 f8 actionDecl 'component.CaseDocument.CaseDocumentData out;
 Ds0 f8 actionTable 'out=in;
 ' #txt
 Ds0 f8 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
-in.uploadingFileExists = DocumentFileUtils.checkFileExist(ivy.case,in.selectedFile.getInputstream(),in.selectedFile.getFileName());' #txt
+in.uploadingFileExists = DocumentFileUtils.checkFileExist(ivy.case,in.selectedFile.getFileName());' #txt
 Ds0 f8 type component.CaseDocument.CaseDocumentData #txt
 Ds0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -246,7 +250,7 @@ if (uploadSuccesfully) {
 	context.addMessage("documentFile", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"), "" ));
 	ivy.log.debug("FileUpload erfolgreich" + ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"));
 } else {
-	context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/Dialogs/components/CaseDocument/uploadFailed"), "" ));
+	context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed"), "" ));
 	}
 
 ' #txt
@@ -393,6 +397,7 @@ Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 Ds0 f0 inParameterMapAction 'out.numberOfFilesLimit=param.noOfFiles;
 ' #txt
 Ds0 f0 inActionCode 'out.caseId = ivy.case.getId();
+ivy.log.debug("xxxxx" + param.noOfFiles);
 out.toManyFiles = false;' #txt
 Ds0 f0 outParameterDecl '<java.lang.Integer noOfFiles> result;
 ' #txt

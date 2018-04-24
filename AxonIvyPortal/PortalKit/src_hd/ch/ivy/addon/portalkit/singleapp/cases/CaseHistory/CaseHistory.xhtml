@@ -25,7 +25,7 @@
           <h:outputText value="#{task.type}" />
         </p:column>
 
-        <p:column styleClass="Wid10" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/state')}"
+        <p:column styleClass="Wid10" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"
           sortBy="#{task.state.intValue()}">
           <span class="#{taskBean.getStateIcon(task.getState())}" />
           <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/'.concat(task.getState()))}"
@@ -42,7 +42,7 @@
         <p:column styleClass="Wid10" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/Editor')}"
           sortBy="#{task.editorName}">
           <h:outputText id="editor" rendered="#{task.editorName == null || !task.editor.isUser()}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/system')}" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM')}" />
 
           <p:commandLink id="show-contact" styleClass="fa fa-info-circle" value="#{task.editorName}"
             rendered="#{task.editorName != null and task.editor.isUser()}" />
@@ -52,9 +52,9 @@
           </pe:tooltip>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/description')}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
           sortBy="#{task.description}">
-          <h:outputText id="summaryDes" escape="false" styleClass="u-break-word"
+          <h:outputText id="summaryDes" styleClass="u-break-word"
             value="#{task.description.length() gt 200 ? task.description.substring(0,200).concat(' ...') : task.description}" />
         </p:column>
 
@@ -97,7 +97,7 @@
       <p:outputPanel id="comment-detail-container" styleClass="Hei100">
         <p:panel id="comment-detail" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noteDetail')}"
           styleClass="Hei100 OvAuto">
-          <h:outputText value="#{data.comment}" escape="false" styleClass="u-break-word" />
+          <h:outputText value="#{data.comment}" styleClass="u-break-word" />
         </p:panel>
       </p:outputPanel>
       <f:facet name="footer">

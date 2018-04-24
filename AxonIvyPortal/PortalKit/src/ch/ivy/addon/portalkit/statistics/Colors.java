@@ -26,10 +26,10 @@ public class Colors {
   private static final String DONE_CASE_COLOR = "eaa228";
   private static final String FAILED_CASE_COLOR = "c5b47f";
 
-  private static final String CREATED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/created";
-  private static final String RUNNING_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/running";
-  private static final String DONE_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/done";
-  private static final String FAILED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseState/failed";
+  private static final String CREATED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED";
+  private static final String RUNNING_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/RUNNING";
+  private static final String DONE_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE";
+  private static final String FAILED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/FAILED";
 
   public static String getPriorityColors(Map<String, Number> chartData) {
     Number exceptionPriorities = chartData.get(Ivy.cms().co(EXCEPTION_PRIORITY_KEY));

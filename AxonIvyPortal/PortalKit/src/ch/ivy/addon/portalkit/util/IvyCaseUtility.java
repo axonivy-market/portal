@@ -21,7 +21,8 @@ public class IvyCaseUtility {
 	public static String getCurrentProcessStartLink() throws Exception {
 		return ServerFactory.getServer().getSecurityManager()
 				.executeAsSystem(new Callable<String>() {
-					public String call() throws Exception {
+					@Override
+          public String call() throws Exception {
 						return Ivy.wfCase().getProcessStart()
 								.getFullRequestPath();
 					}
@@ -37,7 +38,8 @@ public class IvyCaseUtility {
 	public static String getCurrentProcessModelName() throws Exception {
 		return ServerFactory.getServer().getSecurityManager()
 				.executeAsSystem(new Callable<String>() {
-					public String call() throws Exception {
+					@Override
+          public String call() throws Exception {
 						return Ivy.wfCase().getProcessModel().getName();
 					}
 				});

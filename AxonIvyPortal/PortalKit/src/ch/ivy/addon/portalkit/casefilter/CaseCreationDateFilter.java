@@ -18,7 +18,7 @@ public class CaseCreationDateFilter extends CaseFilter {
   @Override
   public String label() {
     StringBuilder sb = new StringBuilder();
-    sb.append(Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Created"));
+    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/create"));
     sb.append(" (");
     sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/from"));
     sb.append("/");
@@ -68,6 +68,7 @@ public class CaseCreationDateFilter extends CaseFilter {
 
   }
 
+  @Override
   public void validate() {
     if (fromCreationDate != null && toCreationDate != null && (fromCreationDate.compareTo(toCreationDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();

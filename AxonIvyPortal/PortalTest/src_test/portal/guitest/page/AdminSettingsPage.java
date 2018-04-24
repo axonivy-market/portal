@@ -1,7 +1,11 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import ch.xpertline.base.client.Browser;
 
 public class AdminSettingsPage extends TemplatePage {
   
@@ -21,10 +25,36 @@ public class AdminSettingsPage extends TemplatePage {
     return findElementById(DIALOG_TITLE).isDisplayed();
   }
   
-  private void clickToSettingTab(){
+  private void openSettingTab(){
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
     settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
+  }
+  
+  public void openDesignTab(){
+    WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:designTab']");
+    settingTabLink.click();
+    waitForElementPresent(By.id("adminui:adminTabView:logo-color-form"), true);
+  }
+  
+  
+  public void chooseMainColor(String color) {
+    click(By.id("adminui:adminTabView:logo-color-form:main-color-chooser_button"));
+    waitForElementDisplayed(By.className("ui-colorpicker-container"), true);
+    
+    WebDriver driver = Browser.getBrowser().getDriver();
+    JavascriptExecutor jse = (JavascriptExecutor)driver;
+    jse.executeScript("document.querySelector('div.ui-colorpicker_hex > input').value='"+ color +"';");
+    jse.executeScript("document.getElementById('adminui:adminTabView:logo-color-form:main-color-chooser_input').value='"+ color +"';");
+  }
+  
+  public String getMainColor() {
+    return findElementById("adminui:adminTabView:logo-color-form:main-color-chooser_input").getText();
+  }
+  
+  public HomePage applyNewColor(){
+    click(By.id("adminui:adminTabView:logo-color-form:apply-button"));
+    return new HomePage();
   }
   
   private void clickAddNewGlobalVariable(){
@@ -33,11 +63,11 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementPresent(By.id("adminui:settingDialogForm"), true);
   }
 
-  private void setClientSideTimeoutVar(String timeout){
+  private void addGlobalVariable(String key, String value){
     WebElement keyInput = findElementById("adminui:keySetting");
-    keyInput.sendKeys("CLIENT_SIDE_TIMEOUT");
+    keyInput.sendKeys(key);
     WebElement valueInput = findElementById("adminui:valueSetting");
-    valueInput.sendKeys(timeout);
+    valueInput.sendKeys(value);
     WebElement saveButton = findElementById("adminui:save-setting");
     saveButton.click();
   }
@@ -54,9 +84,25 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void setClientSideTimeout(String timeout){
-    clickToSettingTab();
+    openSettingTab();
     clickAddNewGlobalVariable();
-    setClientSideTimeoutVar(timeout);
+    addGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout);
+    closeAdminSettingDialog();
+    closeInformConfigDialog();
+  }
+  
+  public void setEnableScriptCheckingGlobalVariable(){
+    openSettingTab();
+    clickAddNewGlobalVariable();
+    addGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true");
+    closeAdminSettingDialog();
+    closeInformConfigDialog();
+  }
+  
+  public void setFileExtensionWhiteList(){
+    openSettingTab();
+    clickAddNewGlobalVariable();
+    addGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", "abc, pdf, doc");
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
@@ -67,7 +113,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public boolean isInformDialogShowAfterTimeout(){
-    waitForElementDisplayed(By.id("viewExpiredExceptionDialog"), true, 150);
-    return isElementDisplayed(By.id("viewExpiredExceptionDialog"));
+    waitForElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"), true, 150);
+    return isElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"));
   }
 }

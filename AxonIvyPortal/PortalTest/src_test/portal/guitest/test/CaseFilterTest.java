@@ -11,6 +11,7 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 
 public class CaseFilterTest extends BaseTest {
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -72,7 +73,6 @@ public class CaseFilterTest extends BaseTest {
 
     assertFalse(casePage.isFilterSelectionVisible());
 
-    casePage.openAdvancedFilter("Description", "description");
     casePage.filterByDescription("Leave");
     casePage.saveFilter(filterName);
 

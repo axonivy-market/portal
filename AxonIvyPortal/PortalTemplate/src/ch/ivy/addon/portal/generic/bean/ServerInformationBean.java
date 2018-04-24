@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -13,7 +14,9 @@ import ch.ivyteam.ivy.persistence.PersistencyException;
 
 @ManagedBean
 @RequestScoped
-public class ServerInformationBean {
+public class ServerInformationBean implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   private static final String ERROR = "[ERROR]";
 
   public String getHost() {

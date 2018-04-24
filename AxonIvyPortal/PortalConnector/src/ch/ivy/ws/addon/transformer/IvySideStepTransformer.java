@@ -10,7 +10,7 @@ import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
- * Transform a {@link ISideStepProcess} object to a {@link IvySideStep} object
+ * Transform a {@link IStartableSideStep} object to a {@link IvySideStep} object
  */
 public class IvySideStepTransformer {
 

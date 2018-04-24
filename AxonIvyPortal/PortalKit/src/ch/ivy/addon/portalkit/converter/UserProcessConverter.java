@@ -8,7 +8,6 @@ import org.apache.commons.lang.StringUtils;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 /**
  * 
@@ -21,9 +20,9 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class UserProcessConverter {
 
   /**
-   * Converts list of {@link IWebStartable} to list of {@link UserProcess}.
+   * Converts list of {@link RemoteWebStartable} to list of {@link UserProcess}.
+   * @param webStartables 
    * 
-   * @param list of {@link IWebStartable}
    * @return list of {@link UserProcess}
    */
   public List<UserProcess> convert(List<RemoteWebStartable> webStartables) {

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
@@ -34,7 +35,17 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator_start");
-    if (ajaxIndicatorStartState.isDisplayed()) {
+    boolean displayed = false;
+    try {
+      displayed = ajaxIndicatorStartState.isDisplayed();
+    } catch (Exception e) {
+      try {
+        displayed = ajaxIndicatorStartState.isDisplayed();
+      } catch (Exception e1) {
+        System.out.println("Cannot check if ajax indicator is displayed");
+      }
+    }
+    if (displayed) {
       waitForElementDisplayed(ajaxIndicatorStartState, false);
     }
   }
@@ -53,7 +64,12 @@ public abstract class TemplatePage extends AbstractPage {
 
   public HomePage goToHomePage() {
     clickOnLogo();
-    boolean hasLeaveButton = getDriver().findElements(By.id("task-leave-warning-component:leave-button")).size() > 0;
+    boolean hasLeaveButton = false;
+    try {
+      hasLeaveButton = getDriver().findElements(By.id("task-leave-warning-component:leave-button")).size() > 0;
+    } catch (NoSuchElementException e) {
+      // This should not happen, but at least it happens when running preintegration test on ivy 7
+    }
 
     if (hasLeaveButton) {
       WebElement leaveButton = findElementById("task-leave-warning-component:leave-button");
@@ -90,12 +106,17 @@ public abstract class TemplatePage extends AbstractPage {
     return new ChangePasswordPage();
   }
   
+  public ProjectVersionPage openProjectVersionPage() {
+    clickUserMenuItem("project-info-menu-item");
+    return new ProjectVersionPage();
+  }
+  
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     findElementById("user-settings-menu").click();
     waitForElementDisplayed(By.id(menuItemSelector), true);
     findElementById(menuItemSelector).click();
-    waitAjaxIndicatorDisappear();
+    waitAjaxIndicatorDisappear(); 
   }
 
   public boolean isAdminSettingsMenuItemPresent() {
@@ -111,7 +132,9 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   public void clickOnLogo() {
-    click(By.id("logo"));
+    WebElement logo = findElementById("logo");
+    waitForElementDisplayed(logo, true);
+    logo.click();
     waitAjaxIndicatorDisappear();
   }
 
@@ -165,7 +188,7 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementPresent(By.cssSelector("div.js-task-list-container"), true);
     return new TaskWidgetPage();
   }
-
+  
   public CasePage openCaseList() {
     openMainMenu();
     WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
@@ -181,8 +204,6 @@ public abstract class TemplatePage extends AbstractPage {
   public class GlobalSearch {
     private static final String GLOBAL_SEARCH_RESULT_CONTAINER_ELEMENT_ID = "global-search-result-container";
     private static final String GLOBAL_SEARCH_DATA_ELEMENT_ID = "global-search-data";
-    private static final String GLOBAL_SEARCH_CONTAINER_ELEMENT_ID = "global-search-container";
-    private static final String GLOBAL_SEARCH_ELEMENT_ID = "global-search";
     private static final String EMPTY_SEARCH_RESULT_ELEMENT_ID = "empty-search-result";
     private static final String GLOBAL_TASK_RESULT_ELEMENT_ID = "global-task-result";
     private static final String GLOBAL_PROCESS_RESULT_ELEMENT_ID = "global-process-result";
@@ -191,7 +212,7 @@ public abstract class TemplatePage extends AbstractPage {
 
     public GlobalSearch() {
       final String SELECT_PARENT_NODE_XPATH = "..";
-      searchWebElement = findElementById(GLOBAL_SEARCH_ELEMENT_ID).findElement(By.xpath(SELECT_PARENT_NODE_XPATH));
+      searchWebElement = findElementById(GLOBAL_SEARCH_DATA_ELEMENT_ID).findElement(By.xpath(SELECT_PARENT_NODE_XPATH));
     }
 
     public boolean isDisplayed() {
@@ -200,19 +221,6 @@ public abstract class TemplatePage extends AbstractPage {
 
     public WebElement getSearch() {
       return searchWebElement;
-    }
-
-    public void clickOnGlobalSearchIcon() {
-      click(getGlobalSearchIcon());
-      waitForElementDisplayed(getSearchContainer(), true);
-    }
-
-    public WebElement getGlobalSearchIcon() {
-      return findChildElementById(searchWebElement, GLOBAL_SEARCH_ELEMENT_ID);
-    }
-
-    public WebElement getSearchContainer() {
-      return findChildElementById(searchWebElement, GLOBAL_SEARCH_CONTAINER_ELEMENT_ID);
     }
 
     public WebElement getSearchInputData() {

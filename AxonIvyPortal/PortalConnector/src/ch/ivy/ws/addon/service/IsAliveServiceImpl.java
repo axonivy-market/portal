@@ -33,18 +33,20 @@ public class IsAliveServiceImpl extends AbstractService implements IIsAliveServi
 					  IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
 						
 					  for(IApplication i : server.getApplicationConfigurationManager().getApplications()){
-						if (i.getName().equals(SYSTEM_APP_NAME) == false) {
+						if (i.getName().equals(SYSTEM_APP_NAME) == false && apps != null) {
 					      apps.add(i.getName());
 						}
 					  }				
 					}				
 					
 					List<IvyApplication> ivyApps = new ArrayList<IvyApplication>();
-					for(String name : apps){
-						IvyApplication app = new IvyApplication();
-						app = isApplicationActive(name);
-						ivyApps.add(app);
-					}
+          if (apps != null) {
+            for (String name : apps) {
+              IvyApplication app = new IvyApplication();
+              app = isApplicationActive(name);
+              ivyApps.add(app);
+            }
+          }
 					result.setApps(ivyApps);
 					
 					return result;

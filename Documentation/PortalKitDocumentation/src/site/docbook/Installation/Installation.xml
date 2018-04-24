@@ -103,6 +103,13 @@
 						application (This mode is not supported yet).
 					</listitem>
 				</itemizedlist>
+				<important>
+					<itemizedlist>
+						<listitem>In single mode, if you deploy a new Portal application with a customer project, you need to deactivate the standard Portal application.</listitem>
+						<listitem>In multi applications on single engine mode, if you do not need overall dashboard, deactivate the standard Portal application. Otherwise, 
+							keep the standard Portal application activated.</listitem>
+					</itemizedlist>
+				</important>
 			</sect3>
 			<sect3>
 				<title>Automatically detect servers, applications</title>
@@ -545,6 +552,18 @@
 							<entry>500</entry>
 							<entry>The delay time of search function at top menu.</entry>
 						</row>
+						<row>
+							<entry>PortalStartTimeCleanObsoletedDataExpression</entry>
+							<entry>0 0 6 * * ?</entry>
+							<entry>
+								Cron expression define the time to clean up data of obsoleted users. E.g.: expression for at 6AM every
+								day is
+								<code>0 0 6 * * ?</code>
+								. Refer to
+								<link xlink:href="http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger">crontrigger</link>
+								. Please restart Ivy engine after changing this variable.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
@@ -610,27 +629,83 @@
 		<title xml:id="axonivyportal.installation.migrationnotes.title">Migration notes</title>
 		<para>
 			This document informs you in detail about incompatibilities that were introduced between Portal versions and
-			tells you what needs to be done to made your existing Portal working with current Axon.ivy engine.
+			tells you what needs to be done to make your existing Portal working with current Axon.ivy engine.
 		</para>
 		<sect2>
-			<title>Migrate 7.0 to 7.1</title>
+			<title>How to migrate</title>
+			<important>In order to migrate Portal, you need to migrate Axon.ivy, refer <link xlink:href="https://developer.axonivy.com/doc/latest/MigrationNotes.html">Axon.ivy migration notes</link>. 
+				Changes in Axon.ivy could lead to problems if the customer project is not migrated properly.</important>
+			<sect3>
+				<title>In designer</title>
+				<orderedlist>
+					<listitem>Replace all Portal projects</listitem>
+					<listitem>Update PortalTemplate dependency of customer project in pom.xml.</listitem>
+					<listitem>If PortalStyle is customized, copy logo, customization.less, font-faces.less, customized stuff from old to new PortalStyle, run maven to compile CSS.</listitem>
+					<listitem>Follow migration notes.</listitem>
+					<listitem>If customization needs copying code from Portal, merge changes between 2 version of Portal for copied code.</listitem>
+				</orderedlist>
+				<important>
+					<itemizedlist>
+						<listitem>Scenario migrating one customer project without customization: Follow the guidelines to step 2.</listitem>
+						<listitem>Scenario migrating one customer project with supported customization: Follow the guidelines.</listitem>
+						<listitem>Scenario migrating one customer project with (un)supported customization: Follow the guidelines for supported customization. 
+							If unsupported customization needs copying code from Portal, merge changes between 2 versions of Portal for copied code. Take care your own unsupported customization.</listitem>
+					</itemizedlist>
+				</important>
+			</sect3>
+			<sect3>
+				<title>In engine</title>
+				<orderedlist>
+					<listitem>Convert database schema if needed.</listitem>
+					<listitem>Deactivate standard Portal application if it is not needed.</listitem>
+					<listitem>Redeploy Portal projects (exclude PortalConnector) and customer project.</listitem>
+					<listitem>Follow migration notes to migrate data, if any.</listitem>
+				</orderedlist>
+			</sect3>
+		</sect2>
+		<sect2>
+			<title>Migrate 7.0.3 to 7.0.5 (or 7.1.0)</title>
+			<para>
+				There are some changes in PortalStart process of Portal Template. If you have customized this process in your project, please copy the new PortalStart from Portal Template to your project and re-apply your customization. 
+			</para>
+			<para>
+				We introduce new method <code>findStartableLinkByUserFriendlyRequestPath(String requestPath)</code> in <code>ProcessStartCollector</code> class. If your project has cutomized 
+				<link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" />, please use this method to generate link to your process.
+				If user doesn't have permission to start the process, this method will return empty string.
+			</para>
+		</sect2>
+		<sect2>
+			<title>Migrate 7.0.2 to 7.0.3</title>
+			<para>
+				If you have additional columns in your customized task widget, refer <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">Task widget</link> to adapt your 
+				customization in <code>taskHeader</code> section.
+			</para>
+		</sect2>
+		<sect2>
+			<title>Migrate 7.0.1 to 7.0.2</title>
+			<para>In PortalStyle\pom.xml, update project-build-plugin version to <code>7.1.0 </code>and run maven to compile CSS.</para>
+			<para>If changing password is customized, change method call <code>PasswordService.mod#changePassword(String,String)</code> to 
+				<code>PasswordService.mod#changePasswordService(String, String)</code> in this customization.</para>
+			<para>
+				Custom fields in Portal task list can now be sorted properly. The method <code>extendSort()</code> of <code>TaskLazyDataModel</code> is changed
+				to have a <code>taskQuery</code> parameter. If you override this method, please change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
+			</para>
+			<para>
+				Portal does not have separate full task list in the homepage anymore. It's mean that you don't have to customize the task list in <code>/layouts/DefaultHomePageTemplate.xhtml</code>. You can remove your
+				task list customization code in <code>PortalHome.xhtml</code>.
+			</para>
+			<para>
+				If you have added new language to Portal by adding cms entry <code>/AppInfo/SupportedLanguages</code> in your project. Please move this entry to Portal Style.  
+			</para>
+		</sect2>
+		<sect2>
+			<title>Migrate 7.0.0 to 7.0.1</title>
 			<para>
 				<emphasis role="bold">Ajax error handling</emphasis>: By default, Portal handles all exceptions from ajax requests. Old configuration, customization of ajax error handling should be removed.
 			</para>
-            <para>
-                Custom fields in Portal task list can now be sorted properly. The method <code>extendSort()</code> of <code>TaskLazyDataModel</code> is changed
-                to have a <code>taskQuery</code> parameter. If you override this method, please change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
-           </para>
-           <para>
-                Portal does not have separate full task list in the homepage anymore. It's mean that you don't have to customize the task list in <code>/layouts/DefaultHomePageTemplate.xhtml</code>. You can remove your
-                 task list customization code in <code>PortalHome.xhtml</code>.
-           </para>
-           <para>
-           		If you have added new language to Portal by adding cms entry <code>/AppInfo/SupportedLanguages</code> in your project. Please move this entry to Portal Style.  
-           </para>
 		</sect2>
 		<sect2>
-			<title>Migrate 6.x to 7.0</title>
+			<title>Migrate 6.x to 7.0.0</title>
 			<para>
 				If you copy the
 				<code>PortalStart</code>
@@ -704,19 +779,29 @@
 		</sect2>
 		<sect2>
 			<title>Migrate 6.4 or 6.5 to 6.6</title>
-			<para>
-				Task header is supported to be customized. The
-				<code>useOverride</code>
-				param, which is used to override the task item's body, is changed to
-				<code>useOverrideBody</code>
-			</para>
+			<itemizedlist>
+				<listitem>Task header is supported to be customized. The
+					<code>useOverride</code>
+					param, which is used to override the task item's body, is changed to
+					<code>useOverrideBody</code></listitem>
+				<listitem>If you customize <code>TaskLazyDataModel</code>, remove that customized class and customize as 
+					<link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />.</listitem>
+			</itemizedlist>
+			
 		</sect2>
 		<sect2>
 			<title>Migrate 6.4 to 6.5</title>
-			<para>The relative link in default user processes starts with ivy context path instead of "pro"</para>
+			<itemizedlist>
+				<listitem>If compilation error "The type org.apache.axis2.databinding.ADBBean cannot be resolved" occurs, 
+					refer <link xlink:href="https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath">Project compilation classpath</link> to fix.</listitem>
+				<listitem>The relative link in default user processes starts with ivy context path instead of "pro". If there are customized default user proceses, 
+					append context path at the beginning. E.g. in Portal <code>6.4</code>, it is /pro/.../PortalStart.ivp. 
+					In Portal <code>6.5</code>, change it to /ivy/pro/.../PortalStart.ivp. 
+					You may use : <code>ivy.html.startref(...)</code> or <code>RequestUriFactory.createProcessStartUri(...)</code> to generate links.</listitem>
+			</itemizedlist>
 		</sect2>
 		<sect2>
-			<title>Migrate 6.x (x &lt; 4) ... 6.4 (Jakobshorn)</title>
+			<title>Migrate 6.x (x &lt; 4) to 6.4 (Jakobshorn)</title>
 			<sect3>
 				<title>Portal appearance</title>
 				<para>
@@ -786,7 +871,7 @@
 			</sect3>
 		</sect2>
 		<sect2>
-			<title>Migrate 5.0 (Rothorn) ... 6.0 (Säntis)</title>
+			<title>Migrate 5.0 (Rothorn) to 6.0 (Säntis)</title>
 			<sect3>
 				<title>Database conversion</title>
 				<para>
@@ -819,8 +904,20 @@
 	</sect1>
 	<sect1 xml:id="axonivyportal.installation.releasenotes">
 		<title>Release notes</title>
+		
 		<para>
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
+			<sect2>
+				<title>Changes in 7.2</title>
+				<itemizedlist>
+					<listitem>
+						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal. This function can be configured by UPLOAD_DOCUMENT_WHITELIST_EXTENSION setting.</para>
+					</listitem>
+					<listitem>
+						<para>Support script checking function for upload file. You can enable/disable this function by configuring ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT setting.</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
 			<sect2>
 				<title>Changes in 7.1</title>
 				<itemizedlist>
@@ -839,6 +936,9 @@
 					</listitem>
 					<listitem>
 						<para>Axon ivy express has custom end page. It can be turned off or customized.</para>
+					</listitem>
+					<listitem>
+						<para>User can create default start process with permission check. If the user doesn't have permission to start the process, it won't appear in favorite processes. Please refer to <link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" /> for detail.</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>

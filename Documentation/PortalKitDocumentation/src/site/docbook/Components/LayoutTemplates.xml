@@ -197,7 +197,7 @@
 			</itemizedlist>
 		</para>
 		<sect3 xml:id="axonivyportal.components.layouttemplates.tasktemplate.howtousetasktemplate">
-			<title>How to use task template</title>
+			<title>How to use template TaskTemplate.xhtml</title>
 			<orderedlist>
 				<listitem>
 					<para>
@@ -252,80 +252,93 @@
 				</listitem>
 				<listitem>
 					<para>
-						Inserts some new tabs, refers some segment of code as below. It is optional.
+						Inserts some new tabs, refers some segment of code as below. If your application has multiple tabs, use it and turn off request form by set <code>showTaskFormTab</code> to false.
+                        <para>
+                          <code>&lt;ui:param name="showTaskFormTab" value="false" /&gt;</code>
+                        </para>
 						<para>
-							<code>&lt;ui:define name="dynamicTabs"&gt;</code>
-						</para>
-						<para>
-							<code>&lt;p:tab title="DynamicTab1"&gt;Tab1&lt;/p:tab&gt;</code>
-						</para>
-						<para>
-							<code>&lt;p:tab title="DynamicTab2"&gt;Tab2&lt;/p:tab&gt;</code>
-						</para>
-						<para>
-							<code>&lt;/ui:define&gt;</code>
-						</para>
+                          <code>&lt;ui:define name="dynamicTabs"&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;p:tab title="My first tab"&gt;</code> 
+                        </para>
+                        <para>
+                          <code>&lt;p:inputText id="first-name" value="#{data.firstname}"/&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;/p:tab&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;p:tab title="My second tab"&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;p:inputText id="last-name" value="#{data.lastname}"/&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;/p:tab&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;/ui:define&gt;</code>
+                        </para>
 					</para>
 				</listitem>
+                <listitem>
+                  <para>
+                    Overwrite contents of default tab. Use it when your application need only 1 tab.
+                    <para>
+                      <code>&lt;ui:define name="taskForm"&gt;</code>
+                    </para>
+                    <para>
+                      <code>&lt;h:form&gt;</code>
+                    </para>
+                    <para>
+                      <code>&lt;p:outputLabel name="myCustomLabel" /&gt;</code>
+                    </para>
+                    <para>
+                      <code>...</code>
+                    </para>
+                    <para>
+                      <code>&lt;/h:form&gt;</code>
+                    </para>
+                    <para>
+                      <code>&lt;/ui:define&gt;</code>
+                    </para>
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="images/LayoutTemplates/task-template-task-form.png" />
+                      </imageobject>
+                    </mediaobject>
+                  </para>
+                </listitem>
+                <listitem>
+                  <para>
+                    Set visible/invisible for default tab case information. Set following variables as <code>true</code> if you want to visible and vice versa.
+                    <para>
+                      <code>&lt;ui:param name="showCaseStatusInfoTab" value="true" /&gt;</code>
+                    </para>
+                  </para>
+                </listitem>
 				<listitem>
 					<para>
-						Inserts left buttons and right buttons which stay at the bottom of the page. It is optional.
+						Inserts left buttons and right buttons which stay at the bottom of the page. It is optional. You can use it to define your action button. Consider using <code>partialSubmit</code> to submit your data im tabs.    
 						<para>
 							<code>&lt;ui:define name="leftButtons"&gt;</code>
 						</para>
 						<para>
-							<code>&lt;p:commandButton value="Left Button" /&gt;</code>
+							<code>&lt;p:commandButton value="Save" actionListener="#{logic.save}" partialSubmit="true" 
+                            process="first-name last-name" update="first-name last-name" /&gt;</code>
 						</para>
 						<para>
 							<code>&lt;/ui:define&gt;</code>
-						</para>
-						<para>
-							<code/>
 						</para>
 						<para>
 							<code>&lt;ui:define name="rightButtons"&gt;</code>
 						</para>
 						<para>
-							<code>&lt;p:commandButton value="Right Button" /&gt;</code>
+							<code>&lt;p:commandButton value="Cancel" actionListener="#{logic.cancel}" immediate="true" /&gt;</code>
 						</para>
 						<para>
 							<code>&lt;/ui:define&gt;</code>
-						</para>
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Overwrite contents of default tabs. It is optional.
-						<para>
-							<code>&lt;ui:define name="taskForm"&gt;</code>
-						</para>
-						<para>
-							<code>&lt;h:form&gt;</code>
-						</para>
-						<para>
-							<code>&lt;p:outputLabel name="myCustomLabel" /&gt;</code>
-						</para>
-						<para>
-							<code>...</code>
-						</para>
-						<para>
-							<code>&lt;/h:form&gt;</code>
-						</para>
-						<para>
-							<code>&lt;/ui:define&gt;</code>
-						</para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/LayoutTemplates/task-template-task-form.png" />
-							</imageobject>
-						</mediaobject>
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Set visible/invisible for default tabs. Set following variables as <code>true</code> if you want to visible and vice versa.
-						<para>
-							<code>&lt;ui:param name="showCaseStatusInfoTab" value="true" /&gt;</code>
 						</para>
 					</para>
 				</listitem>

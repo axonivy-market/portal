@@ -35,7 +35,7 @@
       </p:column>
 
       <p:column id="case-status" styleClass="case-view-table-column" filterBy="#{case.status}" sortBy="#{case.status}"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/status')}" filterMatchMode="contains">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" filterMatchMode="contains">
         <h:outputText id="case-status-value" value="#{case.status}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseTreeTable/caseState')} #{case.status}" />
       </p:column>
@@ -47,7 +47,7 @@
 
       <p:column id="case-creation-date" filterBy="#{case.getCreatedAtAsString()}"
         sortBy="#{case.getCreatedAtAsString()}" filterMatchMode="contains" styleClass="case-view-table-column"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/created')}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}">
         <h:outputText id="case-creation-date-value" value="#{case.getCreatedAtAsString()}" />
       </p:column>
 
@@ -63,13 +63,12 @@
       </p:column>
 
       <p:column id="case-description" filterBy="#{case.description}" sortBy="#{case.description}"
-        filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/description')}">
-        <h:outputText id="case-description-value" value="#{case.description == '' ? '-/-' : case.description}"
-          escape="false" />
+        filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}">
+        <h:outputText id="case-description-value" value="#{case.description == '' ? '-/-' : case.description}" />
       </p:column>
 
       <p:column id="command" styleClass="TexAlCenter Wid10"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseTreeTable/actions')}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
         <p:link rendered="#{not empty case.processCaseDetails || not empty cc.attrs.defaultCaseDetailsLink}"
           href="#{empty case.processCaseDetails ? cc.attrs.defaultCaseDetailsLink : case.processCaseDetails}?caseId=#{case.id}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"
@@ -77,8 +76,8 @@
         <p:spacer styleClass="u-buttons-spacer" />
         <p:commandLink id="delete-case-command" styleClass="fa fa-trash-o"
           rendered="#{(caseBean.isCaseAbleToDelete(case))}" process="cases-view"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           actionListener="#{logic.confirmDeleteCase(case)}">
         </p:commandLink>
 
@@ -89,16 +88,16 @@
     <p:remoteCommand name="updateCaseTable" update="cases-view" actionListener="#{logic.update}" />
 
     <p:confirmDialog message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmDeleteMessage')}"
-      appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" severity="alert"
+      appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
       widgetVar="confirmation">
-      <p:commandButton id="proceed-delete-case-command" styleClass="portal-ok-button"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}" icon="fa fa-check-circle-o"
+      <p:commandButton id="proceed-delete-case-command" styleClass=""
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" icon="fa fa-check-circle-o"
         process="cases-view" actionListener="#{logic.deleteCase(data.selectedCase)}"
         oncomplete="PF('confirmation').hide();PF('caseTableVar').clearFilters()"
         update=":#{p:component('cases-view')} messages">
       </p:commandButton>
       <p:commandButton id="cancel-delete-case-command" icon="fa fa-close" styleClass="portal-cancel-button"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/no')}" onclick="PF('confirmation').hide()"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('confirmation').hide()"
         type="button" />
     </p:confirmDialog>
   </div>

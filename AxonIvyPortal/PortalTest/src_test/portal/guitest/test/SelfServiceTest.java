@@ -14,8 +14,15 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class SelfServiceTest extends BaseTest {
 
-  private String selfServiceProcessUrl = "selfServiceBPM/14232C3D829C4D71/start.ivp";
+  /*
+   * ivy 7.0 use SelfServicePMName = SelfServiceBpm, ivy trunk use SelfServicePMName = SelfServiceBPM. We
+   * differentiate them by using system property passed by maven.
+   */
+  private static final String SELF_SERVICE_BPM = System.getProperty("SelfServicePMName") != null ? System
+      .getProperty("SelfServicePMName") : "selfServiceBPM";
+  private String selfServiceProcessUrl = SELF_SERVICE_BPM + "/14232C3D829C4D71/start.ivp";
 
+  @Override
   @Before
   public void setup() {
     super.setup();

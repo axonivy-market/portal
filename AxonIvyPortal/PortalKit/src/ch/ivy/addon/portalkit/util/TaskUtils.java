@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -149,10 +150,10 @@ public final class TaskUtils {
   public static void resetTask(final ITask task) throws PersistencyException, EnvironmentNotAvailableException,
       Exception {
     // must be in RESUMED, CREATED, PARKED, READY_FOR_JOIN, FAILED
-    if (task.getState().equals(TaskState.RESUMED) || (task.getState().equals(TaskState.CREATED))
-        || task.getState().equals(TaskState.PARKED) || task.getState().equals(TaskState.READY_FOR_JOIN)
-        || task.getState().equals(TaskState.FAILED)) {
+    if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, 
+        TaskState.READY_FOR_JOIN, TaskState.FAILED).contains(task.getState())){
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+        @Override
         public Boolean call() throws Exception {
           task.reset();
           return true;
@@ -170,15 +171,15 @@ public final class TaskUtils {
   public static void parkTask(final ITask task) throws Exception {
     ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
       @Override
-      public Void call() throws Exception {
+      public Void call() throws PersistencyException {
         IWorkflowSession iWorkflowSession = Ivy.session();
         // Resume a task if it's suspended.
-        if (task.getState().equals(TaskState.SUSPENDED)) {
+        if (task.getState() == TaskState.SUSPENDED) {
           iWorkflowSession.resumeTask(task.getId());
         }
 
         // If the task is resumed or created, then park task.
-        if (task.getState().equals(TaskState.RESUMED) || (task.getState().equals(TaskState.CREATED))) {
+        if (task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
           iWorkflowSession.parkTask(task);
         }
 
@@ -197,6 +198,7 @@ public final class TaskUtils {
   public static Boolean removeTaskDelay(final ITask task) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+        @Override
         public Boolean call() {
           try {
             task.setDelayTimestamp(null);
@@ -217,7 +219,6 @@ public final class TaskUtils {
    * Generate a tree data for Universal Task List UI
    * 
    * @param tasks : list task need to build
-   * @param apps : list application
    * @return TreeNode : tree data for Universal Task List UI
    */
   public static TreeNode generateAppTree(List<ITask> tasks) {
@@ -272,6 +273,7 @@ public final class TaskUtils {
   public static ITask findTaskUserHasPermissionToSee(final long taskId) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ITask>() {
+        @Override
         public ITask call() throws Exception {
           try {
             TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
@@ -327,7 +329,7 @@ public final class TaskUtils {
     List<TaskVO> currentTasks = new ArrayList<TaskVO>();
     if (iCase != null && iCase.getTasks() != null && iCase.getTasks().size() > 0) {
       for (ITask iTask : iCase.getTasks()) {
-        if (TaskState.DONE.equals(iTask.getState())) {
+        if (TaskState.DONE == iTask.getState()) {
           currentTasks.add(ConverterUtils.convertITaskToTaskVO(iTask));
         }
       }
@@ -346,7 +348,7 @@ public final class TaskUtils {
     List<ITask> currentTasks = new ArrayList<ITask>();
     if (iCase != null && iCase.getTasks() != null && iCase.getTasks().size() > 0) {
       for (ITask iTask : iCase.getTasks()) {
-        if (iTask != null && TaskState.DONE.equals(iTask.getState())) {
+        if (iTask != null && TaskState.DONE == iTask.getState()) {
           currentTasks.add(iTask);
         }
       }
@@ -382,6 +384,7 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               String st = iTask.getActivator().getMemberName();
@@ -419,6 +422,7 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               String st = iTask.getActivator().getMemberName();
@@ -456,6 +460,7 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               String st = iTask.getActivator().getMemberName();
@@ -490,6 +495,7 @@ public final class TaskUtils {
   public static String getPhone(final IUser iUser) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+        @Override
         public String call() {
           try {
             return iUser.getProperty(UserUtils.PHONE);
@@ -514,6 +520,7 @@ public final class TaskUtils {
   public static String getMobile(final IUser iUser) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+        @Override
         public String call() {
           try {
             return iUser.getProperty(UserUtils.MOBILE);
@@ -538,6 +545,7 @@ public final class TaskUtils {
   public static String getEmailAddress(final IUser iUser) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+        @Override
         public String call() {
           try {
             return iUser.getEMailAddress();
@@ -554,40 +562,16 @@ public final class TaskUtils {
   }
 
   /**
-   * Check if current user has read all tasks permission
-   * 
-   * @return True : has read all tasks permission, False : do not have read all tasks permission
-   */
-  public static boolean checkReadAllTasksPermission() {
-    boolean hasReadAllTasksPermission =
-        Ivy.session()
-            .hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-                ch.ivyteam.ivy.security.IPermission.TASK_READ_ALL);
-    return hasReadAllTasksPermission;
-  }
-
-  /**
-   * Check if current user has read all tasks permission
-   * 
-   * @return True : has read all tasks permission, False : do not have read all tasks permission
-   */
-  public static boolean checkReadAllCasesPermission() {
-    boolean hasReadAllCasesPermission =
-        Ivy.session()
-            .hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-                ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL);
-    return hasReadAllCasesPermission;
-  }
-
-  /**
    * Find waiting tasks by task code.
    * 
    * @param kindCode to find waiting tasks
    * @return list of task.
    */
+  @SuppressWarnings("deprecation")
   public static List<ITask> findWaitingTaskByKindCode(final String kindCode) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<List<ITask>>() {
+        @Override
         public List<ITask> call() throws Exception {
           try {
             TaskQuery taskQuery =
@@ -619,6 +603,7 @@ public final class TaskUtils {
   public static ITask findTaskById(final long taskId) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ITask>() {
+        @Override
         public ITask call() throws Exception {
           ITask t = null;
           try {
@@ -645,6 +630,7 @@ public final class TaskUtils {
   public static Recordset findtasks(final TaskQuery taskQuery) {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Recordset>() {
+        @Override
         public Recordset call() throws Exception {
           return Ivy.wf().getTaskQueryExecutor().getRecordset(taskQuery);
         }
@@ -660,10 +646,12 @@ public final class TaskUtils {
    * Delegate a task
    * 
    * @param iTask task need to delegate
+   * @param iSecurityMember 
    */
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
+        @Override
         public Object call() throws Exception {
           iTask.setActivator(iSecurityMember);
           return null;
@@ -732,7 +720,7 @@ public final class TaskUtils {
     if (isHistory) {
       queryResult = ivy.session.findWorkedOnTasks(taskFilter, taskPropertyOrder, startIndex, pageSize, true);
     } else {
-      if (checkReadAllTasksPermission()) {
+      if (PermissionUtils.checkReadAllTasksPermission()) {
         IPropertyFilter<TaskProperty> filter =
             Ivy.wf().createTaskPropertyFilter(TaskProperty.STATE, RelationalOperator.EQUAL,
                 TaskState.SUSPENDED.intValue());

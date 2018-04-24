@@ -12,8 +12,8 @@ public class NoteHistoryPage extends TemplatePage {
         return driver.findElements(By.cssSelector(TABLE_ROWS_PATH)).size();
     }
     
-    public String getNoteContentOfFirstRow() {
-        WebElement firstRow = driver.findElements(By.cssSelector(TABLE_ROWS_PATH)).get(0);
+    public String getNoteContentOfRow(int index) {
+        WebElement firstRow = driver.findElements(By.cssSelector(TABLE_ROWS_PATH)).get(index);
         return firstRow.findElements(By.xpath("td")).get(2).getText();
     }
 

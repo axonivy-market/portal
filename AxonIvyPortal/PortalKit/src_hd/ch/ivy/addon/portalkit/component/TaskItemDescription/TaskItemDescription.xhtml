@@ -12,14 +12,14 @@
 <cc:implementation>
   <div id="task-description" class="task-details-item js-task-details-item js-description-column #{cc.attrs.styleClass}">
     <h:form id="task-description-form">
-      <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/description')}</div>
+      <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</div>
       <div class="Separator" />
       <div class="scroll-panel OvAuto">
         <p:inplace id="task-desription-inplace" editor="true"
           disabled="#{!task.canChangeDescription or taskBean.isDone(task)}"
           saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}">
+          emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}">
           <p:ajax event="save" listener="#{logic.updateTaskDescription(task)}"
             update="task-description-form #{cc.attrs.descriptionComponentToUpdate}" process="task-description-form" />
           <p:ajax event="cancel" resetValues="true" />

@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Mon May 30 13:38:33 ICT 2016]
-1485F329FE84F01E 3.18 #module
+1485F329FE84F01E 3.20 #module
 >Proto >Proto Collection #zClass
 Pt0 SecurityService Big #zClass
 Pt0 B #cInfo
@@ -64,9 +63,11 @@ Pt0 @PushWFArc f1 '' #zField
 Pt0 @PushWFArc f14 '' #zField
 Pt0 @PushWFArc f16 '' #zField
 Pt0 @PushWFArc f5 '' #zField
+Pt0 @StartSub f6 '' #zField
+Pt0 @PushWFArc f22 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
 Pt0 f0 inParamDecl '<> param;' #txt
-Pt0 f0 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivyteam.ivy.security.IRole> roles> result;
+Pt0 f0 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.addon.portalkit.bo.RemoteRole> roles> result;
 ' #txt
 Pt0 f0 outParamTable 'result.errors=in.errors;
 result.roles=in.roles;
@@ -106,10 +107,22 @@ Pt0 f7 actionCode 'import ch.ivy.addon.portalkit.service.PortalConnectorDetector
 import ch.ivy.addon.portalkit.enums.WebServiceEndPoint;
 import ch.ivy.ws.addon.IvyApplication;
 
-in.apps.clear();
-for (IvyApplication app : in.applications) {
-	if(app.isActive){
-		in.apps.add(app.name);
+if (in.hasAppsParam) {
+	java.util.Iterator iterator = in.apps.iterator();
+	while (iterator.hasNext()) {
+		String app = iterator.next() as String;
+		for (IvyApplication application : in.applications) {
+			if(application.name.equals(app) && !application.isActive){
+				iterator.remove();
+			}
+		}
+	}
+} else {
+	in.apps.clear();
+	for (IvyApplication app : in.applications) {
+		if(app.isActive){
+			in.apps.add(app.name);
+		}
 	}
 }
 
@@ -194,10 +207,22 @@ Pt0 f15 actionCode 'import ch.ivy.addon.portalkit.service.PortalConnectorDetecto
 import ch.ivy.addon.portalkit.enums.WebServiceEndPoint;
 import ch.ivy.ws.addon.IvyApplication;
 
-in.apps.clear();
-for (IvyApplication app : in.applications) {
-	if(app.isActive) {
-		in.apps.add(app.name);
+if (in.hasAppsParam) {
+	java.util.Iterator iterator = in.apps.iterator();
+	while (iterator.hasNext()) {
+		String app = iterator.next() as String;
+		for (IvyApplication application : in.applications) {
+			if(application.name.equals(app) && !application.isActive){
+				iterator.remove();
+			}
+		}
+	}
+} else {
+	in.apps.clear();
+	for (IvyApplication app : in.applications) {
+		if(app.isActive){
+			in.apps.add(app.name);
+		}
 	}
 }
 
@@ -227,9 +252,7 @@ for(int i = 0 ; i < in.tempErrors.size() ; i++){
 	w.server = in.server.name;
 	in.tempErrors.set(i,w);
 	}
-in.errors.addAll(in.tempErrors);
-
-in.apps.clear();' #txt
+in.errors.addAll(in.tempErrors);' #txt
 Pt0 f31 type ch.ivyteam.wf.processes.SecurityServiceData #txt
 Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -310,8 +333,9 @@ Pt0 f46 558 184 462 184 #arcP
 Pt0 f46 0 0.3573220439540461 0 0 #arcLabel
 Pt0 f55 inParamDecl '<java.lang.String app> param;' #txt
 Pt0 f55 inParamTable 'out.apps=[param.app];
+out.hasAppsParam=true;
 ' #txt
-Pt0 f55 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivyteam.ivy.security.IRole> roles> result;
+Pt0 f55 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.addon.portalkit.bo.RemoteRole> roles> result;
 ' #txt
 Pt0 f55 outParamTable 'result.errors=in.errors;
 result.roles=in.roles;
@@ -691,6 +715,32 @@ Pt0 f16 expr out #txt
 Pt0 f16 72 316 72 372 #arcP
 Pt0 f5 expr out #txt
 Pt0 f5 448 316 448 372 #arcP
+Pt0 f6 inParamDecl '<java.lang.String app> param;' #txt
+Pt0 f6 inParamTable 'out.apps=[param.app];
+out.hasAppsParam=true;
+' #txt
+Pt0 f6 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.addon.portalkit.bo.RemoteUser> users> result;
+' #txt
+Pt0 f6 outParamTable 'result.errors=in.errors;
+result.users=in.users;
+' #txt
+Pt0 f6 actionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
+' #txt
+Pt0 f6 callSignature findAllUsersByApplication(String) #txt
+Pt0 f6 type ch.ivyteam.wf.processes.SecurityServiceData #txt
+Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findAllUsersByApplication</name>
+        <nameStyle>25,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f6 552 46 26 26 14 0 #rect
+Pt0 f6 @|StartSubIcon #fIcon
+Pt0 f22 expr out #txt
+Pt0 f22 553 65 466 120 #arcP
 >Proto Pt0 .type ch.ivyteam.wf.processes.SecurityServiceData #txt
 >Proto Pt0 .processKind CALLABLE_SUB #txt
 >Proto Pt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -771,3 +821,5 @@ Pt0 f28 mainOut f16 tail #connect
 Pt0 f16 head f7 mainIn #connect
 Pt0 f4 mainOut f5 tail #connect
 Pt0 f5 head f15 mainIn #connect
+Pt0 f6 mainOut f22 tail #connect
+Pt0 f22 head f20 mainIn #connect

@@ -23,6 +23,7 @@ public class RemoteTaskMapper {
    * Convert IvyTask to RemoteTask.
    * 
    * @param ivyTask IvyTask
+   * @param host 
    * @return RemoteTask
    * @see IvyTask
    * @see RemoteTask
@@ -64,6 +65,7 @@ public class RemoteTaskMapper {
       result.setExpiryPriority(WorkflowPriority.valueOf(ivyTask.getExpirePriority()));
       result.setOriginalPriority(WorkflowPriority.valueOf(ivyTask.getOriginalPriority()));
     } catch (Exception e) {
+      Ivy.log().error(e);
     }
 
     /*
@@ -157,6 +159,7 @@ public class RemoteTaskMapper {
    * Maps list of IvyTask to list of RemoteTask.
    * 
    * @param ivyTasks List<{@link IvyTask}>
+   * @param host 
    * @return List<RemoteTask>
    * @see IvyTask
    * @see RemoteTask

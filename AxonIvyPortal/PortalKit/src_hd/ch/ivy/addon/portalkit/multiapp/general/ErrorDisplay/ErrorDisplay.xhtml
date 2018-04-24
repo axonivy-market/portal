@@ -18,7 +18,7 @@
 <cc:implementation>
 	<p:dataTable value="#{cc.attrs.errors}" var="error">
 		<p:column styleClass="Wid25"
-			headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/server')}">
+			headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/server')}">
 			<h:outputText value="#{error.server}" />
 		</p:column>
 		<p:column styleClass="Wid10"
@@ -30,7 +30,7 @@
 			<h:outputText value="#{error.errorType}" />
 		</p:column>
 		<p:column styleClass="Wid30"
-			headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/description')}">
+			headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}">
 			<h:outputText value="#{error.userText}" />
 		</p:column>
 

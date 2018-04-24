@@ -7,6 +7,7 @@ import portal.guitest.common.TestAccount;
 import ch.xpertline.base.pages.AbstractPage;
 
 public class LoginPage extends AbstractPage {
+  private static final long LOGIN_TIMEOUT = 60;
   private WebElement usernameTextField;
   private WebElement passwordField;
   private WebElement loginButton;
@@ -29,14 +30,14 @@ public class LoginPage extends AbstractPage {
     usernameTextField.sendKeys(testAccount.getUsername());
     passwordField.sendKeys(testAccount.getPassword());
     loginButton.click();
-    waitForElementDisplayed(By.id("left-menu"), true, AbstractPage.DEFAULT_TIMEOUT);
+    waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
   }
   
   public void login(String username, String password) {
     usernameTextField.sendKeys(username);
     passwordField.sendKeys(password);
     loginButton.click();
-    waitForElementDisplayed(By.id("left-menu"), true, AbstractPage.DEFAULT_TIMEOUT);
+    waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
   }
 
 }

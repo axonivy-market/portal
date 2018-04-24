@@ -15,11 +15,6 @@ Ts0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @RichDialogInitStart f0 '' #zField
-Ts0 @RichDialogMethodStart f37 '' #zField
-Ts0 @RichDialogProcessEnd f38 '' #zField
-Ts0 @GridStep f60 '' #zField
-Ts0 @PushWFArc f61 '' #zField
-Ts0 @PushWFArc f44 '' #zField
 Ts0 @RichDialogProcessStart f82 '' #zField
 Ts0 @RichDialogProcessEnd f83 '' #zField
 Ts0 @GridStep f91 '' #zField
@@ -39,10 +34,6 @@ Ts0 @CallSub f69 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 Ts0 @PushWFArc f7 '' #zField
-Ts0 @RichDialogMethodStart f8 '' #zField
-Ts0 @GridStep f10 '' #zField
-Ts0 @PushWFArc f11 '' #zField
-Ts0 @PushWFArc f12 '' #zField
 Ts0 @GridStep f4 '' #zField
 Ts0 @PushWFArc f5 '' #zField
 Ts0 @PushWFArc f6 '' #zField
@@ -125,51 +116,6 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f0 61 61 22 22 14 0 #rect
 Ts0 f0 @|RichDialogInitStartIcon #fIcon
-Ts0 f37 guid 152ED6485874C117 #txt
-Ts0 f37 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f37 method filter() #txt
-Ts0 f37 disableUIEvents false #txt
-Ts0 f37 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f37 outParameterDecl '<> result;
-' #txt
-Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>filter()</name>
-        <nameStyle>8,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f37 365 61 22 22 14 0 #rect
-Ts0 f37 @|RichDialogMethodStartIcon #fIcon
-Ts0 f38 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f38 365 237 22 22 14 0 #rect
-Ts0 f38 @|RichDialogProcessEndIcon #fIcon
-Ts0 f60 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
-' #txt
-Ts0 f60 actionTable 'out=in;
-' #txt
-Ts0 f60 actionCode in.dataModel.setKeyword(in.keyword); #txt
-Ts0 f60 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>filter tasks 
-based on keyword</name>
-        <nameStyle>30,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f60 358 160 36 24 20 -2 #rect
-Ts0 f60 @|StepIcon #fIcon
-Ts0 f61 expr out #txt
-Ts0 f61 376 83 376 160 #arcP
-Ts0 f44 expr out #txt
-Ts0 f44 376 184 376 237 #arcP
 Ts0 f82 guid 153E0DE6762B6C64 #txt
 Ts0 f82 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f82 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
@@ -401,57 +347,12 @@ Ts0 f2 expr out #txt
 Ts0 f2 752 184 752 237 #arcP
 Ts0 f7 expr out #txt
 Ts0 f7 752 83 752 160 #arcP
-Ts0 f8 guid 15B8AD1D7AD576DC #txt
-Ts0 f8 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f8 method storeConfiguration() #txt
-Ts0 f8 disableUIEvents false #txt
-Ts0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f8 outParameterDecl '<> result;
-' #txt
-Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>storeConfiguration()</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f8 629 341 22 22 14 0 #rect
-Ts0 f8 @|RichDialogMethodStartIcon #fIcon
-Ts0 f10 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
-' #txt
-Ts0 f10 actionTable 'out=in;
-' #txt
-Ts0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString(), in.dataModel);' #txt
-Ts0 f10 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>store task
-list''s configuration</name>
-        <nameStyle>31
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f10 622 396 36 24 20 -2 #rect
-Ts0 f10 @|StepIcon #fIcon
-Ts0 f11 expr out #txt
-Ts0 f11 640 363 640 396 #arcP
-Ts0 f12 expr out #txt
-Ts0 f12 640 420 83 448 #arcP
-Ts0 f12 1 640 448 #addKink
-Ts0 f12 1 0.4606959193892842 0 0 #arcLabel
 Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f4 actionTable 'out=in;
 ' #txt
 Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 in.dataModel.compactMode = !in.dataModel.compactMode;
 if (!in.dataModel.compactMode && in.dataModel.#filterContainer is initialized) {
@@ -460,7 +361,7 @@ if (!in.dataModel.compactMode && in.dataModel.#filterContainer is initialized) {
 	}
 }
 
-in.dataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission() && !in.dataModel.compactMode);
+in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission() && !in.dataModel.compactMode);
 in.dataModel.initFilters();
 ' #txt
 Ts0 f4 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -947,10 +848,6 @@ Ts0 f19 552 184 552 237 #arcP
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
-Ts0 f37 mainOut f61 tail #connect
-Ts0 f61 head f60 mainIn #connect
-Ts0 f60 mainOut f44 tail #connect
-Ts0 f44 head f38 mainIn #connect
 Ts0 f91 mainOut f90 tail #connect
 Ts0 f90 head f83 mainIn #connect
 Ts0 f93 mainOut f89 tail #connect
@@ -965,10 +862,6 @@ Ts0 f69 mainOut f2 tail #connect
 Ts0 f2 head f67 mainIn #connect
 Ts0 f68 mainOut f7 tail #connect
 Ts0 f7 head f69 mainIn #connect
-Ts0 f8 mainOut f11 tail #connect
-Ts0 f11 head f10 mainIn #connect
-Ts0 f10 mainOut f12 tail #connect
-Ts0 f12 head f83 mainIn #connect
 Ts0 f82 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
 Ts0 f4 mainOut f6 tail #connect

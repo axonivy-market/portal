@@ -13,6 +13,7 @@ import portal.guitest.page.TemplatePage.GlobalSearch;
 public class SearchTaskTest extends BaseTest {
   private HomePage homePage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -28,9 +29,6 @@ public class SearchTaskTest extends BaseTest {
   public void testFindTaskByNameAndOpenTaskList() {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
-    
-    globalSearch.clickOnGlobalSearchIcon();
-    homePage.waitForElementDisplayed(globalSearch.getSearchContainer(), true);
     
     String taskName = "Annual Leave Request";
     globalSearch.inputSearchKeyword(taskName);

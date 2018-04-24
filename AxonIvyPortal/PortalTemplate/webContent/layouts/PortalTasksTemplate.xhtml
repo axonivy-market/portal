@@ -9,13 +9,13 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
-    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}</ui:define>
+    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
 	
 	<ui:define name="secondLevelMenu">
 		<div id="second-level-menu" class="second-level-menu js-left-sidebar-second left-sidebar-animation ">
           <a href="#" class="second-level-menu-header"> 
             <i class="fa fa-angle-left icon-left left-sidebar-animation" /> 
-            <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portal.generic/SecondLevelMenu/tasks')}</span>
+            <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
             <i class="fa fa-angle-right icon-right left-sidebar-animation" />
           </a> 
           <div class="second-level-menu-body">
@@ -27,23 +27,21 @@
 	</ui:define>
 	
     <ui:define name="pageContent">
-    <c:set var="dataModel" value="#{taskView.dataModel}" />
-    
     <div class="task-list-container js-task-list-container">
       <div>
-        <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" keyword="#{dataModel.queryCriteria.keyword}"
-          hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{dataModel}" filterGroupId="#{filterGroupId}"
+        <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" keyword="#{taskView.dataModel.queryCriteria.keyword}"
+          hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
           showHeaderToolbar="#{taskView.showHeaderToolbar}" compactMode="false" selectedTaskId="#{taskView.remoteTaskId}"
-          selectedTaskServerId="#{dataModel.serverId}" noTaskFoundMessage="#{taskView.noTaskFoundMessage}">
+          selectedTaskServerId="#{taskView.dataModel.serverId}" noTaskFoundMessage="#{taskView.noTaskFoundMessage}">
             <f:facet name="title">
               <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
-              <h:commandLink value="##{dataModel.queryCriteria.caseId}" styleClass="ui-link"
+              <h:commandLink value="##{taskView.dataModel.queryCriteria.caseId}" styleClass="ui-link"
                   actionListener="#{navigatorBean.navigateToCaseDetail(dataModel.caseName, dataModel.queryCriteria.caseId, dataModel.serverId)}" />
-              #{dataModel.caseName}
+              #{taskView.dataModel.caseName}
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
-                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title') : taskView.pageTitle}" />
+                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}" />
             </f:facet>
 
             <f:facet name="taskListHeader">
@@ -54,7 +52,7 @@
 
               <ui:fragment rendered="#{not useOverrideListHeader}">
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader id="task-list-header-component"
-                  dataModel="#{dataModel}" />
+                  dataModel="#{taskView.dataModel}" />
               </ui:fragment>
             </f:facet>
 
@@ -66,19 +64,19 @@
 
               <ui:fragment rendered="#{not useOverrideHeader}">
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
-                  priority="#{task.priority}" dataModel="#{dataModel}" />
+                  priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
                 <div class="task-start-info">
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{dataModel}"
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}"
                     isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
                 </div>
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{dataModel}"
-                  userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="activatior-column #{dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}" dataModel="#{dataModel}" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{dataModel.isSelectedColumn('CREATION_TIME')}"
-                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{dataModel.isAutoHideColumns()?'js-create-cell':''}" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{dataModel.isSelectedColumn('EXPIRY_TIME')}"
-                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="#{dataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{dataModel}"
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
+                  userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}" dataModel="#{taskView.dataModel}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
+                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
+                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}"
                   state="#{task.state}" />
               </ui:fragment>
             </f:facet>
@@ -95,7 +93,7 @@
                 <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-info" task="#{task}"
                   priorityComponentToUpdate="#{p:component('task-priority')}"
                   componentToUpdate="#{p:component('task-details-notes')} #{p:component('expiry-time')}" />
-                <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" />
+                <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" componentToUpdate="#{p:component('task-details-notes')}"/>
                 <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}" >
                   <f:facet name="showTaskNoteHistory">
                     <p:link id="show-more-note-link" styleClass="task-details-note-add-link note-show-more-link"
@@ -130,7 +128,7 @@
               </ui:fragment>
 
               <ui:fragment rendered="#{not useOverrideFilter}">
-                <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{dataModel}" />
+                <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{taskView.dataModel}" />
               </ui:fragment>
             </f:facet>
           </ic:ch.ivy.addon.portalkit.component.TaskWidget>

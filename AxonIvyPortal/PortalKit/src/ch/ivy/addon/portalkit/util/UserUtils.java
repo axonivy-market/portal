@@ -11,11 +11,17 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Callable;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
 import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
+import ch.ivy.addon.portalkit.casefilter.CaseFilter;
+import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.ws.addon.IvyUser;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -48,6 +54,14 @@ public class UserUtils {
   public static final String MOBILE = "MOBILE";
   /** Property to get the hidden roles */
   private static final String HIDE_USERS_IN_DELEGATION = "HIDE_USERS_IN_DELEGATION";
+  
+  private static final String SELECTED_TASK_FILTER_SET = "SELECTED_TASK_FILTER_SET";
+  private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
+  private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
+  private static final String TASK_IN_PROGRESS_FILTER = "TASK_IN_PROGRESS_FILTER";
+  private static final String SELECTED_CASE_FILTER_SET = "SELECTED_CASE_FILTER_SET";
+  private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
+  private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
 
   /**
    * Get all users in current Ivy Server
@@ -57,6 +71,7 @@ public class UserUtils {
   public static List<IUser> getAllUsers() {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
+        @Override
         public List<IUser> call() throws Exception {
           ISecurityContext security = getIvySession().getSecurityContext();
           List<IUser> usersOut = new ArrayList<IUser>();
@@ -86,6 +101,7 @@ public class UserUtils {
   public static List<IUser> getAllUsersForDelegate() {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
+        @Override
         public List<IUser> call() throws Exception {
           ISecurityContext security = getIvySession().getSecurityContext();
           List<IUser> delegatedUsers = new ArrayList<IUser>();
@@ -141,10 +157,11 @@ public class UserUtils {
   public static void setLanguague() {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
+        @Override
         public Object call() throws Exception {
           IUser sessionUser = getIvySession().getSessionUser();
           Locale l = null;
-          if (sessionUser.getEMailLanguage() != null && sessionUser.getEMailLanguage() instanceof Locale) {
+          if (sessionUser.getEMailLanguage() != null) {
             l = sessionUser.getEMailLanguage();
           } else {
             // Application Default
@@ -179,6 +196,7 @@ public class UserUtils {
       final Locale eMailLanguage, final String eMailAddress, final String externalSecuritySystemName) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
+        @Override
         public Object call() throws Exception {
           Ivy.wf().getSecurityContext()
               .createUser(userName, fullUserName, password, eMailLanguage, eMailAddress, externalSecuritySystemName);
@@ -196,6 +214,7 @@ public class UserUtils {
   public static void deleteIvyUser(final String userName) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
+        @Override
         public Object call() throws Exception {
           Ivy.wf().getSecurityContext().deleteUser(userName);
           Ivy.log().info("Deleted Ivy user: " + userName);
@@ -321,5 +340,83 @@ public class UserUtils {
     result.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
       second.getDisplayName().toLowerCase()));
     return result;
+  }
+  
+  public static void setSessionAttribute(String key, Object value) {
+    Ivy.session().setAttribute(key, value);
+  }
+  
+  public static void setSessionSelectedTaskFilterSetAttribute(TaskFilterData value) {
+    setSessionAttribute(SELECTED_TASK_FILTER_SET, value);
+  }
+  
+  public static void setSessionTaskAdvancedFilterAttribute(List<TaskFilter> value) {
+    setSessionAttribute(SELECTED_TASK_FILTER, value);
+  }
+  
+  public static void setSessionTaskKeywordFilterAttribute(String keyword) {
+    setSessionAttribute(TASK_KEYWORD_FILTER, keyword);
+  }
+  
+  public static void setSessionTaskInProgressFilterAttribute(TaskInProgressByOthersFilter filter) {
+    setSessionAttribute(TASK_IN_PROGRESS_FILTER, filter);
+  }
+  
+  public static TaskFilterData getSessionSelectedTaskFilterSetAttribute() {
+    return (TaskFilterData) Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
+  }
+
+  @SuppressWarnings("unchecked")
+  public static List<TaskFilter> getSessionTaskAdvancedFilterAttribute() {
+    List<TaskFilter> filters = (List<TaskFilter>) Ivy.session().getAttribute(SELECTED_TASK_FILTER);
+    if (CollectionUtils.isEmpty(filters)) {
+      return new ArrayList<>();
+    }
+    return filters;
+  }
+  
+  public static String getSessionTaskKeywordFilterAttribute() {
+    String keyword = (String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER);
+    if (StringUtils.isBlank(keyword)) {
+      return "";
+    }
+    return keyword;
+  }
+  
+  public static TaskInProgressByOthersFilter getSessionTaskInProgressFilterAttribute() {
+    return (TaskInProgressByOthersFilter) Ivy.session().getAttribute(TASK_IN_PROGRESS_FILTER);
+  }
+  
+  public static void setSessionSelectedCaseFilterSetAttribute(CaseFilterData value) {
+    setSessionAttribute(SELECTED_CASE_FILTER_SET, value);
+  }
+  
+  public static void setSessionCaseAdvancedFilterAttribute(List<CaseFilter> value) {
+    setSessionAttribute(SELECTED_CASE_FILTER, value);
+  }
+  
+  public static void setSessionCaseKeywordFilterAttribute(String keyword) {
+    setSessionAttribute(CASE_KEYWORD_FILTER, keyword);
+  }
+  
+  public static CaseFilterData getSessionSelectedCaseFilterSetAttribute() {
+    return (CaseFilterData) Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
+  }
+  
+  @SuppressWarnings("unchecked")
+  public static List<CaseFilter> getSessionCaseAdvancedFilterAttribute() {
+    List<CaseFilter> filters = (List<CaseFilter>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
+    if (CollectionUtils.isEmpty(filters)) {
+      return new ArrayList<>();
+    }
+    return filters;
+  }
+  
+  public static String getSessionCaseKeywordFilterAttribute() {
+    String keyword = (String) Ivy.session().getAttribute(CASE_KEYWORD_FILTER);
+    if (StringUtils.isBlank(keyword)) {
+      return "";
+    }
+    return keyword;
   }
 }

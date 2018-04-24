@@ -9,9 +9,9 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import ch.ivy.addon.portalkit.bo.RemoteCase;
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.persistence.domain.Server;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.ServerService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
@@ -19,7 +19,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 
 public class UrlDetector {
 
@@ -95,10 +94,10 @@ public class UrlDetector {
     return new URL(request.getScheme(), request.getServerName(), request.getContextPath()).toString();
   }
   
-  public String getHost(Server server) throws MalformedURLException{
+  public String getHost(String serverUrl, Server server) throws MalformedURLException {
     boolean isMultiServer = (new ServerService()).isMultiServers();
-    if (isMultiServer){
-      return getHost(server.getPath());
+    if (isMultiServer) {
+      return getHost(StringUtils.isEmpty(serverUrl) ? server.getPath() : serverUrl);
     }
     return RequestUriFactory.createServerUri((IHttpRequest) Ivy.request()).toString();
   }
@@ -113,6 +112,9 @@ public class UrlDetector {
    * If using default port of the protocol then return -1 to ignore port when
    * constructing URL. E.g: http://localhost/ivy instead of
    * http://localhost:80/ivy
+   * @param protocol 
+   * @param port 
+   * @return port
    */
   public int getPortForConstructingUrl(String protocol, int port) {
     if ((RequestUriFactory.HTTPS_PROTOCOL.equalsIgnoreCase(protocol) && port == RequestUriFactory.HTTPS_PORT)
@@ -120,16 +122,5 @@ public class UrlDetector {
       return -1;
     }
     return port;
-  }
-  
-  public String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-    String urlParameters = "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
-    try {
-      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
-    } catch (Exception e) {
-      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
-    }
   }
 }

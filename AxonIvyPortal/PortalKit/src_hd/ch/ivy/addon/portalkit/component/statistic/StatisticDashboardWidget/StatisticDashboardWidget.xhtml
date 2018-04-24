@@ -8,18 +8,31 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="statisticChartList" required="true" />
+  <cc:attribute name="drilldownListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
+  <cc:attribute name="drillDownExpiryChartListener" required="true" method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
+  <cc:attribute name="isDrilldownElapsedTime" default="false" />
+  <cc:attribute name="isDrilldownExpiryChart" default="false" />
+  <cc:attribute name="showTaskListImmediately" default="false" />
+  <cc:attribute name="isBackFromDrilldown" default="false" />
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList)}" type="preRenderComponent" />
-  <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" rendered="#{!cc.attrs.compactMode and data.hasStatistic}" styleClass="statistic-dashboard-expand-mode">
+  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown)}" type="preRenderComponent" />
+  <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" styleClass="statistic-dashboard-expand-mode #{cc.attrs.isDrilldownExpiryChart ? 'task-by-expiry-drilldown-mode' : ''}"
+    rendered="#{!cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
     <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}">
       <c:set var="index" value="#{data.statisticChartList.indexOf(chart)}" />
       <p:panel id="chart-panel" styleClass="dashboard-chart-panel">
         <f:facet name="header">
-          <h:outputLabel id="chart-name" styleClass="chart-name" value="#{chart.name}" for="chart-#{chart.id}" />
-          <h:panelGroup layout="block" styleClass="chart-actions-container">
+          <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
+            <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="fa fa-info-circle chart-info"
+              actionListener="#{logic.selectChart(chart)}"
+              update="chart-details-dialog"
+              oncomplete="PF('chart-details-dialog').show();" />
+            <h:outputLabel id="chart-name" styleClass="chart-name" value="#{chart.name}" for="chart-#{chart.id}" />
+          </h:panelGroup>
+          <h:panelGroup layout="block" styleClass="chart-actions-container" rendered="#{!cc.attrs.isDrilldownExpiryChart}">
             <p:commandLink styleClass="fa fa-arrow-down chart-action"
               actionListener="#{logic.moveDown(chart)}"
               update="@([id$='statistic-dashboard-container'])"
@@ -51,10 +64,12 @@
         </p:chart>
 
         <p:chart type="bar" styleClass="statistic-chart"
+          style="#{statisticDashboardBean.getChartWidthStyle(data.statisticChartList)}"
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" />
+          <p:ajax listener="#{cc.attrs.drillDownExpiryChartListener}" update="@([id$='create-chart-header'])" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" update="#{p:component('widget-container')}" />
         </p:chart>
 
         <p:chart type="donut" styleClass="statistic-chart"
@@ -64,14 +79,43 @@
           <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
         </p:chart>
 
-        <p:chart type="pie" styleClass="statistic-chart"
-          model="#{chart.pieChartModel}"
-          rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" />
+        <p:chart type="donut" styleClass="statistic-chart"
+          model="#{chart.donutChartModel}"
+          rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}">
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax listener="#{cc.attrs.drilldownListener}" update="@([id$='create-chart-header'])" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownElapsedTime}" update="#{p:component('widget-container')}" />
+        </p:chart>
+        
+        <p:chart type="donut" styleClass="statistic-chart"
+          model="#{chart.donutChartModel}"
+          rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}">
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
+        </p:chart>
+        
+         <p:chart type="donut" styleClass="statistic-chart"
+          model="#{chart.donutChartModel}"
+          rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}">
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
+        </p:chart>
       </p:panel>
+      <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}"
+        modal="true" closable="true" closeOnEscape="true" dynamic="true" hideEffect="fade" width="500" resizable="false">
+        <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
+        <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
+          <p:commandButton type="button" styleClass="portal-cancel-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('chart-details-dialog').hide();">
+          </p:commandButton>
+        </h:panelGroup>
+      </p:dialog>
     </ui:repeat>
+    
   </h:panelGroup>
   <p:carousel id="statistic-carousel" styleClass="statistic-carousel" circular="true" numVisible="1"
-    value="#{data.statisticChartList}" var="chart" pageLinks="0" rendered="#{cc.attrs.compactMode and data.hasStatistic}">
+    value="#{data.statisticChartList}" var="chart" pageLinks="0"
+    rendered="#{cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
     <p:panelGrid columns="2" columnClasses="label, value">
       <p:panel>
         <p:chart type="donut" styleClass="statistic-chart"
@@ -85,7 +129,7 @@
           model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" />
+          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" update="#{p:component('widget-container')}"/>
         </p:chart>
 
         <p:chart type="donut" styleClass="statistic-chart"
@@ -95,28 +139,44 @@
           <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
         </p:chart>
 
-        <p:chart type="pie" styleClass="statistic-chart"
-          model="#{chart.pieChartModel}"
+        <p:chart type="donut" styleClass="statistic-chart"
+          model="#{chart.donutChartModel}"
           rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" />
+          
+        <p:chart type="donut" styleClass="statistic-chart"
+          model="#{chart.donutChartModel}"
+          rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}">
+        </p:chart>
+        
+        <p:chart type="donut" styleClass="statistic-chart"
+          model="#{chart.donutChartModel}"
+          rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}">
+        </p:chart>
       </p:panel>
     </p:panelGrid>
   </p:carousel>
+ 
   <h:panelGroup id="statistic-widget-empty-state"
       styleClass="statistic-widget-empty-message #{!cc.attrs.compactMode ? 'not-compact-mode': ''}" layout="block"
-      rendered="#{!data.hasStatistic}">
-      <h:panelGroup layout="block" rendered="#{empty cc.facets.emptyDataPlace}">
-        <p:outputLabel escape="false"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages')}" />
-      </h:panelGroup>
-      <cc:renderFacet name="emptyDataPlace" />
+      rendered="#{!data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
+    <h:panelGroup layout="block" rendered="#{empty cc.facets.emptyDataPlace}">
+      <p:outputLabel escape="false"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages')}" />
     </h:panelGroup>
+    <cc:renderFacet name="emptyDataPlace" />
+  </h:panelGroup>
+
+  <h:panelGroup id="elapsed-time-details" layout="block" rendered="#{cc.attrs.isDrilldownElapsedTime}" styleClass="statistic-dashboard-expand-mode">
+    <ic:ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails
+      selectedCaseCategory="#{data.selectedCaseCategory}" statisticChart="#{data.selectedStatisticChart}" />
+  </h:panelGroup>
 
   <p:confirmDialog id="delete-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmation')}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmationHeader')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.deleteChart()}" styleClass="portal-ok-button"
+      actionListener="#{logic.deleteChart()}" styleClass=""
       oncomplete="PF('delete-confirmation-dialog').hide();"
       update="@([id$='statistic-dashboard-container']) @([id$='statistic-widget-empty-state']) " />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"

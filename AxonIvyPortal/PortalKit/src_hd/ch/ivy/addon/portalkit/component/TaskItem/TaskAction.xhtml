@@ -12,7 +12,7 @@
         disabled="#{task.state eq 'SUSPENDED' or !task.canReset}" styleClass="task-command"
         actionListener="#{logic.resetTask(task)}" update="@parent :#{p:component('task-start')}">
         <span class="action-icon tmi-box-arrow-left" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reset')}" />
+        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
       </p:commandLink>
       <p:tooltip for="task-reset-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/resetTaskTooltip')}"
@@ -24,14 +24,14 @@
         <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" />
       </p:commandLink>
       <p:tooltip for="task-delegate-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTaskTooltip')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
         styleClass="task-command-tooltip" />
       <p:commandLink id="task-reserve-command"
         disabled="#{!task.canPark or task.state eq 'PARKED' or task.state eq 'RESUMED'}"
         onstart="event.stopPropagation();" styleClass="task-command" actionListener="#{logic.parkTask(task)}"
         update="@parent :#{p:component('task-start')}">
         <span class="action-icon tmi-box-arrow-toinside" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTask')}" />
+        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" />
       </p:commandLink>
       <p:tooltip for="task-reserve-command"
         value="#{task.state eq 'PARKED'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/freeReservationTaskTooltip'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTaskTooltip')}"
@@ -50,7 +50,7 @@
       </p:overlayPanel>
       
    	  <p:tooltip for="task-side-steps-menu" styleClass="task-command-tooltip" 
-        value="#{task.hasMoreActions ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskMore'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noMoreActions')}" />
+        value="#{task.hasMoreActions ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noMoreActions')}" />
     </div>
   </div>
 </ui:composition>

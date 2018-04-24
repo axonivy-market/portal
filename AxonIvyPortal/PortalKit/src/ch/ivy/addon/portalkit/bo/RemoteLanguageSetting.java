@@ -15,8 +15,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * Object for remote language setting.
- * 
- * @author maonguyen
  */
 public class RemoteLanguageSetting {
   private String appName;
@@ -27,6 +25,7 @@ public class RemoteLanguageSetting {
 
   /**
    * @return List<SelectItem>
+   * @throws Exception 
    */
   public List<SelectItem> getLanguages() throws Exception {
     items.clear();
@@ -41,6 +40,7 @@ public class RemoteLanguageSetting {
 
   /**
    * @return Map<String, String>
+   * @throws Exception 
    */
   public Map<String, String> getSupportedLanguesMap() throws Exception {
     Map<String, String> map = new HashMap<String, String>();

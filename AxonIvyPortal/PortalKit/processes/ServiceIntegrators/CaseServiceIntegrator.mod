@@ -309,14 +309,15 @@ Ce0 f17 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getAddtionalProperties
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getAddtionalProperties.id__@@__Long__@@__in.caseId"""' #txt
-Ce0 f17 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f17 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
+Ce0 f17 exceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f17 returningObjectList '[wsResponse]' #txt
 Ce0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -389,14 +390,15 @@ Ce0 f26 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=getAddtionalProperties
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getAddtionalProperties.id__@@__Long__@@__in.caseId"""' #txt
-Ce0 f26 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f26 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
+Ce0 f26 exceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f26 returningObjectList '[wsResponse]' #txt
 Ce0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -428,14 +430,15 @@ Ce0 f22 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setAdditionalProperties
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.setAdditionalProperties.additionalProperties__@@__Array<ch.ivy.ws.addon.IvyAdditionalProperty>__@@__in.additionalProperties"",""arg0.setAdditionalProperties.caseId__@@__Long__@@__in.caseId"""' #txt
-Ce0 f22 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f22 timeoutExceptionHandler 14E8704ADB1138CA-f36-buffer #txt
+Ce0 f22 exceptionHandler 14E8704ADB1138CA-f36-buffer #txt
 Ce0 f22 returningObjectList '[wsResponse]' #txt
 Ce0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -460,14 +463,15 @@ Ce0 f28 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=setAdditionalProperties
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.setAdditionalProperties.additionalProperties__@@__Array<ch.ivy.ws.addon.IvyAdditionalProperty>__@@__in.additionalProperties"",""arg0.setAdditionalProperties.caseId__@@__Long__@@__in.caseId"""' #txt
-Ce0 f28 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f28 timeoutExceptionHandler 14E8704ADB1138CA-f36-buffer #txt
+Ce0 f28 exceptionHandler 14E8704ADB1138CA-f36-buffer #txt
 Ce0 f28 returningObjectList '[wsResponse]' #txt
 Ce0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -581,6 +585,8 @@ Ce0 f39 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=findDocuments
 KEY_AUTHENTICATION_KIND=0
@@ -588,7 +594,6 @@ KEY_HOST=
 KEY_USE_AUTHENTICATION=false
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findDocuments.id__@@__Long__@@__in.caseId"""' #txt
 Ce0 f39 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f39 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f39 returningObjectList '[wsResponse]' #txt
 Ce0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -651,6 +656,8 @@ Ce0 f42 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findDocuments
 KEY_AUTHENTICATION_KIND=4
@@ -658,7 +665,6 @@ KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findDocuments.id__@@__Long__@@__in.caseId"""' #txt
 Ce0 f42 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f42 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f42 returningObjectList '[wsResponse]' #txt
 Ce0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -703,14 +709,15 @@ Ce0 f49 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=uploadDocument
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.uploadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.uploadDocument.documentContent__@@__javax.activation.DataHandler__@@__in.documentContent"",""arg0.uploadDocument.documentName__@@__String__@@__in.documentName"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.uploadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.uploadDocument.documentContent__@@__javax.activation.DataHandler__@@__in.documentContent"",""arg0.uploadDocument.documentName__@@__String__@@__in.documentName"",""arg0.uploadDocument.userName__@@__String__@@__in.userName"""' #txt
 Ce0 f49 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f49 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f49 returningObjectList '[wsResponse]' #txt
 Ce0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -751,14 +758,15 @@ Ce0 f52 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=uploadDocument
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.uploadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.uploadDocument.documentContent__@@__javax.activation.DataHandler__@@__in.documentContent"",""arg0.uploadDocument.documentName__@@__String__@@__in.documentName"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.uploadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.uploadDocument.documentContent__@@__javax.activation.DataHandler__@@__in.documentContent"",""arg0.uploadDocument.documentName__@@__String__@@__in.documentName"",""arg0.uploadDocument.userName__@@__String__@@__in.userName"""' #txt
 Ce0 f52 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f52 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f52 returningObjectList '[wsResponse]' #txt
 Ce0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -771,12 +779,13 @@ Ce0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ce0 f52 750 1044 36 24 20 -2 #rect
 Ce0 f52 @|WebServiceIcon #fIcon
-Ce0 f53 inParamDecl '<java.lang.String documentName,javax.activation.DataHandler documentContent,java.lang.String endpoint,java.lang.Long caseId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
+Ce0 f53 inParamDecl '<java.lang.String userName,java.lang.String documentName,javax.activation.DataHandler documentContent,java.lang.String endpoint,java.lang.Long caseId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
 Ce0 f53 inParamTable 'out.caseId=param.caseId;
 out.documentContent=param.documentContent;
 out.documentName=param.documentName;
 out.endpoint=param.endpoint;
 out.server=param.server;
+out.userName=param.userName;
 ' #txt
 Ce0 f53 outParamDecl '<ch.ivy.ws.addon.IvyDocument document,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
@@ -785,7 +794,7 @@ result.errors=in.errors;
 ' #txt
 Ce0 f53 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
 ' #txt
-Ce0 f53 callSignature uploadDocument(String,javax.activation.DataHandler,String,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
+Ce0 f53 callSignature uploadDocument(String,String,javax.activation.DataHandler,String,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
 Ce0 f53 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -827,6 +836,8 @@ Ce0 f59 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=downloadDocument
 KEY_AUTHENTICATION_KIND=4
@@ -834,7 +845,6 @@ KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.downloadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.downloadDocument.documentId__@@__Long__@@__in.documentId"""' #txt
 Ce0 f59 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f59 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f59 returningObjectList '[wsResponse]' #txt
 Ce0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -860,6 +870,8 @@ Ce0 f60 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=downloadDocument
 KEY_AUTHENTICATION_KIND=0
@@ -867,7 +879,6 @@ KEY_HOST=
 KEY_USE_AUTHENTICATION=false
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.downloadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.downloadDocument.documentId__@@__Long__@@__in.documentId"""' #txt
 Ce0 f60 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f60 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f60 returningObjectList '[wsResponse]' #txt
 Ce0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -949,6 +960,8 @@ Ce0 f69 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=destroyCase
 KEY_AUTHENTICATION_KIND=4
@@ -1071,6 +1084,8 @@ Ce0 f83 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=destroyCase
 KEY_AUTHENTICATION_KIND=0
@@ -1082,7 +1097,7 @@ Ce0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>with default settings</name>
-        <nameStyle>21
+        <nameStyle>21,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -1106,6 +1121,8 @@ Ce0 f86 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findCasesByCriteria
 KEY_AUTHENTICATION_KIND=4
@@ -1150,6 +1167,8 @@ Ce0 f77 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=findCasesByCriteria
 KEY_AUTHENTICATION_KIND=0
@@ -1172,11 +1191,12 @@ Ce0 f88 expr out #txt
 Ce0 f88 928 300 781 384 #arcP
 Ce0 f88 1 928 384 #addKink
 Ce0 f88 1 0.3062426517680915 0 0 #arcLabel
-Ce0 f89 inParamDecl '<java.lang.String endpoint,java.lang.Long documentId,java.lang.Long caseId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
+Ce0 f89 inParamDecl '<java.lang.String userName,java.lang.String endpoint,java.lang.Long documentId,java.lang.Long caseId,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
 Ce0 f89 inParamTable 'out.caseId=param.caseId;
 out.documentId=param.documentId;
 out.endpoint=param.endpoint;
 out.server=param.server;
+out.userName=param.userName;
 ' #txt
 Ce0 f89 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
@@ -1184,12 +1204,14 @@ Ce0 f89 outParamTable 'result.errors=in.errors;
 ' #txt
 Ce0 f89 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
 ' #txt
-Ce0 f89 callSignature removeDocument(String,Long,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
+Ce0 f89 callSignature removeDocument(String,String,Long,Long,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
 Ce0 f89 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f89 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>removeDocument(String,Long,Long,Server)</name>
+        <nameStyle>39,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1219,14 +1241,15 @@ Ce0 f91 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=removeDocument
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.removeDocument.caseID__@@__Long__@@__in.caseId"",""arg0.removeDocument.documentId__@@__Long__@@__in.documentId"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.removeDocument.caseID__@@__Long__@@__in.caseId"",""arg0.removeDocument.documentId__@@__Long__@@__in.documentId"",""arg0.removeDocument.userName__@@__String__@@__in.userName"""' #txt
 Ce0 f91 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f91 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f91 returningObjectList '[wsResponse]' #txt
 Ce0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1251,14 +1274,15 @@ Ce0 f92 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=removeDocument
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.removeDocument.caseID__@@__Long__@@__in.caseId"",""arg0.removeDocument.documentId__@@__Long__@@__in.documentId"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.removeDocument.caseID__@@__Long__@@__in.caseId"",""arg0.removeDocument.documentId__@@__Long__@@__in.documentId"",""arg0.removeDocument.userName__@@__String__@@__in.userName"""' #txt
 Ce0 f92 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f92 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f92 returningObjectList '[wsResponse]' #txt
 Ce0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1335,6 +1359,8 @@ Ce0 f123 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=createNote
 KEY_AUTHENTICATION_KIND=4
@@ -1366,6 +1392,8 @@ Ce0 f124 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=createNote
 KEY_AUTHENTICATION_KIND=0
@@ -1452,6 +1480,8 @@ Ce0 f103 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findNotes
 KEY_AUTHENTICATION_KIND=4
@@ -1483,6 +1513,8 @@ Ce0 f104 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=findNotes
 KEY_AUTHENTICATION_KIND=0
@@ -1542,6 +1574,8 @@ Ce0 f111 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=findCase
 KEY_AUTHENTICATION_KIND=0
@@ -1613,6 +1647,8 @@ Ce0 f133 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findCase
 KEY_AUTHENTICATION_KIND=4
@@ -1687,6 +1723,8 @@ Ce0 f2 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=countCasesByCriteria
 KEY_AUTHENTICATION_KIND=4
@@ -1718,6 +1756,8 @@ Ce0 f3 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=countCasesByCriteria
 KEY_AUTHENTICATION_KIND=0
@@ -1807,6 +1847,8 @@ Ce0 f5 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=destroyCase
 KEY_AUTHENTICATION_KIND=1
@@ -1867,6 +1909,8 @@ Ce0 f0 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findCasesByCriteria
 KEY_AUTHENTICATION_KIND=1
@@ -1927,6 +1971,8 @@ Ce0 f118 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findCase
 KEY_AUTHENTICATION_KIND=1
@@ -1987,6 +2033,8 @@ Ce0 f7 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=countCasesByCriteria
 KEY_AUTHENTICATION_KIND=1
@@ -2047,14 +2095,15 @@ Ce0 f18 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getAddtionalProperties
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.getAddtionalProperties.id__@@__Long__@@__in.caseId"""' #txt
-Ce0 f18 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f18 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
+Ce0 f18 exceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f18 returningObjectList '[wsResponse]' #txt
 Ce0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2108,14 +2157,15 @@ Ce0 f31 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setAdditionalProperties
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.setAdditionalProperties.additionalProperties__@@__Array<ch.ivy.ws.addon.IvyAdditionalProperty>__@@__in.additionalProperties"",""arg0.setAdditionalProperties.caseId__@@__Long__@@__in.caseId"""' #txt
-Ce0 f31 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f31 timeoutExceptionHandler 14E8704ADB1138CA-f36-buffer #txt
+Ce0 f31 exceptionHandler 14E8704ADB1138CA-f36-buffer #txt
 Ce0 f31 returningObjectList '[wsResponse]' #txt
 Ce0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2170,6 +2220,8 @@ Ce0 f44 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findDocuments
 KEY_AUTHENTICATION_KIND=1
@@ -2177,7 +2229,6 @@ KEY_HOST=
 KEY_USE_AUTHENTICATION=true
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findDocuments.id__@@__Long__@@__in.caseId"""' #txt
 Ce0 f44 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f44 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f44 returningObjectList '[wsResponse]' #txt
 Ce0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2225,14 +2276,15 @@ Ce0 f54 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=uploadDocument
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.uploadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.uploadDocument.documentContent__@@__javax.activation.DataHandler__@@__in.documentContent"",""arg0.uploadDocument.documentName__@@__String__@@__in.documentName"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.uploadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.uploadDocument.documentContent__@@__javax.activation.DataHandler__@@__in.documentContent"",""arg0.uploadDocument.documentName__@@__String__@@__in.documentName"",""arg0.uploadDocument.userName__@@__String__@@__in.userName"""' #txt
 Ce0 f54 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f54 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f54 returningObjectList '[wsResponse]' #txt
 Ce0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2273,6 +2325,8 @@ Ce0 f64 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=downloadDocument
 KEY_AUTHENTICATION_KIND=1
@@ -2280,7 +2334,6 @@ KEY_HOST=
 KEY_USE_AUTHENTICATION=true
 KEY_AXIS_CSL_PARAMETER_DATA=""arg0.downloadDocument.caseID__@@__Long__@@__in.caseId"",""arg0.downloadDocument.documentId__@@__Long__@@__in.documentId"""' #txt
 Ce0 f64 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f64 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f64 returningObjectList '[wsResponse]' #txt
 Ce0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2320,14 +2373,15 @@ Ce0 f94 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=removeDocument
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.removeDocument.caseID__@@__Long__@@__in.caseId"",""arg0.removeDocument.documentId__@@__Long__@@__in.documentId"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.removeDocument.caseID__@@__Long__@@__in.caseId"",""arg0.removeDocument.documentId__@@__Long__@@__in.documentId"",""arg0.removeDocument.userName__@@__String__@@__in.userName"""' #txt
 Ce0 f94 exceptionHandler 14E8704ADB1138CA-f10-buffer #txt
-Ce0 f94 timeoutExceptionHandler 14E8704ADB1138CA-f23-buffer #txt
 Ce0 f94 returningObjectList '[wsResponse]' #txt
 Ce0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2370,6 +2424,8 @@ Ce0 f106 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=createNote
 KEY_AUTHENTICATION_KIND=1
@@ -2414,6 +2470,8 @@ Ce0 f153 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findNotes
 KEY_AUTHENTICATION_KIND=1
@@ -2493,11 +2551,13 @@ Ce0 f169 actionTable 'out=in;
 out.errors=wsResponse.saveCaseResponse.error;
 ' #txt
 Ce0 f169 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f169 timeout 10 #txt
+Ce0 f169 timeout 0 #txt
 Ce0 f169 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=saveCase
 KEY_AUTHENTICATION_KIND=1
@@ -2536,6 +2596,8 @@ Ce0 f171 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=saveCase
 KEY_AUTHENTICATION_KIND=4
@@ -2570,6 +2632,8 @@ Ce0 f174 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=saveCase
 KEY_AUTHENTICATION_KIND=0
@@ -2610,7 +2674,7 @@ KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=analyzeCaseStateStatistic
 KEY_AUTHENTICATION_KIND=0
@@ -2643,7 +2707,7 @@ KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=analyzeCaseStateStatistic
 KEY_AUTHENTICATION_KIND=1
@@ -2701,7 +2765,7 @@ KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=analyzeCaseStateStatistic
 KEY_AUTHENTICATION_KIND=4
@@ -2781,7 +2845,7 @@ KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=analyzeElapsedTimeByCaseCategory
 KEY_AUTHENTICATION_KIND=1
@@ -2839,7 +2903,7 @@ KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=analyzeElapsedTimeByCaseCategory
 KEY_AUTHENTICATION_KIND=0
@@ -2884,7 +2948,7 @@ KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=<%\\=in.server.domain%>
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=analyzeElapsedTimeByCaseCategory
 KEY_AUTHENTICATION_KIND=4
@@ -2947,18 +3011,18 @@ out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f206 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ce0 f206 timeout 0 #txt
-Ce0 f206 beanConfig 'KEY_PASSWORD=<%\=in.server.password%>
+Ce0 f206 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\=in.server.username%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
+KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findCaseCategoriesByCriteria
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria","arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"",""arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"""' #txt
 Ce0 f206 returningObjectList '[wsResponse]' #txt
 Ce0 f206 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2980,18 +3044,18 @@ out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f207 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ce0 f207 timeout 0 #txt
-Ce0 f207 beanConfig 'KEY_PASSWORD=
+Ce0 f207 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
 KEY_DOMAIN=
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
 KEY_USERNAME=
 KEY_OPERATION=findCaseCategoriesByCriteria
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria","arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"",""arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"""' #txt
 Ce0 f207 returningObjectList '[wsResponse]' #txt
 Ce0 f207 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3053,18 +3117,18 @@ out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f211 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ce0 f211 timeout 0 #txt
-Ce0 f211 beanConfig 'KEY_PASSWORD=<%\=in.server.password%>
+Ce0 f211 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
-KEY_DOMAIN=<%\=in.server.domain%>
+KEY_DOMAIN=<%\\=in.server.domain%>
 KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\=in.server.username%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=true
+KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findCaseCategoriesByCriteria
 KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\=in.server.host%>
+KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria","arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCaseCategoriesByCriteria.caseSearchCriteria__@@__ch.ivy.ws.addon.CaseSearchCriteria__@@__in.caseSearchCriteria"",""arg0.findCaseCategoriesByCriteria.language__@@__String__@@__in.language"""' #txt
 Ce0 f211 returningObjectList '[wsResponse]' #txt
 Ce0 f211 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

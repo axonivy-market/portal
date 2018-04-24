@@ -17,16 +17,17 @@ public class DisplayNameAdaptor {
 		this.convertor = parseJson(jsonString, currentLocale);
 	}
 
-	private DisplayNameConvertor parseJson(String jsonString, Locale currentLocale) throws JSONException {
+	private DisplayNameConvertor parseJson(String jsonString, Locale locale) throws JSONException {
 		if (isValidJson(jsonString)) {
 			return DisplayNameConvertor.parseJson(jsonString);
 		}
-		DisplayNameConvertor convertor = new DisplayNameConvertor();
-		convertor.add(currentLocale, jsonString);
-		return convertor;
+		DisplayNameConvertor displayNameConvertor = new DisplayNameConvertor();
+		displayNameConvertor.add(locale, jsonString);
+		return displayNameConvertor;
 	}
 
-	private boolean isValidJson(String jsonString) {
+  @SuppressWarnings("unused")
+  private boolean isValidJson(String jsonString) {
 		try {
 			new JSONObject(jsonString);
 		} catch (JSONException e) {

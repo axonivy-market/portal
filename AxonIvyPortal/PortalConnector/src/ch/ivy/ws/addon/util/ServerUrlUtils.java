@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.StrSubstitutor;
+import org.apache.commons.lang.text.StrSubstitutor;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -16,6 +16,7 @@ public class ServerUrlUtils {
   /**
    * Gets server url based on system properties. If the system properties are not configured properly, it will return
    * the default server url
+   * @return string
    */
   public static String buildUrlFromSystemProperties() {
     String externalProtocol = SystemProperties.getSystemPropertyValue(SystemProperties.EXTERNAL_PROTOCOL);

@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,8 @@ import ch.ivyteam.ivy.system.ISystemProperty;
 
 @ManagedBean
 @ViewScoped
-public class UserMenuBean {
+public class UserMenuBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   private List<RemoteWebStartable> foundWebStartables;
   private List<RemoteTask> foundTasks;
@@ -127,14 +129,19 @@ public class UserMenuBean {
       navigateToHomePage();
     }
   }
-
-  public void navigateToHomePage() throws Exception {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
-  }
   
+  public void resetTaskAndNavigateToHomePage() throws Exception {
+    TaskUtils.resetTask(Ivy.wfTask());
+    navigateToHomePage();
+  }
+
   public void reserveTaskAndNavigateToHomePage() throws Exception {
     TaskUtils.parkTask(Ivy.wfTask());
     navigateToHomePage();
+  }
+  
+  private void navigateToHomePage() throws Exception {
+    FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
   }
 
   private String getHomePageFromSetting() {

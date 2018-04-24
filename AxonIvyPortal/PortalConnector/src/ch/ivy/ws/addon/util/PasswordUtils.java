@@ -24,7 +24,7 @@ import com.google.gson.JsonParser;
 public final class PasswordUtils {
   private static final String SERVER_KEY_PREFIX = "AxonIvyPortal.Server";
   private static final String SERVER_PATH = "path";
-  private static final String SERVER_PASSWORD = "password";
+  private static final String SERVER_PWD_KEY = "password";
 
   private PasswordUtils() {}
 
@@ -82,7 +82,7 @@ public final class PasswordUtils {
 
   public static String removePasswordInformation(String serverAsString) {
     JsonObject jsonObject = parseToObject(serverAsString);
-    jsonObject.remove(SERVER_PASSWORD);
+    jsonObject.remove(SERVER_PWD_KEY);
     return jsonObject.toString();
   }
 
@@ -96,7 +96,7 @@ public final class PasswordUtils {
 
   private static String getServerPassword(String serverAsString) {
     JsonObject jsonObject = parseToObject(serverAsString);
-    JsonElement passwordElement = jsonObject.get(SERVER_PASSWORD);
+    JsonElement passwordElement = jsonObject.get(SERVER_PWD_KEY);
     if (Objects.isNull(passwordElement)) {
       return null;
     } else {

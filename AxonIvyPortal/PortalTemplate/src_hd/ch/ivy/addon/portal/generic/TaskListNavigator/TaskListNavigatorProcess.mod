@@ -25,12 +25,10 @@ Ss0 @RichDialogProcessStart f8 '' #zField
 Ss0 @CallSub f7 '' #zField
 Ss0 @GridStep f10 '' #zField
 Ss0 @PushWFArc f11 '' #zField
-Ss0 @GridStep f44 '' #zField
-Ss0 @PushWFArc f12 '' #zField
-Ss0 @PushWFArc f6 '' #zField
-Ss0 @GridStep f13 '' #zField
-Ss0 @PushWFArc f14 '' #zField
 Ss0 @PushWFArc f9 '' #zField
+Ss0 @GridStep f12 '' #zField
+Ss0 @PushWFArc f13 '' #zField
+Ss0 @PushWFArc f6 '' #zField
 >Proto Ss0 Ss0 TaskListNavigatorProcess #zField
 Ss0 f0 guid 15F6ACE17192667A #txt
 Ss0 f0 type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
@@ -96,7 +94,7 @@ Ss0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f40 968 152 112 48 -48 -12 #rect
+Ss0 f40 984 152 112 48 -48 -12 #rect
 Ss0 f40 @|CallSubIcon #fIcon
 Ss0 f8 guid 15F6AD8AACDD69BB #txt
 Ss0 f8 type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
@@ -132,7 +130,7 @@ Ss0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f7 344 154 144 44 -65 -8 #rect
+Ss0 f7 360 154 144 44 -65 -8 #rect
 Ss0 f7 @|CallSubIcon #fIcon
 Ss0 f10 actionDecl 'ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData out;
 ' #txt
@@ -140,9 +138,9 @@ Ss0 f10 actionTable 'out=in;
 ' #txt
 Ss0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portal.generic.view.TaskView;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
-in.taskDataModel.setIgnoreInvolvedUser(TaskUtils.checkReadAllTasksPermission());
+in.taskDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 in.taskView = TaskView.create().dataModel(in.taskDataModel).noTaskFoundMessage("").showHeaderToolbar(false).createNewTaskView();' #txt
@@ -156,63 +154,32 @@ Ss0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f10 552 154 160 44 -74 -8 #rect
+Ss0 f10 568 154 160 44 -74 -8 #rect
 Ss0 f10 @|StepIcon #fIcon
 Ss0 f11 expr out #txt
-Ss0 f11 488 176 552 176 #arcP
-Ss0 f44 actionDecl 'ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData out;
-' #txt
-Ss0 f44 actionTable 'out=in;
-' #txt
-Ss0 f44 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.LAST_PAGE.toString());' #txt
-Ss0 f44 type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
-Ss0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Remove the session
-attribute of last page</name>
-        <nameStyle>41
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f44 206 164 36 24 -47 22 #rect
-Ss0 f44 @|StepIcon #fIcon
-Ss0 f12 expr out #txt
-Ss0 f12 109 176 206 176 #arcP
-Ss0 f6 expr out #txt
-Ss0 f6 242 176 344 176 #arcP
-Ss0 f13 actionDecl 'ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData out;
-' #txt
-Ss0 f13 actionTable 'out=in;
-' #txt
-Ss0 f13 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalPage;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
-
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_DATA_MODEL.toString());' #txt
-Ss0 f13 type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
-Ss0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Store the last page 
-as Portal Task to session</name>
-        <nameStyle>46,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f13 752 154 160 44 -62 -16 #rect
-Ss0 f13 @|StepIcon #fIcon
-Ss0 f14 expr out #txt
-Ss0 f14 712 176 752 176 #arcP
+Ss0 f11 504 176 568 176 #arcP
 Ss0 f9 expr out #txt
-Ss0 f9 912 176 968 176 #arcP
+Ss0 f9 728 176 984 176 #arcP
+Ss0 f12 actionDecl 'ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData out;
+' #txt
+Ss0 f12 actionTable 'out=in;
+' #txt
+Ss0 f12 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
+MenuUtils.clearMenuState();' #txt
+Ss0 f12 type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
+Ss0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Clear menu state</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f12 184 154 112 44 -47 -8 #rect
+Ss0 f12 @|StepIcon #fIcon
+Ss0 f13 expr out #txt
+Ss0 f13 109 176 184 176 #arcP
+Ss0 f6 expr out #txt
+Ss0 f6 296 176 360 176 #arcP
 >Proto Ss0 .type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -223,11 +190,9 @@ Ss0 f3 mainOut f5 tail #connect
 Ss0 f5 head f4 mainIn #connect
 Ss0 f7 mainOut f11 tail #connect
 Ss0 f11 head f10 mainIn #connect
-Ss0 f8 mainOut f12 tail #connect
-Ss0 f12 head f44 mainIn #connect
-Ss0 f44 mainOut f6 tail #connect
-Ss0 f6 head f7 mainIn #connect
-Ss0 f10 mainOut f14 tail #connect
-Ss0 f14 head f13 mainIn #connect
-Ss0 f13 mainOut f9 tail #connect
+Ss0 f10 mainOut f9 tail #connect
 Ss0 f9 head f40 mainIn #connect
+Ss0 f8 mainOut f13 tail #connect
+Ss0 f13 head f12 mainIn #connect
+Ss0 f12 mainOut f6 tail #connect
+Ss0 f6 head f7 mainIn #connect

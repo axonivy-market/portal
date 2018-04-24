@@ -1,5 +1,5 @@
 [Ivy]
-137A1AD8C8C617F9 3.20 #module
+137A1AD8C8C617F9 3.23 #module
 >Proto >Proto Collection #zClass
 Ce0 CaseService Big #zClass
 Ce0 WS #cInfo
@@ -587,10 +587,11 @@ Ce0 f47 1654 140 36 24 20 -2 #rect
 Ce0 f47 @|StepIcon #fIcon
 Ce0 f48 expr out #txt
 Ce0 f48 1672 77 1672 140 #arcP
-Ce0 f50 inParamDecl '<java.lang.Long caseID,java.lang.String documentName,ch.ivyteam.ivy.scripting.objects.Binary documentContent> param;' #txt
+Ce0 f50 inParamDecl '<java.lang.Long caseID,java.lang.String userName,java.lang.String documentName,ch.ivyteam.ivy.scripting.objects.Binary documentContent> param;' #txt
 Ce0 f50 inParamTable 'out.documentContent=param.documentContent;
 out.documentName=param.documentName;
 out.ivyCase.id=param.caseID;
+out.user=param.userName;
 ' #txt
 Ce0 f50 outParamDecl '<ch.ivy.ws.addon.types.IvyDocument document,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
@@ -599,7 +600,7 @@ result.errors=in.errors;
 ' #txt
 Ce0 f50 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 ' #txt
-Ce0 f50 callSignature uploadDocument(Long,String,Binary) #txt
+Ce0 f50 callSignature uploadDocument(Long,String,String,Binary) #txt
 Ce0 f50 useUserDefinedException false #txt
 Ce0 f50 taskData TaskTriggered.PRI=2 #txt
 Ce0 f50 type ch.ivy.ws.addon.CaseServiceData #txt
@@ -624,7 +625,7 @@ import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.WsServiceFactory;
 
 try{
-	CaseServiceResult csResult = WsServiceFactory.getCaseService().uploadDocument(in.ivyCase.id, in.documentName, in.documentContent);
+	CaseServiceResult csResult = WsServiceFactory.getCaseService().uploadDocument(in.user, in.ivyCase.id, in.documentName, in.documentContent);
 	in.document = csResult.getDocument();
 	in.errors = csResult.getErrors();
 }catch(WSException e){
@@ -882,16 +883,18 @@ Ce0 f49 expr out #txt
 Ce0 f49 32 172 930 264 #arcP
 Ce0 f49 1 32 264 #addKink
 Ce0 f49 1 0.35701468075883286 0 0 #arcLabel
-Ce0 f46 inParamDecl '<java.lang.Long caseID,java.lang.Long documentId> param;' #txt
+Ce0 f46 inParamDecl '<java.lang.String userName,java.lang.Long caseID,java.lang.Long documentId> param;' #txt
 Ce0 f46 inParamTable 'out.documentId=param.documentId;
 out.ivyCase.id=param.caseID;
+out.user=param.userName;
 ' #txt
-Ce0 f46 outParamDecl '<List<ch.ivy.ws.addon.WSException> errors> result;' #txt
+Ce0 f46 outParamDecl '<List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
 Ce0 f46 outParamTable 'result.errors=in.errors;
 ' #txt
 Ce0 f46 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 ' #txt
-Ce0 f46 callSignature removeDocument(Long,Long) #txt
+Ce0 f46 callSignature removeDocument(String,Long,Long) #txt
 Ce0 f46 useUserDefinedException false #txt
 Ce0 f46 taskData TaskTriggered.PRI=2 #txt
 Ce0 f46 type ch.ivy.ws.addon.CaseServiceData #txt
@@ -916,7 +919,7 @@ import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.WsServiceFactory;
 
 try{
-	CaseServiceResult csResult = WsServiceFactory.getCaseService().removeDocument(in.ivyCase.id, in.documentId);
+	CaseServiceResult csResult = WsServiceFactory.getCaseService().removeDocument(in.user, in.ivyCase.id, in.documentId);
 	in.errors = csResult.getErrors();
 }catch(WSException e){
 	in.errors.add(e);

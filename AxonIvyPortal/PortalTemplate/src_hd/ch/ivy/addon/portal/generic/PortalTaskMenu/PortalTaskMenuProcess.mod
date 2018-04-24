@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Aug 07 17:11:15 ICT 2017]
 156F869FC3FCD1D9 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
@@ -128,9 +127,9 @@ Ps0 f9 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData
 ' #txt
 Ps0 f9 actionTable 'out=in;
 ' #txt
-Ps0 f9 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+Ps0 f9 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 in.loginUser = ivy.session.getSessionUserName();
-in.hasReadAllTasksPermisson = TaskUtils.checkReadAllTasksPermission();' #txt
+in.hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();' #txt
 Ps0 f9 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -187,27 +186,36 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 in.selectedMenuItem = in.selectedNode.getData() as MainMenuNode;
 TaskNode categoryMenu = in.selectedMenuItem as TaskNode;
 
 in.dataModel.setCategory(categoryMenu.categoryRawPath);
-
+in.hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
 if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
-	in.hasReadAllTasksPermisson = TaskUtils.checkReadAllTasksPermission();
 	in.dataModel.setIgnoreInvolvedUser(in.hasReadAllTasksPermisson);
+	in.dataModel.setQueryForUnassignedTask(false);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_MY_TASKS)) {
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.USER);
 	in.dataModel.setIgnoreInvolvedUser(false);
+	if (in.hasReadAllTasksPermisson) {
+		in.dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
+	}
+	in.dataModel.setQueryForUnassignedTask(false);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_GROUP_TASKS)) {
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ROLE);
 	in.dataModel.setIgnoreInvolvedUser(false);
+	if (in.hasReadAllTasksPermisson) {
+		in.dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
+	}
+	in.dataModel.setQueryForUnassignedTask(false);
 } else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_UNASSIGNED_TASKS)) {
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 	in.dataModel.setIgnoreInvolvedUser(true);
-	in.dataModel.setIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+	in.dataModel.setIncludedStates(Arrays.asList(TaskState.DONE));
+	in.dataModel.setQueryForUnassignedTask(true);
 }
 
 in.taskView = TaskView.create().category(categoryMenu).dataModel(in.dataModel).pageTitle(categoryMenu.value).showHeaderToolbar(false).createNewTaskView();' #txt
@@ -222,7 +230,7 @@ Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f13 294 340 36 24 -47 14 #rect
+Ps0 f13 310 340 36 24 -47 14 #rect
 Ps0 f13 @|StepIcon #fIcon
 Ps0 f38 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f38 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
@@ -402,7 +410,6 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.LAST_PAGE.toString(), PortalPage.LINK_TO_TASK);
 SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_CATEGORY.toString(), in.selectedMenuItem as TaskNode);' #txt
 Ps0 f28 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -418,7 +425,7 @@ to session</name>
 Ps0 f28 384 330 128 44 -45 -16 #rect
 Ps0 f28 @|StepIcon #fIcon
 Ps0 f29 expr out #txt
-Ps0 f29 330 352 384 352 #arcP
+Ps0 f29 346 352 384 352 #arcP
 Ps0 f29 0 0.24467500942153303 0 0 #arcLabel
 Ps0 f30 expr out #txt
 Ps0 f30 512 352 544 352 #arcP
@@ -478,7 +485,7 @@ Ps0 f33 @|CallSubIcon #fIcon
 Ps0 f34 expr out #txt
 Ps0 f34 67 352 112 352 #arcP
 Ps0 f18 expr out #txt
-Ps0 f18 256 352 294 352 #arcP
+Ps0 f18 256 352 310 352 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect

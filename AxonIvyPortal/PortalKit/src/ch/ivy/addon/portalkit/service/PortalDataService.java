@@ -49,6 +49,7 @@ public class PortalDataService {
 
     /**
      * This method is unused but have to exsist for Proxy initialization
+     * @param application 
      */
     @SuppressWarnings("unused")
     public BusinessEntityDao(IApplication application) {

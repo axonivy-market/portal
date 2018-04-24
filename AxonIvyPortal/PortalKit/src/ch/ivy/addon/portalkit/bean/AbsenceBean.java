@@ -10,6 +10,8 @@ import static ch.ivyteam.ivy.security.IPermission.USER_READ_ABSENCES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_OWN_ABSENCES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -20,9 +22,10 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 
 @ManagedBean
 @ViewScoped
-public class AbsenceBean {
-  private PermissionCheckerService permissionCheckerService;
+public class AbsenceBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
+  private PermissionCheckerService permissionCheckerService;
   private boolean ownAbsencesReadable;
   private boolean ownAbsencesCreatable;
   private boolean ownAbsencesDeletable;

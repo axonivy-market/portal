@@ -6,15 +6,12 @@ import java.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
-import portal.guitest.common.UrlHelpers;
 import portal.guitest.page.CasePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
@@ -22,6 +19,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -60,7 +58,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.openTaskDetails(0);
 
     String relatedCaseName = taskWidgetPage.getRelatedCase();
-    CasePage casePage = taskWidgetPage.openRelatedCaseOfTask(0);
+    CasePage casePage = taskWidgetPage.openRelatedCaseOfTask();
 
     String caseName = casePage.getCaseName();
     assertEquals(relatedCaseName, caseName);

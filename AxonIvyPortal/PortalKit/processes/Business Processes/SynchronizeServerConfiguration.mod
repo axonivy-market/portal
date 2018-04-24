@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Thu Mar 30 16:46:15 ICT 2017]
 1503C0F82FA8D5F4 3.20 #module
 >Proto >Proto Collection #zClass
 Sn0 SynchronizeServerConfiguration Big #zClass
@@ -50,7 +49,7 @@ TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXPRI=2
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigurationTaskName")%>
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/AddServerConfigDescription")%>
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.EXROL=Everybody' #txt
 Sn0 f0 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>
@@ -173,7 +172,7 @@ TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXPRI=2
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationTaskName")%>
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/DeleteServerConfigurationDescription")%>
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.EXROL=Everybody' #txt
 Sn0 f6 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/Cases/SynchronizeServerProcess/SynchronizeServerConfigurationCaseName")%>

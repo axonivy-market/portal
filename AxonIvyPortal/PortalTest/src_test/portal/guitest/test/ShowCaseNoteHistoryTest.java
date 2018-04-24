@@ -28,6 +28,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     private NoteHistoryPage caseHistoryPage;
     private static final String noteContent = "test"; 
     
+    @Override
     @Before
     public void setup() {
       super.setup();
@@ -57,7 +58,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
             return ;
         }
         assertEquals(2, numberOfNotes);
-        assertEquals(noteContent, caseHistoryPage.getNoteContentOfFirstRow());
+        assertEquals(noteContent, caseHistoryPage.getNoteContentOfRow(0));
     }
     
     @Test
@@ -77,7 +78,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
             return ;
         }
         assertEquals(2, numberOfNotes);
-        assertEquals(noteContent, caseHistoryPage.getNoteContentOfFirstRow());
+        assertEquals(noteContent, caseHistoryPage.getNoteContentOfRow(0));
     }
 
 }

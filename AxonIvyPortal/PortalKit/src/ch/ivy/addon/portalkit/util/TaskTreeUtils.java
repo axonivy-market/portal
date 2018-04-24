@@ -26,6 +26,9 @@ public class TaskTreeUtils {
    * Convert to Tree from the structure on field CustomVarCharField5 of task;
    * 
    * @param categories list category of user
+   * @param firstCategory 
+   * @param isRootAllTask 
+   * @param menuState 
    * @return TreeNode : The Tree after convert
    */
   public static TreeNode convertTaskListToTree(List<CategoryData> categories, String firstCategory,

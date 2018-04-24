@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +12,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ApplicationScoped
-public class FormattingNullWrapperBean {
+public class FormattingNullWrapperBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   private static final String DEFAULT_VALUE_IF_NULL = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
   

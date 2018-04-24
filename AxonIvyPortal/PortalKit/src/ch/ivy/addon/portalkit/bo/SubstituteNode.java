@@ -140,7 +140,7 @@ public class SubstituteNode {
 
   public List<RemoteApplicationUser> autoCompleteUser(String query) {
     return ivyUsers.stream()
-        .filter(user -> StringUtils.containsIgnoreCase(user.getDisplayName(), query))
+        .filter(user -> StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query))
         .collect(Collectors.toList());
   }
 }

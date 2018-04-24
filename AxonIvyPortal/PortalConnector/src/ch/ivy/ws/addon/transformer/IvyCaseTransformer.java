@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ch.ivy.ws.addon.types.IvyCase;
+import ch.ivy.ws.addon.util.ServerUrlUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 
 /**
@@ -13,98 +14,100 @@ import ch.ivyteam.ivy.workflow.ICase;
  * @author mde
  *
  */
+@SuppressWarnings("deprecation")
 public class IvyCaseTransformer {
 
-  public static IvyCase transformToIvyCase(ICase ivyCase) {
-    return new IvyCaseTransformer().transform(ivyCase);
+  public static IvyCase transformToIvyCase(ICase iCase) {
+    return new IvyCaseTransformer().transform(iCase);
   }
 
-  public static List<IvyCase> transformToIvyCases(List<ICase> ivyCases) {
-    return ivyCases.stream().map(IvyCaseTransformer::transformToIvyCase).collect(Collectors.toList());
+  public static List<IvyCase> transformToIvyCases(List<ICase> iCases) {
+    return iCases.stream().map(IvyCaseTransformer::transformToIvyCase).collect(Collectors.toList());
   }
 
-  public IvyCase transform(ICase c) {
-    IvyCase result = new IvyCase();
+  public IvyCase transform(ICase iCase) {
+    IvyCase ivyCase = new IvyCase();
 
-    result.setBusinessCorrespondentId(c.getBusinessCorrespondentId());
-    result.setBusinessCreatorUser(c.getBusinessCreatorUser());
-    result.setBusinessMainContactDocumentDatabaseCode(c.getBusinessMainContactDocumentDatabaseCode());
-    result.setBusinessMainContactFolderId(c.getBusinessMainContactFolderId());
-    result.setBusinessMainContactId(c.getBusinessMainContactId());
-    result.setBusinessMainContactName(c.getBusinessMainContactName());
-    result.setBusinessMainContactType(c.getBusinessMainContactType());
-    result.setBusinessMilestoneTimestamp(c.getBusinessMilestoneTimestamp());
-    result.setBusinessObjectCode(c.getBusinessObjectCode());
-    result.setBusinessObjectDocumentDatabaseCode(c.getBusinessObjectDocumentDatabaseCode());
-    result.setBusinessObjectFolderId(c.getBusinessObjectFolderId());
-    result.setBusinessObjectName(c.getBusinessObjectName());
-    result.setBusinessPriority(c.getBusinessPriority());
-    result.setBusinessStartTimestamp(c.getBusinessStartTimestamp());
+    ivyCase.setBusinessCorrespondentId(iCase.getBusinessCorrespondentId());
+    ivyCase.setBusinessCreatorUser(iCase.getBusinessCreatorUser());
+    ivyCase.setBusinessMainContactDocumentDatabaseCode(iCase.getBusinessMainContactDocumentDatabaseCode());
+    ivyCase.setBusinessMainContactFolderId(iCase.getBusinessMainContactFolderId());
+    ivyCase.setBusinessMainContactId(iCase.getBusinessMainContactId());
+    ivyCase.setBusinessMainContactName(iCase.getBusinessMainContactName());
+    ivyCase.setBusinessMainContactType(iCase.getBusinessMainContactType());
+    ivyCase.setBusinessMilestoneTimestamp(iCase.getBusinessMilestoneTimestamp());
+    ivyCase.setBusinessObjectCode(iCase.getBusinessObjectCode());
+    ivyCase.setBusinessObjectDocumentDatabaseCode(iCase.getBusinessObjectDocumentDatabaseCode());
+    ivyCase.setBusinessObjectFolderId(iCase.getBusinessObjectFolderId());
+    ivyCase.setBusinessObjectName(iCase.getBusinessObjectName());
+    ivyCase.setBusinessPriority(iCase.getBusinessPriority());
+    ivyCase.setBusinessStartTimestamp(iCase.getBusinessStartTimestamp());
 
-    result.setCreatorUserName(c.getCreatorUserName());
-    if (c.getCreatorUser() != null) {
-      result.setCreatorFullName(c.getCreatorUser().getFullName());
+    ivyCase.setCreatorUserName(iCase.getCreatorUserName());
+    if (iCase.getCreatorUser() != null) {
+      ivyCase.setCreatorFullName(iCase.getCreatorUser().getFullName());
     }
 
-    if (c.getCustomDecimalField1() != null) {
-      result.setCustomDecimalField1(c.getCustomDecimalField1().floatValue());
+    if (iCase.getCustomDecimalField1() != null) {
+      ivyCase.setCustomDecimalField1(iCase.getCustomDecimalField1().floatValue());
     }
-    if (c.getCustomDecimalField2() != null) {
-      result.setCustomDecimalField2(c.getCustomDecimalField2().floatValue());
+    if (iCase.getCustomDecimalField2() != null) {
+      ivyCase.setCustomDecimalField2(iCase.getCustomDecimalField2().floatValue());
     }
-    if (c.getCustomDecimalField3() != null) {
-      result.setCustomDecimalField3(c.getCustomDecimalField3().floatValue());
+    if (iCase.getCustomDecimalField3() != null) {
+      ivyCase.setCustomDecimalField3(iCase.getCustomDecimalField3().floatValue());
     }
-    if (c.getCustomDecimalField4() != null) {
-      result.setCustomDecimalField4(c.getCustomDecimalField4().floatValue());
+    if (iCase.getCustomDecimalField4() != null) {
+      ivyCase.setCustomDecimalField4(iCase.getCustomDecimalField4().floatValue());
     }
-    if (c.getCustomDecimalField5() != null) {
-      result.setCustomDecimalField5(c.getCustomDecimalField5().floatValue());
+    if (iCase.getCustomDecimalField5() != null) {
+      ivyCase.setCustomDecimalField5(iCase.getCustomDecimalField5().floatValue());
     }
-    result.setCustomTimestampField1(c.getCustomTimestampField1());
-    result.setCustomTimestampField2(c.getCustomTimestampField2());
-    result.setCustomTimestampField3(c.getCustomTimestampField3());
-    result.setCustomTimestampField4(c.getCustomTimestampField4());
-    result.setCustomTimestampField5(c.getCustomTimestampField5());
+    ivyCase.setCustomTimestampField1(iCase.getCustomTimestampField1());
+    ivyCase.setCustomTimestampField2(iCase.getCustomTimestampField2());
+    ivyCase.setCustomTimestampField3(iCase.getCustomTimestampField3());
+    ivyCase.setCustomTimestampField4(iCase.getCustomTimestampField4());
+    ivyCase.setCustomTimestampField5(iCase.getCustomTimestampField5());
 
-    result.setCustomVarCharField1(c.getCustomVarCharField1());
-    result.setCustomVarCharField2(c.getCustomVarCharField2());
-    result.setCustomVarCharField3(c.getCustomVarCharField3());
-    result.setCustomVarCharField4(c.getCustomVarCharField4());
-    result.setCustomVarCharField5(c.getCustomVarCharField5());
+    ivyCase.setCustomVarCharField1(iCase.getCustomVarCharField1());
+    ivyCase.setCustomVarCharField2(iCase.getCustomVarCharField2());
+    ivyCase.setCustomVarCharField3(iCase.getCustomVarCharField3());
+    ivyCase.setCustomVarCharField4(iCase.getCustomVarCharField4());
+    ivyCase.setCustomVarCharField5(iCase.getCustomVarCharField5());
 
-    result.setDescription(c.getDescription());
-    result.setEndTimestamp(c.getEndTimestamp());
-    result.setId(c.getId());
-    result.setName(c.getName());
-    if (c.getPriority() != null) {
-      result.setPriority(c.getPriority().name());
+    ivyCase.setDescription(iCase.getDescription());
+    ivyCase.setEndTimestamp(iCase.getEndTimestamp());
+    ivyCase.setId(iCase.getId());
+    ivyCase.setName(iCase.getName());
+    if (iCase.getPriority() != null) {
+      ivyCase.setPriority(iCase.getPriority().name());
     }
 
-    result.setProcessCategoryCode(c.getProcessCategoryCode());
-    result.setProcessCategoryName(c.getProcessCategoryName());
-    result.setProcessCode(c.getProcessCode());
-    result.setProcessName(c.getProcessName());
+    ivyCase.setProcessCategoryCode(iCase.getProcessCategoryCode());
+    ivyCase.setProcessCategoryName(iCase.getProcessCategoryName());
+    ivyCase.setProcessCode(iCase.getProcessCode());
+    ivyCase.setProcessName(iCase.getProcessName());
 
-    result.setStartTimestamp(c.getStartTimestamp());
-    if (c.getState() != null) {
-      result.setState(c.getState().name());
+    ivyCase.setStartTimestamp(iCase.getStartTimestamp());
+    if (iCase.getState() != null) {
+      ivyCase.setState(iCase.getState().name());
     }
-    result.setSubTypeCode(c.getSubTypeCode());
-    result.setSubTypeName(c.getSubTypeName());
+    ivyCase.setSubTypeCode(iCase.getSubTypeCode());
+    ivyCase.setSubTypeName(iCase.getSubTypeName());
 
-    result.setTypeCode(c.getTypeCode());
-    result.setTypeName(c.getTypeName());
+    ivyCase.setTypeCode(iCase.getTypeCode());
+    ivyCase.setTypeName(iCase.getTypeName());
 
-    ch.ivyteam.ivy.application.IApplication a = c.getApplication();
+    ch.ivyteam.ivy.application.IApplication a = iCase.getApplication();
     String name = a != null ? a.getName() : "";
-    result.setApplicationName(name);
+    ivyCase.setApplicationName(name);
 
-    result.setProcessModelName(c.getProcessModel().getName());
-    result.setProcessModelVersionNumber(c.getProcessModelVersion().getVersionNumber());
-    result.setIvyNotes(new IvyNoteTransformer().transform(c.getNotes()));
-    result.setIsBusinessCase(c.isBusinessCase());
-    return result;
+    ivyCase.setProcessModelName(iCase.getProcessModel().getName());
+    ivyCase.setProcessModelVersionNumber(iCase.getProcessModelVersion().getVersionNumber());
+    ivyCase.setIvyNotes(new IvyNoteTransformer().transform(iCase.getNotes()));
+    ivyCase.setIsBusinessCase(iCase.isBusinessCase());
+    ivyCase.setServerUrl(ServerUrlUtils.buildUrlFromSystemProperties());
+    return ivyCase;
   }
 
   public List<IvyCase> transform(List<ICase> cases) {

@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,8 +8,6 @@ import ch.ivy.addon.portalkit.persistence.dao.ServerDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.addon.portalkit.security.PortalConnectorUser;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.service.ServiceException;
 
 
 public class ServerService extends AbstractService<Server> {
@@ -31,18 +28,12 @@ public class ServerService extends AbstractService<Server> {
   }
 
   public List<Server> findActiveServers() {
-    try {
-      List<Server> servers = getDao().findActiveServers();
-      if (servers.isEmpty()) {
-        Server localServer = localhost();
-        return Arrays.asList(localServer);
-      }
-      return servers;
-    } catch (UnknownHostException e) {
-      String message = "Can not get address of server";
-      Ivy.log().error(message, e);
-      throw new ServiceException(message, e);
+    List<Server> servers = getDao().findActiveServers();
+    if (servers.isEmpty()) {
+      Server localServer = localhost();
+      return Arrays.asList(localServer);
     }
+    return servers;
   }
   
   public List<Server> findActiveServersNotLocalhost() {
@@ -55,21 +46,15 @@ public class ServerService extends AbstractService<Server> {
 
   @Override
   public Server findById(long id) {
-    try {
-      if(id == LOCAL_SERVER_ID) {
-        return localhost();
-      } else {
-        Server server = super.findById(id);
-        return server;
-      }
-    } catch (UnknownHostException e) {
-      String message = "Can not get address of server";
-      Ivy.log().error(message, e);
-      throw new ServiceException(message, e);
+    if(id == LOCAL_SERVER_ID) {
+      return localhost();
+    } else {
+      Server server = super.findById(id);
+      return server;
     }
   }
 
-  private Server localhost() throws UnknownHostException {
+  private Server localhost() {
     Server localhost = new Server();
     PortalConnectorDetector connectorDetector = getPortalConnectorDetector();
     localhost.setPath(connectorDetector.getPortalConectorLocalhostURLFromSystemProperty());

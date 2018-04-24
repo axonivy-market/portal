@@ -22,7 +22,7 @@ import com.jayway.awaitility.Duration;
 
 public class CaseWidgetTest extends BaseTest {
 
-  private static final String LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request Customization Case Details Page";
+  private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";
   private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   
@@ -32,6 +32,7 @@ public class CaseWidgetTest extends BaseTest {
   private CaseDetailsPage caseDetailsPage;
   private AdditionalCaseDetailsPage additionalCaseDetailsPage;
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -44,11 +45,12 @@ public class CaseWidgetTest extends BaseTest {
     navigateToUrl(hideCaseUrl);
     initHomePage(TestAccount.ADMIN_USER);
     
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
-
-    homePage = taskWidgetPage.goToHomePage();
+    taskWidgetPage.waitForPageLoaded();
+    taskWidgetPage.goToHomePage();
+    
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CasePage casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
@@ -86,17 +88,19 @@ public class CaseWidgetTest extends BaseTest {
     caseDetailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     int numberOfTasks = caseDetailsPage.countRelatedTasks();
     TaskWidgetPage taskOfCasePage = caseDetailsPage.openTasksOfCasePage(0);
-    assertEquals(numberOfTasks, taskOfCasePage.countTasks());
+    assertEquals(numberOfTasks + 1, taskOfCasePage.countTasks());// Add first system task
   }
   
+  @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails, LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
     validateAdditionalCaseDetailsPage(17, "CustomVarCharField 1");
   }
   
+  @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
-    openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, LEAVE_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(17, "CustomizationAdditionalCaseDetails CustomVarCharField1");
+    openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
+    validateAdditionalCaseDetailsPage(6, "Apartment A");
   }
   
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){

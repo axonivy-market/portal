@@ -10,6 +10,7 @@ import ch.ivy.ws.addon.service.IApplicationService;
 import ch.ivy.ws.addon.service.ICaseService;
 import ch.ivy.ws.addon.service.IIsAliveService;
 import ch.ivy.ws.addon.service.ILanguagesSettingsService;
+import ch.ivy.ws.addon.service.ILibraryService;
 import ch.ivy.ws.addon.service.IProcessStartService;
 import ch.ivy.ws.addon.service.ISecurityService;
 import ch.ivy.ws.addon.service.IServerService;
@@ -19,6 +20,7 @@ import ch.ivy.ws.addon.service.IUserSettingService;
 import ch.ivy.ws.addon.service.IWebStartableService;
 import ch.ivy.ws.addon.service.IsAliveServiceImpl;
 import ch.ivy.ws.addon.service.LanguagesSettingsServiceImpl;
+import ch.ivy.ws.addon.service.LibraryServiceImpl;
 import ch.ivy.ws.addon.service.ProcessStartServiceImpl;
 import ch.ivy.ws.addon.service.SecurityServiceImpl;
 import ch.ivy.ws.addon.service.ServerServiceImpl;
@@ -31,6 +33,7 @@ import ch.ivy.ws.addon.service.WebStartableServiceImpl;
 /**
  * Service Factory for all services that are provided as web service
  */
+@SuppressWarnings("deprecation")
 public class WsServiceFactory {
 
   private static ICaseService caseService;
@@ -57,6 +60,8 @@ public class WsServiceFactory {
   private static ILanguagesSettingsService languagesSettingsService;
   
   private static IWebStartableService webStartableService;
+  
+  private static ILibraryService libraryService;
 
   public static ILanguagesSettingsService getLanguagesSettingsService() {
     if (languagesSettingsService == null) {
@@ -141,5 +146,12 @@ public class WsServiceFactory {
       webStartableService = new WebStartableServiceImpl();
     }
     return webStartableService;
+  }
+  
+  public static ILibraryService getLibraryService() {
+    if (libraryService == null) {
+      libraryService = new LibraryServiceImpl();
+    }
+    return libraryService;
   }
 }

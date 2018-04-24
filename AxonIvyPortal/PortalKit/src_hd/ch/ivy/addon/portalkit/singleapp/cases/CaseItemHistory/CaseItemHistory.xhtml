@@ -62,14 +62,14 @@
       <h:panelGroup layout="block" styleClass="grid-item-footer">
         <p:commandLink id="add-note-command" onclick="PF('add-note-dialog').show()">
           <i class="fa fa-plus-circle grid-item-footer-icon" />
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
         </p:commandLink>
         <cc:renderFacet name="showCaseNoteHistory" />
       </h:panelGroup>
     </div>
 
     <p:dialog id="view-note-dialog" widgetVar="view-note-dialog" closeOnEscape="true"
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/note')}" width="40%" appendTo="@(body)"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" width="40%" appendTo="@(body)"
       modal="true" resizable="false" dynamic="true">
         <h:panelGroup layout="block">
           <h:outputText value="#{data.fullNote}" />
@@ -82,7 +82,7 @@
     </p:dialog>
 
     <p:dialog id="add-note-dialog" widgetVar="add-note-dialog" dynamic="true" closable="true" closeOnEscape="true"
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" showEffect="fade" resizable="false"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false"
       modal="true" width="40%" appendTo="@(body)">
       <h:form id="add-note-form">
         <h:panelGroup layout="block">
@@ -93,7 +93,7 @@
             styleClass="note-content-textarea" />
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
-          <p:commandButton styleClass="add-new-note-save-command portal-ok-button" id="save-add-note-command"
+          <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
             update="note-content create-note-msg" actionListener="#{logic.createNote(cc.clientId)}"
             oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog').hide();}" />

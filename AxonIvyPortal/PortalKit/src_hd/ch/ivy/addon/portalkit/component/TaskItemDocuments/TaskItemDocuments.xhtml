@@ -7,6 +7,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivy.addon.portalkit.bo.RemoteTask" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="componentToUpdate" />
 </cc:interface>
 
 <cc:implementation>
@@ -29,28 +30,28 @@
       </ui:repeat>
 
       <h:outputText styleClass="no-documents-message"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDocuments')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDocuments')}"
         rendered="#{empty data.documents}" />
     </p:scrollPanel>
     <h:panelGroup layout="block" styleClass="task-details-document-add">
-      <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
+      <p:commandLink id="add-document-command" styleClass="task-details-document-add-link" rendered="#{data.isShowUploadDocumentButton}"
         actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
         <span class="fa fa-plus-circle task-details-document-add-link-icon" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocument')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
       </p:commandLink>
     </h:panelGroup>
   </div>
 
   <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocument')}" modal="true" resizable="false"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" modal="true" resizable="false"
     showEffect="fade" hideEffect="fade" width="800">
     <h:form id="document-upload-form">
       <p:messages id="upload-messages" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
         mode="advanced" dragDropSupport="true" multiple="true" oncomplete="documentTruncation.truncate();"
-        update="upload-messages #{p:component('task-details-documents')}" auto="true"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" />
+        update="upload-messages #{p:component('task-details-documents')} #{cc.attrs.componentToUpdate}" auto="true"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" />
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button"
@@ -65,9 +66,9 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
-      <p:commandButton styleClass="document-deletion-command portal-ok-button" id="document-deletion-command"
+      <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
-        update="#{p:component('task-details-documents')}" actionListener="#{logic.deleteDocument}"
+        update="#{p:component('task-details-documents')} #{cc.attrs.componentToUpdate}" actionListener="#{logic.deleteDocument}"
         oncomplete="PF('document-deletion-dialog').hide()" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"

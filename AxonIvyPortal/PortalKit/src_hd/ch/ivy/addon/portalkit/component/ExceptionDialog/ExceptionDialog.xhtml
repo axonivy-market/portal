@@ -11,8 +11,8 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:dialog closeOnEscape="true" id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false" appendTo="@(body)"
-    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/title')}" width="800px" dynamic="true">
+  <p:dialog closeOnEscape="true" id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false"
+    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" width="800px">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}: #{cc.attrs.message}" />
     <h:panelGroup layout="block" rendered="#{userMenuBean.errorDetailToEndUser}">
     <p>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace")}:</p>
@@ -22,7 +22,7 @@
     </h:panelGroup>
     <f:facet name="footer">
       <div class="exception-handler-command">
-          <p:commandButton onclick="PF('#{cc.attrs.widgetVar}').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/close')}" type="button"/>
+          <p:commandButton onclick="PF('#{cc.attrs.widgetVar}').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"/>
       </div>
     </f:facet>
     

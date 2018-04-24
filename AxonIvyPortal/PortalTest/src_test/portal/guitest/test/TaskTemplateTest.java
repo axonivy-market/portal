@@ -13,6 +13,7 @@ import portal.guitest.page.WorkingTaskDialogPage;
 
 public class TaskTemplateTest extends BaseTest {
 
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -68,7 +69,7 @@ public class TaskTemplateTest extends BaseTest {
     HomePage homePage = dialogPage.leaveTask();
     TaskWidgetPage taskWidget = homePage.getTaskWidget();
     String state = taskWidget.getStateInCompactMode(0);
-    assertEquals("IN PROGRESS", state);
+    assertEquals("OPEN", state);
   }
   
   @Test

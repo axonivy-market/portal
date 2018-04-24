@@ -82,6 +82,10 @@ Te0 @PushWFArc f81 '' #zField
 Te0 @GridStep f54 '' #zField
 Te0 @PushWFArc f0 '' #zField
 Te0 @PushWFArc f1 '' #zField
+Te0 @StartWS f2 '' #zField
+Te0 @GridStep f3 '' #zField
+Te0 @PushWFArc f5 '' #zField
+Te0 @PushWFArc f6 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f8 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -776,7 +780,7 @@ Te0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f62 @C|.responsibility Everybody #txt
-Te0 f62 2963 51 26 26 14 0 #rect
+Te0 f62 3283 51 26 26 14 0 #rect
 Te0 f62 @|StartWSIcon #fIcon
 Te0 f63 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -800,13 +804,13 @@ Te0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f63 2958 132 36 24 20 -2 #rect
+Te0 f63 3278 132 36 24 20 -2 #rect
 Te0 f63 @|StepIcon #fIcon
 Te0 f64 expr out #txt
-Te0 f64 2976 77 2976 132 #arcP
+Te0 f64 3296 77 3296 132 #arcP
 Te0 f65 expr out #txt
-Te0 f65 2976 156 1526 312 #arcP
-Te0 f65 1 2976 312 #addKink
+Te0 f65 3296 156 1526 312 #arcP
+Te0 f65 1 3296 312 #addKink
 Te0 f65 1 0.4626055488540411 0 0 #arcLabel
 Te0 f66 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -957,7 +961,7 @@ property to task</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f74 3102 132 36 24 20 -2 #rect
+Te0 f74 3422 132 36 24 20 -2 #rect
 Te0 f74 @|StepIcon #fIcon
 Te0 f75 inParamDecl '<java.lang.String name,java.lang.String value,java.lang.Long id> param;' #txt
 Te0 f75 inParamTable 'out.ivyTask.id=param.id;
@@ -984,13 +988,13 @@ Te0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f75 @C|.responsibility Everybody #txt
-Te0 f75 3107 51 26 26 14 0 #rect
+Te0 f75 3427 51 26 26 14 0 #rect
 Te0 f75 @|StartWSIcon #fIcon
 Te0 f76 expr out #txt
-Te0 f76 3120 77 3120 132 #arcP
+Te0 f76 3440 77 3440 132 #arcP
 Te0 f77 expr out #txt
-Te0 f77 3120 156 1526 312 #arcP
-Te0 f77 1 3120 312 #addKink
+Te0 f77 3440 156 1526 312 #arcP
+Te0 f77 1 3440 312 #addKink
 Te0 f77 0 0.6965586369176562 0 0 #arcLabel
 Te0 f78 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -1087,6 +1091,66 @@ Te0 f1 expr out #txt
 Te0 f1 2624 148 1526 312 #arcP
 Te0 f1 1 2624 312 #addKink
 Te0 f1 1 0.42294521269766305 0 0 #arcLabel
+Te0 f2 inParamDecl '<java.lang.String jsonQuery,List<java.lang.String> apps> param;' #txt
+Te0 f2 inParamTable 'out.taskSearchCriteria.involvedApplications=param.apps;
+out.taskSearchCriteria.jsonQuery=param.jsonQuery;
+' #txt
+Te0 f2 outParamDecl '<ch.ivy.ws.addon.types.ElapsedTimeStatistic elapsedTimeStatistic,List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Te0 f2 outParamTable 'result.elapsedTimeStatistic=in.elapsedTimeStatistic;
+result.errors=in.errors;
+' #txt
+Te0 f2 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f2 callSignature analyzeElapsedTimeStatistic(String,List<String>) #txt
+Te0 f2 useUserDefinedException false #txt
+Te0 f2 taskData TaskTriggered.PRI=2 #txt
+Te0 f2 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeElapsedTimeStatistic(String,List&lt;String&gt;)</name>
+        <nameStyle>48,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f2 @C|.responsibility Everybody #txt
+Te0 f2 2964 53 26 26 13 0 #rect
+Te0 f2 @|StartWSIcon #fIcon
+Te0 f3 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f3 actionTable 'out=in;
+' #txt
+Te0 f3 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.WSException;
+
+try {
+	TaskServiceResult result = WsServiceFactory.getTaskService().analyzeElapsedTimeOfTasks(in.taskSearchCriteria.jsonQuery,in.taskSearchCriteria.involvedApplications);
+	in.errors.addAll(result.getErrors());
+	in.elapsedTimeStatistic = result.getElapsedTimeStatistic();
+}catch(WSException e){
+	in.errors.add(e);
+}' #txt
+Te0 f3 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyze elapsed time</name>
+        <nameStyle>20,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f3 2959 126 36 24 20 -2 #rect
+Te0 f3 @|StepIcon #fIcon
+Te0 f5 expr out #txt
+Te0 f5 2977 79 2977 126 #arcP
+Te0 f6 expr out #txt
+Te0 f6 2977 150 1526 312 #arcP
+Te0 f6 1 2977 312 #addKink
+Te0 f6 1 0.440986432042152 0 0 #arcLabel
 >Proto Te0 .webServiceName ch.ivy.ws.addon.TaskService #txt
 >Proto Te0 .authenticationType 'HTTP Basic' #txt
 >Proto Te0 .type ch.ivy.ws.addon.TaskServiceData #txt
@@ -1226,3 +1290,7 @@ Te0 f56 mainOut f0 tail #connect
 Te0 f0 head f54 mainIn #connect
 Te0 f54 mainOut f1 tail #connect
 Te0 f1 head f58 in #connect
+Te0 f2 mainOut f5 tail #connect
+Te0 f5 head f3 mainIn #connect
+Te0 f3 mainOut f6 tail #connect
+Te0 f6 head f58 in #connect

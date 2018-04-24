@@ -21,12 +21,12 @@
 			emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}"
 			styleClass="MarTop5" widgetVar="fileTableVar">
 			<p:column
-				headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileName')}">
+				headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}">
 				<h:outputText value="#{document.fileName}"
 					title="#{document.fileName}" />
 			</p:column>
 			<p:column
-				headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileSize')}">
+				headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}">
 				<h:outputText value="#{document.fileSize}"
 					title="#{document.fileSize}" />
 			</p:column>
@@ -54,8 +54,8 @@
 					actionListener="#{logic.deleteFile(document.downloadPath)}"
 					rendered="#{cc.attrs.uploadPossible}"
 					update="document-table"
-					title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
-					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}">
+					title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
 				</p:commandLink>
 			</p:column>
 

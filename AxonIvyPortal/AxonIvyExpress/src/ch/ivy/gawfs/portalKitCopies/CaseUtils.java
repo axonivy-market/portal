@@ -24,10 +24,9 @@ import ch.ivyteam.logicalexpression.RelationalOperator;
 /**
  * This class is to build some function related to case such as find finish cases, find running case, filter by
  * category.
- * 
- * @author lptchi
  */
 
+@SuppressWarnings("deprecation")
 public final class CaseUtils {
 
   private CaseUtils() {
@@ -190,6 +189,7 @@ public final class CaseUtils {
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               return iCase.getCreatorUser().getEMailAddress();
@@ -219,6 +219,7 @@ public final class CaseUtils {
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               return iCase.getCreatorUser().getProperty(UserUtils.MOBILE);
@@ -248,6 +249,7 @@ public final class CaseUtils {
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
+          @Override
           public String call() {
             try {
               return iCase.getCreatorUser().getProperty(UserUtils.PHONE);
@@ -275,6 +277,7 @@ public final class CaseUtils {
   public static ICase getCaseById(final Integer caseId) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ICase>() {
+        @Override
         public ICase call() {
           try {
             return Ivy.wf().findCase(new Long(caseId));
@@ -317,6 +320,7 @@ public final class CaseUtils {
   public static boolean setCaseMainContactFolderId(final ICase iCase, final String value) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
+        @Override
         public Boolean call() {
           try {
             iCase.setBusinessMainContactFolderId(value);
@@ -356,6 +360,7 @@ public final class CaseUtils {
   public static Recordset findcases(final CaseQuery caseQuery) {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Recordset>() {
+        @Override
         public Recordset call() throws Exception {
           return Ivy.wf().getCaseQueryExecutor().getRecordset(caseQuery);
         }
@@ -376,6 +381,7 @@ public final class CaseUtils {
   public static ICase findcase(final long id) {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<ICase>() {
+        @Override
         public ICase call() throws Exception {
           return Ivy.wf().findCase(id);
         }
@@ -396,6 +402,7 @@ public final class CaseUtils {
   public static IQueryResult<ICase> findcases(final IPropertyFilter<CaseProperty> caseFilter) {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IQueryResult<ICase>>() {
+        @Override
         public IQueryResult<ICase> call() throws Exception {
           return Ivy.wf().findCases(caseFilter, PropertyOrder.create(CaseProperty.ID, OrderDirection.DESCENDING), 0, 1,
               true);

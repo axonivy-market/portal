@@ -7,8 +7,9 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="menuState" value="#{data.menuState}" />
     <ui:param name="simpleContainerClass" value="js-processes-default-widget-container" />
+    <ui:param name="isNotRequiredLogin" value="false" />
 
-    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader')}</ui:define>
+    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</ui:define>
     <ui:define name="simplePageContent">
       <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" keyword="#{data.keyword}"
         hideProcessFilter="#{not empty data.keyword}" compactMode="false" showBackButton="false"

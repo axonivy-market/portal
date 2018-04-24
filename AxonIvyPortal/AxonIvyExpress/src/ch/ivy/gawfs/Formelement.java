@@ -25,9 +25,8 @@ public class Formelement implements Serializable{
 	private Integer intSetting;			//settting like number of rows or number of files
 	private List<FormelementOption> options;		//list of options for ManyCheckbox or OneMenu, but also allowed File-Formats
 	private String type;				//Formelement Typ	InputFieldText,	InputFieldDate, InputFieldNumber, InputTextArea, ManyCheckbox, OneRadio, FileUpload
-	
-	private Object value;				//Value of the Formelement, later Userinput
 	private List<String> optionsStr;	//String List representation of options
+	private transient Object value;        //Value of the Formelement, later Userinput
 	
 	public List<String> getOptionsStr() {
 		this.optionsStr.clear();
@@ -91,41 +90,31 @@ public class Formelement implements Serializable{
 		
 		if (!(options == null)) {
 			for (String optionString : options) {
-				System.out.println(optionString);
 				this.options.add(new FormelementOption(optionString));
 			}			
 		}
 
 	}
 
-
 	public String getId() {
 		return id;
 	}
-
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
-
 		this.name = name;
-
-		
 	}
-
 
 	public String getLabel() {
 		return label;
 	}
-
 
 	public void setLabel(String label) {
 		label = label.trim();
@@ -137,26 +126,21 @@ public class Formelement implements Serializable{
 		}
 	}
 
-
 	public Boolean getRequired() {
 		return required;
 	}
-
 
 	public void setRequired(Boolean required) {
 		this.required = required;
 	}
 
-
 	public Integer getIntSetting() {
 		return intSetting;
 	}
 
-
 	public void setIntSetting(Integer intSetting) {
 		this.intSetting = intSetting;
 	}
-
 
 	public String getType() {
 		return type;
@@ -164,14 +148,6 @@ public class Formelement implements Serializable{
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public Object getValue() {
-		return value;
-	}
-
-	public void setValue(Object value) {
-		this.value = value;
 	}
 
 	public List<FormelementOption> getOptions() {
@@ -193,7 +169,6 @@ public class Formelement implements Serializable{
 		for (FormelementOption formelementOption : options) {
 			optionsStr.add(formelementOption.getValue());			
 		}
-		
 	}
 	
 	public void addOption(FormelementOption option){
@@ -202,20 +177,25 @@ public class Formelement implements Serializable{
 		for (FormelementOption formelementOption : options) {
 			optionsStr.add(formelementOption.getValue());			
 		}
-		
 	}
+	
 	public void addOption(String option){
-		
 		this.options.add(new FormelementOption(option));
 		this.optionsStr.clear();
 		for (FormelementOption formelementOption : options) {
 			optionsStr.add(formelementOption.getValue());			
 		}
-		
 	}
 	
-	public void deleteOption(FormelementOption option){
+	public void deleteOption(@SuppressWarnings("unused") FormelementOption option){
 		this.options.remove(this.options.size()-1);
 	}
+	
+	public Object getValue() {
+    return value;
+  }
 
+  public void setValue(Object value) {
+    this.value = value;
+  }
 }
