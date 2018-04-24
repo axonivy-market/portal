@@ -1,0 +1,13 @@
+HistoryTrace #class
+true #isEntity
+ch.ivyteam.ivy.project.portal.examples #namespace
+HistoryTrace #dbTableName
+id Integer #field
+id Identifier #fieldComment
+id PERSISTENT #fieldModifier
+id ID #fieldModifier
+id GENERATED #fieldModifier
+userName String #field
+userName PERSISTENT #fieldModifier
+lastVisit java.util.Date #field
+lastVisit PERSISTENT #fieldModifier

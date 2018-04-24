@@ -189,7 +189,7 @@ Cb0 f12 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
 Cb0 f12 actionTable 'out=in;
 ' #txt
 Cb0 f12 actionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
-in.employeeInfo = ivy.persistence.employee.find(Employee.class, in.employeeInfo.getId()) as Employee;' #txt
+in.employeeInfo = ivy.persistence.PersistenceSample.find(Employee.class, in.employeeInfo.getId()) as Employee;' #txt
 Cb0 f12 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cb0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
