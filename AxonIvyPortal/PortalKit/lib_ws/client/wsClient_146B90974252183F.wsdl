@@ -225,6 +225,7 @@
           <xs:element minOccurs="0" name="canPark" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="canReset" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="canResume" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canUploadDeleteDocument" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="caseBusinessCorrespondentId" type="xs:int"></xs:element>
           <xs:element minOccurs="0" name="caseBusinessCreatorUser" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="caseBusinessMainContactDocumentDatabaseCode" type="xs:string"></xs:element>

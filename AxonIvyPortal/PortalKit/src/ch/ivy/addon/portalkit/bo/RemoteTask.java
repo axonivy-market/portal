@@ -86,6 +86,7 @@ public class RemoteTask {
   private boolean canChangeDescription;
   private boolean canChangeName;
   private boolean hasMoreActions;
+  private boolean canUploadDeleteDocument;
   
   /**
    * Gets the workerFullName
@@ -812,5 +813,13 @@ public class RemoteTask {
 
   public void setRemoteTechnicalCase(RemoteCase remoteTechnicalCase) {
     this.remoteTechnicalCase = remoteTechnicalCase;
+  }
+
+  public boolean isCanUploadDeleteDocument() {
+    return canUploadDeleteDocument;
+  }
+
+  public void setCanUploadDeleteDocument(boolean canUploadDeleteDocument) {
+    this.canUploadDeleteDocument = canUploadDeleteDocument;
   }
 }

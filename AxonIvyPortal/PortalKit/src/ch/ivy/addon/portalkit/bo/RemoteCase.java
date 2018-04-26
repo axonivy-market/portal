@@ -88,6 +88,7 @@ public class RemoteCase {
   private boolean canChangeDescription;
   private boolean canChangeName;
   private boolean isBusinessCase;
+  private boolean canUploadDeleteDocument;
   
   private String serverUrl;
 
@@ -716,6 +717,14 @@ public class RemoteCase {
 
   public void setServerUrl(String serverUrl) {
     this.serverUrl = serverUrl;
+  }
+
+  public boolean isCanUploadDeleteDocument() {
+    return canUploadDeleteDocument;
+  }
+
+  public void setCanUploadDeleteDocument(boolean canUploadDeleteDocument) {
+    this.canUploadDeleteDocument = canUploadDeleteDocument;
   }
 
 }

@@ -25,7 +25,8 @@
             <span class="fa fa-file-pdf-o case-details-document-download-icon" />
             <h:outputText value="#{document.name}" styleClass="js-document-name" />
           </p:commandLink>
-          <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}"
+          <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}" 
+            rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and case.canUploadDeleteDocument}"
             styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
             <p:tooltip for="delete-file"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
@@ -40,7 +41,8 @@
     </p:scrollPanel>
 
     <h:panelGroup layout="block" styleClass="case-details-document-add">
-      <p:commandLink id="add-document-command" styleClass="case-details-document-add-link" rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase)}"
+      <p:commandLink id="add-document-command" styleClass="case-details-document-add-link" 
+        rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and case.canUploadDeleteDocument}"
         actionListener="#{data.setRemoteCase(case)}" oncomplete="PF('document-upload-dialog-#{case.id}').show()">
         <span class="fa fa-plus-circle case-details-document-add-link-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
