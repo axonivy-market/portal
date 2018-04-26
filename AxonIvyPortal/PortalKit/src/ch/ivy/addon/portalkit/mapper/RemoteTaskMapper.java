@@ -123,6 +123,7 @@ public class RemoteTaskMapper {
     result.setCanChangeDescription(ivyTask.getCanChangeDescription());
     result.setCanChangeName(ivyTask.getCanChangeName());
     result.setHasMoreActions(ivyTask.getHasMoreActions());
+    result.setCanUploadDeleteDocument(ivyTask.getCanUploadDeleteDocument());
     RemoteSecurityMember rsmExpiryActivator = getLocalSecurityMember(ivyTask.getExpireActivatorName());
     result.setExpiryActivator(rsmExpiryActivator);
     result.setExpiryTaskStartElementPid(ivyTask.getExpireTaskStartElementPid());

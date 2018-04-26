@@ -23,7 +23,7 @@
               <p:fileDownload value="#{data.documentFile}" />
             </p:commandLink>
   
-            <p:commandLink actionListener="#{logic.onSelectDeletedDocument(task,document)}"
+            <p:commandLink actionListener="#{logic.onSelectDeletedDocument(task,document)}" rendered="#{data.isShowUploadDocumentButton}"
               styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog').show()" />
           </h:panelGroup>
         </h:form>

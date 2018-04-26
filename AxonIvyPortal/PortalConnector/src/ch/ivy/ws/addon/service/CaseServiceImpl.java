@@ -576,6 +576,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                       caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_WRITE_DESCRIPTION));
                   ivyCase.setCanChangeName(SessionUtil.doesUserHavePermission(iCase.getApplication(),
                       caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_WRITE_NAME));
+                  ivyCase.setCanUploadDeleteDocument(checkCanUserUploadDeleteDocument(caseSearchCriteria, iCase));
                   ivyCases.add(ivyCase);
                 }
 
@@ -584,6 +585,12 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     } catch (Exception e) {
       throw new WSException(10002, e);
     }
+  }
+
+  private boolean checkCanUserUploadDeleteDocument(CaseSearchCriteria caseSearchCriteria, ICase iCase) {
+    return SessionUtil.doesUserHavePermission(iCase.getApplication(),
+        caseSearchCriteria.getInvolvedUsername(), IPermission.DOCUMENT_WRITE) || SessionUtil.doesUserHavePermission(iCase.getApplication(),
+        caseSearchCriteria.getInvolvedUsername(), IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
 
   @Override

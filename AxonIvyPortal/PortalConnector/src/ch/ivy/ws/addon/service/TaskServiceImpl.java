@@ -286,6 +286,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     ivyTask.setCanChangeDescription(hasPermissionToChangeDescription(userName, task));
     ivyTask.setCanChangeName(hasPermissionToChangeName(userName, task));
     ivyTask.setCanChangeExpiry(hasPermissionToChangeExpiry(userName, task));
+    ivyTask.setCanUploadDeleteDocument(hasPermissionToUploadDeleteDocument(userName, task));
   }
 
   @Override
@@ -823,6 +824,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     return TaskState.DONE.equals(task.getState()) && user.equals(task.getWorkerUser());
   }
 
+  private boolean hasPermissionToUploadDeleteDocument(String userName, ITask task){
+    return SessionUtil.doesUserHavePermission(task.getApplication(),
+        userName, IPermission.DOCUMENT_WRITE) || SessionUtil.doesUserHavePermission(task.getApplication(),
+        userName, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
+  }
+  
   private boolean hasPermissionToChangeExpiry(String username, ITask task) {
     return SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP);
   }
