@@ -186,7 +186,7 @@
                           <entry>HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE</entry>
                           <entry>TRUE/FALSE</entry>
                           <entry>
-                           Set to <code>TRUE</code> to deny upload document after a case is done. By default, user can upload document independent of case status. 
+                           Set to <code>TRUE</code> to deny upload (also delete) document after a case is done. By default, user can upload (delete) document independent of case status. 
                           </entry>
                         </row>
 					</tbody>
