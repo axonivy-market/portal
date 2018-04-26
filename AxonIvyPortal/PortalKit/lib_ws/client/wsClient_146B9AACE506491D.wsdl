@@ -277,6 +277,7 @@
           <xs:element minOccurs="0" name="canChangeDescription" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="canChangeName" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="canDestroy" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="canUploadDeleteDocument" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="creatorFullName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="creatorUserName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="customDecimalField1" type="xs:float"></xs:element>

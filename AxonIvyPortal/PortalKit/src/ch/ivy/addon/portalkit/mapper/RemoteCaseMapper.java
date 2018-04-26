@@ -112,6 +112,7 @@ public class RemoteCaseMapper {
     result.setCanChangeName(ivyCase.getCanChangeName());
     result.setBusinessCase(ivyCase.getIsBusinessCase());
     result.setServerUrl(ivyCase.getServerUrl());
+    result.setCanUploadDeleteDocument(ivyCase.getCanUploadDeleteDocument());
     
     return result;
 
