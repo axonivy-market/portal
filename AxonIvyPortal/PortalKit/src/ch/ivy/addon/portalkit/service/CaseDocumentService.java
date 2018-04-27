@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -27,7 +28,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.document.IDocumentService;
 import ch.ivyteam.ivy.workflow.document.Path;
-import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class CaseDocumentService {
 
@@ -160,7 +160,6 @@ public class CaseDocumentService {
     return contentType;
   }
 
-  @SuppressWarnings("unchecked")
   private static List<String> getAllowedUploadFileType() {
     GlobalSettingService globalSettingSerive = new GlobalSettingService();
     if(globalSettingSerive.isGlobalSettingAvailable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION)){
