@@ -309,9 +309,9 @@
 													must be the link of the
 													<code>PortalConnector</code>
 													application (e.g.
-													<code>http://path-to-ivy:8080/ivy/ws/System/PortalConnector
+													<code>http://localhost:8080/ivy/ws/System/PortalConnector
 													</code>
-													)
+													). Note that the port in the link is the <link xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#configuration-webserver">web server port</link>
 												</para>
 											</listitem>
 											<listitem>
@@ -338,7 +338,7 @@
 												<para>
 													The built-in PortalConnector are deployed to application
 													System therefore use the
-													<code>username/password of system administrators</code>
+													<code>username/password of system administrators</code> (account to login to <link xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html">administration tool</link>)
 													when connecting to built-in PortalConnector.
 												</para>
 												<para>
