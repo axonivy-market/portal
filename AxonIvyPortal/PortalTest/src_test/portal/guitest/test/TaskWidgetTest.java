@@ -142,11 +142,12 @@ public class TaskWidgetTest extends BaseTest {
   public void testStartButtonStatus() {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
-    taskWidgetPage.filterTasksBy("Annual Leave Request");
+    taskWidgetPage.filterTasksInExpendedModeBy("Annual Leave Request");
     Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
-    taskWidgetPage.filterTasksBy("Sick Leave Request");
+    taskWidgetPage.filterTasksInExpendedModeBy("Sick Leave Request");
     Assert.assertTrue(taskWidgetPage.isTaskStartEnabled(0));
   }
 }
