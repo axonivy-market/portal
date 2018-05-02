@@ -914,6 +914,12 @@
 			<sect2>
 				<title>Changes in 7.2</title>
 				<itemizedlist>
+                    <listitem>
+                      <para>Portal checks permission when upload/delete document. User needs permission IPermission.DOCUMENT_WRITE or IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE to upload/delete document.</para>
+                    </listitem>
+                    <listitem>
+                      <para>Support to disable upload/delete document when a case is done. This function can be configured by HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE setting.</para>
+                    </listitem>
 					<listitem>
 						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal. This function can be configured by UPLOAD_DOCUMENT_WHITELIST_EXTENSION setting.</para>
 					</listitem>
