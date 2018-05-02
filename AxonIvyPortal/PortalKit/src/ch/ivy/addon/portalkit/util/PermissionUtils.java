@@ -32,4 +32,25 @@ public class PermissionUtils {
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
         ch.ivyteam.ivy.security.IPermission.TASK_READ_OWN_CASE_TASKS);
   }
+  
+  /**
+   * Check if current user has document write permission
+   * 
+   * @return True : has document write permission, False : do not have this permission
+   */
+  public static boolean checkDocumentWritePermission() {
+    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
+        ch.ivyteam.ivy.security.IPermission.DOCUMENT_WRITE);
+  }
+  
+  /**
+   * Check if current user has document of involved case write permission
+   * 
+   * @return True : has task document of involved case write permission, False : do not have this permission
+   */
+  public static boolean checkDocumentOfInvolvedCaseWritePermission() {
+    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
+        ch.ivyteam.ivy.security.IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
+  }
+  
 }
