@@ -769,8 +769,8 @@ Pt0 f46 1 384 64 #addKink
 Pt0 f46 0 0.6515872258938749 0 0 #arcLabel
 Pt0 f31 outLink DefaultLoginPage.ivp #txt
 Pt0 f31 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f31 inParamDecl '<java.lang.String requestedPage> param;' #txt
-Pt0 f31 inParamTable 'out.callbackUrl=param.#requestedPage is initialized ? param.requestedPage : null;
+Pt0 f31 inParamDecl '<java.lang.String originalUrl> param;' #txt
+Pt0 f31 inParamTable 'out.callbackUrl=param.#originalUrl is initialized ? param.originalUrl : null;
 ' #txt
 Pt0 f31 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
