@@ -27,7 +27,8 @@
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/downloadFile')} #{document.name}" />
             </p:commandLink>
             <p:commandLink id="delete-file" actionListener="#{logic.setDocumentToDelete(document.name)}"
-              styleClass="fa fa-trash-o fa-lg Fright" oncomplete="PF('document-deletion-dialog').show()">
+              styleClass="fa fa-trash-o fa-lg Fright" oncomplete="PF('document-deletion-dialog').show()"
+              rendered="#{data.canUploadDeleteDocument}" >
               <p:tooltip for="delete-file"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
             </p:commandLink>
@@ -36,7 +37,7 @@
       </h:panelGroup>
     </div>
     <h:panelGroup layout="block" styleClass="grid-item-footer">
-      <p:commandLink id="add-document-command" process="@this" oncomplete="PF('document-upload-dialog').show()">
+      <p:commandLink id="add-document-command" process="@this" oncomplete="PF('document-upload-dialog').show()" rendered="#{data.canUploadDeleteDocument}">
         <i class="fa fa-plus-circle grid-item-footer-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
       </p:commandLink>

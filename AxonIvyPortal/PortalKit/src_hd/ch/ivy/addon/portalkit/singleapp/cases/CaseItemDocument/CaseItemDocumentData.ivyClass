@@ -24,3 +24,5 @@ uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus
 uploadDocumentCheckStatus PERSISTENT #fieldModifier
 uploadDocumentCheckMessage String #field
 uploadDocumentCheckMessage PERSISTENT #fieldModifier
+canUploadDeleteDocument Boolean #field
+canUploadDeleteDocument PERSISTENT #fieldModifier

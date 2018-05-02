@@ -570,13 +570,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
                 for (ICase iCase : cases) {
                   IvyCase ivyCase = transformToIvyCase(iCase);
-                  ivyCase.setCanDestroy(SessionUtil.doesUserHavePermission(iCase.getApplication(),
-                      caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_DESTROY));
-                  ivyCase.setCanChangeDescription(SessionUtil.doesUserHavePermission(iCase.getApplication(),
-                      caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_WRITE_DESCRIPTION));
-                  ivyCase.setCanChangeName(SessionUtil.doesUserHavePermission(iCase.getApplication(),
-                      caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_WRITE_NAME));
-                  ivyCase.setCanUploadDeleteDocument(checkCanUserUploadDeleteDocument(caseSearchCriteria, iCase));
+                  checkPermission(caseSearchCriteria, iCase, ivyCase);
                   ivyCases.add(ivyCase);
                 }
 
@@ -585,6 +579,16 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     } catch (Exception e) {
       throw new WSException(10002, e);
     }
+  }
+
+  private void checkPermission(CaseSearchCriteria caseSearchCriteria, ICase iCase, IvyCase ivyCase) {
+    ivyCase.setCanDestroy(SessionUtil.doesUserHavePermission(iCase.getApplication(),
+        caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_DESTROY));
+    ivyCase.setCanChangeDescription(SessionUtil.doesUserHavePermission(iCase.getApplication(),
+        caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_WRITE_DESCRIPTION));
+    ivyCase.setCanChangeName(SessionUtil.doesUserHavePermission(iCase.getApplication(),
+        caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_WRITE_NAME));
+    ivyCase.setCanUploadDeleteDocument(checkCanUserUploadDeleteDocument(caseSearchCriteria, iCase));
   }
 
   private boolean checkCanUserUploadDeleteDocument(CaseSearchCriteria caseSearchCriteria, ICase iCase) {

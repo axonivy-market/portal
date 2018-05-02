@@ -1,5 +1,5 @@
 [Ivy]
-153A79700C35BE80 3.20 #module
+153A79700C35BE80 3.23 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemDocumentProcess Big #zClass
 Cs0 RD #cInfo
@@ -25,7 +25,6 @@ Cs0 @PushWFArc f23 '' #zField
 Cs0 @PushWFArc f5 '' #zField
 Cs0 @RichDialogProcessEnd f37 '' #zField
 Cs0 @GridStep f39 '' #zField
-Cs0 @PushWFArc f41 '' #zField
 Cs0 @RichDialogMethodStart f8 '' #zField
 Cs0 @RichDialogProcessEnd f9 '' #zField
 Cs0 @GridStep f13 '' #zField
@@ -62,6 +61,9 @@ Cs0 @PushWFArc f44 '' #zField
 Cs0 @GridStep f62 '' #zField
 Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f2 '' #zField
+Cs0 @GridStep f46 '' #zField
+Cs0 @PushWFArc f47 '' #zField
+Cs0 @PushWFArc f41 '' #zField
 >Proto Cs0 Cs0 CaseItemDocumentProcess #zField
 Cs0 f0 guid 1533610171B77F44 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
@@ -178,7 +180,7 @@ Cs0 f23 1440 107 1440 180 #arcP
 Cs0 f5 expr out #txt
 Cs0 f5 1440 204 1440 213 #arcP
 Cs0 f37 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f37 85 301 22 22 14 0 #rect
+Cs0 f37 85 317 22 22 14 0 #rect
 Cs0 f37 @|RichDialogProcessEndIcon #fIcon
 Cs0 f39 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData out;
 ' #txt
@@ -201,8 +203,6 @@ Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f39 78 180 36 24 4 18 #rect
 Cs0 f39 @|StepIcon #fIcon
-Cs0 f41 expr out #txt
-Cs0 f41 96 204 96 301 #arcP
 Cs0 f8 guid 153A7A3758776085 #txt
 Cs0 f8 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f8 method downloadDocument(String) #txt
@@ -551,6 +551,27 @@ Cs0 f45 1 720 160 #addKink
 Cs0 f45 0 0.5629581565438773 0 -12 #arcLabel
 Cs0 f2 expr out #txt
 Cs0 f2 720 273 720 460 #arcP
+Cs0 f46 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData out;
+' #txt
+Cs0 f46 actionTable 'out=in;
+' #txt
+Cs0 f46 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+in.canUploadDeleteDocument = PermissionUtils.checkDocumentWritePermission() || PermissionUtils.checkDocumentOfInvolvedCaseWritePermission();' #txt
+Cs0 f46 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
+Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check&#xD;
+permission</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f46 40 250 112 44 -31 -16 #rect
+Cs0 f46 @|StepIcon #fIcon
+Cs0 f47 expr out #txt
+Cs0 f47 96 204 96 250 #arcP
+Cs0 f41 expr out #txt
+Cs0 f41 96 294 96 317 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -559,8 +580,6 @@ Cs0 f3 mainOut f23 tail #connect
 Cs0 f23 head f6 mainIn #connect
 Cs0 f6 mainOut f5 tail #connect
 Cs0 f5 head f4 mainIn #connect
-Cs0 f39 mainOut f41 tail #connect
-Cs0 f41 head f37 mainIn #connect
 Cs0 f8 mainOut f14 tail #connect
 Cs0 f14 head f13 mainIn #connect
 Cs0 f13 mainOut f15 tail #connect
@@ -601,3 +620,7 @@ Cs0 f29 out f45 tail #connect
 Cs0 f45 head f62 mainIn #connect
 Cs0 f62 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
+Cs0 f39 mainOut f47 tail #connect
+Cs0 f47 head f46 mainIn #connect
+Cs0 f46 mainOut f41 tail #connect
+Cs0 f41 head f37 mainIn #connect
