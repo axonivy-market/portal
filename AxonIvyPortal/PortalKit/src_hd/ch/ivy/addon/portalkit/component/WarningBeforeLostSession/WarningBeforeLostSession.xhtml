@@ -33,13 +33,16 @@
       onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeout-dialog').show()" />
   </h:form>
   <script type="text/javascript">
+      var sessionCounterCookieName = 'ch.ivy.addon.portal.SessionCounter';
+      var sessionCounterUpdatedOnCookieName = 'ch.ivy.addon.portal.SessionCounterUpdatedOn';
+      var isLogOutCookieName = 'ch.ivy.addon.portal.IsLogout';
       var timeout = "#{cc.attrs.clientSideTimeOut}";
       var timeOutSeconds = timeout/1000;
-	  document.cookie = createCookie('SessionCounter',timeOutSeconds);
+	  setCookie(sessionCounterCookieName,timeOutSeconds);
       var warningDialogShow = false;
       var logOutCalled = false;
       var intervalCheckSessionTimeout;
-	  document.cookie = createCookie('isLogout',false);
+	  setCookie(isLogOutCookieName,false);
       
       $(function() { 
         intervalCheckSessionTimeout = setInterval(TimerDecrement, 1000); // Call Every Second
@@ -53,33 +56,33 @@
       
       function resetCounterAndTimeout(){
         if(warningDialogShow == false){
-          document.cookie = createCookie('SessionCounterUpdatedOn',null);
+          setCookie(sessionCounterUpdatedOnCookieName,null);
           timeOutSeconds = timeout/1000;
-          document.cookie = createCookie('SessionCounter',timeOutSeconds);
+          setCookie(sessionCounterCookieName,timeOutSeconds);
         }
       }
 
       function TimerDecrement() {
-        var lastUpdated = getCookie('SessionCounterUpdatedOn'), now = new Date(), shouldCheck = false;
+        var lastUpdated = getCookie(sessionCounterUpdatedOnCookieName), now = new Date(), shouldCheck = false;
         if (lastUpdated == 'null') {
-            document.cookie = createCookie('SessionCounterUpdatedOn', now);
+            setCookie(sessionCounterUpdatedOnCookieName, now);
         } else if (now.getTime() - new Date(lastUpdated).getTime() >= 1000) {
-            document.cookie = createCookie('SessionCounterUpdatedOn', now);
+            setCookie(sessionCounterUpdatedOnCookieName, now);
             shouldCheck = true;
         }
         
         if (shouldCheck) {
             if (timeOutSeconds > 0) {
               
-              if (parseInt((getCookie('SessionCounter')), 10) > 0) {
-                timeOutSeconds = parseInt(getCookie('SessionCounter'), 10);
+              if (parseInt((getCookie(sessionCounterCookieName)), 10) > 0) {
+                timeOutSeconds = parseInt(getCookie(sessionCounterCookieName), 10);
               }
               timeOutSeconds--;
-              document.cookie = createCookie('SessionCounter',timeOutSeconds);
+              setCookie(sessionCounterCookieName,timeOutSeconds);
               
             }  else {
-                if (getCookie('isLogout') == "false") {
-				  document.cookie = createCookie('isLogout',true);
+                if (getCookie(isLogOutCookieName) == "false") {
+				  setCookie(isLogOutCookieName,true);
                   logoutAndShowDialog();
                 } else {
                   PF('timeout-warning-dialog').hide();
@@ -88,7 +91,7 @@
                 } 
             }
         } else {
-            timeOutSeconds = parseInt(getCookie('SessionCounter'), 10);
+            timeOutSeconds = parseInt(getCookie(sessionCounterCookieName), 10);
         }
         
         if (timeOutSeconds &lt; 60){
