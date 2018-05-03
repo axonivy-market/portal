@@ -26,6 +26,8 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[id$='user-full-name:user']";
   private static final String VIEW_NOTE_DIALOG_ID =
       "case-widget:case-list-scroller:0:case-item:history:view-note-dialog";
+  private static final String UPLOAD_DOCUMENT_BUTTON_ID = "case-widget:case-list-scroller:0:case-item:document:add-document-command";
+  private static final String DELETE_DOCUMENT_BUTTON_ID = "case-widget:case-list-scroller:0:case-item:document:document-list:0:delete-file";
   private WebElement caseItem;
 
   @Override
@@ -326,6 +328,16 @@ public class CaseDetailsPage extends TemplatePage {
     }
     //Wait 2 seconds for file uploaded, currently haven't found solution to check when the file upload finish
     Sleeper.sleepTight(5000);
+  }
+  
+  public boolean isUploadDocumentButtonPresented() {
+    WebElement uploadDocumentButton = findElementById(UPLOAD_DOCUMENT_BUTTON_ID);
+    return uploadDocumentButton.isDisplayed();
+  }
+  
+  public boolean isDeleteDocumentButtonPresented() {
+    WebElement deleteDocumentButton = findElementById(DELETE_DOCUMENT_BUTTON_ID);
+    return deleteDocumentButton.isDisplayed();
   }
   
 }

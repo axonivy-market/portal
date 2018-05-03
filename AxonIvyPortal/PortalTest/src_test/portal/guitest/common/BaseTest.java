@@ -50,6 +50,7 @@ public class BaseTest extends SeleneseTestBase {
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
   protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "portalExamples/1624D1F5CBEA5332/createInvestmentRequest.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
+  protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
@@ -147,6 +148,16 @@ public class BaseTest extends SeleneseTestBase {
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
   
+  public void denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser() {
+    String denyDocumentOfInvolvedCaseWritePemissionURL = "portalKitTestHelper/14DE09882B540AD5/denyDocumentOfInvolvedCaseWritePemission.ivp";
+    redirectToRelativeLink(denyDocumentOfInvolvedCaseWritePemissionURL);
+  }
+  
+  public void grantDocumentOfInvolvedCaseWritePemissionToCurrentUser() {
+    String grantDocumentOfInvolvedCaseWritePemissionURL = "portalKitTestHelper/14DE09882B540AD5/grantDocumentOfInvolvedCaseWritePemission.ivp";
+    redirectToRelativeLink(grantDocumentOfInvolvedCaseWritePemissionURL);
+  }
+  
   public void cleanUpGlobalVariables(){
     String cleanUpURL = "portalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";
     redirectToRelativeLink(cleanUpURL);
@@ -155,5 +166,5 @@ public class BaseTest extends SeleneseTestBase {
   public void refreshPage(){
     browser.getDriver().navigate().refresh();
   }
-
+  
 }
