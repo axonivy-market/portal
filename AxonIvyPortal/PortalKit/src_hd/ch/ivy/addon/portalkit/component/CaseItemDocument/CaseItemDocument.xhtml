@@ -14,10 +14,10 @@
   <c:set value="#{cc.attrs.case}" var="case" />
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
   
-  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-document-column #{cc.attrs.styleClass}">
+  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-document-column #{cc.attrs.styleClass}" >
     <p:scrollPanel styleClass="case-details-document-scrollpanel" mode="native" id="case-details-documents">
-      <ui:repeat var="document" value="#{data.documents}" varStatus="status">
-      	<h:form>
+      <ui:repeat var="document" value="#{data.documents}" varStatus="status" id="document-list" >
+      	<h:form prependId="false">
         <h:panelGroup layout="block" rendered="#{document ne null}"
           styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
           <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command">
