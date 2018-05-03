@@ -107,6 +107,14 @@ public class AdminSettingsPage extends TemplatePage {
     closeInformConfigDialog();
   }
   
+  public void setHideUploadDocumentForDoneCase(){
+    openSettingTab();
+    clickAddNewGlobalVariable();
+    addGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true");
+    closeAdminSettingDialog();
+    closeInformConfigDialog();
+  }
+  
   public boolean isWarningDialogShowWhenTimeoutIsLosing(){
     waitForElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"), true, 90);
     return isElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"));
