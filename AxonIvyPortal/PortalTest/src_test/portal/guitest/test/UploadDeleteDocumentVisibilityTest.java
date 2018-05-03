@@ -36,7 +36,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   }
 
   @Test
-  public void testHdieUploadDeleteDocumentWhenNotHasDocumentOfInvolvedCaseWritePemission() {
+  public void testHideUploadDeleteDocumentWhenNotHasDocumentOfInvolvedCaseWritePemission() {
     initHomePage(TestAccount.DEMO_USER);
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     casePage = homePage.openCaseList();
@@ -47,7 +47,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
   @Test
   public void testSettingHideUploadDeleteDocumentForDoneCase() {
-    initHomePage(TestAccount.DEMO_USER);
+    initHomePage(TestAccount.ADMIN_USER);
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.setHideUploadDocumentForDoneCase();
     casePage = homePage.openCaseList();
@@ -57,8 +57,9 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   }
   
   private void createDoneCaseWithOneTaskOneDocument() {
-    navigateToUrl(createTestingCaseContainOneTask);
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    initHomePage(TestAccount.DEMO_USER);
+    navigateToUrl(createTestingCaseContainOneTask);
     initHomePage(TestAccount.DEMO_USER);
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
