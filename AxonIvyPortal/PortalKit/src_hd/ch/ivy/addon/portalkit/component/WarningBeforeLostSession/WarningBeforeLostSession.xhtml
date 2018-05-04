@@ -8,13 +8,13 @@
   <cc:attribute name="clientSideTimeOut" />
 </cc:interface>
 <cc:implementation>
-
+  <h:outputScript library="js" name="SessionWarning.js" />
   <p:confirmDialog id="timeout-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
     widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
       styleClass="" actionListener="#{logic.extendSession}"
-      oncomplete="hideWarningDialog();resetCounterAndTimeout();" />
+      oncomplete="PortalSessionWarning.hideWarningDialog();PortalSessionWarning.resetCounterAndTimeout();" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
       styleClass="portal-cancel-button" actionListener="#{logic.logout}" oncomplete="returnHomePage()" />
   </p:confirmDialog>
@@ -33,92 +33,9 @@
       onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeout-dialog').show()" />
   </h:form>
   <script type="text/javascript">
-      var sessionCounterCookieName = 'ch.ivy.addon.portal.SessionCounter';
-      var sessionCounterUpdatedOnCookieName = 'ch.ivy.addon.portal.SessionCounterUpdatedOn';
-      var isLogOutCookieName = 'ch.ivy.addon.portal.IsLogout';
-      var timeout = "#{cc.attrs.clientSideTimeOut}";
-      var timeOutSeconds = timeout/1000;
-	  setCookie(sessionCounterCookieName,timeOutSeconds);
-      var warningDialogShow = false;
-      var logOutCalled = false;
-      var intervalCheckSessionTimeout;
-	  setCookie(isLogOutCookieName,false);
-      
       $(function() { 
-        intervalCheckSessionTimeout = setInterval(TimerDecrement, 1000); // Call Every Second
-        window.onload = resetCounterAndTimeout;
-        document.onkeypress = resetCounterAndTimeout;
-        document.onclick = resetCounterAndTimeout;
-        document.onmousedown = resetCounterAndTimeout;
-        document.ontouchstart = resetCounterAndTimeout;
-        document.onscroll = resetCounterAndTimeout;
+        PortalSessionWarning.init(#{cc.attrs.clientSideTimeOut});
       });
-      
-      function resetCounterAndTimeout(){
-        if(warningDialogShow == false){
-          setCookie(sessionCounterUpdatedOnCookieName,null);
-          timeOutSeconds = timeout/1000;
-          setCookie(sessionCounterCookieName,timeOutSeconds);
-        }
-      }
-
-      function TimerDecrement() {
-        var lastUpdated = getCookie(sessionCounterUpdatedOnCookieName), now = new Date(), shouldCheck = false;
-        if (lastUpdated == 'null') {
-            setCookie(sessionCounterUpdatedOnCookieName, now);
-        } else if (now.getTime() - new Date(lastUpdated).getTime() >= 1000) {
-            setCookie(sessionCounterUpdatedOnCookieName, now);
-            shouldCheck = true;
-        }
-        
-        if (shouldCheck) {
-            if (timeOutSeconds > 0) {
-              
-              if (parseInt((getCookie(sessionCounterCookieName)), 10) > 0) {
-                timeOutSeconds = parseInt(getCookie(sessionCounterCookieName), 10);
-              }
-              timeOutSeconds--;
-              setCookie(sessionCounterCookieName,timeOutSeconds);
-              
-            }  else {
-                if (getCookie(isLogOutCookieName) == "false") {
-				  setCookie(isLogOutCookieName,true);
-                  logoutAndShowDialog();
-                } else {
-                  PF('timeout-warning-dialog').hide();
-                  PF('timeout-dialog').show();
-                  clearInterval(intervalCheckSessionTimeout);
-                } 
-            }
-        } else {
-            timeOutSeconds = parseInt(getCookie(sessionCounterCookieName), 10);
-        }
-        
-        if (timeOutSeconds &lt; 60){
-          if(warningDialogShow == false){
-         	warningDialogShow = true;
-            PF('timeout-warning-dialog').show();
-          }
-        } else {
-          hideWarningDialog();
-        }
-
-      }
-      
-      function hideWarningDialog(){
-        warningDialogShow = false;
-        PF('timeout-warning-dialog').hide();
-      }
-      
-      function createCookie(name,value,days) {
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime()+(days*24*60*60*1000));
-            var expires = "; expires="+date.toGMTString();
-        }
-        else var expires = "";
-        document.cookie = name+"="+value+expires+"; path=/";
-      }
     </script>
 
 </cc:implementation>
