@@ -45,6 +45,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     createCaseAndUploadDocumentByUser(TestAccount.ADMIN_USER);
     
     taskWidgetPage = caseDetailsPage.openTasksOfCasePage(0);
+    taskWidgetPage.filterTasksBy("SupportTicket");
     taskWidgetPage.startTaskWithoutUI(0);
 
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
