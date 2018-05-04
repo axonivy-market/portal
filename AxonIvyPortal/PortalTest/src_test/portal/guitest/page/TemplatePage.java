@@ -6,8 +6,12 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.base.Predicate;
 
 import portal.guitest.common.UrlHelpers;
 import ch.xpertline.base.pages.AbstractPage;
@@ -19,6 +23,10 @@ public abstract class TemplatePage extends AbstractPage {
   protected static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
   public TemplatePage() {
+    waitForLoadedLocatorDisplayed();
+  }
+
+  protected void waitForLoadedLocatorDisplayed() {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
     String engineUrl = System.getProperty("engineUrl");
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
@@ -26,6 +34,26 @@ public abstract class TemplatePage extends AbstractPage {
     } else {
         waitForElementDisplayed(getLoadedLocator(), true, 30L);
     }
+  }
+
+  protected void ensureNoBackgroundRequest() {
+    ensureNoBackgroundRequest(500, 30);
+  }
+
+  protected void ensureNoBackgroundRequest(int minMilliSeconds, int timeOutInSeconds) {
+    WebDriverWait wait = new WebDriverWait(getDriver(), timeOutInSeconds, 200);
+    final long startTime = System.currentTimeMillis();
+    Predicate<WebDriver> myPredicate = webDriver -> {
+      if (System.currentTimeMillis() - startTime < minMilliSeconds) {
+        return false;
+      }
+      Object ajaxQueueIsEmpty = ((JavascriptExecutor)getDriver()).executeScript("return PrimeFaces.ajax.Queue.isEmpty()");
+      if (Boolean.TRUE.toString().equalsIgnoreCase(String.valueOf(ajaxQueueIsEmpty))) {
+        return true;
+      }
+      return false;
+    };
+    wait.until(myPredicate);
   }
 
   @Override
