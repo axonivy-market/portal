@@ -8,7 +8,7 @@
   <cc:attribute name="clientSideTimeOut" />
 </cc:interface>
 <cc:implementation>
-  <h:outputScript library="js" name="SessionWarning.js" />
+  <h:outputScript library="js" name="session-warning.js" />
   <p:confirmDialog id="timeout-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
     widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
