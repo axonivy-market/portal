@@ -31,12 +31,8 @@ public class TaskWidgetPage extends TemplatePage {
   public void expand() {
     WebElement fullModeButton = findElementById("task-widget:task-list-link:task-list-link");
     fullModeButton.click();
-    String engineUrl = System.getProperty("engineUrl");
-    if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-      Sleeper.sleepTight(7000);
-    } else {
-      Sleeper.sleepTight(5000);
-    }
+    ensureNoBackgroundRequest();
+    waitForLoadedLocatorDisplayed();
   }
 
   public void openTaskDetails(int index) {
