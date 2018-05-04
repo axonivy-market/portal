@@ -48,7 +48,6 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     taskWidgetPage.startTaskWithoutUI(0);
 
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    initHomePage(TestAccount.ADMIN_USER);
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.setHideUploadDocumentForDoneCase();
 
@@ -61,13 +60,12 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   
   private void createCaseAndUploadDocumentByUser(TestAccount user) {
     createTestingCaseContainOneTaskByUser(user);
-    uploadDocumentToTestingCaseByUser(user);
+    uploadDocumentToTestingCaseByUser();
   }
 
-  private void uploadDocumentToTestingCaseByUser(TestAccount user) {
+  private void uploadDocumentToTestingCaseByUser() {
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    initHomePage(user);
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
