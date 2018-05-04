@@ -103,6 +103,7 @@ public class TaskWidgetPage extends TemplatePage {
   
   public void filterTasksInExpendedModeBy(String keyword) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
+    keywordFilter.clear();
     keywordFilter.sendKeys(keyword);
     Sleeper.sleepTight(2000);
     waitAjaxIndicatorDisappear();
@@ -145,8 +146,9 @@ public class TaskWidgetPage extends TemplatePage {
   
   public boolean isTaskStartEnabled(int taskId) {
     String startCommandButton =
-        String.format("task-widget:task-list-scroller:0:task-item:task-action:task-start-command", taskId);
-    return isElementEnabled(By.id(startCommandButton));
+        String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-start-command", taskId);
+    WebElement element = findElementById(startCommandButton);
+    return !element.getAttribute("class").contains("ui-state-disabled");
   }
 
   public TaskState getTaskState(int taskId) {
