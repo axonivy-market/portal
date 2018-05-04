@@ -23,16 +23,16 @@ public abstract class TemplatePage extends AbstractPage {
   protected static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
   public TemplatePage() {
-    waitForLoadedLocatorDisplayed();
+    waitForLocatorDisplayed(getLoadedLocator());
   }
 
-  protected void waitForLoadedLocatorDisplayed() {
+  protected void waitForLocatorDisplayed(String locator) {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
     String engineUrl = System.getProperty("engineUrl");
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-        waitForElementDisplayed(getLoadedLocator(), true, 300L);
+        waitForElementDisplayed(locator, true, 300L);
     } else {
-        waitForElementDisplayed(getLoadedLocator(), true, 30L);
+        waitForElementDisplayed(locator, true, 30L);
     }
   }
 
