@@ -92,20 +92,18 @@ public class TaskMenuBean implements Serializable {
     }
   }
 
-  public void onNodeCollapse(@SuppressWarnings("unused") NodeCollapseEvent event) {
+  public void onNodeCollapse(NodeCollapseEvent event) {
 
   }
 
-  public void onNodeSelect(@SuppressWarnings("unused") NodeSelectEvent event) {
+  public void onNodeSelect(NodeSelectEvent event) {
 
   }
 
   private DefaultTreeNode buildPersonalTaskTree(List<CategoryData> myTaskCategories, String menuState) {
     List<Object> params = Arrays.asList(Ivy.session().getSessionUserName());
     String personalTaskNodeName = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalTaskMenu/PersonalTasks", params);
-    DefaultTreeNode myTaskNode =
-        buildTaskTree(personalTaskNodeName, myTaskCategories, TreeNodeType.TASKS_MY_TASKS, menuState);
-    return myTaskNode;
+    return buildTaskTree(personalTaskNodeName, myTaskCategories, TreeNodeType.TASKS_MY_TASKS, menuState);
   }
 
   private DefaultTreeNode buildGroupTaskTree(List<CategoryData> groupTaskCategories, String menuState) {
@@ -118,8 +116,8 @@ public class TaskMenuBean implements Serializable {
 
   private DefaultTreeNode buildUnassignedTaskTree(List<CategoryData> unassignedTaskCategories, String menuState) {
     DefaultTreeNode unassignedTasks =
-        buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/UNASSIGNED"),
-            unassignedTaskCategories, TreeNodeType.TASKS_UNASSIGNED_TASKS, menuState);
+        buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/UNASSIGNED"), unassignedTaskCategories,
+            TreeNodeType.TASKS_UNASSIGNED_TASKS, menuState);
     return unassignedTasks;
   }
 
