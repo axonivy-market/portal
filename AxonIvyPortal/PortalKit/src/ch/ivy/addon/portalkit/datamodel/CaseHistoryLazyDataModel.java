@@ -86,28 +86,11 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
     putCasesToNotDisplayedTaskMap(foundCases);
     List<RemoteCase> notDisplayedCases = new ArrayList<>();
     notDisplayedCases.addAll(notDisplayedCaseMap.values());
-    Optional<Comparator<? super RemoteCase>> comparator = getComparatorForSorting();
-    comparator.ifPresent(c -> notDisplayedCases.sort(c));
+    Optional<Comparator<? super RemoteCase>> comparators = getComparatorForSorting();
+    comparators.ifPresent(c -> notDisplayedCases.sort(c));
     List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
 
     storeDisplayedCases(notDisplayedCases);
-    return displayedCases;
-  }
-
-  private void initializedDataModel(CaseSearchCriteria criteria) {
-    data.clear();
-    displayedCaseMap.clear();
-    notDisplayedCaseMap.clear();
-    buildQueryToSearchCriteria();
-    setRowCount(getCaseCount(criteria));
-  }
-
-  private List<RemoteCase> getDisplayedCases(List<RemoteCase> notDisplayedCases, int pageSize) {
-    int displayedCaseCount = notDisplayedCases.size() > pageSize ? pageSize : notDisplayedCases.size();
-    List<RemoteCase> displayedCases = notDisplayedCases.subList(0, displayedCaseCount);
-    for (RemoteCase oneCase : displayedCases) {
-      notDisplayedCaseMap.remove(globalCaseId(oneCase));
-    }
     return displayedCases;
   }
 
@@ -122,11 +105,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
 
   @Override
   public void setRowIndex(int index) {
-    int rowIndex = index;
-    if (index >= data.size()) {
-      rowIndex = -1;
-    }
-    this.rowIndex = rowIndex;
+    this.rowIndex = index >= data.size() ? -1 : index;
   }
 
   @Override
@@ -172,6 +151,15 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
 
   public boolean isSortDescending() {
     return queryCriteria.isSortDescending();
+  }
+
+  private List<RemoteCase> getDisplayedCases(List<RemoteCase> notDisplayedCases, int pageSize) {
+    int displayedCaseCount = notDisplayedCases.size() > pageSize ? pageSize : notDisplayedCases.size();
+    List<RemoteCase> displayedCases = notDisplayedCases.subList(0, displayedCaseCount);
+    for (RemoteCase oneCase : displayedCases) {
+      notDisplayedCaseMap.remove(globalCaseId(oneCase));
+    }
+    return displayedCases;
   }
 
   private int getCaseCount(CaseSearchCriteria criteria) {
@@ -232,6 +220,14 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
     jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
     jsonQueryCriteria.setSortDescending(true);
     return jsonQueryCriteria;
+  }
+
+  private void initializedDataModel(CaseSearchCriteria criteria) {
+    data.clear();
+    displayedCaseMap.clear();
+    notDisplayedCaseMap.clear();
+    buildQueryToSearchCriteria();
+    setRowCount(getCaseCount(criteria));
   }
 
   private void buildQueryToSearchCriteria() {

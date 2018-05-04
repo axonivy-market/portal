@@ -30,8 +30,7 @@ public class SingleAppLibraryService extends AbstractLibraryService {
     IServer server = ServerFactory.getServer();
     IApplication app = server.getApplicationConfigurationManager().findApplication(appName);
     if (app != null) {
-      ILibrary library = app.findReleasedLibrary(libraryId);
-      return library;
+      return app.findReleasedLibrary(libraryId);
     }
     return null;
   }
