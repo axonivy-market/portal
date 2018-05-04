@@ -1,7 +1,6 @@
 package portal.guitest.test;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -11,6 +10,7 @@ import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CasePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
+import portal.guitest.page.TaskWidgetPage;
 
 public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
@@ -18,57 +18,65 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   private AdminSettingsPage adminSettingsPage;
   private CasePage casePage;
   private CaseDetailsPage caseDetailsPage;
+  private TaskWidgetPage taskWidgetPage;
 
-  @Override
-  @Before
-  public void setup() {
-    super.setup();
-    createDoneCaseWithOneTaskOneDocument();
-  }
-  
   @Test
   public void testShowUploadDeleteDocumentWhenHasDocumentOfInvolvedCaseWritePemission() {
-    initHomePage(TestAccount.DEMO_USER);
-    casePage = homePage.openCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    createCaseAndUploadDocumentByUser(TestAccount.DEMO_USER);
+    
     Assert.assertTrue(caseDetailsPage.isUploadDocumentButtonPresented());
     Assert.assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented());
   }
-
+  
   @Test
   public void testHideUploadDeleteDocumentWhenNotHasDocumentOfInvolvedCaseWritePemission() {
-    initHomePage(TestAccount.DEMO_USER);
+    createCaseAndUploadDocumentByUser(TestAccount.DEMO_USER);
+
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    
     Assert.assertFalse(caseDetailsPage.isUploadDocumentButtonPresented());
     Assert.assertFalse(caseDetailsPage.isDeleteDocumentButtonPresented());
   }
 
   @Test
   public void testSettingHideUploadDeleteDocumentForDoneCase() {
+    createCaseAndUploadDocumentByUser(TestAccount.ADMIN_USER);
+    
+    taskWidgetPage = caseDetailsPage.clickShowAllTasks();
+    taskWidgetPage.startTaskWithoutUI(0);
+
+    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     initHomePage(TestAccount.ADMIN_USER);
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.setHideUploadDocumentForDoneCase();
+
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    
     Assert.assertFalse(caseDetailsPage.isUploadDocumentButtonPresented());
     Assert.assertFalse(caseDetailsPage.isDeleteDocumentButtonPresented());
   }
   
-  private void createDoneCaseWithOneTaskOneDocument() {
+  private void createCaseAndUploadDocumentByUser(TestAccount user) {
+    createTestingCaseContainOneTaskByUser(user);
+    uploadDocumentToTestingCaseByUser(user);
+  }
+
+  private void uploadDocumentToTestingCaseByUser(TestAccount user) {
+    grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    initHomePage(TestAccount.DEMO_USER);
-    navigateToUrl(createTestingCaseContainOneTask);
-    initHomePage(TestAccount.DEMO_USER);
+    initHomePage(user);
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
-    finishCase();
   }
 
-  private void finishCase() {
-    homePage.getTaskWidget().startTask(0);
+  private void createTestingCaseContainOneTaskByUser(TestAccount user) {
+    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    initHomePage(user);
+    navigateToUrl(createTestingCaseContainOneTask);
   }
 
   private void initHomePage(TestAccount account) {
