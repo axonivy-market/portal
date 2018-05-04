@@ -331,13 +331,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public boolean isUploadDocumentButtonPresented() {
-    WebElement uploadDocumentButton = findElementById(UPLOAD_DOCUMENT_BUTTON_ID);
-    return uploadDocumentButton.isDisplayed();
+    return caseItem.findElements(By.id(UPLOAD_DOCUMENT_BUTTON_ID)).size() > 0;
   }
   
   public boolean isDeleteDocumentButtonPresented() {
-    WebElement deleteDocumentButton = findElementById(DELETE_DOCUMENT_BUTTON_ID);
-    return deleteDocumentButton.isDisplayed();
+    return caseItem.findElements(By.id(DELETE_DOCUMENT_BUTTON_ID)).size() > 0;
   }
   
 }

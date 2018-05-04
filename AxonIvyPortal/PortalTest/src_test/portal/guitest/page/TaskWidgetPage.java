@@ -488,4 +488,13 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement state = taskElement.findElement(By.cssSelector("*[id*='task-start-task-state']"));
     return state.getText().substring(state.getText().indexOf(" ") + 1);
   }
+  
+  public void startTaskWithoutUI(int index){
+    WebElement taskListElement = findElementById("task-widget:task-list-scroller");
+    if (taskListElement.getAttribute("class").contains("compact-mode")) {
+      findElementByCssSelector("*[id*='" + index + ":task-item']").click();
+    } else {
+      findElementByCssSelector("*[id$='" + index + ":task-item:task-info']").click();
+    }
+  }
 }
