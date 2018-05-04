@@ -28,11 +28,11 @@ public class TaskWidgetPage extends TemplatePage {
     return "id('task-widget:task-view')";
   }
 
-  public TaskWidgetPage expand() {
+  public void expand() {
     WebElement fullModeButton = findElementById("task-widget:task-list-link:task-list-link");
     fullModeButton.click();
     ensureNoBackgroundRequest();
-    return new TaskWidgetPage();
+    waitForLocatorDisplayed("id('task-widget:filter-save-action')");
   }
 
   public void openTaskDetails(int index) {
