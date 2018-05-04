@@ -670,7 +670,7 @@
 		<sect2>
 			<title>Migrate 7.1.0 to 7.2.0</title>
 			<para>
-					There are some changes (DefaultApplicationHomePage, DefaultLoginPagae) in PortalStart process of Portal Template. If you have customized this process in your project,
+					There are some changes (DefaultApplicationHomePage, DefaultLoginPage) in PortalStart process of Portal Template. If you have customized this process in your project,
 					please copy the new PortalStart from Portal Template to your project and re-apply your customization.
 			</para>
 		</sect2>
