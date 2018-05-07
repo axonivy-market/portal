@@ -1,0 +1,14 @@
+ApprovalFormData #class
+ch.ivy.gawfs.workflowExecution.ApprovalForm #namespace
+userTask gawfs.TaskDef #field
+userTask PERSISTENT #fieldModifier
+steps java.util.List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Integer #field
+actualStepIndex PERSISTENT #fieldModifier
+applicant ch.ivyteam.ivy.security.ISecurityMember #field
+applicant PERSISTENT #fieldModifier
+approvalResult gawfs.ApprovalTaskResult #field
+approvalResult PERSISTENT #fieldModifier
+rejectedReason String #field
+rejectedReason PERSISTENT #fieldModifier

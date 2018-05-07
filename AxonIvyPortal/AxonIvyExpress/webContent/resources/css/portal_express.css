@@ -1,6 +1,28 @@
+/* WORKFLOW DEFINITION */
 .process-property-container {
   width: 100%;
   border: none;
+}
+
+.process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
+  text-align: right;
+  padding-right: 40px;
+}
+
+.process-property-input-col .radio-group,
+.process-property-input-col .radio-group td {
+  width: 50%;
+}
+
+@media (max-width: 1365px) {
+  .process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
+    width: 21.3%;
+    padding-right: 20px;
+  }
+
+  .process-property-input-col .radio-group {
+    width: 100%;
+  }
 }
 
 .process-property-label-col {
@@ -13,12 +35,16 @@
 }
 
 .process-property-input-col {
-  width: 75%;
+  width: 71.5%;
   border: none !important;
 }
 
 .process-property-input {
   width: 98%;
+}
+
+.process-property-input.ui-inputfield.ui-inputtext {
+  width: 99.4%;
 }
 
 .process-flow-container {
@@ -32,10 +58,18 @@
   border: none;
 }
 
+.process-flow-field {
+  margin-top: 20px;
+}
+
 .dynamic-task-panel-grid {
   border: none;
   text-align: left;
   width: 100%;
+}
+
+.dynamic-task-panel-grid td:not(.dynamic-task-title-col) {
+  border: none !important;
 }
 
 .dynamic-task-title-col {
@@ -44,35 +78,69 @@
 }
 
 .dynamic-task-arrow {
-  border: none !important;
-  width: 15px;
   padding-top: 15px !important;
 }
 
-.dynamic-task-name-label-col, .dynamic-task-description-label-col {
-  width: 15%;
-  border: none !important;
-  padding-top: 15px !important;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) {
+  text-align: right;
 }
 
-.dynamic-task-name-input-col, .dynamic-task-description-input-col {
-  width: 35%;
-  border: none !important;
-  padding-top: 15px !important;
+.dynamic-task-panel-grid .first-col {
+  width: 30%;
 }
 
-.dynamic-task-name-input, .dynamic-task-description-input, .dynamic-task-actor-input {
-  width: 70%;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-inputfield.ui-inputtext {
+  width: 30rem;
 }
 
-.dynamic-task-name-input, .dynamic-task-actor-input {
-  margin-left: -11px;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-selectonemenu {
+  width: 24.3rem;
+}
+
+.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-outputlabel {
+  margin-right: 50px;
+}
+
+.dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
+  margin-right: 13.1rem;
+}
+
+@media (max-width: 1365px) {
+  .dynamic-task-panel-grid .first-col {
+    width: 45%;
+  }
+
+  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-inputfield.ui-inputtext {
+    width: 16rem;
+  }
+
+  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-selectonemenu {
+    width: 10rem;
+    min-width: 10rem !important;
+  }
+
+  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-outputlabel {
+    margin-right: 20px;
+  }
+
+  .dynamic-task-panel-grid .merged-col {
+    width: 100%;
+  }
+
+  .dynamic-task-panel-grid .merged-col .ui-inputfield.ui-spinner-input {
+    width: 16.2rem;
+  }
+
+  .dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
+    margin-right: 0;
+  }
 }
 
 .dynamic-task-action-container {
   border: none !important;
   text-align: left;
   width: 100%;
+  margin-top: 20px;
 }
 
 .dynamic-task-left-action {
@@ -89,6 +157,11 @@
 .applicant-field-container {
   width: 100%;
   border: none;
+}
+
+.applicant-label-field-col {
+  width: 2%;
+  border: none !important;
 }
 
 .applicant-field-col {
@@ -176,6 +249,7 @@
 
 .placement-form-element-remove-btn {
 	padding-right: 8px;
+	float: right;
 }
 
 .no-border {
@@ -184,11 +258,6 @@
 
 .vertical-align-middle {
 	vertical-align: middle;
-}
-
-.ui-panelgrid tbody tr td.form-definition-border-color,
-	.form-definition-border-color {
-	border: solid #656565 !important;
 }
 
 .create-input-field-panel-grid-column {
@@ -224,4 +293,244 @@
 
 .floatLeft {
 	float: left !important;
+}
+
+.floatRight {
+	float: right !important;
+}
+
+/* SELECT RESPONSIBLE DIALOG */
+
+.assignee-selection-panel,
+.assignee-selection-panel tbody tr td {
+  border: none !important;
+}
+
+.assignee-selection-panel .select-assignee .ui-autocomplete {
+  width: 100%;
+}
+
+.assignee-selection-panel .select-assignee .ui-autocomplete-input {
+  width: 92%;
+}
+
+.assignee-selection-panel .add-assignee-button {
+  float: right;
+  margin-top: 15px;
+}
+
+.assignee-selection-panel .selected-assignee-panel {
+  padding: .6em 0 !important;
+}
+
+.assignee-selection-panel .selected-assignee-panel .ui-fieldset-legend {
+  margin-left: 1em;
+}
+
+.assignee-selection-panel .selected-assignee-panel .assignee-selection {
+  width: 100%;
+  border: none !important;
+}
+
+.assignee-selection-panel .selected-assignee-panel .assignee-selection .ui-selectlistbox-filter-container {
+  padding-top: 0 !important;
+}
+
+.assignee-selection-panel .selected-assignee-panel .assignee-selection .ui-selectlistbox-filter-container .ui-icon-search {
+  top: 5px;
+}
+
+.assignee-selection-panel .assignee-name-col {
+  width: 90%;
+}
+
+.assignee-selection-panel .assignee-type-col .fa {
+  text-align: center;
+  width: 3rem;
+  font-size: 1.8rem;
+}
+
+.assignee-selection-panel .save-assignee-button {
+  margin-top: 10px;
+}
+
+/* FORM DEFINITION */
+.defined-task-container {
+  margin: 10px 0 20px 0;
+}
+
+.ui-widget.ui-button.defined-task-button {
+  width: 16rem;
+  height: 5rem !important;
+  border: solid 2px #afca05;
+  background-color: #ffffff;
+  margin-left: 20px;
+
+}
+
+.ui-widget.ui-button.defined-task-button span {
+  padding: 0 20px !important;
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform: translateY(20%);
+}
+
+.ui-widget.ui-button.defined-task-button:after {
+  display: inline-block;
+  content: "";
+  border-top: 3px solid #E0E0E0;
+  width: 2.2rem;
+  transform: translate(9.3rem, -2rem);
+}
+
+.ui-widget.ui-button.defined-task-button.active {
+  border: solid 2px #afca05;
+  background-color: #afca05 !important;
+  font-weight: bold;
+  opacity: .8 !important;
+}
+
+.ui-widget.ui-button.defined-task-button.active:after {
+  border-color: #afca05;
+}
+
+.defined-task-button-container:last-child .ui-widget.ui-button.defined-task-button:after {
+  border-color: transparent;
+  width: 0;
+}
+
+.ui-widget.ui-button.defined-task-button.ui-state-hover {
+  background-color: #afca05 !important;
+}
+
+.text-editor-send-email {
+  padding-left: 0px;
+}
+
+.form-elements-container {
+  margin: 20px 0;
+  border: none !important;
+  padding: 0;
+}
+
+.form-elements-container .ui-panelgrid-cell {
+  padding: 0;
+}
+
+.available-formelements-field {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.show-preview-button {
+  margin-bottom: 20px;
+  margin-right: 24px;
+}
+
+.create-element-button {
+  margin-bottom: 20px;
+}
+
+.ui-draggable:hover {
+  cursor: all-scroll;
+}
+
+.express-form-buttons-container {
+  margin-bottom: 20px;
+}
+
+.createTabsFieldset .ui-panelgrid {
+  border: none !important;
+}
+
+.selected-formelements-panel {
+  border: solid 3px #656565;
+}
+
+.selected-formelements-panel.hover-drop-section {
+  border: dashed #699924;
+  background-color: #edffd3 !important;
+}
+
+.form-definition-table {
+  border: solid 4px;
+  border-collapse: separate;
+  height: 100%;
+}
+
+.form-definition-table td.ui-panelgrid-cell {
+  padding: 10px;
+  height: 100%;
+}
+
+.form-definition-table tr:first-child td.ui-panelgrid-cell {
+  padding-bottom: 0;
+}
+
+.form-definition-table tr:last-child td.ui-panelgrid-cell {
+  padding-top: 0;
+}
+
+.form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:first-child{
+  padding-right: 0;
+}
+
+.form-definition-table .selected-formelements-panel {
+  border: dashed 2px #E0E0E0;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.form-definition-table .selected-formelements-panel.right-section .ui-outputpanel,
+.form-definition-table .selected-formelements-panel.left-section .ui-outputpanel {
+  height: 100%;
+}
+
+.form-definition-table .selected-formelements-panel .ui-datagrid {
+  background: transparent;
+}
+
+/* EMAIL */
+.text-editor-send-email {
+	padding-left: 0px;
+}
+
+.email-attachment .ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
+	float: right;
+}
+
+.email-attachment:before {
+  padding-right: 10px;
+}
+
+.email-attachment-upload-btn {
+	margin-right: -10px;
+	padding-bottom: 50px;
+	height: 80px;
+}
+
+/* REVIEW FORM */
+.review-content-title {
+	font-size: 1.8rem;
+	display: block;
+	margin-bottom: 20px;
+	color: black;
+}
+
+.finished-task-fieldset {
+	margin-bottom: 20px;
+}
+
+.finished-task-fieldset .pe-dynaform-grid {
+	margin-bottom: 20px;
+}
+
+/* DYNA FORM */
+.pe-dynaform-cell .ui-inputtextarea {
+	width: 90%;
+}
+
+.defined-task-button-container {
+	display: inline;
 }
