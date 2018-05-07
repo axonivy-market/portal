@@ -17,7 +17,7 @@
             <serviceClass>ch.ivy.ws.addon.TaskServiceService</serviceClass>
             <port>
                 <name>TaskServicePort</name>
-                <locationUri>http://localhost:8081/ivy/ws/designer/PortalConnector/1380566F9095B9C4</locationUri>
+                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
             </port>
         </service>
         <wsdlGeneratedInfo>
@@ -110,7 +110,7 @@ TaskServicePortfindTaskNotes=ch.ivy.ws.addon.FindTaskNotesResponseE</axisReturnT
             <serviceClass>ch.ivy.ws.addon.CaseServiceService</serviceClass>
             <port>
                 <name>CaseServicePort</name>
-                <locationUri>http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD8C8C617F9</locationUri>
+                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
             </port>
         </service>
         <wsdlGeneratedInfo>
