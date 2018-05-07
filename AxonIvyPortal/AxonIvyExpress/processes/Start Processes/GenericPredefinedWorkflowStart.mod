@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Aug 23 09:16:42 ICT 2017]
-15797DC22608DA55 3.20 #module
+15797DC22608DA55 3.23 #module
 >Proto >Proto Collection #zClass
 Gt0 GenericPredefinedWorkflowStart Big #zClass
 Gt0 B #cInfo
@@ -27,25 +26,26 @@ Gt0 @PushWFArc f1 '' #zField
 >Proto Gt0 Gt0 GenericPredefinedWorkflowStart #zField
 Gt0 f0 outLink GenericPredefinedProcessStart.ivp #txt
 Gt0 f0 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f0 inParamDecl '<java.lang.String workflowID> param;' #txt
-Gt0 f0 inParamTable 'out.workflowID=param.workflowID;
+Gt0 f0 inParamDecl '<java.lang.Integer actualStepIndex,java.lang.String workflowID> param;' #txt
+Gt0 f0 inParamTable 'out.actualStepIndex=param.actualStepIndex;
+out.workflowID=param.workflowID;
 ' #txt
 Gt0 f0 actionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
 ' #txt
 Gt0 f0 guid 15797DC2264C9526 #txt
 Gt0 f0 requestEnabled true #txt
 Gt0 f0 triggerEnabled false #txt
-Gt0 f0 callSignature GenericPredefinedProcessStart(String) #txt
+Gt0 f0 callSignature GenericPredefinedProcessStart(Integer,String) #txt
 Gt0 f0 persist false #txt
-Gt0 f0 startName 'GenericPredefinedProcessStart (Inputparam: WorkflowID e.g. ?workflowID=24)' #txt
+Gt0 f0 startName 'GenericPredefinedProcessStart (Inputparam: WorkflowID e.g. ?workflowID=24, actualStepIndex e.g. ?actualStepIndex=1)' #txt
 Gt0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=Workflow wurde angelegt
-TaskTriggered.NAM=Workflow wurde angelegt
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.EXROL=Everybody
+TaskTriggered.NAM=<%\=ivy.cms.co("/Dialogs/Tasks/CreateWorkflow/TaskName")%>
+TaskTriggered.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/CreateWorkflow/TaskDescription")%>' #txt
 Gt0 f0 caseData businessCase.attach=false #txt
 Gt0 f0 showInStartList 0 #txt
 Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -61,11 +61,12 @@ Gt0 f0 @C|.responsibility Everybody #txt
 Gt0 f0 81 49 30 30 -96 17 #rect
 Gt0 f0 @|StartRequestIcon #fIcon
 Gt0 f3 type gawfs.GenericPredefinedWorkflowStartData #txt
-Gt0 f3 processCall 'Functional Processes/executePredefinedWorkflow:call(String)' #txt
+Gt0 f3 processCall 'Functional Processes/executePredefinedWorkflow:call(Integer,String)' #txt
 Gt0 f3 doCall true #txt
-Gt0 f3 requestActionDecl '<java.lang.String workflowID> param;
+Gt0 f3 requestActionDecl '<java.lang.Integer actualStepIndex,java.lang.String workflowID> param;
 ' #txt
-Gt0 f3 requestMappingAction 'param.workflowID=in.workflowID;
+Gt0 f3 requestMappingAction 'param.actualStepIndex=in.actualStepIndex;
+param.workflowID=in.workflowID;
 ' #txt
 Gt0 f3 responseActionDecl 'gawfs.GenericPredefinedWorkflowStartData out;
 ' #txt
@@ -103,11 +104,11 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.DESC=Ein Prozess wurde bearbeitet
-TaskTriggered.NAM=Prozess bearbeitet 
-TaskTriggered.EXROL=Everybody' #txt
-Gt0 f6 caseData 'case.name=Workflow editieren
-case.description=Bearbeiten eines exitierenden Workflows
+TaskTriggered.EXROL=Everybody
+TaskTriggered.NAM=<%\=ivy.cms.co("/Dialogs/Tasks/EditWorkflow/TaskName")%>
+TaskTriggered.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/EditWorkflow/TaskDescription")%>' #txt
+Gt0 f6 caseData 'case.name=<%\=ivy.cms.co("/Dialogs/Cases/EditWorkflow/CaseName")%>
+case.description=<%\=ivy.cms.co("/Dialogs/Cases/EditWorkflow/CaseDescription")%>
 businessCase.attach=false' #txt
 Gt0 f6 wfuser 1 #txt
 Gt0 f6 showInStartList 0 #txt

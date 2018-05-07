@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
@@ -27,12 +26,10 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 
@@ -40,7 +37,7 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 @ViewScoped
 public class ProcessWidgetBean implements Serializable, Converter {
 
-  private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
+  
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private static final long serialVersionUID = -5889375917550618261L;
   private UserProcessService userProcessService;
@@ -178,26 +175,11 @@ public class ProcessWidgetBean implements Serializable, Converter {
         ExpressServiceRegistry.getProcessService().findAllOrderByName().stream()
             .filter(wf -> !isUserProcess(wf) && !isDefaultUserProcess(wf)).collect(Collectors.toList());
     for (ExpressProcess wf : workflows) {
-      if (canStartWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
+      if (PermissionUtils.canStartExpressWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
         workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf)));
       }
     }
     return workflow;
-  }
-
-  private boolean canStartWorkflow(ExpressProcess workflow) {
-    boolean isWorkflowAssignee = false;
-    ISecurityMember permittedRole =
-        Ivy.request().getApplication().getSecurityContext().findSecurityMember(workflow.getProcessPermission());
-    if (!Objects.isNull(permittedRole)) {
-      isWorkflowAssignee =
-          permittedRole.isUser() ? Ivy.session().canActAsUser((IUser) permittedRole) : Ivy.session().hasRole(
-              (IRole) permittedRole, false);
-    }
-    IUser owner = Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1));
-    return isWorkflowAssignee
-        || Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false)
-        || Ivy.session().canActAsUser(owner);
   }
 
   private String generateWorkflowStartLink(ExpressProcess wf) {

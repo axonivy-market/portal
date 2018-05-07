@@ -1,13 +1,17 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.util.List;
+
 public class ExpressProcess {
 
   private String id;
   private String processName;
   private String processDescription;
   private String processType;
-  private String processPermission;
+  private List<String> processPermissions;
   private String processOwner;
+  private boolean isUseDefaultUI;
+  private String processFolder;
 
   public String getId() {
     return id;
@@ -41,12 +45,12 @@ public class ExpressProcess {
     this.processType = processType;
   }
 
-  public String getProcessPermission() {
-    return processPermission;
+  public List<String> getProcessPermissions() {
+    return processPermissions;
   }
 
-  public void setProcessPermission(String processPermission) {
-    this.processPermission = processPermission;
+  public void setProcessPermissions(List<String> processPermissions) {
+    this.processPermissions = processPermissions;
   }
 
   public String getProcessOwner() {
@@ -55,6 +59,22 @@ public class ExpressProcess {
 
   public void setProcessOwner(String processOwner) {
     this.processOwner = processOwner;
+  }
+
+  public boolean isUseDefaultUI() {
+    return isUseDefaultUI;
+  }
+
+  public void setUseDefaultUI(boolean isUseDefaultUI) {
+    this.isUseDefaultUI = isUseDefaultUI;
+  }
+
+  public String getProcessFolder() {
+    return processFolder;
+  }
+
+  public void setProcessFolder(String processFolder) {
+    this.processFolder = processFolder;
   }
 
 }
