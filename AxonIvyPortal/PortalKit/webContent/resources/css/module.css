@@ -3299,76 +3299,62 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .process-chain .process-step {
-  width: 80px;
+  width: 14rem;
   height: 50px;
   display: inline-block;
   margin: -2px;
   text-align: center;
-  font-size: 11px;
+  font-size: 1.2rem;
 }
 
-.process-chain .process-step.current {
-  background-image: url("#{resource['images/processChain/processChain_current.png']}");
-  font-size: 12px;
-  font-weight: bold;
+.process-chain .process-step:not(:last-child) .step-count-container span:before {
+  display: inline-block;
+  content: "";
+  border-top: 3px solid #E0E0E0;
+  width: 9.2rem;
+  margin: 0 1rem;
+  transform: translate(3.2rem, 1rem);
+}
+
+.process-chain .process-step.visited .step-count-container span:before {
+  border-color: #afca05;
+}
+
+.process-chain .process-step.waiting .step-count-container {
+  border: solid 2px #afca05;
+  background-color: transparent;
+}
+
+.process-chain .process-step .step-count-container {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #afca05;
+  border: solid 2px transparent;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  margin: auto;
+}
+
+.process-chain .process-step:last-child .step-count-container {
+  line-height: 2.7;
 }
 
 .step-title {
-  margin-top: -1px;
+  margin-top: -20px;
+  margin-bottom: 10px;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 70px;
+  width: 100%;
 }
 
-.process-chain .process-step.current:first-child {
-  background-image: url("#{resource['images/processChain/processChain_current_first.png']}");
+.process-chain .process-step.current .step-title {
+  font-weight: bold;
 }
 
-.process-chain .process-step.current:last-child {
-  background-image: url("#{resource['images/processChain/processChain_current_last.png']}");
-}
-
-.process-chain .process-step.visited {
-  background-image: url("#{resource['images/processChain/processChain_visited2.png']}");
-}
-
-.process-chain .process-step.visited .step-title {
-  margin: 0 auto;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 60px;
-  line-height: 15px;
-}
-
-.process-chain .process-step.visited:first-child {
-  background-image: url("#{resource['images/processChain/processChain_visited_first2.png']}");
-}
-
-.process-chain .process-step.visited:last-child {
-  background-image: url("#{resource['images/processChain/processChain_visited_last.png']}");
-}
-
-.process-chain .process-step.waiting {
-  background-image: url("#{resource['images/processChain/processChain_waiting.png']}");
-}
-
-.process-chain .process-step.waiting .step-title {
-  margin: 0 auto;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 60px;
-  line-height: 15px;
-}
-
-.process-chain .process-step.waiting:last-child {
-  background-image: url("#{resource['images/processChain/processChain_waiting_last.png']}") !important;
-}
 /********************************** END PROCESS CHAIN **********************************/
 
 /********************************** ALL TASKS **********************************/
