@@ -1,0 +1,8 @@
+FinalReviewFormData #class
+ch.ivy.gawfs.workflowExecution.FinalReviewForm #namespace
+finishedTasks java.util.List<gawfs.TaskDef> #field
+finishedTasks PERSISTENT #fieldModifier
+steps java.util.List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Integer #field
+actualStepIndex PERSISTENT #fieldModifier

@@ -1,0 +1,4 @@
+UserTaskResult #class
+gawfs #namespace
+applicant gawfs.Applicant #field
+approvalResultList java.util.List<gawfs.ApprovalTaskResult> #field
