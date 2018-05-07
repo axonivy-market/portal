@@ -8,7 +8,9 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
@@ -307,11 +309,23 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
-    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:add-document-command", index)));
+    try{
+      click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:add-document-command", index)));
+    }
+    catch (UnhandledAlertException e) {
+      Alert alert = driver.switchTo().alert();
+      alert.accept();
+    }
     String uploadDialogId =
         String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-dialog-", index);
     waitForElementDisplayed(By.id(uploadDialogId), true);
-    click(By.className("ui-fileupload-choose"));
+    try{
+      click(By.className("ui-fileupload-choose"));
+    }
+    catch (UnhandledAlertException e) {
+      Alert alert = driver.switchTo().alert();
+      alert.accept();
+    }
     StringSelection ss = new StringSelection(pathToFile);
     Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
     Robot robot;
@@ -326,7 +340,7 @@ public class CaseDetailsPage extends TemplatePage {
     } catch (AWTException e) {
       e.printStackTrace();
     }
-    //Wait 2 seconds for file uploaded, currently haven't found solution to check when the file upload finish
+    //Wait 5 seconds for file uploaded, currently haven't found solution to check when the file upload finish
     Sleeper.sleepTight(5000);
   }
   
