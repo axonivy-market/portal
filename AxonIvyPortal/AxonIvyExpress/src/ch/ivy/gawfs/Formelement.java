@@ -1,6 +1,5 @@
 package ch.ivy.gawfs;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +9,8 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.gawfs.enums.FormElementType;
+
 @ManagedBean(name = "Formelement")
 @ViewScoped
 public class Formelement implements Serializable{
@@ -18,15 +19,15 @@ public class Formelement implements Serializable{
 
 	private static final long serialVersionUID = -4960948147758580124L;
 	
-	private String id;					//automatische Id
-	private String name;				//Formelementname
+	private String id;					//automatic Id
 	private String label;				//FormLabel
-	private Boolean required;			//Is the Field a reqired field?
-	private Integer intSetting;			//settting like number of rows or number of files
+	private Boolean required;			//Is the Field a required field?
+	private Integer intSetting;			//setting like number of rows or number of files
 	private List<FormelementOption> options;		//list of options for ManyCheckbox or OneMenu, but also allowed File-Formats
-	private String type;				//Formelement Typ	InputFieldText,	InputFieldDate, InputFieldNumber, InputTextArea, ManyCheckbox, OneRadio, FileUpload
+	private FormElementType type;				//Form element type
 	private List<String> optionsStr;	//String List representation of options
-	private transient Object value;        //Value of the Formelement, later Userinput
+	private int taskPosition;  //Position of the task which this element belonged to
+	private Object value;        //Value of the Formelement, later Userinput
 	
 	public List<String> getOptionsStr() {
 		this.optionsStr.clear();
@@ -75,27 +76,6 @@ public class Formelement implements Serializable{
 		this.id = id;
 	}
 
-	public Formelement(String id, String type, String name,
-			String label, Boolean required, Integer intSetting,
-			List<String> options) {
-		super();
-		this.id = id;
-		this.name = name;
-		setLabel(label);
-		this.required = required;
-		this.intSetting = intSetting;
-		this.type = type;
-		this.optionsStr = options;
-		this.options = new ArrayList<FormelementOption>();
-		
-		if (!(options == null)) {
-			for (String optionString : options) {
-				this.options.add(new FormelementOption(optionString));
-			}			
-		}
-
-	}
-
 	public String getId() {
 		return id;
 	}
@@ -104,26 +84,22 @@ public class Formelement implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getLabel() {
 		return label;
 	}
-
-	public void setLabel(String label) {
-		label = label.trim();
-		if(label.substring(label.length() - 1).equals(COLON)){
-			this.label = label;
+	
+	public String getDisplayLabel() {
+		String displayLabel = this.label.trim();
+		if(displayLabel.substring(displayLabel.length() - 1).equals(COLON)){
+			return displayLabel;
 		}else{
-			label +=COLON;
-			this.label = label;
+			displayLabel +=COLON;
+			return displayLabel;
 		}
+	}
+	
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public Boolean getRequired() {
@@ -142,11 +118,11 @@ public class Formelement implements Serializable{
 		this.intSetting = intSetting;
 	}
 
-	public String getType() {
+	public FormElementType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(FormElementType type) {
 		this.type = type;
 	}
 
@@ -187,11 +163,19 @@ public class Formelement implements Serializable{
 		}
 	}
 	
-	public void deleteOption(@SuppressWarnings("unused") FormelementOption option){
-		this.options.remove(this.options.size()-1);
+	public void deleteOption(FormelementOption option){
+		this.options.remove(option);
 	}
 	
-	public Object getValue() {
+	public int getTaskPosition() {
+    return taskPosition;
+  }
+
+  public void setTaskPosition(int taskPosition) {
+    this.taskPosition = taskPosition;
+  }
+
+  public Object getValue() {
     return value;
   }
 

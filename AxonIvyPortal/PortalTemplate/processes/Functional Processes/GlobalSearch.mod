@@ -300,7 +300,8 @@ Gh0 f17 actionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
 Gh0 f17 actionTable 'out=in;
 ' #txt
-Gh0 f17 actionCode 'import org.apache.commons.lang3.StringUtils;
+Gh0 f17 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
@@ -314,13 +315,10 @@ ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.requ
 String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (!StringUtils.isEmpty(expressStartLink)) {
 	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
+	String lowercaseKeyword = in.keyword.toLowerCase();
+
 	for (ExpressProcess wf : workflows) {
-		String lowercaseKeyword = in.keyword.toLowerCase();
-		if (wf.getProcessName().toLowerCase().contains(lowercaseKeyword) || wf.getProcessDescription().toLowerCase().contains(lowercaseKeyword)) {
-			IRole permittedRole = ivy.request.getApplication().getSecurityContext().findRole(wf.processPermission);
-			IUser owner = ivy.request.getApplication().getSecurityContext().findUser(wf.processOwner.substring(1));
-			
-			if (ivy.session.hasRole(permittedRole, false) || ivy.session.hasRole(ivy.request.getApplication().getSecurityContext().findRole("AXONIVY_PORTAL_ADMIN"), false) || ivy.session.canActAsUser(owner)) {
+		if ((wf.getProcessName().toLowerCase().contains(lowercaseKeyword) || wf.getProcessDescription().toLowerCase().contains(lowercaseKeyword)) && PermissionUtils.canStartExpressWorkflow(wf)) {
 				RemoteWebStartable workflowProcess = new RemoteWebStartable();
 				workflowProcess.setName(wf.processName);
 				workflowProcess.setDisplayName(wf.processName);
@@ -331,7 +329,7 @@ if (!StringUtils.isEmpty(expressStartLink)) {
 			}
 		}
 	}
-}
+
 in.webStartables.sort(new WebStartableNameComparator());' #txt
 Gh0 f17 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
