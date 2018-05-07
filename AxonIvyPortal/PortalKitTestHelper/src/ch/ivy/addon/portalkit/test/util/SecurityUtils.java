@@ -18,6 +18,7 @@ import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_SUBSTITUTE;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_ABSENCES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
+import static ch.ivyteam.ivy.security.IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,8 @@ public class SecurityUtils {
   TASK_WRITE_ACTIVATOR,
 
   TASK_RESET_OWN_WORKING_TASK,
+  
+  DOCUMENT_OF_INVOLVED_CASE_WRITE
 
   };
   private static final IPermission DEMO_DENIED_PERMISSIONS[] = {
@@ -86,7 +89,9 @@ public class SecurityUtils {
   };
   private static final IPermission DEMO_GRANTED_PERMISSIONS[] = {
 
-  TASK_WRITE_EXPIRY_TIMESTAMP
+  TASK_WRITE_EXPIRY_TIMESTAMP,
+  
+  DOCUMENT_OF_INVOLVED_CASE_WRITE
 
   };
 
