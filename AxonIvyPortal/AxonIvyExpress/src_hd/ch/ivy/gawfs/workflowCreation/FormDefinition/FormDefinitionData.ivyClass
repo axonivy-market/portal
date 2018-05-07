@@ -20,3 +20,7 @@ activeTab Integer #field
 activeTab PERSISTENT #fieldModifier
 dynaFormController ch.ivy.gawfs.DynaFormController #field
 dynaFormController PERSISTENT #fieldModifier
+activeTaskIndex Integer #field
+activeTaskIndex PERSISTENT #fieldModifier
+isAbleToExecute Boolean #field
+isAbleToExecute PERSISTENT #fieldModifier

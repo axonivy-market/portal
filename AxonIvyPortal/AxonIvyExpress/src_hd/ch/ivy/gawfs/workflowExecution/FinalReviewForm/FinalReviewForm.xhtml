@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+
+		<ui:composition template="/layouts/TaskTemplate.xhtml">
+		<ui:param name="caseId" value="#{ivy.case.id}" />
+		<ui:param name="task" value="#{ivy.task}" />
+		<ui:param name="steps"
+			value="#{data.steps}" />
+		<ui:param name="actualStepIndex"
+			value="#{data.actualStepIndex}" />
+		<ui:param name="isNotRequiredLogin" value="false" />
+		<ui:define name="title"></ui:define>
+		<ui:define name="taskForm">
+
+			<h:form id="form">
+				<ui:repeat var="wfTask" value="#{data.finishedTasks}">
+					<p:fieldset id="finished-task-fieldset" styleClass="finished-task-fieldset" toggleable="true" legend="#{ivy.cms.co('/Labels/Task')}: #{wfTask.subject}">
+						<p:outputLabel id="form-details-label" value="Form details" styleClass="review-content-title" />
+						<pe:dynaForm id="dynaForm"
+							value="#{wfTask.dynaFormController.model}"
+							var="dynaData" columnClasses="label-container, field-container"
+							styleClass="Wid100">
+	
+							<pe:dynaFormControl type="InputFieldText" for="inputFieldText">
+								<p:inputText id="inputFieldText" value="#{dynaData.value}"
+									required="#{dynaData.required}" readonly="true"/>
+							</pe:dynaFormControl>
+	
+							<pe:dynaFormControl type="InputFieldNumber" for="inputFieldNumber">
+								<p:spinner id="inputFieldNumber" value="#{dynaData.value}"
+									required="#{dynaData.required}" min="0" readonly="true" />
+							</pe:dynaFormControl>
+	
+							<pe:dynaFormControl type="InputFieldDate" for="inputFieldDate"
+								styleClass="calendar">
+								<p:calendar
+									locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" 
+									id="inputFieldDate" value="#{dynaData.value}"
+									required="#{dynaData.required}" readonly="true" showOn="false"/>
+							</pe:dynaFormControl>
+	
+							<pe:dynaFormControl type="InputTextArea" for="inputTextArea">
+								<p:inputTextarea id="inputTextArea" value="#{dynaData.value}"
+									required="#{dynaData.required}" rows="#{dynaData.intSetting}"
+									autoResize="false" disabled="true"/>
+							</pe:dynaFormControl>
+	
+							<pe:dynaFormControl type="ManyCheckbox" for="manyCheckbox">
+							
+								<p:dataList value="#{dynaData.value}" var="checkItem" type="definition" >
+							        <i class="fa fa-check-square-o" aria-hidden="true"></i> #{checkItem}
+							    </p:dataList>
+	
+							</pe:dynaFormControl>
+	
+							<pe:dynaFormControl type="OneRadio" for="oneRadio">
+								<p:dataList value="#{dynaData.value}" var="checkItem" type="definition" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
+							        <i class="fa fa-dot-circle-o" aria-hidden="true"></i> #{checkItem}
+							    </p:dataList>
+							</pe:dynaFormControl>
+							
+							<pe:dynaFormControl type="FileUpload" for="fileUpload">
+								<ic:ch.ivy.gawfs.component.CaseDocument uploadPossible="false"
+									fileLimit="#{dynaData.intSetting}" startMethod="start(#{dynaData.options})" 
+									allowFiletypes="#{dynaData.options}"/>
+							</pe:dynaFormControl>
+	
+							<pe:dynaFormControl type="Spacer" for="spacer">
+								<p:spacer width="50" height="16" id="spacer" />
+							</pe:dynaFormControl>
+						</pe:dynaForm>
+
+						<p:outputLabel id="form-approval-label" value="Approval result" styleClass="review-content-title" />
+						<p:dataTable id="approval-result-table" value="#{wfTask.approvalResultList}" var="approval">
+							<p:column sortBy="#{approval.taskName}">
+								<h:outputText value="#{approval.taskName}" />
+							</p:column>
+							<p:column sortBy="#{approval.applicantName}">
+								<h:outputText value="#{approval.applicantName}" />
+							</p:column>
+							<p:column sortBy="#{approval.approverName}">
+								<h:outputText value="#{approval.approverName}" />
+							</p:column>
+							<p:column sortBy="#{approval.rejectedReason}">
+								<h:outputText value="#{approval.rejectedReason}" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{approval.isApproved ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+				</ui:repeat>
+				<br/>
+				<h:panelGrid columns="2" styleClass="case-view-footer Wid100 u-no-border">
+					<!-- <h:panelGroup>
+						<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" update="form" icon="fa fa-undo"
+							actionListener="#{logic.cancel}" styleClass="buttonDelegate" />
+					</h:panelGroup> -->
+					<h:panelGroup layout="block" styleClass="TexAlRight">
+						<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFinalReview/noticed')}" update="form" icon="fa fa-check"
+							actionListener="#{logic.close}" styleClass="buttonDelegate"/>
+					</h:panelGroup>
+				</h:panelGrid>
+
+			</h:form>
+
+		</ui:define>
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="portal_express.css" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

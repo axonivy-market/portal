@@ -5,11 +5,11 @@ import gawfs.TaskDef;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.scripting.objects.List;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -103,7 +103,7 @@ public class Helper {
 			@Override
       public int compare(TaskDef t1, TaskDef t2) {
 				try {
-					return (t1.getCount().compareTo(t2.getCount()));
+					return (t1.getPosition().compareTo(t2.getPosition()));
 				} catch (Exception ex) {
 				  Ivy.log().error(ex);
 					return 0;
@@ -149,4 +149,23 @@ public class Helper {
 			second.getDisplayName().toLowerCase()));
 		return result;
 	}
+
+	public static java.util.List<IRole> filterRoles(java.util.List<IRole> roles, String query) {
+    if (StringUtils.isEmpty(query)) {
+      return roles;
+    }
+
+    java.util.List<IRole> result = new ArrayList<>();
+    for (IRole role : roles) {
+      if (role.getDisplayName().toLowerCase().contains(query.toLowerCase())
+        || role.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+        result.add(role);
+      }
+    }
+
+    result.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
+      second.getDisplayName().toLowerCase()));
+    return result;
+  }
+
 }

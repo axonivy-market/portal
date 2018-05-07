@@ -35,7 +35,7 @@ public class DragAndDropController implements Serializable{
       
     
     public DragAndDropController() {
-    	availableFormelements = new ArrayList<Formelement>();    	
+    	availableFormelements = new ArrayList<Formelement>();
     	selectedFormelementsHeader = new ArrayList<Formelement>();
     	selectedFormelementsLeftPanel = new ArrayList<Formelement>();
     	selectedFormelementsRightPanel = new ArrayList<Formelement>();
@@ -247,7 +247,7 @@ public class DragAndDropController implements Serializable{
 		this.dynaFormController = dynaFormController;
 	}
 	
-	private void updateForm(){
+	public void updateForm(){
 		dynaFormController.createForm();
 	}
 
@@ -265,4 +265,10 @@ public class DragAndDropController implements Serializable{
 		this.finalUsedFormelements.add(formelement);
 	}
 
+	public boolean isNotDefined() {
+	  return selectedFormelementsHeader.isEmpty()
+	      && selectedFormelementsLeftPanel.isEmpty()
+	      && selectedFormelementsRightPanel.isEmpty()
+	      && selectedFormelementsFooter.isEmpty();
+	}
 }

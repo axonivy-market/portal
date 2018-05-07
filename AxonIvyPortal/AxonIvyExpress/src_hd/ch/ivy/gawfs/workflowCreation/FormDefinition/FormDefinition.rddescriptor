@@ -22,12 +22,18 @@
         <description></description>
     </method>
     <method>
-        <name>updateForm</name>
+        <name>moveNextTask</name>
         <description></description>
     </method>
     <method>
-        <name>tabChange</name>
+        <name>moveToTask</name>
         <description></description>
+        <inputParameter>
+            <name>index</name>
+            <description></description>
+            <parameterType>java.lang.Integer</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </method>
     <startMethod>
         <name>start</name>
