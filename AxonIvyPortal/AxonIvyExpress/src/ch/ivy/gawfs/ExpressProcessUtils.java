@@ -228,24 +228,28 @@ public class ExpressProcessUtils {
 	    for (String responsibleName : responsibleNames) {
 	      ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);
 	      if (securityMember != null) {
-	    	  if(securityMember.isUser()) {
-		    	  IUser iuser = (IUser) securityMember;
-		    	  if(StringUtils.isNoneBlank(iuser.getEMailAddress())){
-		    		  emailAddresses.add(iuser.getEMailAddress());
-		    	  }
-		      }
-	    	  else{
-	    		  IRole irole = (IRole) securityMember;
-	    		  for(IUser userInRole : irole.getUsers()){
-	    			  if(StringUtils.isNoneEmpty(userInRole.getEMailAddress())){
-	    				  emailAddresses.add(userInRole.getEMailAddress());
-	    			  }
-	    		  }
-	    	  }
+	    	  getEmailAddressFromSecurityMemeber(emailAddresses, securityMember);
 	      }
 	      
 	    }
 	    return emailAddresses;
+  }
+
+  private void getEmailAddressFromSecurityMemeber(List<String> emailAddresses, ISecurityMember securityMember) {
+    if(securityMember.isUser()) {
+      IUser iuser = (IUser) securityMember;
+      if(StringUtils.isNoneBlank(iuser.getEMailAddress())){
+    	  emailAddresses.add(iuser.getEMailAddress());
+      }
+    }
+    else{
+      IRole irole = (IRole) securityMember;
+      for(IUser userInRole : irole.getUsers()){
+    	  if(StringUtils.isNoneEmpty(userInRole.getEMailAddress())){
+    		  emailAddresses.add(userInRole.getEMailAddress());
+    	  }
+      }
+    }
   }
   
   /**
@@ -318,9 +322,7 @@ public class ExpressProcessUtils {
 	  for(TaskDef task : taskDefs) {
 		  if(task.getEmail() != null && task.getEmail().getAttachments() != null) {
 			  for(ExpressAttachment attachment : task.getEmail().getAttachments()){
-				  if(attachment.getPath() == null) {
-					  return true;
-				  }
+			    return attachment.getPath() == null;
 			  }
 		  }
 	  }
@@ -336,16 +338,20 @@ public class ExpressProcessUtils {
 	  for(TaskDef task : taskDefs) {
 		  if(task.getEmail() != null && task.getEmail().getAttachments() != null) {
 			  List<ExpressAttachment> attachments = task.getEmail().getAttachments();
-			  for(ExpressAttachment attachment : attachments){
-				  if(attachment.getPath() == null && attachment.getContent() != null) {
-					  attachment.setPath(folderPath + attachment.getName());
-				  }
-			  }
+			  setPathForAttachments(folderPath, attachments);
 			  MailAttachment mailAttachment = new MailAttachment(attachments);
 			  mailAttachment.updatePhysicalPaths();
 			  removeDeletedAttachment(attachments);
 		  }
 	  }
+  }
+
+  private void setPathForAttachments(String folderPath, List<ExpressAttachment> attachments) {
+    for(ExpressAttachment attachment : attachments){
+      if(attachment.getPath() == null && attachment.getContent() != null) {
+    	  attachment.setPath(folderPath + attachment.getName());
+      }
+    }
   }
   
   private void removeDeletedAttachment(List<ExpressAttachment> attachments) {
