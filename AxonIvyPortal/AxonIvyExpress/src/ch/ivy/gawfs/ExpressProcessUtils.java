@@ -314,6 +314,9 @@ public class ExpressProcessUtils {
           break;
         case FOOTER_PANEL:
           controller.getSelectedFormelementsFooter().add(element);
+          break;
+        default:
+          break;
       }
     }
   }

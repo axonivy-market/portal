@@ -25,8 +25,8 @@ public abstract class CommonDragAndDropController {
   }
 
   public CommonDragAndDropController() {
-    availableFormelements = new ArrayList<Formelement>();
-    finalUsedFormelements = new ArrayList<Formelement>();
+    availableFormelements = new ArrayList<>();
+    finalUsedFormelements = new ArrayList<>();
   }
 
   public void deleteFormelement(Formelement formelement) {

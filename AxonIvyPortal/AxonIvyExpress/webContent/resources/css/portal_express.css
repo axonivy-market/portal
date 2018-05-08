@@ -373,15 +373,19 @@
   white-space: pre;
   overflow: hidden;
   text-overflow: ellipsis;
-  transform: translateY(20%);
+  transform: translateY(-30%);
 }
 
-.ui-widget.ui-button.defined-task-button:after {
+.defined-task-button-container .ui-widget.ui-button.defined-task-button:before {
   display: inline-block;
   content: "";
   border-top: 3px solid #E0E0E0;
   width: 2.2rem;
-  transform: translate(9.3rem, -2rem);
+  transform: translate(-9.3rem, 1rem);
+}
+
+.defined-task-button-container:first-child .ui-widget.ui-button.defined-task-button:before {
+  width: 0;
 }
 
 .ui-widget.ui-button.defined-task-button.active {
@@ -391,13 +395,14 @@
   opacity: .8 !important;
 }
 
-.ui-widget.ui-button.defined-task-button.active:after {
-  border-color: #afca05;
+.ui-widget.ui-button.defined-task-button.visited {
+  background-color: #afca05 !important;
+  border: solid 2px #afca05;
+  opacity: .8 !important;
 }
 
-.defined-task-button-container:last-child .ui-widget.ui-button.defined-task-button:after {
-  border-color: transparent;
-  width: 0;
+.ui-widget.ui-button.defined-task-button.active:before {
+  border-color: #afca05;
 }
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
