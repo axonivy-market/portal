@@ -47,6 +47,14 @@ Is0 @PushWFArc f29 '' #zField
 Is0 @GridStep f33 '' #zField
 Is0 @PushWFArc f34 '' #zField
 Is0 @PushWFArc f30 '' #zField
+Is0 @StartRequest f35 '' #zField
+Is0 @GridStep f37 '' #zField
+Is0 @PushWFArc f38 '' #zField
+Is0 @PushWFArc f36 '' #zField
+Is0 @StartRequest f39 '' #zField
+Is0 @GridStep f41 '' #zField
+Is0 @PushWFArc f42 '' #zField
+Is0 @PushWFArc f40 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 type ch.ivy.add.portalkit.Data #txt
@@ -483,6 +491,116 @@ Is0 f30 expr out #txt
 Is0 f30 196 768 400 543 #arcP
 Is0 f30 1 400 768 #addKink
 Is0 f30 0 0.8741317568482905 0 0 #arcLabel
+Is0 f35 outLink grantOnlyDelegateOwnTasksPermission.ivp #txt
+Is0 f35 type ch.ivy.add.portalkit.Data #txt
+Is0 f35 inParamDecl '<> param;' #txt
+Is0 f35 actionDecl 'ch.ivy.add.portalkit.Data out;
+' #txt
+Is0 f35 guid 1633F02576A75588 #txt
+Is0 f35 requestEnabled true #txt
+Is0 f35 triggerEnabled false #txt
+Is0 f35 callSignature grantOnlyDelegateOwnTasksPermission() #txt
+Is0 f35 persist false #txt
+Is0 f35 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Is0 f35 caseData businessCase.attach=true #txt
+Is0 f35 showInStartList 1 #txt
+Is0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantOnlyDelegateOwnTasksPermission.ivp</name>
+        <nameStyle>39,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Is0 f35 @C|.responsibility Everybody #txt
+Is0 f35 49 833 30 30 -55 26 #rect
+Is0 f35 @|StartRequestIcon #fIcon
+Is0 f37 actionDecl 'ch.ivy.add.portalkit.Data out;
+' #txt
+Is0 f37 actionTable 'out=in;
+' #txt
+Is0 f37 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.IPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+
+IPermission delegateOwnTaskPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());
+if(#delegateOwnTaskPermission is initialized) {
+	ivy.wf.getApplication().getSecurityDescriptor().grantPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());
+}
+ivy.wf.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());
+ivy.wf.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());' #txt
+Is0 f37 security system #txt
+Is0 f37 type ch.ivy.add.portalkit.Data #txt
+Is0 f37 156 836 40 24 0 -8 #rect
+Is0 f37 @|StepIcon #fIcon
+Is0 f38 expr out #txt
+Is0 f38 79 848 156 848 #arcP
+Is0 f38 0 0.978319783197832 0 0 #arcLabel
+Is0 f36 expr out #txt
+Is0 f36 196 848 400 543 #arcP
+Is0 f36 1 400 848 #addKink
+Is0 f36 0 0.978319783197832 0 0 #arcLabel
+Is0 f39 outLink undoOnlyDelegateOwnTasksPermission.ivp #txt
+Is0 f39 type ch.ivy.add.portalkit.Data #txt
+Is0 f39 inParamDecl '<> param;' #txt
+Is0 f39 actionDecl 'ch.ivy.add.portalkit.Data out;
+' #txt
+Is0 f39 guid 1633F040419BF552 #txt
+Is0 f39 requestEnabled true #txt
+Is0 f39 triggerEnabled false #txt
+Is0 f39 callSignature undoOnlyDelegateOwnTasksPermission() #txt
+Is0 f39 persist false #txt
+Is0 f39 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Is0 f39 caseData businessCase.attach=true #txt
+Is0 f39 showInStartList 1 #txt
+Is0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>undoOnlyDelegateOwnTasksPermission.ivp</name>
+        <nameStyle>38,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Is0 f39 @C|.responsibility Everybody #txt
+Is0 f39 40 928 32 32 -41 25 #rect
+Is0 f39 @|StartRequestIcon #fIcon
+Is0 f41 actionDecl 'ch.ivy.add.portalkit.Data out;
+' #txt
+Is0 f41 actionTable 'out=in;
+' #txt
+Is0 f41 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.IPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+
+IPermission delegateOwnTaskPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());
+if(#delegateOwnTaskPermission is initialized) {
+	ivy.wf.getApplication().getSecurityDescriptor().denyPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());
+}
+ivy.wf.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());
+ivy.wf.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());' #txt
+Is0 f41 security system #txt
+Is0 f41 type ch.ivy.add.portalkit.Data #txt
+Is0 f41 156 932 40 24 0 -8 #rect
+Is0 f41 @|StepIcon #fIcon
+Is0 f42 expr out #txt
+Is0 f42 72 944 156 944 #arcP
+Is0 f42 0 0.08158561403068428 0 0 #arcLabel
+Is0 f40 expr out #txt
+Is0 f40 196 944 400 543 #arcP
+Is0 f40 1 400 944 #addKink
+Is0 f40 1 0.08158561403068428 0 0 #arcLabel
 >Proto Is0 .type ch.ivy.add.portalkit.Data #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -491,7 +609,7 @@ Is0 f30 0 0.8741317568482905 0 0 #arcLabel
         <swimlaneLabel>Request start</swimlaneLabel>
     </language>
     <swimlaneOrientation>true</swimlaneOrientation>
-    <swimlaneSize>512</swimlaneSize>
+    <swimlaneSize>1160</swimlaneSize>
     <swimlaneColor gradient="false">-1</swimlaneColor>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
@@ -531,3 +649,11 @@ Is0 f28 mainOut f34 tail #connect
 Is0 f34 head f33 mainIn #connect
 Is0 f33 mainOut f30 tail #connect
 Is0 f30 head f7 mainIn #connect
+Is0 f35 mainOut f38 tail #connect
+Is0 f38 head f37 mainIn #connect
+Is0 f37 mainOut f36 tail #connect
+Is0 f36 head f7 mainIn #connect
+Is0 f39 mainOut f42 tail #connect
+Is0 f42 head f41 mainIn #connect
+Is0 f41 mainOut f40 tail #connect
+Is0 f40 head f7 mainIn #connect
