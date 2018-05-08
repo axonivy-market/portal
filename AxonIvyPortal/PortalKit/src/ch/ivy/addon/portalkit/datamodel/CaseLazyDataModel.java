@@ -115,7 +115,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     filterContainer = new DefaultCaseFilterContainer();
   }
 
-  public void initFilters() throws IllegalAccessException, InvocationTargetException {
+  public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
       initFilterContainer();
       filters = filterContainer.getFilters();
@@ -415,8 +415,8 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
    */
   public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
     CaseFilterData filterData = new CaseFilterData();
-    List<CaseFilter> filters = new ArrayList<>(selectedFilters);
-    filterData.setFilters(filters);
+    List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
+    filterData.setFilters(filtersToSave);
     filterData.setKeyword(queryCriteria.getKeyword());
     filterData.setUserId(Ivy.session().getSessionUser().getId());
     filterData.setFilterGroupId(filterGroupId);
@@ -440,12 +440,9 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   /**
    * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
    * @param caseFilterData 
-   * @throws IllegalAccessException 
-   * @throws InvocationTargetException 
-   * @throws NoSuchMethodException 
+   * @throws ReflectiveOperationException 
    */
-  public void applyFilter(CaseFilterData caseFilterData) throws IllegalAccessException, InvocationTargetException,
-      NoSuchMethodException {
+  public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
     selectedFilterData = caseFilterData;
     new CaseFilterService().applyFilter(this, caseFilterData);
     applyCustomSettings(caseFilterData);

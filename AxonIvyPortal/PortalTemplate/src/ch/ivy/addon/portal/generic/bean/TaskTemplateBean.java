@@ -27,8 +27,8 @@ public class TaskTemplateBean implements Serializable{
   private static final long serialVersionUID = 1L;
 
   private String linkToTask;
-  private transient List<IStartableSideStep> sideStepList;
-  private transient IStartableSideStep selectedSideStep;
+  private List<IStartableSideStep> sideStepList;
+  private IStartableSideStep selectedSideStep;
 
   public void generateLinkToTask(final long taskId) throws Exception {
     PortalNavigator navigator = new PortalNavigator();

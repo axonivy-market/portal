@@ -45,12 +45,12 @@ public class SixPanelDragAndDropController extends CommonDragAndDropController i
 
   public SixPanelDragAndDropController() {
     super();
-    selectedFormelementsHeader1 = new ArrayList<Formelement>();
-    selectedFormelementsHeader2 = new ArrayList<Formelement>();
-    selectedFormelementsHeader3 = new ArrayList<Formelement>();
-    selectedFormelementsLeftPanel = new ArrayList<Formelement>();
-    selectedFormelementsRightPanel = new ArrayList<Formelement>();
-    selectedFormelementsFooter = new ArrayList<Formelement>();
+    selectedFormelementsHeader1 = new ArrayList<>();
+    selectedFormelementsHeader2 = new ArrayList<>();
+    selectedFormelementsHeader3 = new ArrayList<>();
+    selectedFormelementsLeftPanel = new ArrayList<>();
+    selectedFormelementsRightPanel = new ArrayList<>();
+    selectedFormelementsFooter = new ArrayList<>();
   }
 
   @Override

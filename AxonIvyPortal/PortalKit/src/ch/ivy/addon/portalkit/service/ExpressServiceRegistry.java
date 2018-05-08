@@ -5,6 +5,8 @@ public final class ExpressServiceRegistry {
   private static ExpressFormElementService formElementService;
   private static ExpressTaskDefinitionService taskDefinitionService;
 
+  private ExpressServiceRegistry() {}
+
   public static final ExpressProcessService getProcessService() {
     if (processService == null) {
       processService = new ExpressProcessService();

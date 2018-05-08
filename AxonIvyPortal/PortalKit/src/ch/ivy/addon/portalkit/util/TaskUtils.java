@@ -18,11 +18,9 @@ import ch.ivy.addon.portalkit.bo.NodeObject;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.vo.TaskVO;
-import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
 import ch.ivyteam.ivy.persistence.OrderDirection;
-import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -143,21 +141,14 @@ public final class TaskUtils {
    * Reset the Task
    * 
    * @param task : Task need to be reset
-   * @throws Exception Exception
-   * @throws EnvironmentNotAvailableException EnvironmentNotAvailableException
-   * @throws PersistencyException PersistencyException
    */
-  public static void resetTask(final ITask task) throws PersistencyException, EnvironmentNotAvailableException,
-      Exception {
+  public static void resetTask(final ITask task) {
     // must be in RESUMED, CREATED, PARKED, READY_FOR_JOIN, FAILED
     if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, 
         TaskState.READY_FOR_JOIN, TaskState.FAILED).contains(task.getState())){
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-        @Override
-        public Boolean call() throws Exception {
-          task.reset();
-          return true;
-        }
+      IvyExecutor.executeAsSystem(() -> {
+        task.reset();
+        return true;
       });
     }
   }
@@ -166,25 +157,21 @@ public final class TaskUtils {
    * Park The Task. If it is SUSPENDED state, then change to RESUMED first, then park it.
    * 
    * @param task : Task need to be park
-   * @throws Exception exception
    */
-  public static void parkTask(final ITask task) throws Exception {
-    ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
-      @Override
-      public Void call() throws PersistencyException {
-        IWorkflowSession iWorkflowSession = Ivy.session();
-        // Resume a task if it's suspended.
-        if (task.getState() == TaskState.SUSPENDED) {
-          iWorkflowSession.resumeTask(task.getId());
-        }
-
-        // If the task is resumed or created, then park task.
-        if (task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
-          iWorkflowSession.parkTask(task);
-        }
-
-        return null;
+  public static void parkTask(final ITask task) {
+    IvyExecutor.executeAsSystem(() -> {
+      IWorkflowSession iWorkflowSession = Ivy.session();
+      // Resume a task if it's suspended.
+      if (task.getState() == TaskState.SUSPENDED) {
+        iWorkflowSession.resumeTask(task.getId());
       }
+
+      // If the task is resumed or created, then park task.
+      if (task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
+        iWorkflowSession.parkTask(task);
+      }
+
+      return null;
     });
 
   }
@@ -221,10 +208,11 @@ public final class TaskUtils {
    * @param tasks : list task need to build
    * @return TreeNode : tree data for Universal Task List UI
    */
+  @SuppressWarnings("unused")
   public static TreeNode generateAppTree(List<ITask> tasks) {
     TreeNode root = new DefaultTreeNode();
     // appMap: applicationRegister as key, appNode as value
-    Map<Application, TreeNode> appMap = new HashMap<Application, TreeNode>();
+    Map<Application, TreeNode> appMap = new HashMap<>();
 
     for (ITask task : tasks) {
       Application appRegister = ((RemoteTask) task).getApplicationRegister();
@@ -237,8 +225,7 @@ public final class TaskUtils {
 
       }
       // build task nodes
-      @SuppressWarnings("unused")
-      TreeNode taskNode = new DefaultTreeNode(new NodeObject(task), appNode);
+      new DefaultTreeNode(new NodeObject(task), appNode);
 
     }
     return root;
@@ -258,7 +245,7 @@ public final class TaskUtils {
         ivy.session.findWorkTasks(taskFilter, null, 0, 1, true,
             EnumSet.of(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED));
     List<ITask> tasks = queryResult.getResultList();
-    if (tasks != null && tasks.size() > 0) {
+    if (tasks != null && !tasks.isEmpty()) {
       return tasks.get(0);
     }
     return null;
@@ -305,8 +292,8 @@ public final class TaskUtils {
    * @return the list of TaskVO : (List of current task)
    */
   public static List<TaskVO> filterCurrentTasksByCase(ICase iCase) {
-    List<TaskVO> currentTasks = new ArrayList<TaskVO>();
-    if (iCase != null && iCase.getTasks() != null && iCase.getTasks().size() > 0) {
+    List<TaskVO> currentTasks = new ArrayList<>();
+    if (iCase != null && iCase.getTasks() != null && !iCase.getTasks().isEmpty()) {
       EnumSet<TaskState> notDoneStates =
           EnumSet.of(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DELAYED,
               TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
@@ -326,8 +313,8 @@ public final class TaskUtils {
    * @return the list of TaskVO have done.
    */
   public static List<TaskVO> filterFinishedTasksByCase(ICase iCase) {
-    List<TaskVO> currentTasks = new ArrayList<TaskVO>();
-    if (iCase != null && iCase.getTasks() != null && iCase.getTasks().size() > 0) {
+    List<TaskVO> currentTasks = new ArrayList<>();
+    if (iCase != null && iCase.getTasks() != null && !iCase.getTasks().isEmpty()) {
       for (ITask iTask : iCase.getTasks()) {
         if (TaskState.DONE == iTask.getState()) {
           currentTasks.add(ConverterUtils.convertITaskToTaskVO(iTask));
@@ -345,8 +332,8 @@ public final class TaskUtils {
    * @return list of {@link ITask}
    */
   public static List<ITask> getFinishedTasksByCase(ICase iCase) {
-    List<ITask> currentTasks = new ArrayList<ITask>();
-    if (iCase != null && iCase.getTasks() != null && iCase.getTasks().size() > 0) {
+    List<ITask> currentTasks = new ArrayList<>();
+    if (iCase != null && iCase.getTasks() != null && !iCase.getTasks().isEmpty()) {
       for (ITask iTask : iCase.getTasks()) {
         if (iTask != null && TaskState.DONE == iTask.getState()) {
           currentTasks.add(iTask);
@@ -381,7 +368,7 @@ public final class TaskUtils {
   public static String getEmailAddress(final ITask iTask) {
     if (iTask.getActivator().getSecurityContext() != null
         && iTask.getActivator().getSecurityContext().getUsers() != null
-        && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
+        && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
           @Override
@@ -419,7 +406,7 @@ public final class TaskUtils {
   public static String getPhone(final ITask iTask) {
     if (iTask.getActivator().getSecurityContext() != null
         && iTask.getActivator().getSecurityContext().getUsers() != null
-        && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
+        && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
           @Override
@@ -457,7 +444,7 @@ public final class TaskUtils {
   public static String getMobile(final ITask iTask) {
     if (iTask.getActivator().getSecurityContext() != null
         && iTask.getActivator().getSecurityContext().getUsers() != null
-        && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
+        && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
           @Override
@@ -582,14 +569,14 @@ public final class TaskUtils {
             return taskList;
           } catch (Exception e) {
             Ivy.log().error(e);
-            return null;
+            return Collections.emptyList();
           }
 
         }
       });
     } catch (Exception e) {
       Ivy.log().error(e);
-      return null;
+      return Collections.emptyList();
     }
 
   }
@@ -688,7 +675,7 @@ public final class TaskUtils {
    * @return List<Task> : All running tasks
    */
   public static List<Task> findAllRunningTasks() {
-    List<Task> outTasks = new ArrayList<Task>();
+    List<Task> outTasks = new ArrayList<>();
     List<ITask> iTasks = findAllTasks(DEFAULT_INDEX, DEFAULT_PAGESIZE, null, SortOrder.ASCENDING, RUNNING_MODE, null);
 
     for (ITask iTask : iTasks) {
@@ -718,7 +705,7 @@ public final class TaskUtils {
         PropertyOrder.create(ch.ivy.addon.portalkit.util.TaskUtils.getTaskProperty(sortField),
             ch.ivy.addon.portalkit.util.TaskUtils.getTaskDirection(sortOrder));
     if (isHistory) {
-      queryResult = ivy.session.findWorkedOnTasks(taskFilter, taskPropertyOrder, startIndex, pageSize, true);
+      ivy.session.findWorkedOnTasks(taskFilter, taskPropertyOrder, startIndex, pageSize, true);
     } else {
       if (PermissionUtils.checkReadAllTasksPermission()) {
         IPropertyFilter<TaskProperty> filter =

@@ -12,6 +12,8 @@ import ch.ivyteam.ivy.scripting.objects.List;
  */
 public class RemoteApplicationMapper {
 	
+  private RemoteApplicationMapper() {}
+
 	/**
 	 * Convert web service application to remote application.
 	 * 

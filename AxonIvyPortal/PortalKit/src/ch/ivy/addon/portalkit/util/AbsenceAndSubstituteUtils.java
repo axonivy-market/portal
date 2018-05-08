@@ -38,9 +38,9 @@ public final class AbsenceAndSubstituteUtils {
   @SuppressWarnings("unused")
   public static TreeNode buildSustitute(List<RemoteSubstitute> ivySubtitutes, List<RemoteApplicationUser> ivyUsers) {
     // Add Group list Ivy user to map by application name
-    Map<String, List<RemoteApplicationUser>> mapUser = new HashMap<String, List<RemoteApplicationUser>>();
-    List<String> apps = new ArrayList<String>();
-    Map<String, String> appDisplayNameMap = new HashMap<String, String>();
+    Map<String, List<RemoteApplicationUser>> mapUser = new HashMap<>();
+    List<String> apps = new ArrayList<>();
+    Map<String, String> appDisplayNameMap = new HashMap<>();
     for (RemoteApplicationUser remoteUser : ivyUsers) {
       String key = remoteUser.getAppName() + " - " + remoteUser.getAppDisplayName();
       if (mapUser.get(key) == null) {
@@ -65,13 +65,12 @@ public final class AbsenceAndSubstituteUtils {
       String appName = app.substring(0, app.indexOf(" - "));
       for (RemoteSubstitute remoteSubstitute : ivySubtitutes) {
 
-        if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())) {
-          if (StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
-            new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
-                "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask"), remoteSubstitute, users, true),
-                appNode);
-            break;
-          }
+        if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName()) 
+            && StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
+          new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
+              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask"), remoteSubstitute, users, true),
+              appNode);
+          break;
         }
       }
 
@@ -104,7 +103,7 @@ public final class AbsenceAndSubstituteUtils {
    * @return List<RemoteSubstitute> List substitute
    */
   public static List<RemoteSubstitute> convertToSubstitueList(TreeNode root) {
-    List<RemoteSubstitute> outSubstitues = new ArrayList<RemoteSubstitute>();
+    List<RemoteSubstitute> outSubstitues = new ArrayList<>();
 
     for (TreeNode appNode : root.getChildren()) {
       for (TreeNode leafNode : appNode.getChildren()) {
@@ -126,7 +125,7 @@ public final class AbsenceAndSubstituteUtils {
    * @return List<RemoteAbsence> : Remote Absences after remove absence have same StartDateInclusive & StopDateInclusive
    */
   public static List<RemoteAbsence> mergeRemoteAbsenceListInApplications(List<RemoteAbsence> remoteAbsences) {
-    List<RemoteAbsence> result = new ArrayList<RemoteAbsence>();
+    List<RemoteAbsence> result = new ArrayList<>();
     for (RemoteAbsence remoteAbsence : remoteAbsences) {
       RemoteAbsence atTarget = null;
       for (RemoteAbsence targetAbsence : result) {
@@ -176,13 +175,11 @@ public final class AbsenceAndSubstituteUtils {
         break;
       }
     }
-    if (!result) {
-      if (FacesContext.getCurrentInstance() != null) {
-        FacesContext.getCurrentInstance().addMessage(
-            null,
-            new FacesMessage(FacesMessage.SEVERITY_WARN, null, Ivy.cms().co(
-                "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/differentAbsencesInApplications")));
-      }
+    if (!result && FacesContext.getCurrentInstance() != null) {
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          new FacesMessage(FacesMessage.SEVERITY_WARN, null, Ivy.cms().co(
+              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/differentAbsencesInApplications")));
     }
   }
 
@@ -220,7 +217,7 @@ public final class AbsenceAndSubstituteUtils {
    * @return List absences which already remove absence in the past
    */
   public static List<RemoteAbsence> removeAbsenceHasTillInThePast(List<RemoteAbsence> absences) {
-    List<RemoteAbsence> result = new ArrayList<RemoteAbsence>();
+    List<RemoteAbsence> result = new ArrayList<>();
     for (RemoteAbsence remoteAbsence : absences) {
       boolean tillInThePast = isInThePast(remoteAbsence);
       if (!tillInThePast) {

@@ -30,10 +30,10 @@ public class DisplayNameAdaptor {
   private boolean isValidJson(String jsonString) {
 		try {
 			new JSONObject(jsonString);
-		} catch (JSONException e) {
+		} catch (JSONException e) { //NOSONAR
 			try {
 				new JSONArray(jsonString);
-			} catch(JSONException e1) {
+			} catch(JSONException e1) { //NOSONAR
 				return false;
 			}
 		}

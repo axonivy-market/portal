@@ -8,4 +8,7 @@ public class TreeNodeType {
   public static final String TASKS = "Tasks";
   public static final String TASKS_MY_TASKS = "Tasks/My_Tasks";
   public static final String TASKS_ALL_TASKS = "Tasks/All_Tasks";
+  
+  private TreeNodeType() {}
+  
 }

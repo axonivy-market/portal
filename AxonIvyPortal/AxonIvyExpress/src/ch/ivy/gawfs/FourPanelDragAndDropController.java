@@ -39,10 +39,10 @@ public class FourPanelDragAndDropController extends CommonDragAndDropController 
 
   public FourPanelDragAndDropController() {
     super();
-    selectedFormelementsHeader = new ArrayList<Formelement>();
-    selectedFormelementsLeftPanel = new ArrayList<Formelement>();
-    selectedFormelementsRightPanel = new ArrayList<Formelement>();
-    selectedFormelementsFooter = new ArrayList<Formelement>();
+    selectedFormelementsHeader = new ArrayList<>();
+    selectedFormelementsLeftPanel = new ArrayList<>();
+    selectedFormelementsRightPanel = new ArrayList<>();
+    selectedFormelementsFooter = new ArrayList<>();
   }
 
   @Override

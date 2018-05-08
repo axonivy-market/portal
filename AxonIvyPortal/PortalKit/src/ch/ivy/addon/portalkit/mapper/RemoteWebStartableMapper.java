@@ -9,6 +9,7 @@ import ch.ivyteam.ivy.scripting.objects.List;
  */
 public class RemoteWebStartableMapper {
 
+  private RemoteWebStartableMapper() {}
   protected static RemoteWebStartable mapWebStartable(IvyWebStartable webStartable) {
     RemoteWebStartable result = new RemoteWebStartable();
 

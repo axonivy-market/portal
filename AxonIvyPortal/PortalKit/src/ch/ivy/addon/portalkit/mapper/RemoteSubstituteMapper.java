@@ -10,6 +10,8 @@ import ch.ivyteam.ivy.scripting.objects.List;
  */
 public class RemoteSubstituteMapper {
 
+  private RemoteSubstituteMapper() {}
+  
   /**
    * Convert from IvySubstitute to RemoteSubstitute.
    * 

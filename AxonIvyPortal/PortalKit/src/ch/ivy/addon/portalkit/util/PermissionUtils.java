@@ -9,6 +9,8 @@ import ch.ivyteam.ivy.security.IUser;
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
 
+  private PermissionUtils() {}
+  
   /**
    * Check if current user has read all tasks permission
    * 

@@ -127,7 +127,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     filterContainer = new DefaultTaskFilterContainer();
   }
 
-  public void initFilters() throws IllegalAccessException, InvocationTargetException {
+  public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
       if (isRelatedTaskDisplayed) {
         if (!queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
@@ -268,7 +268,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return notDisplayedTasks;
   }
 
-  protected Function<? super RemoteTask, String> activatorName() {
+  protected Function<RemoteTask, String> activatorName() {
     return r -> {
       if (StringUtils.isNotEmpty(r.getActivatorFullName())) {
         return r.getActivatorFullName();
@@ -277,7 +277,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     };
   }
 
-  protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparator(
+  protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparator( //NOSONAR
       Function<? super RemoteTask, ? extends U> function) {
     return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
   }
@@ -354,7 +354,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * 
    * @param taskQuery
    */
-  protected void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {}
+  protected void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {
+    //Placeholder for customization
+  }
 
   @Override
   public void setRowIndex(int index) {
@@ -574,19 +576,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel}
    * 
    * @param taskFilterData
-   * @throws IllegalAccessException
-   * @throws InvocationTargetException
-   * @throws NoSuchMethodException
+   * @throws ReflectiveOperationException
    */
-  public void applyFilter(TaskFilterData taskFilterData) throws IllegalAccessException, InvocationTargetException,
-      NoSuchMethodException {
+  public void applyFilter(TaskFilterData taskFilterData) throws ReflectiveOperationException {
     selectedTaskFilterData = taskFilterData;
     new TaskFilterService().applyFilter(this, taskFilterData);
     applyCustomSettings(taskFilterData);
   }
 
-  private void applyCustomSettings(TaskFilterData taskFilterData) throws IllegalAccessException,
-      InvocationTargetException, NoSuchMethodException {
+  private void applyCustomSettings(TaskFilterData taskFilterData) throws ReflectiveOperationException {
     queryCriteria.setKeyword(taskFilterData.getKeyword());
     isInProgressFilterDisplayed = false;
     inProgressFilter = new TaskInProgressByOthersFilter();
@@ -666,7 +664,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * </pre></code>
    * </p>
    */
-  protected void extendSortTasksInNotDisplayedTaskMap() {}
+  protected void extendSortTasksInNotDisplayedTaskMap() {
+    //Placeholder for customization
+  }
 
   private void autoInitForNoAppConfiguration() {
     String applicationName = StringUtils.EMPTY;
@@ -720,15 +720,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   private void initSelectedColumns() {
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    TaskColumnsConfigurationData data = new TaskColumnsConfigurationData();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
     Long applicationId = Ivy.request().getApplication().getId();
     Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
-      data = service.getConfiguration(serverId, applicationId, userId, taskColumnsConfigDataId);
-      if (data != null) {
-        selectedColumns = data.getSelectedColumns();
-        isAutoHideColumns = data.isAutoHideColumns();
+      TaskColumnsConfigurationData configData = service.getConfiguration(serverId, applicationId, userId, taskColumnsConfigDataId);
+      if (configData != null) {
+        selectedColumns = configData.getSelectedColumns();
+        isAutoHideColumns = configData.isAutoHideColumns();
       }
     }
     if (selectedColumns.isEmpty()) {

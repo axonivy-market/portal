@@ -13,6 +13,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class LibraryServiceFactory {
 
+  private LibraryServiceFactory() {}
+
   public static AbstractLibraryService getLibraryService() {
     ServerService serverService = new ServerService();
     if (CollectionUtils.isNotEmpty(serverService.findActiveServersNotLocalhost())) {
