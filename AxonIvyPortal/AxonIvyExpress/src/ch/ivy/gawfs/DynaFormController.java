@@ -1,6 +1,7 @@
 package ch.ivy.gawfs;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -34,39 +35,37 @@ public class DynaFormController implements Serializable {
   /**
    * Create form model and elements
    */
-  public void createForm(){
+  public void createForm() {
       model = new DynaFormModel();
       dragAndDropController.getFinalUsedFormelements().clear();
 
-      initializeHeaderSection();
+      initializeHeaderOrFooterSection(dragAndDropController.getSelectedFormelementsHeader());
+      initializeHeaderOrFooterSection(dragAndDropController.getSelectedFormelementsFooter());
       initializeMainSections();
-      initializeFooterSection();
   }
 
   /**
-   * Loop to create all Elements places in the Header Section
-   * 
+   * Loop to create all elements places in the Header or Footer Section
    */
-  private void initializeHeaderSection() {
-    for (Formelement element : dragAndDropController.getSelectedFormelementsHeader()) {
+  private void initializeHeaderOrFooterSection(List<Formelement> formElementList) {
+    for (Formelement element : formElementList) {
       dragAndDropController.addFinalUsedFormelements(element);
       tempRow = model.createRegularRow();
       String elementType = element.getType().getValue();
 
       if(!element.getType().equals(FormElementType.FILE_UPLOAD)){
         DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel());
-        DynaFormControl control = tempRow.addControl(element, elementType, 3, 1);
+        DynaFormControl control = tempRow.addControl(element, elementType,3,1);
         label.setForControl(control);
-        
-      }else{
+      } else {
         DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel(),4,1);
         tempRow = model.createRegularRow();
-        DynaFormControl control = tempRow.addControl(element, elementType, 4, 1);
+        DynaFormControl control = tempRow.addControl(element, elementType,4,1);
         label.setForControl(control);
       }
     }
   }
-
+  
   /**
    * Loop to create all Elements from the Left and Right Section
    */
@@ -104,27 +103,7 @@ public class DynaFormController implements Serializable {
     }
   }
 
-  /**
-   * Loop to create all Elements places in the Footer Section
-   */
-  private void initializeFooterSection() {
-    for (Formelement element : dragAndDropController.getSelectedFormelementsFooter()) {
-      dragAndDropController.addFinalUsedFormelements(element);
-      tempRow = model.createRegularRow();
-      String elementType = element.getType().getValue();
 
-      if(!element.getType().equals(FormElementType.FILE_UPLOAD)){
-        DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel());
-        DynaFormControl control = tempRow.addControl(element, elementType,3,1);
-        label.setForControl(control);
-      }else{
-        DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel(),4,1);
-        tempRow = model.createRegularRow();
-        DynaFormControl control = tempRow.addControl(element, elementType,4,1);
-        label.setForControl(control);
-      }
-    }
-  }
 
   public String submitForm() {
     FacesMessage.Severity sev = FacesContext.getCurrentInstance()

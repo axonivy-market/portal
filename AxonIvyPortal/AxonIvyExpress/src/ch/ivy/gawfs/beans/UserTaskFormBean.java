@@ -25,14 +25,11 @@ public class UserTaskFormBean implements Serializable {
    */
   public String generateUserName(String userMemberName) {
     IUser user = Ivy.session().getSecurityContext().findUser(userMemberName);
-    String userName = StringUtils.EMPTY;
 
     if (StringUtils.isBlank(user.getDisplayName())) {
-      userName = user.getName();
+      return user.getName();
     } else {
-      userName = String.format(USER_NAME_FORMAT, user.getDisplayName(), user.getName());
+      return String.format(USER_NAME_FORMAT, user.getDisplayName(), user.getName());
     }
-
-    return userName;
   }
 }
