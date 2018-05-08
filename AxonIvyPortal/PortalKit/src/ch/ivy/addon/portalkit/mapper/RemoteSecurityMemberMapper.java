@@ -14,6 +14,7 @@ import ch.ivyteam.ivy.scripting.objects.List;
  */
 public class RemoteSecurityMemberMapper {
 
+  private RemoteSecurityMemberMapper() {}
   /**
    * Convert from web service security member to remote security member.
    * 

@@ -19,6 +19,7 @@ public class CaseTreeUtils {
 
   private final static String DELIMITER = "/";
 
+  private CaseTreeUtils() {}
   /**
    * Convert field CustomVarCharField5 of cases to TreeNode
    * @param categories 

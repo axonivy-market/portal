@@ -15,8 +15,6 @@ public class TaskNode extends MainMenuNode {
     this.isRootNodeAllTask = isRootNodeAllTask;
   }
 
-  public TaskNode() {}
-
   public String getCategory() {
     return category;
   }

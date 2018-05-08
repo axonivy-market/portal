@@ -19,6 +19,8 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
  */
 public class RemoteTaskMapper {
 
+  private RemoteTaskMapper() {}
+
   /**
    * Convert IvyTask to RemoteTask.
    * 

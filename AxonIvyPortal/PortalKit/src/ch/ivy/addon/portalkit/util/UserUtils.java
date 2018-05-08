@@ -74,7 +74,7 @@ public class UserUtils {
         @Override
         public List<IUser> call() throws Exception {
           ISecurityContext security = getIvySession().getSecurityContext();
-          List<IUser> usersOut = new ArrayList<IUser>();
+          List<IUser> usersOut = new ArrayList<>();
           for (IUser user : security.getUsers()) {
             if (user != null && !SYSTEM_USER.equals(user.getName())) {
               usersOut.add(user);
@@ -90,7 +90,7 @@ public class UserUtils {
     } catch (Exception e) {
       Ivy.log().error(e);
     }
-    return null;
+    return Collections.emptyList();
   }
 
   /**
@@ -104,7 +104,7 @@ public class UserUtils {
         @Override
         public List<IUser> call() throws Exception {
           ISecurityContext security = getIvySession().getSecurityContext();
-          List<IUser> delegatedUsers = new ArrayList<IUser>();
+          List<IUser> delegatedUsers = new ArrayList<>();
           delegatedUsers.addAll(security.getUsers());
           for (IRole iRole : security.getRoles()) {
             if (iRole.getProperty(HIDE_USERS_IN_DELEGATION) != null) {
@@ -147,7 +147,7 @@ public class UserUtils {
     } catch (Exception e) {
       Ivy.log().error(e);
     }
-    return null;
+    return Collections.emptyList();
   }
 
   /**

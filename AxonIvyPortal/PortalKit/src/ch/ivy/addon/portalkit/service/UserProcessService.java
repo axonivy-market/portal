@@ -25,9 +25,7 @@ public class UserProcessService extends AbstractService<UserProcess> {
   }
 
   public List<UserProcess> createDefaultUserProcesses(List<UserProcess> defaultUserProcesses, String userName) {
-    defaultUserProcesses.stream().forEach(defaultUserProcess -> {
-      defaultUserProcess.setUserName(userName);
-    });
+    defaultUserProcesses.stream().forEach(defaultUserProcess -> defaultUserProcess.setUserName(userName));
     return saveAll(defaultUserProcesses);
   }
 

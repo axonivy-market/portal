@@ -14,8 +14,6 @@ public class CaseNode extends MainMenuNode implements Serializable {
   private String categoryRawPath;
   private boolean isFirstCategoryNode;
 
-  public CaseNode() {}
-
   public boolean isRootNodeAllCase() {
     return isRootNodeAllCase;
   }

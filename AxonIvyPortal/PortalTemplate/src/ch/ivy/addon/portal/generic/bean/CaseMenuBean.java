@@ -30,7 +30,7 @@ public class CaseMenuBean implements Serializable {
 
   private static final long serialVersionUID = 5481218944095287656L;
 
-  private transient TreeNode rootNode;
+  private TreeNode rootNode;
   private static final String CASE_MENU_DATA_BEAN = "#{caseMenuDataBean}";
 
   public TreeNode getRootNode() {

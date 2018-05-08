@@ -325,7 +325,7 @@ public class RemoteTask {
   }
 
   public void reset() {
-
+    //Method from ITask
   }
 
   public void setActivator(RemoteSecurityMember activator) {
@@ -410,7 +410,7 @@ public class RemoteTask {
 
   @SuppressWarnings("unused")
   public void setDelayTimestamp(Date newDelayTimestamp) {
-
+    //Method from ITask
   }
 
   public void setDescription(String description) {
@@ -434,7 +434,7 @@ public class RemoteTask {
 
   @SuppressWarnings("unused")
   public void setKind(String kindCode, String kindName) {
-
+    //Method from ITask
   }
 
   public void setName(String name) {

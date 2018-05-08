@@ -24,7 +24,7 @@ public class MenuUtils {
     Ivy.session().removeAttribute(PORTAL_MENU_STATE);
 
     MenuStateBean menuStateBean = getMenuStateBean();
-    if (menuStateBean != null) {
+    if (menuStateBean != null) { //NOSONAR
       menuStateBean.setMenuState("");
     }
   }

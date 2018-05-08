@@ -48,6 +48,7 @@ public class UserProcessConverter {
    * This class provides methods which help to choose icon in a pseudo random style.
    */
   private static class IconPseudoRandomChooser {
+    private IconPseudoRandomChooser() {}
 
     /**
      * <p>

@@ -9,6 +9,8 @@ import ch.ivyteam.ivy.scripting.objects.List;
 
 public class RemoteSideStepMapper {
 
+  private RemoteSideStepMapper() {}
+  
   protected static RemoteSideStep mapSideStep(IvySideStep sideStep, String host) {
     RemoteSideStep result = new RemoteSideStep();
     result.setName(sideStep.getName());
