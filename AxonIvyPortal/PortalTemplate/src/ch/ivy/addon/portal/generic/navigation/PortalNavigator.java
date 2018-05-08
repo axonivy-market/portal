@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.navigation;
 
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +24,7 @@ public final class PortalNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/PortalStart.ivp";
   private static final String PORTAL_END_PAGE = "Start Processes/PortalStart/DefaultEndPage.ivp";
 
-  public String getPortalStartUrl() throws Exception {
+  public String getPortalStartUrl() throws MalformedURLException {
     String homePageURL = getHomePageFromSetting();
     if (!homePageURL.isEmpty()) {
       return homePageURL;
@@ -31,7 +32,7 @@ public final class PortalNavigator {
     return defaultPortalStartUrl(false);
   }
 
-  public String getPortalStartAbsoluteUrl() throws Exception {
+  public String getPortalStartAbsoluteUrl() throws MalformedURLException {
     String homePageURL = getHomePageFromSetting();
     if (!homePageURL.isEmpty()) {
       return homePageURL;
@@ -44,7 +45,7 @@ public final class PortalNavigator {
     return globalSettingSerive.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL);
   }
 
-  private String defaultPortalStartUrl(boolean isAbsoluteLink) throws Exception {
+  private String defaultPortalStartUrl(boolean isAbsoluteLink) throws MalformedURLException {
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(PORTAL_PROCESS_START_NAME);
     if (isAbsoluteLink) {
       UrlDetector urlDetector = new UrlDetector();
@@ -55,12 +56,12 @@ public final class PortalNavigator {
         + requestPath;
   }
 
-  public String getPortalStartUrlOf(PortalPage portalPage, Map<String, String> pageParameters) throws Exception {
+  public String getPortalStartUrlOf(PortalPage portalPage, Map<String, String> pageParameters) throws MalformedURLException {
     String baseUrl = getPortalStartUrl();
     return generatePortalStartUrl(baseUrl, portalPage, pageParameters);
   }
 
-  public String getPortalStartAbsoluteUrlOf(PortalPage portalPage, Map<String, String> pageParameters) throws Exception {
+  public String getPortalStartAbsoluteUrlOf(PortalPage portalPage, Map<String, String> pageParameters) throws MalformedURLException {
     String baseUrl = getPortalStartAbsoluteUrl();
     return generatePortalStartUrl(baseUrl, portalPage, pageParameters);
   }
@@ -88,7 +89,7 @@ public final class PortalNavigator {
     return Ivy.html().startref(PORTAL_PROCESS_START_NAME);
   }
 
-  public void navigateToPortalEndPage() throws Exception{
+  public void navigateToPortalEndPage() throws MalformedURLException{
   	String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(PORTAL_END_PAGE);
   	if (!requestPath.isEmpty()){
   	  UrlDetector urlDetector = new UrlDetector();

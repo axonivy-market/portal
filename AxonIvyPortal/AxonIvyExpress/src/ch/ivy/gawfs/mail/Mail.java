@@ -2,12 +2,11 @@ package ch.ivy.gawfs.mail;
 
 import java.io.File;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.components.config.EmailConfiguration;
 import ch.ivyteam.ivy.email.SimpleMailSender;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.ServerFactory;
 
 /**
  * Class to send emails from java code.
@@ -23,15 +22,11 @@ public class Mail {
     this.attachmentFiles = builder.attachmentFiles;
   }
 
-  public void send() throws Exception {
-    ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
-
-      @Override
-      public Void call() throws Exception {
-        SimpleMailSender mailSender = new SimpleMailSender(attachmentFiles, emailConfig, Ivy.log());
-        mailSender.sendMessage();
-        return null;
-      }
+  public void send() {
+    IvyExecutor.executeAsSystem(() -> {
+      SimpleMailSender mailSender = new SimpleMailSender(attachmentFiles, emailConfig, Ivy.log());
+      mailSender.sendMessage();
+      return null;
     });
   }
 
