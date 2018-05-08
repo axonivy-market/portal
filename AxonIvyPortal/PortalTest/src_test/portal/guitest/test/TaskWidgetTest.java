@@ -19,6 +19,11 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
 
+  private static final String GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
+      "PortalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
+  private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
+      "PortalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
+
   @Override
   @Before
   public void setup() {
@@ -26,7 +31,7 @@ public class TaskWidgetTest extends BaseTest {
     createTestingTasks();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
-  
+
   @Test
   public void testShowHideTaskDetailOnExpandedMode() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
@@ -98,37 +103,27 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt(firstTask));
   }
-  
+
   /*
    * Disable since refresh task list is increase to 10000
-  @Test
-  public void testRefreshTaskList(){
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.openTaskList();
-    int taskBeforeRefresh = taskWidgetPage.countTasks();
-    JavascriptExecutor js = (JavascriptExecutor) getBrowser().getDriver();
-    String url = UrlHelpers.generateAbsoluteProcessStartLink("internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp");
-    js.executeScript("window.open('');");
+   * 
+   * @Test public void testRefreshTaskList(){ TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+   * taskWidgetPage.openTaskList(); int taskBeforeRefresh = taskWidgetPage.countTasks(); JavascriptExecutor js =
+   * (JavascriptExecutor) getBrowser().getDriver(); String url =
+   * UrlHelpers.generateAbsoluteProcessStartLink("internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp");
+   * js.executeScript("window.open('');");
+   * 
+   * 
+   * String main = ""; for (String string : getBrowser().getDriver().getWindowHandles()) { WebDriver window =
+   * getBrowser().getDriver().switchTo().window(string); if (window.getCurrentUrl().contains("blank")){ window.get(url);
+   * } else { main = string; } }
+   * 
+   * Sleeper.sleepTight(60000); getBrowser().getDriver().switchTo().window(main); int taskAfterRefresh =
+   * taskWidgetPage.countTasks(); assertNotEquals(taskBeforeRefresh, taskAfterRefresh); }
+   */
 
-    
-    String main = "";
-    for (String string : getBrowser().getDriver().getWindowHandles()) {
-      WebDriver window = getBrowser().getDriver().switchTo().window(string);
-      if (window.getCurrentUrl().contains("blank")){
-        window.get(url);
-      } else {
-        main = string;
-      }
-    }
-    
-    Sleeper.sleepTight(60000);
-    getBrowser().getDriver().switchTo().window(main);
-    int taskAfterRefresh = taskWidgetPage.countTasks();
-    assertNotEquals(taskBeforeRefresh, taskAfterRefresh);
-  }*/
-  
   @Test
-  public void testStickyTaskListOnCancel(){
+  public void testStickyTaskListOnCancel() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -137,7 +132,7 @@ public class TaskWidgetTest extends BaseTest {
     Sleeper.sleepTight(3000);
     Assert.assertTrue(taskWidgetPage.isTaskListShown());
   }
-  
+
   @Test
   public void testStartButtonStatus() {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
@@ -149,5 +144,18 @@ public class TaskWidgetTest extends BaseTest {
     Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
     taskWidgetPage.filterTasksInExpendedModeBy("Sick Leave Request");
     Assert.assertTrue(taskWidgetPage.isTaskStartEnabled(0));
+  }
+
+  @Test
+  public void testDisplayDelegateButton() {
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+    redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    assertFalse(taskWidgetPage.isTaskDelegateOptionDisable(1));
+    assertTrue(taskWidgetPage.isTaskDelegateOptionDisable(2));
+    redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
 }

@@ -1,5 +1,5 @@
 [Ivy]
-1511A66AF619A768 3.20 #module
+1511A66AF619A768 3.23 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanData Big #zClass
 Ca0 B #cInfo
@@ -42,6 +42,11 @@ Ca0 @EndTask f21 '' #zField
 Ca0 @GridStep f23 '' #zField
 Ca0 @PushWFArc f24 '' #zField
 Ca0 @PushWFArc f22 '' #zField
+Ca0 @StartRequest f25 '' #zField
+Ca0 @EndTask f26 '' #zField
+Ca0 @GridStep f28 '' #zField
+Ca0 @PushWFArc f29 '' #zField
+Ca0 @PushWFArc f27 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
 Ca0 f0 type portalKit_test.Data #txt
@@ -345,6 +350,58 @@ Ca0 f24 expr out #txt
 Ca0 f24 864 111 864 170 #arcP
 Ca0 f22 expr out #txt
 Ca0 f22 864 214 864 273 #arcP
+Ca0 f25 outLink cleanPortalPermissions.ivp #txt
+Ca0 f25 type portalKit_test.Data #txt
+Ca0 f25 inParamDecl '<> param;' #txt
+Ca0 f25 actionDecl 'portalKit_test.Data out;
+' #txt
+Ca0 f25 guid 1633EA2ABD942A83 #txt
+Ca0 f25 requestEnabled true #txt
+Ca0 f25 triggerEnabled false #txt
+Ca0 f25 callSignature cleanPortalPermissions() #txt
+Ca0 f25 persist false #txt
+Ca0 f25 startName 'Clean Portal permissions' #txt
+Ca0 f25 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Ca0 f25 caseData businessCase.attach=true #txt
+Ca0 f25 showInStartList 1 #txt
+Ca0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cleanPortalPermissions</name>
+        <nameStyle>22,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f25 @C|.responsibility Everybody #txt
+Ca0 f25 1041 81 30 30 -65 -38 #rect
+Ca0 f25 @|StartRequestIcon #fIcon
+Ca0 f26 type portalKit_test.Data #txt
+Ca0 f26 1041 273 30 30 0 15 #rect
+Ca0 f26 @|EndIcon #fIcon
+Ca0 f28 actionDecl 'portalKit_test.Data out;
+' #txt
+Ca0 f28 actionTable 'out=in;
+' #txt
+Ca0 f28 actionCode 'import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
+import ch.ivyteam.ivy.security.IPermissionGroup;
+
+IPermissionGroup portalPermissionGroup = IPermissionGroupRepository.get().findByName("PORTAL_PERMISSIONS");
+if(#portalPermissionGroup is initialized) {
+	IPermissionGroupRepository.get().delete(portalPermissionGroup);
+}' #txt
+Ca0 f28 type portalKit_test.Data #txt
+Ca0 f28 1000 170 112 44 0 -8 #rect
+Ca0 f28 @|StepIcon #fIcon
+Ca0 f29 expr out #txt
+Ca0 f29 1056 111 1056 170 #arcP
+Ca0 f27 expr out #txt
+Ca0 f27 1056 214 1056 273 #arcP
 >Proto Ca0 .type portalKit_test.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -373,3 +430,7 @@ Ca0 f20 mainOut f24 tail #connect
 Ca0 f24 head f23 mainIn #connect
 Ca0 f23 mainOut f22 tail #connect
 Ca0 f22 head f21 mainIn #connect
+Ca0 f25 mainOut f29 tail #connect
+Ca0 f29 head f28 mainIn #connect
+Ca0 f28 mainOut f27 tail #connect
+Ca0 f27 head f26 mainIn #connect
