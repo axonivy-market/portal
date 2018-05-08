@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 
 import org.apache.commons.lang.StringUtils;
@@ -37,21 +38,21 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
         public AbsenceServiceResult call() throws Exception {
 
           AbsenceServiceResult result = new AbsenceServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
-          List<String> availableApps = new ArrayList<String>();
+          List<WSException> errors = new ArrayList<>();
+          List<String> availableApps = new ArrayList<>();
 
-          if (username != null && !username.trim().equals("")) {
+          if (username != null && !"".equals(username.trim())) {
             AvailableAppsResult aaResult = findAvailableApplicationsAndUsers(apps, username);
             errors.addAll(aaResult.getErrors());
             availableApps.addAll(aaResult.getAvailableApps());
 
-            List<Absence> absences = new ArrayList<Absence>();
+            List<Absence> absences = new ArrayList<>();
             IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
             for (String applicationName : availableApps) {
               IApplication application = server.getApplicationConfigurationManager().findApplication(applicationName);
               if (application != null) {
                 IUser user = application.getSecurityContext().findUser(username);
-                if (user != null && user.getAbsences().size() > 0) {
+                if (user != null && !user.getAbsences().isEmpty()) {
                   absences.add(new Absences().toAbsence(user, application));
                 }
               }
@@ -59,7 +60,7 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
             result.setAbsences(absences);
           } else {
             // Username not given
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add(username);
             errors.add(new WSException(WSErrorType.WARNING, 10039, userText, null));
           }
@@ -88,14 +89,14 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
       throws WSException {
     try {
       AbsenceServiceResult result = new AbsenceServiceResult();
-      List<WSException> errors = new ArrayList<WSException>();
-      if (username != null && !username.trim().equals("")) {
+      List<WSException> errors = new ArrayList<>();
+      if (username != null && !"".equals(username.trim())) {
         // app list of absences
-        Map<String, List<IvyAbsence>> absenceMap = new HashMap<String, List<IvyAbsence>>();
+        Map<String, List<IvyAbsence>> absenceMap = new HashMap<>();
         for (IvyAbsence ivyAbsence : absences) {
           List<IvyAbsence> absList = absenceMap.get(ivyAbsence.getAppName());
           if (absList == null) {
-            absList = new ArrayList<IvyAbsence>();
+            absList = new ArrayList<>();
             absenceMap.put(ivyAbsence.getAppName(), absList);
           }
           absList.add(ivyAbsence);
@@ -103,21 +104,21 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
         // delete all absences in passed apps
         for (String app : apps) {
           List<WSException> errorlist = saveUserAbsence(app, username, null);
-          if (errorlist.size() > 0) {
+          if (!errorlist.isEmpty()) {
             errors.addAll(errorlist);
           }
         }
 
         // save absence at each app
-        for (String app : absenceMap.keySet()) {
-          List<WSException> errorlist = saveUserAbsence(app, username, absenceMap.get(app));
-          if (errorlist.size() > 0) {
+        for (Entry<String, List<IvyAbsence>> entry : absenceMap.entrySet()) {
+          List<WSException> errorlist = saveUserAbsence(entry.getKey(), username, entry.getValue());
+          if (!errorlist.isEmpty()) {
             errors.addAll(errorlist);
           }
         }
       } else {
         // Username not given
-        List<Object> userText = new ArrayList<Object>();
+        List<Object> userText = new ArrayList<>();
         userText.add(username);
         errors.add(new WSException(WSErrorType.WARNING, 10039, userText, null));
       }
@@ -161,9 +162,9 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
   public SubstituteServiceResult setSubstitutes(String username, List<IvySubstitute> substitutes) throws WSException {
     try {
       SubstituteServiceResult result = new SubstituteServiceResult();
-      List<WSException> errors = new ArrayList<WSException>();
-      if (username != null && !username.trim().equals("")) {
-        Map<String, List<IvySubstitute>> substitudeMap = new HashMap<String, List<IvySubstitute>>();// group
+      List<WSException> errors = new ArrayList<>();
+      if (username != null && !"".equals(username.trim())) {
+        Map<String, List<IvySubstitute>> substitudeMap = new HashMap<>();// group
                                                                                                     // list
                                                                                                     // of
                                                                                                     // substitutes
@@ -172,19 +173,19 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
         for (IvySubstitute ivySubstitute : substitutes) {
           List<IvySubstitute> subsList = substitudeMap.get(ivySubstitute.getAppName());
           if (subsList == null) {
-            subsList = new ArrayList<IvySubstitute>();
+            subsList = new ArrayList<>();
             substitudeMap.put(ivySubstitute.getAppName(), subsList);
           }
           subsList.add(ivySubstitute);
         }
 
         // save substitute at each app
-        for (String app : substitudeMap.keySet()) {
-          saveUserSubstitute(app, username, substitudeMap.get(app));
+        for (Entry<String, List<IvySubstitute>> entry : substitudeMap.entrySet()) {
+          saveUserSubstitute(entry.getKey(), username, entry.getValue());
         }
       } else {
         // Username not given
-        List<Object> userText = new ArrayList<Object>();
+        List<Object> userText = new ArrayList<>();
         userText.add(username);
         errors.add(new WSException(WSErrorType.WARNING, 10039, userText, null));
       }
@@ -206,16 +207,14 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
    */
   private List<WSException> saveUserSubstitute(final String appName, final String username,
       final List<IvySubstitute> substitutes) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
-      @Override
-      public List<WSException> call() throws Exception {
-        List<WSException> errors = new ArrayList<WSException>();
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        List<WSException> errors = new ArrayList<>();
         IApplication application =
             ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
         if (application != null) {
           IUser user = application.getSecurityContext().findUser(username);
           if (user != null) {
-            List<IUserSubstitute> currentSubstitutes = new ArrayList<IUserSubstitute>(user.getSubstitutes());
+            List<IUserSubstitute> currentSubstitutes = new ArrayList<>(user.getSubstitutes());
 
             for (IvySubstitute ivySubstitute : substitutes) {
 
@@ -239,17 +238,16 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
               user.deleteSubstitute(userSubstitute);
             }
           } else {
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add(username);
             errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
           }
         } else {
-          List<Object> userText = new ArrayList<Object>();
+          List<Object> userText = new ArrayList<>();
           userText.add(appName);
           errors.add(new WSException(WSErrorType.WARNING, 10030, userText, null));
         }
         return errors;
-      }
     });
   }
 
@@ -260,12 +258,11 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
    * @param user
    * @param ivySubstitute
    */
-  private List<WSException> createSubstitute(IApplication application, IUser user, IvySubstitute ivySubstitute)
-      throws Exception {
-    List<WSException> errors = new ArrayList<WSException>();
+  private List<WSException> createSubstitute(IApplication application, IUser user, IvySubstitute ivySubstitute) {
+    List<WSException> errors = new ArrayList<>();
     IUser substituteUser = application.getSecurityContext().findUser(ivySubstitute.getMySubstitute());
     if (substituteUser == null) {
-      List<Object> userText = new ArrayList<Object>();
+      List<Object> userText = new ArrayList<>();
       userText.add(ivySubstitute.getMySubstitute());
       errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
     }
@@ -278,12 +275,12 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
         }
       }
       if (role == null) {
-        List<Object> userText = new ArrayList<Object>();
+        List<Object> userText = new ArrayList<>();
         userText.add(ivySubstitute.getForThisRole());
         errors.add(new WSException(WSErrorType.WARNING, 10038, userText, null));
       }
     }
-    if (errors.size() > 0) {
+    if (!errors.isEmpty()) {
       return errors;
     }
     user.createSubstitute(substituteUser, role,
@@ -296,10 +293,9 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
    * @param user
    * @param userSubstitute
    * @param ivySubstitute
-   * @throws Exception
    */
   private List<WSException> updateSubstitute(IApplication application, IUser user, IUserSubstitute userSubstitute,
-      IvySubstitute ivySubstitute) throws Exception {
+      IvySubstitute ivySubstitute) {
     user.deleteSubstitute(userSubstitute);
     return createSubstitute(application, user, ivySubstitute);
   }
@@ -335,44 +331,39 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
    * @param appName
    * @param username
    * @param absences : list of absences to save
-   * @throws Exception
    */
-  private List<WSException> saveUserAbsence(final String appName, final String username, final List<IvyAbsence> absences)
-      throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
-      @Override
-      public List<WSException> call() throws Exception {
-        List<WSException> errors = new ArrayList<WSException>();
-        IApplication application =
-            ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
-        if (application != null) {
-          IUser user = application.getSecurityContext().findUser(username);
-          if (user != null) {
-            // delete all absence
-            List<IUserAbsence> currentAbsences = user.getAbsences();
-            for (IUserAbsence absence : currentAbsences) {
-              user.deleteAbsence(absence);
-            }
-            if (absences != null && absences.size() > 0) {
-              // add new absences
-              for (IvyAbsence ivyAbsence : absences) {
-                user.createAbsence(ivyAbsence.getStartDateInclusive(), ivyAbsence.getStopDateInclusive(),
-                    ivyAbsence.getDescription());
-              }
-            }
-          } else {
-            List<Object> userText = new ArrayList<Object>();
-            userText.add(username);
-            errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
+  private List<WSException> saveUserAbsence(final String appName, final String username, final List<IvyAbsence> absences) {
+    return executeAsSystem(() -> {
+      List<WSException> errors = new ArrayList<>();
+      IApplication application =
+          ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
+      if (application != null) {
+        IUser user = application.getSecurityContext().findUser(username);
+        if (user != null) {
+          // delete all absence
+          List<IUserAbsence> currentAbsences = user.getAbsences();
+          for (IUserAbsence absence : currentAbsences) {
+            user.deleteAbsence(absence);
           }
-
+          if (absences != null && !absences.isEmpty()) {
+            // add new absences
+            for (IvyAbsence ivyAbsence : absences) {
+              user.createAbsence(ivyAbsence.getStartDateInclusive(), ivyAbsence.getStopDateInclusive(),
+                  ivyAbsence.getDescription());
+            }
+          }
         } else {
-          List<Object> userText = new ArrayList<Object>();
-          userText.add(appName);
-          errors.add(new WSException(WSErrorType.WARNING, 10030, userText, null));
+          List<Object> userText = new ArrayList<>();
+          userText.add(username);
+          errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
         }
-        return errors;
+
+      } else {
+        List<Object> userText = new ArrayList<>();
+        userText.add(appName);
+        errors.add(new WSException(WSErrorType.WARNING, 10030, userText, null));
       }
+      return errors;
     });
   }
 

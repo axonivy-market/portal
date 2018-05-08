@@ -46,7 +46,7 @@ public class ProcessStartCollector {
     return null;
   }
 
-  public String findACMLink() throws Exception {
+  public String findACMLink() throws Exception { //NOSONAR
     return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
       @Override
       public String call() throws Exception {

@@ -28,7 +28,7 @@ public class IvyNoteTransformer {
 
 
   public List<IvyNote> transform(List<INote> notes) {
-    List<IvyNote> result = new ArrayList<IvyNote>();
+    List<IvyNote> result = new ArrayList<>();
     for (INote note : notes) {
       result.add(transform(note));
     }

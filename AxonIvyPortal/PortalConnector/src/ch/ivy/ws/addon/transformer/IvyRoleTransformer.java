@@ -29,7 +29,7 @@ public class IvyRoleTransformer {
   }
 
   public List<IvyRole> transform(List<ISecurityMember> members, IApplication app) {
-    List<IvyRole> result = new ArrayList<IvyRole>();
+    List<IvyRole> result = new ArrayList<>();
 
     for (ISecurityMember m : members) {
       result.add(transform(m, app));

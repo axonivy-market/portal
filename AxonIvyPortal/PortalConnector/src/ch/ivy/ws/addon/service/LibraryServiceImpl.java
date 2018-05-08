@@ -48,7 +48,7 @@ public class LibraryServiceImpl implements ILibraryService {
                 .map(lib -> IvyLibraryTransformer.transform(lib, app)).collect(Collectors.toList()));
           }
         } catch (Exception e) {
-          List<Object> userText = new ArrayList<Object>();
+          List<Object> userText = new ArrayList<>();
           userText.add(app);
           errors.add(new WSException(WSErrorType.WARNING, 10054, e, userText, null));
         }

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -58,6 +59,7 @@ public class CaseWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyCaseWithPermission() {
+    Sleeper.sleepTight(7000);
     initHomePage(TestAccount.ADMIN_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();

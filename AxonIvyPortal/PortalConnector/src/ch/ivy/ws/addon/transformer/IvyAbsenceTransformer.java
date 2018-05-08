@@ -29,7 +29,7 @@ public class IvyAbsenceTransformer {
   }
 
   public List<IvyAbsence> transform(List<IUserAbsence> members, IApplication app) {
-    List<IvyAbsence> result = new ArrayList<IvyAbsence>();
+    List<IvyAbsence> result = new ArrayList<>();
 
     for (IUserAbsence m : members) {
       result.add(transform(m, app));

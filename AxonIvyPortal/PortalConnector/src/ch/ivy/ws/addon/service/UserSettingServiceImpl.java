@@ -99,7 +99,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
           s.setSendOnNewWorkTasks(BooleanUtils.toBoolean(setting.getEmailSendOnNewWorkTasks()));
 
           if (setting.getLanguage() != null) {
-            if (setting.getLanguage().equalsIgnoreCase("de")) {
+            if ("de".equalsIgnoreCase(setting.getLanguage())) {
               user.setEMailLanguage(Locale.GERMAN);
             } else {
               user.setEMailLanguage(Locale.ENGLISH);
@@ -117,11 +117,11 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   public UserSettingServiceResult findUserSetting(String username, String appName) throws WSException {
     UserSettingServiceResult result = new UserSettingServiceResult();
     try {
-      List<String> apps = new ArrayList<String>();
+      List<String> apps = new ArrayList<>();
       apps.add(appName);
 
       List<IUser> users = findUsers(apps, username);
-      if (users.size() > 0) {
+      if (!users.isEmpty()) {
         result.setUserSetting(findUserSetting(users.get(0)));
       }
     } catch (Exception e) {
@@ -133,11 +133,11 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   @Override
   public void saveUserSetting(String username, IvyUserSetting setting, String appName) throws WSException {
     try {
-      List<String> apps = new ArrayList<String>();
+      List<String> apps = new ArrayList<>();
       apps.add(appName);
 
       List<IUser> users = findUsers(apps, username);
-      if (users.size() > 0) {
+      if (!users.isEmpty()) {
         saveUserSetting(users.get(0), setting);
       }
     } catch (Exception e) {
@@ -153,9 +153,9 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
         @Override
         public UserSettingServiceResult call() throws WSException {
           UserSettingServiceResult result = new UserSettingServiceResult();
-          List<IvyEmailSetting> settings = new ArrayList<IvyEmailSetting>();
-          List<WSException> errors = new ArrayList<WSException>();
-          List<String> availableApps = new ArrayList<String>();
+          List<IvyEmailSetting> settings = new ArrayList<>();
+          List<WSException> errors = new ArrayList<>();
+          List<String> availableApps = new ArrayList<>();
           try {
             if (user != null && StringUtils.isNotBlank(user)) {
               AvailableAppsResult aaResult = findAvailableApplicationsAndUsers(applications, user);
@@ -164,45 +164,44 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
               IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
               for (IApplication serverApp : server.getApplicationConfigurationManager().getApplications()) {
                 IvyEmailSetting setting = new IvyEmailSetting();
-                if (availableApps.contains(serverApp.getName())) {
-                  if (serverApp.getSecurityContext().findUser(user) != null) {
-                    IUser iuser = serverApp.getSecurityContext().findUser(user);
-                    setting.setAppName(serverApp.getName());
+                if (availableApps.contains(serverApp.getName()) && 
+                    serverApp.getSecurityContext().findUser(user) != null) {
+                  IUser iuser = serverApp.getSecurityContext().findUser(user);
+                  setting.setAppName(serverApp.getName());
 
-                    // set value for useCustomMails base on property in IUser
-                    boolean useNewCustomMailVariable = iuser.getProperty(ENABLE_CUSTOM_MAIL) != null
-                        && TRUE.equals(iuser.getProperty(ENABLE_CUSTOM_MAIL).toLowerCase());
+                  // set value for useCustomMails base on property in IUser
+                  boolean useNewCustomMailVariable = iuser.getProperty(ENABLE_CUSTOM_MAIL) != null
+                      && TRUE.equalsIgnoreCase(iuser.getProperty(ENABLE_CUSTOM_MAIL));
 
-                    // In old versions of Portal, we use property disableCustomMails instead of useCustomMails.
-                    // To make Portal more compatible and easier to migrate, we decided not to ignore old property disableCustomMails.
-                    boolean useOldCustomMailVariable = iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL) != null
-                        && TRUE.equals(iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL).toLowerCase());
+                  // In old versions of Portal, we use property disableCustomMails instead of useCustomMails.
+                  // To make Portal more compatible and easier to migrate, we decided not to ignore old property disableCustomMails.
+                  boolean useOldCustomMailVariable = iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL) != null
+                      && TRUE.equalsIgnoreCase(iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL));
 
-                    if (useNewCustomMailVariable || useOldCustomMailVariable) {
-                      setting.setCustomMailEnabled(true);
-                    } else {
-                      setting.setCustomMailEnabled(false);
-                    }
-
-                    IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings();
-                    // if user settings is set to default, return default settings of the application
-                    if (emailSettings.isUseApplicationDefault()) {
-                      IEMailNotificationSettings defaultSettings =
-                          Ivy.wf().getApplication().getDefaultEMailNotifcationSettings();
-                      if (defaultSettings != null) {
-                        setEmailSettingFromEmail(setting, defaultSettings);
-                      }
-                    } else {
-                      setEmailSettingFromUserEmail(setting, emailSettings);
-                    }
-                    settings.add(setting);
+                  if (useNewCustomMailVariable || useOldCustomMailVariable) {
+                    setting.setCustomMailEnabled(true);
+                  } else {
+                    setting.setCustomMailEnabled(false);
                   }
+
+                  IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings();
+                  // if user settings is set to default, return default settings of the application
+                  if (emailSettings.isUseApplicationDefault()) {
+                    IEMailNotificationSettings defaultSettings =
+                        Ivy.wf().getApplication().getDefaultEMailNotifcationSettings();
+                    if (defaultSettings != null) {
+                      setEmailSettingFromEmail(setting, defaultSettings);
+                    }
+                  } else {
+                    setEmailSettingFromUserEmail(setting, emailSettings);
+                  }
+                  settings.add(setting);
                 }
                 result.setEmailSettings(settings);
               }
             } else {
               // Username not given
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(user);
               errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
             }
@@ -249,7 +248,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
         @Override
         public List<WSException> call() throws WSException {
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
           try {
             IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
             for (IvyEmailSetting setting : settings) {
@@ -262,8 +261,8 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
                     /*
                      * IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings(); // If change
                      * "use user settings" from true to false, copy default language setting from application's default if
-                     * (emailSettings != null && !emailSettings.isUseApplicationDefault()) {
-                     * iuser.setEMailLanguage(serverApp.getDefaultEMailLanguage()); }
+                     * (emailSettings != null && !emailSettings.isUseApplicationDefault()) { //NOSONAR
+                     * iuser.setEMailLanguage(serverApp.getDefaultEMailLanguage()); } //NOSONAR
                      */
                     // set value for email settings on the server
                     iuser.setEMailNotificationSettings(convertFromIvyEmailSettingToIUserEMailNotificationSettings(iuser,
@@ -272,12 +271,12 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
                       iuser.setProperty(ENABLE_CUSTOM_MAIL, setting.getCustomMailEnabled().toString());
                     }
                   } else {
-                    List<Object> userText = new ArrayList<Object>();
+                    List<Object> userText = new ArrayList<>();
                     userText.add(user);
                     errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
                   }
                 } else {
-                  List<Object> userText = new ArrayList<Object>();
+                  List<Object> userText = new ArrayList<>();
                   userText.add(setting.getAppName());
                   errors.add(new WSException(WSErrorType.WARNING, 10030, userText, null));
                 }
@@ -303,7 +302,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
         @Override
         public List<WSException> call() throws Exception {
 
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
           IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
           for (IApplication app : server.getApplicationConfigurationManager().getApplications()) {
             if (apps.contains(app.getName())) {

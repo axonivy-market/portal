@@ -39,9 +39,9 @@ import ch.ivyteam.ivy.system.ISystemProperty;
 public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private List<RemoteWebStartable> foundWebStartables;
-  private List<RemoteTask> foundTasks;
-  private List<RemoteCase> foundCases;
+  private transient List<RemoteWebStartable> foundWebStartables;
+  private transient List<RemoteTask> foundTasks;
+  private transient List<RemoteCase> foundCases;
   private String searchKeyword;
   private String userName;
   public static final int MINUTE_TO_SECOND = 60;

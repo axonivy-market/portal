@@ -29,7 +29,7 @@ public class IvySecurityMemberTransformer {
   }
 
   public List<IvySecurityMember> transform(List<ISecurityMember> members, IApplication app) {
-    List<IvySecurityMember> result = new ArrayList<IvySecurityMember>();
+    List<IvySecurityMember> result = new ArrayList<>();
 
     for (ISecurityMember m : members) {
       result.add(transform(m, app));

@@ -13,7 +13,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 /**
  * Default implementation for the isAlive service
- * @author ril
+ * @deprecated This class is deprecated
  *
  */
 @Deprecated
@@ -29,7 +29,7 @@ public class IsAliveServiceImpl extends AbstractService implements IIsAliveServi
 				public IsAliveServiceResult call() throws Exception {
 					IsAliveServiceResult result = new IsAliveServiceResult();
 					
-					if (apps == null || apps.size() == 0) {
+					if (apps == null || apps.isEmpty()) {
 					  IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
 						
 					  for(IApplication i : server.getApplicationConfigurationManager().getApplications()){
@@ -39,11 +39,10 @@ public class IsAliveServiceImpl extends AbstractService implements IIsAliveServi
 					  }				
 					}				
 					
-					List<IvyApplication> ivyApps = new ArrayList<IvyApplication>();
+					List<IvyApplication> ivyApps = new ArrayList<>();
           if (apps != null) {
             for (String name : apps) {
-              IvyApplication app = new IvyApplication();
-              app = isApplicationActive(name);
+              IvyApplication app = isApplicationActive(name);
               ivyApps.add(app);
             }
           }

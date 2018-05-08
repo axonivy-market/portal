@@ -10,8 +10,11 @@ import ch.ivyteam.ivy.security.IUserSubstitute;
 
 public class IvySubstituteTransformer {
 
+  private IvySubstituteTransformer() {
+  }
+
   public static List<IvySubstitute> transform(List<IUserSubstitute> members, IApplication app) {
-    List<IvySubstitute> result = new ArrayList<IvySubstitute>();
+    List<IvySubstitute> result = new ArrayList<>();
 
     for (IUserSubstitute m : members) {
       result.add(transform(m, app));

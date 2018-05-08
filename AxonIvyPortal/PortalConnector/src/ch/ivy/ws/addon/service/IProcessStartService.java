@@ -6,7 +6,7 @@ import ch.ivy.ws.addon.bo.ProcessStartServiceResult;
 /**
  * Process start service provides a set of service methods for available process starts
  */
-public interface IProcessStartService {
+public interface IProcessStartService { //NOSONAR
 
   /**
    * Find all process starts by criteria

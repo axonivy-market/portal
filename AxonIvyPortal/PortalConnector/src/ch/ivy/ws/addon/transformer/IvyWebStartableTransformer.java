@@ -14,6 +14,8 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
  */
 public class IvyWebStartableTransformer {
 
+  private IvyWebStartableTransformer() {}
+
   public static IvyWebStartable transform(IWebStartable start, Boolean isUrlBuiltFromSystemProperties) {
     IvyWebStartable result = new IvyWebStartable();
     try {
