@@ -7,6 +7,9 @@ import ch.ivy.ws.addon.types.IvyLibrary;
 import ch.ivyteam.ivy.application.ILibrary;
 
 public class IvyLibraryTransformer {
+  
+  private IvyLibraryTransformer() {
+  }
 
   public static IvyLibrary transform(ILibrary library, String application) {
     IvyLibrary result = new IvyLibrary();
@@ -19,7 +22,7 @@ public class IvyLibraryTransformer {
 
 
   public static List<IvyLibrary> transform(List<ILibrary> libraries, String application) {
-    List<IvyLibrary> result = new ArrayList<IvyLibrary>();
+    List<IvyLibrary> result = new ArrayList<>();
     for (ILibrary library : libraries) {
       result.add(transform(library, application));
     }

@@ -39,9 +39,9 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
   @Override
   public LanguagesSettingsServiceResult getLanguagesSettings(String username, List<String> apps, Long serverId) {
     LanguagesSettingsServiceResult result = new LanguagesSettingsServiceResult();
-    List<WSException> errors = new ArrayList<WSException>();
-    List<IvyLanguageSetting> settings = new ArrayList<IvyLanguageSetting>();
-    if (apps != null && apps.size() > 0) {
+    List<WSException> errors = new ArrayList<>();
+    List<IvyLanguageSetting> settings = new ArrayList<>();
+    if (apps != null && !apps.isEmpty()) {
       for (String appName : apps) {
         try {
           IvyLanguageSetting languageSetting = getUserLanguagesSettings(username, appName, serverId);
@@ -49,12 +49,10 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
               && !languageSetting.getSupportedLanguages().isEmpty()) {
             settings.add(languageSetting);
           }
-        } catch (Exception e) {
-          if (e instanceof WSException) {
-            errors.add((WSException) e);
-          } else {
-            Ivy.log().error(e);
-          }
+        } catch (WSException e) {
+          errors.add(e);
+        } catch (Exception ex) {
+          Ivy.log().error(ex);
         }
       }
     }
@@ -73,7 +71,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
    */
   @SuppressWarnings("javadoc")
   public IvyLanguageSetting getUserLanguagesSettings(final String username, final String appName, final Long serverId)
-      throws Exception {
+      throws Exception { //NOSONAR
     return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IvyLanguageSetting>() {
       @Override
       public IvyLanguageSetting call() throws Exception {
@@ -109,9 +107,9 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
       }
       
       private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs, IServer server){
-        Set<String> supportedLanguages = new HashSet<String>();
+        Set<String> supportedLanguages = new HashSet<>();
         for (IProcessModelVersion pmv: pmvs){
-          String lang = StringUtils.EMPTY;
+          String lang;
           IContentManagementSystem findCms = server.getContentManagement().findCms(pmv);
           if (findCms != null){
             lang = findCms.co(CMS_LANG_KEY);
@@ -142,17 +140,15 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
   @Override
   public LanguagesSettingsServiceResult setLanguagesSettings(String username, List<IvyLanguageSetting> settings) {
     LanguagesSettingsServiceResult rs = new LanguagesSettingsServiceResult();
-    List<WSException> errors = new ArrayList<WSException>();
-    if (settings != null && settings.size() > 0) {
+    List<WSException> errors = new ArrayList<>();
+    if (settings != null && !settings.isEmpty()) {
       for (IvyLanguageSetting ivyLanguageSetting : settings) {
         try {
           errors.addAll(saveLanguagesSettings(ivyLanguageSetting.getAppName(), username, ivyLanguageSetting));
-        } catch (Exception e) {
-          if (e instanceof WSException) {
-            errors.add((WSException) e);
-          } else {
-            Ivy.log().error(e);
-          }
+        } catch (WSException e) {
+            errors.add(e);
+        } catch (Exception ex) {
+          Ivy.log().error(ex);
         }
       }
     }
@@ -172,7 +168,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
         @Override
         public List<WSException> call() throws Exception {
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
           IServer server = ServerFactory.getServer();
           IApplication application =
               server.getApplicationConfigurationManager().findApplication(appName);
@@ -220,7 +216,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
         }
       });
     } catch (Exception ex) {
-      throw new WSException(WSErrorType.WARNING, 10048, Arrays.asList(username), null);
+      throw new WSException(WSErrorType.WARNING, 10048, ex, Arrays.asList(username), null);
     }
   }
 }

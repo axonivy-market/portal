@@ -27,8 +27,8 @@ public class TaskTemplateBean implements Serializable{
   private static final long serialVersionUID = 1L;
 
   private String linkToTask;
-  private List<IStartableSideStep> sideStepList;
-  private IStartableSideStep selectedSideStep;
+  private transient List<IStartableSideStep> sideStepList;
+  private transient IStartableSideStep selectedSideStep;
 
   public void generateLinkToTask(final long taskId) throws Exception {
     PortalNavigator navigator = new PortalNavigator();
@@ -58,7 +58,7 @@ public class TaskTemplateBean implements Serializable{
     portalNavigator.redirect(url);
   }
 
-  public void startSideStep() throws Exception {
+  public void startSideStep() {
     PortalNavigator portalNavigator = new PortalNavigator();
     portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }
@@ -69,7 +69,7 @@ public class TaskTemplateBean implements Serializable{
     return !adhocUrl.isEmpty();
   }
 
-  public List<IStartableSideStep> generateSideStepList(String caseId) throws Exception {
+  public List<IStartableSideStep> generateSideStepList(String caseId) {
     if (StringUtils.isBlank(caseId)) {
       return Collections.emptyList();
     }
@@ -85,7 +85,7 @@ public class TaskTemplateBean implements Serializable{
     return sideStepList;
   }
 
-  public boolean checkSideStepsEnabled(String caseId) throws Exception {
+  public boolean checkSideStepsEnabled(String caseId) {
     return !generateSideStepList(caseId).isEmpty();
   }
 

@@ -10,6 +10,7 @@ public final class SystemProperties {
   public static final String EXTERNAL_PORT = "WebServer.ExternalPort";
   public static final String EXTERNAL_PROTOCOL = "WebServer.ExternalProtocol";
 
+  private SystemProperties() {}
   public static String getSystemPropertyValue(String propertyName) {
     try {
       return ServerFactory.getServer().getSecurityManager()

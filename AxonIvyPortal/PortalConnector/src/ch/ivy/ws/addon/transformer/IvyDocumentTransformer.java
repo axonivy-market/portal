@@ -26,7 +26,7 @@ public class IvyDocumentTransformer {
     try {
       File file = new File(document.getPath().asString());
       result.setContentType(Files.probeContentType(file.getJavaFile().toPath()));
-    } catch (Exception e) {
+    } catch (Exception e) { //NOSONAR
     }
 
     return result;

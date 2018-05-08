@@ -89,8 +89,7 @@ public class WebStartableServiceImpl extends AbstractService implements IWebStar
         || containsIgnoreCase(webStartable.getDescription(), keyword);
   }
 
-  private IWorkflowSession getWorkflowSession(WebStartableSearchCriteria searchCriteria, IApplication application)
-      throws Exception {
+  private IWorkflowSession getWorkflowSession(WebStartableSearchCriteria searchCriteria, IApplication application) throws WSException {
     if (searchCriteria.hasInvolvedUsername()) {
       IWorkflowSession givenUserWorkflowSession =
           findUserWorkflowSession(searchCriteria.getInvolvedUsername(), application);
