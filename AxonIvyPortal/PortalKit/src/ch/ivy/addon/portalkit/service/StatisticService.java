@@ -301,13 +301,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       String selectedValue, String previousSelectedMonth, String previousSelectedWeek) {
 
     // Convert result
-    Map<Date, Long> statisticResultMap = new HashMap<Date, Long>();
+    Map<Date, Long> statisticResultMap = new HashMap<>();
     Gson gsonConverter = new Gson();
     Type type = new TypeToken<Map<String, String>>() {}.getType();
 
     expiryStatistic.forEach(statistic -> {
       if (StringUtils.isNotBlank(statistic.getResult())) {
-        Map<String, String> resultAsString = new HashMap<String, String>();
+        Map<String, String> resultAsString = new HashMap<>();
         resultAsString.putAll(gsonConverter.fromJson(statistic.getResult(), type));
         resultAsString.entrySet().forEach(result -> {
           try {
@@ -648,7 +648,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     elapsedTimeStatistic.forEach(statistic -> {
       if (StringUtils.isNotBlank(statistic.getResult())) {
-        Map<String, String> resultAsString = new HashMap<String, String>();
+        Map<String, String> resultAsString = new HashMap<>();
         resultAsString.putAll(gsonConverter.fromJson(statistic.getResult(), type));
         resultAsString.entrySet().forEach(result -> {
           Number elapsedTime = NumberUtils.createNumber(result.getValue());
@@ -658,7 +658,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     });
 
     for (Entry<String, Number> entry : chartDataTemp.entrySet()) {
-      String key = entry.getKey().toString();
+      String key = entry.getKey();
       if (StringUtils.isBlank(key)) {
         key = Ivy.cms().co(NO_CATEGORY_CMS);
       }
