@@ -49,7 +49,7 @@ public class TaskTemplateBean implements Serializable{
     this.selectedSideStep = selectedSideStep;
   }
 
-  public void startAdhoc() throws Exception {
+  public void startAdhoc() {
     PortalNavigator portalNavigator = new PortalNavigator();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
     String url = processStartCollector.findACMLink();
@@ -63,7 +63,7 @@ public class TaskTemplateBean implements Serializable{
     portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }
 
-  public boolean hasSelfService() throws Exception {
+  public boolean hasSelfService() {
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
     String adhocUrl = processStartCollector.findACMLink();
     return !adhocUrl.isEmpty();

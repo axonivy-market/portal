@@ -18,7 +18,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class UrlHelper implements Serializable {
   private static final long serialVersionUID = 1L;
 
-	public static String findCreateExpressWorkflowStartLink() throws Exception {
+	public static String findCreateExpressWorkflowStartLink() {
 		ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
 		return collector.findCreateExpressWorkflowStartLink();
 	}
