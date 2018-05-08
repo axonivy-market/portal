@@ -35,12 +35,12 @@ public class DragAndDropController implements Serializable{
       
     
     public DragAndDropController() {
-    	availableFormelements = new ArrayList<Formelement>();
-    	selectedFormelementsHeader = new ArrayList<Formelement>();
-    	selectedFormelementsLeftPanel = new ArrayList<Formelement>();
-    	selectedFormelementsRightPanel = new ArrayList<Formelement>();
-    	selectedFormelementsFooter = new ArrayList<Formelement>();
-    	finalUsedFormelements = new ArrayList<Formelement>();
+    	availableFormelements = new ArrayList<>();
+    	selectedFormelementsHeader = new ArrayList<>();
+    	selectedFormelementsLeftPanel = new ArrayList<>();
+    	selectedFormelementsRightPanel = new ArrayList<>();
+    	selectedFormelementsFooter = new ArrayList<>();
+    	finalUsedFormelements = new ArrayList<>();
 	}
     
     
