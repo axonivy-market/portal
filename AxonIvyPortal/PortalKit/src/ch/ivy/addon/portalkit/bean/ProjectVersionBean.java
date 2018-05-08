@@ -19,6 +19,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ViewScoped
 public class ProjectVersionBean implements Serializable {
 
+  private static final long serialVersionUID = -2148042793400166168L;
   private String engineVersion;
   private String portalVersion;
   private Map<String, List<RemoteLibrary>> projectLibraries;

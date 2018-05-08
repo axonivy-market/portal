@@ -21,7 +21,7 @@ public class TaskWidgetPage extends TemplatePage {
   private static final String KEYWORD_FILTER_SELECTOR =
       "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
   private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
-          "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
+      "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
   @Override
   protected String getLoadedLocator() {
@@ -84,6 +84,12 @@ public class TaskWidgetPage extends TemplatePage {
     return new TaskTemplatePage();
   }
 
+  public boolean isTaskDelegateOptionDisable(int index) {
+    WebElement delegateButton =
+        findElementById("task-widget:task-list-scroller:" + index + ":task-item:task-action:task-delegate-command");
+    return delegateButton.getAttribute("class").contains("ui-state-disabled");
+  }
+
   public int countTasks() {
     List<WebElement> taskElements = findListElementsByCssSelector("div[class*='task-start-list-item']");
     return taskElements.size();
@@ -96,7 +102,7 @@ public class TaskWidgetPage extends TemplatePage {
     Sleeper.sleepTight(2000);
     waitAjaxIndicatorDisappear();
   }
-  
+
   public void filterTasksInExpendedModeBy(String keyword) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
     keywordFilter.clear();
@@ -139,7 +145,7 @@ public class TaskWidgetPage extends TemplatePage {
         String.format("task-widget:task-list-scroller:0:task-item:task-action:task-reset-command", taskId);
     click(findElementById(resetCommandButton));
   }
-  
+
   public boolean isTaskStartEnabled(int taskId) {
     String startCommandButton =
         String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-start-command", taskId);
@@ -341,13 +347,20 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getTaskListCustomCellValue(int index, String columnId) {
-    WebElement cell = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
+    WebElement cell =
+        findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s-component:%s", index, columnId,
+            columnId));
     return cell.getText();
   }
 
   public void openTaskDelegateDialog(int index) {
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
-      .until(() -> findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command",index)).isDisplayed());
+    Awaitility
+        .await()
+        .atMost(new Duration(5, TimeUnit.SECONDS))
+        .until(
+            () -> findElementById(
+                String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command", index))
+                .isDisplayed());
 
     WebElement delegateButton =
         findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command",
@@ -423,9 +436,10 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
   }
-  
+
   public boolean isAdvancedFilterDisplayed(String filterIdName) {
-    return isElementDisplayed(By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"));
+    return isElementDisplayed(By.cssSelector("span[id$='" + filterIdName
+        + "-filter:filter-open-form:advanced-filter-item-container']"));
   }
 
   public void filterByDescription(String text) {
@@ -477,15 +491,15 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement taskDetails = findElementByCssSelector("div.js-task-list-container");
     return taskDetails.isDisplayed();
   }
-  
+
   public String getStateInCompactMode(int index) {
     WebElement taskListElement = findElementById("task-widget:task-list-scroller");
     WebElement taskElement = taskListElement.findElement(By.cssSelector("*[id*='" + index + ":task-item']"));
     WebElement state = taskElement.findElement(By.cssSelector("*[id*='task-start-task-state']"));
     return state.getText().substring(state.getText().indexOf(" ") + 1);
   }
-  
-  public void startTaskWithoutUI(int index){
+
+  public void startTaskWithoutUI(int index) {
     WebElement taskListElement = findElementById("task-widget:task-list-scroller");
     if (taskListElement.getAttribute("class").contains("compact-mode")) {
       findElementByCssSelector("*[id*='" + index + ":task-item']").click();
