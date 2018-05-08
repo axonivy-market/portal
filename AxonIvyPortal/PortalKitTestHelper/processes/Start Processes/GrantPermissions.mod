@@ -533,8 +533,7 @@ IPermission delegateOwnTaskPermission = IPermissionRepository.get().findByName(P
 if(#delegateOwnTaskPermission is initialized) {
 	ivy.wf.getApplication().getSecurityDescriptor().grantPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());
 }
-ivy.wf.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());
-ivy.wf.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());' #txt
+ivy.wf.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());' #txt
 Is0 f37 security system #txt
 Is0 f37 type ch.ivy.add.portalkit.Data #txt
 Is0 f37 156 836 40 24 0 -8 #rect
@@ -588,8 +587,7 @@ IPermission delegateOwnTaskPermission = IPermissionRepository.get().findByName(P
 if(#delegateOwnTaskPermission is initialized) {
 	ivy.wf.getApplication().getSecurityDescriptor().denyPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());
 }
-ivy.wf.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());
-ivy.wf.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());' #txt
+ivy.wf.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());' #txt
 Is0 f41 security system #txt
 Is0 f41 type ch.ivy.add.portalkit.Data #txt
 Is0 f41 156 932 40 24 0 -8 #rect
