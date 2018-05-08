@@ -6,6 +6,8 @@ import java.util.Date;
 
 public class JavaDates {
 
+  private JavaDates() {}
+
   public static Date today() {
     LocalDate now = LocalDate.now();
     return Date.from(now.atStartOfDay(ZoneId.systemDefault()).toInstant());

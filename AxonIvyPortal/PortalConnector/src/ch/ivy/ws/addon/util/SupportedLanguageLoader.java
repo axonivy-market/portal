@@ -49,7 +49,7 @@ public class SupportedLanguageLoader {
 
     @Override
     public List<String> call() throws Exception {
-      Set<String> supportedLanguages = new HashSet<String>();
+      Set<String> supportedLanguages = new HashSet<>();
       for (IProcessModelVersion pmv : allReachablePmvs()) {
         IContentManagementSystem cms = Ivy.cms().getContentManagement().findCms(pmv);
         IContentObjectValue contentObjectValue =
@@ -64,13 +64,13 @@ public class SupportedLanguageLoader {
           }
         }
       }
-      return new ArrayList<String>(supportedLanguages);
+      return new ArrayList<>(supportedLanguages);
     }
 
     private List<IProcessModelVersion> allReachablePmvs() {
       IApplication application =
           ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
-      List<IProcessModelVersion> pmvs = new ArrayList<IProcessModelVersion>();
+      List<IProcessModelVersion> pmvs = new ArrayList<>();
       for (IProcessModel pm : application.getProcessModels()) {
         IProcessModelVersion releasedPmv = pm.getReleasedProcessModelVersion();
         if (releasedPmv != null) {

@@ -16,7 +16,10 @@ import ch.ivyteam.ivy.security.IUser;
  * 
  */
 public class SessionUtil {
-  public static void loginAsUser(final String username) throws Exception {
+
+  private SessionUtil() {}
+
+  public static void loginAsUser(final String username) throws Exception { //NOSONAR
     final ISecurityContext securityContext = Ivy.wf().getSecurityContext();
     securityContext.executeAsSystemUser(new Callable<Object>() {
       @Override
@@ -38,7 +41,6 @@ public class SessionUtil {
         return permissionAccess.isGranted();
       }
     } catch (PersistencyException e) {
-      // TODO Auto-generated catch block
       Ivy.log().error(e);
       return false;
     }

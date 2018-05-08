@@ -9,6 +9,9 @@ import ch.ivyteam.ivy.security.IUser;
 
 public class Helper {
 
+  private Helper() {
+  }
+
 	public static List<IUser> sortUsers(List<IUser> userList) {
 		userList.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
 			second.getDisplayName().toLowerCase()));

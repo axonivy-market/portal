@@ -17,7 +17,7 @@ public class NavigatorBean implements Serializable {
 
   public void navigateToCaseDetail(String caseName, long caseId, long serverId) throws Exception {
     PortalNavigator portalNavigator = new PortalNavigator();
-    Map<String, String> dialogParameters = new HashMap<String, String>();
+    Map<String, String> dialogParameters = new HashMap<>();
     dialogParameters.put("caseName", caseName);
     dialogParameters.put("caseId", String.valueOf(caseId));
     dialogParameters.put("serverId", String.valueOf(serverId));

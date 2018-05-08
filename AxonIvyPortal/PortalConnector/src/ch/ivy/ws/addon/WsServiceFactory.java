@@ -36,6 +36,8 @@ import ch.ivy.ws.addon.service.WebStartableServiceImpl;
 @SuppressWarnings("deprecation")
 public class WsServiceFactory {
 
+  private WsServiceFactory() {}
+
   private static ICaseService caseService;
 
   private static ISecurityService securityService;
@@ -52,6 +54,9 @@ public class WsServiceFactory {
 
   private static ISideStepService sideStepService;
   
+  /**
+   * @deprecated deprecated
+   */
   @Deprecated
   private static IIsAliveService isAliveService;
 
@@ -105,6 +110,10 @@ public class WsServiceFactory {
     return userSettingService;
   }
 
+  /**
+   * @deprecated deprecated
+   * @return IIsAliveService
+   */
   @Deprecated
   public static IIsAliveService getIsAliveService() {
     if (isAliveService == null)

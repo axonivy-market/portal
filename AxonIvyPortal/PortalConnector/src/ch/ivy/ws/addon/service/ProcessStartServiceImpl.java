@@ -90,7 +90,7 @@ public class ProcessStartServiceImpl extends AbstractService implements IProcess
   }
 
   private IWorkflowSession getWorkflowSession(ProcessSearchCriteria searchCriteria, IApplication application)
-      throws Exception {
+      throws WSException {
     if (searchCriteria.hasInvolvedUsername()) {
       IWorkflowSession givenUserWorkflowSession =
           findUserWorkflowSession(searchCriteria.getInvolvedUsername(), application);

@@ -5,7 +5,7 @@ import java.util.List;
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.IsAliveServiceResult;
 
-public interface IIsAliveService {
+public interface IIsAliveService { //NOSONAR
 
 	/**
 	 * Checking, if applications from list are active

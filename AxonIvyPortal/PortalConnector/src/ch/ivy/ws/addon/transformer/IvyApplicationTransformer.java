@@ -40,7 +40,7 @@ public class IvyApplicationTransformer {
 	 * @see IvyApplication
 	 */
 	public List<IvyApplication> transform(List<IApplication> apps) {
-		List<IvyApplication> result = new ArrayList<IvyApplication>();
+		List<IvyApplication> result = new ArrayList<>();
 		
 		for (IApplication app : apps) {
 			result.add(transform(app));
@@ -55,7 +55,7 @@ public class IvyApplicationTransformer {
 	 * @return List<String> result
 	 */
 	public List<String> getNames(List<IApplication> apps) {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		
 		for (IApplication app : apps) {
 			result.add(app.getName());
