@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.util;
 
 public class NumberUtils {
   
+  private NumberUtils() {}
+
   /**
    * Answers <code>true</code> iff the given number is 'not a number'
    * (i.e., is a <code>Float</code> or <code>Double</code> containing

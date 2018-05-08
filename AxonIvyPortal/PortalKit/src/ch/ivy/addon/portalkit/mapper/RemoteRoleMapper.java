@@ -11,6 +11,7 @@ import ch.ivyteam.ivy.scripting.objects.List;
  */
 public class RemoteRoleMapper {
 
+  private RemoteRoleMapper() {}
 
 	/**
 	 * Convert a ivy role object to a remote role.

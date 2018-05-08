@@ -8,6 +8,8 @@ import ch.ivy.addon.portalkit.bo.RemoteNote;
 import ch.ivy.ws.addon.IvyNote;
 
 public class RemoteNoteMapper {
+  
+  private RemoteNoteMapper() {}
   private static RemoteNote mapNote(IvyNote ivyNote) {
     return new RemoteNote(ivyNote);
   }

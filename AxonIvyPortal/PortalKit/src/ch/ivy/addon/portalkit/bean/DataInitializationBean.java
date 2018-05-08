@@ -18,8 +18,7 @@ public class DataInitializationBean implements Serializable {
     RoleUtils.setHidePropertyForDefaultHiddenRoles();
   }
 
-  /**
-   * The empty method is called in topbar.xhtml to initialize this bean.
-   */
-  public void run() {}
+  public void run() {
+    // The empty method is called in topbar.xhtml to initialize this bean.
+  }
 }

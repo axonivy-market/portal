@@ -14,6 +14,8 @@ import ch.ivyteam.ivy.environment.Ivy;
  */
 public class ErrorHandler {
 
+  private ErrorHandler() {}
+
   public static void addError(Priority priority, WsException wsException) {
     Ivy.log().log(priority, "Web service error with: \r\n- User text: {0} \r\n- Help text: {1} \r\n- Error code: {2}",
         wsException.getUserText(), wsException.getHelpText(), wsException.getErrorCode());

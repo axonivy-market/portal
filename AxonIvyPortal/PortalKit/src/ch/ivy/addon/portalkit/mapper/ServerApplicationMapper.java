@@ -5,11 +5,10 @@ import ch.ivyteam.ivy.scripting.objects.List;
 
 /**
  * Mapper use for mapping between web service absence to remote absence.
- * 
- * @author bolt
  */
 public class ServerApplicationMapper {
 	
+  private ServerApplicationMapper() {}
 	/**
 	 * Convert from list of application name to list of server application.
 	 * 

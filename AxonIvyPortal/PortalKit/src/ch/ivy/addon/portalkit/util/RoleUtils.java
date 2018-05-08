@@ -61,7 +61,7 @@ public final class RoleUtils {
     } catch (Exception e) {
       Ivy.log().error(e);
     }
-    return null;
+    return Collections.emptyList();
   }
   
   /**
@@ -251,7 +251,7 @@ public final class RoleUtils {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IRole>>() {
         @Override
         public List<IRole> call() throws Exception {
-          List<IRole> roles = new ArrayList<IRole>();
+          List<IRole> roles = new ArrayList<>();
           List<IRole> securityRolesTmp = Ivy.wf().getSecurityContext().getRoles();
           for (IRole role : securityRolesTmp) {
             // Ignore the role has value in property HIDE_IN_DELEGATION
@@ -288,8 +288,6 @@ public final class RoleUtils {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
         @Override
         public Void call() throws Exception {
-          @SuppressWarnings("unused")
-          ISecurityContext security = Ivy.wf().getSecurityContext();
           role.setProperty(key, value);
           return null;
         }
@@ -315,8 +313,6 @@ public final class RoleUtils {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
         @Override
         public Void call() throws Exception {
-          @SuppressWarnings("unused")
-          ISecurityContext security = Ivy.wf().getSecurityContext();
           role.removeProperty(key);
           return null;
         }

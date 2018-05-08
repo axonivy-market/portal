@@ -54,9 +54,9 @@ public class PortalConnectorUser {
   }
 
   private String evaluateNewPassword(IUser user) {
-    String password = RandomStringUtils.random(40, 0, 0, true, true, null, new SecureRandom());
-    user.setPassword(password);
-    return password;
+    String newPassword = RandomStringUtils.random(40, 0, 0, true, true, null, new SecureRandom());
+    user.setPassword(newPassword);
+    return newPassword;
   }
 
   private IUser createUser() {

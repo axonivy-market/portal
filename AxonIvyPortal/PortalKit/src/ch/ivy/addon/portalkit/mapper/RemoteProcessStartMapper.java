@@ -7,10 +7,10 @@ import ch.ivyteam.ivy.scripting.objects.List;
 
 /**
  * Mapper for remote process start.
- *
- * @author maonguyen
  */
 public class RemoteProcessStartMapper {
+  
+  private RemoteProcessStartMapper() {}
 
   protected static RemoteProcessStart mapProcessStart(IvyProcessStart t, Long serverId, String host) {
     RemoteProcessStart result = new RemoteProcessStart();

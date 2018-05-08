@@ -19,6 +19,8 @@ import edu.vt.middleware.password.WhitespaceRule;
 
 public class PasswordValidationUtils {
 	
+  private PasswordValidationUtils() {}
+  
 	public static PasswordValidator createPasswordValidator() {
 
 		CharacterCharacteristicsRule charRule = new CharacterCharacteristicsRule();
@@ -28,7 +30,7 @@ public class PasswordValidationUtils {
 		charRule.getRules().add(new LowercaseCharacterRule(1));
 		charRule.setNumberOfCharacteristics(3);
 
-		List<Rule> ruleList = new ArrayList<Rule>();
+		List<Rule> ruleList = new ArrayList<>();
 		ruleList.add(new LengthRule(8, 16));
 		ruleList.add(new WhitespaceRule());
 		ruleList.add(charRule);

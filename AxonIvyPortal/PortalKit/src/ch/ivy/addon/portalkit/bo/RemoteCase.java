@@ -78,7 +78,7 @@ public class RemoteCase {
 
   private Server server;
 
-  private Map<String, String> additionalProperties = new HashMap<String, String>();
+  private Map<String, String> additionalProperties = new HashMap<>();
 
   private String processModelName;
   private int processModelVersionNumber;
@@ -97,9 +97,9 @@ public class RemoteCase {
   }
 
   public List<String> getAdditionalPropertyNames() throws PersistencyException {
-    List<String> props = new ArrayList<String>();
-    for (String name : additionalProperties.keySet()) {
-      props.add(name);
+    List<String> props = new ArrayList<>();
+    for (String propName : additionalProperties.keySet()) {
+      props.add(propName);
     }
     return props;
   }
@@ -468,12 +468,12 @@ public class RemoteCase {
 
   @SuppressWarnings("unused")
   public void setProcess(String processCode, String processName) throws PersistencyException {
-
+    //Method from ICase
   }
 
   @SuppressWarnings("unused")
   public void setProcessCategory(String processCategoryCode, String processCategoryName) throws PersistencyException {
-
+    //Method from ICase
   }
 
   public void setSubType(String subTypeCode, String subTypeName) throws PersistencyException {

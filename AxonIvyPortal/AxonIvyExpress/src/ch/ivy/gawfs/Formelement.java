@@ -66,13 +66,13 @@ public class Formelement implements Serializable{
 	}
 
 	public Formelement() {
-		options = new ArrayList<FormelementOption>();
-		optionsStr = new ArrayList<String>();
+		options = new ArrayList<>();
+		optionsStr = new ArrayList<>();
 	}
 	
 	public Formelement(String id) {
-		options = new ArrayList<FormelementOption>();
-		optionsStr = new ArrayList<String>();
+		options = new ArrayList<>();
+		optionsStr = new ArrayList<>();
 		this.id = id;
 	}
 

@@ -23,6 +23,8 @@ import ch.ivyteam.wf.processes.EmailSettingServiceData;
  */
 public class RemoteEmailSettingMapper {
 
+  private RemoteEmailSettingMapper() {}
+  
 	/**
 	 * Map from list of web service object to list of remote object.
 	 * 
@@ -36,7 +38,7 @@ public class RemoteEmailSettingMapper {
 			List<IvyEmailSetting> emailSettings, String endPoint, Server server) throws JSONException {
 		List<RemoteEmailSetting> result = null;
 		if (emailSettings != null) {
-			result = new ArrayList<RemoteEmailSetting>();
+			result = new ArrayList<>();
 			for (IvyEmailSetting item : emailSettings) {
 
 				result.add(mappEmailSetting(item, endPoint, server));
@@ -56,7 +58,7 @@ public class RemoteEmailSettingMapper {
 	private static RemoteEmailSetting mappEmailSetting(IvyEmailSetting ivyEmailSetting, String endPoint, Server server) throws JSONException {
 
 		RemoteEmailSetting result = new RemoteEmailSetting();
-		List<RemoteWeekDay> weekDays = new ArrayList<RemoteWeekDay>();
+		List<RemoteWeekDay> weekDays = new ArrayList<>();
 
 		for (Application app: server.getApplications()) {
 			if (ivyEmailSetting.getAppName() != null && ivyEmailSetting.getAppName().equals(app.getName())) {
@@ -107,15 +109,15 @@ public class RemoteEmailSettingMapper {
 	 * @return list of map endpoint and list web service email setting {@link IvyEmailSetting}.
 	 */
 	public static List<Map<String, List<IvyEmailSetting>>> mapEmailSetting(List<RemoteEmailSetting> remoteEmailSettings) {
-		List<Map<String, List<IvyEmailSetting>>> result = new ArrayList<Map<String, List<IvyEmailSetting>>>();
-		Map<String, List<IvyEmailSetting>> settingMap = new HashMap<String, List<IvyEmailSetting>>();
+		List<Map<String, List<IvyEmailSetting>>> result = new ArrayList<>();
+		Map<String, List<IvyEmailSetting>> settingMap = new HashMap<>();
 		
 		if (remoteEmailSettings != null) {
 			//Group setting in setting : Map <endPoint, List<Setting>>
 			for (RemoteEmailSetting item : remoteEmailSettings) {
 				List<IvyEmailSetting> settingsForEachEndPoint = settingMap.get(item.getEndPoint());
 				if (settingsForEachEndPoint == null) {
-					settingsForEachEndPoint = new ArrayList<IvyEmailSetting>();
+					settingsForEachEndPoint = new ArrayList<>();
 				}
 				settingsForEachEndPoint.add(convertToIvyEmailSetting(item));
 				settingMap.put(item.getEndPoint(), settingsForEachEndPoint);
@@ -123,7 +125,7 @@ public class RemoteEmailSettingMapper {
 			
 			// Put every item in the above map to the return list.
 			for (Map.Entry<String, List<IvyEmailSetting>> item : settingMap.entrySet()){
-				Map<String, List<IvyEmailSetting>> subItem = new HashMap<String, List<IvyEmailSetting>>();
+				Map<String, List<IvyEmailSetting>> subItem = new HashMap<>();
 				subItem.put(item.getKey(), item.getValue());
 				result.add(subItem);
 			}

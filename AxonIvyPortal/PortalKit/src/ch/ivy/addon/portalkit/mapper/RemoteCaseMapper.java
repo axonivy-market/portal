@@ -19,6 +19,7 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
  */
 public class RemoteCaseMapper {
 
+  private RemoteCaseMapper() {}
 
   /**
    * Convert web service case to remote case.
@@ -97,9 +98,6 @@ public class RemoteCaseMapper {
     result.setTypeCode(ivyCase.getTypeCode());
     result.setTypeName(ivyCase.getTypeName());
 
-    // ch.ivyteam.ivy.application.IApplication a = c.getApplication();
-    // String name = a != null ? a.getName() : "";
-    // result.setApplicationName(c.getApplicationName());
     RemoteApplication ra = new RemoteApplication();
     ra.setName(ivyCase.getApplicationName());
     result.setApplication(ra);
@@ -272,7 +270,7 @@ public class RemoteCaseMapper {
 
     try {
       result.setPriority(WorkflowPriority.valueOf(ivyTask.getCasePriority()));
-    } catch (Exception e) {
+    } catch (Exception e) { //NOSONAR
 
     }
 

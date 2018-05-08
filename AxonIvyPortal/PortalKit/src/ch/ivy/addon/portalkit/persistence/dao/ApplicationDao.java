@@ -52,7 +52,7 @@ public class ApplicationDao extends AbstractDao<Application> {
             ObjectFilter.eq(EntityProperty.NAME, application.getName()),
             ObjectFilter.eq(EntityProperty.SERVER_ID, application.getServerId()));
 
-    setRelationShipDataFor(otherApplicationsHaveSameNameAndServer);
+    setRelationShipDataForApplications(otherApplicationsHaveSameNameAndServer);
 
     return otherApplicationsHaveSameNameAndServer;
   }
@@ -66,7 +66,7 @@ public class ApplicationDao extends AbstractDao<Application> {
     Criterion<Long> objectFilterForServerId = ObjectFilter.eq(EntityProperty.SERVER_ID, serverId);
     List<Application> applications = repo.query(objectFilterForAppName, objectFilterForServerId);
 
-    setRelationShipDataFor(applications);
+    setRelationShipDataForApplications(applications);
 
     return applications;
   }
@@ -80,7 +80,7 @@ public class ApplicationDao extends AbstractDao<Application> {
     Criterion<Long> objectFilterForIsOnline = ObjectFilter.eq(EntityProperty.IS_ONLINE, true);
     List<Application> applications = repo.query(objectFilterForServerId, objectFilterForIsOnline);
 
-    setRelationShipDataFor(applications);
+    setRelationShipDataForApplications(applications);
 
     return applications;
   }
@@ -93,7 +93,7 @@ public class ApplicationDao extends AbstractDao<Application> {
     Criterion<Long> objectFilterForIsOnline = ObjectFilter.eq(EntityProperty.IS_ONLINE, true);
     List<Application> applications = repo.query(objectFilterForIsOnline);
 
-    setRelationShipDataFor(applications);
+    setRelationShipDataForApplications(applications);
 
     return applications;
   }
@@ -139,7 +139,7 @@ public class ApplicationDao extends AbstractDao<Application> {
             .build(long.class, Application.class).init(findAll());
 
     List<Application> applications = repo.query(ObjectFilter.in(EntityProperty.NAME.toString(), names));
-    setRelationShipDataFor(applications);
+    setRelationShipDataForApplications(applications);
     return applications;
   }
 
@@ -156,7 +156,7 @@ public class ApplicationDao extends AbstractDao<Application> {
     return application.getServerId() != null;
   }
 
-  private void setRelationShipDataFor(List<Application> applications) {
+  private void setRelationShipDataForApplications(List<Application> applications) {
     for (Application application : applications) {
       setRelationshipDataFor(application);
     }

@@ -7,7 +7,7 @@ public class GlobalVariable {
   public static final String SHOW_ENVIRONMENT_INFO = "SHOW_ENVIRONMENT_INFO";
   public static final String DEFAULT_END_PAGE_TO_PORTAL = "DEFAULT_END_PAGE_TO_PORTAL";
   public static final String SHOW_TASK_BUTTON_LABELS = "SHOW_TASK_BUTTON_LABELS";
-  public static final String HIDE_CHANGE_PASSWORD_BUTTON = "HIDE_CHANGE_PASSWORD_BUTTON";
+  public static final String HIDE_CHANGE_PASSWORD_BUTTON = "HIDE_CHANGE_PASSWORD_BUTTON"; //NOSONAR
   public static final String REFRESH_TASK_LIST_INTERVAL = "REFRESH_TASK_LIST_INTERVAL";
   public static final String CLIENT_SIDE_TIMEOUT = "CLIENT_SIDE_TIMEOUT";
   public static final String EXPRESS_END_PAGE = "EXPRESS_END_PAGE";
@@ -15,4 +15,7 @@ public class GlobalVariable {
   public static final String ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT = "ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT";
   public static final String UPLOAD_DOCUMENT_WHITELIST_EXTENSION = "UPLOAD_DOCUMENT_WHITELIST_EXTENSION";
   public static final String HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE = "HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE";
+
+  private GlobalVariable() {}
+
 }

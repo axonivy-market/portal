@@ -33,7 +33,7 @@ public class ServerDao extends AbstractDao<Server> {
             .build(long.class, Server.class).init(findAll());
 
     List<Server> activeServers = repo.query(ObjectFilter.eqBoolean(EntityProperty.IS_ONLINE.toString(), true));
-    setRelationShipDataFor(activeServers);
+    setRelationShipDataForServers(activeServers);
     return activeServers;
   }
 
@@ -50,7 +50,7 @@ public class ServerDao extends AbstractDao<Server> {
     server.setApplications(applications);
   }
 
-  private void setRelationShipDataFor(List<Server> servers) {
+  private void setRelationShipDataForServers(List<Server> servers) {
     for (Server server : servers) {
       setRelationshipDataFor(server);
     }

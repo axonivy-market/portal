@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +14,7 @@ public class CaseFilterService extends AbstractFilterService<CaseFilterData> {
     return CaseFilterData.class;
   }
 
-  public void applyFilter(CaseLazyDataModel dataModel, CaseFilterData savedFilterData) throws IllegalAccessException,
-      InvocationTargetException, NoSuchMethodException {
+  public void applyFilter(CaseLazyDataModel dataModel, CaseFilterData savedFilterData) throws ReflectiveOperationException {
     List<CaseFilter> filters = dataModel.getFilterContainer().getFilters();
     dataModel.setSelectedFilters(new ArrayList<>());
     for (int i = 0; i < filters.size(); i++) {

@@ -61,7 +61,7 @@ public class PortalConnectorDetector {
                   "Cannot find application that contains process model PortalConnector");
 
             };
-        portalConnectorApplication = IvyAdapterService.executeCallableAsSystem(findApplicationCallable);
+        portalConnectorApplication = IvyAdapterService.executeCallableAsSystem(findApplicationCallable); //NOSONAR
       } catch (Exception e) {
         Ivy.log().error("Cannot get PortalConnector application", e);
         throw new GetPortalConnectorApplicationException(e);
@@ -97,13 +97,13 @@ public class PortalConnectorDetector {
   }
 
   public String getPortalConectorLocalhostURLFromSystemProperty() {
-    IApplication portalConnectorApplication = getPortalConnectorApplication();
+    IApplication portalConnectorApp = getPortalConnectorApplication();
 
     Callable<String> getPortalConnectorURLCallable = () -> {
       IWebServer webServer = ServerFactory.getServer().getWebServer();
       IServerPortResolver serverPortResolver = webServer.getServerPortResolver();
       String serverUrl = getServerURL(serverPortResolver);
-      return getPortalConectorLocalhostURL(portalConnectorApplication, webServer, serverUrl);
+      return getPortalConectorLocalhostURL(portalConnectorApp, webServer, serverUrl);
     };
 
     return IvyAdapterService.executeCallableAsSystem(getPortalConnectorURLCallable);
@@ -115,7 +115,7 @@ public class PortalConnectorDetector {
     IProcessModelVersion portalConnectorPMV = findPortalConnectorPMV(portalConnectorApplication);
     String portalConnectorPMName = portalConnectorPMV.getProcessModel().getName();
     String path = webServer.getServletContext().getContextPath();
-    Map<String, String> portalConnectorURLFormatParams = new HashMap<String, String>();
+    Map<String, String> portalConnectorURLFormatParams = new HashMap<>();
     portalConnectorURLFormatParams.put("serverURL", serverUrl);
     portalConnectorURLFormatParams.put("ivyContextPath", path);
     portalConnectorURLFormatParams.put("applicationName", applicationName);
@@ -126,13 +126,13 @@ public class PortalConnectorDetector {
   }
 
   public String getPortalConectorLocalhostURLFromRequestURL() {
-    IApplication portalConnectorApplication = getPortalConnectorApplication();
+    IApplication portalConnectorApp = getPortalConnectorApplication();
 
     Callable<String> getPortalConnectorURLCallable = () -> {
       IWebServer webServer = ServerFactory.getServer().getWebServer();
       UrlDetector detector = new UrlDetector();
       String serverUrl = detector.getHost(detector.getBaseURL(FacesContext.getCurrentInstance()));
-      return getPortalConectorLocalhostURL(portalConnectorApplication, webServer, serverUrl);
+      return getPortalConectorLocalhostURL(portalConnectorApp, webServer, serverUrl);
     };
 
     return IvyAdapterService.executeCallableAsSystem(getPortalConnectorURLCallable);

@@ -125,9 +125,9 @@ public class SubstituteNode {
   public RemoteApplicationUser getSubstituteUser() {
     if (substituteUser == null) {
       substituteUser = new RemoteApplicationUser();
-      String name = remoteSubstitute.getMySubstitute();
-      if (StringUtils.isNotEmpty(name)) {
-        ivyUsers.stream().filter(user -> name.equals(user.getMemberName()))
+      String substituteName = remoteSubstitute.getMySubstitute();
+      if (StringUtils.isNotEmpty(substituteName)) {
+        ivyUsers.stream().filter(user -> substituteName.equals(user.getMemberName()))
             .forEach(ivyUser -> substituteUser = ivyUser);
       }
     }

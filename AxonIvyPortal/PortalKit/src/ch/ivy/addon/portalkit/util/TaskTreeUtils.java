@@ -22,6 +22,8 @@ public class TaskTreeUtils {
 
   private static final String DELIMITER = "/";
 
+  private TaskTreeUtils() {}
+  
   /**
    * Convert to Tree from the structure on field CustomVarCharField5 of task;
    * 

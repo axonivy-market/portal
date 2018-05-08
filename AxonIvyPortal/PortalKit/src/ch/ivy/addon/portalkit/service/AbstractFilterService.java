@@ -5,7 +5,6 @@ import static ch.ivy.addon.portalkit.enums.FilterType.ALL_USERS;
 import static ch.ivy.addon.portalkit.enums.FilterType.ONLY_ME;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,8 +62,7 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     return filters;
   }
 
-  public void copyFilterValues(AbstractFilter<?> filter, AbstractFilter<?> savedFilter) throws IllegalAccessException,
-      InvocationTargetException, NoSuchMethodException {
+  public void copyFilterValues(AbstractFilter<?> filter, AbstractFilter<?> savedFilter) throws ReflectiveOperationException {
     Field[] fields = filter.getClass().getDeclaredFields();
     for (Field field : fields) {
       if (field.getAnnotation(JsonIgnore.class) == null) {

@@ -62,7 +62,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
    */
   @ExecuteAsSystem
   public List<Property> getAllPortalDataProperties() {
-    List<Property> portalDatas = new ArrayList<Property>();
+    List<Property> portalDatas = new ArrayList<>();
     try {
       List<ICustomProperty> customProperties = findAllStartingWithPrefix(PropertyKey.PORTAL_PROPERTY_START);
       for (ICustomProperty customProperty : customProperties) {
@@ -109,7 +109,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
 
   @ExecuteAsSystem
   public List<T> findAll() {
-    List<T> entities = new ArrayList<T>();
+    List<T> entities = new ArrayList<>();
     String propertyPrefixKey = getPropertyPrefixKey();
     List<ICustomProperty> properties = findAllStartingWithPrefix(propertyPrefixKey);
     for (ICustomProperty property : properties) {
@@ -184,7 +184,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   public List<T> saveAll(List<T> entities) {
-    List<T> savedEntities = new ArrayList<T>();
+    List<T> savedEntities = new ArrayList<>();
     for (T entity : entities) {
       T savedEntity = save(entity);
       savedEntities.add(savedEntity);

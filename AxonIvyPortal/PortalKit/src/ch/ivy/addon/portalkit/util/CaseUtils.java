@@ -380,7 +380,7 @@ public final class CaseUtils {
         Ivy.wf()
             .findCases(Ivy.wf().createCasePropertyFilter(CaseProperty.ID, RelationalOperator.EQUAL, caseVO.getId()),
                 null, 0, -1, true).getResultList();
-    if (cases != null && cases.size() > 0) {
+    if (cases != null && !cases.isEmpty()) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
           @Override
@@ -597,8 +597,8 @@ public final class CaseUtils {
    * @return list of {@link CaseVO}
    */
   public static List<CaseVO> convertICasesToCaseVOs(List<ICase> iCases) {
-    List<CaseVO> caseVOs = new ArrayList<CaseVO>();
-    if (iCases != null && iCases.size() > 0) {
+    List<CaseVO> caseVOs = new ArrayList<>();
+    if (iCases != null && !iCases.isEmpty()) {
       for (ICase iCase : iCases) {
         if (iCase != null)
           caseVOs.add(convertToCaseVO(iCase));

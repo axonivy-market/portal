@@ -6,6 +6,7 @@ import java.util.List;
 import ch.ivy.addon.portalkit.persistence.dao.AbstractDao;
 import ch.ivy.addon.portalkit.persistence.dao.ExecuteAsSystemDecorator;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 class AbstractService<T extends BusinessEntity> {
 
@@ -45,7 +46,7 @@ class AbstractService<T extends BusinessEntity> {
       }
       return abstractDaoClassType.newInstance();
     } catch (Exception e) {
-      throw new RuntimeException("Cannot instantiate Dao instance", e);
+      throw new PortalException("Cannot instantiate Dao instance", e);
     }
   }
 

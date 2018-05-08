@@ -11,13 +11,14 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.DragDropEvent;
 
+import ch.ivy.gawfs.enums.FormElementType;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean(name = "dragAndDropController")
 @ViewScoped
 public class DragAndDropController implements Serializable{
 
-	private static final String FORM_ELEMENT_FILE_UPLOAD = "FileUpload";
+	private static final FormElementType FORM_ELEMENT_FILE_UPLOAD = FormElementType.FILE_UPLOAD;
 
 	private static final long serialVersionUID = 2896675125359151717L;
 

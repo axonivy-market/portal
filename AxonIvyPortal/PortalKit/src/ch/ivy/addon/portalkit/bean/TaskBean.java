@@ -269,13 +269,12 @@ public class TaskBean implements Serializable {
     boolean disableResetLink = false;
 
     if (task != null) {
-      TaskState state = task.getState();
       IWorkflowSession ivySession = Ivy.session();
       boolean hasResetPermission =
           ivySession.hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
               ch.ivyteam.ivy.security.IPermission.TASK_RESET_OWN_WORKING_TASK);
 
-      state = task.getState();
+      TaskState state = task.getState();
 
       if (state == TaskState.RESUMED || state == TaskState.PARKED && hasResetPermission) {
         disableResetLink = false;
@@ -444,7 +443,7 @@ public class TaskBean implements Serializable {
     if (task == null)
       return stateDisplayOut;
     if (TaskState.DELAYED == task.getState()) {
-      ArrayList<Object> params = new ArrayList<Object>();
+      ArrayList<Object> params = new ArrayList<>();
       DateTimeGlobalSettingService dateTimeService = new DateTimeGlobalSettingService();
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateTimeService.getDateTimePattern());
       if (task.getDelayTimestamp() != null) {

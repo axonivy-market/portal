@@ -21,6 +21,8 @@ public class ApplicationMultiLanguage {
 
   private static final String SUPPORTED_LANGUAGES_CMS_URI = "/PortalKit/AppInfo/SupportedLanguages";
 
+  private ApplicationMultiLanguage() {}
+
   public static String getDisplayNameInCurrentLocale(Application application) throws JSONException {
     Locale currentLocale = new Locales().getCurrentLocale();
     DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(application.getDisplayName(), currentLocale);
@@ -59,10 +61,9 @@ public class ApplicationMultiLanguage {
    * Loads supported language for a third party application.
    * 
    * @return {@link List} list of supported language
-   * @throws Exception
    */
-  public static List<String> getThirdPartySupportedLanguage() throws Exception {
-    Set<String> supportedLanguages = new HashSet<String>();
+  public static List<String> getThirdPartySupportedLanguage() {
+    Set<String> supportedLanguages = new HashSet<>();
     String languageSupported = Ivy.cms().co(SUPPORTED_LANGUAGES_CMS_URI);
     List<String> languages = Arrays.asList(languageSupported.split(","));
     for (String language : languages) {
@@ -70,6 +71,6 @@ public class ApplicationMultiLanguage {
         supportedLanguages.add(language);
       }
     }
-    return new ArrayList<String>(supportedLanguages);
+    return new ArrayList<>(supportedLanguages);
   }
 }

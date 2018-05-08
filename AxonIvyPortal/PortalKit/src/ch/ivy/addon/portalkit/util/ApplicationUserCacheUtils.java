@@ -8,6 +8,8 @@ import ch.ivy.addon.portalkit.persistence.domain.User;
 
 public class ApplicationUserCacheUtils {
 
+  private ApplicationUserCacheUtils() {}
+
   /**
    * Method to convert list of object to list of entities.
    * 
@@ -17,7 +19,7 @@ public class ApplicationUserCacheUtils {
   public static List<User> convertToEntity(List<RemoteUser> remoteUsers) {
     List<User> users = new ArrayList<>();
 
-    if (remoteUsers != null && remoteUsers.size() > 0) {
+    if (remoteUsers != null && !remoteUsers.isEmpty()) {
       for (RemoteUser remoteUser : remoteUsers) {
 
         User user = new User();
