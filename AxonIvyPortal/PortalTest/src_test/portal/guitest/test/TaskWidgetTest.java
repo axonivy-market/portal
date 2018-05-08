@@ -20,9 +20,9 @@ import portal.guitest.page.TaskWidgetPage;
 public class TaskWidgetTest extends BaseTest {
 
   private static final String GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
-      "PortalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
+      "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
-      "PortalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
+      "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
 
   @Override
   @Before
