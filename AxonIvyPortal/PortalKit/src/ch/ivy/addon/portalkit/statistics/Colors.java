@@ -31,6 +31,8 @@ public class Colors {
   private static final String DONE_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE";
   private static final String FAILED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/FAILED";
 
+  private Colors() {}
+
   public static String getPriorityColors(Map<String, Number> chartData) {
     Number exceptionPriorities = chartData.get(Ivy.cms().co(EXCEPTION_PRIORITY_KEY));
     Number highPriorities = chartData.get(Ivy.cms().co(HIGH_PRIORITY_KEY));

@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.persistence.domain;
 
 
 
-public class User extends BusinessEntity {
+public class User extends BusinessEntity { //NOSONAR
   private String userName;
   private String fullUserName;
   private String applicationName;

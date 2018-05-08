@@ -14,7 +14,7 @@ public class History {
   private String involvedUsername;
   private String involvedFullname;
 
-  public static enum HistoryType {
+  public enum HistoryType {
     TASK, NOTE;
   }
 

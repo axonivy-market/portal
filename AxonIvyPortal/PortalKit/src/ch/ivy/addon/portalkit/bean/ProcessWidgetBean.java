@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -26,6 +25,7 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -59,7 +59,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     String compactModeAttribute = Attrs.currentContext().get("compactMode");
     compactMode = compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
     editMode = false;
-    selectedUserProcesses = new ArrayList<UserProcess>();
+    selectedUserProcesses = new ArrayList<>();
     userName = UserUtils.getSessionUserName();
     if (compactMode) {
       defaultUserProcesses = findDefaultProcessUserCanStart();
@@ -317,17 +317,14 @@ public class ProcessWidgetBean implements Serializable, Converter {
     userProcesses.remove(editingProcess);
   }
 
-  public String getCreateExpessWorkflowLink() throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-      @Override
-      public String call() throws Exception {
-        if (createExpressWorkflowProcessStart != null) {
-          return RequestUriFactory.createProcessStartUri(
-              ServerFactory.getServer().getApplicationConfigurationManager(), createExpressWorkflowProcessStart)
-              .toString();
-        }
-        return StringUtils.EMPTY;
+  public String getCreateExpessWorkflowLink() {
+    return IvyExecutor.executeAsSystem(() -> {
+      if (createExpressWorkflowProcessStart != null) {
+        return RequestUriFactory.createProcessStartUri(
+            ServerFactory.getServer().getApplicationConfigurationManager(), createExpressWorkflowProcessStart)
+            .toString();
       }
+      return StringUtils.EMPTY;
     });
   }
 

@@ -15,11 +15,8 @@ import ch.ivy.addon.portalkit.util.Locales;
 public class ApplicationMultiLanguageNameLoader {
 
   private String currentDisplayName = "";
-  private Map<String, String> currentDisplayNames = new HashMap<String, String>();
-  private List<String> supportedLanguages = new ArrayList<String>();
-
-  public ApplicationMultiLanguageNameLoader() {
-  }
+  private Map<String, String> currentDisplayNames = new HashMap<>();
+  private List<String> supportedLanguages = new ArrayList<>();
 
   public ApplicationMultiLanguageNameLoader currentDisplayName(String currentDisplayName) {
     this.currentDisplayName = currentDisplayName;
@@ -42,7 +39,7 @@ public class ApplicationMultiLanguageNameLoader {
   }
 
   public List<DisplayName> load() {
-    List<DisplayName> displayNames = new ArrayList<DisplayName>();
+    List<DisplayName> displayNames = new ArrayList<>();
 
     for (String language : supportedLanguages) {
       DisplayName displayName = new DisplayName();
@@ -73,7 +70,7 @@ public class ApplicationMultiLanguageNameLoader {
   }
 
   private Map<String, String> toMap(List<DisplayName> currentDisplayNames) {
-    Map<String, String> displayNames = new HashMap<String, String>();
+    Map<String, String> displayNames = new HashMap<>();
     for (DisplayName displayName : currentDisplayNames) {
       displayNames.put(displayName.getLocale().getLanguage(), displayName.getValue());
     }

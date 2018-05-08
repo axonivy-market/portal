@@ -13,11 +13,11 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 
 /**
  * Utility to sort process starts.
- *
- * @author maonguyen
  */
 public class SortProcessStartsUtil {
 
+  private SortProcessStartsUtil() {}
+  
 	/** 
 	 * Sorts a list of processStarts
 	 * 

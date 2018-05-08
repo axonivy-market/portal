@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.ClassUtils;
 
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyComponentLogicCaller<T> {
@@ -19,7 +20,7 @@ public class IvyComponentLogicCaller<T> {
     FacesContext fc = FacesContext.getCurrentInstance();
     UIComponent component = fc.getViewRoot().findComponent(componentId);
     if (component == null) {
-      throw new RuntimeException("ivy component with ID " + componentId + " does not exist!");
+      throw new PortalException("ivy component with ID " + componentId + " does not exist!");
     }
 
     ELContext el = fc.getELContext();
@@ -34,7 +35,7 @@ public class IvyComponentLogicCaller<T> {
   }
 
   /**
-   * hack to ensure that the el-expression will runn on the give ivy component!
+   * hack to ensure that the el-expression will run on the give ivy component!
    * 
    * @param componentMethod
    * @param component

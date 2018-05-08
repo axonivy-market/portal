@@ -22,6 +22,9 @@ import ch.ivy.ws.addon.IvyLanguageSetting;
  * @author maonguyen
  */
 public class RemoteLanguageSettingMapper {
+  
+  private RemoteLanguageSettingMapper() {}
+  
 	/**
 	 * Map from list web service ivy object to list remote object.
 	 *
@@ -31,7 +34,7 @@ public class RemoteLanguageSettingMapper {
 	 * @throws JSONException 
 	 */
 	public static List<RemoteLanguageSetting> mapToRemoteLanguageSettings(List<IvyLanguageSetting> ivyLanguageSettings, Server server) throws JSONException{
-		List<RemoteLanguageSetting> remoteLanguageSettings = new ArrayList<RemoteLanguageSetting>();
+		List<RemoteLanguageSetting> remoteLanguageSettings = new ArrayList<>();
 		if (ivyLanguageSettings != null) {
 			for (IvyLanguageSetting item: ivyLanguageSettings) {
 				RemoteLanguageSetting languageSetting = new RemoteLanguageSetting();
@@ -65,7 +68,7 @@ public class RemoteLanguageSettingMapper {
 	 *
 	 */
 	public static List<IvyLanguageSetting> mapToIvyLanguageSettings(List<RemoteLanguageSetting> remoteLanguageSettings){
-		List<IvyLanguageSetting> ivyLanguageSettings = new ArrayList<IvyLanguageSetting>();
+		List<IvyLanguageSetting> ivyLanguageSettings = new ArrayList<>();
 		if (remoteLanguageSettings != null) {
 			for (RemoteLanguageSetting item: remoteLanguageSettings) {
 				IvyLanguageSetting languageSetting = new IvyLanguageSetting();

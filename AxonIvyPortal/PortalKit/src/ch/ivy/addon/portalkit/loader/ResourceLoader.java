@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.eclipse.core.resources.IFolder;
 
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.server.ServerFactory;
 
@@ -33,7 +34,7 @@ public class ResourceLoader {
       return Optional.ofNullable(ServerFactory.getServer().getSecurityManager().executeAsSystem(
           () -> pmv.getProject().getFolder("webContent")));
     } catch (Exception failToGetWebContent) {
-      throw new RuntimeException("Fail to reach webContent folder", failToGetWebContent);
+      throw new PortalException("Fail to reach webContent folder", failToGetWebContent);
     }
   }
 }

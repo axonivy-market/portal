@@ -17,6 +17,8 @@ import ch.ivyteam.ivy.scripting.objects.List;
  * Map between Map between Ivy user and RemoteApplicationUser.
  */
 public class RemoteApplicationUserMapper {
+  
+  private RemoteApplicationUserMapper() {}
 	
 	protected static RemoteApplicationUser mapToRemoteApplicationUser(IvyUser ivyUser, Server server) throws JSONException{
 		RemoteApplicationUser result = new RemoteApplicationUser();

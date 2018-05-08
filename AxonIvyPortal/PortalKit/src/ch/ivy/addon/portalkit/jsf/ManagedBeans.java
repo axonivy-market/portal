@@ -5,9 +5,12 @@ import java.util.Optional;
 
 import javax.faces.context.FacesContext;
 
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.security.internal.SecurityManager;
 
 public class ManagedBeans {
+
+  private ManagedBeans() {}
 
   /**
    * Returns the instance of the specified {@code beanName} from the current {@code FacesContext}.
@@ -52,7 +55,7 @@ public class ManagedBeans {
             return Optional.ofNullable(beanInstance);
           });
     } catch (Exception failToFindBean) {
-      throw new RuntimeException("Unable to find bean " + beanName, failToFindBean);
+      throw new PortalException("Unable to find bean " + beanName, failToFindBean);
     }
   }
 

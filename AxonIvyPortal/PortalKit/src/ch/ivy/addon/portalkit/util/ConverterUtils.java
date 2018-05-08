@@ -12,11 +12,12 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 /**
  * Utilities to convert some kinds of object.
- *
- * @author maonguyen
  */
 public class ConverterUtils {
 	private static String fullNameFormat = "%s (%s)";
+
+	private ConverterUtils() {}
+
 	
 	/**
 	 * Convert {@link ICase} to {@link CaseVO}
@@ -47,7 +48,7 @@ public class ConverterUtils {
 	 * @return List<{@link CaseVO}>
 	 */
 	public static List<CaseVO> convertICasesToCaseVOs(List<ICase> iCases){	
-		List<CaseVO> caseVOs = new ArrayList<CaseVO>();
+		List<CaseVO> caseVOs = new ArrayList<>();
 		for(ICase iCase:iCases){
 			if(iCase!=null){
 				caseVOs.add(convertICaseToCaseVO(iCase));
@@ -106,7 +107,7 @@ public class ConverterUtils {
 	 * @return List<{@link TaskVO}>
 	 */
 	public static List<TaskVO> convertITasksToTaskVOs(List<ITask> iTasks){	
-		List<TaskVO> taskVOs = new ArrayList<TaskVO>();
+		List<TaskVO> taskVOs = new ArrayList<>();
 		for(ITask iTask:iTasks){
 			if(iTask!=null){
 				taskVOs.add(convertITaskToTaskVO(iTask));
@@ -159,7 +160,7 @@ public class ConverterUtils {
 	 * @return {@link TaskVO}
 	 */
 	public static List<TaskVO> convertINotesToTaskVOs(List<INote> iNotes){	
-		List<TaskVO> taskVOs = new ArrayList<TaskVO>();
+		List<TaskVO> taskVOs = new ArrayList<>();
 		for(INote iNote : iNotes){
 			if(iNote!=null){
 				taskVOs.add(convertINoteToTaskVO(iNote));

@@ -21,13 +21,12 @@ public class RemoteLanguageSetting {
   private String appDisplayName;
   private String userLanguage;
   private List<String> supportedLanguages;
-  private List<SelectItem> items = new ArrayList<SelectItem>();
+  private List<SelectItem> items = new ArrayList<>();
 
   /**
    * @return List<SelectItem>
-   * @throws Exception 
    */
-  public List<SelectItem> getLanguages() throws Exception {
+  public List<SelectItem> getLanguages() {
     items.clear();
     if (supportedLanguages != null) {
       for (String item : supportedLanguages) {
@@ -40,10 +39,9 @@ public class RemoteLanguageSetting {
 
   /**
    * @return Map<String, String>
-   * @throws Exception 
    */
-  public Map<String, String> getSupportedLanguesMap() throws Exception {
-    Map<String, String> map = new HashMap<String, String>();
+  public Map<String, String> getSupportedLanguesMap() {
+    Map<String, String> map = new HashMap<>();
     if (supportedLanguages != null) {
       for (String item : supportedLanguages) {
         map.put(item, getDisplayLanguage(item));

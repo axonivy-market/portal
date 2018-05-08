@@ -2,12 +2,12 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
@@ -93,7 +93,7 @@ public class ProcessStartCollector {
     return processStart;
   }
   
-  public IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) throws Exception {
+  public IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
     if (isActive(application)) {
       List<IProcessModel> processModels = application.getProcessModelsSortedByName();
 
@@ -134,72 +134,59 @@ public class ProcessStartCollector {
         .collect(Collectors.toList());
   }
 
-  public String findACMLink() throws Exception {
+  public String findACMLink() {
     return findLinkByFriendlyRequestPath(ACM_FRIENDLY_REQUEST_PATH);
   }
 
-  public String findExpressWorkflowStartLink() throws Exception {
+  public String findExpressWorkflowStartLink() {
     return findLinkByFriendlyRequestPath(EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
   }
 
-  public String findCreateExpressWorkflowStartLink() throws Exception {
+  public String findCreateExpressWorkflowStartLink() {
     return findLinkByFriendlyRequestPath(EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
   }
 
-  public String findLinkByFriendlyRequestPath(String friendlyRequestPath) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-      @Override
-      public String call() throws Exception {
-        ProcessStartCollector collector = new ProcessStartCollector(application);
-        IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
-        if (process != null) {
-          return RequestUriFactory.createProcessStartUri(
-              ServerFactory.getServer().getApplicationConfigurationManager(), process).toString();
-        }
-        return StringUtils.EMPTY;
+  public String findLinkByFriendlyRequestPath(String friendlyRequestPath) {
+    return IvyExecutor.executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector(application);
+      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
+      if (process != null) {
+        return RequestUriFactory.createProcessStartUri(
+            ServerFactory.getServer().getApplicationConfigurationManager(), process).toString();
       }
+      return StringUtils.EMPTY;
     });
   }
 
 
-  public IProcessStart findCreateExpressWorlflowProcess() throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IProcessStart>() {
-      @Override
-      public IProcessStart call() throws Exception {
-        ProcessStartCollector collector = new ProcessStartCollector(application);
-        return collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
-      }
+  public IProcessStart findCreateExpressWorlflowProcess() {
+    return IvyExecutor.executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector(application);
+      return collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
     });
   }
 
-  public String findExpressWorkflowEditLink(String workflowId) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-      @Override
-      public String call() throws Exception {
-        ProcessStartCollector collector = new ProcessStartCollector(application);
-        IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
-        if (process != null) {
-          Pair<String, String> workflowIdParam = new Pair<String, String>("workflowID", workflowId);
-          return RequestUriFactory.createProcessStartUri(
-              ServerFactory.getServer().getApplicationConfigurationManager(), process, workflowIdParam).toString();
-        }
-        return StringUtils.EMPTY;
+  public String findExpressWorkflowEditLink(String workflowId) {
+    return IvyExecutor.executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector(application);
+      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
+      if (process != null) {
+        Pair<String, String> workflowIdParam = new Pair<>("workflowID", workflowId);
+        return RequestUriFactory.createProcessStartUri(
+            ServerFactory.getServer().getApplicationConfigurationManager(), process, workflowIdParam).toString();
       }
+      return StringUtils.EMPTY;
     });
   }
 
-  public String findStartableLinkByUserFriendlyRequestPath(String requestPath) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-
-      @Override
-      public String call() throws Exception {
-        IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(requestPath);
-        if(processStart != null) {
-          return RequestUriFactory.createProcessStartUri(
-              ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
-        }
-        return StringUtils.EMPTY;
+  public String findStartableLinkByUserFriendlyRequestPath(String requestPath) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(requestPath);
+      if(processStart != null) {
+        return RequestUriFactory.createProcessStartUri(
+            ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
       }
+      return StringUtils.EMPTY;
     });
 
   }

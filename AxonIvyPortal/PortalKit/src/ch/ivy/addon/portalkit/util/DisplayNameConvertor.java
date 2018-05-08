@@ -10,7 +10,7 @@ import org.primefaces.json.JSONObject;
 
 public class DisplayNameConvertor {
 
-  private Map<String, String> displayNames = new HashMap<String, String>();
+  private Map<String, String> displayNames = new HashMap<>();
 
   public DisplayNameConvertor add(Locale locale, String displayName) {
     displayNames.put(locale.getLanguage(), displayName);

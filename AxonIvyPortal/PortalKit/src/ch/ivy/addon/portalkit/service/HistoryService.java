@@ -40,27 +40,19 @@ public class HistoryService {
   }
 
   private List<History> createHistoriesFromTasks(List<RemoteTask> tasks) {
-    return tasks.stream().map(task -> {
-      return createHistoryFrom(task);
-    }).collect(Collectors.toList());
+    return tasks.stream().map(task -> createHistoryFrom(task)).collect(Collectors.toList());
   }
 
   private List<History> createHistoriesFromITasks(List<ITask> tasks) {
-    return tasks.stream().map(task -> {
-      return createHistoryFrom(task);
-    }).collect(Collectors.toList());
+    return tasks.stream().map(task -> createHistoryFrom(task)).collect(Collectors.toList());
   }
 
   private List<History> createToHistoriesFromNotes(List<RemoteNote> notes) {
-    return notes.stream().map(note -> {
-      return createHistoryFrom(note);
-    }).collect(Collectors.toList());
+    return notes.stream().map(note -> createHistoryFrom(note)).collect(Collectors.toList());
   }
 
   private List<History> createToHistoriesFromINotes(List<INote> notes) {
-    return notes.stream().map(note -> {
-      return createHistoryFrom(note);
-    }).collect(Collectors.toList());
+    return notes.stream().map(note -> createHistoryFrom(note)).collect(Collectors.toList());
   }
 
   private History createHistoryFrom(ITask task) {

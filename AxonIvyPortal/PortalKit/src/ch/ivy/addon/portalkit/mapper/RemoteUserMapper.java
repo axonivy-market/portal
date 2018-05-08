@@ -7,6 +7,7 @@ import ch.ivyteam.ivy.scripting.objects.List;
 
 public class RemoteUserMapper {
 
+  private RemoteUserMapper() {}
 
   /**
    * Convert a ivy role object to a security member.

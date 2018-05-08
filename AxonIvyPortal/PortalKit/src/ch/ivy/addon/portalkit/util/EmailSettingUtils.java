@@ -6,12 +6,11 @@ import ch.ivy.addon.portalkit.bo.RemoteEmailSetting;
 
 /**
  * Utility for email setting.
- * 
- * @author maonguyen
- *
  */
 public class EmailSettingUtils {
-	
+
+  private EmailSettingUtils() {}
+
 	/**
 	 * Update remote email settings when user use the general setting function.
 	 * 

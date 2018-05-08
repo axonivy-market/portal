@@ -12,6 +12,8 @@ import ch.ivyteam.ivy.security.internal.SecurityManager;
 
 public class ExecuteAsSystemDecorator {
 
+  private ExecuteAsSystemDecorator() {}
+
   @SuppressWarnings("unchecked")
   public static <T extends BusinessEntity> AbstractDao<T> decorate(AbstractDao<T> abstractDao, IApplication application) {
 
@@ -30,9 +32,9 @@ public class ExecuteAsSystemDecorator {
     @Override
     public Object invoke(Object self, Method thisMethod, Method proceed, Object[] args) throws Throwable {
       if (thisMethod.getAnnotation(ExecuteAsSystem.class) != null) {
-        return execute(() -> {
-          return proceed.invoke(self, args);
-        });
+        return execute(() -> 
+          proceed.invoke(self, args)
+        );
       } else {
         return proceed.invoke(self, args);
       }

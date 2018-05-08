@@ -1,22 +1,20 @@
 package ch.ivy.addon.portalkit.bo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This bean is used to
- * 
- * @author tauser
- * 
  */
 public class PortalConfiguration {
 
-	private ArrayList<ServerItem> servers;
+	private List<ServerItem> servers;
 
 	/**
 	 * constructor
 	 */
 	public PortalConfiguration() {
-		servers = new ArrayList<ServerItem>();
+		servers = new ArrayList<>();
 	}
 
 	/**
@@ -24,7 +22,7 @@ public class PortalConfiguration {
 	 *
 	 * @return Returns the servers
 	 */
-	public ArrayList<ServerItem> getServers() {
+	public List<ServerItem> getServers() {
 		return servers;
 	}
 
@@ -33,7 +31,7 @@ public class PortalConfiguration {
 	 *
 	 * @param servers The servers to set
 	 */
-	public void setServers(ArrayList<ServerItem> servers) {
+	public void setServers(List<ServerItem> servers) {
 		this.servers = servers;
 	}
 	
