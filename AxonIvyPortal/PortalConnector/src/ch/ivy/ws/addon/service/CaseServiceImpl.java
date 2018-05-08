@@ -59,7 +59,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         @Override
         public CaseServiceResult call() throws Exception {
           CaseServiceResult result = new CaseServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
           if (caseId != null) {
             CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
 
@@ -68,12 +68,12 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               cases = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query);
             } catch (Exception e) {
               // Wrong case id
-              List<Object> userTextParams = new ArrayList<Object>();
+              List<Object> userTextParams = new ArrayList<>();
               userTextParams.add(caseId);
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userTextParams, null));
             }
 
-            if (cases != null && cases.size() > 0 && cases.get(0) != null) {
+            if (cases != null && !cases.isEmpty() && cases.get(0) != null) {
               ICase c = cases.get(0);
 
               for (int i = 0; i < additionalProperties.size(); i++) {
@@ -82,13 +82,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
             } else {
               // Wrong case id
-              List<Object> userTextParams = new ArrayList<Object>();
+              List<Object> userTextParams = new ArrayList<>();
               userTextParams.add(caseId);
               errors.add(new WSException(WSErrorType.WARNING, 10022, userTextParams, null));
             }
           } else {
             // No case id given
-            List<Object> userTextParams = new ArrayList<Object>();
+            List<Object> userTextParams = new ArrayList<>();
             userTextParams.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10022, userTextParams, null));
           }
@@ -97,12 +97,10 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           return result;
         }
       });
-    } catch (Exception e) {
-      if (e instanceof WSException) {
-        throw (WSException) e;
-      } else {
-        throw new WSException(10000, e);
-      }
+    } catch (WSException e) {
+        throw e;
+    }catch (Exception ex) {
+      throw new WSException(10000, ex);
     }
   }
 
@@ -113,7 +111,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         @Override
         public CaseServiceResult call() throws Exception {
           CaseServiceResult result = new CaseServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (caseId != null) {
             CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
@@ -123,16 +121,16 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               cases = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query);
             } catch (Exception e) {
               // Wrong case id
-              List<Object> userTextParams = new ArrayList<Object>();
+              List<Object> userTextParams = new ArrayList<>();
               userTextParams.add(caseId);
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userTextParams, null));
             }
 
-            if (cases != null && cases.size() > 0 && cases.get(0) != null) {
+            if (cases != null && !cases.isEmpty() && cases.get(0) != null) {
               ICase c = cases.get(0);
               List<String> additionalPropertyNames = c.getAdditionalPropertyNames();
 
-              List<IvyAdditionalProperty> properties = new ArrayList<IvyAdditionalProperty>();
+              List<IvyAdditionalProperty> properties = new ArrayList<>();
               for (String property : additionalPropertyNames) {
                 IvyAdditionalProperty p = new IvyAdditionalProperty();
                 p.setKey(property);
@@ -143,13 +141,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
             } else {
               // Wrong case id
-              List<Object> userTextParams = new ArrayList<Object>();
+              List<Object> userTextParams = new ArrayList<>();
               userTextParams.add(caseId);
               errors.add(new WSException(WSErrorType.WARNING, 10022, userTextParams, null));
             }
           } else {
             // No case id given
-            List<Object> userTextParams = new ArrayList<Object>();
+            List<Object> userTextParams = new ArrayList<>();
             userTextParams.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10022, userTextParams, null));
           }
@@ -159,12 +157,10 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           return result;
         }
       });
-    } catch (Exception e) {
-      if (e instanceof WSException) {
-        throw (WSException) e;
-      } else {
-        throw new WSException(10000, e);
-      }
+    } catch (WSException e) {
+        throw e;
+    } catch (Exception ex) {
+      throw new WSException(10000, ex);
     }
   }
 
@@ -208,7 +204,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             IvyCase ivyCase = caseTransformer.transform(optionalCase.get());
             caseServiceResult.setOneCase(ivyCase);
           } else {
-            List<Object> userTextParams = new ArrayList<Object>();
+            List<Object> userTextParams = new ArrayList<>();
             userTextParams.add(caseId);
             throw new WSException(WSErrorType.WARNING, 10022, userTextParams, null);
           }
@@ -216,7 +212,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         }
       });
     } catch (Exception exception) {
-      List<Object> userTextParams = new ArrayList<Object>();
+      List<Object> userTextParams = new ArrayList<>();
       userTextParams.add(caseId);
       throw new WSException(WSErrorType.WARNING, 10022, exception, userTextParams, null);
     }
@@ -229,7 +225,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         @Override
         public NoteServiceResult call() throws Exception {
           NoteServiceResult result = new NoteServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (caseId != null) {
             IvyNoteTransformer noteTransformer = new IvyNoteTransformer();
@@ -237,9 +233,8 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             ICase c = null;
             try {
               c = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query).get(0);
-              // ICase c = Ivy.wf().findCase(caseId);
             } catch (Exception e) {
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(caseId.toString());
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userText, null));
             }
@@ -249,7 +244,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             }
 
           } else {
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
           }
@@ -272,16 +267,16 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         @Override
         public NoteServiceResult call() throws Exception {
           NoteServiceResult result = new NoteServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
-          if (username == null || username.trim().equals("")) {
+          if (username == null || "".equals(username.trim())) {
             // No user specified
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10029));
           } else if (caseId == null) {
             // No CaseID specified
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10034, userText, null));
           } else {
@@ -294,7 +289,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               c = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query).get(0);
             } catch (Exception e) {
               // Wrong CaseID
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(caseId.toString());
               errors.add(new WSException(WSErrorType.WARNING, 10034, e, userText, null));
             }
@@ -312,7 +307,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                 }
               } catch (Exception e) {
                 // Wrong Username
-                List<Object> userText = new ArrayList<Object>();
+                List<Object> userText = new ArrayList<>();
                 userText.add(username);
                 errors.add(new WSException(WSErrorType.WARNING, 10029, e, userText, null));
               } finally {
@@ -341,7 +336,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         @Override
         public CaseServiceResult call() throws Exception {
           CaseServiceResult result = new CaseServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (caseId != null) {
 
@@ -351,7 +346,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               iCase = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(query);
             } catch (Exception e) {
               // Wrong CaseId
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(caseId);
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userText, null));
             }
@@ -361,14 +356,14 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                 IvyDocumentTransformer transformer = new IvyDocumentTransformer();
                 result.setDocuments(transformer.transform(iCase.documents().getAll()));
               } catch (Exception e) {
-                List<Object> userText = new ArrayList<Object>();
+                List<Object> userText = new ArrayList<>();
                 userText.add(e.getMessage());
                 errors.add(new WSException(WSErrorType.WARNING, 10043, e, userText, null));
               }
             }
           } else {
             // No caseId given
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
           }
@@ -391,7 +386,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         @Override
         public CaseServiceResult call() throws Exception {
           CaseServiceResult result = new CaseServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (caseId != null) {
             CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
@@ -400,7 +395,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               iCase = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(query);
             } catch (Exception e) {
               // Wrong CaseId
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(caseId);
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userText, null));
             }
@@ -412,14 +407,14 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                 result.setDocument(transformer.transform(document));
                 createNoteWhenUploadDocument(username, caseId, documentName);
               } catch (Exception e) {
-                List<Object> userText = new ArrayList<Object>();
+                List<Object> userText = new ArrayList<>();
                 userText.add(documentName);
                 errors.add(new WSException(WSErrorType.WARNING, 10042, e, userText, null));
               }
             }
           } else {
             // No caseId given
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
           }
@@ -448,7 +443,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         @Override
         public CaseServiceResult call() throws Exception {
           CaseServiceResult result = new CaseServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (caseId != null) {
             CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
@@ -457,7 +452,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               iCase = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(query);
             } catch (Exception e) {
               // Wrong CaseId
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(caseId);
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userText, null));
             }
@@ -466,14 +461,14 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               try {
                 result.setDocumentContent(iCase.documents().get(documentId).read().asBinary());
               } catch (Exception e) {
-                List<Object> userText = new ArrayList<Object>();
+                List<Object> userText = new ArrayList<>();
                 userText.add(e.getMessage());
                 errors.add(new WSException(WSErrorType.WARNING, 10043, e, userText, null));
               }
             }
           } else {
             // No caseId given
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
           }
@@ -495,7 +490,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         @Override
         public CaseServiceResult call() throws Exception {
           CaseServiceResult result = new CaseServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (caseId != null) {
             CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
@@ -504,7 +499,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               iCase = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(query);
             } catch (Exception e) {
               // Wrong CaseId
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(caseId);
               errors.add(new WSException(WSErrorType.WARNING, 10022, e, userText, null));
             }
@@ -517,14 +512,14 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
                   createNoteWhenDeleteDocument(userName, caseId, document);
                 }
               } catch (Exception e) {
-                List<Object> userText = new ArrayList<Object>();
+                List<Object> userText = new ArrayList<>();
                 userText.add(e.getMessage());
                 errors.add(new WSException(WSErrorType.WARNING, 10043, e, userText, null));
               }
             }
           } else {
             // No caseId given
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
           }
@@ -617,7 +612,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
   
-  @SuppressWarnings("static-access")
   @Override
   public CaseServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language)
       throws WSException {
@@ -626,7 +620,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
           CaseQuery caseQuery = Ivy.wf().getGlobalContext().getCaseQueryExecutor().createCaseQuery();
           if (StringUtils.isNotBlank(jsonQuery)) {
-            caseQuery.fromJson(jsonQuery);
+            CaseQuery.fromJson(jsonQuery);
           }
           queryExcludeHiddenCases(caseQuery);
 
@@ -711,7 +705,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               .groupBy().category();
 
               Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(elapsedTimeQuery);
-              HashMap<String, Long> recordMap = new HashMap<String, Long>();
+              HashMap<String, Long> recordMap = new HashMap<>();
               if (recordSet != null) {
                 recordSet.getRecords().forEach(record -> {
                   String categoryName = record.getField("CATEGORY").toString();
@@ -806,7 +800,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getCount(query);
   }
 
-  private CaseQuery createCaseQuery(CaseSearchCriteria caseSearchCriteria) throws Exception {
+  private CaseQuery createCaseQuery(CaseSearchCriteria caseSearchCriteria) {
     CaseQuery finalQuery = CaseQuery.fromJson(caseSearchCriteria.getJsonQuery());
 
     if (caseSearchCriteria.isBusinessCase()) {
@@ -857,9 +851,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     List<ICase> hiddenCases =
         executeCaseQuery(CaseQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
 
-    hiddenCases.forEach(hiddenCase -> {
-	      query.where().and().caseId().isNotEqual(hiddenCase.getId());
-	    });
+    hiddenCases.forEach(hiddenCase -> query.where().and().caseId().isNotEqual(hiddenCase.getId()));
 	  }
 
 }

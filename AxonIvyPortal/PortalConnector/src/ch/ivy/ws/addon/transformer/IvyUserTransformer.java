@@ -11,6 +11,8 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 
 public class IvyUserTransformer {
 
+  private IvyUserTransformer() {}
+
   public static IvyUser transform(ISecurityMember m, IApplication app) {
     IvyUser result = new IvyUser();
 
@@ -25,7 +27,7 @@ public class IvyUserTransformer {
   }
 
   public static List<IvyUser> transform(List<ISecurityMember> members, IApplication app) {
-    List<IvyUser> result = new ArrayList<IvyUser>();
+    List<IvyUser> result = new ArrayList<>();
 
     for (ISecurityMember m : members) {
       result.add(transform(m, app));

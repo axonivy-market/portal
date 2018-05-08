@@ -11,6 +11,7 @@ import org.primefaces.extensions.util.json.GsonConverter;
 
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -71,8 +72,12 @@ public final class PortalNavigator {
     return FacesContext.getCurrentInstance().getExternalContext().encodeRedirectURL(baseUrl, parameters);
   }
 
-  public void redirect(String url) throws Exception {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+  public void redirect(String url) {
+    try {
+      FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+    } catch (Exception e) {
+      throw new PortalException(e);
+    }
   }
 
   public String getPortalStartUrlOfCurrentApplication() {

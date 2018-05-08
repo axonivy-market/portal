@@ -7,7 +7,7 @@ import ch.ivy.ws.addon.bo.WebStartableServiceResult;
  * Web startable service provides a set of service methods for available process starts and case map
  * starts
  */
-public interface IWebStartableService {
+public interface IWebStartableService { //NOSONAR
 
   /**
    * Find all web starts by criteria

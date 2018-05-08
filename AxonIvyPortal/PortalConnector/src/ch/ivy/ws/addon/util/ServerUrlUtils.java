@@ -30,7 +30,7 @@ public class ServerUrlUtils {
       } catch (MalformedURLException | NumberFormatException e) {
         Ivy.log()
             .warn(
-                "Unable to get server url based on system properties. System properties WebServer.ExternalProtocol/HostName/Port are not configured properly. Please check and correct it.");
+                "Unable to get server url based on system properties. System properties WebServer.ExternalProtocol/HostName/Port are not configured properly. Please check and correct it.", e);
       }
     }
     return StringUtils.EMPTY;

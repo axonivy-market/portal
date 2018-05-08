@@ -111,7 +111,7 @@ public class IvyCaseTransformer {
   }
 
   public List<IvyCase> transform(List<ICase> cases) {
-    List<IvyCase> result = new ArrayList<IvyCase>();
+    List<IvyCase> result = new ArrayList<>();
 
     if (cases != null) {
       for (ICase c : cases) {

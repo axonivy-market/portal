@@ -54,11 +54,9 @@ public class ApplicationServiceImpl implements IApplicationService {
   }
 
   private Callable<List<IvyApplication>> getApplicationsStateCallable(List<String> applicationNames) {
-    return () -> {
-      return applicationNames.stream()
+    return () ->  applicationNames.stream()
           .map(ServerFactory.getServer().getApplicationConfigurationManager()::findApplication)
           .filter(Objects::nonNull).map(this::newIvyApplication).collect(toList());
-    };
   }
 
   private IvyApplication newIvyApplication(IApplication foundApplication) {

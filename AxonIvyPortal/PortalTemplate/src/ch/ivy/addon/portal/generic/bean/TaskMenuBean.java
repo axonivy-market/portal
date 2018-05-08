@@ -33,7 +33,7 @@ public class TaskMenuBean implements Serializable {
 
   private static final long serialVersionUID = 5481218944095287656L;
 
-  private TreeNode rootNode;
+  private transient TreeNode rootNode;
   private static final String TASK_MENU_DATA_BEAN = "#{taskMenuDataBean}";
 
   public TreeNode getRootNode() {
@@ -92,11 +92,11 @@ public class TaskMenuBean implements Serializable {
     }
   }
 
-  public void onNodeCollapse(NodeCollapseEvent event) {
+  public void onNodeCollapse(@SuppressWarnings("unused") NodeCollapseEvent event) { //NOSONAR
 
   }
 
-  public void onNodeSelect(NodeSelectEvent event) {
+  public void onNodeSelect(@SuppressWarnings("unused") NodeSelectEvent event) { //NOSONAR
 
   }
 

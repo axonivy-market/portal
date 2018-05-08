@@ -62,6 +62,7 @@ public class BaseTest extends SeleneseTestBase {
     cleanAllFavoriteProcesses();
     updatePermissionOfTestUsers();
     cleanUpGlobalVariables();
+    logoutDesigner();
   }
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {

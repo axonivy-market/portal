@@ -67,7 +67,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         public NoteServiceResult call() throws Exception {
 
           NoteServiceResult result = new NoteServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (username == null || username.trim().isEmpty()) {
             // No username given
@@ -91,7 +91,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               }
             } catch (Exception e) {
               // Wrong combination of taskId and username
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(taskId);
               userText.add(username);
               errors.add(new WSException(WSErrorType.WARNING, 10031, e, userText, null));
@@ -121,14 +121,14 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         @Override
         public TaskServiceResult call() throws Exception {
           TaskServiceResult result = new TaskServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (taskId == null) {
             // TaskId not given
             errors.add(new WSException(WSErrorType.WARNING, 10027, null, null));
           } else if (securityMember == null) {
             // Wrong securityMember
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
           } else {
@@ -141,7 +141,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               member = t.getApplication().getSecurityContext().findSecurityMember(securityMember.getMemberName());
             } catch (Exception e) {
               // Wrong securityMember
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(taskId);
               errors.add(new WSException(WSErrorType.WARNING, 10028, e, userText, null));
             }
@@ -194,7 +194,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         @Override
         public IvyTask call() throws Exception {
           IvyTask result = null;
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           if (taskId != null) {
             TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
@@ -214,7 +214,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 }
               } catch (Exception e) {
                 // Invalid username
-                List<Object> userText = new ArrayList<Object>();
+                List<Object> userText = new ArrayList<>();
                 userText.add(username);
                 errors.add(new WSException(WSErrorType.WARNING, 10029, e, userText, null));
               } finally {
@@ -225,13 +225,13 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               }
             } else {
               // Invalid taskId
-              List<Object> userText = new ArrayList<Object>();
+              List<Object> userText = new ArrayList<>();
               userText.add(taskId);
               errors.add(new WSException(WSErrorType.WARNING, 10027, userText, null));
             }
           } else {
             // No taskId given
-            List<Object> userText = new ArrayList<Object>();
+            List<Object> userText = new ArrayList<>();
             userText.add("");
             errors.add(new WSException(WSErrorType.WARNING, 10027, userText, null));
           }
@@ -251,7 +251,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         @Override
         public TaskServiceResult call() throws Exception {
           TaskServiceResult result = new TaskServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           ITask task = findTask(taskId, errors);
 
@@ -367,7 +367,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
-  @SuppressWarnings("static-access")
   @Override
   public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language)
       throws WSException {
@@ -377,7 +376,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           () -> {
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
-              taskQuery.fromJson(jsonQuery);
+              TaskQuery.fromJson(jsonQuery);
             }
             queryExcludeHiddenTasks(taskQuery);
 
@@ -409,7 +408,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
-  @SuppressWarnings("static-access")
   @Override
   public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps,
       String language) throws WSException {
@@ -419,7 +417,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           () -> {
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
-              taskQuery = taskQuery.fromJson(jsonQuery);
+              taskQuery = TaskQuery.fromJson(jsonQuery);
             }
             queryExcludeHiddenTasks(taskQuery);
 
@@ -451,7 +449,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
-  @SuppressWarnings("static-access")
   @Override
   public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps,
       String language) throws WSException {
@@ -461,7 +458,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           () -> {
             TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
             if (StringUtils.isNotBlank(jsonQuery)) {
-              taskQuery = taskQuery.fromJson(jsonQuery);
+              taskQuery = TaskQuery.fromJson(jsonQuery);
             }
             queryExcludeHiddenTasks(taskQuery);
 
@@ -491,7 +488,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
-  @SuppressWarnings("static-access")
   @Override
   public TaskServiceResult findUnassignedTaskCategories(String jsonQuery, List<String> apps, String language)
       throws WSException {
@@ -500,7 +496,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       return securityManager().executeAsSystem(() -> {
         TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
         if (StringUtils.isNotBlank(jsonQuery)) {
-          taskQuery = taskQuery.fromJson(jsonQuery);
+          taskQuery = TaskQuery.fromJson(jsonQuery);
         }
         queryExcludeHiddenTasks(taskQuery);
 
@@ -597,7 +593,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               .orderBy().expiryTimestamp();
 
             Recordset recordSet = taskQueryExecutor().getRecordset(expiryQuery);
-            HashMap<String, String> recordMap = new HashMap<String, String>();
+            HashMap<String, String> recordMap = new HashMap<>();
             if (recordSet != null) {
               for (Record record : recordSet.getRecords()) {
                 if (record.getField("EXPIRYTIMESTAMP") != null) {
@@ -638,7 +634,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             .groupBy().category();
 
             Recordset recordSet = taskQueryExecutor().getRecordset(elapsedTimeQuery);
-            HashMap<String, Long> recordMap = new HashMap<String, Long>();
+            HashMap<String, Long> recordMap = new HashMap<>();
             if (recordSet != null) {
               recordSet.getRecords().forEach(record -> {
                 String categoryName = record.getField("CATEGORY").toString();
@@ -664,7 +660,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
-  private TaskQuery createTaskQuery(TaskSearchCriteria taskSearchCriteria) throws Exception {
+  private TaskQuery createTaskQuery(TaskSearchCriteria taskSearchCriteria) {
     TaskQuery finalQuery = TaskQuery.fromJson(taskSearchCriteria.getJsonQuery());
 
     if (taskSearchCriteria.hasInvolvedUsername() && !taskSearchCriteria.isIgnoreInvolvedUser()) {
@@ -689,7 +685,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         @Override
         public TaskServiceResult call() throws Exception {
           TaskServiceResult result = new TaskServiceResult();
-          List<WSException> errors = new ArrayList<WSException>();
+          List<WSException> errors = new ArrayList<>();
 
           ITask task = findTask(taskId, errors);
 
@@ -717,7 +713,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public ITask findTask(final Integer taskId, List<WSException> errors) {
     if (taskId == null) {
-      List<Object> userText = new ArrayList<Object>();
+      List<Object> userText = new ArrayList<>();
       userText.add(taskId);
       errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
       return null;
@@ -729,7 +725,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       return task;
     } catch (Exception e) {
       // Wrong TaskId
-      List<Object> userText = new ArrayList<Object>();
+      List<Object> userText = new ArrayList<>();
       userText.add(taskId);
       errors.add(new WSException(WSErrorType.WARNING, 10027, e, userText, null));
       return null;
@@ -908,9 +904,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     users.forEach(user -> {
       taskQuery.where().or().isInvolved(user);
       if (isTaskStartedByAnotherDisplayed) {
-        user.getAllRoles().forEach(role -> {
-          taskQuery.where().or().activatorName().isEqual(role.getName()); 
-        });
+        user.getAllRoles().forEach(role -> 
+          taskQuery.where().or().activatorName().isEqual(role.getName())
+        );
       }
     });
     return taskQuery;
@@ -948,9 +944,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     List<ITask> hiddenTasks =
         executeTaskQuery(TaskQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
 
-    hiddenTasks.forEach(hiddenTask -> {
-      query.where().and().taskId().isNotEqual(hiddenTask.getId());
-    });
+    hiddenTasks.forEach(hiddenTask -> 
+      query.where().and().taskId().isNotEqual(hiddenTask.getId())
+    );
   }
 
   /**

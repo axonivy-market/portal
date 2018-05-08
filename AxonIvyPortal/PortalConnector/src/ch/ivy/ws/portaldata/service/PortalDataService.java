@@ -74,12 +74,12 @@ public class PortalDataService {
 
     @Override
     public Void call() throws Exception {
-      for (String keysToBeDeleted : keysToBeDeleted) {
+      for (String keyToBeDeleted : keysToBeDeleted) {
         ICustomProperties customProperties = IvyService.getApplication().customProperties();
-        if (PasswordUtils.isKeyOfServer(keysToBeDeleted)) {
-          PasswordUtils.deletePasswordRelatedTo(keysToBeDeleted);
+        if (PasswordUtils.isKeyOfServer(keyToBeDeleted)) {
+          PasswordUtils.deletePasswordRelatedTo(keyToBeDeleted);
         }
-        customProperties.delete(keysToBeDeleted);
+        customProperties.delete(keyToBeDeleted);
       }
       return null;
     }
