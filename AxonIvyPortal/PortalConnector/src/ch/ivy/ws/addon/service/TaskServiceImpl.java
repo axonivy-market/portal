@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Stream;
@@ -25,6 +26,7 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.bo.AvailableAppsResult;
 import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.enums.PortalPermission;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
 import ch.ivy.ws.addon.transformer.IvyTaskTransformer;
 import ch.ivy.ws.addon.types.ElapsedTimeStatistic;
@@ -43,6 +45,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -320,7 +323,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               ivyTasks.add(ivyTask);
             } else if (canUserResumeTask || taskSearchCriteria.isTaskStartedByAnotherDisplayed()) {
               ivyTasks.add(ivyTask);
-            } else if (isTaskDoneByInvolveUser(involvedUsername, task)){
+            } else if (isTaskDoneByInvolveUser(involvedUsername, task)) {
               ivyTasks.add(ivyTask);
             }
             if (taskSearchCriteria.isIgnoreInvolvedUser()) {
@@ -540,9 +543,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
             queryExcludeHiddenTasks(priorityQuery);
 
-            priorityQuery.aggregate().countRows()
-              .groupBy().priority()
-              .orderBy().priority();
+            priorityQuery.aggregate().countRows().groupBy().priority().orderBy().priority();
 
             Recordset recordSet = taskQueryExecutor().getRecordset(priorityQuery);
             PriorityStatistic priorityStatistic = new PriorityStatistic();
@@ -570,7 +571,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException {
+  public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps)
+      throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
@@ -588,9 +590,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
             queryExcludeHiddenTasks(expiryQuery);
 
-            expiryQuery.aggregate().countRows()
-              .groupBy().expiryTimestamp()
-              .orderBy().expiryTimestamp();
+            expiryQuery.aggregate().countRows().groupBy().expiryTimestamp().orderBy().expiryTimestamp();
 
             Recordset recordSet = taskQueryExecutor().getRecordset(expiryQuery);
             HashMap<String, String> recordMap = new HashMap<>();
@@ -606,7 +606,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             Gson gsonConverter = new Gson();
             String json = "";
             if (recordMap.size() != 0) {
-              json= gsonConverter.toJson(recordMap);
+              json = gsonConverter.toJson(recordMap);
             }
             expiryStatistic.setResult(json);
 
@@ -630,19 +630,20 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             queryExcludeHiddenTasks(elapsedTimeQuery);
 
             elapsedTimeQuery.where().and().businessRuntime().isNotNull();
-            elapsedTimeQuery.aggregate().avgBusinessRuntime()
-            .groupBy().category();
+            elapsedTimeQuery.aggregate().avgBusinessRuntime().groupBy().category();
 
             Recordset recordSet = taskQueryExecutor().getRecordset(elapsedTimeQuery);
             HashMap<String, Long> recordMap = new HashMap<>();
             if (recordSet != null) {
-              recordSet.getRecords().forEach(record -> {
-                String categoryName = record.getField("CATEGORY").toString();
-                BigDecimal averageElapsedTime
-                  = Optional.ofNullable((BigDecimal)record.getField("AVGBUSINESSRUNTIME")).orElse(new BigDecimal(0));
-                long averageElapsedTimeValue = averageElapsedTime.longValue();
-                recordMap.put(categoryName, averageElapsedTimeValue);
-              });
+              recordSet.getRecords().forEach(
+                  record -> {
+                    String categoryName = record.getField("CATEGORY").toString();
+                    BigDecimal averageElapsedTime =
+                        Optional.ofNullable((BigDecimal) record.getField("AVGBUSINESSRUNTIME")).orElse(
+                            new BigDecimal(0));
+                    long averageElapsedTimeValue = averageElapsedTime.longValue();
+                    recordMap.put(categoryName, averageElapsedTimeValue);
+                  });
             }
 
             ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
@@ -669,7 +670,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
       AvailableAppsResult availableAppsResult =
           findAvailableApplicationsAndUsers(involvedApplications, involvedUsername);
-      finalQuery.where().and(queryForInvolvedUsers(availableAppsResult.getUsers(), taskSearchCriteria.isTaskStartedByAnotherDisplayed()))
+      finalQuery
+          .where()
+          .and(
+              queryForInvolvedUsers(availableAppsResult.getUsers(),
+                  taskSearchCriteria.isTaskStartedByAnotherDisplayed()))
           .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
     } else if (taskSearchCriteria.hasInvolvedApplications()) {
       finalQuery.where().and(queryForInvolvedApplications(taskSearchCriteria.getInvolvedApplications()));
@@ -698,7 +703,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               String workerName =
                   fullName == null || fullName.isEmpty() ? workerUser.getName() : workerUser.getFullName() + " ("
                       + workerUser.getName() + ")";
-                  result.setWorkerUserName(workerName);
+              result.setWorkerUserName(workerName);
             }
           }
           result.setErrors(errors);
@@ -786,8 +791,21 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         .equals(taskState))) {
       return false;
     }
+    if (userCanOnlyDelegateAssignedTask(task, username)) {
+      return canUserResumeTask(username, task);
+    } else {
+      return SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_ACTIVATOR);
+    }
+  }
 
-    return SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_ACTIVATOR);
+  private boolean userCanOnlyDelegateAssignedTask(ITask task, String username) {
+    IPermission permission =
+        IPermissionRepository.get().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());
+    if (Objects.isNull(permission)) {
+      return false;
+    }
+    return SessionUtil.doesUserHavePermission(task.getApplication(), username, permission)
+        && !SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_ACTIVATOR);
   }
 
   private boolean hasPermissionToParkTask(ITask task, String username) {
@@ -814,18 +832,18 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
     return false;
   }
-  
+
   private boolean isTaskDoneByInvolveUser(String userName, ITask task) {
     IUser user = findUser(userName, task);
     return TaskState.DONE.equals(task.getState()) && user.equals(task.getWorkerUser());
   }
 
-  private boolean hasPermissionToUploadDeleteDocument(String userName, ITask task){
-    return SessionUtil.doesUserHavePermission(task.getApplication(),
-        userName, IPermission.DOCUMENT_WRITE) || SessionUtil.doesUserHavePermission(task.getApplication(),
-        userName, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
+  private boolean hasPermissionToUploadDeleteDocument(String userName, ITask task) {
+    return SessionUtil.doesUserHavePermission(task.getApplication(), userName, IPermission.DOCUMENT_WRITE)
+        || SessionUtil.doesUserHavePermission(task.getApplication(), userName,
+            IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
-  
+
   private boolean hasPermissionToChangeExpiry(String username, ITask task) {
     return SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP);
   }
@@ -904,9 +922,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     users.forEach(user -> {
       taskQuery.where().or().isInvolved(user);
       if (isTaskStartedByAnotherDisplayed) {
-        user.getAllRoles().forEach(role -> 
-          taskQuery.where().or().activatorName().isEqual(role.getName())
-        );
+        user.getAllRoles().forEach(role -> taskQuery.where().or().activatorName().isEqual(role.getName()));
       }
     });
     return taskQuery;
@@ -944,9 +960,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     List<ITask> hiddenTasks =
         executeTaskQuery(TaskQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
 
-    hiddenTasks.forEach(hiddenTask -> 
-      query.where().and().taskId().isNotEqual(hiddenTask.getId())
-    );
+    hiddenTasks.forEach(hiddenTask -> query.where().and().taskId().isNotEqual(hiddenTask.getId()));
   }
 
   /**
