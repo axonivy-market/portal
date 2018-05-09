@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -48,13 +51,13 @@ public class CaseCreationDateFilter extends CaseFilter {
       return null;
     }
     CaseQuery query = CaseQuery.create();
-    if (toCreationDate != null) {
-      query.where().startTimestamp().isLowerOrEqualThan(toCreationDate);
-    }
     if (fromCreationDate != null) {
       query.where().startTimestamp().isGreaterOrEqualThan(fromCreationDate);
     }
 
+    if (toCreationDate != null) {
+      query.where().startTimestamp().isLowerOrEqualThan(toCreationDate);
+    }
     return query;
   }
 
@@ -67,7 +70,13 @@ public class CaseCreationDateFilter extends CaseFilter {
 
   @Override
   public void validate() {
-    validate(fromCreationDate, toCreationDate);
+    if (fromCreationDate != null && toCreationDate != null && (fromCreationDate.compareTo(toCreationDate) > 0)) {
+      FacesContext.getCurrentInstance().validationFailed();
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
+              "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
+    }
   }
 
   public Date getFromCreationDate() {
