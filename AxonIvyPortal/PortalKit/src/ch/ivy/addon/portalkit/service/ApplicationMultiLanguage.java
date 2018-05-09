@@ -49,7 +49,7 @@ public class ApplicationMultiLanguage {
   private static String getRandomDisplayName(Map<String, String> displayNameAsMap) {
     Set<String> keySet = displayNameAsMap.keySet();
     for (String key : keySet) {
-      String displayName = displayNameAsMap.get(key).toString();
+      String displayName = displayNameAsMap.get(key);
       if (!displayName.isEmpty()) {
         return displayName;
       }

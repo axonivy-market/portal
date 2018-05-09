@@ -157,13 +157,11 @@ public final class AbsenceAndSubstituteUtils {
       for (RemoteAbsence mergedAbsence : mergedAbsences) {
         Boolean contains = false;
         for (RemoteAbsence absence : allAbsences) {
-          if (serverApplication.getAppName().equals(absence.getAppName())) {
-            if (absence.getStartDateInclusive() != null && absence.getStopDateInclusive() != null
-                && absence.getStartDateInclusive().equals(mergedAbsence.getStartDateInclusive())
-                && absence.getStopDateInclusive().equals(mergedAbsence.getStopDateInclusive())) {
-              contains = true; // found, check next absence
-              break;
-            }
+          if (serverApplication.getAppName().equals(absence.getAppName())
+                  && checkEqualStartDateInclusive(absence, mergedAbsence)
+                  && checkEqualStopDateInclusive(absence, mergedAbsence)) {
+            contains = true; // found, check next absence
+            break;
           }
         }
         if (!contains) {
@@ -183,6 +181,13 @@ public final class AbsenceAndSubstituteUtils {
     }
   }
 
+  private static boolean checkEqualStartDateInclusive(RemoteAbsence absence, RemoteAbsence mergedAbsence) {
+    return absence.getStartDateInclusive() != null && absence.getStartDateInclusive().equals(mergedAbsence.getStartDateInclusive());
+  }
+
+  private static boolean checkEqualStopDateInclusive(RemoteAbsence absence, RemoteAbsence mergedAbsence) {
+    return absence.getStopDateInclusive() != null && absence.getStopDateInclusive().equals(mergedAbsence.getStopDateInclusive());
+  }
   /**
    * Check validation if from bigger than till
    * 

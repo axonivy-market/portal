@@ -258,10 +258,11 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   @Override
   public void setRowIndex(int index) {
-    if (index >= data.size()) {
-      index = -1;
+    int idx = index;
+    if (idx >= data.size()) {
+      idx = -1;
     }
-    this.rowIndex = index;
+    this.rowIndex = idx;
   }
 
   @Override
@@ -465,12 +466,16 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
       for (CaseFilter filter : filters) {
         for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
-          if (sessionCaseFilter.getClass() == filter.getClass()) {
-            BeanUtils.copyProperties(filter, sessionCaseFilter);
-            selectedFilters.add(filter);
-          }
+          copyProperties(sessionCaseFilter, filter);
         }
       }
+    }
+  }
+  
+  private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException, InvocationTargetException {
+    if (sessionCaseFilter.getClass() == filter.getClass()) {
+      BeanUtils.copyProperties(filter, sessionCaseFilter);
+      selectedFilters.add(filter);
     }
   }
 }

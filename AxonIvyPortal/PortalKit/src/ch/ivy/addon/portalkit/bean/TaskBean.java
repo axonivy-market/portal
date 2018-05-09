@@ -103,10 +103,9 @@ public class TaskBean implements Serializable {
         }
       }
     } else {
-      if (Ivy.session().getSessionUserName() != null && activator.getMemberName() != null) {
-        if (Ivy.session().getSessionUserName().equals(activator.getMemberName().replace(SHARP, StringUtils.EMPTY))) {
-          hasTaskActionsPermission = true;
-        }
+      if (Ivy.session().getSessionUserName() != null && activator.getMemberName() != null
+              && Ivy.session().getSessionUserName().equals(activator.getMemberName().replace(SHARP, StringUtils.EMPTY))) {
+        hasTaskActionsPermission = true;
       }
     }
     return hasTaskActionsPermission;

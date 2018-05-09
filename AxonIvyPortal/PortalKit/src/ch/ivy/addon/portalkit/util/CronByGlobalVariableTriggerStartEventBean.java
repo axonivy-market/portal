@@ -92,10 +92,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
                   + trigger.getNextFireTime());
         }
       }
-    } catch (SchedulerException e) {
-      sched = null;
-      getEventBeanRuntime().getRuntimeLogLogger().error(e);
-    } catch (PersistencyException e) {
+    } catch (SchedulerException | PersistencyException e) {
       sched = null;
       getEventBeanRuntime().getRuntimeLogLogger().error(e);
     }
