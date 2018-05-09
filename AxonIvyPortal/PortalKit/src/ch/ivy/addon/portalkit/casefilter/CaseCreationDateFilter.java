@@ -18,12 +18,12 @@ public class CaseCreationDateFilter extends CaseFilter {
   @Override
   public String label() {
     StringBuilder sb = new StringBuilder();
-    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/create"));
-    sb.append(" (");
-    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/from"));
-    sb.append("/");
-    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/to"));
-    sb.append(")");
+    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/create"))
+    .append(" (")
+    .append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/from"))
+    .append("/")
+    .append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/to"))
+    .append(")");
     return sb.toString();
   }
 
