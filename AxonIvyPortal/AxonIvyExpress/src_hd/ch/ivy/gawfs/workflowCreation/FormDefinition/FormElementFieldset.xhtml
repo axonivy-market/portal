@@ -58,7 +58,9 @@
 					</p:row>
 					<p:row styleClass="create-input-field-panel-grid-action-row">
 						<p:column colspan="4" styleClass="create-input-field-panel-grid-action-btn">
-							<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+							<p:commandButton 
+								id="add-input-text-btn"
+								value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
 								actionListener="#{logic.createInputField()}" styleClass="buttonDelegate"
 								icon="fa fa-arrow-down" resetValues="true"
 								update="form:availableFormelements form:createTabs"
@@ -110,7 +112,9 @@
 					<p:row styleClass="create-input-field-panel-grid-action-row">
 						<p:column colspan="4" styleClass="create-input-field-panel-grid-action-btn">
 
-							<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}" styleClass="buttonDelegate"
+							<p:commandButton 
+								id="add-text-area-btn"
+								value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}" styleClass="buttonDelegate"
 								actionListener="#{logic.createInputTextArea}"
 								icon="fa fa-arrow-down" resetValues="true"
 								update="form:availableFormelements form:createTabs"
@@ -172,7 +176,9 @@
 									</p:column>
 									
 									<f:facet name="footer" >
-										<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AddCheckboxField')}" styleClass="buttonDelegate"
+										<p:commandButton
+											id="add-checkbox-option-btn"
+											value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AddCheckboxField')}" styleClass="buttonDelegate"
 											icon="fa fa-plus"
 											actionListener="#{data.createManyCheckboxTab.addOption()}"
 											update="form:createTabs:ManyCheckboxOptions"
@@ -190,7 +196,9 @@
 					<p:row styleClass="create-input-field-panel-grid-action-row">
 
 						<p:column colspan="4" styleClass="create-input-field-panel-grid-action-btn">
-							<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}" 
+							<p:commandButton
+								id="add-checkbox-btn" 
+								value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}" 
 								actionListener="#{logic.createManyCheckbox}" styleClass="buttonDelegate"
 								icon="fa fa-arrow-down" resetValues="true"
 								update="form:availableFormelements form:createTabs form:createTabs:ManyCheckboxOptions"
@@ -258,7 +266,9 @@
 
 								</p:column>
 								<f:facet name="footer">
-									<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AddOptionboxField')}" styleClass="buttonDelegate"
+									<p:commandButton
+										id="add-radio-option-btn" 
+										value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AddOptionboxField')}" styleClass="buttonDelegate"
 										icon="fa fa-plus"
 										actionListener="#{data.createOneRadioTab.addOption()}"
 										update="form:createTabs:OneRadioOptions"
@@ -276,7 +286,9 @@
 					<p:row styleClass="create-input-field-panel-grid-action-row">
 
 						<p:column colspan="4" styleClass="create-input-field-panel-grid-action-btn">
-							<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+							<p:commandButton
+								id="add-radio-btn"
+								value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
 								actionListener="#{logic.createOneRadio}" styleClass="buttonDelegate"
 								icon="fa fa-arrow-down" resetValues="true"
 								update="form:availableFormelements form:createTabs"
@@ -341,7 +353,9 @@
 					<p:row styleClass="create-input-field-panel-grid-action-row">
 						<p:column colspan="4" styleClass="create-input-field-panel-grid-action-btn">
 
-							<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+							<p:commandButton
+								id="add-upload-file-btn"
+								value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
 								actionListener="#{logic.createFileUpload}" styleClass="buttonDelegate"
 								icon="fa fa-arrow-down" resetValues="true"
 								update="form:availableFormelements form:createTabs"
