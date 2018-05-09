@@ -19,12 +19,12 @@ public class CaseFinishedDateFilter extends CaseFilter {
   @Override
   public String label() {
     StringBuilder sb = new StringBuilder();
-    sb.append(Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished"));
-    sb.append(" (");
-    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/from"));
-    sb.append("/");
-    sb.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/to"));
-    sb.append(")");
+    sb.append(Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished"))
+    .append(" (")
+    .append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/from"))
+    .append("/")
+    .append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/filter/to"))
+    .append(")");
     return sb.toString();
   }
 
