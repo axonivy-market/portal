@@ -21,7 +21,7 @@ public final class RemoteCaseComparator {
   public static Comparator<RemoteCase> comparatorString(
       Function<? super RemoteCase, String> function) {
     Collator collator = Collator.getInstance(Locale.GERMAN);
-    function = function.andThen(s -> s == null ? StringUtils.EMPTY : s);
-    return Comparator.comparing(function, collator);
+    Function<? super RemoteCase, String> filteredFunction = function.andThen(s -> s == null ? StringUtils.EMPTY : s);
+    return Comparator.comparing(filteredFunction, collator);
   }
 }

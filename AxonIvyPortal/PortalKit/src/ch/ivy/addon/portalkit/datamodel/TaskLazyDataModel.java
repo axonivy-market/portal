@@ -153,12 +153,16 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
       for (TaskFilter filter : filters) {
         for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
-          if (sessionTaskFilter.getClass() == filter.getClass()) {
-            BeanUtils.copyProperties(filter, sessionTaskFilter);
-            selectedFilters.add(filter);
-          }
+          copyProperties(sessionTaskFilter, filter);
         }
       }
+    }
+  }
+
+  private void copyProperties(TaskFilter sessionTaskFilter, TaskFilter filter) throws IllegalAccessException, InvocationTargetException {
+    if (sessionTaskFilter.getClass() == filter.getClass()) {
+      BeanUtils.copyProperties(filter, sessionTaskFilter);
+      selectedFilters.add(filter);
     }
   }
 
@@ -360,10 +364,11 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   @Override
   public void setRowIndex(int index) {
-    if (index >= data.size()) {
-      index = -1;
+    int idx = index;
+    if (idx >= data.size()) {
+      idx = -1;
     }
-    this.rowIndex = index;
+    this.rowIndex = idx;
   }
 
   @Override

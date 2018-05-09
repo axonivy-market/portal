@@ -70,102 +70,102 @@ public class UserProcessConverter {
      */
     public static AwesomeIcon basedOn(String givenString) {
 
-      givenString = StringUtils.lowerCase(givenString);
+      String lowerCaseString = StringUtils.lowerCase(givenString);
 
-      if (givenString.contains("synch")) {
+      if (lowerCaseString.contains("synch")) {
         return AwesomeIcon.FA_RETWEET;
       }
 
-      if (givenString.contains("detail")) {
+      if (lowerCaseString.contains("detail")) {
         return AwesomeIcon.FA_FOLDER_OPEN;
       }
 
-      if (givenString.contains("run")) {
+      if (lowerCaseString.contains("run")) {
         return AwesomeIcon.FA_ROCKET;
       }
 
-      if (givenString.contains("global")) {
+      if (lowerCaseString.contains("global")) {
         return AwesomeIcon.FA_GLOBE;
       }
 
-      if (givenString.contains("language")) {
+      if (lowerCaseString.contains("language")) {
         return AwesomeIcon.FA_LANGUAGE;
       }
 
-      if (givenString.contains("activate") || givenString.contains("activating")) {
+      if (lowerCaseString.contains("activate") || lowerCaseString.contains("activating")) {
         return AwesomeIcon.FA_BOLT;
       }
 
-      if (givenString.contains("clean")) {
+      if (lowerCaseString.contains("clean")) {
         return AwesomeIcon.FA_MAGIC;
       }
 
-      if (givenString.contains("info")) {
+      if (lowerCaseString.contains("info")) {
         return AwesomeIcon.FA_INBOX;
       }
 
-      if (givenString.contains("document")) {
+      if (lowerCaseString.contains("document")) {
         return AwesomeIcon.FA_BOOK;
       }
 
-      if (givenString.contains("upload")) {
+      if (lowerCaseString.contains("upload")) {
         return AwesomeIcon.FA_CLOUD_UPLOAD;
       }
 
-      if (givenString.contains("absence")) {
+      if (lowerCaseString.contains("absence")) {
         return AwesomeIcon.FA_HOME;
       }
 
-      if (givenString.contains("mail")) {
+      if (lowerCaseString.contains("mail")) {
         return AwesomeIcon.FA_ENVELOPE_O;
       }
 
-      if (givenString.contains("create") || givenString.contains("creating")) {
+      if (lowerCaseString.contains("create") || lowerCaseString.contains("creating")) {
         return AwesomeIcon.FA_PLUS_SQUARE;
       }
 
-      if (givenString.contains("generate") || givenString.contains("generating")) {
+      if (lowerCaseString.contains("generate") || lowerCaseString.contains("generating")) {
         return AwesomeIcon.FA_CROSSHAIRS;
       }
 
-      if (givenString.contains("approve") || givenString.contains("approving")) {
+      if (lowerCaseString.contains("approve") || lowerCaseString.contains("approving")) {
         return AwesomeIcon.FA_CHECK_SQUARE;
       }
 
-      if (givenString.contains("human")) {
+      if (lowerCaseString.contains("human")) {
         return AwesomeIcon.FA_USER;
       }
 
-      if (givenString.contains("money") || givenString.contains("price") || givenString.contains("cash")
-          || givenString.contains("salary")) {
+      if (lowerCaseString.contains("money") || lowerCaseString.contains("price") || lowerCaseString.contains("cash")
+          || lowerCaseString.contains("salary")) {
         return AwesomeIcon.FA_DOLLAR;
       }
 
-      if (givenString.contains("holiday")) {
+      if (lowerCaseString.contains("holiday")) {
         return AwesomeIcon.FA_SUITCASE;
       }
 
-      if (givenString.contains("schedule")) {
+      if (lowerCaseString.contains("schedule")) {
         return AwesomeIcon.FA_CALENDAR;
       }
 
-      if (givenString.contains("capture") || givenString.contains("photo")) {
+      if (lowerCaseString.contains("capture") || lowerCaseString.contains("photo")) {
         return AwesomeIcon.FA_CAMERA;
       }
 
-      if (givenString.contains("copy") || givenString.contains("clone")) {
+      if (lowerCaseString.contains("copy") || lowerCaseString.contains("clone")) {
         return AwesomeIcon.FA_COPY;
       }
 
-      if (givenString.contains("admin")) {
+      if (lowerCaseString.contains("admin")) {
         return AwesomeIcon.FA_COGS;
       }
 
-      if (givenString.contains("setting")) {
+      if (lowerCaseString.contains("setting")) {
         return AwesomeIcon.FA_COG;
       }
 
-      int index = givenString.hashCode() % AwesomeIcon.values().length;
+      int index = lowerCaseString.hashCode() % AwesomeIcon.values().length;
 
       return AwesomeIcon.values()[Math.abs(index)];
     }

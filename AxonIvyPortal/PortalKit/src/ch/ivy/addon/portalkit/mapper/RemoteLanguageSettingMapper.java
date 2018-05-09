@@ -39,12 +39,7 @@ public class RemoteLanguageSettingMapper {
 			for (IvyLanguageSetting item: ivyLanguageSettings) {
 				RemoteLanguageSetting languageSetting = new RemoteLanguageSetting();
 				languageSetting.setAppName(item.getAppName());
-				for (Application application: server.getApplications()) {
-					if (item.getAppName() != null && item.getAppName().equals(application.getName())) {
-						languageSetting.setAppDisplayName(ApplicationMultiLanguage.getDisplayNameOfAllAppInSameIvyApplication(application, server));
-						break;
-					}
-				}
+				setAppDisplayName(server, item, languageSetting);
 		    if (languageSetting.getAppDisplayName() == null || languageSetting.getAppDisplayName().trim().isEmpty()) {
 		      languageSetting.setAppDisplayName(item.getAppName());
 		    }
@@ -58,7 +53,15 @@ public class RemoteLanguageSettingMapper {
 		return remoteLanguageSettings;
 		
 	}
-	
+
+	private static void setAppDisplayName(Server server, IvyLanguageSetting ivyLanguageSetting, RemoteLanguageSetting languageSetting) {
+	  for (Application application: server.getApplications()) {
+            if (ivyLanguageSetting.getAppName() != null && ivyLanguageSetting.getAppName().equals(application.getName())) {
+                    languageSetting.setAppDisplayName(ApplicationMultiLanguage.getDisplayNameOfAllAppInSameIvyApplication(application, server));
+                    break;
+            }
+    }
+	}
 	/**
 	 * Map from list remote object to list web service ivy object .
 	 * 
