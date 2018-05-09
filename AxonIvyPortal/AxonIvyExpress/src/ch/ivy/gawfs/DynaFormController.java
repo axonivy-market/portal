@@ -40,8 +40,8 @@ public class DynaFormController implements Serializable {
       dragAndDropController.getFinalUsedFormelements().clear();
 
       initializeHeaderOrFooterSection(dragAndDropController.getSelectedFormelementsHeader());
-      initializeHeaderOrFooterSection(dragAndDropController.getSelectedFormelementsFooter());
       initializeMainSections();
+      initializeHeaderOrFooterSection(dragAndDropController.getSelectedFormelementsFooter());
   }
 
   /**
