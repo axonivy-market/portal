@@ -3,6 +3,7 @@ package ch.ivy.gawfs;
 import gawfs.TaskDef;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -224,6 +225,9 @@ public class ExpressProcessUtils {
    * @return email addresses
    */
   public List<String> getRecipientEmailAddresses(List<String> responsibleNames){
+    if (responsibleNames == null) {
+      return Collections.emptyList();
+    }
 	    List<String> emailAddresses = new ArrayList<>();
 	    for (String responsibleName : responsibleNames) {
 	      ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);

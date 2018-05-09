@@ -10,6 +10,8 @@ Bk3 BpmnUserTask Big #zClass
 Bk3 BpmnUserTask #cInfo
 Bk5 BpmnUserTask Big #zClass
 Bk5 B #cInfo
+Bk1 BpmnSendTask Big #zClass
+Bk1 BpmnSendTask #cInfo
 ew0 @TextInP .resExport .resExport #zField
 ew0 @TextInP .type .type #zField
 ew0 @TextInP .processKind .processKind #zField
@@ -36,7 +38,10 @@ ew0 @Alternative f7 '' #zField
 ew0 @PushWFArc f10 '' #zField
 ew0 @PushWFArc f3 '' #zField
 ew0 @PushWFArc f11 '' #zField
+ew0 Bk1 S40 'Send 4' #zField
+ew0 @PushWFArc f13 '' #zField
 ew0 @PushWFArc f4 '' #zField
+ew0 @PushWFArc f14 '' #zField
 >Proto ew0 ew0 executePredefinedWorkflow #zField
 Bk0 @TextInP .resExport .resExport #zField
 Bk0 @TextInP .type .type #zField
@@ -107,7 +112,6 @@ Bk3 @GridStep f44 '' #zField
 Bk3 @PushWFArc f39 '' #zField
 Bk3 @GridStep f48 '' #zField
 Bk3 @PushWFArc f49 '' #zField
-Bk3 @PushWFArc f50 '' #zField
 Bk3 @PushWFArc f2 '' #zField
 Bk3 @Alternative f17 '' #zField
 Bk3 @PushWFArc f46 '' #zField
@@ -128,6 +132,10 @@ Bk3 @PushWFArc f27 '' #zField
 Bk3 @GridStep f40 '' #zField
 Bk3 @PushWFArc f42 '' #zField
 Bk3 @PushWFArc f24 '' #zField
+Bk3 @RichDialog f55 '' #zField
+Bk3 @PushWFArc f57 '' #zField
+Bk3 @PushWFArc f56 '' #zField
+Bk3 @PushWFArc f50 '' #zField
 >Proto Bk3 Bk1 BpmnUserTask #zField
 Bk5 @TextInP .resExport .resExport #zField
 Bk5 @TextInP .type .type #zField
@@ -153,7 +161,21 @@ Bk5 @PushTrueWFInG-01 g0 '' #zField
 Bk5 @PushWFArc f0 '' #zField
 Bk5 @PushTrueWFOutG-01 g1 '' #zField
 Bk5 @PushWFArc f1 '' #zField
->Proto Bk5 Bk3 BpmnUserTask #zField
+>Proto Bk5 Bk2 BpmnUserTask #zField
+Bk1 @TextInP .resExport .resExport #zField
+Bk1 @TextInP .type .type #zField
+Bk1 @TextInP .processKind .processKind #zField
+Bk1 @AnnotationInP-0n ai ai #zField
+Bk1 @MessageFlowInP-0n messageIn messageIn #zField
+Bk1 @MessageFlowOutP-0n messageOut messageOut #zField
+Bk1 @TextInP .xml .xml #zField
+Bk1 @TextInP .responsibility .responsibility #zField
+Bk1 @PushTrueWFInG-01 g0 '' #zField
+Bk1 @PushTrueWFOutG-01 g1 '' #zField
+Bk1 @GridStep f3 '' #zField
+Bk1 @PushWFArc f4 '' #zField
+Bk1 @PushWFArc f0 '' #zField
+>Proto Bk1 Bk3 BpmnSendTask #zField
 ew0 f0 inParamDecl '<java.lang.Integer actualStepIndex,java.lang.String workflowID> param;' #txt
 ew0 f0 inParamTable 'out.actualStepIndex=param.#actualStepIndex is initialized ? param.actualStepIndex : 0;
 out.workflowID=param.workflowID;
@@ -305,8 +327,8 @@ ew0 f7 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Is user task?</name>
-        <nameStyle>13
+        <name>which task type?</name>
+        <nameStyle>16,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -319,8 +341,8 @@ ew0 f3 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK ||
 ew0 f3 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>yes</name>
-        <nameStyle>3
+        <name>user task</name>
+        <nameStyle>9,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -331,20 +353,40 @@ ew0 f11 expr out #txt
 ew0 f11 512 64 408 144 #arcP
 ew0 f11 1 408 64 #addKink
 ew0 f11 0 0.8125675639531414 0 0 #arcLabel
-ew0 f4 expr in #txt
-ew0 f4 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ew0 S40 .resExport export #txt
+ew0 S40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2
+    <language lang="en">
+        <name>Send email</name>
+        <nameStyle>10,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-ew0 f4 408 176 736 176 #arcP
-ew0 f4 1 408 256 #addKink
-ew0 f4 2 736 256 #addKink
-ew0 f4 0 0.5 11 0 #arcLabel
+ew0 S40 504 234 112 44 -31 -8 #rect
+ew0 S40 @|BpmnSendTaskIcon #fIcon
+ew0 f13 expr in #txt
+ew0 f13 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.EMAIL' #txt
+ew0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>mail</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f13 409 175 504 256 #arcP
+ew0 f13 1 416 256 #addKink
+ew0 f13 0 0.5049924357034796 11 0 #arcLabel
+ew0 f4 616 256 734 174 #arcP
+ew0 f4 1 720 256 #addKink
+ew0 f4 0 0.8278533742264182 0 0 #arcLabel
+ew0 f14 expr in #txt
+ew0 f14 408 176 736 176 #arcP
+ew0 f14 1 408 328 #addKink
+ew0 f14 2 736 328 #addKink
+ew0 f14 1 0.5 0 0 #arcLabel
 >Proto ew0 .type gawfs.ExecutePredefinedWorkflowData #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -568,7 +610,9 @@ Bk3 f5 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk3 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name></name>
+        <name>task with mail?</name>
+        <nameStyle>15,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1004,8 +1048,6 @@ Bk3 f49 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk3 f49 352 1344 352 1408 #arcP
 Bk3 f49 0 0.328125 13 0 #arcLabel
-Bk3 f50 expr in #txt
-Bk3 f50 352 672 352 736 #arcP
 Bk3 f2 expr in #txt
 Bk3 f2 352 1880 352 1931 #arcP
 Bk3 f17 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -1162,6 +1204,62 @@ Bk3 f42 outCond ivp=="TaskA.ivp" #txt
 Bk3 f42 352 1600 352 1658 #arcP
 Bk3 f24 expr out #txt
 Bk3 f24 352 1702 352 1754 #arcP
+Bk3 f55 targetWindow NEW #txt
+Bk3 f55 targetDisplay TOP #txt
+Bk3 f55 richDialogId ch.ivy.gawfs.workflowExecution.UserTaskWithMailForm #txt
+Bk3 f55 startMethod start(gawfs.ExecutePredefinedWorkflowData) #txt
+Bk3 f55 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk3 f55 requestActionDecl '<gawfs.ExecutePredefinedWorkflowData executePredefinedWorkflowData> param;' #txt
+Bk3 f55 requestMappingAction 'param.executePredefinedWorkflowData=in;
+' #txt
+Bk3 f55 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk3 f55 responseMappingAction 'out=result.executePredefinedWorkflowData;
+out.userTaskForApproval=result.workingTaskDef;
+' #txt
+Bk3 f55 isAsynch false #txt
+Bk3 f55 isInnerRd false #txt
+Bk3 f55 userContext '* ' #txt
+Bk3 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Task with mail</name>
+        <nameStyle>14,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Bk3 f55 448 738 112 44 -39 -8 #rect
+Bk3 f55 @|RichDialogIcon #fIcon
+Bk3 f57 expr out #txt
+Bk3 f57 504 782 366 846 #arcP
+Bk3 f57 1 504 832 #addKink
+Bk3 f57 1 0.27941505463698263 0 0 #arcLabel
+Bk3 f56 expr in #txt
+Bk3 f56 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK_WITH_EMAIL' #txt
+Bk3 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Bk3 f56 366 658 504 738 #arcP
+Bk3 f56 1 504 672 #addKink
+Bk3 f56 0 0.7605569194185423 0 0 #arcLabel
+Bk3 f50 expr in #txt
+Bk3 f50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Bk3 f50 352 672 352 736 #arcP
 >Proto Bk1 0 0 32 24 18 0 #rect
 >Proto Bk1 @|BIcon #fIcon
 Bk5 f21 targetWindow NEW:card: #txt
@@ -1371,6 +1469,32 @@ Bk5 g1 1139 179 26 26 0 5 #rect
 Bk5 g1 @|MOGIcon #fIcon
 Bk5 f1 expr out #txt
 Bk5 f1 1080 192 1139 192 #arcP
+>Proto Bk2 0 0 32 24 18 0 #rect
+>Proto Bk2 @|BpmnSendTaskIcon #fIcon
+Bk1 g0 51 179 26 26 0 5 #rect
+Bk1 g0 @|MIGIcon #fIcon
+Bk1 g1 611 179 26 26 0 5 #rect
+Bk1 g1 @|MOGIcon #fIcon
+Bk1 f3 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk1 f3 actionTable 'out=in;
+' #txt
+Bk1 f3 actionCode 'import ch.ivy.gawfs.mail.InformationMailSender;
+InformationMailSender sender = new InformationMailSender();
+sender.send(in.nextTask.email);' #txt
+Bk1 f3 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk1 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Send mail</name>
+    </language>
+</elementInfo>
+' #txt
+Bk1 f3 216 170 112 44 -28 -8 #rect
+Bk1 f3 @|StepIcon #fIcon
+Bk1 f4 77 192 216 192 #arcP
+Bk1 f0 expr out #txt
+Bk1 f0 328 192 611 192 #arcP
 >Proto Bk3 0 0 32 24 18 0 #rect
 >Proto Bk3 @|BIcon #fIcon
 ew0 f0 mainOut f30 tail #connect
@@ -1391,8 +1515,12 @@ ew0 f7 out f3 tail #connect
 ew0 f3 head U21 g0 #connect
 ew0 f9 mainOut f11 tail #connect
 ew0 f11 head f7 in #connect
-ew0 f7 out f4 tail #connect
+ew0 f7 out f13 tail #connect
+ew0 f13 head S40 g0 #connect
+ew0 S40 g1 f4 tail #connect
 ew0 f4 head f5 in #connect
+ew0 f7 out f14 tail #connect
+ew0 f14 head f5 in #connect
 Bk0 f5 mainOut f29 tail #connect
 Bk0 f29 head f28 mainIn #connect
 Bk0 f28 mainOut f2 tail #connect
@@ -1444,8 +1572,6 @@ Bk3 f41 out f49 tail #connect
 Bk3 f49 head f48 mainIn #connect
 Bk3 f41 out f43 tail #connect
 Bk3 f19 out f9 tail #connect
-Bk3 f5 out f50 tail #connect
-Bk3 f50 head f14 mainIn #connect
 Bk3 f2 head g1 m #connect
 Bk3 f3 mainOut f46 tail #connect
 Bk3 f46 head f17 in #connect
@@ -1472,6 +1598,12 @@ Bk3 f36 out f42 tail #connect
 Bk3 f42 head f40 mainIn #connect
 Bk3 f40 mainOut f24 tail #connect
 Bk3 f24 head f52 mainIn #connect
+Bk3 f55 mainOut f57 tail #connect
+Bk3 f57 head f4 in #connect
+Bk3 f5 out f56 tail #connect
+Bk3 f56 head f55 mainIn #connect
+Bk3 f5 out f50 tail #connect
+Bk3 f50 head f14 mainIn #connect
 Bk3 0 0 688 1976 0 #ivRect
 Bk5 f29 mainOut f34 tail #connect
 Bk5 f34 head f33 in #connect
@@ -1490,3 +1622,8 @@ Bk5 f0 head f24 mainIn #connect
 Bk5 f1 head g1 m #connect
 Bk5 f21 mainOut f1 tail #connect
 Bk5 0 0 1216 384 0 #ivRect
+Bk1 g0 m f4 tail #connect
+Bk1 f4 head f3 mainIn #connect
+Bk1 f3 mainOut f0 tail #connect
+Bk1 f0 head g1 m #connect
+Bk1 0 0 640 512 0 #ivRect

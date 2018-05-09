@@ -4,6 +4,7 @@
         <username>demo</username>
         <password>+d3m0++</password>
         <fullName>Portal Demo User</fullName>
+        <emailAddress>wawa@axonivy.io</emailAddress>
     </user>
     <user>
         <username>portaladmin</username>
