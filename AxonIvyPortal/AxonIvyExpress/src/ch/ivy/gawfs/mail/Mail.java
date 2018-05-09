@@ -1,6 +1,7 @@
 package ch.ivy.gawfs.mail;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -34,6 +35,10 @@ public class Mail {
     private EmailConfiguration emailConfig;
     private Map<String, File> attachmentFiles;
 
+    public MailBuilder() {
+      emailConfig = new EmailConfiguration();
+      attachmentFiles = new HashMap<>();
+    }
     public MailBuilder subject(String subject) {
       emailConfig.setSubject(subject);
       return this;
