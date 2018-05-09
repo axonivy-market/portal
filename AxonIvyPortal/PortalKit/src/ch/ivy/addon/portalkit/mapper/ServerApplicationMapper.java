@@ -37,11 +37,8 @@ public class ServerApplicationMapper {
 		List<String> outApplications = List.create(String.class);
 
 		for (ServerApplication serverApplication : serverApplications){
-			if(serverApplication.getServerId()!=null && serverApplication.getServerId()==serverId){
-				if (null != serverApplication.getAppName()) {
-					outApplications.add(serverApplication.getAppName());
-				}
-				
+			if(serverApplication.getServerId()!=null && serverApplication.getServerId()==serverId && null != serverApplication.getAppName()) {
+			     outApplications.add(serverApplication.getAppName());
 			}
 		}
 
