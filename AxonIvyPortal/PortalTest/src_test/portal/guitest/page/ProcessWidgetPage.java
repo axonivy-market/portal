@@ -217,4 +217,9 @@ public class ProcessWidgetPage extends TemplatePage {
     externalCheckboxLabel.click();
     waitAjaxIndicatorDisappear();
   }
+  
+  public void openExpressPage() {
+    waitForElementDisplayed(By.id("process-widget:axon-express-form:create-express-workflow"), true);
+    click(By.id("process-widget:axon-express-form:create-express-workflow"));
+  }
 }
