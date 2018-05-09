@@ -526,7 +526,7 @@
 					If you work in Designer, refresh PortalStyle project after change color to see the effect.
 				</tip>
 				<warning>
-					<para>Make sure your machine has M2_HOME variable in the Windows environment.</para>
+					<para>You can only upload <code>PNG</code> image type for logos.</para>
 					<para>If you change colors on Google Chrome browser, please reload page with no cache to get new colors.</para>
 				</warning>
 			</para>
