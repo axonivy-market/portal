@@ -1,5 +1,11 @@
 package ch.ivy.addon.portalkit.filter;
 
+import java.util.Date;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.Query;
 
 public abstract class AbstractFilter<T extends Query<?>> {
@@ -93,4 +99,14 @@ public abstract class AbstractFilter<T extends Query<?>> {
    * </p>
    */
   public void validate() {}
+  
+  protected void validate(Date fromDate, Date toDate) {
+    if (fromDate != null && toDate != null && (fromDate.compareTo(toDate) > 0)) {
+      FacesContext.getCurrentInstance().validationFailed();
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
+              "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
+    }
+  }
 }
