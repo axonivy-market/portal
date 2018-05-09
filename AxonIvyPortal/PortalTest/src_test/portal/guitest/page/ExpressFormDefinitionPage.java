@@ -55,7 +55,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createRadioButtonField(String label, int numberOfOption) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[4]"));
-    waitForElementDisplayed(By.id("form:createTabs:createOneRadioTab"), true);
+    waitForElementDisplayed(By.id("form:createTabs:createOneRadioGrid"), true);
     type(By.id("form:createTabs:OneRadioLabel"), label);
     addRadioOptions(numberOfOption);
     click(By.id("form:createTabs:add-radio-btn"));
