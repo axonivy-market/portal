@@ -695,6 +695,20 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return findById(info.getId());
   }
 
+  private DonutChartModel createDonutChartModel(Map<String, Number> chartData, String extender) {
+    DonutChartModel model = new DonutChartModel();
+    model.addCircle(chartData);
+    model.setLegendPosition("s");
+    model.setShowDataLabels(true);
+    model.setExtender(extender);
+    model.setShadow(false);
+    model.setDataFormat("percent");
+    model.setSliceMargin(3);
+    model.setLegendRows(1);
+    model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
+    return model;
+  }
+
   /**
    * Generate chart model for "Task By Priority" chart
    * 
@@ -705,24 +719,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public DonutChartModel generateTaskByPriorityModel(PriorityStatistic statisticData, boolean isSetDefaultName) {
     Map<String, Number> chartData = generateDataForTaskByPriorityChart(statisticData);
     boolean isEmptyData = chartData.isEmpty();
-    DonutChartModel model = new DonutChartModel();
 
     if (isEmptyData) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks"), 0);
     }
 
-    model.addCircle(chartData);
-    model.setLegendPosition("s");
-    model.setShowDataLabels(true);
-    model.setExtender("chartExtender");
-    model.setShadow(false);
-    model.setDataFormat("percent");
-    model.setSliceMargin(3);
-    model.setLegendRows(1);
+    DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
     if (!isEmptyData) {
       model.setSeriesColors(Colors.getPriorityColors(chartData));
     }
-    model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.TASK_BY_PRIORITY.getCmsUri()));
     }
@@ -783,24 +788,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public DonutChartModel generateCaseByStateModel(CaseStateStatistic statisticData, StatisticChartType chartType, boolean isSetDefaultName) {
     Map<String, Number> chartData = generateDataForCaseStateChart(statisticData);
     boolean isEmptyData = chartData.isEmpty();
-    DonutChartModel model = new DonutChartModel();
 
     if (isEmptyData) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases"), 0);
     }
 
-    model.addCircle(chartData);
-    model.setLegendPosition("s");
-    model.setShowDataLabels(true);
-    model.setExtender("chartExtender");
-    model.setShadow(false);
-    model.setDataFormat("percent");
-    model.setSliceMargin(3);
-    model.setLegendRows(1);
+    DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
     if (!isEmptyData) {
       model.setSeriesColors(Colors.getCaseStateColors(chartData));
     }
-    model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     if (isSetDefaultName) {
       if(chartType == StatisticChartType.CASES_BY_STATE){
         model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
@@ -825,7 +821,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public DonutChartModel generateElapsedTimeModel(List<ElapsedTimeStatistic> statisticData, boolean isSetDefaultName) {
     Map<String, Number> chartData = generateDataForElapsedTimeChart(statisticData);
-    DonutChartModel model = new DonutChartModel();
 
     if (chartData.size() == 0) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseCategory"), 0);
@@ -852,15 +847,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue);
     }
 
-    model.addCircle(chartData);
-    model.setLegendPosition("s");
-    model.setShowDataLabels(true);
-    model.setExtender("elapsedTimeChartExtender");
-    model.setShadow(false);
-    model.setDataFormat("percent");
-    model.setSliceMargin(3);
-    model.setLegendCols(1);
-    model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
+    DonutChartModel model = createDonutChartModel(chartData, "elapsedTimeChartExtender");
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY.getCmsUri()));
     }
