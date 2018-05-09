@@ -230,11 +230,8 @@ public class DesignChooserBean implements Serializable {
     if (loader == null) {
       for (IProcessModel pm : Ivy.request().getApplication().getProcessModels()) {
         IProcessModelVersion releasedPmv = pm.getReleasedProcessModelVersion();
-        if (releasedPmv != null) {
-          String libraryId = releasedPmv.getLibrary().getId();
-          if (PORTALSTYLE_LIBRARY.equals(libraryId)) {
-            loader = new ResourceLoader(releasedPmv);
-          }
+        if (releasedPmv != null && PORTALSTYLE_LIBRARY.equals(releasedPmv.getLibrary().getId())) {
+          loader = new ResourceLoader(releasedPmv);
         }
       }
     }

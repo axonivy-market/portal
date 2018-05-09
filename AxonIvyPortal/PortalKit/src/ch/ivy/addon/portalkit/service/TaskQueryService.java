@@ -100,6 +100,7 @@ public class TaskQueryService {
       long idKeyword = Long.parseLong(keyword);
       filterByKeywordQuery.where().or().taskId().isEqual(idKeyword);
     } catch (NumberFormatException e) {
+      //do nothing
     }
     return filterByKeywordQuery;
   }

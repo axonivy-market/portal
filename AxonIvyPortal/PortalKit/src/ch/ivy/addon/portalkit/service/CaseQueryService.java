@@ -84,6 +84,7 @@ public class CaseQueryService {
           long idKeyword = Long.parseLong(keyword);
           filterByKeywordQuery.where().or().caseId().isEqual(idKeyword);
         } catch (NumberFormatException e) {
+          //do nothing
         }
         return filterByKeywordQuery;
     }

@@ -23,9 +23,7 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.ws.addon.IvyUser;
-import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
@@ -83,10 +81,6 @@ public class UserUtils {
           return usersOut;
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-    } catch (EnvironmentNotAvailableException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -140,10 +134,6 @@ public class UserUtils {
           return delegatedUsers;
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-    } catch (EnvironmentNotAvailableException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -173,10 +163,6 @@ public class UserUtils {
           return null;
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-    } catch (EnvironmentNotAvailableException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -204,8 +190,6 @@ public class UserUtils {
           return null;
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -221,8 +205,6 @@ public class UserUtils {
           return null;
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }

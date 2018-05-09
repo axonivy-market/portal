@@ -17,9 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.add.portalkit.admin.RolePropertyData;
 import ch.ivy.ws.addon.IvyRole;
 import ch.ivyteam.api.PublicAPI;
-import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
@@ -54,10 +52,6 @@ public final class RoleUtils {
           return security.getRoles();
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-    } catch (EnvironmentNotAvailableException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -80,10 +74,6 @@ public final class RoleUtils {
           return security.findRole(name);
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-    } catch (EnvironmentNotAvailableException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -265,10 +255,6 @@ public final class RoleUtils {
           return roles;
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-    } catch (EnvironmentNotAvailableException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -292,10 +278,6 @@ public final class RoleUtils {
           return null;
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-    } catch (EnvironmentNotAvailableException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -317,10 +299,6 @@ public final class RoleUtils {
           return null;
         }
       });
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-    } catch (EnvironmentNotAvailableException e) {
-      Ivy.log().error(e);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
