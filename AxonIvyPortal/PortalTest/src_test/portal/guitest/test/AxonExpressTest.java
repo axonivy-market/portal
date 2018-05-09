@@ -42,7 +42,7 @@ public class AxonExpressTest extends BaseTest{
   public void createFullElementsOfForm() throws InterruptedException {
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    expressProcessPage.fillProcessProperties(true, false, "Test 1", "Test description");
+    expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");
     
     ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     
@@ -52,9 +52,9 @@ public class AxonExpressTest extends BaseTest{
     formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
     formDefinition.createTextInputField("Input number", INPUT_NUMBER_TYPE_INDEX, true);
     formDefinition.createTextInputField("Input date", INPUT_DATE_TYPE_INDEX, true);
-    formDefinition.createCheckboxField("Checkbox", 3);
     formDefinition.createRadioButtonField("Radio", 3);
     formDefinition.createUploadComponent("Upload");
+    formDefinition.createCheckboxField("Checkbox", 3);
     formDefinition.createTextAreaField("Text area", true);
     formDefinition.moveAllElementToDragAndDrogPanel();
     //if we have radio button or checkbox, remember multiply with number of options
@@ -66,7 +66,7 @@ public class AxonExpressTest extends BaseTest{
   public void createFullTaskType() {
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    expressProcessPage.fillProcessProperties(true, false, "Test full task type", "Test description");
+    expressProcessPage.fillProcessProperties(true, true, "Test full task type", "Test description");
     
     ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ExpressResponsible responsible2 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
