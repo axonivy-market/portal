@@ -33,8 +33,8 @@ public class PojoConverter implements Converter {
   @Override
   public String getAsString(FacesContext context, UIComponent component, Object item) throws ConverterException {
     if (item != null && !isEmptyString(item)) {
-      String hash = String.valueOf(item.hashCode());
       Map<String, Object> viewMap = getViewMap(context);
+      String hash = String.valueOf(item.hashCode());
       String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), hash);
       viewMap.put(mapKey, item);
 
@@ -52,8 +52,8 @@ public class PojoConverter implements Converter {
   public Object getAsObject(FacesContext context, UIComponent component, String selectedvalue) {
     if (selectedvalue != null && selectedvalue.length() > 0) {
 
-      Map<String, Object> viewMap = getViewMap(context);
       String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), selectedvalue);
+      Map<String, Object> viewMap = getViewMap(context);
 
       Object item = viewMap.get(mapKey);
 
