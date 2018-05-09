@@ -281,7 +281,8 @@
 							DELEGATE
 						</para>
 						<para>
-							This function will be enabled if session user has permission
+							User can delegate his personal or group tasks if he has permission <code>TaskWriteActivorOwnTasks</code> (This permission belongs to Portal permission group).
+							User can delegate all the tasks he see in his task list if he has permission
 							<code>IPermission.TASK_WRITE_ACTIVATOR</code>
 							.
 						</para>
