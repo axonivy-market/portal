@@ -67,12 +67,20 @@ public class TaskQueryCriteria {
     this.includedStates.addAll(includedStates);
   }
 
+  public boolean hasIncludedStates() {
+    return CollectionUtils.isNotEmpty(includedStates);
+  }
+
   public String getKeyword() {
     return keyword;
   }
 
   public void setKeyword(String keyword) {
     this.keyword = keyword;
+  }
+
+  public boolean hasKeyword() {
+    return StringUtils.isNotEmpty(keyword);
   }
 
   public Long getTaskId() {
@@ -83,6 +91,10 @@ public class TaskQueryCriteria {
     this.taskId = taskId;
   }
 
+  public boolean hasTaskId() {
+    return taskId != null && taskId != 0;
+  }
+
   public Long getCaseId() {
     return caseId;
   }
@@ -91,12 +103,20 @@ public class TaskQueryCriteria {
     this.caseId = caseId;
   }
 
+  public boolean hasCaseId() {
+    return caseId != null && caseId != 0;
+  }
+
   public String getCategory() {
     return category;
   }
 
   public void setCategory(String category) {
     this.category = category;
+  }
+
+  public boolean hasCategory() {
+    return StringUtils.isNotEmpty(category);
   }
 
   public String getSortField() {
@@ -139,32 +159,12 @@ public class TaskQueryCriteria {
     this.isNewQueryCreated = isNewQueryCreated;
   }
 
-  public boolean hasIncludedStates() {
-    return CollectionUtils.isNotEmpty(includedStates);
-  }
-
   public boolean hasInvolvedApplications() {
     return CollectionUtils.isNotEmpty(involvedApplications);
   }
 
-  public boolean hasKeyword() {
-    return StringUtils.isNotEmpty(keyword);
-  }
-
   public boolean hasInvolvedUsername() {
     return StringUtils.isNotEmpty(involvedUsername);
-  }
-
-  public boolean hasTaskId() {
-    return taskId != null && taskId != 0;
-  }
-
-  public boolean hasCaseId() {
-    return caseId != null && caseId != 0;
-  }
-
-  public boolean hasCategory() {
-    return StringUtils.isNotEmpty(category);
   }
 
   public boolean isQueryByBusinessCaseId() {
