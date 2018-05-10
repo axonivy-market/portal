@@ -12,6 +12,7 @@
   <cc:interface componentType="IvyComponent">
   	<cc:attribute name="email" required="true" type="ch.ivy.gawmfs.UserEmail" />
   	<cc:attribute name="responsibles" type="java.util.List"/>
+  	<cc:attribute name="isEmpty" type="java.lang.Boolean"/>
   </cc:interface>
   
   <cc:implementation>
@@ -19,20 +20,24 @@
     <f:event listener="#{emailBean.init(email, cc.attrs.responsibles)}" type="preRenderComponent" />
     <h:panelGroup id="email-container" styleClass="ui-g">
 			<div class="ui-g-12">
-				<h:outputLabel for="email-recipients" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}: "/>
-				<p:inputText id="email-recipients" styleClass="ui-g-4" disabled="#{cc.attrs.responsibles != null}" value="#{email.recipients}" />
+				<p:outputLabel for="email-recipients" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}: "/>
+				<p:inputText id="email-recipients" styleClass="ui-g-4" disabled="#{cc.attrs.isEmpty == null}" value="#{email.recipients}" required="#{cc.attrs.isEmpty != null}"
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
 			</div>
 			<div class="ui-g-12">
-				<h:outputLabel for="email-response-to" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/ResponseTo')}: "/>
-				<p:inputText id="email-response-to" styleClass="ui-g-4" value="#{email.responseTo}" />
+				<p:outputLabel for="email-response-to" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/ResponseTo')}: "/>
+				<p:inputText id="email-response-to" styleClass="ui-g-4" value="#{email.responseTo}"/>
 			</div>
 			<div class="ui-g-12">
-				<h:outputLabel for="email-subject" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')}:"/>
-				<p:inputText id="email-subject" styleClass="ui-g-4" value="#{email.subject}" />
+				<p:outputLabel for="email-subject" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')}:"/>
+				<p:inputText id="email-subject" styleClass="ui-g-4" value="#{email.subject}" required="#{cc.attrs.isEmpty != null}" 
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+
 			</div>
 			<div class="ui-g-12">
-				<h:outputLabel for="email-content" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: "/>
-				<p:textEditor id="email-content" styleClass="ui-g-11 text-editor-send-email" height="300" value="#{email.content}" >
+				<p:outputLabel for="email-content" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: "/>
+				<p:textEditor id="email-content" styleClass="ui-g-11 text-editor-send-email" height="300" value="#{email.content}" required="#{cc.attrs.isEmpty != null}" 
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 					<f:facet name="toolbar">
 			             <span class="ql-formats">
 			                <button class="ql-bold"/>
@@ -49,7 +54,7 @@
 			</div>
 			<div class="ui-g-12">
 				
-				<h:outputLabel for="attachment-table" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Attachment')}: "/>
+				<p:outputLabel for="attachment-table" styleClass="ui-g-1" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Attachment')}: "/>
 				<p:dataTable id="attachment-table" value="#{email.attachments}"
 					var="attachment" filteredValue="#{emailBean.filteredAttachments}"
 					emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}"
@@ -87,7 +92,9 @@
 				</p:dataTable>
 				<script>
 				$(document).ready(function() {
-					PF('attachmentTableVar').filter();
+                    if (#{cc.attrs.isEmpty == null}) {
+					 PF('attachmentTableVar').filter();
+                    }
 				})
 			</script>
 			</div>
