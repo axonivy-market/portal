@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ public class TaskTemplateBean implements Serializable{
   private List<IStartableSideStep> sideStepList;
   private IStartableSideStep selectedSideStep;
 
-  public void generateLinkToTask(final long taskId) throws Exception {
+  public void generateLinkToTask(final long taskId) throws MalformedURLException {
     PortalNavigator navigator = new PortalNavigator();
     Map<String, String> params = new HashMap<>();
     params.put("taskId", Long.toString(taskId));

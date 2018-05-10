@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import ch.ivy.ws.addon.PortalException;
 import ch.ivy.ws.addon.util.PasswordUtils;
 import ch.ivy.ws.portaldata.model.CustomPropertyPair;
 import ch.ivyteam.ivy.application.property.ICustomProperties;
@@ -20,19 +21,19 @@ import ch.ivyteam.ivy.security.SecurityManagerFactory;
 public class PortalDataService {
 
   public void addOrUpdate(List<CustomPropertyPair> customPropertyPairs) throws PersistencyException,
-      EnvironmentNotAvailableException, Exception {
+      EnvironmentNotAvailableException {
     executeCallableAsSystemManager(new AddOrUpdateCustomPropertiesCommand(customPropertyPairs));
   }
 
-  public void delete(String key) throws PersistencyException, EnvironmentNotAvailableException, Exception {
+  public void delete(String key) throws PersistencyException, EnvironmentNotAvailableException {
     executeCallableAsSystemManager(new DeleteCustomPropertiesCommand(key));
   }
 
-  public void delete(List<String> keys) throws PersistencyException, EnvironmentNotAvailableException, Exception {
+  public void delete(List<String> keys) throws PersistencyException, EnvironmentNotAvailableException {
     executeCallableAsSystemManager(new DeleteCustomPropertiesCommand(keys));
   }
 
-  public void deleteByPrefix(String keyPrefix) throws PersistencyException, EnvironmentNotAvailableException, Exception {
+  public void deleteByPrefix(String keyPrefix) throws PersistencyException, EnvironmentNotAvailableException {
     executeCallableAsSystemManager(new DeleteCustomPropertiesByPrefixCommand(keyPrefix));
   }
 
@@ -108,9 +109,13 @@ public class PortalDataService {
     }
   }
 
-  private void executeCallableAsSystemManager(Callable<?> callable) throws Exception {
+  private void executeCallableAsSystemManager(Callable<?> callable) {
     ISecurityManager securityManager = SecurityManagerFactory.getSecurityManager();
-    securityManager.executeAsSystem(callable);
+    try {
+      securityManager.executeAsSystem(callable);
+    } catch (Exception ex) {
+      throw new PortalException(ex);
+    }
   }
 
 }
