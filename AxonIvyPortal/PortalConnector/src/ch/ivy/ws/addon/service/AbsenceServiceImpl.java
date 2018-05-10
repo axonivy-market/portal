@@ -20,6 +20,7 @@ import ch.ivy.ws.addon.types.Absence;
 import ch.ivy.ws.addon.types.IvyAbsence;
 import ch.ivy.ws.addon.types.IvySubstitute;
 import ch.ivy.ws.addon.util.Absences;
+import ch.ivy.ws.addon.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
@@ -207,7 +208,7 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
    */
   private List<WSException> saveUserSubstitute(final String appName, final String username,
       final List<IvySubstitute> substitutes) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> {
         List<WSException> errors = new ArrayList<>();
         IApplication application =
             ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
