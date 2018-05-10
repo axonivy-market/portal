@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -98,7 +99,7 @@ public class UserMenuBean implements Serializable {
     return StringUtils.isNotBlank(logoutPage) ? logoutPage : getHomePageURL();
   }
 
-  public String getHomePageURL() throws Exception {
+  public String getHomePageURL() throws MalformedURLException {
     ApplicationService applicationService = new ApplicationService();
     String homePageURL = getHomePageFromSetting();
     if (CollectionUtils.isEmpty(applicationService.findAllIvyApplications())) {
