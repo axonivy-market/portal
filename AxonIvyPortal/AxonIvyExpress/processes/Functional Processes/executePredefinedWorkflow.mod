@@ -442,9 +442,13 @@ Bk0 f21 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f21 actionTable 'out=in;
 ' #txt
-Bk0 f21 actionCode 'in.nextTask = in.definedTasks.removeGet(0);
-in.dynaFormController = in.nextTask.dynaFormController;
-in.dragAndDropController = in.nextTask.dragAndDropController;
+Bk0 f21 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+in.nextTask = in.definedTasks.removeGet(0);
+
+if (in.nextTask.taskType == TaskType.USER_TASK || in.nextTask.taskType == TaskType.USER_TASK_WITH_EMAIL) {
+	in.dynaFormController = in.nextTask.dynaFormController;
+	in.dragAndDropController = in.nextTask.dragAndDropController;
+}
 
 in.actualStepIndex = 0;' #txt
 Bk0 f21 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -1184,10 +1188,7 @@ Bk3 f40 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk3 f40 actionTable 'out=in;
 ' #txt
-Bk3 f40 actionCode 'in.finishedTasks.addAll(in.tempFinishedTasks);
-
-ivy.log.error("number of temp finished tasks: " + in.finishedTasks.size());
-ivy.log.error("number of finished tasks: " + in.finishedTasks.size());' #txt
+Bk3 f40 actionCode in.finishedTasks.addAll(in.tempFinishedTasks); #txt
 Bk3 f40 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk3 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

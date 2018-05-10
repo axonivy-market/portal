@@ -168,10 +168,10 @@
 									<p:column styleClass="merged-col" colspan="2">
 										<p:outputLabel id="valid-days-label" for="valid-days" rendered="#{gtask.position gt 1}"
 											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" />
-										<p:tooltip for="valid-days-label" id="valid-days-label-tooltip" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/untilDaysTooltip')}" />
+										<p:tooltip for="valid-days-label" id="valid-days-label-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
 										<p:spinner id="valid-days" value="#{gtask.untilDays}" min="1"
 											rendered="#{gtask.position gt 1}" />
-										<p:tooltip for="valid-days" id="valid-days-tooltip" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/untilDaysTooltip')}" />
+										<p:tooltip for="valid-days" id="valid-days-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
 									</p:column>
 								</p:row>
 							</p:panelGrid>
@@ -214,9 +214,9 @@
 										<p:outputLabel id="default-valid-days-label" for="default-valid-days" 
 											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" />
 										<p:tooltip for="default-valid-days-label" id="default-valid-days-label-tooltip"
-											value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/untilDaysTooltip')}" />
+											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
 										<p:spinner id="default-valid-days" value="#{gtask.untilDays}" min="1" />
-										<p:tooltip for="valid-days" id="default-valid-days-tooltip" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/untilDaysTooltip')}" />
+										<p:tooltip for="valid-days" id="default-valid-days-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
 									</p:column>
 								</p:row>
 							</p:panelGrid>
@@ -250,11 +250,12 @@
 				<br />
 
 				<p:outputPanel styleClass="TexAlRight">
-					<p:commandButton id="save" actionListener="#{logic.close}" update="form"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" icon="fa fa-check">
+					<p:commandButton id="save" actionListener="#{logic.close}" update="form" icon="fa fa-check"
+						value="#{data.data.isUseDefaultUI ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
 						<ui:param name="save-workflow" value="true" />
 					</p:commandButton>
-					<p:spacer width="5"/>
+					<p:spacer width="5" />
+
 					<p:commandButton id="cancel-workflow-button" update="form" actionListener="#{logic.cancel}" styleClass="portal-cancel-button"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times" />
 				</p:outputPanel>
@@ -263,7 +264,7 @@
 
 			<p:dialog id="choose-responsible-dialog" styleClass="choose-responsible-dialog"
 				header="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/AddUserOrRole')}"
-				widgetVar="choose-responsible-dialog" modal="true" appendTo="@(body)" width="400" resizable="false">
+				widgetVar="choose-responsible-dialog" modal="true" appendTo="@(body)" width="25%" resizable="false">
 				<p:ajax event="close" listener="#{logic.closeDialog}" />
 				<ui:include src="ChooseAssignee.xhtml" />
 			</p:dialog>

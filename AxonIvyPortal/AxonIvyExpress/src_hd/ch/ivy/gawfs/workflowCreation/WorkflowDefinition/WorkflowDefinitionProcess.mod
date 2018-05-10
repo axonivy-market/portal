@@ -145,9 +145,12 @@ if(in.data.definedTasks.size()<1){
 }
 
 in.isAssignToUser = true;
-
-in.data.processType = ProcessType.AD_HOC;
-in.data.isUseDefaultUI = false;' #txt
+if (!in.data.#isUseDefaultUI is initialized) {
+	in.data.isUseDefaultUI = false;
+}
+if (!in.data.#processType is initialized) {
+	in.data.processType = ProcessType.AD_HOC;
+}' #txt
 Fs0 f6 security system #txt
 Fs0 f6 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -483,16 +486,17 @@ Fs0 f34 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDef
 ' #txt
 Fs0 f34 actionTable 'out=in;
 ' #txt
-Fs0 f34 actionCode 'import javax.faces.application.FacesMessage;
+Fs0 f34 actionCode 'import org.apache.commons.lang3.StringUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 ISecurityMember selectedAssignee = in.#selectedUser is initialized ? in.selectedUser : in.selectedRole;
 in.isValidAssignee = true;
 
-if (in.selectedAssigneeList.contains(selectedAssignee)) {
+if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(selectedAssignee)) {
 	in.isValidAssignee = false;
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidUser")));
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
 }
 ' #txt
 Fs0 f34 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -681,7 +685,7 @@ if (in.data.isUseDefaultUI) {
 			taskDef.dynaFormController = in.defaultDragAndDropController.dynaFormController;
 		} else {
 			taskDef.taskType = TaskType.APPROVAL;
-			taskDef.subject = ivy.cms.co("/Dialogs/workflowCreation/TaskType/Approval") + " " + in.data.definedTasks.indexOf(taskDef) + ":" + nameOfUserTask;
+			taskDef.subject = ivy.cms.co("/Dialogs/workflowCreation/TaskType/Approval") + " " + in.data.definedTasks.indexOf(taskDef) + ": " + nameOfUserTask;
 		}
 	}
 }' #txt

@@ -10,5 +10,5 @@ applicant ch.ivyteam.ivy.security.ISecurityMember #field
 applicant PERSISTENT #fieldModifier
 approvalResult gawfs.ApprovalTaskResult #field
 approvalResult PERSISTENT #fieldModifier
-rejectedReason String #field
-rejectedReason PERSISTENT #fieldModifier
+comment String #field
+comment PERSISTENT #fieldModifier

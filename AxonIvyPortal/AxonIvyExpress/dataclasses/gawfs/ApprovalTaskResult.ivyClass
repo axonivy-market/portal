@@ -4,8 +4,8 @@ approverName String #field
 approverName PERSISTENT #fieldModifier
 isApproved Boolean #field
 isApproved PERSISTENT #fieldModifier
-rejectedReason String #field
-rejectedReason PERSISTENT #fieldModifier
+comment String #field
+comment PERSISTENT #fieldModifier
 applicantName String #field
 applicantName PERSISTENT #fieldModifier
 taskName String #field

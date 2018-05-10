@@ -21,7 +21,7 @@
 		<ui:define name="taskForm">
 
 			<h:form id="form">
-				<p:fieldset id="applicantFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/FieldSetApplicant')}">
+				<p:fieldset id="applicantFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/FieldSetApplicant')}">
 
 					<p:panelGrid id="prozessSettingsGrid" styleClass="applicant-field-container">
 						<p:row>
@@ -34,7 +34,7 @@
 						</p:row>
 						<p:row>
 							<p:column styleClass="applicant-label-field-col">
-								<p:outputLabel value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/fullName')}:" for="applicant-fullname" />
+								<p:outputLabel value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/Fullname')}:" for="applicant-fullname" />
 							</p:column>
 							<p:column styleClass="applicant-field-col">
 								<h:outputText id="applicant-fullname" value="#{data.applicant.displayName}" />
@@ -53,7 +53,7 @@
 
 				</p:fieldset>
 				<br />
-				<p:fieldset id="dynaFormFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/FieldSetForm')}">
+				<p:fieldset id="dynaFormFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/FieldSetForm')}">
 
 					<pe:dynaForm id="dynaForm"
 						value="#{data.userTask.dynaFormController.model}"
@@ -107,18 +107,11 @@
 						<pe:dynaFormControl type="Spacer" for="spacer">
 							<p:spacer width="50" height="16" id="spacer" />
 						</pe:dynaFormControl>
-
-
-
 					</pe:dynaForm>
-
-
-					<h:outputStylesheet id="dynaFormCSS">
-					    pe-dynaform-label{
-					    	text-align: left;
-					    }
-					</h:outputStylesheet>
-
+				<h:panelGroup id="comment-container" styleClass="comment-container" layout="block">
+					<h:outputLabel id="comment-label" styleClass="comment-label" for="comment" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/CommentLabel')}" />
+					<p:inputTextarea id="comment" styleClass="comment" value="#{data.comment}" rows="4" />
+				</h:panelGroup>
 
 				</p:fieldset>
 				<br/>
@@ -129,10 +122,10 @@
 							actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="TexAlRight">
-						<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/approve')}" update="form" icon="fa fa-check"
+						<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/approve')}" update="form" icon="fa fa-check"
 							actionListener="#{logic.closeApprove}" styleClass="buttonDelegate"/>
 						<p:spacer width="5" />
-						<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/refuse')}" update="form" icon="fa fa-times"
+						<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/refuse')}" update="form" icon="fa fa-times"
 							actionListener="#{logic.closeDeny}" styleClass="buttonDelegate portal-cancel-button" />
 			       </h:panelGroup>
                 </h:panelGrid>

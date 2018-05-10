@@ -21,7 +21,6 @@ As0 @RichDialogProcessStart f6 '' #zField
 As0 @RichDialogProcessStart f7 '' #zField
 As0 @GridStep f3 '' #zField
 As0 @RichDialogEnd f5 '' #zField
-As0 @PushWFArc f8 '' #zField
 As0 @GridStep f9 '' #zField
 As0 @GridStep f10 '' #zField
 As0 @PushWFArc f11 '' #zField
@@ -29,12 +28,15 @@ As0 @PushWFArc f4 '' #zField
 As0 @PushWFArc f12 '' #zField
 As0 @GridStep f13 '' #zField
 As0 @PushWFArc f14 '' #zField
-As0 @PushWFArc f15 '' #zField
 As0 @RichDialogProcessStart f16 '' #zField
 As0 @GridStep f17 '' #zField
 As0 @PushWFArc f18 '' #zField
 As0 @RichDialogProcessEnd f19 '' #zField
 As0 @PushWFArc f20 '' #zField
+As0 @GridStep f21 '' #zField
+As0 @PushWFArc f22 '' #zField
+As0 @PushWFArc f8 '' #zField
+As0 @PushWFArc f23 '' #zField
 >Proto As0 As0 ApprovalFormProcess #zField
 As0 f0 guid 162F55164217492D #txt
 As0 f0 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
@@ -100,7 +102,7 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f7 83 259 26 26 -29 15 #rect
+As0 f7 83 243 26 26 -29 15 #rect
 As0 f7 @|RichDialogProcessStartIcon #fIcon
 As0 f3 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
 ' #txt
@@ -121,19 +123,13 @@ As0 f3 352 138 112 44 -39 -8 #rect
 As0 f3 @|StepIcon #fIcon
 As0 f5 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f5 guid 1630664477BFCAF5 #txt
-As0 f5 531 147 26 26 0 12 #rect
+As0 f5 691 147 26 26 0 12 #rect
 As0 f5 @|RichDialogEndIcon #fIcon
-As0 f8 expr out #txt
-As0 f8 464 160 531 160 #arcP
 As0 f9 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
 ' #txt
 As0 f9 actionTable 'out=in;
 ' #txt
-As0 f9 actionCode 'in.approvalResult.setApproverName(ivy.session.getSessionUserName());
-in.approvalResult.setApplicantName(in.applicant.getMemberName());
-in.approvalResult.setIsApproved(false);
-in.approvalResult.setRejectedReason(in.rejectedReason);
-in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));' #txt
+As0 f9 actionCode in.approvalResult.setIsApproved(false); #txt
 As0 f9 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -142,17 +138,13 @@ As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f9 160 250 112 44 -37 -8 #rect
+As0 f9 160 234 112 44 -37 -8 #rect
 As0 f9 @|StepIcon #fIcon
 As0 f10 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
 ' #txt
 As0 f10 actionTable 'out=in;
 ' #txt
-As0 f10 actionCode 'in.approvalResult.setApproverName(ivy.session.getSessionUserName());
-in.approvalResult.setApplicantName(in.applicant.getMemberName());
-in.approvalResult.setIsApproved(true);
-in.approvalResult.setRejectedReason("");
-in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));' #txt
+As0 f10 actionCode in.approvalResult.setIsApproved(true); #txt
 As0 f10 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -168,7 +160,7 @@ As0 f11 109 160 160 160 #arcP
 As0 f4 expr out #txt
 As0 f4 272 160 352 160 #arcP
 As0 f12 expr out #txt
-As0 f12 109 272 160 272 #arcP
+As0 f12 109 256 160 256 #arcP
 As0 f13 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
 ' #txt
 As0 f13 actionTable 'out=in;
@@ -183,14 +175,10 @@ As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f13 352 250 112 44 -39 -8 #rect
+As0 f13 352 234 112 44 -39 -8 #rect
 As0 f13 @|StepIcon #fIcon
 As0 f14 expr out #txt
-As0 f14 272 272 352 272 #arcP
-As0 f15 expr out #txt
-As0 f15 464 272 544 173 #arcP
-As0 f15 1 544 272 #addKink
-As0 f15 0 0.8533831173785638 0 0 #arcLabel
+As0 f14 272 256 352 256 #arcP
 As0 f16 guid 163066874021794C #txt
 As0 f16 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f16 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
@@ -206,7 +194,7 @@ As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f16 83 371 26 26 -18 15 #rect
+As0 f16 83 339 26 26 -18 15 #rect
 As0 f16 @|RichDialogProcessStartIcon #fIcon
 As0 f17 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
 ' #txt
@@ -224,23 +212,48 @@ As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f17 256 362 112 44 -29 -8 #rect
+As0 f17 256 330 112 44 -29 -8 #rect
 As0 f17 @|StepIcon #fIcon
 As0 f18 expr out #txt
-As0 f18 109 384 256 384 #arcP
+As0 f18 109 352 256 352 #arcP
 As0 f19 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f19 531 371 26 26 0 12 #rect
+As0 f19 531 339 26 26 0 12 #rect
 As0 f19 @|RichDialogProcessEndIcon #fIcon
 As0 f20 expr out #txt
-As0 f20 368 384 531 384 #arcP
+As0 f20 368 352 531 352 #arcP
+As0 f21 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
+' #txt
+As0 f21 actionTable 'out=in;
+' #txt
+As0 f21 actionCode 'in.approvalResult.setApproverName(ivy.session.getSessionUserName());
+in.approvalResult.setApplicantName(in.applicant.getMemberName());
+in.approvalResult.setComment(in.comment);
+in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));' #txt
+As0 f21 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
+As0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update approval&#xD;
+information</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f21 512 138 128 44 -42 -16 #rect
+As0 f21 @|StepIcon #fIcon
+As0 f22 expr out #txt
+As0 f22 464 160 512 160 #arcP
+As0 f8 expr out #txt
+As0 f8 640 160 691 160 #arcP
+As0 f23 expr out #txt
+As0 f23 464 256 576 182 #arcP
+As0 f23 1 576 256 #addKink
+As0 f23 0 0.8533831173785638 0 0 #arcLabel
 >Proto As0 .type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
 >Proto As0 '' #fIcon
 As0 f0 mainOut f2 tail #connect
 As0 f2 head f1 mainIn #connect
-As0 f3 mainOut f8 tail #connect
-As0 f8 head f5 mainIn #connect
 As0 f6 mainOut f11 tail #connect
 As0 f11 head f10 mainIn #connect
 As0 f10 mainOut f4 tail #connect
@@ -249,9 +262,13 @@ As0 f7 mainOut f12 tail #connect
 As0 f12 head f9 mainIn #connect
 As0 f9 mainOut f14 tail #connect
 As0 f14 head f13 mainIn #connect
-As0 f13 mainOut f15 tail #connect
-As0 f15 head f5 mainIn #connect
 As0 f16 mainOut f18 tail #connect
 As0 f18 head f17 mainIn #connect
 As0 f17 mainOut f20 tail #connect
 As0 f20 head f19 mainIn #connect
+As0 f3 mainOut f22 tail #connect
+As0 f22 head f21 mainIn #connect
+As0 f21 mainOut f8 tail #connect
+As0 f8 head f5 mainIn #connect
+As0 f13 mainOut f23 tail #connect
+As0 f23 head f21 mainIn #connect
