@@ -623,14 +623,17 @@
 				<para>
 					You can configure one email setting for all applications or each application separately.
 				</para>
-			</listitem>
-			<listitem>
 				<mediaobject>
 					<imageobject>
 						<imagedata fileref="images/Settings/email-settings.png" />
 					</imageobject>
 				</mediaobject>
 			</listitem>
+            <listitem> 
+                <para>There are 2 types of emails notification: Ivy email notification sent when task is assigned (More information about the email notification can be found
+                <link xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration.emailnotification">here</link>) and other emails sent from 
+                processes of customer project.</para>
+            </listitem>
 			<listitem>
 				<para>
 					All the items will be saved when click save button.
