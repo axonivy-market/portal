@@ -1,0 +1,4 @@
+co: name={approvalStatus} description={} changed={2018-05-10 05:52:52 CEST} changedby={ldnam} visualorder={0} guid={163482A3D6F1E6A2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163482A3D76376DE} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-10 05:48:37 CEST} validto={} changed={2018-05-10 05:48:37 CEST} changedby={ldnam} properties={} id={}
+val: guid={163482E1FC93C020} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-10 05:52:44 CEST} validto={} changed={2018-05-10 05:52:52 CEST} changedby={ldnam} properties={} id={}
+val: guid={163482E1EA242284} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-10 05:52:41 CEST} validto={} changed={2018-05-10 05:52:52 CEST} changedby={ldnam} properties={} id={}
