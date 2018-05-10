@@ -16,13 +16,15 @@
     <ui:param name="showTaskFormTab" value="false" />
 	<ui:define name="title" />
 
+    <ui:define name="errorsZone">
+      <p:messages showDetail="false" closable="true" autoUpdate="true" />
+    </ui:define>
+
     <ui:define name="dynamicTabs">
       <p:tab id="custom-request-tab"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/requestTabTitle')}">
 		<h:form id="request-form">
 			<p:fieldset id="dynaFormFieldSet" toggleable="true" legend="Formular">
-				<p:messages id="messagesDynaForm" showDetail="false"
-					autoUpdate="true" closable="true" />
 
 				<pe:dynaForm id="dynaForm"
 					value="#{data.executePredefinedWorkflowData.nextTask.dynaFormController.model}"
@@ -30,7 +32,7 @@
 					styleClass="dynaFormGrid Wid100">
 
 					<pe:dynaFormControl type="InputFieldText" for="inputFieldText">
-						<p:inputText id="inputFieldText" value="#{dynaData.value}"
+						<p:inputText id="inputFieldText" value="#{dynaData.value}" 
 							required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
 					</pe:dynaFormControl>
 
@@ -85,7 +87,8 @@
 		</h:form>
 			<br/>
       <p:outputPanel styleClass="TexAlRight">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()"  styleClass="buttonDelegate" icon="fa fa-check"/>
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()" styleClass="buttonDelegate"
+          type="button" icon="fa fa-check"/>
         <p:spacer width="5" />
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="request-form mail-form"
           actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
@@ -94,10 +97,11 @@
       <p:tab id="mail-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/eMail')}">
     	<h:form id="mail-form">
   		  <h:panelGroup layout="block">
-  			<ic:ch.ivy.gawfs.component.Email id="information-email" email="#{data.email}"  />
+  			<ic:ch.ivy.gawfs.component.Email id="information-email" email="#{data.email}" isEmpty="true" />
   		  </h:panelGroup>
           <p:outputPanel styleClass="TexAlRight">
-            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()"  styleClass="buttonDelegate" icon="fa fa-check"/>
+            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()" styleClass="buttonDelegate"
+              type="button" icon="fa fa-check"/>
             <p:spacer width="5" />
             <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="request-form mail-form"
               actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
