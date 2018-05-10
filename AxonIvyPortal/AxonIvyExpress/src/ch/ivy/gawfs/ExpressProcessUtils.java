@@ -106,24 +106,32 @@ public class ExpressProcessUtils {
    * @param controller
    */
   private void saveFormElements(String processId, int taskPosition, DragAndDropController controller) {
-    for (Formelement element : controller.getSelectedFormelementsHeader()) {
-      element.setTaskPosition(taskPosition);
-      saveFormElement(element, HEADER_PANEL, processId);
+    if (!Optional.ofNullable(controller.getSelectedFormelementsHeader()).orElse(new ArrayList<>()).isEmpty()) {
+      for (Formelement element : controller.getSelectedFormelementsHeader()) {
+        element.setTaskPosition(taskPosition);
+        saveFormElement(element, HEADER_PANEL, processId);
+      }
     }
 
-    for (Formelement element : controller.getSelectedFormelementsLeftPanel()) {
-      element.setTaskPosition(taskPosition);
-      saveFormElement(element, LEFT_PANEL, processId);
+    if (!Optional.ofNullable(controller.getSelectedFormelementsLeftPanel()).orElse(new ArrayList<>()).isEmpty()) {
+      for (Formelement element : controller.getSelectedFormelementsLeftPanel()) {
+        element.setTaskPosition(taskPosition);
+        saveFormElement(element, LEFT_PANEL, processId);
+      }
     }
 
-    for (Formelement element : controller.getSelectedFormelementsRightPanel()) {
-      element.setTaskPosition(taskPosition);
-      saveFormElement(element, RIGHT_PANEL, processId);
+    if (!Optional.ofNullable(controller.getSelectedFormelementsRightPanel()).orElse(new ArrayList<>()).isEmpty()) {
+      for (Formelement element : controller.getSelectedFormelementsRightPanel()) {
+        element.setTaskPosition(taskPosition);
+        saveFormElement(element, RIGHT_PANEL, processId);
+      }
     }
 
-    for (Formelement element : controller.getSelectedFormelementsFooter()) {
-      element.setTaskPosition(taskPosition);
-      saveFormElement(element, FOOTER_PANEL, processId);
+    if (!Optional.ofNullable(controller.getSelectedFormelementsFooter()).orElse(new ArrayList<>()).isEmpty()) {
+      for (Formelement element : controller.getSelectedFormelementsFooter()) {
+        element.setTaskPosition(taskPosition);
+        saveFormElement(element, FOOTER_PANEL, processId);
+      }
     }
   }
 
