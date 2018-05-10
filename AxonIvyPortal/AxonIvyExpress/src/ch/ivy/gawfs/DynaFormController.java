@@ -1,6 +1,7 @@
 package ch.ivy.gawfs;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -15,6 +16,7 @@ import org.primefaces.extensions.model.dynaform.DynaFormRow;
 
 import ch.ivy.gawfs.enums.FormElementType;
 import ch.ivy.gawfs.enums.UploadFileFormat;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class DynaFormController implements Serializable {
 
@@ -192,5 +194,21 @@ public class DynaFormController implements Serializable {
     Formelement checkbox = new Formelement();
     checkbox.setType(FormElementType.RADIO_BUTTON);
     return checkbox;
+  }
+
+  /**
+   * Initialize default UI
+   * 
+   */
+  public void initializeDefaultUI() {
+    Formelement description = initializeInputAreaElement();
+    description.setLabel(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description"));
+    description.setRequired(true);
+
+    List<Formelement> defaultFormElements = new ArrayList<>();
+    defaultFormElements.add(description);
+
+    dragAndDropController.setSelectedFormelementsHeader(defaultFormElements);
+    createForm();
   }
 }

@@ -60,7 +60,8 @@
 				<p:spacer width="5" />
 
 				<p:commandButton  value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save" partialSubmit="true"
-					styleClass="buttonDelegate" update="form:selected-formelements-field" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.save}"/>
+					styleClass="buttonDelegate" update="form:selected-formelements-field" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.save}"
+                    rendered="#{data.data.processType eq 'REPEAT'}"/>
 				<p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT'}" />
 
 				<p:commandButton id="execute-button" icon="fa fa-check" styleClass="buttonDelegate"

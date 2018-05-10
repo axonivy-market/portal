@@ -70,9 +70,6 @@ Ds0 @PushWFArc f31 '' #zField
 Ds0 @GridStep f23 '' #zField
 Ds0 @PushWFArc f24 '' #zField
 Ds0 @PushWFArc f27 '' #zField
-Ds0 @RichDialogProcessStart f32 '' #zField
-Ds0 @RichDialogProcessEnd f43 '' #zField
-Ds0 @PushWFArc f50 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
@@ -676,28 +673,6 @@ Ds0 f24 expr out #txt
 Ds0 f24 109 608 192 608 #arcP
 Ds0 f27 expr out #txt
 Ds0 f27 352 608 400 608 #arcP
-Ds0 f32 guid 16339923014FE854 #txt
-Ds0 f32 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
-Ds0 f32 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
-' #txt
-Ds0 f32 actionTable 'out=in;
-' #txt
-Ds0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>deleteOption</name>
-        <nameStyle>12,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f32 787 227 26 26 -35 15 #rect
-Ds0 f32 @|RichDialogProcessStartIcon #fIcon
-Ds0 f43 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
-Ds0 f43 1059 243 26 26 0 12 #rect
-Ds0 f43 @|RichDialogProcessEndIcon #fIcon
-Ds0 f50 expr out #txt
-Ds0 f50 812 240 1059 255 #arcP
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -756,5 +731,3 @@ Ds0 f42 mainOut f24 tail #connect
 Ds0 f24 head f23 mainIn #connect
 Ds0 f23 mainOut f27 tail #connect
 Ds0 f27 head f26 in #connect
-Ds0 f32 mainOut f50 tail #connect
-Ds0 f50 head f43 mainIn #connect

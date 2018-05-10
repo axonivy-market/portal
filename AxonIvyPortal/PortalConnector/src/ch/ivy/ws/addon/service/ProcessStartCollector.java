@@ -5,10 +5,12 @@ import java.util.concurrent.Callable;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.ws.addon.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -46,10 +48,10 @@ public class ProcessStartCollector {
     return null;
   }
 
-  public String findACMLink() throws Exception { //NOSONAR
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
+  public String findACMLink() {
+    return IvyExecutor.executeAsSystem(new Callable<String>() {
       @Override
-      public String call() throws Exception {
+      public String call() throws PersistencyException {
         ProcessStartCollector collector = new ProcessStartCollector(application);
         IProcessStart process =
             collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");

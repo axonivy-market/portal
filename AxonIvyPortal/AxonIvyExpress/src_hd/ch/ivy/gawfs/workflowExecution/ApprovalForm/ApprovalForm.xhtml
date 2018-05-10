@@ -125,7 +125,8 @@
 				
                 <h:panelGrid columns="2" styleClass="case-view-footer Wid100 u-no-border">
                     <h:panelGroup>
-						<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" update="form" icon="fa fa-undo" actionListener="#{logic.cancel}" styleClass="buttonDelegate" />
+						<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
+							actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="TexAlRight">
 						<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/approve')}" update="form" icon="fa fa-check"
