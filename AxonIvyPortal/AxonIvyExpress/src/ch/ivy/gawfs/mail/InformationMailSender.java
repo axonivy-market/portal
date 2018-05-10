@@ -16,7 +16,7 @@ public class InformationMailSender {
     MailBuilder mailBuilder = new MailBuilder();
     //TODO z1 send email
     mailBuilder.to(mail.getRecipients()).replyTo(mail.getResponseTo()).subject(mail.getSubject())
-    .message(mail.getContent()).attachments(getAttachments(mail.getAttachments())).build();
+    .message(mail.getContent()).attachments(getAttachments(mail.getAttachments())).build().send();
   }
 
   private Map<String, File> getAttachments(List<ExpressAttachment> attachments) {
