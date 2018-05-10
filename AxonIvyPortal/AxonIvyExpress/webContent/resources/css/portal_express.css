@@ -4,9 +4,27 @@
   border: none;
 }
 
+.show-default-ui-icon {
+  display: inline-flex;
+  margin-left: -17%;
+  transform: translateY(-50%);
+  color: black !important;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 1365px) {
+  .show-default-ui-icon {
+    margin-left: -28%;
+  }
+}
+
 .process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
   text-align: right;
   padding-right: 40px;
+}
+
+.process-property-input-col .radio-group {
+  display: inline-table;
 }
 
 .process-property-input-col .radio-group,
@@ -297,6 +315,33 @@
 
 .floatRight {
 	float: right !important;
+}
+
+/* DEFAULT TEMPLATE DIALOG */
+.default-template-dyna-form {
+	padding: 20px;
+}
+
+.default-template-dyna-form .label-container {
+	width: 10%;
+}
+
+.default-template-dyna-form .pe-dynaform-cell[colspan]>textarea {
+	width: 97%;
+}
+
+.default-dynamic-task-panel-grid .dynamic-task-arrow {
+  width: 5.5rem;
+}
+
+.default-dynamic-task-panel-grid .dynamic-task-resopsible {
+  text-align: left !important;
+  padding-left: 10% !important;
+}
+
+.default-dynamic-task-panel-grid .dynamic-task-resopsible .ui-outputlabel {
+  width: 16rem;
+  display: inline-block;
 }
 
 /* SELECT RESPONSIBLE DIALOG */

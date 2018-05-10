@@ -85,7 +85,7 @@
 		</h:form>
 			<br/>
       <p:outputPanel styleClass="TexAlRight">
-        <p:commandButton value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/StartWF')}" onclick="submitData()"  styleClass="buttonDelegate" icon="fa fa-check"/>
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()"  styleClass="buttonDelegate" icon="fa fa-check"/>
         <p:spacer width="5" />
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="request-form mail-form"
           actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
@@ -97,12 +97,12 @@
   			<ic:ch.ivy.gawfs.component.Email id="information-email" email="#{data.email}"  />
   		  </h:panelGroup>
           <p:outputPanel styleClass="TexAlRight">
-            <p:commandButton value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/StartWF')}" onclick="submitData()"  styleClass="buttonDelegate" icon="fa fa-check"/>
+            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()"  styleClass="buttonDelegate" icon="fa fa-check"/>
             <p:spacer width="5" />
             <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="request-form mail-form"
               actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
           </p:outputPanel>
-          <p:remoteCommand id="submit-command" name="submitData" value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/StartWF')}" partialSubmit="true"
+          <p:remoteCommand id="submit-command" name="submitData" partialSubmit="true"
              process="request-form mail-form" update="request-form mail-form"
             actionListener="#{logic.close}" styleClass="buttonDelegate" icon="fa fa-check"/>
         

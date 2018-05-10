@@ -1,5 +1,7 @@
 package ch.ivy.gawfs.beans;
 
+import gawfs.TaskDef;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +34,28 @@ public class WorkflowDefinitionBean implements Serializable {
     populateAvailableUsers();
   }
 
+  public TaskType[] getTaskTypesForFirstWorkflowTask() {
+    TaskType[] availableTaskTypes = {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL};
+    return availableTaskTypes;
+  }
+
   /**
    * Get array of all task types
    * 
-   * @return Array of task types
+   * @param taskDefList
+   * @return Array of all task types
    */
-  public TaskType[] getTaskTypes() {
-    return TaskType.values();
+  public TaskType[] getTaskTypes(List <TaskDef> taskDefList) {
+    TaskType[] availableTaskTypes = {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL, TaskType.APPROVAL};
+
+    for (TaskDef task : taskDefList) {
+      if (task.getTaskType() == TaskType.USER_TASK) {
+        return availableTaskTypes;
+      }
+    }
+
+    TaskType[] availableTaskTypesWithoutApproval = {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL};
+    return availableTaskTypesWithoutApproval;
   }
 
   /**

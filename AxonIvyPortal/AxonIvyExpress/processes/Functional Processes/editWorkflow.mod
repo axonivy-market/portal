@@ -37,8 +37,6 @@ ew0 @PushWFArc f33 '' #zField
 ew0 @PushWFArc f34 '' #zField
 ew0 @EndSub f32 '' #zField
 ew0 @Alternative f41 '' #zField
-ew0 @PushWFArc f42 '' #zField
-ew0 @PushWFArc f4 '' #zField
 ew0 @EndTask f43 '' #zField
 ew0 @PushWFArc f44 '' #zField
 ew0 @Alternative f45 '' #zField
@@ -52,6 +50,11 @@ ew0 @PushWFArc f6 '' #zField
 ew0 @GridStep f22 '' #zField
 ew0 @PushWFArc f24 '' #zField
 ew0 @PushWFArc f25 '' #zField
+ew0 @PushWFArc f26 '' #zField
+ew0 @Alternative f27 '' #zField
+ew0 @PushWFArc f28 '' #zField
+ew0 @PushWFArc f29 '' #zField
+ew0 @PushWFArc f4 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -100,7 +103,7 @@ ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 f0 65 145 30 30 -38 17 #rect
 ew0 f0 @|StartSubIcon #fIcon
 ew0 f1 type gawfs.Data #txt
-ew0 f1 1585 145 30 30 0 15 #rect
+ew0 f1 1745 145 30 30 0 15 #rect
 ew0 f1 @|EndSubIcon #fIcon
 ew0 f5 actionDecl 'gawfs.Data out;
 ' #txt
@@ -179,7 +182,7 @@ ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f9 1352 138 160 44 -74 -8 #rect
+ew0 f9 1520 138 160 44 -74 -8 #rect
 ew0 f9 @|StepIcon #fIcon
 ew0 f3 targetWindow NEW:card: #txt
 ew0 f3 targetDisplay TOP #txt
@@ -206,10 +209,10 @@ ew0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f3 736 138 176 44 -85 -8 #rect
+ew0 f3 840 138 176 44 -85 -8 #rect
 ew0 f3 @|RichDialogIcon #fIcon
 ew0 f11 type gawfs.Data #txt
-ew0 f11 1032 144 32 32 0 16 #rect
+ew0 f11 1136 144 32 32 0 16 #rect
 ew0 f11 @|AlternativeIcon #fIcon
 ew0 f13 type gawfs.Data #txt
 ew0 f13 368 144 32 32 0 16 #rect
@@ -224,16 +227,23 @@ ew0 f16 actionTable 'out=in;
 out.backFlag=false;
 ' #txt
 ew0 f16 type gawfs.Data #txt
-ew0 f16 672 84 32 24 0 -8 #rect
+ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set go back flag</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f16 720 42 112 44 -43 -8 #rect
 ew0 f16 @|StepIcon #fIcon
 ew0 f17 expr in #txt
 ew0 f17 outCond in.backFlag==true #txt
-ew0 f17 1048 144 704 96 #arcP
-ew0 f17 1 1048 96 #addKink
+ew0 f17 1152 144 832 64 #arcP
+ew0 f17 1 1152 64 #addKink
 ew0 f17 1 0.5 0 0 #arcLabel
 ew0 f15 expr out #txt
-ew0 f15 672 96 384 144 #arcP
-ew0 f15 1 384 96 #addKink
+ew0 f15 720 64 384 144 #arcP
+ew0 f15 1 384 64 #addKink
 ew0 f15 1 0.5 0 0 #arcLabel
 ew0 f18 type gawfs.Data #txt
 ew0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -246,7 +256,7 @@ for AHWF</name>
     </language>
 </elementInfo>
 ' #txt
-ew0 f18 1096 144 32 32 -33 -49 #rect
+ew0 f18 1200 144 32 32 -33 -49 #rect
 ew0 f18 @|AlternativeIcon #fIcon
 ew0 f20 type gawfs.Data #txt
 ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String)' #txt
@@ -272,7 +282,7 @@ ew0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f20 1184 234 176 44 -84 -8 #rect
+ew0 f20 1288 234 176 44 -84 -8 #rect
 ew0 f20 @|CallSubIcon #fIcon
 ew0 f2 expr in #txt
 ew0 f2 outCond in.directExecutionFlag #txt
@@ -285,11 +295,11 @@ ew0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f2 1112 176 1184 256 #arcP
-ew0 f2 1 1112 256 #addKink
+ew0 f2 1216 176 1288 256 #arcP
+ew0 f2 1 1216 256 #addKink
 ew0 f2 0 0.3125 13 0 #arcLabel
 ew0 f23 expr in #txt
-ew0 f23 1064 160 1096 160 #arcP
+ew0 f23 1168 160 1200 160 #arcP
 ew0 f21 inParamDecl '<java.lang.String workflowID> param;' #txt
 ew0 f21 inParamTable 'out.processID=param.workflowID;
 ' #txt
@@ -315,25 +325,20 @@ ew0 f33 95 288 192 288 #arcP
 ew0 f34 248 266 248 182 #arcP
 ew0 f34 0 0.37027027027027026 0 0 #arcLabel
 ew0 f32 type gawfs.Data #txt
-ew0 f32 1425 241 30 30 0 15 #rect
+ew0 f32 1529 241 30 30 0 15 #rect
 ew0 f32 @|EndSubIcon #fIcon
 ew0 f41 type gawfs.Data #txt
 ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>discard?</name>
-        <nameStyle>8,7
+        <name>Discarded?</name>
+        <nameStyle>10,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-ew0 f41 656 144 32 32 -24 18 #rect
+ew0 f41 656 144 32 32 -31 -33 #rect
 ew0 f41 @|AlternativeIcon #fIcon
-ew0 f42 expr out #txt
-ew0 f42 592 160 656 160 #arcP
-ew0 f4 expr in #txt
-ew0 f4 outCond !in.discard #txt
-ew0 f4 688 160 736 160 #arcP
 ew0 f43 type gawfs.Data #txt
 ew0 f43 657 241 30 30 0 15 #rect
 ew0 f43 @|EndIcon #fIcon
@@ -349,22 +354,22 @@ ew0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f45 968 144 32 32 -12 18 #rect
+ew0 f45 1072 144 32 32 -12 18 #rect
 ew0 f45 @|AlternativeIcon #fIcon
 ew0 f46 type gawfs.Data #txt
-ew0 f46 969 233 30 30 0 15 #rect
+ew0 f46 1073 233 30 30 0 15 #rect
 ew0 f46 @|EndIcon #fIcon
 ew0 f47 expr in #txt
 ew0 f47 outCond in.discard #txt
-ew0 f47 984 176 984 233 #arcP
+ew0 f47 1088 176 1088 233 #arcP
 ew0 f48 expr out #txt
-ew0 f48 912 160 968 160 #arcP
+ew0 f48 1016 160 1072 160 #arcP
 ew0 f12 expr in #txt
-ew0 f12 1000 160 1032 160 #arcP
+ew0 f12 1104 160 1136 160 #arcP
 ew0 f10 expr out #txt
-ew0 f10 1512 160 1585 160 #arcP
+ew0 f10 1680 160 1745 160 #arcP
 ew0 f19 expr out #txt
-ew0 f19 1360 256 1425 256 #arcP
+ew0 f19 1464 256 1529 256 #arcP
 ew0 f6 expr out #txt
 ew0 f6 95 160 192 160 #arcP
 ew0 f22 actionDecl 'gawfs.Data out;
@@ -387,12 +392,37 @@ ew0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f22 1160 138 160 44 -73 -8 #rect
+ew0 f22 1264 138 160 44 -73 -8 #rect
 ew0 f22 @|StepIcon #fIcon
 ew0 f24 expr in #txt
-ew0 f24 1128 160 1160 160 #arcP
+ew0 f24 1232 160 1264 160 #arcP
 ew0 f25 expr out #txt
-ew0 f25 1320 160 1352 160 #arcP
+ew0 f25 1424 160 1520 160 #arcP
+ew0 f26 expr out #txt
+ew0 f26 592 160 656 160 #arcP
+ew0 f27 type gawfs.Data #txt
+ew0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Use default template?</name>
+        <nameStyle>21
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f27 752 144 32 32 -58 -32 #rect
+ew0 f27 @|AlternativeIcon #fIcon
+ew0 f28 expr in #txt
+ew0 f28 outCond in.isUseDefaultUI #txt
+ew0 f28 768 176 1600 182 #arcP
+ew0 f28 1 768 352 #addKink
+ew0 f28 2 1600 352 #addKink
+ew0 f28 1 0.4963942307692308 0 0 #arcLabel
+ew0 f29 expr in #txt
+ew0 f29 outCond !in.discard #txt
+ew0 f29 688 160 752 160 #arcP
+ew0 f4 expr in #txt
+ew0 f4 784 160 840 160 #arcP
 >Proto ew0 .type gawfs.Data #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -490,11 +520,6 @@ ew0 f33 head S10 g0 #connect
 ew0 S10 g1 f34 tail #connect
 ew0 f34 head f5 mainIn #connect
 ew0 f21 mainOut f33 tail #connect
-ew0 f7 mainOut f42 tail #connect
-ew0 f42 head f41 in #connect
-ew0 f41 out f4 tail #connect
-ew0 f4 head f3 mainIn #connect
-ew0 f41 out f44 tail #connect
 ew0 f44 head f43 mainIn #connect
 ew0 f45 out f47 tail #connect
 ew0 f47 head f46 mainIn #connect
@@ -512,6 +537,15 @@ ew0 f18 out f24 tail #connect
 ew0 f24 head f22 mainIn #connect
 ew0 f22 mainOut f25 tail #connect
 ew0 f25 head f9 mainIn #connect
+ew0 f7 mainOut f26 tail #connect
+ew0 f26 head f41 in #connect
+ew0 f27 out f28 tail #connect
+ew0 f28 head f9 mainIn #connect
+ew0 f41 out f29 tail #connect
+ew0 f29 head f27 in #connect
+ew0 f41 out f44 tail #connect
+ew0 f27 out f4 tail #connect
+ew0 f4 head f3 mainIn #connect
 Ct0 f1 head g1 m #connect
 Ct0 f25 mainOut f1 tail #connect
 Ct0 g0 m f0 tail #connect

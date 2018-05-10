@@ -13,13 +13,10 @@ import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.cm.IContentManagementSystem;
 import ch.ivyteam.ivy.cm.IContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityManager;
-import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 /**
- * This class provides method for loading supported language which are defined inside an ivy
- * application.
+ * This class provides method for loading supported language which are defined inside an ivy application.
  */
 public class SupportedLanguageLoader {
 
@@ -35,10 +32,9 @@ public class SupportedLanguageLoader {
    * @return {@link List} list of supported language
    * @throws Exception
    */
-  public List<String> getSupportedLanguages() throws Exception {
+  public List<String> getSupportedLanguages() {
     List<String> languages = null;
-    ISecurityManager securityManager = SecurityManagerFactory.getSecurityManager();
-    languages = securityManager.executeAsSystem(new CmsFinderCallable());
+    languages = IvyExecutor.executeAsSystem(new CmsFinderCallable());
     return languages;
   }
 
@@ -48,7 +44,7 @@ public class SupportedLanguageLoader {
     private final static String PORTALKIT_LIBRARY = "ch.ivyteam.ivy.project.portal:portalKit";
 
     @Override
-    public List<String> call() throws Exception {
+    public List<String> call() {
       Set<String> supportedLanguages = new HashSet<>();
       for (IProcessModelVersion pmv : allReachablePmvs()) {
         IContentManagementSystem cms = Ivy.cms().getContentManagement().findCms(pmv);
