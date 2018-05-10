@@ -539,7 +539,7 @@
 								<code>0 0 5 * * ?</code>
 								. Refer to
 								<link xlink:href="http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger">crontrigger</link>
-								. Please restart Ivy engine after changing this variable.
+								. Restart Ivy engine after changing this variable.
 							</entry>
 						</row>
 						<row>
@@ -566,49 +566,12 @@
 								<code>0 0 6 * * ?</code>
 								. Refer to
 								<link xlink:href="http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger">crontrigger</link>
-								. Please restart Ivy engine after changing this variable.
+								. Restart Ivy engine after changing this variable.
 							</entry>
 						</row>
 					</tbody>
 				</tgroup>
 			</table>
-		</sect2>
-		<sect2>
-			<title>Email settings</title>
-			<sect3>
-				<title>Task notification mail</title>
-				<para>
-					Users can receive standard Ivy new task email notification. More information about the email notification can be
-					found
-					<link
-						xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration.emailnotification">here</link>
-					.
-				</para>
-			</sect3>
-			<sect3>
-				<title>Individual Mails</title>
-				<itemizedlist>
-					<listitem>
-						<para>
-							List of individual mails, that are send in the process.
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							Application specific mail is stored in the user profile within the attribute
-							<code>useCustomMails</code>
-							.The value of this attribute is
-							<code>True/False</code>
-							.
-						</para>
-						<para>
-							If
-							<code>True</code>
-							then this user will receive notification email send out from the process, otherwise they will not receive email.
-						</para>
-					</listitem>
-				</itemizedlist>
-			</sect3>
 		</sect2>
 		<sect2>
 			<title>Look and feel</title>
@@ -618,7 +581,7 @@
 				theme from version 6.3.
 			</para>
 			<para>
-				Please notice that all dialogs in Portal and screens of <emphasis role="bold">Self service BPM</emphasis> 
+				All dialogs in Portal and screens of <emphasis role="bold">Self service BPM</emphasis> 
 				and <emphasis role="bold">Axon.ivy Express</emphasis> have following buttons orders:
 			</para>
 			<itemizedlist>
@@ -672,17 +635,17 @@
 			<title>Migrate 7.1.0 to 7.2.0</title>
 			<para>
 					There are some changes (DefaultApplicationHomePage, DefaultLoginPage) in PortalStart process of Portal Template. If you have customized this process in your project,
-					please copy the new PortalStart from Portal Template to your project and re-apply your customization.
+					copy the new PortalStart from Portal Template to your project and re-apply your customization.
 			</para>
 		</sect2>
 		<sect2>
 			<title>Migrate 7.0.3 to 7.0.5 (or 7.1.0)</title>
 			<para>
-				There are some changes in PortalStart process of Portal Template. If you have customized this process in your project, please copy the new PortalStart from Portal Template to your project and re-apply your customization. 
+				There are some changes in PortalStart process of Portal Template. If you have customized this process in your project, copy the new PortalStart from Portal Template to your project and re-apply your customization. 
 			</para>
 			<para>
 				We introduce new method <code>findStartableLinkByUserFriendlyRequestPath(String requestPath)</code> in <code>ProcessStartCollector</code> class. If your project has cutomized 
-				<link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" />, please use this method to generate link to your process.
+				<link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" />, use this method to generate link to your process.
 				If user doesn't have permission to start the process, this method will return empty string.
 			</para>
 		</sect2>
@@ -700,14 +663,14 @@
 				<code>PasswordService.mod#changePasswordService(String, String)</code> in this customization.</para>
 			<para>
 				Custom fields in Portal task list can now be sorted properly. The method <code>extendSort()</code> of <code>TaskLazyDataModel</code> is changed
-				to have a <code>taskQuery</code> parameter. If you override this method, please change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
+				to have a <code>taskQuery</code> parameter. If you override this method, change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
 			</para>
 			<para>
 				Portal does not have separate full task list in the homepage anymore. It's mean that you don't have to customize the task list in <code>/layouts/DefaultHomePageTemplate.xhtml</code>. You can remove your
 				task list customization code in <code>PortalHome.xhtml</code>.
 			</para>
 			<para>
-				If you have added new language to Portal by adding cms entry <code>/AppInfo/SupportedLanguages</code> in your project. Please move this entry to Portal Style.  
+				If you have added new language to Portal by adding cms entry <code>/AppInfo/SupportedLanguages</code> in your project. Move this entry to Portal Style.  
 			</para>
 		</sect2>
 		<sect2>
@@ -723,7 +686,7 @@
 				<code>PortalStart</code>
 				process or the
 				<code>PortalHome</code>
-				HTMLDialog for customizations, please adapt the changes:
+				HTMLDialog for customizations, adapt the changes:
 			</para>
 			<itemizedlist>
 				<listitem>
@@ -753,7 +716,7 @@
 					, we use standard axon.ivy Task Category field to store task category.
 				</para>
 				<para>
-					To migrate task categories, please deploy
+					To migrate task categories, deploy
 					<link xlink:href="documents/MigrateTaskCategorySample.iar">MigrateTaskCategorySample.iar</link>
 					to your application and run
 					<code>Migrate Task Category</code>
@@ -839,7 +802,7 @@
 					<link xlink:show="new" xlink:href="http://lesscss.org/">LESS</link>
 					to support customizing Portal styles. You can customize colors, fonts and Portal's component styles. For more
 					information about customizing Portal's style with LESS,
-					please refer to
+					refer to
 					<link linkend="axonivyportal.customization.portallogosandcolors" endterm="axonivyportal.customization.portallogosandcolors.title" />
 					.
 				</para>
@@ -876,7 +839,7 @@
 							</para>
 						</listitem>
 						<listitem>
-							<para>PortalStyle/webContent/resources/css/theme.css is obsolete, please remove it.</para>
+							<para>PortalStyle/webContent/resources/css/theme.css is obsolete, remove it.</para>
 						</listitem>
 					</orderedlist>
 				</para>
@@ -923,19 +886,19 @@
 				<title>Changes in 7.2</title>
 				<itemizedlist>
                     <listitem>
-                      <para>Overrides the DefaultApplicationHomePage.ivp, DefaultLoginPage.ivp, DefaultEndPage.ivp processes, refer to <link xlink:show="new" xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#ServerAdministration-htmlworkflowui">Replacement Project</link>, please check migration notes if you have the customized PortalStart.ivp process.</para>
+                      <para>Overrides the DefaultApplicationHomePage.ivp, DefaultLoginPage.ivp, DefaultEndPage.ivp processes, refer to <link xlink:show="new" xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#ServerAdministration-htmlworkflowui">Replacement Project</link>, check migration notes if you have the customized PortalStart.ivp process.</para>
                     </listitem>
                     <listitem>
-                      <para>Portal checks permission when upload/delete document. User needs permission IPermission.DOCUMENT_WRITE or IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE to upload/delete document.</para>
+                      <para>Portal checks permission when upload/delete document. User needs permission <code>IPermission.DOCUMENT_WRITE</code> or <code>IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE</code> to upload/delete document.</para>
                     </listitem>
                     <listitem>
-                      <para>Support to disable upload/delete document when a case is done. This function can be configured by HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE setting.</para>
+                      <para>Support to disable upload/delete document when a case is done. This function can be configured by <code>HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE</code> setting.</para>
                     </listitem>
 					<listitem>
-						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal. This function can be configured by UPLOAD_DOCUMENT_WHITELIST_EXTENSION setting.</para>
+						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal. This function can be configured by <code>UPLOAD_DOCUMENT_WHITELIST_EXTENSION</code> setting.</para>
 					</listitem>
 					<listitem>
-						<para>Support script checking function for upload file. You can enable/disable this function by configuring ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT setting.</para>
+						<para>Support script checking function for upload file. You can enable/disable this function by configuring <code>ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT</code> setting.</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
@@ -953,13 +916,13 @@
 						<para>More search criteria for user in Case list are added and allowed to customize.</para>
 					</listitem>
 					<listitem>
-						<para>User can add new language. Please refer to <link linkend="axonivyportal.settings.languagesettings" endterm="axonivyportal.settings.languagesettings.title" /> for detail.</para>
+						<para>User can add new language. Refer to <link linkend="axonivyportal.settings.languagesettings" endterm="axonivyportal.settings.languagesettings.title" /> for detail.</para>
 					</listitem>
 					<listitem>
 						<para>Axon ivy express has custom end page. It can be turned off or customized.</para>
 					</listitem>
 					<listitem>
-						<para>User can create default start process with permission check. If the user doesn't have permission to start the process, it won't appear in favorite processes. Please refer to <link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" /> for detail.</para>
+						<para>User can create default start process with permission check. If the user doesn't have permission to start the process, it won't appear in favorite processes. Refer to <link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" /> for detail.</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
@@ -980,7 +943,7 @@
 					<listitem>
 						<para>Task category of Portal is now stored in new Task category field of ivy.</para>
 						<para>
-							Please refer to
+							Refer to
 							<link linkend="axonivyportal.installation.migrationnotes" endterm="axonivyportal.installation.migrationnotes.title" />
 							to learn how to migrate data from
 							<code>customVarCharField5</code>
@@ -996,7 +959,7 @@
 					</listitem>
 					<listitem>
 						<para>
-						Change password is supported to be customized. Please refer to 
+						Change password is supported to be customized. Refer to 
 						<link linkend="axonivyportal.customization.changepasswordprocess" endterm="axonivyportal.customization.changepasswordprocess.title" /> 
 						to know how to customize this feature.
 						</para>
@@ -1032,7 +995,7 @@
 					<listitem>
 						<para>
 							Portal supports responsiveness with 3 screen widths: 1920, 1366 and 1024.
-							Please refer to
+							Refer to
 							<link linkend="axonivyportal.components.layouttemplates.reponsiveness" endterm="axonivyportal.components.layouttemplates.reponsiveness.title" />
 							for more details.
 						</para>
