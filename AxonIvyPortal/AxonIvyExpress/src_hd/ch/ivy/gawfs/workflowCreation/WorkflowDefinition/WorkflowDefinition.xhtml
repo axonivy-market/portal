@@ -264,6 +264,7 @@
 			<p:dialog id="choose-responsible-dialog" styleClass="choose-responsible-dialog"
 				header="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/AddUserOrRole')}"
 				widgetVar="choose-responsible-dialog" modal="true" appendTo="@(body)" width="400" resizable="false">
+				<p:ajax event="close" listener="#{logic.closeDialog}" />
 				<ui:include src="ChooseAssignee.xhtml" />
 			</p:dialog>
 
