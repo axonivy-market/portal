@@ -54,7 +54,7 @@ public class StatisticFilter {
   private List<WorkflowPriority> selectedTaskPriorities = new ArrayList<>();
 
   @JsonIgnore
-  private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
 
   @SuppressWarnings("unchecked")
   public StatisticFilter() {

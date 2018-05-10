@@ -346,6 +346,10 @@
 
 /* SELECT RESPONSIBLE DIALOG */
 
+.assignee-selection-panel {
+  width: 100%;
+}
+
 .assignee-selection-panel,
 .assignee-selection-panel tbody tr td {
   border: none !important;
@@ -583,4 +587,15 @@
 
 .defined-task-button-container {
 	display: inline;
+}
+
+/* APPROVAL FORM */
+.comment-container .comment-label {
+	display: block !important;
+	margin: 40px 0 20px 0;
+	font-weight: bold !important;
+}
+
+.comment-container .comment {
+	width: 99%;
 }
