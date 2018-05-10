@@ -88,11 +88,10 @@ public class UserMenuBean implements Serializable {
   private int getDefaultClientSideTimeout() {
     ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
     int serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * SECONND_TO_MILLISECOND;
-    int defaultClientSideTimeout = serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
-    return defaultClientSideTimeout;
+    return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
   }
 
-  public String getLogoutPage() throws Exception {
+  public String getLogoutPage() throws MalformedURLException {
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("getLogoutPage()", null,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
@@ -123,26 +122,26 @@ public class UserMenuBean implements Serializable {
         applicationService.findByDisplayNameAndNameAndServerId(selectedAppDisplayName, selectedApp, serverId);
     return selectedApplication.getLink();
   }
-  
-  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws Exception {
+
+  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws IOException {
     if (isWorkingOnATask) {
       RequestContext.getCurrentInstance().execute("PF('logo-task-losing-confirmation-dialog').show()");
     } else {
       navigateToHomePage();
     }
   }
-  
-  public void resetTaskAndNavigateToHomePage() throws MalformedURLException, IOException {
+
+  public void resetTaskAndNavigateToHomePage() throws IOException {
     TaskUtils.resetTask(Ivy.wfTask());
     navigateToHomePage();
   }
 
-  public void reserveTaskAndNavigateToHomePage() throws MalformedURLException, IOException {
+  public void reserveTaskAndNavigateToHomePage() throws IOException {
     TaskUtils.parkTask(Ivy.wfTask());
     navigateToHomePage();
   }
-  
-  private void navigateToHomePage() throws MalformedURLException, IOException {
+
+  private void navigateToHomePage() throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
   }
 
@@ -214,7 +213,7 @@ public class UserMenuBean implements Serializable {
 
   public boolean getErrorDetailToEndUser() {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> findShowErrorDetailSystemProperty());
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(this::findShowErrorDetailSystemProperty);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
