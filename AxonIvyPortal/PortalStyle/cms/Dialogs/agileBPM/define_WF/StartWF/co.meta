@@ -1,4 +1,0 @@
-co: name={StartWF} description={} changed={2017-11-15 09:22:26 CET} changedby={chnam} visualorder={0} guid={15FBEC5AA7EB1FE4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FBEC5AA871075E} datatype={} isdefault={true} langid={en} description={} validfrom={2014-02-24 12:26:30 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEC5AA8162FA8} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:01:41 CEST} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEC5AA8D34A88} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-04 10:32:36 CET} validto={} changed={2017-11-15 09:22:26 CET} changedby={chnam} properties={} id={}
