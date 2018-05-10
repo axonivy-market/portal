@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -131,17 +132,17 @@ public class UserMenuBean implements Serializable {
     }
   }
   
-  public void resetTaskAndNavigateToHomePage() throws Exception {
+  public void resetTaskAndNavigateToHomePage() throws MalformedURLException, IOException {
     TaskUtils.resetTask(Ivy.wfTask());
     navigateToHomePage();
   }
 
-  public void reserveTaskAndNavigateToHomePage() throws Exception {
+  public void reserveTaskAndNavigateToHomePage() throws MalformedURLException, IOException {
     TaskUtils.parkTask(Ivy.wfTask());
     navigateToHomePage();
   }
   
-  private void navigateToHomePage() throws Exception {
+  private void navigateToHomePage() throws MalformedURLException, IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
   }
 
