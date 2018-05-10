@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 public class NavigatorBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public void navigateToCaseDetail(String caseName, long caseId, long serverId) throws Exception {
+  public void navigateToCaseDetail(String caseName, long caseId, long serverId) throws MalformedURLException {
     PortalNavigator portalNavigator = new PortalNavigator();
     Map<String, String> dialogParameters = new HashMap<>();
     dialogParameters.put("caseName", caseName);

@@ -33,7 +33,8 @@ As0 @PushWFArc f15 '' #zField
 As0 @RichDialogProcessStart f16 '' #zField
 As0 @GridStep f17 '' #zField
 As0 @PushWFArc f18 '' #zField
-As0 @PushWFArc f19 '' #zField
+As0 @RichDialogProcessEnd f19 '' #zField
+As0 @PushWFArc f20 '' #zField
 >Proto As0 As0 ApprovalFormProcess #zField
 As0 f0 guid 162F55164217492D #txt
 As0 f0 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
@@ -211,34 +212,10 @@ As0 f17 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData
 ' #txt
 As0 f17 actionTable 'out=in;
 ' #txt
-As0 f17 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.workflow.CaseState;
-import javax.servlet.http.HttpServletRequest;
-import javax.faces.context.FacesContext;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
- 
+As0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 ivy.task.reset();
-
-String processStartLink = "Start Processes/PortalStart/DefaultEndPage.ivp";
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-IProcessStart processStart = collector.findProcessStartByUserFriendlyRequestPath(processStartLink);
-String link = RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), processStart).toString();
-
-if(processStart != null) {
-	if (!ivy.case.getState().equals(CaseState.ZOMBIE) && !ivy.case.getState().equals(CaseState.CREATED)) {
-  	link += "?taskIdentifier="+ivy.task.getId();
-  }
-}
-
-if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
-	ivy.wf.deleteCompletedCase(ivy.case);
-}
-
-//redirect to portal
-FacesContext.getCurrentInstance().getExternalContext().redirect(link);' #txt
+PortalNavigator navigator = new PortalNavigator();
+navigator.navigateToPortalEndPage();' #txt
 As0 f17 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -247,14 +224,15 @@ As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f17 160 362 112 44 -29 -8 #rect
+As0 f17 256 362 112 44 -29 -8 #rect
 As0 f17 @|StepIcon #fIcon
 As0 f18 expr out #txt
-As0 f18 109 384 160 384 #arcP
-As0 f19 expr out #txt
-As0 f19 272 384 544 173 #arcP
-As0 f19 1 544 384 #addKink
-As0 f19 0 0.8996212121212122 0 0 #arcLabel
+As0 f18 109 384 256 384 #arcP
+As0 f19 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
+As0 f19 531 371 26 26 0 12 #rect
+As0 f19 @|RichDialogProcessEndIcon #fIcon
+As0 f20 expr out #txt
+As0 f20 368 384 531 384 #arcP
 >Proto As0 .type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
@@ -275,5 +253,5 @@ As0 f13 mainOut f15 tail #connect
 As0 f15 head f5 mainIn #connect
 As0 f16 mainOut f18 tail #connect
 As0 f18 head f17 mainIn #connect
-As0 f17 mainOut f19 tail #connect
-As0 f19 head f5 mainIn #connect
+As0 f17 mainOut f20 tail #connect
+As0 f20 head f19 mainIn #connect

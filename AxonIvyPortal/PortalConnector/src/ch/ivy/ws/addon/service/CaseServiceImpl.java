@@ -29,6 +29,7 @@ import ch.ivy.ws.addon.types.ElapsedTimeStatistic;
 import ch.ivy.ws.addon.types.IvyAdditionalProperty;
 import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvyCase;
+import ch.ivy.ws.addon.util.IvyExecutor;
 import ch.ivy.ws.addon.util.SessionUtil;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -164,7 +165,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
 
-  private Optional<ICase> findCaseById(final Optional<Integer> caseId) throws Exception {
+  private Optional<ICase> findCaseById(final Optional<Integer> caseId) {
     Callable<ICase> caseCallable = () -> {
       ICase ivyCase = null;
       if (caseId.isPresent()) {
@@ -174,7 +175,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       return ivyCase;
     };
 
-    ICase ivyCase = ServerFactory.getServer().getSecurityManager().executeAsSystem(caseCallable);
+    ICase ivyCase = IvyExecutor.executeAsSystem(caseCallable);
     return Optional.ofNullable(ivyCase);
   }
 

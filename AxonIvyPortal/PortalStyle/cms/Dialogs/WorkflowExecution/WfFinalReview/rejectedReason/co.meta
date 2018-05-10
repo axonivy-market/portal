@@ -1,0 +1,4 @@
+co: name={rejectedReason} description={} changed={2018-05-10 05:53:38 CEST} changedby={ldnam} visualorder={0} guid={1634829AFB84B49B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163482ED44D4F2FE} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-10 05:53:34 CEST} validto={} changed={2018-05-10 05:53:38 CEST} changedby={ldnam} properties={} id={}
+val: guid={163482EB83396F4C} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-10 05:53:26 CEST} validto={} changed={2018-05-10 05:53:31 CEST} changedby={ldnam} properties={} id={}
+val: guid={1634829AFBDBF31B} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-10 05:48:01 CEST} validto={} changed={2018-05-10 05:48:01 CEST} changedby={ldnam} properties={} id={}
