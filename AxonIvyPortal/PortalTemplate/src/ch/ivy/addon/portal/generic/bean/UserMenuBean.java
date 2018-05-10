@@ -1,6 +1,8 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -86,11 +88,10 @@ public class UserMenuBean implements Serializable {
   private int getDefaultClientSideTimeout() {
     ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
     int serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * SECONND_TO_MILLISECOND;
-    int defaultClientSideTimeout = serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
-    return defaultClientSideTimeout;
+    return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
   }
 
-  public String getLogoutPage() throws Exception {
+  public String getLogoutPage() throws MalformedURLException {
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("getLogoutPage()", null,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
@@ -98,7 +99,7 @@ public class UserMenuBean implements Serializable {
     return StringUtils.isNotBlank(logoutPage) ? logoutPage : getHomePageURL();
   }
 
-  public String getHomePageURL() throws Exception {
+  public String getHomePageURL() throws MalformedURLException {
     ApplicationService applicationService = new ApplicationService();
     String homePageURL = getHomePageFromSetting();
     if (CollectionUtils.isEmpty(applicationService.findAllIvyApplications())) {
@@ -121,26 +122,26 @@ public class UserMenuBean implements Serializable {
         applicationService.findByDisplayNameAndNameAndServerId(selectedAppDisplayName, selectedApp, serverId);
     return selectedApplication.getLink();
   }
-  
-  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws Exception {
+
+  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws IOException {
     if (isWorkingOnATask) {
       RequestContext.getCurrentInstance().execute("PF('logo-task-losing-confirmation-dialog').show()");
     } else {
       navigateToHomePage();
     }
   }
-  
-  public void resetTaskAndNavigateToHomePage() throws Exception {
+
+  public void resetTaskAndNavigateToHomePage() throws IOException {
     TaskUtils.resetTask(Ivy.wfTask());
     navigateToHomePage();
   }
 
-  public void reserveTaskAndNavigateToHomePage() throws Exception {
+  public void reserveTaskAndNavigateToHomePage() throws IOException {
     TaskUtils.parkTask(Ivy.wfTask());
     navigateToHomePage();
   }
-  
-  private void navigateToHomePage() throws Exception {
+
+  private void navigateToHomePage() throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(getHomePageURL());
   }
 
@@ -212,7 +213,7 @@ public class UserMenuBean implements Serializable {
 
   public boolean getErrorDetailToEndUser() {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> findShowErrorDetailSystemProperty());
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(this::findShowErrorDetailSystemProperty);
     } catch (Exception e) {
       Ivy.log().error(e);
     }

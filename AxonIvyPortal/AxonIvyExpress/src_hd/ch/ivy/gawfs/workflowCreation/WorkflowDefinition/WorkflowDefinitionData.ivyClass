@@ -20,3 +20,5 @@ isValidAssignee Boolean #field
 isValidAssignee PERSISTENT #fieldModifier
 selectedResponsibleFieldId String #field
 selectedResponsibleFieldId PERSISTENT #fieldModifier
+defaultDragAndDropController ch.ivy.gawfs.DragAndDropController #field
+defaultDragAndDropController PERSISTENT #fieldModifier

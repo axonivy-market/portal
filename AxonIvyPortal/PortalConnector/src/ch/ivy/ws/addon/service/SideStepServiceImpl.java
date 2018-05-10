@@ -62,7 +62,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     }
   }
 
-  public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded) throws Exception {
+  public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded) {
     if (isAdhocIncluded) {
       IvySideStep adhocSideStep = createAdhocSideStep(wfCase, false);
       if (adhocSideStep != null) {
@@ -75,7 +75,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
   /**
    * @return null if cannot find adhoc, otherwise return adhoc process
    */
-  private IvySideStep createAdhocSideStep(ICase wfCase, boolean isUrlBuiltFromSystemProperties) throws Exception {
+  private IvySideStep createAdhocSideStep(ICase wfCase, boolean isUrlBuiltFromSystemProperties) {
     if (wfCase != null){
       IApplication application = wfCase.getApplication();
       ProcessStartCollector collector = new ProcessStartCollector(application);
