@@ -1,5 +1,7 @@
 package ch.ivy.ws.addon.service;
 
+import static ch.ivyteam.ivy.server.ServerFactory.getServer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -34,7 +36,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
  */
 public class LanguagesSettingsServiceImpl extends AbstractService implements ILanguagesSettingsService {
 
-  private final String CMS_LANG_KEY = "/AppInfo/SupportedLanguages";
+  private static final String CMS_LANG_KEY = "/AppInfo/SupportedLanguages";
 
   @Override
   public LanguagesSettingsServiceResult getLanguagesSettings(String username, List<String> apps, Long serverId) {
@@ -71,25 +73,14 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
    */
   @SuppressWarnings("javadoc")
   public IvyLanguageSetting getUserLanguagesSettings(final String username, final String appName, final Long serverId)
-      throws Exception { //NOSONAR
+      throws Exception { // NOSONAR
     return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IvyLanguageSetting>() {
       @Override
       public IvyLanguageSetting call() throws Exception {
-        IvyLanguageSetting result = new IvyLanguageSetting();
-        result.setAppName(appName);
-        IServer server = ServerFactory.getServer();
-        IApplication app = server.getApplicationConfigurationManager().findApplication(appName);
+        IvyLanguageSetting result = ivyLanguageSetting(appName);
+        IApplication app = getServer().getApplicationConfigurationManager().findApplication(appName);
         if (app != null && app.getActivityState() == ActivityState.ACTIVE && StringUtils.equals(appName, app.getName())) {
-          List<IProcessModelVersion> activeReleasedPmvs = getActiveReleasedPmvs(app);          
-          IUser user = app.getSecurityContext().findUser(username);
-          if (user != null) {
-            String userLanguage = getUserLanguage(user);
-            result.setUserLanguage(userLanguage.toLowerCase());
-          } else {
-            // user not found
-            throw new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null);
-          }
-          result.setSupportedLanguages(getSupportedLanguagesFromPmvs(activeReleasedPmvs, server));
+          setUserLaguagesSettings(username, result, app);
         } else {
           // app not found
           throw new WSException(WSErrorType.WARNING, 10030, Arrays.asList(appName), null);
@@ -100,39 +91,56 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
         }
         return result;
       }
+    });
+  }
 
-      private String getUserLanguage(IUser user) {
-        return user.getEMailLanguage() != null? 
-            user.getEMailLanguage().toLanguageTag(): Locale.ENGLISH.toLanguageTag();
-      }
-      
-      private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs, IServer server){
-        Set<String> supportedLanguages = new HashSet<>();
-        for (IProcessModelVersion pmv: pmvs){
-          String lang;
-          IContentManagementSystem findCms = server.getContentManagement().findCms(pmv);
-          if (findCms != null){
-            lang = findCms.co(CMS_LANG_KEY);
-            
-            if (!StringUtils.isEmpty(lang)) {
-              String[] sp = lang.split(",");
-              for (String spItem : sp) {
-                String languageCode = spItem.trim();
-                if (!supportedLanguages.contains(languageCode)){
-                  supportedLanguages.add(languageCode);
-                }
-              }
+  private void setUserLaguagesSettings(final String username, IvyLanguageSetting result, IApplication app)
+      throws WSException {
+    List<IProcessModelVersion> activeReleasedPmvs = getActiveReleasedPmvs(app);
+    IUser user = app.getSecurityContext().findUser(username);
+    if (user != null) {
+      result.setUserLanguage(getUserLanguage(user).toLowerCase());
+    } else {
+      // user not found
+      throw new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null);
+    }
+    result.setSupportedLanguages(getSupportedLanguagesFromPmvs(activeReleasedPmvs, getServer()));
+  }
+
+  private IvyLanguageSetting ivyLanguageSetting(final String appName) {
+    IvyLanguageSetting result = new IvyLanguageSetting();
+    result.setAppName(appName);
+    return result;
+  }
+
+  private String getUserLanguage(IUser user) {
+    return user.getEMailLanguage() != null ? user.getEMailLanguage().toLanguageTag() : Locale.ENGLISH.toLanguageTag();
+  }
+
+  private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs, IServer server) {
+    Set<String> supportedLanguages = new HashSet<>();
+    for (IProcessModelVersion pmv : pmvs) {
+      String lang;
+      IContentManagementSystem findCms = server.getContentManagement().findCms(pmv);
+      if (findCms != null) {
+        lang = findCms.co(CMS_LANG_KEY);
+
+        if (!StringUtils.isEmpty(lang)) {
+          String[] sp = lang.split(",");
+          for (String spItem : sp) {
+            String languageCode = spItem.trim();
+            if (!supportedLanguages.contains(languageCode)) {
+              supportedLanguages.add(languageCode);
             }
           }
         }
-        return new ArrayList<>(supportedLanguages);
       }
-    });
+    }
+    return new ArrayList<>(supportedLanguages);
   }
-  
+
   private List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {
-    return app.getProcessModels().stream()
-        .filter(pm -> pm.getActivityState() == ActivityState.ACTIVE)
+    return app.getProcessModels().stream().filter(pm -> pm.getActivityState() == ActivityState.ACTIVE)
         .map(IProcessModel::getReleasedProcessModelVersion)
         .filter(pmv -> pmv != null && pmv.getActivityState() == ActivityState.ACTIVE).collect(Collectors.toList());
   }
@@ -146,7 +154,7 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
         try {
           errors.addAll(saveLanguagesSettings(ivyLanguageSetting.getAppName(), username, ivyLanguageSetting));
         } catch (WSException e) {
-            errors.add(e);
+          errors.add(e);
         } catch (Exception ex) {
           Ivy.log().error(ex);
         }
@@ -168,55 +176,62 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
         @Override
         public List<WSException> call() throws Exception {
-          List<WSException> errors = new ArrayList<>();
-          IServer server = ServerFactory.getServer();
-          IApplication application =
-              server.getApplicationConfigurationManager().findApplication(appName);
-
-          if (application != null) {
-            List<IProcessModelVersion> activePmvs = getActiveReleasedPmvs(application);
-            List<Locale> supportedEmailLanguages = new ArrayList<>();
-            
-            activePmvs.forEach(pmv ->{       
-              IContentManagementSystem findCms = server.getContentManagement().findCms(pmv);
-              if (findCms != null){
-                supportedEmailLanguages.addAll(findCms.getSupportedLanguages());
-              }
-            });
-            
-            IUser user = application.getSecurityContext().findUser(username);
-            if (user != null) {
-              // default user settings
-              Locale emailLanguage = Locale.forLanguageTag(setting.getUserLanguage());
-              if (user.getEMailNotificationSettings().isUseApplicationDefault()) {
-                IUserEMailNotificationSettings userEmailSettings = user.getEMailNotificationSettings();
-                userEmailSettings.setUseApplicationDefault(false);
-                // copy default settings
-                userEmailSettings.setSendDailyTaskSummary(application.getDefaultEMailNotifcationSettings()
-                    .getSendDailyTaskSummary());
-                userEmailSettings.setNotificationDisabled(application.getDefaultEMailNotifcationSettings()
-                    .isNotificationDisabled());
-                userEmailSettings.setSendOnNewWorkTasks(application.getDefaultEMailNotifcationSettings()
-                    .isSendOnNewWorkTasks());
-                user.setEMailNotificationSettings(userEmailSettings);
-              } 
-              user.setEMailLanguage(emailLanguage);
-              if (!supportedEmailLanguages.contains(emailLanguage)){
-                errors.add(new WSException(WSErrorType.WARNING, 10048, Arrays.asList(username), null));
-              }
-            } else {
-              // user not found
-              errors.add(new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null));
-            }
-          } else {
-            // app not found
-            errors.add(new WSException(WSErrorType.WARNING, 10030, Arrays.asList(username), null));
+          IApplication application = getServer().getApplicationConfigurationManager().findApplication(appName);
+          if (application == null) {
+            return Arrays.asList(new WSException(WSErrorType.WARNING, 10030, Arrays.asList(username), null));
           }
-          return errors;
+          return saveLanguagesSettings(username, setting, application);
         }
       });
     } catch (Exception ex) {
       throw new WSException(WSErrorType.WARNING, 10048, ex, Arrays.asList(username), null);
     }
+  }
+
+  private List<WSException> saveLanguagesSettings(final String username, final IvyLanguageSetting setting,
+      IApplication application) {
+    List<WSException> errors = new ArrayList<>();
+    List<IProcessModelVersion> activePmvs = getActiveReleasedPmvs(application);
+    List<Locale> supportedEmailLanguages = getSupportedEmailLanguages(activePmvs);
+    IUser user = application.getSecurityContext().findUser(username);
+    if (user != null) {
+      Locale emailLanguage = getDefaultUserSettings(setting, application, user);
+      user.setEMailLanguage(emailLanguage);
+      if (!supportedEmailLanguages.contains(emailLanguage)) {
+        errors.add(new WSException(WSErrorType.WARNING, 10048, Arrays.asList(username), null));
+      }
+    } else {
+      // user not found
+      errors.add(new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null));
+    }
+    return errors;
+  }
+
+  private List<Locale> getSupportedEmailLanguages(List<IProcessModelVersion> activePmvs) {
+    List<Locale> supportedEmailLanguages = new ArrayList<>();
+    activePmvs.forEach(pmv -> {
+      IContentManagementSystem findCms = getServer().getContentManagement().findCms(pmv);
+      if (findCms != null) {
+        supportedEmailLanguages.addAll(findCms.getSupportedLanguages());
+      }
+    });
+    return supportedEmailLanguages;
+  }
+
+  private Locale getDefaultUserSettings(final IvyLanguageSetting setting, IApplication application, IUser user) {
+    // default user settings
+    Locale emailLanguage = Locale.forLanguageTag(setting.getUserLanguage());
+    if (user.getEMailNotificationSettings().isUseApplicationDefault()) {
+      IUserEMailNotificationSettings userEmailSettings = user.getEMailNotificationSettings();
+      userEmailSettings.setUseApplicationDefault(false);
+      // copy default settings
+      userEmailSettings.setSendDailyTaskSummary(application.getDefaultEMailNotifcationSettings()
+          .getSendDailyTaskSummary());
+      userEmailSettings.setNotificationDisabled(application.getDefaultEMailNotifcationSettings()
+          .isNotificationDisabled());
+      userEmailSettings.setSendOnNewWorkTasks(application.getDefaultEMailNotifcationSettings().isSendOnNewWorkTasks());
+      user.setEMailNotificationSettings(userEmailSettings);
+    }
+    return emailLanguage;
   }
 }
