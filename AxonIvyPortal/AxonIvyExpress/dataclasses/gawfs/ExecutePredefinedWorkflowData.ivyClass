@@ -44,3 +44,5 @@ finishedTasks java.util.List<gawfs.TaskDef> #field
 finishedTasks PERSISTENT #fieldModifier
 tempFinishedTasks java.util.List<gawfs.TaskDef> #field
 tempFinishedTasks PERSISTENT #fieldModifier
+numberOfEmailTasks Integer #field
+numberOfEmailTasks PERSISTENT #fieldModifier
