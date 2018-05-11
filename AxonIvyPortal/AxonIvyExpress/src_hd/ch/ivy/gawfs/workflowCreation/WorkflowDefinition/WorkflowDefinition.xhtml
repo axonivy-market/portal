@@ -35,7 +35,7 @@
 									for="process-type" />
 							</p:column>
 							<p:column styleClass="process-property-input-col">
-								<p:selectOneRadio id="process-type" styleClass="radio-group"
+								<p:selectOneRadio id="process-type" styleClass="radio-group" disabled="#{not empty data.data.processID}"
 									value="#{data.data.processType}" required="#{param['form:save']!=null}"
 									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 									<f:selectItems value="#{workflowDefinitionBean.processTypes}" var="processType" itemValue="#{processType}" itemLabel="#{processType.label}" />
