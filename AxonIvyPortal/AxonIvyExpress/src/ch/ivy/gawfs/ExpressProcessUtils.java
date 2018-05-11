@@ -427,4 +427,28 @@ public class ExpressProcessUtils {
 
     return !isAnyCreateFormNotDefined && !isAnyEmailEmpty;
   }
+  
+  /**
+   * check whether next button should display
+   * @param definedTasks
+   * @param currentIndex
+   * @return
+   */
+  public boolean displayNextButton(List<TaskDef> definedTasks, int currentIndex) {
+    if(definedTasks == null || definedTasks.size()<2) {
+      return false;
+    }
+    if(currentIndex == definedTasks.size() -1 ) {
+      return false;
+    }
+    return !definedTasks.subList(currentIndex + 1, definedTasks.size()).stream().filter(item -> item.getTaskType() != TaskType.APPROVAL).collect(Collectors.toList()).isEmpty();
+  }
+  
+  public int nextAvailableTaskIndex(List<TaskDef> definedTasks, int currentIndex) {
+    Optional<TaskDef> taskDef = definedTasks.subList(currentIndex + 1, definedTasks.size()).stream().filter(item -> item.getTaskType() != TaskType.APPROVAL).findFirst();
+    if(taskDef.isPresent()){
+      return definedTasks.indexOf(taskDef.get());
+    }
+    return -1;
+  }
 }

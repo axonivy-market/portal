@@ -273,7 +273,8 @@ Ds0 f11 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionD
 Ds0 f11 actionTable 'out=in;
 out.activeTab=0;
 ' #txt
-Ds0 f11 actionCode 'import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
+Ds0 f11 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
+import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.DynaFormController;
 import ch.ivy.gawfs.DragAndDropController;
@@ -300,7 +301,9 @@ if(in.data.definedTasks.get(0).taskType != TaskType.EMAIL) {
 	in.dragAndDropController = in.data.definedTasks.get(0).dragAndDropController;
 	in.dynaFormController = in.data.definedTasks.get(0).dynaFormController;
 }
-in.activeTaskIndex = 0;' #txt
+in.activeTaskIndex = 0;
+ExpressProcessUtils expressUtils = new ExpressProcessUtils();
+in.displayNextBtn = expressUtils.displayNextButton(in.data.definedTasks, in.activeTaskIndex);' #txt
 Ds0 f11 security system #txt
 Ds0 f11 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -521,13 +524,15 @@ Ds0 f49 disableUIEvents false #txt
 Ds0 f49 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Ds0 f49 inActionCode 'import ch.ivy.gawfs.enums.TaskType;
+Ds0 f49 inActionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
+import ch.ivy.gawfs.enums.TaskType;
 if(out.data.definedTasks.get(out.activeTaskIndex).getTaskType() != TaskType.EMAIL) {
 	out.data.definedTasks.get(out.activeTaskIndex).setDynaFormController(out.dynaFormController);
 	out.data.definedTasks.get(out.activeTaskIndex).setDragAndDropController(out.dragAndDropController);
 
 }
-out.activeTaskIndex++;' #txt
+ExpressProcessUtils expressUtils = new ExpressProcessUtils();
+out.activeTaskIndex = expressUtils.nextAvailableTaskIndex(out.data.definedTasks, out.activeTaskIndex);' #txt
 Ds0 f49 outParameterDecl '<> result;
 ' #txt
 Ds0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -548,13 +553,17 @@ Ds0 f56 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionD
 ' #txt
 Ds0 f56 actionTable 'out=in;
 ' #txt
-Ds0 f56 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+Ds0 f56 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
+import ch.ivy.gawfs.enums.TaskType;
 import gawfs.TaskDef;
+
 TaskDef nextTaskDef = in.data.definedTasks.get(in.activeTaskIndex);
 if(nextTaskDef.getTaskType() != TaskType.EMAIL) {
 	in.dynaFormController = nextTaskDef.getDynaFormController();
 	in.dragAndDropController = nextTaskDef.getDragAndDropController();
 }
+ExpressProcessUtils expressUtils = new ExpressProcessUtils();
+in.displayNextBtn = expressUtils.displayNextButton(in.data.definedTasks, in.activeTaskIndex);
 ' #txt
 Ds0 f56 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

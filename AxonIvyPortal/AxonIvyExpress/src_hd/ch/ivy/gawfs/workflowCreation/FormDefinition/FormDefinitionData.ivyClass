@@ -24,3 +24,5 @@ activeTaskIndex Integer #field
 activeTaskIndex PERSISTENT #fieldModifier
 isAbleToExecute Boolean #field
 isAbleToExecute PERSISTENT #fieldModifier
+displayNextBtn Boolean #field
+displayNextBtn PERSISTENT #fieldModifier
