@@ -62,13 +62,10 @@ public class TaskTreeUtils {
   }
 
   private static void sortNode(TreeNode node) {
-    Comparator<TreeNode> comparator = new Comparator<TreeNode>() {
-      @Override
-      public int compare(TreeNode firstNode, TreeNode secondNode) {
-        TaskNode firstNodeData = (TaskNode) firstNode.getData();
-        TaskNode secondNodeData = (TaskNode) secondNode.getData();
-        return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
-      }
+    Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
+      TaskNode firstNodeData = (TaskNode) firstNode.getData();
+      TaskNode secondNodeData = (TaskNode) secondNode.getData();
+      return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
     };
     TreeUtils.sortNode(node, comparator);
   }

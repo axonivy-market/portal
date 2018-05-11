@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -20,13 +21,13 @@ public class ResourceLoader {
   }
 
   public Optional<Path> findResource(String relativeToWebContent) {
-    return getWebContentFolder().map(f -> f.getFile(relativeToWebContent)).map(f -> f.getLocationURI())
-        .map(u -> Paths.get(u)).filter(p -> Files.exists(p));
+    return getWebContentFolder().map(f -> f.getFile(relativeToWebContent)).map(IFile::getLocationURI)
+        .map(Paths::get).filter(Files::exists);
   }
   
   public Optional<Path> getPom() {
-    return Optional.ofNullable(pmv.getProject().getFile("pom.xml")).map(f -> f.getLocationURI())
-      .map(u -> Paths.get(u)).filter(p -> Files.exists(p));
+    return Optional.ofNullable(pmv.getProject().getFile("pom.xml")).map(IFile::getLocationURI)
+        .map(Paths::get).filter(Files::exists);
   }
 
   private Optional<IFolder> getWebContentFolder() {
