@@ -41,6 +41,16 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
+    <method>
+        <name>removeSelectedAssignee</name>
+        <description></description>
+        <inputParameter>
+            <name>assignee</name>
+            <description></description>
+            <parameterType>ch.ivyteam.ivy.security.ISecurityMember</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

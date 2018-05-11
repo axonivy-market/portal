@@ -370,6 +370,7 @@
 
 .assignee-selection-panel .selected-assignee-panel {
   padding: .6em 0 !important;
+  cursor: default;
 }
 
 .assignee-selection-panel .selected-assignee-panel .ui-fieldset-legend {
@@ -379,14 +380,13 @@
 .assignee-selection-panel .selected-assignee-panel .assignee-selection {
   width: 100%;
   border: none !important;
+  margin: 10px 0;
 }
 
-.assignee-selection-panel .selected-assignee-panel .assignee-selection .ui-selectlistbox-filter-container {
-  padding-top: 0 !important;
-}
-
-.assignee-selection-panel .selected-assignee-panel .assignee-selection .ui-selectlistbox-filter-container .ui-icon-search {
-  top: 5px;
+.assignee-selection-panel .delete-assignee {
+  font-size: 1.4rem;
+  color: rgba(0,0,0,0.7) !important;
+  padding-right: 5px;
 }
 
 .assignee-selection-panel .assignee-name-col {
