@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.datacollecting.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.RemoteLibrary;
@@ -18,16 +17,12 @@ public class MultiServerLibraryService extends AbstractLibraryService {
   @Override
   public Map<String, List<RemoteLibrary>> collectLibraries() {
     try {
+      @SuppressWarnings("unchecked")
       List<RemoteLibrary> libraries =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteLibrary>>() {
-
-            @SuppressWarnings("unchecked")
-            @Override
-            public List<RemoteLibrary> call() {
-              return SubProcessCall.withPath(LIBRARY_SERVICE_CALLABLE).withStartName("getLibraries")
-                  .withParam("username", Ivy.session().getSessionUserName()).call().get("libraries", List.class);
-            }
-          });
+          ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->
+              SubProcessCall.withPath(LIBRARY_SERVICE_CALLABLE).withStartName("getLibraries")
+                  .withParam("username", Ivy.session().getSessionUserName()).call().get("libraries", List.class)
+          );
 
       return libraries.stream().collect(Collectors.groupingBy(RemoteLibrary::getApplication));
     } catch (Exception e) {
@@ -35,5 +30,4 @@ public class MultiServerLibraryService extends AbstractLibraryService {
       return new HashMap<>();
     }
   }
-
 }
