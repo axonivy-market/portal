@@ -22,3 +22,5 @@ selectedResponsibleFieldId String #field
 selectedResponsibleFieldId PERSISTENT #fieldModifier
 defaultDragAndDropController ch.ivy.gawfs.DragAndDropController #field
 defaultDragAndDropController PERSISTENT #fieldModifier
+resetData Boolean #field
+resetData PERSISTENT #fieldModifier
