@@ -167,8 +167,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private boolean shouldSaveAndLoadSessionFilters() {
-    return ((this.queryCriteria == null) || (this.queryCriteria != null && !this.queryCriteria
-        .isQueryForUnassignedTask())) && !isRelatedTaskDisplayed && !isNotKeepFilter;
+    boolean isValidQueryCriteria = (this.queryCriteria == null) || (this.queryCriteria != null && !this.queryCriteria
+        .isQueryForUnassignedTask()); 
+    return isValidQueryCriteria && !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
   @Override

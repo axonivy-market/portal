@@ -57,13 +57,10 @@ public class CaseTreeUtils {
   }
   
   private static void sortNode(TreeNode node) {
-    Comparator<TreeNode> comparator = new Comparator<TreeNode>() {
-      @Override
-      public int compare(TreeNode firstNode, TreeNode secondNode) {
-        CaseNode firstNodeData = (CaseNode) firstNode.getData();
-        CaseNode secondNodeData = (CaseNode) secondNode.getData();
-        return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
-      }
+    Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
+      CaseNode firstNodeData = (CaseNode) firstNode.getData();
+      CaseNode secondNodeData = (CaseNode) secondNode.getData();
+      return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
     };
     TreeUtils.sortNode(node, comparator);
   }

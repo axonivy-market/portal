@@ -55,21 +55,17 @@ public class PojoConverter implements Converter {
       String mapKey = String.format(MAP_KEY_TEMPLATE, component.getId(), selectedvalue);
       Map<String, Object> viewMap = getViewMap(context);
 
-      Object item = viewMap.get(mapKey);
-
-      return item;
+      return viewMap.get(mapKey);
     }
     return null;
   }
 
   private boolean isEmptyString(Object item) {
-    boolean isEmptyString = String.class.isAssignableFrom(item.getClass()) && "".equals(item);
-    return isEmptyString;
+    return String.class.isAssignableFrom(item.getClass()) && "".equals(item);
   }
 
   private Map<String, Object> getViewMap(FacesContext context) {
     UIViewRoot viewRoot = context.getViewRoot();
-    Map<String, Object> viewMap = viewRoot.getViewMap();
-    return viewMap;
+    return viewRoot.getViewMap();
   }
 }
