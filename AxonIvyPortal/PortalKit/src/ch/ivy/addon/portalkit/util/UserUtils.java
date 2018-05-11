@@ -5,7 +5,6 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -94,45 +93,36 @@ public class UserUtils {
    */
   public static List<IUser> getAllUsersForDelegate() {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
-        @Override
-        public List<IUser> call() throws Exception {
-          ISecurityContext security = getIvySession().getSecurityContext();
-          List<IUser> delegatedUsers = new ArrayList<>();
-          delegatedUsers.addAll(security.getUsers());
-          for (IRole iRole : security.getRoles()) {
-            if (iRole.getProperty(HIDE_USERS_IN_DELEGATION) != null) {
-              delegatedUsers.removeAll(iRole.getUsers());
-            }
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        ISecurityContext security = getIvySession().getSecurityContext();
+        List<IUser> delegatedUsers = new ArrayList<>();
+        delegatedUsers.addAll(security.getUsers());
+        for (IRole iRole : security.getRoles()) {
+          if (iRole.getProperty(HIDE_USERS_IN_DELEGATION) != null) {
+            delegatedUsers.removeAll(iRole.getUsers());
           }
+        }
 
-          for (Iterator<IUser> iter = delegatedUsers.listIterator(); iter.hasNext();) {
-            IUser user = iter.next();
-            if (SYSTEM_USER.equals(user.getName())) {
-              iter.remove();
-              break;
-            }
+        for (Iterator<IUser> iter = delegatedUsers.listIterator(); iter.hasNext();) {
+          IUser user = iter.next();
+          if (SYSTEM_USER.equals(user.getName())) {
+            iter.remove();
+            break;
           }
+        }
 
-          // Sort the list
-          Collections.sort(delegatedUsers, new Comparator<IUser>() {
-
-            @Override
-            public int compare(IUser o1, IUser o2) {
-
-              if (o1 == null || o1.getDisplayName() == null) {
-                return -1;
-              }
-
-              if (o2 == null) {
-                return 1;
-              }
-              return o1.getDisplayName().compareTo(o2.getDisplayName());
+        // Sort the list
+          Collections.sort(delegatedUsers, (o1, o2) -> {
+            if (o1 == null || o1.getDisplayName() == null) {
+              return -1;
             }
 
+            if (o2 == null) {
+              return 1;
+            }
+            return o1.getDisplayName().compareTo(o2.getDisplayName());
           });
           return delegatedUsers;
-        }
       });
     } catch (Exception e) {
       Ivy.log().error(e);
