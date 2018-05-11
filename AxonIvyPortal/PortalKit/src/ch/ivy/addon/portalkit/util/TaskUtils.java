@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.SortOrder;
 import org.primefaces.model.TreeNode;
@@ -349,25 +350,22 @@ public final class TaskUtils {
    * @return String get the email of creator of case, execute under system permission
    */
   public static String getEmailAddress(final ITask iTask) {
-    if (iTask.getActivator().getSecurityContext() != null
-        && iTask.getActivator().getSecurityContext().getUsers() != null
-        && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
-      try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-          String st = iTask.getActivator().getMemberName();
-          List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
-          for (IUser user : l) {
-            if (st.equals(user.getMemberName())) {
-              return user.getEMailAddress();
-            }
+    if (iTask.getActivator().getSecurityContext() == null || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
+      return null;
+    }
+    try {
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        String st = iTask.getActivator().getMemberName();
+        List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
+        for (IUser user : l) {
+          if (st.equals(user.getMemberName())) {
+            return user.getEMailAddress();
           }
-          return st;
-        });
-      } catch (Exception e) {
-        Ivy.log().error(e);
-        return null;
-      }
-    } else {
+        }
+        return st;
+      });
+    } catch (Exception e) {
+      Ivy.log().error(e);
       return null;
     }
   }
@@ -379,25 +377,22 @@ public final class TaskUtils {
    * @return String get phone number of creator of case, execute under system permission
    */
   public static String getPhone(final ITask iTask) {
-    if (iTask.getActivator().getSecurityContext() != null
-        && iTask.getActivator().getSecurityContext().getUsers() != null
-        && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
-      try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-          String st = iTask.getActivator().getMemberName();
-          List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
-          for (IUser user : l) {
-            if (st.equals(user.getMemberName())) {
-              return user.getProperty(UserUtils.PHONE);
-            }
+    if (iTask.getActivator().getSecurityContext() == null || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
+      return null;
+    }
+    try {
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        String st = iTask.getActivator().getMemberName();
+        List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
+        for (IUser user : l) {
+          if (st.equals(user.getMemberName())) {
+            return user.getProperty(UserUtils.PHONE);
           }
-          return st;
-        });
-      } catch (Exception e) {
-        Ivy.log().error(e);
-        return null;
-      }
-    } else {
+        }
+        return st;
+      });
+    } catch (Exception e) {
+      Ivy.log().error(e);
       return null;
     }
   }
@@ -409,25 +404,22 @@ public final class TaskUtils {
    * @return String get mobile number of creator of case, execute under system permission
    */
   public static String getMobile(final ITask iTask) {
-    if (iTask.getActivator().getSecurityContext() != null
-        && iTask.getActivator().getSecurityContext().getUsers() != null
-        && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
-      try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-          String st = iTask.getActivator().getMemberName();
-          List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
-          for (IUser user : l) {
-            if (st.equals(user.getMemberName())) {
-              return user.getProperty(UserUtils.MOBILE);
-            }
+    if (iTask.getActivator().getSecurityContext() == null || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
+      return null;
+    }
+    try {
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        String st = iTask.getActivator().getMemberName();
+        List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
+        for (IUser user : l) {
+          if (st.equals(user.getMemberName())) {
+            return user.getProperty(UserUtils.MOBILE);
           }
-          return st;
-        });
-      } catch (Exception e) {
-        Ivy.log().error(e);
-        return null;
-      }
-    } else {
+        }
+        return st;
+      });
+    } catch (Exception e) {
+      Ivy.log().error(e);
       return null;
     }
   }
