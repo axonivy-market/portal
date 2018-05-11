@@ -887,42 +887,23 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     for (StatisticChart statisticChart : statisticChartList) {
       switch (statisticChart.getType()) {
         case TASK_BY_PRIORITY:
-          PriorityStatistic taskByPriorityData = new PriorityStatistic();
-          if(statisticChart.getFilter() != null) {
-            taskByPriorityData = getPriorityStatisticData(StatisticChartQueryUtils.generateTaskQuery(statisticChart.getFilter()).asJson());
-          }
-          statisticChart.setDonutChartModel(generateTaskByPriorityModel(taskByPriorityData, true));
+          statisticChart.setDonutChartModel(buildChartModelForTaskPriority(statisticChart));
           break;
         case TASK_BY_EXPIRY:
-          generateChartModelForTaskByExpiryChart(statisticChart);
+          BarChartModel chartModelForTaskExpiry = buildChartModelForTaskExpiry(statisticChart);
+          statisticChart.setBarChartModel(chartModelForTaskExpiry);
           break;
         case CASES_BY_STATE:
-          CaseStateStatistic caseStateData = new CaseStateStatistic();
-          if(statisticChart.getFilter() != null) {
-            caseStateData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), false).asJson());
-          }
-          statisticChart.setDonutChartModel(generateCaseByStateModel(caseStateData, StatisticChartType.CASES_BY_STATE,  true));
+          statisticChart.setDonutChartModel(buildChartModelForCaseState(statisticChart));
           break;
         case ELAPSED_TIME_BY_CASE_CATEGORY:
-          List<ElapsedTimeStatistic> elapsedTimeData = new ArrayList<>();
-          if(statisticChart.getFilter() != null) {
-            elapsedTimeData = getElapsedTimeStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true).asJson());
-          }
-          statisticChart.setDonutChartModel(generateElapsedTimeModel(elapsedTimeData, true));
+          statisticChart.setDonutChartModel(buildChartModelForCaseElapsedTime(statisticChart));
           break;
         case CASES_BY_FINISHED_TASK:
-          CaseStateStatistic caseByFinishedTaskData = new CaseStateStatistic();
-          if(statisticChart.getFilter() != null) {
-            caseByFinishedTaskData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseHaveFinishedTask(statisticChart.getFilter()).asJson());
-          }
-          statisticChart.setDonutChartModel(generateCaseByStateModel(caseByFinishedTaskData, StatisticChartType.CASES_BY_FINISHED_TASK, true));
+          statisticChart.setDonutChartModel(buildCharModelForCaseHasFinishedTask(statisticChart));
           break;
         case CASES_BY_FINISHED_TIME:
-          CaseStateStatistic caseByFinishedTimeData = new CaseStateStatistic();
-          if(statisticChart.getFilter() != null) {
-            caseByFinishedTimeData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryByFinishedTime(statisticChart.getFilter()).asJson());
-          }
-          statisticChart.setDonutChartModel(generateCaseByStateModel(caseByFinishedTimeData, StatisticChartType.CASES_BY_FINISHED_TIME, true));
+          statisticChart.setDonutChartModel(buildChartModelForCaseFinishedTime(statisticChart));
           break;
         default:
           break;
@@ -930,14 +911,55 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
   }
 
-  private void generateChartModelForTaskByExpiryChart(StatisticChart statisticChart) {
+  private DonutChartModel buildChartModelForCaseFinishedTime(StatisticChart statisticChart) {
+    CaseStateStatistic caseByFinishedTimeData = new CaseStateStatistic();
+    if(statisticChart.getFilter() != null) {
+      caseByFinishedTimeData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryByFinishedTime(statisticChart.getFilter()).asJson());
+    }
+    return generateCaseByStateModel(caseByFinishedTimeData, StatisticChartType.CASES_BY_FINISHED_TIME, true);
+  }
+
+  private DonutChartModel buildCharModelForCaseHasFinishedTask(StatisticChart statisticChart) {
+    CaseStateStatistic caseByFinishedTaskData = new CaseStateStatistic();
+    if(statisticChart.getFilter() != null) {
+      caseByFinishedTaskData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseHaveFinishedTask(statisticChart.getFilter()).asJson());
+    }
+    return generateCaseByStateModel(caseByFinishedTaskData, StatisticChartType.CASES_BY_FINISHED_TASK, true);
+  }
+
+  private DonutChartModel buildChartModelForCaseElapsedTime(StatisticChart statisticChart) {
+    List<ElapsedTimeStatistic> elapsedTimeData = new ArrayList<>();
+    if(statisticChart.getFilter() != null) {
+      elapsedTimeData = getElapsedTimeStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true).asJson());
+    }
+    return generateElapsedTimeModel(elapsedTimeData, true);
+  }
+
+  private DonutChartModel buildChartModelForCaseState(StatisticChart statisticChart) {
+    CaseStateStatistic caseStateData = new CaseStateStatistic();
+    if(statisticChart.getFilter() != null) {
+      caseStateData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), false).asJson());
+    }
+    return generateCaseByStateModel(caseStateData, StatisticChartType.CASES_BY_STATE,  true);
+  }
+
+  private DonutChartModel buildChartModelForTaskPriority(StatisticChart statisticChart) {
+    PriorityStatistic taskByPriorityData = new PriorityStatistic();
+    if(statisticChart.getFilter() != null) {
+      taskByPriorityData = getPriorityStatisticData(StatisticChartQueryUtils.generateTaskQuery(statisticChart.getFilter()).asJson());
+    }
+    return generateTaskByPriorityModel(taskByPriorityData, true);
+  }
+
+  private BarChartModel buildChartModelForTaskExpiry(StatisticChart statisticChart) {
     if (!statisticChart.getId().contains("_")) {
       List<ExpiryStatistic> taskByExpiryData = new ArrayList<>();
       if(statisticChart.getFilter() != null){
         taskByExpiryData = getExpiryStatisticData(StatisticChartQueryUtils.generateTaskQueryForExpiry(statisticChart.getFilter()).asJson());
       }
-      statisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
+      return generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
     }
+    return null;
   }
 
   public boolean isDrilldownToTaskList(String expiryLastDrilldownLevel, String selectedItem) {
