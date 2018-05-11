@@ -427,7 +427,6 @@ Ds0 f42 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #tx
 Ds0 f42 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
 ' #txt
 Ds0 f42 actionTable 'out=in;
-out.data.directExecutionFlag=true;
 ' #txt
 Ds0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
