@@ -34,6 +34,12 @@
     <method>
         <name>changeUISetting</name>
         <description></description>
+        <inputParameter>
+            <name>isAgreed</name>
+            <description></description>
+            <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </method>
     <startMethod>
         <name>start</name>

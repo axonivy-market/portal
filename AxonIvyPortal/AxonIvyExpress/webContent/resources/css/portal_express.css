@@ -590,9 +590,13 @@
 }
 
 /* APPROVAL FORM */
+.comment-container {
+	margin-bottom: 20px;
+}
+
 .comment-container .comment-label {
 	display: block !important;
-	margin: 40px 0 20px 0;
+	margin-bottom: 20px;
 	font-weight: bold !important;
 }
 
