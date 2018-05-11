@@ -20,7 +20,7 @@
 
 		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
 		<ui:define name="taskForm">
-			<p:growl autoUpdate="true" globalOnly="true" showDetail="false" showSummary="true" />
+			<p:growl id="error-growl" autoUpdate="false" globalOnly="true" showDetail="false" showSummary="true" />
 			<!-- DEFINED TASKS -->
 			<h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container">
 				<c:forEach items="#{data.data.definedTasks}" var="definedTask" varStatus="status" >
@@ -67,7 +67,7 @@
 				<p:commandButton id="execute-button" icon="fa fa-check" styleClass="buttonDelegate"
 					value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}"
 					rendered="#{(data.data.processType eq 'AD_HOC')}" partialSubmit="true"
-					update="form" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.directExecution}"/>
+					update="form error-growl" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.directExecution}"/>
 				<p:spacer width="5" />
 
 				<p:commandButton id="next-button" icon="fa fa-arrow-right" styleClass="buttonDelegate"
