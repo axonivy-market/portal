@@ -52,9 +52,9 @@ ew0 @PushWFArc f24 '' #zField
 ew0 @PushWFArc f25 '' #zField
 ew0 @PushWFArc f26 '' #zField
 ew0 @Alternative f27 '' #zField
-ew0 @PushWFArc f28 '' #zField
 ew0 @PushWFArc f29 '' #zField
 ew0 @PushWFArc f4 '' #zField
+ew0 @PushWFArc f30 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -114,7 +114,6 @@ in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPr
 in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/FormDefinitionStep"));
 in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/EndStep"));
 
-in.directExecutionFlag = false;
 in.discard = false;' #txt
 ew0 f5 security system #txt
 ew0 f5 type gawfs.Data #txt
@@ -285,7 +284,7 @@ ew0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 f20 1288 234 176 44 -84 -8 #rect
 ew0 f20 @|CallSubIcon #fIcon
 ew0 f2 expr in #txt
-ew0 f2 outCond in.directExecutionFlag #txt
+ew0 f2 outCond 'in.processType == ch.ivy.gawfs.enums.ProcessType.AD_HOC' #txt
 ew0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -357,11 +356,11 @@ ew0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 f45 1072 144 32 32 -12 18 #rect
 ew0 f45 @|AlternativeIcon #fIcon
 ew0 f46 type gawfs.Data #txt
-ew0 f46 1073 233 30 30 0 15 #rect
+ew0 f46 1073 209 30 30 0 15 #rect
 ew0 f46 @|EndIcon #fIcon
 ew0 f47 expr in #txt
 ew0 f47 outCond in.discard #txt
-ew0 f47 1088 176 1088 233 #arcP
+ew0 f47 1088 176 1088 209 #arcP
 ew0 f48 expr out #txt
 ew0 f48 1016 160 1072 160 #arcP
 ew0 f12 expr in #txt
@@ -412,17 +411,36 @@ ew0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f27 752 144 32 32 -58 -32 #rect
 ew0 f27 @|AlternativeIcon #fIcon
-ew0 f28 expr in #txt
-ew0 f28 outCond in.isUseDefaultUI #txt
-ew0 f28 768 176 1600 182 #arcP
-ew0 f28 1 768 352 #addKink
-ew0 f28 2 1600 352 #addKink
-ew0 f28 1 0.4963942307692308 0 0 #arcLabel
 ew0 f29 expr in #txt
 ew0 f29 outCond !in.discard #txt
 ew0 f29 688 160 752 160 #arcP
 ew0 f4 expr in #txt
+ew0 f4 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
 ew0 f4 784 160 840 160 #arcP
+ew0 f4 0 0.48214285714285715 0 -8 #arcLabel
+ew0 f30 expr in #txt
+ew0 f30 outCond in.isUseDefaultUI #txt
+ew0 f30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f30 768 176 1212 172 #arcP
+ew0 f30 1 768 256 #addKink
+ew0 f30 2 1184 256 #addKink
+ew0 f30 0 0.35 13 0 #arcLabel
 >Proto ew0 .type gawfs.Data #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -539,13 +557,13 @@ ew0 f22 mainOut f25 tail #connect
 ew0 f25 head f9 mainIn #connect
 ew0 f7 mainOut f26 tail #connect
 ew0 f26 head f41 in #connect
-ew0 f27 out f28 tail #connect
-ew0 f28 head f9 mainIn #connect
 ew0 f41 out f29 tail #connect
 ew0 f29 head f27 in #connect
 ew0 f41 out f44 tail #connect
-ew0 f27 out f4 tail #connect
 ew0 f4 head f3 mainIn #connect
+ew0 f27 out f30 tail #connect
+ew0 f30 head f18 in #connect
+ew0 f27 out f4 tail #connect
 Ct0 f1 head g1 m #connect
 Ct0 f25 mainOut f1 tail #connect
 Ct0 g0 m f0 tail #connect
