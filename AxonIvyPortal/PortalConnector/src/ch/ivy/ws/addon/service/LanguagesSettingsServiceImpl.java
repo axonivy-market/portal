@@ -43,19 +43,20 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
     LanguagesSettingsServiceResult result = new LanguagesSettingsServiceResult();
     List<WSException> errors = new ArrayList<>();
     List<IvyLanguageSetting> settings = new ArrayList<>();
-    if (apps != null && !apps.isEmpty()) {
-      for (String appName : apps) {
-        try {
-          IvyLanguageSetting languageSetting = getUserLanguagesSettings(username, appName, serverId);
-          if (languageSetting != null && languageSetting.getSupportedLanguages() != null
-              && !languageSetting.getSupportedLanguages().isEmpty()) {
-            settings.add(languageSetting);
-          }
-        } catch (WSException e) {
-          errors.add(e);
-        } catch (Exception ex) {
-          Ivy.log().error(ex);
+    if (apps == null || apps.isEmpty()) {
+      return result;
+    }
+    for (String appName : apps) {
+      try {
+        IvyLanguageSetting languageSetting = getUserLanguagesSettings(username, appName, serverId);
+        if (languageSetting != null && languageSetting.getSupportedLanguages() != null
+            && !languageSetting.getSupportedLanguages().isEmpty()) {
+          settings.add(languageSetting);
         }
+      } catch (WSException e) {
+        errors.add(e);
+      } catch (Exception ex) {
+        Ivy.log().error(ex);
       }
     }
     result.setErrors(errors);
@@ -122,17 +123,15 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
     for (IProcessModelVersion pmv : pmvs) {
       String lang;
       IContentManagementSystem findCms = server.getContentManagement().findCms(pmv);
-      if (findCms != null) {
-        lang = findCms.co(CMS_LANG_KEY);
+      if (findCms == null) {
+        continue;
+      }
+      lang = findCms.co(CMS_LANG_KEY);
 
-        if (!StringUtils.isEmpty(lang)) {
-          String[] sp = lang.split(",");
-          for (String spItem : sp) {
-            String languageCode = spItem.trim();
-            if (!supportedLanguages.contains(languageCode)) {
-              supportedLanguages.add(languageCode);
-            }
-          }
+      if (!StringUtils.isEmpty(lang)) {
+        String[] sp = lang.split(",");
+        for (String spItem : sp) {
+          supportedLanguages.add(spItem.trim());
         }
       }
     }

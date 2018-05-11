@@ -1,6 +1,7 @@
 package ch.ivy.ws.addon.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,26 +27,24 @@ public class ProcessStartCollector {
   }
 
   public IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
-    if (isActive(this.application)) {
+    if (!isActive(this.application)) {
       List<IProcessModel> processModels = this.application.getProcessModelsSortedByName();
-
-      for (IProcessModel processModel : processModels) {
-
-        if (isActive(processModel)) {
-          IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
-
-          if (isActive(processModelVersion)) {
-            IWorkflowProcessModelVersion workflowPmv =
-                WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
-            IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
-            if (processStart != null) {
-              return processStart;
-            }
-          }
+      Optional<IProcessModelVersion> processModelVersion =
+          processModels.stream().filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
+              .filter(this::isActive).findFirst();
+      if (processModelVersion.isPresent()) {
+        IWorkflowProcessModelVersion workflowPmv = getWorkflowProcessModelVersion(processModelVersion.get());
+        IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
+        if (processStart != null) {
+          return processStart;
         }
       }
     }
     return null;
+  }
+
+  private IWorkflowProcessModelVersion getWorkflowProcessModelVersion(IProcessModelVersion processModelVersion) {
+    return WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
   }
 
   public String findACMLink() {
