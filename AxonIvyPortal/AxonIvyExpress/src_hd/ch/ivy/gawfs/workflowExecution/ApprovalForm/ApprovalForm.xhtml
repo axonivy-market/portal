@@ -108,14 +108,14 @@
 							<p:spacer width="50" height="16" id="spacer" />
 						</pe:dynaFormControl>
 					</pe:dynaForm>
+				
+
+				</p:fieldset>
+				<br/>
 				<h:panelGroup id="comment-container" styleClass="comment-container" layout="block">
 					<h:outputLabel id="comment-label" styleClass="comment-label" for="comment" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/CommentLabel')}" />
 					<p:inputTextarea id="comment" styleClass="comment" value="#{data.comment}" rows="4" />
 				</h:panelGroup>
-
-				</p:fieldset>
-				<br/>
-				
                 <h:panelGrid columns="2" styleClass="case-view-footer Wid100 u-no-border">
                     <h:panelGroup>
 						<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"

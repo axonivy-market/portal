@@ -63,13 +63,13 @@ Fs0 @PushWFArc f2 '' #zField
 Fs0 @RichDialogMethodStart f47 '' #zField
 Fs0 @RichDialogProcessEnd f48 '' #zField
 Fs0 @GridStep f49 '' #zField
-Fs0 @PushWFArc f50 '' #zField
 Fs0 @PushWFArc f51 '' #zField
 Fs0 @GridStep f52 '' #zField
 Fs0 @PushWFArc f53 '' #zField
 Fs0 @PushWFArc f5 '' #zField
 Fs0 @RichDialogProcessStart f54 '' #zField
 Fs0 @PushWFArc f55 '' #zField
+Fs0 @PushWFArc f50 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -622,24 +622,28 @@ Fs0 f2 expr out #txt
 Fs0 f2 472 64 531 64 #arcP
 Fs0 f47 guid 16347C45756F58EB #txt
 Fs0 f47 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f47 method changeUISetting() #txt
+Fs0 f47 method changeUISetting(Boolean) #txt
 Fs0 f47 disableUIEvents false #txt
 Fs0 f47 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+<java.lang.Boolean isAgreed> param = methodEvent.getInputArguments();
 ' #txt
+Fs0 f47 inActionCode 'out.data.isUseDefaultUI = param.isAgreed ?  out.data.isUseDefaultUI : !out.data.isUseDefaultUI;
+out.data.processType = out.data.processType;' #txt
 Fs0 f47 outParameterDecl '<> result;
 ' #txt
 Fs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>changeUISetting()</name>
+        <nameStyle>17,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Fs0 f47 819 339 26 26 -49 15 #rect
 Fs0 f47 @|RichDialogMethodStartIcon #fIcon
 Fs0 f48 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f48 1075 339 26 26 0 12 #rect
+Fs0 f48 1171 339 26 26 0 12 #rect
 Fs0 f48 @|RichDialogProcessEndIcon #fIcon
 Fs0 f49 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
@@ -663,12 +667,10 @@ Fs0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f49 896 330 128 44 -55 -8 #rect
+Fs0 f49 992 330 128 44 -55 -8 #rect
 Fs0 f49 @|StepIcon #fIcon
-Fs0 f50 expr out #txt
-Fs0 f50 845 352 896 352 #arcP
 Fs0 f51 expr out #txt
-Fs0 f51 1024 352 1075 352 #arcP
+Fs0 f51 1120 352 1171 352 #arcP
 Fs0 f52 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
 Fs0 f52 actionTable 'out=in;
@@ -725,6 +727,8 @@ Fs0 f55 expr out #txt
 Fs0 f55 109 512 440 470 #arcP
 Fs0 f55 1 440 512 #addKink
 Fs0 f55 0 0.8593296567373708 0 0 #arcLabel
+Fs0 f50 expr out #txt
+Fs0 f50 845 352 992 352 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -769,8 +773,6 @@ Fs0 f6 mainOut f46 tail #connect
 Fs0 f46 head f45 mainIn #connect
 Fs0 f45 mainOut f2 tail #connect
 Fs0 f2 head f1 mainIn #connect
-Fs0 f47 mainOut f50 tail #connect
-Fs0 f50 head f49 mainIn #connect
 Fs0 f49 mainOut f51 tail #connect
 Fs0 f51 head f48 mainIn #connect
 Fs0 f3 mainOut f53 tail #connect
@@ -779,3 +781,5 @@ Fs0 f52 mainOut f5 tail #connect
 Fs0 f5 head f4 mainIn #connect
 Fs0 f54 mainOut f55 tail #connect
 Fs0 f55 head f27 mainIn #connect
+Fs0 f47 mainOut f50 tail #connect
+Fs0 f50 head f49 mainIn #connect
