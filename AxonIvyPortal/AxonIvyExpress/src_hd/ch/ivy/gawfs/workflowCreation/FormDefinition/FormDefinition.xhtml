@@ -72,7 +72,7 @@
 
 				<p:commandButton id="next-button" icon="fa fa-arrow-right" styleClass="buttonDelegate"
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
-					rendered="#{data.activeTaskIndex ne (data.data.definedTasks.size() -1)}" partialSubmit="true"
+					rendered="#{data.displayNextBtn}" partialSubmit="true"
 					update="form defined-task-container buttons-container" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.moveNextTask}" />
 				<p:spacer width="5" />
 
