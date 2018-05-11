@@ -30,6 +30,7 @@ import ch.ivy.ws.addon.types.IvyAdditionalProperty;
 import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvyCase;
 import ch.ivy.ws.addon.util.IvyExecutor;
+import ch.ivy.ws.addon.util.JsonConverterUtils;
 import ch.ivy.ws.addon.util.SessionUtil;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -46,8 +47,6 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
-
-import com.google.gson.Gson;
 
 public class CaseServiceImpl extends AbstractService implements ICaseService {
 
@@ -633,12 +632,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         HashMap<String, Long> recordMap = getCategoryToAverageElapsedTimeMap(recordSet);
 
         ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
-        Gson gsonConverter = new Gson();
-        String json = "";
-        if (recordMap.size() != 0) {
-          json = gsonConverter.toJson(recordMap);
-        }
-        elapsedTimeStatistic.setResult(json);
+        elapsedTimeStatistic.setResult(JsonConverterUtils.mapToJson(recordMap));
 
         return result(elapsedTimeStatistic, errors);
       });
