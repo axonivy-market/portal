@@ -1,5 +1,5 @@
 [Ivy]
-1380566F9095B9C4 3.20 #module
+1380566F9095B9C4 3.23 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 WS #cInfo
@@ -91,13 +91,16 @@ Te0 f8 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
 Te0 f8 actionTable 'out=in;
 ' #txt
-Te0 f8 actionCode 'import ch.ivy.ws.addon.WsServiceFactory;
+Te0 f8 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	in.ivyTask = WsServiceFactory.getTaskService().parkTask(in.user,in.ivyTask.id, in.isUrlBuiltFromSystemProperties);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().parkTask(in.user,in.ivyTask.id, in.isUrlBuiltFromSystemProperties);
+	in.ivyTask = tsResult.getTask();
+	in.errors = tsResult.getErrors();
 }catch(WSException e){
-	in.error = e;
+	in.errors.add(e);
 }' #txt
 Te0 f8 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
