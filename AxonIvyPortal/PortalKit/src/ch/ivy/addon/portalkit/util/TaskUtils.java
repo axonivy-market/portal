@@ -184,16 +184,13 @@ public final class TaskUtils {
    */
   public static Boolean removeTaskDelay(final ITask task) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-        @Override
-        public Boolean call() {
-          try {
-            task.setDelayTimestamp(null);
-            return true;
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return false;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          task.setDelayTimestamp(null);
+          return true;
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return false;
         }
       });
     } catch (Exception e) {
@@ -370,22 +367,19 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers() != null
         && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-          @Override
-          public String call() {
-            try {
-              String st = iTask.getActivator().getMemberName();
-              List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
-              for (IUser user : l) {
-                if (st.equals(user.getMemberName())) {
-                  return user.getEMailAddress();
-                }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            String st = iTask.getActivator().getMemberName();
+            List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
+            for (IUser user : l) {
+              if (st.equals(user.getMemberName())) {
+                return user.getEMailAddress();
               }
-              return st;
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return null;
             }
+            return st;
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return null;
           }
         });
       } catch (Exception e) {
@@ -408,22 +402,19 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers() != null
         && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-          @Override
-          public String call() {
-            try {
-              String st = iTask.getActivator().getMemberName();
-              List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
-              for (IUser user : l) {
-                if (st.equals(user.getMemberName())) {
-                  return user.getProperty(UserUtils.PHONE);
-                }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            String st = iTask.getActivator().getMemberName();
+            List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
+            for (IUser user : l) {
+              if (st.equals(user.getMemberName())) {
+                return user.getProperty(UserUtils.PHONE);
               }
-              return st;
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return null;
             }
+            return st;
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return null;
           }
         });
       } catch (Exception e) {
@@ -446,22 +437,19 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers() != null
         && !iTask.getActivator().getSecurityContext().getUsers().isEmpty()) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-          @Override
-          public String call() {
-            try {
-              String st = iTask.getActivator().getMemberName();
-              List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
-              for (IUser user : l) {
-                if (st.equals(user.getMemberName())) {
-                  return user.getProperty(UserUtils.MOBILE);
-                }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            String st = iTask.getActivator().getMemberName();
+            List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
+            for (IUser user : l) {
+              if (st.equals(user.getMemberName())) {
+                return user.getProperty(UserUtils.MOBILE);
               }
-              return st;
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return null;
             }
+            return st;
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return null;
           }
         });
       } catch (Exception e) {
@@ -481,15 +469,12 @@ public final class TaskUtils {
    */
   public static String getPhone(final IUser iUser) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-        @Override
-        public String call() {
-          try {
-            return iUser.getProperty(UserUtils.PHONE);
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          return iUser.getProperty(UserUtils.PHONE);
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -506,15 +491,12 @@ public final class TaskUtils {
    */
   public static String getMobile(final IUser iUser) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-        @Override
-        public String call() {
-          try {
-            return iUser.getProperty(UserUtils.MOBILE);
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          return iUser.getProperty(UserUtils.MOBILE);
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -531,15 +513,12 @@ public final class TaskUtils {
    */
   public static String getEmailAddress(final IUser iUser) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-        @Override
-        public String call() {
-          try {
-            return iUser.getEMailAddress();
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          return iUser.getEMailAddress();
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -557,23 +536,20 @@ public final class TaskUtils {
   @SuppressWarnings("deprecation")
   public static List<ITask> findWaitingTaskByKindCode(final String kindCode) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<List<ITask>>() {
-        @Override
-        public List<ITask> call() throws Exception {
-          try {
-            TaskQuery taskQuery =
-                TaskQuery.create().where().state().isEqual(TaskState.WAITING_FOR_INTERMEDIATE_EVENT).and().kindCode()
-                    .isEqual(kindCode);
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(
+          () -> {
+            List<ITask> taskList = new ArrayList<>();
+            try {
+              TaskQuery taskQuery =
+                  TaskQuery.create().where().state().isEqual(TaskState.WAITING_FOR_INTERMEDIATE_EVENT).and().kindCode()
+                      .isEqual(kindCode);
 
-            List<ITask> taskList = Ivy.wf().getTaskQueryExecutor().getResults(taskQuery);
+              taskList = Ivy.wf().getTaskQueryExecutor().getResults(taskQuery);
+            } catch (Exception e) {
+              Ivy.log().error(e);
+            }
             return taskList;
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return Collections.emptyList();
-          }
-
-        }
-      });
+          });
     } catch (Exception e) {
       Ivy.log().error(e);
       return Collections.emptyList();
@@ -589,18 +565,15 @@ public final class TaskUtils {
    */
   public static ITask findTaskById(final long taskId) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ITask>() {
-        @Override
-        public ITask call() throws Exception {
-          ITask t = null;
-          try {
-            TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
-            t = Ivy.wf().getGlobalContext().getTaskQueryExecutor().getResults(query).get(0);
-          } catch (Exception e) {
-            Ivy.log().error(e);
-          }
-          return t;
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        ITask t = null;
+        try {
+          TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
+          t = Ivy.wf().getGlobalContext().getTaskQueryExecutor().getResults(query).get(0);
+        } catch (Exception e) {
+          Ivy.log().error(e);
         }
+        return t;
       });
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -616,13 +589,8 @@ public final class TaskUtils {
    */
   public static Recordset findtasks(final TaskQuery taskQuery) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Recordset>() {
-        @Override
-        public Recordset call() throws Exception {
-          return Ivy.wf().getTaskQueryExecutor().getRecordset(taskQuery);
-        }
-      });
-
+      return ServerFactory.getServer().getSecurityManager()
+          .executeAsSystem(() -> Ivy.wf().getTaskQueryExecutor().getRecordset(taskQuery));
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -637,14 +605,10 @@ public final class TaskUtils {
    */
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
-        @Override
-        public Object call() throws Exception {
-          iTask.setActivator(iSecurityMember);
-          return null;
-        }
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        iTask.setActivator(iSecurityMember);
+        return null;
       });
-
     } catch (Exception e) {
       Ivy.log().error(e);
     }
