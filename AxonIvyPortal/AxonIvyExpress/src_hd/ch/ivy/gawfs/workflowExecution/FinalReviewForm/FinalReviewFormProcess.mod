@@ -106,6 +106,7 @@ ivy.task.reset();
 ivy.task.setAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString(), "");
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
+Fs0 f17 security system #txt
 Fs0 f17 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
 Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
