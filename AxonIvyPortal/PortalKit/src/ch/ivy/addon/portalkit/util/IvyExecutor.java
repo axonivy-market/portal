@@ -14,7 +14,6 @@ public class IvyExecutor {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(callable);
     } catch (Exception ex) {
       throw new PortalException(ex);
-
     }
   }
 
