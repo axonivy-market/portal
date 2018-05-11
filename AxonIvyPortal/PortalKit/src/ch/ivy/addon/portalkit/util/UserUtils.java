@@ -111,23 +111,26 @@ public class UserUtils {
           }
         }
 
-        // Sort the list
-          Collections.sort(delegatedUsers, (o1, o2) -> {
-            if (o1 == null || o1.getDisplayName() == null) {
-              return -1;
-            }
-
-            if (o2 == null) {
-              return 1;
-            }
-            return o1.getDisplayName().compareTo(o2.getDisplayName());
-          });
-          return delegatedUsers;
+        sortUserByDisplayName(delegatedUsers);
+        return delegatedUsers;
       });
     } catch (Exception e) {
       Ivy.log().error(e);
     }
     return Collections.emptyList();
+  }
+
+  private static void sortUserByDisplayName(List<IUser> delegatedUsers) {
+    Collections.sort(delegatedUsers, (o1, o2) -> {
+      if (o1 == null || o1.getDisplayName() == null) {
+        return -1;
+      }
+
+      if (o2 == null) {
+        return 1;
+      }
+      return o1.getDisplayName().compareTo(o2.getDisplayName());
+    });
   }
 
   /**

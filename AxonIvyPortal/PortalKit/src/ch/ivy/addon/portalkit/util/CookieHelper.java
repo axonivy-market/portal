@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -26,21 +29,14 @@ public class CookieHelper {
 
     if (facesContext != null) {
       HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-      Cookie cookie = null;
-
       Cookie[] userCookies = request.getCookies();
+      Cookie cookie = new Cookie(name, value);
       if (userCookies != null && userCookies.length > 0) {
-        for (int i = 0; i < userCookies.length; i++) {
-          if (userCookies[i].getName().equals(name)) {
-            cookie = userCookies[i];
-            break;
-          }
+        Optional<Cookie> cookieOpt = Stream.of(userCookies).filter(c -> c.getName().equals(name)).findFirst();
+        if (cookieOpt.isPresent()) {
+          cookie = cookieOpt.get();
+          cookie.setValue(value);
         }
-      }
-      if (cookie != null) {
-        cookie.setValue(value);
-      } else {
-        cookie = new Cookie(name, value);
       }
       cookie.setPath("/");
       HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
@@ -55,22 +51,11 @@ public class CookieHelper {
    * @return Cookie Cookie object stored in cookie
    */
   public Cookie getCookie(String name) {
-
     FacesContext facesContext = FacesContext.getCurrentInstance();
-
     if (facesContext != null) {
       HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-      Cookie cookie = null;
-
       Cookie[] userCookies = request.getCookies();
-      if (userCookies != null && userCookies.length > 0) {
-        for (int i = 0; i < userCookies.length; i++) {
-          if (userCookies[i].getName().equals(name)) {
-            cookie = userCookies[i];
-            return cookie;
-          }
-        }
-      }
+      return  Stream.of(userCookies).filter(c -> c.getName().equals(name)).findFirst().orElse(null);
     }
     return null;
   }
