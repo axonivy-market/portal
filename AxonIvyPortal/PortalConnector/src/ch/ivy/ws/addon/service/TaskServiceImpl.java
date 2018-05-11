@@ -35,6 +35,7 @@ import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvySecurityMember;
 import ch.ivy.ws.addon.types.IvyTask;
 import ch.ivy.ws.addon.types.PriorityStatistic;
+import ch.ivy.ws.addon.util.JsonConverterUtils;
 import ch.ivy.ws.addon.util.SessionUtil;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -56,8 +57,6 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
-
-import com.google.gson.Gson;
 
 public class TaskServiceImpl extends AbstractService implements ITaskService {
 
@@ -603,12 +602,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
 
             ExpiryStatistic expiryStatistic = new ExpiryStatistic();
-            Gson gsonConverter = new Gson();
-            String json = "";
-            if (recordMap.size() != 0) {
-              json = gsonConverter.toJson(recordMap);
-            }
-            expiryStatistic.setResult(json);
+            expiryStatistic.setResult(JsonConverterUtils.mapToJson(recordMap));
 
             return result(expiryStatistic, errors);
           });
@@ -647,12 +641,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
 
             ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
-            Gson gsonConverter = new Gson();
-            String json = "";
-            if (recordMap.size() != 0) {
-              json = gsonConverter.toJson(recordMap);
-            }
-            elapsedTimeStatistic.setResult(json);
+            elapsedTimeStatistic.setResult(JsonConverterUtils.mapToJson(recordMap));
 
             return result(elapsedTimeStatistic, errors);
           });
@@ -726,8 +715,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
     try {
       TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
-      ITask task = executeTaskQuery(query, 0, -1).get(0);
-      return task;
+      return executeTaskQuery(query, 0, -1).get(0);
     } catch (Exception e) {
       // Wrong TaskId
       List<Object> userText = new ArrayList<>();
@@ -972,8 +960,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
    * @return List<ITask>
    */
   private List<ITask> executeTaskQuery(TaskQuery query, Integer startIndex, Integer count) {
-    List<ITask> tasks = taskQueryExecutor().getResults(query, startIndex, count);
-    return tasks;
+    return taskQueryExecutor().getResults(query, startIndex, count);
   }
 
   private long countTasks(TaskQuery query) {
