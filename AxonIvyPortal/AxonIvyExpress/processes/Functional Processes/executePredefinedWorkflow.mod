@@ -54,18 +54,16 @@ Bk0 @TextInP .responsibility .responsibility #zField
 Bk0 @GridStep f28 '' #zField
 Bk0 @PushTrueWFInG-01 g0 '' #zField
 Bk0 @PushTrueWFOutG-01 g1 '' #zField
-Bk0 @GridStep f21 '' #zField
-Bk0 @PushWFArc f2 '' #zField
 Bk0 @PushTrueWFInG-01 g2 '' #zField
 Bk0 @PushWFArc f10 '' #zField
 Bk0 @PushWFArc f29 '' #zField
 Bk0 @GridStep f5 '' #zField
 Bk0 @GridStep f8 '' #zField
 Bk0 @GridStep f11 '' #zField
-Bk0 @PushWFArc f12 '' #zField
 Bk0 @PushWFArc f1 '' #zField
 Bk0 @PushWFArc f3 '' #zField
 Bk0 @PushWFArc f0 '' #zField
+Bk0 @PushWFArc f2 '' #zField
 >Proto Bk0 Bk0 BpmnServiceTask #zField
 Bk3 @TextInP .resExport .resExport #zField
 Bk3 @TextInP .type .type #zField
@@ -401,24 +399,40 @@ Bk0 f28 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f28 actionTable 'out=in;
 ' #txt
-Bk0 f28 actionCode 'import gawfs.TaskDef;
-for(TaskDef task: in.definedTasks){
+Bk0 f28 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+import gawfs.TaskDef;
+
+
+// Add review task to defined tasks
+TaskDef taskDef = new gawfs.TaskDef();
+taskDef.taskType = TaskType.FINAL_REVIEW;
+taskDef.subject = TaskType.FINAL_REVIEW.getLabel();
+in.definedTasks.add(taskDef);
+
+// Initialize steps
+for(TaskDef task: in.definedTasks) {
 	in.steps.add(task.subject);
 }
 
-in.actualStepIndex = 0;
-in.denied = false;' #txt
+// Initialize controllers
+in.nextTask = in.definedTasks.removeGet(0);
+if (in.nextTask.taskType == TaskType.USER_TASK || in.nextTask.taskType == TaskType.USER_TASK_WITH_EMAIL) {
+	in.dynaFormController = in.nextTask.dynaFormController;
+	in.dragAndDropController = in.nextTask.dragAndDropController;
+}
+
+// Others
+in.denied = false;
+in.actualStepIndex = 0;' #txt
 Bk0 f28 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>init workflowsettings</name>
-        <nameStyle>21,7
-</nameStyle>
+        <name>Initialize workflow settings</name>
     </language>
 </elementInfo>
 ' #txt
-Bk0 f28 200 298 128 44 -55 -8 #rect
+Bk0 f28 184 298 160 44 -71 -8 #rect
 Bk0 f28 @|StepIcon #fIcon
 Bk0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -438,54 +452,19 @@ Bk0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk0 g1 627 403 26 26 -27 18 #rect
 Bk0 g1 @|MOGIcon #fIcon
-Bk0 f21 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
-' #txt
-Bk0 f21 actionTable 'out=in;
-' #txt
-Bk0 f21 actionCode 'import ch.ivy.gawfs.enums.TaskType;
-in.nextTask = in.definedTasks.removeGet(0);
-
-if (in.nextTask.taskType == TaskType.USER_TASK || in.nextTask.taskType == TaskType.USER_TASK_WITH_EMAIL) {
-	in.dynaFormController = in.nextTask.dynaFormController;
-	in.dragAndDropController = in.nextTask.dragAndDropController;
-}
-
-in.actualStepIndex = 0;' #txt
-Bk0 f21 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get first Task</name>
-        <nameStyle>14,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Bk0 f21 208 394 112 44 -35 -8 #rect
-Bk0 f21 @|StepIcon #fIcon
-Bk0 f2 expr out #txt
-Bk0 f2 264 342 264 394 #arcP
 Bk0 g2 51 307 26 26 -4 -48 #rect
 Bk0 g2 @|MIGIcon #fIcon
-Bk0 f10 77 320 200 320 #arcP
+Bk0 f10 77 320 184 320 #arcP
 Bk0 f29 expr out #txt
 Bk0 f29 264 236 264 298 #arcP
 Bk0 f5 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f5 actionTable 'out=in;
 ' #txt
-Bk0 f5 actionCode 'import ch.ivy.gawfs.enums.TaskType;
-import gawfs.TaskDef;
-import ch.ivy.gawfs.ExpressProcessUtils;
+Bk0 f5 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
 
 ExpressProcessUtils utils = new ch.ivy.gawfs.ExpressProcessUtils();
-in.definedTasks = utils.getDefinedTasks(in.workflowID);
-
-TaskDef taskDef = new gawfs.TaskDef();
-taskDef.taskType = TaskType.FINAL_REVIEW;
-taskDef.subject = TaskType.FINAL_REVIEW.getLabel();
-
-in.definedTasks.add(taskDef);' #txt
+in.definedTasks = utils.getDefinedTasks(in.workflowID);' #txt
 Bk0 f5 security system #txt
 Bk0 f5 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -550,13 +529,15 @@ Bk0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk0 f11 376 394 160 44 -70 -8 #rect
 Bk0 f11 @|StepIcon #fIcon
-Bk0 f12 expr out #txt
-Bk0 f12 320 416 376 416 #arcP
 Bk0 f1 expr out #txt
 Bk0 f1 536 416 627 416 #arcP
 Bk0 f3 expr out #txt
 Bk0 f3 264 142 264 192 #arcP
 Bk0 f0 264 45 264 98 #arcP
+Bk0 f2 expr out #txt
+Bk0 f2 264 342 376 416 #arcP
+Bk0 f2 1 264 416 #addKink
+Bk0 f2 1 0.2314443862725309 0 0 #arcLabel
 >Proto Bk0 0 0 32 24 18 0 #rect
 >Proto Bk0 @|BIcon #fIcon
 Bk3 g0 339 51 26 26 21 -3 #rect
@@ -1524,18 +1505,16 @@ ew0 f7 out f14 tail #connect
 ew0 f14 head f5 in #connect
 Bk0 f5 mainOut f29 tail #connect
 Bk0 f29 head f28 mainIn #connect
-Bk0 f28 mainOut f2 tail #connect
-Bk0 f2 head f21 mainIn #connect
 Bk0 g2 m f10 tail #connect
 Bk0 f10 head f28 mainIn #connect
-Bk0 f21 mainOut f12 tail #connect
-Bk0 f12 head f11 mainIn #connect
 Bk0 f11 mainOut f1 tail #connect
 Bk0 f1 head g1 m #connect
 Bk0 f8 mainOut f3 tail #connect
 Bk0 f3 head f5 mainIn #connect
 Bk0 g0 m f0 tail #connect
 Bk0 f0 head f8 mainIn #connect
+Bk0 f28 mainOut f2 tail #connect
+Bk0 f2 head f11 mainIn #connect
 Bk0 0 0 896 520 0 #ivRect
 Bk3 f8 head f16 in #connect
 Bk3 f0 out f8 tail #connect

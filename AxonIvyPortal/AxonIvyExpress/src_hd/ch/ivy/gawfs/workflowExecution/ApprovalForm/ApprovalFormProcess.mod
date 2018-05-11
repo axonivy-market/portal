@@ -204,6 +204,7 @@ As0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigato
 ivy.task.reset();
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
+As0 f17 security system #txt
 As0 f17 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
