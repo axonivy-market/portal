@@ -1,7 +1,11 @@
 package ch.ivy.ws.addon.service;
 
+import static ch.ivyteam.ivy.server.ServerFactory.getServer;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 import ch.ivy.ws.addon.PortalException;
@@ -27,6 +31,7 @@ public abstract class AbstractService {
 
   /**
    * Find all users on the server
+   * 
    * @param apps
    * @param username
    * @return list of {@link IUser}
@@ -57,93 +62,76 @@ public abstract class AbstractService {
   }
 
   /**
-   * Return List of WSExceptions if there are not some applications on the server or they are
-   * inactive.
+   * Return List of WSExceptions if there are not some applications on the server or they are inactive.
    * 
    * @param apps
    * @return List<WSException> specified exception
    */
-  protected AvailableAppsResult findAvailableApplicationsAndUsers(final java.util.List<String> apps,
-      final String username) {
+  protected AvailableAppsResult findAvailableApplicationsAndUsers(final List<String> apps, final String username) {
     return executeAsSystem(() -> {
-      AvailableAppsResult result = new AvailableAppsResult();
-
-      result.setUsers(new ArrayList<IUser>());
-
-      java.util.List<WSException> errors = new ArrayList<>();
-      IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-
-      if (!apps.isEmpty()) {
-        boolean userNotFound = false;
-
-        java.util.List<String> notFoundApps = new ArrayList<>();
-        java.util.List<String> notActiveApps = new ArrayList<>();
-        java.util.List<String> availableApps = new ArrayList<>();
-
-        java.util.List<IApplication> serverApps = server.getApplicationConfigurationManager().getApplications();
-
-        for (String app : apps) {
-          Boolean available = false;
-          Boolean appFound = false;
-          for (IApplication serverApp : serverApps) {
-
-            if (serverApp.getName().equals(app)) {
-              IUser u = serverApp.getSecurityContext().findUser(username);
-
-              if (u != null) {
-                if (serverApp.getActivityOperationState().equals(ActivityOperationState.ACTIVE)) {
-                  available = true;
-                  result.getUsers().add(u);
-                } else {
-                  notActiveApps.add(app);
-                }
-              } else {
-                userNotFound = true;
-              }
-
-              appFound = true;
-              break;
-            }
-          }
-          if (!appFound) {
-            notFoundApps.add(app);
-            available = false;
-          }
-          if (available) {
-            availableApps.add(app);
-          }
-        }
-
-        result.setAvailableApps(availableApps);
-
-        if (!notFoundApps.isEmpty()) {
-          List<Object> userText = new ArrayList<>();
-          userText.add(parseList(notFoundApps));
-          errors.add(new WSException(WSErrorType.WARNING, 10030, userText, null));
-        }
-
-        if (!notActiveApps.isEmpty()) {
-          List<Object> userText = new ArrayList<>();
-          userText.add(parseList(notActiveApps));
-          errors.add(new WSException(WSErrorType.WARNING, 10023, userText, null));
-        }
-
-        if (userNotFound) {
-          // No cases found, user is not valid
-          List<Object> userText = new ArrayList<>();
-          userText.add(username);
-          errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
-        }
-
-      } else {
-        // No application given
-        errors.add(new WSException(WSErrorType.WARNING, 10026, null, null));
+      if (apps.isEmpty()) {
+        return result(Arrays.asList(new WSException(WSErrorType.WARNING, 10026, null, null)));
       }
-
-      result.setErrors(errors);
-
-      return result;
+      return findAvailableAppsAndUsers(apps, username);
     });
+  }
+
+  private AvailableAppsResult findAvailableAppsAndUsers(final List<String> apps, final String username) {
+    AvailableAppsResult result = initAvailableAppsResult();
+    boolean userNotFound = false;
+    List<String> notFoundApps = new ArrayList<>();
+    List<String> notActiveApps = new ArrayList<>();
+    List<IApplication> serverApps = getServer().getApplicationConfigurationManager().getApplications();
+    for (String app : apps) {
+      Optional<IApplication> serverApp = serverApps.stream().filter(sApp -> sApp.getName().equals(app)).findFirst();
+      if (!serverApp.isPresent()) {
+        notFoundApps.add(app);
+        continue;
+      }
+      IUser user = serverApp.get().getSecurityContext().findUser(username);
+      if (user != null) {
+        if (serverApp.get().getActivityOperationState().equals(ActivityOperationState.ACTIVE)) {
+          result.getAvailableApps().add(app);
+          result.getUsers().add(user);
+        } else {
+          notActiveApps.add(app);
+        }
+      } else {
+        userNotFound = true;
+      }
+    }
+    result.getErrors().addAll(getErrors(username, userNotFound, notFoundApps, notActiveApps));
+    return result;
+  }
+
+  private List<WSException> getErrors(final String username, boolean userNotFound, List<String> notFoundApps,
+      List<String> notActiveApps) {
+    List<WSException> errors = new ArrayList<>();
+    if (!notFoundApps.isEmpty()) {
+      errors.add(new WSException(WSErrorType.WARNING, 10030, Arrays.asList(parseList(notFoundApps)), null));
+    }
+    if (!notActiveApps.isEmpty()) {
+      errors.add(new WSException(WSErrorType.WARNING, 10023, Arrays.asList(parseList(notActiveApps)), null));
+    }
+    if (userNotFound) {
+      // No cases found, user is not valid
+      errors.add(new WSException(WSErrorType.WARNING, 10029, Arrays.asList(username), null));
+    }
+    return errors;
+  }
+
+  private AvailableAppsResult initAvailableAppsResult() {
+    AvailableAppsResult result = new AvailableAppsResult();
+    result.setUsers(new ArrayList<IUser>());
+    result.setAvailableApps(new ArrayList<>());
+    result.setErrors(new ArrayList<>());
+    return result;
+  }
+
+  private AvailableAppsResult result(List<WSException> errors) {
+    AvailableAppsResult result = new AvailableAppsResult();
+    result.setErrors(errors);
+    return result;
   }
 
   /**
@@ -165,8 +153,7 @@ public abstract class AbstractService {
             String authenticationMode = "customAuth";
             session.authenticateSessionUser(user, authenticationMode, Ivy.wfTask().getId());
           }
-          IWorkflowSession workflowSession = Ivy.wf().getWorkflowSession(session);
-          return workflowSession;
+          return Ivy.wf().getWorkflowSession(session);
         }
       });
     } catch (Exception e) {
@@ -194,8 +181,7 @@ public abstract class AbstractService {
   protected IApplication getApplicationByName(final String applicationName) {
     return executeAsSystem(() -> {
       IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-      IApplication application = server.getApplicationConfigurationManager().findApplication(applicationName);
-      return application;
+      return server.getApplicationConfigurationManager().findApplication(applicationName);
     });
   }
 
