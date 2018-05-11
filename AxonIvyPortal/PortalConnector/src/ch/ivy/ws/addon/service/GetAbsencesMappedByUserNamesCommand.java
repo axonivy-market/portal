@@ -1,6 +1,7 @@
 package ch.ivy.ws.addon.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class GetAbsencesMappedByUserNamesCommand implements Callable<AbsenceServ
 
   @Override
   public AbsenceServiceResult call() throws Exception {
-    
+
     Map<IUser, List<IvyAbsence>> absencesMappedByUser = new HashMap<>();
     List<String> inactiveApplicationNames = new ArrayList<>();
     List<String> notFoundApplicationNames = new ArrayList<>();
@@ -41,28 +42,22 @@ public class GetAbsencesMappedByUserNamesCommand implements Callable<AbsenceServ
 
       if (application == null) {
         notFoundApplicationNames.add(applicationName);
-        continue;
-      }
-
-      if (notActivated(application)) {
+      } else if (notActivated(application)) {
         inactiveApplicationNames.add(applicationName);
-        continue;
-      }
-      
-      List<IUser> users = application.getSecurityContext().getUsers();
-      for (IUser user : users) {
-        List<IvyAbsence> absences = new IvyAbsenceTransformer().transform(user.getAbsences(), application);
-        List<IvyAbsence> existingAbsences = absencesMappedByUser.get(user);
-        if( existingAbsences != null) {
-          absences.addAll(existingAbsences);
+      } else {
+        List<IUser> users = application.getSecurityContext().getUsers();
+        for (IUser user : users) {
+          List<IvyAbsence> absences = new IvyAbsenceTransformer().transform(user.getAbsences(), application);
+          List<IvyAbsence> existingAbsences = absencesMappedByUser.get(user);
+          absences.addAll(existingAbsences != null ? existingAbsences : Collections.emptyList());
+          absencesMappedByUser.put(user, absences);
         }
-        absencesMappedByUser.put(user, absences);
       }
     }
 
     Set<IUser> keys = absencesMappedByUser.keySet();
     List<Absence> absences = new ArrayList<>();
-    for(IUser user: keys) {
+    for (IUser user : keys) {
       Absence absence = new Absence();
       absence.setUserName(user.getName());
       absence.setUserFullName(user.getFullName());
