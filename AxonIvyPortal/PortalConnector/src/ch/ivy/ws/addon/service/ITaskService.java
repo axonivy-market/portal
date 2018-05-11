@@ -22,10 +22,10 @@ public interface ITaskService {
    * @param username 
    * @param idenfier 
    * @param isUrlBuiltFromSystemProperties 
-   * @return IvyTask
+   * @return TaskServiceResult
    * @throws WSException 
    */
-  public IvyTask parkTask(String username, Integer idenfier, Boolean isUrlBuiltFromSystemProperties) throws WSException;
+  public TaskServiceResult parkTask(String username, Integer idenfier, Boolean isUrlBuiltFromSystemProperties) throws WSException;
 
   /**
    * Delegate a task to a given security member
