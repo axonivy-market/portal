@@ -35,18 +35,13 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
         @Override
         public SideStepServiceResult call() throws Exception {
           Ivy.session().setContentLocale(new Locale(language));
-          final ICaseQueryExecutor caseQueryExecutor = Ivy.wf().getGlobalContext().getCaseQueryExecutor();
-          ICase wfCase =
-              caseQueryExecutor.getFirstResult(caseQueryExecutor.createCaseQuery().where().caseId()
-                  .isEqual(searchCriteria.getCaseId()));
-          
+          ICase wfCase = findCase(searchCriteria);
+
           List<IvySideStep> sideSteps = new ArrayList<>();
-          if(wfCase != null && searchCriteria.hasInvolvedUsername()){
-	          IApplication application = wfCase.getApplication();
-	          IUser user = application.getSecurityContext().findUser(searchCriteria.getInvolvedUsername());
-	          ICaseMapService caseMapService = ICaseMapService.get().getCaseMapService(wfCase.getBusinessCase(), user.getUserToken());
-	        	  List<IStartableSideStep> sideStepProcesses = caseMapService.findStartableSideSteps();
-	        	  sideStepProcesses.forEach(process -> sideSteps.add(new IvySideStepTransformer(isUrlBuiltFromSystemProperties).transform(process)));
+          if (wfCase != null && searchCriteria.hasInvolvedUsername()) {
+            List<IStartableSideStep> sideStepProcesses = getSideStepProcesses(searchCriteria, wfCase);
+            sideStepProcesses.forEach(process -> sideSteps.add(new IvySideStepTransformer(
+                isUrlBuiltFromSystemProperties).transform(process)));
           }
           if (!searchCriteria.isAdhocExcluded()) {
             IvySideStep adhocSideStep = createAdhocSideStep(wfCase, isUrlBuiltFromSystemProperties);
@@ -60,6 +55,20 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     } catch (Exception e) {
       throw new WSException(10046, e);
     }
+  }
+
+  private ICase findCase(SideStepSearchCriteria searchCriteria) {
+    ICaseQueryExecutor caseQueryExecutor = Ivy.wf().getGlobalContext().getCaseQueryExecutor();
+    return caseQueryExecutor.getFirstResult(caseQueryExecutor.createCaseQuery().where().caseId()
+        .isEqual(searchCriteria.getCaseId()));
+  }
+
+  private List<IStartableSideStep> getSideStepProcesses(SideStepSearchCriteria searchCriteria, ICase wfCase) {
+    IApplication application = wfCase.getApplication();
+    IUser user = application.getSecurityContext().findUser(searchCriteria.getInvolvedUsername());
+    ICaseMapService caseMapService =
+        ICaseMapService.get().getCaseMapService(wfCase.getBusinessCase(), user.getUserToken());
+    return caseMapService.findStartableSideSteps();
   }
 
   public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded) {
@@ -76,7 +85,7 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
    * @return null if cannot find adhoc, otherwise return adhoc process
    */
   private IvySideStep createAdhocSideStep(ICase wfCase, boolean isUrlBuiltFromSystemProperties) {
-    if (wfCase != null){
+    if (wfCase != null) {
       IApplication application = wfCase.getApplication();
       ProcessStartCollector collector = new ProcessStartCollector(application);
       String acmLink = collector.findACMLink();
