@@ -252,7 +252,9 @@
 
 				<p:outputPanel styleClass="TexAlRight">
 					<p:commandButton id="save" actionListener="#{logic.close}" update="form" icon="fa fa-check"
-						value="#{data.data.isUseDefaultUI ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
+						value="#{data.data.isUseDefaultUI ? 
+                          (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') : ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : 
+                          ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
 						<ui:param name="save-workflow" value="true" />
 					</p:commandButton>
 					<p:spacer width="5" />

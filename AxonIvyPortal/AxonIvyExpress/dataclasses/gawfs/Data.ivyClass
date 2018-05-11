@@ -16,7 +16,6 @@ taskRepository ch.ivy.addon.portalkit.bo.ExpressTaskDefinition #field
 formelementRepository ch.ivy.addon.portalkit.bo.ExpressFormElement #field
 backFlag Boolean #field
 processID String #field
-directExecutionFlag Boolean #field
 taskId Number #field
 taskId 'Task ID for Endpage' #fieldComment
 discard Boolean #field
