@@ -382,14 +382,9 @@ public final class CaseUtils {
     if (cases != null && !cases.isEmpty()) {
       try {
         return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-          try {
-            ICase ic = cases.get(0);
-            ic.destroy();
-            return true;
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return false;
-          }
+          ICase ic = cases.get(0);
+          ic.destroy();
+          return true;
         });
       } catch (Exception e) {
         Ivy.log().error(e);
@@ -410,14 +405,7 @@ public final class CaseUtils {
 
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-          try {
-            return iCase.getCreatorUser().getEMailAddress();
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
-        });
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.getCreatorUser().getEMailAddress());
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
@@ -437,14 +425,7 @@ public final class CaseUtils {
 
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-          try {
-            return iCase.getCreatorUser().getProperty(UserUtils.MOBILE);
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
-        });
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.getCreatorUser().getProperty(UserUtils.MOBILE));
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
@@ -464,14 +445,7 @@ public final class CaseUtils {
 
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-          try {
-            return iCase.getCreatorUser().getProperty(UserUtils.PHONE);
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
-        });
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.getCreatorUser().getProperty(UserUtils.PHONE));
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
@@ -489,14 +463,7 @@ public final class CaseUtils {
    */
   public static ICase getCaseById(final Integer caseId) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-        try {
-          return Ivy.wf().findCase(new Long(caseId));
-        } catch (Exception e) {
-          Ivy.log().error(e);
-          return null;
-        }
-      });
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> Ivy.wf().findCase(new Long(caseId)));
     } catch (Exception e) {
       Ivy.log().error(e);
       return null;
@@ -530,13 +497,8 @@ public final class CaseUtils {
   public static boolean setCaseDetailsProcess(final ICase iCase, final String value) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-        try {
-          iCase.setAdditionalProperty(CASE_DETAIL_PROCESS, value);
-          return true;
-        } catch (Exception e) {
-          Ivy.log().error(e);
-          return false;
-        }
+        iCase.setAdditionalProperty(CASE_DETAIL_PROCESS, value);
+        return true;
       });
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -554,13 +516,8 @@ public final class CaseUtils {
   public static boolean setCaseMainContactFolderId(final ICase iCase, final String value) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-        try {
-          iCase.setBusinessMainContactFolderId(value);
-          return true;
-        } catch (Exception e) {
-          Ivy.log().error(e);
-          return false;
-        }
+        iCase.setBusinessMainContactFolderId(value);
+        return true;
       });
     } catch (Exception e) {
       Ivy.log().error(e);
