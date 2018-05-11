@@ -77,9 +77,21 @@
 				<p:spacer width="5" />
 
 				<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times"
-					actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" update="form:selected-formelements-field" process="form:selected-formelements-field"/>
+					onstart="PF('cancel-dialog').show();" styleClass="buttonDelegate portal-cancel-button"/>
 
 			</p:outputPanel>
+			
+			<p:confirmDialog id="cancel-dialog" widgetVar="cancel-dialog" message="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/cancelCreateForm')}"
+				appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert">
+				<div class="delete-server-warning-buttons">
+					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+						actionListener="#{logic.cancel}"
+						oncomplete="PF('cancel-dialog').hide()"
+						update="form" global="false" />
+					<p:commandButton styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+						oncomplete="PF('cancel-dialog').hide()" />
+				</div>
+			</p:confirmDialog>
 		</ui:define>
 
     <ui:define name="css">
