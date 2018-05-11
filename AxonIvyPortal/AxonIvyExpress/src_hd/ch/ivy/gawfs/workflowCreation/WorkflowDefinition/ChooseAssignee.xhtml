@@ -42,23 +42,27 @@
 				</p:autoComplete>
 				<p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
 					disabled="#{data.selectedUser == null and data.selectedRole == null}"
-					actionListener="#{logic.addAssignee}" global="false" update="error-message assignee-selection" ignoreAutoUpdate="true" />
+					actionListener="#{logic.addAssignee}" global="false" update="error-message selected-assignee-fieldset" />
 			</h:panelGroup>
 
-			<p:fieldset legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/SelectedAssigneesFieldSet')}" styleClass="selected-assignee-panel">
-				<p:selectManyMenu id="assignee-selection" value="#{data.selectedAssigneeList}" var="assignee" showCheckbox="true" scrollHeight="202"
-					filter="true" filterMatchMode="contains" converter="ivy.ListItem" styleClass="assignee-selection">
-					<f:selectItems value="#{data.selectedAssigneeList}" var="user" itemValue="#{user}"
-						itemLabel="#{user.getDisplayName().length() ne 0 ? user.getDisplayName() : user.getName()}" />
-					<p:column styleClass="assignee-name-col">
-						<h:outputText value="#{assignee.getDisplayName().length() ne 0 ? assignee.getDisplayName() : assignee.getName()}" />
-					</p:column>
-					<p:column styleClass="assignee-type-col">
-						<h:outputText id="assign-type-icon" class="fa #{assignee.isUser() ? 'fa-user' : 'fa-users'} " />
-					</p:column>
-					<p:ajax update="assignee-selection-form error-message" process="@this" />
-				</p:selectManyMenu>
+			<p:fieldset id="selected-assignee-fieldset" styleClass="selected-assignee-panel"
+				legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/SelectedAssigneesFieldSet')}">
+				<ui:repeat var="assignee" value="#{data.selectedAssigneeList}">
+					<p:panelGrid id="selected-assignee-panel" styleClass="assignee-selection">
+						<p:column styleClass="assignee-type-col">
+							<h:outputText id="assign-type-icon" class="fa #{assignee.isUser() ? 'fa-user' : 'fa-users'} " />
+						</p:column>
+						<p:column styleClass="assignee-name-col">
+							<h:outputText value="#{assignee.getDisplayName().length() ne 0 ? assignee.getDisplayName() : assignee.getName()}" />
+						</p:column>
+						<p:column>
+							<p:commandLink id="delete-assignee" styleClass="fa fa-trash delete-assignee"
+								actionListener="#{logic.removeSelectedAssignee(assignee)}" update="assignee-selection-form" />
+						</p:column>
+					</p:panelGrid>
+				</ui:repeat>
 			</p:fieldset>
+
 			<p:outputPanel styleClass="TexAlRight">
 				<p:commandButton id="save-assignee-button" styleClass="save-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
 					actionListener="#{logic.updateResponsibles}" icon="fa fa-check" oncomplete="PF('choose-responsible-dialog').hide();" update="#{data.selectedResponsibleFieldId} choose-responsible-dialog">
