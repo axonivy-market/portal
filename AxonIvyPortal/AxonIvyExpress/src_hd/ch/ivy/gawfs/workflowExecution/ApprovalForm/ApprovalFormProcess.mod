@@ -225,8 +225,9 @@ As0 f21 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData
 ' #txt
 As0 f21 actionTable 'out=in;
 ' #txt
-As0 f21 actionCode 'in.approvalResult.setApproverName(ivy.session.getSessionUserName());
-in.approvalResult.setApplicantName(in.applicant.getMemberName());
+As0 f21 actionCode 'import ch.ivyteam.ivy.security.IUser;
+in.approvalResult.setApproverName(ivy.session.getSessionUser().getDisplayName());
+in.approvalResult.setApplicantName(in.applicant.getDisplayName());
 in.approvalResult.setComment(in.comment);
 in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));' #txt
 As0 f21 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
