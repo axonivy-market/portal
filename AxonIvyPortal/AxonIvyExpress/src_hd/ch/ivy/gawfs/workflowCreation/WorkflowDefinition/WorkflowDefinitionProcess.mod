@@ -69,10 +69,13 @@ Fs0 @PushWFArc f53 '' #zField
 Fs0 @PushWFArc f5 '' #zField
 Fs0 @RichDialogProcessStart f54 '' #zField
 Fs0 @PushWFArc f55 '' #zField
-Fs0 @PushWFArc f50 '' #zField
 Fs0 @RichDialogProcessEnd f57 '' #zField
 Fs0 @RichDialogMethodStart f56 '' #zField
 Fs0 @PushWFArc f58 '' #zField
+Fs0 @Alternative f59 '' #zField
+Fs0 @PushWFArc f60 '' #zField
+Fs0 @PushWFArc f50 '' #zField
+Fs0 @PushWFArc f61 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -630,7 +633,8 @@ Fs0 f47 disableUIEvents false #txt
 Fs0 f47 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.Boolean isAgreed> param = methodEvent.getInputArguments();
 ' #txt
-Fs0 f47 inActionCode 'out.data.isUseDefaultUI = param.isAgreed ?  out.data.isUseDefaultUI : !out.data.isUseDefaultUI;
+Fs0 f47 inActionCode 'out.resetData = param.isAgreed;
+out.data.isUseDefaultUI = out.resetData ?  out.data.isUseDefaultUI : !out.data.isUseDefaultUI;
 out.data.processType = out.data.processType;' #txt
 Fs0 f47 outParameterDecl '<> result;
 ' #txt
@@ -730,8 +734,6 @@ Fs0 f55 expr out #txt
 Fs0 f55 109 512 440 470 #arcP
 Fs0 f55 1 440 512 #addKink
 Fs0 f55 0 0.8593296567373708 0 0 #arcLabel
-Fs0 f50 expr out #txt
-Fs0 f50 845 352 992 352 #arcP
 Fs0 f57 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f57 1171 467 26 26 0 12 #rect
 Fs0 f57 @|RichDialogProcessEndIcon #fIcon
@@ -758,6 +760,28 @@ Fs0 f56 819 467 26 26 -120 15 #rect
 Fs0 f56 @|RichDialogMethodStartIcon #fIcon
 Fs0 f58 expr out #txt
 Fs0 f58 845 480 1171 480 #arcP
+Fs0 f59 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reset data?</name>
+        <nameStyle>11,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f59 912 336 32 32 -31 18 #rect
+Fs0 f59 @|AlternativeIcon #fIcon
+Fs0 f60 expr out #txt
+Fs0 f60 845 352 912 352 #arcP
+Fs0 f50 expr in #txt
+Fs0 f50 outCond in.resetData #txt
+Fs0 f50 944 352 992 352 #arcP
+Fs0 f61 expr in #txt
+Fs0 f61 928 368 1184 365 #arcP
+Fs0 f61 1 928 400 #addKink
+Fs0 f61 2 1184 400 #addKink
+Fs0 f61 1 0.505859375 0 0 #arcLabel
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -810,7 +834,11 @@ Fs0 f52 mainOut f5 tail #connect
 Fs0 f5 head f4 mainIn #connect
 Fs0 f54 mainOut f55 tail #connect
 Fs0 f55 head f27 mainIn #connect
-Fs0 f47 mainOut f50 tail #connect
-Fs0 f50 head f49 mainIn #connect
 Fs0 f56 mainOut f58 tail #connect
 Fs0 f58 head f57 mainIn #connect
+Fs0 f47 mainOut f60 tail #connect
+Fs0 f60 head f59 in #connect
+Fs0 f59 out f50 tail #connect
+Fs0 f50 head f49 mainIn #connect
+Fs0 f59 out f61 tail #connect
+Fs0 f61 head f48 mainIn #connect
