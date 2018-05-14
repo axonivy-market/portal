@@ -20,8 +20,7 @@
 		<ui:define name="taskForm">
 			<h:form id="form">
 
-				<p:messages id="messagesInputFieldLabel" showDetail="false"
-					autoUpdate="true" closable="true" />
+				<p:messages id="messagesInputFieldLabel" showDetail="false" closable="true" />
 
 				<p:fieldset id="process-setting-fieldset"
 					legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
@@ -252,7 +251,8 @@
 				<br />
 
 				<p:outputPanel styleClass="TexAlRight">
-					<p:commandButton id="save" actionListener="#{logic.close}" update="form" icon="fa fa-arrow-right"
+					<p:commandButton id="save" actionListener="#{logic.close}" update="form" 
+						icon="fa #{data.data.isUseDefaultUI ? 'fa-check' : 'fa-arrow-right'}"
 						value="#{data.data.isUseDefaultUI ? 
                           (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') : ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : 
                           ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
