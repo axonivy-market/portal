@@ -31,7 +31,6 @@ public class SupportedLanguageLoader {
    * Loads supported language from an ivy application.
    * 
    * @return {@link List} list of supported language
-   * @throws Exception
    */
   public List<String> getSupportedLanguages() {
     List<String> languages = null;

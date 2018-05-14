@@ -432,7 +432,7 @@ public class ExpressProcessUtils {
    * check whether next button should display
    * @param definedTasks
    * @param currentIndex
-   * @return
+   * @return check result
    */
   public boolean displayNextButton(List<TaskDef> definedTasks, int currentIndex) {
     if(definedTasks == null || definedTasks.size()<2) {
