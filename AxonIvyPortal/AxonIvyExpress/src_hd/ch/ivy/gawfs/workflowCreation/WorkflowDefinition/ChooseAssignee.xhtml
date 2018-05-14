@@ -42,7 +42,7 @@
 				</p:autoComplete>
 				<p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
 					disabled="#{data.selectedUser == null and data.selectedRole == null}"
-					actionListener="#{logic.addAssignee}" global="false" update="error-message selected-assignee-fieldset" />
+					actionListener="#{logic.addAssignee}" global="false" update="error-message selected-assignee-fieldset" ignoreAutoUpdate="true" />
 			</h:panelGroup>
 
 			<p:fieldset id="selected-assignee-fieldset" styleClass="selected-assignee-panel"
