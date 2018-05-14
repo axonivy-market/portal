@@ -39,12 +39,13 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class StatisticChartQueryUtils {
 
+  private static final String FROM_DATE_KEY = "fromDate";
+  private static final String TO_DATE_KEY = "toDate";
+  
   private StatisticChartQueryUtils() {
     
   }
-
-  private static final String FROM_DATE_KEY = "fromDate";
-  private static final String TO_DATE_KEY = "toDate";
+  
   /**
    * Get updated task query for Task by Priority chart based on selected item
    * 

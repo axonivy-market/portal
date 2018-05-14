@@ -36,9 +36,6 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
  */
 public class UserUtils {
 
-  private UserUtils() {
-
-  }
 
   private static final String APPLICATION_DEFAULT = "APPLICATION_DEFAULT";
   /**
@@ -59,7 +56,10 @@ public class UserUtils {
   private static final String SELECTED_CASE_FILTER_SET = "SELECTED_CASE_FILTER_SET";
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
+  
+  private UserUtils() {
 
+  }
   /**
    * Get all users in current Ivy Server
    * 

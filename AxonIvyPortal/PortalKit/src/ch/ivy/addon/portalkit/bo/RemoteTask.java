@@ -67,7 +67,7 @@ public class RemoteTask {
   private RemoteSecurityMember expiryActivator;
   private String expiryTaskStartElementPid;
   private Date expiryTimestamp;
-  
+
   private Date endTimestamp;
 
   private RemoteApplication remoteApplication;
@@ -87,7 +87,19 @@ public class RemoteTask {
   private boolean canChangeName;
   private boolean hasMoreActions;
   private boolean canUploadDeleteDocument;
-  
+  /**
+   * @{link {@link Application} object that this task belongs to
+   */
+  private Application applicationRegister;
+
+  /**
+   * Constructor
+   *
+   */
+  public RemoteTask() {
+    super();
+  }
+
   /**
    * Gets the workerFullName
    *
@@ -104,19 +116,6 @@ public class RemoteTask {
    */
   public void setWorkerFullName(String workerFullName) {
     this.workerFullName = workerFullName;
-  }
-
-  /**
-   * @{link {@link Application} object that this task belongs to
-   */
-  private Application applicationRegister;
-
-  /**
-   * Constructor
-   *
-   */
-  public RemoteTask() {
-    super();
   }
 
   public RemoteSecurityMember getActivator() {
@@ -325,7 +324,7 @@ public class RemoteTask {
   }
 
   public void reset() {
-    //Method from ITask
+    // Method from ITask
   }
 
   public void setActivator(RemoteSecurityMember activator) {
@@ -410,7 +409,7 @@ public class RemoteTask {
 
   @SuppressWarnings("unused")
   public void setDelayTimestamp(Date newDelayTimestamp) {
-    //Method from ITask
+    // Method from ITask
   }
 
   public void setDescription(String description) {
@@ -434,7 +433,7 @@ public class RemoteTask {
 
   @SuppressWarnings("unused")
   public void setKind(String kindCode, String kindName) {
-    //Method from ITask
+    // Method from ITask
   }
 
   public void setName(String name) {
@@ -455,7 +454,7 @@ public class RemoteTask {
   public void setStartTimestamp(Date startTimestamp) {
     this.startTimestamp = startTimestamp;
   }
-  
+
   /**
    * Set end time stamp.
    *
@@ -774,7 +773,7 @@ public class RemoteTask {
   public void setActivatorFullName(String activatorFullName) {
     this.activatorFullName = activatorFullName;
   }
-  
+
   public String getActivatorUserName() {
     return activatorUserName;
   }
@@ -792,11 +791,11 @@ public class RemoteTask {
   }
 
   public boolean isCanChangeName() {
-	return canChangeName;
+    return canChangeName;
   }
 
   public void setCanChangeName(boolean canChangeName) {
-	this.canChangeName = canChangeName;
+    this.canChangeName = canChangeName;
   }
 
   public boolean isHasMoreActions() {

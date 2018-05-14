@@ -23,9 +23,7 @@ import javax.faces.context.FacesContext;
  */
 public class Attrs {
 
-  public static Attrs currentContext() {
-    return new Attrs(FacesContext.getCurrentInstance());
-  }
+  
 
   private final FacesContext facesContext;
 
@@ -35,7 +33,11 @@ public class Attrs {
     }
     this.facesContext = facesContext;
   }
-
+  
+  public static Attrs currentContext() {
+    return new Attrs(FacesContext.getCurrentInstance());
+  }
+  
   // This method is defined but not in used yet.
   // Set it `public` and remove the `@SuppressWarning` if you want to publish it.
   @SuppressWarnings("unused")
