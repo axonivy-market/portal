@@ -116,7 +116,6 @@ Bk3 @Alternative f15 '' #zField
 Bk3 @PushWFArc f45 '' #zField
 Bk3 @PushWFArc f18 '' #zField
 Bk3 @Alternative f4 '' #zField
-Bk3 @PushWFArc f22 '' #zField
 Bk3 @PushWFArc f53 '' #zField
 Bk3 @PushWFArc f20 '' #zField
 Bk3 @TkArc f37 '' #zField
@@ -138,6 +137,9 @@ Bk3 @PushWFArc f2 '' #zField
 Bk3 @GridStep f60 '' #zField
 Bk3 @PushWFArc f61 '' #zField
 Bk3 @PushWFArc f43 '' #zField
+Bk3 @GridStep f62 '' #zField
+Bk3 @PushWFArc f63 '' #zField
+Bk3 @PushWFArc f22 '' #zField
 >Proto Bk3 Bk1 BpmnUserTask #zField
 Bk5 @TextInP .resExport .resExport #zField
 Bk5 @TextInP .type .type #zField
@@ -775,7 +777,8 @@ Bk3 f36 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 Bk3 f36 actionTable 'out=in2;
 out.actualStepIndex=in1.actualStepIndex;
 out.definedTasks=in1.definedTasks;
-out.finishedTasks=in1.finishedTasks;
+out.finishedTasks=in2.finishedTasks;
+out.tempFinishedTasks=in1.finishedTasks;
 ' #txt
 Bk3 f36 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk3 f36 outLinks "TaskA.ivp" #txt
@@ -1060,7 +1063,7 @@ Bk3 f47 1 480 1312 #addKink
 Bk3 f47 2 480 1494 #addKink
 Bk3 f47 0 0.4375 0 -11 #arcLabel
 Bk3 f15 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk3 f15 336 1552 32 32 0 16 #rect
+Bk3 f15 336 1568 32 32 0 16 #rect
 Bk3 f15 @|AlternativeIcon #fIcon
 Bk3 f45 expr in #txt
 Bk3 f45 outCond !in.approvalTaskList.isEmpty() #txt
@@ -1092,29 +1095,15 @@ Bk3 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk3 f4 336 912 32 32 -144 6 #rect
 Bk3 f4 @|AlternativeIcon #fIcon
-Bk3 f22 expr in #txt
-Bk3 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Bk3 f22 368 928 368 1568 #arcP
-Bk3 f22 1 544 928 #addKink
-Bk3 f22 2 544 1568 #addKink
-Bk3 f22 0 0.4772727272727273 0 -9 #arcLabel
 Bk3 f53 expr out #txt
-Bk3 f53 352 1516 352 1552 #arcP
+Bk3 f53 352 1516 352 1568 #arcP
 Bk3 f20 expr data #txt
 Bk3 f20 outCond ivp=="TaskA.ivp" #txt
 Bk3 f20 352 336 352 386 #arcP
 Bk3 f37 expr in #txt
 Bk3 f37 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk3 f37 var in1 #txt
-Bk3 f37 352 1584 352 1648 #arcP
+Bk3 f37 352 1600 352 1648 #arcP
 Bk3 f51 expr in #txt
 Bk3 f51 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk3 f51 var in2 #txt
@@ -1133,7 +1122,7 @@ Bk3 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk3 f52 296 1824 112 44 -26 -8 #rect
+Bk3 f52 296 1826 112 44 -26 -8 #rect
 Bk3 f52 @|StepIcon #fIcon
 Bk3 f54 expr in #txt
 Bk3 f54 outCond 'in.nextTask.counter > 0' #txt
@@ -1150,7 +1139,7 @@ Bk3 f54 336 1920 208 1680 #arcP
 Bk3 f54 1 208 1920 #addKink
 Bk3 f54 0 0.5 0 10 #arcLabel
 Bk3 f23 expr out #txt
-Bk3 f23 352 1868 352 1904 #arcP
+Bk3 f23 352 1870 352 1904 #arcP
 Bk3 f27 expr in #txt
 Bk3 f27 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1177,13 +1166,13 @@ task list</name>
     </language>
 </elementInfo>
 ' #txt
-Bk3 f40 288 1728 128 44 -41 -16 #rect
+Bk3 f40 288 1730 128 44 -41 -16 #rect
 Bk3 f40 @|StepIcon #fIcon
 Bk3 f42 expr data #txt
 Bk3 f42 outCond ivp=="TaskA.ivp" #txt
-Bk3 f42 352 1680 352 1728 #arcP
+Bk3 f42 352 1680 352 1730 #arcP
 Bk3 f24 expr out #txt
-Bk3 f24 352 1772 352 1824 #arcP
+Bk3 f24 352 1774 352 1826 #arcP
 Bk3 f55 targetWindow NEW #txt
 Bk3 f55 targetDisplay TOP #txt
 Bk3 f55 richDialogId ch.ivy.gawfs.workflowExecution.UserTaskWithMailForm #txt
@@ -1300,6 +1289,37 @@ Bk3 f43 expr out #txt
 Bk3 f43 206 1268 288 1112 #arcP
 Bk3 f43 1 206 1112 #addKink
 Bk3 f43 0 0.9723192795755178 0 0 #arcLabel
+Bk3 f62 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk3 f62 actionTable 'out=in;
+' #txt
+Bk3 f62 actionCode in.finishedTasks.add(in.nextTask); #txt
+Bk3 f62 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk3 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Update finished tasks</name>
+    </language>
+</elementInfo>
+' #txt
+Bk3 f62 480 1562 128 44 -60 -8 #rect
+Bk3 f62 @|StepIcon #fIcon
+Bk3 f63 expr in #txt
+Bk3 f63 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Bk3 f63 368 928 544 1562 #arcP
+Bk3 f63 1 544 928 #addKink
+Bk3 f63 0 0.4772727272727273 0 -9 #arcLabel
+Bk3 f22 expr out #txt
+Bk3 f22 480 1584 368 1584 #arcP
+Bk3 f22 0 0.4772727272727273 0 -9 #arcLabel
 >Proto Bk1 0 0 32 24 18 0 #rect
 >Proto Bk1 @|BIcon #fIcon
 Bk5 f21 targetWindow NEW:card: #txt
@@ -1603,8 +1623,6 @@ Bk3 f19 out f9 tail #connect
 Bk3 f3 mainOut f46 tail #connect
 Bk3 f46 head f17 in #connect
 Bk3 f47 head f48 mainIn #connect
-Bk3 f4 out f22 tail #connect
-Bk3 f22 head f15 in #connect
 Bk3 f48 mainOut f53 tail #connect
 Bk3 f53 head f15 in #connect
 Bk3 f19 out f20 tail #connect
@@ -1638,6 +1656,10 @@ Bk3 f41 out f61 tail #connect
 Bk3 f61 head f60 mainIn #connect
 Bk3 f60 mainOut f43 tail #connect
 Bk3 f43 head f34 mainIn #connect
+Bk3 f4 out f63 tail #connect
+Bk3 f63 head f62 mainIn #connect
+Bk3 f62 mainOut f22 tail #connect
+Bk3 f22 head f15 in #connect
 Bk3 0 0 664 2176 0 #ivRect
 Bk5 f29 mainOut f34 tail #connect
 Bk5 f34 head f33 in #connect

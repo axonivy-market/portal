@@ -21,7 +21,7 @@
 
 			<h:form id="form">
 				<ui:repeat var="wfTask" value="#{data.finishedTasks}">
-					<p:fieldset id="finished-task-fieldset" styleClass="finished-task-fieldset" toggleable="true" legend="#{ivy.cms.co('/Labels/Task')}: #{wfTask.subject}">
+					<p:fieldset id="finished-task-fieldset" styleClass="finished-task-fieldset" toggleable="true" legend="#{wfTask.subject}">
 						<p:outputLabel id="form-details-label" value="Form details" styleClass="review-content-title" />
 						<pe:dynaForm id="dynaForm"
 							value="#{wfTask.dynaFormController.model}"

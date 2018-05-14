@@ -589,6 +589,10 @@
 	display: inline;
 }
 
+.pe-dynaform-cell .ui-datalist {
+	border: none;
+}
+
 /* APPROVAL FORM */
 .comment-container {
 	margin-bottom: 20px;
