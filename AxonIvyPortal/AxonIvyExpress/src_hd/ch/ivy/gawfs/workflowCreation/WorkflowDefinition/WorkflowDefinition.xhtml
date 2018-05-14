@@ -15,13 +15,12 @@
 		<ui:param name="isShowStartAdhocButton" value="false" />
 		<ui:param name="isNotRequiredLogin" value="false" />
 
-
 		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
+        <ui:define name="errorsZone">
+          <p:messages id="messagesInputFieldLabel" showDetail="false" closable="true"/>
+        </ui:define>
 		<ui:define name="taskForm">
 			<h:form id="form">
-
-				<p:messages id="messagesInputFieldLabel" showDetail="false" closable="true" />
-
 				<p:fieldset id="process-setting-fieldset"
 					legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
 					toggleable="true">
@@ -250,7 +249,7 @@
 				<br />
 
 				<p:outputPanel styleClass="TexAlRight">
-					<p:commandButton id="save" actionListener="#{logic.close}" update="form" 
+					<p:commandButton id="save" actionListener="#{logic.close}" update="form messagesInputFieldLabel" 
 						icon="fa #{data.data.isUseDefaultUI ? 'fa-check' : 'fa-arrow-right'}"
 						value="#{data.data.isUseDefaultUI ? 
                           (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') : ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : 
