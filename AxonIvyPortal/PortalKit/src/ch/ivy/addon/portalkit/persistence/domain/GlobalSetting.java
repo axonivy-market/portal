@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.persistence.domain;
 
 
-public class GlobalSetting extends BusinessEntity { //NOSONAR
+public class GlobalSetting extends BusinessEntity {
   private String key;
   private String value;
   private String note;

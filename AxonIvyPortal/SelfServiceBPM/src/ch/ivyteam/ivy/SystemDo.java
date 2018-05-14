@@ -11,7 +11,7 @@ public class SystemDo {
   private SystemDo() {
   }
 
-  public static void setCustomVarCharField1(final ITask task, final String val) throws Exception { //NOSONAR
+  public static void setCustomVarCharField1(final ITask task, final String val) throws Exception {
     SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
       @Override
       public Void call() throws Exception {
@@ -21,7 +21,7 @@ public class SystemDo {
     });
   }
 
-  public static void setCaseName(final ICase icase, final String val) throws Exception { //NOSONAR
+  public static void setCaseName(final ICase icase, final String val) throws Exception {
     SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
       @Override
       public Void call() throws Exception {
@@ -31,7 +31,7 @@ public class SystemDo {
     });
   }
 
-  public static void setCaseDescription(final ICase icase, final String val) throws Exception { //NOSONAR
+  public static void setCaseDescription(final ICase icase, final String val) throws Exception {
     SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
       @Override
       public Void call() throws Exception {
@@ -42,7 +42,7 @@ public class SystemDo {
   }
 
   @SuppressWarnings("deprecation")
-  public static void setProcess(final ICase icase, final String code, final String val) throws Exception { //NOSONAR
+  public static void setProcess(final ICase icase, final String code, final String val) throws Exception {
     SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
       @Override
       public Void call() throws Exception {
@@ -52,7 +52,7 @@ public class SystemDo {
     });
   }
   
-  public static void attachToBusinessCase(final ICase icase, final Long businessCaseId) throws Exception { //NOSONAR
+  public static void attachToBusinessCase(final ICase icase, final Long businessCaseId) throws Exception {
 	    SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
 	      @Override
 	      public Void call() throws Exception {

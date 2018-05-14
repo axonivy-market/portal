@@ -6,7 +6,7 @@ import org.boon.json.annotations.JsonIgnore;
 
 import ch.ivy.addon.portalkit.enums.WSAuthenticationType;
 
-public class Server extends BusinessEntity { //NOSONAR
+public class Server extends BusinessEntity {
 
   private Boolean isOnline;
   private String path;

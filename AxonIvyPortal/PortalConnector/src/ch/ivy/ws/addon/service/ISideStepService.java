@@ -6,7 +6,7 @@ import ch.ivy.ws.addon.bo.SideStepServiceResult;
 /**
  * Side step service provides a set of service methods for side step processes
  */
-public interface ISideStepService { //NOSONAR
+public interface ISideStepService {
 
   /**
    * Find all side step processes by the criteria
