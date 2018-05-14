@@ -32,15 +32,15 @@ import ch.ivyteam.logicalexpression.RelationalOperator;
 @SuppressWarnings("deprecation")
 public final class CaseUtils {
 
-  private CaseUtils() {
-
-  }
-
   /** default key to store case details process start link in ICase object */
   public static final String CASE_DETAIL_PROCESS = "CASE_DETAIL_PROCESS";
   private static String fullNameFormat = "%s (%s)";
   private static final String HIDE = "HIDE";
+  
+  private CaseUtils() {
 
+  }
+  
   /**
    * This function is o find the running case of session user by process category
    * 

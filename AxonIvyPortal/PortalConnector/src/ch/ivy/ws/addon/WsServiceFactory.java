@@ -36,8 +36,6 @@ import ch.ivy.ws.addon.service.WebStartableServiceImpl;
 @SuppressWarnings("deprecation")
 public class WsServiceFactory {
 
-  private WsServiceFactory() {}
-
   private static ICaseService caseService;
 
   private static ISecurityService securityService;
@@ -67,7 +65,9 @@ public class WsServiceFactory {
   private static IWebStartableService webStartableService;
   
   private static ILibraryService libraryService;
-
+  
+  private WsServiceFactory() {}
+  
   public static ILanguagesSettingsService getLanguagesSettingsService() {
     if (languagesSettingsService == null) {
       languagesSettingsService = new LanguagesSettingsServiceImpl();

@@ -7,7 +7,10 @@ package ch.ivy.addon.portalkit.bo;
  * 
  */
 public class Contact {
-	
+  private String email;
+  private String phone;
+  private String mobilePhone;
+  
 	/**
 	 * Default Constructor
 	 */
@@ -24,10 +27,6 @@ public class Contact {
 		super();
 		this.email = email;
 	}
-
-	private String email;
-	private String phone;
-	private String mobilePhone;
 
 	/**
 	 * Gets the email
