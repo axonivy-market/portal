@@ -19,7 +19,7 @@ public class SessionUtil {
 
   private SessionUtil() {}
 
-  public static void loginAsUser(final String username) throws Exception { //NOSONAR
+  public static void loginAsUser(final String username) throws Exception {
     final ISecurityContext securityContext = Ivy.wf().getSecurityContext();
     securityContext.executeAsSystemUser(new Callable<Object>() {
       @Override

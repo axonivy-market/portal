@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.persistence.domain;
 import org.boon.json.annotations.JsonIgnore;
 
 
-public class Application extends BusinessEntity { //NOSONAR
+public class Application extends BusinessEntity {
 
   private String displayName;
   private Boolean isOnline;

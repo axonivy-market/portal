@@ -1,6 +1,6 @@
 package ch.ivy.ws.addon.service;
 
-public interface IServerService { //NOSONAR
+public interface IServerService {
   
   String getExternalHost();
 
