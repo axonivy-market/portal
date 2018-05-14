@@ -1,7 +1,5 @@
 package ch.ivy.ws.addon.util;
 
-import java.util.concurrent.Callable;
-
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -19,15 +17,12 @@ public class SessionUtil {
 
   private SessionUtil() {}
 
-  public static void loginAsUser(final String username) throws Exception {
-    final ISecurityContext securityContext = Ivy.wf().getSecurityContext();
-    securityContext.executeAsSystemUser(new Callable<Object>() {
-      @Override
-      public Object call() throws Exception {
-        Ivy.session().authenticateSessionUser(securityContext.findUser(username), "customAuth",
-            Ivy.wfTask().getId());
-        return null;
-      }
+  public static void loginAsUser(final String username) {
+    IvyExecutor.executeAsSystem(() -> {
+      final ISecurityContext securityContext = Ivy.wf().getSecurityContext();
+      Ivy.session().authenticateSessionUser(securityContext.findUser(username), "customAuth",
+      Ivy.wfTask().getId());
+      return null;
     });
   }
 

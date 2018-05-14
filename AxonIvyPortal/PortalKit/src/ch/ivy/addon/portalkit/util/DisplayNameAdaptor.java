@@ -12,12 +12,12 @@ public class DisplayNameAdaptor {
 	private DisplayNameConvertor convertor;
 	private Locale currentLocale;
 	
-	public DisplayNameAdaptor(String jsonString, Locale currentLocale) throws JSONException {
+	public DisplayNameAdaptor(String jsonString, Locale currentLocale) {
 		this.currentLocale = currentLocale;
 		this.convertor = parseJson(jsonString, currentLocale);
 	}
 
-	private DisplayNameConvertor parseJson(String jsonString, Locale locale) throws JSONException {
+	private DisplayNameConvertor parseJson(String jsonString, Locale locale) {
 		if (isValidJson(jsonString)) {
 			return DisplayNameConvertor.parseJson(jsonString);
 		}
@@ -30,10 +30,10 @@ public class DisplayNameAdaptor {
   private boolean isValidJson(String jsonString) {
 		try {
 			new JSONObject(jsonString);
-		} catch (JSONException e) {
+		} catch (JSONException e) { //NOSONAR
 			try {
 				new JSONArray(jsonString);
-			} catch(JSONException e1) {
+			} catch(JSONException e1) { //NOSONAR
 				return false;
 			}
 		}

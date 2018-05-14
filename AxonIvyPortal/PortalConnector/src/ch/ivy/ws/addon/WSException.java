@@ -14,19 +14,19 @@ public class WSException extends Exception {
 
 	private static final int GENERAL_ERROR_CODE = 99999;
 	
-	private WSErrorType errorType;
+	private WSErrorType errorType; //NOSONAR
 	
-	private int errorCode;
-	private Exception exception;
-	private String userText;
-	private String helpText;
-	private transient List<Object> userTextData;
-	private transient List<Object> helpTextData;
-	private DateTime errorDateTime = new DateTime();
-	private String server;
+	private int errorCode; //NOSONAR
+	private Exception exception; //NOSONAR
+	private String userText; //NOSONAR
+	private String helpText; //NOSONAR
+	private transient List<Object> userTextData; //NOSONAR
+	private transient List<Object> helpTextData; //NOSONAR
+	private DateTime errorDateTime = new DateTime(); //NOSONAR
+	private String server; //NOSONAR
 	
-	private boolean textInitialized = false;
-	private boolean exceptionAvailable = false;
+	private boolean textInitialized = false; //NOSONAR
+	private boolean exceptionAvailable = false; //NOSONAR
 	
 	public WSException() {
 		this.errorCode = 0;
