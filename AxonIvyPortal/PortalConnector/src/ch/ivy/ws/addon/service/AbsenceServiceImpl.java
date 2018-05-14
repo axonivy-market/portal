@@ -191,7 +191,6 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
    * @param username
    * @param substitutes : list of {@link IvySubstitute} to save
    * 
-   * @throws Exception
    */
   private List<WSException> saveUserSubstitute(final String appName, final String username,
       final List<IvySubstitute> substitutes) {

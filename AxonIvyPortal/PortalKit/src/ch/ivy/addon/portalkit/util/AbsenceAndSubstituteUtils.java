@@ -72,8 +72,7 @@ public final class AbsenceAndSubstituteUtils {
 
         if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())
             && StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
-          new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask"), remoteSubstitute, users, true), appNode);
+          createSubstituteNode(appNode, users, remoteSubstitute);
           break;
         }
       }
@@ -83,14 +82,25 @@ public final class AbsenceAndSubstituteUtils {
         if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())
             && !StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
           String nodeName = getNodeName(remoteSubstitute);
-          new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole")
-              + nodeName, remoteSubstitute, users, true), appNode);
+          createSubstituteNode(appNode, users, remoteSubstitute, nodeName);
         }
       }
 
     }
     return substituteRoot;
+  }
+
+  private static DefaultTreeNode createSubstituteNode(TreeNode appNode, List<RemoteApplicationUser> users,
+      RemoteSubstitute remoteSubstitute, String nodeName) {
+    return new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
+        "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole")
+        + nodeName, remoteSubstitute, users, true), appNode);
+  }
+
+  private static DefaultTreeNode createSubstituteNode(TreeNode appNode, List<RemoteApplicationUser> users,
+      RemoteSubstitute remoteSubstitute) {
+    return new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
+        "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask"), remoteSubstitute, users, true), appNode);
   }
 
   private static String getNodeName(RemoteSubstitute remoteSubstitute) {
