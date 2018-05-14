@@ -17,15 +17,17 @@ import ch.ivy.ws.addon.CategoryData;
  */
 public class CaseTreeUtils {
 
-  private final static String DELIMITER = "/";
+  private static final String DELIMITER = "/";
 
   private CaseTreeUtils() {}
+
   /**
    * Convert field CustomVarCharField5 of cases to TreeNode
-   * @param categories 
-   * @param firstCategory 
-   * @param isRootAllCase 
-   * @param menuState 
+   * 
+   * @param categories
+   * @param firstCategory
+   * @param isRootAllCase
+   * @param menuState
    * 
    * @return {@link TreeNode}
    */
@@ -40,7 +42,7 @@ public class CaseTreeUtils {
       String categoryRawPath = category.getRawPath();
       String[] nodePaths = category.getRawPath().split(DELIMITER);
 
-      for (int i=0; i<nodeNames.length; i++) {
+      for (int i = 0; i < nodeNames.length; i++) {
         String nodeName = nodeNames[i];
         String categoryName = categoryPath.substring(0, categoryPath.indexOf(nodeName) + nodeName.length());
 
@@ -48,14 +50,15 @@ public class CaseTreeUtils {
         String rawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(nodePath) + nodePath.length());
 
         String nodeType = firstCategory + DELIMITER + categoryName.replaceAll(" ", "_");
-        navigatorNode = buildCaseCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllCase, menuState);
+        navigatorNode =
+            buildCaseCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllCase, menuState);
       }
       navigatorNode = root;
     }
     sortNode(root);
     return root;
   }
-  
+
   private static void sortNode(TreeNode node) {
     Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
       CaseNode firstNodeData = (CaseNode) firstNode.getData();
@@ -100,7 +103,7 @@ public class CaseTreeUtils {
     }
     return newNode;
   }
-  
+
   public static String getLastCategoryFromCategoryPath(String categoryPath) {
     if (!StringUtils.isBlank(categoryPath)) {
       String[] categories = categoryPath.split("/");

@@ -124,7 +124,6 @@
 												itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" />
 											<f:selectItems value="#{status.index == 0 ? workflowDefinitionBean.taskTypesForFirstWorkflowTask : workflowDefinitionBean.getTaskTypes(data.data.definedTasks)}"
 												var="taskType" itemLabel="#{taskType.label}" itemValue="#{taskType}" />
-											<p:ajax process="@this" />
 										</p:selectOneMenu>
 									</p:column>
 
@@ -294,7 +293,7 @@
 					<p:commandButton styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
 						actionListener="#{logic.changeUISetting(false)}"
 						oncomplete="PF('deleteAllDefinedTasksWarning').hide()"
-						update="form" global="false" />
+						update="form:user-interface" global="false" />
 				</div>
 			</p:confirmDialog>
 		</ui:define>

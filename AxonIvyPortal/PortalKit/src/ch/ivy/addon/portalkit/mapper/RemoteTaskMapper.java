@@ -25,7 +25,7 @@ public class RemoteTaskMapper {
    * Convert IvyTask to RemoteTask.
    * 
    * @param ivyTask IvyTask
-   * @param host 
+   * @param host
    * @return RemoteTask
    * @see IvyTask
    * @see RemoteTask
@@ -47,18 +47,13 @@ public class RemoteTaskMapper {
     result.setCustomVarCharField4(ivyTask.getCustomVarCharField4());
     result.setCustomVarCharField5(ivyTask.getCustomVarCharField5());
 
-    result.setCustomTimestampField1(ivyTask.getCustomTimestampField1() == null ? null : ivyTask
-        .getCustomTimestampField1().getTime());
-    result.setCustomTimestampField2(ivyTask.getCustomTimestampField2() == null ? null : ivyTask
-        .getCustomTimestampField2().getTime());
-    result.setCustomTimestampField3(ivyTask.getCustomTimestampField3() == null ? null : ivyTask
-        .getCustomTimestampField3().getTime());
-    result.setCustomTimestampField4(ivyTask.getCustomTimestampField4() == null ? null : ivyTask
-        .getCustomTimestampField4().getTime());
-    result.setCustomTimestampField5(ivyTask.getCustomTimestampField5() == null ? null : ivyTask
-        .getCustomTimestampField5().getTime());
-    result.setDelayTimestamp(ivyTask.getDelayTimestamp() == null ? null : ivyTask.getDelayTimestamp().getTime());
-    result.setExpiryTimestamp(ivyTask.getExpireTimestamp() == null ? null : ivyTask.getExpireTimestamp().getTime());
+    setCustomTimestampField1(ivyTask, result);
+    setCustomTimestampField2(ivyTask, result);
+    setCustomTimestampField3(ivyTask, result);
+    setCustomTimestampField4(ivyTask, result);
+    setCustomTimestampField5(ivyTask, result);
+    setDelayTimestamp(ivyTask, result);
+    setExpiryTimestamp(ivyTask, result);
 
     result.setDescription(ivyTask.getDescription());
     result.setRemoteNotes(RemoteNoteMapper.mapNoteArray(ivyTask.getIvyNotes()));
@@ -90,7 +85,8 @@ public class RemoteTaskMapper {
     result.setId(ivyTask.getId());
     result.setIsExpired(ivyTask.getIsExpired());
     result.setPriority(WorkflowPriority.valueOf(ivyTask.getPriority()));
-    result.setFullRequestPath(UrlValidator.isValidUrl(ivyTask.getFullRequestPath()) ? ivyTask.getFullRequestPath() : host + ivyTask.getFullRequestPath());
+    result.setFullRequestPath(UrlValidator.isValidUrl(ivyTask.getFullRequestPath()) ? ivyTask.getFullRequestPath()
+        : host + ivyTask.getFullRequestPath());
     result.setKindCode(ivyTask.getKindCode());
     result.setKindName(ivyTask.getKindName());
     result.setOriginalActivatorName(ivyTask.getOriginalActivatorName());
@@ -104,10 +100,10 @@ public class RemoteTaskMapper {
      */
     RemoteCase rc = RemoteCaseMapper.mapRemoteBusinessCaseFromTask(ivyTask);
     result.setCase(rc);
-    
+
     RemoteCase technicalCase = RemoteCaseMapper.mapRemoteTechnicalCaseFromTask(ivyTask);
     result.setRemoteTechnicalCase(technicalCase);
-    
+
     RemoteApplication ra = new RemoteApplication();
     ra.setName(ivyTask.getApplicationName());
     result.setApplication(ra);
@@ -130,6 +126,39 @@ public class RemoteTaskMapper {
     result.setExpiryActivator(rsmExpiryActivator);
     result.setExpiryTaskStartElementPid(ivyTask.getExpireTaskStartElementPid());
     return result;
+  }
+
+  private static void setDelayTimestamp(IvyTask ivyTask, RemoteTask result) {
+    result.setDelayTimestamp(ivyTask.getDelayTimestamp() == null ? null : ivyTask.getDelayTimestamp().getTime());
+  }
+
+  private static void setExpiryTimestamp(IvyTask ivyTask, RemoteTask result) {
+    result.setExpiryTimestamp(ivyTask.getExpireTimestamp() == null ? null : ivyTask.getExpireTimestamp().getTime());
+  }
+
+  private static void setCustomTimestampField5(IvyTask ivyTask, RemoteTask result) {
+    result.setCustomTimestampField5(ivyTask.getCustomTimestampField5() == null ? null : ivyTask
+        .getCustomTimestampField5().getTime());
+  }
+
+  private static void setCustomTimestampField4(IvyTask ivyTask, RemoteTask result) {
+    result.setCustomTimestampField4(ivyTask.getCustomTimestampField4() == null ? null : ivyTask
+        .getCustomTimestampField4().getTime());
+  }
+
+  private static void setCustomTimestampField3(IvyTask ivyTask, RemoteTask result) {
+    result.setCustomTimestampField3(ivyTask.getCustomTimestampField3() == null ? null : ivyTask
+        .getCustomTimestampField3().getTime());
+  }
+
+  private static void setCustomTimestampField2(IvyTask ivyTask, RemoteTask result) {
+    result.setCustomTimestampField2(ivyTask.getCustomTimestampField2() == null ? null : ivyTask
+        .getCustomTimestampField2().getTime());
+  }
+
+  private static void setCustomTimestampField1(IvyTask ivyTask, RemoteTask result) {
+    result.setCustomTimestampField1(ivyTask.getCustomTimestampField1() == null ? null : ivyTask
+        .getCustomTimestampField1().getTime());
   }
 
   /**
@@ -162,7 +191,7 @@ public class RemoteTaskMapper {
    * Maps list of IvyTask to list of RemoteTask.
    * 
    * @param ivyTasks List<{@link IvyTask}>
-   * @param host 
+   * @param host
    * @return List<RemoteTask>
    * @see IvyTask
    * @see RemoteTask

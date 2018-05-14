@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.service;
 
+import static ch.ivyteam.ivy.server.ServerFactory.getServer;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -49,25 +51,33 @@ public class PortalConnectorDetector {
 
         Callable<IApplication> findApplicationCallable =
             () -> {
-              List<IApplication> applications =
-                  ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
-              for (IApplication application : applications) {
-                IProcessModelVersion processModelVersion = findPortalConnectorPMV(application);
-                if (processModelVersion != null) {
-                  return processModelVersion.getApplication();
-                }
+              List<IApplication> applications = getServer().getApplicationConfigurationManager().getApplications();
+              IProcessModelVersion processModelVersion = findPortalConnectorPMV(applications);
+              if (processModelVersion != null) {
+                return processModelVersion.getApplication();
               }
               throw new ApplicationNotFoundException(
                   "Cannot find application that contains process model PortalConnector");
 
             };
-        portalConnectorApplication = IvyAdapterService.executeCallableAsSystem(findApplicationCallable); //NOSONAR
+        portalConnectorApplication = IvyAdapterService.executeCallableAsSystem(findApplicationCallable); // NOSONAR
       } catch (Exception e) {
         Ivy.log().error("Cannot get PortalConnector application", e);
         throw new GetPortalConnectorApplicationException(e);
       }
     }
     return portalConnectorApplication;
+  }
+
+  private IProcessModelVersion findPortalConnectorPMV(List<IApplication> applications) {
+    IProcessModelVersion processModelVersion = null;
+    for (IApplication application : applications) {
+      processModelVersion = findPortalConnectorPMV(application);
+      if (processModelVersion != null) {
+        return processModelVersion;
+      }
+    }
+    return null;
   }
 
   private IProcessModelVersion findPortalConnectorPMV(IApplication application) {
@@ -121,8 +131,7 @@ public class PortalConnectorDetector {
     portalConnectorURLFormatParams.put("applicationName", applicationName);
     portalConnectorURLFormatParams.put("portalConnectorPMName", portalConnectorPMName);
 
-    String portalConnectorURL = formatString(PORTAL_CONNECTOR_URL_FORMAT, portalConnectorURLFormatParams);
-    return portalConnectorURL;
+    return formatString(PORTAL_CONNECTOR_URL_FORMAT, portalConnectorURLFormatParams);
   }
 
   public String getPortalConectorLocalhostURLFromRequestURL() {
