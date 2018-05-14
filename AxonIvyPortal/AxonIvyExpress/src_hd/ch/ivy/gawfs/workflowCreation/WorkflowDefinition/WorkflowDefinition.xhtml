@@ -125,6 +125,7 @@
 												itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" />
 											<f:selectItems value="#{status.index == 0 ? workflowDefinitionBean.taskTypesForFirstWorkflowTask : workflowDefinitionBean.getTaskTypes(data.data.definedTasks)}"
 												var="taskType" itemLabel="#{taskType.label}" itemValue="#{taskType}" />
+											<p:ajax process="@this" />
 										</p:selectOneMenu>
 									</p:column>
 
@@ -284,7 +285,7 @@
 			</p:dialog>
 
 			<p:confirmDialog widgetVar="deleteAllDefinedTasksWarning" message="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}"
-				appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert">
+				appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false">
 				<div class="delete-server-warning-buttons">
 					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
 						actionListener="#{logic.changeUISetting(true)}"
