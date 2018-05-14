@@ -53,6 +53,11 @@ public final class AbsenceAndSubstituteUtils {
       }
     }
 
+    return buildSubstituteTree(ivySubtitutes, mapUser, apps, appDisplayNameMap);
+  }
+
+  private static TreeNode buildSubstituteTree(List<RemoteSubstitute> ivySubtitutes,
+      Map<String, List<RemoteApplicationUser>> mapUser, List<String> apps, Map<String, String> appDisplayNameMap) {
     TreeNode substituteRoot = new DefaultTreeNode(new SubstituteNode(), null);
 
     for (String app : apps) {
@@ -65,11 +70,10 @@ public final class AbsenceAndSubstituteUtils {
       String appName = app.substring(0, app.indexOf(" - "));
       for (RemoteSubstitute remoteSubstitute : ivySubtitutes) {
 
-        if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName()) 
+        if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())
             && StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
           new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask"), remoteSubstitute, users, true),
-              appNode);
+              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask"), remoteSubstitute, users, true), appNode);
           break;
         }
       }
@@ -88,9 +92,9 @@ public final class AbsenceAndSubstituteUtils {
     }
     return substituteRoot;
   }
-  
+
   private static String getNodeName(RemoteSubstitute remoteSubstitute) {
-    if(StringUtils.isNotEmpty(remoteSubstitute.getRoleDisplayName())){
+    if (StringUtils.isNotEmpty(remoteSubstitute.getRoleDisplayName())) {
       return remoteSubstitute.getRoleDisplayName();
     }
     return remoteSubstitute.getForThisRole();
@@ -155,15 +159,9 @@ public final class AbsenceAndSubstituteUtils {
     Boolean result = true;
     for (ServerApplication serverApplication : applications) {
       for (RemoteAbsence mergedAbsence : mergedAbsences) {
-        Boolean contains = false;
-        for (RemoteAbsence absence : allAbsences) {
-          if (serverApplication.getAppName().equals(absence.getAppName())
-                  && checkEqualStartDateInclusive(absence, mergedAbsence)
-                  && checkEqualStopDateInclusive(absence, mergedAbsence)) {
-            contains = true; // found, check next absence
-            break;
-          }
-        }
+        Boolean contains =
+            allAbsences.stream().anyMatch(
+                absence -> isAppAbsenceSameAsMergedAbsence(serverApplication, mergedAbsence, absence));
         if (!contains) {
           result = false;
           break;
@@ -181,13 +179,22 @@ public final class AbsenceAndSubstituteUtils {
     }
   }
 
+  private static boolean isAppAbsenceSameAsMergedAbsence(ServerApplication serverApplication,
+      RemoteAbsence mergedAbsence, RemoteAbsence absence) {
+    return serverApplication.getAppName().equals(absence.getAppName())
+        && checkEqualStartDateInclusive(absence, mergedAbsence) && checkEqualStopDateInclusive(absence, mergedAbsence);
+  }
+
   private static boolean checkEqualStartDateInclusive(RemoteAbsence absence, RemoteAbsence mergedAbsence) {
-    return absence.getStartDateInclusive() != null && absence.getStartDateInclusive().equals(mergedAbsence.getStartDateInclusive());
+    return absence.getStartDateInclusive() != null
+        && absence.getStartDateInclusive().equals(mergedAbsence.getStartDateInclusive());
   }
 
   private static boolean checkEqualStopDateInclusive(RemoteAbsence absence, RemoteAbsence mergedAbsence) {
-    return absence.getStopDateInclusive() != null && absence.getStopDateInclusive().equals(mergedAbsence.getStopDateInclusive());
+    return absence.getStopDateInclusive() != null
+        && absence.getStopDateInclusive().equals(mergedAbsence.getStopDateInclusive());
   }
+
   /**
    * Check validation if from bigger than till
    * 
@@ -203,8 +210,8 @@ public final class AbsenceAndSubstituteUtils {
     Date startDate = setTimeToMidnight(remoteAbsence.getStartDateInclusive());
     Date stopDate = setTimeToMidnight(remoteAbsence.getStopDateInclusive());
 
-    if (remoteAbsence.getStopDateInclusive() != null
-        && remoteAbsence.getStartDateInclusive() != null && (startDate.compareTo(stopDate) > 0)) {
+    if (remoteAbsence.getStopDateInclusive() != null && remoteAbsence.getStartDateInclusive() != null
+        && (startDate.compareTo(stopDate) > 0)) {
       FacesContext.getCurrentInstance().addMessage(
           null,
           new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
@@ -267,11 +274,7 @@ public final class AbsenceAndSubstituteUtils {
    * @return boolean
    */
   public static boolean isCommentDisabled(String deputyValue) {
-    if (StringUtils.isEmpty(deputyValue)) {
-      return true;
-    } else {
-      return false;
-    }
+    return StringUtils.isEmpty(deputyValue);
   }
 
   /**
