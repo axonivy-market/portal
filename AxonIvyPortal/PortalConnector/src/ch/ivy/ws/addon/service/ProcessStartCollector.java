@@ -2,7 +2,6 @@ package ch.ivy.ws.addon.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -47,18 +46,15 @@ public class ProcessStartCollector {
   }
 
   public String findACMLink() {
-    return IvyExecutor.executeAsSystem(new Callable<String>() {
-      @Override
-      public String call() {
-        ProcessStartCollector collector = new ProcessStartCollector(application);
-        IProcessStart process =
-            collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
-        if (process != null) {
-          return RequestUriFactory.createProcessStartUri(
-              ServerFactory.getServer().getApplicationConfigurationManager(), process).toString();
-        }
-        return StringUtils.EMPTY;
+    return IvyExecutor.executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector(application);
+      IProcessStart process =
+          collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
+      if (process != null) {
+        return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(),
+            process).toString();
       }
+      return StringUtils.EMPTY;
     });
   }
 

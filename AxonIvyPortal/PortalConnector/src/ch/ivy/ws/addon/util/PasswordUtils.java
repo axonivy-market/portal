@@ -30,6 +30,16 @@ public final class PasswordUtils {
 
   private PasswordUtils() {}
 
+  public static void save(String id, String password) {
+    IWebService ws = findWebService(id);
+    if (Objects.nonNull(ws)) {
+      ws.createPasswordProperty(SERVER_PWD_KEY, password);
+    } else {
+      IDefaultWebService createWebService = app().createWebService(id, "", "", "", "");
+      createWebService.createPasswordProperty(SERVER_PWD_KEY, password);
+    }
+  }
+
   public static String find(String id) {
     IWebService ws = findWebService(id);
     if (Objects.isNull(ws)) {
@@ -39,16 +49,6 @@ public final class PasswordUtils {
     List<IWebServiceProperty> properties = ws.getProperties();
     return properties.stream().filter(property -> StringUtils.equalsIgnoreCase(SERVER_PWD_KEY, property.getName()))
         .map(IWebServiceProperty::getValue).findFirst().orElse(null);
-  }
-
-  public static void save(String id, String password) {
-    IWebService ws = findWebService(id);
-    if (Objects.nonNull(ws)) {
-      ws.createPasswordProperty(SERVER_PWD_KEY, password);
-    } else {
-      IDefaultWebService createWebService = app().createWebService(id, "", "", "", "");
-      createWebService.createPasswordProperty(SERVER_PWD_KEY, password);
-    }
   }
 
   public static void delete(String id) {
