@@ -39,15 +39,13 @@ public class RemoteCaseMapper {
     result.setBusinessMainContactId(ivyCase.getBusinessMainContactId());
     result.setBusinessMainContactName(ivyCase.getBusinessMainContactName());
     result.setBusinessMainContactType(ivyCase.getBusinessMainContactType());
-    result.setBusinessMilestoneTimestamp(ivyCase.getBusinessMilestoneTimestamp() == null ? null : ivyCase
-        .getBusinessMilestoneTimestamp().getTime());
+    setBusinessMilestoneTimestamp(ivyCase, result);
     result.setBusinessObjectCode(ivyCase.getBusinessObjectCode());
     result.setBusinessObjectDocumentDatabaseCode(ivyCase.getBusinessObjectDocumentDatabaseCode());
     result.setBusinessObjectFolderId(ivyCase.getBusinessObjectFolderId());
     result.setBusinessObjectName(ivyCase.getBusinessObjectName());
     result.setBusinessPriority(ivyCase.getBusinessPriority());
-    result.setBusinessStartTimestamp(ivyCase.getBusinessStartTimestamp() == null ? null : ivyCase
-        .getBusinessStartTimestamp().getTime());
+    setBusinessStartTimestamp(ivyCase, result);
 
     result.setCreatorUserName(ivyCase.getCreatorUserName());
     result.setCreatorFullName(ivyCase.getCreatorFullName());
@@ -57,17 +55,12 @@ public class RemoteCaseMapper {
     result.setCustomDecimalField3(ivyCase.getCustomDecimalField3());
     result.setCustomDecimalField4(ivyCase.getCustomDecimalField4());
     result.setCustomDecimalField5(ivyCase.getCustomDecimalField5());
-    
-    result.setCustomTimestampField1(ivyCase.getCustomTimestampField1() == null ? null : ivyCase
-        .getCustomTimestampField1().getTime());
-    result.setCustomTimestampField2(ivyCase.getCustomTimestampField2() == null ? null : ivyCase
-        .getCustomTimestampField2().getTime());
-    result.setCustomTimestampField3(ivyCase.getCustomTimestampField3() == null ? null : ivyCase
-        .getCustomTimestampField3().getTime());
-    result.setCustomTimestampField4(ivyCase.getCustomTimestampField4() == null ? null : ivyCase
-        .getCustomTimestampField4().getTime());
-    result.setCustomTimestampField5(ivyCase.getCustomTimestampField5() == null ? null : ivyCase
-        .getCustomTimestampField5().getTime());
+
+    setCustomTimestampField1(ivyCase, result);
+    setCustomTimestampField2(ivyCase, result);
+    setCustomTimestampField3(ivyCase, result);
+    setCustomTimestampField4(ivyCase, result);
+    setCustomTimestampField5(ivyCase, result);
 
     result.setCustomVarCharField1(ivyCase.getCustomVarCharField1());
     result.setCustomVarCharField2(ivyCase.getCustomVarCharField2());
@@ -79,9 +72,7 @@ public class RemoteCaseMapper {
     result.setEndTimestamp(ivyCase.getEndTimestamp() == null ? null : ivyCase.getEndTimestamp().getTime());
     result.setId(ivyCase.getId());
     result.setName(ivyCase.getName());
-    if (ivyCase.getPriority() != null) {
-      result.setPriority(WorkflowPriority.valueOf(ivyCase.getPriority()));
-    }
+    setPriority(ivyCase, result);
 
     result.setProcessCategoryCode(ivyCase.getProcessCategoryCode());
     result.setProcessCategoryName(ivyCase.getProcessCategoryName());
@@ -89,9 +80,7 @@ public class RemoteCaseMapper {
     result.setProcessName(ivyCase.getProcessName());
 
     result.setStartTimestamp(ivyCase.getStartTimestamp() == null ? null : ivyCase.getStartTimestamp().getTime());
-    if (ivyCase.getState() != null) {
-      result.setState(CaseState.valueOf(ivyCase.getState()));
-    }
+    setState(ivyCase, result);
     result.setSubTypeCode(ivyCase.getSubTypeCode());
     result.setSubTypeName(ivyCase.getSubTypeName());
 
@@ -111,13 +100,60 @@ public class RemoteCaseMapper {
     result.setBusinessCase(ivyCase.getIsBusinessCase());
     result.setServerUrl(ivyCase.getServerUrl());
     result.setCanUploadDeleteDocument(ivyCase.getCanUploadDeleteDocument());
-    
+
     return result;
 
   }
 
+  private static void setBusinessStartTimestamp(IvyCase ivyCase, RemoteCase result) {
+    result.setBusinessStartTimestamp(ivyCase.getBusinessStartTimestamp() == null ? null : ivyCase
+        .getBusinessStartTimestamp().getTime());
+  }
+
+  private static void setBusinessMilestoneTimestamp(IvyCase ivyCase, RemoteCase result) {
+    result.setBusinessMilestoneTimestamp(ivyCase.getBusinessMilestoneTimestamp() == null ? null : ivyCase
+        .getBusinessMilestoneTimestamp().getTime());
+  }
+
+  private static void setCustomTimestampField5(IvyCase ivyCase, RemoteCase result) {
+    result.setCustomTimestampField5(ivyCase.getCustomTimestampField5() == null ? null : ivyCase
+        .getCustomTimestampField5().getTime());
+  }
+
+  private static void setCustomTimestampField4(IvyCase ivyCase, RemoteCase result) {
+    result.setCustomTimestampField4(ivyCase.getCustomTimestampField4() == null ? null : ivyCase
+        .getCustomTimestampField4().getTime());
+  }
+
+  private static void setCustomTimestampField3(IvyCase ivyCase, RemoteCase result) {
+    result.setCustomTimestampField3(ivyCase.getCustomTimestampField3() == null ? null : ivyCase
+        .getCustomTimestampField3().getTime());
+  }
+
+  private static void setCustomTimestampField2(IvyCase ivyCase, RemoteCase result) {
+    result.setCustomTimestampField2(ivyCase.getCustomTimestampField2() == null ? null : ivyCase
+        .getCustomTimestampField2().getTime());
+  }
+
+  private static void setCustomTimestampField1(IvyCase ivyCase, RemoteCase result) {
+    result.setCustomTimestampField1(ivyCase.getCustomTimestampField1() == null ? null : ivyCase
+        .getCustomTimestampField1().getTime());
+  }
+
+  private static void setState(IvyCase ivyCase, RemoteCase result) {
+    if (ivyCase.getState() != null) {
+      result.setState(CaseState.valueOf(ivyCase.getState()));
+    }
+  }
+
+  private static void setPriority(IvyCase ivyCase, RemoteCase result) {
+    if (ivyCase.getPriority() != null) {
+      result.setPriority(WorkflowPriority.valueOf(ivyCase.getPriority()));
+    }
+  }
+
   /**
-   * Convert web service task to remote technical case 
+   * Convert web service task to remote technical case
    * 
    * @param ivyTask web service task
    * @return remote task
@@ -131,7 +167,8 @@ public class RemoteCaseMapper {
 
     result.setBusinessCorrespondentId(ivyTask.getTechnicalCaseBusinessCorrespondentId());
     result.setBusinessCreatorUser(ivyTask.getTechnicalCaseBusinessCreatorUser());
-    result.setBusinessMainContactDocumentDatabaseCode(ivyTask.getTechnicalCaseBusinessMainContactDocumentDatabaseCode());
+    result
+        .setBusinessMainContactDocumentDatabaseCode(ivyTask.getTechnicalCaseBusinessMainContactDocumentDatabaseCode());
     result.setBusinessMainContactFolderId(ivyTask.getTechnicalCaseBusinessMainContactFolderId());
     result.setBusinessMainContactId(ivyTask.getTechnicalCaseBusinessMainContactId());
     result.setBusinessMainContactName(ivyTask.getTechnicalCaseBusinessMainContactName());
@@ -188,7 +225,8 @@ public class RemoteCaseMapper {
 
     result.setCreatorUserName(ivyTask.getTechnicalCaseCreatorUserName());
 
-    result.setEndTimestamp(ivyTask.getTechnicalCaseEndTimestamp() == null ? null : ivyTask.getTechnicalCaseEndTimestamp().getTime());
+    result.setEndTimestamp(ivyTask.getTechnicalCaseEndTimestamp() == null ? null : ivyTask
+        .getTechnicalCaseEndTimestamp().getTime());
     result.setId(ivyTask.getTechnicalCaseId());
 
     result.setProcessCategoryCode(ivyTask.getTechnicalCaseProcessCategoryCode());
@@ -196,8 +234,8 @@ public class RemoteCaseMapper {
     result.setProcessCode(ivyTask.getTechnicalCaseProcessCode());
     result.setProcessName(ivyTask.getTechnicalCaseProcessName());
 
-    result
-        .setStartTimestamp(ivyTask.getTechnicalCaseStartTimestamp() == null ? null : ivyTask.getTechnicalCaseStartTimestamp().getTime());
+    result.setStartTimestamp(ivyTask.getTechnicalCaseStartTimestamp() == null ? null : ivyTask
+        .getTechnicalCaseStartTimestamp().getTime());
     result.setState(CaseState.valueOf(ivyTask.getCaseState()));
     result.setSubTypeCode(ivyTask.getTechnicalCaseSubTypeCode());
     result.setSubTypeName(ivyTask.getTechnicalCaseSubTypeName());
@@ -208,8 +246,8 @@ public class RemoteCaseMapper {
 
     return result;
   }
-  
-  
+
+
   /**
    * Convert web service task to remote business case.
    * 
@@ -270,7 +308,7 @@ public class RemoteCaseMapper {
 
     try {
       result.setPriority(WorkflowPriority.valueOf(ivyTask.getCasePriority()));
-    } catch (Exception e) { //NOSONAR
+    } catch (Exception e) { // NOSONAR
 
     }
 
@@ -302,7 +340,7 @@ public class RemoteCaseMapper {
 
     return result;
   }
-  
+
   public static RemoteCase mapCaseFromTask(RemoteTask ivyTask) {
     RemoteCase remoteCase = new RemoteCase();
 
@@ -393,7 +431,7 @@ public class RemoteCaseMapper {
    * Map list of IvyCase to list of RemoteCase.
    * 
    * @param ivyCases list of {@link IvyCase}
-   * @param server 
+   * @param server
    * @return list of {@link RemoteCase}
    * @see IvyCase
    * @see RemoteCase
@@ -414,7 +452,7 @@ public class RemoteCaseMapper {
    * Map IvyCase to RemoteCase.
    * 
    * @param ivyCase {@link IvyCase}
-   * @param server 
+   * @param server
    * @return {@link RemoteCase}
    * @see IvyCase
    * @see RemoteCase
