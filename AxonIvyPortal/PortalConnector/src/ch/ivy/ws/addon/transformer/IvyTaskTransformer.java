@@ -33,38 +33,15 @@ public class IvyTaskTransformer {
   public IvyTask transform(ITask t, boolean addCaseToTask) {
     IvyTask result = new IvyTask();
 
-    if (t.getActivator() != null) {
-      String activatorName = t.getActivatorName().replaceFirst("#", "");
-      result.setActivatorName(activatorName);
-      ISecurityMember activator = t.getActivator();
-      if (activator != null) {
-        String fullName =
-            !activator.getDisplayName().isEmpty() ? activator.getDisplayName() : activator.getMemberName();
-        if (activator.isUser()) {
-          IUser user = (IUser) activator;
-          fullName = user.getFullName();
-        }
-        result.setActivatorFullName(fullName);
-      }
-    }
+    setActivator(t, result);
 
     result.setBusinessCreatorUser(t.getBusinessCreatorUser());
 
-    if (t.getCustomDecimalField1() != null) {
-      result.setCustomDecimalField1(t.getCustomDecimalField1().floatValue());
-    }
-    if (t.getCustomDecimalField2() != null) {
-      result.setCustomDecimalField2(t.getCustomDecimalField2().floatValue());
-    }
-    if (t.getCustomDecimalField3() != null) {
-      result.setCustomDecimalField3(t.getCustomDecimalField3().floatValue());
-    }
-    if (t.getCustomDecimalField4() != null) {
-      result.setCustomDecimalField4(t.getCustomDecimalField4().floatValue());
-    }
-    if (t.getCustomDecimalField5() != null) {
-      result.setCustomDecimalField5(t.getCustomDecimalField5().floatValue());
-    }
+    setCustomDecimalField1(t, result);
+    setCustomDecimalField2(t, result);
+    setCustomDecimalField3(t, result);
+    setCustomDecimalField4(t, result);
+    setCustomDecimalField5(t, result);
     result.setCustomTimestampField1(t.getCustomTimestampField1());
     result.setCustomTimestampField2(t.getCustomTimestampField2());
     result.setCustomTimestampField3(t.getCustomTimestampField3());
@@ -81,68 +58,25 @@ public class IvyTaskTransformer {
     result.setDescription(t.getDescription());
     result.setDisplayDescriptionTemplate(t.getDisplayDescriptionTemplate());
     result.setDisplayNameTemplate(t.getDisplayNameTemplate());
-    if (t.getExpiryActivatorName() != null) {
-      String expiryActivatorName = t.getExpiryActivatorName().replaceFirst("#", "");
-      result.setExpireActivatorName(expiryActivatorName);
-      ISecurityMember expiryActivator = t.getExpiryActivator();
-      if (expiryActivator != null) {
-        String fullName =
-            !expiryActivator.getDisplayName().isEmpty() ? expiryActivator.getDisplayName() : expiryActivator
-                .getMemberName();
-        if (expiryActivator.isUser()) {
-          IUser user = (IUser) expiryActivator;
-          fullName = user.getFullName();
-        }
-        result.setExpireActivatorFullName(fullName);
-      }
-    }
-    if (t.getExpiryPriority() != null) {
-      result.setExpirePriority(t.getExpiryPriority().name());
-    }
+    setExpiryActivator(t, result);
+    setExpiryPriority(t, result);
     result.setId(t.getId());
     result.setIsExpired(t.isExpired());
     result.setName(t.getName());
 
-    if (t.getPriority() != null) {
-      result.setPriority(t.getPriority().name());
-    }
+    setPriority(t, result);
 
     result.setFullRequestPath(getStartLink(t));
     result.setKindCode(t.getKindCode());
     result.setKindName(t.getKindName());
-    if (t.getOriginalActivatorName() != null) {
-      String originalActivatorName = t.getOriginalActivatorName().replaceFirst("#", "");
-      result.setOriginalActivatorName(originalActivatorName);
-      ISecurityMember originalActivator = t.getOriginalActivator();
-      if (originalActivator != null) {
-        String fullName =
-            !originalActivator.getDisplayName().isEmpty() ? originalActivator.getDisplayName() : originalActivator
-                .getMemberName();
-        if (originalActivator.isUser()) {
-          IUser user = (IUser) originalActivator;
-          fullName = user.getFullName();
-        }
-        result.setOriginalActivatorFullName(fullName);
-      }
-    }
-    if (t.getOriginalPriority() != null) {
-      result.setOriginalPriority(t.getOriginalPriority().name());
-
-    }
+    setOriginalActivator(t, result);
+    setOriginalPriority(t, result);
     result.setStartTimestamp(t.getStartTimestamp());
     result.setExpireTimestamp(t.getExpiryTimestamp());
     result.setExpireTaskStartElementPid(t.getExpiryTaskStartElementPid());
     result.setEndTimestamp(t.getEndTimestamp());
-    if (t.getState() != null) {
-      result.setState(t.getState().name());
-    }
-    if (t.getWorkerUserName() != null) {
-      result.setWorkerUserName(t.getWorkerUserName().replaceFirst("#", ""));
-      IUser worker = t.getWorkerUser();
-      if (worker != null) {
-        result.setWorkerFullName(worker.getFullName());
-      }
-    }
+    setState(t, result);
+    setWorkerFullname(t, result);
 
     result.setApplicationName(t.getCase().getApplication().getName());
     IvyNoteTransformer ivyNoteTransformer = new IvyNoteTransformer();
@@ -205,7 +139,7 @@ public class IvyTaskTransformer {
       result.setCaseTypeCode(c.getTypeCode());
       result.setCaseTypeName(c.getTypeName());
     }
-    
+
     // Add technical case object
     if (addCaseToTask) {
       IvyCaseTransformer caseTransformer = new IvyCaseTransformer();
@@ -263,8 +197,125 @@ public class IvyTaskTransformer {
       result.setTechnicalCaseTypeCode(c.getTypeCode());
       result.setTechnicalCaseTypeName(c.getTypeName());
     }
-    
+
     return result;
+  }
+
+  private void setExpiryActivator(ITask t, IvyTask result) {
+    if (t.getExpiryActivatorName() != null) {
+      String expiryActivatorName = t.getExpiryActivatorName().replaceFirst("#", "");
+      result.setExpireActivatorName(expiryActivatorName);
+      ISecurityMember expiryActivator = t.getExpiryActivator();
+      if (expiryActivator != null) {
+        String fullName =
+            !expiryActivator.getDisplayName().isEmpty() ? expiryActivator.getDisplayName() : expiryActivator
+                .getMemberName();
+        if (expiryActivator.isUser()) {
+          IUser user = (IUser) expiryActivator;
+          fullName = user.getFullName();
+        }
+        result.setExpireActivatorFullName(fullName);
+      }
+    }
+  }
+
+  private void setOriginalActivator(ITask t, IvyTask result) {
+    if (t.getOriginalActivatorName() != null) {
+      String originalActivatorName = t.getOriginalActivatorName().replaceFirst("#", "");
+      result.setOriginalActivatorName(originalActivatorName);
+      ISecurityMember originalActivator = t.getOriginalActivator();
+      if (originalActivator != null) {
+        String fullName =
+            !originalActivator.getDisplayName().isEmpty() ? originalActivator.getDisplayName() : originalActivator
+                .getMemberName();
+        if (originalActivator.isUser()) {
+          IUser user = (IUser) originalActivator;
+          fullName = user.getFullName();
+        }
+        result.setOriginalActivatorFullName(fullName);
+      }
+    }
+  }
+
+  private void setOriginalPriority(ITask t, IvyTask result) {
+    if (t.getOriginalPriority() != null) {
+      result.setOriginalPriority(t.getOriginalPriority().name());
+    }
+  }
+
+  private void setPriority(ITask t, IvyTask result) {
+    if (t.getPriority() != null) {
+      result.setPriority(t.getPriority().name());
+    }
+  }
+
+  private void setExpiryPriority(ITask t, IvyTask result) {
+    if (t.getExpiryPriority() != null) {
+      result.setExpirePriority(t.getExpiryPriority().name());
+    }
+  }
+
+  private void setActivator(ITask t, IvyTask result) {
+    if (t.getActivator() != null) {
+      String activatorName = t.getActivatorName().replaceFirst("#", "");
+      result.setActivatorName(activatorName);
+      ISecurityMember activator = t.getActivator();
+      if (activator != null) {
+        String fullName =
+            !activator.getDisplayName().isEmpty() ? activator.getDisplayName() : activator.getMemberName();
+        if (activator.isUser()) {
+          IUser user = (IUser) activator;
+          fullName = user.getFullName();
+        }
+        result.setActivatorFullName(fullName);
+      }
+    }
+  }
+
+  private void setWorkerFullname(ITask t, IvyTask result) {
+    if (t.getWorkerUserName() != null) {
+      result.setWorkerUserName(t.getWorkerUserName().replaceFirst("#", ""));
+      IUser worker = t.getWorkerUser();
+      if (worker != null) {
+        result.setWorkerFullName(worker.getFullName());
+      }
+    }
+  }
+
+  private void setState(ITask t, IvyTask result) {
+    if (t.getState() != null) {
+      result.setState(t.getState().name());
+    }
+  }
+
+  private void setCustomDecimalField5(ITask t, IvyTask result) {
+    if (t.getCustomDecimalField5() != null) {
+      result.setCustomDecimalField5(t.getCustomDecimalField5().floatValue());
+    }
+  }
+
+  private void setCustomDecimalField4(ITask t, IvyTask result) {
+    if (t.getCustomDecimalField4() != null) {
+      result.setCustomDecimalField4(t.getCustomDecimalField4().floatValue());
+    }
+  }
+
+  private void setCustomDecimalField3(ITask t, IvyTask result) {
+    if (t.getCustomDecimalField3() != null) {
+      result.setCustomDecimalField3(t.getCustomDecimalField3().floatValue());
+    }
+  }
+
+  private void setCustomDecimalField2(ITask t, IvyTask result) {
+    if (t.getCustomDecimalField2() != null) {
+      result.setCustomDecimalField2(t.getCustomDecimalField2().floatValue());
+    }
+  }
+
+  private void setCustomDecimalField1(ITask t, IvyTask result) {
+    if (t.getCustomDecimalField1() != null) {
+      result.setCustomDecimalField1(t.getCustomDecimalField1().floatValue());
+    }
   }
 
   public List<IvyTask> transform(List<ITask> tasks, boolean addCaseToTask) {

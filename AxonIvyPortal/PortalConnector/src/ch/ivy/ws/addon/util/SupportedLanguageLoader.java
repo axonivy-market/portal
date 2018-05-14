@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
@@ -41,7 +42,7 @@ public class SupportedLanguageLoader {
   private class CmsFinderCallable implements Callable<List<String>> {
 
     private static final String SUPPORTED_LANGUAGES_CMS_URI = "/AppInfo/SupportedLanguages";
-    private final static String PORTALKIT_LIBRARY = "ch.ivyteam.ivy.project.portal:portalKit";
+    private static final String PORTALKIT_LIBRARY = "ch.ivyteam.ivy.project.portal:portalKit";
 
     @Override
     public List<String> call() {
@@ -53,11 +54,7 @@ public class SupportedLanguageLoader {
         if (contentObjectValue != null) {
           String cmsValue = contentObjectValue.getContentAsString();
           List<String> languages = Arrays.asList(cmsValue.split(","));
-          for (String language : languages) {
-            if (!language.isEmpty()) {
-              supportedLanguages.add(language);
-            }
-          }
+          supportedLanguages.addAll(languages.stream().filter(l -> !l.isEmpty()).collect(Collectors.toList()));
         }
       }
       return new ArrayList<>(supportedLanguages);
