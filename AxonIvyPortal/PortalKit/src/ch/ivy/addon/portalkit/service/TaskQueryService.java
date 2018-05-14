@@ -29,29 +29,30 @@ public class TaskQueryService {
       finalQuery = TaskQuery.fromJson(criteria.getTaskQuery().asJson());
     }
 
-    if (criteria.hasIncludedStates() && !criteria.isQueryForUnassignedTask()) {
-      finalQuery.where().and(queryForStates(criteria.getIncludedStates()));
-    }
+    addTaskStateQuery(criteria, finalQuery);
 
     if (criteria.hasTaskId()) {
       finalQuery.where().and(queryForTaskId(criteria.getTaskId()));
       return finalQuery;
     }
 
-    if (criteria.hasCaseId()) {
-      if (criteria.isQueryByBusinessCaseId()) {
-        finalQuery.where().and(
-            TaskQuery.create().where().businessCaseId().isEqual(criteria.getCaseId()).or().caseId()
-                .isEqual(criteria.getCaseId()));
-      } else {
-        finalQuery.where().and().caseId().isEqual(criteria.getCaseId());
-      }
-    }
+    addCaseIdQuery(criteria, finalQuery);
+    addKeywordQuery(criteria, finalQuery);
+    addAssigneeTypeQuery(criteria, finalQuery);
+    addCategoryQuery(criteria, finalQuery);
 
-    if (criteria.hasKeyword()) {
-      finalQuery.where().and(queryForKeyword(criteria.getKeyword()));
-    }
+    TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
+    finalQuery = appender.appendSorting(criteria).toQuery();
+    return finalQuery;
+  }
 
+  private void addCategoryQuery(TaskQueryCriteria criteria, TaskQuery finalQuery) {
+    if (criteria.hasCategory()) {
+      finalQuery.where().and(queryForCategory(criteria.getCategory()));
+    }
+  }
+
+  private void addAssigneeTypeQuery(TaskQueryCriteria criteria, TaskQuery finalQuery) {
     if (criteria.isQueryForUnassignedTask()) {
       finalQuery.where().and().activatorUserId().isNull().and().activatorRoleId().isNull();
     } else if (criteria.getTaskAssigneeType() == TaskAssigneeType.ROLE) {
@@ -65,14 +66,30 @@ public class TaskQueryService {
       }
       finalQuery.where().and(personalTaskQuery);
     }
+  }
 
-    if (criteria.hasCategory()) {
-      finalQuery.where().and(queryForCategory(criteria.getCategory()));
+  private void addCaseIdQuery(TaskQueryCriteria criteria, TaskQuery finalQuery) {
+    if (criteria.hasCaseId()) {
+      if (criteria.isQueryByBusinessCaseId()) {
+        finalQuery.where().and(
+            TaskQuery.create().where().businessCaseId().isEqual(criteria.getCaseId()).or().caseId()
+                .isEqual(criteria.getCaseId()));
+      } else {
+        finalQuery.where().and().caseId().isEqual(criteria.getCaseId());
+      }
     }
+  }
 
-    TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
-    finalQuery = appender.appendSorting(criteria).toQuery();
-    return finalQuery;
+  private void addTaskStateQuery(TaskQueryCriteria criteria, TaskQuery finalQuery) {
+    if (criteria.hasIncludedStates() && !criteria.isQueryForUnassignedTask()) {
+      finalQuery.where().and(queryForStates(criteria.getIncludedStates()));
+    }
+  }
+
+  private void addKeywordQuery(TaskQueryCriteria criteria, TaskQuery finalQuery) {
+    if (criteria.hasKeyword()) {
+      finalQuery.where().and(queryForKeyword(criteria.getKeyword()));
+    }
   }
 
   public TaskQuery findNewTasks(TaskQuery currentQuerry, Date timeStamp, Boolean ignoreInvolvedUser) {
@@ -100,16 +117,14 @@ public class TaskQueryService {
       long idKeyword = Long.parseLong(keyword);
       filterByKeywordQuery.where().or().taskId().isEqual(idKeyword);
     } catch (NumberFormatException e) {
-      //do nothing
+      // do nothing
     }
     return filterByKeywordQuery;
   }
 
   private TaskQuery queryForCategory(String keyword) {
     String startingWithCategory = String.format("%s%%", keyword);
-    TaskQuery filterByKeywordQuery = TaskQuery.create().where().category().isLike(startingWithCategory);
-
-    return filterByKeywordQuery;
+    return TaskQuery.create().where().category().isLike(startingWithCategory);
   }
 
   private TaskQuery queryForStates(List<TaskState> states) {
