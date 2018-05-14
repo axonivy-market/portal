@@ -26,7 +26,7 @@ public class RemoteSideStep {
 		return webLink;
 	}
 
-	public WebLink getStartLink(@SuppressWarnings("unused") HttpServletRequest arg0) { //NOSONAR
+	public WebLink getStartLink(@SuppressWarnings("unused") HttpServletRequest arg0) {
 		return webLink;
 	}
 
