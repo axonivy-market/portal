@@ -12,7 +12,7 @@
 		styleClass="Wid100 default-template-dyna-form">
 
 		<pe:dynaFormControl type="InputTextArea" for="inputTextArea">
-			<p:inputTextarea id="inputTextArea" value="#{dynaData.value}"
+			<p:inputTextarea id="inputTextArea" value="#{dynaData.value}" styleClass="default-template-text-area"
 				required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 				rows="#{dynaData.intSetting}" autoResize="false" />
 		</pe:dynaFormControl>
