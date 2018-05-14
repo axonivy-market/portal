@@ -41,35 +41,7 @@ public class WebStartableServiceImpl extends AbstractService implements IWebStar
 
           for (IApplication application : applications) {
             if (searchCriteria.getInvolvedApplications().contains(application.getName())) {
-              IWorkflowSession workflowSession = null;
-              try {
-                workflowSession = getWorkflowSession(searchCriteria, application);
-
-                if (!workflowSession.isSessionUserUnknown()) {
-                  List<IWebStartable> webStartables = workflowSession.getStartables();
-                  webStartables =
-                      webStartables
-                          .stream()
-                          .filter(
-                              process -> !process.getLink().getAbsoluteEncoded().endsWith(PORTAL_START_REQUEST_PATH))
-                          .collect(Collectors.toList());
-                  if (searchCriteria.hasKeyword()) {
-                    starts.addAll(webStartables
-                        .stream()
-                        .filter(webStartable -> match(webStartable, searchCriteria.getKeyword()))
-                        .map(
-                            webStartable -> IvyWebStartableTransformer.transform(webStartable,
-                                isUrlBuiltFromSystemProperties)).collect(Collectors.toList()));
-                  } else {
-                    starts.addAll(IvyWebStartableTransformer.transform(webStartables, isUrlBuiltFromSystemProperties));
-                  }
-                }
-              } finally {
-                if (workflowSession != null && !workflowSession.isSessionUserSystemUser()) {
-                  ISecurityContext securityContext = application.getSecurityContext();
-                  securityContext.destroySession(workflowSession.getIdentifier());
-                }
-              }
+              starts.addAll(getWebStartables(searchCriteria, isUrlBuiltFromSystemProperties, application));
             }
           }
           WebStartableServiceResult result = new WebStartableServiceResult();
@@ -77,11 +49,47 @@ public class WebStartableServiceImpl extends AbstractService implements IWebStar
           return result;
         }
 
-
       });
     } catch (Exception e) {
       throw new WSException(10008, e);
     }
+  }
+
+  private List<IvyWebStartable> getWebStartables(WebStartableSearchCriteria searchCriteria,
+      Boolean isUrlBuiltFromSystemProperties, IApplication application) throws WSException {
+    List<IvyWebStartable> starts = new ArrayList<>();
+    IWorkflowSession workflowSession = null;
+    try {
+      workflowSession = getWorkflowSession(searchCriteria, application);
+      if (!workflowSession.isSessionUserUnknown()) {
+        List<IWebStartable> webStartables = getAllWebStartableFromWorkflow(workflowSession);
+        if (searchCriteria.hasKeyword()) {
+          starts.addAll(getWebStartableMatchKeyword(searchCriteria, isUrlBuiltFromSystemProperties, webStartables));
+        } else {
+          starts.addAll(IvyWebStartableTransformer.transform(webStartables, isUrlBuiltFromSystemProperties));
+        }
+      }
+    } finally {
+      if (workflowSession != null && !workflowSession.isSessionUserSystemUser()) {
+        ISecurityContext securityContext = application.getSecurityContext();
+        securityContext.destroySession(workflowSession.getIdentifier());
+      }
+    }
+    return starts;
+  }
+
+  private List<IvyWebStartable> getWebStartableMatchKeyword(WebStartableSearchCriteria searchCriteria,
+      Boolean isUrlBuiltFromSystemProperties, List<IWebStartable> webStartables) {
+    return webStartables.stream().filter(webStartable -> match(webStartable, searchCriteria.getKeyword()))
+        .map(webStartable -> IvyWebStartableTransformer.transform(webStartable, isUrlBuiltFromSystemProperties))
+        .collect(Collectors.toList());
+  }
+
+  private List<IWebStartable> getAllWebStartableFromWorkflow(IWorkflowSession workflowSession) {
+    List<IWebStartable> webStartables = workflowSession.getStartables();
+    return webStartables.stream()
+        .filter(process -> !process.getLink().getAbsoluteEncoded().endsWith(PORTAL_START_REQUEST_PATH))
+        .collect(Collectors.toList());
   }
 
   private boolean match(IWebStartable webStartable, String keyword) {
@@ -89,16 +97,13 @@ public class WebStartableServiceImpl extends AbstractService implements IWebStar
         || containsIgnoreCase(webStartable.getDescription(), keyword);
   }
 
-  private IWorkflowSession getWorkflowSession(WebStartableSearchCriteria searchCriteria, IApplication application) throws WSException {
+  private IWorkflowSession getWorkflowSession(WebStartableSearchCriteria searchCriteria, IApplication application)
+      throws WSException {
     if (searchCriteria.hasInvolvedUsername()) {
-      IWorkflowSession givenUserWorkflowSession =
-          findUserWorkflowSession(searchCriteria.getInvolvedUsername(), application);
-      return givenUserWorkflowSession;
+      return findUserWorkflowSession(searchCriteria.getInvolvedUsername(), application);
     }
 
-    IWorkflowSession systemUserWorkflowSession =
-        Ivy.wf().getWorkflowSession(application.getSecurityContext().getSystemUserSession());
-    return systemUserWorkflowSession;
+    return Ivy.wf().getWorkflowSession(application.getSecurityContext().getSystemUserSession());
   }
 
   private static List<IApplication> getAllApplications() {

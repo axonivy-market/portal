@@ -11,7 +11,6 @@ import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -27,8 +26,8 @@ public class ProcessStartCollector {
   }
 
   public IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
-    if (!isActive(this.application)) {
-      List<IProcessModel> processModels = this.application.getProcessModelsSortedByName();
+    if (application != null && !isActive(application)) {
+      List<IProcessModel> processModels = application.getProcessModelsSortedByName();
       Optional<IProcessModelVersion> processModelVersion =
           processModels.stream().filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
               .filter(this::isActive).findFirst();
@@ -50,7 +49,7 @@ public class ProcessStartCollector {
   public String findACMLink() {
     return IvyExecutor.executeAsSystem(new Callable<String>() {
       @Override
-      public String call() throws PersistencyException {
+      public String call() {
         ProcessStartCollector collector = new ProcessStartCollector(application);
         IProcessStart process =
             collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
