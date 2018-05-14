@@ -1,4 +1,4 @@
-package ch.ivy.statUtils;
+package ch.ivy.statutils;
 
 import static ch.ivyteam.ivy.workflow.CaseProperty.START_TIMESTAMP;
 import static ch.ivyteam.logicalexpression.RelationalOperator.EQUAL_OR_LARGER;
@@ -15,6 +15,10 @@ import ch.ivyteam.ivy.workflow.IPropertyFilter;
 import ch.ivyteam.logicalexpression.RelationalOperator;
 
 public class CaseStatUtils {
+
+  private CaseStatUtils() {
+
+  }
 
   public static int getFinishedProcessesCount(Date from) {
     // finished cases

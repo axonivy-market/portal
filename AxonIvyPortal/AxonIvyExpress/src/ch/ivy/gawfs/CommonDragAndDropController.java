@@ -20,14 +20,15 @@ public abstract class CommonDragAndDropController {
 
   protected DynaFormController dynaFormController;
 
-  public void onFieldDrop(DragDropEvent ddEvent) {
-    throw new NotImplementedException(ddEvent.getDragId() + SEPARATOR_CHAR + ddEvent.getDropId());
-  }
-
   public CommonDragAndDropController() {
     availableFormelements = new ArrayList<>();
     finalUsedFormelements = new ArrayList<>();
   }
+
+  public void onFieldDrop(DragDropEvent ddEvent) {
+    throw new NotImplementedException(ddEvent.getDragId() + SEPARATOR_CHAR + ddEvent.getDropId());
+  }
+
 
   public void deleteFormelement(Formelement formelement) {
     availableFormelements.remove(formelement);
