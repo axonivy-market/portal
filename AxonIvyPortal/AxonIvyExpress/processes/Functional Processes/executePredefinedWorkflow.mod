@@ -105,7 +105,6 @@ Bk3 @CallSub f3 '' #zField
 Bk3 @GridStep f34 '' #zField
 Bk3 @PushWFArc f29 '' #zField
 Bk3 @Alternative f41 '' #zField
-Bk3 @PushWFArc f43 '' #zField
 Bk3 @GridStep f44 '' #zField
 Bk3 @PushWFArc f39 '' #zField
 Bk3 @GridStep f48 '' #zField
@@ -136,6 +135,9 @@ Bk3 @PushWFArc f50 '' #zField
 Bk3 @GridStep f58 '' #zField
 Bk3 @PushWFArc f59 '' #zField
 Bk3 @PushWFArc f2 '' #zField
+Bk3 @GridStep f60 '' #zField
+Bk3 @PushWFArc f61 '' #zField
+Bk3 @PushWFArc f43 '' #zField
 >Proto Bk3 Bk1 BpmnUserTask #zField
 Bk5 @TextInP .resExport .resExport #zField
 Bk5 @TextInP .type .type #zField
@@ -969,20 +971,6 @@ Bk3 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk3 f41 336 1392 32 32 -143 10 #rect
 Bk3 f41 @|AlternativeIcon #fIcon
-Bk3 f43 expr in #txt
-Bk3 f43 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Bk3 f43 336 1408 288 1112 #arcP
-Bk3 f43 1 224 1408 #addKink
-Bk3 f43 2 224 1112 #addKink
-Bk3 f43 0 0.41964285714285715 0 -9 #arcLabel
 Bk3 f44 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk3 f44 actionTable 'out=in;
@@ -1016,18 +1004,18 @@ for (ApprovalTaskResult result : in.approvalResult) {
 	}
 }
 
-TaskDef taskDef = in.nextTask;
-taskDef.approvalResultList.addAll(in.approvalResult);
-in.finishedTasks.add(taskDef);' #txt
+in.nextTask.approvalResultList.addAll(in.approvalResult);
+in.finishedTasks.add(in.nextTask);' #txt
 Bk3 f48 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk3 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Get approval result</name>
+        <name>add user task&#xD;
+to finished tasks</name>
     </language>
 </elementInfo>
 ' #txt
-Bk3 f48 296 1472 112 44 -51 -8 #rect
+Bk3 f48 288 1472 128 44 -42 -16 #rect
 Bk3 f48 @|StepIcon #fIcon
 Bk3 f49 expr in #txt
 Bk3 f49 outCond in.approvalTaskList.isEmpty() #txt
@@ -1067,7 +1055,7 @@ Bk3 f47 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk3 f47 368 1312 408 1494 #arcP
+Bk3 f47 368 1312 416 1494 #arcP
 Bk3 f47 1 480 1312 #addKink
 Bk3 f47 2 480 1494 #addKink
 Bk3 f47 0 0.4375 0 -11 #arcLabel
@@ -1277,6 +1265,41 @@ Bk3 f59 expr in #txt
 Bk3 f59 352 1936 352 1994 #arcP
 Bk3 f2 expr out #txt
 Bk3 f2 352 2038 352 2099 #arcP
+Bk3 f60 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk3 f60 actionTable 'out=in;
+' #txt
+Bk3 f60 actionCode 'import gawfs.TaskDef;
+in.nextTask.approvalResultList.addAll(in.approvalResult);
+' #txt
+Bk3 f60 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk3 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>add approval result&#xD;
+to user task</name>
+    </language>
+</elementInfo>
+' #txt
+Bk3 f60 142 1268 128 44 -46 -16 #rect
+Bk3 f60 @|StepIcon #fIcon
+Bk3 f61 expr in #txt
+Bk3 f61 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Bk3 f61 336 1408 206 1312 #arcP
+Bk3 f61 1 206 1408 #addKink
+Bk3 f61 0 0.41964285714285715 0 -9 #arcLabel
+Bk3 f43 expr out #txt
+Bk3 f43 206 1268 288 1112 #arcP
+Bk3 f43 1 206 1112 #addKink
+Bk3 f43 0 0.9723192795755178 0 0 #arcLabel
 >Proto Bk1 0 0 32 24 18 0 #rect
 >Proto Bk1 @|BIcon #fIcon
 Bk5 f21 targetWindow NEW:card: #txt
@@ -1570,14 +1593,12 @@ Bk3 f14 mainOut f18 tail #connect
 Bk3 f18 head f4 in #connect
 Bk3 f34 mainOut f29 tail #connect
 Bk3 f29 head f3 mainIn #connect
-Bk3 f43 head f34 mainIn #connect
 Bk3 f4 out f45 tail #connect
 Bk3 f45 head f44 mainIn #connect
 Bk3 f44 mainOut f39 tail #connect
 Bk3 f39 head f34 mainIn #connect
 Bk3 f41 out f49 tail #connect
 Bk3 f49 head f48 mainIn #connect
-Bk3 f41 out f43 tail #connect
 Bk3 f19 out f9 tail #connect
 Bk3 f3 mainOut f46 tail #connect
 Bk3 f46 head f17 in #connect
@@ -1613,6 +1634,10 @@ Bk3 f38 out f59 tail #connect
 Bk3 f59 head f58 mainIn #connect
 Bk3 f58 mainOut f2 tail #connect
 Bk3 f2 head g1 m #connect
+Bk3 f41 out f61 tail #connect
+Bk3 f61 head f60 mainIn #connect
+Bk3 f60 mainOut f43 tail #connect
+Bk3 f43 head f34 mainIn #connect
 Bk3 0 0 664 2176 0 #ivRect
 Bk5 f29 mainOut f34 tail #connect
 Bk5 f34 head f33 in #connect
