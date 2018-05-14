@@ -282,7 +282,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     };
   }
 
-  protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparator( //NOSONAR
+  protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparator(
       Function<? super RemoteTask, ? extends U> function) {
     return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
   }

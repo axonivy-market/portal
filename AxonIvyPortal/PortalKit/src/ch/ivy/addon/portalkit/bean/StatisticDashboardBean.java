@@ -33,7 +33,7 @@ public class StatisticDashboardBean implements Serializable {
   private static final String DASH = "%s - %s";
 
   private StatisticService statisticService = new StatisticService();
-  private List<StatisticChart> statisticChartList; //NOSONAR
+  private List<StatisticChart> statisticChartList;
 
   public String getChartWidthStyle(List<StatisticChart> chartList) {
     List<String> chartIdSuffixes = new ArrayList<>();

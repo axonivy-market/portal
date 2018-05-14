@@ -13,7 +13,7 @@ import org.apache.commons.lang3.time.DateUtils;
 public class DateFilterBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-    public boolean filterByDate(Object value, Object filter, @SuppressWarnings("unused") Locale locale) { //NOSONAR
+    public boolean filterByDate(Object value, Object filter, @SuppressWarnings("unused") Locale locale) {
         if (filter == null) {
             return true;
         }

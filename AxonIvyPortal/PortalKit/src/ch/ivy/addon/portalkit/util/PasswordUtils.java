@@ -24,7 +24,7 @@ import com.google.gson.JsonParser;
 public final class PasswordUtils {
   private static final String SERVER_KEY_PREFIX = "AxonIvyPortal.Server";
   private static final String SERVER_PATH = "path";
-  private static final String SERVER_PWD_KEY = "password"; //NOSONAR
+  private static final String SERVER_PWD_KEY = "password";
 
   private PasswordUtils() {}
 

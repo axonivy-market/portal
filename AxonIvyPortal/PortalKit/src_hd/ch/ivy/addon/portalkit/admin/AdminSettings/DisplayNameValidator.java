@@ -17,7 +17,7 @@ public class DisplayNameValidator implements Validator {
   @Override
   public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
     if (doValidation(facesContext)) {
-      if (value == null || StringUtils.isBlank(value.toString())) { //NOSONAR
+      if (value == null || StringUtils.isBlank(value.toString())) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
             "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayNameRequiredMsg"), "");
         throw new ValidatorException(message);
