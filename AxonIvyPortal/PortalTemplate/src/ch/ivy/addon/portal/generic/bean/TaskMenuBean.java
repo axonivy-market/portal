@@ -93,11 +93,11 @@ public class TaskMenuBean implements Serializable {
   }
 
   public void onNodeCollapse(@SuppressWarnings("unused") NodeCollapseEvent event) {
-
+    // leave it empty
   }
 
   public void onNodeSelect(@SuppressWarnings("unused") NodeSelectEvent event) {
-
+    // leave it empty
   }
 
   private DefaultTreeNode buildPersonalTaskTree(List<CategoryData> myTaskCategories, String menuState) {
