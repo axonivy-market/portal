@@ -105,7 +105,7 @@
 				<br />
 				<ui:repeat id="defined-tasks-list" value="#{data.data.definedTasks}" var="gtask" varStatus="status">
 					<p:fieldset id="process-flow-field" toggleable="true" styleClass="process-flow-field"
-						legend="Process Step #{gtask.position}">
+						legend="#{ivy.cms.co('/Dialogs/workflowCreation/processStep')} #{gtask.position}">
 
 						<!-- FOR SELF CREATE TEMPLATE -->
 						<p:panel id="task-panel-container" styleClass="task-panel-container">
@@ -252,7 +252,7 @@
 				<br />
 
 				<p:outputPanel styleClass="TexAlRight">
-					<p:commandButton id="save" actionListener="#{logic.close}" update="form" icon="fa fa-check"
+					<p:commandButton id="save" actionListener="#{logic.close}" update="form" icon="fa fa-arrow-right"
 						value="#{data.data.isUseDefaultUI ? 
                           (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') : ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : 
                           ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
