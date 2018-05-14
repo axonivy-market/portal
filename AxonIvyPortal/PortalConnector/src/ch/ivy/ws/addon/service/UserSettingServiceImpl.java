@@ -278,8 +278,8 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
     /*
      * IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings(); // If change
      * "use user settings" from true to false, copy default language setting from application's default if
-     * (emailSettings != null && !emailSettings.isUseApplicationDefault()) {
-     * iuser.setEMailLanguage(serverApp.getDefaultEMailLanguage()); }
+     * (emailSettings != null && !emailSettings.isUseApplicationDefault()) { //NOSONAR
+     * iuser.setEMailLanguage(serverApp.getDefaultEMailLanguage()); } //NOSONAR
      */
     // set value for email settings on the server
     iuser.setEMailNotificationSettings(convertFromIvyEmailSettingToIUserEMailNotificationSettings(iuser, setting));
