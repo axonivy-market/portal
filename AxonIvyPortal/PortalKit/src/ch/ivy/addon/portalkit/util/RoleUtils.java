@@ -30,13 +30,15 @@ import ch.ivyteam.ivy.server.ServerFactory;
  */
 public final class RoleUtils {
 
-  private RoleUtils() {
-  }
+  
 
   private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
   private static final String[] DEFAULT_HIDDEN_ROLES = {"AXONIVY_PORTAL_ADMIN"};
   public static final String HIDE = "HIDE";
-
+  
+  private RoleUtils() {
+  }
+  
   /**
    * Get all roles of current Ivy Application
    * 

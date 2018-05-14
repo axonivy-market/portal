@@ -29,6 +29,17 @@ public class Formelement implements Serializable{
 	private int taskPosition;  //Position of the task which this element belonged to
 	private Object value;        //Value of the Formelement, later Userinput
 	
+	public Formelement() {
+    options = new ArrayList<>();
+    optionsStr = new ArrayList<>();
+  }
+  
+  public Formelement(String id) {
+    options = new ArrayList<>();
+    optionsStr = new ArrayList<>();
+    this.id = id;
+  }
+	
 	public List<String> getOptionsStr() {
 		this.optionsStr.clear();
 		for (FormelementOption formelementOption : options) {
@@ -63,17 +74,6 @@ public class Formelement implements Serializable{
 		}	
 		return x;
 		
-	}
-
-	public Formelement() {
-		options = new ArrayList<>();
-		optionsStr = new ArrayList<>();
-	}
-	
-	public Formelement(String id) {
-		options = new ArrayList<>();
-		optionsStr = new ArrayList<>();
-		this.id = id;
 	}
 
 	public String getId() {
