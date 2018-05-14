@@ -603,3 +603,8 @@
 .comment-container .comment {
 	width: 99%;
 }
+
+.default-template-text-area {
+	overflow: auto;
+	resize: none;
+}
