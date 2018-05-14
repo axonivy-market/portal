@@ -39,7 +39,7 @@ public class AxonExpressTest extends BaseTest{
   }
   
   @Test
-  public void createFullElementsOfForm() throws InterruptedException {
+  public void createFullElementsOfForm() {
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");
