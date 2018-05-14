@@ -26,7 +26,7 @@ import com.google.gson.JsonParser;
 public final class PasswordUtils {
   private static final String SERVER_KEY_PREFIX = "AxonIvyPortal.Server";
   private static final String SERVER_PATH = "path";
-  private static final String SERVER_PWD_KEY = "password"; //NOSONAR
+  private static final String SERVER_PWD_KEY = "password"; // NOSONAR
 
   private PasswordUtils() {}
 
@@ -35,7 +35,7 @@ public final class PasswordUtils {
     if (Objects.isNull(ws)) {
       return null;
     }
-    
+
     List<IWebServiceProperty> properties = ws.getProperties();
     return properties.stream().filter(property -> StringUtils.equalsIgnoreCase(SERVER_PWD_KEY, property.getName()))
         .map(IWebServiceProperty::getValue).findFirst().orElse(null);
@@ -55,13 +55,16 @@ public final class PasswordUtils {
     app().deleteWebService(id);
   }
 
-  private static IWebService findWebService(String id) {
-    IWebService ws = app().findWebService(id);
-    return ws;
-  }
-
   public static boolean isKeyOfServer(String propertyKey) {
     return propertyKey.startsWith(SERVER_KEY_PREFIX);
+  }
+
+  private static IWebService findWebService(String id) {
+    return app().findWebService(id);
+  }
+
+  private static JsonObject parseToObject(String serverAsString) {
+    return new JsonParser().parse(serverAsString).getAsJsonObject();
   }
 
   private static String getServerPath(String serverAsString) {
@@ -74,10 +77,6 @@ public final class PasswordUtils {
     }
   }
 
-  private static JsonObject parseToObject(String serverAsString) {
-    JsonObject jsonObject = new JsonParser().parse(serverAsString).getAsJsonObject();
-    return jsonObject;
-  }
 
   // ===============DIFFERENT PART (Compare to PasswordUtils in PortalKit)===================
 

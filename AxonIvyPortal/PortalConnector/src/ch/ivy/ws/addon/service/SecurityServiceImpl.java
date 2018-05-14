@@ -1,5 +1,7 @@
 package ch.ivy.ws.addon.service;
 
+import static ch.ivyteam.ivy.scripting.objects.List.create;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -39,26 +41,30 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
         public SecurityServiceResult call() throws Exception {
 
           IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-          SecurityServiceResult result = new SecurityServiceResult();
+          SecurityServiceResult result = result(create(IvyUser.class), create(IvyRole.class));
           IvyRoleTransformer transformer = new IvyRoleTransformer();
-          ch.ivyteam.ivy.scripting.objects.List<IvyRole> members =
-              ch.ivyteam.ivy.scripting.objects.List.create(IvyRole.class);
           for (IApplication i : server.getApplicationConfigurationManager().getApplications()) {
             if (apps.contains(i.getName())) {
-              for (IRole r : i.getSecurityContext().getRoles()) {
-                if (r.getProperty(HIDE) == null) {
-                  members.add(transformer.transform(r, i));
-                }
-              }
+              result.getIvyRoles().addAll(getMemberRolesOfApp(transformer, i));
             }
           }
-          result.setIvyRoles(members);
           return result;
         }
       });
     } catch (Exception e) {
       throw new WSException(10009, e);
     }
+  }
+
+  private ch.ivyteam.ivy.scripting.objects.List<IvyRole> getMemberRolesOfApp(IvyRoleTransformer transformer,
+      IApplication app) {
+    ch.ivyteam.ivy.scripting.objects.List<IvyRole> members = create(IvyRole.class);
+    for (IRole r : app.getSecurityContext().getRoles()) {
+      if (r.getProperty(HIDE) == null) {
+        members.add(transformer.transform(r, app));
+      }
+    }
+    return members;
   }
 
   @Override
@@ -68,27 +74,29 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
         @Override
         public SecurityServiceResult call() throws Exception {
           IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-          SecurityServiceResult result = new SecurityServiceResult();
-          ch.ivyteam.ivy.scripting.objects.List<IvyUser> members =
-              ch.ivyteam.ivy.scripting.objects.List.create(IvyUser.class);
+          SecurityServiceResult result = result(create(IvyUser.class), create(IvyRole.class));
 
           for (IApplication application : server.getApplicationConfigurationManager().getApplications()) {
             if (apps.contains(application.getName())) {
-              for (IUser user : application.getSecurityContext().getUsers()) {
-                if (!user.getName().equalsIgnoreCase(SYSTEM_USER)) {
-                  members.add(IvyUserTransformer.transform(user, application));
-                }
-              }
+              result.getIvyUsers().addAll(getMemberUsersOfApp(application));
             }
           }
-          result.setIvyUsers(members);
-
           return result;
         }
       });
     } catch (Exception e) {
       throw new WSException(10010, e);
     }
+  }
+
+  private ch.ivyteam.ivy.scripting.objects.List<IvyUser> getMemberUsersOfApp(IApplication application) {
+    ch.ivyteam.ivy.scripting.objects.List<IvyUser> members = create(IvyUser.class);
+    for (IUser user : application.getSecurityContext().getUsers()) {
+      if (!user.getName().equalsIgnoreCase(SYSTEM_USER)) {
+        members.add(IvyUserTransformer.transform(user, application));
+      }
+    }
+    return members;
   }
 
   @Override
@@ -100,19 +108,11 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
 
           IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
           SecurityServiceResult result = new SecurityServiceResult();
-          ch.ivyteam.ivy.scripting.objects.List<IvyUser> members =
-              ch.ivyteam.ivy.scripting.objects.List.create(IvyUser.class);
+          ch.ivyteam.ivy.scripting.objects.List<IvyUser> members = create(IvyUser.class);
 
           for (IApplication i : server.getApplicationConfigurationManager().getApplications()) {
             if (i.getName().equals(app)) {
-              IRole role = i.getSecurityContext().findRole(roleId);
-              if (role != null) {
-                List<IUser> users = role.getAllUsers();
-                for (IUser r : users) {
-                  members.add(IvyUserTransformer.transform(r, i));
-                }
-                result.setIvyUsers(members);
-              }
+              findUsers(roleId, result, members, i);
             }
           }
           return result;
@@ -123,14 +123,24 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
     }
   }
 
+  private void findUsers(final Long roleId, SecurityServiceResult result,
+      ch.ivyteam.ivy.scripting.objects.List<IvyUser> members, IApplication i) {
+    IRole role = i.getSecurityContext().findRole(roleId);
+    if (role != null) {
+      List<IUser> users = role.getAllUsers();
+      for (IUser r : users) {
+        members.add(IvyUserTransformer.transform(r, i));
+      }
+      result.setIvyUsers(members);
+    }
+  }
+
   @Override
   public SecurityServiceResult findSecurityMembersToDelegate(ITask task) throws WSException {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<SecurityServiceResult>() {
         @Override
         public SecurityServiceResult call() throws Exception {
-          SecurityServiceResult result = new SecurityServiceResult();
-          IvyRoleTransformer roleTransformer = new IvyRoleTransformer();
 
           ch.ivyteam.ivy.scripting.objects.List<IvyUser> ivyUsers =
               ch.ivyteam.ivy.scripting.objects.List.create(IvyUser.class);
@@ -139,27 +149,42 @@ public class SecurityServiceImpl extends AbstractService implements ISecuritySer
 
           ISecurityContext securityContext = task.getApplication().getSecurityContext();
           List<IUser> users = securityContext.getUsers();
-          for (IRole role : securityContext.getRoles()) {
-            if (role.getProperty(HIDE) != null) {
-              continue;
-            }
-            ivyRoles.add(roleTransformer.transform(role, null));
-          }
+          getIvyRoles(ivyRoles, securityContext);
           Collections.sort(ivyRoles, new IvyRoleDisplayNameComparator());
-          
-          for (IUser user : users) {
-            if (!SYSTEM_USER.equals(user.getName())) {
-              ivyUsers.add(IvyUserTransformer.transform(user, null));
-            }
-          }
+
+          getIvyUsers(ivyUsers, users);
           Collections.sort(ivyUsers, new IvyUserDisplayNameComparator());
-          result.setIvyUsers(ivyUsers);
-          result.setIvyRoles(ivyRoles);
-          return result;
+          return result(ivyUsers, ivyRoles);
         }
       });
     } catch (Exception e) {
       throw new WSException(10010, e);
     }
+  }
+
+  private void getIvyUsers(ch.ivyteam.ivy.scripting.objects.List<IvyUser> ivyUsers, List<IUser> users) {
+    for (IUser user : users) {
+      if (!SYSTEM_USER.equals(user.getName())) {
+        ivyUsers.add(IvyUserTransformer.transform(user, null));
+      }
+    }
+  }
+
+  private void getIvyRoles(ch.ivyteam.ivy.scripting.objects.List<IvyRole> ivyRoles, ISecurityContext securityContext) {
+    IvyRoleTransformer roleTransformer = new IvyRoleTransformer();
+    for (IRole role : securityContext.getRoles()) {
+      if (role.getProperty(HIDE) != null) {
+        continue;
+      }
+      ivyRoles.add(roleTransformer.transform(role, null));
+    }
+  }
+
+  private SecurityServiceResult result(ch.ivyteam.ivy.scripting.objects.List<IvyUser> ivyUsers,
+      ch.ivyteam.ivy.scripting.objects.List<IvyRole> ivyRoles) {
+    SecurityServiceResult result = new SecurityServiceResult();
+    result.setIvyUsers(ivyUsers);
+    result.setIvyRoles(ivyRoles);
+    return result;
   }
 }
