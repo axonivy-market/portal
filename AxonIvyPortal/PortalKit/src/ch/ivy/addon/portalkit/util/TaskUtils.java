@@ -45,16 +45,16 @@ import ch.ivyteam.logicalexpression.RelationalOperator;
  */
 public final class TaskUtils {
 
-  private TaskUtils() {
-
-  }
-
   private static final boolean FINISHED_MODE = true;
   private static final boolean RUNNING_MODE = false;
   private static final int DEFAULT_PAGESIZE = -1;
   private static final int DEFAULT_INDEX = 0;
   private static final String HIDE = "HIDE";
+  
+  private TaskUtils() {
 
+  }
+  
   /**
    * Get the running tasks of the session user
    * 
