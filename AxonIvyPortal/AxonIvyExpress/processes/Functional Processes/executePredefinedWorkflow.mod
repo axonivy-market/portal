@@ -1531,9 +1531,9 @@ Bk1 f3 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk1 f3 actionTable 'out=in;
 ' #txt
-Bk1 f3 actionCode '//import ch.ivy.gawfs.mail.InformationMailSender;
-//InformationMailSender sender = new InformationMailSender();
-//sender.send(in.nextTask.email);' #txt
+Bk1 f3 actionCode 'import ch.ivy.gawfs.mail.InformationMailSender;
+InformationMailSender sender = new InformationMailSender();
+sender.send(in.nextTask.email);' #txt
 Bk1 f3 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk1 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

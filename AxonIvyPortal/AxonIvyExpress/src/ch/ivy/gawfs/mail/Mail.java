@@ -1,13 +1,10 @@
 package ch.ivy.gawfs.mail;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.components.config.EmailConfiguration;
-import ch.ivyteam.ivy.email.SimpleMailSender;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.scripting.objects.File;
 
 /**
  * Class to send emails from java code.
@@ -16,7 +13,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class Mail {
 
   private EmailConfiguration emailConfig;
-  private Map<String, File> attachmentFiles;
+  private List<File> attachmentFiles;
+  private static final String SEND_EMAIL_CALLABLE = "Functional Processes/sendEmail";
 
   private Mail(MailBuilder builder) {
     this.emailConfig = builder.emailConfig;
@@ -24,20 +22,15 @@ public class Mail {
   }
 
   public void send() {
-    IvyExecutor.executeAsSystem(() -> {
-      SimpleMailSender mailSender = new SimpleMailSender(attachmentFiles, emailConfig, Ivy.log());
-      mailSender.sendMessage();
-      return null;
-    });
+    SubProcessCall.withPath(SEND_EMAIL_CALLABLE).withParam("emailConfig", emailConfig).withParam("attachmentFiles", attachmentFiles).call();
   }
 
   public static class MailBuilder {
     private EmailConfiguration emailConfig;
-    private Map<String, File> attachmentFiles;
+    private List<File> attachmentFiles;
 
     public MailBuilder() {
       emailConfig = new EmailConfiguration();
-      attachmentFiles = new HashMap<>();
     }
     public MailBuilder subject(String subject) {
       emailConfig.setSubject(subject);
@@ -74,8 +67,8 @@ public class Mail {
       return this;
     }
 
-    public MailBuilder attachments(Map<String, File> attachments) {
-      this.attachmentFiles = attachments;
+    public MailBuilder attachments(List<File> attachmentFiles) {
+      this.attachmentFiles = attachmentFiles;
       return this;
     }
 
