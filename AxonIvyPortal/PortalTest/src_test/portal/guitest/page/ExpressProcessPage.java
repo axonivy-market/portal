@@ -75,7 +75,7 @@ public class ExpressProcessPage extends TemplatePage{
   
   public void addNewTask(int currentTaskIndex){
     click(By.id(String.format("form:defined-tasks-list:%d:add-step-button", currentTaskIndex)));
-    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
   }
   
   public HomePage executeDirectlyAndGoToHomePage() {
