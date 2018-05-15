@@ -3317,12 +3317,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   transform: translate(3.2rem, 1rem);
 }
 
-.process-chain .process-step.visited .step-count-container span:before {
-  border-color: #afca05;
-}
-
 .process-chain .process-step.waiting .step-count-container {
-  border: solid 2px #afca05;
   background-color: transparent;
 }
 
@@ -3330,7 +3325,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background-color: #afca05;
   border: solid 2px transparent;
   text-align: center;
   font-size: 1.4rem;

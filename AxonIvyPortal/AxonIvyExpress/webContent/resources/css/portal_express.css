@@ -411,7 +411,6 @@
 .ui-widget.ui-button.defined-task-button {
   width: 16rem;
   height: 5rem !important;
-  border: solid 2px #afca05;
   background-color: #ffffff;
   margin-left: 20px;
 
@@ -438,24 +437,12 @@
 }
 
 .ui-widget.ui-button.defined-task-button.active {
-  border: solid 2px #afca05;
-  background-color: #afca05 !important;
   font-weight: bold;
   opacity: .8 !important;
 }
 
 .ui-widget.ui-button.defined-task-button.visited {
-  background-color: #afca05 !important;
-  border: solid 2px #afca05;
   opacity: .8 !important;
-}
-
-.ui-widget.ui-button.defined-task-button.active:before {
-  border-color: #afca05;
-}
-
-.ui-widget.ui-button.defined-task-button.ui-state-hover {
-  background-color: #afca05 !important;
 }
 
 .text-editor-send-email {
