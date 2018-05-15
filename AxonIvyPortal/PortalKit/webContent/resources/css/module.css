@@ -400,9 +400,6 @@
   top: 10px;
 }
 
-.pe-dynaform-cell[colspan] input.hasDatepicker {
-  width: 128px;
-}
 /* =================== END CALENDAR ====================== */
 
 /* =================== TABLE ====================== */
