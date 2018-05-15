@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -48,24 +50,12 @@ public class ProcessStartCollector {
       List<IProcessModel> processModels = application.getProcessModelsSortedByName();
 
       for (IProcessModel processModel : processModels) {
-        processStarts = findProcessStartRequestPathContainsKeywordAndPm(keyword, processModel);
-        if (CollectionUtils.isNotEmpty(processStarts)) {
-          return processStarts;
-        }
-      }
-    }
-    return processStarts;
-  }
-
-  private List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPm(String keyword, IProcessModel processModel) {
-    List<IProcessStart> processStarts = new ArrayList<>();
-    if (isActive(processModel)) {
-      IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
-
-      if (isActive(processModelVersion)) {
-        processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, processModelVersion);
-        if (CollectionUtils.isNotEmpty(processStarts)) {
-          return processStarts;
+        Optional<List<IProcessStart>> processStartsOptional =
+            Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
+                .filter(this::isActive).map(p -> findProcessStartRequestPathContainsKeywordAndPmv(keyword, p))
+                .filter(CollectionUtils::isNotEmpty);
+        if (processStartsOptional.isPresent()) {
+          return processStartsOptional.get();
         }
       }
     }
@@ -86,21 +76,13 @@ public class ProcessStartCollector {
       List<IProcessModel> processModels = application.getProcessModelsSortedByName();
 
       for (IProcessModel processModel : processModels) {
-        processStart = findProcessStartByUserFriendlyRequestPathAndPm(requestPath, processModel);
-        if (processStart != null) {
-          return processStart;
+        Optional<IProcessStart> processStartOptional =
+            Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
+                .filter(this::isActive).map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p))
+                .filter(Objects::nonNull);
+        if (processStartOptional.isPresent()) {
+          return processStartOptional.get();
         }
-      }
-    }
-    return processStart;
-  }
-
-  private IProcessStart findProcessStartByUserFriendlyRequestPathAndPm(String requestPath, IProcessModel processModel) {
-    IProcessStart processStart = null;
-    if (isActive(processModel)) {
-      IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
-      if (isActive(processModelVersion)) {
-        return findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, processModelVersion);
       }
     }
     return processStart;
@@ -108,34 +90,24 @@ public class ProcessStartCollector {
 
   public IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
     if (isActive(application)) {
-      IProcessStart processStart = null;
       List<IProcessModel> processModels = application.getProcessModelsSortedByName();
       for (IProcessModel processModel : processModels) {
-        processStart = findStartableProcessStart(processModel, requestPath);
-        if (processStart != null) {
-          return processStart;
+        Optional<IProcessStart> processStartOptional =
+            Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
+                .filter(this::isActive).map(p -> getProcessStart(requestPath, p))
+                .filter(processStart -> Ivy.session().getStartableProcessStarts().contains(processStart));
+        if (processStartOptional.isPresent()) {
+          return processStartOptional.get();
         }
       }
     }
     return null;
   }
 
-  private IProcessStart findStartableProcessStart(IProcessModel processModel, String requestPath) {
-    IProcessStart processStart = null;
-    if (isActive(processModel)) {
-      IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
-
-      if (isActive(processModelVersion)) {
-        IWorkflowProcessModelVersion workflowPmv =
-            WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
-        List<IProcessStart> sessionStartableProcessStarts = Ivy.session().getStartableProcessStarts();
-        processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
-        if (processStart != null && sessionStartableProcessStarts.contains(processStart)) {
-          return processStart;
-        }
-      }
-    }
-    return processStart;
+  private IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
+    IWorkflowProcessModelVersion workflowPmv =
+        WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+    return workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
   }
 
   private IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
