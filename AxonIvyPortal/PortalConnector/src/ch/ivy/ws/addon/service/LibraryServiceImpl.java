@@ -21,13 +21,13 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class LibraryServiceImpl implements ILibraryService {
 
-  private final static String PORTAL_STYLE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalStyle";
-  private final static String PORTAL_KIT_LIBRARY = "ch.ivyteam.ivy.project.portal:portalKit";
-  private final static String PORTAL_TEMPLATE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalTemplate";
-  private final static String PORTAL_CONNECTOR_LIBRARY = "ch.ivyteam.ivy.project.system:portalConnector";
-  private final static String SELF_SERVICE_LIBRARY = "ch.ivyteam.ivy.project.portal:selfService";
-  private final static String EXPRESS_LIBRARY = "ch.ivyteam.ivy.project.portal:axonIvyExpress";
-
+  private static final String PORTAL_STYLE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalStyle";
+  private static final String PORTAL_KIT_LIBRARY = "ch.ivyteam.ivy.project.portal:portalKit";
+  private static final String PORTAL_TEMPLATE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalTemplate";
+  private static final String PORTAL_CONNECTOR_LIBRARY = "ch.ivyteam.ivy.project.system:portalConnector";
+  private static final String SELF_SERVICE_LIBRARY = "ch.ivyteam.ivy.project.portal:selfService";
+  private static final String EXPRESS_LIBRARY = "ch.ivyteam.ivy.project.portal:axonIvyExpress";
+  
   @Override
   public LibraryServiceResult getLibraries(List<String> apps) throws WSException {
     List<String> portalLibraryStrings =
