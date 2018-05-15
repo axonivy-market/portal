@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import static ch.ivyteam.ivy.security.IPermission.CASE_DESTROY;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 
@@ -66,35 +67,21 @@ public class CaseBean implements Serializable {
   }
 
   public boolean isCaseAbleToAddNote(RemoteCase iCase) {
-    if (iCase == null) {
-      return false;
-    }
-    if (iCase.getState() == CaseState.RUNNING) {
-      return true;
-    }
-    return false;
+    return Objects.nonNull(iCase) && iCase.getState() == CaseState.RUNNING;
   }
 
   public boolean isCaseAbleToDelete(CaseVO caseVO) {
-    if (caseVO == null) {
-      return false;
-    }
-    if (isCaseRunning(caseVO) && isSessionUserHasDeletePermission()) {
-      return true;
-    }
-    return false;
+    return Objects.nonNull(caseVO) && isCaseRunning(caseVO) && isSessionUserHasDeletePermission();
   }
 
   private boolean isCaseRunning(CaseVO caseVO) {
-    String caseStatus = caseVO.getStatus();
-    return CaseState.RUNNING.toString().equalsIgnoreCase(caseStatus);
+    return CaseState.RUNNING.toString().equalsIgnoreCase(caseVO.getStatus());
   }
 
   private boolean isSessionUserHasDeletePermission() {
     IWorkflowSession ivySession = Ivy.session();
     ISecurityDescriptor securityDescriptor = Ivy.request().getApplication().getSecurityDescriptor();
-    boolean hasCaseDestroyPermission = ivySession.hasPermission(securityDescriptor, CASE_DESTROY);
-    return hasCaseDestroyPermission;
+    return ivySession.hasPermission(securityDescriptor, CASE_DESTROY);
   }
 
 }

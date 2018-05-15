@@ -42,7 +42,7 @@ public class StatisticDashboardBean implements Serializable {
       if (chartId.contains("_")) {
         // chart with format: id + _ + suffix is lower level (month/week/day/hour) 
         // chart when drilldown
-        chartIdSuffixes.add(chartId.substring(chartId.indexOf("_") + 1));
+        chartIdSuffixes.add(chartId.substring(chartId.indexOf('_') + 1));
       }
     }
     int maxWidth = 0;
