@@ -31,7 +31,6 @@ ew0 @PushWFArc f15 '' #zField
 ew0 @Alternative f18 '' #zField
 ew0 @CallSub f20 '' #zField
 ew0 @PushWFArc f2 '' #zField
-ew0 @PushWFArc f23 '' #zField
 ew0 @StartSub f21 '' #zField
 ew0 @PushWFArc f33 '' #zField
 ew0 @PushWFArc f34 '' #zField
@@ -48,13 +47,14 @@ ew0 @PushWFArc f10 '' #zField
 ew0 @PushWFArc f19 '' #zField
 ew0 @PushWFArc f6 '' #zField
 ew0 @GridStep f22 '' #zField
-ew0 @PushWFArc f24 '' #zField
-ew0 @PushWFArc f25 '' #zField
 ew0 @PushWFArc f26 '' #zField
 ew0 @Alternative f27 '' #zField
 ew0 @PushWFArc f29 '' #zField
 ew0 @PushWFArc f4 '' #zField
 ew0 @PushWFArc f30 '' #zField
+ew0 @PushWFArc f24 '' #zField
+ew0 @PushWFArc f25 '' #zField
+ew0 @PushWFArc f23 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -255,7 +255,7 @@ for AHWF</name>
     </language>
 </elementInfo>
 ' #txt
-ew0 f18 1200 144 32 32 -33 -49 #rect
+ew0 f18 1432 144 32 32 -33 -49 #rect
 ew0 f18 @|AlternativeIcon #fIcon
 ew0 f20 type gawfs.Data #txt
 ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String)' #txt
@@ -281,7 +281,7 @@ ew0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f20 1288 234 176 44 -84 -8 #rect
+ew0 f20 1504 234 176 44 -84 -8 #rect
 ew0 f20 @|CallSubIcon #fIcon
 ew0 f2 expr in #txt
 ew0 f2 outCond 'in.processType == ch.ivy.gawfs.enums.ProcessType.AD_HOC' #txt
@@ -294,11 +294,9 @@ ew0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f2 1216 176 1288 256 #arcP
-ew0 f2 1 1216 256 #addKink
+ew0 f2 1448 176 1504 256 #arcP
+ew0 f2 1 1448 256 #addKink
 ew0 f2 0 0.3125 13 0 #arcLabel
-ew0 f23 expr in #txt
-ew0 f23 1168 160 1200 160 #arcP
 ew0 f21 inParamDecl '<java.lang.String workflowID> param;' #txt
 ew0 f21 inParamTable 'out.processID=param.workflowID;
 ' #txt
@@ -324,7 +322,7 @@ ew0 f33 95 288 192 288 #arcP
 ew0 f34 248 266 248 182 #arcP
 ew0 f34 0 0.37027027027027026 0 0 #arcLabel
 ew0 f32 type gawfs.Data #txt
-ew0 f32 1529 241 30 30 0 15 #rect
+ew0 f32 1745 241 30 30 0 15 #rect
 ew0 f32 @|EndSubIcon #fIcon
 ew0 f41 type gawfs.Data #txt
 ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -368,7 +366,7 @@ ew0 f12 1104 160 1136 160 #arcP
 ew0 f10 expr out #txt
 ew0 f10 1680 160 1745 160 #arcP
 ew0 f19 expr out #txt
-ew0 f19 1464 256 1529 256 #arcP
+ew0 f19 1680 256 1745 256 #arcP
 ew0 f6 expr out #txt
 ew0 f6 95 160 192 160 #arcP
 ew0 f22 actionDecl 'gawfs.Data out;
@@ -391,12 +389,8 @@ ew0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f22 1264 138 160 44 -73 -8 #rect
+ew0 f22 1208 138 160 44 -73 -8 #rect
 ew0 f22 @|StepIcon #fIcon
-ew0 f24 expr in #txt
-ew0 f24 1232 160 1264 160 #arcP
-ew0 f25 expr out #txt
-ew0 f25 1424 160 1520 160 #arcP
 ew0 f26 expr out #txt
 ew0 f26 592 160 656 160 #arcP
 ew0 f27 type gawfs.Data #txt
@@ -437,10 +431,16 @@ ew0 f30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f30 768 176 1212 172 #arcP
+ew0 f30 768 176 1441 169 #arcP
 ew0 f30 1 768 256 #addKink
-ew0 f30 2 1184 256 #addKink
+ew0 f30 2 1376 256 #addKink
 ew0 f30 0 0.35 13 0 #arcLabel
+ew0 f24 expr in #txt
+ew0 f24 1464 160 1520 160 #arcP
+ew0 f25 expr in #txt
+ew0 f25 1168 160 1208 160 #arcP
+ew0 f23 expr out #txt
+ew0 f23 1368 160 1432 160 #arcP
 >Proto ew0 .type gawfs.Data #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -532,8 +532,6 @@ ew0 f16 mainOut f15 tail #connect
 ew0 f15 head f13 in #connect
 ew0 f18 out f2 tail #connect
 ew0 f2 head f20 mainIn #connect
-ew0 f11 out f23 tail #connect
-ew0 f23 head f18 in #connect
 ew0 f33 head S10 g0 #connect
 ew0 S10 g1 f34 tail #connect
 ew0 f34 head f5 mainIn #connect
@@ -551,10 +549,6 @@ ew0 f20 mainOut f19 tail #connect
 ew0 f19 head f32 mainIn #connect
 ew0 f0 mainOut f6 tail #connect
 ew0 f6 head f5 mainIn #connect
-ew0 f18 out f24 tail #connect
-ew0 f24 head f22 mainIn #connect
-ew0 f22 mainOut f25 tail #connect
-ew0 f25 head f9 mainIn #connect
 ew0 f7 mainOut f26 tail #connect
 ew0 f26 head f41 in #connect
 ew0 f41 out f29 tail #connect
@@ -564,6 +558,12 @@ ew0 f4 head f3 mainIn #connect
 ew0 f27 out f30 tail #connect
 ew0 f30 head f18 in #connect
 ew0 f27 out f4 tail #connect
+ew0 f18 out f24 tail #connect
+ew0 f24 head f9 mainIn #connect
+ew0 f11 out f25 tail #connect
+ew0 f25 head f22 mainIn #connect
+ew0 f22 mainOut f23 tail #connect
+ew0 f23 head f18 in #connect
 Ct0 f1 head g1 m #connect
 Ct0 f25 mainOut f1 tail #connect
 Ct0 g0 m f0 tail #connect
