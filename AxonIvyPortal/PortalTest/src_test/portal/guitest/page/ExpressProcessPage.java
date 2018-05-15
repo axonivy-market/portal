@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
 
@@ -27,6 +28,7 @@ public class ExpressProcessPage extends TemplatePage{
     }
     else {
       selectCheckbox("form:user-interface:1");
+      agreeToDeleteAllDefineTasks();
     }
     
     type(By.id("form:process-name"), processName);
@@ -53,6 +55,19 @@ public class ExpressProcessPage extends TemplatePage{
     
   }
   
+  public void createDefaultTask(int taskIndex, String taskName, List<ExpressResponsible> responsibles) {
+    if(taskName != null) {
+      type(By.id(String.format("form:defined-tasks-list:%d:default-task-name", taskIndex)), taskName);
+    }
+    click(By.id(String.format("form:defined-tasks-list:%d:default-task-responsible", taskIndex)));
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.id("choose-responsible-dialog"), true);
+    for(ExpressResponsible responsible : responsibles){
+      chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
+    }
+    click(By.id("assignee-selection-form:save-assignee-button"));
+  }
+  
   public ExpressFormDefinitionPage goToFormDefinition() {
     click(By.id("form:save"));
     return new ExpressFormDefinitionPage();
@@ -61,6 +76,11 @@ public class ExpressProcessPage extends TemplatePage{
   public void addNewTask(int currentTaskIndex){
     click(By.id(String.format("form:defined-tasks-list:%d:add-step-button", currentTaskIndex)));
     waitAjaxIndicatorDisappear();
+  }
+  
+  public HomePage executeDirectlyAndGoToHomePage() {
+    click(By.id("form:save"));
+    return new HomePage();
   }
   
   private void chooseResponsible(String responsible, boolean isGroup) {
@@ -82,5 +102,11 @@ public class ExpressProcessPage extends TemplatePage{
     click(By.xpath(String.format("//*[@id='form:defined-tasks-list:%d:task-type_%d']", taskIndex, typeIndex)));
   }
   
+  private void agreeToDeleteAllDefineTasks() {
+    waitForElementDisplayed(By.id("delete-all-defined-tasks-warning"), true);
+    click(By.id("delete-all-defined-tasks-warning-ok"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleepTight(2000);
+  }
   
 }
