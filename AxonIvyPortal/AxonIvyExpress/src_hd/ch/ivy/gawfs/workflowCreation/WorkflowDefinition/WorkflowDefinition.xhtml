@@ -282,14 +282,16 @@
 				</h:panelGroup>
 			</p:dialog>
 
-			<p:confirmDialog widgetVar="deleteAllDefinedTasksWarning" message="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}"
+			<p:confirmDialog id="delete-all-defined-tasks-warning" widgetVar="deleteAllDefinedTasksWarning" message="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}"
 				appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false">
 				<div class="delete-server-warning-buttons">
-					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+					<p:commandButton id="delete-all-defined-tasks-warning-ok"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
 						actionListener="#{logic.changeUISetting(true)}"
 						oncomplete="PF('deleteAllDefinedTasksWarning').hide()"
 						update="form" global="false" />
-					<p:commandButton styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+					<p:commandButton id="delete-all-defined-tasks-warning-cancel"
+						styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
 						actionListener="#{logic.changeUISetting(false)}"
 						oncomplete="PF('deleteAllDefinedTasksWarning').hide()"
 						update="form:user-interface" global="false" />
