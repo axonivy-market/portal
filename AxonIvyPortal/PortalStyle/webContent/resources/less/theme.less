@@ -140,6 +140,24 @@ img[id*='additonalTaskUserAvatar'] {
   opacity: 1;
 }
 
+.ui-widget.ui-button.defined-task-button {
+  border: solid 2px @menu-color;
+}
+
+.ui-widget.ui-button.defined-task-button.active,
+.ui-widget.ui-button.defined-task-button.visited {
+  border: solid 2px @menu-color;
+  background-color: @menu-color !important;
+}
+
+.ui-widget.ui-button.defined-task-button.active:before {
+  border-color: @menu-color;
+}
+
+.ui-widget.ui-button.defined-task-button.ui-state-hover {
+  background-color: @menu-color !important;
+}
+
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
   color: @menu-color;
@@ -148,4 +166,17 @@ img[id*='additonalTaskUserAvatar'] {
 /*Style for calendar*/
 div.ui-timepicker-div {
 	width: 199px;
+}
+
+/*Style for stages process chain -----------------------------------------------------------------------------------*/
+.process-chain .process-step.visited .step-count-container span:before {
+  border-color: @menu-color;
+}
+
+.process-chain .process-step.waiting .step-count-container {
+  border: solid 2px @menu-color;
+}
+
+.process-chain .process-step .step-count-container {
+  background-color: @menu-color;
 }
