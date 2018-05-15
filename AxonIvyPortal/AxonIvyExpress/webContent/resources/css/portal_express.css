@@ -599,3 +599,44 @@
 	overflow: auto;
 	resize: none;
 }
+
+.preview-dialog .pe-dynaform-cell.pe-dynaform-label {
+	width: 12%;
+}
+
+.preview-dialog .pe-dynaform-cell.field-container {
+	width: 38%;
+}
+
+.preview-dialog .pe-dynaform-cell>input.ui-inputtext {
+	width: 97%;
+}
+
+.preview-dialog .pe-dynaform-cell[colspan]>input.ui-inputtext {
+	width: 100%;
+}
+
+
+.preview-dialog .pe-dynaform-cell>.form-definition-calendar>input.hasDatepicker {
+	width: 88%;
+}
+
+.preview-dialog .pe-dynaform-cell[colspan]>.form-definition-calendar>input.hasDatepicker {
+	width: 96.3%;
+}
+
+.preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner {
+	width: 100%;
+}
+
+.preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner>.ui-spinner-input {
+	width: 97.8%;
+}
+
+.preview-dialog .pe-dynaform-cell>.ui-spinner {
+	width: 97%;
+}
+
+.preview-dialog .pe-dynaform-cell>.ui-spinner>.ui-spinner-input {
+	width: 94.5%;
+}
