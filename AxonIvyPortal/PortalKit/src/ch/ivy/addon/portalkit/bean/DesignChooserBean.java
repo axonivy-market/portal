@@ -21,6 +21,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
@@ -35,7 +36,6 @@ import com.inet.lib.less.Less;
 public class DesignChooserBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private final static String PORTALSTYLE_LIBRARY = "ch.ivyteam.ivy.project.portal:portalStyle";
   private static final String VARIABLES_LESS_PATH = "/resources/less/variables.less";
   private static final String CUSTOMIZATION_LESS_PATH = "/resources/less/customization.less";
   private static final String THEME_LESS_PATH = "/resources/less/theme.less";
@@ -228,9 +228,11 @@ public class DesignChooserBean implements Serializable {
 
   private void initWebContentLoader() {
     if (loader == null) {
+      
       for (IProcessModel pm : Ivy.request().getApplication().getProcessModels()) {
         IProcessModelVersion releasedPmv = pm.getReleasedProcessModelVersion();
-        if (releasedPmv != null && PORTALSTYLE_LIBRARY.equals(releasedPmv.getLibrary().getId())) {
+        if (releasedPmv != null && releasedPmv.getLibrary() != null &&  
+            PortalLibrary.PORTAL_STYLE.getValue().equals(releasedPmv.getLibrary().getId())) {
           loader = new ResourceLoader(releasedPmv);
         }
       }

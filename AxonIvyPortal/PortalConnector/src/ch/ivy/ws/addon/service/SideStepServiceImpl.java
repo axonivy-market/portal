@@ -3,7 +3,7 @@ package ch.ivy.ws.addon.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +45,9 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
           }
           if (!searchCriteria.isAdhocExcluded()) {
             IvySideStep adhocSideStep = createAdhocSideStep(wfCase, isUrlBuiltFromSystemProperties);
-            Optional.ofNullable(adhocSideStep).ifPresent(adhoc -> sideSteps.add(adhoc));
+            if (Objects.nonNull(adhocSideStep)){
+              sideSteps.add(adhocSideStep);
+            }
           }
           SideStepServiceResult result = new SideStepServiceResult();
           result.setSideSteps(sideSteps);
