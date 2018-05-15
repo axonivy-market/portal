@@ -10,18 +10,23 @@ import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.DefaulExpresTaskPage;
+import portal.guitest.page.ExpressApprovalPage;
+import portal.guitest.page.ExpressEndPage;
 import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
+import portal.guitest.page.ExpressReviewPage;
+import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class AxonExpressTest extends BaseTest{
   private static final int USER_TASK_INDEX = 1;
   private static final int USER_TASK_WITH_EMAIL_INDEX = 2;
-  private static final int APPROVAL_INDEX = 3;
-  private static final int INFORMATION_EMAIL_INDEX = 4;
+  private static final int INFORMATION_EMAIL_INDEX = 3;
+  private static final int APPROVAL_INDEX = 4;
   
   private static final int INPUT_TEXT_TYPE_INDEX = 0;
   private static final int INPUT_NUMBER_TYPE_INDEX = 1;
@@ -89,6 +94,7 @@ public class AxonExpressTest extends BaseTest{
     Assert.assertEquals(4, formDefinition.countNumberOfSteps());
   }
   
+
   @Test
   public void createUserDefaultProcess() {
     goToCreateExpressProcess();
@@ -124,6 +130,61 @@ public class AxonExpressTest extends BaseTest{
     Assert.assertEquals(1, defaulExpresTaskPage.countNumberOfApproval());
   }
   
+  @Test
+  public void testMultiApprovalWhenMultiTask() {
+    goToCreateExpressProcess();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
+    
+    ExpressResponsible responsible2 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
+    
+    expressProcessPage.createTask(0, USER_TASK_INDEX, "Task 1", "Task 1 description", Arrays.asList(responsible2));
+    
+    expressProcessPage.addNewTask(0);
+    expressProcessPage.createTask(1, APPROVAL_INDEX, "Task 2", "Task 2 description", Arrays.asList(responsible2));
+    
+    expressProcessPage.addNewTask(1);
+    expressProcessPage.createTask(2, APPROVAL_INDEX, "Task 3", "Task 3 description", Arrays.asList(responsible2));
+    ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
+    formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
+    formDefinition.moveAllElementToDragAndDrogPanel();
+    formDefinition.saveWorkflow();
+    startExpressProcess("Test approval");
+    executeUserTask();
+    executeApproval("Approved at first level");
+    executeApproval("Approved at second level");
+    String approvalResult = executeReview();
+    Assert.assertEquals("Task 2,Portal Demo User,Portal Demo User,Approved at first level,Yes,Task 3,Portal Demo User,Portal Demo User,Approved at second level,Yes", approvalResult);
+    new ExpressEndPage().finish();
+  }
+
+  private String executeReview() {
+    new TaskWidgetPage().startTask(0);
+    ExpressReviewPage reviewPage = new ExpressReviewPage();
+    String approvalResult = reviewPage.getApprovalResult();
+    reviewPage.finish();
+    return approvalResult;
+  }
+
+  private void executeUserTask() {
+    new TaskWidgetPage().startTask(0);
+    new ExpressTaskPage().finish();
+  }
+
+  private void startExpressProcess(String processName) {
+    HomePage homePage = new HomePage();
+    GlobalSearch globalSearch= homePage.getGlobalSearch();
+    globalSearch.inputSearchKeyword(processName);
+    globalSearch.startProcessOnGlobalSearch(processName);
+  }
+
+  private void executeApproval(String comment) {
+    new TaskWidgetPage().startTask(0);
+    ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
+    approvalPage1.comment(comment);
+    approvalPage1.finish();
+  }
+
   private void goToCreateExpressProcess() {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();

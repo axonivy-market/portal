@@ -139,4 +139,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   public int countNumberOfSteps() {
     return driver.findElements(By.xpath("//div[@id='defined-task-container']//button")).size();
   }
+
+  public void saveWorkflow() {
+    click(By.id("save-button"));
+  }
 }
