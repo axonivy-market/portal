@@ -1008,6 +1008,8 @@ for (ApprovalTaskResult result : in.approvalResult) {
 }
 
 in.nextTask.approvalResultList.addAll(in.approvalResult);
+
+in.finishedTasks.clear();
 in.finishedTasks.add(in.nextTask);' #txt
 Bk3 f48 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk3 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1293,7 +1295,8 @@ Bk3 f62 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk3 f62 actionTable 'out=in;
 ' #txt
-Bk3 f62 actionCode in.finishedTasks.add(in.nextTask); #txt
+Bk3 f62 actionCode 'in.finishedTasks.clear();
+in.finishedTasks.add(in.nextTask);' #txt
 Bk3 f62 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk3 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
