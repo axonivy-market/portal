@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
+import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
@@ -351,14 +352,18 @@ public class ExpressProcessUtils {
   public void saveAttachments(String folder, List<TaskDef> taskDefs){
 	  String folderPath = "/Express/Process/" + folder + "/Attachment/";
 	  for(TaskDef task : taskDefs) {
-		  if(task.getEmail() != null && task.getEmail().getAttachments() != null) {
-			  List<ExpressAttachment> attachments = task.getEmail().getAttachments();
-			  setPathForAttachments(folderPath, attachments);
-			  MailAttachment mailAttachment = new MailAttachment(attachments);
-			  mailAttachment.updatePhysicalPaths();
-			  removeDeletedAttachment(attachments);
-		  }
+	    saveAttachmentsForEmail(folderPath, task.getEmail());
 	  }
+  }
+
+  public void saveAttachmentsForEmail(String folderPath, ExpressUserEmail mail) {
+    if(mail != null && mail.getAttachments() != null) {
+      List<ExpressAttachment> attachments = mail.getAttachments();
+      setPathForAttachments(folderPath, attachments);
+      MailAttachment mailAttachment = new MailAttachment(attachments);
+      mailAttachment.updatePhysicalPaths();
+      removeDeletedAttachment(attachments);
+}
   }
 
   private void setPathForAttachments(String folderPath, List<ExpressAttachment> attachments) {
