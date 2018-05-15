@@ -139,7 +139,7 @@ public abstract class TemplatePage extends AbstractPage {
     return new ProjectVersionPage();
   }
   
-  public void clickUserMenuItem(String menuItemSelector) {
+  private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     findElementById("user-settings-menu").click();
     waitForElementDisplayed(By.id(menuItemSelector), true);
