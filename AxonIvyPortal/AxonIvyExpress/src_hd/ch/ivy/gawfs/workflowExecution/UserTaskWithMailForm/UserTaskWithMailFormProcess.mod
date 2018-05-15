@@ -142,10 +142,16 @@ Us0 f12 actionDecl 'ch.ivy.gawfs.workflowExecution.UserTaskWithMailForm.UserTask
 ' #txt
 Us0 f12 actionTable 'out=in;
 ' #txt
-Us0 f12 actionCode 'import ch.ivy.gawfs.mail.InformationMailSender;
+Us0 f12 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
+import ch.ivy.gawfs.mail.InformationMailSender;
 import ch.ivy.gawfs.mail.InformationMailSender;
 in.workingTaskDef = in.executePredefinedWorkflowData.nextTask;
+
 InformationMailSender mailSender = new InformationMailSender();
+ExpressProcessUtils expressProcessUtils = new ExpressProcessUtils();
+String taskFolder = expressProcessUtils.generateProcessFolder();
+String folderPath = "/Express/Task/" + taskFolder + "/Attachment/";
+expressProcessUtils.saveAttachmentsForEmail(folderPath, in.email);
 mailSender.send(in.email);' #txt
 Us0 f12 type ch.ivy.gawfs.workflowExecution.UserTaskWithMailForm.UserTaskWithMailFormData #txt
 Us0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
