@@ -9,11 +9,13 @@ import org.junit.Test;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.page.DefaulExpresTaskPage;
 import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessWidgetPage;
+import portal.guitest.page.TaskWidgetPage;
 
 public class AxonExpressTest extends BaseTest{
   private static final int USER_TASK_INDEX = 1;
@@ -26,7 +28,8 @@ public class AxonExpressTest extends BaseTest{
   private static final int INPUT_DATE_TYPE_INDEX = 2;
   
   private HomePage homePage;
-  private  ProcessWidgetPage processWidget;
+  private ProcessWidgetPage processWidget;
+  private TaskWidgetPage taskWidgetPage;
   @Override
   @Before
   public void setup() {
@@ -84,6 +87,41 @@ public class AxonExpressTest extends BaseTest{
     
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     Assert.assertEquals(4, formDefinition.countNumberOfSteps());
+  }
+  
+  @Test
+  public void createUserDefaultProcess() {
+    goToCreateExpressProcess();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(true, false, "Test create default process", "Test description");
+    
+    ExpressResponsible demoResponsible = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
+    
+    expressProcessPage.createDefaultTask(0, "Default Task",Arrays.asList(demoResponsible));
+    
+    expressProcessPage.addNewTask(0);
+    expressProcessPage.createDefaultTask(1, null, Arrays.asList(demoResponsible));
+    
+    homePage = expressProcessPage.executeDirectlyAndGoToHomePage();
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("Default Task");
+    taskWidgetPage.startTask(0);
+    DefaulExpresTaskPage defaulExpresTaskPage = new DefaulExpresTaskPage();
+    defaulExpresTaskPage.enterTextToDefaultTask("Test input");
+    defaulExpresTaskPage.finishDefaultTask();
+    
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("Approval 1: Default Task");
+    taskWidgetPage.startTask(0);
+    defaulExpresTaskPage = new DefaulExpresTaskPage();
+    defaulExpresTaskPage.enterTextToComment("Comment");
+    defaulExpresTaskPage.finishApprovalTask();
+    
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("Test create default process: Final Review");
+    taskWidgetPage.startTask(0);
+    defaulExpresTaskPage = new DefaulExpresTaskPage();
+    Assert.assertEquals(1, defaulExpresTaskPage.countNumberOfApproval());
   }
   
   private void goToCreateExpressProcess() {
