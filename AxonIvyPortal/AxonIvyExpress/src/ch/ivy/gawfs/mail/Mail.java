@@ -2,6 +2,7 @@ package ch.ivy.gawfs.mail;
 
 import java.util.List;
 
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.components.config.EmailConfiguration;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.scripting.objects.File;
@@ -22,7 +23,10 @@ public class Mail {
   }
 
   public void send() {
-    SubProcessCall.withPath(SEND_EMAIL_CALLABLE).withParam("emailConfig", emailConfig).withParam("attachmentFiles", attachmentFiles).call();
+    IvyExecutor.executeAsSystem(() -> {
+      SubProcessCall.withPath(SEND_EMAIL_CALLABLE).withParam("emailConfig", emailConfig).withParam("attachmentFiles", attachmentFiles).call();
+      return null;
+    });
   }
 
   public static class MailBuilder {
