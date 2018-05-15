@@ -20,20 +20,19 @@ import ch.ivyteam.ivy.security.SecurityManagerFactory;
  */
 public class PortalDataService {
 
-  public void addOrUpdate(List<CustomPropertyPair> customPropertyPairs) throws PersistencyException,
-      EnvironmentNotAvailableException {
+  public void addOrUpdate(List<CustomPropertyPair> customPropertyPairs) throws PersistencyException, EnvironmentNotAvailableException {// NOSONAR
     executeCallableAsSystemManager(new AddOrUpdateCustomPropertiesCommand(customPropertyPairs));
   }
 
-  public void delete(String key) throws PersistencyException, EnvironmentNotAvailableException {
+  public void delete(String key) throws PersistencyException, EnvironmentNotAvailableException {// NOSONAR
     executeCallableAsSystemManager(new DeleteCustomPropertiesCommand(key));
   }
 
-  public void delete(List<String> keys) throws PersistencyException, EnvironmentNotAvailableException {
+  public void delete(List<String> keys) throws PersistencyException, EnvironmentNotAvailableException {// NOSONAR
     executeCallableAsSystemManager(new DeleteCustomPropertiesCommand(keys));
   }
 
-  public void deleteByPrefix(String keyPrefix) throws PersistencyException, EnvironmentNotAvailableException {
+  public void deleteByPrefix(String keyPrefix) throws PersistencyException, EnvironmentNotAvailableException {// NOSONAR
     executeCallableAsSystemManager(new DeleteCustomPropertiesByPrefixCommand(keyPrefix));
   }
 

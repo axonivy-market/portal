@@ -28,11 +28,8 @@ public class ApplicationServiceImpl implements IApplicationService {
   private List<IvyApplication> getAllApplicationOfServerExceptSystem() {
     List<IApplication> serverApplications =
         ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
-    List<IvyApplication> ivyApplication =
-        serverApplications.stream().filter((app) -> !app.isSystem()).map(this::convertToIvyApplicationBy)
+    return serverApplications.stream().filter(app -> !app.isSystem()).map(this::convertToIvyApplicationBy)
             .collect(Collectors.toList());
-
-    return ivyApplication;
   }
 
   private IvyApplication convertToIvyApplicationBy(IApplication app) {

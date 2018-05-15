@@ -337,8 +337,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   }
 
   public boolean canCreateExpessWorkflow() {
-    boolean result = !compactMode && createExpressWorkflowProcessStart != null;
-    return result;
+    return !compactMode && createExpressWorkflowProcessStart != null;
   }
 
   public boolean isExpressWorkflowLink(String link) {
