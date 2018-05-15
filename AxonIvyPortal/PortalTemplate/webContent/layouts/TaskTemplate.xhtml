@@ -26,7 +26,7 @@
             <h:outputText id="title" title="#{task.name} (##{task.id})" value="#{task.name} (##{task.id})" />
           </ui:insert>
         </div>
-        <div class="Fright Wid70">
+        <div class="Fright Wid70 MarBot20" >
           <ui:insert name="process_chain_area">
             <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain startMethod="start"
               actualStepIndex="#{actualStepIndex}" steps="#{steps}" 
@@ -37,9 +37,9 @@
 
       <div class="ClearBoth" />
 
+      <ui:insert name="errorsZone" />
+      <ui:insert name="infoZone" />
       <div class="task-template-content">
-        <ui:insert name="errorsZone" />
-        <ui:insert name="infoZone" />
 
         <div class="task-template-tasks-command">
           <p:commandLink id="start-adhoc" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasSelfService(): isShowStartAdhocButton}"

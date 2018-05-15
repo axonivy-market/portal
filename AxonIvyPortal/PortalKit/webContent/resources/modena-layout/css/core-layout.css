@@ -177,6 +177,7 @@ input[type="text"], input[type="password"], textarea{ -webkit-appearance: none; 
 .MarTopHalf{ margin-top:50%;}
 
 .MarBot10{ margin-bottom:10px;}
+.MarBot20{ margin-bottom:20px;}
 .MarRight10{ margin-right:10px;}
 .MarRight20{ margin-right:20px;}
 

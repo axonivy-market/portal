@@ -292,12 +292,19 @@
 }
 
 .task-template-content {
-	margin-top: 30px;
+	margin-top: 15px;
 	position: relative;
 }
 
 .task-template-tasks-command {
 	z-index: 1;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+.task-template-error-zone {
+	z-index: -1;
 	position: absolute;
 	top: 15px;
 	right: 15px;
