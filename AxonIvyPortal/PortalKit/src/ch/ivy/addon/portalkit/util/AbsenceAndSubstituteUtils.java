@@ -35,7 +35,6 @@ public final class AbsenceAndSubstituteUtils {
    * @param ivyUsers : List ivy user in current system
    * @return TreeNode : Substitute treeNode for an application
    */
-  @SuppressWarnings("unused")
   public static TreeNode buildSustitute(List<RemoteSubstitute> ivySubtitutes, List<RemoteApplicationUser> ivyUsers) {
     // Add Group list Ivy user to map by application name
     Map<String, List<RemoteApplicationUser>> mapUser = new HashMap<>();

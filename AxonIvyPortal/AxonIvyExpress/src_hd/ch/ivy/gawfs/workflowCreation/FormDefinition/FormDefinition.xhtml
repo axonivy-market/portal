@@ -59,7 +59,7 @@
 					update="form:selected-formelements-field" styleClass="buttonDelegate floatLeft" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.back}"/>
 				<p:spacer width="5" />
 
-				<p:commandButton  value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save" partialSubmit="true"
+				<p:commandButton id="save-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save" partialSubmit="true"
 					styleClass="buttonDelegate" update="form:selected-formelements-field" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.save}"
                     rendered="#{data.data.processType eq 'REPEAT'}"/>
 				<p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT'}" />
@@ -76,7 +76,7 @@
 					update="form defined-task-container buttons-container" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.moveNextTask}" />
 				<p:spacer width="5" />
 
-				<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times"
+				<p:commandButton id="cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times"
 					onstart="PF('cancel-dialog').show();" styleClass="buttonDelegate portal-cancel-button"/>
 
 			</p:outputPanel>
