@@ -20,7 +20,7 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.IServer;
 
 public final class GetSubstituteWebserviceCallable implements Callable<SubstituteServiceResult> {
-
+  
   private static final String ROLE_EVERYBODY = "Everybody";
   private static final String SYSTEM_USERNAME = "SYSTEM";
   private static final String HIDE = "HIDE";
@@ -77,7 +77,7 @@ public final class GetSubstituteWebserviceCallable implements Callable<Substitut
     List<IvySubstitute> ivySubstitutes = IvySubstituteTransformer.transform(user.getSubstitutes(), application);
 
     Set<String> existRoles = ivySubstitutes.stream().map(IvySubstitute::getForThisRole).collect(toSet());
-    List<IRole> iRoles = getAllRoles(user).stream().filter((role) -> !existRoles.contains(role.getName()) && Objects.isNull(role.getProperty(HIDE)))
+    List<IRole> iRoles = getAllRoles(user).stream().filter(role -> !existRoles.contains(role.getName()) && Objects.isNull(role.getProperty(HIDE)))
         .collect(toList());
     
 
@@ -91,7 +91,7 @@ public final class GetSubstituteWebserviceCallable implements Callable<Substitut
     if (user == null) {
       return new ArrayList<>();
     }
-    return user.getAllRoles().stream().filter((role) -> !ROLE_EVERYBODY.equals(role.getName())).collect(toList());
+    return user.getAllRoles().stream().filter(role -> !ROLE_EVERYBODY.equals(role.getName())).collect(toList());
   }
 
   private IvySubstitute createIvySubstituteForUserItself(String applicationName) {
@@ -112,9 +112,8 @@ public final class GetSubstituteWebserviceCallable implements Callable<Substitut
 
   private List<IvyUser> getAllUserOnApp(IApplication application) {
     List<IUser> users = application.getSecurityContext().getUsers();
-    List<IvyUser> userlist = users.stream().filter(u -> !u.getName().equalsIgnoreCase(SYSTEM_USERNAME))
+    return users.stream().filter(u -> !u.getName().equalsIgnoreCase(SYSTEM_USERNAME))
         .map(u -> IvyUserTransformer.transform(u, application)).collect(toList());
-    return userlist;
   }
 
 }

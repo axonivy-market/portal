@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Callable;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import ch.ivy.ws.addon.WSException;
@@ -88,9 +89,13 @@ public class ProcessStartServiceImpl extends AbstractService implements IProcess
   private List<IvyProcessStart> findProcessStart(List<IProcessStart> startableProcessStarts,
       ProcessSearchCriteria searchCriteria, IvyProcessStartTransformer transformer) {
     return startableProcessStarts.stream().filter(processStart -> match(processStart, searchCriteria.getKeyword()))
-        .map(processStart -> transformer.transform(processStart)).collect(Collectors.toList());
+        .map(transformProcessStart(transformer)).collect(Collectors.toList());
   }
 
+  private Function<? super IProcessStart, ? extends IvyProcessStart> transformProcessStart(IvyProcessStartTransformer transformer) {
+    return processStart -> transformer.transform(processStart);
+  }
+  
   private boolean match(IProcessStart processStart, String keyword) {
     return containsIgnoreCase(processStart.getName(), keyword)
         || containsIgnoreCase(processStart.getDescription(), keyword);
