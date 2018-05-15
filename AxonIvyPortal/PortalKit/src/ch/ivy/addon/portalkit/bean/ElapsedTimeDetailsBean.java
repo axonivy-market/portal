@@ -64,7 +64,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     setRolesForCompareElapsedTime((List<RemoteRole>)response.get("roles"));
 
-    defaultRole = rolesForCompareElapsedTime.stream().findFirst().filter((role) -> ROLE_EVERYBODY.equals(role.getName())).get();
+    defaultRole = rolesForCompareElapsedTime.stream().findFirst().filter(role -> ROLE_EVERYBODY.equals(role.getName())).get();
     compare(defaultRole, defaultRole);
     chartName = statisticChart.getName();
     dataEmpty = false;
