@@ -24,7 +24,7 @@
       <p:tab id="custom-request-tab"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/requestTabTitle')}">
 		<h:form id="request-form">
-			<p:fieldset id="dynaFormFieldSet" toggleable="true" legend="Formular">
+			<p:fieldset id="dynaFormFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}">
 
 				<pe:dynaForm id="dynaForm"
 					value="#{data.executePredefinedWorkflowData.nextTask.dynaFormController.model}"
