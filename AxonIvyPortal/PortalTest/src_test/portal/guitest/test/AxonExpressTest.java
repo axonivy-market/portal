@@ -96,12 +96,11 @@ public class AxonExpressTest extends BaseTest{
     expressProcessPage.fillProcessProperties(true, false, "Test create default process", "Test description");
     
     ExpressResponsible demoResponsible = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
-    ExpressResponsible adminResponsible = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     
     expressProcessPage.createDefaultTask(0, "Default Task",Arrays.asList(demoResponsible));
     
     expressProcessPage.addNewTask(0);
-    expressProcessPage.createDefaultTask(1, null, Arrays.asList(adminResponsible));
+    expressProcessPage.createDefaultTask(1, null, Arrays.asList(demoResponsible));
     
     homePage = expressProcessPage.executeDirectlyAndGoToHomePage();
     taskWidgetPage = new TaskWidgetPage();
@@ -111,8 +110,6 @@ public class AxonExpressTest extends BaseTest{
     defaulExpresTaskPage.enterTextToDefaultTask("Test input");
     defaulExpresTaskPage.finishDefaultTask();
     
-    homePage = new HomePage();
-    logoutAndLoginAgain(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Approval 1: Default Task");
     taskWidgetPage.startTask(0);
@@ -120,20 +117,11 @@ public class AxonExpressTest extends BaseTest{
     defaulExpresTaskPage.enterTextToComment("Comment");
     defaulExpresTaskPage.finishApprovalTask();
     
-    homePage = new HomePage();
-    logoutAndLoginAgain(TestAccount.DEMO_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Test create default process: Final Review");
     taskWidgetPage.startTask(0);
     defaulExpresTaskPage = new DefaulExpresTaskPage();
     Assert.assertEquals(1, defaulExpresTaskPage.countNumberOfApproval());
-  }
-  
-  private void logoutAndLoginAgain(TestAccount testAccount) {
-    homePage.clickUserMenuItem("logout-setting");
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(testAccount);
-    loginPage.login();
   }
   
   private void goToCreateExpressProcess() {
