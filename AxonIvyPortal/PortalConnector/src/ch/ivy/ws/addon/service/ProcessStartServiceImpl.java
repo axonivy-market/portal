@@ -93,7 +93,7 @@ public class ProcessStartServiceImpl extends AbstractService implements IProcess
   }
 
   private Function<? super IProcessStart, ? extends IvyProcessStart> transformProcessStart(IvyProcessStartTransformer transformer) {
-    return processStart -> transformer.transform(processStart);
+    return processStart -> transformer.transform(processStart); //NOSONAR
   }
   
   private boolean match(IProcessStart processStart, String keyword) {

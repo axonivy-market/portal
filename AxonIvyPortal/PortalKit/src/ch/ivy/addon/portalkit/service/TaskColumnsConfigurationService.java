@@ -18,7 +18,7 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
       query =
           repo().search(getType())
           .numberField("serverId").isEqualTo(serverId)
-          .and().numberField("applicationId").isEqualTo(applicationId)
+          .and().numberField("applicationId").isEqualTo(applicationId) //NOSONAR
           .and().numberField("userId").isEqualTo(userId)
           .and().numberField("taskColumnsConfigDataId").isEqualTo(taskColumnsConfigDataId);
     } else {

@@ -6,7 +6,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +26,7 @@ public class UserProcessAutoCompleteConverter implements Converter {
    * Returns the item's hash code or the default no selection value.
    */
   @Override
-  public String getAsString(FacesContext context, UIComponent component, Object item) throws ConverterException {
+  public String getAsString(FacesContext context, UIComponent component, Object item) {
     if (item != null && !isEmptyString(item) && !isEmptyUserProcess((UserProcess) item)) {
       String hash = String.valueOf(item.hashCode());
       Map<String, Object> viewMap = getViewMap(context);
@@ -65,13 +64,11 @@ public class UserProcessAutoCompleteConverter implements Converter {
   }
 
   private boolean isEmptyString(Object item) {
-    boolean isEmptyString = String.class.isAssignableFrom(item.getClass()) && "".equals(item);
-    return isEmptyString;
+    return String.class.isAssignableFrom(item.getClass()) && "".equals(item);
   }
 
   private Map<String, Object> getViewMap(FacesContext context) {
     UIViewRoot viewRoot = context.getViewRoot();
-    Map<String, Object> viewMap = viewRoot.getViewMap();
-    return viewMap;
+    return viewRoot.getViewMap();
   }
 }

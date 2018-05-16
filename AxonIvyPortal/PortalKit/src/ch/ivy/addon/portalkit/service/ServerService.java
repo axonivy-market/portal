@@ -35,22 +35,21 @@ public class ServerService extends AbstractService<Server> {
     }
     return servers;
   }
-  
+
   public List<Server> findActiveServersNotLocalhost() {
     return getDao().findActiveServers();
   }
-  
+
   public boolean isMultiServers() {
     return findActiveServers().size() > 1;
   }
 
   @Override
   public Server findById(long id) {
-    if(id == LOCAL_SERVER_ID) {
+    if (id == LOCAL_SERVER_ID) {
       return localhost();
     } else {
-      Server server = super.findById(id);
-      return server;
+      return super.findById(id);
     }
   }
 
