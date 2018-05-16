@@ -43,10 +43,7 @@ public class RemoteSecurityMember {
 	}
 
 	public boolean isUser() {
-		if((memberName != null && memberName.startsWith("#")) || isUser){
-			return true;
-		}
-		return false;
+	  return (memberName != null && memberName.startsWith("#")) || isUser;
 	}
 
 	/**
