@@ -56,7 +56,7 @@ public class WsServiceFactory {
    * @deprecated deprecated
    */
   @Deprecated
-  private static IIsAliveService isAliveService;
+  private static IIsAliveService isAliveService; //NOSONAR
 
   private static IAbsenceService absenceService;
 
@@ -115,7 +115,7 @@ public class WsServiceFactory {
    * @return IIsAliveService
    */
   @Deprecated
-  public static IIsAliveService getIsAliveService() {
+  public static IIsAliveService getIsAliveService() {  //NOSONAR
     if (isAliveService == null)
       isAliveService = new IsAliveServiceImpl();
 

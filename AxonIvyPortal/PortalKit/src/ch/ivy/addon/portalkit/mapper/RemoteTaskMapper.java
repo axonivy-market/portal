@@ -174,7 +174,7 @@ public class RemoteTaskMapper {
     }
     RemoteSecurityMember rsm = new RemoteSecurityMember(memberName);
     if (memberName.startsWith("#")) {
-      // TODO: find user and set DisplayName
+      // find user and set DisplayName
       ISecurityMember sm = Ivy.session().getSecurityContext().findSecurityMember(memberName);
       if (sm != null) {
         rsm.setDisplayName(sm.getDisplayName());

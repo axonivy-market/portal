@@ -20,7 +20,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
  *
  */
 @Deprecated
-public class IsAliveServiceImpl extends AbstractService implements IIsAliveService {
+public class IsAliveServiceImpl extends AbstractService implements IIsAliveService { //NOSONAR
 
   private static final String SYSTEM_APP_NAME = "System";
 
