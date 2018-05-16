@@ -27,8 +27,7 @@ public class UserDao extends AbstractDao<User> {
         Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.USER_NAME.toString())
             .build(long.class, User.class).init(findAll());
 
-    List<User> users = repo.query(ObjectFilter.eq(EntityProperty.USER_NAME.toString(), userName));
-    return users;
+    return repo.query(ObjectFilter.eq(EntityProperty.USER_NAME.toString(), userName));
   }
 
   @ExecuteAsSystem
@@ -38,10 +37,8 @@ public class UserDao extends AbstractDao<User> {
             .searchIndex(EntityProperty.APPLICATION_NAME.toString()).searchIndex(EntityProperty.SERVER_ID.toString())
             .build(long.class, User.class).init(findAll());
 
-    List<User> users =
-        repo.query(ObjectFilter.eq(EntityProperty.APPLICATION_NAME.toString(), application.getName()),
-            ObjectFilter.eq(EntityProperty.SERVER_ID.toString(), application.getServerId()));
-    return users;
+    return repo.query(ObjectFilter.eq(EntityProperty.APPLICATION_NAME.toString(), application.getName()),
+        ObjectFilter.eq(EntityProperty.SERVER_ID.toString(), application.getServerId()));
   }
 
   @ExecuteAsSystem

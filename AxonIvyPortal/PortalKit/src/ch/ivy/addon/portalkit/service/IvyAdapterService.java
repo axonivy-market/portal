@@ -21,8 +21,8 @@ public class IvyAdapterService {
   private static final String PORTAL_CALL_WEBSERVICE_MAX_RETRY = "PortalCallWebserviceMaxRetry";
 
   /**
-   * Get maximum time global variable that portal can retry to synchronize data to other portals,
-   * return 0 if global variable is not defined or the value is not correct format
+   * Get maximum time global variable that portal can retry to synchronize data to other portals, return 0 if global
+   * variable is not defined or the value is not correct format
    * 
    * @return maximum times
    */
@@ -47,8 +47,7 @@ public class IvyAdapterService {
   public static <V> V executeCallableAsSystem(Callable<V> callable) {
     try {
       ISecurityManager securityManager = SecurityManagerFactory.getSecurityManager();
-      V callableResult = securityManager.executeAsSystem(callable);
-      return callableResult;
+      return securityManager.executeAsSystem(callable);
     } catch (EnvironmentNotAvailableException e) {
       String message = "Environment not available.";
       Ivy.log().error(message);
@@ -65,22 +64,22 @@ public class IvyAdapterService {
   }
 
   /**
-   * Calls the sub process with the given subProcessSignature with the given parameters that are not from excluded libraries. Exactly one
-   * sub process with the given signature is expected.
+   * Calls the sub process with the given subProcessSignature with the given parameters that are not from excluded
+   * libraries. Exactly one sub process with the given signature is expected.
    * 
    * @param subProcessSignature The signature of the sub process to be triggered.
    * @param parameters The parameters to pass to the process.
    * @param excludedLibraries The subprocess from these libraries name will be excluded
    * @return The response of the process execution.
    */
-  public static Map<String, Object> startSubProcess(String subProcessSignature, Map<String, Object> parameters, List<String> excludedLibraries) {
-    FindSubProcessStartCallable findSubProcessStartCallable = new FindSubProcessStartCallable(subProcessSignature, excludedLibraries);
+  public static Map<String, Object> startSubProcess(String subProcessSignature, Map<String, Object> parameters,
+      List<String> excludedLibraries) {
+    FindSubProcessStartCallable findSubProcessStartCallable =
+        new FindSubProcessStartCallable(subProcessSignature, excludedLibraries);
     ISubProcessStart subProcessStart = executeCallableAsSystem(findSubProcessStartCallable);
 
     SubProcessCallerCallable subprocessCallable = new SubProcessCallerCallable(subProcessStart, parameters);
-    Map<String, Object> response = executeCallableAsSystem(subprocessCallable);
-
-    return response;
+    return executeCallableAsSystem(subprocessCallable);
   }
 
   /**
@@ -107,8 +106,7 @@ public class IvyAdapterService {
       SubProcessSearchFilter filter =
           subprocessFilter.setSignature(subprocessSignature).setSearchInAllProjects(true)
               .setSearchInDependentProjects(false).toFilter();
-      ISubProcessStart subProcessStart = findSubprocess(filter);
-      return subProcessStart;
+      return findSubprocess(filter);
     }
 
     private ISubProcessStart findSubprocess(SubProcessSearchFilter filter) {
@@ -150,8 +148,7 @@ public class IvyAdapterService {
     @Override
     public Map<String, Object> call() {
       try {
-        Map<String, Object> response = SubProcessRunner.execute(subProcessStart, parameters);
-        return response;
+        return SubProcessRunner.execute(subProcessStart, parameters);
       } catch (Exception e) {
         String message = "Unable to execute subprocess.";
         Ivy.log().error(message, e);

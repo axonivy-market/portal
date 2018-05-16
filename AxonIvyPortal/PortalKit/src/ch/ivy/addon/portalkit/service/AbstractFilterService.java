@@ -62,7 +62,8 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     return filters;
   }
 
-  public void copyFilterValues(AbstractFilter<?> filter, AbstractFilter<?> savedFilter) throws ReflectiveOperationException {
+  public void copyFilterValues(AbstractFilter<?> filter, AbstractFilter<?> savedFilter)
+      throws ReflectiveOperationException {
     Field[] fields = filter.getClass().getDeclaredFields();
     for (Field field : fields) {
       if (field.getAnnotation(JsonIgnore.class) == null) {
@@ -92,18 +93,13 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
           Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(-1L)
               .equals(filterData.getUserId());
       boolean isAdmin = new PermissionBean().hasAdminPermission();
-      if (isOwnerOfFilter || isAdmin) {
-        return true;
-      } else {
-        return false;
-      }
+      return isOwnerOfFilter || isAdmin;
     }
   }
 
   public List<T> getAllPrivateFilters() {
     Filter<T> privateFilterQuery =
-            repo().search(getType())
-                .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
+        repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
     return privateFilterQuery.execute().getAll();
   }
 

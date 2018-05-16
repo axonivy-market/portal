@@ -36,11 +36,11 @@ public final class CaseUtils {
   public static final String CASE_DETAIL_PROCESS = "CASE_DETAIL_PROCESS";
   private static String fullNameFormat = "%s (%s)";
   private static final String HIDE = "HIDE";
-  
+
   private CaseUtils() {
 
   }
-  
+
   /**
    * This function is o find the running case of session user by process category
    * 
@@ -49,8 +49,7 @@ public final class CaseUtils {
    */
   public static List<CaseVO> findCasesRunningOfSessionUserByCategory(String category) {
     List<ICase> cases = findICasesRunningOfSessionUserByCategory(category);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -61,8 +60,7 @@ public final class CaseUtils {
    */
   public static List<CaseVO> findCasesRunningByCategory(String category) {
     List<ICase> cases = findICasesRunningByCategory(category);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -73,8 +71,7 @@ public final class CaseUtils {
    */
   public static List<CaseVO> findCasesFinishedOfSessionUserByCategory(String category) {
     List<ICase> cases = findICasesFinishedOfSessionUserByCategory(category);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -85,8 +82,7 @@ public final class CaseUtils {
    */
   public static List<CaseVO> findCasesFinishedByCategory(String category) {
     List<ICase> cases = findICasesFinishedByCategory(category);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -101,8 +97,7 @@ public final class CaseUtils {
     filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.CREATED.intValue());
     filter = filter.and(CaseProperty.PROCESS_CATEGORY_CODE, RelationalOperator.EQUAL_IGNORE_CASE, category);
 
-    List<ICase> cases = findICasesOfSessionUser(filter);
-    return cases;
+    return findICasesOfSessionUser(filter);
   }
 
   /**
@@ -117,8 +112,7 @@ public final class CaseUtils {
     filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.CREATED.intValue());
     filter = filter.and(CaseProperty.PROCESS_CATEGORY_CODE, RelationalOperator.EQUAL_IGNORE_CASE, category);
 
-    List<ICase> cases = findICases(filter);
-    return cases;
+    return findICases(filter);
   }
 
   /**
@@ -132,8 +126,7 @@ public final class CaseUtils {
         Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DONE.intValue());
     filter = filter.and(CaseProperty.PROCESS_CATEGORY_CODE, RelationalOperator.EQUAL_IGNORE_CASE, category);
 
-    List<ICase> cases = findICasesOfSessionUser(filter);
-    return cases;
+    return findICasesOfSessionUser(filter);
   }
 
   /**
@@ -147,8 +140,7 @@ public final class CaseUtils {
         Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DONE.intValue());
     filter = filter.and(CaseProperty.PROCESS_CATEGORY_CODE, RelationalOperator.EQUAL_IGNORE_CASE, category);
 
-    List<ICase> cases = findICases(filter);
-    return cases;
+    return findICases(filter);
   }
 
   /**
@@ -158,8 +150,7 @@ public final class CaseUtils {
    */
   public static List<CaseVO> findCasesRunningOfSessionUser() {
     List<ICase> cases = findICasesRunningOfSessionUser();
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -169,8 +160,7 @@ public final class CaseUtils {
    */
   public static List<CaseVO> findCasesRunning() {
     List<ICase> cases = findICasesRunning();
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -186,8 +176,7 @@ public final class CaseUtils {
     filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DESTROYED.intValue());
 
     List<ICase> cases = findICasesOfSessionUser(filter);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -203,8 +192,7 @@ public final class CaseUtils {
     filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DESTROYED.intValue());
 
     List<ICase> cases = findICases(filter);
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -214,8 +202,7 @@ public final class CaseUtils {
    */
   public static List<CaseVO> findCasesFinishedOfSessionUser() {
     List<ICase> cases = findICasesFinishedOfSessionUser();
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -225,8 +212,7 @@ public final class CaseUtils {
    */
   public static List<CaseVO> findCasesFinished() {
     List<ICase> cases = findICasesFinished();
-    List<CaseVO> result = convertICasesToCaseVOs(cases);
-    return result;
+    return convertICasesToCaseVOs(cases);
   }
 
   /**
@@ -239,8 +225,7 @@ public final class CaseUtils {
         Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.RUNNING.intValue());
     filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.CREATED.intValue());
 
-    List<ICase> cases = findICasesOfSessionUser(filter);
-    return cases;
+    return findICasesOfSessionUser(filter);
   }
 
   /**
@@ -253,8 +238,7 @@ public final class CaseUtils {
         Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.RUNNING.intValue());
     filter = filter.or(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.CREATED.intValue());
 
-    List<ICase> cases = findICases(filter);
-    return cases;
+    return findICases(filter);
   }
 
   /**
@@ -266,8 +250,7 @@ public final class CaseUtils {
     IPropertyFilter<CaseProperty> filter =
         Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DONE.intValue());
 
-    List<ICase> cases = findICasesOfSessionUser(filter);
-    return cases;
+    return findICasesOfSessionUser(filter);
   }
 
   /**
@@ -279,8 +262,7 @@ public final class CaseUtils {
     IPropertyFilter<CaseProperty> filter =
         Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DONE.intValue());
 
-    List<ICase> cases = findICases(filter);
-    return cases;
+    return findICases(filter);
   }
 
 
@@ -291,8 +273,7 @@ public final class CaseUtils {
    * @return list {@link ICase}
    */
   public static List<ICase> findICasesOfSessionUser(IPropertyFilter<CaseProperty> filter) {
-    List<ICase> cases = Ivy.session().findInvolvedCases(filter, null, 0, -1, true).getResultList();
-    return cases;
+    return Ivy.session().findInvolvedCases(filter, null, 0, -1, true).getResultList();
   }
 
   /**
@@ -320,7 +301,7 @@ public final class CaseUtils {
    */
   public static CaseVO convertToCaseVO(ICase iCase) {
     CaseVO caseVO = new CaseVO();
-    if (iCase != null){
+    if (iCase != null) {
       String caseDetailStartProcess = getCaseDetailProcess(iCase);
       caseVO.setProcessCaseDetails(caseDetailStartProcess);
       caseVO.setCreatedAt(iCase.getStartTimestamp());
@@ -348,9 +329,9 @@ public final class CaseUtils {
       if (mobile != null) {
         contact.setMobilePhone(mobile);
       }
-  
+
       caseVO.setCreatorContact(contact);
-    } 
+    }
     return caseVO;
   }
 
@@ -405,7 +386,8 @@ public final class CaseUtils {
 
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.getCreatorUser().getEMailAddress());
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(
+            () -> iCase.getCreatorUser().getEMailAddress());
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
@@ -425,7 +407,8 @@ public final class CaseUtils {
 
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.getCreatorUser().getProperty(UserUtils.MOBILE));
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(
+            () -> iCase.getCreatorUser().getProperty(UserUtils.MOBILE));
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
@@ -445,7 +428,8 @@ public final class CaseUtils {
 
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.getCreatorUser().getProperty(UserUtils.PHONE));
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(
+            () -> iCase.getCreatorUser().getProperty(UserUtils.PHONE));
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
@@ -550,7 +534,8 @@ public final class CaseUtils {
    */
   public static Recordset findcases(final CaseQuery caseQuery) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> Ivy.wf().getCaseQueryExecutor().getRecordset(caseQuery));
+      return ServerFactory.getServer().getSecurityManager()
+          .executeAsSystem(() -> Ivy.wf().getCaseQueryExecutor().getRecordset(caseQuery));
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -591,23 +576,25 @@ public final class CaseUtils {
     }
     return null;
   }
-  
+
   /**
    * Sets the "HIDE" additional property to the given case to hide it in case list of Portal.
+   * 
    * @param iCase
    */
   public static void setHidePropertyToHideInPortal(ICase iCase) {
     iCase.setAdditionalProperty(HIDE, HIDE);
   }
-  
+
   /**
    * Removes the "HIDE" additional property to the given case to display it in case list of Portal.
+   * 
    * @param iCase
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
     iCase.setAdditionalProperty(HIDE, null);
   }
-  
+
   public static String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     String urlParameters = "?caseId=" + remoteCase.getId() + "&serverId=" + remoteCase.getServer().getId();
@@ -616,7 +603,9 @@ public final class CaseUtils {
     } catch (Exception e) {
       Ivy.log().error(e);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString() + urlParameters;
+      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(),
+          process).toString()
+          + urlParameters;
     }
   }
 }

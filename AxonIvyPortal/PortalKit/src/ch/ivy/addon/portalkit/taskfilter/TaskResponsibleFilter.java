@@ -30,7 +30,7 @@ public class TaskResponsibleFilter extends TaskFilter {
   private List<RemoteSecurityMember> responsibles;
   private RemoteSecurityMember selectedResponsible;
   @JsonIgnore
-  private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
 
   @Override
   public String label() {
@@ -87,11 +87,10 @@ public class TaskResponsibleFilter extends TaskFilter {
             public List<RemoteUser> call() throws Exception {
               if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
                 return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
-                  .get("users", List.class);
+                    .get("users", List.class);
               }
               return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
-                  .call(Ivy.request().getApplication().getName())
-                  .get("users", List.class);
+                  .call(Ivy.request().getApplication().getName()).get("users", List.class);
             }
           });
       List<RemoteRole> roles =
@@ -103,8 +102,7 @@ public class TaskResponsibleFilter extends TaskFilter {
                     .get("roles", List.class);
               }
               return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRolesByApplication")
-                  .call(Ivy.request().getApplication().getName())
-                  .get("roles", List.class);
+                  .call(Ivy.request().getApplication().getName()).get("roles", List.class);
             }
           });
 

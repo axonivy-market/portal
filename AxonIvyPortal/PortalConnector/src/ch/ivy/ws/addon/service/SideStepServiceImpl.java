@@ -45,18 +45,22 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
           }
           if (!searchCriteria.isAdhocExcluded()) {
             IvySideStep adhocSideStep = createAdhocSideStep(wfCase, isUrlBuiltFromSystemProperties);
-            if (Objects.nonNull(adhocSideStep)){
+            if (Objects.nonNull(adhocSideStep)) {
               sideSteps.add(adhocSideStep);
             }
           }
-          SideStepServiceResult result = new SideStepServiceResult();
-          result.setSideSteps(sideSteps);
-          return result;
+          return sideStepServiceResult(sideSteps);
         }
       });
     } catch (Exception e) {
       throw new WSException(10046, e);
     }
+  }
+
+  private SideStepServiceResult sideStepServiceResult(List<IvySideStep> sideSteps) {
+    SideStepServiceResult result = new SideStepServiceResult();
+    result.setSideSteps(sideSteps);
+    return result;
   }
 
   private ICase findCase(SideStepSearchCriteria searchCriteria) {
