@@ -24,7 +24,7 @@ import com.google.gson.JsonParser;
 public final class PasswordUtils {
   private static final String SERVER_KEY_PREFIX = "AxonIvyPortal.Server";
   private static final String SERVER_PATH = "path";
-  private static final String SERVER_PWD_KEY = "password"; //NOSONAR
+  private static final String SERVER_PWD_KEY = "password"; // NOSONAR
 
   private PasswordUtils() {}
 
@@ -53,8 +53,7 @@ public final class PasswordUtils {
   }
 
   private static IWebService findWebService(String id) {
-    IWebService ws = app().findWebService(id);
-    return ws;
+    return app().findWebService(id);
   }
 
   public static boolean isKeyOfServer(String propertyKey) {
@@ -72,8 +71,7 @@ public final class PasswordUtils {
   }
 
   private static JsonObject parseToObject(String serverAsString) {
-    JsonObject jsonObject = new JsonParser().parse(serverAsString).getAsJsonObject();
-    return jsonObject;
+    return new JsonParser().parse(serverAsString).getAsJsonObject();
   }
 
   // ===============DIFFERENT PART (Compare to PasswordUtils in PortalConnector)===================

@@ -23,11 +23,11 @@ public class RemoteSecurityMember {
 	/**
 	 * Constructor
 	 *
-	 * @param _memberName member name
+	 * @param memberName member name
 	 */
-	public RemoteSecurityMember(String _memberName){
+	public RemoteSecurityMember(String memberName){
 		super();
-		this.memberName = _memberName;
+		this.memberName = memberName;
 	}
 	
 	public String getDisplayName() {

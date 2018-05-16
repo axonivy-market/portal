@@ -12,17 +12,19 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class MultiServerLibraryService extends AbstractLibraryService {
 
-  private final static String LIBRARY_SERVICE_CALLABLE = "MultiPortal/LibraryService";
+  private static final String LIBRARY_SERVICE_CALLABLE = "MultiPortal/LibraryService";
 
   @Override
   public Map<String, List<RemoteLibrary>> collectLibraries() {
     try {
       @SuppressWarnings("unchecked")
       List<RemoteLibrary> libraries =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->
-              SubProcessCall.withPath(LIBRARY_SERVICE_CALLABLE).withStartName("getLibraries")
-                  .withParam("username", Ivy.session().getSessionUserName()).call().get("libraries", List.class)
-          );
+          ServerFactory
+              .getServer()
+              .getSecurityManager()
+              .executeAsSystem(
+                  () -> SubProcessCall.withPath(LIBRARY_SERVICE_CALLABLE).withStartName("getLibraries")
+                      .withParam("username", Ivy.session().getSessionUserName()).call().get("libraries", List.class));
 
       return libraries.stream().collect(Collectors.groupingBy(RemoteLibrary::getApplication));
     } catch (Exception e) {

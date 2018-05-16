@@ -17,17 +17,13 @@ public class HistoryService {
   public List<History> createHistories(List<RemoteTask> tasks, List<RemoteNote> notes) {
     List<History> historiesRelatedToTasks = createHistoriesFromTasks(tasks);
     List<History> historiesRelatedToNotes = createToHistoriesFromNotes(notes);
-    List<History> soretedHistories =
-        sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
-    return soretedHistories;
+    return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
   }
 
   public List<History> getHistories(List<ITask> tasks, List<INote> notes) {
     List<History> historiesRelatedToTasks = createHistoriesFromITasks(tasks);
     List<History> historiesRelatedToNotes = createToHistoriesFromINotes(notes);
-    List<History> soretedHistories =
-        sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
-    return soretedHistories;
+    return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
   }
 
   private List<History> sortHistoriesByTimeStampDescending(List<List<History>> listOfHistories) {
@@ -40,19 +36,19 @@ public class HistoryService {
   }
 
   private List<History> createHistoriesFromTasks(List<RemoteTask> tasks) {
-    return tasks.stream().map(task -> createHistoryFrom(task)).collect(Collectors.toList());
+    return tasks.stream().map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   private List<History> createHistoriesFromITasks(List<ITask> tasks) {
-    return tasks.stream().map(task -> createHistoryFrom(task)).collect(Collectors.toList());
+    return tasks.stream().map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   private List<History> createToHistoriesFromNotes(List<RemoteNote> notes) {
-    return notes.stream().map(note -> createHistoryFrom(note)).collect(Collectors.toList());
+    return notes.stream().map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   private List<History> createToHistoriesFromINotes(List<INote> notes) {
-    return notes.stream().map(note -> createHistoryFrom(note)).collect(Collectors.toList());
+    return notes.stream().map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   private History createHistoryFrom(ITask task) {

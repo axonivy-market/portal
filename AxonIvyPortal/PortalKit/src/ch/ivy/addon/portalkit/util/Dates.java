@@ -13,13 +13,11 @@ import org.apache.commons.lang3.time.DateUtils;
 
 public final class Dates {
 
-  private Dates() {
-  }
+  private Dates() {}
 
   /**
-   * Check two periods of date is overlapped each other by comparing start and end date
-   * of first period to start and end date of second period, then get absolute
-   * total of sum 4 results, the total would be in range [0,1,2,3,4].<br>
+   * Check two periods of date is overlapped each other by comparing start and end date of first period to start and end
+   * date of second period, then get absolute total of sum 4 results, the total would be in range [0,1,2,3,4].<br>
    * If the total is 4 -> not overlapped<br>
    * Otherwise -> overlapped
    * 
@@ -35,24 +33,20 @@ public final class Dates {
     int i3 = compareTruncatedByHour(endDate1, startDate2);
     int i4 = compareTruncatedByHour(endDate1, endDate2);
     int overlappingIndex = Math.abs(i1 + i2 + i3 + i4);
-    if (overlappingIndex == 4) {
-      return false;
-    } else {
-      return true;
-    }
+    return overlappingIndex != 4;
   }
 
   private static int compareTruncatedByHour(Date date1, Date date2) {
     return DateUtils.truncatedCompareTo(date1, date2, Calendar.HOUR);
   }
-  
+
   /**
    * Return new Date object same date with given date but time is end of day (23h59m59s)
    * 
    * @param date
    * @return end of date
    */
-  public static Date toEndOfDate(Date date){
+  public static Date toEndOfDate(Date date) {
     Calendar c = Calendar.getInstance();
     c.setTime(date);
     c.set(Calendar.HOUR_OF_DAY, 23);
@@ -60,9 +54,10 @@ public final class Dates {
     c.set(Calendar.SECOND, 59);
     return c.getTime();
   }
-  
+
   /**
    * return Monday of last week at start time of day (00:00:00)
+   * 
    * @return Monday of last week at start time of day (00:00:00)
    */
   public static Date getMondayOfLastWeek() {
@@ -71,9 +66,10 @@ public final class Dates {
     ld = ld.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
     return getLocalDateWithTime(ld, LocalTime.MIN);
   }
-  
+
   /**
    * return Sunday of last week at end time of day (23:59:59)
+   * 
    * @return Sunday of last week at end time of day (23:59:59)
    */
   public static Date getSundayOfLastWeek() {
@@ -82,9 +78,10 @@ public final class Dates {
     ld = ld.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
     return getLocalDateWithTime(ld, LocalTime.MAX);
   }
-  
+
   /**
    * return first day of last month at start time of day (00:00:00)
+   * 
    * @return first day of last month at start time of day (00:00:00)
    */
   public static Date getFirstDayOfLastMonth() {
@@ -93,9 +90,10 @@ public final class Dates {
     ld = ld.with(TemporalAdjusters.firstDayOfMonth());
     return getLocalDateWithTime(ld, LocalTime.MIN);
   }
-  
+
   /**
    * return last day of last month at end time of day (23:59:59)
+   * 
    * @return last day of last month at end time of day (23:59:59)
    */
   public static Date getLastDayOfLastMonth() {
@@ -104,20 +102,21 @@ public final class Dates {
     ld = ld.with(TemporalAdjusters.lastDayOfMonth());
     return getLocalDateWithTime(ld, LocalTime.MAX);
   }
-  
+
   /**
    * return the first day of 6 month ago, at start time of day (00:00:00)
+   * 
    * @return the first day of 6 month ago, at start time of day (00:00:00)
    */
   public static Date getFirstDayOfLast6Month() {
     LocalDate ld = LocalDate.now();
-    //Because we include current month, so just minus 5 month
+    // Because we include current month, so just minus 5 month
     ld = ld.minusMonths(5);
     ld = ld.with(TemporalAdjusters.firstDayOfMonth());
     return getLocalDateWithTime(ld, LocalTime.MIN);
   }
-  
-  private static Date getLocalDateWithTime(LocalDate localDate,LocalTime localTime) {
+
+  private static Date getLocalDateWithTime(LocalDate localDate, LocalTime localTime) {
     return Date.from(LocalDateTime.of(localDate, localTime).atZone(ZoneId.systemDefault()).toInstant());
   }
 }

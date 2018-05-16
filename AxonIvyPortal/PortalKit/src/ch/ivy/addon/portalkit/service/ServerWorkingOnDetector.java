@@ -38,8 +38,7 @@ public class ServerWorkingOnDetector {
 
   private List<Server> getActiveServers() {
     ServerService service = new ServerService();
-    List<Server> servers = service.findActiveServers();
-    return servers;
+    return service.findActiveServers();
   }
 
   private Long getMyServerId() {

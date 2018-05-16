@@ -42,7 +42,7 @@ public class PortalConnectorUser {
   }
 
   private String readPassword() {
-    return securityManager.executeAsSystem2(() -> readPasswordAsSystem());
+    return securityManager.executeAsSystem2(this::readPasswordAsSystem);
   }
 
   private String readPasswordAsSystem() {

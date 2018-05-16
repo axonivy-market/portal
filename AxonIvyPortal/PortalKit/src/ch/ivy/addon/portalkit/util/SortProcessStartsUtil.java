@@ -22,7 +22,7 @@ public class SortProcessStartsUtil {
    * @param list A list of processStarts to sort
    * @param locale The locale used for sorting
    */
-  public static void SortProcessStarts(List<IProcessStart> list, Locale locale) {
+  public static void sortProcessStarts(List<IProcessStart> list, Locale locale) {
     final Collator collator = Collator.getInstance(locale);
     Collections.sort(list, (o1, o2) -> {
       try {

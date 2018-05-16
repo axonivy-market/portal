@@ -93,7 +93,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     List<RemoteCase> notDisplayedCases = new ArrayList<>();
     notDisplayedCases.addAll(notDisplayedCaseMap.values());
     Optional<Comparator<? super RemoteCase>> comparator = getComparatorForSorting();
-    comparator.ifPresent(c -> notDisplayedCases.sort(c));
+    comparator.ifPresent(c -> notDisplayedCases.sort(c)); //NOSONAR
     List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
 
     storeDisplayedCases(notDisplayedCases);
@@ -176,10 +176,8 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       startIndex = 0;
       count = first + pageSize;
     }
-    List<RemoteCase> cases =
-        findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}", new Object[] {startIndex,
-            count, criteria, serverId});
-    return cases;
+    return findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}", new Object[] {startIndex,
+        count, criteria, serverId});
   }
 
   private void initializedDataModel(CaseSearchCriteria criteria) {
@@ -305,7 +303,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   public void setInvolvedApplications(String... involvedApplications) {
     searchCriteria.setInvolvedApplications(involvedApplications);
   }
-  
+
   public void setCaseAssigneeType(CaseAssigneeType assigneeType) {
     queryCriteria.setCaseAssigneeType(assigneeType);
   }
@@ -336,7 +334,8 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   protected CaseQueryCriteria buildInitQueryCriteria() {
     CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
-    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING,
+        CaseState.DONE)));
     jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
     jsonQueryCriteria.setSortDescending(true);
     if (!isNotKeepFilter) {
@@ -409,9 +408,10 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   /**
    * Save all filter settings to business data
-   * @param filterName 
-   * @param filterType 
-   * @param filterGroupId 
+   * 
+   * @param filterName
+   * @param filterType
+   * @param filterGroupId
    * @return saved CaseFilterData
    */
   public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
@@ -440,8 +440,9 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   /**
    * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
-   * @param caseFilterData 
-   * @throws ReflectiveOperationException 
+   * 
+   * @param caseFilterData
+   * @throws ReflectiveOperationException
    */
   public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
     selectedFilterData = caseFilterData;
@@ -471,8 +472,9 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       }
     }
   }
-  
-  private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException, InvocationTargetException {
+
+  private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException,
+      InvocationTargetException {
     if (sessionCaseFilter.getClass() == filter.getClass()) {
       BeanUtils.copyProperties(filter, sessionCaseFilter);
       selectedFilters.add(filter);
