@@ -20,25 +20,23 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class CleanUpObsoletedUserDataService {
 
-  private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
   List<RemoteUser> currentUsers;
 
   public void cleanUpData() {
     try {
-      currentUsers =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
-            @SuppressWarnings("unchecked")
-            @Override
-            public List<RemoteUser> call() throws Exception {
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
-                  .call(Ivy.request().getApplication().getName())
-                  .get("users", List.class);
-            }
-          });
+      currentUsers = ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
+        @SuppressWarnings("unchecked")
+        @Override
+        public List<RemoteUser> call() throws Exception {
+          return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
+              .call(Ivy.request().getApplication().getName()).get("users", List.class);
+        }
+      });
 
     } catch (Exception e) {
       Ivy.log().error("Can't get list of users", e);
-      return ;
+      return;
     }
     cleanUpUserFavouriteProcess();
     cleanUpUserTaskCaseFilter();
@@ -64,13 +62,13 @@ public class CleanUpObsoletedUserDataService {
 
   private boolean checkIfUserBelongToCurrentApp(String userName) {
     try {
-          return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-            IUser user = Ivy.request().getApplication().getSecurityContext().findUser(userName);
-            return user != null;
-          });
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        IUser user = Ivy.request().getApplication().getSecurityContext().findUser(userName);
+        return user != null;
+      });
     } catch (Exception e) {
-          Ivy.log().error("Check user belongs to current app failed ", e);
-          return false;
+      Ivy.log().error("Check user belongs to current app failed ", e);
+      return false;
     }
   }
 
@@ -81,7 +79,8 @@ public class CleanUpObsoletedUserDataService {
     List<TaskFilterData> allPrivateTaskFilters = taskFilterService.getAllPrivateFilters();
     if (allPrivateTaskFilters != null) {
       for (TaskFilterData privateTaskFilter : allPrivateTaskFilters) {
-        if (Ivy.repo().getInfo(privateTaskFilter).getCreatedByAppId() == applicationId && !userIds.contains(privateTaskFilter.getUserId())) {
+        if (Ivy.repo().getInfo(privateTaskFilter).getCreatedByAppId() == applicationId
+            && !userIds.contains(privateTaskFilter.getUserId())) {
           taskFilterService.delete(privateTaskFilter.getId());
         }
       }
@@ -90,7 +89,8 @@ public class CleanUpObsoletedUserDataService {
     List<CaseFilterData> allPrivateCaseFilters = caseFilterService.getAllPrivateFilters();
     if (allPrivateCaseFilters != null) {
       for (CaseFilterData privateCaseFilter : allPrivateCaseFilters) {
-        if (Ivy.repo().getInfo(privateCaseFilter).getCreatedByAppId() == applicationId && !userIds.contains(privateCaseFilter.getUserId())) {
+        if (Ivy.repo().getInfo(privateCaseFilter).getCreatedByAppId() == applicationId
+            && !userIds.contains(privateCaseFilter.getUserId())) {
           caseFilterService.delete(privateCaseFilter.getId());
         }
       }

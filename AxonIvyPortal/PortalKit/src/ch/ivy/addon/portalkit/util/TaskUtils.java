@@ -50,11 +50,11 @@ public final class TaskUtils {
   private static final int DEFAULT_PAGESIZE = -1;
   private static final int DEFAULT_INDEX = 0;
   private static final String HIDE = "HIDE";
-  
+
   private TaskUtils() {
 
   }
-  
+
   /**
    * Get the running tasks of the session user
    * 
@@ -101,8 +101,7 @@ public final class TaskUtils {
               EnumSet.of(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED));
     }
 
-    List<ITask> tasks = queryResult.getResultList();
-    return tasks;
+    return queryResult.getResultList();
   }
 
   /**
@@ -123,18 +122,10 @@ public final class TaskUtils {
    * Get the Sort order and set ASCENDING by default if input is null
    * 
    * @param sortOrder : Field to sort the task list
-   * @return OrderDirection : Defines the order direction
+   * @return the order direction
    */
   public static OrderDirection getTaskDirection(SortOrder sortOrder) {
-    OrderDirection direction;
-    switch (sortOrder) {
-      case DESCENDING:
-        direction = OrderDirection.DESCENDING;
-        break;
-      default:
-        direction = OrderDirection.ASCENDING;
-    }
-    return direction;
+    return sortOrder == SortOrder.DESCENDING ? OrderDirection.DESCENDING : OrderDirection.ASCENDING;
   }
 
   /**
@@ -144,8 +135,8 @@ public final class TaskUtils {
    */
   public static void resetTask(final ITask task) {
     // must be in RESUMED, CREATED, PARKED, READY_FOR_JOIN, FAILED
-    if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, 
-        TaskState.READY_FOR_JOIN, TaskState.FAILED).contains(task.getState())){
+    if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
+        TaskState.FAILED).contains(task.getState())) {
       IvyExecutor.executeAsSystem(() -> {
         task.reset();
         return true;
@@ -162,17 +153,17 @@ public final class TaskUtils {
     IvyExecutor.executeAsSystem(() -> {
       IWorkflowSession iWorkflowSession = Ivy.session();
       // Resume a task if it's suspended.
-      if (task.getState() == TaskState.SUSPENDED) {
-        iWorkflowSession.resumeTask(task.getId());
-      }
+        if (task.getState() == TaskState.SUSPENDED) {
+          iWorkflowSession.resumeTask(task.getId());
+        }
 
-      // If the task is resumed or created, then park task.
-      if (task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
-        iWorkflowSession.parkTask(task);
-      }
+        // If the task is resumed or created, then park task.
+        if (task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
+          iWorkflowSession.parkTask(task);
+        }
 
-      return null;
-    });
+        return null;
+      });
 
   }
 
@@ -350,7 +341,8 @@ public final class TaskUtils {
    * @return String get the email of creator of case, execute under system permission
    */
   public static String getEmailAddress(final ITask iTask) {
-    if (iTask.getActivator().getSecurityContext() == null || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
+    if (iTask.getActivator().getSecurityContext() == null
+        || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
       return null;
     }
     try {
@@ -377,7 +369,8 @@ public final class TaskUtils {
    * @return String get phone number of creator of case, execute under system permission
    */
   public static String getPhone(final ITask iTask) {
-    if (iTask.getActivator().getSecurityContext() == null || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
+    if (iTask.getActivator().getSecurityContext() == null
+        || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
       return null;
     }
     try {
@@ -404,7 +397,8 @@ public final class TaskUtils {
    * @return String get mobile number of creator of case, execute under system permission
    */
   public static String getMobile(final ITask iTask) {
-    if (iTask.getActivator().getSecurityContext() == null || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
+    if (iTask.getActivator().getSecurityContext() == null
+        || CollectionUtils.isEmpty(iTask.getActivator().getSecurityContext().getUsers())) {
       return null;
     }
     try {
@@ -462,7 +456,7 @@ public final class TaskUtils {
    */
   public static String getEmailAddress(final IUser iUser) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iUser.getEMailAddress());
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iUser.getEMailAddress()); // NOSONAR
     } catch (Exception e) {
       Ivy.log().error(e);
       return null;
@@ -530,7 +524,7 @@ public final class TaskUtils {
    * Delegate a task
    * 
    * @param iTask task need to delegate
-   * @param iSecurityMember 
+   * @param iSecurityMember
    */
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
     try {
@@ -615,17 +609,19 @@ public final class TaskUtils {
     return outTasks;
 
   }
-  
+
   /**
    * Sets the "HIDE" additional property to the given task to hide it in any task lists of Portal.
+   * 
    * @param task
    */
   public static void setHidePropertyToHideInPortal(ITask task) {
     task.setAdditionalProperty(HIDE, HIDE);
   }
-  
+
   /**
    * Removes the "HIDE" additional property to the given task to display it in any task lists of Portal.
+   * 
    * @param task
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) {

@@ -27,8 +27,7 @@ public class ApplicationDao extends AbstractDao<Application> {
         Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.SERVER_ID.toString())
             .build(long.class, Application.class).init(findAll());
 
-    List<Application> thirdPartyApplications = repo.query(ObjectFilter.isNull(EntityProperty.SERVER_ID.toString()));
-    return thirdPartyApplications;
+    return repo.query(ObjectFilter.isNull(EntityProperty.SERVER_ID.toString()));
   }
 
   @ExecuteAsSystem
@@ -37,8 +36,7 @@ public class ApplicationDao extends AbstractDao<Application> {
         Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.SERVER_ID.toString())
             .build(long.class, Application.class).init(findAll());
 
-    List<Application> ivyApplications = repo.query(ObjectFilter.notNull(EntityProperty.SERVER_ID.toString()));
-    return ivyApplications;
+    return repo.query(ObjectFilter.notNull(EntityProperty.SERVER_ID.toString()));
   }
 
   @ExecuteAsSystem
@@ -84,7 +82,7 @@ public class ApplicationDao extends AbstractDao<Application> {
 
     return applications;
   }
-  
+
   @ExecuteAsSystem
   public List<Application> findOnlineIvyApps() {
     repo =

@@ -80,9 +80,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> PORTAL_DEFAULT_COLUMNS = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME",
+  private List<String> portalDefaultColumns = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME",
       "EXPIRY_TIME", "STATE");
-  private List<String> PORTAL_REQUIRED_COLUMNS = Arrays.asList("NAME");
+  private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
@@ -159,7 +159,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
   }
 
-  private void copyProperties(TaskFilter sessionTaskFilter, TaskFilter filter) throws IllegalAccessException, InvocationTargetException {
+  private void copyProperties(TaskFilter sessionTaskFilter, TaskFilter filter) throws IllegalAccessException,
+      InvocationTargetException {
     if (sessionTaskFilter.getClass() == filter.getClass()) {
       BeanUtils.copyProperties(filter, sessionTaskFilter);
       selectedFilters.add(filter);
@@ -167,8 +168,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private boolean shouldSaveAndLoadSessionFilters() {
-    boolean isValidQueryCriteria = (this.queryCriteria == null) || (this.queryCriteria != null && !this.queryCriteria
-        .isQueryForUnassignedTask()); 
+    boolean isValidQueryCriteria =
+        (this.queryCriteria == null) || (this.queryCriteria != null && !this.queryCriteria.isQueryForUnassignedTask());
     return isValidQueryCriteria && !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
@@ -213,10 +214,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       startIndex = 0;
       count = first + pageSize;
     }
-    List<RemoteTask> tasks =
-        findTaskCaller.invokeComponentLogic(TASK_WIDGET_COMPONENT_ID, "#{logic.findTasks}", new Object[] {startIndex,
-            count, criteria, serverId});
-    return tasks;
+    return findTaskCaller.invokeComponentLogic(TASK_WIDGET_COMPONENT_ID, "#{logic.findTasks}", new Object[] {
+        startIndex, count, criteria, serverId});
   }
 
   private void initializedDataModel(TaskSearchCriteria criteria) {
@@ -282,7 +281,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     };
   }
 
-  protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparator( //NOSONAR
+  protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparator( // NOSONAR
       Function<? super RemoteTask, ? extends U> function) {
     return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
   }
@@ -293,8 +292,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   protected String keyOfTask(RemoteTask task) {
-    String keyOfTask = "serverId=" + task.getApplicationRegister().getServerId() + ";taskId=" + task.getId();
-    return keyOfTask;
+    return "serverId=" + task.getApplicationRegister().getServerId() + ";taskId=" + task.getId();
   }
 
   /**
@@ -360,7 +358,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * @param taskQuery
    */
   protected void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {
-    //Placeholder for customization
+    // Placeholder for customization
   }
 
   @Override
@@ -671,7 +669,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * </p>
    */
   protected void extendSortTasksInNotDisplayedTaskMap() {
-    //Placeholder for customization
+    // Placeholder for customization
   }
 
   private void autoInitForNoAppConfiguration() {
@@ -730,7 +728,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     Long applicationId = Ivy.request().getApplication().getId();
     Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
-      TaskColumnsConfigurationData configData = service.getConfiguration(serverId, applicationId, userId, taskColumnsConfigDataId);
+      TaskColumnsConfigurationData configData =
+          service.getConfiguration(serverId, applicationId, userId, taskColumnsConfigDataId);
       if (configData != null) {
         selectedColumns = configData.getSelectedColumns();
         isAutoHideColumns = configData.isAutoHideColumns();
@@ -759,7 +758,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * @return default columns
    */
   protected List<String> getDefaultColumns() {
-    return PORTAL_DEFAULT_COLUMNS;
+    return portalDefaultColumns;
   }
 
   /**
@@ -780,7 +779,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void saveColumnsConfiguration() {
-    selectedColumns.addAll(PORTAL_REQUIRED_COLUMNS);
+    selectedColumns.addAll(portalRequiredColumns);
     setAutoHideColumns(isDisableSelectionCheckboxes);
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long applicationId = Ivy.request().getApplication().getId();
@@ -833,7 +832,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public List<String> getPortalRequiredColumns() {
-    return PORTAL_REQUIRED_COLUMNS;
+    return portalRequiredColumns;
   }
 
   public boolean isAutoHideColumns() {

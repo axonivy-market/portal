@@ -40,10 +40,7 @@ public class UserSynchronizationService {
     Application firstApplication =
         applications.stream().sorted((app1, app2) -> app1.getName().compareTo(app2.getName()))
             .collect(Collectors.toList()).get(0);
-    if (Ivy.request().getApplication().getName().equals(firstApplication.getName())) {
-      return true;
-    }
-    return false;
+    return Ivy.request().getApplication().getName().equals(firstApplication.getName());
   }
 
   private static boolean isSingleAppConfigured(List<Application> applications) {
