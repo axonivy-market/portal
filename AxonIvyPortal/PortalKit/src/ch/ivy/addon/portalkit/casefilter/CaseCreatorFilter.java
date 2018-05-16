@@ -27,7 +27,7 @@ public class CaseCreatorFilter extends CaseFilter {
   private List<RemoteSecurityMember> securityMembers;
   private RemoteSecurityMember selectedCreator;
   @JsonIgnore
-  private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
 
   @Override
   public String label() {
