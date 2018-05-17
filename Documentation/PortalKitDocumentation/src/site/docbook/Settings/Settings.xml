@@ -698,6 +698,16 @@
 					<listitem>Export all CMS entries of Portal Style to excel file</listitem>
 					<listitem>Add translation of new language for all CMS entries</listitem>
 					<listitem>Import file excel back, then redeploy Portal Style</listitem>
+                    <listitem>
+                      <para>
+                      This is sample how to add new Spanish to portal
+                      </para>
+                      <mediaobject>
+                        <imageobject>
+                          <imagedata fileref="images/Settings/add-new-language.png" />
+                        </imageobject>
+                      </mediaobject>
+                    </listitem>
 				</itemizedlist>
 			</listitem>
 		</itemizedlist>
