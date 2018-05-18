@@ -1,26 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.login">
-	<title>Login page</title>
-	<mediaobject>
-		<imageobject>
-			<imagedata fileref="images/Login/LoginDefault.png" />
-		</imageobject>
-	</mediaobject>
-	<para> To replace default login page, extends existing templates with <code>ui:define name="login"</code> to define your new login component like below
-		<para>
-			<code>&lt;ui:composition template="/layouts/BasicTemplate.xhtml"&gt;</code>
+	<title>Login</title>
+	<sect2>
+		<title>Login page</title>
+		<mediaobject>
+			<imageobject>
+				<imagedata fileref="images/Login/LoginDefault.png" />
+			</imageobject>
+		</mediaobject>
+		<para>To replace default login page, extends existing templates with <code>ui:define name="login"</code> to define your new login component like below
+			<para>
+				<code>&lt;ui:composition template="/layouts/BasicTemplate.xhtml"&gt;</code>
+			</para>
+			<para>
+				<code>&lt;ui:define name="login"&gt;</code>
+			</para>
+			<para>
+				<code>&lt;ic:internaltest.ui.YourOwnLoginComponent /&gt;</code>
+			</para>
+			<para>
+				<code>&lt;/ui:define&gt;</code>
+			</para>
+			<para>
+				<code>&lt;/ui:composition&gt;</code>
+			</para>
 		</para>
+	</sect2>
+	<sect2>
+		<title>Login process hooking (pre/post login)</title>
+		<mediaobject>
+			<imageobject>
+				<imagedata fileref="images/Login/LoginHooking.png" />
+			</imageobject>
+		</mediaobject>
 		<para>
-			<code>&lt;ui:define name="login"&gt;</code>
+			<orderedlist>
+				<listitem>
+					<para>
+						Introduce an Axon.ivy project which has	<code>PortalTemplate</code>	as a required library.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project. This process is new home page and administrator should register this link by global
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Refer to <link linkend="axonivyportal.customization.portalhome">Customize Portal home</link> to set new home page.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Override the <code>PreLogin</code> and/or <code>PostLogin</code> callable processes to customize the login behavior.
+					</para>
+				</listitem>
+			</orderedlist>
 		</para>
-		<para>
-			<code>&lt;ic:internaltest.ui.YourOwnLoginComponent /&gt;</code>
-		</para>
-		<para>
-			<code>&lt;/ui:define&gt;</code>
-		</para>
-		<para>
-			<code>&lt;/ui:composition&gt;</code>
-		</para>
-	</para>
+	</sect2>
 </sect1>
