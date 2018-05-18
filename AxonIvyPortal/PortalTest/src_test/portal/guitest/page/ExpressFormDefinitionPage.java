@@ -143,4 +143,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   public void saveWorkflow() {
     click(By.id("save-button"));
   }
+
+  public void executeWorkflow() {
+    click(By.id("execute-button"));
+  }
 }
