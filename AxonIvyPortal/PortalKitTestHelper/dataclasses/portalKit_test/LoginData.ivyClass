@@ -1,0 +1,4 @@
+LoginData #class
+portalKit_test #namespace
+username String #field
+password String #field

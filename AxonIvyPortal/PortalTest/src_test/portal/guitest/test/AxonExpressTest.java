@@ -136,25 +136,64 @@ public class AxonExpressTest extends BaseTest{
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
     
+    ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
+    formDefinition.saveWorkflow();
+    startExpressProcess("Test approval");
+    executeExpressProcessWhenMultiApproval();
+  }
+
+  @Test
+  public void testAdhocMultiApprovalWhenMultiTask() {
+    goToCreateExpressProcess();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
+    
+    ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
+    formDefinition.executeWorkflow();
+    executeExpressProcessWhenMultiApproval();
+  }
+
+  private ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
+    ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ExpressResponsible responsible2 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
     
-    expressProcessPage.createTask(0, USER_TASK_INDEX, "Task 1", "Task 1 description", Arrays.asList(responsible2));
+    expressProcessPage.createTask(0, USER_TASK_INDEX, "Task 1", "Task 1 description", Arrays.asList(responsible1, responsible2));
     
     expressProcessPage.addNewTask(0);
     expressProcessPage.createTask(1, APPROVAL_INDEX, "Task 2", "Task 2 description", Arrays.asList(responsible2));
     
     expressProcessPage.addNewTask(1);
-    expressProcessPage.createTask(2, APPROVAL_INDEX, "Task 3", "Task 3 description", Arrays.asList(responsible2));
+    expressProcessPage.createTask(2, APPROVAL_INDEX, "Task 3", "Task 3 description", Arrays.asList(responsible1, responsible2));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
     formDefinition.moveAllElementToDragAndDrogPanel();
-    formDefinition.saveWorkflow();
-    startExpressProcess("Test approval");
+    return formDefinition;
+  }
+  private void executeExpressProcessWhenMultiApproval() {
     executeUserTask();
     executeApproval("Approved at first level");
     executeApproval("Approved at second level");
+    assertEquals(0, new TaskWidgetPage().countTasks());
+    login(TestAccount.ADMIN_USER);
+    assertEquals(2, new TaskWidgetPage().countTasks());
+    executeApproval("Approved at second level");
+    executeUserTask();
+    assertEquals(0, new TaskWidgetPage().countTasks());
+    login(TestAccount.DEMO_USER);
+    executeApproval("Approved at first level");
+    executeApproval("Approved at second level");
+    assertEquals(0, new TaskWidgetPage().countTasks());
+    login(TestAccount.ADMIN_USER);
+    executeApproval("Approved at second level");
+    assertEquals(0, new TaskWidgetPage().countTasks());
+    login(TestAccount.DEMO_USER);
     String approvalResult = executeReview();
-    Assert.assertEquals("Task 2,Portal Demo User,Portal Demo User,Approved at first level,Yes,Task 3,Portal Demo User,Portal Demo User,Approved at second level,Yes", approvalResult);
+    Assert.assertEquals("Task 2,Portal Demo User,Portal Demo User,Approved at first level,Yes,"
+        + "Task 3,Portal Demo User,Portal Demo User,Approved at second level,Yes,"
+        + "Task 3,Portal Demo User,portaladmin,Approved at second level,Yes,"
+        + "Task 2,portaladmin,Portal Demo User,Approved at first level,Yes,"
+        + "Task 3,portaladmin,Portal Demo User,Approved at second level,Yes,"
+        + "Task 3,portaladmin,portaladmin,Approved at second level,Yes", approvalResult);
     new ExpressEndPage().finish();
   }
 

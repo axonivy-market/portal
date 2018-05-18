@@ -1,5 +1,8 @@
 package portal.guitest.common;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.junit.Before;
 import org.junit.Rule;
 
@@ -17,6 +20,7 @@ public class BaseTest extends SeleneseTestBase {
   private Browser browser;
 
   private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";
+  public final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   private BrowserType browserType = BrowserType.IE;
   private String ieDriverPath = getInternetExprorerDriverPath();
 
@@ -165,6 +169,19 @@ public class BaseTest extends SeleneseTestBase {
   
   public void refreshPage(){
     browser.getDriver().navigate().refresh();
+  }
+  
+  protected void login(TestAccount testAccount) {
+    String username;
+    String password;
+    try {
+      username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
+      password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
+      redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
+    } catch (UnsupportedEncodingException e) {
+      throw new PortalGUITestException(e);
+    }
+    
   }
   
 }
