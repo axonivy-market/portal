@@ -46,7 +46,8 @@ public class ExpressProcessPage extends TemplatePage{
     type(By.id(String.format("form:defined-tasks-list:%d:task-name", taskIndex)), taskName);
     type(By.id(String.format("form:defined-tasks-list:%d:task-description", taskIndex)), taskDescription);
     click(By.id(String.format("form:defined-tasks-list:%d:task-responsible", taskIndex)));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
     waitForElementDisplayed(By.id("choose-responsible-dialog"), true);
     for(ExpressResponsible responsible : responsibles){
       chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
