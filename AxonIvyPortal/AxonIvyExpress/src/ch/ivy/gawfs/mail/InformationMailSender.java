@@ -12,10 +12,15 @@ import ch.ivyteam.ivy.scripting.objects.File;
 
 public class InformationMailSender {
   public void send(ExpressUserEmail mail) {
-    MailBuilder mailBuilder = new MailBuilder();
-    //send email
-    mailBuilder.to(mail.getRecipients()).replyTo(mail.getResponseTo()).subject(mail.getSubject())
-    .message(mail.getContent()).attachments(getAttachments(mail.getAttachments())).build().send();
+    try {
+      MailBuilder mailBuilder = new MailBuilder();
+      //send email
+      mailBuilder.to(mail.getRecipients()).replyTo(mail.getResponseTo()).subject(mail.getSubject())
+      .message(mail.getContent()).attachments(getAttachments(mail.getAttachments())).build().send();
+    } catch(Exception e) {
+      Ivy.log().error(e);
+    }
+    
   }
 
   private List<File> getAttachments(List<ExpressAttachment> attachments) {
