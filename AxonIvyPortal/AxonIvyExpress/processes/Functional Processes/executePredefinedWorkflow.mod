@@ -316,7 +316,7 @@ ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 f5 666 146 32 32 -39 18 #rect
 ew0 f5 @|AlternativeIcon #fIcon
 ew0 f13 expr in #txt
-ew0 f13 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.EMAIL' #txt
+ew0 f13 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.EMAIL && !in.hasRejectedApprovalTask' #txt
 ew0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -358,7 +358,7 @@ ew0 f30 89 66 226 140 #arcP
 ew0 f30 1 226 66 #addKink
 ew0 f30 0 0.7497048443829264 0 0 #arcLabel
 ew0 f3 expr in #txt
-ew0 f3 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK || in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK_WITH_EMAIL' #txt
+ew0 f3 outCond '(in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK || in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK_WITH_EMAIL) && !in.hasRejectedApprovalTask' #txt
 ew0 f3 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -401,7 +401,7 @@ ew0 f17 573 224 673 169 #arcP
 ew0 f17 1 600 224 #addKink
 ew0 f17 1 0.31186578702692835 0 0 #arcLabel
 ew0 f15 expr in #txt
-ew0 f15 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.APPROVAL' #txt
+ew0 f15 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.APPROVAL && !in.hasRejectedApprovalTask' #txt
 ew0 f15 362 170 461 224 #arcP
 ew0 f15 1 424 224 #addKink
 ew0 f15 1 0.0 0 0 #arcLabel
@@ -1346,7 +1346,10 @@ Bk8 f6 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 Bk8 f6 actionTable 'out=in;
 ' #txt
 Bk8 f6 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
-ExecutingExpressProcessUtils.storeApprovalTaskResultToCaseProperty(in.approvalTaskResult);' #txt
+ExecutingExpressProcessUtils.storeApprovalTaskResultToCaseProperty(in.approvalTaskResult);
+if (!in.approvalTaskResult.isApproved) {
+	in.hasRejectedApprovalTask = true;
+}' #txt
 Bk8 f6 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
