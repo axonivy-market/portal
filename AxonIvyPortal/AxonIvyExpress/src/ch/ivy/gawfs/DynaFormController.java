@@ -169,7 +169,7 @@ public class DynaFormController implements Serializable {
   public static Formelement initializeInputAreaElement() {
     Formelement inputArea = new Formelement();
     inputArea.setType(FormElementType.INPUT_TEXT_AREA);
-    inputArea.setIntSetting(2); //initial value for number of rows
+    inputArea.setIntSetting(7); //initial value for number of rows
     inputArea.setRequired(false);
     return inputArea;
   }
