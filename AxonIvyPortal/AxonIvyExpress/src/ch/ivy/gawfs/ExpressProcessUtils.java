@@ -54,6 +54,7 @@ public class ExpressProcessUtils {
     processRepository.setProcessOwner(Ivy.session().getSessionUser().getMemberName());
     processRepository.setProcessPermissions(expressData.getDefinedTasks().get(0).getResponsibles());
     processRepository.setProcessFolder(expressData.getProcessFolder());
+    processRepository.setReadyToExecute(expressData.getReadyToExecute());
 
     BusinessDataInfo<ExpressProcess> info = ExpressServiceRegistry.getProcessService().save(processRepository);
     processRepository.setId(info.getId());
