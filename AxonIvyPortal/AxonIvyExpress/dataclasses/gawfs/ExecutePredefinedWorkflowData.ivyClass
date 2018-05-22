@@ -52,5 +52,9 @@ lastUserTaskResponsibleName PERSISTENT #fieldModifier
 currentTaskIndex Number #field
 currentTaskIndex PERSISTENT #fieldModifier
 approvalTaskResult gawfs.ApprovalTaskResult #field
+approvalTaskResult PERSISTENT #fieldModifier
 currentUserTask gawfs.TaskDef #field
 currentUserTask PERSISTENT #fieldModifier
+approvalTaskResults List<gawfs.ApprovalTaskResult> #field
+approvalTaskResults PERSISTENT #fieldModifier
+shouldEndProcess Boolean #field
