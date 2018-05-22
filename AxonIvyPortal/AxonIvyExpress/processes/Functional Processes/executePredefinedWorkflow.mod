@@ -859,13 +859,9 @@ for(TaskDef task: in.definedTasks) {
 // Initialize controllers
 in.currentTaskIndex = 0;
 in.nextTask = in.definedTasks.get(in.currentTaskIndex);
-if (in.nextTask.taskType == TaskType.USER_TASK || in.nextTask.taskType == TaskType.USER_TASK_WITH_EMAIL) {
-	in.dynaFormController = in.nextTask.dynaFormController;
-	in.dragAndDropController = in.nextTask.dragAndDropController;
-}
+
 
 // Others
-in.denied = false;
 in.actualStepIndex = 0;' #txt
 Bk5 f28 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk5 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1082,8 +1078,8 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
 Map x =  IvyAdapterService.startSubProcess("handleEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
-in.callbackUrl = x.get("callbackUrl") as String;
-ivy.task.setAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString(), in.callbackUrl);
+String callbackUrl = x.get("callbackUrl") as String;
+ivy.task.setAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString(), callbackUrl);
 
 ' #txt
 Bk7 f28 security system #txt
@@ -1459,7 +1455,7 @@ Bk8 f10 actionCode 'import gawfs.ApprovalTaskResult;
 import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
 in.approvalTaskResults.addAll(ExecutingExpressProcessUtils.getAttributesOfTasks(String.valueOf(in.currentTaskIndex), "approvalTaskResult"));
 for (ApprovalTaskResult approvalTaskResult: in.approvalTaskResults) {
-	if (approvalTaskResult.isApproved) {
+	if (!approvalTaskResult.isApproved) {
 		in.hasRejectedApprovalTask = true;
 		break;
 	}
