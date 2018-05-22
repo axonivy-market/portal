@@ -6,7 +6,7 @@ approvalTaskResult gawfs.ApprovalTaskResult #field
 approvalTaskResult PERSISTENT #fieldModifier
 approvalTaskResults List<gawfs.ApprovalTaskResult> #field
 approvalTaskResults PERSISTENT #fieldModifier
-counter Number #field
+taskSplittingCounter Number #field
 currentTask gawfs.TaskDef #field
 currentTask PERSISTENT #fieldModifier
 currentTaskIndex Number #field
