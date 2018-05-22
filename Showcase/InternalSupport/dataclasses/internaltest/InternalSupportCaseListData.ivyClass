@@ -1,5 +1,0 @@
-InternalSupportCaseListData #class
-internaltest #namespace
-hasReadAllCasesPermission Boolean #field
-caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
-caseView ch.ivy.addon.portal.generic.view.CaseView #field

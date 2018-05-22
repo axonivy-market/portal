@@ -1,5 +1,0 @@
-InternalSupportTaskListData #class
-internaltest #namespace
-taskView ch.ivy.addon.portal.generic.view.TaskView #field
-taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
-hasReadAllTasksPermisson Boolean #field
