@@ -82,7 +82,7 @@ Us0 f6 actionDecl 'ch.ivy.gawfs.workflowExecution.UserTaskWithMailForm.UserTaskW
 Us0 f6 actionTable 'out=in;
 ' #txt
 Us0 f6 actionCode 'import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
-in.executePredefinedWorkflowData.nextTask.dynaFormController.createForm();
+in.executePredefinedWorkflowData.currentTask.dynaFormController.createForm();
 in.email = new ExpressUserEmail();' #txt
 Us0 f6 security system #txt
 Us0 f6 type ch.ivy.gawfs.workflowExecution.UserTaskWithMailForm.UserTaskWithMailFormData #txt
@@ -145,7 +145,7 @@ Us0 f12 actionTable 'out=in;
 Us0 f12 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
 import ch.ivy.gawfs.mail.InformationMailSender;
 import ch.ivy.gawfs.mail.InformationMailSender;
-in.workingTaskDef = in.executePredefinedWorkflowData.nextTask;
+in.workingTaskDef = in.executePredefinedWorkflowData.currentTask;
 
 InformationMailSender mailSender = new InformationMailSender();
 ExpressProcessUtils expressProcessUtils = new ExpressProcessUtils();

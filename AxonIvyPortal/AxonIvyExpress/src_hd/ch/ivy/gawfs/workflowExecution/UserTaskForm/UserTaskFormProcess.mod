@@ -81,7 +81,7 @@ Us0 f6 actionDecl 'ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData 
 ' #txt
 Us0 f6 actionTable 'out=in;
 ' #txt
-Us0 f6 actionCode in.executePredefinedWorkflowData.nextTask.dynaFormController.createForm(); #txt
+Us0 f6 actionCode in.executePredefinedWorkflowData.currentTask.dynaFormController.createForm(); #txt
 Us0 f6 security system #txt
 Us0 f6 type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -140,7 +140,7 @@ Us0 f12 actionDecl 'ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData
 ' #txt
 Us0 f12 actionTable 'out=in;
 ' #txt
-Us0 f12 actionCode 'in.workingTaskDef = in.executePredefinedWorkflowData.nextTask;' #txt
+Us0 f12 actionCode 'in.workingTaskDef = in.executePredefinedWorkflowData.currentTask;' #txt
 Us0 f12 type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
 Us0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
