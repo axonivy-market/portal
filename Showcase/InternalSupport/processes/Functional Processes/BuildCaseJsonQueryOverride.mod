@@ -1,5 +1,5 @@
 [Ivy]
-15FA40E7B1DFF53D 3.20 #module
+15FA40E7B1DFF53D 3.23 #module
 >Proto >Proto Collection #zClass
 By0 BuildCaseJsonQuery Big #zClass
 By0 B #cInfo
@@ -48,7 +48,7 @@ By0 f3 actionDecl 'internaltest.BuildCaseJsonQueryOverrideData out;
 By0 f3 actionTable 'out=in;
 ' #txt
 By0 f3 actionCode 'import ch.ivyteam.ivy.workflow.query.CaseQuery;
-out.jsonQuery = CaseQuery.create().where().name().isEqual("Leave Request").asJson();' #txt
+//out.jsonQuery = CaseQuery.create().where().name().isEqual("Leave Request").asJson();' #txt
 By0 f3 type internaltest.BuildCaseJsonQueryOverrideData #txt
 By0 f3 74 198 36 24 20 -2 #rect
 By0 f3 @|StepIcon #fIcon
