@@ -197,7 +197,7 @@ ew0 f9 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ew0 f9 actionTable 'out=in;
 ' #txt
 ew0 f9 actionCode 'in.currentTaskIndex++;
-out.nextTask = in.definedTasks.get(in.currentTaskIndex);
+out.currentTask = in.definedTasks.get(in.currentTaskIndex);
 in.actualStepIndex++;' #txt
 ew0 f9 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -327,7 +327,7 @@ ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 f5 666 146 32 32 -39 18 #rect
 ew0 f5 @|AlternativeIcon #fIcon
 ew0 f13 expr in #txt
-ew0 f13 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.EMAIL && !in.hasRejectedApprovalTask' #txt
+ew0 f13 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.EMAIL && !in.hasRejectedApprovalTask' #txt
 ew0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -351,7 +351,7 @@ ew0 f4 582 290 678 174 #arcP
 ew0 f4 1 632 290 #addKink
 ew0 f4 0 0.8278533742264182 0 0 #arcLabel
 ew0 f8 expr in #txt
-ew0 f8 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.FINAL_REVIEW' #txt
+ew0 f8 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.FINAL_REVIEW' #txt
 ew0 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -369,7 +369,7 @@ ew0 f30 89 66 226 140 #arcP
 ew0 f30 1 226 66 #addKink
 ew0 f30 0 0.7497048443829264 0 0 #arcLabel
 ew0 f3 expr in #txt
-ew0 f3 outCond '(in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK || in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK_WITH_EMAIL) && !in.hasRejectedApprovalTask' #txt
+ew0 f3 outCond '(in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK || in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK_WITH_EMAIL) && !in.hasRejectedApprovalTask' #txt
 ew0 f3 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -412,7 +412,7 @@ ew0 f17 582 224 673 169 #arcP
 ew0 f17 1 600 224 #addKink
 ew0 f17 1 0.31186578702692835 0 0 #arcLabel
 ew0 f15 expr in #txt
-ew0 f15 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.APPROVAL && !in.hasRejectedApprovalTask' #txt
+ew0 f15 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.APPROVAL && !in.hasRejectedApprovalTask' #txt
 ew0 f15 362 170 470 224 #arcP
 ew0 f15 1 424 224 #addKink
 ew0 f15 1 0.0 0 0 #arcLabel
@@ -533,12 +533,12 @@ Bk4 f6 actionTable 'out=in1;
 ' #txt
 Bk4 f6 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk4 f6 outLinks "TaskA.ivp" #txt
-Bk4 f6 taskData 'TaskA.DESC=<%\=in1.nextTask.description%>\n
-TaskA.EXP=new Duration(0,0,in1.nextTask.untilDays,0,0,0)
+Bk4 f6 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>\n
+TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
-TaskA.NAM=<%\=in1.nextTask.subject%>
+TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
 TaskA.SKIP_TASK_LIST=false
@@ -611,12 +611,12 @@ Bk4 f16 actionTable 'out=in1;
 ' #txt
 Bk4 f16 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk4 f16 outLinks "TaskA.ivp" #txt
-Bk4 f16 taskData 'TaskA.DESC=<%\=in1.nextTask.description%>\n
-TaskA.EXP=new Duration(0,0,in1.nextTask.untilDays,0,0,0)
+Bk4 f16 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>\n
+TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
-TaskA.NAM=<%\=in1.nextTask.subject%>
+TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
 TaskA.SKIP_TASK_LIST=false
@@ -681,7 +681,7 @@ Bk4 f13 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk4 f13 actionTable 'out=in;
 ' #txt
-Bk4 f13 actionCode 'String responsibleName = in.nextTask.getResponsibles().get(in.counter);
+Bk4 f13 actionCode 'String responsibleName = in.currentTask.getResponsibles().get(in.counter);
 in.responsible = ivy.session.getSecurityContext().findSecurityMember(responsibleName);' #txt
 Bk4 f13 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -723,7 +723,7 @@ Bk4 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk4 f55 384 690 112 44 -39 -8 #rect
 Bk4 f55 @|RichDialogIcon #fIcon
 Bk4 f56 expr in #txt
-Bk4 f56 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK_WITH_EMAIL' #txt
+Bk4 f56 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK_WITH_EMAIL' #txt
 Bk4 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -754,7 +754,7 @@ Bk4 f64 processCall 'Functional Processes/ParallelTasksUtil:splitTasks(Number)' 
 Bk4 f64 doCall true #txt
 Bk4 f64 requestActionDecl '<java.lang.Number numberOfTasks> param;
 ' #txt
-Bk4 f64 requestMappingAction 'param.numberOfTasks=in.nextTask.getResponsibles().size();
+Bk4 f64 requestMappingAction 'param.numberOfTasks=in.currentTask.getResponsibles().size();
 ' #txt
 Bk4 f64 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -815,11 +815,11 @@ Bk4 f11 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 Bk4 f11 actionTable 'out=in;
 ' #txt
 Bk4 f11 actionCode 'import java.util.ArrayList;
-if (in.#currentUserTask is initialized)  {
-  in.currentUserTask.approvalResultList = in.approvalTaskResults;
-  in.finishedTasks.add(in.currentUserTask);
+if (in.#mostRecentUserTask is initialized)  {
+  in.mostRecentUserTask.approvalResultList = in.approvalTaskResults;
+  in.finishedTasks.add(in.mostRecentUserTask);
 }
-in.currentUserTask = in.definedTasks.get(in.currentTaskIndex);
+in.mostRecentUserTask = in.definedTasks.get(in.currentTaskIndex);
 in.approvalTaskResults = new ArrayList();' #txt
 Bk4 f11 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -858,7 +858,7 @@ for(TaskDef task: in.definedTasks) {
 
 // Initialize controllers
 in.currentTaskIndex = 0;
-in.nextTask = in.definedTasks.get(in.currentTaskIndex);
+in.currentTask = in.definedTasks.get(in.currentTaskIndex);
 
 
 // Others
@@ -989,7 +989,7 @@ Bk6 f3 actionTable 'out=in;
 ' #txt
 Bk6 f3 actionCode 'import ch.ivy.gawfs.mail.InformationMailSender;
 InformationMailSender sender = new InformationMailSender();
-sender.send(in.nextTask.email);' #txt
+sender.send(in.currentTask.email);' #txt
 Bk6 f3 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk6 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1102,11 +1102,11 @@ Bk7 f7 actionTable 'out=in1;
 ' #txt
 Bk7 f7 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk7 f7 outLinks "TaskA.ivp" #txt
-Bk7 f7 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName, in1.nextTask.description))%>
+Bk7 f7 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName, in1.currentTask.description))%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
-TaskA.NAM=<%\=in1.workflowName%>\: <%\=in1.nextTask.subject%>
+TaskA.NAM=<%\=in1.workflowName%>\: <%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=CREATOR
 TaskA.SKIP_TASK_LIST=false
@@ -1145,8 +1145,8 @@ Bk7 f24 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk7 f24 actionTable 'out=in;
 ' #txt
-Bk7 f24 actionCode 'in.nextTask.subject = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");
-in.nextTask.description = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");' #txt
+Bk7 f24 actionCode 'in.currentTask.subject = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");
+in.currentTask.description = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");' #txt
 Bk7 f24 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk7 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1208,9 +1208,9 @@ Bk7 f11 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 Bk7 f11 actionTable 'out=in;
 ' #txt
 Bk7 f11 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
-if (in.#currentUserTask is initialized)  {
-  in.currentUserTask.approvalResultList = in.approvalTaskResults;
-  in.finishedTasks.add(in.currentUserTask);
+if (in.#mostRecentUserTask is initialized)  {
+  in.mostRecentUserTask.approvalResultList = in.approvalTaskResults;
+  in.finishedTasks.add(in.mostRecentUserTask);
 }
 ' #txt
 Bk7 f11 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -1238,7 +1238,7 @@ Bk8 f64 processCall 'Functional Processes/ParallelTasksUtil:splitTasks(Number)' 
 Bk8 f64 doCall true #txt
 Bk8 f64 requestActionDecl '<java.lang.Number numberOfTasks> param;
 ' #txt
-Bk8 f64 requestMappingAction 'param.numberOfTasks=in.nextTask.getResponsibles().size();
+Bk8 f64 requestMappingAction 'param.numberOfTasks=in.currentTask.getResponsibles().size();
 ' #txt
 Bk8 f64 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -1260,7 +1260,7 @@ Bk8 f13 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk8 f13 actionTable 'out=in;
 ' #txt
-Bk8 f13 actionCode 'String responsibleName = in.nextTask.getResponsibles().get(in.counter);
+Bk8 f13 actionCode 'String responsibleName = in.currentTask.getResponsibles().get(in.counter);
 in.responsible = ivy.session.getSecurityContext().findSecurityMember(responsibleName);' #txt
 Bk8 f13 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1283,12 +1283,12 @@ Bk8 f18 actionTable 'out=in1;
 ' #txt
 Bk8 f18 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk8 f18 outLinks "TaskA.ivp" #txt
-Bk8 f18 taskData 'TaskA.DESC=<%\=in1.nextTask.description%>
-TaskA.EXP=new Duration(0,0,in1.nextTask.untilDays,0,0,0)
+Bk8 f18 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>
+TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
-TaskA.NAM=<%\=in1.nextTask.subject%>
+TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
 TaskA.SKIP_TASK_LIST=false
@@ -1312,12 +1312,12 @@ Bk8 f20 actionTable 'out=in1;
 ' #txt
 Bk8 f20 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk8 f20 outLinks "TaskA.ivp" #txt
-Bk8 f20 taskData 'TaskA.DESC=<%\=in1.nextTask.description%>
-TaskA.EXP=new Duration(0,0,in1.nextTask.untilDays,0,0,0)
+Bk8 f20 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>
+TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
-TaskA.NAM=<%\=in1.nextTask.subject%>
+TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
 TaskA.SKIP_TASK_LIST=false
