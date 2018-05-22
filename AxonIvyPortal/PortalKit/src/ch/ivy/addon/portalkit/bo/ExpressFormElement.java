@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.util.List;
+
 public class ExpressFormElement {
 
   private String id;
@@ -11,7 +13,7 @@ public class ExpressFormElement {
   private boolean required;
   private int intSetting;
   private String elementType;
-  private String optionsStr;
+  private List<String> optionStrs;
   private String elementPosition;
   private int counter;
 
@@ -87,14 +89,6 @@ public class ExpressFormElement {
     this.elementType = elementType;
   }
 
-  public String getOptionsStr() {
-    return optionsStr;
-  }
-
-  public void setOptionsStr(String optionsStr) {
-    this.optionsStr = optionsStr;
-  }
-
   public String getElementPosition() {
     return elementPosition;
   }
@@ -111,4 +105,11 @@ public class ExpressFormElement {
     this.counter = counter;
   }
 
+  public List<String> getOptionStrs() {
+    return optionStrs;
+  }
+
+  public void setOptionStrs(List<String> optionStrs) {
+    this.optionStrs = optionStrs;
+  }
 }
