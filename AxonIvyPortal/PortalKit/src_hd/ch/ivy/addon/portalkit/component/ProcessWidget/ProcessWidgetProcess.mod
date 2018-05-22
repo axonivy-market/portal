@@ -1,5 +1,5 @@
 [Ivy]
-14FEEC13F8B8E7D2 3.20 #module
+14FEEC13F8B8E7D2 3.23 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessWidgetProcess Big #zClass
 Ps0 RD #cInfo
@@ -541,7 +541,7 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.request.getApplication());
 String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (!StringUtils.isEmpty(expressStartLink)) {
-	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
+	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
 	for(ExpressProcess wf : workflows) {
 		if (PermissionUtils.canStartExpressWorkflow(wf)) {
 			UserProcess userProcess = new UserProcess();
