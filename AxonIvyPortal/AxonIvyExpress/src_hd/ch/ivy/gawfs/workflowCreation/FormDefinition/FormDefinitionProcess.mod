@@ -47,7 +47,6 @@ Ds0 @RichDialogProcessStart f44 '' #zField
 Ds0 @PushWFArc f45 '' #zField
 Ds0 @RichDialogProcessStart f42 '' #zField
 Ds0 @RichDialogProcessStart f51 '' #zField
-Ds0 @RichDialogProcessStart f3 '' #zField
 Ds0 @GridStep f48 '' #zField
 Ds0 @PushWFArc f54 '' #zField
 Ds0 @GridStep f46 '' #zField
@@ -60,9 +59,6 @@ Ds0 @PushWFArc f55 '' #zField
 Ds0 @RichDialogMethodStart f58 '' #zField
 Ds0 @PushWFArc f61 '' #zField
 Ds0 @PushWFArc f57 '' #zField
-Ds0 @GridStep f28 '' #zField
-Ds0 @PushWFArc f29 '' #zField
-Ds0 @PushWFArc f5 '' #zField
 Ds0 @PushWFArc f30 '' #zField
 Ds0 @Alternative f26 '' #zField
 Ds0 @PushWFArc f25 '' #zField
@@ -70,6 +66,21 @@ Ds0 @PushWFArc f31 '' #zField
 Ds0 @GridStep f23 '' #zField
 Ds0 @PushWFArc f24 '' #zField
 Ds0 @PushWFArc f27 '' #zField
+Ds0 @GridStep f53 '' #zField
+Ds0 @RichDialogProcessStart f60 '' #zField
+Ds0 @RichDialogProcessStart f62 '' #zField
+Ds0 @GridStep f63 '' #zField
+Ds0 @PushWFArc f64 '' #zField
+Ds0 @PushWFArc f66 '' #zField
+Ds0 @RichDialogEnd f3 '' #zField
+Ds0 @PushWFArc f5 '' #zField
+Ds0 @Alternative f28 '' #zField
+Ds0 @PushWFArc f32 '' #zField
+Ds0 @GridStep f43 '' #zField
+Ds0 @PushWFArc f50 '' #zField
+Ds0 @PushWFArc f29 '' #zField
+Ds0 @RichDialogProcessEnd f59 '' #zField
+Ds0 @PushWFArc f65 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
@@ -100,7 +111,7 @@ Ds0 f1 819 51 26 26 0 12 #rect
 Ds0 f1 @|RichDialogProcessEndIcon #fIcon
 Ds0 f4 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f4 guid 156E35E6813D29F6 #txt
-Ds0 f4 563 595 26 26 0 12 #rect
+Ds0 f4 571 595 26 26 0 12 #rect
 Ds0 f4 @|RichDialogEndIcon #fIcon
 Ds0 f6 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
 ' #txt
@@ -419,8 +430,8 @@ Ds0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f44 83 659 26 26 -13 15 #rect
 Ds0 f44 @|RichDialogProcessStartIcon #fIcon
 Ds0 f45 expr out #txt
-Ds0 f45 109 672 576 621 #arcP
-Ds0 f45 1 576 672 #addKink
+Ds0 f45 109 672 584 621 #arcP
+Ds0 f45 1 584 672 #addKink
 Ds0 f45 0 0.5699203045049207 0 0 #arcLabel
 Ds0 f42 guid 15798472F333F271 #txt
 Ds0 f42 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
@@ -454,25 +465,8 @@ Ds0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f51 83 787 26 26 -18 15 #rect
+Ds0 f51 83 723 26 26 -18 15 #rect
 Ds0 f51 @|RichDialogProcessStartIcon #fIcon
-Ds0 f3 guid 158A981757CB402D #txt
-Ds0 f3 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
-Ds0 f3 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
-' #txt
-Ds0 f3 actionTable 'out=in;
-' #txt
-Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>save</name>
-        <nameStyle>4,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f3 83 723 26 26 -13 15 #rect
-Ds0 f3 @|RichDialogProcessStartIcon #fIcon
 Ds0 f48 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
 ' #txt
 Ds0 f48 actionTable 'out=in;
@@ -488,10 +482,10 @@ Ds0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f48 192 778 112 44 -37 -8 #rect
+Ds0 f48 192 714 112 44 -37 -8 #rect
 Ds0 f48 @|StepIcon #fIcon
 Ds0 f54 expr out #txt
-Ds0 f54 109 800 192 800 #arcP
+Ds0 f54 109 736 192 736 #arcP
 Ds0 f54 0 0.20328842452716808 0 0 #arcLabel
 Ds0 f46 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
 ' #txt
@@ -610,43 +604,16 @@ Ds0 f61 1 248 544 #addKink
 Ds0 f61 0 0.6714985851425087 0 0 #arcLabel
 Ds0 f57 expr out #txt
 Ds0 f57 109 480 192 480 #arcP
-Ds0 f28 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
-' #txt
-Ds0 f28 actionTable 'out=in;
-' #txt
-Ds0 f28 actionCode 'import ch.ivy.gawfs.enums.TaskType;
-if(out.data.definedTasks.get(out.activeTaskIndex).taskType != TaskType.EMAIL) {
-	out.data.definedTasks.get(out.activeTaskIndex).setDynaFormController(out.dynaFormController);
-	out.data.definedTasks.get(out.activeTaskIndex).setDragAndDropController(out.dragAndDropController);
-}
-' #txt
-Ds0 f28 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
-Ds0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Update current controllers</name>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f28 192 714 160 44 -71 -8 #rect
-Ds0 f28 @|StepIcon #fIcon
-Ds0 f29 expr out #txt
-Ds0 f29 109 736 192 736 #arcP
-Ds0 f29 0 0.6342623844357043 0 0 #arcLabel
-Ds0 f5 expr out #txt
-Ds0 f5 352 736 576 621 #arcP
-Ds0 f5 1 576 736 #addKink
-Ds0 f5 0 0.6342623844357043 0 0 #arcLabel
 Ds0 f30 expr out #txt
-Ds0 f30 304 800 576 621 #arcP
-Ds0 f30 1 576 800 #addKink
+Ds0 f30 304 736 584 621 #arcP
+Ds0 f30 1 584 736 #addKink
 Ds0 f30 0 0.8290441176470589 0 0 #arcLabel
 Ds0 f26 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f26 400 592 32 32 0 16 #rect
 Ds0 f26 @|AlternativeIcon #fIcon
 Ds0 f25 expr in #txt
 Ds0 f25 outCond in.isAbleToExecute #txt
-Ds0 f25 432 608 563 608 #arcP
+Ds0 f25 432 608 571 608 #arcP
 Ds0 f25 0 0.5649178034353388 0 0 #arcLabel
 Ds0 f31 expr in #txt
 Ds0 f31 416 592 563 480 #arcP
@@ -681,6 +648,159 @@ Ds0 f24 expr out #txt
 Ds0 f24 109 608 192 608 #arcP
 Ds0 f27 expr out #txt
 Ds0 f27 352 608 400 608 #arcP
+Ds0 f53 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f53 actionTable 'out=in;
+' #txt
+Ds0 f53 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+if(out.data.definedTasks.get(out.activeTaskIndex).taskType != TaskType.EMAIL) {
+	out.data.definedTasks.get(out.activeTaskIndex).setDynaFormController(out.dynaFormController);
+	out.data.definedTasks.get(out.activeTaskIndex).setDragAndDropController(out.dragAndDropController);
+}
+' #txt
+Ds0 f53 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Update current controllers</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f53 640 778 160 44 -71 -8 #rect
+Ds0 f53 @|StepIcon #fIcon
+Ds0 f60 guid 1638704721DA1E76 #txt
+Ds0 f60 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f60 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f60 actionTable 'out=in;
+' #txt
+Ds0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>save</name>
+        <nameStyle>4,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f60 82 787 26 26 -13 15 #rect
+Ds0 f60 @|RichDialogProcessStartIcon #fIcon
+Ds0 f62 guid 1638704721E99BED #txt
+Ds0 f62 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f62 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f62 actionTable 'out=in;
+' #txt
+Ds0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>finish</name>
+        <nameStyle>6,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f62 82 851 26 26 -15 15 #rect
+Ds0 f62 @|RichDialogProcessStartIcon #fIcon
+Ds0 f63 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f63 actionTable 'out=in;
+' #txt
+Ds0 f63 actionCode 'in.data.readyToExecute = true;' #txt
+Ds0 f63 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Marked as finished</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f63 480 842 112 44 -52 -8 #rect
+Ds0 f63 @|StepIcon #fIcon
+Ds0 f64 expr out #txt
+Ds0 f64 592 864 720 822 #arcP
+Ds0 f64 1 720 864 #addKink
+Ds0 f64 0 0.7915839930188887 0 0 #arcLabel
+Ds0 f66 expr out #txt
+Ds0 f66 108 800 640 800 #arcP
+Ds0 f3 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f3 guid 1638704F3EC23603 #txt
+Ds0 f3 851 787 26 26 0 12 #rect
+Ds0 f3 @|RichDialogEndIcon #fIcon
+Ds0 f5 expr out #txt
+Ds0 f5 800 800 851 800 #arcP
+Ds0 f28 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validated?</name>
+        <nameStyle>10
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f28 368 848 32 32 -26 -34 #rect
+Ds0 f28 @|AlternativeIcon #fIcon
+Ds0 f32 expr in #txt
+Ds0 f32 outCond in.isAbleToExecute #txt
+Ds0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f32 400 864 480 864 #arcP
+Ds0 f32 0 0.4375 0 -9 #arcLabel
+Ds0 f43 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f43 actionTable 'out=in;
+' #txt
+Ds0 f43 actionCode 'import javax.faces.context.FacesContext;
+import ch.ivy.gawfs.ExpressProcessUtils;
+import javax.faces.application.FacesMessage;
+
+ExpressProcessUtils utils = new ExpressProcessUtils();
+in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);
+if(!in.isAbleToExecute){
+	String growlTitle = ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning");
+	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);
+	FacesContext.getCurrentInstance().addMessage(null, message);
+}' #txt
+Ds0 f43 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validate</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f43 192 842 112 44 -22 -8 #rect
+Ds0 f43 @|StepIcon #fIcon
+Ds0 f50 expr out #txt
+Ds0 f50 108 864 192 864 #arcP
+Ds0 f50 0 0.5863480725728565 0 0 #arcLabel
+Ds0 f29 expr out #txt
+Ds0 f29 304 864 368 864 #arcP
+Ds0 f29 0 0.5863480725728565 0 0 #arcLabel
+Ds0 f59 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f59 851 915 26 26 0 12 #rect
+Ds0 f59 @|RichDialogProcessEndIcon #fIcon
+Ds0 f65 expr in #txt
+Ds0 f65 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f65 384 880 851 928 #arcP
+Ds0 f65 1 384 928 #addKink
+Ds0 f65 0 0.3541666666666667 13 0 #arcLabel
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -725,10 +845,6 @@ Ds0 f58 mainOut f61 tail #connect
 Ds0 f61 head f56 mainIn #connect
 Ds0 f49 mainOut f57 tail #connect
 Ds0 f57 head f56 mainIn #connect
-Ds0 f3 mainOut f29 tail #connect
-Ds0 f29 head f28 mainIn #connect
-Ds0 f28 mainOut f5 tail #connect
-Ds0 f5 head f4 mainIn #connect
 Ds0 f48 mainOut f30 tail #connect
 Ds0 f30 head f4 mainIn #connect
 Ds0 f26 out f25 tail #connect
@@ -739,3 +855,17 @@ Ds0 f42 mainOut f24 tail #connect
 Ds0 f24 head f23 mainIn #connect
 Ds0 f23 mainOut f27 tail #connect
 Ds0 f27 head f26 in #connect
+Ds0 f60 mainOut f66 tail #connect
+Ds0 f66 head f53 mainIn #connect
+Ds0 f63 mainOut f64 tail #connect
+Ds0 f64 head f53 mainIn #connect
+Ds0 f53 mainOut f5 tail #connect
+Ds0 f5 head f3 mainIn #connect
+Ds0 f28 out f32 tail #connect
+Ds0 f32 head f63 mainIn #connect
+Ds0 f62 mainOut f50 tail #connect
+Ds0 f50 head f43 mainIn #connect
+Ds0 f43 mainOut f29 tail #connect
+Ds0 f29 head f28 in #connect
+Ds0 f28 out f65 tail #connect
+Ds0 f65 head f59 mainIn #connect
