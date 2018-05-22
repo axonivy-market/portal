@@ -12,6 +12,7 @@ public class ExpressProcess {
   private String processOwner;
   private boolean isUseDefaultUI;
   private String processFolder;
+  private boolean readyToExecute;
 
   public String getId() {
     return id;
@@ -75,6 +76,14 @@ public class ExpressProcess {
 
   public void setProcessFolder(String processFolder) {
     this.processFolder = processFolder;
+  }
+
+  public boolean isReadyToExecute() {
+    return readyToExecute;
+  }
+
+  public void setReadyToExecute(boolean readyToExecute) {
+    this.readyToExecute = readyToExecute;
   }
 
 }
