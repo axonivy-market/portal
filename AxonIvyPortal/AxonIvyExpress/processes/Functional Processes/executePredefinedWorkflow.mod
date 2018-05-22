@@ -47,6 +47,15 @@ ew0 Bk8 U20 'User 2' #zField
 ew0 @PushWFArc f17 '' #zField
 ew0 @PushWFArc f15 '' #zField
 ew0 @PushWFArc f14 '' #zField
+ew0 @EndSub f32 '' #zField
+ew0 @Alternative f34 '' #zField
+ew0 @StartSub f35 '' #zField
+ew0 @EndTask f36 '' #zField
+ew0 @PushWFArc f19 '' #zField
+ew0 @PushWFArc f39 '' #zField
+ew0 @TaskSwitch f26 '' #zField
+ew0 @TkArc f20 '' #zField
+ew0 @PushWFArc f21 '' #zField
 >Proto ew0 ew0 executePredefinedWorkflow #zField
 Bk4 @TextInP .resExport .resExport #zField
 Bk4 @TextInP .type .type #zField
@@ -175,8 +184,12 @@ Bk8 @TkArc f8 '' #zField
 Bk8 @CallSub f1 '' #zField
 Bk8 @GridStep f6 '' #zField
 Bk8 @PushWFArc f7 '' #zField
-Bk8 @PushWFArc f5 '' #zField
+Bk8 @GridStep f10 '' #zField
 Bk8 @PushWFArc f2 '' #zField
+Bk8 @GridStep f29 '' #zField
+Bk8 @PushWFArc f16 '' #zField
+Bk8 @PushWFArc f5 '' #zField
+Bk8 @PushWFArc f14 '' #zField
 >Proto Bk8 Bk4 BpmnUserTask #zField
 ew0 f1 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f1 955 147 30 30 0 15 #rect
@@ -410,6 +423,104 @@ ew0 f14 354 178 682 178 #arcP
 ew0 f14 1 354 360 #addKink
 ew0 f14 2 682 360 #addKink
 ew0 f14 1 0.5 0 0 #arcLabel
+ew0 f32 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f32 481 428 26 26 14 0 #rect
+ew0 f32 @|EndSubIcon #fIcon
+ew0 f34 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>has open tasks?</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f34 208 427 28 28 -45 -42 #rect
+ew0 f34 @|AlternativeIcon #fIcon
+ew0 f35 inParamDecl '<gawfs.ExecutePredefinedWorkflowData data> param;' #txt
+ew0 f35 inParamTable 'out=param.data;
+' #txt
+ew0 f35 outParamDecl '<> result;
+' #txt
+ew0 f35 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+ew0 f35 callSignature join(gawfs.ExecutePredefinedWorkflowData) #txt
+ew0 f35 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>join(ExecutePredefinedWorkflowData)</name>
+        <nameStyle>35,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f35 65 428 26 26 -75 26 #rect
+ew0 f35 @|StartSubIcon #fIcon
+ew0 f36 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f36 207 514 30 30 16 0 #rect
+ew0 f36 @|EndIcon #fIcon
+ew0 f19 expr out #txt
+ew0 f19 91 441 208 441 #arcP
+ew0 f39 expr in #txt
+ew0 f39 outCond 'ivy.case.getActiveTasks().size() > 1' #txt
+ew0 f39 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f39 222 455 222 514 #arcP
+ew0 f39 0 0.3559322033898305 13 0 #arcLabel
+ew0 f26 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+ew0 f26 actionTable 'out=in1;
+' #txt
+ew0 f26 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
+ew0 f26 outLinks "TaskA.ivp" #txt
+ew0 f26 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=System Task\: Close Task
+TaskA.PRI=2
+TaskA.ROL=SYSTEM
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+ew0 f26 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f26 template "" #txt
+ew0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>close task</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f26 336 425 32 32 -33 -39 #rect
+ew0 f26 @|TaskSwitchIcon #fIcon
+ew0 f20 expr in #txt
+ew0 f20 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f20 var in1 #txt
+ew0 f20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f20 236 441 336 441 #arcP
+ew0 f20 0 0.5135135135135135 0 11 #arcLabel
+ew0 f21 expr data #txt
+ew0 f21 outCond ivp=="TaskA.ivp" #txt
+ew0 f21 368 441 481 441 #arcP
+ew0 f21 0 0.5135135135135135 0 11 #arcLabel
 >Proto ew0 .type gawfs.ExecutePredefinedWorkflowData #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -705,23 +816,23 @@ Bk4 f11 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk4 f11 actionTable 'out=in;
 ' #txt
-Bk4 f11 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
+Bk4 f11 actionCode 'import java.util.ArrayList;
 if (in.#currentUserTask is initialized)  {
-  in.currentUserTask.approvalResultList = ExecutingExpressProcessUtils.getApprovalTaskResultsFromCaseProperty();
-  ExecutingExpressProcessUtils.removeApprovalTaskResultsFromCaseProperty();
+  in.currentUserTask.approvalResultList = in.approvalTaskResults;
   in.finishedTasks.add(in.currentUserTask);
 }
-in.currentUserTask = in.definedTasks.get(in.currentTaskIndex);' #txt
+in.currentUserTask = in.definedTasks.get(in.currentTaskIndex);
+in.approvalTaskResults = new ArrayList();' #txt
 Bk4 f11 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>set current&#xD;
+        <name>update current&#xD;
 user task</name>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f11 240 122 112 44 -29 -16 #rect
+Bk4 f11 240 122 112 44 -39 -16 #rect
 Bk4 f11 @|StepIcon #fIcon
 Bk4 f15 296 61 296 122 #arcP
 Bk4 f17 expr out #txt
@@ -1104,8 +1215,7 @@ Bk7 f11 actionTable 'out=in;
 ' #txt
 Bk7 f11 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
 if (in.#currentUserTask is initialized)  {
-  in.currentUserTask.approvalResultList = ExecutingExpressProcessUtils.getApprovalTaskResultsFromCaseProperty();
-  ExecutingExpressProcessUtils.removeApprovalTaskResultsFromCaseProperty();
+  in.currentUserTask.approvalResultList = in.approvalTaskResults;
   in.finishedTasks.add(in.currentUserTask);
 }
 ' #txt
@@ -1127,7 +1237,7 @@ Bk7 f0 258 192 336 192 #arcP
 >Proto Bk3 @|BpmnSendTaskIcon #fIcon
 Bk8 g0 307 51 26 26 21 -3 #rect
 Bk8 g0 @|MIGIcon #fIcon
-Bk8 g1 307 955 26 26 19 -15 #rect
+Bk8 g1 307 963 26 26 19 -15 #rect
 Bk8 g1 @|MOGIcon #fIcon
 Bk8 f64 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f64 processCall 'Functional Processes/ParallelTasksUtil:splitTasks(Number)' #txt
@@ -1322,9 +1432,11 @@ Bk8 f8 336 349 411 406 #arcP
 Bk8 f8 1 411 349 #addKink
 Bk8 f8 0 0.45796837519732153 0 10 #arcLabel
 Bk8 f1 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk8 f1 processCall 'Functional Processes/ParallelTasksUtil:join()' #txt
+Bk8 f1 processCall 'Functional Processes/executePredefinedWorkflow:join(gawfs.ExecutePredefinedWorkflowData)' #txt
 Bk8 f1 doCall true #txt
-Bk8 f1 requestActionDecl '<> param;
+Bk8 f1 requestActionDecl '<gawfs.ExecutePredefinedWorkflowData data> param;
+' #txt
+Bk8 f1 requestMappingAction 'param.data=in;
 ' #txt
 Bk8 f1 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -1339,33 +1451,69 @@ Bk8 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk8 f1 264 754 112 44 -26 -8 #rect
+Bk8 f1 264 794 112 44 -26 -8 #rect
 Bk8 f1 @|CallSubIcon #fIcon
 Bk8 f6 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk8 f6 actionTable 'out=in;
 ' #txt
-Bk8 f6 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
-ExecutingExpressProcessUtils.storeApprovalTaskResultToCaseProperty(in.approvalTaskResult);
-if (!in.approvalTaskResult.isApproved) {
+Bk8 f6 actionCode 'if (!in.approvalTaskResult.isApproved) {
 	in.hasRejectedApprovalTask = true;
 }' #txt
 Bk8 f6 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
+        <name>check whether&#xD;
+reject approval</name>
+    </language>
+</elementInfo>
+' #txt
+Bk8 f6 256 658 128 44 -40 -16 #rect
+Bk8 f6 @|StepIcon #fIcon
+Bk8 f7 expr out #txt
+Bk8 f7 320 609 320 658 #arcP
+Bk8 f10 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk8 f10 actionTable 'out=in;
+' #txt
+Bk8 f10 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
+in.approvalTaskResults.addAll(ExecutingExpressProcessUtils.getAttributesOfTasks(String.valueOf(in.currentTaskIndex), "approvalTaskResult"));' #txt
+Bk8 f10 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk8 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
         <name>store approval</name>
     </language>
 </elementInfo>
 ' #txt
-Bk8 f6 264 658 112 44 -39 -8 #rect
-Bk8 f6 @|StepIcon #fIcon
-Bk8 f7 expr out #txt
-Bk8 f7 320 609 320 658 #arcP
-Bk8 f5 expr out #txt
-Bk8 f5 320 702 320 754 #arcP
+Bk8 f10 264 882 112 44 -39 -8 #rect
+Bk8 f10 @|StepIcon #fIcon
 Bk8 f2 expr out #txt
-Bk8 f2 320 798 320 955 #arcP
+Bk8 f2 320 926 320 963 #arcP
+Bk8 f29 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk8 f29 actionTable 'out=in;
+' #txt
+Bk8 f29 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
+ivy.task.setAdditionalProperty(ExecutingExpressProcessUtils.TASK_GROUP_ID_KEY, String.valueOf(in.currentTaskIndex));' #txt
+Bk8 f29 security system #txt
+Bk8 f29 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk8 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set groupId</name>
+    </language>
+</elementInfo>
+' #txt
+Bk8 f29 264 728 112 44 -31 -8 #rect
+Bk8 f29 @|StepIcon #fIcon
+Bk8 f16 expr out #txt
+Bk8 f16 320 702 320 728 #arcP
+Bk8 f5 expr out #txt
+Bk8 f5 320 772 320 794 #arcP
+Bk8 f14 expr out #txt
+Bk8 f14 320 838 320 882 #arcP
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 ew0 f0 mainOut f30 tail #connect
@@ -1396,6 +1544,14 @@ ew0 f7 out f15 tail #connect
 ew0 f15 head U20 g0 #connect
 ew0 f7 out f14 tail #connect
 ew0 f14 head f5 in #connect
+ew0 f34 out f39 tail #connect
+ew0 f39 head f36 mainIn #connect
+ew0 f35 mainOut f19 tail #connect
+ew0 f19 head f34 in #connect
+ew0 f34 out f20 tail #connect
+ew0 f20 head f26 in #connect
+ew0 f26 out f21 tail #connect
+ew0 f21 head f32 mainIn #connect
 Bk4 f8 head f16 in #connect
 Bk4 f0 out f8 tail #connect
 Bk4 f0 out f1 tail #connect
@@ -1480,8 +1636,12 @@ Bk8 f0 out f8 tail #connect
 Bk8 f8 head f20 in #connect
 Bk8 f9 mainOut f7 tail #connect
 Bk8 f7 head f6 mainIn #connect
-Bk8 f6 mainOut f5 tail #connect
-Bk8 f5 head f1 mainIn #connect
-Bk8 f1 mainOut f2 tail #connect
+Bk8 f10 mainOut f2 tail #connect
 Bk8 f2 head g1 m #connect
-Bk8 0 0 560 1016 0 #ivRect
+Bk8 f6 mainOut f16 tail #connect
+Bk8 f16 head f29 mainIn #connect
+Bk8 f29 mainOut f5 tail #connect
+Bk8 f5 head f1 mainIn #connect
+Bk8 f1 mainOut f14 tail #connect
+Bk8 f14 head f10 mainIn #connect
+Bk8 0 0 552 1160 0 #ivRect
