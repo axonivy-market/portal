@@ -681,7 +681,7 @@ Bk4 f13 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk4 f13 actionTable 'out=in;
 ' #txt
-Bk4 f13 actionCode 'String responsibleName = in.currentTask.getResponsibles().get(in.counter);
+Bk4 f13 actionCode 'String responsibleName = in.currentTask.getResponsibles().get(in.taskSplittingCounter);
 in.responsible = ivy.session.getSecurityContext().findSecurityMember(responsibleName);' #txt
 Bk4 f13 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -759,7 +759,7 @@ Bk4 f64 requestMappingAction 'param.numberOfTasks=in.currentTask.getResponsibles
 Bk4 f64 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk4 f64 responseMappingAction 'out=in;
-out.counter=result.counter;
+out.taskSplittingCounter=result.counter;
 ' #txt
 Bk4 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1243,7 +1243,7 @@ Bk8 f64 requestMappingAction 'param.numberOfTasks=in.currentTask.getResponsibles
 Bk8 f64 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk8 f64 responseMappingAction 'out=in;
-out.counter=result.counter;
+out.taskSplittingCounter=result.counter;
 ' #txt
 Bk8 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1260,7 +1260,7 @@ Bk8 f13 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk8 f13 actionTable 'out=in;
 ' #txt
-Bk8 f13 actionCode 'String responsibleName = in.currentTask.getResponsibles().get(in.counter);
+Bk8 f13 actionCode 'String responsibleName = in.currentTask.getResponsibles().get(in.taskSplittingCounter);
 in.responsible = ivy.session.getSecurityContext().findSecurityMember(responsibleName);' #txt
 Bk8 f13 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
