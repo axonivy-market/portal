@@ -19,7 +19,8 @@ public class TaskNameChangeTest extends BaseTest {
 		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 	}
 
-	protected void login(TestAccount testAccount) {
+	@Override
+  protected void login(TestAccount testAccount) {
 		LoginPage loginPage = new LoginPage(testAccount);
 		loginPage.login();
 	}

@@ -19,6 +19,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
+  @Override
   protected void login(TestAccount testAccount) {
     LoginPage loginPage = new LoginPage(testAccount);
     loginPage.login();
