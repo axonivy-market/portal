@@ -152,7 +152,7 @@ public class ExpressProcessUtils {
     expressFormElement.setLabel(element.getLabel());
     expressFormElement.setRequired(Optional.ofNullable(element.getRequired()).orElse(false));
     expressFormElement.setProcessID(processId);
-    expressFormElement.setOptionsStr(element.getOptionsAsString());
+    expressFormElement.setOptionStrs(element.getOptionsStr());
     expressFormElement.setTaskPosition(element.getTaskPosition());
 
     ExpressServiceRegistry.getFormElementService().save(expressFormElement);
@@ -308,11 +308,7 @@ public class ExpressProcessUtils {
           element.setType(type);
         }
       }
-
-      String[] optionsArray = expressElement.getOptionsStr().split(":",-1);
-      for (String optionStr : optionsArray) {
-        element.addOption(optionStr);
-      }
+      element.setOptionsStr(expressElement.getOptionStrs());
 
       String location = expressElement.getElementPosition();
       switch (location) {
