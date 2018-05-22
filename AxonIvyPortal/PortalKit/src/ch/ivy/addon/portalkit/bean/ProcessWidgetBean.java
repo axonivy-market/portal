@@ -172,7 +172,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private List<UserProcess> getFilteredExpressWorkflows(String query) {
     List<UserProcess> workflow = new ArrayList<>();
     List<ExpressProcess> workflows =
-        ExpressServiceRegistry.getProcessService().findAllOrderByName().stream()
+        ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName().stream()
             .filter(wf -> !isUserProcess(wf) && !isDefaultUserProcess(wf)).collect(Collectors.toList());
     for (ExpressProcess wf : workflows) {
       if (PermissionUtils.canStartExpressWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
