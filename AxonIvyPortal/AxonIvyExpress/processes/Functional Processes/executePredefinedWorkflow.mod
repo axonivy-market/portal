@@ -182,14 +182,12 @@ Bk8 @PushWFArc f4 '' #zField
 Bk8 @TkArc f11 '' #zField
 Bk8 @TkArc f8 '' #zField
 Bk8 @CallSub f1 '' #zField
-Bk8 @GridStep f6 '' #zField
-Bk8 @PushWFArc f7 '' #zField
 Bk8 @GridStep f10 '' #zField
 Bk8 @PushWFArc f2 '' #zField
 Bk8 @GridStep f29 '' #zField
-Bk8 @PushWFArc f16 '' #zField
 Bk8 @PushWFArc f5 '' #zField
 Bk8 @PushWFArc f14 '' #zField
+Bk8 @PushWFArc f6 '' #zField
 >Proto Bk8 Bk4 BpmnUserTask #zField
 ew0 f1 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f1 955 147 30 30 0 15 #rect
@@ -211,7 +209,7 @@ ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f9 458 44 112 44 -36 -8 #rect
+ew0 f9 470 44 112 44 -36 -8 #rect
 ew0 f9 @|StepIcon #fIcon
 ew0 U21 .resExport export #txt
 ew0 U21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -223,7 +221,7 @@ ew0 U21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 U21 458 140 112 44 -31 -8 #rect
+ew0 U21 470 140 112 44 -31 -8 #rect
 ew0 U21 @|BpmnUserTaskIcon #fIcon
 ew0 f0 inParamDecl '<java.lang.Integer actualStepIndex,java.lang.String workflowID> param;' #txt
 ew0 f0 inParamTable 'out.actualStepIndex=param.#actualStepIndex is initialized ? param.actualStepIndex : 0;
@@ -278,7 +276,7 @@ ew0 S40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 S40 450 268 112 44 -31 -8 #rect
+ew0 S40 470 268 112 44 -31 -8 #rect
 ew0 S40 @|BpmnSendTaskIcon #fIcon
 ew0 S31 .resExport export #txt
 ew0 S31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -339,17 +337,17 @@ ew0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f13 359 173 450 290 #arcP
+ew0 f13 359 173 470 290 #arcP
 ew0 f13 1 416 290 #addKink
-ew0 f13 0 0.5049924357034796 10 -5 #arcLabel
+ew0 f13 0 0.657279489904357 -10 6 #arcLabel
 ew0 f18 expr out #txt
 ew0 f18 89 162 162 162 #arcP
 ew0 f18 0 0.3805374841463163 0 0 #arcLabel
 ew0 f11 expr out #txt
-ew0 f11 458 66 354 146 #arcP
+ew0 f11 470 66 354 146 #arcP
 ew0 f11 1 354 66 #addKink
 ew0 f11 0 0.8125675639531414 0 0 #arcLabel
-ew0 f4 562 290 678 174 #arcP
+ew0 f4 582 290 678 174 #arcP
 ew0 f4 1 632 290 #addKink
 ew0 f4 0 0.8278533742264182 0 0 #arcLabel
 ew0 f8 expr in #txt
@@ -365,7 +363,7 @@ ew0 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f8 698 162 778 162 #arcP
 ew0 f8 0 0.5125 0 -9 #arcLabel
-ew0 f6 570 162 666 162 #arcP
+ew0 f6 582 162 666 162 #arcP
 ew0 f30 expr out #txt
 ew0 f30 89 66 226 140 #arcP
 ew0 f30 1 226 66 #addKink
@@ -381,7 +379,7 @@ ew0 f3 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f3 370 162 458 162 #arcP
+ew0 f3 370 162 470 162 #arcP
 ew0 f3 0 0.4772727272727273 -1 8 #arcLabel
 ew0 f12 890 162 955 162 #arcP
 ew0 f2 expr in #txt
@@ -394,7 +392,7 @@ ew0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f2 682 146 570 66 #arcP
+ew0 f2 682 146 582 66 #arcP
 ew0 f2 1 682 66 #addKink
 ew0 f2 0 0.5063291139240507 14 0 #arcLabel
 ew0 f10 290 162 338 162 #arcP
@@ -408,14 +406,14 @@ ew0 U20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 U20 461 202 112 44 -23 -8 #rect
+ew0 U20 470 202 112 44 -23 -8 #rect
 ew0 U20 @|BpmnUserTaskIcon #fIcon
-ew0 f17 573 224 673 169 #arcP
+ew0 f17 582 224 673 169 #arcP
 ew0 f17 1 600 224 #addKink
 ew0 f17 1 0.31186578702692835 0 0 #arcLabel
 ew0 f15 expr in #txt
 ew0 f15 outCond 'in.nextTask.taskType == ch.ivy.gawfs.enums.TaskType.APPROVAL && !in.hasRejectedApprovalTask' #txt
-ew0 f15 362 170 461 224 #arcP
+ew0 f15 362 170 470 224 #arcP
 ew0 f15 1 424 224 #addKink
 ew0 f15 1 0.0 0 0 #arcLabel
 ew0 f14 expr in #txt
@@ -424,7 +422,7 @@ ew0 f14 1 354 360 #addKink
 ew0 f14 2 682 360 #addKink
 ew0 f14 1 0.5 0 0 #arcLabel
 ew0 f32 type gawfs.ExecutePredefinedWorkflowData #txt
-ew0 f32 481 428 26 26 14 0 #rect
+ew0 f32 513 428 26 26 14 0 #rect
 ew0 f32 @|EndSubIcon #fIcon
 ew0 f34 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -519,7 +517,7 @@ ew0 f20 236 441 336 441 #arcP
 ew0 f20 0 0.5135135135135135 0 11 #arcLabel
 ew0 f21 expr data #txt
 ew0 f21 outCond ivp=="TaskA.ivp" #txt
-ew0 f21 368 441 481 441 #arcP
+ew0 f21 368 441 513 441 #arcP
 ew0 f21 0 0.5135135135135135 0 11 #arcLabel
 >Proto ew0 .type gawfs.ExecutePredefinedWorkflowData #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
@@ -1451,34 +1449,21 @@ Bk8 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk8 f1 264 794 112 44 -26 -8 #rect
+Bk8 f1 264 770 112 44 -26 -8 #rect
 Bk8 f1 @|CallSubIcon #fIcon
-Bk8 f6 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
-' #txt
-Bk8 f6 actionTable 'out=in;
-' #txt
-Bk8 f6 actionCode 'if (!in.approvalTaskResult.isApproved) {
-	in.hasRejectedApprovalTask = true;
-}' #txt
-Bk8 f6 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk8 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>check whether&#xD;
-reject approval</name>
-    </language>
-</elementInfo>
-' #txt
-Bk8 f6 256 658 128 44 -40 -16 #rect
-Bk8 f6 @|StepIcon #fIcon
-Bk8 f7 expr out #txt
-Bk8 f7 320 609 320 658 #arcP
 Bk8 f10 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk8 f10 actionTable 'out=in;
 ' #txt
-Bk8 f10 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
-in.approvalTaskResults.addAll(ExecutingExpressProcessUtils.getAttributesOfTasks(String.valueOf(in.currentTaskIndex), "approvalTaskResult"));' #txt
+Bk8 f10 actionCode 'import gawfs.ApprovalTaskResult;
+import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
+in.approvalTaskResults.addAll(ExecutingExpressProcessUtils.getAttributesOfTasks(String.valueOf(in.currentTaskIndex), "approvalTaskResult"));
+for (ApprovalTaskResult approvalTaskResult: in.approvalTaskResults) {
+	if (approvalTaskResult.isApproved) {
+		in.hasRejectedApprovalTask = true;
+		break;
+	}
+}' #txt
 Bk8 f10 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1506,14 +1491,14 @@ Bk8 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk8 f29 264 728 112 44 -31 -8 #rect
+Bk8 f29 264 656 112 44 -31 -8 #rect
 Bk8 f29 @|StepIcon #fIcon
-Bk8 f16 expr out #txt
-Bk8 f16 320 702 320 728 #arcP
 Bk8 f5 expr out #txt
-Bk8 f5 320 772 320 794 #arcP
+Bk8 f5 320 700 320 770 #arcP
 Bk8 f14 expr out #txt
-Bk8 f14 320 838 320 882 #arcP
+Bk8 f14 320 814 320 882 #arcP
+Bk8 f6 expr out #txt
+Bk8 f6 320 609 320 656 #arcP
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 ew0 f0 mainOut f30 tail #connect
@@ -1634,14 +1619,12 @@ Bk8 f0 out f11 tail #connect
 Bk8 f11 head f18 in #connect
 Bk8 f0 out f8 tail #connect
 Bk8 f8 head f20 in #connect
-Bk8 f9 mainOut f7 tail #connect
-Bk8 f7 head f6 mainIn #connect
 Bk8 f10 mainOut f2 tail #connect
 Bk8 f2 head g1 m #connect
-Bk8 f6 mainOut f16 tail #connect
-Bk8 f16 head f29 mainIn #connect
 Bk8 f29 mainOut f5 tail #connect
 Bk8 f5 head f1 mainIn #connect
 Bk8 f1 mainOut f14 tail #connect
 Bk8 f14 head f10 mainIn #connect
+Bk8 f9 mainOut f6 tail #connect
+Bk8 f6 head f29 mainIn #connect
 Bk8 0 0 552 1160 0 #ivRect
