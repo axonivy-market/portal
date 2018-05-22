@@ -1,5 +1,6 @@
 package ch.ivy.gawfs;
 
+import gawfs.Data;
 import gawfs.TaskDef;
 
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.gawfs.enums.FormElementType;
-import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.mail.MailAttachment;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -40,32 +40,25 @@ public class ExpressProcessUtils {
   /**
    * Save Express process to repository as business data
    * 
-   * @param processId
-   * @param name
-   * @param description
-   * @param type
-   * @param processFolder
-   * @param isUseDefaultUI
-   * @param definedTasks
-   * 
+   * @param expressData
    * @return Express process after saved
    */
-  public ExpressProcess saveProcess(String processId, String name, String description, ProcessType type, String processFolder, boolean isUseDefaultUI, List<TaskDef> definedTasks) {
+  public ExpressProcess saveProcess(Data expressData) {
     ExpressProcess processRepository
-      = Optional.ofNullable(ExpressServiceRegistry.getProcessService().findById(processId)).orElse(new ExpressProcess());
+      = Optional.ofNullable(ExpressServiceRegistry.getProcessService().findById(expressData.getProcessID())).orElse(new ExpressProcess());
 
-    processRepository.setProcessName(name);
-    processRepository.setProcessDescription(description);
-    processRepository.setProcessType(type.getValue());
-    processRepository.setUseDefaultUI(isUseDefaultUI);
+    processRepository.setProcessName(expressData.getProcessName());
+    processRepository.setProcessDescription(expressData.getProcessDescription());
+    processRepository.setProcessType(expressData.getProcessType().getValue());
+    processRepository.setUseDefaultUI(expressData.getIsUseDefaultUI());
     processRepository.setProcessOwner(Ivy.session().getSessionUser().getMemberName());
-    processRepository.setProcessPermissions(definedTasks.get(0).getResponsibles());
-    processRepository.setProcessFolder(processFolder);
+    processRepository.setProcessPermissions(expressData.getDefinedTasks().get(0).getResponsibles());
+    processRepository.setProcessFolder(expressData.getProcessFolder());
 
     BusinessDataInfo<ExpressProcess> info = ExpressServiceRegistry.getProcessService().save(processRepository);
     processRepository.setId(info.getId());
 
-    saveDefinedTasks(processRepository.getId(), definedTasks);
+    saveDefinedTasks(processRepository.getId(), expressData.getDefinedTasks());
 
     return processRepository;
   }
