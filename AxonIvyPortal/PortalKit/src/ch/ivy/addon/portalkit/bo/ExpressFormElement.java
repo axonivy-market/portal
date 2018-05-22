@@ -104,4 +104,12 @@ public class ExpressFormElement {
   public void setCounter(int counter) {
     this.counter = counter;
   }
+
+  public List<String> getOptionStrs() {
+    return optionStrs;
+  }
+
+  public void setOptionStrs(List<String> optionStrs) {
+    this.optionStrs = optionStrs;
+  }
 }
