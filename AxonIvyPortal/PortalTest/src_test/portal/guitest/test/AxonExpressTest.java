@@ -143,17 +143,6 @@ public class AxonExpressTest extends BaseTest{
   }
 
   @Test
-  public void testAdhocMultiApprovalWhenMultiTask() {
-    goToCreateExpressProcess();
-    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
-    
-    ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
-    formDefinition.executeWorkflow();
-    executeExpressProcessWhenMultiApproval();
-  }
-
-  @Test
   public void testRejectedApprovalWhenMultiTask() {
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
@@ -196,6 +185,7 @@ public class AxonExpressTest extends BaseTest{
     formDefinition.moveAllElementToDragAndDrogPanel();
     return formDefinition;
   }
+
   private void executeExpressProcessWhenMultiApproval() {
     executeUserTask();
     assertEquals(0, new TaskWidgetPage().countTasks());
