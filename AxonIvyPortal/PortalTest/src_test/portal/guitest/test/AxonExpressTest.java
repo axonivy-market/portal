@@ -202,9 +202,9 @@ public class AxonExpressTest extends BaseTest{
     assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.DEMO_USER);
     String approvalResult = executeReview();
-    Assert.assertEquals("Task 2,Portal Demo User,Portal Demo User,Approved at first level,Yes,"
-        + "Task 3,Portal Demo User,Portal Demo User,Approved at second level,Yes,"
-        + "Task 3,Portal Demo User,portaladmin,Approved at second level,Yes,"
+    Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes,"
+        + "Task 3,Portal Demo User,Approved at second level,Yes,"
+        + "Task 3,portaladmin,Approved at second level,Yes,"
         + "No records found.", approvalResult);
     new ExpressEndPage().finish();
   }
