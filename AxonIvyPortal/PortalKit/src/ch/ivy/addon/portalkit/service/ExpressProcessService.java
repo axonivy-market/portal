@@ -10,7 +10,7 @@ public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
 
   public List<ExpressProcess> findReadyToExecuteProcessOrderByName() {
     List<ExpressProcess> result = repo().search(getType()).orderBy().textField("processName").ascending().execute().getAll();
-    return result.stream().filter(process -> process.isReadyToExecute()).collect(Collectors.toList());
+    return result.stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
   }
 
   @Override

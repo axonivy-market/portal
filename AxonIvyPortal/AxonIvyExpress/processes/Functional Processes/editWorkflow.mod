@@ -482,11 +482,11 @@ ew0 f37 actionTable 'out=in1;
 ' #txt
 ew0 f37 outTypes "gawfs.Data" #txt
 ew0 f37 outLinks "TaskA.ivp" #txt
-ew0 f37 caseData 'case.name=Working Expess Workflow\: <%\=in1.processName%>' #txt
-ew0 f37 taskData 'TaskA.EXPRI=2
+ew0 f37 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/SaveWorkflow/TaskName")%>\: <%\=in1.processName%>
+TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
-TaskA.NAM=Working Expess Workflow\: <%\=in1.processName%>
+TaskA.NAM=<%\=ivy.cms.co("/Dialogs/Tasks/SaveWorkflow/TaskName")%>\: <%\=in1.processName%>
 TaskA.PRI=2
 TaskA.ROL=CREATOR
 TaskA.SKIP_TASK_LIST=false
