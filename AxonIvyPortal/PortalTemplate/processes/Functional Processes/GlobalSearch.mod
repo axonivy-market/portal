@@ -1,5 +1,5 @@
 [Ivy]
-15C9F795D7A23730 3.20 #module
+15C9F795D7A23730 3.23 #module
 >Proto >Proto Collection #zClass
 Gh0 GlobalSearch Big #zClass
 Gh0 B #cInfo
@@ -314,7 +314,7 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 ProcessStartCollector processStartCollector = new ProcessStartCollector(ivy.request.getApplication());
 String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (!StringUtils.isEmpty(expressStartLink)) {
-	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findAllOrderByName();
+	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
 	String lowercaseKeyword = in.keyword.toLowerCase();
 
 	for (ExpressProcess wf : workflows) {

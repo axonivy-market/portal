@@ -64,6 +64,12 @@
                     rendered="#{data.data.processType eq 'REPEAT'}"/>
 				<p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT'}" />
 
+				<p:commandButton id="finish-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FinishWorkflow')}" icon="fa fa-check" partialSubmit="true"
+					styleClass="buttonDelegate" update="form:selected-formelements-field error-growl"
+					process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.finish}"
+                    rendered="#{data.data.processType eq 'REPEAT'}" />
+				<p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT'}" />
+
 				<p:commandButton id="execute-button" icon="fa fa-check" styleClass="buttonDelegate"
 					value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}"
 					rendered="#{(data.data.processType eq 'AD_HOC')}" partialSubmit="true"
