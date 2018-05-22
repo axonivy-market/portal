@@ -70,7 +70,7 @@ public abstract class AbstractService {
   protected AvailableAppsResult findAvailableApplicationsAndUsers(final List<String> apps, final String username) {
     return executeAsSystem(() -> {
       if (apps.isEmpty()) {
-        return result(Arrays.asList(new WSException(WSErrorType.WARNING, 10026, null, null)));
+        return resultOf(Arrays.asList(new WSException(WSErrorType.WARNING, 10026, null, null)));
       }
       return findAvailableAppsAndUsers(apps, username);
     });
@@ -128,7 +128,7 @@ public abstract class AbstractService {
     return result;
   }
 
-  private AvailableAppsResult result(List<WSException> errors) {
+  private AvailableAppsResult resultOf(List<WSException> errors) {
     AvailableAppsResult result = new AvailableAppsResult();
     result.setErrors(errors);
     return result;
