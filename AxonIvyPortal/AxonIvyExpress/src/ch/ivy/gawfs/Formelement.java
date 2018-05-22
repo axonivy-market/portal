@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.gawfs.enums.FormElementType;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean(name = "Formelement")
 @ViewScoped
@@ -43,11 +44,12 @@ public class Formelement implements Serializable{
 	public List<String> getOptionsStr() {
 		this.optionsStr.clear();
 		for (FormelementOption formelementOption : options) {
+		  Ivy.log().error("add this string to optionStr:{0}",formelementOption.getValue());
 			optionsStr.add(formelementOption.getValue());			
 		}			
 		if(this.optionsStr.isEmpty()){
 			this.optionsStr.add(StringUtils.EMPTY);
-		}
+		}		
 		return optionsStr;
 	}
 
@@ -72,6 +74,8 @@ public class Formelement implements Serializable{
 		if(x.length()>1){
 			x = x.substring( 0, x.length() - 1 );
 		}	
+		
+		Ivy.log().error("Return string is {0}", x);
 		return x;
 		
 	}
