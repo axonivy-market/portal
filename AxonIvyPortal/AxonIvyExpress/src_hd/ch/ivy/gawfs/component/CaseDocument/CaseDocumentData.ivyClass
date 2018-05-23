@@ -22,3 +22,5 @@ inputFileTypes List<String> #field
 inputFileTypes PERSISTENT #fieldModifier
 toManyFiles Boolean #field
 toManyFiles PERSISTENT #fieldModifier
+uploadDocumentCheckMessage String #field
+uploadDocumentCheckMessage PERSISTENT #fieldModifier

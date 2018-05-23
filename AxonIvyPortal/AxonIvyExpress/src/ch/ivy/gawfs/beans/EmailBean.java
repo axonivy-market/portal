@@ -16,6 +16,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -24,6 +26,7 @@ import org.primefaces.model.UploadedFile;
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
+import ch.ivy.addon.portalkit.masterdata.MasterData;
 import ch.ivy.gawfs.ExpressProcessUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
@@ -47,20 +50,39 @@ public class EmailBean {
 		this.userEmail.setRecipients(String.join(",", recipients));
 	}
 
-	public void uploadAttachment(FileUploadEvent event) throws IOException {
-		UploadedFile uploadedFile = event.getFile();
-		List<ExpressAttachment> attachments = userEmail.getAttachments();
-		boolean isDuplicatedName = attachments
-				.stream()
-				.anyMatch(
-						attachment -> (attachment.getStatus() != ExpressEmailAttachmentStatus.DELETED && uploadedFile
-								.getFileName().equals(attachment.getName())));
-		if (isDuplicatedName) {
-			addFileDuplicationMessage(event, uploadedFile.getFileName());
-			return;
-		}
-		uploadAttachmentTemporarily(event);
-	}
+  public void uploadAttachment(FileUploadEvent event) throws IOException {
+    UploadedFile uploadedFile = event.getFile();
+    String uploadDocumentCheckMessage = checkFileSize(uploadedFile);
+    if (!StringUtils.isEmpty(uploadDocumentCheckMessage)) {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, uploadDocumentCheckMessage, null));
+      return;
+    }
+    
+    List<ExpressAttachment> attachments = userEmail.getAttachments();
+    boolean isDuplicatedName = attachments
+        .stream()
+        .anyMatch(
+            attachment -> (attachment.getStatus() != ExpressEmailAttachmentStatus.DELETED && uploadedFile
+                .getFileName().equals(attachment.getName())));
+    if (isDuplicatedName) {
+      addFileDuplicationMessage(event, uploadedFile.getFileName());
+      return;
+    }
+    uploadAttachmentTemporarily(event);
+  }
+
+  private String checkFileSize(UploadedFile uploadedFile) {
+    String uploadDocumentCheckMessage = "";
+    if(uploadedFile == null || uploadedFile.getSize() == 0) {
+      uploadDocumentCheckMessage =  Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage");
+    } else {
+      Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
+      if(uploadedFile.getSize() > maxFileUploadSize) {
+        uploadDocumentCheckMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
+      }
+    }
+    return uploadDocumentCheckMessage;
+  }
 
 	public void downloadAttachment(ExpressAttachment attachment)
 			throws IOException {
