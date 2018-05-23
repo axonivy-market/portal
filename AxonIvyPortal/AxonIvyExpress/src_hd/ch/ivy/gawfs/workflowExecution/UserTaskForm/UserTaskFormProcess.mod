@@ -24,11 +24,9 @@ Us0 @PushWFArc f2 '' #zField
 Us0 @RichDialogMethodStart f8 '' #zField
 Us0 @GridStep f9 '' #zField
 Us0 @PushWFArc f10 '' #zField
-Us0 @GridStep f12 '' #zField
-Us0 @PushWFArc f13 '' #zField
-Us0 @PushWFArc f5 '' #zField
 Us0 @RichDialogProcessEnd f11 '' #zField
 Us0 @PushWFArc f14 '' #zField
+Us0 @PushWFArc f5 '' #zField
 >Proto Us0 Us0 UserTaskFormProcess #zField
 Us0 f0 guid 162F0A4FA20C17F1 #txt
 Us0 f0 type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
@@ -39,10 +37,9 @@ Us0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 ' #txt
 Us0 f0 inParameterMapAction 'out.executePredefinedWorkflowData=param.executePredefinedWorkflowData;
 ' #txt
-Us0 f0 outParameterDecl '<gawfs.ExecutePredefinedWorkflowData executePredefinedWorkflowData,gawfs.TaskDef workingTaskDef> result;
+Us0 f0 outParameterDecl '<gawfs.ExecutePredefinedWorkflowData executePredefinedWorkflowData> result;
 ' #txt
 Us0 f0 outParameterMapAction 'result.executePredefinedWorkflowData=in.executePredefinedWorkflowData;
-result.workingTaskDef=in.workingTaskDef;
 ' #txt
 Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -81,7 +78,9 @@ Us0 f6 actionDecl 'ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData 
 ' #txt
 Us0 f6 actionTable 'out=in;
 ' #txt
-Us0 f6 actionCode in.executePredefinedWorkflowData.currentTask.dynaFormController.createForm(); #txt
+Us0 f6 actionCode 'in.executePredefinedWorkflowData.currentTask.dynaFormController.createForm();
+
+in.workingTask = in.executePredefinedWorkflowData.currentTask;' #txt
 Us0 f6 security system #txt
 Us0 f6 type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -136,31 +135,13 @@ Us0 f9 192 234 112 44 -29 -8 #rect
 Us0 f9 @|StepIcon #fIcon
 Us0 f10 expr out #txt
 Us0 f10 109 256 192 256 #arcP
-Us0 f12 actionDecl 'ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData out;
-' #txt
-Us0 f12 actionTable 'out=in;
-' #txt
-Us0 f12 actionCode 'in.workingTaskDef = in.executePredefinedWorkflowData.currentTask;' #txt
-Us0 f12 type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
-Us0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Update working&#xD;
-task definition</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 f12 192 138 128 44 -41 -16 #rect
-Us0 f12 @|StepIcon #fIcon
-Us0 f13 expr out #txt
-Us0 f13 109 160 192 160 #arcP
-Us0 f5 expr out #txt
-Us0 f5 320 160 403 160 #arcP
 Us0 f11 type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
 Us0 f11 403 243 26 26 0 12 #rect
 Us0 f11 @|RichDialogProcessEndIcon #fIcon
 Us0 f14 expr out #txt
 Us0 f14 304 256 403 256 #arcP
+Us0 f5 expr out #txt
+Us0 f5 109 160 403 160 #arcP
 >Proto Us0 .type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -171,9 +152,7 @@ Us0 f6 mainOut f2 tail #connect
 Us0 f2 head f1 mainIn #connect
 Us0 f8 mainOut f10 tail #connect
 Us0 f10 head f9 mainIn #connect
-Us0 f3 mainOut f13 tail #connect
-Us0 f13 head f12 mainIn #connect
-Us0 f12 mainOut f5 tail #connect
-Us0 f5 head f4 mainIn #connect
 Us0 f9 mainOut f14 tail #connect
 Us0 f14 head f11 mainIn #connect
+Us0 f3 mainOut f5 tail #connect
+Us0 f5 head f4 mainIn #connect
