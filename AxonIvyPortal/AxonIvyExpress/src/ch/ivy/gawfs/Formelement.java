@@ -10,7 +10,6 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.gawfs.enums.FormElementType;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean(name = "Formelement")
 @ViewScoped
