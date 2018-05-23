@@ -122,8 +122,6 @@
 										<p:outputLabel id="task-type-label" for="task-type" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')}:" />
 										<p:selectOneMenu id="task-type" required="true" value="#{gtask.taskType}" disabled="#{data.data.isUseDefaultUI}"
 											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-											<f:selectItem noSelectionOption="true"
-												itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" />
 											<f:selectItems value="#{status.index == 0 ? workflowDefinitionBean.taskTypesForFirstWorkflowTask : workflowDefinitionBean.getTaskTypes(data.data.definedTasks)}"
 												var="taskType" itemLabel="#{taskType.label}" itemValue="#{taskType}" />
 											<p:ajax event="change" process="@this" partialSubmit="true" global="false" />
