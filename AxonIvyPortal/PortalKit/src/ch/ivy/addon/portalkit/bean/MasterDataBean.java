@@ -1,15 +1,19 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.apache.commons.io.FileUtils;
 
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.enums.WSAuthenticationType;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.masterdata.MasterData;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @SessionScoped
@@ -59,5 +63,10 @@ public class MasterDataBean implements Serializable {
 
   public Long getFileUploadSizeLimit() {
     return MasterData.getFileUploadSizeLimit();
+  }
+  
+  public String getFileUploadInvalidSizeMessage() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
+        Arrays.asList(FileUtils.byteCountToDisplaySize(getFileUploadSizeLimit())));
   }
 }
