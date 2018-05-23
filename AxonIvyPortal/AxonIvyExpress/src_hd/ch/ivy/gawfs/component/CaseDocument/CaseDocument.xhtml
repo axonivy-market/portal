@@ -53,7 +53,7 @@
 				<p:commandLink id="document-delete" styleClass="fa fa-trash-o"
 					actionListener="#{logic.deleteFile(document.downloadPath)}"
 					rendered="#{cc.attrs.uploadPossible}"
-					update="document-table"
+					update="document-table" immediate="true"
 					title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
 				</p:commandLink>
