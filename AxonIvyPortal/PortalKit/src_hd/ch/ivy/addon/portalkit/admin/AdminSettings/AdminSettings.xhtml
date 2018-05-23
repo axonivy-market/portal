@@ -217,6 +217,7 @@
 									<p:fileUpload id="login-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
 										update="login-logo-preview" invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
 										label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" styleClass="login-logo-chooser"
+                                        invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
 										fileUploadListener="#{designChooserBean.uploadLoginLogo}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"/>
 								</p:panelGrid>
 							</p:column>
@@ -260,6 +261,7 @@
 										update="home-logo-preview" styleClass="home-logo-chooser" sizeLimit="#{masterDataBean.getFileUploadSizeLimit}"
 										invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
 										label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
+                                        invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
 										fileUploadListener="#{designChooserBean.uploadHomeLogo}" />
 								</p:panelGrid>
 							</p:column>
