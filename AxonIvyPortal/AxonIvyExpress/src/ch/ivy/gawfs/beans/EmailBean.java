@@ -52,6 +52,9 @@ public class EmailBean {
 
   public void uploadAttachment(FileUploadEvent event) throws IOException {
     UploadedFile uploadedFile = event.getFile();
+    if (uploadedFile == null) {
+      return;
+    }
     String uploadDocumentCheckMessage = checkFileSize(uploadedFile);
     if (!StringUtils.isEmpty(uploadDocumentCheckMessage)) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, uploadDocumentCheckMessage, null));
