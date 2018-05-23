@@ -13,25 +13,25 @@
 <cc:implementation>
   <c:set value="#{cc.attrs.case}" var="case" />
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
-  
-  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-document-column #{cc.attrs.styleClass}" >
+
+  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-document-column #{cc.attrs.styleClass}">
     <p:scrollPanel styleClass="case-details-document-scrollpanel" mode="native" id="case-details-documents">
-      <ui:repeat var="document" value="#{data.documents}" varStatus="status" id="document-list" >
-      	<h:form prependId="false">
-        <h:panelGroup layout="block" rendered="#{document ne null}"
-          styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
-          <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command">
-            <p:fileDownload value="#{logic.downloadDocument(document,case)}" />
-            <span class="fa fa-file-pdf-o case-details-document-download-icon" />
-            <h:outputText value="#{document.name}" styleClass="js-document-name" />
-          </p:commandLink>
-          <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}" 
-            rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and case.canUploadDeleteDocument}"
-            styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
-            <p:tooltip for="delete-file"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
-          </p:commandLink>
-        </h:panelGroup>
+      <ui:repeat var="document" value="#{data.documents}" varStatus="status" id="document-list">
+        <h:form prependId="false">
+          <h:panelGroup layout="block" rendered="#{document ne null}"
+            styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
+            <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command">
+              <p:fileDownload value="#{logic.downloadDocument(document,case)}" />
+              <span class="fa fa-file-pdf-o case-details-document-download-icon" />
+              <h:outputText value="#{document.name}" styleClass="js-document-name" />
+            </p:commandLink>
+            <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}"
+              rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and case.canUploadDeleteDocument}"
+              styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
+              <p:tooltip for="delete-file"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
+            </p:commandLink>
+          </h:panelGroup>
         </h:form>
       </ui:repeat>
 
@@ -41,7 +41,7 @@
     </p:scrollPanel>
 
     <h:panelGroup layout="block" styleClass="case-details-document-add">
-      <p:commandLink id="add-document-command" styleClass="case-details-document-add-link" 
+      <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
         rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and case.canUploadDeleteDocument}"
         actionListener="#{data.setRemoteCase(case)}" oncomplete="PF('document-upload-dialog-#{case.id}').show()">
         <span class="fa fa-plus-circle case-details-document-add-link-icon" />
@@ -59,7 +59,8 @@
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
         mode="advanced" dragDropSupport="true" multiple="true" oncomplete="documentTruncation.truncate();"
         update="#{cc.clientId}:document-upload-form:upload-messages #{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate}"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" />
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"
+        sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button"
@@ -76,8 +77,8 @@
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
       <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
-        update="#{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate}" actionListener="#{logic.deleteDocument}"
-        oncomplete="PF('document-deletion-dialog-#{case.id}').hide()" />
+        update="#{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate}"
+        actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog-#{case.id}').hide()" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"
         onsuccess="PF('document-deletion-dialog-#{case.id}').hide()" />
@@ -85,10 +86,10 @@
   </p:confirmDialog>
 
   <script>
-			function scrollDocumentsToBottom() {
-				$("[id$='case-details-documents']").scrollTop(10000);
-			}
-		</script>
+      function scrollDocumentsToBottom() {
+        $("[id$='case-details-documents']").scrollTop(10000);
+      }
+    </script>
 
   <h:outputScript library="js" name="document-truncation.js" />
 </cc:implementation>
