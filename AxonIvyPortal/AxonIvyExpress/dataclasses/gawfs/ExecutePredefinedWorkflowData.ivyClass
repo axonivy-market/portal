@@ -9,10 +9,6 @@ approvalTaskResults PERSISTENT #fieldModifier
 taskSplittingCounter Number #field
 currentTask gawfs.TaskDef #field
 currentTask PERSISTENT #fieldModifier
-currentTaskIndex Number #field
-currentTaskIndex PERSISTENT #fieldModifier
-mostRecentUserTask gawfs.TaskDef #field
-mostRecentUserTask PERSISTENT #fieldModifier
 definedTasks List<gawfs.TaskDef> #field
 definedTasks PERSISTENT #fieldModifier
 finishedTasks java.util.List<gawfs.TaskDef> #field
