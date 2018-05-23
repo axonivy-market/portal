@@ -42,6 +42,8 @@
       <p:fileUpload id="choose-uploading-file" mode="advanced" dragDropSupport="true" multiple="true"
         update="#{p:component('document-table')} uploading-file-message" fileUploadListener="#{logic.submitUpload}"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"
+        invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
+        
         sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
     </div>
   </h:form>

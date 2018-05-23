@@ -51,7 +51,9 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
         <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
           mode="advanced" dragDropSupport="true" multiple="true" update="upload-messages" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
-          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" />
+          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" 
+          invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
+          />
           <f:attribute name="clientId" value="#{cc.clientId}" />
       </h:form>
 
