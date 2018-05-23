@@ -82,7 +82,7 @@
 						</p:commandLink>
 						<p:spacer width="20px"></p:spacer>
 						<p:commandLink id="document-delete" styleClass="fa fa-trash-o email-attachment"
-							actionListener="#{emailBean.deleteAttachment(attachment)}"
+							actionListener="#{emailBean.deleteAttachment(attachment)}" immediate="true"
 							update="attachment-table"
 							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
 							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
