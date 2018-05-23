@@ -17,7 +17,7 @@
 	<ui:define name="title" />
 
     <ui:define name="errorsZone">
-      <p:messages showDetail="false" closable="true" autoUpdate="true" />
+      <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate="false" />
     </ui:define>
 
     <ui:define name="dynamicTabs">
@@ -107,7 +107,7 @@
               actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
           </p:outputPanel>
           <p:remoteCommand id="submit-command" name="submitData" partialSubmit="true"
-             process="request-form mail-form" update="request-form mail-form"
+             process="request-form mail-form" update="request-form mail-form error-messages"
             actionListener="#{logic.close}" styleClass="buttonDelegate" icon="fa fa-check"/>
         
     	</h:form>

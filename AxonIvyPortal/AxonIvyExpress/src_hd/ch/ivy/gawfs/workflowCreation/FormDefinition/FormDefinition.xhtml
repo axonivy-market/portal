@@ -19,6 +19,9 @@
 
 
 		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
+        <ui:define name="errorsZone">
+          <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate="false" />
+        </ui:define>
 		<ui:define name="taskForm">
 			<p:growl id="error-growl" autoUpdate="false" globalOnly="true" showDetail="false" showSummary="true" />
 			<!-- DEFINED TASKS -->

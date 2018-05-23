@@ -10,168 +10,163 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.gawfs.enums.FormElementType;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean(name = "Formelement")
 @ViewScoped
-public class Formelement implements Serializable{
+public class Formelement implements Serializable {
 
-	private static final String COLON = ":";
+  private static final String COLON = ":";
 
-	private static final long serialVersionUID = -4960948147758580124L;
-	
-	private String id;					//automatic Id
-	private String label;				//FormLabel
-	private Boolean required;			//Is the Field a required field?
-	private Integer intSetting;			//setting like number of rows or number of files
-	private List<FormelementOption> options;		//list of options for ManyCheckbox or OneMenu, but also allowed File-Formats
-	private FormElementType type;				//Form element type
-	private List<String> optionsStr;	//String List representation of options
-	private int taskPosition;  //Position of the task which this element belonged to
-	private Object value;        //Value of the Formelement, later Userinput
-	
-	public Formelement() {
+  private static final long serialVersionUID = -4960948147758580124L;
+
+  private String id; // automatic Id
+  private String label; // FormLabel
+  private Boolean required; // Is the Field a required field?
+  private Integer intSetting; // setting like number of rows or number of files
+  private List<FormelementOption> options; // list of options for ManyCheckbox or OneMenu, but also allowed File-Formats
+  private FormElementType type; // Form element type
+  private List<String> optionsStr; // String List representation of options
+  private int taskPosition; // Position of the task which this element belonged to
+  private Object value; // Value of the Formelement, later Userinput
+
+  public Formelement() {
     options = new ArrayList<>();
     optionsStr = new ArrayList<>();
   }
-  
+
   public Formelement(String id) {
     options = new ArrayList<>();
     optionsStr = new ArrayList<>();
     this.id = id;
   }
-	
-	public List<String> getOptionsStr() {
-		this.optionsStr.clear();
-		for (FormelementOption formelementOption : options) {
-		  Ivy.log().error("add this string to optionStr:{0}",formelementOption.getValue());
-			optionsStr.add(formelementOption.getValue());			
-		}			
-		if(this.optionsStr.isEmpty()){
-			this.optionsStr.add(StringUtils.EMPTY);
-		}		
-		return optionsStr;
-	}
 
-	public void setOptionsStr(List<String> optionsStr) {
-		this.options.clear();
-		for (String optionString : optionsStr) {
-			this.options.add(new FormelementOption(optionString));
-		}	
-		this.optionsStr = optionsStr;
-	}
-	
-	public String getOptionsAsString(){
-		String x = StringUtils.EMPTY;
-		for(String s: this.optionsStr){
-		  if(this.optionsStr.size() > 1) {
-		    x += s + COLON;
-		  }
-		  else {
-		    x += s;
-		  }
-		}
-		if(x.length()>1){
-			x = x.substring( 0, x.length() - 1 );
-		}	
-		
-		Ivy.log().error("Return string is {0}", x);
-		return x;
-		
-	}
+  public List<String> getOptionsStr() {
+    this.optionsStr.clear();
+    for (FormelementOption formelementOption : options) {
+      optionsStr.add(formelementOption.getValue());
+    }
+    if (this.optionsStr.isEmpty()) {
+      this.optionsStr.add(StringUtils.EMPTY);
+    }
+    return optionsStr;
+  }
 
-	public String getId() {
-		return id;
-	}
+  public void setOptionsStr(List<String> optionsStr) {
+    this.options.clear();
+    for (String optionString : optionsStr) {
+      this.options.add(new FormelementOption(optionString));
+    }
+    this.optionsStr = optionsStr;
+  }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  public String getOptionsAsString() {
+    String x = StringUtils.EMPTY;
+    for (String s : this.optionsStr) {
+      if (this.optionsStr.size() > 1) {
+        x += s + COLON;
+      } else {
+        x += s;
+      }
+    }
+    if (x.length() > 1) {
+      x = x.substring(0, x.length() - 1);
+    }
+    return x;
 
-	public String getLabel() {
-		return label;
-	}
-	
-	public String getDisplayLabel() {
-		String displayLabel = this.label.trim();
-		if(displayLabel.substring(displayLabel.length() - 1).equals(COLON)){
-			return displayLabel;
-		}else{
-			displayLabel +=COLON;
-			return displayLabel;
-		}
-	}
-	
-	public void setLabel(String label) {
-		this.label = label;
-	}
+  }
 
-	public Boolean getRequired() {
-		return required;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public void setRequired(Boolean required) {
-		this.required = required;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public Integer getIntSetting() {
-		return intSetting;
-	}
+  public String getLabel() {
+    return label;
+  }
 
-	public void setIntSetting(Integer intSetting) {
-		this.intSetting = intSetting;
-	}
+  public String getDisplayLabel() {
+    String displayLabel = this.label.trim();
+    if (displayLabel.substring(displayLabel.length() - 1).equals(COLON)) {
+      return displayLabel;
+    } else {
+      displayLabel += COLON;
+      return displayLabel;
+    }
+  }
 
-	public FormElementType getType() {
-		return type;
-	}
+  public void setLabel(String label) {
+    this.label = label;
+  }
 
-	public void setType(FormElementType type) {
-		this.type = type;
-	}
+  public Boolean getRequired() {
+    return required;
+  }
 
-	public List<FormelementOption> getOptions() {
-		return options;
-	}
+  public void setRequired(Boolean required) {
+    this.required = required;
+  }
 
-	public void setOptions(List<FormelementOption> options) {
-		this.options = options;
-		
-		this.optionsStr.clear();
-		for (FormelementOption formelementOption : options) {
-			optionsStr.add(formelementOption.getValue());			
-		}
-	}
-	
-	public void addOption(){
-		this.options.add(new FormelementOption(StringUtils.EMPTY));
-		this.optionsStr.clear();
-		for (FormelementOption formelementOption : options) {
-			optionsStr.add(formelementOption.getValue());			
-		}
-	}
-	
-	public void addOption(FormelementOption option){
-		this.options.add(option);
-		this.optionsStr.clear();
-		for (FormelementOption formelementOption : options) {
-			optionsStr.add(formelementOption.getValue());			
-		}
-	}
-	
-	public void addOption(String option){
-		this.options.add(new FormelementOption(option));
-		this.optionsStr.clear();
-		for (FormelementOption formelementOption : options) {
-			optionsStr.add(formelementOption.getValue());			
-		}
-	}
-	
-	public void deleteOption(FormelementOption option){
-		this.options.remove(option);
-	}
-	
-	public int getTaskPosition() {
+  public Integer getIntSetting() {
+    return intSetting;
+  }
+
+  public void setIntSetting(Integer intSetting) {
+    this.intSetting = intSetting;
+  }
+
+  public FormElementType getType() {
+    return type;
+  }
+
+  public void setType(FormElementType type) {
+    this.type = type;
+  }
+
+  public List<FormelementOption> getOptions() {
+    return options;
+  }
+
+  public void setOptions(List<FormelementOption> options) {
+    this.options = options;
+
+    this.optionsStr.clear();
+    for (FormelementOption formelementOption : options) {
+      optionsStr.add(formelementOption.getValue());
+    }
+  }
+
+  public void addOption() {
+    this.options.add(new FormelementOption(StringUtils.EMPTY));
+    this.optionsStr.clear();
+    for (FormelementOption formelementOption : options) {
+      optionsStr.add(formelementOption.getValue());
+    }
+  }
+
+  public void addOption(FormelementOption option) {
+    this.options.add(option);
+    this.optionsStr.clear();
+    for (FormelementOption formelementOption : options) {
+      optionsStr.add(formelementOption.getValue());
+    }
+  }
+
+  public void addOption(String option) {
+    this.options.add(new FormelementOption(option));
+    this.optionsStr.clear();
+    for (FormelementOption formelementOption : options) {
+      optionsStr.add(formelementOption.getValue());
+    }
+  }
+
+  public void deleteOption(FormelementOption option) {
+    this.options.remove(option);
+  }
+
+  public int getTaskPosition() {
     return taskPosition;
   }
 
