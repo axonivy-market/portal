@@ -60,6 +60,7 @@
         mode="advanced" dragDropSupport="true" multiple="true" oncomplete="documentTruncation.truncate();"
         update="#{cc.clientId}:document-upload-form:upload-messages #{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate}"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"
+        invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
         sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
     </h:form>
     <f:facet name="footer">
