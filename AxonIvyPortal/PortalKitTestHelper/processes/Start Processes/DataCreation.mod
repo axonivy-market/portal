@@ -1,5 +1,5 @@
 [Ivy]
-153CACC26D0D4C3D 3.20 #module
+153CACC26D0D4C3D 3.23 #module
 >Proto >Proto Collection #zClass
 Dt0 DataCreation Big #zClass
 Dt0 B #cInfo
@@ -54,6 +54,18 @@ Dt0 @EndTask f21 '' #zField
 Dt0 @GridStep f22 '' #zField
 Dt0 @PushWFArc f36 '' #zField
 Dt0 @PushWFArc f38 '' #zField
+Dt0 @StartRequest f39 '' #zField
+Dt0 @Trigger f40 '' #zField
+Dt0 @EndTask f44 '' #zField
+Dt0 @GridStep f45 '' #zField
+Dt0 @Alternative f46 '' #zField
+Dt0 @GridStep f47 '' #zField
+Dt0 @PushWFArc f48 '' #zField
+Dt0 @PushWFArc f49 '' #zField
+Dt0 @PushWFArc f50 '' #zField
+Dt0 @PushWFArc f51 '' #zField
+Dt0 @PushWFArc f52 '' #zField
+Dt0 @PushWFArc f53 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -473,6 +485,123 @@ Dt0 f36 expr out #txt
 Dt0 f36 95 736 168 736 #arcP
 Dt0 f38 expr out #txt
 Dt0 f38 280 736 337 736 #arcP
+Dt0 f39 outLink createDataWithParam.ivp #txt
+Dt0 f39 type portalKit_test.DataCreationData #txt
+Dt0 f39 inParamDecl '<java.lang.Integer numberOfCasesPerSubCat,java.lang.Integer numberOfCats,java.lang.Integer numberOfSubCats> param;' #txt
+Dt0 f39 inParamTable 'out.numOfCasesPerSubCat=param.numberOfCasesPerSubCat;
+out.numOfCats=param.numberOfCats;
+out.numOfSubCats=param.numberOfSubCats;
+' #txt
+Dt0 f39 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f39 guid 1638B1002C34E853 #txt
+Dt0 f39 requestEnabled true #txt
+Dt0 f39 triggerEnabled false #txt
+Dt0 f39 callSignature createDataWithParam(Integer,Integer,Integer) #txt
+Dt0 f39 persist false #txt
+Dt0 f39 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f39 caseData businessCase.attach=true #txt
+Dt0 f39 showInStartList 1 #txt
+Dt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createDataWithParam.ivp</name>
+        <nameStyle>23,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f39 @C|.responsibility Everybody #txt
+Dt0 f39 817 89 30 30 -69 17 #rect
+Dt0 f39 @|StartRequestIcon #fIcon
+Dt0 f40 type portalKit_test.DataCreationData #txt
+Dt0 f40 processCall 'Start Processes/DataCreation:createTasks(String)' #txt
+Dt0 f40 doCall true #txt
+Dt0 f40 requestActionDecl '<java.lang.String taskStructureInfo> param;
+' #txt
+Dt0 f40 requestMappingAction 'param.taskStructureInfo=in.handler.getNextTaskStructureInfo();
+' #txt
+Dt0 f40 responseActionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f40 responseMappingAction 'out=in;
+' #txt
+Dt0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DataCreation</name>
+        <nameStyle>12,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f40 1338 92 36 24 31 -8 #rect
+Dt0 f40 @|TriggerIcon #fIcon
+Dt0 f44 type portalKit_test.DataCreationData #txt
+Dt0 f44 1343 144 26 26 14 0 #rect
+Dt0 f44 @|EndIcon #fIcon
+Dt0 f45 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f45 actionTable 'out=in;
+' #txt
+Dt0 f45 actionCode 'import ch.ivy.addon.portalkit.test.util.DataCreationHandler;
+in.handler = new DataCreationHandler(in.numOfCats, in.numOfSubCats, in.numOfCasesPerSubCat);
+' #txt
+Dt0 f45 type portalKit_test.DataCreationData #txt
+Dt0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init handler</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f45 1002 92 36 24 -29 -36 #rect
+Dt0 f45 @|StepIcon #fIcon
+Dt0 f46 type portalKit_test.DataCreationData #txt
+Dt0 f46 1078 90 28 28 14 0 #rect
+Dt0 f46 @|AlternativeIcon #fIcon
+Dt0 f47 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f47 actionTable 'out=in;
+' #txt
+Dt0 f47 actionCode Thread.sleep(10); #txt
+Dt0 f47 type portalKit_test.DataCreationData #txt
+Dt0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sleep a bit before
+triggering new process</name>
+        <nameStyle>41,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f47 1074 41 36 24 28 -17 #rect
+Dt0 f47 @|StepIcon #fIcon
+Dt0 f48 expr out #txt
+Dt0 f48 1092 65 1092 90 #arcP
+Dt0 f48 0 0.6769541452291947 0 0 #arcLabel
+Dt0 f49 expr in #txt
+Dt0 f49 1092 118 1343 157 #arcP
+Dt0 f49 1 1092 157 #addKink
+Dt0 f49 1 0.47052792263013193 0 0 #arcLabel
+Dt0 f50 expr out #txt
+Dt0 f50 1038 104 1078 104 #arcP
+Dt0 f51 expr out #txt
+Dt0 f51 1356 92 1110 53 #arcP
+Dt0 f51 1 1356 53 #addKink
+Dt0 f51 1 0.34796177730166244 0 0 #arcLabel
+Dt0 f52 expr in #txt
+Dt0 f52 outCond in.handler.createMoreTasks() #txt
+Dt0 f52 1106 104 1338 104 #arcP
+Dt0 f53 expr out #txt
+Dt0 f53 847 104 1002 104 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -520,3 +649,15 @@ Dt0 f20 mainOut f36 tail #connect
 Dt0 f36 head f22 mainIn #connect
 Dt0 f22 mainOut f38 tail #connect
 Dt0 f38 head f21 mainIn #connect
+Dt0 f45 mainOut f50 tail #connect
+Dt0 f50 head f46 in #connect
+Dt0 f46 out f52 tail #connect
+Dt0 f52 head f40 mainIn #connect
+Dt0 f46 out f49 tail #connect
+Dt0 f49 head f44 mainIn #connect
+Dt0 f40 mainOut f51 tail #connect
+Dt0 f51 head f47 mainIn #connect
+Dt0 f47 mainOut f48 tail #connect
+Dt0 f48 head f46 in #connect
+Dt0 f39 mainOut f53 tail #connect
+Dt0 f53 head f45 mainIn #connect
