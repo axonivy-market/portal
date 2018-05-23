@@ -126,7 +126,8 @@ Fs0 f6 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefi
 Fs0 f6 actionTable 'out=in;
 out.one=1;
 ' #txt
-Fs0 f6 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+Fs0 f6 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+import ch.ivy.gawfs.enums.ProcessType;
 import java.util.ArrayList;
 import java.util.Collections;
 import ch.ivyteam.ivy.security.IRole;
@@ -141,6 +142,7 @@ ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskDescri
 
 if(in.data.definedTasks.size()<1){
 	TaskDef task = new TaskDef();
+	task.taskType = TaskType.USER_TASK;
 	task.position = 1;
 	task.untilDays = 1;
 	task.responsibles = new ArrayList();
@@ -212,11 +214,13 @@ Fs0 f10 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDef
 ' #txt
 Fs0 f10 actionTable 'out=in;
 ' #txt
-Fs0 f10 actionCode 'import java.util.ArrayList;
+Fs0 f10 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+import java.util.ArrayList;
 import gawfs.TaskDef;
 
 
 TaskDef task = new TaskDef();
+task.taskType = TaskType.USER_TASK;
 task.position = in.data.definedTasks.get(in.data.definedTasks.size()-1).position + 1;
 task.untilDays = 1;
 task.responsibles = new ArrayList();
