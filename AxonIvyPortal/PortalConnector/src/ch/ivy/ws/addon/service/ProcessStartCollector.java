@@ -1,8 +1,11 @@
 package ch.ivy.ws.addon.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.util.IvyExecutor;
@@ -25,24 +28,27 @@ public class ProcessStartCollector {
   }
 
   public IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
-    if (application != null && !isActive(application)) {
+    if (application != null && isActive(application)) {
       List<IProcessModel> processModels = application.getProcessModelsSortedByName();
-      Optional<IProcessModelVersion> processModelVersion =
+      List<IProcessModelVersion> processModelVersions =
           processModels.stream().filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
-              .filter(this::isActive).findFirst();
-      if (processModelVersion.isPresent()) {
-        IWorkflowProcessModelVersion workflowPmv = getWorkflowProcessModelVersion(processModelVersion.get());
-        IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
-        if (processStart != null) {
-          return processStart;
+              .filter(this::isActive).collect(Collectors.toList());
+      if (CollectionUtils.isNotEmpty(processModelVersions)) {
+        Optional<IProcessStart> processStart =
+            processModelVersions.stream().map(p -> findProcessStart(p, requestPath)).filter(Objects::nonNull)
+                .findFirst();
+        if (processStart.isPresent()) {
+          return processStart.get();
         }
       }
     }
     return null;
   }
 
-  private IWorkflowProcessModelVersion getWorkflowProcessModelVersion(IProcessModelVersion processModelVersion) {
-    return WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+  private IProcessStart findProcessStart(IProcessModelVersion processModelVersion, String requestPath) {
+    IWorkflowProcessModelVersion workflowPmv =
+        WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+    return workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
   }
 
   public String findACMLink() {
