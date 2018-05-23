@@ -52,7 +52,6 @@ Ts0 @PushWFArc f29 '' #zField
 Ts0 @PushWFArc f15 '' #zField
 Ts0 @PushWFArc f32 '' #zField
 Ts0 @PushWFArc f31 '' #zField
-Ts0 @PushWFArc f36 '' #zField
 Ts0 @PushWFArc f43 '' #zField
 Ts0 @PushWFArc f46 '' #zField
 Ts0 @PushWFArc f50 '' #zField
@@ -73,12 +72,13 @@ Ts0 @Alternative f19 '' #zField
 Ts0 @PushWFArc f33 '' #zField
 Ts0 @PushWFArc f14 '' #zField
 Ts0 @PushWFArc f34 '' #zField
-Ts0 @GridStep f37 '' #zField
-Ts0 @PushWFArc f38 '' #zField
-Ts0 @PushWFArc f5 '' #zField
 Ts0 @GridStep f41 '' #zField
 Ts0 @PushWFArc f64 '' #zField
 Ts0 @PushWFArc f10 '' #zField
+Ts0 @GridStep f65 '' #zField
+Ts0 @PushWFArc f36 '' #zField
+Ts0 @PushWFArc f66 '' #zField
+Ts0 @PushWFArc f5 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
 Ts0 f0 guid 1549452C02A2D7AA #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
@@ -157,7 +157,7 @@ Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f35 474 130 28 28 14 0 #rect
+Ts0 f35 474 242 28 28 14 0 #rect
 Ts0 f35 @|AlternativeIcon #fIcon
 Ts0 f60 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f60 1197 277 22 22 14 0 #rect
@@ -174,7 +174,7 @@ in.documentFile = new DefaultStreamedContent(inputStream, in.document.getContent
 
 ' #txt
 Ts0 f26 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f26 726 204 36 24 20 -2 #rect
+Ts0 f26 726 220 36 24 20 -2 #rect
 Ts0 f26 @|StepIcon #fIcon
 Ts0 f49 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
@@ -326,10 +326,10 @@ downloadDocument</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f24 726 140 36 24 23 -8 #rect
+Ts0 f24 726 156 36 24 23 -8 #rect
 Ts0 f24 @|CallSubIcon #fIcon
 Ts0 f54 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f54 477 653 22 22 14 0 #rect
+Ts0 f54 477 741 22 22 14 0 #rect
 Ts0 f54 @|RichDialogProcessEndIcon #fIcon
 Ts0 f28 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -341,7 +341,7 @@ Ts0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f28 474 538 28 28 14 0 #rect
+Ts0 f28 474 626 28 28 14 0 #rect
 Ts0 f28 @|AlternativeIcon #fIcon
 Ts0 f40 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f40 1429 341 22 22 14 0 #rect
@@ -392,7 +392,7 @@ Ts0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f58 470 492 36 24 20 -2 #rect
+Ts0 f58 470 580 36 24 20 -2 #rect
 Ts0 f58 @|CallSubIcon #fIcon
 Ts0 f13 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
@@ -411,7 +411,7 @@ if no errors</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f13 470 596 36 24 21 -11 #rect
+Ts0 f13 470 684 36 24 21 -11 #rect
 Ts0 f13 @|StepIcon #fIcon
 Ts0 f16 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f16 processCall MultiPortal/CaseService:findDocuments(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
@@ -460,7 +460,7 @@ Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f56 470 436 36 24 20 -2 #rect
+Ts0 f56 470 524 36 24 20 -2 #rect
 Ts0 f56 @|StepIcon #fIcon
 Ts0 f62 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
@@ -519,7 +519,7 @@ Ts0 f18 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocument
 Ts0 f18 173 453 22 22 14 0 #rect
 Ts0 f18 @|RichDialogProcessEndIcon #fIcon
 Ts0 f22 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f22 733 269 22 22 14 0 #rect
+Ts0 f22 733 285 22 22 14 0 #rect
 Ts0 f22 @|RichDialogProcessEndIcon #fIcon
 Ts0 f30 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
@@ -544,33 +544,31 @@ message</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f30 646 596 36 24 24 -15 #rect
+Ts0 f30 646 684 36 24 24 -15 #rect
 Ts0 f30 @|StepIcon #fIcon
 Ts0 f17 expr out #txt
 Ts0 f17 184 107 184 164 #arcP
 Ts0 f59 expr out #txt
-Ts0 f59 488 460 488 492 #arcP
+Ts0 f59 488 548 488 580 #arcP
 Ts0 f25 expr out #txt
-Ts0 f25 744 107 744 140 #arcP
+Ts0 f25 744 107 744 156 #arcP
 Ts0 f23 expr out #txt
-Ts0 f23 744 228 744 269 #arcP
+Ts0 f23 744 244 744 285 #arcP
 Ts0 f27 expr out #txt
-Ts0 f27 744 164 744 204 #arcP
+Ts0 f27 744 180 744 220 #arcP
 Ts0 f29 expr out #txt
-Ts0 f29 488 516 488 538 #arcP
+Ts0 f29 488 604 488 626 #arcP
 Ts0 f15 expr in #txt
 Ts0 f15 outCond in.errors.isEmpty() #txt
-Ts0 f15 488 566 488 596 #arcP
+Ts0 f15 488 654 488 684 #arcP
 Ts0 f32 expr out #txt
-Ts0 f32 664 620 499 664 #arcP
-Ts0 f32 1 664 664 #addKink
+Ts0 f32 664 708 499 752 #arcP
+Ts0 f32 1 664 752 #addKink
 Ts0 f32 1 0.2544295989340298 0 0 #arcLabel
 Ts0 f31 expr in #txt
-Ts0 f31 502 552 664 596 #arcP
-Ts0 f31 1 664 552 #addKink
+Ts0 f31 502 640 664 684 #arcP
+Ts0 f31 1 664 640 #addKink
 Ts0 f31 0 0.7001921317088737 0 0 #arcLabel
-Ts0 f36 expr out #txt
-Ts0 f36 488 107 488 130 #arcP
 Ts0 f43 expr out #txt
 Ts0 f43 1440 99 1440 140 #arcP
 Ts0 f46 expr out #txt
@@ -593,7 +591,7 @@ Ts0 f63 1208 99 1208 172 #arcP
 Ts0 f61 expr out #txt
 Ts0 f61 1208 196 1208 277 #arcP
 Ts0 f20 expr out #txt
-Ts0 f20 488 620 488 653 #arcP
+Ts0 f20 488 708 488 741 #arcP
 Ts0 f3 expr out #txt
 Ts0 f3 1440 292 1440 341 #arcP
 Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
@@ -613,11 +611,11 @@ message</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f4 312 436 32 24 -65 18 #rect
+Ts0 f4 312 428 32 24 -65 18 #rect
 Ts0 f4 @|StepIcon #fIcon
 Ts0 f7 expr out #txt
-Ts0 f7 328 460 477 664 #arcP
-Ts0 f7 1 328 664 #addKink
+Ts0 f7 328 452 477 752 #arcP
+Ts0 f7 1 328 752 #addKink
 Ts0 f7 1 0.1 -12 0 #arcLabel
 Ts0 f8 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
@@ -674,10 +672,10 @@ Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f11 408 230 160 44 -71 -8 #rect
+Ts0 f11 408 318 160 44 -71 -8 #rect
 Ts0 f11 @|CallSubIcon #fIcon
 Ts0 f12 expr in #txt
-Ts0 f12 outCond 'in.documentUploadEvent.getFile() != null && in.documentUploadEvent.getFile().getSize() > 0' #txt
+Ts0 f12 outCond org.apache.commons.lang.StringUtils.isBlank(in.uploadDocumentCheckMessage) #txt
 Ts0 f12 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -687,8 +685,8 @@ Ts0 f12 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f12 488 158 488 230 #arcP
-Ts0 f12 0 0.3333333333333333 15 0 #arcLabel
+Ts0 f12 488 270 488 318 #arcP
+Ts0 f12 0 0.3333333333333333 -17 0 #arcLabel
 Ts0 f19 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -699,10 +697,10 @@ Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f19 472 336 32 32 25 -10 #rect
+Ts0 f19 472 424 32 32 25 -10 #rect
 Ts0 f19 @|AlternativeIcon #fIcon
 Ts0 f33 expr out #txt
-Ts0 f33 488 274 488 336 #arcP
+Ts0 f33 488 362 488 424 #arcP
 Ts0 f14 expr in #txt
 Ts0 f14 outCond 'in.uploadDocumentCheckStatus == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK' #txt
 Ts0 f14 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -714,43 +712,11 @@ Ts0 f14 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f14 488 368 488 436 #arcP
+Ts0 f14 488 456 488 524 #arcP
 Ts0 f14 0 0.47058823529411764 17 0 #arcLabel
 Ts0 f34 expr in #txt
-Ts0 f34 472 352 328 436 #arcP
-Ts0 f34 1 328 352 #addKink
-Ts0 f34 0 0.8263160052642614 0 0 #arcLabel
-Ts0 f37 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f37 actionTable 'out=in;
-' #txt
-Ts0 f37 actionCode 'in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");' #txt
-Ts0 f37 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set error message</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f37 272 234 112 44 -51 -8 #rect
-Ts0 f37 @|StepIcon #fIcon
-Ts0 f38 expr in #txt
-Ts0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f38 474 144 328 234 #arcP
-Ts0 f38 1 328 144 #addKink
-Ts0 f38 1 0.4111111111111111 12 0 #arcLabel
-Ts0 f5 expr out #txt
-Ts0 f5 328 278 328 436 #arcP
-Ts0 f5 0 0.10000000000000002 -12 0 #arcLabel
+Ts0 f34 472 440 344 440 #arcP
+Ts0 f34 0 0.521883792798481 0 0 #arcLabel
 Ts0 f41 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
 Ts0 f41 actionTable 'out=in;
@@ -780,6 +746,49 @@ Ts0 f64 expr out #txt
 Ts0 f64 184 294 184 346 #arcP
 Ts0 f10 expr out #txt
 Ts0 f10 184 390 184 453 #arcP
+Ts0 f65 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f65 actionTable 'out=in;
+' #txt
+Ts0 f65 actionCode 'import org.apache.commons.io.FileUtils;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.masterdata.MasterData;
+in.uploadDocumentCheckMessage = "";
+if(in.documentUploadEvent.getFile() == null || in.documentUploadEvent.getFile().getSize() == 0) {
+	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");
+} else {
+	Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
+	if(in.documentUploadEvent.getFile().getSize() > maxFileUploadSize) {
+		in.uploadDocumentCheckMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
+	}
+}' #txt
+Ts0 f65 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validate file</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f65 444 156 88 40 -31 -8 #rect
+Ts0 f65 @|StepIcon #fIcon
+Ts0 f36 expr out #txt
+Ts0 f36 488 107 488 156 #arcP
+Ts0 f66 expr out #txt
+Ts0 f66 488 196 488 242 #arcP
+Ts0 f5 expr in #txt
+Ts0 f5 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f5 474 256 328 428 #arcP
+Ts0 f5 1 328 256 #addKink
+Ts0 f5 0 0.863013698630137 0 -9 #arcLabel
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -806,8 +815,6 @@ Ts0 f28 out f31 tail #connect
 Ts0 f31 head f30 mainIn #connect
 Ts0 f30 mainOut f32 tail #connect
 Ts0 f32 head f54 mainIn #connect
-Ts0 f53 mainOut f36 tail #connect
-Ts0 f36 head f35 in #connect
 Ts0 f39 mainOut f43 tail #connect
 Ts0 f43 head f42 mainIn #connect
 Ts0 f44 mainOut f46 tail #connect
@@ -838,11 +845,13 @@ Ts0 f19 out f14 tail #connect
 Ts0 f14 head f56 mainIn #connect
 Ts0 f19 out f34 tail #connect
 Ts0 f34 head f4 mainIn #connect
-Ts0 f35 out f38 tail #connect
-Ts0 f38 head f37 mainIn #connect
-Ts0 f37 mainOut f5 tail #connect
-Ts0 f5 head f4 mainIn #connect
 Ts0 f8 mainOut f64 tail #connect
 Ts0 f64 head f41 mainIn #connect
 Ts0 f41 mainOut f10 tail #connect
 Ts0 f10 head f18 mainIn #connect
+Ts0 f53 mainOut f36 tail #connect
+Ts0 f36 head f65 mainIn #connect
+Ts0 f65 mainOut f66 tail #connect
+Ts0 f66 head f35 in #connect
+Ts0 f35 out f5 tail #connect
+Ts0 f5 head f4 mainIn #connect

@@ -217,7 +217,7 @@
 									<p:fileUpload id="login-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
 										update="login-logo-preview" invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
 										label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" styleClass="login-logo-chooser"
-										fileUploadListener="#{designChooserBean.uploadLoginLogo}" />
+										fileUploadListener="#{designChooserBean.uploadLoginLogo}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"/>
 								</p:panelGrid>
 							</p:column>
 						</p:row>
@@ -257,7 +257,7 @@
 										value="#{designChooserBean.uploadedHomeLogo ? designChooserBean.homeLogoImage : resource['ivy-cms:images/logo/CorporateLogo']}"
 										alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" height="40" cache="false" />
 									<p:fileUpload id="home-logo-chooser" allowTypes="/(\.|\/)(png)$/" auto="true" dragDropSupport="true"
-										update="home-logo-preview" styleClass="home-logo-chooser"
+										update="home-logo-preview" styleClass="home-logo-chooser" sizeLimit="#{masterDataBean.getFileUploadSizeLimit}"
 										invalidFileMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/allowPng')}"
 										label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
 										fileUploadListener="#{designChooserBean.uploadHomeLogo}" />

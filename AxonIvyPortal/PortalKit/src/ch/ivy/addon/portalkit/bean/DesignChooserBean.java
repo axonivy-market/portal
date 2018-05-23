@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -15,14 +16,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.loader.ResourceLoader;
+import ch.ivy.addon.portalkit.masterdata.MasterData;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -58,11 +63,11 @@ public class DesignChooserBean implements Serializable {
 
   private String mainColor;
   private String backgroundColor;
-  private boolean uploadedHomeLogo; 
+  private boolean uploadedHomeLogo;
   private long homeLogoHeight;
   private boolean uploadedLoginLogo;
   private long loginLogoHeight;
-  
+
   private ResourceLoader loader;
   private transient InputStream homeLogoStream;
   private transient InputStream loginLogoStream;
@@ -77,11 +82,11 @@ public class DesignChooserBean implements Serializable {
       backgroundColor = retrieveBackgroundColorFromFile();
       String regex = "(?<=[0-9])(?=[^0-9])";
       String[] homeLogoHeightStyle = retrieveHomeLogoHeightFromFile().split(regex);
-      if (homeLogoHeightStyle.length > 0){
+      if (homeLogoHeightStyle.length > 0) {
         homeLogoHeight = Long.parseLong(homeLogoHeightStyle[0]);
       }
       String[] loginLogoHeightStyle = retrieveLoginLogoHeightFromFile().split(regex);
-      if (loginLogoHeightStyle.length > 0){
+      if (loginLogoHeightStyle.length > 0) {
         loginLogoHeight = Long.parseLong(loginLogoHeightStyle[0]);
       }
     } catch (IOException e1) {
@@ -90,8 +95,8 @@ public class DesignChooserBean implements Serializable {
       Ivy.log().error("Can't retrieve colors from less file", e2);
     }
   }
-  
-  
+
+
   public String getLoginLogoImage() throws IOException {
     return Ivy.html().fileref(new File(LOGIN_LOGO, true));
   }
@@ -101,6 +106,11 @@ public class DesignChooserBean implements Serializable {
   }
 
   public void uploadLoginLogo(FileUploadEvent event) throws IOException {
+    Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
+    if (event.getFile().getSize() > maxFileUploadSize) {
+      addErrorMessage(maxFileUploadSize);
+      return;
+    }
     uploadedLoginLogo = true;
     loginLogoStream = event.getFile().getInputstream();
     File file = new File(LOGIN_LOGO, true);
@@ -108,14 +118,28 @@ public class DesignChooserBean implements Serializable {
     file.writeBinary(content);
   }
 
+
+  private void addErrorMessage(Long maxFileUploadSize) {
+    String errorMessage =
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
+            Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
+    FacesContext.getCurrentInstance().addMessage(null,
+        new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, null));
+  }
+
   public void uploadHomeLogo(FileUploadEvent event) throws IOException {
+    Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
+    if (event.getFile().getSize() > maxFileUploadSize) {
+      addErrorMessage(maxFileUploadSize);
+      return;
+    }
     uploadedHomeLogo = true;
     homeLogoStream = event.getFile().getInputstream();
     File file = new File(HOME_LOGO, true);
     Binary content = new Binary(event.getFile().getContents());
     file.writeBinary(content);
   }
-  
+
   public void apply() throws IOException {
     applyNewColors();
     if (loginLogoStream != null) {
@@ -127,16 +151,17 @@ public class DesignChooserBean implements Serializable {
     scaleLogo();
     compileThemeLess();
   }
-  
+
   private void scaleLogo() throws IOException {
     Optional<Path> path = loader.findResource(CUSTOMIZATION_LESS_PATH);
     if (path.isPresent()) {
       try (Stream<String> lineStream = Files.lines(path.get())) {
         String newLoginLogoHeight = LOGIN_LOGO_HEIGHT_ATTRIBUTE + " " + loginLogoHeight + "px" + SEMICOLON;
         String newHomeLogoHeight = HOME_LOGO_HEIGHT_ATTRIBUTE + " " + homeLogoHeight + "px" + SEMICOLON;
-        
-        List<String> lines = lineStream.map(line -> line.replaceAll(LOGIN_LOGO_HEIGHT_PATTERN, newLoginLogoHeight))
-                  .map(line -> line.replaceAll(HOME_LOGO_HEIGHT_PATTERN, newHomeLogoHeight)).collect(Collectors.toList());
+
+        List<String> lines =
+            lineStream.map(line -> line.replaceAll(LOGIN_LOGO_HEIGHT_PATTERN, newLoginLogoHeight))
+                .map(line -> line.replaceAll(HOME_LOGO_HEIGHT_PATTERN, newHomeLogoHeight)).collect(Collectors.toList());
         if (!lines.stream().anyMatch(Pattern.compile(LOGIN_LOGO_HEIGHT_PATTERN).asPredicate())) {
           lines.add(newLoginLogoHeight);
         }
@@ -147,16 +172,18 @@ public class DesignChooserBean implements Serializable {
       }
     }
   }
-  
+
   private void applyNewColors() throws IOException {
     Optional<Path> path = loader.findResource(CUSTOMIZATION_LESS_PATH);
     if (path.isPresent()) {
       try (Stream<String> lineStream = Files.lines(path.get())) {
         String newMainColor = MAIN_COLOR_ATTRIBUTE + HASH_SIGN + mainColor + SEMICOLON;
         String newBackgroundColor = BACKGROUND_COLOR_ATTRIBUTE + HASH_SIGN + backgroundColor + SEMICOLON;
-        
-        List<String> lines = lineStream.map(line -> line.replaceAll(MAIN_COLOR_PATTERN, newMainColor))
-                  .map(line -> line.replaceAll(BACKGROUND_COLOR_PATTERN, newBackgroundColor)).collect(Collectors.toList());
+
+        List<String> lines =
+            lineStream.map(line -> line.replaceAll(MAIN_COLOR_PATTERN, newMainColor))
+                .map(line -> line.replaceAll(BACKGROUND_COLOR_PATTERN, newBackgroundColor))
+                .collect(Collectors.toList());
         if (!lines.stream().anyMatch(Pattern.compile(MAIN_COLOR_PATTERN).asPredicate())) {
           lines.add(newMainColor);
         }
@@ -167,7 +194,7 @@ public class DesignChooserBean implements Serializable {
       }
     }
   }
-  
+
   private void compileThemeLess() throws IOException {
     Optional<Path> themeLessFilePath = loader.findResource(THEME_LESS_PATH);
     Optional<Path> themeFilePath = loader.findResource(THEME_CSS_PATH);
@@ -185,7 +212,7 @@ public class DesignChooserBean implements Serializable {
   private void uploadLogo(InputStream is, String cms) {
     Ivy.cms().findContentObjectValue(cms, Locale.ENGLISH).setContent(is, 0, null);
   }
-  
+
   private String retrieveLoginLogoHeightFromFile() throws IOException {
     return retrieveStyleValueFromLessFile(LOGIN_LOGO_HEIGHT_PATTERN);
   }
@@ -209,7 +236,7 @@ public class DesignChooserBean implements Serializable {
     }
     return styleValue;
   }
-  
+
   private String retrieveStyleValueFromLessFile(String pattern, String resource) throws IOException {
     String styleValue = StringUtils.EMPTY;
     Optional<Path> path = loader.findResource(resource);
@@ -228,17 +255,17 @@ public class DesignChooserBean implements Serializable {
 
   private void initWebContentLoader() {
     if (loader == null) {
-      
+
       for (IProcessModel pm : Ivy.request().getApplication().getProcessModels()) {
         IProcessModelVersion releasedPmv = pm.getReleasedProcessModelVersion();
-        if (releasedPmv != null && releasedPmv.getLibrary() != null &&  
-            PortalLibrary.PORTAL_STYLE.getValue().equals(releasedPmv.getLibrary().getId())) {
+        if (releasedPmv != null && releasedPmv.getLibrary() != null
+            && PortalLibrary.PORTAL_STYLE.getValue().equals(releasedPmv.getLibrary().getId())) {
           loader = new ResourceLoader(releasedPmv);
         }
       }
     }
   }
-  
+
   public String getMainColor() {
     return mainColor;
   }
@@ -270,7 +297,7 @@ public class DesignChooserBean implements Serializable {
   public void setLoginLogoHeight(long loginLogoHeight) {
     this.loginLogoHeight = loginLogoHeight;
   }
-  
+
   public boolean isUploadedHomeLogo() {
     return uploadedHomeLogo;
   }
