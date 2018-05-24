@@ -1,313 +1,314 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:pm="http://primefaces.org/mobile">
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
 <h:body>
-	<ui:composition template="/layouts/TaskTemplate.xhtml">
-		<ui:param name="caseId" value="#{ivy.case.id}" />
-		<ui:param name="task" value="#{ivy.task}" />
-		<ui:param name="steps" value="#{data.data.steps}" />
-		<ui:param name="actualStepIndex" value="1" />
-		<ui:param name="isShowStartAdhocButton" value="false" />
-		<ui:param name="isNotRequiredLogin" value="false" />
+  <ui:composition template="/layouts/TaskTemplate.xhtml">
+    <ui:param name="caseId" value="#{ivy.case.id}" />
+    <ui:param name="task" value="#{ivy.task}" />
+    <ui:param name="steps" value="#{data.data.steps}" />
+    <ui:param name="actualStepIndex" value="1" />
+    <ui:param name="isShowStartAdhocButton" value="false" />
+    <ui:param name="isNotRequiredLogin" value="false" />
 
-		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
+    <ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
         <ui:define name="errorsZone">
           <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate=""/>
         </ui:define>
-		<ui:define name="taskForm">
-			<h:form id="form">
-				<p:fieldset id="process-setting-fieldset"
-					legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
-					toggleable="true">
-					<p:panelGrid id="process-setting-grid" styleClass="process-property-container">
-						<!-- PROCESS TYPE -->
-						<p:row>
-							<p:column styleClass="process-property-label-col">
-								<p:outputLabel
-									value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}:"
-									for="process-type" />
-							</p:column>
-							<p:column styleClass="process-property-input-col">
-								<p:selectOneRadio id="process-type" styleClass="radio-group" disabled="#{not empty data.data.processID}"
-									value="#{data.data.processType}" required="true"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-									<f:selectItems value="#{workflowDefinitionBean.processTypes}" var="processType" itemValue="#{processType}" itemLabel="#{processType.label}" />
-								</p:selectOneRadio>
-							</p:column>
-						</p:row>
+    <ui:define name="taskForm">
+      <h:form id="form">
+        <p:fieldset id="process-setting-fieldset"
+          legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
+          toggleable="true">
+          <p:panelGrid id="process-setting-grid" styleClass="process-property-container">
+            <!-- PROCESS TYPE -->
+            <p:row>
+              <p:column styleClass="process-property-label-col">
+                <p:outputLabel
+                  value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}:"
+                  for="process-type" />
+              </p:column>
+              <p:column styleClass="process-property-input-col">
+                <p:selectOneRadio id="process-type" styleClass="radio-group" disabled="#{not empty data.data.processID}"
+                  value="#{data.data.processType}" required="true"
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                  <f:selectItems value="#{workflowDefinitionBean.processTypes}" var="processType" itemValue="#{processType}" itemLabel="#{processType.label}" />
+                  <p:ajax event="change" update="process-type" global="false" />
+                </p:selectOneRadio>
+              </p:column>
+            </p:row>
 
-						<!-- UI SETTING -->
-						<p:row>
-							<p:column styleClass="process-property-label-col">
-								<p:outputLabel
-									value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')}:"
-									for="user-interface" />
-							</p:column>
-							<p:column styleClass="process-property-input-col">
-								<p:selectOneRadio id="user-interface" styleClass="radio-group"
-									value="#{data.data.isUseDefaultUI}" required="true"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-									<f:selectItem itemValue="false"
-										itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}" />
-									<f:selectItem itemValue="true"
-										itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}">
-									</f:selectItem>
-									<p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
-								</p:selectOneRadio>
+            <!-- UI SETTING -->
+            <p:row>
+              <p:column styleClass="process-property-label-col">
+                <p:outputLabel
+                  value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')}:"
+                  for="user-interface" />
+              </p:column>
+              <p:column styleClass="process-property-input-col">
+                <p:selectOneRadio id="user-interface" styleClass="radio-group"
+                  value="#{data.data.isUseDefaultUI}" required="true"
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                  <f:selectItem itemValue="false"
+                    itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}" />
+                  <f:selectItem itemValue="true"
+                    itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}">
+                  </f:selectItem>
+                  <p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
+                </p:selectOneRadio>
 
-								<p:commandLink id="show-default-ui-icon" styleClass="show-default-ui-icon fa fa-info-circle"
-									oncomplete="PF('default-template-dialog').show();" />
-							</p:column>
-						</p:row>
+                <p:commandLink id="show-default-ui-icon" styleClass="show-default-ui-icon fa fa-info-circle"
+                  oncomplete="PF('default-template-dialog').show();" />
+              </p:column>
+            </p:row>
 
-						<!-- PROCESS NAME -->
-						<p:row>
-							<p:column styleClass="process-property-label-col">
-								<p:outputLabel
-									value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}:"
-									for="process-name" />
-							</p:column>
-							<p:column styleClass="process-property-input-col">
-								<p:inputText id="process-name" styleClass="process-property-input"
-									value="#{data.data.processName}"
-									required="true"
-									maxlength="50"
-									requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
-									<p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
-								</p:inputText>
-							</p:column>
-						</p:row>
+            <!-- PROCESS NAME -->
+            <p:row>
+              <p:column styleClass="process-property-label-col">
+                <p:outputLabel
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}:"
+                  for="process-name" />
+              </p:column>
+              <p:column styleClass="process-property-input-col">
+                <p:inputText id="process-name" styleClass="process-property-input"
+                  value="#{data.data.processName}"
+                  required="true"
+                  maxlength="50"
+                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
+                  <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
+                </p:inputText>
+              </p:column>
+            </p:row>
 
-						<!-- PROCESS DESCRIPTION -->
-						<p:row>
-							<p:column styleClass="process-property-label-col process-description-label-col">
-								<p:outputLabel
-									value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')}:"
-									for="processdescription" />
-							</p:column>
-							<p:column styleClass="process-property-input-col">
-								<p:inputTextarea id="processdescription" styleClass="process-property-input"
-									value="#{data.data.processDescription}"
-									required="true"
-									maxlength="60"
-									requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
-									<p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
-								</p:inputTextarea>
-							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</p:fieldset>
+            <!-- PROCESS DESCRIPTION -->
+            <p:row>
+              <p:column styleClass="process-property-label-col process-description-label-col">
+                <p:outputLabel
+                  value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')}:"
+                  for="processdescription" />
+              </p:column>
+              <p:column styleClass="process-property-input-col">
+                <p:inputTextarea id="processdescription" styleClass="process-property-input"
+                  value="#{data.data.processDescription}"
+                  required="true"
+                  maxlength="60"
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
+                  <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
+                </p:inputTextarea>
+              </p:column>
+            </p:row>
+          </p:panelGrid>
+        </p:fieldset>
 
-				<br />
-				<ui:repeat id="defined-tasks-list" value="#{data.data.definedTasks}" var="gtask" varStatus="status">
-					<p:fieldset id="process-flow-field" toggleable="true" styleClass="process-flow-field"
-						legend="#{ivy.cms.co('/Dialogs/workflowCreation/processStep')} #{gtask.position}">
+        <br />
+        <ui:repeat id="defined-tasks-list" value="#{data.data.definedTasks}" var="gtask" varStatus="status">
+          <p:fieldset id="process-flow-field" toggleable="true" styleClass="process-flow-field"
+            legend="#{ivy.cms.co('/Dialogs/workflowCreation/processStep')} #{gtask.position}">
 
-						<!-- FOR SELF CREATE TEMPLATE -->
-						<p:panel id="task-panel-container" styleClass="task-panel-container">
-							<p:panelGrid id="dynamic-task-panel-grid" styleClass="dynamic-task-panel-grid" rendered="#{!data.data.isUseDefaultUI}">
-								<p:row>
-									<!-- ARROW ICON -->
-									<p:column rowspan="3" styleClass="dynamic-task-arrow">
-										<i class="fa fa-long-arrow-down fa-4x" />
-									</p:column>
+            <!-- FOR SELF CREATE TEMPLATE -->
+            <p:panel id="task-panel-container" styleClass="task-panel-container">
+              <p:panelGrid id="dynamic-task-panel-grid" styleClass="dynamic-task-panel-grid" rendered="#{!data.data.isUseDefaultUI}">
+                <p:row>
+                  <!-- ARROW ICON -->
+                  <p:column rowspan="3" styleClass="dynamic-task-arrow">
+                    <i class="fa fa-long-arrow-down fa-4x" />
+                  </p:column>
 
-									<!-- TASK TYPE -->
-									<p:column styleClass="first-col">
-										<p:outputLabel id="task-type-label" for="task-type" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')}:" />
-										<p:selectOneMenu id="task-type" required="true" value="#{gtask.taskType}" disabled="#{data.data.isUseDefaultUI}"
-											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-											<f:selectItems value="#{status.index == 0 ? workflowDefinitionBean.taskTypesForFirstWorkflowTask : workflowDefinitionBean.getTaskTypes(data.data.definedTasks)}"
-												var="taskType" itemLabel="#{taskType.label}" itemValue="#{taskType}" />
-											<p:ajax event="change" process="@this" partialSubmit="true" global="false" />
-										</p:selectOneMenu>
-									</p:column>
+                  <!-- TASK TYPE -->
+                  <p:column styleClass="first-col">
+                    <p:outputLabel id="task-type-label" for="task-type" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')}:" />
+                    <p:selectOneMenu id="task-type" required="true" value="#{gtask.taskType}" disabled="#{data.data.isUseDefaultUI}"
+                      requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                      <f:selectItems value="#{status.index == 0 ? workflowDefinitionBean.taskTypesForFirstWorkflowTask : workflowDefinitionBean.getTaskTypes(data.data.definedTasks)}"
+                        var="taskType" itemLabel="#{taskType.label}" itemValue="#{taskType}" />
+                      <p:ajax event="change" process="@this" partialSubmit="true" global="false" />
+                    </p:selectOneMenu>
+                  </p:column>
 
-									<!-- TASK DESCRIPTION -->
-									<p:column>
-										<p:outputLabel id="task-description-label" for="task-description"
-											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}:" />
-										<p:inputText id="task-description" value="#{gtask.description}" styleClass="dynamic-task-description-input"
-											required="true"
-											requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
-											<p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
-										</p:inputText>
-									</p:column>
-								</p:row>
+                  <!-- TASK DESCRIPTION -->
+                  <p:column>
+                    <p:outputLabel id="task-description-label" for="task-description"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}:" />
+                    <p:inputText id="task-description" value="#{gtask.description}" styleClass="dynamic-task-description-input"
+                      required="true"
+                      requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
+                      <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
+                    </p:inputText>
+                  </p:column>
+                </p:row>
 
-								<p:row >
-									<!-- TASK NAME -->
-									<p:column styleClass="first-col">
-										<p:outputLabel id="task-name-label" for="task-name" value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}:" />
-										<p:inputText id="task-name" value="#{gtask.subject}" maxlength="30"
-											required="true" 								
-											requiredMessage="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
-											<p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
-										</p:inputText>
-									</p:column>
+                <p:row >
+                  <!-- TASK NAME -->
+                  <p:column styleClass="first-col">
+                    <p:outputLabel id="task-name-label" for="task-name" value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}:" />
+                    <p:inputText id="task-name" value="#{gtask.subject}" maxlength="30"
+                      required="true"                 
+                      requiredMessage="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
+                      <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
+                    </p:inputText>
+                  </p:column>
 
-									<!-- RESPONSIBLE -->
-									<p:column>
-										<p:outputLabel rendered="#{gtask.position gt 1}" for="task-responsible"
-											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
-										<p:outputLabel rendered="#{gtask.position == 1}" for="task-responsible"
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}:" />
-										<p:inputText id="task-responsible" value="#{gtask.responsibleDisplayName}"
-											required="true" 
-											requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-											<p:ajax event="mousedown" immediate="true"
-												listener="#{logic.initAssginement(gtask)}"
-												oncomplete="PF('choose-responsible-dialog').show();"
-												update="assignee-selection-form:assignee-selection-panel"
-												global="false" />
-										</p:inputText>
-									</p:column>
-								</p:row>
+                  <!-- RESPONSIBLE -->
+                  <p:column>
+                    <p:outputLabel rendered="#{gtask.position gt 1}" for="task-responsible"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
+                    <p:outputLabel rendered="#{gtask.position == 1}" for="task-responsible"
+                      value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}:" />
+                    <p:inputText id="task-responsible" value="#{gtask.responsibleDisplayName}"
+                      required="true" 
+                      requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                      <p:ajax event="mousedown" immediate="true"
+                        listener="#{logic.initAssginement(gtask)}"
+                        oncomplete="PF('choose-responsible-dialog').show();"
+                        update="assignee-selection-form:assignee-selection-panel"
+                        global="false" />
+                    </p:inputText>
+                  </p:column>
+                </p:row>
 
-								<p:row>
-									<!-- NUMBER OF VALID DAYS -->
-									<p:column styleClass="merged-col" colspan="2">
-										<p:outputLabel id="valid-days-label" for="valid-days" rendered="#{gtask.position gt 1}"
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" />
-										<p:tooltip for="valid-days-label" id="valid-days-label-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
-										<p:spinner id="valid-days" value="#{gtask.untilDays}" min="1"
-											rendered="#{gtask.position gt 1}" />
-										<p:tooltip for="valid-days" id="valid-days-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
+                <p:row>
+                  <!-- NUMBER OF VALID DAYS -->
+                  <p:column styleClass="merged-col" colspan="2">
+                    <p:outputLabel id="valid-days-label" for="valid-days" rendered="#{gtask.position gt 1}"
+                      value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" />
+                    <p:tooltip for="valid-days-label" id="valid-days-label-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
+                    <p:spinner id="valid-days" value="#{gtask.untilDays}" min="1"
+                      rendered="#{gtask.position gt 1}" />
+                    <p:tooltip for="valid-days" id="valid-days-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
+                  </p:column>
+                </p:row>
+              </p:panelGrid>
 
-							<!-- FOR DEFAULT UI TEMPLATE -->
-							<p:panelGrid id="default-dynamic-task-panel-grid" styleClass="dynamic-task-panel-grid default-dynamic-task-panel-grid" rendered="#{data.data.isUseDefaultUI}">
+              <!-- FOR DEFAULT UI TEMPLATE -->
+              <p:panelGrid id="default-dynamic-task-panel-grid" styleClass="dynamic-task-panel-grid default-dynamic-task-panel-grid" rendered="#{data.data.isUseDefaultUI}">
 
-								<p:row>
-									<!-- ARROW ICON -->
-									<p:column rowspan="3" styleClass="dynamic-task-arrow">
-										<i class="fa fa-long-arrow-down fa-4x" />
-									</p:column>
+                <p:row>
+                  <!-- ARROW ICON -->
+                  <p:column rowspan="3" styleClass="dynamic-task-arrow">
+                    <i class="fa fa-long-arrow-down fa-4x" />
+                  </p:column>
 
-									<!-- RESPONSIBLE -->
-									<p:column styleClass="dynamic-task-resopsible">
-										<p:outputLabel rendered="#{gtask.position gt 1}" for="default-task-responsible"
-											value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
-										<p:outputLabel rendered="#{gtask.position == 1}" for="default-task-responsible"
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}:" />
-										<p:inputText id="default-task-responsible" value="#{gtask.responsibleDisplayName}"
-											required="true"
-											requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-											<p:ajax event="mousedown" immediate="true"
-												listener="#{logic.initAssginement(gtask)}"
-												oncomplete="PF('choose-responsible-dialog').show();"
-												update="assignee-selection-form:assignee-selection-panel"
-												global="false" />
-										</p:inputText>
-									</p:column>
+                  <!-- RESPONSIBLE -->
+                  <p:column styleClass="dynamic-task-resopsible">
+                    <p:outputLabel rendered="#{gtask.position gt 1}" for="default-task-responsible"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
+                    <p:outputLabel rendered="#{gtask.position == 1}" for="default-task-responsible"
+                      value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}:" />
+                    <p:inputText id="default-task-responsible" value="#{gtask.responsibleDisplayName}"
+                      required="true"
+                      requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                      <p:ajax event="mousedown" immediate="true"
+                        listener="#{logic.initAssginement(gtask)}"
+                        oncomplete="PF('choose-responsible-dialog').show();"
+                        update="assignee-selection-form:assignee-selection-panel"
+                        global="false" />
+                    </p:inputText>
+                  </p:column>
 
-									<!-- TASK NAME -->
-									<p:column rendered="#{status.index == 0}" styleClass="first-col">
-										<p:outputLabel id="default-task-name-label" for="default-task-name" value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}:" />
-										<p:inputText id="default-task-name" value="#{gtask.subject}" maxlength="30"
-											required="true"
-											requiredMessage="#{ivy.cms.co('/Labels/Task')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
-											<p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
-										</p:inputText>
-									</p:column>
+                  <!-- TASK NAME -->
+                  <p:column rendered="#{status.index == 0}" styleClass="first-col">
+                    <p:outputLabel id="default-task-name-label" for="default-task-name" value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}:" />
+                    <p:inputText id="default-task-name" value="#{gtask.subject}" maxlength="30"
+                      required="true"
+                      requiredMessage="#{ivy.cms.co('/Labels/Task')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
+                      <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
+                    </p:inputText>
+                  </p:column>
 
-									<!-- NUMBER OF VALID DAYS -->
-									<p:column styleClass="vaild-days-col" rendered="#{gtask.position gt 1}">
-										<p:outputLabel id="default-valid-days-label" for="default-valid-days" 
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" />
-										<p:tooltip for="default-valid-days-label" id="default-valid-days-label-tooltip"
-											value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
-										<p:spinner id="default-valid-days" value="#{gtask.untilDays}" min="1" />
-										<p:tooltip for="valid-days" id="default-valid-days-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
-						</p:panel>
+                  <!-- NUMBER OF VALID DAYS -->
+                  <p:column styleClass="vaild-days-col" rendered="#{gtask.position gt 1}">
+                    <p:outputLabel id="default-valid-days-label" for="default-valid-days" 
+                      value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" />
+                    <p:tooltip for="default-valid-days-label" id="default-valid-days-label-tooltip"
+                      value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
+                    <p:spinner id="default-valid-days" value="#{gtask.untilDays}" min="1" />
+                    <p:tooltip for="valid-days" id="default-valid-days-tooltip" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
+                  </p:column>
+                </p:row>
+              </p:panelGrid>
+            </p:panel>
 
-						<p:panelGrid id="dynamic-task-action-container-#{gtask.position}" styleClass="dynamic-task-action-container"
-							rendered="#{data.data.definedTasks.size() == gtask.position}">
-							<p:row>
-								<p:column styleClass="dynamic-task-left-action">
-									<p:commandButton id="add-step-button" icon="fa fa-plus" immediate="true"
-										value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AddProcessStep')}"
-										actionListener="#{logic.addProcessStep}"
-										process="form" update="form error-messages">
-									</p:commandButton>
-								</p:column>
+            <p:panelGrid id="dynamic-task-action-container-#{gtask.position}" styleClass="dynamic-task-action-container"
+              rendered="#{data.data.definedTasks.size() == gtask.position}">
+              <p:row>
+                <p:column styleClass="dynamic-task-left-action">
+                  <p:commandButton id="add-step-button" icon="fa fa-plus" immediate="true"
+                    value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AddProcessStep')}"
+                    actionListener="#{logic.addProcessStep}"
+                    process="form" update="form error-messages">
+                  </p:commandButton>
+                </p:column>
 
-								<p:column styleClass="dynamic-task-right-action">
-									<p:commandButton id="remove-step-button" icon="fa fa-minus" immediate="true"
-										rendered="#{data.data.definedTasks.size()>1}"
-										value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DeleteProcessStep')}"
-										actionListener="#{logic.deleteProcessStep}"
-										process="form" update="form error-messages">
-									</p:commandButton>
+                <p:column styleClass="dynamic-task-right-action">
+                  <p:commandButton id="remove-step-button" icon="fa fa-minus" immediate="true"
+                    rendered="#{data.data.definedTasks.size()>1}"
+                    value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DeleteProcessStep')}"
+                    actionListener="#{logic.deleteProcessStep}"
+                    process="form" update="form error-messages">
+                  </p:commandButton>
 
-								</p:column>
-							</p:row>
-						</p:panelGrid>
-					</p:fieldset>
-				</ui:repeat>
+                </p:column>
+              </p:row>
+            </p:panelGrid>
+          </p:fieldset>
+        </ui:repeat>
 
-				<br />
+        <br />
 
-				<p:outputPanel styleClass="TexAlRight">
-					<p:commandButton id="save" actionListener="#{logic.close}" update="form error-messages" 
-						icon="fa #{data.data.isUseDefaultUI ? 'fa-check' : 'fa-arrow-right'}"
-						value="#{data.data.isUseDefaultUI ? 
+        <p:outputPanel styleClass="TexAlRight">
+          <p:commandButton id="save" actionListener="#{logic.close}" update="form error-messages" 
+            icon="fa #{data.data.isUseDefaultUI ? 'fa-check' : 'fa-arrow-right'}"
+            value="#{data.data.isUseDefaultUI ? 
                           (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') : ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : 
                           ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
-						<ui:param name="save-workflow" value="true" />
-					</p:commandButton>
-					<p:spacer width="5" />
+            <ui:param name="save-workflow" value="true" />
+          </p:commandButton>
+          <p:spacer width="5" />
 
-					<p:commandButton id="cancel-workflow-button" actionListener="#{logic.cancel}" styleClass="portal-cancel-button"
-						immediate="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times" />
-				</p:outputPanel>
+          <p:commandButton id="cancel-workflow-button" actionListener="#{logic.cancel}" styleClass="portal-cancel-button"
+            immediate="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times" />
+        </p:outputPanel>
 
-			</h:form>
+      </h:form>
 
-			<p:dialog id="choose-responsible-dialog" styleClass="choose-responsible-dialog"
-				header="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/AddUserOrRole')}"
-				widgetVar="choose-responsible-dialog" modal="true" appendTo="@(body)" width="25%" resizable="false">
-				<p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true"/>
-				<ui:include src="ChooseAssignee.xhtml" />
-			</p:dialog>
+      <p:dialog id="choose-responsible-dialog" styleClass="choose-responsible-dialog"
+        header="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/AddUserOrRole')}"
+        widgetVar="choose-responsible-dialog" modal="true" appendTo="@(body)" width="25%" resizable="false">
+        <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true"/>
+        <ui:include src="ChooseAssignee.xhtml" />
+      </p:dialog>
 
-			<p:dialog id="default-template-dialog" styleClass="default-template-dialog"
-				header="#{ivy.cms.co('/Dialogs/workflowCreation/DefaultTemplateDialogHeader')}"
-				widgetVar="default-template-dialog" modal="true" appendTo="@(body)" width="700" resizable="false">
-				<ui:include src="DefaultTemplate.xhtml" />
+      <p:dialog id="default-template-dialog" styleClass="default-template-dialog"
+        header="#{ivy.cms.co('/Dialogs/workflowCreation/DefaultTemplateDialogHeader')}"
+        widgetVar="default-template-dialog" modal="true" appendTo="@(body)" width="700" resizable="false">
+        <ui:include src="DefaultTemplate.xhtml" />
 
-				<h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
-					<p:commandButton type="button" id="close-default-templat-dialog-button"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('default-template-dialog').hide();" />
-				</h:panelGroup>
-			</p:dialog>
+        <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
+          <p:commandButton type="button" id="close-default-templat-dialog-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('default-template-dialog').hide();" />
+        </h:panelGroup>
+      </p:dialog>
 
-			<p:confirmDialog id="delete-all-defined-tasks-warning" widgetVar="deleteAllDefinedTasksWarning" message="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}"
-				appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false">
-				<div class="delete-server-warning-buttons">
-					<p:commandButton id="delete-all-defined-tasks-warning-ok"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-						actionListener="#{logic.changeUISetting(true)}"
-						oncomplete="PF('deleteAllDefinedTasksWarning').hide()"
-						update="form" global="false" />
-					<p:commandButton id="delete-all-defined-tasks-warning-cancel"
-						styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
-						actionListener="#{logic.changeUISetting(false)}"
-						oncomplete="PF('deleteAllDefinedTasksWarning').hide()"
-						update="form:user-interface" global="false" />
-				</div>
-			</p:confirmDialog>
-		</ui:define>
+      <p:confirmDialog id="delete-all-defined-tasks-warning" widgetVar="deleteAllDefinedTasksWarning" message="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}"
+        appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false">
+        <div class="delete-server-warning-buttons">
+          <p:commandButton id="delete-all-defined-tasks-warning-ok"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+            actionListener="#{logic.changeUISetting(true)}"
+            oncomplete="PF('deleteAllDefinedTasksWarning').hide()"
+            update="form" global="false" />
+          <p:commandButton id="delete-all-defined-tasks-warning-cancel"
+            styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+            actionListener="#{logic.changeUISetting(false)}"
+            oncomplete="PF('deleteAllDefinedTasksWarning').hide()"
+            update="form:user-interface" global="false" />
+        </div>
+      </p:confirmDialog>
+    </ui:define>
 
     <ui:define name="css">
       <h:outputStylesheet library="css" name="portal_express.css" />
