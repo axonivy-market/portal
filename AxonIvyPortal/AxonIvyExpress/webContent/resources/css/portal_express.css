@@ -556,12 +556,21 @@
 .review-content-title {
 	font-size: 1.8rem;
 	display: block;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	color: black;
 }
 
 .finished-task-fieldset {
 	margin-bottom: 20px;
+	margin-left: 20px;
+}
+
+.finished-task-fieldset legend {
+	padding: 8px 10px !important;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 25rem;
 }
 
 .finished-task-fieldset .pe-dynaform-grid {
@@ -594,7 +603,8 @@
 	margin-bottom: 20px;
 }
 
-.comment-container .comment-label {
+.comment-container .comment-label,
+.finished-task-label {
 	display: block !important;
 	margin-bottom: 20px;
 	font-weight: bold !important;
