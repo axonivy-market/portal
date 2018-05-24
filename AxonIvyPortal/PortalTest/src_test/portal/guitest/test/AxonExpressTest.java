@@ -23,10 +23,10 @@ import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class AxonExpressTest extends BaseTest{
-  private static final int USER_TASK_INDEX = 1;
-  private static final int USER_TASK_WITH_EMAIL_INDEX = 2;
-  private static final int INFORMATION_EMAIL_INDEX = 3;
-  private static final int APPROVAL_INDEX = 4;
+  private static final int USER_TASK_INDEX = 0;
+  private static final int USER_TASK_WITH_EMAIL_INDEX = 1;
+  private static final int INFORMATION_EMAIL_INDEX = 2;
+  private static final int APPROVAL_INDEX = 3;
   
   private static final int INPUT_TEXT_TYPE_INDEX = 0;
   private static final int INPUT_NUMBER_TYPE_INDEX = 1;
@@ -137,8 +137,19 @@ public class AxonExpressTest extends BaseTest{
     expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
     
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
-    formDefinition.saveWorkflow();
+    formDefinition.finishWorkflow();
     startExpressProcess("Test approval");
+    executeExpressProcessWhenMultiApproval();
+  }
+
+  @Test
+  public void testAdhocMultiApprovalWhenMultiTask() {
+    goToCreateExpressProcess();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
+    
+    ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
+    formDefinition.executeWorkflow();
     executeExpressProcessWhenMultiApproval();
   }
 
@@ -149,7 +160,7 @@ public class AxonExpressTest extends BaseTest{
     expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
     
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
-    formDefinition.saveWorkflow();
+    formDefinition.finishWorkflow();
     startExpressProcess("Test approval");
     rejectWhenMultiApproval();
   }
@@ -163,7 +174,7 @@ public class AxonExpressTest extends BaseTest{
     login(TestAccount.DEMO_USER);
     rejectApproval("Rejected at first level");
     String approvalResult = executeReview();
-    Assert.assertEquals("Task 2,Portal Demo User,Portal Demo User,Rejected at first level,No", approvalResult);
+    Assert.assertEquals("Task 2,Portal Demo User,Rejected at first level,No", approvalResult);
     new ExpressEndPage().finish();    
   }
 
@@ -178,8 +189,6 @@ public class AxonExpressTest extends BaseTest{
     
     expressProcessPage.addNewTask(1);
     expressProcessPage.createTask(2, APPROVAL_INDEX, "Task 3", "Task 3 description", Arrays.asList(responsible1, responsible2));
-    expressProcessPage.addNewTask(2);
-    expressProcessPage.createTask(3, USER_TASK_INDEX, "Task 4", "Task 4 description", Arrays.asList(responsible1));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
     formDefinition.moveAllElementToDragAndDrogPanel();
@@ -198,14 +207,11 @@ public class AxonExpressTest extends BaseTest{
     assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level");
-    executeUserTask();
-    assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.DEMO_USER);
     String approvalResult = executeReview();
     Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes,"
         + "Task 3,Portal Demo User,Approved at second level,Yes,"
-        + "Task 3,portaladmin,Approved at second level,Yes,"
-        + "No records found.", approvalResult);
+        + "Task 3,portaladmin,Approved at second level,Yes", approvalResult);
     new ExpressEndPage().finish();
   }
 
