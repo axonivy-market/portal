@@ -5,9 +5,9 @@
         <name>start</name>
         <description>Default dialog start method.</description>
         <inputParameter>
-            <name>userTask</name>
+            <name>finishedTasks</name>
             <description></description>
-            <parameterType>gawfs.TaskDef</parameterType>
+            <parameterType>java.util.List&lt;gawfs.TaskDef&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
