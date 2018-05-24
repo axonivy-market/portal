@@ -7,7 +7,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('request-tab')";
+    return "id('copy-clipboard')";
   }
 
   public void openStatusTab() {
