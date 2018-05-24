@@ -1,4 +1,4 @@
-co: name={processStep} description={} changed={2018-05-14 05:31:32 CEST} changedby={ldnam} visualorder={0} guid={1635CB3BCB5FED9D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1635CB4058BA7213} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-14 05:31:29 CEST} validto={} changed={2018-05-14 05:31:31 CEST} changedby={ldnam} properties={} id={}
+co: name={processStep} description={} changed={2018-05-24 10:26:50 CEST} changedby={lttung} visualorder={0} guid={1635CB3BCB5FED9D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1635CB4058BA7213} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-24 10:26:50 CEST} validto={} changed={2018-05-24 10:26:50 CEST} changedby={lttung} properties={} id={}
 val: guid={1635CB3BCCCCBE70} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-14 05:31:13 CEST} validto={} changed={2018-05-14 05:31:13 CEST} changedby={ldnam} properties={} id={}
-val: guid={1635CB406A81EF70} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-14 05:31:22 CEST} validto={} changed={2018-05-14 05:31:32 CEST} changedby={ldnam} properties={} id={}
+val: guid={1635CB406A81EF70} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-24 10:26:50 CEST} validto={} changed={2018-05-24 10:26:50 CEST} changedby={lttung} properties={} id={}

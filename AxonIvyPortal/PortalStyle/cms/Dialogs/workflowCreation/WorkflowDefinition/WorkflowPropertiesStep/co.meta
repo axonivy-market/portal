@@ -1,4 +1,4 @@
-co: name={WorkflowPropertiesStep} description={} changed={2017-11-15 09:12:20 CET} changedby={chnam} visualorder={0} guid={15FBEBC6DF69A9BB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FBEBC6E009F8ED} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 09:33:28 CEST} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}
+co: name={WorkflowPropertiesStep} description={} changed={2018-05-24 10:26:50 CEST} changedby={lttung} visualorder={0} guid={15FBEBC6DF69A9BB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEBC6E009F8ED} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-24 10:26:50 CEST} validto={} changed={2018-05-24 10:26:50 CEST} changedby={lttung} properties={} id={}
 val: guid={15FBEBC6E07B7847} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-10 09:33:21 CEST} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}
 val: guid={15FBEBC6DF9296E4} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:42 CEST} validto={} changed={2017-11-15 09:12:20 CET} changedby={chnam} properties={} id={}

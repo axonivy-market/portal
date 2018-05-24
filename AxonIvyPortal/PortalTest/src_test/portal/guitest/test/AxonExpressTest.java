@@ -247,7 +247,6 @@ public class AxonExpressTest extends BaseTest{
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level");
     login(TestAccount.DEMO_USER);
-    Sleeper.sleepTightInSeconds(3);
     String approvalResult = executeReview();
     Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes,"
         + "Task 3,Portal Demo User,Approved at second level,Yes,"
