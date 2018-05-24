@@ -1,7 +1,5 @@
 ApprovalFormData #class
 ch.ivy.gawfs.workflowExecution.ApprovalForm #namespace
-userTask gawfs.TaskDef #field
-userTask PERSISTENT #fieldModifier
 steps java.util.List<String> #field
 steps PERSISTENT #fieldModifier
 actualStepIndex Integer #field
@@ -12,3 +10,5 @@ approvalResult gawfs.ApprovalTaskResult #field
 approvalResult PERSISTENT #fieldModifier
 comment String #field
 comment PERSISTENT #fieldModifier
+finishedTasks java.util.List<gawfs.TaskDef> #field
+finishedTasks PERSISTENT #fieldModifier
