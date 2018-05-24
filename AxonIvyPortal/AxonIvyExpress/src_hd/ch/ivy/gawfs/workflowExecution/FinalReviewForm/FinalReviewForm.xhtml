@@ -77,8 +77,8 @@
 							</pe:dynaFormControl>
 						</pe:dynaForm>
 
-						<p:outputLabel id="form-approval-label" value="Approval result" styleClass="review-content-title" />
-						<p:dataTable id="approval-result-table" value="#{wfTask.approvalResultList}" var="approval">
+						<p:outputLabel id="form-approval-label" value="Approval result" styleClass="review-content-title" rendered="#{not wfTask.approvalResultList.isEmpty()}"/>
+						<p:dataTable id="approval-result-table" value="#{wfTask.approvalResultList}" var="approval" rendered="#{not wfTask.approvalResultList.isEmpty()}">
 							<p:column headerText="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}" sortBy="#{approval.taskName}">
 								<h:outputText value="#{approval.taskName}" />
 							</p:column>

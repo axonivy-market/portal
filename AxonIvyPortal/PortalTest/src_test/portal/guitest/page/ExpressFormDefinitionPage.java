@@ -144,7 +144,23 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     click(By.id("save-button"));
   }
 
+  public void finishWorkflow() {
+    click(By.id("finish-button"));
+  }
+  
   public void executeWorkflow() {
     click(By.id("execute-button"));
+  }
+
+  public void nextStep() {
+    click(By.id("next-button"));
+  }
+  
+  public void inputMailSubject(String content) {
+    findElementById("form:information-email:email-subject").sendKeys(content);
+  }
+
+  public void inputMailContent(String content) {
+    findElementByClassName("ql-editor").sendKeys(content);
   }
 }
