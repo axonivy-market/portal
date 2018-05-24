@@ -87,10 +87,10 @@
 		</h:form>
 			<br/>
       <p:outputPanel styleClass="TexAlRight">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()" styleClass="buttonDelegate"
+        <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()" styleClass="buttonDelegate"
           type="button" icon="fa fa-check"/>
         <p:spacer width="5" />
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="request-form mail-form"
+        <p:commandButton id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="request-form mail-form"
           actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
       </p:outputPanel>
       </p:tab>
@@ -100,10 +100,10 @@
   			<ic:ch.ivy.gawfs.component.Email id="information-email" email="#{data.email}" isEmpty="true" />
   		  </h:panelGroup>
           <p:outputPanel styleClass="TexAlRight">
-            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()" styleClass="buttonDelegate"
+            <p:commandButton id="email-ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()" styleClass="buttonDelegate"
               type="button" icon="fa fa-check"/>
             <p:spacer width="5" />
-            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="request-form mail-form"
+            <p:commandButton id="email-cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="request-form mail-form"
               actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times"/>
           </p:outputPanel>
           <p:remoteCommand id="submit-command" name="submitData" partialSubmit="true"
