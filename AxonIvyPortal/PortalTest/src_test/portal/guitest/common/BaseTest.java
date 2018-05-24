@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import org.junit.Before;
 import org.junit.Rule;
 
+import portal.guitest.page.HomePage;
 import ch.xpertline.base.client.Browser;
 import ch.xpertline.base.enums.BrowserType;
 
@@ -178,6 +179,7 @@ public class BaseTest extends SeleneseTestBase {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
+      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }

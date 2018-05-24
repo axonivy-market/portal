@@ -513,10 +513,6 @@
   padding-top: 0;
 }
 
-.form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:first-child{
-  padding-right: 0;
-}
-
 .form-definition-table .selected-formelements-panel {
   border: dashed 2px #E0E0E0;
   border-radius: 5px;
@@ -549,6 +545,11 @@
 	margin-right: -10px;
 	padding-bottom: 50px;
 	height: 80px;
+	width: 100%;
+}
+
+.email-attachment-upload-btn .ui-fileupload-messages {
+	margin-top: 60px;
 }
 
 /* REVIEW FORM */
@@ -580,7 +581,15 @@
 	border: none;
 }
 
+.pe-dynaform-cell .ui-fileupload-content .ui-fileupload-messages {
+	text-align: left;
+}
+
 /* APPROVAL FORM */
+.applicant-field-container {
+	margin-bottom: 20px;
+}
+
 .comment-container {
 	margin-bottom: 20px;
 }
