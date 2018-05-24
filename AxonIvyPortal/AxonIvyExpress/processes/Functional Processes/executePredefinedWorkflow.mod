@@ -814,6 +814,7 @@ Bk4 f18 actionTable 'out=in;
 ' #txt
 Bk4 f18 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
 ivy.task.setAdditionalProperty(ExecutingExpressProcessUtils.TASK_GROUP_ID_KEY, String.valueOf(in.actualStepIndex));' #txt
+Bk4 f18 security system #txt
 Bk4 f18 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
