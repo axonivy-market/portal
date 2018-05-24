@@ -40,14 +40,14 @@ As0 @PushWFArc f23 '' #zField
 >Proto As0 As0 ApprovalFormProcess #zField
 As0 f0 guid 162F55164217492D #txt
 As0 f0 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f0 method start(gawfs.TaskDef,String,java.util.List<String>,java.lang.Integer) #txt
+As0 f0 method start(java.util.List<gawfs.TaskDef>,String,java.util.List<String>,java.lang.Integer) #txt
 As0 f0 disableUIEvents true #txt
 As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<gawfs.TaskDef userTask,java.lang.String applicantName,java.util.List<java.lang.String> steps,java.lang.Integer actualStepIndex> param = methodEvent.getInputArguments();
+<java.util.List<gawfs.TaskDef> finishedTasks,java.lang.String applicantName,java.util.List<java.lang.String> steps,java.lang.Integer actualStepIndex> param = methodEvent.getInputArguments();
 ' #txt
 As0 f0 inParameterMapAction 'out.actualStepIndex=param.actualStepIndex;
+out.finishedTasks=param.finishedTasks;
 out.steps=param.steps;
-out.userTask=param.userTask;
 ' #txt
 As0 f0 inActionCode 'out.applicant = ivy.session.getSecurityContext().findSecurityMember(param.applicantName);' #txt
 As0 f0 outParameterDecl '<gawfs.ApprovalTaskResult approvalResult> result;
@@ -227,6 +227,7 @@ As0 f21 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData
 As0 f21 actionTable 'out=in;
 ' #txt
 As0 f21 actionCode 'import ch.ivyteam.ivy.security.IUser;
+
 in.approvalResult.setApproverName(ivy.session.getSessionUser().getDisplayName());
 in.approvalResult.setApplicantName(in.applicant.getDisplayName());
 in.approvalResult.setComment(in.comment);
