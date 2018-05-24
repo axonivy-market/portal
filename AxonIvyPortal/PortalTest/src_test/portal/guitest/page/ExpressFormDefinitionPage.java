@@ -4,9 +4,13 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+
+import ch.xpertline.base.client.Browser;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
   
@@ -150,10 +154,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void executeWorkflow() {
     click(By.id("execute-button"));
+    ensureNoBackgroundRequest();
   }
 
   public void nextStep() {
     click(By.id("next-button"));
+    ensureNoBackgroundRequest();
   }
   
   public void inputMailSubject(String content) {
@@ -161,6 +167,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
 
   public void inputMailContent(String content) {
-    findElementByClassName("ql-editor").sendKeys(content);
+    WebDriver driver = Browser.getBrowser().getDriver();
+    JavascriptExecutor jse = (JavascriptExecutor)driver;
+    jse.executeScript("document.querySelector(\"input[name='form:information-email:email-content_input'\").value='"+ content +"';");
   }
 }
