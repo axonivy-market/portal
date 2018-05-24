@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
@@ -20,6 +21,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserTaskWithMailFormPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class AxonExpressTest extends BaseTest{
@@ -165,6 +167,17 @@ public class AxonExpressTest extends BaseTest{
     rejectWhenMultiApproval();
   }
 
+  @Test
+  public void testComplexProcess() {
+    goToCreateExpressProcess();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
+    
+    ExpressFormDefinitionPage formDefinition = configureComplexProcess(expressProcessPage);
+    formDefinition.executeWorkflow();
+    executeComplexProcess();
+  }
+
   private void rejectWhenMultiApproval() {
     executeUserTask();
     assertEquals(0, new TaskWidgetPage().countTasks());
@@ -174,7 +187,7 @@ public class AxonExpressTest extends BaseTest{
     login(TestAccount.DEMO_USER);
     rejectApproval("Rejected at first level");
     String approvalResult = executeReview();
-    Assert.assertEquals("Task 2,Portal Demo User,Rejected at first level,No", approvalResult);
+    Assert.assertEquals("Task 2,Portal Demo User,Rejected at first level,No,Task 2,Portal Demo User,Rejected at first level,No", approvalResult);
     new ExpressEndPage().finish();    
   }
 
@@ -195,6 +208,32 @@ public class AxonExpressTest extends BaseTest{
     return formDefinition;
   }
 
+  private ExpressFormDefinitionPage configureComplexProcess(ExpressProcessPage expressProcessPage) {
+    ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
+    ExpressResponsible responsible2 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
+    
+    expressProcessPage.createTask(0, USER_TASK_WITH_EMAIL_INDEX, "Task 1", "Task 1 description", Arrays.asList(responsible2));
+    
+    expressProcessPage.addNewTask(0);
+    expressProcessPage.createTask(1, APPROVAL_INDEX, "Task 2", "Task 2 description", Arrays.asList(responsible2));
+    
+    expressProcessPage.addNewTask(1);
+    expressProcessPage.createTask(2, INFORMATION_EMAIL_INDEX, "Task 3", "Task 3 description", Arrays.asList(responsible1, responsible2));
+    expressProcessPage.addNewTask(2);
+    expressProcessPage.createTask(3, USER_TASK_INDEX, "Task 4", "Task 4 description", Arrays.asList(responsible2));
+    ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
+    formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
+    formDefinition.moveAllElementToDragAndDrogPanel();
+    formDefinition.nextStep();
+    formDefinition.inputMailSubject("Information for task 2");
+    formDefinition.inputMailContent("Task is finished");
+    formDefinition.nextStep();
+    formDefinition = new ExpressFormDefinitionPage();
+    formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
+    formDefinition.moveAllElementToDragAndDrogPanel();
+    return formDefinition;
+  }
+
   private void executeExpressProcessWhenMultiApproval() {
     executeUserTask();
     assertEquals(0, new TaskWidgetPage().countTasks());
@@ -208,10 +247,27 @@ public class AxonExpressTest extends BaseTest{
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level");
     login(TestAccount.DEMO_USER);
+    Sleeper.sleepTightInSeconds(3);
     String approvalResult = executeReview();
     Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes,"
         + "Task 3,Portal Demo User,Approved at second level,Yes,"
+        + "Task 3,portaladmin,Approved at second level,Yes,"
+        + "Task 2,Portal Demo User,Approved at first level,Yes,"
+        + "Task 3,Portal Demo User,Approved at second level,Yes,"
         + "Task 3,portaladmin,Approved at second level,Yes", approvalResult);
+    new ExpressEndPage().finish();
+  }
+
+  private void executeComplexProcess() {
+    new TaskWidgetPage().startTask(0);
+    UserTaskWithMailFormPage userTaskWithMailFormPage = new UserTaskWithMailFormPage();
+    userTaskWithMailFormPage.selectEmailTab();
+    userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");
+    userTaskWithMailFormPage.finish();
+    executeApproval("Approved at first level");
+    executeUserTask();
+    String approvalResult = executeReview();
+    Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes", approvalResult);
     new ExpressEndPage().finish();
   }
 
