@@ -29,3 +29,6 @@ email 'Email information for taskType=EMAIL' #fieldComment
 email PERSISTENT #fieldModifier
 approvalResultList java.util.List<gawfs.ApprovalTaskResult> #field
 approvalResultList PERSISTENT #fieldModifier
+actualApplicantName String #field
+actualApplicantName PERSISTENT #fieldModifier
+actualApplicant ch.ivyteam.ivy.security.IUser #field
