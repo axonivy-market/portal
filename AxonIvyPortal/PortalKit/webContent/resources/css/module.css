@@ -4748,7 +4748,9 @@ margin-top
   max-height: 80vh;
   overflow: auto;
 }
-
+.express-preview-scrollpanel {
+  height:600px;
+}
 /*********** Styles for ui-inplace ***********/
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check, .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
   background-image: none !important;
