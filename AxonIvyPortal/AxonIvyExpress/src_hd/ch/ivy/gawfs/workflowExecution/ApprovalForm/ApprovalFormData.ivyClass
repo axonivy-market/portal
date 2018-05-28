@@ -4,8 +4,6 @@ steps java.util.List<String> #field
 steps PERSISTENT #fieldModifier
 actualStepIndex Integer #field
 actualStepIndex PERSISTENT #fieldModifier
-applicant ch.ivyteam.ivy.security.ISecurityMember #field
-applicant PERSISTENT #fieldModifier
 approvalResult gawfs.ApprovalTaskResult #field
 approvalResult PERSISTENT #fieldModifier
 comment String #field

@@ -246,11 +246,9 @@
   </p:panelGrid>
 
   <p:dialog id="preview-dialog" widgetVar="preview-dialog" styleClass="preview-dialog" width="70%" closable="true"
-    modal="true" draggable="true" resizable="false" dynamic="true" 
+    modal="true" draggable="true" resizable="false" dynamic="true" fitViewport="true"
     header="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetPreviewArea')}">
-    <p:scrollPanel styleClass="express-preview-scrollpanel">
       <ui:include src="PreviewFieldset.xhtml" />
-    </p:scrollPanel>
     <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
       <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         onclick="PF('preview-dialog').hide();" />

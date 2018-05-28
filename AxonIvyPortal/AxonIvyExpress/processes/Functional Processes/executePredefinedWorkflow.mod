@@ -1135,7 +1135,7 @@ Bk7 f7 actionTable 'out=in1;
 ' #txt
 Bk7 f7 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk7 f7 outLinks "TaskA.ivp" #txt
-Bk7 f7 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName, in1.currentTask.description))%>
+Bk7 f7 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName))%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
@@ -1178,8 +1178,7 @@ Bk7 f24 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk7 f24 actionTable 'out=in;
 ' #txt
-Bk7 f24 actionCode 'in.currentTask.subject = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");
-in.currentTask.description = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");' #txt
+Bk7 f24 actionCode 'in.currentTask.subject = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");' #txt
 Bk7 f24 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk7 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1348,11 +1347,10 @@ Bk8 f20 @|TaskSwitchSimpleIcon #fIcon
 Bk8 f9 targetWindow NEW #txt
 Bk8 f9 targetDisplay TOP #txt
 Bk8 f9 richDialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
-Bk8 f9 startMethod start(java.util.List<gawfs.TaskDef>,String,java.util.List<String>,java.lang.Integer) #txt
+Bk8 f9 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer) #txt
 Bk8 f9 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk8 f9 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks, String applicantName, java.util.List<String> steps, java.lang.Integer actualStepIndex> param;' #txt
+Bk8 f9 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks, java.util.List<String> steps, java.lang.Integer actualStepIndex> param;' #txt
 Bk8 f9 requestMappingAction 'param.finishedTasks=in.finishedTasks;
-param.applicantName="#demo";
 param.steps=in.steps;
 param.actualStepIndex=in.actualStepIndex;
 ' #txt
