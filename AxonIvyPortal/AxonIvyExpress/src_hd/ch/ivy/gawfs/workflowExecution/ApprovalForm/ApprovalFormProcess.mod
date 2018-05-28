@@ -42,16 +42,15 @@ As0 @PushWFArc f2 '' #zField
 >Proto As0 As0 ApprovalFormProcess #zField
 As0 f0 guid 162F55164217492D #txt
 As0 f0 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f0 method start(java.util.List<gawfs.TaskDef>,String,java.util.List<String>,java.lang.Integer) #txt
+As0 f0 method start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer) #txt
 As0 f0 disableUIEvents true #txt
 As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<gawfs.TaskDef> finishedTasks,java.lang.String applicantName,java.util.List<java.lang.String> steps,java.lang.Integer actualStepIndex> param = methodEvent.getInputArguments();
+<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<java.lang.String> steps,java.lang.Integer actualStepIndex> param = methodEvent.getInputArguments();
 ' #txt
 As0 f0 inParameterMapAction 'out.actualStepIndex=param.actualStepIndex;
 out.finishedTasks=param.finishedTasks;
 out.steps=param.steps;
 ' #txt
-As0 f0 inActionCode 'out.applicant = ivy.session.getSecurityContext().findSecurityMember(param.applicantName);' #txt
 As0 f0 outParameterDecl '<gawfs.ApprovalTaskResult approvalResult> result;
 ' #txt
 As0 f0 outParameterMapAction 'result.approvalResult=in.approvalResult;
@@ -108,7 +107,7 @@ As0 f3 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData 
 ' #txt
 As0 f3 actionTable 'out=in;
 ' #txt
-As0 f3 actionCode 'String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/Tasks/Approved/TaskName"); 
+As0 f3 actionCode 'String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/Approve"); 
 ivy.case.createNote(ivy.session, note);
 ' #txt
 As0 f3 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
@@ -165,7 +164,7 @@ As0 f13 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData
 ' #txt
 As0 f13 actionTable 'out=in;
 ' #txt
-As0 f13 actionCode 'String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/Tasks/Declined/TaskName"); 
+As0 f13 actionCode 'String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/Reject"); 
 ivy.case.createNote(ivy.session, note);' #txt
 As0 f13 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -229,7 +228,6 @@ As0 f21 actionTable 'out=in;
 As0 f21 actionCode 'import ch.ivyteam.ivy.security.IUser;
 
 in.approvalResult.setApproverName(ivy.session.getSessionUser().getDisplayName());
-in.approvalResult.setApplicantName(in.applicant.getDisplayName());
 in.approvalResult.setComment(in.comment);
 in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));' #txt
 As0 f21 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt

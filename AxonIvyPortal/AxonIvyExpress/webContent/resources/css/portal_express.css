@@ -579,7 +579,7 @@
 
 /* DYNA FORM */
 .pe-dynaform-cell .ui-inputtextarea {
-	width: 90%;
+	width: 98% !important;
 }
 
 .defined-task-button-container {
@@ -591,6 +591,10 @@
 }
 
 .pe-dynaform-cell .ui-fileupload-content .ui-fileupload-messages {
+	text-align: left;
+}
+
+td.pe-dynaform-label[colspan="4"] {
 	text-align: left;
 }
 
@@ -658,4 +662,12 @@
 
 .preview-dialog .pe-dynaform-cell>.ui-spinner>.ui-spinner-input {
 	width: 94.5%;
+}
+
+.preview-dialog .preview-dyna-container {
+	padding: 0;
+	margin: 0;
+	height: 500px;
+	width: 100%;
+	overflow-y: scroll;
 }

@@ -49,7 +49,7 @@ public class WorkflowDefinitionBean implements Serializable {
     TaskType[] availableTaskTypes = {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL, TaskType.APPROVAL};
 
     for (TaskDef task : taskDefList) {
-      if (task.getTaskType() == TaskType.USER_TASK) {
+      if (task.getTaskType() == TaskType.USER_TASK || task.getTaskType() == TaskType.USER_TASK_WITH_EMAIL) {
         return availableTaskTypes;
       }
     }

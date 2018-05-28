@@ -125,7 +125,7 @@
                       requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                       <f:selectItems value="#{status.index == 0 ? workflowDefinitionBean.taskTypesForFirstWorkflowTask : workflowDefinitionBean.getTaskTypes(data.data.definedTasks)}"
                         var="taskType" itemLabel="#{taskType.label}" itemValue="#{taskType}" />
-                      <p:ajax event="change" process="@this" partialSubmit="true" global="false" />
+                      <p:ajax event="change" update="form" />
                     </p:selectOneMenu>
                   </p:column>
 

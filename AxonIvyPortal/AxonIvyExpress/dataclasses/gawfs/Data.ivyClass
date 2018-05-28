@@ -31,3 +31,5 @@ processFolder PERSISTENT #fieldModifier
 readyToExecute Boolean #field
 readyToExecute 'Flag to marked whether process is ready to execute or not' #fieldComment
 readyToExecute PERSISTENT #fieldModifier
+editFlag Boolean #field
+editFlag PERSISTENT #fieldModifier
