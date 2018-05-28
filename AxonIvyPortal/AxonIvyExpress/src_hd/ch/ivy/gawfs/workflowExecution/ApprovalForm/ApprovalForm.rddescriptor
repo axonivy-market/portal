@@ -11,12 +11,6 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
-            <name>applicantName</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
             <name>steps</name>
             <description></description>
             <parameterType>java.util.List&lt;String&gt;</parameterType>

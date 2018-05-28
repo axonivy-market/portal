@@ -43,6 +43,7 @@ public class ExpressProcessPage extends TemplatePage{
   
   public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription, List<ExpressResponsible> responsibles){
     chooseTaskType(taskIndex, typeIndex);
+    waitAjaxIndicatorDisappear();
     type(By.id(String.format("form:defined-tasks-list:%d:task-name", taskIndex)), taskName);
     type(By.id(String.format("form:defined-tasks-list:%d:task-description", taskIndex)), taskDescription);
     click(By.id(String.format("form:defined-tasks-list:%d:task-responsible", taskIndex)));

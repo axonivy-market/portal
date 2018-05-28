@@ -1,107 +1,107 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
 
-		<ui:composition template="/layouts/TaskTemplate.xhtml">
-		<ui:param name="caseId" value="#{ivy.case.id}" />
-		<ui:param name="task" value="#{ivy.task}" />
-		<ui:param name="steps" value="#{data.data.steps}" />
-		<ui:param name="actualStepIndex" value="2" />
-		<ui:param name="isShowStartAdhocButton" value="false" />
-		<ui:param name="isNotRequiredLogin" value="false" />
+    <ui:composition template="/layouts/TaskTemplate.xhtml">
+    <ui:param name="caseId" value="#{ivy.case.id}" />
+    <ui:param name="task" value="#{ivy.task}" />
+    <ui:param name="steps" value="#{data.data.steps}" />
+    <ui:param name="actualStepIndex" value="2" />
+    <ui:param name="isShowStartAdhocButton" value="false" />
+    <ui:param name="isNotRequiredLogin" value="false" />
 
 
-		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
+    <ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
         <ui:define name="errorsZone">
           <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate="false" />
         </ui:define>
-		<ui:define name="taskForm">
-			<p:growl id="error-growl" autoUpdate="false" globalOnly="true" showDetail="false" showSummary="true" />
-			<!-- DEFINED TASKS -->
-			<h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container">
-				<c:forEach items="#{data.data.definedTasks}" var="definedTask" varStatus="status" >
-					<h:panelGroup id="defined-task-button-container-#{status.index}" layout="block" styleClass="defined-task-button-container">
-						<p:commandButton id="defined-task-button-#{status.index}" value="#{definedTask.subject}&#10;(#{definedTask.taskType.label})" partialSubmit="true"
-							styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''} #{status.index lt data.activeTaskIndex ? 'visited' : ''}"
-							disabled="#{(status.index == data.activeTaskIndex) || (definedTask.taskType == 'APPROVAL')}"
-							actionListener="#{logic.moveToTask(status.index)}" update="form defined-task-container buttons-container" process="form:selected-formelements-field form:information-email:email-container">
-							<p:resetInput target="form:createTabs" />
-						</p:commandButton>
-					</h:panelGroup>
-					<p:tooltip id="defined-task-button-tooltip-#{status.index}" for="defined-task-button-container-#{status.index}" value="#{definedTask.subject} (#{definedTask.taskType.label})" />
-				</c:forEach>
-			</h:panelGroup>
-			
-			<!-- CONTENT -->
-			<h:form id="form">
-				<h:panelGroup layout="block" rendered="#{data.data.definedTasks.get(data.activeTaskIndex).taskType != 'EMAIL'}">
-					<ui:include src="FormElementFieldset.xhtml" />
-					<ui:include src="DragAndDropFieldset.xhtml" />
-				</h:panelGroup>
-				<h:panelGroup layout="block" rendered="#{data.data.definedTasks.get(data.activeTaskIndex).taskType == 'EMAIL'}">
-					<ic:ch.ivy.gawfs.component.Email id="information-email" email="#{data.data.definedTasks.get(data.activeTaskIndex).email}" responsibles="#{data.data.definedTasks.get(data.activeTaskIndex).responsibles}" />
-				</h:panelGroup>
-			</h:form>
-			<script type="text/javascript">
-				function handleDrop(event, ui) {
-					var droppedFormelement = ui.draggable;
-					droppedFormelement.fadeOut('fast');
-				}
-			</script>
-			
-			<!-- BUTTONS -->
-			<p:outputPanel id="buttons-container" styleClass="TexAlRight express-form-buttons-container">
-				<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left" partialSubmit="true"
-					update="form:selected-formelements-field" styleClass="buttonDelegate floatLeft" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.back}"/>
-				<p:spacer width="5" />
+    <ui:define name="taskForm">
+      <p:growl id="error-growl" autoUpdate="false" globalOnly="true" showDetail="false" showSummary="true" />
+      <!-- DEFINED TASKS -->
+      <h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container">
+        <c:forEach items="#{data.data.definedTasks}" var="definedTask" varStatus="status" >
+          <h:panelGroup id="defined-task-button-container-#{status.index}" layout="block" styleClass="defined-task-button-container">
+            <p:commandButton id="defined-task-button-#{status.index}" value="#{definedTask.subject}&#10;(#{definedTask.taskType.label})" partialSubmit="true"
+              styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''} #{status.index lt data.activeTaskIndex ? 'visited' : ''}"
+              disabled="#{(status.index == data.activeTaskIndex) || (definedTask.taskType == 'APPROVAL')}"
+              actionListener="#{logic.moveToTask(status.index)}" update="form defined-task-container buttons-container" process="form:selected-formelements-field form:information-email:email-container">
+              <p:resetInput target="form:createTabs" />
+            </p:commandButton>
+          </h:panelGroup>
+          <p:tooltip id="defined-task-button-tooltip-#{status.index}" for="defined-task-button-container-#{status.index}" value="#{definedTask.subject} (#{definedTask.taskType.label})" />
+        </c:forEach>
+      </h:panelGroup>
+      
+      <!-- CONTENT -->
+      <h:form id="form">
+        <h:panelGroup layout="block" rendered="#{data.data.definedTasks.get(data.activeTaskIndex).taskType != 'EMAIL'}">
+          <ui:include src="FormElementFieldset.xhtml" />
+          <ui:include src="DragAndDropFieldset.xhtml" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" rendered="#{data.data.definedTasks.get(data.activeTaskIndex).taskType == 'EMAIL'}">
+          <ic:ch.ivy.gawfs.component.Email id="information-email" email="#{data.data.definedTasks.get(data.activeTaskIndex).email}" responsibles="#{data.data.definedTasks.get(data.activeTaskIndex).responsibles}" />
+        </h:panelGroup>
+      </h:form>
+      <script type="text/javascript">
+        function handleDrop(event, ui) {
+          var droppedFormelement = ui.draggable;
+          droppedFormelement.fadeOut('fast');
+        }
+      </script>
+      
+      <!-- BUTTONS -->
+      <p:outputPanel id="buttons-container" styleClass="TexAlRight express-form-buttons-container">
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left" partialSubmit="true"
+          update="form:selected-formelements-field" styleClass="buttonDelegate floatLeft" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.back}"/>
+        <p:spacer width="5" />
 
-				<p:commandButton id="save-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save" partialSubmit="true"
-					styleClass="buttonDelegate" update="form:selected-formelements-field" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.save}"
-                    rendered="#{data.data.processType eq 'REPEAT'}"/>
-				<p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT'}" />
+        <p:commandButton id="save-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save" partialSubmit="true"
+          styleClass="buttonDelegate" update="form:selected-formelements-field" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.save}"
+                    rendered="#{data.data.processType eq 'REPEAT' and !data.data.editFlag}"/>
+        <p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT' and !data.data.editFlag}" />
 
-				<p:commandButton id="finish-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FinishWorkflow')}" icon="fa fa-check" partialSubmit="true"
-					styleClass="buttonDelegate" update="form:selected-formelements-field error-growl"
-					process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.finish}"
+        <p:commandButton id="finish-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FinishWorkflow')}" icon="fa fa-check" partialSubmit="true"
+          styleClass="buttonDelegate" update="form:selected-formelements-field error-growl"
+          process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.finish}"
                     rendered="#{data.data.processType eq 'REPEAT'}" />
-				<p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT'}" />
+        <p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT'}" />
 
-				<p:commandButton id="execute-button" icon="fa fa-check" styleClass="buttonDelegate"
-					value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}"
-					rendered="#{(data.data.processType eq 'AD_HOC')}" partialSubmit="true"
-					update="form error-growl" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.directExecution}"/>
-				<p:spacer width="5" />
+        <p:commandButton id="execute-button" icon="fa fa-check" styleClass="buttonDelegate"
+          value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}"
+          rendered="#{(data.data.processType eq 'AD_HOC')}" partialSubmit="true"
+          update="form error-growl" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.directExecution}"/>
+        <p:spacer width="5" />
 
-				<p:commandButton id="next-button" icon="fa fa-arrow-right" styleClass="buttonDelegate"
-					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
-					rendered="#{data.displayNextBtn}" partialSubmit="true"
-					update="form defined-task-container buttons-container" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.moveNextTask}" />
-				<p:spacer width="5" />
+        <p:commandButton id="next-button" icon="fa fa-arrow-right" styleClass="buttonDelegate"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
+          rendered="#{data.displayNextBtn}" partialSubmit="true"
+          update="form defined-task-container buttons-container" process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.moveNextTask}" />
+        <p:spacer width="5" />
 
-				<p:commandButton id="cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times"
-					onstart="PF('cancel-dialog').show();" styleClass="buttonDelegate portal-cancel-button"/>
+        <p:commandButton id="cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times"
+          onstart="PF('cancel-dialog').show();" styleClass="buttonDelegate portal-cancel-button"/>
 
-			</p:outputPanel>
-			
-			<p:confirmDialog id="cancel-dialog" widgetVar="cancel-dialog" message="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/cancelCreateForm')}"
-				appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert">
-				<div class="delete-server-warning-buttons">
-					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-						actionListener="#{logic.cancel}"
-						oncomplete="PF('cancel-dialog').hide()"
-						update="form" global="false" />
-					<p:commandButton styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
-						oncomplete="PF('cancel-dialog').hide()" />
-				</div>
-			</p:confirmDialog>
-		</ui:define>
+      </p:outputPanel>
+      
+      <p:confirmDialog id="cancel-dialog" widgetVar="cancel-dialog" message="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/cancelCreateForm')}"
+        appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert">
+        <div class="delete-server-warning-buttons">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+            actionListener="#{logic.cancel}"
+            oncomplete="PF('cancel-dialog').hide()"
+            update="form" global="false" />
+          <p:commandButton styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+            oncomplete="PF('cancel-dialog').hide()" />
+        </div>
+      </p:confirmDialog>
+    </ui:define>
 
     <ui:define name="css">
       <h:outputStylesheet library="css" name="portal_express.css" />
