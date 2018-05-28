@@ -36,6 +36,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     }
     click(By.id("form:createTabs:add-input-text-btn"));
     waitAjaxIndicatorDisappear();
+    Sleeper.sleepTight(1000);
   }
   
   public void createTextAreaField(String label, boolean isRequired) {
@@ -47,6 +48,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     }
     click(By.id("form:createTabs:add-text-area-btn"));
     waitAjaxIndicatorDisappear();
+    Sleeper.sleepTight(1000);
   }
   
   public void createCheckboxField(String label, int numberOfSelection) {
