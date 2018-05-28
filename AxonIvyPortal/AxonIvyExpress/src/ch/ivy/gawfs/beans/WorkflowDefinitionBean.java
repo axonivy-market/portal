@@ -35,27 +35,26 @@ public class WorkflowDefinitionBean implements Serializable {
   }
 
   public TaskType[] getTaskTypesForFirstWorkflowTask() {
-    TaskType[] availableTaskTypes = {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL};
-    return availableTaskTypes;
+    return new TaskType[] {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL};
   }
 
   /**
    * Get array of all task types
    * 
    * @param taskDefList
+   * @param currentTaskIndex
    * @return Array of all task types
    */
-  public TaskType[] getTaskTypes(List <TaskDef> taskDefList) {
-    TaskType[] availableTaskTypes = {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL, TaskType.APPROVAL};
+  public TaskType[] getTaskTypes(List <TaskDef> taskDefList, int currentTaskIndex) {
+    List<TaskDef> previousTasks = taskDefList.subList(0, currentTaskIndex);
 
-    for (TaskDef task : taskDefList) {
-      if (task.getTaskType() == TaskType.USER_TASK || task.getTaskType() == TaskType.USER_TASK_WITH_EMAIL) {
-        return availableTaskTypes;
+    for (TaskDef previousTask : previousTasks) {
+      if (previousTask.getTaskType() == TaskType.USER_TASK || previousTask.getTaskType() == TaskType.USER_TASK_WITH_EMAIL) {
+        return new TaskType[] {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL, TaskType.APPROVAL};
       }
     }
 
-    TaskType[] availableTaskTypesWithoutApproval = {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL};
-    return availableTaskTypesWithoutApproval;
+    return new TaskType[] {TaskType.USER_TASK, TaskType.USER_TASK_WITH_EMAIL, TaskType.EMAIL};
   }
 
   /**

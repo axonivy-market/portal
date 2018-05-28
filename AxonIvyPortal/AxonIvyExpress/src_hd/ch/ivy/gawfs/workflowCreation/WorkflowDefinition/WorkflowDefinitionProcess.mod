@@ -701,6 +701,7 @@ if (in.data.isUseDefaultUI) {
 			taskDef.subject = ivy.cms.co("/Dialogs/workflowCreation/TaskType/Approval") + " " + in.data.definedTasks.indexOf(taskDef) + ": " + nameOfUserTask;
 		}
 	}
+	in.data.readyToExecute = true;
 }' #txt
 Fs0 f52 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
