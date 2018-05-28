@@ -119,7 +119,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     WebElement panel = findElementById(String.format("form:selectedFormelements%sFieldSet", position));
     Actions builder = new Actions(driver);
     Action moveProcessSequence =
-        builder.clickAndHold(formElement).moveToElement(panel).release(formElement).build();
+        builder.clickAndHold(formElement).moveByOffset(-1, -1).moveToElement(panel).release(formElement).build();
     moveProcessSequence.perform();
     waitAjaxIndicatorDisappear();
   }
@@ -160,7 +160,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void executeWorkflow() {
     click(By.id("execute-button"));
-    ensureNoBackgroundRequest();
   }
 
   public void nextStep() {
