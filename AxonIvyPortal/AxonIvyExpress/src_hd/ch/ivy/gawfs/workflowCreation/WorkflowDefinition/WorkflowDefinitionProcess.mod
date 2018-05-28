@@ -660,13 +660,18 @@ Fs0 f49 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDef
 ' #txt
 Fs0 f49 actionTable 'out=in;
 ' #txt
-Fs0 f49 actionCode 'import java.util.ArrayList;
+Fs0 f49 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+import java.util.ArrayList;
 import gawfs.TaskDef;
 
 TaskDef task = new TaskDef();
 task.position = 1;
 task.untilDays = 1;
 task.responsibles = new ArrayList();
+
+if (!in.data.isUseDefaultUI) {
+	task.taskType = TaskType.USER_TASK;
+}
 
 in.data.definedTasks.clear();
 in.data.definedTasks.add(task);' #txt
