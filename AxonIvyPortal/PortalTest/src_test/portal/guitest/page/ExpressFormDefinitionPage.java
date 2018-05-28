@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import ch.xpertline.base.client.Browser;
 
@@ -55,6 +56,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     addCheckboxOptions(numberOfSelection);
     click(By.id("form:createTabs:add-checkbox-btn"));
     waitAjaxIndicatorDisappear();
+    Sleeper.sleepTight(1000);
   }
   
   public void createRadioButtonField(String label, int numberOfOption) {
@@ -64,6 +66,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     addRadioOptions(numberOfOption);
     click(By.id("form:createTabs:add-radio-btn"));
     waitAjaxIndicatorDisappear();
+    Sleeper.sleepTight(1000);
   }
   
   public void createUploadComponent(String label) {
@@ -72,6 +75,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     type(By.id("form:createTabs:FileUploadLabel"), label);
     click(By.id("form:createTabs:add-upload-file-btn"));
     waitAjaxIndicatorDisappear();
+    Sleeper.sleepTight(1000);
   }
   
   private void addRadioOptions(int numberOfOptions) {
