@@ -31,7 +31,6 @@ ew0 @Alternative f18 '' #zField
 ew0 @CallSub f20 '' #zField
 ew0 @PushWFArc f2 '' #zField
 ew0 @StartSub f21 '' #zField
-ew0 @PushWFArc f33 '' #zField
 ew0 @PushWFArc f34 '' #zField
 ew0 @EndSub f32 '' #zField
 ew0 @Alternative f41 '' #zField
@@ -61,6 +60,9 @@ ew0 @TaskSwitchSimple f37 '' #zField
 ew0 @TkArc f38 '' #zField
 ew0 @PushWFArc f10 '' #zField
 ew0 @PushWFArc f40 '' #zField
+ew0 @GridStep f1 '' #zField
+ew0 @PushWFArc f39 '' #zField
+ew0 @PushWFArc f33 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -320,8 +322,6 @@ ew0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f21 65 337 30 30 -35 17 #rect
 ew0 f21 @|StartSubIcon #fIcon
-ew0 f33 expr out #txt
-ew0 f33 95 352 312 352 #arcP
 ew0 f34 368 330 368 246 #arcP
 ew0 f34 0 0.37027027027027026 0 0 #arcLabel
 ew0 f32 type gawfs.Data #txt
@@ -446,22 +446,22 @@ ew0 f28 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f28 actionTable 'out=in;
 ' #txt
-ew0 f28 actionCode 'in.readyToExecute = false;' #txt
+ew0 f28 actionCode 'in.readyToExecute = false;
+in.editFlag = false;' #txt
 ew0 f28 type gawfs.Data #txt
 ew0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Marked not&#xD;
-ready to execute</name>
+        <name>Set flags</name>
     </language>
 </elementInfo>
 ' #txt
-ew0 f28 144 202 128 44 -42 -16 #rect
+ew0 f28 152 202 112 44 -24 -8 #rect
 ew0 f28 @|StepIcon #fIcon
 ew0 f31 expr out #txt
-ew0 f31 95 224 144 224 #arcP
+ew0 f31 95 224 152 224 #arcP
 ew0 f6 expr out #txt
-ew0 f6 272 224 312 224 #arcP
+ew0 f6 264 224 312 224 #arcP
 ew0 f35 type gawfs.Data #txt
 ew0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -538,6 +538,25 @@ ew0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f40 1904 224 1969 224 #arcP
 ew0 f40 0 0.410958904109589 0 -10 #arcLabel
+ew0 f1 actionDecl 'gawfs.Data out;
+' #txt
+ew0 f1 actionTable 'out=in;
+' #txt
+ew0 f1 actionCode 'in.editFlag = true;' #txt
+ew0 f1 type gawfs.Data #txt
+ew0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set edit flag</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f1 152 330 112 44 -32 -8 #rect
+ew0 f1 @|StepIcon #fIcon
+ew0 f39 expr out #txt
+ew0 f39 95 352 152 352 #arcP
+ew0 f33 expr out #txt
+ew0 f33 264 352 312 352 #arcP
 >Proto ew0 .type gawfs.Data #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -629,10 +648,8 @@ ew0 f16 mainOut f15 tail #connect
 ew0 f15 head f13 in #connect
 ew0 f18 out f2 tail #connect
 ew0 f2 head f20 mainIn #connect
-ew0 f33 head S10 g0 #connect
 ew0 S10 g1 f34 tail #connect
 ew0 f34 head f5 mainIn #connect
-ew0 f21 mainOut f33 tail #connect
 ew0 f44 head f43 mainIn #connect
 ew0 f45 out f47 tail #connect
 ew0 f47 head f46 mainIn #connect
@@ -669,6 +686,10 @@ ew0 f37 out f10 tail #connect
 ew0 f10 head f13 in #connect
 ew0 f35 out f40 tail #connect
 ew0 f40 head f32 mainIn #connect
+ew0 f21 mainOut f39 tail #connect
+ew0 f39 head f1 mainIn #connect
+ew0 f1 mainOut f33 tail #connect
+ew0 f33 head S10 g0 #connect
 Ct0 f1 head g1 m #connect
 Ct0 f25 mainOut f1 tail #connect
 Ct0 g0 m f0 tail #connect

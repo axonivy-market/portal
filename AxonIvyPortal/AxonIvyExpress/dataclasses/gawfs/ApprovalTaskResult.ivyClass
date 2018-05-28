@@ -6,7 +6,5 @@ isApproved Boolean #field
 isApproved PERSISTENT #fieldModifier
 comment String #field
 comment PERSISTENT #fieldModifier
-applicantName String #field
-applicantName PERSISTENT #fieldModifier
 taskName String #field
 taskName PERSISTENT #fieldModifier

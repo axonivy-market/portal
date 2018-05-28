@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
@@ -21,8 +20,8 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
-import portal.guitest.page.UserTaskWithMailFormPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
+import portal.guitest.page.UserTaskWithMailFormPage;
 
 public class AxonExpressTest extends BaseTest{
   private static final int USER_TASK_INDEX = 0;
@@ -188,7 +187,7 @@ public class AxonExpressTest extends BaseTest{
     rejectApproval("Rejected at first level");
     String approvalResult = executeReview();
     Assert.assertEquals("Task 2,Portal Demo User,Rejected at first level,No,Task 2,Portal Demo User,Rejected at first level,No", approvalResult);
-    new ExpressEndPage().finish();    
+    new ExpressEndPage().finish();
   }
 
   private ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
