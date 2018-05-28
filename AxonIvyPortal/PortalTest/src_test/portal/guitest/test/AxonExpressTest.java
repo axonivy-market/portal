@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
@@ -248,6 +249,7 @@ public class AxonExpressTest extends BaseTest{
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level");
     login(TestAccount.DEMO_USER);
+    
     String approvalResult = executeReview();
     Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes,"
         + "Task 3,Portal Demo User,Approved at second level,Yes,"
@@ -272,7 +274,8 @@ public class AxonExpressTest extends BaseTest{
   }
 
   private String executeReview() {
-    new TaskWidgetPage().startTask(0);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
     reviewPage.finish();
