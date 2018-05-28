@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
@@ -261,7 +260,8 @@ public class AxonExpressTest extends BaseTest{
   }
 
   private void executeComplexProcess() {
-    new TaskWidgetPage().startTask(0);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.startTask(0);
     UserTaskWithMailFormPage userTaskWithMailFormPage = new UserTaskWithMailFormPage();
     userTaskWithMailFormPage.selectEmailTab();
     userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");
@@ -283,8 +283,10 @@ public class AxonExpressTest extends BaseTest{
   }
 
   private void executeUserTask() {
-    new TaskWidgetPage().startTask(0);
-    new ExpressTaskPage().finish();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.startTask(0);
+    ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.finish();
   }
 
   private void startExpressProcess(String processName) {
