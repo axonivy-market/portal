@@ -8,9 +8,12 @@
     <ui:param name="menuState" value="#{data.menuState}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="isNotRequiredLogin" value="false" />
+    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!BELOW IS SAMPLE CODE FOR CUSTOMIZATION, WRAPPED IN <ui:remove> TAG. TO ACTIVATE THE CUSTOMIZATION, REMOVE <ui:remove> TAG!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
     <ui:remove>
-
-      <!-- BELOW CODE IS AN EXAMPLE TO CUSTOMIZE TASK WIDGET -->
       <ui:param name="useOverrideListHeader" value="true" />
       <ui:param name="useOverrideHeader" value="true" />
       <ui:param name="useOverrideBody" value="true" />
@@ -25,19 +28,21 @@
 
       <ui:define name="taskHeader">
         <!-- Flexbox is applied, so please set your column's width by flex style. The TaskName column takes the remaining width. -->
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority
+          priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
         <div class="task-start-info">
-          <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}"
+          <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}"
             isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
         </div>
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
-          fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" />
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
-          value="#{task.startTimestamp}" styleClass="js-create-cell" />
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
-          value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.state}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{taskView.dataModel}"
+          userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" dataModel="#{taskView.dataModel}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
+          componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
+          componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}"
+          state="#{task.state}" />
 
         <!-- New field -->
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5"
