@@ -35,7 +35,17 @@ import com.google.gson.Gson;
 @Singleton
 public class ChatStreamController {
 
+  private static final int SLEEP_TIME = 2000;
   public static final String DELIMITER = "[MSG_END]";
+  
+  @POST
+  @Path("updateStreamingChatUUID")
+  @Consumes(MediaType.TEXT_HTML)
+  @Produces(MediaType.TEXT_HTML)
+  public synchronized Response updateStreamingChatUUID(String uuid) {
+    Ivy.session().setAttribute("StreamingChatUUID", uuid);
+    return Response.ok("SUCCESSFUL").build();
+  }
 
   @POST
   @Path("write")
@@ -63,9 +73,18 @@ public class ChatStreamController {
         // To make sure only one streaming for a session user, save memory for server
         // In order to stop streaming, we should clean this attribute
         Ivy.session().setAttribute("StreamingChatUUID", uuid);
+        int timeToUpdateStreamingChatUUID = 0;
         while (isUserWorking(sessionUserName) && StringUtils.equals(uuid, Ivy.session().getAttribute("StreamingChatUUID").toString())) // for demo lets limit to 60 seconds, in real world could run forever
         {
           try {
+            // after n times, we should update StreamingChatUUID to make sure client is still in connection
+            // if client doesn't update StreamingChatUUID, should stop connection
+            if (timeToUpdateStreamingChatUUID == 5){ // n = 5, real is 50 minutes
+              uuid = UUID.randomUUID().toString();
+              out.println("{\"uuid\":\"" + uuid +"\"}");
+              timeToUpdateStreamingChatUUID = 0;
+              Thread.sleep(2*SLEEP_TIME); // waiting for client update StreamingChatUUID
+            }
             Ivy.log().error("taint " + sessionUserName + " " + uuid);
             String filename = ChatMessageManager.generateFileName(Arrays.asList(sessionUserName));
             List<Message> messages = ChatMessageManager.loadTempMessagesAndDeleteTempMessages(filename);
@@ -79,11 +98,13 @@ public class ChatStreamController {
               out.println(new Gson().toJson(messages));
             }
             messages = Collections.emptyList();
-            Thread.sleep(2000);
+            Thread.sleep(SLEEP_TIME);
+            timeToUpdateStreamingChatUUID = ++timeToUpdateStreamingChatUUID;
           } catch (Exception e) {
             Ivy.log().error("Log For Chatting: {0}", e);
           }
         }
+        Ivy.log().error("taint " + sessionUserName + " " + "STOP");
       }
     };
     return Response.ok(streamingOutput).build();
