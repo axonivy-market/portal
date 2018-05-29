@@ -388,12 +388,26 @@ Ca0 f28 actionDecl 'portalKit_test.Data out;
 ' #txt
 Ca0 f28 actionTable 'out=in;
 ' #txt
-Ca0 f28 actionCode 'import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
+Ca0 f28 actionCode 'import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
 import ch.ivyteam.ivy.security.IPermissionGroup;
+import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 
-IPermissionGroup portalPermissionGroup = IPermissionGroupRepository.get().findByName("PORTAL_PERMISSIONS");
-if(#portalPermissionGroup is initialized) {
-	IPermissionGroupRepository.get().delete(portalPermissionGroup);
+for (PortalPermission permission : PortalPermission.values()) {
+	IPermission iPermission = IPermissionRepository.get().findByName(permission.getValue());
+	if (#iPermission is initialized) {
+  	IPermissionRepository.get().delete(iPermission);
+  }
+}
+
+for (PortalPermissionGroup group : PortalPermissionGroup.values()) {
+	IPermissionGroup permissionGroup = IPermissionGroupRepository.get().findByName(group.getValue());
+	if (#permissionGroup is initialized) {
+  	IPermissionGroupRepository.get().delete(permissionGroup);
+  }
 }' #txt
 Ca0 f28 type portalKit_test.Data #txt
 Ca0 f28 1000 170 112 44 0 -8 #rect
