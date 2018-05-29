@@ -203,7 +203,7 @@ public class AxonExpressTest extends BaseTest{
     expressProcessPage.createTask(2, APPROVAL_INDEX, "Task 3", "Task 3 description", Arrays.asList(responsible1, responsible2));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.createTextInputField("Input Text 1", INPUT_TEXT_TYPE_INDEX, false);
-    formDefinition.createTextInputField("Input Text 2", INPUT_TEXT_TYPE_INDEX, false);
+    formDefinition.createTextInputField("Input Number 2", INPUT_NUMBER_TYPE_INDEX, false);
     formDefinition.moveAllElementToDragAndDrogPanel();
     return formDefinition;
   }
@@ -230,7 +230,7 @@ public class AxonExpressTest extends BaseTest{
     formDefinition.nextStep();
     formDefinition = new ExpressFormDefinitionPage();
     formDefinition.createTextInputField("Input Text 1", INPUT_TEXT_TYPE_INDEX, false);
-    formDefinition.createTextInputField("Input Text 2", INPUT_TEXT_TYPE_INDEX, false);
+    formDefinition.createTextInputField("Input Number 2", INPUT_NUMBER_TYPE_INDEX, false);
     formDefinition.moveAllElementToDragAndDrogPanel();
     return formDefinition;
   }
