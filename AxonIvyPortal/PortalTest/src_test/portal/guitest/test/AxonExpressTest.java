@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
@@ -284,6 +285,7 @@ public class AxonExpressTest extends BaseTest{
   
   private String executeReview(String taskName) {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    Sleeper.sleepTight(2000);
     taskWidgetPage.filterTasksBy(taskName);
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
@@ -301,6 +303,7 @@ public class AxonExpressTest extends BaseTest{
   
   private void executeUserTask(String taskName) {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    Sleeper.sleepTight(2000);
     taskWidgetPage.filterTasksBy(taskName);
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
