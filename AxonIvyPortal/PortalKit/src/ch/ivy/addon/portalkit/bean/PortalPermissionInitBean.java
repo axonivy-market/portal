@@ -126,13 +126,6 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private void cleanAllPortalPermissionsAndGroups() {
-    for (PortalPermission permission : PortalPermission.values()) {
-      IPermission iPermission = IPermissionRepository.get().findByName(permission.getValue());
-      if (Objects.nonNull(iPermission)) {
-        IPermissionRepository.get().delete(iPermission);
-      }
-    }
-
     for (PortalPermissionGroup group : PortalPermissionGroup.values()) {
       IPermissionGroup permissionGroup = IPermissionGroupRepository.get().findByName(group.getValue());
       if (Objects.nonNull(permissionGroup)) {
