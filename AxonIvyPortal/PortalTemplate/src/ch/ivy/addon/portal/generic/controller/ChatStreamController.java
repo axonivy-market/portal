@@ -77,9 +77,9 @@ public class ChatStreamController {
         while (isUserWorking(sessionUserName) && StringUtils.equals(uuid, Ivy.session().getAttribute("StreamingChatUUID").toString())) // for demo lets limit to 60 seconds, in real world could run forever
         {
           try {
-            // after n times, we should update StreamingChatUUID to make sure client is still in connection
+            // after n (current = 30) times, we should ask client to make sure client is still in connection
             // if client doesn't update StreamingChatUUID, should stop connection
-            if (timeToUpdateStreamingChatUUID == 5){ // n = 5, real is 50 minutes
+            if (timeToUpdateStreamingChatUUID == 30){ // n = 5, real is 50 minutes
               uuid = UUID.randomUUID().toString();
               out.println("{\"uuid\":\"" + uuid +"\"}");
               timeToUpdateStreamingChatUUID = 0;
@@ -99,7 +99,7 @@ public class ChatStreamController {
             }
             messages = Collections.emptyList();
             Thread.sleep(SLEEP_TIME);
-            timeToUpdateStreamingChatUUID = ++timeToUpdateStreamingChatUUID;
+            ++timeToUpdateStreamingChatUUID;
           } catch (Exception e) {
             Ivy.log().error("Log For Chatting: {0}", e);
           }
