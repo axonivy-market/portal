@@ -267,14 +267,24 @@ public class AxonExpressTest extends BaseTest{
     userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");
     userTaskWithMailFormPage.finish();
     executeApproval("Approved at first level");
-    executeUserTask();
-    String approvalResult = executeReview();
+    executeUserTask("Task 4");
+    String approvalResult = executeReview("Test approval: Final Review");
     Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes", approvalResult);
     new ExpressEndPage().finish();
   }
 
   private String executeReview() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.startTask(0);
+    ExpressReviewPage reviewPage = new ExpressReviewPage();
+    String approvalResult = reviewPage.getApprovalResult();
+    reviewPage.finish();
+    return approvalResult;
+  }
+  
+  private String executeReview(String taskName) {
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy(taskName);
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
@@ -288,7 +298,15 @@ public class AxonExpressTest extends BaseTest{
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
   }
-
+  
+  private void executeUserTask(String taskName) {
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy(taskName);
+    taskWidgetPage.startTask(0);
+    ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.finish();
+  }
+  
   private void startExpressProcess(String processName) {
     HomePage homePage = new HomePage();
     GlobalSearch globalSearch= homePage.getGlobalSearch();
@@ -297,14 +315,16 @@ public class AxonExpressTest extends BaseTest{
   }
 
   private void executeApproval(String comment) {
-    new TaskWidgetPage().startTask(0);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
   }
 
   private void rejectApproval(String comment) {
-    new TaskWidgetPage().startTask(0);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.reject();
