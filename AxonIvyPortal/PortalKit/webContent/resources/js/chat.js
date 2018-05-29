@@ -203,13 +203,32 @@ function ChatHandler() {
 					    var newData = xhr.response.substr(xhr.seenBytes);
 					    console.log(newData);
 					    var messages = JSON.parse(newData);
-					    for (var i = 0; i < messages.length; i++) {
-					    	var message = messages[i];
-					    	if (message.sender !== sender && !$(findContact(message.sender)).hasClass('active')) {
-					            showNotification(message.sender);
-					        } else if (message.sender !== sender){
-					        	addMessageCardToConversation(message);
-					        }
+					    if (messages.uuid === null || messages.uuid === undefined){
+					    	for (var i = 0; i < messages.length; i++) {
+						    	var message = messages[i];
+						    	if (message.sender !== sender && !$(findContact(message.sender)).hasClass('active')) {
+						            showNotification(message.sender);
+						        } else if (message.sender !== sender){
+						        	addMessageCardToConversation(message);
+						        }
+						    }
+					    } else {
+					    	// send request to let server know we still working with Chat
+					    	$.ajax({
+					            type: 'POST',
+					            contentType: 'text/html',
+					            //"Chat" is application name, will be replaced in the real functions
+					            url: window.location.origin + "/"+ window.location.pathname.split("/")[1] + "/api/" + window.location.pathname.split("/")[4] +  "/chatcontroller/updateStreamingChatUUID",
+					            headers: {
+					                "X-Requested-By": "IVY"
+					            },
+					            data: messages.uuid,
+					            success: function(data, textStatus, jqXHR){
+					            },
+					            error: function(jqXHR, textStatus, errorThrown){
+					                alert('Error in updateStreamingChatUUID: ' + textStatus);
+					            }
+					        });
 					    }
 					    xhr.seenBytes = xhr.responseText.length;
 					  }
