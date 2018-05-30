@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	chatHandler = new ChatHandler();
-	chatHandler.stream()
+//	chatHandler.stream();
 	chatHandler.setHeightForContactList();
   $(window).resize(function() {
     chatHandler.setHeightForContactList();
@@ -8,6 +8,8 @@ $(document).ready(function() {
 });
 
 function ChatHandler() {
+	
+	var streamingData = false;
   
   function contain(s, keyword) {
     return s.indexOf(keyword) >= 0;
@@ -24,12 +26,15 @@ function ChatHandler() {
     
     var cover = $('<div class="u-cover"></div>');
     cover.click(function() {
+    	streamingData = false;
       $('.js-chat-panel').removeClass('active');
       $('.js-top-menu').removeClass('mod-chat-active');
       closeChatMessagePanel();
       $(this).remove();
     });
     $('.js-chat-panel').parent().append(cover);
+    chatHandler.stream();
+    streamingData = true;
   });
   
   $('.js-show-chat-message').click(function() {
@@ -213,22 +218,24 @@ function ChatHandler() {
 						        }
 						    }
 					    } else {
-					    	// send request to let server know we still working with Chat
-					    	$.ajax({
-					            type: 'POST',
-					            contentType: 'application/json',
-					            //"Chat" is application name, will be replaced in the real functions
-					            url: window.location.origin + "/"+ window.location.pathname.split("/")[1] + "/api/" + window.location.pathname.split("/")[4] +  "/chatcontroller/updateStreamingChatUUID",
-					            headers: {
-					                "X-Requested-By": "IVY"
-					            },
-					            data: JSON.stringify(messages),
-					            success: function(data, textStatus, jqXHR){
-					            },
-					            error: function(jqXHR, textStatus, errorThrown){
-					                alert('Error in updateStreamingChatUUID: ' + textStatus);
-					            }
-					        });
+					    	if (streamingData){
+					    		// send request to let server know we still working with Chat
+						    	$.ajax({
+						            type: 'POST',
+						            contentType: 'application/json',
+						            //"Chat" is application name, will be replaced in the real functions
+						            url: window.location.origin + "/"+ window.location.pathname.split("/")[1] + "/api/" + window.location.pathname.split("/")[4] +  "/chatcontroller/updateStreamingChatUUID",
+						            headers: {
+						                "X-Requested-By": "IVY"
+						            },
+						            data: JSON.stringify(messages),
+						            success: function(data, textStatus, jqXHR){
+						            },
+						            error: function(jqXHR, textStatus, errorThrown){
+						                alert('Error in updateStreamingChatUUID: ' + textStatus);
+						            }
+						        });
+					    	}
 					    }
 					    xhr.seenBytes = xhr.responseText.length;
 					  }
