@@ -42,7 +42,6 @@ Pt0 @PushWFArc f24 '' #zField
 Pt0 @PushWFArc f26 '' #zField
 Pt0 @PushWFArc f32 '' #zField
 Pt0 @PushWFArc f36 '' #zField
-Pt0 @PushWFArc f37 '' #zField
 Pt0 @PushWFArc f39 '' #zField
 Pt0 @CallSub f9 '' #zField
 Pt0 @PushWFArc f8 '' #zField
@@ -62,6 +61,11 @@ Pt0 @StartRequest f28 '' #zField
 Pt0 @PushWFArc f46 '' #zField
 Pt0 @StartRequest f31 '' #zField
 Pt0 @PushWFArc f47 '' #zField
+Pt0 @RichDialog f49 '' #zField
+Pt0 @GridStep f52 '' #zField
+Pt0 @PushWFArc f51 '' #zField
+Pt0 @PushWFArc f53 '' #zField
+Pt0 @PushWFArc f56 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -169,7 +173,8 @@ Pt0 f2 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f2 actionTable 'out=in;
 ' #txt
-Pt0 f2 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+Pt0 f2 actionCode 'import ch.ivy.addon.portalkit.enums.NavigationHistory;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
@@ -181,8 +186,14 @@ String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskE
 TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
 
 in.dataModel = taskEndInfo.dataModel;
-in.portalPage = taskEndInfo.isFromPortalHome ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
-SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
+if (taskEndInfo.#navigationHistory is initialized && NavigationHistory.SEARCH_RESULTS == taskEndInfo.navigationHistory) {
+	in.portalPage = PortalPage.SEARCH_RESULTS;
+} else {
+	in.portalPage = taskEndInfo.isFromPortalHome ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
+}
+SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
+
+' #txt
 Pt0 f2 security system #txt
 Pt0 f2 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -604,20 +615,6 @@ Pt0 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f36 1062 168 1232 288 #arcP
 Pt0 f36 1 1152 288 #addKink
 Pt0 f36 1 0.37012987012987014 0 -13 #arcLabel
-Pt0 f37 expr in #txt
-Pt0 f37 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.LINK_TO_TASK, in.#portalPage)' #txt
-Pt0 f37 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>LINK_TO_TASK</name>
-        <nameStyle>12
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f37 1056 174 1216 545 #arcP
-Pt0 f37 1 1056 545 #addKink
-Pt0 f37 1 0.5125 0 -13 #arcLabel
 Pt0 f39 expr out #txt
 Pt0 f39 1344 545 1436 545 #arcP
 Pt0 f39 0 0.7418894103244236 0 0 #arcLabel
@@ -803,6 +800,89 @@ Pt0 f47 expr out #txt
 Pt0 f47 80 352 378 439 #arcP
 Pt0 f47 1 320 352 #addKink
 Pt0 f47 0 0.7210285984301413 0 0 #arcLabel
+Pt0 f49 targetWindow NEW #txt
+Pt0 f49 targetDisplay TOP #txt
+Pt0 f49 richDialogId ch.ivy.addon.portal.generic.SearchResults #txt
+Pt0 f49 startMethod start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
+Pt0 f49 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f49 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel dataModel, Number activeTabIndex> param;' #txt
+Pt0 f49 requestMappingAction 'param.dataModel=in.searchResultsDataModel;
+param.activeTabIndex=1;
+' #txt
+Pt0 f49 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f49 responseMappingAction 'out=in;
+' #txt
+Pt0 f49 isAsynch false #txt
+Pt0 f49 isInnerRd false #txt
+Pt0 f49 userContext '* ' #txt
+Pt0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Search Results</name>
+        <nameStyle>14,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f49 1417 641 112 44 -42 -8 #rect
+Pt0 f49 @|RichDialogIcon #fIcon
+Pt0 f52 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f52 actionTable 'out=in;
+' #txt
+Pt0 f52 actionCode 'import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
+
+in.searchResultsDataModel = new SearchResultsDataModel();
+in.searchResultsDataModel.taskDataModel = in.dataModel;
+in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+in.searchResultsDataModel.caseDataModel = new CaseLazyDataModel();
+in.searchResultsDataModel.caseDataModel.notKeepFilter = true;
+in.searchResultsDataModel.caseDataModel.queryCriteria.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+' #txt
+Pt0 f52 security system #txt
+Pt0 f52 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>build data model</name>
+        <nameStyle>16,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f52 1231 641 112 44 -46 -8 #rect
+Pt0 f52 @|StepIcon #fIcon
+Pt0 f51 expr out #txt
+Pt0 f51 1343 663 1417 663 #arcP
+Pt0 f53 expr in #txt
+Pt0 f53 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SEARCH_RESULTS</name>
+        <nameStyle>14,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f53 1056 174 1231 663 #arcP
+Pt0 f53 1 1056 663 #addKink
+Pt0 f53 1 0.39520958083832336 0 -11 #arcLabel
+Pt0 f56 expr in #txt
+Pt0 f56 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.LINK_TO_TASK, in.#portalPage)' #txt
+Pt0 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>LINK_TO_TASK</name>
+        <nameStyle>12
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f56 1057 173 1216 545 #arcP
+Pt0 f56 1 1096 545 #addKink
+Pt0 f56 1 0.5125 0 -13 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -825,7 +905,6 @@ Pt0 f21 out f36 tail #connect
 Pt0 f36 head f18 mainIn #connect
 Pt0 f17 mainOut f26 tail #connect
 Pt0 f26 head f23 mainIn #connect
-Pt0 f37 head f19 mainIn #connect
 Pt0 f19 mainOut f39 tail #connect
 Pt0 f39 head f12 mainIn #connect
 Pt0 f21 out f32 tail #connect
@@ -846,7 +925,6 @@ Pt0 f41 out f45 tail #connect
 Pt0 f45 head f43 in #connect
 Pt0 f21 out f16 tail #connect
 Pt0 f16 head f6 mainIn #connect
-Pt0 f21 out f37 tail #connect
 Pt0 f6 mainOut f38 tail #connect
 Pt0 f38 head f17 mainIn #connect
 Pt0 f10 mainOut f48 tail #connect
@@ -857,3 +935,9 @@ Pt0 f28 mainOut f46 tail #connect
 Pt0 f46 head f4 in #connect
 Pt0 f31 mainOut f47 tail #connect
 Pt0 f47 head f30 in #connect
+Pt0 f52 mainOut f51 tail #connect
+Pt0 f51 head f49 mainIn #connect
+Pt0 f53 head f52 mainIn #connect
+Pt0 f21 out f56 tail #connect
+Pt0 f56 head f19 mainIn #connect
+Pt0 f21 out f53 tail #connect
