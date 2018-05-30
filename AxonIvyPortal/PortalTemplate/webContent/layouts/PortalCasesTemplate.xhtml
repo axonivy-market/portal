@@ -30,7 +30,8 @@
         <div class="js-simple-main-col case-main-container">
           <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{data.caseView.getTitle() != '' ? data.caseView.getTitle() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"
             dataModel="#{caseView.getDataModel()}" hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"
-            autoSelectCaseId="#{caseView.getAutoSelectCaseId()}" filterGroupId="#{filterGroupId}">
+            autoSelectCaseId="#{caseView.getAutoSelectCaseId()}" filterGroupId="#{filterGroupId}"
+            hideWidgetHeader="#{hideWidgetHeader}">
             <f:facet name="caseHeader">
               <ic:ch.ivy.addon.portalkit.component.CaseHeader id="case-header" case="#{case}"
                 initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" />
