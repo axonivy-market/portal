@@ -84,7 +84,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateCaseByStateModel(StatisticFilter filter) {
-    String jsonQuery = StatisticChartQueryUtils.generateCaseQuery(filter, false).asJson();
+    String jsonQuery = StatisticChartQueryUtils.generateCaseQueryForCaseState(filter).asJson();
     CaseStateStatistic caseStateStatisticData = statisticService.getCaseStateStatisticData(jsonQuery);
     caseByStateModel = statisticService.generateCaseByStateModel(caseStateStatisticData,StatisticChartType.CASES_BY_STATE, false);
   }

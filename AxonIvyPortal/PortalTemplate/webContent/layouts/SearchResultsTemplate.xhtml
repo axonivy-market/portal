@@ -10,6 +10,7 @@
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="pageTitle">Search Results</ui:define>
     <ui:define name="simplePageContent">
+      <c:set property="navigationHistory" value="SEARCH_RESULTS" target="#{navigationHistoryBean}"></c:set>
       <div class="global-search">
         <p:inputText id="global-search-data" styleClass="global-search-input" value="#{dataModel.keyword}"
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
