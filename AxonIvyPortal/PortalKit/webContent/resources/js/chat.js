@@ -216,13 +216,13 @@ function ChatHandler() {
 					    	// send request to let server know we still working with Chat
 					    	$.ajax({
 					            type: 'POST',
-					            contentType: 'text/html',
+					            contentType: 'application/json',
 					            //"Chat" is application name, will be replaced in the real functions
 					            url: window.location.origin + "/"+ window.location.pathname.split("/")[1] + "/api/" + window.location.pathname.split("/")[4] +  "/chatcontroller/updateStreamingChatUUID",
 					            headers: {
 					                "X-Requested-By": "IVY"
 					            },
-					            data: messages.uuid,
+					            data: JSON.stringify(messages),
 					            success: function(data, textStatus, jqXHR){
 					            },
 					            error: function(jqXHR, textStatus, errorThrown){

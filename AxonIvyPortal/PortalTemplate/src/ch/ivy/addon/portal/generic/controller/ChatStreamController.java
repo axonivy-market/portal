@@ -26,7 +26,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.chat.ChatMessageManager;
 import ch.ivy.addon.portal.chat.Message;
+import ch.ivy.addon.portal.chat.SessionAttributeInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISession;
 
 import com.google.gson.Gson;
 
@@ -37,13 +39,14 @@ public class ChatStreamController {
 
   private static final int SLEEP_TIME = 2000;
   public static final String DELIMITER = "[MSG_END]";
-  
+
   @POST
   @Path("updateStreamingChatUUID")
-  @Consumes(MediaType.TEXT_HTML)
+  @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.TEXT_HTML)
-  public synchronized Response updateStreamingChatUUID(String uuid) {
-    Ivy.session().setAttribute("StreamingChatUUID", uuid);
+  public Response updateStreamingChatUUID(SessionAttributeInfo info) {
+    ISession session = Ivy.wf().getSecurityContext().findSession(info.getSessionId());
+    session.setAttribute("StreamingChatUUID", info.getUuid());
     return Response.ok("SUCCESSFUL").build();
   }
 
@@ -51,7 +54,7 @@ public class ChatStreamController {
   @Path("write")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.TEXT_HTML)
-  public synchronized Response write(Message message) {
+  public Response write(Message message) {
     ChatMessageManager.saveMessage(message);
     ChatMessageManager.saveTempMessage(message);
     return Response.ok("SUCCESSFUL").build();
@@ -59,7 +62,7 @@ public class ChatStreamController {
 
   @GET
   @Path("get")
-  public synchronized Response listen() {
+  public Response listen() {
     IvyStreamingOutput streamingOutput = new IvyStreamingOutput() {
       @Override
       public void writeInIvyContext(OutputStream stream) throws IOException, WebApplicationException {
@@ -69,23 +72,24 @@ public class ChatStreamController {
 
       private void distributeIncomingMessages(PrintWriter out) {
         String sessionUserName = Ivy.session().getSessionUserName();
+        int sessionId = Ivy.session().getIdentifier();
         String uuid = UUID.randomUUID().toString();
         // To make sure only one streaming for a session user, save memory for server
         // In order to stop streaming, we should clean this attribute
         Ivy.session().setAttribute("StreamingChatUUID", uuid);
         int timeToUpdateStreamingChatUUID = 0;
-        while (isUserWorking(sessionUserName) && StringUtils.equals(uuid, Ivy.session().getAttribute("StreamingChatUUID").toString())) // for demo lets limit to 60 seconds, in real world could run forever
-        {
+        // for demo lets limit to 60 seconds, in real world could run forever
+        while (isUserWorking(sessionUserName) && StringUtils.equals(uuid, Ivy.session().getAttribute("StreamingChatUUID").toString())) {
           try {
             // after n (current = 30) times, we should ask client to make sure client is still in connection
             // if client doesn't update StreamingChatUUID, should stop connection
-            if (timeToUpdateStreamingChatUUID == 30){ // n = 5, real is 50 minutes
+            if (timeToUpdateStreamingChatUUID == 5) { // n = 5, real is 50 minutes
               uuid = UUID.randomUUID().toString();
-              out.println("{\"uuid\":\"" + uuid +"\"}");
+              out.println(new Gson().toJson(new SessionAttributeInfo(sessionId, uuid)));
               timeToUpdateStreamingChatUUID = 0;
-              Thread.sleep(2*SLEEP_TIME); // waiting for client update StreamingChatUUID
+              Thread.sleep(2 * SLEEP_TIME); // waiting for client update StreamingChatUUID
             }
-            Ivy.log().error("taint " + sessionUserName + " " + uuid);
+            Ivy.log().error("taint " + Ivy.session().getSessionUserName() + " " + Ivy.session().getIdentifier() + " " + uuid);
             String filename = ChatMessageManager.generateFileName(Arrays.asList(sessionUserName));
             List<Message> messages = ChatMessageManager.loadTempMessagesAndDeleteTempMessages(filename);
             if (CollectionUtils.isNotEmpty(messages)) {
