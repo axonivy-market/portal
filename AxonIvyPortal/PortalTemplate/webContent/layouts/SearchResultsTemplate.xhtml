@@ -10,13 +10,14 @@
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="pageTitle">Search Results</ui:define>
     <ui:define name="simplePageContent">
+      <c:set property="navigationHistory" value="SEARCH_RESULTS" target="#{navigationHistoryBean}"></c:set>
       <p:inputText id="keyword" value="#{dataModel.keyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
         onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
         <i class="fa fa-search" />
         <p:ajax listener="#{dataModel.search}" />
       </p:inputText>
-      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true">
+      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" activeIndex="#{data.activeTabIndex}">
         <p:tab id="process-tab" title="Processes">
           <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" compactMode="false"
             keyword="#{dataModel.keyword}" hideHeader="true" />
