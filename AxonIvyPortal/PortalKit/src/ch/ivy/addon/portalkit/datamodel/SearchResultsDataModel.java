@@ -12,6 +12,9 @@ public class SearchResultsDataModel implements Serializable {
     taskDataModel = new TaskLazyDataModel("search-results-tabview:task-results");
     caseDataModel = new CaseLazyDataModel("search-results-tabview:case-results");
   }
+  
+  public void search() {
+  }
 
   public String getKeyword() {
     return keyword;

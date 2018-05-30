@@ -107,21 +107,21 @@
 
 .global-search-icon {
 	position: absolute;
-    top: 15%;
-    right: 15px;
+    top: 25%;
+    right: 5px;
     font-size: 1.4rem;
 }
 
-#global-search-data {
-	font-size: 1.4rem;
+.global-search-input {
+	font-size: 1.4rem !important;
     padding: 3px 25px 3px 0 !important;
-    width: 300px;
+    width: 300px !important;
 }
 
 .global-search {
-	padding-right: 10px;
-	position: relative;
-	display: flex;
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
 }
 
 .setting-container {
@@ -869,4 +869,8 @@
 
 .underline-section:first-child {
 	margin-top: 0;
+}
+
+.search-results-tabview {
+  margin-top: 20px;
 }
