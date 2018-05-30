@@ -1665,7 +1665,7 @@ a.case-details-document-add-link {
   width: 100%;
   flex-flow: row wrap;
   align-items: flex-end;
-  flex: 1 0 50%;
+  flex: 1 0 45%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 

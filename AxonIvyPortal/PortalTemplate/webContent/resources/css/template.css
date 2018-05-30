@@ -736,6 +736,10 @@
 	.hidden-sm {
 		display: none !important;
 	}
+	
+	#global-search-data {
+		width: 200px;
+	}
 }
 
 /* Medium screen */
