@@ -217,7 +217,7 @@ public class StatisticChartQueryUtils {
   public static CaseQuery getQueryForSelectedItemByCaseByState(ItemSelectEvent event, StatisticChart statisticChart) {
     CaseQuery query = CaseQuery.create();
     if(statisticChart.getType() == StatisticChartType.CASES_BY_STATE){
-      query = StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), false);
+      query = StatisticChartQueryUtils.generateCaseQueryForCaseState(statisticChart.getFilter());
     }
     else if(statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TIME) {
       query = StatisticChartQueryUtils.generateCaseQueryByFinishedTime(statisticChart.getFilter());
@@ -418,6 +418,14 @@ public class StatisticChartQueryUtils {
     }
   }
   
+  private static void generateCaseQueryForRole(StatisticFilter filter, CaseQuery caseQuery) {
+    CaseQuery subCaseQueryForRole = CaseQuery.create();
+    TaskQuery taskQuery = TaskQuery.create();
+    generateTaskQueryForRoles(filter, taskQuery);
+    subCaseQueryForRole.where().tasks(taskQuery);
+    caseQuery.where().and(subCaseQueryForRole);
+  }
+
   /**
    * generate case query for case which having finished task
    * @param filter
@@ -457,6 +465,19 @@ public class StatisticChartQueryUtils {
     
     generateCaseQueryForCaseCategory(filter, caseQuery);
     
+    return caseQuery;
+  }
+
+  /**
+   * generate case query for case by state
+   * 
+   * @param filter
+   * @return case query for case by state
+   */
+  public static CaseQuery generateCaseQueryForCaseState(StatisticFilter filter) {
+    CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQuery(filter, false);
+    generateCaseQueryForRole(filter, caseQuery);
+
     return caseQuery;
   }
 
