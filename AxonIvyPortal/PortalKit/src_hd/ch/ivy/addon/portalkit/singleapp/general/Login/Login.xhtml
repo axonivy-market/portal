@@ -27,8 +27,7 @@
         <p:messages id="error-message" showDetail="true" showIcon="false" escape="false"/>
       </div>
       <div class="footer">
-        <p:commandLink id="login-command" styleClass="login-command" actionListener="#{logic.login}" update="error-message"
-          oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}">
+        <p:commandLink id="login-command" styleClass="login-command" actionListener="#{logic.login}" update="error-message">
           <i class="fa fa-sign-in login-command-icon" />
           <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}</span>
         </p:commandLink>
