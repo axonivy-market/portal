@@ -37,7 +37,7 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Ss0 f0 caseData businessCase.attach=true #txt
-Ss0 f0 showInStartList 1 #txt
+Ss0 f0 showInStartList 0 #txt
 Ss0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
