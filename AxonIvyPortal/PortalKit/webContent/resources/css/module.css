@@ -1935,7 +1935,7 @@ a.case-details-document-add-link {
 }
 
 .process-start-list {
-  margin: 30px 0;
+  margin: 30px 0 10px 0;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
