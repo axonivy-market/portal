@@ -23,13 +23,8 @@
   <ui:insert name="menu-bar">
 
     <ul id="top-menu" class="js-top-menu">
-      <li><h:form prependId="false" styleClass="global-search" rendered="#{showGlobalSearch}">
-          <p:inputText id="global-search-data" value="#{userMenuBean.searchKeyword}"
-            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
-            onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
-              <p:ajax listener="#{userMenuBean.openSearchPage}" />
-          </p:inputText>
-          <i class="global-search-icon fa fa-search" />
+      <li><h:form prependId="false" rendered="#{showGlobalSearch}">
+            <ic:ch.ivy.addon.portal.generic.GlobalSearch />
         </h:form>
       </li>
       <li class="setting-container" ><a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span jsf:id="server-infor"

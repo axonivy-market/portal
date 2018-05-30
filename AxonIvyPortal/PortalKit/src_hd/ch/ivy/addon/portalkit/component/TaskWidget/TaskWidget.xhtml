@@ -20,12 +20,13 @@
 	<cc:attribute name="selectedTaskServerId" />
 	<cc:attribute name="showHeaderToolbar" default="true" />
 	<cc:attribute name="noTaskFoundMessage" />
+    <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
 
 	<cc:facet name="taskListHeader" shortDescription="Header of task list" />
 </cc:interface>
 
 <cc:implementation>
-	<c:set var="showHeaderToolbar" value="#{cc.attrs.showHeaderToolbar eq null ? 'true' : cc.attrs.showHeaderToolbar}" />
+	<c:set var="showHeaderToolbar" value="#{empty cc.attrs.showHeaderToolbar ? 'true' : cc.attrs.showHeaderToolbar}" />
 	<c:set var="noTaskFoundMessage"
 		value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
 	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
@@ -33,7 +34,7 @@
 
 	<div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
 		<p:growl id="cannot-start-task-notification" autoUpdate="false" severity="info" />
-        <h:panelGroup rendered="#{showHeaderToolbar}">
+        <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
     		<h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header"
     			layout="block">
     			<div class="widget-header-main #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}">

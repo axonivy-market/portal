@@ -32,6 +32,7 @@ out.dataModel.taskDataModel.compactMode=false;
 out.dataModel.taskDataModel.notKeepFilter=true;
 out.dataModel.taskDataModel.queryCriteria.keyword=param.keyword;
 ' #txt
+Ps0 f0 inActionCode out.dataModel.search(); #txt
 Ps0 f0 outParameterDecl '<> result;
 ' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

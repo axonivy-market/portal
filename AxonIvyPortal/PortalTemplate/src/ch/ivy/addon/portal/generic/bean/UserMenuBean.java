@@ -34,7 +34,6 @@ import ch.ivyteam.ivy.system.ISystemProperty;
 public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private String searchKeyword;
   private String userName;
   public static final int MINUTE_TO_SECOND = 60;
   public static final int SECONND_TO_MILLISECOND = 1000;
@@ -155,18 +154,5 @@ public class UserMenuBean implements Serializable {
     ISystemProperty systemProp =
         ServerFactory.getServer().getApplicationConfigurationManager().getSystemProp("Errors.ShowDetailsToEndUser");
     return systemProp.getBooleanValue();
-  }
-  
-  public void openSearchPage() throws IOException {
-    String searchPage = String.format(Ivy.html().startref("Start Processes/SearchResults/start.ivp") + "?keyword=%s", searchKeyword);
-    FacesContext.getCurrentInstance().getExternalContext().redirect(searchPage);
-  }
-
-  public String getSearchKeyword() {
-    return searchKeyword;
-  }
-
-  public void setSearchKeyword(String searchKeyword) {
-    this.searchKeyword = searchKeyword;
   }
 }

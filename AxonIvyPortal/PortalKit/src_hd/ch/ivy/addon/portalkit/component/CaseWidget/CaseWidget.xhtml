@@ -18,7 +18,7 @@
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" />
   <cc:attribute name="autoSelectCaseId" />
   <cc:attribute name="filterGroupId" />
-  <cc:attribute name="showHeaderToolbar" default="true" />
+  <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
   <cc:facet name="emptyMessage" />
 </cc:interface>
 
@@ -27,7 +27,7 @@
 
   <h:outputScript name="case-widget.js" library="js" />
   <div id="#{cc.clientId}" class="widget case-widget-container">
-    <h:panelGroup rendered="#{cc.attrs.showHeaderToolbar}">
+    <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="case-widget-header" styleClass="widget-header" layout="block">
         <div class="case-widget-top-header js-widget-header">
           <div class="case-widget-top-header-main-title-container">
