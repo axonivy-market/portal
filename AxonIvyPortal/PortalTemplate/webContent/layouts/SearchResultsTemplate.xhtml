@@ -19,7 +19,7 @@
         </p:inputText>
         <i class="global-search-icon fa fa-search" />
       </div>
-      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview">
+      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}">
         <p:tab id="process-tab" title="Processes">
           <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" compactMode="false"
             keyword="#{dataModel.keyword}" hideHeader="true" />
