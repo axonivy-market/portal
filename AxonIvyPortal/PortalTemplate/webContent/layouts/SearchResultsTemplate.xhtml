@@ -10,13 +10,15 @@
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="pageTitle">Search Results</ui:define>
     <ui:define name="simplePageContent">
-      <p:inputText id="keyword" value="#{dataModel.keyword}"
-        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
-        onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
-        <i class="fa fa-search" />
-        <p:ajax listener="#{dataModel.search}" />
-      </p:inputText>
-      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true">
+      <div class="global-search">
+        <p:inputText id="global-search-data" styleClass="global-search-input" value="#{dataModel.keyword}"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
+          onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
+          <p:ajax listener="#{dataModel.search}" update="search-results-tabview" />
+        </p:inputText>
+        <i class="global-search-icon fa fa-search" />
+      </div>
+      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview">
         <p:tab id="process-tab" title="Processes">
           <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" compactMode="false"
             keyword="#{dataModel.keyword}" hideHeader="true" />
@@ -25,7 +27,7 @@
         <p:tab id="task-tab" title="Tasks">
           <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results"
             keyword="#{dataModel.taskDataModel.queryCriteria.keyword}" hideTaskFilter="true"
-            dataModel="#{dataModel.taskDataModel}" showHeaderToolbar="false" compactMode="false">
+            dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
             <f:facet name="taskListHeader">
               <ui:fragment rendered="#{useTaskOverrideListHeader}">
                 <ui:insert name="taskListHeader">
@@ -114,7 +116,7 @@
         </p:tab>
         
         <p:tab id="case-tab" title="Cases">
-          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" showHeaderToolbar="false"
+          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
             dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true">
             <f:facet name="caseHeader">
               <ic:ch.ivy.addon.portalkit.component.CaseHeader id="case-header" case="#{case}" />
