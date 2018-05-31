@@ -22,7 +22,7 @@
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
           update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter()" />
       </h:form>
-      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview">
+      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}">
         <p:tab id="process-tab" title="Processes">
           <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" compactMode="false"
             keyword="#{dataModel.keyword}" hideHeader="true" />
