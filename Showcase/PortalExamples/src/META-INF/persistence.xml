@@ -4,6 +4,8 @@
         <non-jta-data-source>IvySystemDatabase</non-jta-data-source>
         <class>ch.ivyteam.ivy.project.portal.examples.Employee</class>
         <class>ch.ivyteam.ivy.project.portal.examples.HistoryTrace</class>
-        <properties/>
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
     </persistence-unit>
 </persistence>
