@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<h:body>
+  <ui:composition template="/layouts/SearchResultsTemplate.xhtml">
+    <ui:define name="custom-search">
+      <p:tab title="Employees">
+        <p:dataTable id="employee-table" value="#{data.dataModel.employees}" var="emp" sortBy="#{emp.firstName}">
+          <p:column headerText="First Name" sortBy="#{emp.firstName}" filterBy="#{emp.firstName}">
+            <h:outputText value="#{emp.firstName}" />
+          </p:column>
+          <p:column headerText="Last Name" sortBy="#{emp.lastName}" filterBy="#{emp.lastName}">
+            <h:outputText value="#{emp.lastName}" />
+          </p:column>
+          <p:column headerText="Country" sortBy="#{emp.country}" filterBy="#{emp.country}">
+            <h:outputText value="#{emp.country}" />
+          </p:column>
+          <p:column headerText="Details" style="text-align: center">
+            <p:commandLink id="detail-action" actionListener="#{logic.openDetails(emp)}" process="@this"
+              title="#{ivy.cms.co('/Labels/Details')}">
+              <i class="fa fa-search fa-lg" />
+            </p:commandLink>
+          </p:column>
+        </p:dataTable>
+      </p:tab>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
