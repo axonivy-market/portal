@@ -1,0 +1,6 @@
+SearchResultsData #class
+ch.ivy.addon.portal.generic.SearchResults #namespace
+dataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
+dataModel PERSISTENT #fieldModifier
+activeTabIndex Number #field
+activeTabIndex PERSISTENT #fieldModifier

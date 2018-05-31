@@ -1,0 +1,6 @@
+CustomizedSearchResultsData #class
+ch.ivyteam.ivy.project.portal.examples.customization.CustomizedSearchResults #namespace
+dataModel ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedSearchResultsDataModel #field
+dataModel PERSISTENT #fieldModifier
+emp ch.ivyteam.ivy.project.portal.examples.Employee #field
+emp PERSISTENT #fieldModifier
