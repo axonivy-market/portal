@@ -13,6 +13,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.context.RequestContext;
 
@@ -37,7 +38,6 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 @ViewScoped
 public class ProcessWidgetBean implements Serializable, Converter {
 
-  
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private static final long serialVersionUID = -5889375917550618261L;
   private UserProcessService userProcessService;
@@ -49,15 +49,15 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private String userName;
   private List<UserProcess> selectedUserProcesses;
   private List<RemoteWebStartable> webStartables;
-  private String processWidgetComnponentId;
+  private String processWidgetComponentId;
   private IProcessStart createExpressWorkflowProcessStart;
 
   @PostConstruct
   public void init() {
-    processWidgetComnponentId = Attrs.currentContext().getBuildInAttribute("id");
+    processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
     userProcessService = new UserProcessService();
     String compactModeAttribute = Attrs.currentContext().get("compactMode");
-    compactMode = compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
+    compactMode = compactModeAttribute == null || compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
     editMode = false;
     selectedUserProcesses = new ArrayList<>();
     userName = UserUtils.getSessionUserName();
@@ -77,7 +77,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private List<UserProcess> findDefaultProcessUserCanStart() {
     IvyComponentLogicCaller<List<UserProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
     List<UserProcess> processes =
-        ivyComponentLogicCaller.invokeComponentLogic(processWidgetComnponentId, "#{logic.collectDefaultProcesses}",
+        ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId, "#{logic.collectDefaultProcesses}",
             new Object[] {});
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     return processes;
@@ -85,7 +85,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
 
   private List<UserProcess> findAllProcesses() {
     IvyComponentLogicCaller<List<UserProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-    return ivyComponentLogicCaller.invokeComponentLogic(processWidgetComnponentId, "#{logic.collectAllProcesses}",
+    return ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId, "#{logic.collectAllProcesses}",
         new Object[] {});
   }
 
@@ -386,4 +386,10 @@ public class ProcessWidgetBean implements Serializable, Converter {
     return process.getId() == null ? "" : process.getId().toString();
   }
 
+  public int getNumberOfProcesses() {
+    if (CollectionUtils.isEmpty(webStartables)) {
+      return 0;
+    }
+    return webStartables.size();
+  }
 }
