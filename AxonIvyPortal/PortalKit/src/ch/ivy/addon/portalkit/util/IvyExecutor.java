@@ -7,6 +7,7 @@ import java.util.concurrent.Callable;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.ReleaseState;
@@ -30,6 +31,7 @@ public class IvyExecutor {
   }
 
   private static boolean isReleasedPmvOf(IProcessModelVersion pmv, ILibrary library) {
-    return pmv.getReleaseState() == ReleaseState.RELEASED && pmv.getLibrary().getId().equals(library.getId());
+    return pmv.getReleaseState() == ReleaseState.RELEASED && pmv.getLibrary().getId().equals(library.getId())
+        && pmv.getActivityState() == ActivityState.ACTIVE;
   }
 }
