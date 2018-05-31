@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="dataModel" value="#{data.dataModel}" />
+    <ui:define name="pageTitle">Search Results</ui:define>
+    <ui:define name="simplePageContent">
+      <c:set property="navigationHistory" value="SEARCH_RESULTS" target="#{navigationHistoryBean}"></c:set>
+      <h:form id="global-search-form-in-page">
+        <div id="global-search-container-in-page" class="global-search">
+          <p:inputText id="global-search-data" styleClass="global-search-input js-filter-process-widget-list-item" value="#{dataModel.keyword}"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
+            onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }">
+          </p:inputText>
+          <i class="global-search-icon fa fa-search" />
+        </div>
+        <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
+          update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter()" />
+      </h:form>
+      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}">
+        <p:tab id="process-tab" title="Processes">
+          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" compactMode="false"
+            keyword="#{dataModel.keyword}" hideHeader="true" />
+        </p:tab>
+        
+        <p:tab id="task-tab" title="Tasks">
+          <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results"
+            keyword="#{dataModel.taskDataModel.queryCriteria.keyword}" hideTaskFilter="true"
+            dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
+            <f:facet name="taskListHeader">
+              <ui:fragment rendered="#{useTaskOverrideListHeader}">
+                <ui:insert name="taskListHeader">
+                </ui:insert>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{not useTaskOverrideListHeader}">
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader id="task-list-header-component"
+                  dataModel="#{dataModel.taskDataModel}" />
+              </ui:fragment>
+            </f:facet>
+
+            <f:facet name="taskHeader">
+              <ui:fragment rendered="#{useTaskOverrideHeader}">
+                <ui:insert name="taskHeader">
+                </ui:insert>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{not useTaskOverrideHeader}">
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
+                  priority="#{task.priority}" dataModel="#{dataModel.taskDataModel}" />
+                <div class="task-start-info">
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}"
+                    dataModel="#{dataModel.taskDataModel}" />
+                </div>
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component"
+                  dataModel="#{dataModel.taskDataModel}" userName="#{task.activatorUserName}"
+                  fullName="#{task.activatorFullName}"
+                  styleClass="activatior-column #{dataModel.taskDataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}"
+                  dataModel="#{dataModel.taskDataModel}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component"
+                  rendered="#{dataModel.taskDataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"
+                  value="#{task.startTimestamp}"
+                  styleClass="#{dataModel.taskDataModel.isAutoHideColumns()?'js-create-cell':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component"
+                  rendered="#{dataModel.taskDataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"
+                  value="#{task.expiryTimestamp}"
+                  styleClass="#{dataModel.taskDataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
+                  dataModel="#{dataModel.taskDataModel}" state="#{task.state}" />
+              </ui:fragment>
+            </f:facet>
+
+            <f:facet name="taskBody">
+              <ui:fragment rendered="#{useTaskOverrideBody}">
+                <ui:insert name="taskBody">
+                </ui:insert>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{not useTaskOverrideBody}">
+                <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="description" task="#{task}"
+                  descriptionComponentToUpdate="#{p:component('task-description')}" />
+                <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-info" task="#{task}"
+                  priorityComponentToUpdate="#{p:component('task-priority')}"
+                  componentToUpdate="#{p:component('task-details-notes')} #{p:component('expiry-time')}" />
+                <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}"
+                  componentToUpdate="#{p:component('task-details-notes')}" />
+                <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}">
+                  <f:facet name="showTaskNoteHistory">
+                    <p:link id="show-more-note-link" styleClass="task-details-note-add-link note-show-more-link"
+                      target="_blank" href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}">
+                      <span class="fa fa-external-link-square note-show-more-link-icon" />
+                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
+                    </p:link>
+                  </f:facet>
+                </ic:ch.ivy.addon.portalkit.component.TaskItemNotes>
+                <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer id="responsiveness-container"
+                  styleClass="hidden-lg">
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-info-circle js-data-column-responsive-button" displayedSelectors="['#task-data']"
+                    hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['#task-document']"
+                    hiddenSelectorsInMediumScreen="['.task-details .replaced']"
+                    hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-align-left js-note-column-responsive-button" displayedSelectors="['#task-note']"
+                    hiddenSelectorsInMediumScreen="['.task-details .replaced']"
+                    hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
+                  <h:outputScript library="js" name="task-detail-default-responsiveness.js" />
+                </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+              </ui:fragment>
+            </f:facet>
+          </ic:ch.ivy.addon.portalkit.component.TaskWidget>
+        </p:tab>
+        
+        <p:tab id="case-tab" title="Cases">
+          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
+            dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true">
+            <f:facet name="caseHeader">
+              <ic:ch.ivy.addon.portalkit.component.CaseHeader id="case-header" case="#{case}" />
+            </f:facet>
+            <f:facet name="caseBody">
+              <ui:fragment rendered="#{not useCaseOverrideBody}">
+                <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}"/>
+                <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}"
+                  descriptionComponentToUpdate="#{p:component('description-cell')}" />
+                <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-share-alt js-related-task-column-responsive-button"
+                    displayedSelectors="['.js-related-task-column']"
+                    hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
+                    hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+                    hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
+                    hiddenSelectorsInLargeScreen="['.case-details .replaced']"
+                    hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+                    hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-clipboard js-description-column-responsive-button"
+                    displayedSelectors="['.js-description-column']"
+                    hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+                    hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+                  <h:outputScript library="js" name="case-detail-default-responsiveness.js" />
+                </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{useCaseOverrideBody}">
+                <ui:insert name="caseBody">
+                  <!-- Put customized XHTMLs here -->
+                </ui:insert>
+              </ui:fragment>
+            </f:facet>
+          </ic:ch.ivy.addon.portalkit.component.CaseWidget>
+        </p:tab>
+        
+        <ui:insert name="custom-search"></ui:insert>
+      </p:tabView>
+      <script>
+        function onTabShow() {
+          if (typeof taskWidget != 'undefined') {
+            taskWidget.setupHeader();
+          }
+          if (typeof caseWidget != 'undefined') {
+            caseWidget.setupHeader();
+          }
+        }
+      </script>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

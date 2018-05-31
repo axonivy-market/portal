@@ -23,48 +23,8 @@
   <ui:insert name="menu-bar">
 
     <ul id="top-menu" class="js-top-menu">
-      <li><h:form prependId="false" styleClass="global-search" onsubmit="return false;" rendered="#{showGlobalSearch}">
-          <p:inputText id="global-search-data" value="#{userMenuBean.searchKeyword}"
-            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
-            <p:ajax event="keyup" delay="#{mainMenuBean.searchDelayTime}" listener="#{userMenuBean.search}"
-              update="global-search-result-container" oncomplete="showHideOverlayPanel()"/>
-          </p:inputText>
-          <i class="global-search-icon fa fa-search" />
-          <p:overlayPanel for="global-search-data" styleClass="global-search-result-overlay"
-            my="left top" at="left bottom" dynamic="true" showEvent="none" hideEvent="none" widgetVar="search-result-overlay-panel">
-            <h:panelGroup id="global-search-result-container" styleClass="global-search-result-container">
-              <h:panelGroup id="global-process-result" rendered="#{not empty userMenuBean.foundWebStartables}"
-                layout="block" styleClass="global-search-result">
-                <span class="Fs12 underline-section">>
-                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
-                <ui:repeat id="found-processes" var="foundProcess" value="#{userMenuBean.foundWebStartables}">
-                  <ic:ch.ivy.addon.portal.generic.ProcessSearchResult foundProcess="#{foundProcess}" />
-                </ui:repeat>
-              </h:panelGroup>
-              <h:panelGroup id="global-task-result" rendered="#{not empty userMenuBean.foundTasks}" layout="block"
-                styleClass="global-search-result">
-                <span class="Fs12 underline-section">>
-                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
-                <ui:repeat id="found-tasks" var="foundTask" value="#{userMenuBean.foundTasks}">
-                  <ic:ch.ivy.addon.portal.generic.TaskSearchResult keyword="#{userMenuBean.searchKeyword}"
-                    foundTask="#{foundTask}" />
-                </ui:repeat>
-              </h:panelGroup>
-              <h:panelGroup id="global-case-result" rendered="#{not empty userMenuBean.foundCases}" layout="block"
-                styleClass="global-search-result">
-                <span class="Fs12 underline-section">>
-                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</span>
-                <ui:repeat id="found-cases" var="foundCase" value="#{userMenuBean.foundCases}">
-                  <ic:ch.ivy.addon.portal.generic.CaseSearchResult foundCase="#{foundCase}"
-                    keyword="#{userMenuBean.searchKeyword}" />
-                </ui:repeat>
-              </h:panelGroup>
-              <h:panelGroup id="empty-search-result" layout="block" rendered="#{userMenuBean.hasNoRecordsFound}"
-                styleClass="global-search-result">
-                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" />
-              </h:panelGroup>
-            </h:panelGroup>
-          </p:overlayPanel>
+      <li><h:form prependId="false" rendered="#{showGlobalSearch}">
+            <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" />
         </h:form>
       </li>
       <li class="setting-container" ><a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span jsf:id="server-infor"

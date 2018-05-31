@@ -11,7 +11,7 @@
 	<cc:attribute name="processCardStyleClass" />
 	<cc:attribute name="compactMode" default="true" />
 	<cc:attribute name="showBackButton" default="true" type="java.lang.Boolean" />
-	<cc:attribute name="highlightedProcessStartLink" />
+	<cc:attribute name="hideHeader" default="false" type="java.lang.Boolean" />
 	<cc:attribute name="hideProcessFilter" default="false" shortDescription="Process filter text field is hidden or not"
 		type="java.lang.Boolean" />
 	<cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
@@ -20,7 +20,7 @@
 <cc:implementation>
 	<h:outputScript library="js" name="process-widget.js" />
 	<div id="#{cc.clientId}" class="widget process-widget">
-		<h:panelGroup id="header" styleClass="widget-header #{processWidgetBean.compactMode? '' : 'expanded'}" layout="block">
+		<h:panelGroup id="header" styleClass="widget-header #{processWidgetBean.compactMode? '' : 'expanded'}" layout="block" rendered="#{!cc.attrs.hideHeader}">
 			<div class="widget-header-main">
 				<span class="widget-header-main-title">#{cc.attrs.title}</span>
 				<h:panelGroup styleClass="widget-header-main-menu"
