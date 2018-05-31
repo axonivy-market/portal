@@ -837,9 +837,9 @@ import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
 in.searchResultsDataModel = new SearchResultsDataModel();
 in.searchResultsDataModel.taskDataModel = in.dataModel;
 in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
-in.searchResultsDataModel.caseDataModel = new CaseLazyDataModel();
 in.searchResultsDataModel.caseDataModel.notKeepFilter = true;
 in.searchResultsDataModel.caseDataModel.queryCriteria.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+
 ' #txt
 Pt0 f52 security system #txt
 Pt0 f52 type ch.ivy.addon.portal.generic.PortalStartData #txt
