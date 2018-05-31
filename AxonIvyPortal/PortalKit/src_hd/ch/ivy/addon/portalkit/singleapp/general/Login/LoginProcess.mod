@@ -16,7 +16,6 @@ Ls0 @RichDialogInitStart f0 '' #zField
 Ls0 @RichDialogProcessEnd f1 '' #zField
 Ls0 @PushWFArc f2 '' #zField
 Ls0 @RichDialogProcessStart f3 '' #zField
-Ls0 @RichDialogEnd f4 '' #zField
 Ls0 @GridStep f5 '' #zField
 Ls0 @CallSub f8 '' #zField
 Ls0 @PushWFArc f9 '' #zField
@@ -24,6 +23,7 @@ Ls0 @PushWFArc f6 '' #zField
 Ls0 @CallSub f10 '' #zField
 Ls0 @PushWFArc f11 '' #zField
 Ls0 @PushWFArc f7 '' #zField
+Ls0 @RichDialogEnd f4 '' #zField
 >Proto Ls0 Ls0 LoginProcess #zField
 Ls0 f0 guid 14739D9F00572FE2 #txt
 Ls0 f0 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
@@ -69,10 +69,6 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ls0 f3 208 54 20 20 13 0 #rect
 Ls0 f3 @|RichDialogProcessStartIcon #fIcon
-Ls0 f4 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
-Ls0 f4 guid 14739DB3653B702D #txt
-Ls0 f4 208 342 20 20 13 0 #rect
-Ls0 f4 @|RichDialogEndIcon #fIcon
 Ls0 f5 actionDecl 'ch.ivy.addon.portalkit.singleapp.general.Login.LoginData out;
 ' #txt
 Ls0 f5 actionTable 'out=in;
@@ -166,6 +162,10 @@ Ls0 f11 expr out #txt
 Ls0 f11 218 204 218 234 #arcP
 Ls0 f7 expr out #txt
 Ls0 f7 218 278 218 342 #arcP
+Ls0 f4 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
+Ls0 f4 guid 14739DB3653B702D #txt
+Ls0 f4 208 342 20 20 13 0 #rect
+Ls0 f4 @|RichDialogEndIcon #fIcon
 >Proto Ls0 .type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect

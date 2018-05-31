@@ -586,7 +586,8 @@ function CaseListSmallScreenHandler() {
     var $responsiveButtons = $('.js-responsive-handle-button', $caseItem);
     var $relatedTaskResponsiveButton = $('.js-related-task-column-responsive-button', $caseItem);
     var $historyResponsiveButton = $('.js-history-column-responsive-button');
-
+    var $secondLevelMenu = $('#second-level-menu');
+    var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
     var isAlreadyLoaded = $caseDetails.hasClass(openedClass);
 
     if (!isAlreadyLoaded) {
@@ -601,7 +602,7 @@ function CaseListSmallScreenHandler() {
     var $hiddenColumns = $('.js-case-details-item:not(.' + replacedClass + ')', $caseItem).slice(-2);
     $responsiveHandleContainer.show();
 
-    if ($mainMenu.hasClass('in')) {
+    if ($mainMenu.hasClass('in') || isDisplaySecondLevelMenu) {
       // Display data column as default when the menu state is changed from no expanded menu to one expanded menu
       var isResponsiveButtonClicked = $responsiveButtons.hasClass('is-clicked');
       if (!isResponsiveButtonClicked) {

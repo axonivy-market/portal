@@ -55,8 +55,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
-  protected static final String TASK_WIDGET_COMPONENT_ID = "task-widget";
   protected static final int BUFFER_LOAD = 10;
+  protected String taskWidgetComponentId;
   protected List<RemoteTask> data;
   protected Map<String, RemoteTask> displayedTaskMap;
   protected Map<String, RemoteTask> notDisplayedTaskMap;
@@ -89,8 +89,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   private boolean isRelatedTaskDisplayed = false;
   private boolean isNotKeepFilter = false;
 
-  public TaskLazyDataModel() {
+  public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
+    this.taskWidgetComponentId = taskWidgetComponentId;
     data = new ArrayList<>();
     displayedTaskMap = new HashMap<>();
     notDisplayedTaskMap = new HashMap<>();
@@ -111,6 +112,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
     autoInitForNoAppConfiguration();
     initColumnsConfiguration();
+  }
+  
+  public TaskLazyDataModel() {
+    this("task-widget");
   }
 
   /**
@@ -214,7 +219,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       startIndex = 0;
       count = first + pageSize;
     }
-    return findTaskCaller.invokeComponentLogic(TASK_WIDGET_COMPONENT_ID, "#{logic.findTasks}", new Object[] {
+    return findTaskCaller.invokeComponentLogic(taskWidgetComponentId, "#{logic.findTasks}", new Object[] {
         startIndex, count, criteria, serverId});
   }
 
@@ -304,7 +309,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected int getTaskCount(TaskSearchCriteria criteria) {
     IvyComponentLogicCaller<Long> countTaskCaller = new IvyComponentLogicCaller<>();
     Long taskCount =
-        countTaskCaller.invokeComponentLogic(TASK_WIDGET_COMPONENT_ID, "#{logic.countTasks}", new Object[] {criteria,
+        countTaskCaller.invokeComponentLogic(taskWidgetComponentId, "#{logic.countTasks}", new Object[] {criteria,
             serverId});
     return taskCount.intValue();
   }
