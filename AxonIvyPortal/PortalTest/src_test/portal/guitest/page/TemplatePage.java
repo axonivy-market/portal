@@ -5,16 +5,16 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.google.common.base.Predicate;
 
 import portal.guitest.common.UrlHelpers;
 import ch.xpertline.base.pages.AbstractPage;
+
+import com.google.common.base.Predicate;
 
 public abstract class TemplatePage extends AbstractPage {
 
@@ -230,12 +230,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public class GlobalSearch {
-    private static final String GLOBAL_SEARCH_RESULT_CONTAINER_ELEMENT_ID = "global-search-result-container";
-    private static final String GLOBAL_SEARCH_DATA_ELEMENT_ID = "global-search-data";
-    private static final String EMPTY_SEARCH_RESULT_ELEMENT_ID = "empty-search-result";
-    private static final String GLOBAL_TASK_RESULT_ELEMENT_ID = "global-task-result";
-    private static final String GLOBAL_PROCESS_RESULT_ELEMENT_ID = "global-process-result";
-    private static final String GLOBAL_CASE_RESULT_ELEMENT_ID = "global-case-result";
+    private static final String GLOBAL_SEARCH_DATA_ELEMENT_ID = "global-search-component:global-search-data";
     private WebElement searchWebElement;
 
     public GlobalSearch() {
@@ -255,74 +250,9 @@ public abstract class TemplatePage extends AbstractPage {
       return findChildElementById(searchWebElement, GLOBAL_SEARCH_DATA_ELEMENT_ID);
     }
 
-    public WebElement getSearchResultContainer() {
-      return findChildElementById(searchWebElement, GLOBAL_SEARCH_RESULT_CONTAINER_ELEMENT_ID);
-    }
-
-    public WebElement getProcessResultContainer() {
-      waitForElementPresent(By.id(GLOBAL_PROCESS_RESULT_ELEMENT_ID), true);
-      return findChildElementById(searchWebElement, GLOBAL_PROCESS_RESULT_ELEMENT_ID);
-    }
-
-    public String getProcessResult() {
-      return getProcessResultContainer().findElement(By.tagName("a")).getText();
-    }
-
-    public int countFoundProcesses() {
-      return getProcessResultContainer().findElements(By.tagName("a")).size();
-    }
-
-    public WebElement getTaskResultContainer() {
-      waitForElementPresent(By.id(GLOBAL_TASK_RESULT_ELEMENT_ID), true);
-      return findChildElementById(searchWebElement, GLOBAL_TASK_RESULT_ELEMENT_ID);
-    }
-
-    public int countFoundTasks() {
-      return getTaskResultContainer().findElements(By.tagName("a")).size();
-    }
-
-    public WebElement getCaseResultContainer() {
-      waitForElementPresent(By.id(GLOBAL_CASE_RESULT_ELEMENT_ID), true);
-      return findChildElementById(searchWebElement, GLOBAL_CASE_RESULT_ELEMENT_ID);
-    }
-
-    public String getCaseResult() {
-      return getCaseResultContainer().findElement(By.tagName("a")).getText();
-    }
-
-    public int countFoundCases() {
-      return getCaseResultContainer().findElements(By.tagName("a")).size();
-    }
-
-    public WebElement getEmptySearchResult() {
-      waitForElementPresent(By.id(EMPTY_SEARCH_RESULT_ELEMENT_ID), true);
-      return findChildElementById(searchWebElement, EMPTY_SEARCH_RESULT_ELEMENT_ID);
-    }
-
-    public void inputSearchKeyword(String keyword) {
-      type(getSearchInputData(), keyword);
-    }
-
-    public void startProcessOnGlobalSearch(String name) {
-      WebElement processResult = getProcessResultContainer();
-      WebElement webElement = findChildElementByLinkText(processResult, name);
-      click(webElement);
-      Sleeper.sleepTight(5000);
-    }
-
-    public SearchResultPage startTaskOnGlobalSearch(String name) {
-      WebElement taskResult = getTaskResultContainer();
-      WebElement webElement = findChildElementByLinkText(taskResult, name);
-      click(webElement);
-      Sleeper.sleepTight(5000);
-      return new SearchResultPage("task");
-    }
-
-    public CasePage startCaseOnGlobalSearch(String name) {
-      WebElement caseResult = getCaseResultContainer();
-      WebElement webElement = findChildElementByLinkText(caseResult, name);
-      click(webElement);
-      return new CasePage();
+    public SearchResultPage inputSearchKeyword(String keyword) {
+      type(getSearchInputData(), keyword + Keys.ENTER);
+      return new SearchResultPage();
     }
   }
 }

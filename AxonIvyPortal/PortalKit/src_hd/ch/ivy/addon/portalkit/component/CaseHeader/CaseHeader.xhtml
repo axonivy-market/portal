@@ -17,7 +17,7 @@
   <c:set var="expanded" value="#{case.id eq caseWidgetBean.expandedCaseId or active}" />
 
   <h:panelGroup class="case-header-name-desc-cell">
-    <h:outputText styleClass="case-header-name-cell" rendered="#{!expanded or case.state eq 'DONE'}"
+    <h:outputText id="case-header-name-cell" styleClass="case-header-name-cell" rendered="#{!expanded or case.state eq 'DONE'}"
       value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"></h:outputText>
     <span class="case-header-name-cell">
       <h:form id="case-name-form">

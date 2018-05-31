@@ -13,15 +13,21 @@ public class ProcessWidgetPage extends TemplatePage {
   private WebElement switchModeButton;
   private WebElement liveSearchTextField;
   private WebElement processWidget;
-  private String searchInputField = "process-widget:process-search:non-ajax-keyword-filter";
+  private String processWidgetId;
+  private String searchInputField = processWidgetId + ":process-search:non-ajax-keyword-filter";
 
   public ProcessWidgetPage() {
-    processWidget = findElementById("process-widget");
+    this("process-widget");
   }
-
+  
+  public ProcessWidgetPage(String processWidgetId) {
+    this.processWidgetId = processWidgetId;
+    processWidget = findElementById(this.processWidgetId);
+  }
+  
   @Override
   protected String getLoadedLocator() {
-    return "id('process-widget')";
+    return "//*[contains(@id,'process-list')]";
   }
 
   public WebElement getProcessWidget() {
@@ -34,7 +40,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public WebElement getProcess(String processName) {
-    WebElement processListElement = findElementById("process-widget:process-list");
+    WebElement processListElement = findElementById(processWidgetId + ":process-list");
     WebElement processItemElement = null;
     try {
       processItemElement =
@@ -46,24 +52,24 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public String getProcessNameFromFavoriteProcessList(int index) {
     String id = index + ":process-item-form:process-name";
-    WebElement favoriteProcessList = findElementById("process-widget:process-list");
+    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
     String name = findChildElementByCssSelector(favoriteProcessList, "span[id*='" + id + "']").getText();
     return name;
   }
 
   public String getProcessNameFromDefaultProcessList(int index) {
-    WebElement defaultProcessList = findElementById("process-widget:user-default-process-list");
+    WebElement defaultProcessList = findElementById(processWidgetId + ":user-default-process-list");
     String id = index + ":process-item-form:process-name";
     String name = findChildElementByCssSelector(defaultProcessList, "span[id*='" + id + "']").getText();
     return name;
   }
 
   public WebElement getEmptyMessageLink() {
-    return findElementById("process-widget:add-new-process-message");
+    return findElementById(processWidgetId + ":add-new-process-message");
   }
 
   public WebElement getNewProcessDialog() {
-    return findElementById("process-widget:add-new-process-dialog");
+    return findElementById(processWidgetId + ":add-new-process-dialog");
   }
 
   public void clickEditSwitchLink() {
@@ -79,7 +85,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public boolean isEmptyFavoriteProcesses() {
-    return isElementPresent(By.id("process-widget:empty-process-message"));
+    return isElementPresent(By.id(processWidgetId + ":empty-process-message"));
   }
 
   public AddNewProcessDialog openNewProcessDialog() {
@@ -93,8 +99,8 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   private List<WebElement> findDeleteIcons() {
-    waitForElementDisplayed(By.id("process-widget:process-list"), true);
-    WebElement processList = findElementById("process-widget:process-list");
+    waitForElementDisplayed(By.id(processWidgetId + ":process-list"), true);
+    WebElement processList = findElementById(processWidgetId + ":process-list");
     List<WebElement> deleteItems = processList.findElements(By.cssSelector("a[id*='process-delete-link']"));
     return deleteItems;
   }
@@ -115,7 +121,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public int getNumberOfFavoriteUserProcesses() {
-    WebElement favoriteProcessList = findElementById("process-widget:process-list");
+    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
     List<WebElement> processes = findChildElementsByCssSelector(favoriteProcessList, "form[id*='process-item-form']");
     return processes.size();
   }
@@ -154,7 +160,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void loadSwitchModeButton() {
-    switchModeButton = findElementById("process-widget:process-link:process-link-label");
+    switchModeButton = findElementById(processWidgetId + ":process-link:process-link-label");
   }
 
   public void loadLiveSearchTextField() {
@@ -174,16 +180,16 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public class AddNewProcessDialog {
     private WebElement processDialog;
-    private static final String PROCESS_DIALOG_ID = "process-widget:add-new-process-dialog";
+    private final String PROCESS_DIALOG_ID = processWidgetId + ":add-new-process-dialog";
 
     private AddNewProcessDialog() {
       processDialog = findElementById(PROCESS_DIALOG_ID);
     }
 
     public void inputDataForExternalProcess(String processName, String processURL) {
-      String processLinkId = "process-widget:process-start-link";
+      String processLinkId = processWidgetId + ":process-start-link";
       waitForElementDisplayed(By.id(processLinkId), true);
-      String processNameId = "process-widget:external-process-name";
+      String processNameId = processWidgetId + ":external-process-name";
       WebElement processNameInput = findElementById(processNameId);
       type(processNameInput, processName);
       WebElement processURLInput = findElementById(processLinkId);
@@ -191,7 +197,7 @@ public class ProcessWidgetPage extends TemplatePage {
     }
 
     public void submitForm() {
-      WebElement submitButton = findChildElementById(processDialog, "process-widget:add-process-command");
+      WebElement submitButton = findChildElementById(processDialog, processWidgetId + ":add-process-command");
       submitButton.click();
       waitAjaxIndicatorDisappear();
     }
@@ -213,13 +219,17 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void selectProcessTypeExternal() {
-    WebElement externalCheckboxLabel = findElementByXpath("//label[@for='process-widget:process-type:1']");
+    WebElement externalCheckboxLabel = findElementByXpath("//label[@for='" + processWidgetId + ":process-type:1']");
     externalCheckboxLabel.click();
     waitAjaxIndicatorDisappear();
   }
   
   public void openExpressPage() {
-    waitForElementDisplayed(By.id("process-widget:axon-express-form:create-express-workflow"), true);
+    waitForElementDisplayed(By.id(processWidgetId + ":axon-express-form:create-express-workflow"), true);
     click(By.id("process-widget:axon-express-form:create-express-workflow"));
+  }
+  
+  public boolean isProcessEmpty() {
+    return isElementDisplayed(By.id("search-results-tabview:process-results:full-process-empty-message"));
   }
 }
