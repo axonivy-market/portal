@@ -31,7 +31,8 @@ public class IvyExecutor {
   }
 
   private static boolean isReleasedPmvOf(IProcessModelVersion pmv, ILibrary library) {
-    return pmv.getReleaseState() == ReleaseState.RELEASED && pmv.getLibrary().getId().equals(library.getId())
-        && pmv.getActivityOperationState() == ActivityOperationState.ACTIVE;
+    return pmv.getReleaseState() == ReleaseState.RELEASED
+        && pmv.getLibrary().getId().equals(library.getId())
+        && (pmv.getActivityOperationState() == ActivityOperationState.ACTIVE || pmv.getActivityOperationState() == ActivityOperationState.ACTIVATING);
   }
 }
