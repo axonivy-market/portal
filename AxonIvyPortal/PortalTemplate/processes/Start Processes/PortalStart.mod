@@ -61,11 +61,11 @@ Pt0 @StartRequest f28 '' #zField
 Pt0 @PushWFArc f46 '' #zField
 Pt0 @StartRequest f31 '' #zField
 Pt0 @PushWFArc f47 '' #zField
-Pt0 @RichDialog f49 '' #zField
 Pt0 @GridStep f52 '' #zField
-Pt0 @PushWFArc f51 '' #zField
 Pt0 @PushWFArc f53 '' #zField
 Pt0 @PushWFArc f56 '' #zField
+Pt0 @CallSub f37 '' #zField
+Pt0 @PushWFArc f49 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -800,33 +800,6 @@ Pt0 f47 expr out #txt
 Pt0 f47 80 352 378 439 #arcP
 Pt0 f47 1 320 352 #addKink
 Pt0 f47 0 0.7210285984301413 0 0 #arcLabel
-Pt0 f49 targetWindow NEW #txt
-Pt0 f49 targetDisplay TOP #txt
-Pt0 f49 richDialogId ch.ivy.addon.portal.generic.SearchResults #txt
-Pt0 f49 startMethod start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
-Pt0 f49 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f49 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel dataModel, Number activeTabIndex> param;' #txt
-Pt0 f49 requestMappingAction 'param.dataModel=in.searchResultsDataModel;
-param.activeTabIndex=1;
-' #txt
-Pt0 f49 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f49 responseMappingAction 'out=in;
-' #txt
-Pt0 f49 isAsynch false #txt
-Pt0 f49 isInnerRd false #txt
-Pt0 f49 userContext '* ' #txt
-Pt0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Search Results</name>
-        <nameStyle>14,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f49 1417 641 112 44 -42 -8 #rect
-Pt0 f49 @|RichDialogIcon #fIcon
 Pt0 f52 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f52 actionTable 'out=in;
@@ -854,8 +827,6 @@ Pt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f52 1231 641 112 44 -46 -8 #rect
 Pt0 f52 @|StepIcon #fIcon
-Pt0 f51 expr out #txt
-Pt0 f51 1343 663 1417 663 #arcP
 Pt0 f53 expr in #txt
 Pt0 f53 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -883,6 +854,29 @@ Pt0 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f56 1057 173 1216 545 #arcP
 Pt0 f56 1 1096 545 #addKink
 Pt0 f56 1 0.5125 0 -13 #arcLabel
+Pt0 f37 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f37 processCall 'Functional Processes/OpenPortalSearch:call(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number)' #txt
+Pt0 f37 doCall true #txt
+Pt0 f37 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,java.lang.Number activeTabIndex> param;
+' #txt
+Pt0 f37 requestMappingAction 'param.searchResultsDataModel=in.searchResultsDataModel;
+param.activeTabIndex=1;
+' #txt
+Pt0 f37 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f37 responseMappingAction 'out=in;
+' #txt
+Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalSearch</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f37 1408 641 112 44 -50 -8 #rect
+Pt0 f37 @|CallSubIcon #fIcon
+Pt0 f49 expr out #txt
+Pt0 f49 1343 663 1408 663 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -935,9 +929,9 @@ Pt0 f28 mainOut f46 tail #connect
 Pt0 f46 head f4 in #connect
 Pt0 f31 mainOut f47 tail #connect
 Pt0 f47 head f30 in #connect
-Pt0 f52 mainOut f51 tail #connect
-Pt0 f51 head f49 mainIn #connect
 Pt0 f53 head f52 mainIn #connect
 Pt0 f21 out f56 tail #connect
 Pt0 f56 head f19 mainIn #connect
 Pt0 f21 out f53 tail #connect
+Pt0 f52 mainOut f49 tail #connect
+Pt0 f49 head f37 mainIn #connect

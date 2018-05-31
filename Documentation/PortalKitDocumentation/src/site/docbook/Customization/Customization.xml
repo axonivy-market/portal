@@ -15,4 +15,5 @@
 	<xi:include href="BackToPreviousPage.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="HideTechnicalStuffs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="ShowAdditionalCaseDetails.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="GlobalSearchResult.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>

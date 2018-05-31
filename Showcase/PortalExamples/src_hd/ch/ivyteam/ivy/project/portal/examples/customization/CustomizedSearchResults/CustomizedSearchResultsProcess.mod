@@ -20,6 +20,9 @@ Ps0 @PushWFArc f2 '' #zField
 Ps0 @RichDialogMethodStart f3 '' #zField
 Ps0 @RichDialog f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
+Ps0 @RichDialogInitStart f6 '' #zField
+Ps0 @RichDialogProcessEnd f7 '' #zField
+Ps0 @PushWFArc f8 '' #zField
 >Proto Ps0 Ps0 CustomizedSearchResultsProcess #zField
 Ps0 f0 guid 150D5B63FE18100D #txt
 Ps0 f0 type ch.ivyteam.ivy.project.portal.examples.customization.CustomizedSearchResults.CustomizedSearchResultsData #txt
@@ -74,7 +77,7 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f3 51 211 26 26 -65 15 #rect
+Ps0 f3 51 275 26 26 -65 15 #rect
 Ps0 f3 @|RichDialogMethodStartIcon #fIcon
 Ps0 f4 targetWindow NEW #txt
 Ps0 f4 targetDisplay TOP #txt
@@ -91,10 +94,38 @@ Ps0 f4 responseMappingAction 'out=in;
 Ps0 f4 isAsynch false #txt
 Ps0 f4 isInnerRd true #txt
 Ps0 f4 userContext '* ' #txt
-Ps0 f4 152 202 112 44 0 -8 #rect
+Ps0 f4 152 266 112 44 0 -8 #rect
 Ps0 f4 @|RichDialogIcon #fIcon
 Ps0 f5 expr out #txt
-Ps0 f5 77 224 152 224 #arcP
+Ps0 f5 77 288 152 288 #arcP
+Ps0 f6 guid 163B5B169EAD48FF #txt
+Ps0 f6 type ch.ivyteam.ivy.project.portal.examples.customization.CustomizedSearchResults.CustomizedSearchResultsData #txt
+Ps0 f6 method start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
+Ps0 f6 disableUIEvents true #txt
+Ps0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,java.lang.Number activeTabIndex> param = methodEvent.getInputArguments();
+' #txt
+Ps0 f6 inParameterMapAction 'out.activeTabIndex=param.activeTabIndex;
+out.dataModel=param.searchResultsDataModel as ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedSearchResultsDataModel;
+' #txt
+Ps0 f6 outParameterDecl '<> result;
+' #txt
+Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>start(SearchResultsDataModel)</name>
+        <nameStyle>29,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f6 52 179 26 26 -52 19 #rect
+Ps0 f6 @|RichDialogInitStartIcon #fIcon
+Ps0 f7 type ch.ivyteam.ivy.project.portal.examples.customization.CustomizedSearchResults.CustomizedSearchResultsData #txt
+Ps0 f7 340 179 26 26 0 12 #rect
+Ps0 f7 @|RichDialogProcessEndIcon #fIcon
+Ps0 f8 expr out #txt
+Ps0 f8 78 192 340 192 #arcP
 >Proto Ps0 .type ch.ivyteam.ivy.project.portal.examples.customization.CustomizedSearchResults.CustomizedSearchResultsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -103,3 +134,5 @@ Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
+Ps0 f6 mainOut f8 tail #connect
+Ps0 f8 head f7 mainIn #connect

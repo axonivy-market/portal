@@ -17,6 +17,11 @@ Oh0 @EndSub f1 '' #zField
 Oh0 @RichDialog f3 '' #zField
 Oh0 @PushWFArc f4 '' #zField
 Oh0 @PushWFArc f2 '' #zField
+Oh0 @StartSub f5 '' #zField
+Oh0 @EndSub f6 '' #zField
+Oh0 @RichDialog f7 '' #zField
+Oh0 @PushWFArc f8 '' #zField
+Oh0 @PushWFArc f9 '' #zField
 >Proto Oh0 Oh0 OpenPortalSearch #zField
 Oh0 f0 inParamDecl '<java.lang.String keyword> param;' #txt
 Oh0 f0 inParamTable 'out.keyword=param.keyword;
@@ -69,6 +74,61 @@ Oh0 f4 expr out #txt
 Oh0 f4 111 64 161 64 #arcP
 Oh0 f2 expr out #txt
 Oh0 f2 273 64 337 64 #arcP
+Oh0 f5 inParamDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,java.lang.Number activeTabIndex> param;' #txt
+Oh0 f5 inParamTable 'out.activeTabIndex=param.activeTabIndex;
+out.searchResultsDataModel=param.searchResultsDataModel;
+' #txt
+Oh0 f5 outParamDecl '<> result;
+' #txt
+Oh0 f5 actionDecl '_ch.ivyteam.ivy.project.portal.examples.OpenPortalSearchOverrideData out;
+' #txt
+Oh0 f5 callSignature call(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
+Oh0 f5 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalSearchOverrideData #txt
+Oh0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>call(SearchResultsDataModel,Number)</name>
+        <nameStyle>35,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Oh0 f5 81 178 30 30 -69 19 #rect
+Oh0 f5 @|StartSubIcon #fIcon
+Oh0 f6 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalSearchOverrideData #txt
+Oh0 f6 337 178 30 30 0 15 #rect
+Oh0 f6 @|EndSubIcon #fIcon
+Oh0 f7 targetWindow NEW #txt
+Oh0 f7 targetDisplay TOP #txt
+Oh0 f7 richDialogId ch.ivyteam.ivy.project.portal.examples.customization.CustomizedSearchResults #txt
+Oh0 f7 startMethod start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
+Oh0 f7 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalSearchOverrideData #txt
+Oh0 f7 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel, Number activeTabIndex> param;' #txt
+Oh0 f7 requestMappingAction 'param.searchResultsDataModel=in.searchResultsDataModel;
+param.activeTabIndex=in.activeTabIndex;
+' #txt
+Oh0 f7 responseActionDecl '_ch.ivyteam.ivy.project.portal.examples.OpenPortalSearchOverrideData out;
+' #txt
+Oh0 f7 responseMappingAction 'out=in;
+' #txt
+Oh0 f7 isAsynch false #txt
+Oh0 f7 isInnerRd false #txt
+Oh0 f7 userContext '* ' #txt
+Oh0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SearchResults</name>
+        <nameStyle>13
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Oh0 f7 162 171 112 44 -41 -8 #rect
+Oh0 f7 @|RichDialogIcon #fIcon
+Oh0 f8 expr out #txt
+Oh0 f8 111 193 162 193 #arcP
+Oh0 f9 expr out #txt
+Oh0 f9 274 193 337 193 #arcP
 >Proto Oh0 .type _ch.ivyteam.ivy.project.portal.examples.OpenPortalSearchOverrideData #txt
 >Proto Oh0 .processKind CALLABLE_SUB #txt
 >Proto Oh0 0 0 32 24 18 0 #rect
@@ -77,3 +137,7 @@ Oh0 f0 mainOut f4 tail #connect
 Oh0 f4 head f3 mainIn #connect
 Oh0 f3 mainOut f2 tail #connect
 Oh0 f2 head f1 mainIn #connect
+Oh0 f5 mainOut f8 tail #connect
+Oh0 f8 head f7 mainIn #connect
+Oh0 f7 mainOut f9 tail #connect
+Oh0 f9 head f6 mainIn #connect
