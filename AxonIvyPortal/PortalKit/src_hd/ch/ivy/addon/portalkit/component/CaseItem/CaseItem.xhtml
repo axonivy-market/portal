@@ -27,7 +27,7 @@
 		class="js-case-item case-list-item #{expanded ? 'case-list-item-expanded show-case-details-mode' : ''} case-list-item-position #{cc.attrs.itemStyleClass} ">
 		<h:panelGroup id="case-item-container" class="case-header-container" layout="block">
 			<div class="case-show-detail-container">
-				<h:panelGroup layout="block" styleClass="case-header-data js-case-item-header">
+				<h:panelGroup id="case-header-data" layout="block" styleClass="case-header-data js-case-item-header">
 					<p:ajax event="click" listener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}" update="@(.case-list-item)"
 						oncomplete="#{cc.attrs.expandCallback}" />
 					<cc:renderFacet name="caseHeader" />

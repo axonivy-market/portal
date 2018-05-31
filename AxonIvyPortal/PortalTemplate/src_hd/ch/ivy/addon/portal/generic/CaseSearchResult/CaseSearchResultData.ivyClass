@@ -1,6 +1,0 @@
-CaseSearchResultData #class
-ch.ivy.addon.portal.generic.CaseSearchResult #namespace
-view ch.ivy.addon.portal.generic.view.CaseView #field
-view PERSISTENT #fieldModifier
-caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
-caseDataModel PERSISTENT #fieldModifier

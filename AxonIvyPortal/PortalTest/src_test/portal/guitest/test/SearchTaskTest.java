@@ -26,20 +26,13 @@ public class SearchTaskTest extends BaseTest {
   }
 
   @Test
-  public void testFindTaskByNameAndOpenTaskList() {
+  public void testFindTaskByName() {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
     
     String taskName = "Annual Leave Request";
-    globalSearch.inputSearchKeyword(taskName);
-    
-    homePage.waitAjaxIndicatorDisappear();
-
-    assertEquals(1, globalSearch.countFoundTasks());
-
-    int numberOfTasks = globalSearch.countFoundTasks();
-    SearchResultPage resultPage = globalSearch.startTaskOnGlobalSearch(taskName);
-    assertEquals(numberOfTasks, resultPage.countTasks());
-    assertTrue(resultPage.isTaskItemSelected(0));
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(taskName);
+    searchResultPage.openTaskTab();
+    assertEquals(taskName, searchResultPage.getTaskResult(0));
   }
 }
