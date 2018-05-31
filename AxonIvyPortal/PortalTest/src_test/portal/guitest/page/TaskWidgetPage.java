@@ -18,9 +18,10 @@ import com.jayway.awaitility.Duration;
 
 public class TaskWidgetPage extends TemplatePage {
 
+  private String taskWidgetId;
   private static final String UI_INPLACE_SAVE = "ui-inplace-save";
-  private static final String TASK_WIDGET_TASK_LIST_SCROLLER2 = "task-widget:task-list-scroller";
-  private static final String TASK_WIDGET_TASK_LIST_SCROLLER = "task-widget:task-list-scroller:";
+  private final String TASK_WIDGET_TASK_LIST_SCROLLER2 = taskWidgetId + ":task-list-scroller";
+  private final String TASK_WIDGET_TASK_LIST_SCROLLER = taskWidgetId + ":task-list-scroller:";
   private static final String COPY_CLIPBOARD = "copy-clipboard";
   private static final String CLASS = "class";
   private static final String ID_END = "*[id$='";
@@ -32,16 +33,24 @@ public class TaskWidgetPage extends TemplatePage {
   private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
       "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
+  public TaskWidgetPage() {
+    this("task-widget");
+  }
+  
+  public TaskWidgetPage(String taskWidgetId) {
+    this.taskWidgetId = taskWidgetId;
+  }
+  
   @Override
   protected String getLoadedLocator() {
-    return "id('task-widget:task-view')";
+    return "//*[contains(@id,'task-view')]";
   }
 
   public void expand() {
-    WebElement fullModeButton = findElementById("task-widget:task-list-link:task-list-link");
+    WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     fullModeButton.click();
     ensureNoBackgroundRequest();
-    waitForLocatorDisplayed("id('task-widget:filter-save-action')");
+    waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
 
   public void openTaskDetails(int index) {
@@ -145,19 +154,19 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void reserveTask(int taskId) {
     String reserveCommandButton =
-        String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-reserve-command", taskId);
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-reserve-command", taskId);
     click(findElementById(reserveCommandButton));
   }
 
   public void resetTask(int taskId) {
     String resetCommandButton =
-        String.format("task-widget:task-list-scroller:%s:task-item:task-action:task-reset-command", taskId);
+        String.format(taskWidgetId + ":task-list-scroller:%s:task-item:task-action:task-reset-command", taskId);
     click(findElementById(resetCommandButton));
   }
 
   public boolean isTaskStartEnabled(int taskId) {
     String startCommandButton =
-        String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-start-command", taskId);
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-start-command", taskId);
     WebElement element = findElementById(startCommandButton);
     return !element.getAttribute(CLASS).contains("ui-state-disabled");
   }
@@ -175,11 +184,11 @@ public class TaskWidgetPage extends TemplatePage {
   public void changeExpiryOfTaskAt(int index, String dateStringLiteral) {
     WebElement taskExpiry =
         findElementById(String.format(
-            "task-widget:task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_display", index));
+            taskWidgetId + ":task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_display", index));
     taskExpiry.click();
 
     String taskExpiryInlineId =
-        String.format("task-widget:task-list-scroller:%d:task-item:general-info:expiry-form:expiry-calendar_input",
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:general-info:expiry-form:expiry-calendar_input",
             index);
     waitForElementDisplayed(By.id(taskExpiryInlineId), true);
     WebElement taskExpiryInlineEdit = findElementById(taskExpiryInlineId);
@@ -187,14 +196,14 @@ public class TaskWidgetPage extends TemplatePage {
 
     WebElement editor =
         findElementById(String.format(
-            "task-widget:task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_editor", index));
+            taskWidgetId + ":task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_editor", index));
     WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
     saveButton.click();
   }
 
   public String getExpiryOfTaskAt(int index) {
     String taskExpiryId =
-        String.format("task-widget:task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_display",
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_display",
             index);
     waitForElementDisplayed(By.id(taskExpiryId), true);
     WebElement taskExpiry = findElementById(taskExpiryId);
@@ -204,24 +213,24 @@ public class TaskWidgetPage extends TemplatePage {
   public void changePriorityOfTask(int index, int priorityValue) {
     WebElement taskPriority =
         findElementById(String.format(
-            "task-widget:task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace_display",
+            taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace_display",
             index));
     taskPriority.click();
     String taskPriorityComboBoxId =
         String.format(
-            "task-widget:task-list-scroller:%d:task-item:general-info:priority-form:priority-select-menu_label", index);
+            taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:priority-select-menu_label", index);
     waitForElementDisplayed(By.id(taskPriorityComboBoxId), true);
     WebElement taskPriorityComboBox = findElementById(taskPriorityComboBoxId);
     taskPriorityComboBox.click();
     WebElement prioritySelectElement =
         findElementById(String.format(
-            "task-widget:task-list-scroller:%d:task-item:general-info:priority-form:priority-select-menu_%d", index,
+            taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:priority-select-menu_%d", index,
             priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
     prioritySelectElement.click();
     WebElement editor =
         findElementById(String.format(
-            "task-widget:task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace_editor",
+            taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace_editor",
             index));
     WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
     saveButton.click();
@@ -231,7 +240,7 @@ public class TaskWidgetPage extends TemplatePage {
   public String getPriorityOfTaskAt(int index) {
     String taskPriorityId =
         String.format(
-            "task-widget:task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace_display",
+            taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace_display",
             index);
     waitForElementDisplayed(By.id(taskPriorityId), true);
     WebElement taskPriority = findElementById(taskPriorityId);
@@ -240,25 +249,25 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskPriorityChangeComponentPresented(int index) {
     return isElementPresent(By.id(String.format(
-        "task-widget:task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
+        taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
   }
 
   public boolean isTaskNameChangeComponentPresented(int index) {
     return isElementPresent(By.id(String.format(
-        "task-widget:task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
+        taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
   }
 
   public void changeNameOfTask(int index, String name) {
     String taskNameId =
         String
             .format(
-                "task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_display",
+                taskWidgetId + ":task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_display",
                 index);
     WebElement taskName = findElementById(taskNameId);
     taskName.click();
     String taskNameInputId =
         String.format(
-            "task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-input",
+            taskWidgetId + ":task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-input",
             index);
     WebElement taskNameInput = findElementById(taskNameInputId);
     waitForElementDisplayed(taskNameInput, true);
@@ -267,7 +276,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement editor =
         findElementById(String
             .format(
-                "task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_content",
+                taskWidgetId + ":task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_content",
                 index));
     WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
     saveButton.click();
@@ -278,7 +287,7 @@ public class TaskWidgetPage extends TemplatePage {
     String taskNameId =
         String
             .format(
-                "task-widget:task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_display",
+                taskWidgetId + ":task-list-scroller:%d:task-item:task-name-component:task-name-edit-form:task-name-inplace_display",
                 index);
     waitForElementDisplayed(By.id(taskNameId), true);
     WebElement taskName = findElementById(taskNameId);
@@ -289,13 +298,13 @@ public class TaskWidgetPage extends TemplatePage {
     String taskDescriptionId =
         String
             .format(
-                "task-widget:task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_display",
+                taskWidgetId + ":task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_display",
                 index);
     WebElement taskDescription = findElementById(taskDescriptionId);
     taskDescription.click();
     String taskDescriptionInputId =
         String.format(
-            "task-widget:task-list-scroller:%d:task-item:description:task-description-form:task-description-input",
+            taskWidgetId + ":task-list-scroller:%d:task-item:description:task-description-form:task-description-input",
             index);
     WebElement taskDescriptionInput = findElementById(taskDescriptionInputId);
     waitForElementDisplayed(taskDescriptionInput, true);
@@ -304,7 +313,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement editor =
         findElementById(String
             .format(
-                "task-widget:task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_editor",
+                taskWidgetId + ":task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_editor",
                 index));
     WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
     saveButton.click();
@@ -315,7 +324,7 @@ public class TaskWidgetPage extends TemplatePage {
     String taskNameId =
         String
             .format(
-                "task-widget:task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_display",
+                taskWidgetId + ":task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_display",
                 index);
     waitForElementDisplayed(By.id(taskNameId), true);
     WebElement taskName = findElementById(taskNameId);
@@ -324,7 +333,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public String getDescriptionInHeaderOfTaskAt(int index) {
     String taskNameId =
-        String.format("task-widget:task-list-scroller:%d:task-item:task-name-component:task-description", index);
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-component:task-description", index);
     waitForElementDisplayed(By.id(taskNameId), true);
     WebElement taskName = findElementById(taskNameId);
     return taskName.getText();
@@ -332,11 +341,11 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskDescriptionChangeComponentPresented(int index) {
     return isElementPresent(By.id(String.format(
-        "task-widget:task-list-scroller:%d:task-item:description:task-description-form:task-description-input", index)));
+        taskWidgetId + ":task-list-scroller:%d:task-item:description:task-description-form:task-description-input", index)));
   }
 
   public boolean isTaskListColumnExist(String columnHeaderText) {
-    WebElement taskListHeader = findElementById("task-widget:task-widget-sort-menu");
+    WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
     for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
       if (columnHeaderText.equals(column.getText())) {
         return true;
@@ -346,7 +355,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void sortTaskListByColumn(String columnHeaderText) {
-    WebElement taskListHeader = findElementById("task-widget:task-widget-sort-menu");
+    WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
     for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
       if (columnHeaderText.equals(column.getText())) {
         column.click();
@@ -357,7 +366,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public String getTaskListCustomCellValue(int index, String columnId) {
     WebElement cell =
-        findElementById(String.format("task-widget:task-list-scroller:%d:task-item:%s-component:%s", index, columnId,
+        findElementById(String.format(taskWidgetId + ":task-list-scroller:%d:task-item:%s-component:%s", index, columnId,
             columnId));
     return cell.getText();
   }
@@ -368,30 +377,30 @@ public class TaskWidgetPage extends TemplatePage {
         .atMost(new Duration(5, TimeUnit.SECONDS))
         .until(
             () -> findElementById(
-                String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command", index))
+                String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-delegate-command", index))
                 .isDisplayed());
 
     WebElement delegateButton =
-        findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command",
+        findElementById(String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-delegate-command",
             index));
     delegateButton.click();
   }
 
   public boolean isDelegateTypeSelectAvailable() {
-    return isElementPresent(By.id("task-widget:task-list-scroller:0:task-item:task-delegate-form:activator-panel"));
+    return isElementPresent(By.id(taskWidgetId + ":task-list-scroller:0:task-item:task-delegate-form:activator-panel"));
   }
 
   public boolean isDelegateTypeDisabled(int taskIndex, int index) {
     WebElement delegateTypeRadioButton =
         findElementById(String
-            .format("task-widget:task-list-scroller:%d:task-item:task-delegate-form:activator-type-select:%d",
+            .format(taskWidgetId + ":task-list-scroller:%d:task-item:task-delegate-form:activator-type-select:%d",
                 taskIndex, index));
     return Optional.ofNullable(delegateTypeRadioButton.getAttribute("disabled")).isPresent();
   }
 
   public boolean isDelegateListSelectionAvailable() {
     return isElementPresent(By
-        .id("task-widget:task-list-scroller:0:task-item:task-delegate-form:select-delegate-panel"));
+        .id(taskWidgetId + ":task-list-scroller:0:task-item:task-delegate-form:select-delegate-panel"));
   }
 
   public AdhocPage addAdhoc(int taskIndex) {
@@ -430,12 +439,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isFilterSelectionVisible() {
-    return isElementPresent(By.id("task-widget:filter-selection-form:filter-selection-panel"));
+    return isElementPresent(By.id(taskWidgetId + ":filter-selection-form:filter-selection-panel"));
   }
 
   public void openAdvancedFilter(String filterName, String filterIdName) {
-    click(By.id("task-widget:filter-add-action"));
-    WebElement filterSelectionElement = findElementById("task-widget:filter-add-form:filter-selection");
+    click(By.id(taskWidgetId + ":filter-add-action"));
+    WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
     findChildElementsByTagName(filterSelectionElement, "LABEL").forEach(filterElement -> {
       if (filterName.equals(filterElement.getText())) {
         filterElement.click();
@@ -461,25 +470,25 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void filterByCustomerName(String text) {
-    click(By.cssSelector("button[id$='task-widget:customer-name-filter:filter-open-form:advanced-filter-command']"));
+    click(By.cssSelector("button[id$='" + taskWidgetId + ":customer-name-filter:filter-open-form:advanced-filter-command']"));
     WebElement customerNameInput =
         findElementByCssSelector("input[id$='customer-name-filter:filter-input-form:customVarChar5']");
     enterKeys(customerNameInput, text);
-    click(By.cssSelector("button[id$='task-widget:customer-name-filter:filter-input-form:update-command']"));
+    click(By.cssSelector("button[id$='" + taskWidgetId + ":customer-name-filter:filter-input-form:update-command']"));
     Sleeper.sleepTight(2000);
   }
 
   public void saveFilter(String filterName) {
-    click(By.id("task-widget:filter-save-action"));
+    click(By.id(taskWidgetId + ":filter-save-action"));
     Sleeper.sleepTight(2000);
-    WebElement filterNameInput = findElementById("task-widget:filter-save-form:save-filter-set-name-input");
+    WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
-    click(findElementById("task-widget:filter-save-form:filter-save-command"));
+    click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
     Sleeper.sleepTight(2000);
   }
 
   public String getFilterName() {
-    click(findElementById("task-widget:filter-selection-form:filter-name"));
+    click(findElementById(taskWidgetId + ":filter-selection-form:filter-name"));
     WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
 
     return descriptionInput.getText();

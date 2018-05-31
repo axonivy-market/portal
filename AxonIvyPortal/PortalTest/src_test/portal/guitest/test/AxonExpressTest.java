@@ -314,7 +314,7 @@ public class AxonExpressTest extends BaseTest{
     HomePage homePage = new HomePage();
     GlobalSearch globalSearch= homePage.getGlobalSearch();
     globalSearch.inputSearchKeyword(processName);
-    globalSearch.startProcessOnGlobalSearch(processName);
+//    globalSearch.startProcessOnGlobalSearch(processName);
   }
 
   private void executeApproval(String comment) {
