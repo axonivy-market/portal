@@ -1,4 +1,4 @@
-co: name={FinishWorkflow} description={} changed={2018-05-22 06:41:41 CEST} changedby={mnhnam} visualorder={0} guid={1638626EB19AB80F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={163862720EF705B2} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-22 06:41:34 CEST} validto={} changed={2018-05-22 06:41:41 CEST} changedby={mnhnam} properties={} id={}
+co: name={FinishWorkflow} description={} changed={2018-05-31 06:20:51 CEST} changedby={anhnguyenhoang} visualorder={0} guid={1638626EB19AB80F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163862720EF705B2} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-31 06:20:51 CEST} validto={} changed={2018-05-31 06:20:51 CEST} changedby={anhnguyenhoang} properties={} id={}
 val: guid={1638626EB24C417C} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-22 06:41:27 CEST} validto={} changed={2018-05-22 06:41:27 CEST} changedby={mnhnam} properties={} id={}
-val: guid={16386271F389E729} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-22 06:41:32 CEST} validto={} changed={2018-05-22 06:41:41 CEST} changedby={mnhnam} properties={} id={}
+val: guid={16386271F389E729} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-31 06:20:51 CEST} validto={} changed={2018-05-31 06:20:51 CEST} changedby={anhnguyenhoang} properties={} id={}
