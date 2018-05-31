@@ -9,13 +9,13 @@
 </cc:interface>
 
 <cc:implementation>
-  <span class="global-search">
+  <span  id="global-search-container-in-page" class="global-search">
     <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}"
       placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
-      onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
-      <p:ajax listener="#{logic.search}" />
+      onkeypress="if (event.keyCode == 13) { portalGlobalSearch(); return false; }">
     </p:inputText>
     <i class="global-search-icon fa fa-search" />
   </span>
+  <p:remoteCommand name="portalGlobalSearch" actionListener="#{logic.search}" />
 </cc:implementation>
 </html>
