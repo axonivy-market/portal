@@ -33,4 +33,5 @@ function ProcessWidget() {
 
 $(document).ready(function() {
   processWidget = ProcessWidget();
+  processWidget.filter();
 });

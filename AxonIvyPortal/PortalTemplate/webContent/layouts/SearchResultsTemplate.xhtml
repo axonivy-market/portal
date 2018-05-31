@@ -25,7 +25,7 @@
       <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}">
         <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title">
           <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" compactMode="false"
-            keyword="#{dataModel.keyword}" hideHeader="true" />
+            hideHeader="true" />
         </p:tab>
         
         <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title">
