@@ -4,3 +4,5 @@ dataModel ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedS
 dataModel PERSISTENT #fieldModifier
 emp ch.ivyteam.ivy.project.portal.examples.Employee #field
 emp PERSISTENT #fieldModifier
+activeTabIndex Number #field
+activeTabIndex PERSISTENT #fieldModifier

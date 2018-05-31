@@ -1,5 +1,5 @@
 [Ivy]
-1624CFBB822FB1C9 3.20 #module
+1624CFBB822FB1C9 3.23 #module
 >Proto >Proto Collection #zClass
 Pt0 ExamplePortalStart Big #zClass
 Pt0 B #cInfo
@@ -58,6 +58,10 @@ Pt0 @PushWFArc f16 '' #zField
 Pt0 @PushWFArc f38 '' #zField
 Pt0 @PushWFArc f48 '' #zField
 Pt0 @PushWFArc f50 '' #zField
+Pt0 @GridStep f52 '' #zField
+Pt0 @CallSub f28 '' #zField
+Pt0 @PushWFArc f49 '' #zField
+Pt0 @PushWFArc f31 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -724,6 +728,60 @@ Pt0 f48 expr out #txt
 Pt0 f48 79 417 156 417 #arcP
 Pt0 f50 expr out #txt
 Pt0 f50 268 417 368 417 #arcP
+Pt0 f52 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f52 actionTable 'out=in;
+' #txt
+Pt0 f52 actionCode 'import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
+
+in.searchResultsDataModel = new SearchResultsDataModel();
+in.searchResultsDataModel.taskDataModel = in.dataModel;
+in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+in.searchResultsDataModel.caseDataModel.notKeepFilter = true;
+in.searchResultsDataModel.caseDataModel.queryCriteria.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+
+' #txt
+Pt0 f52 security system #txt
+Pt0 f52 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>build data model</name>
+        <nameStyle>16,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f52 1192 618 112 44 -46 -8 #rect
+Pt0 f52 @|StepIcon #fIcon
+Pt0 f28 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f28 processCall 'Functional Processes/OpenPortalSearch:call(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number)' #txt
+Pt0 f28 doCall true #txt
+Pt0 f28 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,java.lang.Number activeTabIndex> param;
+' #txt
+Pt0 f28 requestMappingAction 'param.searchResultsDataModel=in.searchResultsDataModel;
+param.activeTabIndex=1;
+' #txt
+Pt0 f28 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f28 responseMappingAction 'out=in;
+' #txt
+Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalSearch</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f28 1369 618 112 44 -50 -8 #rect
+Pt0 f28 @|CallSubIcon #fIcon
+Pt0 f49 expr out #txt
+Pt0 f49 1304 640 1369 640 #arcP
+Pt0 f31 expr in #txt
+Pt0 f31 1056 174 1192 640 #arcP
+Pt0 f31 1 1048 640 #addKink
+Pt0 f31 0 0.6564980739142229 0 0 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -774,3 +832,7 @@ Pt0 f10 mainOut f48 tail #connect
 Pt0 f48 head f11 mainIn #connect
 Pt0 f11 mainOut f50 tail #connect
 Pt0 f50 head f30 in #connect
+Pt0 f52 mainOut f49 tail #connect
+Pt0 f49 head f28 mainIn #connect
+Pt0 f21 out f31 tail #connect
+Pt0 f31 head f52 mainIn #connect
