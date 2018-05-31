@@ -1,3 +1,5 @@
 OpenPortalSearchOverrideData #class
 _ch.ivyteam.ivy.project.portal.examples #namespace
 keyword String #field
+searchResultsDataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
+activeTabIndex Number #field
