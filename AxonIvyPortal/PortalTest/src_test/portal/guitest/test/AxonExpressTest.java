@@ -20,6 +20,7 @@ import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessWidgetPage;
+import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 import portal.guitest.page.UserTaskWithMailFormPage;
@@ -164,6 +165,7 @@ public class AxonExpressTest extends BaseTest{
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
     formDefinition.finishWorkflow();
     startExpressProcess("Test approval");
+    homePage = new HomePage();
     rejectWhenMultiApproval();
   }
 
@@ -313,8 +315,8 @@ public class AxonExpressTest extends BaseTest{
   private void startExpressProcess(String processName) {
     HomePage homePage = new HomePage();
     GlobalSearch globalSearch= homePage.getGlobalSearch();
-    globalSearch.inputSearchKeyword(processName);
-//    globalSearch.startProcessOnGlobalSearch(processName);
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
+    searchResultPage.startProcess(processName);
   }
 
   private void executeApproval(String comment) {

@@ -20,8 +20,6 @@ public class TaskWidgetPage extends TemplatePage {
 
   private String taskWidgetId;
   private static final String UI_INPLACE_SAVE = "ui-inplace-save";
-  private final String TASK_WIDGET_TASK_LIST_SCROLLER2 = taskWidgetId + ":task-list-scroller";
-  private final String TASK_WIDGET_TASK_LIST_SCROLLER = taskWidgetId + ":task-list-scroller:";
   private static final String COPY_CLIPBOARD = "copy-clipboard";
   private static final String CLASS = "class";
   private static final String ID_END = "*[id$='";
@@ -92,7 +90,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public TaskTemplatePage startTask(int index) {
-    WebElement taskListElement = findElementById(TASK_WIDGET_TASK_LIST_SCROLLER2);
+    WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
       findElementByCssSelector(ID_CONTAIN + index + TASK_ITEM).click();
     } else {
@@ -104,7 +102,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskDelegateOptionDisable(int index) {
     WebElement delegateButton =
-        findElementById(TASK_WIDGET_TASK_LIST_SCROLLER + index + ":task-item:task-action:task-delegate-command");
+        findElementById(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:task-delegate-command");
     return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
@@ -136,7 +134,7 @@ public class TaskWidgetPage extends TemplatePage {
   public long getIdOfTaskHasIndex(int index) {
     String text =
         findElementById(
-            TASK_WIDGET_TASK_LIST_SCROLLER + index + ":task-item:task-start-item-view:task-start-task-state")
+            taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-start-item-view:task-start-task-state")
             .getText().replaceAll("\\D", "");
     return Long.valueOf(text);
   }
@@ -173,7 +171,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public TaskState getTaskState(int taskId) {
     WebElement stateCell =
-        findElementById(TASK_WIDGET_TASK_LIST_SCROLLER + taskId + ":task-item:task-state-component:task-state");
+        findElementById(taskWidgetId + ":task-list-scroller:" + taskId + ":task-item:task-state-component:task-state");
     if (stateCell != null) {
       String stateClass = stateCell.findElement(By.className("fa")).getAttribute(CLASS);
       return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
@@ -511,14 +509,14 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getStateInCompactMode(int index) {
-    WebElement taskListElement = findElementById(TASK_WIDGET_TASK_LIST_SCROLLER2);
+    WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     WebElement taskElement = taskListElement.findElement(By.cssSelector(ID_CONTAIN + index + TASK_ITEM));
     WebElement state = taskElement.findElement(By.cssSelector("*[id*='task-start-task-state']"));
     return state.getText().substring(state.getText().indexOf(' ') + 1);
   }
 
   public void startTaskWithoutUI(int index) {
-    WebElement taskListElement = findElementById(TASK_WIDGET_TASK_LIST_SCROLLER2);
+    WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
       findElementByCssSelector(ID_CONTAIN + index + TASK_ITEM).click();
     } else {
