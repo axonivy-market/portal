@@ -9,6 +9,7 @@ import portal.guitest.page.CasePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
@@ -56,9 +57,10 @@ public class BusinessCaseTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     GlobalSearch globalSearch = homePage.getGlobalSearch();
-    globalSearch.inputSearchKeyword(BUSINESS_CASE_NAME);
-//    assertEquals(1, globalSearch.countFoundCases());
-//    assertEquals(BUSINESS_CASE_NAME, globalSearch.getCaseResult());
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(BUSINESS_CASE_NAME);
+    searchResultPage.openCaseTab();
+    assertEquals(1, searchResultPage.countCase());
+    assertEquals(BUSINESS_CASE_NAME, searchResultPage.getCaseResult(0));
   }
   
   @Test
