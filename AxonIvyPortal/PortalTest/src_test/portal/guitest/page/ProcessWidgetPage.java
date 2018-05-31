@@ -14,7 +14,6 @@ public class ProcessWidgetPage extends TemplatePage {
   private WebElement liveSearchTextField;
   private WebElement processWidget;
   private String processWidgetId;
-  private String searchInputField = processWidgetId + ":process-search:non-ajax-keyword-filter";
 
   public ProcessWidgetPage() {
     this("process-widget");
@@ -139,13 +138,13 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public boolean isExpandedMode() {
-    waitForElementDisplayed(By.id(searchInputField), true, DEFAULT_TIMEOUT);
+    waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true, DEFAULT_TIMEOUT);
     loadLiveSearchTextField();
     return liveSearchTextField.isDisplayed();
   }
 
   public boolean isCompactMode() {
-    List<WebElement> findElements = driver.findElements(By.id(searchInputField));
+    List<WebElement> findElements = driver.findElements(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"));
     return findElements.isEmpty();
   }
 
@@ -164,7 +163,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void loadLiveSearchTextField() {
-    liveSearchTextField = findElementById(searchInputField);
+    liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
   }
 
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
