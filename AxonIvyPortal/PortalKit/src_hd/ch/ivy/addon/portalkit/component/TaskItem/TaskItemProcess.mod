@@ -1,5 +1,5 @@
 [Ivy]
-150CB86EFC2F2972 3.20 #module
+150CB86EFC2F2972 3.23 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
 Ts0 RD #cInfo
@@ -1343,7 +1343,13 @@ Ts0 f106 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f106 actionTable 'out=in;
 ' #txt
-Ts0 f106 actionCode 'import ch.ivy.addon.portalkit.dto.TaskEndInfo;
+Ts0 f106 actionCode 'import ch.ivy.addon.portalkit.enums.NavigationHistory;
+import ch.ivy.addon.portalkit.enums.NavigationHistory;
+import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.NavigationHistoryBean;
+import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -1354,6 +1360,12 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
 taskEndInfo.setIsFromPortalHome(in.dataModel.compactMode);
+
+NavigationHistoryBean navigationHistoryBean = ManagedBeans.get("navigationHistoryBean") as NavigationHistoryBean;
+if (navigationHistoryBean.navigationHistory.equals("SEARCH_RESULTS")) {
+	taskEndInfo.setNavigationHistory(NavigationHistory.SEARCH_RESULTS);
+}
+
 String taskDataModelSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.selectedTask.getId());
 SecurityServiceUtils.setSessionAttribute(taskDataModelSessionAttributeKey, taskEndInfo);' #txt
 Ts0 f106 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
