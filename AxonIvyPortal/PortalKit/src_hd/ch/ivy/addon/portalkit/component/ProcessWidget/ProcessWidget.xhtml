@@ -185,6 +185,9 @@
 						</h:panelGroup>
 					</h:form>
 				</ui:repeat>
+                    <div jsf:rendered="#{processWidgetBean.userProcesses.size() eq 0}">
+                      <h:outputText id="full-process-empty-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" />
+                    </div>
 			</ui:fragment>
 		</h:panelGroup>
 		<h:panelGroup id="user-default-process-list" layout="block" styleClass="user-default-process-list"

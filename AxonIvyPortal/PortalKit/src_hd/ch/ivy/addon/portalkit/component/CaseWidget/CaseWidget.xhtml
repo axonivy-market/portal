@@ -206,7 +206,7 @@
           </ic:ch.ivy.addon.portalkit.component.CaseItem>
         </p:dataScroller>
         <div jsf:rendered="#{data.dataModel.rowCount eq 0}" class="case-widget-empty-message">
-          <p:outputLabel rendered="#{empty cc.facets.emptyMessage}" value="#{cc.attrs.emptyMessage}" />
+          <p:outputLabel id="case-empty-message" rendered="#{empty cc.facets.emptyMessage}" value="#{cc.attrs.emptyMessage}" />
           <cc:renderFacet name="emptyMessage" />
         </div>
       </h:panelGroup>

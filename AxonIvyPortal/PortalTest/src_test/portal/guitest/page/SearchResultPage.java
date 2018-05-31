@@ -2,31 +2,52 @@ package portal.guitest.page;
 
 import org.openqa.selenium.By;
 
+
+
 public class SearchResultPage extends TemplatePage {
 
-  public SearchResultPage(String type) {
-    waitForElementDisplayed(By.className(type + "-widget"), true, DEFAULT_TIMEOUT);
+  @Override
+  protected String getLoadedLocator() {
+    return "id('global-search-form-in-page:global-search-data')";
+  }
+  
+  public void openTaskTab() {
+    click(By.cssSelector("li[class*='task-tab-title']"));
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void openCaseTab() {
+    click(By.cssSelector("li[class*='case-tab-title']"));
+    waitAjaxIndicatorDisappear();
   }
 
-  public int countProcesses() {
-    return findListElementsByClassName("process-start-list-item").size();
+  public void startProcess(String name) {
+    ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
+    processWidgetPage.startProcess(name);
   }
-
-  public int countTasks() {
-    return findListElementsByClassName("task-start-list-item").size();
+  
+  public String getProcessResult(String name) {
+    ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
+    return processWidgetPage.getProcess(name).getText();
   }
-
-  public int countCases() {
-    return findListElementsByClassName("js-case-item").size();
+  
+  public boolean isProcessResultEmpty() {
+    ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
+    return processWidgetPage.isProcessEmpty();
   }
-
-  public boolean isTaskItemSelected(int index) {
-    return findElementById("task-widget:task-list-scroller:" + index + ":task-item:task-start").getAttribute("class").contains(
-        "show-task-details-mode");
+  
+  public String getTaskResult(int index) {
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage("search-results-tabview:task-results");
+    return taskWidgetPage.getNameOfTaskAt(index);
   }
-
-  public boolean isCaseItemSelected(int index) {
-    return findElementById("case-widget:case-items:" + index + ":case-item").getAttribute("class").contains(
-        "mod-expanded");
+  
+  public String getCaseResult(int index) {
+    CasePage caseWidgetPage = new CasePage("search-results-tabview:case-results");
+    return caseWidgetPage.getCaseNameAt(index);
+  }
+  
+  public boolean isCaseResultEmpty() {
+    CasePage caseWidgetPage = new CasePage("search-results-tabview:case-results");
+    return caseWidgetPage.isEmpty();
   }
 }
