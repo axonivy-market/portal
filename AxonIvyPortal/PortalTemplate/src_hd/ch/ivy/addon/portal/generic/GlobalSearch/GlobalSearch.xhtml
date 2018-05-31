@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <span  id="global-search-container-in-page" class="global-search">
+    <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}"
+      placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
+      onkeypress="if (event.keyCode == 13) { portalGlobalSearch(); return false; }">
+    </p:inputText>
+    <i class="global-search-icon fa fa-search" />
+  </span>
+  <p:remoteCommand name="portalGlobalSearch" actionListener="#{logic.search}" />
+</cc:implementation>
+</html>

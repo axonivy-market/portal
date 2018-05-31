@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
@@ -36,17 +37,22 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private void initPermissions() {
-    cleanAllPortalPermissionsAndGroups();
-    IPermissionGroup portalPermissionGroup = createPortalPermissionGroup();
-    IPermissionGroup taskPermissionGroup = createPermissionsGroup(portalPermissionGroup, TASK_PERMISSIONS_GROUP);
-    IPermissionGroup casePermissionGroup = createPermissionsGroup(portalPermissionGroup, CASE_PERMISSIONS_GROUP);
-    IPermissionGroup generalPermissionGroup = createPermissionsGroup(portalPermissionGroup, GENERAL_PERMISSIONS_GROUP);
-    IPermissionGroup absenceAndSubPermissionGroup =
-        createPermissionsGroup(portalPermissionGroup, ABSENCE_AND_SUBSTITUTE_GROUP);
-    initSystemPermission(taskPermissionGroup, getTaskPermissions());
-    initSystemPermission(casePermissionGroup, getCasePermissions());
-    initSystemPermission(generalPermissionGroup, getGeneralPermissions());
-    initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
+    IvyExecutor.executeOnceInAllProcessModelVersion(
+        Ivy.request().getProcessModelVersion(),
+        () -> {
+          cleanAllPortalPermissionGroups();
+          IPermissionGroup portalPermissionGroup = createPortalPermissionGroup();
+          IPermissionGroup taskPermissionGroup = createPermissionsGroup(portalPermissionGroup, TASK_PERMISSIONS_GROUP);
+          IPermissionGroup casePermissionGroup = createPermissionsGroup(portalPermissionGroup, CASE_PERMISSIONS_GROUP);
+          IPermissionGroup generalPermissionGroup =
+              createPermissionsGroup(portalPermissionGroup, GENERAL_PERMISSIONS_GROUP);
+          IPermissionGroup absenceAndSubPermissionGroup =
+              createPermissionsGroup(portalPermissionGroup, ABSENCE_AND_SUBSTITUTE_GROUP);
+          initSystemPermission(taskPermissionGroup, getTaskPermissions());
+          initSystemPermission(casePermissionGroup, getCasePermissions());
+          initSystemPermission(generalPermissionGroup, getGeneralPermissions());
+          initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
+        });
   }
 
   private void initSystemPermission(IPermissionGroup permissionGroup, List<IPermission> permissions) {
@@ -125,12 +131,11 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     return permissionGroup;
   }
 
-  private void cleanAllPortalPermissionsAndGroups() {
-    for (PortalPermissionGroup group : PortalPermissionGroup.values()) {
-      IPermissionGroup permissionGroup = IPermissionGroupRepository.get().findByName(group.getValue());
-      if (Objects.nonNull(permissionGroup)) {
-        IPermissionGroupRepository.get().delete(permissionGroup);
-      }
+  private void cleanAllPortalPermissionGroups() {
+    IPermissionGroup permissionGroup =
+        IPermissionGroupRepository.get().findByName(PortalPermissionGroup.PORTAL_PERMISSION_GROUP.getValue());
+    if (Objects.nonNull(permissionGroup)) {
+      IPermissionGroupRepository.get().delete(permissionGroup);
     }
   }
 }
