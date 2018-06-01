@@ -1,5 +1,5 @@
 [Ivy]
-144633F679C3A22D 3.20 #module
+144633F679C3A22D 3.23 #module
 >Proto >Proto Collection #zClass
 ds0 define_WFProcess Big #zClass
 ds0 RD #cInfo
@@ -560,7 +560,7 @@ in.isValidated = true;
 
 if (!(in.#selectedUser is initialized) || in.userSelection.contains(in.selectedUser)) {
 	in.isValidated = false;
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidUser")));
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
 }' #txt
 ds0 f37 type agileBPM.define_WF.define_WFData #txt
 ds0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
