@@ -634,7 +634,7 @@
 		<sect2>
 			<title>Migrate 7.1.0 to 7.2.0</title>
 			<para>
-					There are some changes (DefaultApplicationHomePage, DefaultLoginPage) in PortalStart process of Portal Template. If you have customized this process in your project,
+					There are some changes (DefaultApplicationHomePage, DefaultLoginPage, GlobalSearch) in PortalStart process of Portal Template. If you have customized this process in your project,
 					copy the new PortalStart from Portal Template to your project and re-apply your customization.
 			</para>
 		</sect2>
@@ -644,7 +644,7 @@
 				There are some changes in PortalStart process of Portal Template. If you have customized this process in your project, copy the new PortalStart from Portal Template to your project and re-apply your customization. 
 			</para>
 			<para>
-				We introduce new method <code>findStartableLinkByUserFriendlyRequestPath(String requestPath)</code> in <code>ProcessStartCollector</code> class. If your project has cutomized 
+				We introduce new method <code>findStartableLinkByUserFriendlyRequestPath(String requestPath)</code> in <code>ProcessStartCollector</code> class. If your project has customized 
 				<link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" />, use this method to generate link to your process.
 				If user doesn't have permission to start the process, this method will return empty string.
 			</para>
@@ -885,6 +885,9 @@
 			<sect2>
 				<title>Changes in 7.2</title>
 				<itemizedlist>
+                    <listitem>
+                      <para>Introduces the new page: Global search result, and supports the customization</para>
+                    </listitem>
                     <listitem>
                       <para>Overrides the DefaultApplicationHomePage.ivp, DefaultLoginPage.ivp, DefaultEndPage.ivp processes, refer to <link xlink:show="new" xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#ServerAdministration-htmlworkflowui">Replacement Project</link>, check migration notes if you have the customized PortalStart.ivp process.</para>
                     </listitem>
