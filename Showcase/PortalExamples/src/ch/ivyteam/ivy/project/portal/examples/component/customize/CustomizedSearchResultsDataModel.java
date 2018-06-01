@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.data.persistence.IIvyEntityManager;
+import ch.ivyteam.ivy.process.data.persistence.IIvyQuery;
 import ch.ivyteam.ivy.project.portal.examples.Employee;
 
 public class CustomizedSearchResultsDataModel extends SearchResultsDataModel {
@@ -17,6 +18,8 @@ public class CustomizedSearchResultsDataModel extends SearchResultsDataModel {
   
   public CustomizedSearchResultsDataModel() {
     super();
+    IIvyQuery query = persistence().createQuery("Delete from Employee");
+    query.executeUpdate();
     employees = persistence().findAll(Employee.class);
     if (CollectionUtils.isEmpty(employees)) {
       initEmployees();
