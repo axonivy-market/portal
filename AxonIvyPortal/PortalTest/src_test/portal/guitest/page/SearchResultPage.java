@@ -2,6 +2,7 @@ package portal.guitest.page;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class SearchResultPage extends TemplatePage {
 
@@ -17,6 +18,11 @@ public class SearchResultPage extends TemplatePage {
 
   public void openCaseTab() {
     click(By.cssSelector("li[class*='case-tab-title']"));
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void openEmployeeTab() {
+    click(By.xpath("//div[@id='search-results-tabview']/ul/li[4]"));
     waitAjaxIndicatorDisappear();
   }
 
@@ -53,5 +59,15 @@ public class SearchResultPage extends TemplatePage {
   public boolean isCaseResultEmpty() {
     CasePage caseWidgetPage = new CasePage("search-results-tabview:case-results");
     return caseWidgetPage.isEmpty();
+  }
+  
+  public int countNumberOfEmployee() {
+    WebElement employeeSearchResult = findElementById("search-results-tabview:employee-table");
+    return employeeSearchResult.findElements(By.cssSelector("tr.ui-widget-content")).size();
+  }
+  
+  public void openEmployeeDetail(int index) {
+    click(By.id(String.format("search-results-tabview:employee-table:%d:detail-action", index)));
+    waitAjaxIndicatorDisappear();
   }
 }
