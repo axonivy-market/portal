@@ -49,13 +49,4 @@ public class SearchProcessTest extends BaseTest {
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseMapName);
     assertEquals(caseMapName, searchResultPage.getProcessResult(caseMapName));
   }
-
-  @Test
-  public void testFindNotFoundOutData() {
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
-    assertTrue(globalSearch.isDisplayed());
-
-    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("no process found");
-    assertTrue(searchResultPage.isProcessResultEmpty());
-  }
 }
