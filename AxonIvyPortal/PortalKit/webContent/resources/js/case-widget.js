@@ -8,9 +8,15 @@ function CaseWidget(outerPanelId) {
       var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
       var caseWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
       var error = 5;
+      var globalSearchInput = $('.js-global-search');
+      var globalSearchTabHeader = $('.ui-tabs-nav');
+      if (globalSearchTabHeader.length > 0) {
+        error = 55; // included margin, padding in search page
+      }
 
       var availableHeight = mainAreaPanel.outerHeight() - caseWidgetHeaderContainer.outerHeight(true)
-          - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetAdvancedFilterContainer.outerHeight(true) - error;
+          - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetAdvancedFilterContainer.outerHeight(true)
+          - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)- error;
 
       if (!!availableHeight) {
         container.height(availableHeight);
