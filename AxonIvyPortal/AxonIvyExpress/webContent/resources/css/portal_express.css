@@ -667,7 +667,7 @@ td.pe-dynaform-label[colspan="4"] {
 .preview-dialog .preview-dyna-container {
 	padding: 0;
 	margin: 0;
-	height: 500px;
+	max-height: 500px;
 	width: 100%;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
