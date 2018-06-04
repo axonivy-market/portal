@@ -28,6 +28,5 @@ public class GlobalSearchTest extends BaseTest{
     searchResultPage = globalSearch.inputSearchKeyword("Nam");
     searchResultPage.openEmployeeTab();
     Assert.assertEquals(2, searchResultPage.countNumberOfEmployee());
-    searchResultPage.openEmployeeDetail(0);
   }
 }
