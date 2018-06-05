@@ -26,36 +26,4 @@
 			</para>
 		</para>
 	</sect2>
-	<sect2>
-		<title>Login process hooking (pre/post login)</title>
-		<mediaobject>
-			<imageobject>
-				<imagedata fileref="images/Login/LoginHooking.png" />
-			</imageobject>
-		</mediaobject>
-		<para>
-			<orderedlist>
-				<listitem>
-					<para>
-						Introduce an Axon.ivy project which has	<code>PortalTemplate</code>	as a required library.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project. This process is new home page and administrator should register this link by global
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Refer to <link linkend="axonivyportal.customization.portalhome">Customize Portal home</link> to set new home page.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Override the <code>PreLogin</code> and/or <code>PostLogin</code> callable processes to customize the login behavior.
-					</para>
-				</listitem>
-			</orderedlist>
-		</para>
-	</sect2>
 </sect1>
