@@ -1,8 +1,6 @@
 {
   /PROCESS {
-    /Functional-Processes.HookLogout "Functional Processes/HookLogoutOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
-    /Functional-Processes.PostLogin "Functional Processes/PostLoginOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
   }
