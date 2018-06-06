@@ -93,12 +93,12 @@ public class PermissionUtils {
   }
   
   /**
-   * Check if current user has permission to create new charts
-   * 
-   * @return true : ADD_DASHBOARDS_CHARTS permission is grated, otherwise false 
+   * Check if current user has portal permission
+   * @param portalPermission
+   * @return true : portal permission is grated, otherwise false 
    */
-  public static boolean checkAddDashboardsChartsPermission() {
-    IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ADD_DASHBOARDS_CHARTS.getValue());
+  public static boolean hasPortalPermission(PortalPermission portalPermission) {
+    IPermission iPermission = IPermissionRepository.get().findByName(portalPermission.getValue());
     if (Objects.isNull(iPermission)){
       return false;
     }

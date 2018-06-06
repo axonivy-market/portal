@@ -6,7 +6,8 @@ public enum PortalPermissionGroup {
   CASE_PERMISSIONS_GROUP("PortalCasePermissions"),
   GENERAL_PERMISSIONS_GROUP("PortalGeneralPermissions"),
   ABSENCE_AND_SUBSTITUTE_GROUP("PortalAbsenceAndSubstitutePermissions"),
-  STATISTICS_GROUP("PortalStatisticsPermissions");
+  STATISTICS_GROUP("PortalStatisticsPermissions"),
+  EXPRESS_GROUP("PortalExpressPermissions");
 
   private String value;
 
