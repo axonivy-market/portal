@@ -963,7 +963,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private DonutChartModel buildChartModelForCaseState(StatisticChart statisticChart) {
     CaseStateStatistic caseStateData = new CaseStateStatistic();
     if(statisticChart.getFilter() != null) {
-      caseStateData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), false).asJson());
+      caseStateData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseState(statisticChart.getFilter()).asJson());
     }
     return generateCaseByStateModel(caseStateData, StatisticChartType.CASES_BY_STATE,  true);
   }
