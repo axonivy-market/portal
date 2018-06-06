@@ -498,9 +498,9 @@
 							ADD CHARTS
 						</para>
 						<para>
-							Add new charts function will be enabled if session user has
-							<code>IPermission.ADD_DASHBOARDS_CHARTS</code>
-							.
+							Add new charts function will be enabled if session user has 
+							<code>AddDashboardsCharts</code>
+							(This permission belongs to Portal permission group).
 						</para>
 					</listitem>
 				</itemizedlist>
