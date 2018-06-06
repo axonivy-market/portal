@@ -10,7 +10,7 @@
 	<sect2 xml:id="axonivyportal.customization.defaultuserprocess.customization">
 		<title>Customization</title>
 		<para>
-			Create a callable sub process in your project with the <code>createDefaultUserProcesses()</code> signature, make sure this signature is unique in your application. It must return a list of user processes: <code>defaultUserProcesses(List&lt;UserProcess&gt;)</code> (you can override this process in PortalKit):
+			Create an override which overrides sub process <code>createDefaultUserProcess()</code> in Portal Kit. This sub process return a list of user processes. Follow instruction to create default chart.
 			<mediaobject>
 				<imageobject>
 					<imagedata fileref="images/DefaultUserProcess/DefaultUserProcesses.png" />
