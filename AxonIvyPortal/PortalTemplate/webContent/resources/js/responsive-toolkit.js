@@ -73,17 +73,27 @@ function TaskListLargeScreenHandler() {
       var $taskListContainer = $('.js-task-list-container');
       var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
+      var isSearchResultPage = $taskListContainer.hasClass('js-for-search-result');
+
       if ($mainMenu.hasClass('in')) {
         if (isDisplaySecondLevelMenu) {
           animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenAllMenuOpen });
         } else {
           animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenMainMenuOpen });  
+          if (isSearchResultPage) {
+            var simpleLargeScreen = new SimpleLargeScreen();
+            simpleLargeScreen.updateMainContainer();
+          }
         }
       } else {
         if (isDisplaySecondLevelMenu) {
           animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenSecondMenuOpen });
         } else {
-          animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenAllMenuClose });  
+          animateTaskList($taskListContainer, { marginLeft : marginValues.marginValWhenAllMenuClose });
+          if (isSearchResultPage) {
+            var simpleLargeScreen = new SimpleLargeScreen();
+            simpleLargeScreen.updateMainContainer();
+          }
         }
       }
     }
@@ -109,7 +119,9 @@ function TaskListMediumScreenHandler() {
         var $secondLevelMenu = $('#second-level-menu');
         var $taskListContainer = $('.js-task-list-container');
         var isSecondLevelMenuOpen = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
-        
+
+        var isSearchResultPage = $taskListContainer.hasClass('js-for-search-result');
+
         if ($mainMenu.hasClass('in')) {
             if (isSecondLevelMenuOpen) {
                 // Open main menu when second menu is opened
@@ -117,6 +129,10 @@ function TaskListMediumScreenHandler() {
             } else {
                 // Open main menu when second menu is closed
                 animateTaskList($taskListContainer, {marginLeft : marginValues.marginValWhenMainMenuOpen});
+                if (isSearchResultPage) {
+                  var simpleMediumScreen = new SimpleMediumScreen();
+                  simpleMediumScreen.updateMainContainer();
+                }
             }
         } else {
             if (isSecondLevelMenuOpen) {
@@ -125,6 +141,10 @@ function TaskListMediumScreenHandler() {
             } else {
                 // Close main menu when second menu is closed
                 animateTaskList($taskListContainer, {marginLeft : marginValues.marginValWhenAllMenuClose});
+                if (isSearchResultPage) {
+                  var simpleMediumScreen = new SimpleMediumScreen();
+                  simpleMediumScreen.updateMainContainer();
+                }
             }
         }
         
@@ -209,6 +229,8 @@ function TaskListSmallScreenHandler() {
         var $taskListContainer = $('.js-task-list-container');
         var isSecondLevelMenuOpen = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
+        var isSearchResultPage = $taskListContainer.hasClass('js-for-search-result');
+
         if ($mainMenu.hasClass('in')) {
             if (isSecondLevelMenuOpen) {
                 // Open main menu when second menu is opened
@@ -216,6 +238,10 @@ function TaskListSmallScreenHandler() {
             } else {
                 // Open main menu when second menu is closed
                 animateTaskList($taskListContainer, {marginLeft : marginValues.marginValWhenMainMenuOpen});
+                if (isSearchResultPage) {
+                  var simpleSmallScreen = new SimpleSmallScreen();
+                  simpleSmallScreen.updateMainContainer();
+                }
             }
         } else {
             if (isSecondLevelMenuOpen) {
@@ -224,16 +250,21 @@ function TaskListSmallScreenHandler() {
             } else {
                 // Close main menu when second menu is closed
                 animateTaskList($taskListContainer, {marginLeft : marginValues.marginValWhenAllMenuClose});
+                if (isSearchResultPage) {
+                  var simpleSmallScreen = new SimpleSmallScreen();
+                  simpleSmallScreen.updateMainContainer();
+                }
             }
         }
         
         var isTaskDetailsOpened = $('.js-task-details').length !== 0 ? true : false;
         if (isTaskDetailsOpened) {
-          updateTaskDetails();
+          updateTaskDetails(isSearchResultPage);
         }
     }
     
-    function updateTaskDetails() {
+    function updateTaskDetails(isSearchResultPage) {
+        typeof(isSearchResultPage) == "undefined" ? false : isSearchResultPage;
         var replacedClass = 'replaced';
         var isSelectedClass = 'is-selected';
         var openedClass = 'opened';
@@ -251,7 +282,7 @@ function TaskListSmallScreenHandler() {
         var $taskDetails = $('.js-task-details', $taskItem);
         var isAlreadyLoaded = $taskDetails.hasClass(openedClass);
         if (!isAlreadyLoaded) {
-          if ($mainMenu.hasClass('in') || isDisplaySecondLevelMenu) {
+          if ($mainMenu.hasClass('in') || isDisplaySecondLevelMenu || isSearchResultPage) {
             $dataColumn.addClass(replacedClass);
           } else {
             $documentColumn.addClass(replacedClass);
@@ -261,7 +292,7 @@ function TaskListSmallScreenHandler() {
         
         var $hiddenColumns = $('.js-task-details-item:not(.' + replacedClass + '):last', $taskItem);
         $responsiveHandleContainer.show();
-        if ($mainMenu.hasClass('in') || isDisplaySecondLevelMenu) {
+        if ($mainMenu.hasClass('in') || isDisplaySecondLevelMenu || isSearchResultPage) {
           // Display data column as default when the menu state is changed from no expanded menu to one expanded menu
           var isResponsiveButtonClicked = $responsiveButtons.hasClass('is-clicked');
           if (!isResponsiveButtonClicked) {
@@ -392,17 +423,27 @@ function CaseListLargeScreenHandler() {
     var $caseListContainer = $('.js-case-default-widget-container');
     var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
+    var isSearchResultPage = $caseListContainer.hasClass('js-for-search-result');
+
     if ($mainMenu.hasClass('in')) {
       if (isDisplaySecondLevelMenu) {
         animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenAllMenuOpen });
       } else {
-        animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenMainMenuOpen });  
+        animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenMainMenuOpen });
+        if (isSearchResultPage) {
+          var simpleLargeScreen = new SimpleLargeScreen();
+          simpleLargeScreen.updateMainContainer();
+        }
       }
     } else {
       if (isDisplaySecondLevelMenu) {
         animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenSecondMenuOpen });
       } else {
-        animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenAllMenuClose });  
+        animateCaseList($caseListContainer, { marginLeft : marginValues.marginValWhenAllMenuClose });
+        if (isSearchResultPage) {
+          var simpleLargeScreen = new SimpleLargeScreen();
+          simpleLargeScreen.updateMainContainer();
+        }
       }
     }
   }
@@ -429,6 +470,8 @@ function CaseListMediumScreenHandler() {
     var $caseListContainer = $('.js-case-default-widget-container');
     var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
+    var isSearchResultPage = $caseListContainer.hasClass('js-for-search-result');
+
     if ($mainMenu.hasClass('in')) {
       if (isDisplaySecondLevelMenu) {
           // Open main menu when second menu is opened
@@ -436,6 +479,10 @@ function CaseListMediumScreenHandler() {
       } else {
           // Open main menu when second menu is closed
         animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenMainMenuOpen});
+        if (isSearchResultPage) {
+          var simpleMediumScreen = new SimpleMediumScreen();
+          simpleMediumScreen.updateMainContainer();
+        }
       }
     } else {
         if (isDisplaySecondLevelMenu) {
@@ -444,6 +491,10 @@ function CaseListMediumScreenHandler() {
         } else {
             // Close main menu when second menu is closed
           animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenAllMenuClose});
+          if (isSearchResultPage) {
+            var simpleMediumScreen = new SimpleMediumScreen();
+            simpleMediumScreen.updateMainContainer();
+          }
         }
     }
 
@@ -546,6 +597,8 @@ function CaseListSmallScreenHandler() {
     var $caseListContainer = $('.js-case-default-widget-container');
     var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
+    var isSearchResultPage = $caseListContainer.hasClass('js-for-search-result');
+
     if ($mainMenu.hasClass('in')) {
       if (isDisplaySecondLevelMenu) {
           // Open main menu when second menu is opened
@@ -553,6 +606,10 @@ function CaseListSmallScreenHandler() {
       } else {
           // Open main menu when second menu is closed
         animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenMainMenuOpen});
+        if (isSearchResultPage) {
+          var simpleSmallScreen = new SimpleSmallScreen();
+          simpleSmallScreen.updateMainContainer();
+        }
       }
     } else {
         if (isDisplaySecondLevelMenu) {
@@ -561,16 +618,21 @@ function CaseListSmallScreenHandler() {
         } else {
             // Close main menu when second menu is closed
           animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenAllMenuClose});
+          if (isSearchResultPage) {
+            var simpleSmallScreen = new SimpleSmallScreen();
+            simpleSmallScreen.updateMainContainer(isSearchResultPage);
+          }
         }
     }
 
     var isCaseDetailsOpened = $('.js-case-details').length !== 0 ? true : false;
     if (isCaseDetailsOpened) {
-      updateCaseDetails();
+      updateCaseDetails(isSearchResultPage);
     }
   }
 
-  function updateCaseDetails() {
+  function updateCaseDetails(isSearchResultPage) {
+    typeof(isSearchResultPage) == "undefined" ? false : isSearchResultPage;
     var replacedClass = 'replaced';
     var isSelectedClass = 'is-selected';
     var openedClass = 'opened';
@@ -591,7 +653,7 @@ function CaseListSmallScreenHandler() {
     var isAlreadyLoaded = $caseDetails.hasClass(openedClass);
 
     if (!isAlreadyLoaded) {
-      if ($mainMenu.hasClass('in')) {
+      if ($mainMenu.hasClass('in') || isSearchResultPage) {
         $relatedTaskColumn.addClass(replacedClass);
       } else {
         $historyColumn.addClass(replacedClass);
@@ -602,7 +664,7 @@ function CaseListSmallScreenHandler() {
     var $hiddenColumns = $('.js-case-details-item:not(.' + replacedClass + ')', $caseItem).slice(-2);
     $responsiveHandleContainer.show();
 
-    if ($mainMenu.hasClass('in') || isDisplaySecondLevelMenu) {
+    if ($mainMenu.hasClass('in') || isDisplaySecondLevelMenu || isSearchResultPage) {
       // Display data column as default when the menu state is changed from no expanded menu to one expanded menu
       var isResponsiveButtonClicked = $responsiveButtons.hasClass('is-clicked');
       if (!isResponsiveButtonClicked) {
