@@ -6,6 +6,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AUGUST_C
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DEFAULT_CHART;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DRILLDOWN_LEVEL_DAY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DRILLDOWN_LEVEL_HOUR;
@@ -680,10 +681,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param chartName chart name
    * @param chartType chart type
    * @param creatorId Id of the creator
+   * @param isDefault is a default chart
    * @return Added statistic chart
    */
   public StatisticChart createStatisticChart(StatisticFilter filter, String chartName, StatisticChartType chartType,
-      long creatorId) {
+      long creatorId, boolean isDefault) {
     StatisticChart statisticChart = new StatisticChart();
 
     statisticChart.setUserId(creatorId);
@@ -691,6 +693,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     statisticChart.setFilter(filter);
+    statisticChart.setDefaultChart(String.valueOf(isDefault));
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
     return findById(info.getId());
   }
@@ -1095,5 +1098,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public String[] getDrilldownLevels() {
     return DRILLDOWN_LEVELS;
+  }
+  
+  public void removeStatisticChartsByUserId(long userId) {
+    try {
+      List<StatisticChart> result = repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().
+          textField(DEFAULT_CHART).isEqualToIgnoringCase("false").execute().getAll();
+      result.stream().forEach(item -> repo().delete(item));
+    } catch (Exception e) {
+      Ivy.log().error(e);
+    }
   }
 }

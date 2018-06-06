@@ -50,7 +50,7 @@
               update="@([id$='statistic-dashboard-container'])"
               rendered="#{index % 2 == 0 and index != data.statisticChartList.size() -1}" />
 
-            <p:commandLink id="delete-chart-link" styleClass="fa fa-close chart-action">
+            <p:commandLink id="delete-chart-link" styleClass="fa fa-close chart-action" rendered="#{chart.defaultChart == 'false'}">
              <p:ajax event="click" listener="#{logic.selectChart(chart)}" oncomplete="PF('delete-confirmation-dialog').show();" />
             </p:commandLink>
           </h:panelGroup>
@@ -176,7 +176,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.deleteChart()}" styleClass=""
+      actionListener="#{logic.deleteChart()}" 
       oncomplete="PF('delete-confirmation-dialog').hide();"
       update="@([id$='statistic-dashboard-container']) @([id$='statistic-widget-empty-state']) " />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
