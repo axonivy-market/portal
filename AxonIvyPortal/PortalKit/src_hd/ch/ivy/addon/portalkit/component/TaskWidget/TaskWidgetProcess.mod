@@ -1,5 +1,5 @@
 [Ivy]
-15035F535EFB1618 3.20 #module
+15035F535EFB1618 3.23 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
 Ts0 RD #cInfo
@@ -46,7 +46,6 @@ Ts0 @PushWFArc f32 '' #zField
 Ts0 @PushWFArc f30 '' #zField
 Ts0 @PushWFArc f26 '' #zField
 Ts0 @GridStep f27 '' #zField
-Ts0 @PushWFArc f1 '' #zField
 Ts0 @RichDialogProcessEnd f3 '' #zField
 Ts0 @RichDialogMethodStart f34 '' #zField
 Ts0 @GridStep f35 '' #zField
@@ -82,6 +81,9 @@ Ts0 @PushWFArc f18 '' #zField
 Ts0 @PushWFArc f63 '' #zField
 Ts0 @PushWFArc f58 '' #zField
 Ts0 @PushWFArc f19 '' #zField
+Ts0 @GridStep f8 '' #zField
+Ts0 @PushWFArc f10 '' #zField
+Ts0 @PushWFArc f1 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -93,14 +95,7 @@ Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 Ts0 f0 inParameterMapAction 'out.keyword=param.#keyword;
 out.taskFilterGroupId=param.filterGroupId;
 ' #txt
-Ts0 f0 inActionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
-import javax.faces.context.FacesContext;
-
-if (!param.#dataModel is initialized) {
-	FacesContext context = FacesContext.getCurrentInstance();
-	TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskWidgetBean}", TaskWidgetBean.class) as TaskWidgetBean;
-	out.dataModel = taskWidgetBean.dataModel;
-} else {
+Ts0 f0 inActionCode 'if (param.#dataModel is initialized){
 	out.dataModel = param.dataModel;
 }' #txt
 Ts0 f0 outParameterDecl '<> result;
@@ -492,12 +487,10 @@ Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f27 54 160 36 24 20 -2 #rect
+Ts0 f27 54 220 36 24 20 -2 #rect
 Ts0 f27 @|StepIcon #fIcon
-Ts0 f1 expr out #txt
-Ts0 f1 72 83 72 160 #arcP
 Ts0 f3 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f3 59 235 26 26 0 12 #rect
+Ts0 f3 59 283 26 26 0 12 #rect
 Ts0 f3 @|RichDialogProcessEndIcon #fIcon
 Ts0 f34 guid 15F5C0F9B77406B4 #txt
 Ts0 f34 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -832,7 +825,7 @@ Ts0 f15 880 1056 1008 1056 #arcP
 Ts0 f21 expr out #txt
 Ts0 f21 332 1056 388 1056 #arcP
 Ts0 f57 expr out #txt
-Ts0 f57 72 184 72 235 #arcP
+Ts0 f57 72 244 72 283 #arcP
 Ts0 f18 expr out #txt
 Ts0 f18 93 1056 188 1056 #arcP
 Ts0 f63 expr in #txt
@@ -844,6 +837,33 @@ Ts0 f58 expr out #txt
 Ts0 f58 460 1056 576 1056 #arcP
 Ts0 f19 expr out #txt
 Ts0 f19 552 184 552 237 #arcP
+Ts0 f8 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f8 actionTable 'out=in;
+' #txt
+Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+import javax.faces.context.FacesContext;
+
+if (!in.#dataModel is initialized) {
+	FacesContext context = FacesContext.getCurrentInstance();
+	TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskWidgetBean}", TaskWidgetBean.class) as TaskWidgetBean;
+	in.dataModel = taskWidgetBean.dataModel;
+} ' #txt
+Ts0 f8 security system #txt
+Ts0 f8 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init data model</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f8 16 122 112 44 -40 -8 #rect
+Ts0 f8 @|StepIcon #fIcon
+Ts0 f10 expr out #txt
+Ts0 f10 72 83 72 122 #arcP
+Ts0 f1 expr out #txt
+Ts0 f1 72 166 72 220 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -872,8 +892,6 @@ Ts0 f31 mainOut f30 tail #connect
 Ts0 f30 head f29 mainIn #connect
 Ts0 f24 mainOut f26 tail #connect
 Ts0 f26 head f31 mainIn #connect
-Ts0 f0 mainOut f1 tail #connect
-Ts0 f1 head f27 mainIn #connect
 Ts0 f34 mainOut f39 tail #connect
 Ts0 f39 head f35 mainIn #connect
 Ts0 f35 mainOut f40 tail #connect
@@ -908,3 +926,7 @@ Ts0 f70 mainOut f58 tail #connect
 Ts0 f58 head f54 in #connect
 Ts0 f98 mainOut f19 tail #connect
 Ts0 f19 head f100 mainIn #connect
+Ts0 f0 mainOut f10 tail #connect
+Ts0 f10 head f8 mainIn #connect
+Ts0 f8 mainOut f1 tail #connect
+Ts0 f1 head f27 mainIn #connect
