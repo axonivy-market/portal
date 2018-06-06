@@ -23,7 +23,10 @@ function TaskWidget(outerPanelId) {
         var container = $('.js-task-start-list > .ui-datascroller-content');
         var mainAreaPanel = $('#' + outerPanelId);
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
-        var taskWidgetSortMenuContainer = $('.js-task-widget-sort-menu');
+        var taskWidgetSortMenuContainer = $('.js-task-widget-sub-header');
+        if (taskWidgetSortMenuContainer.outerHeight(true) == 0) {
+          taskWidgetSortMenuContainer = $('.js-task-widget-sort-menu');
+        }
         var taskWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
         var customWidgetContainer = $('.js-custom-widget-container');
         var error = 5;
@@ -32,6 +35,7 @@ function TaskWidget(outerPanelId) {
         if (globalSearchTabHeader.length > 0) {
           error = 55; // included margin, padding in search page
         }
+        console.log(taskWidgetSortMenuContainer.outerHeight(true));
         var availableHeight = mainAreaPanel.outerHeight() - taskWidgetHeaderContainer.outerHeight(true)
             - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetAdvancedFilterContainer.outerHeight(true)
             - customWidgetContainer.outerHeight(true) - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
