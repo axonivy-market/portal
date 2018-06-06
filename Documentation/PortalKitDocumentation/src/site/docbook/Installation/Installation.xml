@@ -490,6 +490,21 @@
               <title>Upload/delete document permission</title>
               <para>Upload/delete document function will be enabled if session user has <code>IPermission.DOCUMENT_WRITE</code> or <code>IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE</code>.</para>
             </sect3>
+            <sect3>
+				<title>Statistics permission</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							ADD CHARTS
+						</para>
+						<para>
+							Add new charts function will be enabled if session user has
+							<code>IPermission.ADD_DASHBOARDS_CHARTS</code>
+							.
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect3>
 			<sect3>
 				<title>Administrator permission can see all tasks/cases in the application</title>
 				<para>
