@@ -47,7 +47,7 @@
 
           </h:panelGroup>
           <h:outputText id="no-selection-text" styleClass="no-selection-text"
-            value="No selected values" rendered="#{empty data.tempSelectedCustomValues}" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noSelectionCustomVarChar')}" rendered="#{empty data.tempSelectedCustomValues}" />
       </p:scrollPanel>
     
   </cc:implementation>
