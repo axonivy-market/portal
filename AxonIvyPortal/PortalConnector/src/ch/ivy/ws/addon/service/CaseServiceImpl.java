@@ -21,6 +21,8 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.bo.AvailableAppsResult;
 import ch.ivy.ws.addon.bo.CaseServiceResult;
 import ch.ivy.ws.addon.bo.NoteServiceResult;
+import ch.ivy.ws.addon.enums.PortalCaseCustomVarField;
+import ch.ivy.ws.addon.persistence.PortalCaseDAO;
 import ch.ivy.ws.addon.transformer.IvyCaseTransformer;
 import ch.ivy.ws.addon.transformer.IvyDocumentTransformer;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
@@ -640,6 +642,38 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       throw new WSException(10052, e);
     }
   }
+  
+  @Override
+  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit) throws WSException {
+    try {
+      List<String> customVarChars = new ArrayList<>();
+      PortalCaseDAO portalCaseDAO = new PortalCaseDAO();
+      switch (portalCaseCustomVarField) {
+        case CUSTOM_VAR_CHAR_1:
+            customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit);
+          break;
+        case CUSTOM_VAR_CHAR_2:
+          customVarChars = portalCaseDAO.findCustomVarChar2Fields(keyword, limit);
+          break;
+        case CUSTOM_VAR_CHAR_3:
+          customVarChars = portalCaseDAO.findCustomVarChar3Fields(keyword, limit);
+          break;
+        case CUSTOM_VAR_CHAR_4:
+          customVarChars = portalCaseDAO.findCustomVarChar4Fields(keyword, limit);
+          break;
+        case CUSTOM_VAR_CHAR_5:
+          customVarChars = portalCaseDAO.findCustomVarChar5Fields(keyword, limit);
+          break;
+        default:
+          break;
+      }
+      return customVarCharSearchResult(customVarChars);
+    }
+    catch (Exception e) {
+      throw new WSException(10053, e);
+    }
+   
+  }
 
   private HashMap<String, Long> getCategoryToAverageElapsedTimeMap(Recordset recordSet) {
     HashMap<String, Long> recordMap = new HashMap<>();
@@ -696,7 +730,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     result.setErrors(errors);
     return result;
   }
-
+  
+  private CaseServiceResult customVarCharSearchResult(List<String> customVarChars) {
+    CaseServiceResult result = new CaseServiceResult();
+    result.setCustomVarChars(customVarChars);
+    return result;
+  }
+  
   private static List<WSException> noErrors() {
     return Collections.emptyList();
   }

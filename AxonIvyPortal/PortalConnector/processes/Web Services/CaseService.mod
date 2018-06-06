@@ -82,6 +82,10 @@ Ce0 @StartWS f65 '' #zField
 Ce0 @GridStep f66 '' #zField
 Ce0 @PushWFArc f67 '' #zField
 Ce0 @PushWFArc f68 '' #zField
+Ce0 @StartWS f69 '' #zField
+Ce0 @GridStep f70 '' #zField
+Ce0 @PushWFArc f71 '' #zField
+Ce0 @PushWFArc f72 '' #zField
 >Proto Ce0 Ce0 CaseService #zField
 Ce0 f14 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 ' #txt
@@ -1225,6 +1229,65 @@ Ce0 f68 expr out #txt
 Ce0 f68 3136 173 958 264 #arcP
 Ce0 f68 1 3136 264 #addKink
 Ce0 f68 1 0.4760818495321147 0 0 #arcLabel
+Ce0 f69 inParamDecl '<ch.ivy.ws.addon.service.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;' #txt
+Ce0 f69 inParamTable 'out.caseCustomVarCharSearchCriteria=param.caseCustomVarCharSearchCriteria;
+' #txt
+Ce0 f69 outParamDecl '<java.util.List<ch.ivy.ws.addon.WSException> errors,java.util.List<java.lang.String> caseCustomVarChars> result;
+' #txt
+Ce0 f69 outParamTable 'result.errors=in.errors;
+result.caseCustomVarChars=in.caseCustomVarChars;
+' #txt
+Ce0 f69 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
+' #txt
+Ce0 f69 callSignature findCustomVarChars(ch.ivy.ws.addon.service.CaseCustomVarCharSearchCriteria) #txt
+Ce0 f69 useUserDefinedException false #txt
+Ce0 f69 taskData TaskTriggered.PRI=2 #txt
+Ce0 f69 type ch.ivy.ws.addon.CaseServiceData #txt
+Ce0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findCustomVarChars(CaseCustomVarCharSearchCriteria)</name>
+        <nameStyle>51,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f69 @C|.responsibility Everybody #txt
+Ce0 f69 3593 49 30 30 17 7 #rect
+Ce0 f69 @|StartWSIcon #fIcon
+Ce0 f70 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
+' #txt
+Ce0 f70 actionTable 'out=in;
+' #txt
+Ce0 f70 actionCode 'import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.bo.CaseServiceResult;
+import ch.ivy.ws.addon.WSException;
+
+try {
+	CaseServiceResult result = WsServiceFactory.getCaseService().findCustomVarChars(in.caseCustomVarCharSearchCriteria.portalCaseCustomVarField, in.caseCustomVarCharSearchCriteria.keyword, in.caseCustomVarCharSearchCriteria.limit);
+	in.caseCustomVarChars = result.customVarChars;
+	in.errors = result.errors;
+} catch (WSException e) {
+	in.errors.add(e);
+}' #txt
+Ce0 f70 type ch.ivy.ws.addon.CaseServiceData #txt
+Ce0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>find custom var char fields</name>
+        <nameStyle>27,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f70 3590 133 36 24 20 -2 #rect
+Ce0 f70 @|StepIcon #fIcon
+Ce0 f71 expr out #txt
+Ce0 f71 3608 79 3608 133 #arcP
+Ce0 f72 expr out #txt
+Ce0 f72 3608 157 958 264 #arcP
+Ce0 f72 1 3608 264 #addKink
+Ce0 f72 1 0.4798341500188466 0 0 #arcLabel
 >Proto Ce0 .webServiceName ch.ivy.ws.addon.CaseService #txt
 >Proto Ce0 .authenticationType 'HTTP Basic' #txt
 >Proto Ce0 .type ch.ivy.ws.addon.CaseServiceData #txt
@@ -1326,3 +1389,7 @@ Ce0 f65 mainOut f67 tail #connect
 Ce0 f67 head f66 mainIn #connect
 Ce0 f66 mainOut f68 tail #connect
 Ce0 f68 head f29 in #connect
+Ce0 f69 mainOut f71 tail #connect
+Ce0 f71 head f70 mainIn #connect
+Ce0 f70 mainOut f72 tail #connect
+Ce0 f72 head f29 in #connect

@@ -1,5 +1,5 @@
 [Ivy]
-15FFC669C88F7E0B 3.20 #module
+15FFC669C88F7E0B 3.23 #module
 >Proto >Proto Collection #zClass
 Cs0 ChartCreationWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -116,7 +116,7 @@ if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(),
 	FacesContext.getCurrentInstance().validationFailed();
 	out.isChartNameExisted = true;
 } else {
-	StatisticChart newChart = service.createStatisticChart(out.statisticFilter, out.chartName, out.chartType, ivy.session.getSessionUser().getId());
+	StatisticChart newChart = service.createStatisticChart(out.statisticFilter, out.chartName, out.chartType, ivy.session.getSessionUser().getId(), false);
 	param.statisticChartList.add(newChart);
 	
 	String growlTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle");
