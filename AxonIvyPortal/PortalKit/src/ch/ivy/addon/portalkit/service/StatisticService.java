@@ -101,13 +101,16 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChartTimeUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria;
 import ch.ivy.ws.addon.CaseStateStatistic;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivy.ws.addon.ExpiryStatistic;
+import ch.ivy.ws.addon.PortalCaseCustomVarField;
 import ch.ivy.ws.addon.PriorityStatistic;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -260,7 +263,26 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (List<ElapsedTimeStatistic>) response.get(RESULT);
   }
-
+  
+  /**
+   * Call web service to get customVarChar fields
+   * @param portalCaseCustomVarField
+   * @param keyword
+   * @param limit
+   * @return list of customVarChar
+   */
+  @SuppressWarnings("unchecked")
+  public List<String> getCustomVarCharFields(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit) {
+    CaseCustomVarCharSearchCriteria searchCriteria = new CaseCustomVarCharSearchCriteria();
+    searchCriteria.setPortalCaseCustomVarField(portalCaseCustomVarField);
+    searchCriteria.setKeyword(keyword);
+    searchCriteria.setLimit(limit);
+    return SubProcessCall.withPath("Functional Processes/AnalyzeStatistic")
+    .withStartSignature("findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)")
+    .withParam("caseCustomVarCharSearchCriteria", searchCriteria).call().get(RESULT, List.class);
+    
+  }
+  
   /**
    * generate data for "Task by Priority" chart
    * 

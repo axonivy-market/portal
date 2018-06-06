@@ -1,0 +1,19 @@
+PortalSystemIvyCase #class
+true #isEntity
+ch.ivy.ws.persistence #namespace
+IWA_case #dbTableName
+id Integer #field
+id Identifier #fieldComment
+id PERSISTENT #fieldModifier
+id ID #fieldModifier
+id GENERATED #fieldModifier
+customVarCharField1 String #field
+customVarCharField1 PERSISTENT #fieldModifier
+customVarCharField2 String #field
+customVarCharField2 PERSISTENT #fieldModifier
+customVarCharField3 String #field
+customVarCharField3 PERSISTENT #fieldModifier
+customVarCharField4 String #field
+customVarCharField4 PERSISTENT #fieldModifier
+customVarCharField5 String #field
+customVarCharField5 PERSISTENT #fieldModifier

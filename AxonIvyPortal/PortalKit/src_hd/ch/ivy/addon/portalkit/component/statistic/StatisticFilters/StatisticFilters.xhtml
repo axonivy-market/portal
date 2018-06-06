@@ -19,9 +19,16 @@
       <p:row>
         <p:column>
           <p:outputLabel styleClass="label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" />
+          <p:outputLabel id="time-period-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+          <p:tooltip for="time-period-filter-info">
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          	#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+          	#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')} <br/>
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriodFilterDescription")}
+          </p:tooltip>
           <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
-          	<f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
-          	<p:ajax update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+            <f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
+            <p:ajax update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
           </p:selectOneMenu>
         </p:column>
         <p:column>
@@ -49,6 +56,13 @@
         <p:column>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel')}"
             for="categories" styleClass="label" />
+		  <p:outputLabel id="case-category-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+          <p:tooltip for="case-category-filter-info">
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          	#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+          	#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')} <br/>
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoryFilterDescription")}
+          </p:tooltip>           
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" rendered="#{not empty filter.caseCategories}" styleClass="statistic-filter-container scrollable">
@@ -66,6 +80,12 @@
         <p:column>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/rolesLabel')}"
             styleClass="label" for="roles" />
+          <p:outputLabel id="role-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+          <p:tooltip for="role-filter-info">
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          	#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}<br/>
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/roleFilterDescription")}
+          </p:tooltip>
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" styleClass="statistic-filter-container scrollable"
@@ -84,6 +104,13 @@
       <p:row rendered="#{cc.attrs.showCaseStateFilter}">
         <p:column>
           <p:outputLabel for="caseStates" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/workflowStatesLabel')}" styleClass="label" />
+          <p:outputLabel id="case-state-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+          <p:tooltip for="case-state-filter-info">
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          	#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+          	#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')} <br/>
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseStateFilterDescription")}
+          </p:tooltip>
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" styleClass="statistic-filter-container">
@@ -100,6 +127,12 @@
       <p:row>
         <p:column>
           <p:outputLabel for="taskPriority" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPrioritiesLabel')}" styleClass="label" />
+          <p:outputLabel id="task-priority-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+          <p:tooltip for="task-priority-filter-info">
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')},
+          	#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}<br/>
+          	#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPriorityFilterDescription")}
+          </p:tooltip>
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" styleClass="statistic-filter-container">
@@ -112,6 +145,77 @@
           </p:scrollPanel>
         </p:column>
       </p:row>
+
+      <!-- CUSTOM FIELD 1 -->
+      <p:row styleClass="custom-col">
+        <p:column>
+          <p:outputLabel value="Custom field 1" styleClass="label" />
+        </p:column>
+        <p:column>
+          <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields1Filter"
+          completeMethod="#{statisticChartCreationBean.populateCustomVarChar1AutoComplete}" 
+          selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields1}"
+          updateListener="#{cc.attrs.updateListener}" 
+          updateComponents="@([id$='chart-management-form']) @form" />
+        </p:column>
+      </p:row>
+      
+      <!-- CUSTOM FIELD 2 -->
+      <p:row styleClass="custom-col">
+        <p:column>
+          <p:outputLabel value="Custom field 2" styleClass="label" />
+        </p:column>
+        <p:column>
+          <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields2Filter"
+          completeMethod="#{statisticChartCreationBean.populateCustomVarChar2AutoComplete}" 
+          selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields2}"
+          updateListener="#{cc.attrs.updateListener}" 
+          updateComponents="@([id$='chart-management-form']) @form" />
+        </p:column>
+      </p:row>
+      
+      <!-- CUSTOM FIELD 3 -->
+      <p:row styleClass="custom-col">
+        <p:column>
+          <p:outputLabel value="Custom field 3" styleClass="label" />
+        </p:column>
+        <p:column>
+          <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields3Filter"
+          completeMethod="#{statisticChartCreationBean.populateCustomVarChar3AutoComplete}" 
+          selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields3}"
+          updateListener="#{cc.attrs.updateListener}" 
+          updateComponents="@([id$='chart-management-form']) @form" />
+        </p:column>
+      </p:row>
+      
+      <!-- CUSTOM FIELD 4 -->
+      <p:row styleClass="custom-col">
+        <p:column>
+          <p:outputLabel value="Custom field 4" styleClass="label" />
+        </p:column>
+        <p:column>
+          <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields4Filter"
+          completeMethod="#{statisticChartCreationBean.populateCustomVarChar4AutoComplete}" 
+          selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields4}"
+          updateListener="#{cc.attrs.updateListener}" 
+          updateComponents="@([id$='chart-management-form']) @form" />
+        </p:column>
+      </p:row>
+      
+      <!-- CUSTOM FIELD 5 -->
+      <p:row styleClass="custom-col">
+        <p:column>
+          <p:outputLabel value="Custom field 5" styleClass="label" />
+        </p:column>
+        <p:column>
+          <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields5Filter"
+          completeMethod="#{statisticChartCreationBean.populateCustomVarChar5AutoComplete}" 
+          selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields5}"
+          updateListener="#{cc.attrs.updateListener}" 
+          updateComponents="@([id$='chart-management-form']) @form" />
+        </p:column>
+      </p:row>
+      
     </h:panelGrid>
   </p:fieldset>
 </cc:implementation>

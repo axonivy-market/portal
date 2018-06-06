@@ -11,3 +11,4 @@ caseCount Long #field
 caseStateStatistic ch.ivy.ws.addon.types.CaseStateStatistic #field
 elapsedTimeStatistic ch.ivy.ws.addon.types.ElapsedTimeStatistic #field
 categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+customVarChars java.util.List<String> #field
