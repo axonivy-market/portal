@@ -41,12 +41,14 @@ Cs0 @CallSub f24 '' #zField
 Cs0 @GridStep f26 '' #zField
 Cs0 @PushWFArc f27 '' #zField
 Cs0 @PushWFArc f8 '' #zField
-Cs0 @PushWFArc f25 '' #zField
 Cs0 @RichDialogProcessStart f28 '' #zField
 Cs0 @RichDialogProcessEnd f29 '' #zField
 Cs0 @GridStep f31 '' #zField
 Cs0 @PushWFArc f32 '' #zField
 Cs0 @PushWFArc f37 '' #zField
+Cs0 @GridStep f30 '' #zField
+Cs0 @PushWFArc f33 '' #zField
+Cs0 @PushWFArc f25 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
@@ -133,7 +135,7 @@ Cs0 f5 @|RichDialogProcessEndIcon #fIcon
 Cs0 f6 expr out #txt
 Cs0 f6 107 192 251 192 #arcP
 Cs0 f7 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
-Cs0 f7 659 51 26 26 0 12 #rect
+Cs0 f7 707 51 26 26 0 12 #rect
 Cs0 f7 @|RichDialogProcessEndIcon #fIcon
 Cs0 f10 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f10 251 243 26 26 0 12 #rect
@@ -296,8 +298,6 @@ Cs0 f27 expr out #txt
 Cs0 f27 323 64 379 64 #arcP
 Cs0 f8 expr out #txt
 Cs0 f8 107 64 211 64 #arcP
-Cs0 f25 expr out #txt
-Cs0 f25 491 64 659 64 #arcP
 Cs0 f28 guid 163AF4A8A1BFD729 #txt
 Cs0 f28 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f28 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
@@ -347,6 +347,29 @@ Cs0 f32 expr out #txt
 Cs0 f32 107 576 200 576 #arcP
 Cs0 f37 expr out #txt
 Cs0 f37 328 576 379 576 #arcP
+Cs0 f30 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f30 actionTable 'out=in;
+' #txt
+Cs0 f30 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+
+in.canCreateNewCharts = PermissionUtils.checkAddDashboardsChartsPermission();' #txt
+Cs0 f30 security system #txt
+Cs0 f30 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check permission&#xD;
+to creating new charts</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f30 520 42 144 44 -54 -16 #rect
+Cs0 f30 @|StepIcon #fIcon
+Cs0 f33 expr out #txt
+Cs0 f33 491 64 520 64 #arcP
+Cs0 f25 expr out #txt
+Cs0 f25 664 64 707 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -369,9 +392,11 @@ Cs0 f24 mainOut f27 tail #connect
 Cs0 f27 head f26 mainIn #connect
 Cs0 f0 mainOut f8 tail #connect
 Cs0 f8 head f24 mainIn #connect
-Cs0 f26 mainOut f25 tail #connect
-Cs0 f25 head f7 mainIn #connect
 Cs0 f28 mainOut f32 tail #connect
 Cs0 f32 head f31 mainIn #connect
 Cs0 f31 mainOut f37 tail #connect
 Cs0 f37 head f29 mainIn #connect
+Cs0 f26 mainOut f33 tail #connect
+Cs0 f33 head f30 mainIn #connect
+Cs0 f30 mainOut f25 tail #connect
+Cs0 f25 head f7 mainIn #connect
