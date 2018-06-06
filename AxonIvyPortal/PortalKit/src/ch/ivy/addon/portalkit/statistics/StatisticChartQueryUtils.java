@@ -257,7 +257,7 @@ public class StatisticChartQueryUtils {
     generateTaskQueryForRoles(filter, taskQuery);
 
     generateTaskQueryForTaskPriority(filter, taskQuery);
-
+    
     taskQuery.where().and().cases(generateCaseQuery(filter, false));
     return taskQuery;
   }
@@ -335,6 +335,9 @@ public class StatisticChartQueryUtils {
 
     // Filter by case category
     generateCaseQueryForCaseCategory(filter, caseQuery);
+    
+    // Filter by customVarChar
+    generateCaseQueryForCustomVarChar(filter, caseQuery);
 
     return caseQuery;
   }
@@ -457,6 +460,9 @@ public class StatisticChartQueryUtils {
     
     generateCaseQueryForCaseCategory(filter, caseQuery);
     
+    // Filter by customVarChar
+    generateCaseQueryForCustomVarChar(filter, caseQuery);
+    
     return caseQuery;
   }
 
@@ -569,6 +575,54 @@ public class StatisticChartQueryUtils {
 
     result.where().and(taskQueryForExpiryDate);
     return result;
+  }
+  
+  private static void generateCaseQueryForCustomVarChar(StatisticFilter filter, CaseQuery caseQuery) {
+    List<String> selectedCustomVarCharFields1 = Optional.ofNullable(filter.getSelectedCustomVarCharFields1()).orElse(new ArrayList<>());
+    if(!selectedCustomVarCharFields1.isEmpty()){
+      CaseQuery subTaskQueryForCustomVarCharField1 = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField1 = subTaskQueryForCustomVarCharField1.where();
+
+      selectedCustomVarCharFields1.forEach(item -> subCaseFilterForCustomVarCharField1.or().customVarCharField1().isEqual(item));
+      caseQuery.where().and(subTaskQueryForCustomVarCharField1);
+    }
+    
+    List<String> selectedCustomVarCharFields2 = Optional.ofNullable(filter.getSelectedCustomVarCharFields2()).orElse(new ArrayList<>());
+    if(!selectedCustomVarCharFields2.isEmpty()){
+      CaseQuery subCaseQueryForCustomVarCharField2QueryForCustomVarCharField2 = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField2 = subCaseQueryForCustomVarCharField2QueryForCustomVarCharField2.where();
+
+      selectedCustomVarCharFields2.forEach(item -> subCaseFilterForCustomVarCharField2.or().customVarCharField2().isEqual(item));
+      caseQuery.where().and(subCaseQueryForCustomVarCharField2QueryForCustomVarCharField2);
+    }
+    
+    List<String> selectedCustomVarCharFields3 = Optional.ofNullable(filter.getSelectedCustomVarCharFields3()).orElse(new ArrayList<>());
+    if(!selectedCustomVarCharFields3.isEmpty()){
+      CaseQuery subCaseQueryForCustomVarCharField3 = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField3 = subCaseQueryForCustomVarCharField3.where();
+
+      selectedCustomVarCharFields3.forEach(item -> subCaseFilterForCustomVarCharField3.or().customVarCharField3().isEqual(item));
+      caseQuery.where().and(subCaseQueryForCustomVarCharField3);
+    }
+    
+    List<String> selectedCustomVarCharFields4 = Optional.ofNullable(filter.getSelectedCustomVarCharFields4()).orElse(new ArrayList<>());
+    if(!selectedCustomVarCharFields4.isEmpty()){
+      CaseQuery subCaseQueryForCustomVarCharField4 = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField4 = subCaseQueryForCustomVarCharField4.where();
+
+      selectedCustomVarCharFields4.forEach(item -> subCaseFilterForCustomVarCharField4.or().customVarCharField4().isEqual(item));
+      caseQuery.where().and(subCaseQueryForCustomVarCharField4);
+    }
+    
+    List<String> selectedCustomVarCharFields5 = Optional.ofNullable(filter.getSelectedCustomVarCharFields5()).orElse(new ArrayList<>());
+    if(!selectedCustomVarCharFields5.isEmpty()){
+      CaseQuery subCaseQueryForCustomVarCharField5 = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField5 = subCaseQueryForCustomVarCharField5.where();
+
+      selectedCustomVarCharFields5.forEach(item -> subCaseFilterForCustomVarCharField5.or().customVarCharField5().isEqual(item));
+      caseQuery.where().and(subCaseQueryForCustomVarCharField5);
+    }
+    
   }
 
 }

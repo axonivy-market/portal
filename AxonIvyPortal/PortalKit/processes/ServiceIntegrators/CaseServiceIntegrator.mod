@@ -231,6 +231,19 @@ Ce0 @PushWFArc f218 '' #zField
 Ce0 @GridStep f219 '' #zField
 Ce0 @PushWFArc f220 '' #zField
 Ce0 @PushWFArc f214 '' #zField
+Ce0 @WSElement f221 '' #zField
+Ce0 @Alternative f222 '' #zField
+Ce0 @WSElement f223 '' #zField
+Ce0 @EndSub f224 '' #zField
+Ce0 @WSElement f225 '' #zField
+Ce0 @StartSub f226 '' #zField
+Ce0 @PushWFArc f227 '' #zField
+Ce0 @PushWFArc f228 '' #zField
+Ce0 @PushWFArc f229 '' #zField
+Ce0 @PushWFArc f230 '' #zField
+Ce0 @PushWFArc f231 '' #zField
+Ce0 @PushWFArc f232 '' #zField
+Ce0 @PushWFArc f233 '' #zField
 >Proto Ce0 Ce0 CaseServiceIntegrator #zField
 Ce0 f10 .resExport export #txt
 Ce0 f10 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
@@ -249,13 +262,13 @@ Ce0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f10 83 2035 26 26 14 0 #rect
+Ce0 f10 83 2411 26 26 14 0 #rect
 Ce0 f10 @|ExceptionIcon #fIcon
 Ce0 f11 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
-Ce0 f11 83 2163 26 26 14 0 #rect
+Ce0 f11 83 2539 26 26 14 0 #rect
 Ce0 f11 @|EndSubIcon #fIcon
 Ce0 f12 expr out #txt
-Ce0 f12 96 2061 96 2163 #arcP
+Ce0 f12 96 2437 96 2539 #arcP
 Ce0 f4 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f4 243 755 26 26 14 0 #rect
 Ce0 f4 @|EndSubIcon #fIcon
@@ -370,13 +383,13 @@ Ce0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f23 275 2035 26 26 14 0 #rect
+Ce0 f23 275 2411 26 26 14 0 #rect
 Ce0 f23 @|ExceptionIcon #fIcon
 Ce0 f24 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
-Ce0 f24 275 2163 26 26 14 0 #rect
+Ce0 f24 275 2539 26 26 14 0 #rect
 Ce0 f24 @|EndSubIcon #fIcon
 Ce0 f25 expr out #txt
-Ce0 f25 288 2061 288 2163 #arcP
+Ce0 f25 288 2437 288 2539 #arcP
 Ce0 f26 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f26 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
 ' #txt
@@ -557,13 +570,13 @@ Ce0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f36 563 2035 26 26 14 0 #rect
+Ce0 f36 563 2411 26 26 14 0 #rect
 Ce0 f36 @|ExceptionIcon #fIcon
 Ce0 f37 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
-Ce0 f37 563 2163 26 26 14 0 #rect
+Ce0 f37 563 2539 26 26 14 0 #rect
 Ce0 f37 @|EndSubIcon #fIcon
 Ce0 f38 expr out #txt
-Ce0 f38 576 2061 576 2163 #arcP
+Ce0 f38 576 2437 576 2539 #arcP
 Ce0 f39 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f39 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
 ' #txt
@@ -3075,6 +3088,170 @@ Ce0 f220 expr out #txt
 Ce0 f220 2883 75 2883 98 #arcP
 Ce0 f214 expr out #txt
 Ce0 f214 2883 122 2883 144 #arcP
+Ce0 f221 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f221 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f221 actionTable 'out=in;
+out.caseCustomVarChars=wsResponse.findCustomVarCharsResponse.result.caseCustomVarChars;
+out.errors=wsResponse.findCustomVarCharsResponse.result.errors;
+' #txt
+Ce0 f221 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f221 clientId 146B9AACE506491D #txt
+Ce0 f221 port CaseServicePort #txt
+Ce0 f221 operation findCustomVarChars #txt
+Ce0 f221 properties 'authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ce0 f221 inputParams 'arg0.findCustomVarChars.caseCustomVarCharSearchCriteria=in.caseCustomVarCharSearchCriteria;
+' #txt
+Ce0 f221 returningObjectList '[wsResponse]' #txt
+Ce0 f221 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f221 270 2174 36 24 21 -2 #rect
+Ce0 f221 @|WebServiceIcon #fIcon
+Ce0 f222 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f222 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f222 274 2076 28 28 14 -21 #rect
+Ce0 f222 @|AlternativeIcon #fIcon
+Ce0 f223 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f223 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f223 actionTable 'out=in;
+out.caseCustomVarChars=wsResponse.findCustomVarCharsResponse.result.caseCustomVarChars;
+out.errors=wsResponse.findCustomVarCharsResponse.result.errors;
+' #txt
+Ce0 f223 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f223 clientId 146B9AACE506491D #txt
+Ce0 f223 port CaseServicePort #txt
+Ce0 f223 operation findCustomVarChars #txt
+Ce0 f223 properties 'authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ce0 f223 inputParams 'arg0.findCustomVarChars.caseCustomVarCharSearchCriteria=in.caseCustomVarCharSearchCriteria;
+' #txt
+Ce0 f223 returningObjectList '[wsResponse]' #txt
+Ce0 f223 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f223 110 2174 36 24 21 -2 #rect
+Ce0 f223 @|WebServiceIcon #fIcon
+Ce0 f224 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f224 275 2315 26 26 14 0 #rect
+Ce0 f224 @|EndSubIcon #fIcon
+Ce0 f225 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f225 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f225 actionTable 'out=in;
+out.caseCustomVarChars=wsResponse.findCustomVarCharsResponse.result.caseCustomVarChars;
+out.errors=wsResponse.findCustomVarCharsResponse.result.errors;
+' #txt
+Ce0 f225 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ce0 f225 clientId 146B9AACE506491D #txt
+Ce0 f225 port CaseServicePort #txt
+Ce0 f225 operation findCustomVarChars #txt
+Ce0 f225 properties 'AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Ce0 f225 inputParams 'arg0.findCustomVarChars.caseCustomVarCharSearchCriteria=in.caseCustomVarCharSearchCriteria;
+' #txt
+Ce0 f225 returningObjectList '[wsResponse]' #txt
+Ce0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default Settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f225 430 2174 36 24 21 -2 #rect
+Ce0 f225 @|WebServiceIcon #fIcon
+Ce0 f226 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria,java.lang.String endpoint> param;' #txt
+Ce0 f226 inParamTable 'out.caseCustomVarCharSearchCriteria=param.caseCustomVarCharSearchCriteria;
+out.endpoint=param.endpoint;
+out.server=param.server;
+' #txt
+Ce0 f226 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<java.lang.String> customVarChars> result;
+' #txt
+Ce0 f226 outParamTable 'result.errors=in.errors;
+result.customVarChars=in.caseCustomVarChars;
+' #txt
+Ce0 f226 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
+' #txt
+Ce0 f226 callSignature findCaseCustomVarChars(ch.ivy.addon.portalkit.persistence.domain.Server,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria,String) #txt
+Ce0 f226 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
+Ce0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findCaseCustomVarChars(Server,String,String)</name>
+        <nameStyle>44,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f226 275 2013 26 26 13 -30 #rect
+Ce0 f226 @|StartSubIcon #fIcon
+Ce0 f227 expr out #txt
+Ce0 f227 288 2198 288 2315 #arcP
+Ce0 f228 expr in #txt
+Ce0 f228 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Ce0 f228 274 2090 128 2174 #arcP
+Ce0 f228 1 128 2090 #addKink
+Ce0 f228 0 0.8582831105414763 0 0 #arcLabel
+Ce0 f229 expr in #txt
+Ce0 f229 302 2090 448 2174 #arcP
+Ce0 f229 1 448 2090 #addKink
+Ce0 f229 0 0.7875410210393261 0 0 #arcLabel
+Ce0 f230 expr out #txt
+Ce0 f230 128 2198 275 2328 #arcP
+Ce0 f230 1 128 2328 #addKink
+Ce0 f230 1 0.20679742620065877 0 0 #arcLabel
+Ce0 f231 expr out #txt
+Ce0 f231 288 2039 288 2076 #arcP
+Ce0 f232 expr in #txt
+Ce0 f232 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Ce0 f232 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f232 288 2104 288 2174 #arcP
+Ce0 f232 0 0.6216297675645117 0 0 #arcLabel
+Ce0 f233 expr out #txt
+Ce0 f233 448 2198 301 2328 #arcP
+Ce0 f233 1 448 2328 #addKink
+Ce0 f233 1 0.3062426517680915 0 0 #arcLabel
 >Proto Ce0 .type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3085,6 +3262,7 @@ Ce0 f214 2883 122 2883 144 #arcP
         <swimlaneLabel>Documents</swimlaneLabel>
         <swimlaneLabel>Note</swimlaneLabel>
         <swimlaneLabel>Statistic</swimlaneLabel>
+        <swimlaneLabel>CustomVarChar</swimlaneLabel>
         <swimlaneLabel>Exception Handler</swimlaneLabel>
         <swimlaneLabel></swimlaneLabel>
     </language>
@@ -3094,12 +3272,14 @@ Ce0 f214 2883 122 2883 144 #arcP
     <swimlaneSize>384</swimlaneSize>
     <swimlaneSize>384</swimlaneSize>
     <swimlaneSize>384</swimlaneSize>
+    <swimlaneSize>392</swimlaneSize>
     <swimlaneSize>232</swimlaneSize>
     <swimlaneColor gradient="true">-13369345</swimlaneColor>
     <swimlaneColor gradient="true">-39220</swimlaneColor>
     <swimlaneColor gradient="true">-10027162</swimlaneColor>
     <swimlaneColor gradient="true">-3342541</swimlaneColor>
     <swimlaneColor gradient="false">-6697729</swimlaneColor>
+    <swimlaneColor gradient="true">-10027060</swimlaneColor>
     <swimlaneColor gradient="true">-39322</swimlaneColor>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
@@ -3107,6 +3287,8 @@ Ce0 f214 2883 122 2883 144 #arcP
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
@@ -3351,3 +3533,17 @@ Ce0 f210 mainOut f220 tail #connect
 Ce0 f220 head f219 mainIn #connect
 Ce0 f219 mainOut f214 tail #connect
 Ce0 f214 head f209 in #connect
+Ce0 f222 out f232 tail #connect
+Ce0 f232 head f221 mainIn #connect
+Ce0 f221 mainOut f227 tail #connect
+Ce0 f227 head f224 mainIn #connect
+Ce0 f225 mainOut f233 tail #connect
+Ce0 f233 head f224 mainIn #connect
+Ce0 f226 mainOut f231 tail #connect
+Ce0 f231 head f222 in #connect
+Ce0 f222 out f228 tail #connect
+Ce0 f228 head f223 mainIn #connect
+Ce0 f223 mainOut f230 tail #connect
+Ce0 f230 head f224 mainIn #connect
+Ce0 f222 out f229 tail #connect
+Ce0 f229 head f225 mainIn #connect

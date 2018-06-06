@@ -38,6 +38,10 @@
 
   <xs:element name="findCasesByCriteriaResponse" type="tns:findCasesByCriteriaResponse"></xs:element>
 
+  <xs:element name="findCustomVarChars" type="tns:findCustomVarChars"></xs:element>
+
+  <xs:element name="findCustomVarCharsResponse" type="tns:findCustomVarCharsResponse"></xs:element>
+
   <xs:element name="findDocuments" type="tns:findDocuments"></xs:element>
 
   <xs:element name="findDocumentsResponse" type="tns:findDocumentsResponse"></xs:element>
@@ -379,6 +383,33 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="findCustomVarChars">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caseCustomVarCharSearchCriteria" type="tns:caseCustomVarCharSearchCriteria"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="caseCustomVarCharSearchCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="keyword" type="xs:string"></xs:element>
+      <xs:element name="limit" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="portalCaseCustomVarField" type="tns:portalCaseCustomVarField"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findCustomVarCharsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findCustomVarCharsResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findCustomVarCharsResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="caseCustomVarChars" nillable="true" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="findCaseCategoriesByCriteria">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
@@ -570,6 +601,16 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="portalCaseCustomVarField">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CUSTOM_VAR_CHAR_1"></xs:enumeration>
+      <xs:enumeration value="CUSTOM_VAR_CHAR_2"></xs:enumeration>
+      <xs:enumeration value="CUSTOM_VAR_CHAR_3"></xs:enumeration>
+      <xs:enumeration value="CUSTOM_VAR_CHAR_4"></xs:enumeration>
+      <xs:enumeration value="CUSTOM_VAR_CHAR_5"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
 </xs:schema>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="ch.ivyteam.ivy.webservice.process" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="ch.ivyteam.ivy.webservice.process">
   <xsd:element name="TechnicalException" nillable="true" type="xsd:string"></xsd:element>
@@ -613,6 +654,10 @@
   </wsdl:message>
   <wsdl:message name="getAddtionalProperties">
     <wsdl:part element="tns:getAddtionalProperties" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCustomVarChars">
+    <wsdl:part element="tns:findCustomVarChars" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="analyzeElapsedTimeByCaseCategoryResponse">
@@ -665,6 +710,10 @@
   </wsdl:message>
   <wsdl:message name="findNotesResponse">
     <wsdl:part element="tns:findNotesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCustomVarCharsResponse">
+    <wsdl:part element="tns:findCustomVarCharsResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="setAdditionalProperties">
@@ -768,6 +817,14 @@
       <wsdl:input message="tns:findCasesByCriteria" name="findCasesByCriteria">
     </wsdl:input>
       <wsdl:output message="tns:findCasesByCriteriaResponse" name="findCasesByCriteriaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCustomVarChars">
+      <wsdl:input message="tns:findCustomVarChars" name="findCustomVarChars">
+    </wsdl:input>
+      <wsdl:output message="tns:findCustomVarCharsResponse" name="findCustomVarCharsResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -929,6 +986,18 @@
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="findCasesByCriteriaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCustomVarChars">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findCustomVarChars">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findCustomVarCharsResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
