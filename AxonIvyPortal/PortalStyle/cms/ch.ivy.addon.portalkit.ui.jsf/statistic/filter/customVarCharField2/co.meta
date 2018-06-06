@@ -1,0 +1,4 @@
+co: name={customVarCharField2} description={} changed={2018-06-06 11:33:26 CEST} changedby={ldnam} visualorder={0} guid={163D46BAD95564F8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163D46BAD981E0F6} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-06 11:26:56 CEST} validto={} changed={2018-06-06 11:26:56 CEST} changedby={ldnam} properties={} id={}
+val: guid={163D4719CA8E5F58} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-06 11:33:22 CEST} validto={} changed={2018-06-06 11:33:26 CEST} changedby={ldnam} properties={} id={}
+val: guid={163D4719ED9CCF5D} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-06 11:33:16 CEST} validto={} changed={2018-06-06 11:33:26 CEST} changedby={ldnam} properties={} id={}
