@@ -20,6 +20,7 @@ import org.primefaces.context.RequestContext;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
@@ -337,7 +338,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   }
 
   public boolean canCreateExpessWorkflow() {
-    return !compactMode && createExpressWorkflowProcessStart != null;
+    return !compactMode && createExpressWorkflowProcessStart != null && PermissionUtils.hasPortalPermission(PortalPermission.CREATE_EXPRESS_WORKFLOW);
   }
 
   public boolean isExpressWorkflowLink(String link) {
