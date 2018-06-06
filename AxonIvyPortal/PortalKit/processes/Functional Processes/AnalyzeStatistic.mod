@@ -1,5 +1,5 @@
 [Ivy]
-1602F513613E1225 3.20 #module
+1602F513613E1225 3.23 #module
 >Proto >Proto Collection #zClass
 ac0 AnalyzeStatistic Big #zClass
 ac0 B #cInfo
@@ -64,6 +64,13 @@ ac0 @CallSub f49 '' #zField
 ac0 @PushWFArc f50 '' #zField
 ac0 @PushWFArc f52 '' #zField
 ac0 @PushWFArc f48 '' #zField
+ac0 @StartSub f51 '' #zField
+ac0 @GridStep f53 '' #zField
+ac0 @PushWFArc f54 '' #zField
+ac0 @EndSub f55 '' #zField
+ac0 @CallSub f56 '' #zField
+ac0 @PushWFArc f57 '' #zField
+ac0 @PushWFArc f58 '' #zField
 >Proto ac0 ac0 AnalyzeStatistic #zField
 ac0 f0 inParamDecl '<java.lang.String jsonQuery> param;' #txt
 ac0 f0 inParamTable 'out.jsonQuery=param.jsonQuery;
@@ -653,6 +660,83 @@ ac0 f52 expr out #txt
 ac0 f52 688 544 753 544 #arcP
 ac0 f48 expr out #txt
 ac0 f48 336 544 576 544 #arcP
+ac0 f51 inParamDecl '<ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;' #txt
+ac0 f51 inParamTable 'out.caseCustomVarCharSearchCriteria=param.caseCustomVarCharSearchCriteria;
+' #txt
+ac0 f51 outParamDecl '<java.util.List<java.lang.String> result> result;
+' #txt
+ac0 f51 outParamTable 'result.result=in.caseCustomVarChars;
+' #txt
+ac0 f51 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f51 callSignature findCaseCustomVarChars(ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria) #txt
+ac0 f51 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)</name>
+    </language>
+</elementInfo>
+' #txt
+ac0 f51 113 641 30 30 -122 29 #rect
+ac0 f51 @|StartSubIcon #fIcon
+ac0 f53 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f53 actionTable 'out=in;
+' #txt
+ac0 f53 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+in.serverId = SecurityServiceUtils.getServerIdFromSession();
+String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
+if (#applicationName is initialized) {
+	in.involvedApplications = [applicationName];
+}' #txt
+ac0 f53 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize</name>
+        <nameStyle>10
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ac0 f53 227 634 112 44 -22 -8 #rect
+ac0 f53 @|StepIcon #fIcon
+ac0 f54 expr out #txt
+ac0 f54 143 656 227 656 #arcP
+ac0 f55 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f55 753 641 30 30 0 15 #rect
+ac0 f55 @|EndSubIcon #fIcon
+ac0 f56 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f56 processCall MultiPortal/CaseService:findCaseCustomVarchars(List<String>,Long,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria) #txt
+ac0 f56 doCall true #txt
+ac0 f56 requestActionDecl '<java.util.List<java.lang.String> apps,java.lang.Long serverId,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;
+' #txt
+ac0 f56 requestMappingAction 'param.apps=in.involvedApplications;
+param.serverId=in.serverId;
+param.caseCustomVarCharSearchCriteria=in.caseCustomVarCharSearchCriteria;
+' #txt
+ac0 f56 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f56 responseMappingAction 'out=in;
+out.caseCustomVarChars=result.caseCustomVarChars;
+' #txt
+ac0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CaseService</name>
+        <nameStyle>11,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ac0 f56 584 634 112 44 -35 -8 #rect
+ac0 f56 @|CallSubIcon #fIcon
+ac0 f57 expr out #txt
+ac0 f57 339 656 584 656 #arcP
+ac0 f58 expr out #txt
+ac0 f58 696 656 753 656 #arcP
 >Proto ac0 .type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 >Proto ac0 .processKind CALLABLE_SUB #txt
 >Proto ac0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -708,3 +792,9 @@ ac0 f49 mainOut f52 tail #connect
 ac0 f52 head f47 mainIn #connect
 ac0 f46 mainOut f48 tail #connect
 ac0 f48 head f49 mainIn #connect
+ac0 f51 mainOut f54 tail #connect
+ac0 f54 head f53 mainIn #connect
+ac0 f53 mainOut f57 tail #connect
+ac0 f57 head f56 mainIn #connect
+ac0 f56 mainOut f58 tail #connect
+ac0 f58 head f55 mainIn #connect

@@ -27,6 +27,7 @@ import ch.ivy.ws.addon.bo.AvailableAppsResult;
 import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.bo.TaskServiceResult;
 import ch.ivy.ws.addon.enums.PortalPermission;
+import ch.ivy.ws.addon.persistence.PortalCaseDAO;
 import ch.ivy.ws.addon.transformer.IvyNoteTransformer;
 import ch.ivy.ws.addon.transformer.IvyTaskTransformer;
 import ch.ivy.ws.addon.types.ElapsedTimeStatistic;
@@ -349,6 +350,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   @Override
   public TaskServiceResult countTasksByCriteria(TaskSearchCriteria taskSearchCriteria) throws WSException {
+    
+    PortalCaseDAO portalCaseDAO = new PortalCaseDAO();
+    List<String> result = portalCaseDAO.findCustomVarChar1Fields("char", 10);
+    Ivy.log().error(result);
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(() -> {

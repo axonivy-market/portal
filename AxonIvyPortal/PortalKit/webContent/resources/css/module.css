@@ -3880,6 +3880,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin-top: 1rem;
 }
 
+.chart-filter-info-icon {
+	padding-left: 5px;
+}
+
 .statistic-filter-main-container .item-label {
   margin-right: 1rem;
 }
@@ -4010,9 +4014,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   flex: 1 0 100%;
 }
 
-.dashboard-chart-panel .chart-name-container {
+.dashboard-chart-panel:hover .chart-name-container {
   flex: 1 0 50%;
-} 
+}
 
 .dashboard-chart-panel .chart-actions-container {
   height: 25px;
@@ -4020,11 +4024,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   flex: 1;
 }
 
-.dashboard-chart-panel .chart-actions-container .chart-action {
+.dashboard-chart-panel:hover .chart-actions-container .chart-action {
   display: inline;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
+  display: none;
   color: #FFFFFF !important;
   font-size: 1.5rem;
   margin: 4px;
@@ -4040,7 +4045,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin-right: 10px;
 }
 
-.dashboard-chart-panel .chart-info {
+.dashboard-chart-panel .chart-info:hover {
   color: #FFFFFF !important;
 }
 
