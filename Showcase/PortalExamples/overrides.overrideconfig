@@ -1,5 +1,6 @@
 {
   /PROCESS {
+    /Functional-Processes.DefaultChart "Functional Processes/DefaultChartOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
