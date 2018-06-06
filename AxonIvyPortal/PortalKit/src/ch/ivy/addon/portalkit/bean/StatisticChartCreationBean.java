@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.ws.addon.CaseStateStatistic;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivy.ws.addon.ExpiryStatistic;
+import ch.ivy.ws.addon.PortalCaseCustomVarField;
 import ch.ivy.ws.addon.PriorityStatistic;
 
 @ManagedBean
@@ -32,6 +33,7 @@ public class StatisticChartCreationBean implements Serializable {
   private DonutChartModel caseByFinishedTaskModel;
   private BarChartModel taskByExpiryModel;
   private DonutChartModel elapsedTimeModel;
+  private List<String> availableCustomValues;
   StatisticService statisticService = new StatisticService();
 
   public StatisticChartCreationBean() {
@@ -166,5 +168,90 @@ public class StatisticChartCreationBean implements Serializable {
 
   public void setCaseByFinishedTimeModel(DonutChartModel caseByFinishedTimeModel) {
     this.caseByFinishedTimeModel = caseByFinishedTimeModel;
+  }
+
+  public List<String> getAvailableCustomValues() {
+    return availableCustomValues;
+  }
+
+  public void setAvailableCustomValues(List<String> availableCustomValues) {
+    this.availableCustomValues = availableCustomValues;
+  }
+
+  /**
+   * Populate values for Auto Complete of roles based on given query
+   * 
+   * @param query
+   * @return values of available roles
+   */
+  public List<String> populateCustomVarChar1AutoComplete(String query) {
+    List<String> result = null;
+    if (StringUtils.isEmpty(query)) {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1, StringUtils.EMPTY, 11);
+    }
+    else {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1, query, 11);
+    }
+    result.sort((first, second) -> first.toLowerCase()
+        .compareTo(second.toLowerCase()));
+
+    return result;
+  }
+  
+  public List<String> populateCustomVarChar2AutoComplete(String query) {
+    List<String> result = null;
+    if (StringUtils.isEmpty(query)) {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2, StringUtils.EMPTY, 11);
+    }
+    else {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2, query, 11);
+    }
+    result.sort((first, second) -> first.toLowerCase()
+        .compareTo(second.toLowerCase()));
+
+    return result;
+  }
+  
+  public List<String> populateCustomVarChar3AutoComplete(String query) {
+    List<String> result = null;
+    if (StringUtils.isEmpty(query)) {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3, StringUtils.EMPTY, 11);
+    }
+    else {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3, query, 11);
+    }
+    result.sort((first, second) -> first.toLowerCase()
+        .compareTo(second.toLowerCase()));
+
+    return result;
+  }
+  
+  public List<String> populateCustomVarChar4AutoComplete(String query) {
+    List<String> result = null;
+    if (StringUtils.isEmpty(query)) {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4, StringUtils.EMPTY, 11);
+    }
+    else {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4, query, 11);
+    }
+    result.sort((first, second) -> first.toLowerCase()
+        .compareTo(second.toLowerCase()));
+
+    return result;
+  }
+  
+  public List<String> populateCustomVarChar5AutoComplete(String query) {
+    List<String> result = null;
+    if (StringUtils.isEmpty(query)) {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5, StringUtils.EMPTY, 11);
+    }
+    else {
+      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5, query, 11);
+    }
+    result.sort((first, second) -> first.toLowerCase()
+        .compareTo(second.toLowerCase()));
+
+    return result;
+
   }
 }

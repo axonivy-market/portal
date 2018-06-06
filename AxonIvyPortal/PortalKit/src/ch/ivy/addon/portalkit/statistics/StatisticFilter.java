@@ -55,6 +55,12 @@ public class StatisticFilter {
 
   @JsonIgnore
   private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  
+  private List<String> selectedCustomVarCharFields1 = new ArrayList<>();
+  private List<String> selectedCustomVarCharFields2 = new ArrayList<>();
+  private List<String> selectedCustomVarCharFields3 = new ArrayList<>();
+  private List<String> selectedCustomVarCharFields4 = new ArrayList<>();
+  private List<String> selectedCustomVarCharFields5 = new ArrayList<>();
 
   @SuppressWarnings("unchecked")
   public StatisticFilter() {
@@ -218,6 +224,46 @@ public class StatisticFilter {
 
   public void setAllTimePeriodSelection(List<StatisticTimePeriodSelection> allTimePeriodSelection) {
     this.allTimePeriodSelection = allTimePeriodSelection;
+  }
+
+  public List<String> getSelectedCustomVarCharFields1() {
+    return selectedCustomVarCharFields1;
+  }
+
+  public void setSelectedCustomVarCharFields1(List<String> selectedCustomVarCharFields1) {
+    this.selectedCustomVarCharFields1 = selectedCustomVarCharFields1;
+  }
+
+  public List<String> getSelectedCustomVarCharFields2() {
+    return selectedCustomVarCharFields2;
+  }
+
+  public void setSelectedCustomVarCharFields2(List<String> selectedCustomVarCharFields2) {
+    this.selectedCustomVarCharFields2 = selectedCustomVarCharFields2;
+  }
+
+  public List<String> getSelectedCustomVarCharFields3() {
+    return selectedCustomVarCharFields3;
+  }
+
+  public void setSelectedCustomVarCharFields3(List<String> selectedCustomVarCharFields3) {
+    this.selectedCustomVarCharFields3 = selectedCustomVarCharFields3;
+  }
+
+  public List<String> getSelectedCustomVarCharFields4() {
+    return selectedCustomVarCharFields4;
+  }
+
+  public void setSelectedCustomVarCharFields4(List<String> selectedCustomVarCharFields4) {
+    this.selectedCustomVarCharFields4 = selectedCustomVarCharFields4;
+  }
+
+  public List<String> getSelectedCustomVarCharFields5() {
+    return selectedCustomVarCharFields5;
+  }
+
+  public void setSelectedCustomVarCharFields5(List<String> selectedCustomVarCharFields5) {
+    this.selectedCustomVarCharFields5 = selectedCustomVarCharFields5;
   }
   
 }

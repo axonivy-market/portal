@@ -5,6 +5,7 @@ import java.util.List;
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.CaseServiceResult;
 import ch.ivy.ws.addon.bo.NoteServiceResult;
+import ch.ivy.ws.addon.enums.PortalCaseCustomVarField;
 import ch.ivy.ws.addon.types.IvyAdditionalProperty;
 import ch.ivy.ws.addon.types.IvyCase;
 import ch.ivyteam.ivy.scripting.objects.Binary;
@@ -137,4 +138,6 @@ public interface ICaseService {
   public CaseServiceResult analyzeElapsedTimeByCaseCategory(CaseSearchCriteria caseSearchCriteria) throws WSException;
 
   void saveCase(IvyCase ivyCase) throws WSException;
+  
+  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit) throws WSException;
 }
