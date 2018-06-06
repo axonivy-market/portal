@@ -1,10 +1,15 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.Objects;
+
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
@@ -85,5 +90,18 @@ public class PermissionUtils {
     }
 
     return false;
+  }
+  
+  /**
+   * Check if current user has permission to create new charts
+   * 
+   * @return true : ADD_DASHBOARDS_CHARTS permission is grated, otherwise false 
+   */
+  public static boolean checkAddDashboardsChartsPermission() {
+    IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ADD_DASHBOARDS_CHARTS.getValue());
+    if (Objects.isNull(iPermission)){
+      return false;
+    }
+    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(), iPermission);
   }
 }
