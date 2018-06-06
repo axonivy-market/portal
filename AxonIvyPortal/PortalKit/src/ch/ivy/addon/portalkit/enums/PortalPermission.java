@@ -1,7 +1,8 @@
 package ch.ivy.addon.portalkit.enums;
 
 public enum PortalPermission {
-  TASK_WRITE_ACTIVATOR_OWN_TASKS("TaskWriteActivatorOwnTasks", PortalPermissionGroup.TASK_PERMISSIONS_GROUP);
+  TASK_WRITE_ACTIVATOR_OWN_TASKS("TaskWriteActivatorOwnTasks", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
+  ADD_DASHBOARDS_CHARTS("AddDashboardsCharts", PortalPermissionGroup.STATISTICS_GROUP);
 
   private String value;
   private PortalPermissionGroup group;

@@ -3880,6 +3880,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin-top: 1rem;
 }
 
+.chart-filter-info-icon {
+	padding-left: 5px;
+}
+
 .statistic-filter-main-container .item-label {
   margin-right: 1rem;
 }
