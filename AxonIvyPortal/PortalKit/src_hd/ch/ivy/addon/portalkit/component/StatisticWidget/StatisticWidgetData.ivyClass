@@ -23,3 +23,5 @@ isDrilldownExpiryChart Boolean #field
 isDrilldownExpiryChart PERSISTENT #fieldModifier
 isBackFromDrilldown Boolean #field
 isBackFromDrilldown PERSISTENT #fieldModifier
+defaultCharts java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
+defaultCharts PERSISTENT #fieldModifier
