@@ -12,6 +12,7 @@ public class StatisticChart {
   private String id;
   private String name;
   private long userId;
+  private String defaultChart;
   private StatisticChartType type;
   @JsonIgnore
   private String jsonQuery;
@@ -92,5 +93,12 @@ public class StatisticChart {
   public void setFilter(StatisticFilter filter) {
     this.filter = filter;
   }
-  
+
+  public String getDefaultChart() {
+    return defaultChart;
+  }
+
+  public void setDefaultChart(String defaultChart) {
+    this.defaultChart = defaultChart;
+  }
 }
