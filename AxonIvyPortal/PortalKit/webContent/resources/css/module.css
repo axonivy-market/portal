@@ -3995,7 +3995,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
-  padding: 10px 15px !important;
+  padding: 5px 10px !important;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar .ui-panel-title {
@@ -4014,22 +4014,20 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   flex: 1 0 100%;
 }
 
-.dashboard-chart-panel:hover .chart-name-container {
+.dashboard-chart-panel .chart-name-container {
   flex: 1 0 50%;
 }
 
 .dashboard-chart-panel .chart-actions-container {
-  height: 25px;
   float: right;
   flex: 1;
 }
 
-.dashboard-chart-panel:hover .chart-actions-container .chart-action {
+.dashboard-chart-panel .chart-actions-container .chart-action {
   display: inline;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
-  display: none;
   color: #FFFFFF !important;
   font-size: 1.5rem;
   margin: 4px;
@@ -4045,7 +4043,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin-right: 10px;
 }
 
-.dashboard-chart-panel .chart-info:hover {
+.dashboard-chart-panel .chart-info {
   color: #FFFFFF !important;
 }
 
