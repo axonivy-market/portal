@@ -11,81 +11,49 @@ public class PortalCaseDAO extends AbstractDAO{
   
   @SuppressWarnings("unchecked")
   public List<String> findCustomVarChar1Fields(String keyword,int limit) {
-      Query query = null;
-      if(StringUtils.isNoneBlank(keyword)) {
-        query = getEM().createQuery("Select distinct customVarCharField1 from PortalSystemIvyCase where lower(customVarCharField1) like lower(concat('%', :customVarCharField1,'%')) order by customVarCharField1");
-        query.setParameter("customVarCharField1", keyword);
-      }
-      else {
-        query = getEM().createQuery("Select distinct customVarCharField1 from PortalSystemIvyCase where customVarCharField1 is not null order by customVarCharField1");
-      }
-      if(limit > 0) {
-        query.setMaxResults(limit);
-      }
+      Query query = generateQueryForCustomVarCharFields("customVarCharField1", keyword, limit);
       return query.getResultList();
   }
-  
+
   @SuppressWarnings("unchecked")
   public List<String> findCustomVarChar2Fields(String keyword, int limit) {
-      Query query = null;
-      if(StringUtils.isNoneBlank(keyword)) {
-        query = getEM().createQuery("Select distinct customVarCharField2 from PortalSystemIvyCase where lower(customVarCharField2) like lower(concat('%', :customVarCharField2,'%')) order by customVarCharField2");
-        query.setParameter("customVarCharField2", keyword);
-      }
-      else {
-        query = getEM().createQuery("Select distinct customVarCharField2 from PortalSystemIvyCase where customVarCharField2 is not null order by customVarCharField2");
-      }
-      if(limit > 0) {
-        query.setMaxResults(limit);
-      }
+      Query query = generateQueryForCustomVarCharFields("customVarCharField2", keyword, limit);
       return query.getResultList();
   }
   
   @SuppressWarnings("unchecked")
   public List<String> findCustomVarChar3Fields(String keyword, int limit) {
-      Query query = null;
-      if(StringUtils.isNoneBlank(keyword)) {
-        query = getEM().createQuery("Select distinct customVarCharField3 from PortalSystemIvyCase where lower(customVarCharField3) like lower(concat('%', :customVarCharField3,'%') order by customVarCharField3");
-        query.setParameter("customVarCharField3", keyword);
-      }
-      else {
-        query = getEM().createQuery("Select distinct customVarCharField3 from PortalSystemIvyCase where customVarCharField3 is not null order by customVarCharField3");
-      }
-      if(limit > 0) {
-        query.setMaxResults(limit);
-      }
+      Query query = generateQueryForCustomVarCharFields("customVarCharField3", keyword, limit);
       return query.getResultList();
   }
   
   @SuppressWarnings("unchecked")
   public List<String> findCustomVarChar4Fields(String keyword, int limit) {
-      Query query = null;
-      if(StringUtils.isNoneBlank(keyword)) {
-        query = getEM().createQuery("Select distinct customVarCharField4 from PortalSystemIvyCase where lower(customVarCharField4) like lower(concat('%', :customVarCharField4,'%') order by customVarCharField4");
-        query.setParameter("customVarCharField4", keyword);
-      }
-      else {
-        query = getEM().createQuery("Select distinct customVarCharField4 from PortalSystemIvyCase where customVarCharField4 is not null order by customVarCharField4");
-      }
-      if(limit > 0) {
-        query.setMaxResults(limit);
-      }
+      Query query = generateQueryForCustomVarCharFields("customVarCharField4", keyword, limit);
       return query.getResultList();
   }
   
   @SuppressWarnings("unchecked")
   public List<String> findCustomVarChar5Fields(String keyword, int limit) {
-      Query query = null;
-      if(StringUtils.isNoneBlank(keyword)) {
-        query = getEM().createQuery("Select distinct customVarCharField5 from PortalSystemIvyCase where lower(customVarCharField5) like lower(concat('%', :customVarCharField5,'%') order by customVarCharField5");
-        query.setParameter("customVarCharField5", keyword);
-      }
-      else {
-        query = getEM().createQuery("Select distinct customVarCharField5 from PortalSystemIvyCase where customVarCharField5 is not null order by customVarCharField5");
-      }
-      if(limit > 0) {
-        query.setMaxResults(limit);
-      }
+      Query query = generateQueryForCustomVarCharFields("customVarCharField5", keyword, limit);
       return query.getResultList();
+  }
+  
+  private Query generateQueryForCustomVarCharFields(String customVarCharColumn ,String keyword, int limit) {
+    Query query = null;
+    String queryString = null;
+    if(StringUtils.isNoneBlank(keyword)) {
+      queryString = String.format("Select distinct %1$s from PortalSystemIvyCase where lower(%1$s) like lower(concat('%%', :%1$s,'%%')) order by %1$s", customVarCharColumn);
+      query = getEM().createQuery(queryString);
+      query.setParameter(customVarCharColumn, keyword);
+    }
+    else {
+      queryString = String.format("Select distinct %1$s from PortalSystemIvyCase where %1$s is not null order by %1$s", customVarCharColumn);
+      query = getEM().createQuery(queryString);
+    }
+    if(limit > 0) {
+      query.setMaxResults(limit);
+    }
+    return query;
   }
 }
