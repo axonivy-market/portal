@@ -35,7 +35,6 @@ function TaskWidget(outerPanelId) {
         if (globalSearchTabHeader.length > 0) {
           error = 55; // included margin, padding in search page
         }
-        console.log(taskWidgetSortMenuContainer.outerHeight(true));
         var availableHeight = mainAreaPanel.outerHeight() - taskWidgetHeaderContainer.outerHeight(true)
             - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetAdvancedFilterContainer.outerHeight(true)
             - customWidgetContainer.outerHeight(true) - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
