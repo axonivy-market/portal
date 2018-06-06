@@ -83,28 +83,13 @@ Dt0 f2 96 182 96 241 #arcP
 Dt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>// FOLLOW THIS INSTRUCTION TO CREATE DEFAULT CHART
-
-import ch.ivy.addon.portalkit.statistics.StatisticFilter;
-import ch.ivy.addon.portalkit.enums.StatisticChartType;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.service.StatisticService;
-
-StatisticService service = new StatisticService();
-String chartName = "My default chart";
-StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter();
-
-if (!service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
-  StatisticChart newChart = service.createDefaultStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId());
-  in.defaultCharts.add(newChart);		
-}</name>
-        <nameStyle>771
+        <name>This process will override Default Chart process of Portal Kit and create 2 default charts</name>
+        <nameStyle>90
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f5 288 34 752 268 -373 -128 #rect
+Dt0 f5 224 105 480 30 -237 -8 #rect
 Dt0 f5 @|IBIcon #fIcon
 >Proto Dt0 .type _ch.ivyteam.ivy.project.portal.examples.DefaultChartOverrideData #txt
 >Proto Dt0 .processKind CALLABLE_SUB #txt
