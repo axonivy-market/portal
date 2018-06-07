@@ -8,6 +8,7 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class MainMenuPage extends TemplatePage {
 
+  private final static String PROCESSES_MENU_ICON_POSITION = "1";
   private final static String TASK_MENU_ICON_POSITION = "2";
   private final static String CASE_MENU_ICON_POSITION = "3";
   private final static String DASHBOARD_MENU_ICON_POSITION = "4";
@@ -37,6 +38,12 @@ public class MainMenuPage extends TemplatePage {
     if (isTaskMenuOpen()) {
       toggleTaskMenu();
     }
+  }
+  
+  public ProcessesPage selectProcessesMenu() {
+    findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + PROCESSES_MENU_ICON_POSITION + ")").click();
+    waitForProcessesPageAfterSelectProcessesCategory();
+    return new ProcessesPage();
   }
 
   public TaskWidgetPage selectTaskMenu() {
@@ -99,10 +106,14 @@ public class MainMenuPage extends TemplatePage {
   private void waitForTasksLoadedAfterSelectTaskCategory() {
     waitForElementDisplayed(By.cssSelector("*[id$='0:task-item:task-action:task-delegate-command']"), true);
   }
+  
+  private void waitForProcessesPageAfterSelectProcessesCategory() {
+    waitForElementDisplayed(By.id("process-widget:header"), true);
+  }
 
   public StatisticWidgetPage selectStatisticDashboard() {
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")").click();
-    waitForElementDisplayed(By.id("statistics-widget:create-chart-link-label"), true);
+    waitForElementDisplayed(By.id("statistics-widget:create-chart-header"), true);
     return new StatisticWidgetPage();
   }
 
