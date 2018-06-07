@@ -10,6 +10,7 @@
 <cc:interface componentType="IvyComponent">
 	<cc:attribute name="outerPanelId" default="main-area-panel" />
 	<cc:attribute name="styleClass" />
+	<cc:attribute name="listHeaderStyleClass" />
 	<cc:attribute name="dataModel" />
 	<cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
 	<cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
@@ -174,7 +175,7 @@
 
     	<h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header">
   			<h:panelGroup id="task-widget-sort-menu"
-  				styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : ''}">
+  				styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : ''} #{cc.attrs.listHeaderStyleClass}">
   				<h:panelGroup rendered="#{data.dataModel.compactMode}">
   					<ui:include src="CompactSortMenu.xhtml" />
   				</h:panelGroup>
