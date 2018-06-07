@@ -31,6 +31,9 @@
 					<para>
 						Create the customized search data model extends <code>SearchResultsDataModel</code>, and override the <code>search</code> method to filter your objects.
 					</para>
+					<tip>
+						<para>Note: it is recommended that lazy loading or pagination should be applied for custom tabs to have a good performance.</para>
+					</tip>
 				</listitem>
 				<listitem>
 					<para>

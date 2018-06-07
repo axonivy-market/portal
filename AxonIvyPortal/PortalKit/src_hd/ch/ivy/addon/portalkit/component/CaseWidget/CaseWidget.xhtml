@@ -19,6 +19,7 @@
   <cc:attribute name="autoSelectCaseId" />
   <cc:attribute name="filterGroupId" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
+  <cc:attribute name="listHeaderStyleClass" />
   <cc:facet name="emptyMessage" />
 </cc:interface>
 
@@ -136,7 +137,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header">
+    <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header #{cc.attrs.listHeaderStyleClass}">
       <ui:include src="ColumnHeader.xhtml">
         <ui:param name="id" value="name-desc-column-header" />
         <ui:param name="styleClass" value="case-list-header-cell case-list-name-desc-header-cell" />
