@@ -23,7 +23,10 @@ function TaskWidget(outerPanelId) {
         var container = $('.js-task-start-list > .ui-datascroller-content');
         var mainAreaPanel = $('#' + outerPanelId);
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
-        var taskWidgetSortMenuContainer = $('.js-task-widget-sort-menu');
+        var taskWidgetSortMenuContainer = $('.js-task-widget-sub-header');
+        if (taskWidgetSortMenuContainer.outerHeight(true) == 0) {
+          taskWidgetSortMenuContainer = $('.js-task-widget-sort-menu');
+        }
         var taskWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
         var customWidgetContainer = $('.js-custom-widget-container');
         var error = 5;
