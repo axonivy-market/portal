@@ -19,7 +19,9 @@ import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.ProcessWidgetPage;
+import portal.guitest.page.ProcessesPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
@@ -47,6 +49,17 @@ public class AxonExpressTest extends BaseTest{
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     homePage = new HomePage();
+  }
+  
+  @Test
+  public void testOpenProcessWidgetWithoutCreateExpressWorkflowPermission() throws Exception {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    ProcessesPage processesWidgetPage = mainMenuPage.selectProcessesMenu();
+    assertEquals(false, processesWidgetPage.hasCreateNewExpressWorkflowLink());
+    grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
   
   @Test
