@@ -13,7 +13,7 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 
-public class DefaultCharTest extends BaseTest {
+public class DefaultChartTest extends BaseTest {
 
   private static final String CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL 
     = "portalExamples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
@@ -37,7 +37,6 @@ public class DefaultCharTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     Sleeper.sleepTight(2000);
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
     
     WebElement taskByExpiryChartName1
