@@ -1,5 +1,5 @@
 [Ivy]
-1600AC95D2CA7CEA 3.20 #module
+1600AC95D2CA7CEA 3.23 #module
 >Proto >Proto Collection #zClass
 Ss0 StatisticDashboardWidgetProcess Big #zClass
 Ss0 RD #cInfo
@@ -369,7 +369,8 @@ Ss0 f30 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboar
 ' #txt
 Ss0 f30 actionTable 'out=in;
 ' #txt
-Ss0 f30 actionCode 'import org.omg.CORBA.INITIALIZE;
+Ss0 f30 actionCode 'import org.primefaces.context.RequestContext;
+import org.omg.CORBA.INITIALIZE;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
@@ -381,6 +382,7 @@ if (in.isBackFromDrilldown) {
 
 if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = true;
+	RequestContext.getCurrentInstance().execute("bindCursorChangeEvent()");
 	if(in.selectedItemOfDrilldown.isEmpty()){
 		service.generateChartModelForStatisticCharts(in.statisticChartList);
 	}else{

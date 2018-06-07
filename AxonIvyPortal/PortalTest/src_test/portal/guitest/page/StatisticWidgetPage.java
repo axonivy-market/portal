@@ -1,5 +1,6 @@
 package portal.guitest.page;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -53,5 +54,10 @@ public class StatisticWidgetPage extends TemplatePage {
   public boolean isCreateMode() {
     waitForElementDisplayed(By.id("statistics-widget:chart-list-container"), true, DEFAULT_TIMEOUT);
     return isElementPresent(By.id("statistics-widget:chart-list-container"));
+  }
+  
+  public boolean hasCreateChartsLink(){
+    WebElement switchLink = findElementById("statistics-widget:create-chart-link");
+    return CollectionUtils.isNotEmpty(switchLink.findElements(By.id("statistics-widget:create-chart-link-label")));
   }
 }

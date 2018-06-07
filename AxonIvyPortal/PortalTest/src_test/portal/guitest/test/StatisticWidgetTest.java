@@ -48,6 +48,19 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
   }
+  
+  @Test
+  public void testNavigateToChartWithoutPermissionFromMenu() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    mainMenuPage = homePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    Sleeper.sleepTight(2000);
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+    assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
+    grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  }
 
   @Test
   public void testCreateCharts() {

@@ -351,9 +351,10 @@ Cs0 f30 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWi
 ' #txt
 Cs0 f30 actionTable 'out=in;
 ' #txt
-Cs0 f30 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+Cs0 f30 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
-in.canCreateNewCharts = PermissionUtils.checkAddDashboardsChartsPermission();' #txt
+in.canCreateNewCharts = PermissionUtils.hasPortalPermission(PortalPermission.ADD_DASHBOARDS_CHARTS);' #txt
 Cs0 f30 security system #txt
 Cs0 f30 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

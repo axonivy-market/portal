@@ -45,7 +45,7 @@
         </p:column>
         <p:column>
           <ui:repeat var="state" value="#{filter.selectedCaseStates}">
-            <h:outputText value="#{state}" style="display: block;" />
+            <h:outputText value="#{state}" styleClass="display-block" />
           </ui:repeat>
         </p:column>
       </p:row>
@@ -55,7 +55,7 @@
         </p:column>
         <p:column>
           <ui:repeat var="priority" value="#{filter.selectedTaskPriorities}">
-            <h:outputText value="#{priority}" style="display: block;" />
+            <h:outputText value="#{priority}" styleClass="display-block" />
           </ui:repeat>
         </p:column>
       </p:row>
@@ -66,7 +66,7 @@
         <p:column>
           <h:panelGroup id="selected-roles" layout="block" styleClass="list-container">
             <ui:repeat var="role" value="#{filter.selectedRoles}">
-              <h:outputText value="#{role}" style="display: block;" />
+              <h:outputText value="#{role}" styleClass="display-block" />
             </ui:repeat>
           </h:panelGroup>
         </p:column>
@@ -78,7 +78,67 @@
         <p:column>
           <h:panelGroup id="selected-case-categories" layout="block" styleClass="list-container">
             <ui:repeat var="category" value="#{filter.selectedCaseCategories}">
-              <h:outputText value="#{category}" style="display: block;" />
+              <h:outputText value="#{category}" styleClass="display-block" />
+            </ui:repeat>
+          </h:panelGroup>
+        </p:column>
+      </p:row>
+      <p:row rendered="#{!filter.selectedCustomVarCharFields1.isEmpty()}">
+        <p:column styleClass="label-column">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField1')}" for="selected-case-categories" />
+        </p:column>
+        <p:column>
+          <h:panelGroup id="selected-customvarchar-field-1" layout="block" styleClass="list-container">
+            <ui:repeat var="customVarChar1" value="#{filter.selectedCustomVarCharFields1}">
+              <h:outputText value="#{customVarChar1}" styleClass="display-block" />
+            </ui:repeat>
+          </h:panelGroup>
+        </p:column>
+      </p:row>
+      <p:row rendered="#{!filter.selectedCustomVarCharFields2.isEmpty()}">
+        <p:column styleClass="label-column">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField2')}" for="selected-case-categories" />
+        </p:column>
+        <p:column>
+          <h:panelGroup id="selected-customvarchar-field-2" layout="block" styleClass="list-container">
+            <ui:repeat var="customVarChar2" value="#{filter.selectedCustomVarCharFields2}">
+              <h:outputText value="#{customVarChar2}" styleClass="display-block" />
+            </ui:repeat>
+          </h:panelGroup>
+        </p:column>
+      </p:row>
+      <p:row rendered="#{!filter.selectedCustomVarCharFields3.isEmpty()}">
+        <p:column styleClass="label-column">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField3')}" for="selected-case-categories" />
+        </p:column>
+        <p:column>
+          <h:panelGroup id="selected-customvarchar-field-3" layout="block" styleClass="list-container">
+            <ui:repeat var="customVarChar3" value="#{filter.selectedCustomVarCharFields3}">
+              <h:outputText value="#{customVarChar3}" styleClass="display-block" />
+            </ui:repeat>
+          </h:panelGroup>
+        </p:column>
+      </p:row>
+      <p:row rendered="#{!filter.selectedCustomVarCharFields4.isEmpty()}">
+        <p:column styleClass="label-column">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField4')}" for="selected-case-categories" />
+        </p:column>
+        <p:column>
+          <h:panelGroup id="selected-customvarchar-field-4" layout="block" styleClass="list-container">
+            <ui:repeat var="customVarChar4" value="#{filter.selectedCustomVarCharFields4}">
+              <h:outputText value="#{customVarChar4}" styleClass="display-block" />
+            </ui:repeat>
+          </h:panelGroup>
+        </p:column>
+      </p:row>
+      <p:row rendered="#{!filter.selectedCustomVarCharFields5.isEmpty()}">
+        <p:column styleClass="label-column">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField5')}" for="selected-case-categories" />
+        </p:column>
+        <p:column>
+          <h:panelGroup id="selected-customvarchar-field-5" layout="block" styleClass="list-container">
+            <ui:repeat var="customVarChar5" value="#{filter.selectedCustomVarCharFields5}">
+              <h:outputText value="#{customVarChar5}" styleClass="display-block" />
             </ui:repeat>
           </h:panelGroup>
         </p:column>
