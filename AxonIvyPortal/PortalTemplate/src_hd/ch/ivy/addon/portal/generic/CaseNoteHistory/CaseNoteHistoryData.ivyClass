@@ -6,3 +6,5 @@ exportedFileName String #field
 exportedFileName PERSISTENT #fieldModifier
 filteredHistories List<ch.ivy.addon.portalkit.bo.History> #field
 filteredHistories PERSISTENT #fieldModifier
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+remoteCase PERSISTENT #fieldModifier
