@@ -13,7 +13,7 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 
-public class DefaultCharTest extends BaseTest {
+public class DefaultChartTest extends BaseTest {
 
   private static final String CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL 
     = "portalExamples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
