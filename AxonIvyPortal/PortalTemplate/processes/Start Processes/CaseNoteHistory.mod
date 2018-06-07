@@ -1,5 +1,5 @@
 [Ivy]
-1603506A872272C6 3.20 #module
+1603506A872272C6 3.23 #module
 >Proto >Proto Collection #zClass
 Cy0 CaseNoteHistory Big #zClass
 Cy0 B #cInfo
@@ -74,11 +74,12 @@ Cy0 f1 @|EndIcon #fIcon
 Cy0 f3 targetWindow NEW #txt
 Cy0 f3 targetDisplay TOP #txt
 Cy0 f3 richDialogId ch.ivy.addon.portal.generic.CaseNoteHistory #txt
-Cy0 f3 startMethod start(List<ch.ivy.addon.portalkit.bo.History>,String) #txt
+Cy0 f3 startMethod start(List<ch.ivy.addon.portalkit.bo.History>,String,ch.ivy.addon.portalkit.bo.RemoteCase) #txt
 Cy0 f3 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt
-Cy0 f3 requestActionDecl '<List<ch.ivy.addon.portalkit.bo.History> histories, String exportedFileName> param;' #txt
+Cy0 f3 requestActionDecl '<List<ch.ivy.addon.portalkit.bo.History> histories, String exportedFileName, ch.ivy.addon.portalkit.bo.RemoteCase remoteCase> param;' #txt
 Cy0 f3 requestMappingAction 'param.histories=in.histories;
 param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseExportedFileNamePrefix", java.util.Arrays.asList(in.remoteCase.name));
+param.remoteCase=in.remoteCase;
 ' #txt
 Cy0 f3 responseActionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;
 ' #txt
@@ -318,11 +319,12 @@ Cy0 f16 @|EndIcon #fIcon
 Cy0 f20 targetWindow NEW #txt
 Cy0 f20 targetDisplay TOP #txt
 Cy0 f20 richDialogId ch.ivy.addon.portal.generic.CaseNoteHistory #txt
-Cy0 f20 startMethod start(List<ch.ivy.addon.portalkit.bo.History>,String) #txt
+Cy0 f20 startMethod start(java.util.List<ch.ivy.addon.portalkit.bo.History>,String,ch.ivyteam.ivy.workflow.ICase) #txt
 Cy0 f20 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt
-Cy0 f20 requestActionDecl '<List<ch.ivy.addon.portalkit.bo.History> histories, String exportedFileName> param;' #txt
+Cy0 f20 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.bo.History> histories, String exportedFileName, ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
 Cy0 f20 requestMappingAction 'param.histories=in.histories;
 param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseExportedFileNamePrefix", java.util.Arrays.asList(in.internalCase.name));
+param.ivyCase=in.internalCase;
 ' #txt
 Cy0 f20 responseActionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;
 ' #txt
