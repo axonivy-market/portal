@@ -1,5 +1,5 @@
 [Ivy]
-14B2FC03D2E87141 3.20 #module
+14B2FC03D2E87141 3.23 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -386,43 +386,18 @@ Tt0 f0 triggerEnabled false #txt
 Tt0 f0 callSignature CreateSupportTicket() #txt
 Tt0 f0 persist false #txt
 Tt0 f0 startName 'Create Support Ticket' #txt
-Tt0 f0 taskData '#
-#Mon May 11 11:02:05 ICT 2015
-TaskTriggered.ROL=Everybody
+Tt0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody
-' #txt
-Tt0 f0 caseData '#
-#Mon May 11 11:02:05 ICT 2015
-businessCalendarName=
-businessCreator.user=
-businessMilestone.timestamp=
-businessObject.code=
-businessObject.docDb.code=
-businessObject.folder.id=
-businessObject.name=
-businessPriority=
-businessStart.timestamp=
-case.description=
-case.name=
-correspondent.id=
-mainContact.docDb.code=
-mainContact.folder.id=
-mainContact.id=
-mainContact.name=
-mainContact.type=
-process.code=
-process.name=
-processCategory.code=
-processCategory.name=
-subType.code=
-subType.name=
-type.code=
-type.name=
-' #txt
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f0 caseData 'customFields.varchar.5="Leave 5"
+customFields.varchar.4="Leave 4"
+customFields.varchar.3="Leave 3"
+customFields.varchar.2="Leave 2"
+customFields.varchar.1="Leave 1"
+businessCase.attach=false' #txt
 Tt0 f0 showInStartList 1 #txt
 Tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

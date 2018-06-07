@@ -3881,7 +3881,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .chart-filter-info-icon {
-	padding-left: 5px;
+	padding-right: 5px;
+	float: right;
+	color: #fff !important;
 }
 
 .statistic-filter-main-container .item-label {
@@ -3903,25 +3905,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     width: 24rem;
     height: 24rem;
   }
-  
-  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-	background: none;
-	width: 15.5rem;
-	padding: 8px 0 !important;
-  }
 
   .edit-statistic-container {
     width: 78rem;
-  }
-
-  .filter-container .ui-inputfield.hasDatepicker {
-    width: 15.5rem !important;
-  }
-
-  .statistic-filter-container {
-    max-height: 20rem;
-    max-width: 18rem;
-    margin-top: 1rem;
   }
 
   .edit-statistic-container .chart-list .chart-container {
@@ -3936,12 +3922,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     width: 34rem;
     height: 34rem;
   }
-  
-  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-	background: none;
-	width: 20rem;
-	padding: 8px 0 !important;
-  }
 }
 
 /* Large screen */
@@ -3950,27 +3930,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     width: 34rem;
     height: 34rem;
   }
-  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-	background: none;
-	width: 20rem;
-	padding: 8px 0 !important;
-  }
 }
-
-.statistic-filter-container.scrollable {
-  border:solid 1px #E0E0E0;
-}
-
-.statistic-filter-main-container .ui-calendar .ui-inputfield.hasDatepicker {
-  transition: none !important;
-  width: 20rem;
-}
-
-.statistic-filter-main-container .period-time-selection {
-  margin-bottom: 10px;
-  display: block;
-}
-
 
 .statistic-dashboard-container {
   margin: auto;
@@ -3995,7 +3955,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
-  padding: 10px 15px !important;
+  padding: 5px 10px !important;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar .ui-panel-title {
@@ -4014,22 +3974,20 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   flex: 1 0 100%;
 }
 
-.dashboard-chart-panel:hover .chart-name-container {
+.dashboard-chart-panel .chart-name-container {
   flex: 1 0 50%;
 }
 
 .dashboard-chart-panel .chart-actions-container {
-  height: 25px;
   float: right;
   flex: 1;
 }
 
-.dashboard-chart-panel:hover .chart-actions-container .chart-action {
+.dashboard-chart-panel .chart-actions-container .chart-action {
   display: inline;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
-  display: none;
   color: #FFFFFF !important;
   font-size: 1.5rem;
   margin: 4px;
@@ -4045,7 +4003,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin-right: 10px;
 }
 
-.dashboard-chart-panel .chart-info:hover {
+.dashboard-chart-panel .chart-info {
   color: #FFFFFF !important;
 }
 
@@ -4119,6 +4077,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .chart-info-container {
   width: 100%;
+}
+
+.chart-info-container .display-block {
+	display: block;
 }
 
 .chart-info-container,
@@ -4773,4 +4735,116 @@ margin-top
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
   font-family: 'FontAwesome' !important;
   content: '\f00d';
+}
+
+/* STYLE FOR STATISTIC FILTER */
+.statistic-filter-accordion-panel {
+	border: none !important;
+}
+
+.statistic-filter-accordion-panel .ui-accordion-header {
+	width: 25rem;
+	padding: 5px 5px 5px 30px !important;
+}
+
+.statistic-filter-accordion-panel .ui-accordion-header,
+.statistic-filter-accordion-panel .ui-accordion-header:hover,
+.statistic-filter-accordion-panel .ui-accordion-header.ui-state-active {
+	background-color: #afca05;
+}
+
+.statistic-filter-accordion-panel .ui-accordion-content {
+	border: solid 1px #E0E0E0 !important;
+}
+
+.statistic-filter-container.ui-scrollpanel {
+	border: none;
+	padding: 0;
+	width: 100%;
+}
+
+.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+	background: none;
+	width: 20rem;
+	padding: 8px 0 !important;
+}
+
+.statistic-filter-main-container .ui-calendar .ui-inputfield.hasDatepicker {
+	transition: none !important;
+	width: 20rem;
+}
+
+.statistic-filter-main-container .period-time-selection {
+	margin-bottom: 10px;
+	display: block;
+}
+
+.custom-field-panel-header-container {
+	padding: 0 10px;
+}
+
+.custom-val-selection {
+	width: 100% !important;
+}
+
+.custom-val-selection .ui-autocomplete-input {
+	width: 90%;
+}
+
+.add-custom-val {
+	float: right;
+	margin-top: 10px;
+	min-width: 10px !important;
+	height: 30px !important;
+}
+
+.add-custom-val .ui-icon {
+	float: right !important;
+	padding: 5px 10px 5px 5px !important;
+}
+
+.add-custom-val .ui-button-text {
+	min-width: 40px !important;
+	padding: 5px 0 5px 10px !important;
+	border-right: none !important;
+}
+
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+	.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+		background: none;
+		width: 20rem;
+		padding: 8px 0 !important;
+	}
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+	.statistic-filter-accordion-panel {
+		width: 23.5rem !important;
+	}
+
+	.statistic-filter-accordion-panel .ui-accordion-header {
+		width: 20rem;
+	}
+
+	.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+		background: none;
+		width: 21rem;
+		padding: 8px 0 !important;
+	}
+
+	.filter-container .ui-inputfield.hasDatepicker {
+		width: 15.5rem !important;
+		}
+
+	.statistic-filter-container {
+		max-height: 20rem;
+		width: 18rem;
+		margin-top: 1rem;
+	}
+}
+
+.search-results-tabview .task-list-container {
+	margin: 0 !important;
 }
