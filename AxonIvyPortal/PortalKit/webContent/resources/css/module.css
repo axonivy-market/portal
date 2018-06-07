@@ -2711,7 +2711,7 @@ a.compact-task-start-link:hover {
   font-size: 1.2rem;
 }
 
-.no-task-message {
+.no-task-message, .no-process-message {
   font-size: 1.2rem;
 }
 
