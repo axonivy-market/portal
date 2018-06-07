@@ -59,5 +59,8 @@
 				</listitem>
 			</orderedlist>
 		</para>
+		<tip>
+			<para>Hint: refer to the example in the PortalExamples project: CustomizedSearchResultsDataModel.java, CustomizedSearchResults HTML dialog, OpenPortalSearchOverride callable process</para>
+		</tip>
 	</sect2>
 </sect1>
