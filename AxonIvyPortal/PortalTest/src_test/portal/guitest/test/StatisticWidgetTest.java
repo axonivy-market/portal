@@ -51,14 +51,14 @@ public class StatisticWidgetTest extends BaseTest {
   
   @Test
   public void testNavigateToChartWithoutPermissionFromMenu() {
-    String grantAllPermissionsForAdminUserURL = "PortalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
-    grantAllPermissionsForAdminUserURL = "PortalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
 
