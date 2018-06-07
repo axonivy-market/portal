@@ -13,7 +13,7 @@
       <c:set property="navigationHistory" value="SEARCH_RESULTS" target="#{navigationHistoryBean}"></c:set>
       <h:form id="global-search-form-in-page">
         <div id="global-search-container-in-page" class="global-search">
-          <p:inputText id="global-search-data" styleClass="global-search-input js-filter-process-widget-list-item" value="#{dataModel.keyword}"
+          <p:inputText id="global-search-data" styleClass="global-search-input js-global-search js-filter-process-widget-list-item" value="#{dataModel.keyword}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
             onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }">
           </p:inputText>
