@@ -34,9 +34,11 @@ public class DefaultChartTest extends BaseTest {
 
   @Test
   public void testCreateDefaultChart() {
-    MainMenuPage mainMenuPage = new MainMenuPage();
+    HomePage homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     Sleeper.sleepTight(2000);
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
     
     WebElement taskByExpiryChartName1
