@@ -12,6 +12,10 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel{
   public CustomizedCaseLazyDataModel() {
     super();
   }
+  
+  public CustomizedCaseLazyDataModel(String caseWidgetComponentId) {
+    super(caseWidgetComponentId);
+  }
 
   @Override
   protected void initFilterContainer() {
