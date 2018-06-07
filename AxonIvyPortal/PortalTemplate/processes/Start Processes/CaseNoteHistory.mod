@@ -289,7 +289,9 @@ import ch.ivy.addon.portalkit.service.HistoryService;
 List<ITask> finishedTasks = new ArrayList();
 in.internalCase = ivy.wf.findCase(in.caseId);
 for(ITask task : in.internalCase.getTasks()) {
-	if(task.getState().equals(TaskState.DONE) || task.getState().equals(TaskState.DESTROYED) || task.getState().equals(TaskState.ZOMBIE)) {
+	if(task.getState() == TaskState.DONE 
+	|| task.getState() == TaskState.DESTROYED 
+	|| task.getState() == TaskState.ZOMBIE) {
 		finishedTasks.add(task);
 	}
 }
