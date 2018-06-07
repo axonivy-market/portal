@@ -878,3 +878,8 @@
 .search-results-tabview {
   margin-top: 20px;
 }
+
+.search-results-tabview .task-list-container,
+.search-results-tabview .case-default-widget-container {
+  margin: 0 !important;
+}
