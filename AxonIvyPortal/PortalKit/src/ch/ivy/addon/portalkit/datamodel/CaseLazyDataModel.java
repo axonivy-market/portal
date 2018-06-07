@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -380,10 +379,12 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
           StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
       queryCriteria.setCaseQuery(customizedCaseQuery);
     }
-    if (Objects.isNull(filterContainer) || selectedFilters.contains(filterContainer.getStateFilter())) {
-      queryCriteria.setIncludedStates(new ArrayList<>());
-    } else {
-      queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
+    if (filterContainer != null) {
+      if (selectedFilters.contains(filterContainer.getStateFilter())) {
+        queryCriteria.setIncludedStates(new ArrayList<>());
+      } else {
+        queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
+      }
     }
     CaseQuery caseQuery = buildCaseQuery();
     searchCriteria.setJsonQuery(caseQuery.asJson());
