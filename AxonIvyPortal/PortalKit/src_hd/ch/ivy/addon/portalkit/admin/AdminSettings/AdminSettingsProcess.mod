@@ -272,7 +272,6 @@ As0 @GridStep f39 '' #zField
 As0 @PushWFArc f264 '' #zField
 As0 @PushWFArc f203 '' #zField
 As0 @PushWFArc f265 '' #zField
-As0 @PushWFArc f19 '' #zField
 As0 @CallSub f253 '' #zField
 As0 @GridStep f258 '' #zField
 As0 @PushWFArc f266 '' #zField
@@ -283,6 +282,12 @@ As0 @PushWFArc f268 '' #zField
 As0 @PushWFArc f248 '' #zField
 As0 @RichDialogProcessEnd f269 '' #zField
 As0 @PushWFArc f270 '' #zField
+As0 @GridStep f271 '' #zField
+As0 @PushWFArc f272 '' #zField
+As0 @Alternative f273 '' #zField
+As0 @PushWFArc f274 '' #zField
+As0 @PushWFArc f19 '' #zField
+As0 @PushWFArc f275 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 As0 f0 guid 14B6C3C6330883A7 #txt
 As0 f0 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -2930,7 +2935,7 @@ As0 f251 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f251 1198 1540 36 24 20 -2 #rect
+As0 f251 1198 1628 36 24 20 -2 #rect
 As0 f251 @|CallSubIcon #fIcon
 As0 f249 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
@@ -2949,10 +2954,10 @@ As0 f249 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f249 1198 1604 36 24 20 -2 #rect
+As0 f249 1198 1716 36 24 20 -2 #rect
 As0 f249 @|StepIcon #fIcon
 As0 f250 expr out #txt
-As0 f250 1216 1564 1216 1604 #arcP
+As0 f250 1216 1652 1216 1716 #arcP
 As0 f252 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f252 actionTable 'out=in;
@@ -2977,10 +2982,10 @@ As0 f252 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f252 1198 1668 36 24 20 -2 #rect
+As0 f252 1198 1788 36 24 20 -2 #rect
 As0 f252 @|StepIcon #fIcon
 As0 f255 expr out #txt
-As0 f255 1216 1628 1216 1668 #arcP
+As0 f255 1216 1740 1216 1788 #arcP
 As0 f259 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f259 actionTable 'out=in;
@@ -3097,8 +3102,6 @@ As0 f203 1488 276 1488 316 #arcP
 As0 f265 expr out #txt
 As0 f265 96 58 96 182 #arcP
 As0 f265 0 0.4862440103228913 0 0 #arcLabel
-As0 f19 expr out #txt
-As0 f19 1216 1483 1216 1540 #arcP
 As0 f253 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f253 processCall MultiPortal/LibraryService:getLibrary(ch.ivy.addon.portalkit.persistence.domain.Server,String,String) #txt
 As0 f253 doCall true #txt
@@ -3123,7 +3126,7 @@ As0 f253 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f253 1196 1860 40 24 29 -11 #rect
+As0 f253 1196 1932 40 24 29 -11 #rect
 As0 f253 @|CallSubIcon #fIcon
 As0 f258 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
@@ -3162,15 +3165,15 @@ As0 f258 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f258 1196 1932 40 24 24 -1 #rect
+As0 f258 1196 1996 40 24 24 -1 #rect
 As0 f258 @|StepIcon #fIcon
 As0 f266 expr out #txt
-As0 f266 1216 1884 1216 1932 #arcP
+As0 f266 1216 1956 1216 1996 #arcP
 As0 f267 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f267 1203 2027 26 26 0 12 #rect
+As0 f267 1203 2051 26 26 0 12 #rect
 As0 f267 @|RichDialogProcessEndIcon #fIcon
 As0 f247 expr out #txt
-As0 f247 1216 1956 1216 2027 #arcP
+As0 f247 1216 2020 1216 2051 #arcP
 As0 f254 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f254 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3181,18 +3184,68 @@ As0 f254 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f254 1200 1760 32 32 -48 18 #rect
+As0 f254 1200 1840 32 32 -48 18 #rect
 As0 f254 @|AlternativeIcon #fIcon
 As0 f268 expr out #txt
-As0 f268 1216 1692 1216 1760 #arcP
+As0 f268 1216 1812 1216 1840 #arcP
 As0 f248 expr in #txt
 As0 f248 outCond 'in.errors.size() == 0' #txt
-As0 f248 1216 1792 1216 1860 #arcP
+As0 f248 1216 1872 1216 1932 #arcP
 As0 f269 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f269 1363 1763 26 26 0 12 #rect
+As0 f269 1395 1843 26 26 0 12 #rect
 As0 f269 @|RichDialogProcessEndIcon #fIcon
 As0 f270 expr in #txt
-As0 f270 1232 1776 1363 1776 #arcP
+As0 f270 1232 1856 1395 1856 #arcP
+As0 f271 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f271 actionTable 'out=in;
+' #txt
+As0 f271 actionCode 'import ch.ivy.ws.addon.WsErrorType;
+import java.util.Calendar;
+import ch.ivy.ws.addon.WsException;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+
+in.errors = new List();
+boolean isValidPath = in.selectedServer.path.matches("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+if (!isValidPath){
+	WsException exception;
+	exception.errorCode = 11001;
+	exception.errorType = WsErrorType.WARNING;
+	Calendar c = Calendar.getInstance();
+	c.setTime(new java.util.Date());
+	exception.errorDateTime = c;
+	exception.userText = ivy.cms.co("/errors/11001/userText", [in.selectedServer.name]);
+	exception.server = in.selectedServer.name;
+	in.errors.add(exception);
+	String connectionFailMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathIncorrectMsg");
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,connectionFailMessage, null));
+}' #txt
+As0 f271 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f271 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validate server</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f271 1196 1516 40 24 25 -8 #rect
+As0 f271 @|StepIcon #fIcon
+As0 f272 expr out #txt
+As0 f272 1216 1483 1216 1516 #arcP
+As0 f273 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f273 1200 1568 32 32 0 16 #rect
+As0 f273 @|AlternativeIcon #fIcon
+As0 f274 expr out #txt
+As0 f274 1216 1540 1216 1568 #arcP
+As0 f19 expr in #txt
+As0 f19 outCond 'in.errors.size() == 0' #txt
+As0 f19 1216 1600 1216 1628 #arcP
+As0 f275 expr in #txt
+As0 f275 1232 1584 1408 1843 #arcP
+As0 f275 1 1408 1584 #addKink
+As0 f275 1 0.14534129532349582 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3454,8 +3507,6 @@ As0 f39 mainOut f203 tail #connect
 As0 f203 head f46 mainIn #connect
 As0 f0 mainOut f265 tail #connect
 As0 f265 head f1 mainIn #connect
-As0 f183 mainOut f19 tail #connect
-As0 f19 head f251 mainIn #connect
 As0 f253 mainOut f266 tail #connect
 As0 f266 head f258 mainIn #connect
 As0 f258 mainOut f247 tail #connect
@@ -3466,3 +3517,11 @@ As0 f254 out f248 tail #connect
 As0 f248 head f253 mainIn #connect
 As0 f254 out f270 tail #connect
 As0 f270 head f269 mainIn #connect
+As0 f183 mainOut f272 tail #connect
+As0 f272 head f271 mainIn #connect
+As0 f271 mainOut f274 tail #connect
+As0 f274 head f273 in #connect
+As0 f273 out f19 tail #connect
+As0 f19 head f251 mainIn #connect
+As0 f273 out f275 tail #connect
+As0 f275 head f269 mainIn #connect
