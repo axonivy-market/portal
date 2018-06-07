@@ -25,12 +25,12 @@
       <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}">
         <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title">
           <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" compactMode="false"
-            hideHeader="true" hideExpressCreation="true" />
+            hideHeader="true" hideExpressCreation="true" processListStyleClass="process-in-search" />
         </p:tab>
         
         <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title">
           <div class="task-list-container js-task-list-container js-for-search-result">
-            <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results"
+            <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
               keyword="#{dataModel.taskDataModel.queryCriteria.keyword}" hideTaskFilter="true"
               dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
               <f:facet name="taskListHeader">
@@ -124,7 +124,7 @@
         <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title">
           <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result">
             <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
-              dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true">
+              dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">
               <f:facet name="caseHeader">
                 <ic:ch.ivy.addon.portalkit.component.CaseHeader id="case-header" case="#{case}" />
               </f:facet>
