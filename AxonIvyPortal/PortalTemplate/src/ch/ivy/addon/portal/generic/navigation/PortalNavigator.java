@@ -32,14 +32,6 @@ public final class PortalNavigator {
     return defaultPortalStartUrl(false);
   }
 
-  public String getPortalStartAbsoluteUrl() throws MalformedURLException {
-    String homePageURL = getHomePageFromSetting();
-    if (!homePageURL.isEmpty()) {
-      return homePageURL;
-    }
-    return defaultPortalStartUrl(true);
-  }
-
   private String getHomePageFromSetting() {
     GlobalSettingService globalSettingSerive = new GlobalSettingService();
     return globalSettingSerive.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL);
@@ -58,11 +50,6 @@ public final class PortalNavigator {
 
   public String getPortalStartUrlOf(PortalPage portalPage, Map<String, String> pageParameters) throws MalformedURLException {
     String baseUrl = getPortalStartUrl();
-    return generatePortalStartUrl(baseUrl, portalPage, pageParameters);
-  }
-
-  public String getPortalStartAbsoluteUrlOf(PortalPage portalPage, Map<String, String> pageParameters) throws MalformedURLException {
-    String baseUrl = getPortalStartAbsoluteUrl();
     return generatePortalStartUrl(baseUrl, portalPage, pageParameters);
   }
 
