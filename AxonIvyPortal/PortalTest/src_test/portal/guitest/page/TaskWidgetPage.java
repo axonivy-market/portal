@@ -20,7 +20,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   private String taskWidgetId;
   private static final String UI_INPLACE_SAVE = "ui-inplace-save";
-  private static final String COPY_CLIPBOARD = "copy-clipboard";
+  private static final String SIDE_STEP_MENU = "side-steps-menu";
   private static final String CLASS = "class";
   private static final String ID_END = "*[id$='";
   private static final String ID_CONTAIN = "*[id*='";
@@ -96,7 +96,7 @@ public class TaskWidgetPage extends TemplatePage {
     } else {
       findElementByCssSelector(ID_END + index + TASK_ITEM_TASK_INFO).click();
     }
-    waitForElementPresent(By.id(COPY_CLIPBOARD), true);
+    waitForElementPresent(By.id(SIDE_STEP_MENU), true);
     return new TaskTemplatePage();
   }
 
@@ -415,7 +415,7 @@ public class TaskWidgetPage extends TemplatePage {
       adhocMenuItem = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.side-step-item")));
       adhocMenuItem.click();
     }
-    waitForElementPresent(By.id(COPY_CLIPBOARD), true);
+    waitForElementPresent(By.id(SIDE_STEP_MENU), true);
     return new AdhocPage();
   }
 
@@ -499,7 +499,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void startAndCancelTask() {
     findElementByCssSelector("*[id$='0:task-item:task-info']").click();
-    waitForElementDisplayed(By.id(COPY_CLIPBOARD), true);
+    waitForElementDisplayed(By.id(SIDE_STEP_MENU), true);
     click(findElementByClassName("portal-cancel-button"));
   }
 

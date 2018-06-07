@@ -883,3 +883,11 @@
 .search-results-tabview .case-default-widget-container {
   margin: 0 !important;
 }
+
+.search-results-tabview .process-in-search {
+  margin-top: 10px;
+}
+
+.search-results-tabview .widget-sort-menu.full-mode.task-in-search, .search-results-tabview .widget-column-header.case-in-search {
+  height: 30px;
+}
