@@ -15,6 +15,10 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   public CustomizedTaskLazyDataModel() {
     super();
   }
+  
+  public CustomizedTaskLazyDataModel(String taskWidgetComponentId) {
+    super(taskWidgetComponentId);
+  }
 
   //===================Basic customization, extend columns====================
   
