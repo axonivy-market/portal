@@ -1,4 +1,0 @@
-co: name={copyTooltip} description={} changed={2017-10-31 08:04:04 CET} changedby={chnam} visualorder={0} guid={15F713E87276225B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713E8733A08CB} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:23 CEST} validto={} changed={2017-10-31 08:04:04 CET} changedby={chnam} properties={} id={}
-val: guid={15F713E872993213} datatype={} isdefault={false} langid={de} description={} validfrom={2015-08-31 11:12:37 CEST} validto={} changed={2017-10-31 08:04:04 CET} changedby={chnam} properties={} id={}
-val: guid={15F713E872EAEC8A} datatype={} isdefault={true} langid={en} description={} validfrom={2015-08-31 11:12:26 CEST} validto={} changed={2017-10-31 08:04:04 CET} changedby={chnam} properties={} id={}
