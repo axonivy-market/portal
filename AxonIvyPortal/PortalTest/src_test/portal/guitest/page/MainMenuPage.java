@@ -108,13 +108,12 @@ public class MainMenuPage extends TemplatePage {
   }
   
   private void waitForProcessesPageAfterSelectProcessesCategory() {
-    waitForElementDisplayed(By.id("process-widget"), true);
+    waitForElementDisplayed(By.id("process-widget:header"), true);
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")").click();
-    waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.id("statistics-widget"), true);
+    waitForElementDisplayed(By.id("statistics-widget:create-chart-header"), true);
     return new StatisticWidgetPage();
   }
 
