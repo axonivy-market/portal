@@ -26,6 +26,13 @@ function ProcessWidget() {
           $(this).hide();
         }
       });
+      
+      var noFoundProcesses = $('.js-no-found-processes'); 
+      if (!$(processItems).is(":visible")) {
+        $(noFoundProcesses).removeClass('u-display-none');
+      } else {
+        $(noFoundProcesses).addClass('u-display-none');
+      }
     }
   }
   

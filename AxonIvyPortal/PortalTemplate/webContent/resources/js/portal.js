@@ -4,7 +4,8 @@ var SECOND_LEVEL_MENU_MODE = 'portal-second-level-menu-mode';
 var ACTIVE_MENU_ITEM = 'portal-active-menu-item';
 
 var Portal = {
-  init : function(responsiveToolkit) {
+  init : function(responsiveToolkit, updateFlag) {
+    typeof(updateFlag) == "undefinied" ? false : updateFlag;
     if ($('form.login-form').size() > 0) {
       return;
     }
@@ -43,7 +44,7 @@ var Portal = {
         && previousActiveMenuItem != getMenuUniqueClassFrom(getActiveMenuItemClassList())) {
       selectedSubMenuItemClass.toggleClass('expand').toggleClass('left-sidebar-animation');
       animatePreviousActiveMenuItem('.' + previousActiveMenuItem);
-    } else {
+    } else if (!updateFlag) {
       selectedSubMenuItemClass.toggleClass('expand');
     }
 
@@ -112,7 +113,7 @@ var MainMenu = {
 
   bindEvents : function() {
     var $this = this;
-    this.$mainMenuToggle.on("click", function() {
+    this.$mainMenuToggle.unbind("click").on("click", function() {
       $this.showMainMenu();
       // Toggle menu state
       toggleMainMenuMode();

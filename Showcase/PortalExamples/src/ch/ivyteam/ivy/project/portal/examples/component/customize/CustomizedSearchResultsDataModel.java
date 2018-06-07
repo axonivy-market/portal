@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
+import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.data.persistence.IIvyEntityManager;
 import ch.ivyteam.ivy.process.data.persistence.IIvyQuery;
@@ -31,6 +32,11 @@ public class CustomizedSearchResultsDataModel extends SearchResultsDataModel {
     employees =
         persistence().findAll(Employee.class).stream().filter(this::filterEmployeeByName)
             .collect(Collectors.toList());
+  }
+  
+  @Override
+  protected TaskLazyDataModel initTaskDataModel() {
+    return new CustomizedTaskLazyDataModel(TASK_WIDGET_COMPONENT_ID);
   }
   
   private boolean filterEmployeeByName(Employee employee) {
