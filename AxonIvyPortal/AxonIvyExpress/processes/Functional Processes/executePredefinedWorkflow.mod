@@ -1083,9 +1083,9 @@ Bk7 f29 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk7 f29 actionTable 'out=in;
 ' #txt
-Bk7 f29 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+Bk7 f29 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-String useExpressEndPage = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE);
+String useExpressEndPage = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE.toString());
 
 in.useExpressEndPage = useExpressEndPage.isEmpty()? true : Boolean.valueOf(useExpressEndPage);' #txt
 Bk7 f29 type gawfs.ExecutePredefinedWorkflowData #txt
