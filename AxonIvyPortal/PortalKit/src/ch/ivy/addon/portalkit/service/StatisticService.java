@@ -1123,12 +1123,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
   
   public void removeStatisticChartsByUserId(long userId) {
-    try {
-      List<StatisticChart> result = repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().
-          textField(DEFAULT_CHART).isEqualToIgnoringCase("false").execute().getAll();
-      result.stream().forEach(item -> repo().delete(item));
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
+    List<StatisticChart> result = repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().
+        textField(DEFAULT_CHART).isEqualToIgnoringCase("false").execute().getAll();
+    result.stream().forEach(item -> repo().delete(item));
+  }
+  
+  public boolean hasDefaultChart(long userId){
+    List<StatisticChart> result = repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().
+        textField(DEFAULT_CHART).isEqualToIgnoringCase("true").execute().getAll();
+    return !result.isEmpty();
   }
 }
