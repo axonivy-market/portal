@@ -844,9 +844,7 @@ in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSe
 GlobalVariable globalVariable = GlobalVariable.valueOf(in.selectedSetting.key);
 if (GlobalVariable.getBooleanType().contains(globalVariable)) {
 	in.settingInputType = 2; //dropdown
-	if (GlobalVariable.getBooleanType().contains(globalVariable)) {
-		in.dropDownValues = Arrays.asList("false", "true");
-	}
+	in.dropDownValues = Arrays.asList("false", "true");
 } else if (GlobalVariable.getNumberType().contains(globalVariable)) {
 	in.settingInputType = 3; //number
 } else {
