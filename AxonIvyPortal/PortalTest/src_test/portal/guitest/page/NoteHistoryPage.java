@@ -17,7 +17,15 @@ public class NoteHistoryPage extends TemplatePage {
     return firstRow.findElements(By.xpath("td")).get(2).getText();
   }
 
-  public String getCaseName(){
-      return findElementById("form:case-name").getText(); 
-   }
+  public String getCaseName() {
+    return findElementById("form:case-name").getText();
+  }
+
+  public String getCaseState() {
+    return findElementById("form:case-state").getText();
+  }
+  
+  public String getCaseId() {
+    return findElementById("form:case-id").getText();
+  }
 }

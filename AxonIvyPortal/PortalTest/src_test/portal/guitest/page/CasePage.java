@@ -96,6 +96,13 @@ public class CasePage extends TemplatePage {
         findElementById(selectedCaseElement.getAttribute("id") + ":case-header:case-name-form:case-name-edit-inplace");
     return selectedCaseNameElement.getText();
   }
+  
+  public String getCaseId() {
+    waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
+    WebElement selectedCaseElement = findElementByCssSelector(".case-list-item-expanded");
+    WebElement selectedCaseIdElement = selectedCaseElement.findElement(By.cssSelector(".case-header-id-cell"));
+    return selectedCaseIdElement.getText();
+  }
 
   public boolean isCaseDisplayed(String name) {
     List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");

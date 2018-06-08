@@ -26,7 +26,9 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     private HomePage homePage;
     private MainMenuPage mainMenuPage;
     private NoteHistoryPage caseHistoryPage;
-    private static final String noteContent = "test"; 
+    private static final String NOTE_CONTENT = "test"; 
+    private static final String CASE_NAME = "Leave Request";
+    private static final String CASE_STATUS = "In Progress";
     
     @Override
     @Before
@@ -45,9 +47,10 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     @Test
     public void testShowCaseNoteHistory() {
         CasePage casePage = mainMenuPage.selectCaseMenu();
-        final String caseName = "Leave Request";
-        detailsPage = casePage.openDetailsOfCaseHasName(caseName);
-        detailsPage.addNote(noteContent);
+        detailsPage = casePage.openDetailsOfCaseHasName(CASE_NAME);        
+        String caseName = casePage.getCaseName();
+        String caseId = casePage.getCaseId();
+        detailsPage.addNote(NOTE_CONTENT);
         detailsPage.showNoteHistory();
         Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
         homePage.switchLastBrowserTab();
@@ -59,8 +62,10 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
             return ;
         }
         assertEquals(2, numberOfNotes);
-        assertEquals(noteContent, caseHistoryPage.getNoteContentOfRow(0));
+        assertEquals(NOTE_CONTENT, caseHistoryPage.getNoteContentOfRow(0));
         assertEquals(caseName, caseHistoryPage.getCaseName());
+        assertEquals(caseId, caseHistoryPage.getCaseId());
+        assertEquals(CASE_STATUS, caseHistoryPage.getCaseState());
     }
     
     @Test
@@ -68,8 +73,9 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
         TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
         TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
         taskTemplatePage.openStatusTab();
-        taskTemplatePage.addNewNote(noteContent);
+        taskTemplatePage.addNewNote(NOTE_CONTENT);
         taskTemplatePage.showNoteHistory();
+        String caseName = taskTemplatePage.getCaseName();
         Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
         homePage.switchLastBrowserTab();
         int numberOfNotes;
@@ -80,7 +86,9 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
             return ;
         }
         assertEquals(2, numberOfNotes);
-        assertEquals(noteContent, caseHistoryPage.getNoteContentOfRow(0));
+        assertEquals(NOTE_CONTENT, caseHistoryPage.getNoteContentOfRow(0));
+        assertEquals(caseName, caseHistoryPage.getCaseName());
+        assertEquals(CASE_STATUS, caseHistoryPage.getCaseState());
     }
 
 }
