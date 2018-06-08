@@ -33,9 +33,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
       </p:commandLink>
       <p:spacer width="5px"/>
-      <p:commandLink id="restore-default-chart-link" 
-        onclick="PF('restore-confirmation-dialog').show();" 
-        rendered="#{!data.createMode}">
+      <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();" rendered="#{!data.createMode and data.canCreateNewCharts}">
         <h:outputText id="restore-default-chart-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}" rendered="#{!data.createMode}"/>
       </p:commandLink>
       <p:commandLink id="back-from-drilldown-link" actionListener="#{logic.switchDrilldownMode}" rendered="#{data.isDrilldownElapsedTime}"
