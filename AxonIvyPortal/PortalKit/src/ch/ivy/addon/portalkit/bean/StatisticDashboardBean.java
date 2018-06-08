@@ -40,7 +40,7 @@ public class StatisticDashboardBean implements Serializable {
     for (StatisticChart chart : chartList) {
       String chartId = chart.getId();
       if (chartId.contains("_")) {
-        // chart with format: id + _ + suffix is lower level (month/week/day/hour) 
+        // chart with format: id + _ + suffix is lower level (month/week/day/hour)
         // chart when drilldown
         chartIdSuffixes.add(chartId.substring(chartId.indexOf('_') + 1));
       }
@@ -123,6 +123,13 @@ public class StatisticDashboardBean implements Serializable {
     return statisticService.isTaskByExpiry(statisticChart);
   }
 
+  public boolean isTaskByExpiryHour(StatisticChart statisticChart) {
+    if (statisticChart == null) {
+      return false;
+    }
+    return statisticService.isTaskByExpiryHour(statisticChart);
+  }
+
   public boolean isCaseByState(StatisticChart statisticChart) {
     if (statisticChart == null) {
       return false;
@@ -136,7 +143,7 @@ public class StatisticDashboardBean implements Serializable {
     }
     return statisticService.isCaseByFinishedTask(statisticChart);
   }
-  
+
   public boolean isCaseByFinishedTime(StatisticChart statisticChart) {
     if (statisticChart == null) {
       return false;
