@@ -282,6 +282,48 @@ As0 @PushWFArc f281 '' #zField
 As0 @PushWFArc f282 '' #zField
 As0 @PushWFArc f284 '' #zField
 As0 @PushWFArc f29 '' #zField
+As0 @CallSub f78 '' #zField
+As0 @RichDialogProcessEnd f79 '' #zField
+As0 @CallSub f83 '' #zField
+As0 @GridStep f85 '' #zField
+As0 @Alternative f298 '' #zField
+As0 @GridStep f87 '' #zField
+As0 @Alternative f89 '' #zField
+As0 @GridStep f90 '' #zField
+As0 @RichDialogProcessStart f105 '' #zField
+As0 @RichDialogProcessEnd f106 '' #zField
+As0 @Alternative f107 '' #zField
+As0 @GridStep f108 '' #zField
+As0 @PushWFArc f109 '' #zField
+As0 @PushWFArc f300 '' #zField
+As0 @PushWFArc f294 '' #zField
+As0 @PushWFArc f293 '' #zField
+As0 @PushWFArc f288 '' #zField
+As0 @PushWFArc f289 '' #zField
+As0 @PushWFArc f291 '' #zField
+As0 @PushWFArc f290 '' #zField
+As0 @PushWFArc f295 '' #zField
+As0 @PushWFArc f292 '' #zField
+As0 @PushWFArc f299 '' #zField
+As0 @PushWFArc f296 '' #zField
+As0 @PushWFArc f314 '' #zField
+As0 @PushWFArc f312 '' #zField
+As0 @PushWFArc f310 '' #zField
+As0 @PushWFArc f311 '' #zField
+As0 @GridStep f305 '' #zField
+As0 @Trigger f307 '' #zField
+As0 @PushWFArc f308 '' #zField
+As0 @PushWFArc f313 '' #zField
+As0 @Alternative f306 '' #zField
+As0 @GridStep f303 '' #zField
+As0 @GridStep f301 '' #zField
+As0 @GridStep f302 '' #zField
+As0 @PushWFArc f309 '' #zField
+As0 @Trigger f304 '' #zField
+As0 @GridStep f110 '' #zField
+As0 @PushWFArc f111 '' #zField
+As0 @PushWFArc f112 '' #zField
+As0 @PushWFArc f240 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 As0 f0 guid 14B6C3C6330883A7 #txt
 As0 f0 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -3170,6 +3212,473 @@ As0 f284 expr out #txt
 As0 f284 572 2217 572 2268 #arcP
 As0 f29 expr out #txt
 As0 f29 952 626 952 724 #arcP
+As0 f78 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f78 processCall MultiPortal/ServerService:getExternalHost(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
+As0 f78 doCall true #txt
+As0 f78 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server> param;
+' #txt
+As0 f78 requestMappingAction 'param.server=in.selectedServer;
+' #txt
+As0 f78 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f78 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.serverExternalHost=result.externalHost;
+' #txt
+As0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get external host</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f78 1532 1619 36 24 20 -2 #rect
+As0 f78 @|CallSubIcon #fIcon
+As0 f79 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f79 1537 2482 26 26 0 12 #rect
+As0 f79 @|RichDialogProcessEndIcon #fIcon
+As0 f83 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f83 processCall MultiPortal/LibraryService:getLibrary(ch.ivy.addon.portalkit.persistence.domain.Server,String,String) #txt
+As0 f83 doCall true #txt
+As0 f83 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String appName,java.lang.String libraryId> param;
+' #txt
+As0 f83 requestMappingAction 'param.server=in.selectedServer;
+param.appName=ch.ivyteam.ivy.Advisor.getAdvisor().isDesigner() ? ch.ivy.addon.portalkit.enums.IvyDefaultApplication.DESIGNER.getValue() : ch.ivy.addon.portalkit.enums.IvyDefaultApplication.SYSTEM.getValue();
+param.libraryId=ch.ivy.addon.portalkit.enums.PortalLibrary.PORTAL_CONNECTOR.getValue();
+' #txt
+As0 f83 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f83 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.remotePortalConnector=result.library;
+' #txt
+As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>LibraryService</name>
+        <nameStyle>14,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f83 1530 1875 40 24 29 -11 #rect
+As0 f83 @|CallSubIcon #fIcon
+As0 f85 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f85 actionTable 'out=in;
+' #txt
+As0 f85 actionCode 'import ch.ivy.ws.addon.WsException;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+if(in.errors.size() > 0) {
+	String connectionFailMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testConnectionFail");
+	for(WsException error : in.errors) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,connectionFailMessage, null));
+	}
+}' #txt
+As0 f85 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show message if any</name>
+        <nameStyle>19,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f85 1532 1731 36 24 20 -2 #rect
+As0 f85 @|StepIcon #fIcon
+As0 f298 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f298 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no error?</name>
+        <nameStyle>9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f298 1534 2007 32 32 11 10 #rect
+As0 f298 @|AlternativeIcon #fIcon
+As0 f87 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f87 actionTable 'out=in;
+' #txt
+As0 f87 actionCode 'import ch.ivy.ws.addon.WsErrorType;
+import java.util.Calendar;
+import ch.ivy.ws.addon.WsException;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+
+in.errors = new List();
+boolean isValidPath = in.selectedServer.path.matches("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+if (!isValidPath){
+	WsException exception;
+	exception.errorCode = 11001;
+	exception.errorType = WsErrorType.WARNING;
+	Calendar c = Calendar.getInstance();
+	c.setTime(new java.util.Date());
+	exception.errorDateTime = c;
+	exception.userText = ivy.cms.co("/errors/11001/userText", [in.selectedServer.name]);
+	exception.server = in.selectedServer.name;
+	in.errors.add(exception);
+	String connectionFailMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathIncorrectMsg");
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,connectionFailMessage, null));
+}' #txt
+As0 f87 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validate server</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f87 1530 1507 40 24 25 -8 #rect
+As0 f87 @|StepIcon #fIcon
+As0 f89 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f89 1534 1559 32 32 0 16 #rect
+As0 f89 @|AlternativeIcon #fIcon
+As0 f90 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f90 actionTable 'out=in;
+' #txt
+As0 f90 actionCode 'if((in.errors.size() > 0) || (in.errors.size() == 0 && "".equalsIgnoreCase(in.serverExternalHost))) {
+	in.serverExternalHost = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/autoDetectExternalHost");
+}' #txt
+As0 f90 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set external host value</name>
+        <nameStyle>23,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f90 1532 1675 36 24 20 -2 #rect
+As0 f90 @|StepIcon #fIcon
+As0 f105 guid 163DD4C4D1EAA71E #txt
+As0 f105 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f105 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f105 actionTable 'out=in;
+' #txt
+As0 f105 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>saveServerWithValidation</name>
+        <nameStyle>24,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f105 1538 1451 24 24 22 -4 #rect
+As0 f105 @|RichDialogProcessStartIcon #fIcon
+As0 f106 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f106 1729 2010 26 26 0 12 #rect
+As0 f106 @|RichDialogProcessEndIcon #fIcon
+As0 f107 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is connection ok?</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f107 1534 1799 32 32 13 12 #rect
+As0 f107 @|AlternativeIcon #fIcon
+As0 f108 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f108 actionTable 'out=in;
+' #txt
+As0 f108 actionCode 'import ch.ivy.ws.addon.WsErrorType;
+import java.util.Calendar;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import java.util.Arrays;
+import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivy.ws.addon.WsException;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+ILibrary portalKit = ivy.wf.getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
+String portalKitVersion = portalKit.getQualifiedVersion().toString();
+in.isServerCompatible = portalKitVersion.equals(in.remotePortalConnector.projectVersion);
+
+if(in.errors.size() > 0) {
+	List<Object> params = Arrays.asList(portalKitVersion);
+	String checkCompatibilityFailMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testCompatibilityFail", params);
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,checkCompatibilityFailMessage, null));
+} else if(!in.isServerCompatible) {
+	WsException exception;
+	exception.errorCode = 11001;
+	exception.errorType = WsErrorType.WARNING;
+	Calendar c = Calendar.getInstance();
+	c.setTime(new java.util.Date());
+	exception.errorDateTime = c;
+	exception.userText = ivy.cms.co("/errors/11001/userText", [in.selectedServer.name]);
+	exception.server = in.selectedServer.name;
+	in.errors.add(exception);
+	List<Object> params = Arrays.asList(in.remotePortalConnector.projectVersion, portalKitVersion);
+	String connectionSuccessMessage = ivy.cms.co("/errors/compatibility/message", params);
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,connectionSuccessMessage, null));
+}' #txt
+As0 f108 security system #txt
+As0 f108 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>check compatibility&#xD;
+ and show message if any</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f108 1530 1939 40 24 24 -1 #rect
+As0 f108 @|StepIcon #fIcon
+As0 f109 expr in #txt
+As0 f109 1566 1815 1742 2010 #arcP
+As0 f109 1 1742 1815 #addKink
+As0 f109 1 0.03298692622939959 0 0 #arcLabel
+As0 f300 expr in #txt
+As0 f300 1566 2023 1729 2023 #arcP
+As0 f300 0 0.9845493787820925 0 0 #arcLabel
+As0 f294 expr out #txt
+As0 f294 1550 1643 1550 1675 #arcP
+As0 f293 expr out #txt
+As0 f293 1550 1899 1550 1939 #arcP
+As0 f288 expr out #txt
+As0 f288 1550 1699 1550 1731 #arcP
+As0 f289 expr out #txt
+As0 f289 1550 1755 1550 1799 #arcP
+As0 f291 expr out #txt
+As0 f291 1550 1531 1550 1559 #arcP
+As0 f290 expr in #txt
+As0 f290 outCond 'in.errors.size() == 0' #txt
+As0 f290 1550 1831 1550 1875 #arcP
+As0 f295 expr in #txt
+As0 f295 1566 1575 1742 2010 #arcP
+As0 f295 1 1742 1575 #addKink
+As0 f295 1 0.14534129532349582 0 0 #arcLabel
+As0 f292 expr in #txt
+As0 f292 outCond 'in.errors.size() == 0' #txt
+As0 f292 1550 1591 1550 1619 #arcP
+As0 f299 expr out #txt
+As0 f299 1550 1963 1550 2007 #arcP
+As0 f296 expr out #txt
+As0 f296 1550 1475 1550 1507 #arcP
+As0 f314 expr in #txt
+As0 f314 outCond 'in.errors.size() == 0' #txt
+As0 f314 1550 2039 1550 2079 #arcP
+As0 f312 expr out #txt
+As0 f312 1550 2167 1550 2199 #arcP
+As0 f310 expr in #txt
+As0 f310 outCond in.isAddMode #txt
+As0 f310 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f310 1564 2331 1615 2391 #arcP
+As0 f310 1 1615 2331 #addKink
+As0 f310 0 0.92 0 -9 #arcLabel
+As0 f311 expr out #txt
+As0 f311 1550 2103 1550 2143 #arcP
+As0 f305 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f305 actionTable 'out=in;
+' #txt
+As0 f305 actionCode 'import ch.ivy.addon.portalkit.webservice.WebserviceCache;
+WebserviceCache.getInstance().invalidateGetApplicationsWSCache();' #txt
+As0 f305 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f305 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>invalidate WS cache</name>
+        <nameStyle>19
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f305 1486 2079 128 24 -55 -8 #rect
+As0 f305 @|StepIcon #fIcon
+As0 f307 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f307 processCall 'Business Processes/AbstractSynchronizingConfiguration:addOrUpdateOne(ch.ivy.addon.portalkit.persistence.domain.BusinessEntity)' #txt
+As0 f307 doCall true #txt
+As0 f307 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity businessEntity> param;
+' #txt
+As0 f307 requestMappingAction 'param.businessEntity=in.selectedServer;
+' #txt
+As0 f307 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f307 responseMappingAction 'out=in;
+' #txt
+As0 f307 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update data</name>
+        <nameStyle>11,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f307 1532 2391 36 24 -69 15 #rect
+As0 f307 @|TriggerIcon #fIcon
+As0 f308 expr in #txt
+As0 f308 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f308 1550 2345 1550 2391 #arcP
+As0 f313 expr out #txt
+As0 f313 1550 2279 1550 2317 #arcP
+As0 f306 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f306 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is Add new Server?</name>
+        <nameStyle>18,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f306 1536 2317 28 28 -112 -24 #rect
+As0 f306 @|AlternativeIcon #fIcon
+As0 f303 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f303 actionTable 'out=in;
+' #txt
+As0 f303 actionCode 'import ch.ivy.addon.portalkit.enums.WSAuthenticationType;
+import ch.ivy.addon.portalkit.persistence.domain.Server;
+
+import ch.ivy.addon.portalkit.service.ServerService;
+
+ServerService serverService = new ServerService();
+if (WSAuthenticationType.NONE == in.selectedServer.wsAuthenticationType) {
+	in.selectedServer.username = null;
+	in.selectedServer.password = null;
+	in.selectedServer.host = null;
+	in.selectedServer.domain = null;
+} else if (WSAuthenticationType.HTTP_BASIC == in.selectedServer.wsAuthenticationType) {
+	in.selectedServer.host = null;
+	in.selectedServer.domain = null;
+}
+
+in.selectedServer = serverService.save(in.selectedServer) as Server;' #txt
+As0 f303 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f303 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>save server</name>
+        <nameStyle>11,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f303 1532 2143 36 24 20 -2 #rect
+As0 f303 @|StepIcon #fIcon
+As0 f301 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f301 actionTable 'out=in;
+' #txt
+As0 f301 actionCode 'if (in.isAddMode) {
+	in.serverList.add(in.selectedServer	);
+}' #txt
+As0 f301 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f301 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Add to list</name>
+        <nameStyle>11,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f301 1532 2199 36 24 20 -2 #rect
+As0 f301 @|StepIcon #fIcon
+As0 f302 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f302 actionTable 'out=in;
+' #txt
+As0 f302 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+
+ApplicationService applicationService = new ApplicationService();
+in.applicationList = applicationService.findAll();' #txt
+As0 f302 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f302 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>getAllApplication</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f302 1532 2255 36 24 20 -3 #rect
+As0 f302 @|StepIcon #fIcon
+As0 f309 expr out #txt
+As0 f309 1550 2223 1550 2255 #arcP
+As0 f304 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f304 processCall 'Business Processes/SynchronizeServerConfiguration:add(ch.ivy.addon.portalkit.persistence.domain.Server)' #txt
+As0 f304 doCall true #txt
+As0 f304 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server> param;
+' #txt
+As0 f304 requestMappingAction 'param.server=in.selectedServer;
+' #txt
+As0 f304 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f304 responseMappingAction 'out=in;
+' #txt
+As0 f304 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>sync data</name>
+        <nameStyle>9,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f304 1597 2391 36 24 -17 16 #rect
+As0 f304 @|TriggerIcon #fIcon
+As0 f110 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f110 actionTable 'out=in;
+' #txt
+As0 f110 actionCode 'import org.primefaces.context.RequestContext;
+
+RequestContext context = RequestContext.getCurrentInstance();
+context.execute("PF(''serverDialogVar'').hide();");' #txt
+As0 f110 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>hide dialog</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f110 1530 2444 40 24 -93 -6 #rect
+As0 f110 @|StepIcon #fIcon
+As0 f111 expr out #txt
+As0 f111 1615 2415 1570 2456 #arcP
+As0 f111 1 1615 2456 #addKink
+As0 f111 0 0.868961803578636 0 0 #arcLabel
+As0 f112 expr out #txt
+As0 f112 1550 2415 1550 2444 #arcP
+As0 f240 expr out #txt
+As0 f240 1550 2468 1550 2482 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3441,3 +3950,47 @@ As0 f65 mainOut f280 tail #connect
 As0 f280 head f277 mainIn #connect
 As0 f80 mainOut f29 tail #connect
 As0 f29 head f15 mainIn #connect
+As0 f78 mainOut f294 tail #connect
+As0 f294 head f90 mainIn #connect
+As0 f90 mainOut f288 tail #connect
+As0 f288 head f85 mainIn #connect
+As0 f83 mainOut f293 tail #connect
+As0 f293 head f108 mainIn #connect
+As0 f85 mainOut f289 tail #connect
+As0 f289 head f107 in #connect
+As0 f107 out f290 tail #connect
+As0 f290 head f83 mainIn #connect
+As0 f107 out f109 tail #connect
+As0 f109 head f106 mainIn #connect
+As0 f87 mainOut f291 tail #connect
+As0 f291 head f89 in #connect
+As0 f89 out f292 tail #connect
+As0 f292 head f78 mainIn #connect
+As0 f89 out f295 tail #connect
+As0 f295 head f106 mainIn #connect
+As0 f105 mainOut f296 tail #connect
+As0 f296 head f87 mainIn #connect
+As0 f108 mainOut f299 tail #connect
+As0 f299 head f298 in #connect
+As0 f300 head f106 mainIn #connect
+As0 f301 mainOut f309 tail #connect
+As0 f309 head f302 mainIn #connect
+As0 f303 mainOut f312 tail #connect
+As0 f312 head f301 mainIn #connect
+As0 f302 mainOut f313 tail #connect
+As0 f313 head f306 in #connect
+As0 f306 out f310 tail #connect
+As0 f310 head f304 mainIn #connect
+As0 f306 out f308 tail #connect
+As0 f308 head f307 mainIn #connect
+As0 f305 mainOut f311 tail #connect
+As0 f311 head f303 mainIn #connect
+As0 f298 out f314 tail #connect
+As0 f314 head f305 mainIn #connect
+As0 f298 out f300 tail #connect
+As0 f304 mainOut f111 tail #connect
+As0 f111 head f110 mainIn #connect
+As0 f307 mainOut f112 tail #connect
+As0 f112 head f110 mainIn #connect
+As0 f110 mainOut f240 tail #connect
+As0 f240 head f79 mainIn #connect
