@@ -834,10 +834,26 @@ As0 f72 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f72 actionTable 'out=in;
 ' #txt
-As0 f72 actionCode 'import org.primefaces.context.RequestContext;
+As0 f72 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import org.primefaces.context.RequestContext;
 
 in.isAddMode = false;
-in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSetting");' #txt
+in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSetting");
+GlobalVariable globalVariable = GlobalVariable.valueOf(in.selectedSetting.key);
+if (GlobalVariable.getBooleanType().contains(globalVariable) || GlobalVariable.getEnumType().contains(globalVariable)) {
+	in.settingInputType = 2; //dropdown
+	if (GlobalVariable.getBooleanType().contains(globalVariable)) {
+		in.dropDownValues = Arrays.asList("false", "true");
+	} else {
+		in.dropDownValues = Arrays.asList(StatisticChartConstants.DRILLDOWN_LEVEL_YEAR, StatisticChartConstants.DRILLDOWN_LEVEL_MONTH, StatisticChartConstants.DRILLDOWN_LEVEL_WEEK, StatisticChartConstants.DRILLDOWN_LEVEL_DAY, StatisticChartConstants.DRILLDOWN_LEVEL_HOUR);	
+	}
+} else if (GlobalVariable.getNumberType().contains(globalVariable)) {
+	in.settingInputType = 3; //number
+} else {
+	in.settingInputType = 1; //text
+}' #txt
 As0 f72 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -65,3 +65,8 @@ remotePortalConnector ch.ivy.addon.portalkit.bo.RemoteLibrary #field
 remotePortalConnector PERSISTENT #fieldModifier
 resetAllSettings Boolean #field
 resetAllSettings PERSISTENT #fieldModifier
+settingInputType Number #field
+settingInputType '1-Normal text, 2-Dropdown, 3-Number' #fieldComment
+settingInputType PERSISTENT #fieldModifier
+dropDownValues List<String> #field
+dropDownValues PERSISTENT #fieldModifier
