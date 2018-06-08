@@ -589,17 +589,17 @@
 					<!-- VALUE -->
 					<p:outputLabel styleClass="admin-settings-form-input-label"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}" for="valueSetting" />
-					<c:if test="#{data.settingInputType == 1}">
+					<c:if test="#{data.settingInputType == '1'}" >
 						<p:inputText value="#{data.selectedSetting.value}" id="valueSetting" />
 					</c:if>
 
-					<c:if test="#{data.settingInputType == 2}">
+					<c:if test="#{data.settingInputType == '2'}" >
 						<p:selectOneMenu value="#{data.selectedSetting.value}">
 							<f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value}" id="valueSetting" />
 						</p:selectOneMenu>
 					</c:if>
 
-					<c:if test="#{data.settingInputType == 3}">
+					<c:if test="#{data.settingInputType == '3'}" >
 						<p:inputText value="#{data.selectedSetting.value}" id="valueSetting" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
 					</c:if>
 
