@@ -14,7 +14,7 @@
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}"/>
           <p:outputLabel id="case-id" value="#{data.remoteCase.id}"/>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}"/>
-          <p:outputLabel id="case-creator" value="#{data.remoteCase.creatorUserName}"/>
+          <p:outputLabel id="case-creator" value="#{data.remoteCase.creatorFullName}"/>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"/>
           <p:outputLabel id="case-state" value="#{caseBean.getState(data.remoteCase)}"/>
         </p:panelGrid>
@@ -37,7 +37,7 @@
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
             </f:facet>
-            <h:outputText value="#{data.remoteCase.creatorUserName}" />
+            <h:outputText value="#{data.remoteCase.creatorFullName}" />
           </p:column>
           <p:column>
             <f:facet name="header">

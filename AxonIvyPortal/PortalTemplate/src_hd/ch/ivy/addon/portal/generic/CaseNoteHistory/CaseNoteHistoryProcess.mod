@@ -88,8 +88,11 @@ out.histories=param.histories;
 ' #txt
 Cs0 f6 inActionCode 'out.remoteCase.setName(param.ivyCase.getName());
 out.remoteCase.setId(param.ivyCase.getId());
-out.remoteCase.setCreatorUserName(param.ivyCase.getCreatorUserName());
-out.remoteCase.setState(param.ivyCase.getState());' #txt
+out.remoteCase.setState(param.ivyCase.getState());
+
+if (param.ivyCase.getCreatorUser() != null) {
+	out.remoteCase.setCreatorFullName(param.ivyCase.getCreatorUser().getFullName());	
+}' #txt
 Cs0 f6 outParameterDecl '<> result;
 ' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
