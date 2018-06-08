@@ -153,13 +153,6 @@
 							</entry>
 						</row>
 						<row>
-							<entry>EXPIRY_CHART_LAST_DRILLDOWN_LEVEL</entry>
-							<entry>One of these values: HOUR/DAY/WEEK/MONTH/YEAR</entry>
-							<entry>
-								Determine last drilldown level using in Task by expiry chart. Default value is HOUR.
-							</entry>
-						</row>
-						<row>
 							<entry>ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT</entry>
 							<entry>TRUE/FALSE</entry>
 							<entry>

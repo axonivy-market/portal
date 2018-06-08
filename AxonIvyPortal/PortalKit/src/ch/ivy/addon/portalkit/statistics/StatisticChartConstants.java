@@ -52,12 +52,6 @@ public class StatisticChartConstants {
   public static final String IN_17 = "17";
   public static final String AFTER_18 = ">18";
 
-  public static final String DRILLDOWN_LEVEL_YEAR = "YEAR";
-  public static final String DRILLDOWN_LEVEL_MONTH = "MONTH";
-  public static final String DRILLDOWN_LEVEL_WEEK = "WEEK";
-  public static final String DRILLDOWN_LEVEL_DAY = "DAY";
-  public static final String DRILLDOWN_LEVEL_HOUR = "HOUR";
-
   public static final String EXCEPTION_PRIORITY_KEY =
           "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/exception";
   public static final String HIGH_PRIORITY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/high";
