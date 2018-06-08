@@ -38,8 +38,7 @@ public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
             Repos.builder().primaryKey(EntityProperty.KEY.toString()).build(String.class, GlobalSetting.class)
                 .init(findAll());
     List<GlobalSetting> globalSettings = repo.query(ObjectFilter.eq(EntityProperty.KEY.toString(), variableName));
-    GlobalSetting globalSetting = CollectionUtils.isEmpty(globalSettings) ? null : globalSettings.get(0);
-    return globalSetting;
+    return CollectionUtils.isEmpty(globalSettings) ? null : globalSettings.get(0);
   }
 
   @ExecuteAsSystem
