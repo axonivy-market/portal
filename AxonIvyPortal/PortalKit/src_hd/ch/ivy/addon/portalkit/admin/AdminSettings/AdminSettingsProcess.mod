@@ -52,32 +52,14 @@ As0 @PushWFArc f23 '' #zField
 As0 @RichDialogMethodStart f61 '' #zField
 As0 @RichDialogProcessEnd f62 '' #zField
 As0 @PushWFArc f66 '' #zField
-As0 @RichDialogProcessStart f63 '' #zField
-As0 @RichDialogProcessEnd f64 '' #zField
-As0 @GridStep f67 '' #zField
-As0 @PushWFArc f68 '' #zField
-As0 @PushWFArc f65 '' #zField
 As0 @RichDialogMethodStart f69 '' #zField
 As0 @RichDialogProcessEnd f70 '' #zField
 As0 @GridStep f72 '' #zField
 As0 @PushWFArc f73 '' #zField
 As0 @PushWFArc f71 '' #zField
-As0 @RichDialogMethodStart f74 '' #zField
-As0 @RichDialogProcessEnd f75 '' #zField
-As0 @PushWFArc f76 '' #zField
 As0 @RichDialogProcessStart f80 '' #zField
 As0 @RichDialogProcessEnd f81 '' #zField
-As0 @GridStep f85 '' #zField
-As0 @GridStep f89 '' #zField
 As0 @GridStep f93 '' #zField
-As0 @GridStep f105 '' #zField
-As0 @PushWFArc f106 '' #zField
-As0 @Alternative f107 '' #zField
-As0 @PushWFArc f108 '' #zField
-As0 @GridStep f109 '' #zField
-As0 @PushWFArc f110 '' #zField
-As0 @RichDialogProcessEnd f111 '' #zField
-As0 @PushWFArc f112 '' #zField
 As0 @GridStep f113 '' #zField
 As0 @Alternative f115 '' #zField
 As0 @PushWFArc f116 '' #zField
@@ -197,14 +179,9 @@ As0 @PushWFArc f101 '' #zField
 As0 @GridStep f102 '' #zField
 As0 @PushWFArc f14 '' #zField
 As0 @GridStep f15 '' #zField
-As0 @PushWFArc f29 '' #zField
-As0 @PushWFArc f83 '' #zField
 As0 @GridStep f84 '' #zField
 As0 @PushWFArc f86 '' #zField
 As0 @PushWFArc f16 '' #zField
-As0 @GridStep f31 '' #zField
-As0 @PushWFArc f90 '' #zField
-As0 @PushWFArc f87 '' #zField
 As0 @GridStep f167 '' #zField
 As0 @PushWFArc f95 '' #zField
 As0 @GridStep f169 '' #zField
@@ -227,16 +204,11 @@ As0 @Trigger f237 '' #zField
 As0 @PushWFArc f238 '' #zField
 As0 @PushWFArc f96 '' #zField
 As0 @Trigger f239 '' #zField
-As0 @PushWFArc f240 '' #zField
 As0 @PushWFArc f82 '' #zField
 As0 @Trigger f241 '' #zField
 As0 @PushWFArc f242 '' #zField
 As0 @PushWFArc f13 '' #zField
-As0 @RichDialogProcessEnd f78 '' #zField
 As0 @RichDialogProcessEnd f48 '' #zField
-As0 @Trigger f243 '' #zField
-As0 @PushWFArc f244 '' #zField
-As0 @PushWFArc f79 '' #zField
 As0 @Trigger f245 '' #zField
 As0 @PushWFArc f246 '' #zField
 As0 @PushWFArc f49 '' #zField
@@ -288,6 +260,28 @@ As0 @Alternative f273 '' #zField
 As0 @PushWFArc f274 '' #zField
 As0 @PushWFArc f19 '' #zField
 As0 @PushWFArc f275 '' #zField
+As0 @RichDialogProcessEnd f286 '' #zField
+As0 @RichDialogMethodStart f74 '' #zField
+As0 @RichDialogMethodStart f285 '' #zField
+As0 @RichDialogProcessEnd f75 '' #zField
+As0 @PushWFArc f76 '' #zField
+As0 @PushWFArc f287 '' #zField
+As0 @PushWFArc f31 '' #zField
+As0 @GridStep f63 '' #zField
+As0 @Trigger f64 '' #zField
+As0 @RichDialogProcessEnd f277 '' #zField
+As0 @Trigger f65 '' #zField
+As0 @GridStep f276 '' #zField
+As0 @RichDialogProcessStart f67 '' #zField
+As0 @RichDialogProcessEnd f68 '' #zField
+As0 @RichDialogProcessStart f278 '' #zField
+As0 @PushWFArc f279 '' #zField
+As0 @PushWFArc f283 '' #zField
+As0 @PushWFArc f280 '' #zField
+As0 @PushWFArc f281 '' #zField
+As0 @PushWFArc f282 '' #zField
+As0 @PushWFArc f284 '' #zField
+As0 @PushWFArc f29 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 As0 f0 guid 14B6C3C6330883A7 #txt
 As0 f0 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -296,19 +290,23 @@ As0 f0 disableUIEvents true #txt
 As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
+As0 f0 inParameterMapAction 'out.resetAllSettings=false;
+' #txt
 As0 f0 outParameterDecl '<> result;
 ' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
+        <nameStyle>7,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-As0 f0 86 38 20 20 13 0 #rect
+As0 f0 302 38 20 20 13 0 #rect
 As0 f0 @|RichDialogInitStartIcon #fIcon
 As0 f1 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f1 86 182 20 20 13 0 #rect
+As0 f1 302 182 20 20 13 0 #rect
 As0 f1 @|RichDialogProcessEndIcon #fIcon
 As0 f3 guid 14B6C72DFD2FA1E7 #txt
 As0 f3 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -325,10 +323,10 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f3 302 38 20 20 13 0 #rect
+As0 f3 518 38 20 20 13 0 #rect
 As0 f3 @|RichDialogProcessStartIcon #fIcon
 As0 f4 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f4 302 182 20 20 13 0 #rect
+As0 f4 518 182 20 20 13 0 #rect
 As0 f4 @|RichDialogProcessEndIcon #fIcon
 As0 f6 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
@@ -354,12 +352,12 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f6 294 108 36 24 20 -2 #rect
+As0 f6 510 108 36 24 20 -2 #rect
 As0 f6 @|StepIcon #fIcon
 As0 f7 expr out #txt
-As0 f7 312 58 312 108 #arcP
+As0 f7 528 58 528 108 #arcP
 As0 f5 expr out #txt
-As0 f5 312 132 312 182 #arcP
+As0 f5 528 132 528 182 #arcP
 As0 f8 guid 14B6C969CD590FDA #txt
 As0 f8 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f8 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
@@ -459,7 +457,7 @@ As0 f28 1048 282 1048 332 #arcP
 As0 f26 expr out #txt
 As0 f26 1048 356 1048 398 #arcP
 As0 f12 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f12 518 510 20 20 13 0 #rect
+As0 f12 798 518 20 20 13 0 #rect
 As0 f12 @|RichDialogProcessEndIcon #fIcon
 As0 f18 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
@@ -495,7 +493,7 @@ As0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f30 510 388 36 24 20 -2 #rect
+As0 f30 790 396 36 24 20 -2 #rect
 As0 f30 @|StepIcon #fIcon
 As0 f32 guid 14B719AF780C56D8 #txt
 As0 f32 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -765,55 +763,6 @@ As0 f62 1150 918 20 20 13 0 #rect
 As0 f62 @|RichDialogProcessEndIcon #fIcon
 As0 f66 expr out #txt
 As0 f66 1160 850 1160 918 #arcP
-As0 f63 guid 14B77F52E65BC6F9 #txt
-As0 f63 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f63 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f63 actionTable 'out=in;
-' #txt
-As0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>addNewSetting</name>
-        <nameStyle>13,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f63 518 38 20 20 13 0 #rect
-As0 f63 @|RichDialogProcessStartIcon #fIcon
-As0 f64 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f64 518 182 20 20 13 0 #rect
-As0 f64 @|RichDialogProcessEndIcon #fIcon
-As0 f67 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f67 actionTable 'out=in;
-' #txt
-As0 f67 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
-
-import org.primefaces.context.RequestContext;
-
-
-in.selectedSetting = new GlobalSetting();
-
-in.isAddMode = true;
-in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addNewSetting");' #txt
-As0 f67 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>init value</name>
-        <nameStyle>10,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f67 510 108 36 24 20 -2 #rect
-As0 f67 @|StepIcon #fIcon
-As0 f68 expr out #txt
-As0 f68 528 58 528 108 #arcP
-As0 f65 expr out #txt
-As0 f65 528 132 528 182 #arcP
 As0 f69 guid 14B77FA478FB87A1 #txt
 As0 f69 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f69 method editSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
@@ -863,34 +812,6 @@ As0 f73 expr out #txt
 As0 f73 1688 58 1688 108 #arcP
 As0 f71 expr out #txt
 As0 f71 1688 132 1688 182 #arcP
-As0 f74 guid 14B77FCFD80D26A4 #txt
-As0 f74 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f74 method submitDeleteSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
-As0 f74 disableUIEvents false #txt
-As0 f74 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param = methodEvent.getInputArguments();
-' #txt
-As0 f74 inActionCode 'out.selectedSetting = param.setting;
-out.confirmMsg  = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteSettingConfirmation");
-out.objToDelete = 3;' #txt
-As0 f74 outParameterDecl '<> result;
-' #txt
-As0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>submitDeleteSetting(GlobalSetting)</name>
-        <nameStyle>34,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f74 1398 630 20 20 13 0 #rect
-As0 f74 @|RichDialogMethodStartIcon #fIcon
-As0 f75 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f75 1398 774 20 20 13 0 #rect
-As0 f75 @|RichDialogProcessEndIcon #fIcon
-As0 f76 expr out #txt
-As0 f76 1408 650 1408 774 #arcP
 As0 f80 guid 14B784950D872997 #txt
 As0 f80 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f80 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
@@ -906,47 +827,11 @@ As0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f80 798 606 20 20 13 0 #rect
+As0 f80 942 606 20 20 13 0 #rect
 As0 f80 @|RichDialogProcessStartIcon #fIcon
 As0 f81 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f81 798 942 20 20 13 0 #rect
+As0 f81 942 942 20 20 13 0 #rect
 As0 f81 @|RichDialogProcessEndIcon #fIcon
-As0 f85 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f85 actionTable 'out=in;
-' #txt
-As0 f85 actionCode 'if (in.isAddMode) {
-	in.settingList.add(in.selectedSetting);
-}' #txt
-As0 f85 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Add to list</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f85 790 836 36 24 20 -2 #rect
-As0 f85 @|StepIcon #fIcon
-As0 f89 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f89 actionTable 'out=in;
-' #txt
-As0 f89 actionCode in.settingList.remove(in.selectedSetting); #txt
-As0 f89 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f89 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>remove from list</name>
-        <nameStyle>16,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f89 750 388 36 24 20 -2 #rect
-As0 f89 @|StepIcon #fIcon
 As0 f93 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f93 actionTable 'out=in;
@@ -966,95 +851,6 @@ As0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f93 510 1396 36 24 21 -10 #rect
 As0 f93 @|StepIcon #fIcon
-As0 f105 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f105 actionTable 'out=in;
-' #txt
-As0 f105 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
-
-in.duplicateApp = false;
-// Check exist in add mode
-if (in.isAddMode) {
-	in.duplicateApp = false;
-	for (GlobalSetting setting : in.settingList) {
-		if (setting.key == in.selectedSetting.key) {
-				in.duplicateApp = true;
-				break;
-		}
-	}
-}' #txt
-As0 f105 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f105 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>check duplication</name>
-        <nameStyle>17,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f105 790 660 36 24 20 -2 #rect
-As0 f105 @|StepIcon #fIcon
-As0 f106 expr out #txt
-As0 f106 808 626 808 660 #arcP
-As0 f107 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>key exist ?</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f107 794 714 28 28 14 0 #rect
-As0 f107 @|AlternativeIcon #fIcon
-As0 f108 expr out #txt
-As0 f108 808 684 808 714 #arcP
-As0 f109 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f109 actionTable 'out=in;
-' #txt
-As0 f109 actionCode 'import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
-import org.primefaces.component.inputtext.InputText;
-import javax.faces.context.FacesContext;
-
-InputText ui = FacesContext.getCurrentInstance().getViewRoot().findComponent(":settingDialogForm:keySetting") as InputText;
-ui.valid = false;
-
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicateKeyMsg"), null));
-FacesContext.getCurrentInstance().validationFailed();' #txt
-As0 f109 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>show message</name>
-        <nameStyle>12,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f109 950 780 36 24 20 -2 #rect
-As0 f109 @|StepIcon #fIcon
-As0 f110 expr in #txt
-As0 f110 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f110 822 728 968 780 #arcP
-As0 f110 1 968 728 #addKink
-As0 f110 0 0.710102435118184 0 -16 #arcLabel
-As0 f111 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f111 958 894 20 20 13 0 #rect
-As0 f111 @|RichDialogProcessEndIcon #fIcon
-As0 f112 expr out #txt
-As0 f112 968 804 968 894 #arcP
 As0 f113 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f113 actionTable 'out=in;
@@ -2438,13 +2234,8 @@ As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f15 790 780 36 24 20 -2 #rect
+As0 f15 934 724 36 24 20 -2 #rect
 As0 f15 @|StepIcon #fIcon
-As0 f29 expr in #txt
-As0 f29 outCond !in.duplicateApp #txt
-As0 f29 808 742 808 780 #arcP
-As0 f83 expr out #txt
-As0 f83 808 804 808 836 #arcP
 As0 f84 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f84 actionTable 'out=in;
@@ -2462,39 +2253,15 @@ As0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f84 510 332 36 24 20 -2 #rect
+As0 f84 790 340 36 24 20 -2 #rect
 As0 f84 @|StepIcon #fIcon
 As0 f86 expr in #txt
 As0 f86 outCond 'in.objToDelete == 1' #txt
-As0 f86 528 310 528 332 #arcP
+As0 f86 542 296 808 340 #arcP
+As0 f86 1 808 296 #addKink
+As0 f86 0 0.6097390425486142 0 0 #arcLabel
 As0 f16 expr out #txt
-As0 f16 528 356 528 388 #arcP
-As0 f31 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f31 actionTable 'out=in;
-' #txt
-As0 f31 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
-GlobalSettingService globalSettingService = new GlobalSettingService();
-globalSettingService.delete(in.selectedSetting);' #txt
-As0 f31 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>delete global setting</name>
-        <nameStyle>21,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f31 750 332 36 24 20 -2 #rect
-As0 f31 @|StepIcon #fIcon
-As0 f90 expr out #txt
-As0 f90 768 356 768 388 #arcP
-As0 f87 expr in #txt
-As0 f87 outCond 'in.objToDelete == 3' #txt
-As0 f87 542 296 768 332 #arcP
-As0 f87 1 768 296 #addKink
-As0 f87 0 0.6954344773124139 0 0 #arcLabel
+As0 f16 808 364 808 396 #arcP
 As0 f167 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f167 actionTable 'out=in;
@@ -2710,12 +2477,10 @@ As0 f239 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f239 790 892 36 24 22 0 #rect
+As0 f239 934 892 36 24 22 0 #rect
 As0 f239 @|TriggerIcon #fIcon
-As0 f240 expr out #txt
-As0 f240 808 860 808 892 #arcP
 As0 f82 expr out #txt
-As0 f82 808 916 808 942 #arcP
+As0 f82 952 916 952 942 #arcP
 As0 f241 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f241 processCall 'Business Processes/SynchronizeServerConfiguration:delete(ch.ivy.addon.portalkit.persistence.domain.Server)' #txt
 As0 f241 doCall true #txt
@@ -2736,44 +2501,15 @@ As0 f241 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f241 510 452 36 24 20 -2 #rect
+As0 f241 790 460 36 24 20 -2 #rect
 As0 f241 @|TriggerIcon #fIcon
 As0 f242 expr out #txt
-As0 f242 528 412 528 452 #arcP
+As0 f242 808 420 808 460 #arcP
 As0 f13 expr out #txt
-As0 f13 528 476 528 510 #arcP
-As0 f78 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f78 758 510 20 20 13 0 #rect
-As0 f78 @|RichDialogProcessEndIcon #fIcon
+As0 f13 808 484 808 518 #arcP
 As0 f48 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f48 302 614 20 20 13 0 #rect
 As0 f48 @|RichDialogProcessEndIcon #fIcon
-As0 f243 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f243 processCall 'Business Processes/AbstractSynchronizingConfiguration:delete(ch.ivy.addon.portalkit.persistence.domain.BusinessEntity)' #txt
-As0 f243 doCall true #txt
-As0 f243 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity businessEntity> param;
-' #txt
-As0 f243 requestMappingAction 'param.businessEntity=in.selectedSetting;
-' #txt
-As0 f243 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f243 responseMappingAction 'out=in;
-' #txt
-As0 f243 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>sync data</name>
-        <nameStyle>9,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f243 750 452 36 24 20 -2 #rect
-As0 f243 @|TriggerIcon #fIcon
-As0 f244 expr out #txt
-As0 f244 768 412 768 452 #arcP
-As0 f79 expr out #txt
-As0 f79 768 476 768 510 #arcP
 As0 f245 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f245 processCall 'Business Processes/AbstractSynchronizingConfiguration:delete(ch.ivy.addon.portalkit.persistence.domain.BusinessEntity)' #txt
 As0 f245 doCall true #txt
@@ -2865,7 +2601,7 @@ As0 f98 outParameterDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Global
 ' #txt
 As0 f98 outActionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
-in.settingList = globalSettingService.findAll();
+in.settingList = globalSettingService.findAllGlobalSetting();
 result.globalSettings = in.settingList;' #txt
 As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3100,7 +2836,7 @@ As0 f264 0 0.8854585704184196 0 0 #arcLabel
 As0 f203 expr out #txt
 As0 f203 1488 276 1488 316 #arcP
 As0 f265 expr out #txt
-As0 f265 96 58 96 182 #arcP
+As0 f265 312 58 312 182 #arcP
 As0 f265 0 0.4862440103228913 0 0 #arcLabel
 As0 f253 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f253 processCall MultiPortal/LibraryService:getLibrary(ch.ivy.addon.portalkit.persistence.domain.Server,String,String) #txt
@@ -3246,6 +2982,194 @@ As0 f275 expr in #txt
 As0 f275 1232 1584 1408 1843 #arcP
 As0 f275 1 1408 1584 #addKink
 As0 f275 1 0.14534129532349582 0 0 #arcLabel
+As0 f286 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f286 1676 783 20 20 13 0 #rect
+As0 f286 @|RichDialogProcessEndIcon #fIcon
+As0 f74 guid 163DD18A566F4B85 #txt
+As0 f74 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f74 method submitResetSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
+As0 f74 disableUIEvents false #txt
+As0 f74 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param = methodEvent.getInputArguments();
+' #txt
+As0 f74 inActionCode 'out.selectedSetting = param.setting;
+out.confirmMsg  = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetSettingConfirmation");
+out.resetAllSettings = false;' #txt
+As0 f74 outParameterDecl '<> result;
+' #txt
+As0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>submitResetSetting(GlobalSetting)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f74 1407 639 20 20 13 0 #rect
+As0 f74 @|RichDialogMethodStartIcon #fIcon
+As0 f285 guid 163DD18A56815DFE #txt
+As0 f285 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f285 method submitResetAllSettings() #txt
+As0 f285 disableUIEvents false #txt
+As0 f285 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+As0 f285 inActionCode 'out.confirmMsg  = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetAllSettingsConfirmation");
+out.resetAllSettings = true;' #txt
+As0 f285 outParameterDecl '<> result;
+' #txt
+As0 f285 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>submitResetAllSettings()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f285 1676 639 20 20 13 0 #rect
+As0 f285 @|RichDialogMethodStartIcon #fIcon
+As0 f75 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f75 1407 783 20 20 13 0 #rect
+As0 f75 @|RichDialogProcessEndIcon #fIcon
+As0 f76 expr out #txt
+As0 f76 1417 659 1417 783 #arcP
+As0 f287 expr out #txt
+As0 f287 1686 659 1686 783 #arcP
+As0 f31 expr out #txt
+As0 f31 952 748 952 892 #arcP
+As0 f63 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f63 actionTable 'out=in;
+' #txt
+As0 f63 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+GlobalSettingService globalSettingService = new GlobalSettingService();
+globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());' #txt
+As0 f63 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reset selected setting</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f63 289 2171 128 44 -59 -8 #rect
+As0 f63 @|StepIcon #fIcon
+As0 f64 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f64 processCall 'Business Processes/AbstractSynchronizingConfiguration:addOrUpdateOne(ch.ivy.addon.portalkit.persistence.domain.BusinessEntity)' #txt
+As0 f64 doCall true #txt
+As0 f64 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity businessEntity> param;
+' #txt
+As0 f64 requestMappingAction 'param.businessEntity=in.selectedSetting;
+' #txt
+As0 f64 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f64 responseMappingAction 'out=in;
+' #txt
+As0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>sync data</name>
+        <nameStyle>9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f64 335 2269 36 24 22 0 #rect
+As0 f64 @|TriggerIcon #fIcon
+As0 f277 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f277 559 2358 26 26 0 12 #rect
+As0 f277 @|RichDialogProcessEndIcon #fIcon
+As0 f65 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f65 processCall 'Business Processes/AbstractSynchronizingConfiguration:addOrUpdateMany(List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity>)' #txt
+As0 f65 doCall true #txt
+As0 f65 requestActionDecl '<List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> businessEntities> param;
+' #txt
+As0 f65 requestMappingAction 'param.businessEntities=new ch.ivy.addon.portalkit.persistence.dao.GlobalSettingDao().findAll();
+' #txt
+As0 f65 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f65 responseMappingAction 'out=in;
+' #txt
+As0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>sync data</name>
+        <nameStyle>9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f65 554 2268 36 24 22 0 #rect
+As0 f65 @|TriggerIcon #fIcon
+As0 f276 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f276 actionTable 'out=in;
+' #txt
+As0 f276 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+GlobalSettingService globalSettingService = new GlobalSettingService();
+for (GlobalVariable globalVariable : GlobalVariable.values()) {
+	globalSettingService.resetGlobalSetting(globalVariable.toString());
+}' #txt
+As0 f276 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f276 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reset all settings</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f276 516 2173 112 44 -45 -8 #rect
+As0 f276 @|StepIcon #fIcon
+As0 f67 guid 163DD1F145199579 #txt
+As0 f67 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f67 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f67 actionTable 'out=in;
+' #txt
+As0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>resetValue</name>
+        <nameStyle>10,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f67 340 2084 26 26 -29 15 #rect
+As0 f67 @|RichDialogProcessStartIcon #fIcon
+As0 f68 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f68 340 2356 26 26 0 12 #rect
+As0 f68 @|RichDialogProcessEndIcon #fIcon
+As0 f278 guid 163DD1F1451A5EB6 #txt
+As0 f278 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f278 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f278 actionTable 'out=in;
+' #txt
+As0 f278 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>resetValues</name>
+        <nameStyle>11,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f278 559 2084 26 26 -33 15 #rect
+As0 f278 @|RichDialogProcessStartIcon #fIcon
+As0 f279 expr out #txt
+As0 f279 572 2110 572 2173 #arcP
+As0 f283 expr out #txt
+As0 f283 353 2215 353 2269 #arcP
+As0 f280 expr out #txt
+As0 f280 572 2292 572 2358 #arcP
+As0 f281 expr out #txt
+As0 f281 353 2110 353 2171 #arcP
+As0 f282 expr out #txt
+As0 f282 353 2293 353 2356 #arcP
+As0 f284 expr out #txt
+As0 f284 572 2217 572 2268 #arcP
+As0 f29 expr out #txt
+As0 f29 952 626 952 724 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3293,23 +3217,10 @@ As0 f51 mainOut f23 tail #connect
 As0 f23 head f22 mainIn #connect
 As0 f61 mainOut f66 tail #connect
 As0 f66 head f62 mainIn #connect
-As0 f63 mainOut f68 tail #connect
-As0 f68 head f67 mainIn #connect
-As0 f67 mainOut f65 tail #connect
-As0 f65 head f64 mainIn #connect
 As0 f69 mainOut f73 tail #connect
 As0 f73 head f72 mainIn #connect
 As0 f72 mainOut f71 tail #connect
 As0 f71 head f70 mainIn #connect
-As0 f74 mainOut f76 tail #connect
-As0 f76 head f75 mainIn #connect
-As0 f80 mainOut f106 tail #connect
-As0 f106 head f105 mainIn #connect
-As0 f105 mainOut f108 tail #connect
-As0 f108 head f107 in #connect
-As0 f110 head f109 mainIn #connect
-As0 f109 mainOut f112 tail #connect
-As0 f112 head f111 mainIn #connect
 As0 f113 mainOut f116 tail #connect
 As0 f116 head f115 in #connect
 As0 f118 head f117 mainIn #connect
@@ -3414,18 +3325,10 @@ As0 f52 mainOut f101 tail #connect
 As0 f101 head f104 mainIn #connect
 As0 f102 mainOut f14 tail #connect
 As0 f14 head f18 mainIn #connect
-As0 f107 out f29 tail #connect
-As0 f29 head f15 mainIn #connect
-As0 f107 out f110 tail #connect
-As0 f15 mainOut f83 tail #connect
-As0 f83 head f85 mainIn #connect
 As0 f164 out f86 tail #connect
 As0 f86 head f84 mainIn #connect
 As0 f84 mainOut f16 tail #connect
 As0 f16 head f30 mainIn #connect
-As0 f31 mainOut f90 tail #connect
-As0 f90 head f89 mainIn #connect
-As0 f87 head f31 mainIn #connect
 As0 f93 mainOut f95 tail #connect
 As0 f95 head f167 mainIn #connect
 As0 f20 mainOut f215 tail #connect
@@ -3452,18 +3355,12 @@ As0 f167 mainOut f238 tail #connect
 As0 f238 head f237 mainIn #connect
 As0 f237 mainOut f96 tail #connect
 As0 f96 head f38 mainIn #connect
-As0 f85 mainOut f240 tail #connect
-As0 f240 head f239 mainIn #connect
 As0 f239 mainOut f82 tail #connect
 As0 f82 head f81 mainIn #connect
 As0 f30 mainOut f242 tail #connect
 As0 f242 head f241 mainIn #connect
 As0 f241 mainOut f13 tail #connect
 As0 f13 head f12 mainIn #connect
-As0 f89 mainOut f244 tail #connect
-As0 f244 head f243 mainIn #connect
-As0 f243 mainOut f79 tail #connect
-As0 f79 head f78 mainIn #connect
 As0 f104 mainOut f246 tail #connect
 As0 f246 head f245 mainIn #connect
 As0 f245 mainOut f49 tail #connect
@@ -3480,7 +3377,6 @@ As0 f249 mainOut f255 tail #connect
 As0 f255 head f252 mainIn #connect
 As0 f164 out f260 tail #connect
 As0 f260 head f259 mainIn #connect
-As0 f164 out f87 tail #connect
 As0 f259 mainOut f50 tail #connect
 As0 f50 head f92 mainIn #connect
 As0 f115 out f262 tail #connect
@@ -3525,3 +3421,23 @@ As0 f273 out f19 tail #connect
 As0 f19 head f251 mainIn #connect
 As0 f273 out f275 tail #connect
 As0 f275 head f269 mainIn #connect
+As0 f74 mainOut f76 tail #connect
+As0 f76 head f75 mainIn #connect
+As0 f285 mainOut f287 tail #connect
+As0 f287 head f286 mainIn #connect
+As0 f15 mainOut f31 tail #connect
+As0 f31 head f239 mainIn #connect
+As0 f67 mainOut f281 tail #connect
+As0 f281 head f63 mainIn #connect
+As0 f278 mainOut f279 tail #connect
+As0 f279 head f276 mainIn #connect
+As0 f63 mainOut f283 tail #connect
+As0 f283 head f64 mainIn #connect
+As0 f64 mainOut f282 tail #connect
+As0 f282 head f68 mainIn #connect
+As0 f276 mainOut f284 tail #connect
+As0 f284 head f65 mainIn #connect
+As0 f65 mainOut f280 tail #connect
+As0 f280 head f277 mainIn #connect
+As0 f80 mainOut f29 tail #connect
+As0 f29 head f15 mainIn #connect

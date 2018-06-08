@@ -165,18 +165,20 @@
 		<p:tab id="settingTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
 			<h:form prependId="false" id="settingForm">
 				<h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
-					<p:commandButton id="add-global-variable-button" actionListener="#{logic.addNewSetting}"
-						oncomplete="PF('settingDialog').show()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}"
-						resetValues="true" update=":#{p:component('settingDialog')}" />
+					<p:commandButton id="add-global-variable-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
+							actionListener="#{logic.submitResetAllSettings}" oncomplete="PF('resetConfirmation').show()" update=":#{p:component('resetConfirmationDialog')}" />
 				</h:panelGroup>
 
 				<p:dataTable id="settingTable" styleClass="admin-table" value="#{logic.findAllGlobalSetting()}" var="setting"
 					sortBy="#{setting.key}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-					scrollable="true" scrollHeight="150">
+					scrollable="true" scrollHeight="250">
 					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}">
 						<h:outputText value="#{setting.key}" />
 					</p:column>
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultValue')}">
+						<h:outputText value="#{setting.defaultValue}" />
+					</p:column>
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/currentValue')}">
 						<h:outputText value="#{setting.value}" />
 					</p:column>
 					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}">
@@ -190,10 +192,10 @@
 							update="@this :#{p:component('settingDialog')}">
 							<span class="fa fa-pencil" />
 						</p:commandLink>
-						<p:commandLink id="delete" process="@this" update=":#{p:component('deleteConfirmationDialog')}"
-							actionListener="#{logic.submitDeleteSetting(setting)}" oncomplete="PF('deleteConfirmation').show()"
-							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" styleClass="action-column-icon-button">
-							<span class="fa fa-trash-o" />
+						<p:commandLink id="reset" process="@this" update=":#{p:component('resetConfirmationDialog')}"
+							actionListener="#{logic.submitResetSetting(setting)}" oncomplete="PF('resetConfirmation').show()"
+							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}" styleClass="action-column-icon-button">
+							<span class="fa fa-undo" />
 						</p:commandLink>
 					</p:column>
 				</p:dataTable>
@@ -582,12 +584,7 @@
 					<!-- KEY -->
 					<p:outputLabel styleClass="admin-settings-form-input-label"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}" for="keySetting" />
-					<p:inputText value="#{data.selectedSetting.key}" id="keySetting" disabled="#{!data.isAddMode}" required="true"
-						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/keyRequiredMsg')}"
-						validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/keyCharactersLimit')}">
-						<p:keyFilter regEx="/[a-zA-Z0-9_]/i" preventPaste="false" />
-						<f:validateRegex pattern="^[a-zA-Z0-9_]*$"></f:validateRegex>
-					</p:inputText>
+					<p:inputText value="#{data.selectedSetting.key}" id="keySetting" disabled="true" />
 
 					<!-- VALUE -->
 					<p:outputLabel styleClass="admin-settings-form-input-label"
@@ -634,6 +631,26 @@
 		<p:spacer width="5px" rendered="#{data.objToDelete=='3'}" />
 		<p:commandButton styleClass="portal-cancel-button"
 			value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('deleteConfirmation').hide()"
+			type="button" />
+	</p:confirmDialog>
+
+	<!--  CONFIRMATION DIALOG TO RESET SETTING -->
+	<p:confirmDialog id="resetConfirmationDialog" message="#{data.confirmMsg}" appendTo="@(body)"
+		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
+		widgetVar="resetConfirmation">
+		<c:if test="#{data.resetAllSettings}">
+			<p:commandButton styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+				actionListener="#{logic.resetValues}" oncomplete="PF('resetConfirmation').hide();"
+				update=":#{p:component('settingForm')}" />
+		</c:if>
+		<c:if test="#{!data.resetAllSettings}">
+			<p:commandButton styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+				actionListener="#{logic.resetValue}" oncomplete="PF('resetConfirmation').hide();"
+				update=":#{p:component('settingForm')}" />
+		</c:if>
+		<p:spacer width="5px" />
+		<p:commandButton styleClass="portal-cancel-button"
+			value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('resetConfirmation').hide()"
 			type="button" />
 	</p:confirmDialog>
 

@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.persistence.domain;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+
 
 public class GlobalSetting extends BusinessEntity {
   private String key;
@@ -28,6 +30,10 @@ public class GlobalSetting extends BusinessEntity {
 
   public void setNote(String note) {
     this.note = note;
+  }
+
+  public String getDefaultValue() {
+    return GlobalVariable.valueOf(key).getDefaultValue();
   }
 
   @Override
