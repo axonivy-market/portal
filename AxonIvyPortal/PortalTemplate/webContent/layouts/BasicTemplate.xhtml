@@ -11,7 +11,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </f:facet>
   <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
-  <link rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.ico']}" type="image/x-icon" />
+  <ui:fragment rendered="#{resource['ivy-webcontent:layouts/images/favicon.png'] != null}">
+    <link  rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.png']}" type="image/png" />
+  </ui:fragment>
 
   <h:outputStylesheet name="css/animate.css" library="modena-layout" />
   <h:outputStylesheet name="css/modena-font.css" library="modena-layout" />
