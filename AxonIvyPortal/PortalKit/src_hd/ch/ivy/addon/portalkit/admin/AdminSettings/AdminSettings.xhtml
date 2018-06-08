@@ -399,10 +399,9 @@
 				</h:panelGroup>
 				<h:panelGroup layout="block" styleClass="Fright">
 					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-						actionListener="#{logic.saveServer}" styleClass=""
-						oncomplete="if (!args.validationFailed){ PF('serverDialogVar').hide();}"
+						actionListener="#{logic.saveServerWithValidation}" styleClass=""						
 						update=":#{p:component('serverForm')} :#{p:component('applicationTable')} @form" process="@form"
-						widgetVar="saveServerButton" onclick="PF('saveServerButton').disable();" />
+						widgetVar="saveServerButton"/>
 					<p:spacer width="5px" />
 					<p:commandButton styleClass="portal-cancel-button"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
