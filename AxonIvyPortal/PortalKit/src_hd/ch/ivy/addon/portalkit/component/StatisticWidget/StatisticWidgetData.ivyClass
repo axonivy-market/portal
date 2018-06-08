@@ -28,3 +28,5 @@ defaultCharts PERSISTENT #fieldModifier
 canCreateNewCharts Boolean #field
 canCreateNewCharts 'Check user has permission to creating new charts' #fieldComment
 canCreateNewCharts PERSISTENT #fieldModifier
+hasDefaultChart Boolean #field
+hasDefaultChart PERSISTENT #fieldModifier
