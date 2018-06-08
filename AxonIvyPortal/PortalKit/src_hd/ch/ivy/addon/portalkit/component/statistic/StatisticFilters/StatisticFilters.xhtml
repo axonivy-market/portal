@@ -156,7 +156,17 @@
     </p:tab>
 
   <!-- CUSTOM VAR 1 FILTER -->
-  <p:tab title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField1')}">
+  <p:tab id="custom-varchar-1-filter-tab">
+  	<f:facet name="title">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField1')}" />
+        <p:outputLabel id="custom-varchar-1-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+        <p:tooltip for="custom-varchar-1-filter">
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}<br/>
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarChar1FilterDescription")}
+        </p:tooltip>
+      </f:facet>
     <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields1Filter"
         completeMethod="#{statisticChartCreationBean.populateCustomVarChar1AutoComplete}" 
         selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields1}"
@@ -165,7 +175,17 @@
   </p:tab>
 
   <!-- CUSTOM VAR 2 FILTER -->
-  <p:tab title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField2')}">
+  <p:tab id="custom-varchar-2-filter-tab">
+  	<f:facet name="title">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField2')}" />
+        <p:outputLabel id="custom-varchar-2-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+        <p:tooltip for="custom-varchar-2-filter">
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}<br/>
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarChar2FilterDescription")}
+        </p:tooltip>
+    </f:facet>
     <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields2Filter"
         completeMethod="#{statisticChartCreationBean.populateCustomVarChar2AutoComplete}" 
         selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields2}"
@@ -174,7 +194,17 @@
   </p:tab>
 
   <!-- CUSTOM VAR 3 FILTER -->
-  <p:tab title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField3')}">
+  <p:tab id="custom-varchar-3-filter-tab">
+  	<f:facet name="title">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField3')}" />
+        <p:outputLabel id="custom-varchar-3-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+        <p:tooltip for="custom-varchar-3-filter">
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}<br/>
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarChar3FilterDescription")}
+        </p:tooltip>
+    </f:facet>
     <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields3Filter"
         completeMethod="#{statisticChartCreationBean.populateCustomVarChar3AutoComplete}"
         selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields3}"
@@ -183,7 +213,17 @@
   </p:tab>
 
     <!-- CUSTOM VAR 4 FILTER -->
-  <p:tab title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField4')}">
+  <p:tab id="custom-varchar-4-filter-tab">
+  	<f:facet name="title">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField4')}" />
+        <p:outputLabel id="custom-varchar-4-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+        <p:tooltip for="custom-varchar-4-filter">
+         #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}<br/>
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarChar4FilterDescription")}
+        </p:tooltip>
+    </f:facet>
     <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields4Filter"
         completeMethod="#{statisticChartCreationBean.populateCustomVarChar4AutoComplete}"
         selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields4}"
@@ -192,7 +232,17 @@
   </p:tab>
 
   <!-- CUSTOM VAR 5 FILTER -->
-  <p:tab title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField5')}">
+  <p:tab id="custom-varchar-5-filter-tab">
+  	<f:facet name="title">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField5')}" />
+        <p:outputLabel id="custom-varchar-5-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+        <p:tooltip for="custom-varchar-5-filter">
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}<br/>
+          #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarChar5FilterDescription")}
+        </p:tooltip>
+    </f:facet>
     <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields5Filter"
         completeMethod="#{statisticChartCreationBean.populateCustomVarChar5AutoComplete}"
         selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields5}"
