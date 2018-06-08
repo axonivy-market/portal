@@ -91,4 +91,8 @@ public class TaskTemplatePage extends TemplatePage {
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
+  
+  public String getCaseName(){
+    return findElementById("case-item:case-name-inplace").getText();
+  }
 }
