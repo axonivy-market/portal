@@ -1019,7 +1019,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
       return generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
     }
-    return null;
+    return statisticChart.getBarChartModel();
   }
 
   public static boolean selectThisYear(String selectedItem) {
