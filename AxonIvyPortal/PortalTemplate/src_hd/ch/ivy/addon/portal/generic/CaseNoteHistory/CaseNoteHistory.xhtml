@@ -10,13 +10,13 @@
       <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }">
         <p:panelGrid columns="2" styleClass="u-no-border" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/NAME')}"/>
-          <p:outputLabel value="#{data.remoteCase.name}"/>
+          <p:outputLabel id="case-name" value="#{data.remoteCase.name}"/>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}"/>
-          <p:outputLabel value="#{data.remoteCase.id}"/>
+          <p:outputLabel id="case-id" value="#{data.remoteCase.id}"/>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}"/>
-          <p:outputLabel value="#{data.remoteCase.creatorUserName}"/>
+          <p:outputLabel id="case-creator" value="#{data.remoteCase.creatorUserName}"/>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"/>
-          <p:outputLabel value="#{caseBean.getState(data.remoteCase)}"/>
+          <p:outputLabel id="case-state" value="#{caseBean.getState(data.remoteCase)}"/>
         </p:panelGrid>
         <br/>
         
