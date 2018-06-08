@@ -8,11 +8,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DEFAULT_CHART;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DRILLDOWN_LEVEL_DAY;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DRILLDOWN_LEVEL_HOUR;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DRILLDOWN_LEVEL_MONTH;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DRILLDOWN_LEVEL_WEEK;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DRILLDOWN_LEVEL_YEAR;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXCEPTION_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXPIRY_PERIOD_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.FAILED_CASE_KEY;
@@ -116,8 +111,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
-
-  private static final String[] DRILLDOWN_LEVELS = {DRILLDOWN_LEVEL_YEAR, DRILLDOWN_LEVEL_MONTH, DRILLDOWN_LEVEL_WEEK, DRILLDOWN_LEVEL_DAY, DRILLDOWN_LEVEL_HOUR};
 
   @Override
   public Class<StatisticChart> getType() {
@@ -230,7 +223,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (CaseStateStatistic) response.get(RESULT);
   }
-  
+
   /**
    * Call web service to get Elapsed time by Case Category data
    * 
@@ -259,30 +252,33 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Object> params = new HashMap<>();
     params.put(JSON_QUERY, jsonQuery);
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeElapsedTimeOfTasks(String)", params,
-        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("analyzeElapsedTimeOfTasks(String)", params,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (List<ElapsedTimeStatistic>) response.get(RESULT);
   }
-  
+
   /**
    * Call web service to get customVarChar fields
+   * 
    * @param portalCaseCustomVarField
    * @param keyword
    * @param limit
    * @return list of customVarChar
    */
   @SuppressWarnings("unchecked")
-  public List<String> getCustomVarCharFields(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit) {
+  public List<String> getCustomVarCharFields(PortalCaseCustomVarField portalCaseCustomVarField, String keyword,
+      int limit) {
     CaseCustomVarCharSearchCriteria searchCriteria = new CaseCustomVarCharSearchCriteria();
     searchCriteria.setPortalCaseCustomVarField(portalCaseCustomVarField);
     searchCriteria.setKeyword(keyword);
     searchCriteria.setLimit(limit);
     return SubProcessCall.withPath("Functional Processes/AnalyzeStatistic")
-    .withStartSignature("findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)")
-    .withParam("caseCustomVarCharSearchCriteria", searchCriteria).call().get(RESULT, List.class);
-    
+        .withStartSignature("findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)")
+        .withParam("caseCustomVarCharSearchCriteria", searchCriteria).call().get(RESULT, List.class);
+
   }
-  
+
   /**
    * generate data for "Task by Priority" chart
    * 
@@ -351,7 +347,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     } else if (selectWeekOfMonth(selectedValue)) {
       chartData = generateExpiryModelForDrilldownLevelWeek(statisticResultMap, selectedValue, previousSelectedMonth);
     } else if (selectDayOfWeek(selectedValue)) {
-      chartData = generateExpiryModelForDrilldownLevelDay(statisticResultMap, selectedValue, previousSelectedWeek, previousSelectedMonth);
+      chartData =
+          generateExpiryModelForDrilldownLevelDay(statisticResultMap, selectedValue, previousSelectedWeek,
+              previousSelectedMonth);
     } else {
       chartData = generateDefaultExpiryModel(statisticResultMap);
     }
@@ -359,39 +357,44 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return chartData;
   }
 
-  private Map<Object, Number> generateExpiryModelForDrilldownLevelDay(Map<Date, Long> statisticResultMap, String selectedDay, String previousSelectedWeek, String previousSelectedMonth) {
+  private Map<Object, Number> generateExpiryModelForDrilldownLevelDay(Map<Date, Long> statisticResultMap,
+      String selectedDay, String previousSelectedWeek, String previousSelectedMonth) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
-    
-    Long taskExpireBefore8 = new Long(0L);
-    Long taskExpireIn8 = new Long(0L);
-    Long taskExpireIn9 = new Long(0L);
-    Long taskExpireIn10 = new Long(0L);
-    Long taskExpireIn11 = new Long(0L);
-    Long taskExpireIn12 = new Long(0L);
-    Long taskExpireIn13 = new Long(0L);
-    Long taskExpireIn14 = new Long(0L);
-    Long taskExpireIn15 = new Long(0L);
-    Long taskExpireIn16 = new Long(0L);
-    Long taskExpireIn17 = new Long(0L);
-    Long taskExpireAfter18 = new Long(0L);
-    Long[] taskExpireInHour = {taskExpireIn8, taskExpireIn9, taskExpireIn10, taskExpireIn11, taskExpireIn12, taskExpireIn13, taskExpireIn14, taskExpireIn15, taskExpireIn16, taskExpireIn17};
-    
+
+    Long taskExpireBefore8 = 0L;
+    Long taskExpireIn8 = 0L;
+    Long taskExpireIn9 = 0L;
+    Long taskExpireIn10 = 0L;
+    Long taskExpireIn11 = 0L;
+    Long taskExpireIn12 = 0L;
+    Long taskExpireIn13 = 0L;
+    Long taskExpireIn14 = 0L;
+    Long taskExpireIn15 = 0L;
+    Long taskExpireIn16 = 0L;
+    Long taskExpireIn17 = 0L;
+    Long taskExpireAfter18 = 0L;
+    Long[] taskExpireInHour =
+        {taskExpireIn8, taskExpireIn9, taskExpireIn10, taskExpireIn11, taskExpireIn12, taskExpireIn13, taskExpireIn14,
+            taskExpireIn15, taskExpireIn16, taskExpireIn17};
+
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = result.getKey();
       Calendar cal = Calendar.getInstance();
       cal.setTime(resultDate);
-      
+
       if (StatisticChartTimeUtils.isSameDay(resultDate, selectedDay, previousSelectedWeek, previousSelectedMonth)) {
-        if(cal.get(Calendar.HOUR_OF_DAY) < 8) {
+        if (cal.get(Calendar.HOUR_OF_DAY) < 8) {
           taskExpireBefore8 += result.getValue();
-        } else if(cal.get(Calendar.HOUR_OF_DAY) >= 18) {
+        } else if (cal.get(Calendar.HOUR_OF_DAY) >= 18) {
           taskExpireAfter18 += result.getValue();
         } else {
           int hourIndex = cal.get(Calendar.HOUR_OF_DAY);
-          taskExpireInHour[hourIndex - 8] += result.getValue(); //example: hourIndex = 8 => taskExpireInHour[ 8 - 8] = taskExpireInHour[0] = taskExpireIn8 += result.getValue() ...
+          taskExpireInHour[hourIndex - 8] += result.getValue(); // example: hourIndex = 8 => taskExpireInHour[ 8 - 8] =
+                                                                // taskExpireInHour[0] = taskExpireIn8 +=
+                                                                // result.getValue() ...
         }
       }
-      
+
     }
 
     chartData.put(BEFORE_8, taskExpireBefore8);
@@ -406,7 +409,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     chartData.put(IN_16, taskExpireInHour[8]);
     chartData.put(IN_17, taskExpireInHour[9]);
     chartData.put(AFTER_18, taskExpireAfter18);
-    
+
     return chartData;
   }
 
@@ -414,11 +417,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       String selectedWeek, String previousSelectedMonth) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
 
-    Date firstDateOfSelectedWeek = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeek(selectedWeek, previousSelectedMonth));
-    Date firstDateOfNextWeek = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addWeeks(firstDateOfSelectedWeek, 1));
-    
+    Date firstDateOfSelectedWeek =
+        StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeek(selectedWeek,
+            previousSelectedMonth));
+    Date firstDateOfNextWeek =
+        StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addWeeks(firstDateOfSelectedWeek, 1));
+
     if (!StringUtils.isEmpty(previousSelectedMonth)) {
-      Date firstDateOfMonth = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfMonth(previousSelectedMonth));
+      Date firstDateOfMonth =
+          StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils
+              .getFirstDateOfMonth(previousSelectedMonth));
       if (firstDateOfMonth.compareTo(firstDateOfSelectedWeek) > 0) {
         firstDateOfSelectedWeek = firstDateOfMonth;
       }
@@ -428,14 +436,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
-    Long taskExpireOnMonday = new Long(0L);
-    Long taskExpireOnTuesday = new Long(0L);
-    Long taskExpireOnWednesday = new Long(0L);
-    Long taskExpireOnThursday = new Long(0L);
-    Long taskExpireOnFriday = new Long(0L);
-    Long taskExpireOnSaturday = new Long(0L);
-    Long taskExpireOnSunday = new Long(0L);
-    Long[] taskExpireOnDaysOfWeek = {taskExpireOnMonday, taskExpireOnTuesday, taskExpireOnWednesday, taskExpireOnThursday, taskExpireOnFriday, taskExpireOnSaturday, taskExpireOnSunday};
+    Long taskExpireOnMonday = 0L;
+    Long taskExpireOnTuesday = 0L;
+    Long taskExpireOnWednesday = 0L;
+    Long taskExpireOnThursday = 0L;
+    Long taskExpireOnFriday = 0L;
+    Long taskExpireOnSaturday = 0L;
+    Long taskExpireOnSunday = 0L;
+    Long[] taskExpireOnDaysOfWeek =
+        {taskExpireOnMonday, taskExpireOnTuesday, taskExpireOnWednesday, taskExpireOnThursday, taskExpireOnFriday,
+            taskExpireOnSaturday, taskExpireOnSunday};
 
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
@@ -444,10 +454,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
       if (checkIfDateBetweenRange(firstDateOfSelectedWeek, firstDateOfNextWeek, resultDate)) {
         int dayOfWeekIndex = cal.get(Calendar.DAY_OF_WEEK);
-        if (dayOfWeekIndex == 1) { //SUNDAY
-          taskExpireOnDaysOfWeek[6] += result.getValue(); //index 6 means taskExpireOnSunday
+        if (dayOfWeekIndex == 1) { // SUNDAY
+          taskExpireOnDaysOfWeek[6] += result.getValue(); // index 6 means taskExpireOnSunday
         } else {// MONDAY TO SATURDAY - day of week index from 2 to 7
-          taskExpireOnDaysOfWeek[dayOfWeekIndex - 2] += result.getValue(); 
+          taskExpireOnDaysOfWeek[dayOfWeekIndex - 2] += result.getValue();
         }
       }
     }
@@ -467,12 +477,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       String selectedValue) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
 
-    Long taskExpireOnFirstWeek = new Long(0L);
-    Long taskExpireOnSecondWeek = new Long(0L);
-    Long taskExpireOnThirdWeek = new Long(0L);
-    Long taskExpireOnFourthWeek = new Long(0L);
-    Long taskExpireOnFifthWeek = new Long(0L);
-    Long taskExpireOnSixthWeek = new Long(0L);
+    Long taskExpireOnFirstWeek = 0L;
+    Long taskExpireOnSecondWeek = 0L;
+    Long taskExpireOnThirdWeek = 0L;
+    Long taskExpireOnFourthWeek = 0L;
+    Long taskExpireOnFifthWeek = 0L;
+    Long taskExpireOnSixthWeek = 0L;
 
     Date firstDateOfSelectedMonth = StatisticChartTimeUtils.getFirstDateOfMonth(selectedValue);
     Date firstDateOfWeek = StatisticChartTimeUtils.getFirstDateOfWeekContainsDate(firstDateOfSelectedMonth);
@@ -483,7 +493,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Date firstDateOfFourthWeek = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addDays(firstDateOfWeek, 21));
     Date firstDateOfFifthWeek = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addDays(firstDateOfWeek, 28));
     Date firstDateOfSixthWeek = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addDays(firstDateOfWeek, 35));
-    Date firstDateOfNextMonth = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addMonths(firstDateOfSelectedMonth, 1));
+    Date firstDateOfNextMonth =
+        StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addMonths(firstDateOfSelectedMonth, 1));
 
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
@@ -499,7 +510,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       if (checkIfDateBetweenRange(firstDateOfFourthWeek, firstDateOfFifthWeek, resultDate)) {
         taskExpireOnFourthWeek += result.getValue();
       }
-      Long[] taskOfFifthAndSixWeek = calculateTaskExpireOnFifthAndSixthWeek(firstDateOfFifthWeek, firstDateOfSixthWeek, firstDateOfNextMonth, resultDate, result.getValue());
+      Long[] taskOfFifthAndSixWeek =
+          calculateTaskExpireOnFifthAndSixthWeek(firstDateOfFifthWeek, firstDateOfSixthWeek, firstDateOfNextMonth,
+              resultDate, result.getValue());
       taskExpireOnFifthWeek += taskOfFifthAndSixWeek[0];
       taskExpireOnSixthWeek += taskOfFifthAndSixWeek[1];
     }
@@ -517,9 +530,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return chartData;
   }
 
-  private Long[] calculateTaskExpireOnFifthAndSixthWeek(Date firstDateOfFifthWeek, Date firstDateOfSixthWeek, Date firstDateOfNextMonth, Date resultDate, Long resultValue) {
-    Long taskExpireOnFifthWeek = new Long(0L);
-    Long taskExpireOnSixthWeek = new Long(0L);
+  private Long[] calculateTaskExpireOnFifthAndSixthWeek(Date firstDateOfFifthWeek, Date firstDateOfSixthWeek,
+      Date firstDateOfNextMonth, Date resultDate, Long resultValue) {
+    Long taskExpireOnFifthWeek = 0L;
+    Long taskExpireOnSixthWeek = 0L;
     if (firstDateOfSixthWeek.compareTo(firstDateOfNextMonth) < 0) {
       if (checkIfDateBetweenRange(firstDateOfFifthWeek, firstDateOfSixthWeek, resultDate)) {
         taskExpireOnFifthWeek = resultValue;
@@ -532,8 +546,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         taskExpireOnFifthWeek = resultValue;
       }
     }
-    Long[] taskForFifthAndSixthWeek = {taskExpireOnFifthWeek, taskExpireOnSixthWeek};
-    return taskForFifthAndSixthWeek;
+    return new Long[] {taskExpireOnFifthWeek, taskExpireOnSixthWeek};
   }
 
   private boolean checkIfDateBetweenRange(Date startDate, Date endDate, Date resultDate) {
@@ -542,34 +555,36 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private Map<Object, Number> generateExpiryModelForDrilldownLevelYear(Map<Date, Long> statisticResultMap) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
-    
-    Long taskExpireOnJanuary = new Long(0L);
-    Long taskExpireOnFebruary = new Long(0L);
-    Long taskExpireOnMarch = new Long(0L);
-    Long taskExpireOnApril = new Long(0L);
-    Long taskExpireOnMay = new Long(0L);
-    Long taskExpireOnJune = new Long(0L);
-    Long taskExpireOnJuly = new Long(0L);
-    Long taskExpireOnAugust = new Long(0L);
-    Long taskExpireOnSeptember = new Long(0L);
-    Long taskExpireOnOctober = new Long(0L);
-    Long taskExpireOnNovember = new Long(0L);
-    Long taskExpireOnDecember = new Long(0L);
-    Long[] takExpireOnMonths = {taskExpireOnJanuary, taskExpireOnFebruary, taskExpireOnMarch, taskExpireOnApril, taskExpireOnMay, taskExpireOnJune,
-            taskExpireOnJuly, taskExpireOnAugust, taskExpireOnSeptember, taskExpireOnOctober, taskExpireOnNovember, taskExpireOnDecember};
-    
+
+    Long taskExpireOnJanuary = 0L;
+    Long taskExpireOnFebruary = 0L;
+    Long taskExpireOnMarch = 0L;
+    Long taskExpireOnApril = 0L;
+    Long taskExpireOnMay = 0L;
+    Long taskExpireOnJune = 0L;
+    Long taskExpireOnJuly = 0L;
+    Long taskExpireOnAugust = 0L;
+    Long taskExpireOnSeptember = 0L;
+    Long taskExpireOnOctober = 0L;
+    Long taskExpireOnNovember = 0L;
+    Long taskExpireOnDecember = 0L;
+    Long[] takExpireOnMonths =
+        {taskExpireOnJanuary, taskExpireOnFebruary, taskExpireOnMarch, taskExpireOnApril, taskExpireOnMay,
+            taskExpireOnJune, taskExpireOnJuly, taskExpireOnAugust, taskExpireOnSeptember, taskExpireOnOctober,
+            taskExpireOnNovember, taskExpireOnDecember};
+
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
       Calendar cal = Calendar.getInstance();
       cal.setTime(resultDate);
-      
+
       int thisYear = Year.now().getValue();
       if (cal.get(Calendar.YEAR) == thisYear) {
-        int monthIndex = cal.get(Calendar.MONTH); // from JANUARY to DECEMBER, month index from 0 to 11  
+        int monthIndex = cal.get(Calendar.MONTH); // from JANUARY to DECEMBER, month index from 0 to 11
         takExpireOnMonths[monthIndex] += result.getValue();
       }
     }
-    
+
     chartData.put(Ivy.cms().co(JANUARY_CMS), takExpireOnMonths[0]);
     chartData.put(Ivy.cms().co(FEBRUARY_CMS), takExpireOnMonths[1]);
     chartData.put(Ivy.cms().co(MARCH_CMS), takExpireOnMonths[2]);
@@ -588,15 +603,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Map<Object, Number> generateDefaultExpiryModel(Map<Date, Long> statisticResultMap) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
     // Calculate result
-    Long taskExpireToday = new Long(0L);
-    Long taskExpireThisWeek = new Long(0L);
-    Long taskExpireThisMonth = new Long(0L);
-    Long taskExpireThisYear = new Long(0L);
+    Long taskExpireToday = 0L;
+    Long taskExpireThisWeek = 0L;
+    Long taskExpireThisMonth = 0L;
+    Long taskExpireThisYear = 0L;
 
     Date today = StatisticChartTimeUtils.truncateMinutesPart(new Date());
-    Date firstDateOfWeek = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeekContainsDate(new Date()));
+    Date firstDateOfWeek =
+        StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeekContainsDate(new Date()));
     Date firstDateOfNextWeek = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addWeeks(firstDateOfWeek, 1));
-    Date firstDateOfMonth = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfThisMonth());
+    Date firstDateOfMonth =
+        StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfThisMonth());
     Date firsDateOfNextMonth = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addMonths(firstDateOfMonth, 1));
     Date firsDateOfYear = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfThisYear());
     Date firsDateOfNextYear = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addYears(firsDateOfYear, 1));
@@ -618,7 +635,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         taskExpireThisYear += result.getValue();
       }
     }
-    
+
     chartData.put(Ivy.cms().co(TODAY_EXPIRY_KEY), taskExpireToday);
     chartData.put(Ivy.cms().co(THIS_WEEK_EXPIRY_KEY), taskExpireThisWeek);
     chartData.put(Ivy.cms().co(THIS_MONTH_EXPIRY_KEY), taskExpireThisMonth);
@@ -772,7 +789,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public BarChartModel generateTaskByExpiryModel(List<ExpiryStatistic> statisticData, boolean isSetDefaultName,
       String selectedValue, String previousSelectedMonth, String previousSelectedWeek) {
-    Map<Object, Number> chartData = generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue, previousSelectedMonth, previousSelectedWeek);
+    Map<Object, Number> chartData =
+        generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue, previousSelectedMonth,
+            previousSelectedWeek);
     BarChartModel model = new BarChartModel();
     ChartSeries chartSeries = new ChartSeries();
 
@@ -810,7 +829,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param isSetDefaultName
    * @return chart model for "Case By State" chart
    */
-  public DonutChartModel generateCaseByStateModel(CaseStateStatistic statisticData, StatisticChartType chartType, boolean isSetDefaultName) {
+  public DonutChartModel generateCaseByStateModel(CaseStateStatistic statisticData, StatisticChartType chartType,
+      boolean isSetDefaultName) {
     Map<String, Number> chartData = generateDataForCaseStateChart(statisticData);
     boolean isEmptyData = chartData.isEmpty();
 
@@ -823,13 +843,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       model.setSeriesColors(Colors.getCaseStateColors(chartData));
     }
     if (isSetDefaultName) {
-      if(chartType == StatisticChartType.CASES_BY_STATE){
+      if (chartType == StatisticChartType.CASES_BY_STATE) {
         model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
-      }
-      else if(chartType == StatisticChartType.CASES_BY_FINISHED_TASK){
+      } else if (chartType == StatisticChartType.CASES_BY_FINISHED_TASK) {
         model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TASK.getCmsUri()));
-      }
-      else if(chartType == StatisticChartType.CASES_BY_FINISHED_TIME){
+      } else if (chartType == StatisticChartType.CASES_BY_FINISHED_TIME) {
         model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TIME.getCmsUri()));
       }
     }
@@ -867,7 +885,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
-    
+
     if (Float.compare(otherValue, 0f) != 0) {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue);
     }
@@ -879,13 +897,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     return model;
   }
-  
+
   public boolean isTaskByPriority(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.TASK_BY_PRIORITY;
   }
 
   public boolean isTaskByExpiry(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.TASK_BY_EXPIRY;
+  }
+
+  public boolean isTaskByExpiryHour(StatisticChart statisticChart) {
+    return statisticChart.getType() == StatisticChartType.TASK_BY_EXPIRY
+        && statisticChart.getBarChartModel().getAxis(AxisType.X).getLabel()
+            .contains(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour"));
   }
 
   public boolean isCaseByState(StatisticChart statisticChart) {
@@ -895,11 +919,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public boolean isElapsedTimeByCaseCategory(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY;
   }
-  
+
   public boolean isCaseByFinishedTask(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TASK;
   }
-  
+
   public boolean isCaseByFinishedTime(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TIME;
   }
@@ -938,40 +962,49 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private DonutChartModel buildChartModelForCaseFinishedTime(StatisticChart statisticChart) {
     CaseStateStatistic caseByFinishedTimeData = new CaseStateStatistic();
-    if(statisticChart.getFilter() != null) {
-      caseByFinishedTimeData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryByFinishedTime(statisticChart.getFilter()).asJson());
+    if (statisticChart.getFilter() != null) {
+      caseByFinishedTimeData =
+          getCaseStateStatisticData(StatisticChartQueryUtils
+              .generateCaseQueryByFinishedTime(statisticChart.getFilter()).asJson());
     }
     return generateCaseByStateModel(caseByFinishedTimeData, StatisticChartType.CASES_BY_FINISHED_TIME, true);
   }
 
   private DonutChartModel buildCharModelForCaseHasFinishedTask(StatisticChart statisticChart) {
     CaseStateStatistic caseByFinishedTaskData = new CaseStateStatistic();
-    if(statisticChart.getFilter() != null) {
-      caseByFinishedTaskData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseHaveFinishedTask(statisticChart.getFilter()).asJson());
+    if (statisticChart.getFilter() != null) {
+      caseByFinishedTaskData =
+          getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseHaveFinishedTask(
+              statisticChart.getFilter()).asJson());
     }
     return generateCaseByStateModel(caseByFinishedTaskData, StatisticChartType.CASES_BY_FINISHED_TASK, true);
   }
 
   private DonutChartModel buildChartModelForCaseElapsedTime(StatisticChart statisticChart) {
     List<ElapsedTimeStatistic> elapsedTimeData = new ArrayList<>();
-    if(statisticChart.getFilter() != null) {
-      elapsedTimeData = getElapsedTimeStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true).asJson());
+    if (statisticChart.getFilter() != null) {
+      elapsedTimeData =
+          getElapsedTimeStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true)
+              .asJson());
     }
     return generateElapsedTimeModel(elapsedTimeData, true);
   }
 
   private DonutChartModel buildChartModelForCaseState(StatisticChart statisticChart) {
     CaseStateStatistic caseStateData = new CaseStateStatistic();
-    if(statisticChart.getFilter() != null) {
-      caseStateData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseState(statisticChart.getFilter()).asJson());
+    if (statisticChart.getFilter() != null) {
+      caseStateData =
+          getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseState(statisticChart.getFilter())
+              .asJson());
     }
-    return generateCaseByStateModel(caseStateData, StatisticChartType.CASES_BY_STATE,  true);
+    return generateCaseByStateModel(caseStateData, StatisticChartType.CASES_BY_STATE, true);
   }
 
   private DonutChartModel buildChartModelForTaskPriority(StatisticChart statisticChart) {
     PriorityStatistic taskByPriorityData = new PriorityStatistic();
-    if(statisticChart.getFilter() != null) {
-      taskByPriorityData = getPriorityStatisticData(StatisticChartQueryUtils.generateTaskQuery(statisticChart.getFilter()).asJson());
+    if (statisticChart.getFilter() != null) {
+      taskByPriorityData =
+          getPriorityStatisticData(StatisticChartQueryUtils.generateTaskQuery(statisticChart.getFilter()).asJson());
     }
     return generateTaskByPriorityModel(taskByPriorityData, true);
   }
@@ -979,47 +1012,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private BarChartModel buildChartModelForTaskExpiry(StatisticChart statisticChart) {
     if (!statisticChart.getId().contains("_")) {
       List<ExpiryStatistic> taskByExpiryData = new ArrayList<>();
-      if(statisticChart.getFilter() != null){
-        taskByExpiryData = getExpiryStatisticData(StatisticChartQueryUtils.generateTaskQueryForExpiry(statisticChart.getFilter()).asJson());
+      if (statisticChart.getFilter() != null) {
+        taskByExpiryData =
+            getExpiryStatisticData(StatisticChartQueryUtils.generateTaskQueryForExpiry(statisticChart.getFilter())
+                .asJson());
       }
       return generateTaskByExpiryModel(taskByExpiryData, true, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
     }
     return null;
-  }
-
-  public boolean isDrilldownToTaskList(String expiryLastDrilldownLevel, String selectedItem) {
-    return isDrilldownToHourOrDay(expiryLastDrilldownLevel, selectedItem)
-            || isDrilldownToWeek(expiryLastDrilldownLevel, selectedItem)
-            || isDrilldownToMonth(expiryLastDrilldownLevel, selectedItem)
-            || isDrilldownToYear(expiryLastDrilldownLevel);
-  }
-
-  private boolean isDrilldownToHourOrDay(String expiryLastDrilldownLevel, String selectedItem) {
-    //this method is just used to avoid sonar issue about number of conditional operators used in expression
-    return isDrilldownToHour(expiryLastDrilldownLevel, selectedItem)
-            || isDrilldownToDay(expiryLastDrilldownLevel, selectedItem);
-  }
-
-  private boolean isDrilldownToHour(String expiryLastDrilldownLevel, String selectedItem) {
-    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_HOUR) && (selectHourOfDay(selectedItem));
-  }
-
-  private boolean isDrilldownToDay(String expiryLastDrilldownLevel, String selectedItem) {
-    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_DAY) && (selectDayOfWeek(selectedItem));
-  }
-
-  private boolean isDrilldownToWeek(String expiryLastDrilldownLevel, String selectedItem) {
-    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_WEEK)
-            && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem));
-  }
-
-  private boolean isDrilldownToMonth(String expiryLastDrilldownLevel, String selectedItem) {
-    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_MONTH)
-            && (selectDayOfWeek(selectedItem) || selectWeekOfMonth(selectedItem) || selectMonthOfYear(selectedItem));
-  }
-
-  private boolean isDrilldownToYear(String expiryLastDrilldownLevel) {
-    return StringUtils.equalsIgnoreCase(expiryLastDrilldownLevel, DRILLDOWN_LEVEL_YEAR);
   }
 
   public static boolean selectThisYear(String selectedItem) {
@@ -1030,8 +1030,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    String[] monthsOfYear = {Ivy.cms().co(JANUARY_CMS), Ivy.cms().co(FEBRUARY_CMS), Ivy.cms().co(MARCH_CMS), Ivy.cms().co(APRIL_CMS), Ivy.cms().co(MAY_CMS), Ivy.cms().co(JUNE_CMS),
-            Ivy.cms().co(JULY_CMS), Ivy.cms().co(AUGUST_CMS), Ivy.cms().co(SEPTEMBER_CMS), Ivy.cms().co(OCTOBER_CMS), Ivy.cms().co(NOVEMBER_CMS), Ivy.cms().co(DECEMBER_CMS)};
+    String[] monthsOfYear =
+        {Ivy.cms().co(JANUARY_CMS), Ivy.cms().co(FEBRUARY_CMS), Ivy.cms().co(MARCH_CMS), Ivy.cms().co(APRIL_CMS),
+            Ivy.cms().co(MAY_CMS), Ivy.cms().co(JUNE_CMS), Ivy.cms().co(JULY_CMS), Ivy.cms().co(AUGUST_CMS),
+            Ivy.cms().co(SEPTEMBER_CMS), Ivy.cms().co(OCTOBER_CMS), Ivy.cms().co(NOVEMBER_CMS),
+            Ivy.cms().co(DECEMBER_CMS)};
 
     return Arrays.asList(monthsOfYear).contains(selectedItem)
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY));
@@ -1041,7 +1044,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    String[] weeksOfMonth = {Ivy.cms().co(FIRSTWEEK_CMS), Ivy.cms().co(SECONDWEEK_CMS), Ivy.cms().co(THIRDWEEK_CMS), Ivy.cms().co(FOURTHWEEK_CMS), Ivy.cms().co(FIFTHWEEK_CMS), Ivy.cms().co(SIXTHWEEK_CMS)};
+    String[] weeksOfMonth =
+        {Ivy.cms().co(FIRSTWEEK_CMS), Ivy.cms().co(SECONDWEEK_CMS), Ivy.cms().co(THIRDWEEK_CMS),
+            Ivy.cms().co(FOURTHWEEK_CMS), Ivy.cms().co(FIFTHWEEK_CMS), Ivy.cms().co(SIXTHWEEK_CMS)};
 
     return Arrays.asList(weeksOfMonth).contains(selectedItem)
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY));
@@ -1051,8 +1056,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (selectedItem.isEmpty()) {
       return false;
     }
-    String[] daysOfWeek = {Ivy.cms().co(MONDAY_CMS), Ivy.cms().co(TUESDAY_CMS), Ivy.cms().co(WEDNESDAY_CMS), Ivy.cms().co(THURSDAY_CMS), Ivy.cms().co(FRIDAY_CMS),
-            Ivy.cms().co(SATURDAY_CMS), Ivy.cms().co(SUNDAY_CMS)};
+    String[] daysOfWeek =
+        {Ivy.cms().co(MONDAY_CMS), Ivy.cms().co(TUESDAY_CMS), Ivy.cms().co(WEDNESDAY_CMS), Ivy.cms().co(THURSDAY_CMS),
+            Ivy.cms().co(FRIDAY_CMS), Ivy.cms().co(SATURDAY_CMS), Ivy.cms().co(SUNDAY_CMS)};
 
     return Arrays.asList(daysOfWeek).contains(selectedItem)
         || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(TODAY_EXPIRY_KEY));
@@ -1067,15 +1073,20 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return Arrays.asList(hoursOfDay).contains(selectedItem);
   }
 
-  public StatisticChart drilldownExpiryChart(String selectedValue, StatisticChart selectedChart, String previousSelectedMonth, String previousSelectedWeek) {
-    List<ExpiryStatistic> taskByExpiryData = getExpiryStatisticData(StatisticChartQueryUtils.generateTaskQuery(selectedChart.getFilter()).asJson());
+  public StatisticChart drilldownExpiryChart(String selectedValue, StatisticChart selectedChart,
+      String previousSelectedMonth, String previousSelectedWeek) {
+    List<ExpiryStatistic> taskByExpiryData =
+        getExpiryStatisticData(StatisticChartQueryUtils.generateTaskQuery(selectedChart.getFilter()).asJson());
     StatisticChart newStatisticChart = new StatisticChart();
-    newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue); //chart with format: id + _ + suffix is lower level (month/week/day/hour) chart when drill down
+    newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue); // chart with format: id + _ + suffix is lower
+                                                                          // level (month/week/day/hour) chart when
+                                                                          // drill down
     newStatisticChart.setName(selectedChart.getName() + " - " + selectedValue);
     newStatisticChart.setFilter(selectedChart.getFilter());
     newStatisticChart.setType(StatisticChartType.TASK_BY_EXPIRY);
     newStatisticChart.setUserId(selectedChart.getUserId());
-    newStatisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue, previousSelectedMonth, previousSelectedWeek));
+    newStatisticChart.setBarChartModel(generateTaskByExpiryModel(taskByExpiryData, true, selectedValue,
+        previousSelectedMonth, previousSelectedWeek));
     return newStatisticChart;
   }
 
@@ -1118,19 +1129,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         .isPresent();
   }
 
-  public String[] getDrilldownLevels() {
-    return DRILLDOWN_LEVELS;
-  }
-  
   public void removeStatisticChartsByUserId(long userId) {
-    List<StatisticChart> result = repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().
-        textField(DEFAULT_CHART).isEqualToIgnoringCase("false").execute().getAll();
+    List<StatisticChart> result =
+        repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().textField(DEFAULT_CHART)
+            .isEqualToIgnoringCase("false").execute().getAll();
     result.stream().forEach(item -> repo().delete(item));
   }
-  
-  public boolean hasDefaultChart(long userId){
-    List<StatisticChart> result = repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().
-        textField(DEFAULT_CHART).isEqualToIgnoringCase("true").execute().getAll();
+
+  public boolean hasDefaultChart(long userId) {
+    List<StatisticChart> result =
+        repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().textField(DEFAULT_CHART)
+            .isEqualToIgnoringCase("true").execute().getAll();
     return !result.isEmpty();
   }
 }
