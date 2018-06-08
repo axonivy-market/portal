@@ -39,7 +39,12 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
         globalSettings.add(newGlobalSetting);
       }
     }
+    sortByEnumValues(globalSettings);
     return globalSettings;
+  }
+
+  private void sortByEnumValues(List<GlobalSetting> globalSettings) {
+    globalSettings.sort((GlobalSetting setting1, GlobalSetting setting2) -> GlobalVariable.valueOf(setting1.getKey()).compareTo(GlobalVariable.valueOf(setting2.getKey())));
   }
 
   public void resetGlobalSetting(String variableName) {
