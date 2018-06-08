@@ -45,7 +45,8 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     @Test
     public void testShowCaseNoteHistory() {
         CasePage casePage = mainMenuPage.selectCaseMenu();
-        detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+        final String caseName = "Leave Request";
+        detailsPage = casePage.openDetailsOfCaseHasName(caseName);
         detailsPage.addNote(noteContent);
         detailsPage.showNoteHistory();
         Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
@@ -59,6 +60,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
         }
         assertEquals(2, numberOfNotes);
         assertEquals(noteContent, caseHistoryPage.getNoteContentOfRow(0));
+        assertEquals(caseName, caseHistoryPage.getCaseName());
     }
     
     @Test
