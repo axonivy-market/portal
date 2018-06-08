@@ -63,3 +63,5 @@ isServerCompatible Boolean #field
 isServerCompatible PERSISTENT #fieldModifier
 remotePortalConnector ch.ivy.addon.portalkit.bo.RemoteLibrary #field
 remotePortalConnector PERSISTENT #fieldModifier
+resetAllSettings Boolean #field
+resetAllSettings PERSISTENT #fieldModifier

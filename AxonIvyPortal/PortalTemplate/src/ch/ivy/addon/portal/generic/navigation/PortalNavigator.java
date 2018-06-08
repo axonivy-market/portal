@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.extensions.util.json.GsonConverter;
 
-import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
@@ -34,7 +34,7 @@ public final class PortalNavigator {
 
   private String getHomePageFromSetting() {
     GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    return globalSettingSerive.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL);
+    return globalSettingSerive.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
   }
 
   private String defaultPortalStartUrl(boolean isAbsoluteLink) throws MalformedURLException {

@@ -52,7 +52,7 @@
         </inputParameter>
     </method>
     <method>
-        <name>submitDeleteSetting</name>
+        <name>submitResetSetting</name>
         <description></description>
         <inputParameter>
             <name>setting</name>
@@ -149,6 +149,10 @@
     </method>
     <method>
         <name>getExternalHost</name>
+        <description></description>
+    </method>
+    <method>
+        <name>submitResetAllSettings</name>
         <description></description>
     </method>
     <startMethod>
