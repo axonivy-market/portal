@@ -328,13 +328,14 @@
 					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverName')}"
 						for="serverDisplayName" styleClass="admin-settings-form-input-label" />
 					<p:inputText value="#{data.selectedServer.name}" id="serverDisplayName" required="true"
-						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverNameRequiredMsg')}" />
+						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverNameRequiredMsg')}"/>
 
 					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPath')}" for="serverPath"
 						styleClass="admin-settings-form-input-label" />
 					<!-- Because changing URL Portal Connector is not supported, so we disable this inputText in Edit mode -->
 					<p:inputText value="#{data.selectedServer.path}" id="serverPath" required="true" disabled="#{not data.isAddMode}"
-						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathRequiredMsg')}" />
+						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathRequiredMsg')}" 
+						placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathPlaceholder')}"/>
 					<p:spacer />
 					<h:outputText
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/warningPortalConnectorPathSecurity')}"
