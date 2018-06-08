@@ -2728,6 +2728,20 @@ a.compact-task-start-link:hover {
   box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
 }
 
+.side-steps-panel.expiry-chart-context-menu {
+  border: none;
+  width: 110px;
+}
+
+.side-steps-panel.expiry-chart-context-menu .ui-overlaypanel-content{
+  width: 120px !important;
+}
+
+.side-steps-panel.expiry-chart-context-menu a{
+  text-align: left;
+  width: 80px;
+}
+
 .side-steps-panel.ui-overlaypanel .ui-overlaypanel-content {
   padding: 0 !important;
   width: 150px;
