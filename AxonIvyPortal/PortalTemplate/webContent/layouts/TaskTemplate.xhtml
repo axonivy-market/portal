@@ -9,13 +9,6 @@
     <ui:param name="isWorkingOnATask" value="true" />
     
     <ui:define name="simplePageContent">
-      <h:outputScript target="head" name="layouts/js/zero_clipboard/ZeroClipboard.js" />
-      <script>
-              var flashFileDirectory = '#{resource["ivy-webcontent:layouts/js/zero_clipboard/ZeroClipboard.swf"]}';
-              var copyHintMessage = "#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copyHintMessage')}";
-              var copiedToClipboardMessage = "#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copiedToClipboard')}";
-      </script>
-      <h:outputScript target="head" name="layouts/js/copy-clipboard.js" />
 
       <ui:insert name="breadCrumb" />
 
@@ -48,11 +41,6 @@
             <i class="fa fa-random fa-2x" />
           </p:commandLink>
           <p:spacer width="7"/>
-          <p:link id="copy-clipboard" href="#"
-            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copyTooltip')}">
-            <i class="fa fa-share-square-o fa-2x" />
-          </p:link>
-          <p:spacer width="7"/>
           <c:set var="isSideStepDisabled" value="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}" />
           <p:commandLink id="side-steps-menu"
             styleClass="case-action-link" global="false"
@@ -62,21 +50,6 @@
           </p:commandLink>
         </div>
 
-        <p:growl id="clipboard-growl" widgetVar="clipboard-growl" for="copy-clipboard" />
-
-        <p:overlayPanel id="copy-clipboard-panel" widgetVar="copy-clipboard-panel" for="copy-clipboard" my="left top"
-          at="left bottom" showEvent="none" styleClass="Wid80">
-          <h:form prependId="false">
-            <p:remoteCommand actionListener="#{taskTemplateBean.generateLinkToTask(ivy.task.id)}" autoRun="true"
-              update="#{p:component('task-details-url')}" global="false" />
-            <p:panelGrid columns="1">
-              <p:outputLabel id="task-details-url-label"
-                value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/copiedToClipboard')}" />
-              <p:inputText id="task-details-url" readonly="true" size="#{taskTemplateBean.linkToTask.length()}"
-                value="#{taskTemplateBean.linkToTask}" styleClass="Wid100" />
-            </p:panelGrid>
-          </h:form>
-        </p:overlayPanel>
 
       <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel" for="side-steps-menu" my="left top" at="left bottom"
         appendToBody="true" styleClass="side-steps-container" dynamic="false" rendered="#{taskTemplateBean.checkSideStepsEnabled(caseId)}">

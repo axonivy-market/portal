@@ -84,7 +84,7 @@ public class TaskWidgetPage extends TemplatePage {
     } else {
       findElementByCssSelector("*[id$='" + index + ":task-item:task-info']").click();
     }
-    waitForElementPresent(By.id("copy-clipboard"), true);
+    waitForElementPresent(By.id("side-steps-menu"), true);
     return new TaskTemplatePage();
   }
 
@@ -382,7 +382,7 @@ public class TaskWidgetPage extends TemplatePage {
       adhocMenuItem = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.side-step-item")));
       adhocMenuItem.click();
     }
-    waitForElementPresent(By.id("copy-clipboard"), true);
+    waitForElementPresent(By.id("side-steps-menu"), true);
     return new AdhocPage();
   }
 
@@ -465,7 +465,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void startAndCancelTask() {
     findElementByCssSelector("*[id$='0:task-item:task-info']").click();
-    waitForElementDisplayed(By.id("copy-clipboard"), true);
+    waitForElementDisplayed(By.id("side-steps-menu"), true);
     click(findElementByClassName("portal-cancel-button"));
   }
 

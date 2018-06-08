@@ -2,9 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -12,7 +10,6 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
@@ -26,20 +23,8 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class TaskTemplateBean implements Serializable{
   private static final long serialVersionUID = 1L;
 
-  private String linkToTask;
   private List<IStartableSideStep> sideStepList;
   private IStartableSideStep selectedSideStep;
-
-  public void generateLinkToTask(final long taskId) throws Exception {
-    PortalNavigator navigator = new PortalNavigator();
-    Map<String, String> params = new HashMap<>();
-    params.put("taskId", Long.toString(taskId));
-    linkToTask = navigator.getPortalStartAbsoluteUrlOf(PortalPage.LINK_TO_TASK, params);
-  }
-
-  public String getLinkToTask() {
-    return linkToTask;
-  }
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
