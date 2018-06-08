@@ -1,0 +1,4 @@
+co: name={resetAllSettingsConfirmation} description={} changed={2018-06-07 10:14:42 CEST} changedby={tdnguyen} visualorder={0} guid={163D94F269E98AD7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163D94FE4E1D0691} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-07 10:14:34 CEST} validto={} changed={2018-06-07 10:14:42 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={163D94FE5EFA3346} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-07 10:14:32 CEST} validto={} changed={2018-06-07 10:14:42 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={163D94F26A1AC5E1} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-07 10:13:53 CEST} validto={} changed={2018-06-07 10:14:42 CEST} changedby={tdnguyen} properties={} id={}

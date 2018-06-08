@@ -11,7 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
@@ -22,7 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class TaskWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private static final int DEFAULT_TASK_LIST_REFRESH_INTERVAL = 10000;
+  public static final int DEFAULT_TASK_LIST_REFRESH_INTERVAL = 10000;
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private TaskLazyDataModel dataModel;
@@ -33,7 +33,7 @@ public class TaskWidgetBean implements Serializable {
     dataModel = new TaskLazyDataModel();
     dataModel.setCompactMode(true);
     String taskListRefreshIntervalUserSetting =
-        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL);
+        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL.toString());
     taskListRefreshInterval =
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
