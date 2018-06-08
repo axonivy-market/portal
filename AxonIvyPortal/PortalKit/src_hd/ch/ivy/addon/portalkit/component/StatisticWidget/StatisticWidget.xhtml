@@ -26,15 +26,18 @@
 
     <h:panelGroup id="create-chart-header" layout="block" rendered="#{!cc.attrs.compactMode}"
       styleClass="statistic-actions-panel">
-      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header" rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}">
+      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header" 
+        rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}">
         <h:outputText id="create-chart-link-label" rendered="#{!data.createMode and data.canCreateNewCharts}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
         <h:outputText id="back-to-dashboard-link-label" rendered="#{data.createMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
       </p:commandLink>
-      <p:spacer width="5px"/>
-      <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();" rendered="#{!data.createMode and data.canCreateNewCharts}">
-        <h:outputText id="restore-default-chart-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}" rendered="#{!data.createMode}"/>
+      <p:spacer width="10px"/>
+      <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();" 
+        rendered="#{!data.createMode and data.canCreateNewCharts}">
+        <h:outputText id="restore-default-chart-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}" 
+        rendered="#{!data.createMode and data.hasDefaultChart}"/>
       </p:commandLink>
       <p:commandLink id="back-from-drilldown-link" actionListener="#{logic.switchDrilldownMode}" rendered="#{data.isDrilldownElapsedTime}"
         update="#{p:component('widget-container')} create-chart-header">
