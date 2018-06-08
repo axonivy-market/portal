@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
@@ -65,7 +66,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
         assertEquals(NOTE_CONTENT, caseHistoryPage.getNoteContentOfRow(0));
         assertEquals(caseName, caseHistoryPage.getCaseName());
         assertEquals(caseId, caseHistoryPage.getCaseId());
-        assertEquals(CASE_STATUS, caseHistoryPage.getCaseState());
+        assertTrue(StringUtils.equalsIgnoreCase(CASE_STATUS, caseHistoryPage.getCaseState()));
     }
     
     @Test
@@ -88,7 +89,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
         assertEquals(2, numberOfNotes);
         assertEquals(NOTE_CONTENT, caseHistoryPage.getNoteContentOfRow(0));
         assertEquals(caseName, caseHistoryPage.getCaseName());
-        assertEquals(CASE_STATUS, caseHistoryPage.getCaseState());
+        assertTrue(StringUtils.equalsIgnoreCase(CASE_STATUS, caseHistoryPage.getCaseState()));
     }
 
 }
