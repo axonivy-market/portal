@@ -335,7 +335,7 @@
 					<!-- Because changing URL Portal Connector is not supported, so we disable this inputText in Edit mode -->
 					<p:inputText value="#{data.selectedServer.path}" id="serverPath" required="true" disabled="#{not data.isAddMode}"
 						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathRequiredMsg')}" 
-						placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathPlaceholder')}"/>
+						placeholder="#{data.serverPathPlaceholder}"/>
 					<p:spacer />
 					<h:outputText
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/warningPortalConnectorPathSecurity')}"
