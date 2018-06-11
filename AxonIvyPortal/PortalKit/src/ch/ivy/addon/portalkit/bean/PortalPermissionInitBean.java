@@ -45,15 +45,15 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
           IPermissionGroup casePermissionGroup = createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.CASE_PERMISSIONS_GROUP);
           IPermissionGroup generalPermissionGroup = createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
           IPermissionGroup absenceAndSubPermissionGroup = createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.ABSENCE_AND_SUBSTITUTE_GROUP);
-          IPermissionGroup statisticsPermissionGroup = createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.STATISTICS_GROUP);
+          IPermissionGroup statisticsPermissionGroup = createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.STATISTIC_GROUP);
           IPermissionGroup expressPermissionGroup = createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.EXPRESS_GROUP);
           initSystemPermission(taskPermissionGroup, getTaskPermissions());
           initSystemPermission(casePermissionGroup, getCasePermissions());
           initSystemPermission(generalPermissionGroup, getGeneralPermissions());
           initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
-          initSystemPermission(statisticsPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.STATISTICS_GROUP));
+          initSystemPermission(statisticsPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.STATISTIC_GROUP));
           initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
-          grantPortalPermissionsForEverybody(Arrays.asList(PortalPermission.ADD_DASHBOARDS_CHARTS, PortalPermission.CREATE_EXPRESS_WORKFLOW));
+          grantPortalPermissionsForEverybody(Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW));
         });
   }
 
