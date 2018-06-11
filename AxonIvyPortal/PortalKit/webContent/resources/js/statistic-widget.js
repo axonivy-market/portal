@@ -5,20 +5,16 @@ function bindCursorChangeEvent() {
   $('.js-drilldown-cursor').bind('jqplotDataUnhighlight', function(ev) {
     $('.jqplot-event-canvas').css('cursor', 'default');
   });
-  if ($('.js-drilldown-cursor').attr('id') !== undefined && $('.js-drilldown-cursor').attr('id').indexOf('expiry-chart') > 0) {
-    $('.js-drilldown-cursor').bind('jqplotDataClick', function(ev, seriesIndex, pointIndex, data) {
-      var index = this.className.match(/expiry-chart-(\d+)/)[1];
-      var widgetVar = 'context-menu-' + index;
-      if (PF(widgetVar) !== undefined) {
-        PF('context-menu-' + index).show();
-        $('.' + widgetVar).css({
-          left : ev.pageX,
-          top : ev.pageY,
-          position : 'absolute'
-        });
-      }
+  $('.js-expiry-chart').bind('jqplotDataClick', function(ev, seriesIndex, pointIndex, data) {
+    var index = this.className.match(/expiry-chart-(\d+)/)[1];
+    var widgetVar = 'context-menu-' + index;
+    PF('context-menu-' + index).show();
+    $('.' + widgetVar).css({
+      left : ev.pageX,
+      top : ev.pageY,
+      position : 'absolute'
     });
-  }
+  });
 }
 
 function barChartExtender() {
