@@ -44,7 +44,6 @@ Cs0 @RichDialogProcessStart f28 '' #zField
 Cs0 @RichDialogProcessEnd f29 '' #zField
 Cs0 @GridStep f31 '' #zField
 Cs0 @PushWFArc f32 '' #zField
-Cs0 @PushWFArc f37 '' #zField
 Cs0 @GridStep f30 '' #zField
 Cs0 @Alternative f34 '' #zField
 Cs0 @PushWFArc f35 '' #zField
@@ -54,6 +53,11 @@ Cs0 @PushWFArc f38 '' #zField
 Cs0 @PushWFArc f33 '' #zField
 Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f25 '' #zField
+Cs0 @GridStep f40 '' #zField
+Cs0 @CallSub f41 '' #zField
+Cs0 @PushWFArc f42 '' #zField
+Cs0 @PushWFArc f43 '' #zField
+Cs0 @PushWFArc f37 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
@@ -317,22 +321,17 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f28 81 627 26 26 -39 12 #rect
 Cs0 f28 @|RichDialogProcessStartIcon #fIcon
 Cs0 f29 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
-Cs0 f29 379 627 26 26 0 12 #rect
+Cs0 f29 683 627 26 26 0 12 #rect
 Cs0 f29 @|RichDialogProcessEndIcon #fIcon
 Cs0 f31 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
 ' #txt
 Cs0 f31 actionTable 'out=in;
 ' #txt
-Cs0 f31 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
+Cs0 f31 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
-for(int i = in.statisticChartList.size() - 1; i >= 0; i --){
-	StatisticChart item = in.statisticChartList.get(i);
-	if (StringUtils.equalsIgnoreCase(item.defaultChart, "false")){
-		in.statisticChartList.remove(item);
-	}
-}
+in.statisticChartList.clear();
+
 StatisticService service = new StatisticService();
 service.removeStatisticChartsByUserId(ivy.session.getSessionUser().getId());
 ' #txt
@@ -348,8 +347,6 @@ Cs0 f31 200 618 128 44 -58 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
 Cs0 f32 expr out #txt
 Cs0 f32 107 640 200 640 #arcP
-Cs0 f37 expr out #txt
-Cs0 f37 328 640 379 640 #arcP
 Cs0 f30 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
 ' #txt
 Cs0 f30 actionTable 'out=in;
@@ -427,6 +424,48 @@ Cs0 f39 1 736 192 #addKink
 Cs0 f39 0 0.7579963419912229 0 0 #arcLabel
 Cs0 f25 expr out #txt
 Cs0 f25 491 64 595 64 #arcP
+Cs0 f40 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f40 actionTable 'out=in;
+' #txt
+Cs0 f40 actionCode in.statisticChartList.addAll(in.defaultCharts); #txt
+Cs0 f40 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>add to chart list</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f40 537 619 112 44 -41 -8 #rect
+Cs0 f40 @|StepIcon #fIcon
+Cs0 f41 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f41 processCall 'Functional Processes/DefaultChart:createDefaultChart()' #txt
+Cs0 f41 doCall true #txt
+Cs0 f41 requestActionDecl '<> param;
+' #txt
+Cs0 f41 responseActionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f41 responseMappingAction 'out=in;
+out.defaultCharts=result.charts;
+' #txt
+Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultChart</name>
+        <nameStyle>12,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f41 369 619 112 44 -34 -8 #rect
+Cs0 f41 @|CallSubIcon #fIcon
+Cs0 f42 expr out #txt
+Cs0 f42 481 641 537 641 #arcP
+Cs0 f43 expr out #txt
+Cs0 f43 328 640 369 641 #arcP
+Cs0 f37 expr out #txt
+Cs0 f37 649 641 683 640 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -449,8 +488,6 @@ Cs0 f0 mainOut f8 tail #connect
 Cs0 f8 head f24 mainIn #connect
 Cs0 f28 mainOut f32 tail #connect
 Cs0 f32 head f31 mainIn #connect
-Cs0 f31 mainOut f37 tail #connect
-Cs0 f37 head f29 mainIn #connect
 Cs0 f4 mainOut f35 tail #connect
 Cs0 f35 head f34 in #connect
 Cs0 f34 out f6 tail #connect
@@ -463,3 +500,9 @@ Cs0 f30 mainOut f39 tail #connect
 Cs0 f39 head f5 mainIn #connect
 Cs0 f26 mainOut f25 tail #connect
 Cs0 f25 head f7 mainIn #connect
+Cs0 f41 mainOut f42 tail #connect
+Cs0 f42 head f40 mainIn #connect
+Cs0 f31 mainOut f43 tail #connect
+Cs0 f43 head f41 mainIn #connect
+Cs0 f40 mainOut f37 tail #connect
+Cs0 f37 head f29 mainIn #connect
