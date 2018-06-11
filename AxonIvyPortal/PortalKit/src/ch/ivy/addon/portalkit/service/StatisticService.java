@@ -1131,8 +1131,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public void removeStatisticChartsByUserId(long userId) {
     List<StatisticChart> result =
-        repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().textField(DEFAULT_CHART)
-            .isEqualToIgnoringCase("false").execute().getAll();
+        repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll();
     result.stream().forEach(item -> repo().delete(item));
   }
 
