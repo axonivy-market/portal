@@ -70,3 +70,5 @@ settingInputType '1-Normal text, 2-Dropdown, 3-Number' #fieldComment
 settingInputType PERSISTENT #fieldModifier
 dropDownValues List<String> #field
 dropDownValues PERSISTENT #fieldModifier
+serverPathPlaceholder String #field
+serverPathPlaceholder PERSISTENT #fieldModifier
