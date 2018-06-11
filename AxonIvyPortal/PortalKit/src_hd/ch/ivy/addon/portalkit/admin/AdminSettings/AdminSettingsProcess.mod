@@ -374,16 +374,18 @@ As0 f6 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData 
 ' #txt
 As0 f6 actionTable 'out=in;
 ' #txt
-As0 f6 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Server;
-
+As0 f6 actionCode 'import ch.ivy.addon.portalkit.service.PortalConnectorDetector;
+import ch.ivy.addon.portalkit.persistence.domain.Server;
 import org.primefaces.context.RequestContext;
-
 
 in.selectedServer = new Server();
 in.selectedServer.isOnline = true;
+in.selectedServer.path = new PortalConnectorDetector().getPortalConectorLocalhostURLFromSystemProperty();
 in.isAddMode = true;
 in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addNewServer");
-in.serverExternalHost = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/autoDetectExternalHost");' #txt
+in.serverExternalHost = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/autoDetectExternalHost");
+
+in.serverPathPlaceholder = in.selectedServer.path;' #txt
 As0 f6 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
