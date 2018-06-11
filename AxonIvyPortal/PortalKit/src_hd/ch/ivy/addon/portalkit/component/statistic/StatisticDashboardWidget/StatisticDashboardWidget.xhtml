@@ -63,7 +63,7 @@
           <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
         </p:chart>
 
-        <p:chart type="bar" styleClass="statistic-chart js-drilldown-cursor js-expiry-chart expiry-chart-#{index}" id="expiry-chart"
+        <p:chart type="bar" styleClass="statistic-chart js-drilldown-cursor #{!statisticDashboardBean.isTaskByExpiryHour(chart) ? 'js-expiry-chart' : ''} expiry-chart-#{index}" id="expiry-chart"
           style="#{statisticDashboardBean.getChartWidthStyle(data.statisticChartList)}" model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
