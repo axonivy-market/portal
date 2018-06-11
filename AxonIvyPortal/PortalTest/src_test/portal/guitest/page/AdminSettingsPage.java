@@ -1,5 +1,8 @@
 package portal.guitest.page;
 
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -57,15 +60,27 @@ public class AdminSettingsPage extends TemplatePage {
     return new HomePage();
   }
   
-  private void clickAddNewGlobalVariable(){
-    WebElement addNewButton = findElementById("adminui:adminTabView:add-global-variable-button");
-    addNewButton.click();
-    waitForElementPresent(By.id("adminui:settingDialogForm"), true);
+  private void editGlobalVariable(String variableName, String variableValue) {
+    WebElement table = findElementById("adminui:adminTabView:settingTable");
+    List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+    int index = 0;
+    for (WebElement row : tableRows) {
+      List<WebElement> columns = row.findElements(By.tagName("td"));
+      if (!CollectionUtils.isEmpty(columns)) {
+        WebElement keyColumn = columns.get(0);
+        if (keyColumn.getText().equals(variableName)) {
+          WebElement editButton = row.findElement(By.id("adminui:adminTabView:settingTable:" + (index-2) + ":edit"));
+          editButton.click();
+          waitForElementPresent(By.id("adminui:settingDialogForm"), true);
+          saveGlobalVariable(variableValue);
+          return ;
+        }
+      }
+      index++;
+    }
   }
 
-  private void addGlobalVariable(String key, String value){
-    WebElement keyInput = findElementById("adminui:keySetting");
-    keyInput.sendKeys(key);
+  private void saveGlobalVariable(String value){
     WebElement valueInput = findElementById("adminui:valueSetting");
     valueInput.sendKeys(value);
     WebElement saveButton = findElementById("adminui:save-setting");
@@ -85,32 +100,28 @@ public class AdminSettingsPage extends TemplatePage {
 
   public void setClientSideTimeout(String timeout){
     openSettingTab();
-    clickAddNewGlobalVariable();
-    addGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout);
+    editGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout);
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
   
   public void setEnableScriptCheckingGlobalVariable(){
     openSettingTab();
-    clickAddNewGlobalVariable();
-    addGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true");
+    editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true");
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
   
   public void setFileExtensionWhiteList(){
     openSettingTab();
-    clickAddNewGlobalVariable();
-    addGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", "abc, pdf, doc");
+    editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", "abc, pdf, doc");
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
   
   public void setHideUploadDocumentForDoneCase(){
     openSettingTab();
-    clickAddNewGlobalVariable();
-    addGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true");
+    editGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true");
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
