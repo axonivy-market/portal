@@ -44,8 +44,9 @@ public class ExpressProcessUtils {
    * @return Express process after saved
    */
   public ExpressProcess saveProcess(Data expressData) {
-    ExpressProcess processRepository
-      = Optional.ofNullable(ExpressServiceRegistry.getProcessService().findById(expressData.getProcessID())).orElse(new ExpressProcess());
+    ExpressProcess processRepository =
+        Optional.ofNullable(ExpressServiceRegistry.getProcessService().findById(expressData.getProcessID())).orElse(
+            new ExpressProcess());
 
     processRepository.setProcessName(expressData.getProcessName());
     processRepository.setProcessDescription(expressData.getProcessDescription());
@@ -76,20 +77,20 @@ public class ExpressProcessUtils {
     ExpressServiceRegistry.getFormElementService().deleteByProcessId(processId);
 
     // Save the task definition with the order of the tasks
-    for (TaskDef taskDef: definedTasks){
-        ExpressTaskDefinition expressTaskDef = new ExpressTaskDefinition();
-        expressTaskDef.setType(taskDef.getTaskType().name());
-        expressTaskDef.setSubject(taskDef.getSubject());
-        expressTaskDef.setDescription(taskDef.getDescription());
-        expressTaskDef.setResponsibles(taskDef.getResponsibles());
-        expressTaskDef.setUntilDays(taskDef.getUntilDays().intValue());
-        expressTaskDef.setProcessID(processId);
-        expressTaskDef.setTaskPosition(taskDef.getPosition());
-        expressTaskDef.setEmail(taskDef.getEmail());
-        ExpressServiceRegistry.getTaskDefinitionService().save(expressTaskDef);
-        if(taskDef.getTaskType() != TaskType.EMAIL && taskDef.getTaskType() != TaskType.APPROVAL) {
-        	saveFormElements(processId, taskDef.getPosition(), taskDef.getDragAndDropController());
-        }
+    for (TaskDef taskDef : definedTasks) {
+      ExpressTaskDefinition expressTaskDef = new ExpressTaskDefinition();
+      expressTaskDef.setType(taskDef.getTaskType().name());
+      expressTaskDef.setSubject(taskDef.getSubject());
+      expressTaskDef.setDescription(taskDef.getDescription());
+      expressTaskDef.setResponsibles(taskDef.getResponsibles());
+      expressTaskDef.setUntilDays(taskDef.getUntilDays().intValue());
+      expressTaskDef.setProcessID(processId);
+      expressTaskDef.setTaskPosition(taskDef.getPosition());
+      expressTaskDef.setEmail(taskDef.getEmail());
+      ExpressServiceRegistry.getTaskDefinitionService().save(expressTaskDef);
+      if (taskDef.getTaskType() != TaskType.EMAIL && taskDef.getTaskType() != TaskType.APPROVAL) {
+        saveFormElements(processId, taskDef.getPosition(), taskDef.getDragAndDropController());
+      }
     }
   }
 
@@ -160,7 +161,8 @@ public class ExpressProcessUtils {
    */
   public List<TaskDef> getDefinedTasks(String processId) {
     List<TaskDef> taskDefinitions = new ArrayList<>();
-    List<ExpressTaskDefinition> expressTaskDefinitions = ExpressServiceRegistry.getTaskDefinitionService().findByProcessId(processId);
+    List<ExpressTaskDefinition> expressTaskDefinitions =
+        ExpressServiceRegistry.getTaskDefinitionService().findByProcessId(processId);
 
     for (ExpressTaskDefinition expressTaskDef : expressTaskDefinitions) {
       TaskDef taskDef = new TaskDef();
@@ -213,10 +215,9 @@ public class ExpressProcessUtils {
       ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);
       if (securityMember == null) {
         responsibleNames.remove(responsibleName);
-      }
-      else if(securityMember.isUser()) {
-    	  IUser iuser = (IUser) securityMember;
-    	  iuser.getEMailAddress();
+      } else if (securityMember.isUser()) {
+        IUser iuser = (IUser) securityMember;
+        iuser.getEMailAddress();
       }
     }
     return securityMembers;
@@ -224,41 +225,41 @@ public class ExpressProcessUtils {
 
   /**
    * get email addresses from responsible names
+   * 
    * @param responsibleNames
    * @return email addresses
    */
-  public List<String> getRecipientEmailAddresses(List<String> responsibleNames){
+  public List<String> getRecipientEmailAddresses(List<String> responsibleNames) {
     if (responsibleNames == null) {
       return Collections.emptyList();
     }
-	    List<String> emailAddresses = new ArrayList<>();
-	    for (String responsibleName : responsibleNames) {
-	      ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);
-	      if (securityMember != null) {
-	    	  getEmailAddressFromSecurityMemeber(emailAddresses, securityMember);
-	      }
-	      
-	    }
-	    return emailAddresses;
+    List<String> emailAddresses = new ArrayList<>();
+    for (String responsibleName : responsibleNames) {
+      ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);
+      if (securityMember != null) {
+        getEmailAddressFromSecurityMemeber(emailAddresses, securityMember);
+      }
+
+    }
+    return emailAddresses;
   }
 
   private void getEmailAddressFromSecurityMemeber(List<String> emailAddresses, ISecurityMember securityMember) {
-    if(securityMember.isUser()) {
+    if (securityMember.isUser()) {
       IUser iuser = (IUser) securityMember;
-      if(StringUtils.isNoneBlank(iuser.getEMailAddress())){
-    	  emailAddresses.add(iuser.getEMailAddress());
+      if (StringUtils.isNoneBlank(iuser.getEMailAddress())) {
+        emailAddresses.add(iuser.getEMailAddress());
       }
-    }
-    else{
+    } else {
       IRole irole = (IRole) securityMember;
-      for(IUser userInRole : irole.getUsers()){
-    	  if(StringUtils.isNoneEmpty(userInRole.getEMailAddress())){
-    		  emailAddresses.add(userInRole.getEMailAddress());
-    	  }
+      for (IUser userInRole : irole.getUsers()) {
+        if (StringUtils.isNoneEmpty(userInRole.getEMailAddress())) {
+          emailAddresses.add(userInRole.getEMailAddress());
+        }
       }
     }
   }
-  
+
   /**
    * Initialize controllers for task definition
    * 
@@ -286,10 +287,13 @@ public class ExpressProcessUtils {
    * @param controller
    */
   private void updateDragAndDropController(String processId, DragAndDropController controller, int taskPosition) {
-    List<ExpressFormElement> expressFormElements = ExpressServiceRegistry.getFormElementService().findByProcessId(processId);
-    expressFormElements = expressFormElements.stream().filter(element -> element.getTaskPosition() == taskPosition).collect(Collectors.toList());
+    List<ExpressFormElement> expressFormElements =
+        ExpressServiceRegistry.getFormElementService().findByProcessId(processId);
+    expressFormElements =
+        expressFormElements.stream().filter(element -> element.getTaskPosition() == taskPosition)
+            .collect(Collectors.toList());
 
-    for (ExpressFormElement expressElement: expressFormElements){
+    for (ExpressFormElement expressElement : expressFormElements) {
       Formelement element = new Formelement();
       element.setId(expressElement.getElementID());
       element.setIntSetting(expressElement.getIntSetting());
@@ -302,8 +306,12 @@ public class ExpressProcessUtils {
           element.setType(type);
         }
       }
-      element.setOptionsStr(expressElement.getOptionStrs());
-
+      if (element.getType() == FormElementType.CHECKBOX) {
+        List<String> options = executeDataProvider(expressElement.getOptionStrs());
+        element.setOptionsStr(options);
+      } else {
+        element.setOptionsStr(expressElement.getOptionStrs());
+      }
       String location = expressElement.getElementPosition();
       switch (location) {
         case HEADER_PANEL:
@@ -323,55 +331,59 @@ public class ExpressProcessUtils {
       }
     }
   }
-  
+
+  private List<String> executeDataProvider(List<String> optionStrs) {
+    return DataProvider.create(optionStrs).execute();
+  }
+
   public boolean isNeedUpdatePathForAttachments(List<TaskDef> taskDefs) {
-	  for(TaskDef task : taskDefs) {
-		  if(task.getEmail() != null && task.getEmail().getAttachments() != null) {
-			  for(ExpressAttachment attachment : task.getEmail().getAttachments()){
-			    return attachment.getPath() == null;
-			  }
-		  }
-	  }
-	  return false;
+    for (TaskDef task : taskDefs) {
+      if (task.getEmail() != null && task.getEmail().getAttachments() != null) {
+        for (ExpressAttachment attachment : task.getEmail().getAttachments()) {
+          return attachment.getPath() == null;
+        }
+      }
+    }
+    return false;
   }
-  
-  public String generateProcessFolder(){
-	  return UUID.randomUUID().toString();
+
+  public String generateProcessFolder() {
+    return UUID.randomUUID().toString();
   }
-  
-  public void saveAttachments(String folder, List<TaskDef> taskDefs){
-	  String folderPath = "/Express/Process/" + folder + "/Attachment/";
-	  for(TaskDef task : taskDefs) {
-	    saveAttachmentsForEmail(folderPath, task.getEmail());
-	  }
+
+  public void saveAttachments(String folder, List<TaskDef> taskDefs) {
+    String folderPath = "/Express/Process/" + folder + "/Attachment/";
+    for (TaskDef task : taskDefs) {
+      saveAttachmentsForEmail(folderPath, task.getEmail());
+    }
   }
 
   public void saveAttachmentsForEmail(String folderPath, ExpressUserEmail mail) {
-    if(mail != null && mail.getAttachments() != null) {
+    if (mail != null && mail.getAttachments() != null) {
       List<ExpressAttachment> attachments = mail.getAttachments();
       setPathForAttachments(folderPath, attachments);
       MailAttachment mailAttachment = new MailAttachment(attachments);
       mailAttachment.updatePhysicalPaths();
       removeDeletedAttachment(attachments);
-}
+    }
   }
 
   private void setPathForAttachments(String folderPath, List<ExpressAttachment> attachments) {
-    for(ExpressAttachment attachment : attachments){
-      if(attachment.getPath() == null && attachment.getContent() != null) {
-    	  attachment.setPath(folderPath + attachment.getName());
+    for (ExpressAttachment attachment : attachments) {
+      if (attachment.getPath() == null && attachment.getContent() != null) {
+        attachment.setPath(folderPath + attachment.getName());
       }
     }
   }
-  
+
   private void removeDeletedAttachment(List<ExpressAttachment> attachments) {
-	  Iterator<ExpressAttachment> attachmentIter = attachments.iterator();
-	  if(attachmentIter.hasNext()) {
-		  ExpressAttachment attachment = attachmentIter.next();
-		  if(attachment.getStatus() == ExpressEmailAttachmentStatus.DELETED || attachment.getPath() == null) {
-			  attachmentIter.remove();
-		  }
-	  }
+    Iterator<ExpressAttachment> attachmentIter = attachments.iterator();
+    if (attachmentIter.hasNext()) {
+      ExpressAttachment attachment = attachmentIter.next();
+      if (attachment.getStatus() == ExpressEmailAttachmentStatus.DELETED || attachment.getPath() == null) {
+        attachmentIter.remove();
+      }
+    }
   }
 
   /**
@@ -403,7 +415,7 @@ public class ExpressProcessUtils {
     }
     return false;
   }
-  
+
   /**
    * Check whether form definition step can be finished or not
    * 
@@ -411,37 +423,44 @@ public class ExpressProcessUtils {
    * @return check result
    */
   public boolean canFinishFormDefinition(List<TaskDef> definedTasks) {
-    boolean isAnyCreateFormNotDefined
-      = definedTasks.stream().filter(taskDef 
-    		  -> (taskDef.getTaskType() !=  TaskType.EMAIL && taskDef.getTaskType() !=  TaskType.APPROVAL && taskDef.getDragAndDropController().isNotDefined()))
-    		  .findFirst()
-    		  .isPresent();
+    boolean isAnyCreateFormNotDefined =
+        definedTasks
+            .stream()
+            .filter(
+                taskDef -> (taskDef.getTaskType() != TaskType.EMAIL && taskDef.getTaskType() != TaskType.APPROVAL && taskDef
+                    .getDragAndDropController().isNotDefined())).findFirst().isPresent();
 
-    boolean isAnyEmailEmpty
-      = definedTasks.stream().filter(taskDef -> taskDef.getTaskType() ==  TaskType.EMAIL  && taskDef.getEmail().isEmpty()).findFirst().isPresent();
+    boolean isAnyEmailEmpty =
+        definedTasks.stream()
+            .filter(taskDef -> taskDef.getTaskType() == TaskType.EMAIL && taskDef.getEmail().isEmpty()).findFirst()
+            .isPresent();
 
     return !isAnyCreateFormNotDefined && !isAnyEmailEmpty;
   }
-  
+
   /**
    * check whether next button should display
+   * 
    * @param definedTasks
    * @param currentIndex
    * @return check result
    */
   public boolean displayNextButton(List<TaskDef> definedTasks, int currentIndex) {
-    if(definedTasks == null || definedTasks.size()<2) {
+    if (definedTasks == null || definedTasks.size() < 2) {
       return false;
     }
-    if(currentIndex == definedTasks.size() -1 ) {
+    if (currentIndex == definedTasks.size() - 1) {
       return false;
     }
-    return !definedTasks.subList(currentIndex + 1, definedTasks.size()).stream().filter(item -> item.getTaskType() != TaskType.APPROVAL).collect(Collectors.toList()).isEmpty();
+    return !definedTasks.subList(currentIndex + 1, definedTasks.size()).stream()
+        .filter(item -> item.getTaskType() != TaskType.APPROVAL).collect(Collectors.toList()).isEmpty();
   }
-  
+
   public int nextAvailableTaskIndex(List<TaskDef> definedTasks, int currentIndex) {
-    Optional<TaskDef> taskDef = definedTasks.subList(currentIndex + 1, definedTasks.size()).stream().filter(item -> item.getTaskType() != TaskType.APPROVAL).findFirst();
-    if(taskDef.isPresent()){
+    Optional<TaskDef> taskDef =
+        definedTasks.subList(currentIndex + 1, definedTasks.size()).stream()
+            .filter(item -> item.getTaskType() != TaskType.APPROVAL).findFirst();
+    if (taskDef.isPresent()) {
       return definedTasks.indexOf(taskDef.get());
     }
     return -1;
