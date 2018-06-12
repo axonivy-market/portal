@@ -19,8 +19,6 @@ As0 @RichDialogProcessEnd f4 '' #zField
 As0 @GridStep f6 '' #zField
 As0 @PushWFArc f7 '' #zField
 As0 @PushWFArc f5 '' #zField
-As0 @RichDialogProcessStart f8 '' #zField
-As0 @RichDialogProcessEnd f9 '' #zField
 As0 @RichDialogMethodStart f21 '' #zField
 As0 @RichDialogProcessEnd f22 '' #zField
 As0 @RichDialogMethodStart f24 '' #zField
@@ -29,7 +27,6 @@ As0 @GridStep f27 '' #zField
 As0 @PushWFArc f28 '' #zField
 As0 @PushWFArc f26 '' #zField
 As0 @RichDialogProcessEnd f12 '' #zField
-As0 @GridStep f18 '' #zField
 As0 @GridStep f30 '' #zField
 As0 @RichDialogProcessStart f32 '' #zField
 As0 @RichDialogProcessEnd f33 '' #zField
@@ -156,8 +153,6 @@ As0 @GridStep f212 '' #zField
 As0 @RichDialogProcessStart f200 '' #zField
 As0 @RichDialogProcessEnd f216 '' #zField
 As0 @GridStep f229 '' #zField
-As0 @GridStep f97 '' #zField
-As0 @PushWFArc f10 '' #zField
 As0 @GridStep f92 '' #zField
 As0 @PushWFArc f53 '' #zField
 As0 @GridStep f155 '' #zField
@@ -176,8 +171,6 @@ As0 @PushWFArc f180 '' #zField
 As0 @PushWFArc f181 '' #zField
 As0 @GridStep f104 '' #zField
 As0 @PushWFArc f101 '' #zField
-As0 @GridStep f102 '' #zField
-As0 @PushWFArc f14 '' #zField
 As0 @GridStep f15 '' #zField
 As0 @GridStep f84 '' #zField
 As0 @PushWFArc f86 '' #zField
@@ -192,14 +185,6 @@ As0 @PushWFArc f133 '' #zField
 As0 @RichDialogProcessEnd f144 '' #zField
 As0 @RichDialogMethodStart f143 '' #zField
 As0 @PushWFArc f145 '' #zField
-As0 @Trigger f172 '' #zField
-As0 @PushWFArc f91 '' #zField
-As0 @Alternative f175 '' #zField
-As0 @PushWFArc f233 '' #zField
-As0 @PushWFArc f174 '' #zField
-As0 @Trigger f235 '' #zField
-As0 @PushWFArc f236 '' #zField
-As0 @PushWFArc f234 '' #zField
 As0 @Trigger f237 '' #zField
 As0 @PushWFArc f238 '' #zField
 As0 @PushWFArc f96 '' #zField
@@ -234,9 +219,6 @@ As0 @GridStep f261 '' #zField
 As0 @PushWFArc f262 '' #zField
 As0 @PushWFArc f210 '' #zField
 As0 @PushWFArc f263 '' #zField
-As0 @GridStep f55 '' #zField
-As0 @PushWFArc f256 '' #zField
-As0 @PushWFArc f232 '' #zField
 As0 @PushWFArc f257 '' #zField
 As0 @PushWFArc f41 '' #zField
 As0 @PushWFArc f43 '' #zField
@@ -402,26 +384,6 @@ As0 f7 expr out #txt
 As0 f7 528 58 528 108 #arcP
 As0 f5 expr out #txt
 As0 f5 528 132 528 182 #arcP
-As0 f8 guid 14B6C969CD590FDA #txt
-As0 f8 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f8 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f8 actionTable 'out=in;
-' #txt
-As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>saveServer</name>
-        <nameStyle>10,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f8 302 670 20 20 13 0 #rect
-As0 f8 @|RichDialogProcessStartIcon #fIcon
-As0 f9 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f9 302 1094 20 20 13 0 #rect
-As0 f9 @|RichDialogProcessEndIcon #fIcon
 As0 f21 guid 14B6D4DB54AA0916 #txt
 As0 f21 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f21 method editServer(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -503,25 +465,6 @@ As0 f26 1048 356 1048 398 #arcP
 As0 f12 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f12 798 518 20 20 13 0 #rect
 As0 f12 @|RichDialogProcessEndIcon #fIcon
-As0 f18 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f18 actionTable 'out=in;
-' #txt
-As0 f18 actionCode 'if (in.isAddMode) {
-	in.serverList.add(in.selectedServer	);
-}' #txt
-As0 f18 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Add to list</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f18 294 836 36 24 20 -2 #rect
-As0 f18 @|StepIcon #fIcon
 As0 f30 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f30 actionTable 'out=in;
@@ -2038,28 +1981,6 @@ As0 f229 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f229 510 1108 36 24 20 -2 #rect
 As0 f229 @|StepIcon #fIcon
-As0 f97 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f97 actionTable 'out=in;
-' #txt
-As0 f97 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
-
-ApplicationService applicationService = new ApplicationService();
-in.applicationList = applicationService.findAll();' #txt
-As0 f97 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>getAllApplication</name>
-        <nameStyle>17,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f97 294 892 36 24 20 -3 #rect
-As0 f97 @|StepIcon #fIcon
-As0 f10 expr out #txt
-As0 f10 312 860 312 892 #arcP
 As0 f92 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f92 actionTable 'out=in;
@@ -2236,41 +2157,6 @@ As0 f104 294 508 36 24 20 -2 #rect
 As0 f104 @|StepIcon #fIcon
 As0 f101 expr out #txt
 As0 f101 312 476 312 508 #arcP
-As0 f102 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f102 actionTable 'out=in;
-' #txt
-As0 f102 actionCode 'import ch.ivy.addon.portalkit.enums.WSAuthenticationType;
-import ch.ivy.addon.portalkit.persistence.domain.Server;
-
-import ch.ivy.addon.portalkit.service.ServerService;
-
-ServerService serverService = new ServerService();
-if (WSAuthenticationType.NONE == in.selectedServer.wsAuthenticationType) {
-	in.selectedServer.username = null;
-	in.selectedServer.password = null;
-	in.selectedServer.host = null;
-	in.selectedServer.domain = null;
-} else if (WSAuthenticationType.HTTP_BASIC == in.selectedServer.wsAuthenticationType) {
-	in.selectedServer.host = null;
-	in.selectedServer.domain = null;
-}
-
-in.selectedServer = serverService.save(in.selectedServer) as Server;' #txt
-As0 f102 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f102 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>save server</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f102 294 780 36 24 20 -2 #rect
-As0 f102 @|StepIcon #fIcon
-As0 f14 expr out #txt
-As0 f14 312 804 312 836 #arcP
 As0 f15 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f15 actionTable 'out=in;
@@ -2399,95 +2285,6 @@ As0 f143 1909 37 22 22 14 0 #rect
 As0 f143 @|RichDialogMethodStartIcon #fIcon
 As0 f145 expr out #txt
 As0 f145 1920 59 1920 109 #arcP
-As0 f172 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f172 processCall 'Business Processes/SynchronizeServerConfiguration:add(ch.ivy.addon.portalkit.persistence.domain.Server)' #txt
-As0 f172 doCall true #txt
-As0 f172 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server> param;
-' #txt
-As0 f172 requestMappingAction 'param.server=in.selectedServer;
-' #txt
-As0 f172 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f172 responseMappingAction 'out=in;
-' #txt
-As0 f172 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>sync data</name>
-        <nameStyle>9,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f172 358 1028 36 24 -17 16 #rect
-As0 f172 @|TriggerIcon #fIcon
-As0 f91 expr out #txt
-As0 f91 376 1052 322 1104 #arcP
-As0 f91 1 376 1104 #addKink
-As0 f91 1 0.048286957790386865 0 0 #arcLabel
-As0 f175 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f175 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>is Add new Server?</name>
-        <nameStyle>18,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f175 298 954 28 28 -112 -24 #rect
-As0 f175 @|AlternativeIcon #fIcon
-As0 f233 expr out #txt
-As0 f233 312 916 312 954 #arcP
-As0 f174 expr in #txt
-As0 f174 outCond in.isAddMode #txt
-As0 f174 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f174 326 968 376 1028 #arcP
-As0 f174 1 376 968 #addKink
-As0 f174 0 0.92 0 -9 #arcLabel
-As0 f235 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f235 processCall 'Business Processes/AbstractSynchronizingConfiguration:addOrUpdateOne(ch.ivy.addon.portalkit.persistence.domain.BusinessEntity)' #txt
-As0 f235 doCall true #txt
-As0 f235 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity businessEntity> param;
-' #txt
-As0 f235 requestMappingAction 'param.businessEntity=in.selectedServer;
-' #txt
-As0 f235 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f235 responseMappingAction 'out=in;
-' #txt
-As0 f235 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>update data</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f235 294 1028 36 24 -69 15 #rect
-As0 f235 @|TriggerIcon #fIcon
-As0 f236 expr in #txt
-As0 f236 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f236 312 982 312 1028 #arcP
-As0 f234 expr out #txt
-As0 f234 312 1052 312 1094 #arcP
 As0 f237 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f237 processCall 'Business Processes/AbstractSynchronizingConfiguration:addOrUpdateOne(ch.ivy.addon.portalkit.persistence.domain.BusinessEntity)' #txt
 As0 f237 doCall true #txt
@@ -2830,28 +2627,6 @@ As0 f210 expr out #txt
 As0 f210 528 804 528 858 #arcP
 As0 f263 expr out #txt
 As0 f263 1416 58 1416 108 #arcP
-As0 f55 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f55 actionTable 'out=in;
-' #txt
-As0 f55 actionCode 'import ch.ivy.addon.portalkit.webservice.WebserviceCache;
-WebserviceCache.getInstance().invalidateGetApplicationsWSCache();' #txt
-As0 f55 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>invalidate WS cache</name>
-        <nameStyle>19
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f55 248 716 128 24 -55 -8 #rect
-As0 f55 @|StepIcon #fIcon
-As0 f256 expr out #txt
-As0 f256 312 690 312 716 #arcP
-As0 f232 expr out #txt
-As0 f232 312 740 312 780 #arcP
 As0 f257 expr in #txt
 As0 f257 528 1262 528 1292 #arcP
 As0 f41 expr out #txt
@@ -3825,8 +3600,6 @@ As0 f209 out f213 tail #connect
 As0 f213 head f212 mainIn #connect
 As0 f212 mainOut f214 tail #connect
 As0 f214 head f170 in #connect
-As0 f18 mainOut f10 tail #connect
-As0 f10 head f97 mainIn #connect
 As0 f92 mainOut f53 tail #connect
 As0 f53 head f52 mainIn #connect
 As0 f170 out f168 tail #connect
@@ -3847,8 +3620,6 @@ As0 f179 mainOut f181 tail #connect
 As0 f181 head f231 mainIn #connect
 As0 f52 mainOut f101 tail #connect
 As0 f101 head f104 mainIn #connect
-As0 f102 mainOut f14 tail #connect
-As0 f14 head f18 mainIn #connect
 As0 f164 out f86 tail #connect
 As0 f86 head f84 mainIn #connect
 As0 f84 mainOut f16 tail #connect
@@ -3865,16 +3636,6 @@ As0 f170 out f133 tail #connect
 As0 f133 head f88 mainIn #connect
 As0 f143 mainOut f145 tail #connect
 As0 f145 head f144 mainIn #connect
-As0 f172 mainOut f91 tail #connect
-As0 f91 head f9 mainIn #connect
-As0 f97 mainOut f233 tail #connect
-As0 f233 head f175 in #connect
-As0 f175 out f174 tail #connect
-As0 f174 head f172 mainIn #connect
-As0 f175 out f236 tail #connect
-As0 f236 head f235 mainIn #connect
-As0 f235 mainOut f234 tail #connect
-As0 f234 head f9 mainIn #connect
 As0 f167 mainOut f238 tail #connect
 As0 f238 head f237 mainIn #connect
 As0 f237 mainOut f96 tail #connect
@@ -3910,10 +3671,6 @@ As0 f261 mainOut f210 tail #connect
 As0 f210 head f209 in #connect
 As0 f44 mainOut f263 tail #connect
 As0 f263 head f54 mainIn #connect
-As0 f8 mainOut f256 tail #connect
-As0 f256 head f55 mainIn #connect
-As0 f55 mainOut f232 tail #connect
-As0 f232 head f102 mainIn #connect
 As0 f103 out f257 tail #connect
 As0 f257 head f42 mainIn #connect
 As0 f40 mainOut f41 tail #connect
