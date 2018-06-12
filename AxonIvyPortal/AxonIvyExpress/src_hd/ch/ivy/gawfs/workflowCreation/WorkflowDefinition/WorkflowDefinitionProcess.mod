@@ -65,7 +65,6 @@ Fs0 @RichDialogProcessEnd f48 '' #zField
 Fs0 @GridStep f49 '' #zField
 Fs0 @PushWFArc f51 '' #zField
 Fs0 @GridStep f52 '' #zField
-Fs0 @PushWFArc f53 '' #zField
 Fs0 @PushWFArc f5 '' #zField
 Fs0 @RichDialogProcessStart f54 '' #zField
 Fs0 @PushWFArc f55 '' #zField
@@ -76,6 +75,15 @@ Fs0 @Alternative f59 '' #zField
 Fs0 @PushWFArc f60 '' #zField
 Fs0 @PushWFArc f50 '' #zField
 Fs0 @PushWFArc f61 '' #zField
+Fs0 @GridStep f62 '' #zField
+Fs0 @PushWFArc f63 '' #zField
+Fs0 @Alternative f64 '' #zField
+Fs0 @PushWFArc f65 '' #zField
+Fs0 @PushWFArc f53 '' #zField
+Fs0 @GridStep f66 '' #zField
+Fs0 @PushWFArc f67 '' #zField
+Fs0 @RichDialogProcessEnd f68 '' #zField
+Fs0 @PushWFArc f69 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -115,11 +123,11 @@ Fs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f3 83 571 26 26 -15 12 #rect
+Fs0 f3 747 579 26 26 -15 12 #rect
 Fs0 f3 @|RichDialogProcessStartIcon #fIcon
 Fs0 f4 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f4 guid 1576FA61CB08591F #txt
-Fs0 f4 435 571 26 26 0 12 #rect
+Fs0 f4 1379 579 26 26 0 12 #rect
 Fs0 f4 @|RichDialogEndIcon #fIcon
 Fs0 f6 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
@@ -717,12 +725,10 @@ use default template</name>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f52 192 562 144 44 -52 -16 #rect
+Fs0 f52 1136 570 144 44 -52 -16 #rect
 Fs0 f52 @|StepIcon #fIcon
-Fs0 f53 expr out #txt
-Fs0 f53 109 584 192 584 #arcP
 Fs0 f5 expr out #txt
-Fs0 f5 336 584 435 584 #arcP
+Fs0 f5 1280 592 1379 592 #arcP
 Fs0 f54 guid 163497DDEE05D6E5 #txt
 Fs0 f54 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f54 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
@@ -792,6 +798,65 @@ Fs0 f61 928 368 1184 365 #arcP
 Fs0 f61 1 928 400 #addKink
 Fs0 f61 2 1184 400 #addKink
 Fs0 f61 1 0.505859375 0 0 #arcLabel
+Fs0 f62 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
+' #txt
+Fs0 f62 actionTable 'out=in;
+' #txt
+Fs0 f62 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+import ch.ivy.gawfs.ExpressProcessUtils;
+ExpressProcessUtils utils = new ExpressProcessUtils();
+in.isValidated = !(in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));' #txt
+Fs0 f62 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check if &#xD;
+process name exists</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f62 816 570 144 44 -52 -16 #rect
+Fs0 f62 @|StepIcon #fIcon
+Fs0 f63 expr out #txt
+Fs0 f63 773 592 816 592 #arcP
+Fs0 f64 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f64 1032 576 32 32 0 16 #rect
+Fs0 f64 @|AlternativeIcon #fIcon
+Fs0 f65 expr out #txt
+Fs0 f65 960 592 1032 592 #arcP
+Fs0 f53 expr in #txt
+Fs0 f53 outCond in.isValidated #txt
+Fs0 f53 1064 592 1136 592 #arcP
+Fs0 f66 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
+' #txt
+Fs0 f66 actionTable 'out=in;
+' #txt
+Fs0 f66 actionCode 'import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists"), "");
+FacesContext context = FacesContext.getCurrentInstance();
+context.addMessage("", message);
+context.validationFailed();' #txt
+Fs0 f66 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validation message</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f66 1152 650 128 44 -55 -8 #rect
+Fs0 f66 @|StepIcon #fIcon
+Fs0 f67 expr in #txt
+Fs0 f67 1048 608 1152 672 #arcP
+Fs0 f67 1 1048 672 #addKink
+Fs0 f67 1 0.1942657177753309 0 0 #arcLabel
+Fs0 f68 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f68 1379 659 26 26 0 12 #rect
+Fs0 f68 @|RichDialogProcessEndIcon #fIcon
+Fs0 f69 expr out #txt
+Fs0 f69 1280 672 1379 672 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -838,8 +903,6 @@ Fs0 f45 mainOut f2 tail #connect
 Fs0 f2 head f1 mainIn #connect
 Fs0 f49 mainOut f51 tail #connect
 Fs0 f51 head f48 mainIn #connect
-Fs0 f3 mainOut f53 tail #connect
-Fs0 f53 head f52 mainIn #connect
 Fs0 f52 mainOut f5 tail #connect
 Fs0 f5 head f4 mainIn #connect
 Fs0 f54 mainOut f55 tail #connect
@@ -852,3 +915,13 @@ Fs0 f59 out f50 tail #connect
 Fs0 f50 head f49 mainIn #connect
 Fs0 f59 out f61 tail #connect
 Fs0 f61 head f48 mainIn #connect
+Fs0 f3 mainOut f63 tail #connect
+Fs0 f63 head f62 mainIn #connect
+Fs0 f62 mainOut f65 tail #connect
+Fs0 f65 head f64 in #connect
+Fs0 f64 out f53 tail #connect
+Fs0 f53 head f52 mainIn #connect
+Fs0 f64 out f67 tail #connect
+Fs0 f67 head f66 mainIn #connect
+Fs0 f66 mainOut f69 tail #connect
+Fs0 f69 head f68 mainIn #connect

@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -456,5 +457,15 @@ public class ExpressProcessUtils {
       return definedTasks.indexOf(taskDef.get());
     }
     return -1;
+  }
+  
+  /**
+   * Check if process name is existed or not
+   * @param processName
+   * @return true if process name was used, false if process name is available
+   */
+  public boolean isProcessNameDuplicated(String processName) {
+    List<ExpressProcess> expressProcesses = ExpressServiceRegistry.getProcessService().findExpressProcessByName(processName);
+    return !CollectionUtils.isEmpty(expressProcesses);
   }
 }
