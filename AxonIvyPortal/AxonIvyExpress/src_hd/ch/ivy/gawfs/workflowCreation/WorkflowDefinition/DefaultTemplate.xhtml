@@ -7,12 +7,14 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
+	<h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DefaultTemplateDescription')}"/><br/><br/>
+	
 	<pe:dynaForm id="default-template-dyna-form" value="#{data.defaultDragAndDropController.dynaFormController.model}"
 		var="dynaData" columnClasses="label-container, field-container"
 		styleClass="Wid100 default-template-dyna-form">
 
 		<pe:dynaFormControl type="InputTextArea" for="inputTextArea">
-			<p:inputTextarea id="inputTextArea" value="#{dynaData.value}" styleClass="default-template-text-area"
+			<p:inputTextarea id="inputTextArea" value="#{dynaData.value}" styleClass="default-template-text-area" disabled="true"
 				required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 				rows="#{dynaData.intSetting}" autoResize="false" />
 		</pe:dynaFormControl>
