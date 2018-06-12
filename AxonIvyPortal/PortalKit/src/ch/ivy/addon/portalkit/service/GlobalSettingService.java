@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.EnumUtils;
+
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.persistence.dao.GlobalSettingDao;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
@@ -30,6 +32,7 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
 
   public List<GlobalSetting> findAllGlobalSetting() {
     List<GlobalSetting> globalSettings = super.findAll();
+    globalSettings = globalSettings.stream().filter(setting -> EnumUtils.isValidEnum(GlobalVariable.class, setting.getKey())).collect(Collectors.toList());
     List<String> allGlobalSettingKeys = globalSettings.stream().map(GlobalSetting::getKey).collect(Collectors.toList());
     for (GlobalVariable globalVariable : GlobalVariable.values()) {
       if (!allGlobalSettingKeys.contains(globalVariable.toString())) {
