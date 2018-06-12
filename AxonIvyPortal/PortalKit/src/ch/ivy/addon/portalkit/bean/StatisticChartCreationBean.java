@@ -32,7 +32,7 @@ public class StatisticChartCreationBean implements Serializable {
   private DonutChartModel caseByFinishedTimeModel;
   private DonutChartModel caseByFinishedTaskModel;
   private BarChartModel taskByExpiryModel;
-  private DonutChartModel elapsedTimeModel;
+  private BarChartModel elapsedTimeModel;
   private List<String> availableCustomValues;
   StatisticService statisticService = new StatisticService();
 
@@ -146,11 +146,11 @@ public class StatisticChartCreationBean implements Serializable {
     this.taskByExpiryModel = taskByExpiryModel;
   }
 
-  public DonutChartModel getElapsedTimeModel() {
+  public BarChartModel getElapsedTimeModel() {
     return elapsedTimeModel;
   }
 
-  public void setElapsedTimeModel(DonutChartModel elapsedTimeModel) {
+  public void setElapsedTimeModel(BarChartModel elapsedTimeModel) {
     this.elapsedTimeModel = elapsedTimeModel;
   }
 
