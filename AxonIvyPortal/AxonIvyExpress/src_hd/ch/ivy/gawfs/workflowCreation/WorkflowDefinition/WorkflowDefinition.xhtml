@@ -79,7 +79,7 @@
                   required="true"
                   maxlength="50"
                   requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
-                  <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
+                  <p:ajax event="blur" partialSubmit="true" process="@this" global="false" immediate="true"/>
                 </p:inputText>
               </p:column>
             </p:row>
@@ -94,7 +94,6 @@
               <p:column styleClass="process-property-input-col">
                 <p:inputTextarea id="processdescription" styleClass="process-property-input"
                   value="#{data.data.processDescription}"
-                  required="true"
                   maxlength="60"
                   requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
                   <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
@@ -134,7 +133,6 @@
                     <p:outputLabel id="task-description-label" for="task-description"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}:" />
                     <p:inputText id="task-description" value="#{gtask.description}" styleClass="dynamic-task-description-input"
-                      required="true"
                       requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" >
                       <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
                     </p:inputText>

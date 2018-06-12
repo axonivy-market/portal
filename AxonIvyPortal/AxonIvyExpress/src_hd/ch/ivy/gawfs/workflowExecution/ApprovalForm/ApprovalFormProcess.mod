@@ -229,7 +229,8 @@ As0 f21 actionCode 'import ch.ivyteam.ivy.security.IUser;
 
 in.approvalResult.setApproverName(ivy.session.getSessionUser().getDisplayName());
 in.approvalResult.setComment(in.comment);
-in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));' #txt
+in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));
+in.approvalResult.setIndex(in.actualStepIndex);' #txt
 As0 f21 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
