@@ -454,11 +454,11 @@ Ae0 f15 actionTable 'out=in;
 Ae0 f15 actionCode 'import ch.ivy.addon.portalkit.service.PortalConnectorDetector;
 import ch.ivy.addon.portalkit.enums.WebServiceEndPoint;
 
-if(in.server.id != null) {
+if(in.#server.#id is initialized) {
 	PortalConnectorDetector detector = new PortalConnectorDetector();
 	in.endpoint = detector.getPortalConnectorURLOf(in.server) + WebServiceEndPoint.LIBRARY.toString();
 } else {
-	in.endpoint = in.server.getPath() + WebServiceEndPoint.SERVER.toString();
+	in.endpoint = in.server.getPath() + WebServiceEndPoint.LIBRARY.toString();
 }' #txt
 Ae0 f15 type ch.ivyteam.wf.processes.LibraryServiceData #txt
 Ae0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
