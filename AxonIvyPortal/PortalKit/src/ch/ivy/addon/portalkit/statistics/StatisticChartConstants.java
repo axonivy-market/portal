@@ -68,7 +68,8 @@ public class StatisticChartConstants {
   public static final String TASK_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
   public static final String TASK_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/tasks";
   public static final String SECOND_DATATIP_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/second";
-
+  public static final String PERCENTAGE_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/Percentage";
+  public static final String CASE_CATEGORIES_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel";
   public static final String NO_CATEGORY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory";
 
   public static final String ELAPSED_TIME_DETAIL_CHART_NAME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/elapsedTimeInSeconds";

@@ -4,6 +4,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AFTER_18
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.APRIL_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AUGUST_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_CATEGORIES_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DEFAULT_CHART;
@@ -40,6 +41,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_P
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NOVEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.OCTOBER_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.PERCENTAGE_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RESULT;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SATURDAY_CMS;
@@ -862,40 +864,64 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param isSetDefaultName
    * @return chart model for "Elapsed time by Case Category" chart
    */
-  public DonutChartModel generateElapsedTimeModel(List<ElapsedTimeStatistic> statisticData, boolean isSetDefaultName) {
-    Map<String, Number> chartData = generateDataForElapsedTimeChart(statisticData);
+  public BarChartModel generateElapsedTimeModel(List<ElapsedTimeStatistic> statisticData, boolean isSetDefaultName) {
+    Map<String, Number> chartData = getElapsedTimeChartData(statisticData);
 
-    if (chartData.size() == 0) {
-      chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseCategory"), 0);
+    BarChartModel model = new BarChartModel();
+    ChartSeries chartSeries = new ChartSeries();
+
+    if (chartData.size() != 0) {
+      if(chartData.size() == 1) {
+        model.setBarWidth(80);
+      }
+      chartSeries.setData(new HashMap<>(chartData));
+      model.setExtender("elapsedTimeBarChartExtender");
+      model.setShadow(false);
+
+      Axis xAxis = model.getAxis(AxisType.X);
+      xAxis.setLabel(Ivy.cms().co(CASE_CATEGORIES_CMS));
+
+      Axis yAxis = model.getAxis(AxisType.Y);
+      yAxis.setLabel(Ivy.cms().co(PERCENTAGE_CMS));
+    }
+    if (isSetDefaultName) {
+      model.setTitle(Ivy.cms().co(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY.getCmsUri()));
+    }
+    model.addSeries(chartSeries);
+    return model;
+  }
+
+  private Map<String, Number> getElapsedTimeChartData(List<ElapsedTimeStatistic> statisticData) {
+    Map<String, Number> caseCategoryToElapsedTime = generateDataForElapsedTimeChart(statisticData);
+
+    if (caseCategoryToElapsedTime.size() == 0) {
+      caseCategoryToElapsedTime.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseCategory"), 0);
     }
 
     float totalValue = 0f;
     float otherValue = 0f;
 
-    for (Number number : chartData.values()) {
+    for (Number number : caseCategoryToElapsedTime.values()) {
       totalValue += number.floatValue();
     }
 
-    for (Iterator<Entry<String, Number>> iterator = chartData.entrySet().iterator(); iterator.hasNext();) {
+    for (Iterator<Entry<String, Number>> iterator = caseCategoryToElapsedTime.entrySet().iterator(); iterator.hasNext();) {
       Entry<String, Number> chartDataEntry = iterator.next();
       float floatValueOfChartData = chartDataEntry.getValue().floatValue();
       if (floatValueOfChartData < totalValue * 0.02) {
         otherValue = otherValue + floatValueOfChartData;
         iterator.remove();
+      } else {
+        chartDataEntry.setValue(floatValueOfChartData * 100 / totalValue);
       }
     }
 
-
     if (Float.compare(otherValue, 0f) != 0) {
-      chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue);
+      caseCategoryToElapsedTime.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue
+          * 100 / totalValue);
     }
 
-    DonutChartModel model = createDonutChartModel(chartData, "elapsedTimeChartExtender");
-    if (isSetDefaultName) {
-      model.setTitle(Ivy.cms().co(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY.getCmsUri()));
-    }
-
-    return model;
+    return new HashMap<>(caseCategoryToElapsedTime);
   }
 
   public boolean isTaskByPriority(StatisticChart statisticChart) {
@@ -946,7 +972,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           statisticChart.setDonutChartModel(buildChartModelForCaseState(statisticChart));
           break;
         case ELAPSED_TIME_BY_CASE_CATEGORY:
-          statisticChart.setDonutChartModel(buildChartModelForCaseElapsedTime(statisticChart));
+          statisticChart.setBarChartModel(buildChartModelForCaseElapsedTime(statisticChart));
           break;
         case CASES_BY_FINISHED_TASK:
           statisticChart.setDonutChartModel(buildCharModelForCaseHasFinishedTask(statisticChart));
@@ -980,7 +1006,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return generateCaseByStateModel(caseByFinishedTaskData, StatisticChartType.CASES_BY_FINISHED_TASK, true);
   }
 
-  private DonutChartModel buildChartModelForCaseElapsedTime(StatisticChart statisticChart) {
+  private BarChartModel buildChartModelForCaseElapsedTime(StatisticChart statisticChart) {
     List<ElapsedTimeStatistic> elapsedTimeData = new ArrayList<>();
     if (statisticChart.getFilter() != null) {
       elapsedTimeData =

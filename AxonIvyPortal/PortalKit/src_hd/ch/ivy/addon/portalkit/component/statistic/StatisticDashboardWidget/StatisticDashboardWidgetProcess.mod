@@ -678,7 +678,7 @@ import org.primefaces.event.ItemSelectEvent;
 out.event = event as ItemSelectEvent;
 
 String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-in.selectedCaseCategory = StatisticService.getSelectedValueOfDonutChart(out.event);
+in.selectedCaseCategory = StatisticService.getSelectedValueOfBarChart(out.event);
 
 for (StatisticChart chart : out.statisticChartList) {
 	if (chart.id == selectedChartId) {
