@@ -306,12 +306,8 @@ public class ExpressProcessUtils {
           element.setType(type);
         }
       }
-      if (element.getType() == FormElementType.CHECKBOX) {
-        List<String> options = executeDataProvider(expressElement.getOptionStrs());
-        element.setOptionsStr(options);
-      } else {
-        element.setOptionsStr(expressElement.getOptionStrs());
-      }
+
+      element.setOptionsStr(expressElement.getOptionStrs());
       String location = expressElement.getElementPosition();
       switch (location) {
         case HEADER_PANEL:
@@ -330,10 +326,6 @@ public class ExpressProcessUtils {
           break;
       }
     }
-  }
-
-  private List<String> executeDataProvider(List<String> optionStrs) {
-    return DataProvider.create(optionStrs).execute();
   }
 
   public boolean isNeedUpdatePathForAttachments(List<TaskDef> taskDefs) {
