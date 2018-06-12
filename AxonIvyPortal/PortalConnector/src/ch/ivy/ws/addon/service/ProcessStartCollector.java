@@ -1,8 +1,12 @@
 package ch.ivy.ws.addon.service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.application.ActivityState;
@@ -27,23 +31,24 @@ public class ProcessStartCollector {
     if (isActive(this.application)) {
       List<IProcessModel> processModels = this.application.getProcessModelsSortedByName();
 
-      for (IProcessModel processModel : processModels) {
+      List<IProcessModelVersion> processModelVersions =
+          processModels.stream().filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
+              .filter(this::isActive).collect(Collectors.toList());
 
-        if (isActive(processModel)) {
-          IProcessModelVersion processModelVersion = processModel.getReleasedProcessModelVersion();
-
-          if (isActive(processModelVersion)) {
-            IWorkflowProcessModelVersion workflowPmv =
-                WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
-            IProcessStart processStart = workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
-            if (processStart != null) {
-              return processStart;
-            }
-          }
+      if (CollectionUtils.isNotEmpty(processModelVersions)) {
+        Optional<IProcessStart> processStart = processModelVersions.stream()
+            .map(p -> findProcessStart(p, requestPath)).filter(Objects::nonNull).findFirst();
+        if (processStart.isPresent()) {
+          return processStart.get();
         }
       }
     }
     return null;
+  }
+
+  private IProcessStart findProcessStart(IProcessModelVersion processModelVersion, String requestPath) {
+    IWorkflowProcessModelVersion workflowPmv = WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+    return workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
   }
 
   public String findACMLink() throws Exception {
@@ -63,14 +68,14 @@ public class ProcessStartCollector {
   }
 
   private boolean isActive(IProcessModelVersion processModelVersion) {
-    return processModelVersion != null && ActivityState.ACTIVE.equals(processModelVersion.getActivityState());
+    return processModelVersion != null && ActivityState.ACTIVE == processModelVersion.getActivityState();
   }
 
   private boolean isActive(IProcessModel processModel) {
-    return ActivityState.ACTIVE.equals(processModel.getActivityState());
+    return processModel != null && ActivityState.ACTIVE == processModel.getActivityState();
   }
 
   private boolean isActive(IApplication application) {
-    return ActivityState.ACTIVE.equals(application.getActivityState());
+    return application != null && ActivityState.ACTIVE == application.getActivityState();
   }
 }
