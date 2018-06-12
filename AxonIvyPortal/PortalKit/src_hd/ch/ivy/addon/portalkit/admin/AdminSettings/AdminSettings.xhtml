@@ -165,7 +165,7 @@
 		<p:tab id="settingTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
 			<h:form prependId="false" id="settingForm">
 				<h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
-					<p:commandButton id="add-global-variable-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
+					<p:commandButton id="restore-all-to-default-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
 							actionListener="#{logic.submitResetAllSettings}" oncomplete="PF('resetConfirmation').show()" update=":#{p:component('resetConfirmationDialog')}" />
 				</h:panelGroup>
 
@@ -335,7 +335,7 @@
 					<!-- Because changing URL Portal Connector is not supported, so we disable this inputText in Edit mode -->
 					<p:inputText value="#{data.selectedServer.path}" id="serverPath" required="true" disabled="#{not data.isAddMode}"
 						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathRequiredMsg')}" 
-						placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathPlaceholder')}"/>
+						placeholder="#{data.serverPathPlaceholder}"/>
 					<p:spacer />
 					<h:outputText
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/warningPortalConnectorPathSecurity')}"
@@ -594,8 +594,8 @@
 					</c:if>
 
 					<c:if test="#{data.settingInputType == '2'}" >
-						<p:selectOneMenu value="#{data.selectedSetting.value}">
-							<f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value}" id="valueSetting" />
+						<p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting">
+							<f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value}" />
 						</p:selectOneMenu>
 					</c:if>
 

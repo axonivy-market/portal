@@ -644,11 +644,11 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.security.IPermission;
 
-IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ADD_DASHBOARDS_CHARTS.getValue());
+IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
     }
-iPermission = IPermissionRepository.get().findByName(PortalPermission.CREATE_EXPRESS_WORKFLOW.getValue());
+iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
     }' #txt
@@ -700,12 +700,12 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.security.IPermission;
 
-IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ADD_DASHBOARDS_CHARTS.getValue());
+IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
     }
     
-iPermission = IPermissionRepository.get().findByName(PortalPermission.CREATE_EXPRESS_WORKFLOW.getValue());
+iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
     }' #txt
