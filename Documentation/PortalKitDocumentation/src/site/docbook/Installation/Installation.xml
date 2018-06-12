@@ -499,7 +499,7 @@
 						</para>
 						<para>
 							Create Express Workflow function will be enabled if session user has
-							<code>CreateExpressWorkflow</code>
+							<code>PortalPermission.EXPRESS_CREATE_WORKFLOW</code>
 							(This permission belongs to Portal permission group).
 						</para>
 					</listitem>
@@ -510,11 +510,11 @@
 				<itemizedlist>
 					<listitem>
 						<para>
-							ADD CHARTS
+							ADD DASHBOARD CHART
 						</para>
 						<para>
 							Add new charts function will be enabled if session user has
-							<code>AddDashboardsCharts</code>
+							<code>PortalPermission.STATISTIC_ADD_DASHBOARD_CHART</code>
 							(This permission belongs to Portal permission group).
 						</para>
 					</listitem>
