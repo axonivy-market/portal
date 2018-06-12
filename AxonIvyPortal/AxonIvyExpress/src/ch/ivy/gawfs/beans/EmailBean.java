@@ -46,8 +46,10 @@ public class EmailBean {
 			setFilteredAttachments(new ArrayList<>());
 		}
 		ExpressProcessUtils utils = new ExpressProcessUtils();
-		List<String> recipients = utils.getRecipientEmailAddresses(responsibles);
-		this.userEmail.setRecipients(String.join(",", recipients));
+		if(this.userEmail.getRecipients() == null || this.userEmail.getRecipients().isEmpty()) {
+		  List<String> recipients = utils.getRecipientEmailAddresses(responsibles);
+		  this.userEmail.setRecipients(String.join(",", recipients));
+		}
 	}
 
   public void uploadAttachment(FileUploadEvent event) throws IOException {

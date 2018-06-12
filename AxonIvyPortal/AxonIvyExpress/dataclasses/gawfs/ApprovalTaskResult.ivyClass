@@ -8,3 +8,5 @@ comment String #field
 comment PERSISTENT #fieldModifier
 taskName String #field
 taskName PERSISTENT #fieldModifier
+index Integer #field
+index PERSISTENT #fieldModifier
