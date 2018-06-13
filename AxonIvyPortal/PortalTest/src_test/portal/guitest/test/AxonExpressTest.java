@@ -202,7 +202,7 @@ public class AxonExpressTest extends BaseTest{
     login(TestAccount.DEMO_USER);
     rejectApproval("Rejected at first level");
     String approvalResult = executeReview();
-    Assert.assertEquals("Task 2,Portal Demo User,Rejected at first level,No,Task 2,Portal Demo User,Rejected at first level,No", approvalResult);
+    Assert.assertEquals("Portal Demo User,Rejected at first level,No,Portal Demo User,Rejected at first level,No", approvalResult);
     new ExpressEndPage().finish();
   }
 
@@ -266,12 +266,12 @@ public class AxonExpressTest extends BaseTest{
     login(TestAccount.DEMO_USER);
     
     String approvalResult = executeReview();
-    Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes,"
-        + "Task 3,Portal Demo User,Approved at second level,Yes,"
-        + "Task 3,portaladmin,Approved at second level,Yes,"
-        + "Task 2,Portal Demo User,Approved at first level,Yes,"
-        + "Task 3,Portal Demo User,Approved at second level,Yes,"
-        + "Task 3,portaladmin,Approved at second level,Yes", approvalResult);
+    Assert.assertEquals("Portal Demo User,Approved at first level,Yes,"
+        + "Portal Demo User,Approved at second level,Yes,"
+        + "portaladmin,Approved at second level,Yes,"
+        + "Portal Demo User,Approved at first level,Yes,"
+        + "Portal Demo User,Approved at second level,Yes,"
+        + "portaladmin,Approved at second level,Yes", approvalResult);
     new ExpressEndPage().finish();
   }
 
@@ -285,7 +285,7 @@ public class AxonExpressTest extends BaseTest{
     executeApproval("Approved at first level");
     executeUserTask("Task 4");
     String approvalResult = executeReview("Test approval: Final Review");
-    Assert.assertEquals("Task 2,Portal Demo User,Approved at first level,Yes", approvalResult);
+    Assert.assertEquals("Portal Demo User,Approved at first level,Yes", approvalResult);
     new ExpressEndPage().finish();
   }
 

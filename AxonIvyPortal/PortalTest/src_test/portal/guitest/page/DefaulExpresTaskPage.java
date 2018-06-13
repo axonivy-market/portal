@@ -25,6 +25,6 @@ public class DefaulExpresTaskPage extends TaskTemplatePage{
   }
   
   public int countNumberOfApproval() {
-    return driver.findElements(By.xpath("//div[@id='form:finished-tasks-component:approval-result:0:approval-result-table']/div/table/tbody/tr")).size();
+    return driver.findElements(By.xpath("//div[@id='form:finished-tasks-component:approval-result:0:approval-result-component:approval-result-container:0:approval-result-table']/div/table/tbody/tr")).size();
   }
 }
