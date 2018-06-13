@@ -16,7 +16,7 @@
   
   <cc:implementation>
   	<f:event listener="#{approvalResultBean.groupingApprovalResult(cc.attrs.approvalResults)}" type="preRenderComponent" />
-  	 <ui:repeat value="#{approvalResultBean.approvalResultGroups}" var="approvalResultGroup" varStatus="approvalTaskStatus">
+  	 <ui:repeat id="approval-result-container" value="#{approvalResultBean.approvalResultGroups}" var="approvalResultGroup" varStatus="approvalTaskStatus">
 	  	<p:fieldset id="approval-result-fieldset" styleClass="finished-task-fieldset" toggleable="true" collapsed="#{cc.attrs.lastApprovalCollapsed}">
 	      <f:facet name="legend">
 	        <h:outputText id="approval-result-fieldset-legend" value="#{approvalResultGroup.get(0).taskName}" />
@@ -24,9 +24,6 @@
 	      <!-- APPROVAL RESULT -->
 	      <p:outputLabel id="form-approval-label" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/ApprovalResult')}" styleClass="review-content-title" />
 	      <p:dataTable id="approval-result-table" value="#{approvalResultGroup}" var="approval">
-	        <p:column headerText="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}" sortBy="#{approval.taskName}">
-	          <h:outputText value="#{approval.taskName}" />
-	        </p:column>
 	        <p:column headerText="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinalReviewForm/approver')}" sortBy="#{approval.approverName}">
 	          <h:outputText value="#{approval.approverName}" />
 	        </p:column>
