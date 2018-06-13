@@ -452,7 +452,6 @@ import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 
 String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-StatisticService service = new StatisticService();
 in.selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(in.event);
 
 if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
@@ -734,7 +733,6 @@ import org.primefaces.event.ItemSelectEvent;
 
 String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
 in.selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(in.event);
-StatisticService service = new StatisticService();
 if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
 	in.previousSelectedMonth = in.selectedItemOfDrilldown;
 } else if (StatisticService.selectWeekOfMonth(in.selectedItemOfDrilldown))  {
