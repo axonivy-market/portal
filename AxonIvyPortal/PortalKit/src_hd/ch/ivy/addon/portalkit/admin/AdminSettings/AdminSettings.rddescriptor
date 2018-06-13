@@ -138,16 +138,6 @@
         </outputParameter>
     </method>
     <method>
-        <name>findAllGlobalSetting</name>
-        <description></description>
-        <outputParameter>
-            <name>globalSettings</name>
-            <description></description>
-            <parameterType>List&lt;ch.ivy.addon.portalkit.persistence.domain.GlobalSetting&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <method>
         <name>getExternalHost</name>
         <description></description>
     </method>
