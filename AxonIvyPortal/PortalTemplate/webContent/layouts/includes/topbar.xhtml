@@ -10,10 +10,12 @@
   <div class="TexAlCenter">
 
     <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}">
-      <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+      <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}"
+        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
-    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
-      leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}" reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component"
+      rendered="#{isWorkingOnATask}" leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}"
+      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
       componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog" />
     <c:if test="#{!isNotRequiredLogin}">
       <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
@@ -23,28 +25,27 @@
   <ui:insert name="menu-bar">
 
     <ul id="top-menu" class="js-top-menu">
-      <li><h:form prependId="false" styleClass="global-search" onsubmit="return false;" rendered="#{showGlobalSearch}">
+      <li><h:form prependId="false" styleClass="global-search" onsubmit="return false;"
+          rendered="#{showGlobalSearch}">
           <p:inputText id="global-search-data" value="#{userMenuBean.searchKeyword}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
             <p:ajax event="keyup" delay="#{mainMenuBean.searchDelayTime}" listener="#{userMenuBean.search}"
-              update="global-search-result-container" oncomplete="showHideOverlayPanel()"/>
+              update="global-search-result-container" oncomplete="showHideOverlayPanel()" />
           </p:inputText>
           <i class="global-search-icon fa fa-search" />
-          <p:overlayPanel for="global-search-data" styleClass="global-search-result-overlay"
-            my="left top" at="left bottom" dynamic="true" showEvent="none" hideEvent="none" widgetVar="search-result-overlay-panel">
+          <p:overlayPanel for="global-search-data" styleClass="global-search-result-overlay" my="left top"
+            at="left bottom" dynamic="true" showEvent="none" hideEvent="none" widgetVar="search-result-overlay-panel">
             <h:panelGroup id="global-search-result-container" styleClass="global-search-result-container">
               <h:panelGroup id="global-process-result" rendered="#{not empty userMenuBean.foundWebStartables}"
                 layout="block" styleClass="global-search-result">
-                <span class="Fs12 underline-section">>
-                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
+                <span class="Fs12 underline-section">>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
                 <ui:repeat id="found-processes" var="foundProcess" value="#{userMenuBean.foundWebStartables}">
                   <ic:ch.ivy.addon.portal.generic.ProcessSearchResult foundProcess="#{foundProcess}" />
                 </ui:repeat>
               </h:panelGroup>
               <h:panelGroup id="global-task-result" rendered="#{not empty userMenuBean.foundTasks}" layout="block"
                 styleClass="global-search-result">
-                <span class="Fs12 underline-section">>
-                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
+                <span class="Fs12 underline-section">>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
                 <ui:repeat id="found-tasks" var="foundTask" value="#{userMenuBean.foundTasks}">
                   <ic:ch.ivy.addon.portal.generic.TaskSearchResult keyword="#{userMenuBean.searchKeyword}"
                     foundTask="#{foundTask}" />
@@ -65,71 +66,69 @@
               </h:panelGroup>
             </h:panelGroup>
           </p:overlayPanel>
-        </h:form>
-      </li>
-      <li class="setting-container" ><a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span jsf:id="server-infor"
-          class="TexAlLeft DispBlock Fs11">Host: #{serverInformationBean.host} Env:
-            #{serverInformationBean.environment}</span> <span class="TexAlLeft DispBlock Fs17"><b class="dropdown-icon">#{userMenuBean.userName}</b></span>
+        </h:form></li>
+      <li class="setting-container"><a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span
+          jsf:id="server-infor" class="TexAlLeft DispBlock Fs11"> Host: #{serverInformationBean.host}
+            Env:#{serverInformationBean.environment} </span> <span class="TexAlLeft DispBlock Fs17"><b
+            class="dropdown-icon">#{userMenuBean.userName}</b></span>
       </a> <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
           class="dropdown-icon user-name js-user-name">#{userMenuBean.userName}</span>
       </a>
         <ul id="user-setting-container">
-          <li><p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
-              	value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
-              	update="admin-ui-dialog" oncomplete="PF('adminUI').show()" /></li>
+          <li><p:commandLink id="adminui-menu-item" resetValues="true"
+              rendered="#{permissionBean.hasAdminPermission()}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
+              update="admin-ui-dialog" oncomplete="PF('adminUI').show()" /></li>
+
           <li><p:link id="absence-menu-item" href="#"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
               onclick="PF('absenceSetting').show()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
 
           <li><p:commandLink id="email-setting-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
-              oncomplete="PF('emailSetting').show();"
-              resetValues="true" update="applications-email-setting-form">
-                <p:resetInput target=":applications-email-setting-dialog" />
-              </p:commandLink>
-            
-          </li>
+              oncomplete="PF('emailSetting').show();" resetValues="true" update="applications-email-setting-form">
+              <p:resetInput target=":applications-email-setting-dialog" />
+            </p:commandLink></li>
+
           <li><p:commandLink id="language-setting-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" 
-              oncomplete="PF('languageDialogVar').show();" 
-              resetValues="true" update="language-settings-form" >
-                <p:resetInput target=":language-setting-dialog" />
-              </p:commandLink>
-          </li>
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}"
+              oncomplete="PF('languageDialogVar').show();" resetValues="true" update="language-settings-form">
+              <p:resetInput target=":language-setting-dialog" />
+            </p:commandLink></li>
 
           <li><p:commandLink id="change-password-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
-              rendered="#{not userMenuBean.hiddenChangePassword}"
-              oncomplete="PF('changePasswordDialog').show();" 
-              resetValues="true" update="change-password-form" >
-                <p:resetInput target=":change-password-dialog" />
-              </p:commandLink>
-          </li>
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
+              rendered="#{not userMenuBean.hiddenChangePassword}" oncomplete="PF('changePasswordDialog').show();"
+              resetValues="true" update="change-password-form">
+              <p:resetInput target=":change-password-dialog" />
+            </p:commandLink></li>
 
           <li><p:link id="project-info-menu-item" href="#"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="PF('project-info-dialog').show()" /></li>
 
-          <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
-          </li>
+          <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting"
+              isWorkingOnATask="#{isWorkingOnATask}" /></li>
         </ul></li>
       <li jsf:rendered="#{enablesChat}"><a jsf:id="toggle-chat-panel-command"
         class="notification-badge mod-chat-menu js-toggle-chat-panel"><i class="fa fa-comment" /></a></li>
     </ul>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" widgetVar="changePasswordDialog" id="change-password-dialog" 
-      closeOnEscape="true" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true" width="500">
-      <h:form id="change-password-form" >
-        <ic:ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting id="password-setting" dialogName="changePasswordDialog" />
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
+      widgetVar="changePasswordDialog" id="change-password-dialog" closeOnEscape="true" resizable="false" modal="true"
+      draggable="false" appendTo="@(body)" dynamic="true" width="500">
+      <h:form id="change-password-form">
+        <ic:ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting id="password-setting"
+          dialogName="changePasswordDialog" />
       </h:form>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" width="90%"
-      id="admin-ui-dialog" widgetVar="adminUI" closeOnEscape="true" resizable="false" modal="true" draggable="false" appendTo="@(body)"
-      dynamic="true" height="450" onHide="PF('dialogClosingInformation').show();">
+      id="admin-ui-dialog" widgetVar="adminUI" closeOnEscape="true" resizable="false" modal="true" draggable="false"
+      appendTo="@(body)" dynamic="true" height="450" onHide="PF('dialogClosingInformation').show();">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
       <f:facet name="footer">
-      	 <p:commandButton id="close-button" type="button"
+        <p:commandButton id="close-button" type="button"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('adminUI').hide();" />
       </f:facet>
@@ -141,14 +140,14 @@
       <p:outputLabel
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
       <f:facet name="footer">
-        <p:commandButton id="close-dialog-button" type="button" onclick="PF('dialogClosingInformation').hide();" styleClass=""
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+        <p:commandButton id="close-dialog-button" type="button" onclick="PF('dialogClosingInformation').hide();"
+          styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
       </f:facet>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}" width="80%"
-      id="absence-settings-dialog" widgetVar="absenceSetting" closeOnEscape="true" resizable="false" modal="true" draggable="true"
-      appendTo="@(body)" height="420" responsive="true" dynamic="true">
+      id="absence-settings-dialog" widgetVar="absenceSetting" closeOnEscape="true" resizable="false" modal="true"
+      draggable="true" appendTo="@(body)" height="420" responsive="true" dynamic="true">
       <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy id="absence-settings" dialogName="absenceSetting" />
       <f:facet name="footer">
         <p:commandButton id="cancel-absences-command" type="button"
@@ -158,7 +157,8 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}" dynamic="true"
-      widgetVar="emailSetting" resizable="false" closeOnEscape="true" appendTo="@(body)" id="applications-email-setting-dialog" modal="true">
+      widgetVar="emailSetting" resizable="false" closeOnEscape="true" appendTo="@(body)"
+      id="applications-email-setting-dialog" modal="true">
       <h:form id="applications-email-setting-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.EmailSetting id="applications-email-setting"
           dialogName="emailSetting" />
@@ -166,8 +166,8 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" dynamic="true"
-      id="language-setting-dialog" widgetVar="languageDialogVar" closeOnEscape="true" modal="true" width="70%" showEffect="fade"
-      hideEffect="fade" resizable="false" appendTo="@(body)">
+      id="language-setting-dialog" widgetVar="languageDialogVar" closeOnEscape="true" modal="true" width="70%"
+      showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)">
       <h:form id="language-settings-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start"
           dialogName="languageDialogVar" />
@@ -178,7 +178,6 @@
       widgetVar="project-info-dialog" id="project-info-dialog" closeOnEscape="true" resizable="false" modal="true"
       draggable="false" appendTo="@(body)" dynamic="true" width="800">
       <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
-
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
         <p:commandButton id="project-version-close-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"

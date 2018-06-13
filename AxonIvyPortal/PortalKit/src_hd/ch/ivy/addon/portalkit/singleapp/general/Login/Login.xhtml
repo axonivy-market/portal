@@ -16,14 +16,14 @@
       onkeypress="onKeyPressForm(event, '#{cc.clientId}:login-form:error-message', '#{cc.clientId}:login-form:login-command');">
       <div class="header">
         <p:graphicImage styleClass="portal-login-logo" value="#{resource['ivy-cms:images/logo/loginLogo']}"
-          alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" cache="false" height="50" />
+          alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" height="50" />
       </div>
       <div class="content">
         <p class="title">#{cc.attrs.title}</p>
-        <p:inputText id="username" styleClass="input"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" value="#{data.username}" />
-        <p:password id="password" styleClass="input"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}" value="#{data.password}" />
+        <p:inputText id="username" styleClass="input" value="#{data.username}"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" />
+        <p:password id="password" styleClass="input" value="#{data.password}"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}" />
         <p:messages id="error-message" showDetail="true" showIcon="false" escape="false"/>
       </div>
       <div class="footer">

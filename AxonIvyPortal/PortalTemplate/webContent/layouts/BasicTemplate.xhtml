@@ -12,7 +12,7 @@
   </f:facet>
   <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
   <ui:fragment rendered="#{resource['ivy-webcontent:layouts/images/favicon.png'] != null}">
-    <link  rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.png']}" type="image/png" />
+    <link rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.png']}" type="image/png" />
   </ui:fragment>
 
   <h:outputStylesheet name="css/animate.css" library="modena-layout" />
@@ -87,8 +87,8 @@
             </c:when>
             <c:otherwise>
               <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu menuState="#{menuState}"
-                onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" isWorkingOnATask="#{isWorkingOnATask}"
-                id="user-menu-required-login" />
+                id="user-menu-required-login" onClickTaskMenuItemCallback="SecondLevelMenu.show(true);"
+                isWorkingOnATask="#{isWorkingOnATask}" />
             </c:otherwise>
           </c:choose>
         </div>
@@ -103,6 +103,7 @@
             <div class="simple-container js-simple-container #{simpleContainerClass}">
               <div class="js-simple-main-col #{simpleMainColClass}">
                 <ui:insert name="simplePageContent">
+                  <!-- Page content -->
                 </ui:insert>
               </div>
             </div>
@@ -130,20 +131,17 @@
 
   <ic:ch.ivy.addon.portalkit.component.GlobalAjaxStatus id="ajax-indicator" />
 
-
   <ui:insert name="css" />
   <ui:insert name="footer">
     <script type="text/javascript">
-					$(function() {
-						var simpleLargeScreen = new SimpleLargeScreen();
-						var simpleMediumScreen = new SimpleMediumScreen();
-						var simpleSmallScreen = new SimpleSmallScreen();
-						var responsiveToolkit = ResponsiveToolkit(
-								simpleLargeScreen, simpleMediumScreen,
-								simpleSmallScreen);
-						Portal.init(responsiveToolkit);
-					});
-				</script>
+    	$(function() {
+    		var simpleLargeScreen = new SimpleLargeScreen();
+    		var simpleMediumScreen = new SimpleMediumScreen();
+    		var simpleSmallScreen = new SimpleSmallScreen();
+    		var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+    		Portal.init(responsiveToolkit);
+    	});
+    </script>
   </ui:insert>
 </h:body>
 </html>
