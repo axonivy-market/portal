@@ -6,7 +6,7 @@ public enum TestAccount {
 
   DEMO_USER(nameOfDemoUser(), passwordOfDemoUser(), "Portal Demo User"),
 
-  ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser(), nameOfAdminUser()),
+  ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser(), "Portal Admin User"),
 
   TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "test_change_password_user"),
   
