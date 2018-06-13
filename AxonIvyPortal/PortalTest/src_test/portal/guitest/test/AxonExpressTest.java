@@ -267,11 +267,11 @@ public class AxonExpressTest extends BaseTest{
     
     String approvalResult = executeReview();
     Assert.assertEquals("Portal Demo User,Approved at first level,Yes,"
-        + "Portal Demo User,Approved at second level,Yes,"
-        + "portaladmin,Approved at second level,Yes,"
-        + "Portal Demo User,Approved at first level,Yes,"
-        + "Portal Demo User,Approved at second level,Yes,"
-        + "portaladmin,Approved at second level,Yes", approvalResult);
+        + TestAccount.DEMO_USER.getFullName() + ",Approved at second level,Yes,"
+        + TestAccount.ADMIN_USER.getFullName() + ",Approved at second level,Yes,"
+        + TestAccount.DEMO_USER.getFullName() + ",Approved at first level,Yes,"
+        + TestAccount.DEMO_USER.getFullName() + ",Approved at second level,Yes,"
+        + TestAccount.ADMIN_USER.getFullName() + ",Approved at second level,Yes", approvalResult);
     new ExpressEndPage().finish();
   }
 
