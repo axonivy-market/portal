@@ -1,5 +1,5 @@
 [Ivy]
-15C7B30FB93C827E 3.20 #module
+15C7B30FB93C827E 3.23 #module
 >Proto >Proto Collection #zClass
 Ae0 ApproveLeave Big #zClass
 Ae0 B #cInfo
@@ -53,6 +53,25 @@ Ae0 @TkArc f34 '' #zField
 Ae0 @CallSub f39 '' #zField
 Ae0 @PushWFArc f40 '' #zField
 Ae0 @TkArc f18 '' #zField
+Ae0 @StartRequest f41 '' #zField
+Ae0 @Alternative f46 '' #zField
+Ae0 @EndTask f48 '' #zField
+Ae0 @PushWFArc f49 '' #zField
+Ae0 @Alternative f50 '' #zField
+Ae0 @PushWFArc f51 '' #zField
+Ae0 @Trigger f45 '' #zField
+Ae0 @PushWFArc f42 '' #zField
+Ae0 @StartRequest f43 '' #zField
+Ae0 @TaskSwitchSimple f47 '' #zField
+Ae0 @EndTask f54 '' #zField
+Ae0 @PushWFArc f55 '' #zField
+Ae0 @GridStep f52 '' #zField
+Ae0 @PushWFArc f56 '' #zField
+Ae0 @PushWFArc f44 '' #zField
+Ae0 @PushWFArc f57 '' #zField
+Ae0 @GridStep f58 '' #zField
+Ae0 @PushWFArc f59 '' #zField
+Ae0 @TkArc f53 '' #zField
 >Proto Ae0 Ae0 ApproveLeave #zField
 Ae0 f0 outLink start.ivp #txt
 Ae0 f0 type internaltest.Data #txt
@@ -542,6 +561,168 @@ Ae0 f18 expr out #txt
 Ae0 f18 type internaltest.Data #txt
 Ae0 f18 var in1 #txt
 Ae0 f18 296 464 353 464 #arcP
+Ae0 f41 outLink create12CasesWithCategory.ivp #txt
+Ae0 f41 type internaltest.Data #txt
+Ae0 f41 inParamDecl '<> param;' #txt
+Ae0 f41 inParamTable 'out.caseNumber=12;
+out.count=0;
+' #txt
+Ae0 f41 actionDecl 'internaltest.Data out;
+' #txt
+Ae0 f41 guid 163F6B563C61724D #txt
+Ae0 f41 requestEnabled true #txt
+Ae0 f41 triggerEnabled false #txt
+Ae0 f41 callSignature create12CasesWithCategory() #txt
+Ae0 f41 persist false #txt
+Ae0 f41 startName 'Create 12 Cases with category' #txt
+Ae0 f41 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Ae0 f41 caseData businessCase.attach=true #txt
+Ae0 f41 showInStartList 1 #txt
+Ae0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create12CasesWithCategory.ivp</name>
+        <nameStyle>29,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f41 @C|.responsibility Everybody #txt
+Ae0 f41 81 785 30 30 -88 17 #rect
+Ae0 f41 @|StartRequestIcon #fIcon
+Ae0 f46 type internaltest.Data #txt
+Ae0 f46 680 784 32 32 0 16 #rect
+Ae0 f46 @|AlternativeIcon #fIcon
+Ae0 f48 type internaltest.Data #txt
+Ae0 f48 809 785 30 30 0 15 #rect
+Ae0 f48 @|EndIcon #fIcon
+Ae0 f49 expr in #txt
+Ae0 f49 outCond 'in.count == in.caseNumber' #txt
+Ae0 f49 712 800 809 800 #arcP
+Ae0 f50 type internaltest.Data #txt
+Ae0 f50 176 784 32 32 0 16 #rect
+Ae0 f50 @|AlternativeIcon #fIcon
+Ae0 f51 expr out #txt
+Ae0 f51 111 800 176 800 #arcP
+Ae0 f45 type internaltest.Data #txt
+Ae0 f45 processCall 'Business Processes/testCaseMaps/testProcesses/ApproveLeave:startACase(Integer)' #txt
+Ae0 f45 doCall true #txt
+Ae0 f45 requestActionDecl '<java.lang.Integer count> param;
+' #txt
+Ae0 f45 requestMappingAction 'param.count=in.count;
+' #txt
+Ae0 f45 responseActionDecl 'internaltest.Data out;
+' #txt
+Ae0 f45 responseMappingAction 'out=in;
+' #txt
+Ae0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ApproveLeave</name>
+        <nameStyle>12,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f45 352 778 112 44 -38 -8 #rect
+Ae0 f45 @|TriggerIcon #fIcon
+Ae0 f42 expr in #txt
+Ae0 f42 208 800 352 800 #arcP
+Ae0 f43 outLink startACase.ivp #txt
+Ae0 f43 type internaltest.Data #txt
+Ae0 f43 inParamDecl '<java.lang.Integer count> param;' #txt
+Ae0 f43 inParamTable 'out.count=param.count;
+' #txt
+Ae0 f43 actionDecl 'internaltest.Data out;
+' #txt
+Ae0 f43 guid 163F6B8AE348CAB3 #txt
+Ae0 f43 requestEnabled false #txt
+Ae0 f43 triggerEnabled true #txt
+Ae0 f43 callSignature startACase(Integer) #txt
+Ae0 f43 persist false #txt
+Ae0 f43 taskData 'TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Ae0 f43 caseData businessCase.attach=false #txt
+Ae0 f43 showInStartList 1 #txt
+Ae0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startACase(Integer)</name>
+        <nameStyle>19,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f43 @C|.responsibility Everybody #txt
+Ae0 f43 81 881 30 30 -53 17 #rect
+Ae0 f43 @|StartRequestIcon #fIcon
+Ae0 f47 actionDecl 'internaltest.Data out;
+' #txt
+Ae0 f47 actionTable 'out=in1;
+' #txt
+Ae0 f47 outTypes "internaltest.Data" #txt
+Ae0 f47 outLinks "TaskA.ivp" #txt
+Ae0 f47 caseData case.name=TestCase #txt
+Ae0 f47 taskData 'TaskA.CATEGORY=<%\=in1.count%>
+TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Task number <%\=in1.count%>
+TaskA.PRI=2
+TaskA.ROL=Everybody
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Ae0 f47 type internaltest.Data #txt
+Ae0 f47 template "" #txt
+Ae0 f47 337 881 30 30 0 16 #rect
+Ae0 f47 @|TaskSwitchSimpleIcon #fIcon
+Ae0 f54 type internaltest.Data #txt
+Ae0 f54 481 881 30 30 0 15 #rect
+Ae0 f54 @|EndIcon #fIcon
+Ae0 f55 expr data #txt
+Ae0 f55 outCond ivp=="TaskA.ivp" #txt
+Ae0 f55 367 896 481 896 #arcP
+Ae0 f52 actionDecl 'internaltest.Data out;
+' #txt
+Ae0 f52 actionTable 'out=in;
+' #txt
+Ae0 f52 actionCode in.count++; #txt
+Ae0 f52 type internaltest.Data #txt
+Ae0 f52 512 778 112 44 0 -8 #rect
+Ae0 f52 @|StepIcon #fIcon
+Ae0 f56 expr out #txt
+Ae0 f56 464 800 512 800 #arcP
+Ae0 f44 expr out #txt
+Ae0 f44 624 800 680 800 #arcP
+Ae0 f57 expr in #txt
+Ae0 f57 696 784 192 784 #arcP
+Ae0 f57 1 696 752 #addKink
+Ae0 f57 2 192 752 #addKink
+Ae0 f57 1 0.5 0 0 #arcLabel
+Ae0 f58 actionDecl 'internaltest.Data out;
+' #txt
+Ae0 f58 actionTable 'out=in;
+' #txt
+Ae0 f58 actionCode 'String a = "TestCase" + in.count;
+ivy.case.setCategoryPath(a);' #txt
+Ae0 f58 type internaltest.Data #txt
+Ae0 f58 168 874 112 44 0 -8 #rect
+Ae0 f58 @|StepIcon #fIcon
+Ae0 f59 expr out #txt
+Ae0 f59 111 896 168 896 #arcP
+Ae0 f53 expr out #txt
+Ae0 f53 type internaltest.Data #txt
+Ae0 f53 var in1 #txt
+Ae0 f53 280 896 337 896 #arcP
 >Proto Ae0 .type internaltest.Data #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 0 0 32 24 18 0 #rect
@@ -582,3 +763,21 @@ Ae0 f13 mainOut f40 tail #connect
 Ae0 f40 head f39 mainIn #connect
 Ae0 f39 mainOut f18 tail #connect
 Ae0 f18 head f15 in #connect
+Ae0 f46 out f49 tail #connect
+Ae0 f49 head f48 mainIn #connect
+Ae0 f41 mainOut f51 tail #connect
+Ae0 f51 head f50 in #connect
+Ae0 f50 out f42 tail #connect
+Ae0 f42 head f45 mainIn #connect
+Ae0 f47 out f55 tail #connect
+Ae0 f55 head f54 mainIn #connect
+Ae0 f45 mainOut f56 tail #connect
+Ae0 f56 head f52 mainIn #connect
+Ae0 f52 mainOut f44 tail #connect
+Ae0 f44 head f46 in #connect
+Ae0 f46 out f57 tail #connect
+Ae0 f57 head f50 in #connect
+Ae0 f43 mainOut f59 tail #connect
+Ae0 f59 head f58 mainIn #connect
+Ae0 f58 mainOut f53 tail #connect
+Ae0 f53 head f47 in #connect
