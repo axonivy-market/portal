@@ -2531,7 +2531,9 @@ As0 f249 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsDat
 ' #txt
 As0 f249 actionTable 'out=in;
 ' #txt
-As0 f249 actionCode 'if((in.errors.size() > 0) || (in.errors.size() == 0 && "".equalsIgnoreCase(in.serverExternalHost))) {
+As0 f249 actionCode 'import org.apache.commons.lang3.StringUtils;
+
+if((in.errors.size() > 0) || (in.errors.size() == 0 && StringUtils.isBlank(in.serverExternalHost))) {
 	in.serverExternalHost = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/autoDetectExternalHost");
 }' #txt
 As0 f249 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -3136,7 +3138,8 @@ As0 f90 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f90 actionTable 'out=in;
 ' #txt
-As0 f90 actionCode 'if((in.errors.size() > 0) || (in.errors.size() == 0 && "".equalsIgnoreCase(in.serverExternalHost))) {
+As0 f90 actionCode 'import org.apache.commons.lang3.StringUtils;
+if((in.errors.size() > 0) || (in.errors.size() == 0 && StringUtils.isBlank(in.serverExternalHost))) {
 	in.serverExternalHost = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/autoDetectExternalHost");
 }' #txt
 As0 f90 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
