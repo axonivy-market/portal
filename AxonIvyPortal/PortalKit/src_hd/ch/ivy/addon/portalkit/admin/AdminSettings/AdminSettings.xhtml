@@ -16,8 +16,8 @@
 	</p:outputPanel>
 
 	<!-- TAB VIEW -->
-	<p:tabView id="adminTabView" activeIndex="#{data.tabIndexActive}" rendered="#{permissionBean.hasAdminPermission()}">
-		<p:ajax event="tabChange" listener="#{logic.onTabChange}" />
+	<p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
+		<p:ajax event="tabChange" listener="#{logic.onTabChange}" update=":#{p:component('settingTable')}" />
 
 		<!-- SERVER TAB -->
 		<p:tab id="serverTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/servers')}">
@@ -169,19 +169,19 @@
 							actionListener="#{logic.submitResetAllSettings}" oncomplete="PF('resetConfirmation').show()" update=":#{p:component('resetConfirmationDialog')}" />
 				</h:panelGroup>
 
-				<p:dataTable id="settingTable" styleClass="admin-table" value="#{logic.findAllGlobalSetting()}" var="setting"
-					sortBy="#{setting.key}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-					scrollable="true" scrollHeight="250">
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}">
+				<p:dataTable id="settingTable" styleClass="admin-table" value="#{data.settingList}" filteredValue="#{data.filteredSettingList}" var="setting" widgetVar="settingTable"
+					emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+					scrollable="true" scrollHeight="240">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}" filterBy="#{setting.key}" filterMatchMode="contains">
 						<h:outputText value="#{setting.key}" />
 					</p:column>
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultValue')}">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultValue')}" filterBy="#{setting.defaultValue}" filterMatchMode="contains">
 						<h:outputText value="#{setting.defaultValue}" />
 					</p:column>
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/currentValue')}">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/currentValue')}" filterBy="#{setting.value}" filterMatchMode="contains">
 						<h:outputText value="#{setting.value}" />
 					</p:column>
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" filterBy="#{setting.note}" filterMatchMode="contains">
 						<h:outputText value="#{setting.note}" />
 					</p:column>
 					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
@@ -613,7 +613,7 @@
 				<h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
 					<p:commandButton id="save-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 						actionListener="#{logic.saveSetting}" styleClass=""
-						oncomplete="if (!args.validationFailed){ PF('settingDialog').hide()}"
+						oncomplete="if (!args.validationFailed){ PF('settingDialog').hide(); PF('settingTable').clearFilters()}"
 						update=":#{p:component('settingForm')} @form" process="@form" widgetVar="saveSettingButton"
 						onclick="PF('saveSettingButton').disable();" />
 					<p:spacer width="5px" />
@@ -652,12 +652,12 @@
 		widgetVar="resetConfirmation">
 		<c:if test="#{data.resetAllSettings}">
 			<p:commandButton styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-				actionListener="#{logic.resetValues}" oncomplete="PF('resetConfirmation').hide();"
+				actionListener="#{logic.resetValues}" oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
 				update=":#{p:component('settingForm')}" />
 		</c:if>
 		<c:if test="#{!data.resetAllSettings}">
 			<p:commandButton styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-				actionListener="#{logic.resetValue}" oncomplete="PF('resetConfirmation').hide();"
+				actionListener="#{logic.resetValue}" oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
 				update=":#{p:component('settingForm')}" />
 		</c:if>
 		<p:spacer width="5px" />

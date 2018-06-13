@@ -48,7 +48,6 @@ As0 @PushWFArc f60 '' #zField
 As0 @PushWFArc f23 '' #zField
 As0 @RichDialogMethodStart f61 '' #zField
 As0 @RichDialogProcessEnd f62 '' #zField
-As0 @PushWFArc f66 '' #zField
 As0 @RichDialogMethodStart f69 '' #zField
 As0 @RichDialogProcessEnd f70 '' #zField
 As0 @GridStep f72 '' #zField
@@ -199,12 +198,9 @@ As0 @PushWFArc f246 '' #zField
 As0 @PushWFArc f49 '' #zField
 As0 @RichDialogMethodStart f2 '' #zField
 As0 @RichDialogMethodStart f94 '' #zField
-As0 @RichDialogMethodStart f98 '' #zField
 As0 @RichDialogProcessEnd f99 '' #zField
-As0 @RichDialogProcessEnd f100 '' #zField
 As0 @RichDialogProcessEnd f123 '' #zField
 As0 @PushWFArc f153 '' #zField
-As0 @PushWFArc f154 '' #zField
 As0 @PushWFArc f182 '' #zField
 As0 @RichDialogMethodStart f183 '' #zField
 As0 @CallSub f251 '' #zField
@@ -306,6 +302,9 @@ As0 @GridStep f110 '' #zField
 As0 @PushWFArc f111 '' #zField
 As0 @PushWFArc f112 '' #zField
 As0 @PushWFArc f240 '' #zField
+As0 @GridStep f8 '' #zField
+As0 @PushWFArc f9 '' #zField
+As0 @PushWFArc f10 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 As0 f0 guid 14B6C3C6330883A7 #txt
 As0 f0 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -729,9 +728,9 @@ As0 f61 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent method
 As0 f61 inActionCode 'import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 
-TabView tabView = param.tabEvent.getComponent() as TabView;
-
-out.tabIndexActive = tabView.activeIndex;' #txt
+TabChangeEvent tabChangeEvent = param.tabEvent;
+TabView tabView = tabChangeEvent.getComponent() as TabView;
+out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());' #txt
 As0 f61 outParameterDecl '<> result;
 ' #txt
 As0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -746,10 +745,8 @@ As0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f61 1150 830 20 20 13 0 #rect
 As0 f61 @|RichDialogMethodStartIcon #fIcon
 As0 f62 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f62 1150 918 20 20 13 0 #rect
+As0 f62 1150 950 20 20 13 0 #rect
 As0 f62 @|RichDialogProcessEndIcon #fIcon
-As0 f66 expr out #txt
-As0 f66 1160 850 1160 918 #arcP
 As0 f69 guid 14B77FA478FB87A1 #txt
 As0 f69 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f69 method editSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
@@ -2444,43 +2441,14 @@ As0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f94 1421 1253 22 22 14 0 #rect
 As0 f94 @|RichDialogMethodStartIcon #fIcon
-As0 f98 guid 151E7897C8560BE0 #txt
-As0 f98 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f98 method findAllGlobalSetting() #txt
-As0 f98 disableUIEvents false #txt
-As0 f98 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-As0 f98 outParameterDecl '<List<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting> globalSettings> result;
-' #txt
-As0 f98 outActionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
-GlobalSettingService globalSettingService = new GlobalSettingService();
-in.settingList = globalSettingService.findAllGlobalSetting();
-result.globalSettings = in.settingList;' #txt
-As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>findAllGlobalSetting()</name>
-        <nameStyle>22,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f98 1613 861 22 22 14 0 #rect
-As0 f98 @|RichDialogMethodStartIcon #fIcon
 As0 f99 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f99 1421 1197 22 22 14 0 #rect
 As0 f99 @|RichDialogProcessEndIcon #fIcon
-As0 f100 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f100 1613 973 22 22 14 0 #rect
-As0 f100 @|RichDialogProcessEndIcon #fIcon
 As0 f123 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f123 1421 1349 22 22 14 0 #rect
 As0 f123 @|RichDialogProcessEndIcon #fIcon
 As0 f153 expr out #txt
 As0 f153 1432 1107 1432 1197 #arcP
-As0 f154 expr out #txt
-As0 f154 1624 883 1624 973 #arcP
 As0 f182 expr out #txt
 As0 f182 1432 1275 1432 1349 #arcP
 As0 f183 guid 155A5B05CA4C248A #txt
@@ -2875,7 +2843,8 @@ As0 f63 actionTable 'out=in;
 ' #txt
 As0 f63 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
-globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());' #txt
+globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());
+in.selectedSetting.setValueToDefault();' #txt
 As0 f63 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2940,8 +2909,11 @@ As0 f276 actionTable 'out=in;
 As0 f276 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
+int i = 0;
 for (GlobalVariable globalVariable : GlobalVariable.values()) {
 	globalSettingService.resetGlobalSetting(globalVariable.toString());
+	in.settingList.get(i).setValueToDefault();
+	i++;
 }' #txt
 As0 f276 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f276 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3472,6 +3444,36 @@ As0 f112 expr out #txt
 As0 f112 1550 2415 1550 2444 #arcP
 As0 f240 expr out #txt
 As0 f240 1550 2468 1550 2482 #arcP
+As0 f8 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f8 actionTable 'out=in;
+' #txt
+As0 f8 actionCode 'import org.primefaces.context.RequestContext;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
+if (in.tabIndexActive == 2) { //Setting Tab
+	GlobalSettingService globalSettingService = new GlobalSettingService();
+	in.settingList = globalSettingService.findAllGlobalSetting();
+	in.filteredSettingList = in.settingList;
+} else if (in.oldTabIndexActive == 2) {//reset filter for Setting Tab
+	RequestContext requestContext = RequestContext.getCurrentInstance();
+  requestContext.execute("PF(''settingTable'').clearFilters()");
+}
+in.oldTabIndexActive = in.tabIndexActive;' #txt
+As0 f8 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>load info for setting tab</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f8 1132 884 56 24 36 -10 #rect
+As0 f8 @|StepIcon #fIcon
+As0 f9 expr out #txt
+As0 f9 1160 850 1160 884 #arcP
+As0 f10 expr out #txt
+As0 f10 1160 908 1160 950 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3517,8 +3519,6 @@ As0 f21 mainOut f60 tail #connect
 As0 f60 head f51 mainIn #connect
 As0 f51 mainOut f23 tail #connect
 As0 f23 head f22 mainIn #connect
-As0 f61 mainOut f66 tail #connect
-As0 f66 head f62 mainIn #connect
 As0 f69 mainOut f73 tail #connect
 As0 f73 head f72 mainIn #connect
 As0 f72 mainOut f71 tail #connect
@@ -3655,8 +3655,6 @@ As0 f245 mainOut f49 tail #connect
 As0 f49 head f48 mainIn #connect
 As0 f2 mainOut f153 tail #connect
 As0 f153 head f99 mainIn #connect
-As0 f98 mainOut f154 tail #connect
-As0 f154 head f100 mainIn #connect
 As0 f94 mainOut f182 tail #connect
 As0 f182 head f123 mainIn #connect
 As0 f251 mainOut f250 tail #connect
@@ -3769,3 +3767,7 @@ As0 f307 mainOut f112 tail #connect
 As0 f112 head f110 mainIn #connect
 As0 f110 mainOut f240 tail #connect
 As0 f240 head f79 mainIn #connect
+As0 f61 mainOut f9 tail #connect
+As0 f9 head f8 mainIn #connect
+As0 f8 mainOut f10 tail #connect
+As0 f10 head f62 mainIn #connect
