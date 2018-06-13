@@ -668,7 +668,7 @@
 					copy the new PortalStart from Portal Template to your project and re-apply your customization.
 			</para>
 			<para>
-					EXPIRY_CHART_LAST_DRILLDOWN_LEVEL global variable is removed.
+					EXPIRY_CHART_LAST_DRILLDOWN_LEVEL global variable is removed. User now can use a context menu to drilldown Task By Expiry chart. 
 			</para>
 		</sect2>
 		<sect2>
