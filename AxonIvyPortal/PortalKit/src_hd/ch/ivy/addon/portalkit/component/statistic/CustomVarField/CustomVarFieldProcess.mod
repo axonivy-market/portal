@@ -99,6 +99,7 @@ Cs0 f12 actionTable 'out=in;
 ' #txt
 Cs0 f12 actionCode 'if(!in.tempSelectedCustomValues.contains(in.selectedCustomValue)) {
 	in.tempSelectedCustomValues.add(in.selectedCustomValue);
+	in.selectedCustomValue = null;
 }
 ' #txt
 Cs0 f12 type ch.ivy.addon.portalkit.component.statistic.CustomVarField.CustomVarFieldData #txt

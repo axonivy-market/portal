@@ -179,79 +179,66 @@ public class StatisticChartCreationBean implements Serializable {
   }
 
   /**
-   * Populate values for Auto Complete of roles based on given query
+   * Populate values for Auto Complete of cutomVarCharField1
    * 
    * @param query
-   * @return values of available roles
+   * @return values of available customVarCharField1
    */
   public List<String> populateCustomVarChar1AutoComplete(String query) {
-    List<String> result = null;
-    if (StringUtils.isEmpty(query)) {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1, StringUtils.EMPTY, 11);
-    }
-    else {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1, query, 11);
-    }
-    result.sort((first, second) -> first.toLowerCase()
-        .compareTo(second.toLowerCase()));
-
-    return result;
+    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1);
   }
   
+  /**
+   * Populate values for Auto Complete of cutomVarCharField2
+   * 
+   * @param query
+   * @return values of available customVarCharField2
+   */
   public List<String> populateCustomVarChar2AutoComplete(String query) {
-    List<String> result = null;
-    if (StringUtils.isEmpty(query)) {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2, StringUtils.EMPTY, 11);
-    }
-    else {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2, query, 11);
-    }
-    result.sort((first, second) -> first.toLowerCase()
-        .compareTo(second.toLowerCase()));
-
-    return result;
+    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2);
   }
   
+  /**
+   * Populate values for Auto Complete of cutomVarCharField3
+   * 
+   * @param query
+   * @return values of available customVarCharField3
+   */
   public List<String> populateCustomVarChar3AutoComplete(String query) {
-    List<String> result = null;
-    if (StringUtils.isEmpty(query)) {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3, StringUtils.EMPTY, 11);
-    }
-    else {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3, query, 11);
-    }
-    result.sort((first, second) -> first.toLowerCase()
-        .compareTo(second.toLowerCase()));
-
-    return result;
+    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3);
   }
   
+  /**
+   * Populate values for Auto Complete of cutomVarCharField4
+   * 
+   * @param query
+   * @return values of available customVarCharField4
+   */
   public List<String> populateCustomVarChar4AutoComplete(String query) {
-    List<String> result = null;
-    if (StringUtils.isEmpty(query)) {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4, StringUtils.EMPTY, 11);
-    }
-    else {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4, query, 11);
-    }
-    result.sort((first, second) -> first.toLowerCase()
-        .compareTo(second.toLowerCase()));
-
-    return result;
+    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4);
   }
   
+  /**
+   * Populate values for Auto Complete of cutomVarCharField5
+   * 
+   * @param query
+   * @return values of available customVarCharField5
+   */
   public List<String> populateCustomVarChar5AutoComplete(String query) {
+    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5);
+  }
+  
+  private List<String> populateCustomVarCharAutoComplete(String query, PortalCaseCustomVarField type) {
     List<String> result = null;
     if (StringUtils.isEmpty(query)) {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5, StringUtils.EMPTY, 11);
+      result = statisticService.getCustomVarCharFields(type, StringUtils.EMPTY, 11);
     }
     else {
-      result = statisticService.getCustomVarCharFields(PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5, query, 11);
+      result = statisticService.getCustomVarCharFields(type, query, 11);
     }
     result.sort((first, second) -> first.toLowerCase()
         .compareTo(second.toLowerCase()));
 
     return result;
-
   }
 }
