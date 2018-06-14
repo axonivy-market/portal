@@ -30,7 +30,7 @@
           <h:panelGroup id="add-button-panel" styleClass="add-button-panel" layout="block">
             <p:commandButton id="add-custom-val" styleClass="add-custom-val" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
               disabled="#{data.selectedCustomValue == null}" icon="fa fa-plus-circle" iconPos="right">
-              <p:ajax event="click" listener="#{logic.addCustomVal}" global="false" update="selected-custom-val-panel selected-custom-val-container" />
+              <p:ajax event="click" listener="#{logic.addCustomVal}" global="false" update="custom-field-panel-header-container selected-custom-val-container" />
             </p:commandButton>
           </h:panelGroup>
         </h:panelGroup>
