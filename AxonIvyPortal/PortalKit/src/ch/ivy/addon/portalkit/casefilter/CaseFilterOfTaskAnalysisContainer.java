@@ -11,6 +11,7 @@ public class CaseFilterOfTaskAnalysisContainer extends CaseFilterContainer {
   private CaseDescriptionFilter caseDescriptionFilter = new CaseDescriptionFilter();
   private CaseFinishedDateFilter caseFinishedDateFilter = new CaseFinishedDateFilter();
   private CaseNameFilter caseNameFilter = new CaseNameFilter();
+  private CaseCategoryFilter caseCategoryFilter = new CaseCategoryFilter();
 
   public CaseFilterOfTaskAnalysisContainer() {
     super();
@@ -19,6 +20,7 @@ public class CaseFilterOfTaskAnalysisContainer extends CaseFilterContainer {
     filters.add(caseDescriptionFilter);
     filters.add(caseFinishedDateFilter);
     filters.add(caseNameFilter);
+    filters.add(caseCategoryFilter);
     Collections.sort(filters, new CaseFilterComparator());
   }
 
@@ -62,4 +64,11 @@ public class CaseFilterOfTaskAnalysisContainer extends CaseFilterContainer {
     this.caseNameFilter = caseNameFilter;
   }
 
+  public CaseCategoryFilter getCaseCategoryFilter() {
+    return caseCategoryFilter;
+  }
+
+  public void setCaseCategoryFilter(CaseCategoryFilter caseCategoryFilter) {
+    this.caseCategoryFilter = caseCategoryFilter;
+  }
 }
