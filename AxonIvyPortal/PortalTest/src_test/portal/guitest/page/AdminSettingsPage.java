@@ -61,7 +61,7 @@ public class AdminSettingsPage extends TemplatePage {
     return new HomePage();
   }
   
-  private void editGlobalVariable(String variableName, String variableValue) {
+  private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
     WebElement table = findElementById("adminui:adminTabView:settingTable");
     List<WebElement> tableRows = table.findElements(By.tagName("tr"));
     int index = 0;
@@ -73,7 +73,7 @@ public class AdminSettingsPage extends TemplatePage {
           WebElement editButton = row.findElement(By.id("adminui:adminTabView:settingTable:" + (index-2) + ":edit"));
           editButton.click();
           waitForElementPresent(By.id("adminui:settingDialogForm"), true);
-          saveGlobalVariable(variableValue);
+          saveGlobalVariable(variableValue, isBooleanType);
           return ;
         }
       }
@@ -81,9 +81,17 @@ public class AdminSettingsPage extends TemplatePage {
     }
   }
 
-  private void saveGlobalVariable(String value){
-    WebElement valueInput = findElementById("adminui:valueSetting");
-    valueInput.sendKeys(value);
+  private void saveGlobalVariable(String value, boolean isBooleanType){
+    if(!isBooleanType) {
+      WebElement valueInput = findElementById("adminui:valueSetting");
+      valueInput.sendKeys(value);
+    } else {
+      click(By.id("adminui:valueSetting_label"));
+      waitForElementDisplayed(By.id("adminui:valueSetting_panel"), true);
+      boolean boolValue = Boolean.parseBoolean(value);
+      int index = boolValue ? 1 : 0;
+      click(By.id(String.format("adminui:valueSetting_%d", index)));
+    }
     WebElement saveButton = findElementById("adminui:save-setting");
     saveButton.click();
   }
@@ -101,28 +109,28 @@ public class AdminSettingsPage extends TemplatePage {
 
   public void setClientSideTimeout(String timeout){
     openSettingTab();
-    editGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout);
+    editGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout, false);
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
   
   public void setEnableScriptCheckingGlobalVariable(){
     openSettingTab();
-    editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true");
+    editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true", true);
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
   
   public void setFileExtensionWhiteList(){
     openSettingTab();
-    editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", "abc, pdf, doc");
+    editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", "abc, pdf, doc", false);
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
   
   public void setHideUploadDocumentForDoneCase(){
     openSettingTab();
-    editGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true");
+    editGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true", true);
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
