@@ -1,0 +1,12 @@
+CaseCategoryFilterData #class
+ch.ivy.addon.portalkit.component.cases.filter.CaseCategoryFilter #namespace
+root org.primefaces.model.CheckboxTreeNode #field
+root PERSISTENT #fieldModifier
+jsonQuery String #field
+jsonQuery PERSISTENT #fieldModifier
+involvedApplications List<String> #field
+involvedApplications PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+allCaseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+allCaseCategories PERSISTENT #fieldModifier
