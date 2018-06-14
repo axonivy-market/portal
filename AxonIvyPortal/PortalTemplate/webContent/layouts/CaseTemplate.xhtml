@@ -11,11 +11,12 @@
       <h:outputScript name="case-widget.js" library="js" />
     </ui:define>
     <ui:define name="simplePageContent">
+      <c:set var="case" value="#{caseWidgetBean.findRemoteCaseByCaseId(caseId)}" scope="request" />
       <div>
         <div class="Fleft Wid50 Fs20 foreground-text-color MarTop10">
           <ui:insert name="caseName">
             <span class="fa fa-plane case-template-title-icon"></span>
-            <h:outputText title="#{caseName} (#{case.id})" value="#{caseName} (#{case.id})" />
+            <h:outputText title="#{case.name} (#{case.id})" value="#{case.name} (#{case.id})" />
           </ui:insert>
         </div>
         <div class="Fright Wid70">
