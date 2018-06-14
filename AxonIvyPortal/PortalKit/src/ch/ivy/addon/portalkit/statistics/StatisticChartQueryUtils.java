@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.event.ItemSelectEvent;
@@ -28,6 +29,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.ws.addon.PortalCaseCustomVarField;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -263,12 +265,11 @@ public class StatisticChartQueryUtils {
   }
 
   private static void generateTaskQueryForRoles(StatisticFilter filter, TaskQuery taskQuery) {
-    List<String> selectedRoles = Optional.ofNullable(filter.getSelectedRoles()).orElse(new ArrayList<>());
-    if (!selectedRoles.isEmpty()) {
+    if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
       TaskQuery subTaskQueryForRoles = TaskQuery.create();
       IFilterQuery subTaskFilterForRoles = subTaskQueryForRoles.where();
 
-      selectedRoles.forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
+      filter.getSelectedRoles().forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
       taskQuery.where().and(subTaskQueryForRoles);
     }
   }
@@ -422,11 +423,9 @@ public class StatisticChartQueryUtils {
   }
   
   private static void generateCaseQueryForRole(StatisticFilter filter, CaseQuery caseQuery) {
-    CaseQuery subCaseQueryForRole = CaseQuery.create();
     TaskQuery taskQuery = TaskQuery.create();
     generateTaskQueryForRoles(filter, taskQuery);
-    subCaseQueryForRole.where().tasks(taskQuery);
-    caseQuery.where().and(subCaseQueryForRole);
+    caseQuery.where().and().tasks(taskQuery);
   }
 
   /**
@@ -482,8 +481,9 @@ public class StatisticChartQueryUtils {
    */
   public static CaseQuery generateCaseQueryForCaseState(StatisticFilter filter) {
     CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQuery(filter, false);
-    generateCaseQueryForRole(filter, caseQuery);
-
+    if(CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
+      generateCaseQueryForRole(filter, caseQuery);
+    }
     return caseQuery;
   }
 
@@ -599,51 +599,34 @@ public class StatisticChartQueryUtils {
   }
   
   private static void generateCaseQueryForCustomVarChar(StatisticFilter filter, CaseQuery caseQuery) {
-    List<String> selectedCustomVarCharFields1 = Optional.ofNullable(filter.getSelectedCustomVarCharFields1()).orElse(new ArrayList<>());
-    if(!selectedCustomVarCharFields1.isEmpty()){
-      CaseQuery subTaskQueryForCustomVarCharField1 = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField1 = subTaskQueryForCustomVarCharField1.where();
-
-      selectedCustomVarCharFields1.forEach(item -> subCaseFilterForCustomVarCharField1.or().customVarCharField1().isEqual(item));
-      caseQuery.where().and(subTaskQueryForCustomVarCharField1);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields1(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields2(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields3(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields4(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields5(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5);
+  }
+  
+  private static void generateCaseQueryForCustomVarCharByType(List<String> customVarChars, CaseQuery caseQuery, PortalCaseCustomVarField type) {
+    if(CollectionUtils.isNotEmpty(customVarChars)) {
+      CaseQuery subTaskQueryForCustomVarCharField = CaseQuery.create();
+      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField = subTaskQueryForCustomVarCharField.where();
+      if(type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1) {
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField1().isEqual(item));
+      }
+      else if (type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2) {
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField2().isEqual(item));
+      }
+      else if (type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3) {
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField3().isEqual(item));
+      }
+      else if (type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4) {
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField4().isEqual(item));
+      }
+      else if (type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5) {
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField5().isEqual(item));
+      }
+      caseQuery.where().and(subTaskQueryForCustomVarCharField);
     }
-    
-    List<String> selectedCustomVarCharFields2 = Optional.ofNullable(filter.getSelectedCustomVarCharFields2()).orElse(new ArrayList<>());
-    if(!selectedCustomVarCharFields2.isEmpty()){
-      CaseQuery subCaseQueryForCustomVarCharField2QueryForCustomVarCharField2 = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField2 = subCaseQueryForCustomVarCharField2QueryForCustomVarCharField2.where();
-
-      selectedCustomVarCharFields2.forEach(item -> subCaseFilterForCustomVarCharField2.or().customVarCharField2().isEqual(item));
-      caseQuery.where().and(subCaseQueryForCustomVarCharField2QueryForCustomVarCharField2);
-    }
-    
-    List<String> selectedCustomVarCharFields3 = Optional.ofNullable(filter.getSelectedCustomVarCharFields3()).orElse(new ArrayList<>());
-    if(!selectedCustomVarCharFields3.isEmpty()){
-      CaseQuery subCaseQueryForCustomVarCharField3 = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField3 = subCaseQueryForCustomVarCharField3.where();
-
-      selectedCustomVarCharFields3.forEach(item -> subCaseFilterForCustomVarCharField3.or().customVarCharField3().isEqual(item));
-      caseQuery.where().and(subCaseQueryForCustomVarCharField3);
-    }
-    
-    List<String> selectedCustomVarCharFields4 = Optional.ofNullable(filter.getSelectedCustomVarCharFields4()).orElse(new ArrayList<>());
-    if(!selectedCustomVarCharFields4.isEmpty()){
-      CaseQuery subCaseQueryForCustomVarCharField4 = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField4 = subCaseQueryForCustomVarCharField4.where();
-
-      selectedCustomVarCharFields4.forEach(item -> subCaseFilterForCustomVarCharField4.or().customVarCharField4().isEqual(item));
-      caseQuery.where().and(subCaseQueryForCustomVarCharField4);
-    }
-    
-    List<String> selectedCustomVarCharFields5 = Optional.ofNullable(filter.getSelectedCustomVarCharFields5()).orElse(new ArrayList<>());
-    if(!selectedCustomVarCharFields5.isEmpty()){
-      CaseQuery subCaseQueryForCustomVarCharField5 = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField5 = subCaseQueryForCustomVarCharField5.where();
-
-      selectedCustomVarCharFields5.forEach(item -> subCaseFilterForCustomVarCharField5.or().customVarCharField5().isEqual(item));
-      caseQuery.where().and(subCaseQueryForCustomVarCharField5);
-    }
-    
   }
 
 }
