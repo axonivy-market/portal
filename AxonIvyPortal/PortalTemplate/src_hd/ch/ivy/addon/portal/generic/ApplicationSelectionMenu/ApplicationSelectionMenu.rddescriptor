@@ -15,14 +15,6 @@
         <name>loadSubMenuItems</name>
         <description></description>
     </method>
-    <method>
-        <name>reserveTask</name>
-        <description></description>
-    </method>
-    <method>
-        <name>leave</name>
-        <description></description>
-    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
