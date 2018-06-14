@@ -3,8 +3,8 @@
   xmlns:p="http://primefaces.org/ui">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="componentId" default="description-filter" />
-  <cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.casefilter.CaseDescriptionFilter" />
+  <cc:attribute name="componentId" default="case-name-filter" />
+  <cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.casefilter.CaseNameFilter" />
   <cc:attribute name="dataModel" required="true" />
   <cc:attribute name="selectedFilters" />
   <cc:attribute name="resultContainerUpdated" />
@@ -14,7 +14,7 @@
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}" caseFilter="#{cc.attrs.filter}"
      selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
-    <p:inputText id="description" value="#{cc.attrs.filter.description}" />
+    <p:inputText id="name" value="#{cc.attrs.filter.name}" />
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
 </cc:implementation>
 </html>
