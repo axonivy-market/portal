@@ -881,7 +881,8 @@
 
 .search-results-tabview .task-list-container,
 .search-results-tabview .case-default-widget-container,
-.case-template-content .case-details {
+.case-template-content .case-details,
+.task-template-content .case-details {
   margin: 0 !important;
 }
 
@@ -897,7 +898,8 @@
   height: 30px;
 }
 
-.case-template-content .case-list-item {
+.case-template-content .case-list-item,
+.task-template-content .case-list-item {
   width: 100%;
   margin: 20px 0 0 0;
 }

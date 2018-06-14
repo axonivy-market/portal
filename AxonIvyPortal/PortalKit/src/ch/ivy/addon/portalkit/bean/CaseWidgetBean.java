@@ -92,4 +92,8 @@ public class CaseWidgetBean implements Serializable {
   public boolean isNaN(Number number){
     return NumberUtils.isNaN(number);
   }
+
+  public RemoteCase findRemoteCaseByCaseId(long caseId) {
+    return CaseUtils.findRemoteCaseById(caseId);
+  }
 }
