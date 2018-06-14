@@ -5,7 +5,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_hd"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_rd"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_ws"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_wsproc"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_dataClasses"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/js"/>
         <property name="java-output-path" value="/PortalKit/classes"/>
