@@ -9,6 +9,7 @@
     <user>
         <username>portaladmin</username>
         <password>+d3m0++</password>
+        <fullName>Portal Admin User</fullName>
         <role>AXONIVY_PORTAL_ADMIN</role>
     </user>
 </userConfig>
