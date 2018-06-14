@@ -13,6 +13,7 @@
 	<cc:attribute name="onDestroyComplete" />
 	<cc:attribute name="enableCaseAction" default="true" />
 	<cc:attribute name="expandCallback" />
+	<cc:attribute name="alwaysShowDetails" default="false" />
 	<cc:facet name="caseHeader" shortDescription="Header content of one case item" />
 	<cc:facet name="caseBody" shortDescription="Body content of one case item" />
 </cc:interface>
@@ -22,19 +23,20 @@
 	<c:set var="caseItem" value="#{cc.attrs.caseItem}" />
 	<c:set var="active" value="#{caseWidgetBean.expandedCaseId == -1 and cc.attrs.initialActive}" />
 	<c:set var="expanded" value="#{caseItem.id eq caseWidgetBean.expandedCaseId or active}" />
+	<c:set var="alwaysShowDetails" value="#{cc.attrs.alwaysShowDetails}" />
 
 	<div id="#{cc.clientId}"
 		class="js-case-item case-list-item #{expanded ? 'case-list-item-expanded show-case-details-mode' : ''} case-list-item-position #{cc.attrs.itemStyleClass} ">
-		<h:panelGroup id="case-item-container" class="case-header-container" layout="block">
+		<h:panelGroup id="case-item-container" styleClass="case-header-container #{alwaysShowDetails ? 'always-show-details' : ''}" layout="block">
 			<div class="case-show-detail-container">
 				<h:panelGroup id="case-header-data" layout="block" styleClass="case-header-data js-case-item-header">
 					<p:ajax event="click" listener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}" update="@(.case-list-item)"
-						oncomplete="#{cc.attrs.expandCallback}" />
+						disabled="#{alwaysShowDetails}" oncomplete="#{cc.attrs.expandCallback}" />
 					<cc:renderFacet name="caseHeader" />
-					<h:panelGroup layout="block" rendered="#{expanded}">
+					<h:panelGroup layout="block" rendered="#{expanded and not alwaysShowDetails}">
 						<i class="fa fa-angle-double-up case-toggle-icon" />
 					</h:panelGroup>
-					<h:panelGroup layout="block" rendered="#{not expanded}">
+					<h:panelGroup layout="block" rendered="#{not expanded and not alwaysShowDetails}">
 						<i class="fa fa-angle-double-down case-toggle-icon" />
 					</h:panelGroup>
 				</h:panelGroup>

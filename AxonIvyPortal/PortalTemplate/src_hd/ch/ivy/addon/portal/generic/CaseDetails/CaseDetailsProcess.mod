@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Mon Jan 11 16:03:49 ICT 2016]
-1522FB42693C4374 3.18 #module
+1522FB42693C4374 3.23 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseDetailsProcess Big #zClass
 Cs0 RD #cInfo
@@ -52,7 +51,7 @@ Cs0 f3 actionTable 'out=in;
 ' #txt
 Cs0 f3 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
 
-in.currentCase = CaseUtils.getCaseById(in.currentCaseId);' #txt
+in.currentCase = CaseUtils.findRemoteCaseById(in.currentCaseId);' #txt
 Cs0 f3 type ch.ivy.addon.portal.generic.CaseDetails.CaseDetailsData #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

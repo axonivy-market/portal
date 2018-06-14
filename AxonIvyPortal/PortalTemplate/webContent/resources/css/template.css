@@ -880,8 +880,13 @@
 }
 
 .search-results-tabview .task-list-container,
-.search-results-tabview .case-default-widget-container {
+.search-results-tabview .case-default-widget-container,
+.case-template-content .case-details {
   margin: 0 !important;
+}
+
+.case-default-widget-container {
+  flex-wrap: wrap;
 }
 
 .search-results-tabview .process-in-search {
@@ -890,4 +895,9 @@
 
 .search-results-tabview .widget-sort-menu.full-mode.task-in-search, .search-results-tabview .widget-column-header.case-in-search {
   height: 30px;
+}
+
+.case-template-content .case-list-item {
+  width: 100%;
+  margin: 20px 0 0 0;
 }
