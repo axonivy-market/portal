@@ -467,6 +467,7 @@ Is0 f31 actionTable 'out=in;
 ' #txt
 Is0 f31 actionCode 'import ch.ivyteam.ivy.security.IPermission;
 
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.DOCUMENT_WRITE, ivy.session.getSessionUser());
 ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE, ivy.session.getSessionUser());
 ' #txt
 Is0 f31 security system #txt
@@ -486,6 +487,7 @@ Is0 f33 actionTable 'out=in;
 ' #txt
 Is0 f33 actionCode 'import ch.ivyteam.ivy.security.IPermission;
 
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.DOCUMENT_WRITE, ivy.session.getSessionUser());
 ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE, ivy.session.getSessionUser());
 ' #txt
 Is0 f33 security system #txt
