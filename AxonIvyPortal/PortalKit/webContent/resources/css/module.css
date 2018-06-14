@@ -1728,7 +1728,8 @@ a.case-details-document-add-link {
   margin-top: 0;
 }
 
-.case-widget-container .widget-column-header {
+.case-widget-container .widget-column-header,
+.case-default-widget-container .widget-column-header {
   flex: 1 0 100%;
   height: 60px;
   display: flex;
@@ -1738,6 +1739,10 @@ a.case-details-document-add-link {
   padding: 0 2px 10px 2px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
   margin-bottom: 1px;
+}
+
+.case-default-widget-container .widget-column-header {
+  height: 30px;
 }
 
 .case-widget-container .widget-column-header .is-selected {
@@ -1784,6 +1789,10 @@ a.case-details-document-add-link {
 .case-show-detail-container {
   flex: 20;
   cursor: pointer;
+}
+
+.case-header-container.always-show-details .case-show-detail-container {
+	cursor: default;
 }
 
 .case-header-name-desc-cell {
@@ -3007,7 +3016,7 @@ a.task-details-document-add-link {
   position: absolute;
   padding-right: inherit;
   margin: 0 !important;
-  right: 0px;
+  right: -7px;
 }
 
 .responsive-handle-button {
@@ -3029,7 +3038,7 @@ a.task-details-document-add-link {
 
 .case-details {
   display: flex;
-  padding: 20px 18px 20px 0;
+  padding: 20px 18px;
   justify-content: center;
   position: relative
 }
@@ -3041,8 +3050,9 @@ a.task-details-document-add-link {
 }
 
 .case-details-item {
+  flex: 1;
   display: inline-block;
-  width: 250px;
+  min-width: 250px;
   height: 270px;
 }
 

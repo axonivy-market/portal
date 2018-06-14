@@ -1,13 +1,17 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import ch.ivy.addon.portalkit.bo.Contact;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.vo.CaseVO;
+import ch.ivy.ws.addon.CaseSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
 import ch.ivyteam.ivy.persistence.OrderDirection;
@@ -607,5 +611,32 @@ public final class CaseUtils {
           process).toString()
           + urlParameters;
     }
+  }
+
+  /**
+   * Find remote case by case UD
+   * 
+   * @param caseId
+   * @return found remote case
+   */
+  @SuppressWarnings("unchecked")
+  public static RemoteCase findRemoteCaseById(long caseId) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("serverId", SecurityServiceUtils.getServerIdFromSession());
+    params.put("startIndex", 0);
+    params.put("count", 1);
+
+    CaseQuery query = CaseQuery.create();
+    query.where().caseId().isEqual(caseId);
+    CaseSearchCriteria criteria = new CaseSearchCriteria();
+    criteria.setJsonQuery(query.asJson());
+    params.put("caseSearchCriteria", criteria);
+
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess(
+            "findCasesByCriteria(Long,Integer,Integer,ch.ivy.ws.addon.CaseSearchCriteria)", params, new ArrayList<>());
+    List<RemoteCase> result = (List<RemoteCase>) response.get("cases");
+
+    return result.get(0);
   }
 }
