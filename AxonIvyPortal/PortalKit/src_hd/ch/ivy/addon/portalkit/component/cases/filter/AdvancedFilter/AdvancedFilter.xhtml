@@ -8,8 +8,8 @@
   xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 
 <cc:interface componentType="IvyComponent">
-<!--   <cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel" -->
-  <cc:attribute name="dataModel" shortDescription="Used if filter can be removed" required="true" />
+  <cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel"
+    shortDescription="Used if filter can be removed" required="true" />
   <cc:attribute name="caseFilter" required="true" type="ch.ivy.addon.portalkit.casefilter.CaseFilter" />
   <cc:attribute name="updateListener" />
   <cc:attribute name="removeListener" />
@@ -21,17 +21,16 @@
     shortDescription="If there is a component with a popup like calendar, autocomplete placed inside the overlay panel, popup part might exceed the boundaries of panel and clicking the outside hides the panel. Set false in this case" />
   <cc:attribute name="forceRendered" type="java.lang.Boolean" />
   <cc:attribute name="position" type="java.lang.Integer" />
-  <cc:attribute name="selectedFilters" />
-  <cc:attribute name="resultContainerUpdated" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-  <c:set var="selectedFilters" value="#{empty cc.attrs.selectedFilters ? dataModel.selectedFilters : cc.attrs.selectedFilters}" />
+  <c:set var="selectedFilters" value="#{dataModel.selectedFilters}" />
   <c:set var="caseFilter" value="#{cc.attrs.caseFilter}" />
   <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
   <c:set var="caseContainerId" value="#{p:component('case-list')}" />
   <c:set var="renderedFilter" value="#{(not empty dataModel and selectedFilters.contains(caseFilter)) or cc.attrs.forceRendered}" />
+  
   <h:panelGroup rendered="#{renderedFilter}"
     style="order: #{not empty cc.attrs.position ? cc.attrs.position : selectedFilters.indexOf(caseFilter)}">
     <h:form id="filter-open-form">
@@ -42,7 +41,7 @@
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(caseFilter)}" global="false"
-          update="@(.advanced-filter-container) @(.filter-add-container) @(.case-list)"
+          update="#{p:component('advanced-filter-container')} #{p:component('filter-add-container')} #{p:component('case-list')}"
           oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader()">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
@@ -65,8 +64,8 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{caseFilter.validate()}"
             update="#{cc.clientId}:filter-open-form @form"
-            oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); #{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader()' : ''}">
-            <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateCasesByFilter(caseContainerId) : ''}" />
+            oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); caseWidget.setUpScrollbar();caseWidget.setupHeader()">
+            <f:actionListener binding="#{logic.updateCasesByFilter(caseContainerId)}" />
             <f:actionListener binding="#{cc.attrs.updateListener}" />
           </p:commandButton>
           <p:spacer width="5" />

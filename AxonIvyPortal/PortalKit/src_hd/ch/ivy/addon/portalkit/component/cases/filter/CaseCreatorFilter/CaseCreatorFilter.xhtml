@@ -5,15 +5,12 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" default="creator-filter" />
   <cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.casefilter.CaseCreatorFilter" />
-  <cc:attribute name="dataModel" required="true" />
-  <cc:attribute name="selectedFilters" />
-  <cc:attribute name="resultContainerUpdated" />
+  <cc:attribute name="dataModel" required="true" type="ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel" />
 </cc:interface>
 
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}"
-    caseFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
-    dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
+    caseFilter="#{cc.attrs.filter}" dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
     <p:autoComplete id="creator" scrollHeight="200" dropdown="true" size="35" 
       completeMethod="#{logic.autoCompleteForCreator}" value="#{cc.attrs.filter.selectedCreator}"
       var="creator" itemValue="#{creator}" itemLabel="#{creator.displayName}"
