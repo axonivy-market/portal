@@ -3921,7 +3921,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .statistic-filter-container {
   max-height: 20rem;
-  max-width: 25rem;
+  max-width: 26rem;
   margin-top: 1rem;
 }
 
@@ -4838,6 +4838,16 @@ margin-top
 	border-right: none !important;
 }
 
+.statistic-filter-accordion-panel .ui-selectmanycheckbox label {
+	display: inline-block;
+	width: 21rem;
+	margin-right: 0 !important;
+}
+
+.statistic-filter-container table.ui-selectmanycheckbox td > * {
+	vertical-align: middle !important;
+}
+
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
 	.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
@@ -4871,6 +4881,14 @@ margin-top
 		max-height: 20rem;
 		width: 18rem;
 		margin-top: 1rem;
+	}
+
+	.statistic-filter-accordion-panel .ui-selectmanycheckbox label {
+		width: 18rem;
+	}
+
+	.custom-val-selection .ui-autocomplete-input {
+		width: 86%;
 	}
 }
 
