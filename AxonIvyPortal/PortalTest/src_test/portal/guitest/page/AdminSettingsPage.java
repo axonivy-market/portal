@@ -70,7 +70,7 @@ public class AdminSettingsPage extends TemplatePage {
       if (!CollectionUtils.isEmpty(columns)) {
         WebElement keyColumn = columns.get(0);
         if (keyColumn.getText().equals(variableName)) {
-          WebElement editButton = row.findElement(By.id("adminui:adminTabView:settingTable:" + (index-2) + ":edit"));
+          WebElement editButton = row.findElement(By.id("adminui:adminTabView:settingTable:" + (index-3) + ":edit"));
           editButton.click();
           waitForElementPresent(By.id("adminui:settingDialogForm"), true);
           saveGlobalVariable(variableValue, isBooleanType);
