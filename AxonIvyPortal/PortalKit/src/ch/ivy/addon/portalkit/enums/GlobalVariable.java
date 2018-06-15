@@ -6,33 +6,44 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public enum GlobalVariable {
 
-  HIDE_LOGOUT_BUTTON(Boolean.FALSE.toString()),
-  SHOW_ENVIRONMENT_INFO(Boolean.FALSE.toString()),
-  SHOW_TASK_BUTTON_LABELS(Boolean.FALSE.toString()),
-  HIDE_CHANGE_PASSWORD_BUTTON(Boolean.FALSE.toString()), //NOSONAR
-  HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE(Boolean.FALSE.toString()),
-  ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(Boolean.FALSE.toString()),
-  REFRESH_TASK_LIST_INTERVAL(String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL)),
-  UPLOAD_DOCUMENT_WHITELIST_EXTENSION(String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION)),
-  HOMEPAGE_URL,
-  CLIENT_SIDE_TIMEOUT,
-  EXPRESS_END_PAGE;
+  HIDE_LOGOUT_BUTTON(Boolean.FALSE.toString(), "hideLogoutButtonNote"),
+  SHOW_ENVIRONMENT_INFO(Boolean.FALSE.toString(), "showEnvironmentInfoNote"),
+  SHOW_TASK_BUTTON_LABELS(Boolean.FALSE.toString(), "showTaskButtonLabelsNote"),
+  HIDE_CHANGE_PASSWORD_BUTTON(Boolean.FALSE.toString(), "hideChangePasswordButtonNote"), //NOSONAR
+  HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE(Boolean.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
+  ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(Boolean.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
+  EXPRESS_END_PAGE(Boolean.TRUE.toString(), "expressEndPageNote"),
+  REFRESH_TASK_LIST_INTERVAL(String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
+  UPLOAD_DOCUMENT_WHITELIST_EXTENSION(String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
+  HOMEPAGE_URL("homePageUrlNote"),
+  CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote");
 
   private String defaultValue;
+  private String defaultNoteCMS;
 
   private GlobalVariable() {
     
   }
 
-  private GlobalVariable(String defaultValue) {
+  private GlobalVariable(String defaultNoteCMS) {
+    this.defaultNoteCMS = defaultNoteCMS;
+  }
+
+  private GlobalVariable(String defaultValue, String defaultNoteCMS) {
     this.defaultValue = defaultValue;
+    this.defaultNoteCMS = defaultNoteCMS;
   }
 
   public String getDefaultValue() {
     return defaultValue;
+  }
+
+  public String getDefaultNote() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/globalVariableNote/" + defaultNoteCMS);
   }
 
   public static List<GlobalVariable> getBooleanType() {

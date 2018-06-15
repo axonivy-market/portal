@@ -40,6 +40,14 @@ public class GlobalSetting extends BusinessEntity {
     value = getDefaultValue();
   }
 
+  public String getDefaultNote() {
+    return GlobalVariable.valueOf(key).getDefaultNote();
+  }
+
+  public void setNoteToDefault() {
+    note = getDefaultNote();
+  }
+
   @Override
   public String toString() {
     return "GlobalSetting [key=" + key + ", value=" + value + ", note=" + note + ", id=" + getId() + "]";

@@ -1,0 +1,4 @@
+co: name={hideLogoutButtonNote} description={} changed={2018-06-14 06:13:37 CEST} changedby={tdnguyen} visualorder={0} guid={163FC6E6BC99543D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163FC6E6BD6281FD} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-14 05:54:45 CEST} validto={} changed={2018-06-14 06:13:23 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={163FC7FB518AEC6A} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-14 06:13:29 CEST} validto={} changed={2018-06-14 06:13:37 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={163FC7FB38AE5FE7} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-14 06:13:32 CEST} validto={} changed={2018-06-14 06:13:37 CEST} changedby={tdnguyen} properties={} id={}
