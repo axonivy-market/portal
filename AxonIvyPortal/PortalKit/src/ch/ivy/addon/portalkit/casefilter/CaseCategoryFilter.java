@@ -26,7 +26,6 @@ public class CaseCategoryFilter extends CaseFilter {
     }
     List<String> values = new ArrayList<>();
     for (CheckboxTreeNode node : categories) {
-      node.setExpanded(true);
       CaseNode nodeData = (CaseNode) node.getData();
       values.add(nodeData.getCategory());
     }
