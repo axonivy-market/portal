@@ -2897,7 +2897,7 @@ As0 f65 processCall 'Business Processes/AbstractSynchronizingConfiguration:addOr
 As0 f65 doCall true #txt
 As0 f65 requestActionDecl '<List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> businessEntities> param;
 ' #txt
-As0 f65 requestMappingAction 'param.businessEntities=new ch.ivy.addon.portalkit.persistence.dao.GlobalSettingDao().findAll();
+As0 f65 requestMappingAction 'param.businessEntities=in.settingList;
 ' #txt
 As0 f65 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
