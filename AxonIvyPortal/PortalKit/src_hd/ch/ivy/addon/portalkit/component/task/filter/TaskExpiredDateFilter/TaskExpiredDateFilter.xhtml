@@ -6,11 +6,13 @@
   <cc:attribute name="componentId" default="expired-filter" />
   <cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.taskfilter.TaskExpiredDateFilter" />
   <cc:attribute name="dataModel" required="true" />
+  <cc:attribute name="selectedFilters" />
+  <cc:attribute name="resultContainerUpdated" />
 </cc:interface>
 
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}"
-    taskFilter="#{cc.attrs.filter}" dismissableOverlayPanel="false" dataModel="#{cc.attrs.dataModel}">
+    taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dismissableOverlayPanel="false" dataModel="#{cc.attrs.dataModel}">
     <h:panelGrid columns="3">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-expired-calendar" />
