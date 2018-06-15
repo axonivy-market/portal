@@ -21,11 +21,18 @@
     shortDescription="If there is a component with a popup like calendar, autocomplete placed inside the overlay panel, popup part might exceed the boundaries of panel and clicking the outside hides the panel. Set false in this case" />
   <cc:attribute name="forceRendered" type="java.lang.Boolean" />
   <cc:attribute name="position" type="java.lang.Integer" />
+  <cc:attribute name="selectedFilters" />
+  <cc:attribute name="resultContainerUpdated" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-  <c:set var="selectedFilters" value="#{dataModel.selectedFilters}" />
+  <c:if test="#{cc.attrs.selectedFilters == null}" >
+    <c:set var="selectedFilters" value="#{dataModel.selectedFilters}" />
+  </c:if>
+  <c:if test="#{cc.attrs.selectedFilters != null}" >
+    <c:set var="selectedFilters" value="#{cc.attrs.selectedFilters}" />
+  </c:if>
   <c:set var="taskFilter" value="#{cc.attrs.taskFilter}" />
   <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
   <c:set var="taskContainerId" value="#{p:component('task-view-container')}" />
@@ -41,8 +48,8 @@
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
-          update="#{p:component('advanced-filter-container')} #{p:component('filter-add-container')} #{p:component('task-view-container')}"
-          oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
+          update="@(.advanced-filter-container) @(.filter-add-container) @(.task-view-container)"
+          oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader()' : ''}">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
       </h:panelGroup>
@@ -64,8 +71,8 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{taskFilter.validate()}"
             update="#{cc.clientId}:filter-open-form @form"
-            oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); taskWidget.setupScrollbar(); taskWidget.setupHeader()">
-            <f:actionListener binding="#{logic.updateTasksByFilter(taskContainerId)}" />
+            oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); #{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader()' : ''}">
+            <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateTasksByFilter(taskContainerId) : ''}" />
             <f:actionListener binding="#{cc.attrs.updateListener}" />
           </p:commandButton>
           <p:spacer width="5" />

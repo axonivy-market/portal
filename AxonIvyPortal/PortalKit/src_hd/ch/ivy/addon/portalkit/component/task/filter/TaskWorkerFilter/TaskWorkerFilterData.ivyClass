@@ -1,0 +1,6 @@
+TaskWorkerFilterData #class
+ch.ivy.addon.portalkit.component.task.filter.TaskWorkerFilter #namespace
+queryAutoComplete String #field
+queryAutoComplete PERSISTENT #fieldModifier
+workers java.util.List<ch.ivy.addon.portalkit.bo.RemoteSecurityMember> #field
+workers PERSISTENT #fieldModifier
