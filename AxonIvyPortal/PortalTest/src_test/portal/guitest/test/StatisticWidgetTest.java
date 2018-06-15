@@ -56,7 +56,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(20000);
+    Sleeper.sleepTight(40000);
     assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
   }
 
