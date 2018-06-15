@@ -74,5 +74,5 @@ serverPathPlaceholder String #field
 serverPathPlaceholder PERSISTENT #fieldModifier
 filteredSettingList List<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting> #field
 filteredSettingList PERSISTENT #fieldModifier
-oldTabIndexActive Integer #field
-oldTabIndexActive PERSISTENT #fieldModifier
+settingTabOpened Boolean #field
+settingTabOpened PERSISTENT #fieldModifier

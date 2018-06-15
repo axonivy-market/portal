@@ -39,6 +39,7 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
         GlobalSetting newGlobalSetting = new GlobalSetting();
         newGlobalSetting.setKey(globalVariable.toString());
         newGlobalSetting.setValue(globalVariable.getDefaultValue());
+        newGlobalSetting.setNote(globalVariable.getDefaultNote());
         globalSettings.add(newGlobalSetting);
       }
     }

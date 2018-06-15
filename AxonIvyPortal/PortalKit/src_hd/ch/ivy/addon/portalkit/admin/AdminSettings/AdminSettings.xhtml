@@ -17,7 +17,7 @@
 
 	<!-- TAB VIEW -->
 	<p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
-		<p:ajax event="tabChange" listener="#{logic.onTabChange}" update=":#{p:component('settingTable')}" />
+		<p:ajax event="tabChange" listener="#{logic.onTabChange}" />
 
 		<!-- SERVER TAB -->
 		<p:tab id="serverTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/servers')}">
@@ -164,6 +164,8 @@
 		<!-- SETTINGS TAB -->
 		<p:tab id="settingTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
 			<h:form prependId="false" id="settingForm">
+				<p:remoteCommand name="loadAllGlobalSettings" actionListener="#{logic.loadAllGlobalSettings}" update=":#{p:component('settingTable')}"/>
+				<p:remoteCommand name="clearFilter" actionListener="#{logic.clearSettingTableFilter}"/>
 				<h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
 					<p:commandButton id="restore-all-to-default-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
 							actionListener="#{logic.submitResetAllSettings}" oncomplete="PF('resetConfirmation').show()" update=":#{p:component('resetConfirmationDialog')}" />
@@ -573,13 +575,13 @@
 	</p:dialog>
 
 	<!-- SETTING DIALOG-->
-	<p:dialog header="#{data.dialogTitle}" id="settingDialog" onShow="$('body').css({overflow:'hidden'})"
+	<p:dialog header="#{data.dialogTitle}" id="settingDialog" onShow="$('body').css({overflow:'hidden'})" width="30%"
 		onHide="$('body').css({overflow:'inherit'})" widgetVar="settingDialog" dynamic="true" modal="true" showEffect="fade"
 		hideEffect="fade" resizable="false" appendTo="@(body)">
 		<h:form prependId="false" id="settingDialogForm">
 			<p:messages />
 			<p:outputPanel id="settingOverview">
-				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-3, ui-grid-col-9"
+				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10"
 					styleClass="u-no-border admin-settings-container ui-fluid">
 					<!-- KEY -->
 					<p:outputLabel styleClass="admin-settings-form-input-label"
@@ -606,7 +608,7 @@
 					<!-- NOTE -->
 					<p:outputLabel styleClass="Fright" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')} :"
 						for="noteSetting" />
-					<p:inputText value="#{data.selectedSetting.note}" id="noteSetting" />
+					<p:inputTextarea value="#{data.selectedSetting.note}" id="noteSetting" />
 				</p:panelGrid>
 
 				<!-- Two buttons OK, Cancel -->
