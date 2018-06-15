@@ -42,6 +42,7 @@ public class StatisticWidgetTest extends BaseTest {
 
   @Test
   public void testNavigateToChartFromMenu() {
+    grantPermissionToCreateChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     Sleeper.sleepTight(2000);
@@ -58,12 +59,11 @@ public class StatisticWidgetTest extends BaseTest {
     Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
-    grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
 
   @Test
   public void testCreateCharts() {
+    grantPermissionToCreateChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     WebDriverWait wait = new WebDriverWait(statisticWidgetPage.getDriver(), 30);
@@ -99,6 +99,11 @@ public class StatisticWidgetTest extends BaseTest {
     assertEquals(ELAPSED_TIME_CHART_NAME, elapsedTimeChartName.getText());
     assertEquals(CASE_BY_FINISHED_TASK_CHART_NAME, caseByFinishedTaskChartName.getText());
     assertEquals(CASE_BY_FINISHED_TIME_CHART_NAME, caseByFinishedTimeChartName.getText());
+  }
+
+  private void grantPermissionToCreateChart() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
 
   private void createTaskByPriorityChart() {
