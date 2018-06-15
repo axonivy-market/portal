@@ -84,14 +84,14 @@
       </h:form>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" width="90%"
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" width="90%" onShow="loadAllGlobalSettings()"
       id="admin-ui-dialog" widgetVar="adminUI" closeOnEscape="true" resizable="false" modal="true" draggable="false" appendTo="@(body)"
       dynamic="true" height="450" onHide="PF('dialogClosingInformation').show();">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
       <f:facet name="footer">
       	 <p:commandButton id="close-button" type="button"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('adminUI').hide();" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="clearFilter(); PF('adminUI').hide();" />
       </f:facet>
     </p:dialog>
 
