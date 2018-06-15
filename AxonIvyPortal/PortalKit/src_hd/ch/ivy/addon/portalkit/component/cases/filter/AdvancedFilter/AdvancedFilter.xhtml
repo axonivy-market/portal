@@ -27,7 +27,12 @@
 
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-  <c:set var="selectedFilters" value="#{empty cc.attrs.selectedFilters ? dataModel.selectedFilters : cc.attrs.selectedFilters}" />
+  <c:if test="#{cc.attrs.selectedFilters == null}" >
+    <c:set var="selectedFilters" value="#{dataModel.selectedFilters}" />
+  </c:if>
+  <c:if test="#{cc.attrs.selectedFilters != null}" >
+    <c:set var="selectedFilters" value="#{cc.attrs.selectedFilters}" />
+  </c:if>
   <c:set var="caseFilter" value="#{cc.attrs.caseFilter}" />
   <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
   <c:set var="caseContainerId" value="#{p:component('case-list')}" />
@@ -43,7 +48,7 @@
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(caseFilter)}" global="false"
           update="@(.advanced-filter-container) @(.filter-add-container) @(.case-list)"
-          oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader()">
+          oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader()' : ''}">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
       </h:panelGroup>

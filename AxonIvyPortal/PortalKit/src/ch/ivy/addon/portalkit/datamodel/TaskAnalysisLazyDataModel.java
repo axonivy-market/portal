@@ -37,7 +37,7 @@ import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
-import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
+import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
@@ -80,7 +80,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   protected String caseName;
 
   protected List<TaskFilter> filters;
-  protected List<TaskFilter> selectedFilters;
+  protected List<TaskFilter> selectedTaskFilters;
   protected TaskFilterContainer filterContainer;
 
   private TaskInProgressByOthersFilter inProgressFilter;
@@ -107,7 +107,8 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     data = new ArrayList<>();
     displayedTaskMap = new HashMap<>();
     notDisplayedTaskMap = new HashMap<>();
-    selectedFilters = new ArrayList<>();
+    selectedTaskFilters = new ArrayList<>();
+    selectedCaseFilters = new ArrayList<>();
     searchCriteria = buildCriteria();
     queryCriteria = buildQueryCriteria();
     caseQueryCriteria = buildInitQueryCriteria();
@@ -142,10 +143,10 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
    * </p>
    */
   protected void initFilterContainer() {
-    filterContainer = new DefaultTaskFilterContainer();
+    filterContainer = new TaskAnalysisTaskFilterContainer();
   }
 
-  public void initFilters222() throws ReflectiveOperationException {
+  public void initTaskFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
       if (isRelatedTaskDisplayed) {
         if (!queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
@@ -181,7 +182,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
       InvocationTargetException {
     if (sessionTaskFilter.getClass() == filter.getClass()) {
       BeanUtils.copyProperties(filter, sessionTaskFilter);
-      selectedFilters.add(filter);
+      selectedTaskFilters.add(filter);
     }
   }
 
@@ -493,7 +494,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   public void setCompactMode(boolean compactMode) {
     this.compactMode = compactMode;
     if (compactMode) {
-      selectedFilters.clear();
+      selectedTaskFilters.clear();
     }
   }
 
@@ -525,14 +526,22 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     return filters;
   }
 
-  public List<TaskFilter> getSelectedFilters() {
-    return selectedFilters;
+  public List<TaskFilter> getSelectedTaskFilters() {
+    return selectedTaskFilters;
   }
 
-  public void setSelectedFilters(List<TaskFilter> selectedFilters) {
-    this.selectedFilters = selectedFilters;
+  public void setSelectedTaskFilters(List<TaskFilter> selectedFilters) {
+    this.selectedTaskFilters = selectedFilters;
   }
 
+//  public List<TaskFilter> getSelectedFilters() {
+//    return selectedTaskFilters;
+//  }
+//  
+//  public void setSelectedFilters(List<TaskFilter> selectedFilters) {
+//    this.selectedTaskFilters = selectedFilters;
+//  }
+  
   public TaskFilterContainer getFilterContainer() {
     return filterContainer;
   }
@@ -551,15 +560,20 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void removeFilter(TaskFilter filter) {
     filter.resetValues();
-    selectedFilters.remove(filter);
+    selectedTaskFilters.remove(filter);
   }
 
+  public void removeFilter(CaseFilter filter) {
+    filter.resetValues();
+    selectedCaseFilters.remove(filter);
+  }
+  
 
   public void resetFilters() {
-    for (TaskFilter selectedFilter : selectedFilters) {
+    for (TaskFilter selectedFilter : selectedTaskFilters) {
       selectedFilter.resetValues();
     }
-    selectedFilters = new ArrayList<>();
+    selectedTaskFilters = new ArrayList<>();
     selectedTaskFilterData = null;
   }
 
@@ -573,7 +587,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
    */
   public TaskFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
     TaskFilterData taskFilterData = new TaskFilterData();
-    List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
+    List<TaskFilter> taskFilters = new ArrayList<>(selectedTaskFilters);
     addCustomSettingsToTaskFilters(taskFilters);
     taskFilterData.setFilters(taskFilters);
     taskFilterData.setKeyword(queryCriteria.getKeyword());
@@ -656,7 +670,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
           TaskState.PARKED)));
     } else {
       if (filterContainer != null) {
-        if (selectedFilters.contains(filterContainer.getStateFilter())) {
+        if (selectedTaskFilters.contains(filterContainer.getStateFilter())) {
           queryCriteria.setIncludedStates(new ArrayList<>());
         } else {
           queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
@@ -724,7 +738,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   private TaskQuery buildTaskQuery() {
     TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);
     IFilterQuery filterQuery = taskQuery.where();
-    selectedFilters.forEach(selectedFilter -> {
+    selectedTaskFilters.forEach(selectedFilter -> {
       TaskQuery subQuery = selectedFilter.buildQuery();
       if (subQuery != null) {
         filterQuery.and(subQuery);
@@ -734,7 +748,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
       UserUtils.setSessionSelectedTaskFilterSetAttribute(selectedTaskFilterData);
       UserUtils.setSessionTaskKeywordFilterAttribute(queryCriteria.getKeyword());
       if (!compactMode) {
-        UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);
+        UserUtils.setSessionTaskAdvancedFilterAttribute(selectedTaskFilters);
         if (isInProgressFilterDisplayed) {
           UserUtils.setSessionTaskInProgressFilterAttribute(inProgressFilter);
         } else {
@@ -914,13 +928,17 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   
   ////////////=====================
   public void initFilters() throws ReflectiveOperationException {
-    initFilters222();
-    caseFilterContainer = new CaseFilterOfTaskAnalysisContainer();
-    caseFilters = caseFilterContainer.getFilters();
-    selectedCaseFilters = caseFilters;
-
+    initTaskFilters();
+    initCaseFilters();
   }
 
+
+  private void setValuesForCaseStateFilter(CaseQueryCriteria criteria) {
+    if (caseFilterContainer != null) {
+      caseFilterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
+      caseFilterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
+    }
+  }
   @SuppressWarnings("unchecked")
   public void onCaseFilterChange(ValueChangeEvent event) {
     List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
@@ -968,4 +986,35 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     return jsonQueryCriteria;
   }
 
+  private void restoreSessionAdvancedCaseFilters() throws IllegalAccessException, InvocationTargetException {
+    if (!isNotKeepFilter) {
+      List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
+      for (CaseFilter filter : caseFilters) {
+        for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
+          copyProperties(sessionCaseFilter, filter);
+        }
+      }
+    }
+  }
+
+  private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException,
+      InvocationTargetException {
+    if (sessionCaseFilter.getClass() == filter.getClass()) {
+      BeanUtils.copyProperties(filter, sessionCaseFilter);
+      selectedCaseFilters.add(filter);
+    }
+}
+
+  protected void initCaseFilterContainer() {
+    caseFilterContainer = new CaseFilterOfTaskAnalysisContainer();
+  }
+
+  private void initCaseFilters() throws IllegalAccessException, InvocationTargetException {
+    if (caseFilterContainer == null) {
+      initCaseFilterContainer();
+      caseFilters = caseFilterContainer.getFilters();
+      setValuesForCaseStateFilter(caseQueryCriteria);
+      restoreSessionAdvancedCaseFilters();
+    }
+  }
 }
