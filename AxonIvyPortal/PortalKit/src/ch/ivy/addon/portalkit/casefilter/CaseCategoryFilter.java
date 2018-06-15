@@ -7,7 +7,9 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
+import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseCategoryFilter extends CaseFilter {
   private CheckboxTreeNode[] categories = new CheckboxTreeNode[]{};
@@ -24,7 +26,9 @@ public class CaseCategoryFilter extends CaseFilter {
     }
     List<String> values = new ArrayList<>();
     for (CheckboxTreeNode node : categories) {
-      values.add(node.getData().toString());
+      node.setExpanded(true);
+      CaseNode nodeData = (CaseNode) node.getData();
+      values.add(nodeData.getCategory());
     }
     return StringUtils.join(values, ",");
   }
@@ -37,20 +41,15 @@ public class CaseCategoryFilter extends CaseFilter {
     List<String> selectedCategories = new ArrayList<>();
     for (CheckboxTreeNode node : categories) {
       if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())){
-        selectedCategories.add(buildCategoryValueFromTreeNode(node));
+        CaseNode nodeData = (CaseNode) node.getData(); 
+        selectedCategories.add(nodeData.getValue());
       }
     }
-    return CaseQuery.create().where().category().isEqualIgnoreCase(categories[0].getData().toString());
-  }
-
-  private String buildCategoryValueFromTreeNode(CheckboxTreeNode node) {
-    String categoryValue = node.getData().toString();
-    CheckboxTreeNode tempNode = node;
-    while (tempNode.getParent() != null && !"Root".equals(tempNode.getParent().getData().toString())) {
-      tempNode = (CheckboxTreeNode) tempNode.getParent();
-      categoryValue = tempNode.getData().toString() + "/" + categoryValue;
-    }
-    return categoryValue;
+    
+    CaseQuery caseQuery = CaseQuery.create();
+    IFilterQuery filterQuery = caseQuery.where();
+    selectedCategories.forEach(category -> filterQuery.or().category().isLikeIgnoreCase(String.format("%s%%", category)));
+    return caseQuery;
   }
 
   @Override
