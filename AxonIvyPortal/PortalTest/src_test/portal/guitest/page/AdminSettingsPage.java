@@ -32,7 +32,6 @@ public class AdminSettingsPage extends TemplatePage {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
     settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
-    waitAjaxIndicatorDisappear();
   }
   
   public void openDesignTab(){
