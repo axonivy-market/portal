@@ -38,6 +38,7 @@ public class DefaultChartTest extends BaseTest {
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     Sleeper.sleepTight(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+    Sleeper.sleepTight(2000);
     assertTrue(statisticWidgetPage.isFullMode());
     
     WebElement taskByExpiryChartName1
