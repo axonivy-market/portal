@@ -212,9 +212,8 @@ import org.primefaces.model.UploadedFile;
 
 
 UploadedFile uploadedFile = in.documentUploadEvent.getFile();
-//PDFDocumentDetector pdfDetector = new ch.ivy.addon.portalkit.document.PDFDocumentDetector();
+
 WordDocumentDetector detector = new ch.ivy.addon.portalkit.document.WordDocumentDetector();
-ivy.log.error("Is valid file: " + detector.isSafe(uploadedFile.getInputstream()));
 
 InputStreamDataSource source = new InputStreamDataSource(uploadedFile.getInputstream(), uploadedFile.getContentType(), uploadedFile.getFileName());
 in.documentContent = new DataHandler(source);' #txt
