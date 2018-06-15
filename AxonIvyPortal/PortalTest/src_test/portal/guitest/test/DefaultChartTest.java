@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -38,10 +36,8 @@ public class DefaultChartTest extends BaseTest {
   public void testCreateDefaultChart() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(2000);
+    Sleeper.sleepTight(20000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
-    WebDriverWait wait = new WebDriverWait(statisticWidgetPage.getDriver(), 30);
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget:widget-container")));
     
     WebElement taskByExpiryChartName1
       = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
