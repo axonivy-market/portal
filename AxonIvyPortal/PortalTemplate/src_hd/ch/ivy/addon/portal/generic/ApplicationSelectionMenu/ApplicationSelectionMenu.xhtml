@@ -72,8 +72,6 @@
       </c:forEach>
     </h:form>
 
-    <!-- <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{data.isWorkingOnATask}"
-      leaveActionListener="#{logic.leave()}" reserveActionListener="#{logic.reserveTask()}" /> -->
     <p:dialog id="task-leave-warning-component" resizable="false" rendered="#{data.isWorkingOnATask}"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
       widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" modal="true">
