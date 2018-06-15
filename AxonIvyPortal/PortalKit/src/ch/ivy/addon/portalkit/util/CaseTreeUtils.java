@@ -147,7 +147,9 @@ public class CaseTreeUtils {
     nodeData.setCategoryRawPath(subCategoryRawPath);
     nodeData.setRootNodeAllCase(false);
     nodeData.setFirstCategoryNode(false);
-    return new CheckboxTreeNode(nodeType, nodeData, navigatorNode);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, navigatorNode);
+    checkboxTreeNode.setExpanded(true);
+    return checkboxTreeNode;
   }
 
   public static String getLastCategoryFromCategoryPath(String categoryPath) {
