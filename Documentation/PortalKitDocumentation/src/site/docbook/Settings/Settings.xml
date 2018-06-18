@@ -45,146 +45,21 @@
 		</para>
 		<sect2>
 			<title>Global settings</title>
-			<para>Global settings for Portal can be set in Settings tab</para>
+			<para>Global settings for Portal can be set in Settings tab. All available settings with their default value and description are listed in this place.</para>
 			<mediaobject>
 				<imageobject>
 				<imagedata fileref="images/Settings/global-settings.png" />
 				</imageobject>
 			</mediaobject>
-            <para></para>
-			<table>
-				<title>Global settings</title>
-				<tgroup cols="3">
-					<thead>
-						<row>
-							<entry>Keyword</entry>
-							<entry>Value</entry>
-							<entry>Description</entry>
-						</row>
-					</thead>
-					<tbody>
-						<row>
-							<entry>HOMEPAGE_URL</entry>
-							<entry>
-								http://PORTAL_SERVER:PORTAL_PORT /pro/Portal/portalTemplate /1549F58C18A6C562/PortalStart.ivp
-							</entry>
-							<entry>
-								<para>
-									Portal administrator home page link.
-								</para>
-								<para>
-									Note: Only valid if there are not any registered ivy applications.
-								</para>
-							</entry>
-						</row>
-						<row>
-							<entry>HIDE_LOGOUT_BUTTON</entry>
-							<entry>TRUE/FALSE</entry>
-							<entry>
-								If
-								<code>TRUE</code>
-								(none case-sensitive), the logout button on top
-								menu will be hidden, otherwise it
-								will be
-								shown. If this
-								property is
-								not set, the logout
-								menu will be displayed by
-								default.
-							</entry>
-						</row>
-						<row>
-							<entry>SHOW_ENVIRONMENT_INFO</entry>
-							<entry>TRUE/FALSE</entry>
-							<entry>For switch on/off the display of environment information.</entry>
-						</row>
-						<row>
-							<entry>HIDE_TIME</entry>
-							<entry>TRUE/FALSE</entry>
-							<entry>
-								Set to
-								<code>TRUE</code>
-								to hide hours and minutes next to date.
-							</entry>
-						</row>
-						<row>
-							<entry>SHOW_TASK_BUTTON_LABELS</entry>
-							<entry>TRUE/FALSE</entry>
-							<entry>
-								Set to
-								<code>TRUE</code>
-								to show button labels from task list.
-							</entry>
-						</row>
-						<row>
-							<entry>HIDE_CHANGE_PASSWORD_BUTTON</entry>
-							<entry>TRUE/FALSE</entry>
-							<entry>
-								Set to
-								<code>TRUE</code>
-								(none case-sensitive), the change password option 
-								in top menu will be hidden, otherwise it
-								will be	shown. If this
-								property is	not set, the change password option
-								will be displayed by
-								default.
-							</entry>
-						</row>
-						<row>
-							<entry>REFRESH_TASK_LIST_INTERVAL</entry>
-							<entry>Number</entry>
-							<entry>
-								Task list refresh interval in seconds
-							</entry>
-						</row>
-						<row>
-							<entry>CLIENT_SIDE_TIMEOUT</entry>
-							<entry>INTEGER</entry>
-							<entry>
-								Client side timeout in minute, must be <code>more than 1 and less than server side timeout (e.g. 25).</code>
-								If not set, default client side timeout is server side timeout minus 3 minutes.
-							</entry>
-						</row>
-						<row>
-							<entry>EXPRESS_END_PAGE</entry>
-							<entry>TRUE/FALSE</entry>
-							<entry>
-								Display the custom end page at the end of each Express process. Default is true.
-							</entry>
-						</row>
-						<row>
-							<entry>ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT</entry>
-							<entry>TRUE/FALSE</entry>
-							<entry>
-								Set to <code>TRUE</code> to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, MS Doc.
-							</entry>
-						</row>
-						<row>
-							<entry>UPLOAD_DOCUMENT_WHITELIST_EXTENSION</entry>
-							<entry>Empty or List of allowed extensions when upload document in Portal, which are separated by comma</entry>
-							<entry>
-								<para>
-									Leave value empty if you allow all extensions.
-								</para>
-								<para>
-									If just allow some extensions, list out extensions here, separated by comma. Example: <code>pdf, txt, doc, docx</code>
-								</para>
-								<para>
-									If admin doesn't configure this setting, Portal will use the default extension list: 
-									<code>doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt ,zip, jpg, jpeg, bmp, png</code>
-								</para>
-							</entry>
-						</row>
-                        <row>
-                          <entry>HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE</entry>
-                          <entry>TRUE/FALSE</entry>
-                          <entry>
-                           Set to <code>TRUE</code> to deny upload (also delete) document after a case is done. By default, user can upload (delete) document independent of case status. 
-                          </entry>
-                        </row>
-					</tbody>
-				</tgroup>
-			</table>
+			<para></para>
+			<para>You can edit value for a specific setting</para>
+			<mediaobject>
+				<imageobject>
+				<imagedata fileref="images/Settings/global-setting-edit.png" />
+				</imageobject>
+			</mediaobject>
+			<para></para>
+			<para>You can also get back the default value for each setting by clicking reset button on each row, or reset all values of all settings by clicking <code>Restore All To Defaults</code> button</para>
 		</sect2>
 		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
 			<title xml:id="axonivyportal.settings.adminsettings.setupmultiportals.title">Setup multi portals</title>
