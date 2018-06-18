@@ -26,27 +26,27 @@ import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterOfTaskAnalysisContainer;
+import ch.ivy.addon.portalkit.casefilter.TaskAnalysisCaseFilterContainer;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
+import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.service.TaskQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
+import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivy.ws.addon.CaseSearchCriteria;
 import ch.ivy.ws.addon.TaskSearchCriteria;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -85,7 +85,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
 
   private TaskInProgressByOthersFilter inProgressFilter;
   private boolean isInProgressFilterDisplayed = false;
-  private TaskFilterData selectedTaskFilterData;
+  private TaskAnalysisFilterData selectedTaskAnalysisFilterData;
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
@@ -98,7 +98,6 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   private boolean isRelatedTaskDisplayed = false;
   private boolean isNotKeepFilter = false;
 
-  private CaseSearchCriteria caseSearchCriteria;
   private CaseQueryCriteria caseQueryCriteria;
 
   public TaskAnalysisLazyDataModel(String taskWidgetComponentId) {
@@ -115,7 +114,6 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     comparator = comparator(RemoteTask::getId);
     serverId = SecurityServiceUtils.getServerIdFromSession();
     if (shouldSaveAndLoadSessionFilters()) {
-      selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
       inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       if (inProgressFilter != null) {
         isInProgressFilterDisplayed = true;
@@ -534,14 +532,6 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     this.selectedTaskFilters = selectedFilters;
   }
 
-//  public List<TaskFilter> getSelectedFilters() {
-//    return selectedTaskFilters;
-//  }
-//  
-//  public void setSelectedFilters(List<TaskFilter> selectedFilters) {
-//    this.selectedTaskFilters = selectedFilters;
-//  }
-  
   public TaskFilterContainer getFilterContainer() {
     return filterContainer;
   }
@@ -550,12 +540,12 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     this.filterContainer = filterContainer;
   }
 
-  public TaskFilterData getSelectedTaskFilterData() {
-    return selectedTaskFilterData;
+  public TaskAnalysisFilterData getSelectedTaskAnalysisFilterData() {
+    return selectedTaskAnalysisFilterData;
   }
 
-  public void setSelectedTaskFilterData(TaskFilterData selectedTaskFilterData) {
-    this.selectedTaskFilterData = selectedTaskFilterData;
+  public void setSelectedTaskAnalysisFilterData(TaskAnalysisFilterData selectedTaskAnalysisFilterData) {
+    this.selectedTaskAnalysisFilterData = selectedTaskAnalysisFilterData;
   }
 
   public void removeFilter(TaskFilter filter) {
@@ -573,8 +563,12 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     for (TaskFilter selectedFilter : selectedTaskFilters) {
       selectedFilter.resetValues();
     }
+    for (CaseFilter selectedCaseFilter : selectedCaseFilters) {
+      selectedCaseFilter.resetValues();
+    }
     selectedTaskFilters = new ArrayList<>();
-    selectedTaskFilterData = null;
+    selectedCaseFilters = new ArrayList<>();
+    selectedTaskAnalysisFilterData = null;
   }
 
   /**
@@ -583,23 +577,23 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
    * @param filterName
    * @param filterType
    * @param taskFilterGroupId
-   * @return TaskFilterData
+   * @return TaskAnalysisFilterData
    */
-  public TaskFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
-    TaskFilterData taskFilterData = new TaskFilterData();
+  public TaskAnalysisFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
+    TaskAnalysisFilterData taskAnalysisFilterData = new TaskAnalysisFilterData();
     List<TaskFilter> taskFilters = new ArrayList<>(selectedTaskFilters);
     addCustomSettingsToTaskFilters(taskFilters);
-    taskFilterData.setFilters(taskFilters);
-    taskFilterData.setKeyword(queryCriteria.getKeyword());
-    taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
-    taskFilterData.setFilterGroupId(taskFilterGroupId);
-    taskFilterData.setFilterName(filterName);
-    taskFilterData.setType(filterType);
-    TaskFilterService taskFilterService = new TaskFilterService();
-    BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
-    taskFilterData = taskFilterService.findById(info.getId());
-    UserUtils.setSessionSelectedTaskFilterSetAttribute(taskFilterData);
-    return taskFilterData;
+    taskAnalysisFilterData.setTaskFilters(taskFilters);
+    List<CaseFilter> filtersToSave = new ArrayList<>(selectedCaseFilters);
+    taskAnalysisFilterData.setCaseFilters(filtersToSave);
+    taskAnalysisFilterData.setUserId(Ivy.session().getSessionUser().getId());
+    taskAnalysisFilterData.setFilterGroupId(taskFilterGroupId);
+    taskAnalysisFilterData.setFilterName(filterName);
+    taskAnalysisFilterData.setType(filterType);
+    TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
+    BusinessDataInfo<TaskAnalysisFilterData> info = taskFilterService.save(taskAnalysisFilterData);
+    taskAnalysisFilterData = taskFilterService.findById(info.getId());
+    return taskAnalysisFilterData;
   }
 
   private void addCustomSettingsToTaskFilters(List<TaskFilter> taskFilters) {
@@ -609,22 +603,21 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   /**
-   * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel}
+   * Apply filter settings loaded from business data to this {@link #TaskAnalysisLazyDataModel}
    * 
-   * @param taskFilterData
+   * @param taskAnalysisFilterData
    * @throws ReflectiveOperationException
    */
-  public void applyFilter(TaskFilterData taskFilterData) throws ReflectiveOperationException {
-    selectedTaskFilterData = taskFilterData;
-    new TaskFilterService().applyFilter(this, taskFilterData);
-    applyCustomSettings(taskFilterData);
+  public void applyFilter(TaskAnalysisFilterData taskAnalysisFilterData) throws ReflectiveOperationException {
+    selectedTaskAnalysisFilterData = taskAnalysisFilterData;
+    new TaskAnalysisFilterService().applyFilter(this, taskAnalysisFilterData);
+    applyCustomSettings(taskAnalysisFilterData);
   }
 
-  private void applyCustomSettings(TaskFilterData taskFilterData) throws ReflectiveOperationException {
-    queryCriteria.setKeyword(taskFilterData.getKeyword());
+  private void applyCustomSettings(TaskAnalysisFilterData taskAnalysisFilterData) throws ReflectiveOperationException {
     isInProgressFilterDisplayed = false;
     inProgressFilter = new TaskInProgressByOthersFilter();
-    for (TaskFilter savedTaskFilter : taskFilterData.getFilters()) {
+    for (TaskFilter savedTaskFilter : taskAnalysisFilterData.getTaskFilters()) {
       if (savedTaskFilter instanceof TaskInProgressByOthersFilter) {
         new TaskFilterService().copyFilterValues(inProgressFilter, savedTaskFilter);
         isInProgressFilterDisplayed = true;
@@ -745,7 +738,6 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
       }
     });
     if (shouldSaveAndLoadSessionFilters()) {
-      UserUtils.setSessionSelectedTaskFilterSetAttribute(selectedTaskFilterData);
       UserUtils.setSessionTaskKeywordFilterAttribute(queryCriteria.getKeyword());
       if (!compactMode) {
         UserUtils.setSessionTaskAdvancedFilterAttribute(selectedTaskFilters);
@@ -1006,7 +998,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
 }
 
   protected void initCaseFilterContainer() {
-    caseFilterContainer = new CaseFilterOfTaskAnalysisContainer();
+    caseFilterContainer = new TaskAnalysisCaseFilterContainer();
   }
 
   private void initCaseFilters() throws IllegalAccessException, InvocationTargetException {

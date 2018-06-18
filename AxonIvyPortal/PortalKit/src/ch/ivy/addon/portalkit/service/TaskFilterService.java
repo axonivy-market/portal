@@ -4,7 +4,6 @@ package ch.ivy.addon.portalkit.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
@@ -25,22 +24,6 @@ public class TaskFilterService extends AbstractFilterService<TaskFilterData> {
         if (taskFilter.getClass().equals(savedTaskFilter.getClass())) {
           copyFilterValues(taskFilter, savedTaskFilter);
           dataModel.getSelectedFilters().add(taskFilter);
-          break;
-        }
-      }
-    }
-  }
-
-  public void applyFilter(TaskAnalysisLazyDataModel dataModel, TaskFilterData savedFilterData) throws ReflectiveOperationException {
-    List<TaskFilter> filters = dataModel.getFilterContainer().getFilters();
-    dataModel.setSelectedTaskFilters(new ArrayList<>());
-    for (int i = 0; i < filters.size(); i++) {
-      TaskFilter taskFilter = dataModel.getFilterContainer().getFilters().get(i);
-      for (int j = 0; j < savedFilterData.getFilters().size(); j++) {
-        TaskFilter savedTaskFilter = savedFilterData.getFilters().get(j);
-        if (taskFilter.getClass().equals(savedTaskFilter.getClass())) {
-          copyFilterValues(taskFilter, savedTaskFilter);
-          dataModel.getSelectedTaskFilters().add(taskFilter);
           break;
         }
       }
