@@ -53,7 +53,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
           initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
           initSystemPermission(statisticsPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.STATISTIC_GROUP));
           initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
-          grantPortalPermissionsForEverybody(Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW));
+          grantPortalPermissionsForEverybody(Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW, PortalPermission.STATISTIC_ANALYZE_TASK));
         });
   }
 

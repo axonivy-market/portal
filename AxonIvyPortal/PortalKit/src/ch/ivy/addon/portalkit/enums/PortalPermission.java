@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.enums;
 public enum PortalPermission {
   TASK_WRITE_ACTIVATOR_OWN_TASKS("TaskWriteActivatorOwnTasks", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   STATISTIC_ADD_DASHBOARD_CHART("StatisticAddDashboardChart", PortalPermissionGroup.STATISTIC_GROUP),
+  STATISTIC_ANALYZE_TASK("StatisticAnalyzeTask", PortalPermissionGroup.STATISTIC_GROUP),
   EXPRESS_CREATE_WORKFLOW("ExpressCreateWorkflow", PortalPermissionGroup.EXPRESS_GROUP);
 
   private String value;
