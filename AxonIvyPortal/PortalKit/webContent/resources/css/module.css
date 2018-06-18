@@ -4157,6 +4157,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   overflow: auto;
 }
 
+.task-analysis-page-navigation-link {
+  float: right;
+}
+
 /********************************** END STATISTIC WIDGET **********************************/
 
 /********************************** START NOTIFICATION **********************************/

@@ -653,6 +653,10 @@ IPermission iPermission = IPermissionRepository.get().findByName(PortalPermissio
 iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+    }
+iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());
+    if (Objects.nonNull(iPermission)){
+      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
     }' #txt
 Is0 f45 security system #txt
 Is0 f45 type ch.ivy.add.portalkit.Data #txt
@@ -708,6 +712,10 @@ IPermission iPermission = IPermissionRepository.get().findByName(PortalPermissio
     }
     
 iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());
+    if (Objects.nonNull(iPermission)){
+      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+    }
+iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
     }' #txt
