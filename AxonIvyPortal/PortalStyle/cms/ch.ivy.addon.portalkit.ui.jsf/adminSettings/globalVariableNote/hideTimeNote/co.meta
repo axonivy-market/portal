@@ -1,0 +1,4 @@
+co: name={hideTimeNote} description={} changed={2018-06-18 05:18:43 CEST} changedby={tdnguyen} visualorder={0} guid={16410E66D1E47BCE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16410E6DEE387877} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-18 05:18:34 CEST} validto={} changed={2018-06-18 05:18:43 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={16410E66D33DA8A4} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-18 05:18:14 CEST} validto={} changed={2018-06-18 05:18:43 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={16410E6DE20E082A} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-18 05:18:36 CEST} validto={} changed={2018-06-18 05:18:43 CEST} changedby={tdnguyen} properties={} id={}
