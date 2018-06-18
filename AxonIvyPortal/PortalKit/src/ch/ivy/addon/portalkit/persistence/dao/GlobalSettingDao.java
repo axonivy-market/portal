@@ -48,7 +48,6 @@ public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
       return;
     }
     globalSetting.setValue(GlobalVariable.valueOf(globalSetting.getKey()).getDefaultValue());
-    globalSetting.setNote(GlobalVariable.valueOf(globalSetting.getKey()).getDefaultNote());
     save(globalSetting);
   }
 
