@@ -24,31 +24,32 @@ public enum GlobalVariable {
   CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote");
 
   private String defaultValue;
-  private String defaultNoteCMS;
+  private String noteCMS;
 
   private GlobalVariable() {
     
   }
 
-  private GlobalVariable(String defaultNoteCMS) {
-    this.defaultNoteCMS = defaultNoteCMS;
+  private GlobalVariable(String noteCMS) {
+    this.noteCMS = noteCMS;
   }
 
-  private GlobalVariable(String defaultValue, String defaultNoteCMS) {
+  private GlobalVariable(String defaultValue, String noteCMS) {
     this.defaultValue = defaultValue;
-    this.defaultNoteCMS = defaultNoteCMS;
+    this.noteCMS = noteCMS;
   }
 
   public String getDefaultValue() {
     return defaultValue;
   }
 
-  public String getDefaultNote() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/globalVariableNote/" + defaultNoteCMS);
+  public String getNote() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/globalVariableNote/" + noteCMS);
   }
 
   public static List<GlobalVariable> getBooleanType() {
-    return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, SHOW_TASK_BUTTON_LABELS, HIDE_CHANGE_PASSWORD_BUTTON, HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
+    return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, SHOW_TASK_BUTTON_LABELS, HIDE_CHANGE_PASSWORD_BUTTON,
+            HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE);
   }
 
   public static List<GlobalVariable> getNumberType() {
