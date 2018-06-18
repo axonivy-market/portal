@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.extensions.util.json.GsonConverter;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -26,7 +27,7 @@ public final class PortalNavigator {
 
   public String getPortalStartUrl() throws MalformedURLException {
     String homePageURL = getHomePageFromSetting();
-    if (!homePageURL.isEmpty()) {
+    if (!StringUtils.isEmpty(homePageURL)) {
       return homePageURL;
     }
     return defaultPortalStartUrl(false);
@@ -70,7 +71,7 @@ public final class PortalNavigator {
 
   public String getPortalStartUrlOfCurrentApplication() {
     String homePageURL = getHomePageFromSetting();
-    if (!homePageURL.isEmpty()) {
+    if (!StringUtils.isEmpty(homePageURL)) {
       return homePageURL;
     }
     return Ivy.html().startref(PORTAL_PROCESS_START_NAME);
