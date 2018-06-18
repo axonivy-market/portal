@@ -53,6 +53,11 @@ Cs0 @PushWFArc f33 '' #zField
 Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f25 '' #zField
 Cs0 @PushWFArc f43 '' #zField
+Cs0 @RichDialogProcessStart f29 '' #zField
+Cs0 @RichDialogProcessEnd f37 '' #zField
+Cs0 @GridStep f41 '' #zField
+Cs0 @PushWFArc f42 '' #zField
+Cs0 @PushWFArc f40 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
@@ -346,7 +351,8 @@ Cs0 f30 actionTable 'out=in;
 Cs0 f30 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 
-in.canCreateNewCharts = PermissionUtils.hasPortalPermission(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART);' #txt
+in.canCreateNewCharts = PermissionUtils.hasPortalPermission(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART);
+in.canAnalyzeTask = PermissionUtils.hasPortalPermission(PortalPermission.STATISTIC_ANALYZE_TASK);' #txt
 Cs0 f30 security system #txt
 Cs0 f30 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -418,6 +424,48 @@ Cs0 f25 expr out #txt
 Cs0 f25 491 64 595 64 #arcP
 Cs0 f43 expr out #txt
 Cs0 f43 266 122 267 86 #arcP
+Cs0 f29 guid 16411B8894BC5C90 #txt
+Cs0 f29 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f29 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f29 actionTable 'out=in;
+' #txt
+Cs0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToTaskAnalysisPage</name>
+        <nameStyle>26,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f29 83 755 26 26 -81 15 #rect
+Cs0 f29 @|RichDialogProcessStartIcon #fIcon
+Cs0 f37 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f37 467 755 26 26 0 12 #rect
+Cs0 f37 @|RichDialogProcessEndIcon #fIcon
+Cs0 f41 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f41 actionTable 'out=in;
+' #txt
+Cs0 f41 actionCode 'import javax.faces.context.FacesContext;
+
+String taskAnalysisUrl = ivy.html.startref("Start Processes/TaskAnalysis/start.ivp");
+FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);' #txt
+Cs0 f41 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Redirect to analysis page</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f41 216 746 144 44 -69 -8 #rect
+Cs0 f41 @|StepIcon #fIcon
+Cs0 f42 expr out #txt
+Cs0 f42 109 768 216 768 #arcP
+Cs0 f40 expr out #txt
+Cs0 f40 360 768 467 768 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -454,3 +502,7 @@ Cs0 f26 mainOut f25 tail #connect
 Cs0 f25 head f7 mainIn #connect
 Cs0 f31 mainOut f43 tail #connect
 Cs0 f43 head f24 mainIn #connect
+Cs0 f29 mainOut f42 tail #connect
+Cs0 f42 head f41 mainIn #connect
+Cs0 f41 mainOut f40 tail #connect
+Cs0 f40 head f37 mainIn #connect
