@@ -394,11 +394,11 @@ Ts0 f24 actionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnal
 ' #txt
 Ts0 f24 actionTable 'out=in;
 ' #txt
-Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
+import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.enums.FilterType;
-TaskFilterService taskFilterService = new TaskFilterService();
-TaskFilterData taskFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
+TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
+TaskAnalysisFilterData taskFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
 if(FilterType.ONLY_ME == taskFilterData.type) {
 	in.taskPrivateFilters.add(taskFilterData);
 	in.taskPrivateFilters = taskFilterService.sortFilters(in.taskPrivateFilters) as List;
@@ -406,7 +406,7 @@ if(FilterType.ONLY_ME == taskFilterData.type) {
 	in.taskPublicFilters.add(taskFilterData);
 	in.taskPublicFilters = taskFilterService.sortFilters(in.taskPublicFilters) as List;
 }
-in.dataModel.selectedTaskFilterData = taskFilterData;' #txt
+in.dataModel.selectedTaskAnalysisFilterData = taskFilterData;' #txt
 Ts0 f24 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -470,8 +470,8 @@ Ts0 f27 actionTable 'out=in;
 ' #txt
 Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
-TaskFilterService taskFilterService = new TaskFilterService();
+import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
+TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
 in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
 in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
 in.filterType = FilterType.ONLY_ME;' #txt
@@ -513,16 +513,16 @@ Ts0 f35 actionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnal
 Ts0 f35 actionTable 'out=in;
 ' #txt
 Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
-TaskFilterService service = new TaskFilterService();
+import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
+TaskAnalysisFilterService service = new TaskAnalysisFilterService();
 service.delete(in.taskFilterDataToBeRemoved.getId());
 if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 	in.taskPrivateFilters.remove(in.taskFilterDataToBeRemoved);
 } else {
 	in.taskPublicFilters.remove(in.taskFilterDataToBeRemoved);
 }
-if (in.dataModel.#selectedTaskFilterData is initialized && in.dataModel.selectedTaskFilterData.equals(in.taskFilterDataToBeRemoved)) {
+if (in.dataModel.#selectedTaskAnalysisFilterData is initialized && in.dataModel.selectedTaskAnalysisFilterData.equals(in.taskFilterDataToBeRemoved)) {
 	in.dataModel.resetFilters();
 	in.keyword = null;
 }' #txt
@@ -547,10 +547,10 @@ Ts0 f40 expr out #txt
 Ts0 f40 288 744 355 744 #arcP
 Ts0 f41 guid 15F5C9F2AA5C9BA1 #txt
 Ts0 f41 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
-Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
+Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData) #txt
 Ts0 f41 disableUIEvents false #txt
 Ts0 f41 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData taskFilterData> param = methodEvent.getInputArguments();
 ' #txt
 Ts0 f41 inParameterMapAction 'out.taskFilterDataToBeRemoved=param.taskFilterData;
 ' #txt
@@ -575,8 +575,8 @@ Ts0 f45 actionTable 'out=in;
 ' #txt
 Ts0 f45 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
-TaskFilterService service = new TaskFilterService();
+import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
+TaskAnalysisFilterService service = new TaskAnalysisFilterService();
 in.isFilterExisted = false;
 if (service.isFilterExisted(in.filterSetName, in.filterType, in.taskFilterGroupId)) {
 	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
@@ -643,10 +643,10 @@ Ts0 f51 1 336 504 #addKink
 Ts0 f51 1 0.3018284624086855 0 0 #arcLabel
 Ts0 f16 guid 15F772190BB92384 #txt
 Ts0 f16 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
-Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
+Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData) #txt
 Ts0 f16 disableUIEvents false #txt
 Ts0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData taskFilterData> param = methodEvent.getInputArguments();
 ' #txt
 Ts0 f16 inParameterMapAction 'out.keyword=param.taskFilterData.keyword;
 ' #txt
@@ -656,7 +656,7 @@ Ts0 f16 outParameterDecl '<> result;
 Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>applyFilter(TaskFilterData)</name>
+        <name>applyFilter(TaskAnalysisFilterData)</name>
         <nameStyle>27,5,7
 </nameStyle>
     </language>
