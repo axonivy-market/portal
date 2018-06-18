@@ -1,0 +1,4 @@
+co: name={navigationLink} description={} changed={2018-06-18 10:02:02 CEST} changedby={nttai} visualorder={0} guid={16411B70A31AA0E0} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16411B70A34EF00B} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-18 09:06:05 CEST} validto={} changed={2018-06-18 09:06:40 CEST} changedby={nttai} properties={} id={}
+val: guid={16411B792932E4B6} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-18 09:06:35 CEST} validto={} changed={2018-06-18 09:06:40 CEST} changedby={nttai} properties={} id={}
+val: guid={16411B79375F2E7D} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-18 09:06:38 CEST} validto={} changed={2018-06-18 09:06:40 CEST} changedby={nttai} properties={} id={}
