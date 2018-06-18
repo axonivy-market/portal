@@ -30,6 +30,7 @@ public class CaseWidgetBean implements Serializable {
   private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/CaseWidget/showAdditionalCaseDetails.ivp";
   private static final String SUBPROCESS_SIGNATURE_LOAD_CASE_ADDITIONAL_PROPERTIES = "loadCaseAdditionalProperties(ch.ivy.addon.portalkit.bo.RemoteCase)";
   private static final String SUBPROCESS_PARAM_REMOTE_CASE = "remoteCase";
+  private static final String HIDE = "HIDE";
   
   private static final long serialVersionUID = 1L;
 
@@ -95,5 +96,9 @@ public class CaseWidgetBean implements Serializable {
 
   public RemoteCase findRemoteCaseByCaseId(long caseId) {
     return CaseUtils.findRemoteCaseById(caseId);
+  }
+
+  public boolean isHiddenCase(RemoteCase remoteCase) {
+    return remoteCase.getAdditionalProperty(HIDE) != null;
   }
 }
