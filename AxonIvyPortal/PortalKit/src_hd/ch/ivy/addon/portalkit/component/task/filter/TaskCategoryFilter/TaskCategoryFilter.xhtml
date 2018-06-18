@@ -3,24 +3,22 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <cc:interface componentType="IvyComponent">
-	<cc:attribute name="componentId" default="case-category-filter" />
-	<cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.casefilter.CaseCategoryFilter" />
+	<cc:attribute name="componentId" default="task-category-filter" />
+	<cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.taskfilter.TaskCategoryFilter" />
 	<cc:attribute name="dataModel" required="true" />
 	<cc:attribute name="selectedFilters" />
 	<cc:attribute name="resultContainerUpdated" />
 </cc:interface>
 
 <cc:implementation>
-
-	<ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}" caseFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}"
+	<ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}" taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}"
 		resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
-		<p:tree id="case-category-filter-tree" value="#{data.root}" var="node" selectionMode="checkbox" selection="#{cc.attrs.filter.categories}" 
-			filterBy="#{node}" filterMatchMode="contains" styleClass="filter-category-checkbox-tree">
+		<p:tree id="task-category-filter-tree" value="#{data.root}" var="node" selectionMode="checkbox" selection="#{cc.attrs.filter.categories}" filterBy="#{node}" filterMatchMode="contains"
+			styleClass="filter-category-checkbox-tree">
 			<p:treeNode>
 				<h:outputText value="#{node.category}" />
 			</p:treeNode>
 		</p:tree>
-	</ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
-
+	</ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
 </cc:implementation>
 </html>

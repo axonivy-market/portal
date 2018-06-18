@@ -18,7 +18,7 @@ import ch.ivy.ws.addon.CategoryData;
  */
 public class CaseTreeUtils {
 
-  private static final String DELIMITER = "/";
+  public static final String DELIMITER = "/";
 
   private CaseTreeUtils() {}
 
@@ -106,8 +106,9 @@ public class CaseTreeUtils {
   }
   
   public static CheckboxTreeNode buildCaseCategoryCheckboxTree(List<CategoryData> categories) {
-    CheckboxTreeNode taskRootNode = new CheckboxTreeNode();
+    CheckboxTreeNode taskRootNode = new CheckboxTreeNode(buildCaseNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
     CheckboxTreeNode navigatorNode = taskRootNode;
+    String nodeType = "default";
     for (CategoryData category : categories) {
       String categoryPath = category.getPath();
       String[] nodeNames = categoryPath.split(DELIMITER);
@@ -122,8 +123,7 @@ public class CaseTreeUtils {
         String subCategoryRawName = nodeRawPaths[i];
         String subCategoryRawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(subCategoryRawName) + subCategoryRawName.length());
 
-        String nodeType = "default";
-        navigatorNode = buildTaskCategoryNode(navigatorNode, nodeType, subCategoryName, subCategoryPath, subCategoryRawPath);
+        navigatorNode = buildCaseCategoryTreeNode(navigatorNode, nodeType, subCategoryName, subCategoryPath, subCategoryRawPath);
       }
       navigatorNode = taskRootNode;
     }
@@ -131,7 +131,7 @@ public class CaseTreeUtils {
     return taskRootNode;
   }
   
-  private static CheckboxTreeNode buildTaskCategoryNode(CheckboxTreeNode navigatorNode, String nodeType, String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
+  private static CheckboxTreeNode buildCaseCategoryTreeNode(CheckboxTreeNode navigatorNode, String nodeType, String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
     List<TreeNode> childNodes = navigatorNode.getChildren();
     for (TreeNode childNode : childNodes) {
       CaseNode childNodeData = (CaseNode) childNode.getData();
@@ -140,6 +140,13 @@ public class CaseTreeUtils {
       }
     }
 
+    CaseNode nodeData = buildCaseNodeFrom(subCategoryName, subCategoryPath, subCategoryRawPath);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, navigatorNode);
+    checkboxTreeNode.setExpanded(true);
+    return checkboxTreeNode;
+  }
+
+  private static CaseNode buildCaseNodeFrom(String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
     CaseNode nodeData = new CaseNode();
     nodeData.setValue(subCategoryPath);
     nodeData.setMenuKind(MenuKind.CASE);
@@ -147,9 +154,7 @@ public class CaseTreeUtils {
     nodeData.setCategoryRawPath(subCategoryRawPath);
     nodeData.setRootNodeAllCase(false);
     nodeData.setFirstCategoryNode(false);
-    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, navigatorNode);
-    checkboxTreeNode.setExpanded(true);
-    return checkboxTreeNode;
+    return nodeData;
   }
 
   public static String getLastCategoryFromCategoryPath(String categoryPath) {
