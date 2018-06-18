@@ -4,7 +4,7 @@ import java.util.Collections;
 
 import ch.ivy.addon.portalkit.comparator.CaseFilterComparator;
 
-public class CaseFilterOfTaskAnalysisContainer extends CaseFilterContainer {
+public class TaskAnalysisCaseFilterContainer extends CaseFilterContainer {
 
   private CaseCreationDateFilter caseCreationDateFilter = new CaseCreationDateFilter();
   private CaseCreatorFilter caseCreatorFilter = new CaseCreatorFilter();
@@ -13,7 +13,7 @@ public class CaseFilterOfTaskAnalysisContainer extends CaseFilterContainer {
   private CaseNameFilter caseNameFilter = new CaseNameFilter();
   private CaseCategoryFilter caseCategoryFilter = new CaseCategoryFilter();
 
-  public CaseFilterOfTaskAnalysisContainer() {
+  public TaskAnalysisCaseFilterContainer() {
     super();
     filters.add(caseCreationDateFilter);
     filters.add(caseCreatorFilter);
