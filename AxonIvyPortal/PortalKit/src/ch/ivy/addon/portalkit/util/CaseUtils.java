@@ -635,8 +635,16 @@ public final class CaseUtils {
     Map<String, Object> response =
         IvyAdapterService.startSubProcess(
             "findCasesByCriteria(Long,Integer,Integer,ch.ivy.ws.addon.CaseSearchCriteria)", params, new ArrayList<>());
-    List<RemoteCase> result = (List<RemoteCase>) response.get("cases");
+    List<RemoteCase> foundCases = (List<RemoteCase>) response.get("cases");
 
-    return result.get(0);
+    // If cannot find case with given ID (technical case or hidden case), set additional property "HIDE" = "HIDE" and case ID = -1
+    if (foundCases.isEmpty()) {
+      RemoteCase result = new RemoteCase();
+      result.setAdditionalProperty(HIDE, HIDE);
+      result.setId(-1L);
+      return result;
+    }
+
+    return foundCases.get(0);
   }
 }
