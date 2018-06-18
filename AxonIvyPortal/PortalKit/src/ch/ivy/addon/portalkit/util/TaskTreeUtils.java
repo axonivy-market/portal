@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.util.TreeUtils;
@@ -20,7 +21,7 @@ import ch.ivy.ws.addon.CategoryData;
  */
 public class TaskTreeUtils {
 
-  private static final String DELIMITER = "/";
+  public static final String DELIMITER = "/";
 
   private TaskTreeUtils() {}
   
@@ -103,6 +104,58 @@ public class TaskTreeUtils {
       newNode.setExpanded(false);
     }
     return newNode;
+  }
+  
+  public static CheckboxTreeNode buildTaskCategoryCheckboxTree(List<CategoryData> categories) {
+    CheckboxTreeNode taskRootNode = new CheckboxTreeNode(buildTaskNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
+    CheckboxTreeNode navigatorNode = taskRootNode;
+    String nodeType = "default";
+    for (CategoryData category : categories) {
+      String categoryPath = category.getPath();
+      String[] categoryNames = categoryPath.split(DELIMITER);
+
+      String categoryRawPath = category.getRawPath();
+      String[] nodeRawPaths = category.getRawPath().split(DELIMITER);
+
+      for (int i = 0; i < categoryNames.length; i++) {
+        String subCategoryName = categoryNames[i];
+        String subCategoryPath = categoryPath.substring(0, categoryPath.indexOf(subCategoryName) + subCategoryName.length());
+
+        String subCategoryRawName = nodeRawPaths[i];
+        String subCategoryRawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(subCategoryRawName) + subCategoryRawName.length());
+
+        navigatorNode = buildTaskCategoryTreeNode(navigatorNode, nodeType, subCategoryName, subCategoryPath, subCategoryRawPath);
+      }
+      navigatorNode = taskRootNode;
+    }
+    sortNode(taskRootNode);
+    return taskRootNode;
+  }
+
+  private static CheckboxTreeNode buildTaskCategoryTreeNode(CheckboxTreeNode navigatorNode, String nodeType, String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
+    List<TreeNode> childNodes = navigatorNode.getChildren();
+    for (TreeNode childNode : childNodes) {
+      TaskNode childNodeData = (TaskNode) childNode.getData();
+      if (subCategoryPath.equalsIgnoreCase(childNodeData.getValue())) {
+        return (CheckboxTreeNode) childNode;
+      }
+    }
+
+    TaskNode nodeData = buildTaskNodeFrom(subCategoryName, subCategoryPath, subCategoryRawPath);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, navigatorNode);
+    checkboxTreeNode.setExpanded(true);
+    return checkboxTreeNode;
+  }
+
+  private static TaskNode buildTaskNodeFrom(String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
+    TaskNode nodeData = new TaskNode();
+    nodeData.setValue(subCategoryPath);
+    nodeData.setMenuKind(MenuKind.TASK);
+    nodeData.setCategory(subCategoryName);
+    nodeData.setCategoryRawPath(subCategoryRawPath);
+    nodeData.setRootNodeAllTask(false);
+    nodeData.setFirstCategoryNode(false);
+    return nodeData;
   }
 
   public static String getLastCategoryFromCategoryPath(String categoryPath) {

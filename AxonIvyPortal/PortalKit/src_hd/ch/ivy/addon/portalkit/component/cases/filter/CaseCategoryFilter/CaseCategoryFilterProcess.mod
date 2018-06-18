@@ -80,7 +80,14 @@ import org.primefaces.model.CheckboxTreeNode;
 
 in.root = CaseTreeUtils.buildCaseCategoryCheckboxTree(in.allCaseCategories);' #txt
 Cs0 f6 type ch.ivy.addon.portalkit.component.cases.filter.CaseCategoryFilter.CaseCategoryFilterData #txt
-Cs0 f6 632 42 112 44 0 -8 #rect
+Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Build Category Tree</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f6 632 42 112 44 -53 -8 #rect
 Cs0 f6 @|StepIcon #fIcon
 Cs0 f2 expr out #txt
 Cs0 f2 744 64 803 64 #arcP

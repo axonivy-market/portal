@@ -124,6 +124,8 @@
                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
                 <ic:ch.ivy.addon.portalkit.component.task.filter.TaskWorkerFilter filter="#{filterContainer.workerFilter}"
                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCategoryFilter filter="#{filterContainer.categoryFilter}"
+                  dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
     			<h:panelGroup id="filter-add-container1" 
     				styleClass="filter-add-container">
     				<f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
