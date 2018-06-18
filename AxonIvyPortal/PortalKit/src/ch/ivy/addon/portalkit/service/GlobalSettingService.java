@@ -11,8 +11,6 @@ import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 
 public class GlobalSettingService extends AbstractService<GlobalSetting> {
   
-  public static final String HIDE_TIME = "HIDE_TIME";
-
   public GlobalSettingService() {
     super(GlobalSettingDao.class);
   }
