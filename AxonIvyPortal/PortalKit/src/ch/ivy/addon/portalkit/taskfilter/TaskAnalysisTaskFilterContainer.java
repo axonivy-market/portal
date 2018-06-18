@@ -13,6 +13,7 @@ public class TaskAnalysisTaskFilterContainer extends TaskFilterContainer {
   private TaskResponsibleFilter responsibleFilter = new TaskResponsibleFilter();
   private TaskNameFilter nameFilter = new TaskNameFilter();
   private TaskWorkerFilter workerFilter = new TaskWorkerFilter();
+  private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
 
   public TaskAnalysisTaskFilterContainer() {
     super();
@@ -23,6 +24,7 @@ public class TaskAnalysisTaskFilterContainer extends TaskFilterContainer {
     filters.add(responsibleFilter);
     filters.add(nameFilter);
     filters.add(workerFilter);
+    filters.add(categoryFilter);
     Collections.sort(filters, new TaskFilterComparator());
   }
   
@@ -82,4 +84,11 @@ public class TaskAnalysisTaskFilterContainer extends TaskFilterContainer {
     this.nameFilter = nameFilter;
   }
 
+  public TaskCategoryFilter getCategoryFilter() {
+    return categoryFilter;
+  }
+
+  public void setCategoryFilter(TaskCategoryFilter categoryFilter) {
+    this.categoryFilter = categoryFilter;
+  }
 }
