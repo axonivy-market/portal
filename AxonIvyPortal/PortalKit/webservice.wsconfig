@@ -110,7 +110,7 @@ TaskServicePortfindTaskNotes=ch.ivy.ws.addon.FindTaskNotesResponseE</axisReturnT
             <serviceClass>ch.ivy.ws.addon.CaseServiceService</serviceClass>
             <port>
                 <name>CaseServicePort</name>
-                <locationUri>http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD8C8C617F9</locationUri>
+                <locationUri>&lt;%= in.endpoint%&gt;</locationUri>
             </port>
         </service>
         <wsdlGeneratedInfo>
