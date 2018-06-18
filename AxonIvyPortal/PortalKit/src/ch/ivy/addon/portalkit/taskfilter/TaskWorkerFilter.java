@@ -10,12 +10,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
-import ch.ivy.addon.portalkit.comparator.RemoteRoleComparator;
 import ch.ivy.addon.portalkit.comparator.RemoteUserComparator;
 import ch.ivy.addon.portalkit.mapper.RemoteSecurityMemberMapper;
 import ch.ivyteam.ivy.application.IApplication;
@@ -23,6 +19,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class TaskWorkerFilter extends TaskFilter {
 
@@ -52,10 +50,7 @@ public class TaskWorkerFilter extends TaskFilter {
     }
 
     String memberName = selectedWorker.getMemberName();
-    if (selectedWorker.isUser() && !memberName.startsWith("#")) {
-      memberName = "#" + memberName;
-    }
-    return TaskQuery.create().where().activatorName().isEqual(memberName);
+    return TaskQuery.create().where().workerUserName().isEqual(memberName);
   }
 
   @Override

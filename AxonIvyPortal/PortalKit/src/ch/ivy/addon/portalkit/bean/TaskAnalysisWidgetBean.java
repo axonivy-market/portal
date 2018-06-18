@@ -13,8 +13,8 @@ import org.jsoup.safety.Whitelist;
 import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
+import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -88,8 +88,8 @@ public class TaskAnalysisWidgetBean implements Serializable {
     return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
   }
 
-  public boolean isDeleteFilterEnabledFor(TaskFilterData filterData) {
-    TaskFilterService filterService = new TaskFilterService();
+  public boolean isDeleteFilterEnabledFor(TaskAnalysisFilterData filterData) {
+    TaskAnalysisFilterService filterService = new TaskAnalysisFilterService();
     return filterService.isDeleteFilterEnabledFor(filterData);
   }
 

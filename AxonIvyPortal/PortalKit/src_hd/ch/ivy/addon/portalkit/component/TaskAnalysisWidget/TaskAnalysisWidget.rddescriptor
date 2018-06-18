@@ -75,7 +75,7 @@
         <inputParameter>
             <name>taskFilterData</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskFilterData</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
@@ -85,7 +85,7 @@
         <inputParameter>
             <name>taskFilterData</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskFilterData</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
