@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
-import static ch.ivy.addon.portalkit.service.GlobalSettingService.HIDE_TIME;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {
@@ -24,7 +24,7 @@ public class DateTimeGlobalSettingService {
   }
   
   public boolean isHideTime() {
-    String dateTimeGlobalSetting = globalSettingService.findGlobalSettingValue(HIDE_TIME);
+    String dateTimeGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_TIME.toString());
     return Boolean.valueOf(dateTimeGlobalSetting);
   }
 }
