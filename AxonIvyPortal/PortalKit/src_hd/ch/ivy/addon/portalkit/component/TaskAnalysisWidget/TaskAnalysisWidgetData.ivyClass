@@ -6,8 +6,6 @@ dataModel ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel #field
 dataModel PERSISTENT #fieldModifier
 errors List<ch.ivy.ws.addon.WsException> #field
 errors PERSISTENT #fieldModifier
-keyword String #field
-keyword PERSISTENT #fieldModifier
 startIndex Integer #field
 startIndex PERSISTENT #fieldModifier
 taskCount Long #field
