@@ -2411,14 +2411,6 @@
 						</row>
 						<row>
 							<entry>
-								<para>creation</para>
-							</entry>
-							<entry>
-								<para>ModificationInfo</para>
-							</entry>
-						</row>
-						<row>
-							<entry>
 								<para>id</para>
 							</entry>
 							<entry>
@@ -2427,26 +2419,10 @@
 						</row>
 						<row>
 							<entry>
-								<para>lastModification</para>
-							</entry>
-							<entry>
-								<para>ModificationInfo</para>
-							</entry>
-						</row>
-						<row>
-							<entry>
 								<para>name</para>
 							</entry>
 							<entry>
 								<para>String</para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>path</para>
-							</entry>
-							<entry>
-								<para>Path</para>
 							</entry>
 						</row>
 						<row>
