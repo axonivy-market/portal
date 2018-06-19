@@ -87,13 +87,12 @@ Ts0 @PushWFArc f1 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
-Ts0 f0 method start(String,Boolean,ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel,java.lang.Long) #txt
+Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel,java.lang.Long) #txt
 Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String keyword,java.lang.Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel dataModel,java.lang.Long filterGroupId> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel dataModel,java.lang.Long filterGroupId> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f0 inParameterMapAction 'out.keyword=param.#keyword;
-out.taskFilterGroupId=param.filterGroupId;
+Ts0 f0 inParameterMapAction 'out.taskFilterGroupId=param.filterGroupId;
 ' #txt
 Ts0 f0 inActionCode 'if (param.#dataModel is initialized){
 	out.dataModel = param.dataModel;
@@ -103,7 +102,7 @@ Ts0 f0 outParameterDecl '<> result;
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(String,Boolean,TaskAnalysisLazyDataModel,Long)</name>
+        <name>start(TaskAnalysisLazyDataModel,Long)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -347,14 +346,13 @@ Ts0 f4 actionTable 'out=in;
 Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 
-in.dataModel.compactMode = !in.dataModel.compactMode;
-if (!in.dataModel.compactMode && in.dataModel.#filterContainer is initialized) {
-	for (TaskFilter filter : in.dataModel.filterContainer.filters) {
+if (in.dataModel.#taskFilterContainer is initialized) {
+	for (TaskFilter filter : in.dataModel.taskFilterContainer.filters) {
 		filter.resetValues();
 	}
 }
 
-in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission() && !in.dataModel.compactMode);
+in.dataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 in.dataModel.initFilters();
 ' #txt
 Ts0 f4 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
@@ -524,7 +522,6 @@ if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 }
 if (in.dataModel.#selectedTaskAnalysisFilterData is initialized && in.dataModel.selectedTaskAnalysisFilterData.equals(in.taskFilterDataToBeRemoved)) {
 	in.dataModel.resetFilters();
-	in.keyword = null;
 }' #txt
 Ts0 f35 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -648,21 +645,19 @@ Ts0 f16 disableUIEvents false #txt
 Ts0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData taskFilterData> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f16 inParameterMapAction 'out.keyword=param.taskFilterData.keyword;
-' #txt
 Ts0 f16 inActionCode out.dataModel.applyFilter(param.taskFilterData); #txt
 Ts0 f16 outParameterDecl '<> result;
 ' #txt
 Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>applyFilter(TaskAnalysisFilterData)</name>
+        <name>applyFilter(TaskAnalysisFil</name>
         <nameStyle>27,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f16 67 923 26 26 -72 15 #rect
+Ts0 f16 67 923 26 26 -73 15 #rect
 Ts0 f16 @|RichDialogMethodStartIcon #fIcon
 Ts0 f17 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f17 355 923 26 26 0 12 #rect
