@@ -72,16 +72,15 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected int rowIndex;
   protected TaskSearchCriteria searchCriteria;
-  protected TaskQueryCriteria queryCriteria;
+  protected TaskQueryCriteria taskQueryCriteria;
   protected Long serverId;
   protected Comparator<RemoteTask> comparator;
 
-  protected boolean compactMode;
   protected String caseName;
 
-  protected List<TaskFilter> filters;
+  protected List<TaskFilter> taskFilters;
   protected List<TaskFilter> selectedTaskFilters;
-  protected TaskFilterContainer filterContainer;
+  protected TaskFilterContainer taskFilterContainer;
 
   private TaskInProgressByOthersFilter inProgressFilter;
   private boolean isInProgressFilterDisplayed = false;
@@ -109,7 +108,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     selectedTaskFilters = new ArrayList<>();
     selectedCaseFilters = new ArrayList<>();
     searchCriteria = buildCriteria();
-    queryCriteria = buildQueryCriteria();
+    taskQueryCriteria = buildQueryCriteria();
     caseQueryCriteria = buildInitQueryCriteria();
     comparator = comparator(RemoteTask::getId);
     serverId = SecurityServiceUtils.getServerIdFromSession();
@@ -141,24 +140,24 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
    * </p>
    */
   protected void initFilterContainer() {
-    filterContainer = new TaskAnalysisTaskFilterContainer();
+    taskFilterContainer = new TaskAnalysisTaskFilterContainer();
   }
 
   public void initTaskFilters() throws ReflectiveOperationException {
-    if (filterContainer == null) {
+    if (taskFilterContainer == null) {
       if (isRelatedTaskDisplayed) {
-        if (!queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
-          queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+        if (!taskQueryCriteria.getIncludedStates().contains(TaskState.DONE)) {
+          taskQueryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
         }
-        if (!queryCriteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
-          queryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+        if (!taskQueryCriteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
+          taskQueryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
         }
       }
       initFilterContainer();
-      filters = filterContainer.getFilters();
-      setValuesForStateFilter(queryCriteria);
+      taskFilters = taskFilterContainer.getFilters();
+      setValuesForStateFilter(taskQueryCriteria);
       if (searchCriteria.getIgnoreInvolvedUser() && !isRelatedTaskDisplayed) {
-        TaskStateFilter stateFilter = filterContainer.getStateFilter();
+        TaskStateFilter stateFilter = taskFilterContainer.getStateFilter();
         stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
       }
       restoreSessionAdvancedFilters();
@@ -168,7 +167,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
     if (shouldSaveAndLoadSessionFilters()) {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
-      for (TaskFilter filter : filters) {
+      for (TaskFilter filter : taskFilters) {
         for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
           copyProperties(sessionTaskFilter, filter);
         }
@@ -186,7 +185,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
 
   private boolean shouldSaveAndLoadSessionFilters() {
     boolean isValidQueryCriteria =
-        (this.queryCriteria == null) || (this.queryCriteria != null && !this.queryCriteria.isQueryForUnassignedTask());
+        (this.taskQueryCriteria == null) || (this.taskQueryCriteria != null && !this.taskQueryCriteria.isQueryForUnassignedTask());
     return isValidQueryCriteria && !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
@@ -204,7 +203,6 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     storeDisplayedTasks(displayedTasks);
 
     RequestContext.getCurrentInstance().execute("taskListToolKit.responsive()");
-
     return displayedTasks;
   }
 
@@ -265,23 +263,21 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     List<RemoteTask> notDisplayedTasks = new ArrayList<>();
     notDisplayedTasks.addAll(notDisplayedTaskMap.values());
     comparator = comparator(RemoteTask::getId);
-    if (TaskSortField.PRIORITY.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+    if (TaskSortField.PRIORITY.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getPriority);
-    } else if (TaskSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+    } else if (TaskSortField.NAME.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
       comparator = comparatorString(RemoteTask::getName);
-    } else if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+    } else if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
       comparator = comparatorString(activatorName());
-    } else if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+    } else if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getStartTimestamp);
-    } else if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+    } else if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getExpiryTimestamp);
-    } else if (TaskSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+    } else if (TaskSortField.STATE.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getState);
-    } else {
-      extendSortTasksInNotDisplayedTaskMap();
     }
 
-    if (queryCriteria.isSortDescending()) {
+    if (taskQueryCriteria.isSortDescending()) {
       comparator = comparator.reversed();
     }
 
@@ -349,33 +345,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
         TaskState.PARKED)));
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
-    if (shouldSaveAndLoadSessionFilters()) {
-      jsonQuerycriteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
-    }
     return jsonQuerycriteria;
-  }
-
-  /**
-   * <p>
-   * If your customized task list has new columns/fields, please extend the {@code taskQuery} parameter with the sort
-   * query for these fields and also override the "extendSortTasksInNotDisplayedTaskMap" method.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
-   *   if (queryCriteria.isSortDescending()) {
-   *     taskQuery.orderBy().customVarCharField5().descending();
-   *   } else {
-   *     taskQuery.orderBy().customVarCharField5();
-   *   }
-   * }
-   * </pre></code>
-   * </p>
-   * 
-   * @param taskQuery
-   */
-  protected void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {
-    // Placeholder for customization
   }
 
   @Override
@@ -401,18 +371,18 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setSortField(String sortField, boolean sortDescending) {
-    queryCriteria.setSortField(sortField);
-    queryCriteria.setSortDescending(sortDescending);
+    taskQueryCriteria.setSortField(sortField);
+    taskQueryCriteria.setSortDescending(sortDescending);
   }
 
   public void setCategory(String category) {
-    queryCriteria.setCategory(category);
+    taskQueryCriteria.setCategory(category);
   }
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-    if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
-      queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-      setValuesForStateFilter(queryCriteria);
+    if (ignoreInvolvedUser && !taskQueryCriteria.getIncludedStates().contains(TaskState.DONE)) {
+      taskQueryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+      setValuesForStateFilter(taskQueryCriteria);
     }
     searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
   }
@@ -422,13 +392,13 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setTaskId(Long taskId) {
-    queryCriteria.setTaskId(taskId);
-    queryCriteria.setIncludedStates(new ArrayList<>());
+    taskQueryCriteria.setTaskId(taskId);
+    taskQueryCriteria.setIncludedStates(new ArrayList<>());
     searchCriteria.setQueryByTaskId(true);
   }
 
   public void setCaseId(Long caseId) {
-    queryCriteria.setCaseId(caseId);
+    taskQueryCriteria.setCaseId(caseId);
   }
 
   public void setServerId(Long serverId) {
@@ -436,7 +406,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
-    queryCriteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
+    taskQueryCriteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
   }
 
   public void setInvolvedApplications(String... involvedApplications) {
@@ -444,33 +414,33 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setTaskAssigneeType(TaskAssigneeType assigneeType) {
-    queryCriteria.setTaskAssigneeType(assigneeType);
+    taskQueryCriteria.setTaskAssigneeType(assigneeType);
   }
 
   public String getSortField() {
-    return queryCriteria.getSortField();
+    return taskQueryCriteria.getSortField();
   }
 
   public boolean isSortDescending() {
-    return queryCriteria.isSortDescending();
+    return taskQueryCriteria.isSortDescending();
   }
 
   public void setIncludedStates(List<TaskState> includedStates) {
-    this.queryCriteria.setIncludedStates(includedStates);
-    setValuesForStateFilter(this.queryCriteria);
+    this.taskQueryCriteria.setIncludedStates(includedStates);
+    setValuesForStateFilter(this.taskQueryCriteria);
   }
 
   public void addIncludedStates(List<TaskState> includedStates) {
-    this.queryCriteria.addIncludedStates(includedStates);
-    setValuesForStateFilter(this.queryCriteria);
+    this.taskQueryCriteria.addIncludedStates(includedStates);
+    setValuesForStateFilter(this.taskQueryCriteria);
   }
 
   public void setSearchCriteria(TaskSearchCriteria searchCriteria) {
     this.searchCriteria = searchCriteria;
   }
 
-  public void setQueryCriteria(TaskQueryCriteria queryCriteria) {
-    this.queryCriteria = queryCriteria;
+  public void setTaskQueryCriteria(TaskQueryCriteria queryCriteria) {
+    this.taskQueryCriteria = queryCriteria;
   }
 
   public TaskSearchCriteria getSearchCriteria() {
@@ -478,22 +448,11 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public TaskQueryCriteria getQueryCriteria() {
-    return queryCriteria;
+    return taskQueryCriteria;
   }
 
   public Long getServerId() {
     return serverId;
-  }
-
-  public boolean isCompactMode() {
-    return compactMode;
-  }
-
-  public void setCompactMode(boolean compactMode) {
-    this.compactMode = compactMode;
-    if (compactMode) {
-      selectedTaskFilters.clear();
-    }
   }
 
   public String getCaseName() {
@@ -520,8 +479,8 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     this.caseName = caseName;
   }
 
-  public List<TaskFilter> getFilters() {
-    return filters;
+  public List<TaskFilter> getTaskFilters() {
+    return taskFilters;
   }
 
   public List<TaskFilter> getSelectedTaskFilters() {
@@ -532,12 +491,12 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     this.selectedTaskFilters = selectedFilters;
   }
 
-  public TaskFilterContainer getFilterContainer() {
-    return filterContainer;
+  public TaskFilterContainer getTaskFilterContainer() {
+    return taskFilterContainer;
   }
 
-  public void setFilterContainer(TaskFilterContainer filterContainer) {
-    this.filterContainer = filterContainer;
+  public void setTaskFilterContainer(TaskFilterContainer filterContainer) {
+    this.taskFilterContainer = filterContainer;
   }
 
   public TaskAnalysisFilterData getSelectedTaskAnalysisFilterData() {
@@ -649,63 +608,36 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
    * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
    */
   protected void buildQueryToSearchCriteria() {
-    if (queryCriteria.getTaskQuery() == null) {
+    if (taskQueryCriteria.getTaskQuery() == null) {
       String jsonQuery =
           SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()")
               .call().get("jsonQuery", String.class);
       TaskQuery customizedTaskQuery =
           StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
-      queryCriteria.setTaskQuery(customizedTaskQuery);
+      taskQueryCriteria.setTaskQuery(customizedTaskQuery);
     }
 
-    if (compactMode) {
-      queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED,
-          TaskState.PARKED)));
-    } else {
-      if (filterContainer != null) {
-        if (selectedTaskFilters.contains(filterContainer.getStateFilter())) {
-          queryCriteria.setIncludedStates(new ArrayList<>());
-        } else {
-          queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
-        }
+    if (taskFilterContainer != null) {
+      if (selectedTaskFilters.contains(taskFilterContainer.getStateFilter())) {
+        taskQueryCriteria.setIncludedStates(new ArrayList<>());
+      } else {
+        taskQueryCriteria.setIncludedStates(taskFilterContainer.getStateFilter().getSelectedFilteredStates());
       }
-      if (caseFilterContainer != null) {
-        if (selectedCaseFilters.contains(caseFilterContainer.getStateFilter())) {
-          caseQueryCriteria.setIncludedStates(new ArrayList<>());
-        } else {
-          caseQueryCriteria.setIncludedStates(caseFilterContainer.getStateFilter().getSelectedFilteredStates());
-        }
-      }
-
-      searchCriteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
     }
+    if (caseFilterContainer != null) {
+      if (selectedCaseFilters.contains(caseFilterContainer.getStateFilter())) {
+        caseQueryCriteria.setIncludedStates(new ArrayList<>());
+      } else {
+        caseQueryCriteria.setIncludedStates(caseFilterContainer.getStateFilter().getSelectedFilteredStates());
+      }
+    }
+
+    searchCriteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
 
     TaskQuery taskQuery = buildTaskQuery();
     CaseQuery caseQuery = buildCaseQuery();
     taskQuery = taskQuery.where().cases(caseQuery);
-    extendSort(taskQuery);
     searchCriteria.setJsonQuery(taskQuery.asJson());
-  }
-
-  /**
-   * <p>
-   * Your customized data model needs to override this method if your customized task list has new columns/fields.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * import ch.ivy.addon.portalkit.bo.RemoteTask;
-   * 
-   * // The value of queryCriteria.getSortField() is defined in the TaskColumnHeader Portal component when you use it to add new column headers.
-   * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
-   * 
-   *   // comparatorString(...): String, comparator(...): others.
-   *   comparator = comparatorString(RemoteTask::getCustomVarCharField5);
-   * }
-   * </pre></code>
-   * </p>
-   */
-  protected void extendSortTasksInNotDisplayedTaskMap() {
-    // Placeholder for customization
   }
 
   private void autoInitForNoAppConfiguration() {
@@ -721,15 +653,15 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private void setValuesForStateFilter(TaskQueryCriteria querycriteria) {
-    if (filterContainer != null) {
-      filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(querycriteria.getIncludedStates()));
-      filterContainer.getStateFilter().setSelectedFilteredStates(querycriteria.getIncludedStates());
-      filterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(querycriteria.getIncludedStates());
+    if (taskFilterContainer != null) {
+      taskFilterContainer.getStateFilter().setFilteredStates(new ArrayList<>(querycriteria.getIncludedStates()));
+      taskFilterContainer.getStateFilter().setSelectedFilteredStates(querycriteria.getIncludedStates());
+      taskFilterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(querycriteria.getIncludedStates());
     }
   }
 
   private TaskQuery buildTaskQuery() {
-    TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);
+    TaskQuery taskQuery = TaskQueryService.service().createQuery(taskQueryCriteria);
     IFilterQuery filterQuery = taskQuery.where();
     selectedTaskFilters.forEach(selectedFilter -> {
       TaskQuery subQuery = selectedFilter.buildQuery();
@@ -738,14 +670,11 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
       }
     });
     if (shouldSaveAndLoadSessionFilters()) {
-      UserUtils.setSessionTaskKeywordFilterAttribute(queryCriteria.getKeyword());
-      if (!compactMode) {
-        UserUtils.setSessionTaskAdvancedFilterAttribute(selectedTaskFilters);
-        if (isInProgressFilterDisplayed) {
-          UserUtils.setSessionTaskInProgressFilterAttribute(inProgressFilter);
-        } else {
-          UserUtils.setSessionTaskInProgressFilterAttribute(null);
-        }
+      UserUtils.setSessionTaskAdvancedFilterAttribute(selectedTaskFilters);
+      if (isInProgressFilterDisplayed) {
+        UserUtils.setSessionTaskInProgressFilterAttribute(inProgressFilter);
+      } else {
+        UserUtils.setSessionTaskInProgressFilterAttribute(null);
       }
     }
     return taskQuery;
@@ -915,7 +844,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
-    this.queryCriteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
+    this.taskQueryCriteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
   }
   
   ////////////=====================
@@ -972,9 +901,6 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
         CaseState.DONE)));
     jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
     jsonQueryCriteria.setSortDescending(true);
-    if (!isNotKeepFilter) {
-      jsonQueryCriteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
-    }
     return jsonQueryCriteria;
   }
 
@@ -1009,4 +935,15 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
       restoreSessionAdvancedCaseFilters();
     }
   }
+  
+  private boolean compactMode;
+
+  public boolean isCompactMode() {
+    return compactMode;
+  }
+
+  public void setCompactMode(boolean compactMode) {
+    this.compactMode = compactMode;
+  }
+  
 }
