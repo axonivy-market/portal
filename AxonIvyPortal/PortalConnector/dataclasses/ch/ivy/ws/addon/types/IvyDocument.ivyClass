@@ -3,5 +3,4 @@ ch.ivy.ws.addon.types #namespace
 contentType String #field
 id Long #field
 name String #field
-path ch.ivyteam.ivy.workflow.document.Path #field
 size Long #field
