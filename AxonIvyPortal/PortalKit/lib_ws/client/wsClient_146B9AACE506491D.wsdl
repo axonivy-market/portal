@@ -468,19 +468,13 @@
       <xs:extension base="tns:compositeObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="contentType" type="xs:string"></xs:element>
-          <xs:element minOccurs="0" name="creation" type="tns:modificationInfo"></xs:element>
           <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
-          <xs:element minOccurs="0" name="lastModification" type="tns:modificationInfo"></xs:element>
           <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="path" type="tns:path"></xs:element>
           <xs:element minOccurs="0" name="size" type="xs:long"></xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="modificationInfo">
-    <xs:sequence></xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="path">
