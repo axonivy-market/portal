@@ -103,18 +103,6 @@
         <name>start</name>
         <description>Default dialog start method.</description>
         <inputParameter>
-            <name>keyword</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>compactMode</name>
-            <description></description>
-            <parameterType>Boolean</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
             <name>dataModel</name>
             <description></description>
             <parameterType>ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel</parameterType>

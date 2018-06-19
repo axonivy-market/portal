@@ -23,10 +23,10 @@ public class TaskAnalysisFilterService extends AbstractFilterService<TaskAnalysi
 
   private void applyTaskFilter(TaskAnalysisLazyDataModel dataModel, TaskAnalysisFilterData savedFilterData)
       throws ReflectiveOperationException {
-    List<TaskFilter> filters = dataModel.getFilterContainer().getFilters();
+    List<TaskFilter> filters = dataModel.getTaskFilterContainer().getFilters();
     dataModel.setSelectedTaskFilters(new ArrayList<>());
     for (int i = 0; i < filters.size(); i++) {
-      TaskFilter taskFilter = dataModel.getFilterContainer().getFilters().get(i);
+      TaskFilter taskFilter = dataModel.getTaskFilterContainer().getFilters().get(i);
       for (int j = 0; j < savedFilterData.getTaskFilters().size(); j++) {
         TaskFilter savedTaskFilter = savedFilterData.getTaskFilters().get(j);
         if (taskFilter.getClass().equals(savedTaskFilter.getClass())) {

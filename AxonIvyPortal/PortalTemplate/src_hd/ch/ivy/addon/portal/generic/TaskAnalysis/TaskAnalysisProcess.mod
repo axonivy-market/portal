@@ -80,7 +80,6 @@ import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 	
  	in.menuState = ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 	TaskAnalysisLazyDataModel dataModel = new TaskAnalysisLazyDataModel();
-	dataModel.compactMode = false;
 	dataModel.getQueryCriteria().setNewQueryCreated(true);
 	dataModel.setIgnoreInvolvedUser(true);
 	dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
