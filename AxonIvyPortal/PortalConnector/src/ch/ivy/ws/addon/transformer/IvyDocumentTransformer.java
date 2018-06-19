@@ -18,7 +18,6 @@ public class IvyDocumentTransformer {
 
     result.setId(document.getId());
     result.setName(document.getName());
-    result.setPath(document.getPath());
     result.setSize(document.getSize());
 
     try {
