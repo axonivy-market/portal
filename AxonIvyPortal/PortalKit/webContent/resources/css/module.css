@@ -4899,3 +4899,9 @@ margin-top
 .value-setting-dropdown .ui-selectonemenu-trigger.ui-state-default.ui-corner-right {
 	padding-left: 30px !important;
 }
+
+@media (max-width: 1080px) {
+	.confirm-save-setting-button, .cancel-save-setting-button {
+		min-width: 125px !important;
+	}
+}
