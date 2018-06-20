@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-data-column #{cc.attrs.styleClass}">
+    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/data')}</div>
+      <div class="Separator" />
+      <h:panelGrid columns="2" columnClasses="case-details-data-1st-column, case-details-data-2nd-column"
+        rowClasses="case-details-row-space">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
+        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{data.internalCase.creatorUser.fullName}"
+          username="#{data.internalCase.creatorUserName}" />
+
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
+        <h:outputText id="case-start-time" value="#{data.internalCase.startTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+
+        <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
+        <h:outputText id="case-end-time" value="#{data.internalCase.endTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModel')}" />
+        <h:outputText id="process-model-name" value="#{data.internalCase.processModel.name}" />
+
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModelVersion')}" />
+        <h:outputText id="process-model-version" value="#{data.internalCase.processModel.releasedProcessModelVersion.versionNumber}" />
+      </h:panelGrid>
+  </div>
+  <!-- <div class="grid-item" id="#{cc.clientId}">
+    <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/data')}</h2>
+    <div class="grid-item-content">
+      <div class="grid-item-content-list">
+        <div class="grid-item-content-list-item">
+          <span class="grid-item-content-list-item-left"> <h:outputText
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
+          </span> <span class="grid-item-content-list-item-right"> <h:outputText id="case-creator-display-name"
+              value="#{data.internalCase.creatorUser.displayName}" />
+          </span>
+        </div>
+        <div class="grid-item-content-list-item">
+          <span class="grid-item-content-list-item-left"> <h:outputText
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
+          </span> <span class="grid-item-content-list-item-right"> <h:outputText id="case-start-time"
+              value="#{data.internalCase.startTimestamp}">
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+          </span>
+        </div>
+        <div class="grid-item-content-list-item">
+          <span class="grid-item-content-list-item-left"> <h:outputText
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/lastEdit')}" />
+          </span> <span class="grid-item-content-list-item-right"> <h:outputText id="case-end-time"
+              value="#{data.internalCase.endTimestamp}"><f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+          </span>
+        </div>
+        <div class="grid-item-content-list-item">
+          <span class="grid-item-content-list-item-left"> <h:outputText
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModel')}" />
+          </span> <span class="grid-item-content-list-item-right"> <h:outputText id="process-model-name"
+              value="#{data.internalCase.processModel.name}" />
+          </span>
+        </div>
+        <div class="grid-item-content-list-item">
+          <span class="grid-item-content-list-item-left"> <h:outputText
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModelVersion')}" />
+          </span> <span class="grid-item-content-list-item-right"> <h:outputText id="process-model-version"
+              value="#{data.internalCase.processModelVersion}" />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</cc:implementation>
+</html>
