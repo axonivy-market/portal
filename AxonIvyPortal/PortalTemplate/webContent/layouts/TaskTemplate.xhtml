@@ -82,9 +82,8 @@
             rendered="#{showCaseStatusInfoTab == null ? true : showCaseStatusInfoTab}">
             <ui:insert name="caseStatusTab">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{caseWidgetBean.isHiddenCase(case)}" />
-
-              <h:form id="case-details-form" prependId="false" rendered="#{!caseWidgetBean.isHiddenCase(case)}">
-                <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
+                <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case)}"
+                  styleClass="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
                   <!-- HEADER -->
                   <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header">
                     <h:panelGroup styleClass="case-list-unsortable-header-cell case-list-name-desc-header-cell">
@@ -125,7 +124,7 @@
                       <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
                       <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
                       <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
-                      <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
+                      <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}" />
                       <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" />
                       <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
                         <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
@@ -151,8 +150,7 @@
                       </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
                     </f:facet>
                   </ic:ch.ivy.addon.portalkit.component.CaseItem>
-                </div>
-              </h:form>
+                </h:panelGroup>
             </ui:insert>
           </p:tab>
         </p:tabView>
