@@ -13,8 +13,22 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class CaseCategoryFilter extends CaseFilter {
-  private CheckboxTreeNode[] categories = new CheckboxTreeNode[]{};
+
+  @JsonIgnore
+  private CheckboxTreeNode[] categories = new CheckboxTreeNode[] {};
+  @JsonIgnore
+  private CheckboxTreeNode root;
+
+  // Only using in saving filters, don't use anymore because getter/setter were changed
+  private List<String> categoryPaths = new ArrayList<>();
+
+  public CaseCategoryFilter() {
+    super();
+    root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
+  }
 
   @Override
   public String label() {
@@ -23,15 +37,17 @@ public class CaseCategoryFilter extends CaseFilter {
 
   @Override
   public String value() {
-    if (categories == null || categories.length == 0){
+    if (categories == null || categories.length == 0) {
       return ALL;
     }
     List<String> values = new ArrayList<>();
     for (CheckboxTreeNode node : categories) {
-      CaseNode nodeData = (CaseNode) node.getData();
-      values.add(nodeData.getCategory());
+      if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
+        CaseNode nodeData = (CaseNode) node.getData();
+        values.add(nodeData.getCategory());
+      }
     }
-    return StringUtils.join(values, ",");
+    return StringUtils.join(values, ", ");
   }
 
   @Override
@@ -57,7 +73,13 @@ public class CaseCategoryFilter extends CaseFilter {
 
   @Override
   public void resetValues() {
-    categories = new CheckboxTreeNode[]{};
+    categories = new CheckboxTreeNode[] {};
+    unselectCheckboxTreeNode(root);
+  }
+  
+  private void unselectCheckboxTreeNode(CheckboxTreeNode node){
+    node.setSelected(false);
+    node.getChildren().forEach(child -> unselectCheckboxTreeNode((CheckboxTreeNode)child));
   }
 
   public CheckboxTreeNode[] getCategories() {
@@ -66,5 +88,43 @@ public class CaseCategoryFilter extends CaseFilter {
 
   public void setCategories(CheckboxTreeNode[] categories) {
     this.categories = categories;
+  }
+
+  public CheckboxTreeNode getRoot() {
+    return root;
+  }
+
+  public void setRoot(CheckboxTreeNode root) {
+    this.root = root;
+  }
+
+  public List<String> getCategoryPaths() {
+    categoryPaths = new ArrayList<>();
+    for (CheckboxTreeNode node : categories) {
+      CaseNode nodeData = (CaseNode) node.getData();
+      categoryPaths.add(nodeData.getValue());
+    }
+    return categoryPaths;
+  }
+
+  public void setCategoryPaths(List<String> categoryPaths) {
+    this.categoryPaths = categoryPaths;
+    List<CheckboxTreeNode> selectedCategories = new ArrayList<>();
+    checkCategoryTreeNode(root, selectedCategories, categoryPaths);
+    categories = selectedCategories.toArray(new CheckboxTreeNode[selectedCategories.size()]);
+  }
+
+  private void checkCategoryTreeNode(CheckboxTreeNode node, List<CheckboxTreeNode> selectedCategories, List<String> paths) {
+    if (node == null) {
+      return;
+    }
+    CaseNode nodeData = (CaseNode) node.getData();
+    if (paths.contains(nodeData.getValue())) {
+      node.setSelected(true);
+      selectedCategories.add(node);
+    } else {
+      node.setSelected(false);
+    }
+    node.getChildren().forEach(child -> checkCategoryTreeNode((CheckboxTreeNode) child, selectedCategories, paths));
   }
 }
