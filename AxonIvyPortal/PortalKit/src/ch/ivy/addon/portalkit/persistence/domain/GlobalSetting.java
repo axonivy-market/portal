@@ -6,7 +6,6 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 public class GlobalSetting extends BusinessEntity {
   private String key;
   private String value;
-  private String note;
   
   public String getKey() {
     return key;
@@ -24,14 +23,6 @@ public class GlobalSetting extends BusinessEntity {
     this.value = value;
   }
 
-  public String getNote() {
-    return note;
-  }
-
-  public void setNote(String note) {
-    this.note = note;
-  }
-
   public String getDefaultValue() {
     return GlobalVariable.valueOf(key).getDefaultValue();
   }
@@ -40,17 +31,13 @@ public class GlobalSetting extends BusinessEntity {
     value = getDefaultValue();
   }
 
-  public String getDefaultNote() {
-    return GlobalVariable.valueOf(key).getDefaultNote();
-  }
-
-  public void setNoteToDefault() {
-    note = getDefaultNote();
+  public String getNote() {
+    return GlobalVariable.valueOf(key).getNote();
   }
 
   @Override
   public String toString() {
-    return "GlobalSetting [key=" + key + ", value=" + value + ", note=" + note + ", id=" + getId() + "]";
+    return "GlobalSetting [key=" + key + ", value=" + value + ", id=" + getId() + "]";
   }
 
 
