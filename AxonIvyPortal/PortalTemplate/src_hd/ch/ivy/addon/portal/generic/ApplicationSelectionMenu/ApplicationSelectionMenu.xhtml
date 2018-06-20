@@ -72,7 +72,7 @@
       </c:forEach>
     </h:form>
 
-    <p:dialog id="task-leave-warning-component" resizable="false" rendered="#{data.isWorkingOnATask}"
+    <p:dialog id="task-leave-warning-dialog" resizable="false" rendered="#{data.isWorkingOnATask}"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
       widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" modal="true">
 
@@ -92,7 +92,7 @@
               styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{ivy.task.state != 'CREATED'}" />
             <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{ivy.task.state != 'CREATED'}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-            <p:commandButton onclick="PF('task-leave-warning-component').hide()"
+            <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide()"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
               styleClass="ui-confirmdialog-no portal-cancel-button" />
           </h:panelGroup>
