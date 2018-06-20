@@ -2855,8 +2855,7 @@ As0 f63 actionTable 'out=in;
 As0 f63 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
 globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());
-in.selectedSetting.setValueToDefault();
-in.selectedSetting.setNoteToDefault();' #txt
+in.selectedSetting.setValueToDefault();' #txt
 As0 f63 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2925,7 +2924,6 @@ int i = 0;
 for (GlobalVariable globalVariable : GlobalVariable.values()) {
 	globalSettingService.resetGlobalSetting(globalVariable.toString());
 	in.settingList.get(i).setValueToDefault();
-	in.settingList.get(i).setNoteToDefault();
 	i++;
 }' #txt
 As0 f276 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt

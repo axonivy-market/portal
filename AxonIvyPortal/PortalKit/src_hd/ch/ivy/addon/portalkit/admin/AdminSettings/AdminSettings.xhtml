@@ -596,7 +596,7 @@
 					</c:if>
 
 					<c:if test="#{data.settingInputType == '2'}" >
-						<p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting">
+						<p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
 							<f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value}" />
 						</p:selectOneMenu>
 					</c:if>
@@ -608,18 +608,18 @@
 					<!-- NOTE -->
 					<p:outputLabel styleClass="Fright" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')} :"
 						for="noteSetting" />
-					<p:inputTextarea value="#{data.selectedSetting.note}" id="noteSetting" />
+					<p:inputTextarea value="#{data.selectedSetting.note}" id="noteSetting" disabled="true" />
 				</p:panelGrid>
 
 				<!-- Two buttons OK, Cancel -->
 				<h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
 					<p:commandButton id="save-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-						actionListener="#{logic.saveSetting}" styleClass=""
+						actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button"
 						oncomplete="if (!args.validationFailed){ PF('settingDialog').hide(); PF('settingTable').clearFilters()}"
 						update=":#{p:component('settingForm')} @form" process="@form" widgetVar="saveSettingButton"
 						onclick="PF('saveSettingButton').disable();" />
 					<p:spacer width="5px" />
-					<p:commandButton styleClass="portal-cancel-button"
+					<p:commandButton styleClass="portal-cancel-button cancel-save-setting-button"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
 						oncomplete="PF('settingDialog').hide()" global="false" />
 				</h:panelGroup>
