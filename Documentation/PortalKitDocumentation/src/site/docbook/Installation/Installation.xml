@@ -294,7 +294,7 @@
 						<para>
 							This function will be disabled if session user does not have
 							<code>IPermission.USER_CREATE_SUBSTITUTE</code>
-							and
+							or
 							<code>IPermission.USER_READ_SUBSTITUTES</code>.
 						</para>
 					</listitem>
