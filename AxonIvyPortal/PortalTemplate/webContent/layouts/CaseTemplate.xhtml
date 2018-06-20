@@ -92,7 +92,7 @@
                       <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
                       <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
                       <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
-                      <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
+                      <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}" />
                       <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" />
                       <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
                         <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton

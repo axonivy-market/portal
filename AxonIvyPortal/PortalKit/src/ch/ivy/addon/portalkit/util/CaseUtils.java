@@ -629,6 +629,7 @@ public final class CaseUtils {
     CaseQuery query = CaseQuery.create();
     query.where().caseId().isEqual(caseId);
     CaseSearchCriteria criteria = new CaseSearchCriteria();
+    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setJsonQuery(query.asJson());
     params.put("caseSearchCriteria", criteria);
 
