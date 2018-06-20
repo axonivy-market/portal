@@ -1,7 +1,11 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
@@ -11,7 +15,10 @@ import org.primefaces.util.TreeUtils;
 
 import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.ws.addon.CategoryData;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
 
 /**
  * Utilities for case tree.
@@ -19,6 +26,8 @@ import ch.ivy.ws.addon.CategoryData;
 public class CaseTreeUtils {
 
   public static final String DELIMITER = "/";
+  
+  private static CheckboxTreeNode root;
 
   private CaseTreeUtils() {}
 
@@ -105,9 +114,37 @@ public class CaseTreeUtils {
     return newNode;
   }
   
-  public static CheckboxTreeNode buildCaseCategoryCheckboxTree(List<CategoryData> categories) {
-    CheckboxTreeNode taskRootNode = new CheckboxTreeNode(buildCaseNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
-    CheckboxTreeNode navigatorNode = taskRootNode;
+  public static CheckboxTreeNode buildCaseCategoryCheckboxTreeRoot() {
+    if (root != null){
+      return root;
+    }
+    List<String> involvedApplications = null;
+    String appName = SecurityServiceUtils.getApplicationNameFromSession();
+    if (StringUtils.isNotEmpty(appName)) {
+      involvedApplications = new ArrayList<>();
+      involvedApplications.add(appName);
+    }
+    String jsonQuery = SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery").withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
+    List<CategoryData> allCaseCategories = findAllCaseCategories(involvedApplications, jsonQuery);
+    root = buildCaseCategoryCheckboxTreeNode(allCaseCategories);
+    return root;
+  }
+
+  private static List<CategoryData> findAllCaseCategories(List<String> involvedApplications, String jsonQuery) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("jsonQuery", jsonQuery);
+    params.put("apps", involvedApplications);
+    params.put("serverId", ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession());
+    Map<String, Object> response =
+        IvyAdapterService.startSubProcess("findCaseCategoriesByCriteria(String, List<String>, Long, String)", params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    @SuppressWarnings("unchecked")
+    List<CategoryData> allCaseCategories = (List<CategoryData>) response.get("caseCategories");
+    return allCaseCategories;
+  }
+  
+  private static CheckboxTreeNode buildCaseCategoryCheckboxTreeNode(List<CategoryData> categories) {
+    CheckboxTreeNode caseRootNode = new CheckboxTreeNode(buildCaseNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
+    CheckboxTreeNode navigatorNode = caseRootNode;
     String nodeType = "default";
     for (CategoryData category : categories) {
       String categoryPath = category.getPath();
@@ -125,10 +162,10 @@ public class CaseTreeUtils {
 
         navigatorNode = buildCaseCategoryTreeNode(navigatorNode, nodeType, subCategoryName, subCategoryPath, subCategoryRawPath);
       }
-      navigatorNode = taskRootNode;
+      navigatorNode = caseRootNode;
     }
-    sortNode(taskRootNode);
-    return taskRootNode;
+    sortNode(caseRootNode);
+    return caseRootNode;
   }
   
   private static CheckboxTreeNode buildCaseCategoryTreeNode(CheckboxTreeNode navigatorNode, String nodeType, String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
@@ -143,6 +180,7 @@ public class CaseTreeUtils {
     CaseNode nodeData = buildCaseNodeFrom(subCategoryName, subCategoryPath, subCategoryRawPath);
     CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, navigatorNode);
     checkboxTreeNode.setExpanded(true);
+    checkboxTreeNode.setSelected(false);
     return checkboxTreeNode;
   }
 

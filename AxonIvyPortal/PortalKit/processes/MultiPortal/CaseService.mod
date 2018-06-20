@@ -2607,7 +2607,6 @@ Ce0 f187 inParamDecl '<java.lang.String jsonQuery,java.util.List<java.lang.Strin
 Ce0 f187 inParamTable 'out.apps=param.apps;
 out.caseSearchCriteria.businessCase=true;
 out.caseSearchCriteria.ignoreInvolvedUser=false;
-out.caseSearchCriteria.involvedApplications=param.apps;
 out.caseSearchCriteria.involvedUsername=param.userName;
 out.caseSearchCriteria.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
@@ -2741,6 +2740,8 @@ Ce0 f193 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Server;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.service.ServerService;
 
+in.caseSearchCriteria.involvedApplications = in.apps;
+
 ServerService serverService = new ServerService();
 List<Server> servers;
 Long serverId = in.#serverId;
@@ -2749,8 +2750,8 @@ if (#serverId is initialized && serverId != 0) {
 } else {
 	servers = serverService.findActiveServers();
 }
-
-in.listIterator = servers.listIterator();' #txt
+in.listIterator = servers.listIterator();
+' #txt
 Ce0 f193 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f193 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
