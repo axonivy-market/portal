@@ -22,7 +22,7 @@ Pe0 @PushWFArc f2 '' #zField
 Pe0 @PushWFArc f4 '' #zField
 Pe0 @PushWFArc f7 '' #zField
 >Proto Pe0 Pe0 PortalCase #zField
-Pe0 f0 outLink start.ivp #txt
+Pe0 f0 outLink startPortalCase.ivp #txt
 Pe0 f0 type ch.ivy.addon.portal.generic.PortalCaseData #txt
 Pe0 f0 inParamDecl '<> param;' #txt
 Pe0 f0 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseData out;
@@ -30,7 +30,7 @@ Pe0 f0 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseData out;
 Pe0 f0 guid 16412011179D3EF7 #txt
 Pe0 f0 requestEnabled true #txt
 Pe0 f0 triggerEnabled false #txt
-Pe0 f0 callSignature start() #txt
+Pe0 f0 callSignature startPortalCase() #txt
 Pe0 f0 persist false #txt
 Pe0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
@@ -43,12 +43,12 @@ Pe0 f0 showInStartList 0 #txt
 Pe0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start.ivp</name>
+        <name>startPortalCase.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Pe0 f0 @C|.responsibility Everybody #txt
-Pe0 f0 81 49 30 30 -21 17 #rect
+Pe0 f0 81 49 30 30 -52 17 #rect
 Pe0 f0 @|StartRequestIcon #fIcon
 Pe0 f1 type ch.ivy.addon.portal.generic.PortalCaseData #txt
 Pe0 f1 657 49 30 30 0 15 #rect

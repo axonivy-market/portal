@@ -1,7 +1,7 @@
 [Ivy]
-164121D08CA107C2 3.23 #module
+1641C8FC2E4CE89E 3.23 #module
 >Proto >Proto Collection #zClass
-Pk0 PortalTask Big #zClass
+Pk0 ExamplePortalTask Big #zClass
 Pk0 B #cInfo
 Pk0 #process
 Pk0 @TextInP .resExport .resExport #zField
@@ -21,7 +21,7 @@ Pk0 @PushWFArc f17 '' #zField
 Pk0 @PushWFArc f118 '' #zField
 Pk0 @PushWFArc f2 '' #zField
 Pk0 @PushWFArc f3 '' #zField
->Proto Pk0 Pk0 PortalTask #zField
+>Proto Pk0 Pk0 ExamplePortalTask #zField
 Pk0 f0 outLink startPortalTask.ivp #txt
 Pk0 f0 type ch.ivy.addon.portal.generic.PortalTaskData #txt
 Pk0 f0 inParamDecl '<> param;' #txt

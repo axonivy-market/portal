@@ -76,6 +76,7 @@ As0 f67 actionTable 'out=in;
 As0 f67 actionCode 'import javax.faces.context.FacesContext;
 
 FacesContext.getCurrentInstance().getExternalContext().redirect(in.selectedSubMenuItem.getExternalLink());' #txt
+As0 f67 security system #txt
 As0 f67 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -313,6 +314,7 @@ As0 f95 actionTable 'out=in;
 As0 f95 actionCode 'import javax.faces.context.FacesContext;
 
 FacesContext.getCurrentInstance().getExternalContext().redirect(in.applicationUrl);' #txt
+As0 f95 security system #txt
 As0 f95 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f95 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -530,6 +532,7 @@ As0 f10 actionTable 'out=in;
 As0 f10 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalProcess();' #txt
+As0 f10 security system #txt
 As0 f10 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -551,6 +554,7 @@ As0 f15 actionTable 'out=in;
 As0 f15 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalStatistic();' #txt
+As0 f15 security system #txt
 As0 f15 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -578,6 +582,7 @@ As0 f17 actionTable 'out=in;
 As0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalTask();' #txt
+As0 f17 security system #txt
 As0 f17 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -604,6 +609,7 @@ As0 f31 actionTable 'out=in;
 As0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalCase();' #txt
+As0 f31 security system #txt
 As0 f31 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
