@@ -215,27 +215,125 @@
   		</h:panelGroup>
 
 		<h:panelGroup layout="block" id="task-view">
-			<h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
-				<p:dataScroller id="task-list-scroller" value="#{data.dataModel}" var="task" chunkSize="#{cc.attrs.chunkSize}"
-					lazy="true" mode="inline" rowIndexVar="rowIndex"
-					styleClass="task-start-list js-task-start-list">
-					<ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}"
-						isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}"
-						componentToUpdate="#{p:component('task-details-notes')}"
-						dataModel="#{data.dataModel}" >
-						<cc:insertFacet name="taskHeader" />
-						<cc:insertFacet name="taskBody" />
-					</ic:ch.ivy.addon.portalkit.component.TaskItem>
-				</p:dataScroller>
-				<h:outputText styleClass="no-task-message" value="#{noTaskFoundMessage}" rendered="#{data.dataModel.rowCount eq 0}" />
-			</h:panelGroup>
-			<h:form id="task-polling-form">
-				<p:poll id="task-polling" interval="#{taskAnalysisWidgetBean.taskListRefreshInterval}"
-					listener="#{logic.refreshTaskList(taskAnalysisWidgetBean.expandedTaskId)}" process="scroll-position" update="@none"
-					global="false" onstart="getTaskListScrollPosition()" />
-				<h:inputHidden id="scroll-position" value="#{data.scrollPosition}" />
-				<p:growl id="new-task-notification" autoUpdate="false" severity="info" />
-			</h:form>
+  			<h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
+<!-- Process Name, Case ID, Case Status, Task Name, Task Activator, Task Status, Task Start TS, Task End TS -->
+        <p:dataTable style="width: 2400px" resizableColumns="true" rowKey="#{task.identifier}" sortMode="single"
+          id="task-table" var="task" value="#{data.dataModel}" lazy="true" scrollable="true" scrollHeight="500"
+          liveScroll="true" scrollRows="30">
+
+          <f:facet name="header">
+                 List of tasks
+        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+            <p:columnToggler datasource="task-table" trigger="toggler" />
+
+          </f:facet>
+          <!--           <p:column visible="false" id="Processcat" headerText="Process Category" sortBy="#{task.getCase().getState()}"> -->
+          <!--                   <h:outputText value="#{task.case.categoryPath}" /> -->
+          <!--               </p:column> -->
+
+          <p:column id="case-name" headerText="Case name" sortBy="#{task.case.name}">
+            <h:outputText value="#{task.case.name}"/>
+          </p:column>
+
+          <p:column id="case-description" headerText="Case Description" sortBy="#{task.case.description}" visible="false">
+            <h:outputText value="#{task.case.description}" />
+          </p:column>
+
+          <p:column id="case-id" headerText="Case Id" sortBy="#{task.getCase().getId()}">
+            <h:outputText value="#{task.getCase().getId()}" />
+          </p:column>
+
+          <p:column id="case-creator" headerText="Case Creator" sortBy="#{task.case.creatorUserName}" visible="false">
+            <h:outputText value="#{task.case.creatorUserName}" />
+          </p:column>
+
+          <p:column id="case-state" headerText="Case State" sortBy="#{task.getCase().getState()}">
+            <h:outputText value="#{task.getCase().getState().toString()}" />
+          </p:column>
+
+          <p:column id="task-name" headerText="Task Name" sortBy="#{task.getName()}">
+            <h:outputText value="#{task.name}" />
+          </p:column>
+
+          <p:column id="task-description" headerText="Task Description" sortBy="#{task.description}" visible="false">
+            <h:outputText value="#{task.description}" />
+          </p:column>
+
+          <p:column id="task-activator" headerText="Task Responsible" sortBy="#{task.activatorName}">
+            <h:outputText value="#{task.activatorName}" />
+          </p:column>
+
+          <p:column id="task-worker" headerText="Task Worker" sortBy="#{task.workerUserName}" visible="false">
+            <h:outputText value="#{task.workerUserName}" />
+          </p:column>
+
+          <!--                           <p:column headerText="T:Category" sortBy="#{task.category}"> -->
+          <!--                   <h:outputText value="#{task.category}" /> -->
+          <!--               </p:column> -->
+
+          <p:column id="task-priority" headerText="Task Priority" sortBy="#{task.priority}" visible="false">
+            <h:outputText value="#{task.priority}" />
+          </p:column>
+          <p:column id="task-state" headerText="Task State" sortBy="#{task.getState()}">
+            <h:outputText value="#{task.getState().toString()}" />
+          </p:column>
+
+
+<!--           <p:column visible="false" headerText="T:Id" sortBy="#{task.id}"> -->
+<!--             <h:outputText value="#{task.id}" /> -->
+<!--           </p:column> -->
+
+
+          <!--                <p:column headerText="T: CT(sec)" sortBy="#{task.getBusinessRuntime().toNumber()}"> -->
+          <!--                   <h:outputText value="#{task.getBusinessRuntime().toNumber().toString()}" /> -->
+          <!--               </p:column> -->
+
+          <!--                <p:column headerText="C: CT(sec)" sortBy="#{task.getCase().getBusinessRuntime().toNumber()}" -->
+          <!--             > -->
+          <!--                   <h:outputText -->
+          <!--               value="#{task.getCase().getBusinessRuntime().toNumber().toString()}" /> -->
+          <!--               </p:column> -->
+
+          <p:column id="task-created" visible="true" headerText="Task Created" sortBy="#{task.getStartTimestamp()}">
+            <h:outputText value="#{task.getStartTimestamp()}">
+              <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+            </h:outputText>
+          </p:column>
+          <p:column id="task-expiry" headerText="Task Expiry" sortBy="#{task.getExpiryTimestamp()}" visible="false">
+            <h:outputText value="#{task.getExpiryTimestamp()}">
+              <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+            </h:outputText>
+          </p:column>
+          <p:column id="task-finished" visible="true" headerText="Task Finished" sortBy="#{task.getEndTimestamp()}">
+            <h:outputText value="#{task.getEndTimestamp()}">
+              <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+            </h:outputText>
+          </p:column>
+        </p:dataTable>
+
+        <!--         <p:dataScroller id="task-list-scroller" value="#{data.dataModel}" var="task" chunkSize="#{cc.attrs.chunkSize}" -->
+<!-- 					lazy="true" mode="inline" rowIndexVar="rowIndex" -->
+<!-- 					styleClass="task-start-list js-task-start-list"> -->
+<!-- 					<ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}" -->
+<!-- 						isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}" -->
+<!-- 						componentToUpdate="#{p:component('task-details-notes')}" -->
+<!-- 						dataModel="#{data.dataModel}" > -->
+<!-- 						<cc:insertFacet name="taskHeader" /> -->
+<!-- 						<cc:insertFacet name="taskBody" /> -->
+<!-- 					</ic:ch.ivy.addon.portalkit.component.TaskItem> -->
+<!-- 				</p:dataScroller> -->
+<!-- 				<h:outputText styleClass="no-task-message" value="#{nosTaskFoundMessage}" rendered="#{data.dataModel.rowCount eq 0}" /> -->
+
+
+
+      </h:panelGroup>
+<!-- 			<h:form id="task-polling-form"> -->
+<!-- 				<p:poll id="task-polling" interval="#{taskAnalysisWidgetBean.taskListRefreshInterval}" -->
+<!-- 					listener="#{logic.refreshTaskList(taskAnalysisWidgetBean.expandedTaskId)}" process="scroll-position" update="@none" -->
+<!-- 					global="false" onstart="getTaskListScrollPosition()" /> -->
+<!-- 				<h:inputHidden id="scroll-position" value="#{data.scrollPosition}" /> -->
+<!-- 				<p:growl id="new-task-notification" autoUpdate="false" severity="info" /> -->
+<!-- 			</h:form> -->
 		</h:panelGroup>
 	</div>
 
