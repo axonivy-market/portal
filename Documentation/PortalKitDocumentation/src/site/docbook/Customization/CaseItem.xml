@@ -26,6 +26,11 @@
 					Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project.
 				</para>
 			</listitem>
+            <listitem>
+                <para>
+                    Copy the <code>PortalCase</code> process from <code>PortalTemplate</code> to your project. It's used to navigate to customization portal case.
+                  </para>
+                </listitem>
 			<listitem>
 				<para>
 					Introduce a new HtmlDialog Page which uses the template <code>/layouts/PortalCasesTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). The <code>PortalCasesTemplate</code> is 
