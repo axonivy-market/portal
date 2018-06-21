@@ -135,7 +135,7 @@
         <p:chart type="bar" styleClass="statistic-chart" model="#{chart.barChartModel}"
           rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
           <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}"
+          <p:ajax event="itemSelect" listener="#{logic.toTaskByExpiryTaskListFromHomePage}"
             update="#{p:component('widget-container')}" />
         </p:chart>
 
