@@ -45,9 +45,9 @@
           <p:link id="show-task-note-link" value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
           target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}" rendered="#{history.type eq 'TASK'}" styleClass="task-note-link"/>
           <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
-            <p:commandLink id="note-content" value="#{history.content}" rendered="#{history.type eq 'NOTE'}"
-              oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
-              update="@widgetVar(view-note-dialog)" />
+            <p:commandLink id="note-content" value="#{history.content}" rendered="#{history.type eq 'NOTE'}">
+              <p:ajax event="click" listener="#{data.setFullNote(history.content)}" oncomplete="PF('view-note-dialog').show()" update="@widgetVar(view-note-dialog)" />
+            </p:commandLink>
           </h:panelGroup>
         </div>
         <div class="note-separator" />
