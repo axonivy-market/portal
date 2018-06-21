@@ -96,7 +96,7 @@ function getReversedState(state) {
 var MainMenu = {
   urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus"]],
       ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches"]], ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers"]],
-      ["PortalDashBoard.xhtml", ["Statistics", "Statistiken", "Statistiques"]]],
+      ["PortalDashBoard.xhtml", ["Statistics", "Statistiken", "Statistiques"]], ["TaskAnalysis.xhtml", ["Statistics", "Statistiken", "Statistiques"]]],
 
   init : function(responsiveToolkit) {
     this.highlightFirstLevelMenu();
