@@ -4910,3 +4910,7 @@ margin-top
 		min-width: 125px !important;
 	}
 }
+
+.settings-table-action-buttons {
+  text-align: center !important;
+}

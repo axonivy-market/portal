@@ -174,20 +174,24 @@
 				<p:dataTable id="settingTable" styleClass="admin-table" value="#{data.settingList}" filteredValue="#{data.filteredSettingList}" var="setting" widgetVar="settingTable"
 					emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
 					scrollable="true" scrollHeight="240">
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}" filterBy="#{setting.key}" filterMatchMode="contains">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}" filterBy="#{setting.key}" filterMatchMode="contains"
+						width="15%">
 						<h:outputText value="#{setting.key}" />
 					</p:column>
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultValue')}" filterBy="#{setting.defaultValue}" filterMatchMode="contains">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultValue')}" filterBy="#{setting.defaultValue}" filterMatchMode="contains"
+						width="10%">
 						<h:outputText value="#{setting.defaultValue}" />
 					</p:column>
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/currentValue')}" filterBy="#{setting.value}" filterMatchMode="contains">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/currentValue')}" filterBy="#{setting.value}" filterMatchMode="contains"
+						width="10%">
 						<h:outputText value="#{setting.value}" />
 					</p:column>
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" filterBy="#{setting.note}" filterMatchMode="contains">
+					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" filterBy="#{setting.note}" filterMatchMode="contains"
+						width="60%">
 						<h:outputText value="#{setting.note}" />
 					</p:column>
 					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-						styleClass="settings-table-action-buttons">
+						styleClass="settings-table-action-buttons" width="5%">
 						<p:commandLink styleClass="action-column-icon-button" id="edit" oncomplete="PF('settingDialog').show()"
 							actionListener="#{logic.editSetting(setting)}" process="@this"
 							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
