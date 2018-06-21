@@ -72,6 +72,8 @@ Ss0 @PushWFArc f55 '' #zField
 Ss0 @RichDialogProcessStart f56 '' #zField
 Ss0 @PushWFArc f57 '' #zField
 Ss0 @PushWFArc f47 '' #zField
+Ss0 @RichDialogProcessStart f58 '' #zField
+Ss0 @PushWFArc f59 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ss0 f3 guid 1600AC95D5A96D44 #txt
 Ss0 f3 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
@@ -767,6 +769,10 @@ Ss0 f56 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboar
 ' #txt
 Ss0 f56 actionTable 'out=in;
 ' #txt
+Ss0 f56 actionCode 'import org.primefaces.event.ItemSelectEvent;
+if(!out.#event is initialized) {
+	out.event = event as ItemSelectEvent;
+}' #txt
 Ss0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -786,6 +792,29 @@ Ss0 f47 expr in #txt
 Ss0 f47 224 256 531 208 #arcP
 Ss0 f47 1 224 208 #addKink
 Ss0 f47 1 0.30783775632694704 0 0 #arcLabel
+Ss0 f58 guid 16421D52DC7B863C #txt
+Ss0 f58 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f58 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f58 actionTable 'out=in;
+' #txt
+Ss0 f58 actionCode 'import org.primefaces.event.ItemSelectEvent;
+out.event = event as ItemSelectEvent;' #txt
+Ss0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>toTaskByExpiryTaskListFromHomePage</name>
+        <nameStyle>34,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f58 451 339 26 26 -135 16 #rect
+Ss0 f58 @|RichDialogProcessStartIcon #fIcon
+Ss0 f59 expr out #txt
+Ss0 f59 451 352 344 294 #arcP
+Ss0 f59 1 344 352 #addKink
+Ss0 f59 0 0.8154754678204545 0 0 #arcLabel
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -838,3 +867,5 @@ Ss0 f56 mainOut f57 tail #connect
 Ss0 f57 head f36 mainIn #connect
 Ss0 f39 out f47 tail #connect
 Ss0 f47 head f46 mainIn #connect
+Ss0 f58 mainOut f59 tail #connect
+Ss0 f59 head f36 mainIn #connect
