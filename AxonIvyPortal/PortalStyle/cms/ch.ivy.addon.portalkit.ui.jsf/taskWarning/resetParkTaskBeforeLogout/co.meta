@@ -1,0 +1,4 @@
+co: name={resetParkTaskBeforeLogout} description={} changed={2018-06-21 12:54:21 CEST} changedby={chnam} visualorder={0} guid={16421F99280CD5E7} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
+val: guid={16421FB1718B0602} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-21 12:53:27 CEST} validto={} changed={2018-06-21 12:54:21 CEST} changedby={chnam} properties={} id={}
+val: guid={16421FB17DF7D846} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-21 12:53:23 CEST} validto={} changed={2018-06-21 12:54:21 CEST} changedby={chnam} properties={} id={}
+val: guid={16421F9928313E84} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-21 12:52:41 CEST} validto={} changed={2018-06-21 12:54:21 CEST} changedby={chnam} properties={} id={}
