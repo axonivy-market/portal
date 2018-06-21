@@ -894,6 +894,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Map<String, Number> getElapsedTimeChartData(List<ElapsedTimeStatistic> statisticData) {
     Map<String, Number> caseCategoryToElapsedTime = generateDataForElapsedTimeChart(statisticData);
 
+    if (caseCategoryToElapsedTime.size() == 0) {
+      caseCategoryToElapsedTime.put("", 0);
+    }
+
     float totalValue = 0f;
     float otherValue = 0f;
 
