@@ -51,7 +51,7 @@ function barChartExtender() {
 
 function elapsedTimeBarChartExtender() {
   var currentAngle;
-  var showLabel = !isNaN(this.cfg.data[0]);
+  var showLabel = !isNaN(this.cfg.data[0][0]);
   if (window.screen.availWidth < 1366 || this.cfg.data[0].length > 3) {
     currentAngle = -70;
   } else {
