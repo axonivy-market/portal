@@ -4,6 +4,12 @@
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
+        <inputParameter>
+            <name>menuState</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>
