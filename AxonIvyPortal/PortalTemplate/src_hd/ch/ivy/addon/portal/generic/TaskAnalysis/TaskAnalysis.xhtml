@@ -9,6 +9,7 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
+    <ui:param name="menuState" value="#{data.menuState}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
 	
 	<ui:define name="secondLevelMenu">
@@ -20,7 +21,7 @@
           </a> 
           <div class="second-level-menu-body">
             <h:form prependId="false">
-              <ic:ch.ivy.addon.portal.generic.PortalTaskMenu menuState="#{menuState}"/>
+              <ic:ch.ivy.addon.portal.generic.PortalTaskMenu menuState="#{data.menuState}"/>
             </h:form>
           </div>
         </div>			

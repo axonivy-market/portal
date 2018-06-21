@@ -55,9 +55,11 @@ Ts0 f2 440 64 497 64 #arcP
 Ts0 f5 targetWindow NEW #txt
 Ts0 f5 targetDisplay TOP #txt
 Ts0 f5 richDialogId ch.ivy.addon.portal.generic.TaskAnalysis #txt
-Ts0 f5 startMethod start() #txt
+Ts0 f5 startMethod start(String) #txt
 Ts0 f5 type ch.ivy.addon.portal.generic.TaskAnalysisData #txt
-Ts0 f5 requestActionDecl '<> param;' #txt
+Ts0 f5 requestActionDecl '<String menuState> param;' #txt
+Ts0 f5 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
+' #txt
 Ts0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.TaskAnalysisData out;
 ' #txt
 Ts0 f5 responseMappingAction 'out=in;
