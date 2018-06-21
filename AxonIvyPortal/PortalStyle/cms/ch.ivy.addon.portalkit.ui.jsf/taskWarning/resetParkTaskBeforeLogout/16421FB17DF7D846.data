@@ -1,0 +1,14 @@
+<P>
+TODO:You are about to leave a task in progress. Please choose one of the following options:
+</P>
+<UL>
+<LI>
+&nbsp; Logout: Discard your changes and logout.
+<LI>
+&nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.
+<LI>
+&nbsp; Cancel: Continue working this task.
+</UL>
+<P>
+
+</P>

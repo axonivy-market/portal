@@ -1,0 +1,4 @@
+co: name={createdTaskLeave} description={} changed={2018-06-21 12:51:53 CEST} changedby={chnam} visualorder={0} guid={16421F610DA2444F} parentguid={} typeguid={E6AFEA202AFB4911} id={} parentid={} typeid={}
+val: guid={16421F610EDE517A} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-21 12:48:51 CEST} validto={} changed={2018-06-21 12:51:53 CEST} changedby={chnam} properties={} id={}
+val: guid={16421F8D4E75B638} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-21 12:50:16 CEST} validto={} changed={2018-06-21 12:51:53 CEST} changedby={chnam} properties={} id={}
+val: guid={16421F8D59BC2603} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-21 12:50:13 CEST} validto={} changed={2018-06-21 12:51:53 CEST} changedby={chnam} properties={} id={}

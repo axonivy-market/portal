@@ -1,4 +1,0 @@
-co: name={resumedTaskLostBeforeLeave} description={} changed={2017-10-31 07:59:42 CET} changedby={chnam} visualorder={0} guid={15F713A8931B04EA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A893811166} datatype={} isdefault={false} langid={de} description={} validfrom={2017-07-24 11:49:08 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A89331B5DA} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:08 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A893CEECF9} datatype={} isdefault={true} langid={en} description={} validfrom={2015-10-13 08:43:48 CEST} validto={} changed={2017-10-31 07:59:42 CET} changedby={chnam} properties={} id={}
