@@ -121,7 +121,7 @@
                         caseId="#{case.id}" />
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemRelatedTasks id="related-tasks"
                         caseId="#{case.id}" />
-                      <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory id="history" caseId="#{case.id}" >
+                      <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory id="history" caseId="#{caseId}" >
                         <f:facet name="showCaseNoteHistory">
                           <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link"
                           target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(caseId)}">
