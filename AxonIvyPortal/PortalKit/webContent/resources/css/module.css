@@ -2744,7 +2744,12 @@ a.compact-task-start-link:hover {
 
 .side-steps-panel.expiry-chart-context-menu {
   border: none;
-  width: 110px;
+  width: 120px;
+}
+
+.side-steps-panel.expiry-chart-context-menu .side-step-item {
+  box-sizing: border-box;
+  width: 100% !important;
 }
 
 .side-steps-panel.expiry-chart-context-menu .ui-overlaypanel-content{
@@ -4010,7 +4015,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .dashboard-chart-panel .chart-actions-container {
   float: right;
-  flex: 1;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
@@ -4785,10 +4789,6 @@ margin-top
 
 .statistic-filter-accordion-panel .ui-accordion-content {
 	border: solid 1px #E0E0E0 !important;
-}
-
-_:-ms-fullscreen, :root .statistic-filter-accordion-panel .ui-accordion-content {
-	max-width: 27.3rem;
 }
 
 .statistic-filter-container.ui-scrollpanel {
