@@ -1,0 +1,4 @@
+co: name={caseByFinishedTimeDescription} description={} changed={2018-06-21 03:47:50 CEST} changedby={ldnam} visualorder={0} guid={1642005FA33E9B72} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1642006BF3798063} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-21 03:47:45 CEST} validto={} changed={2018-06-21 03:47:50 CEST} changedby={ldnam} properties={} id={}
+val: guid={1642005FA357FABF} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-21 03:47:00 CEST} validto={} changed={2018-06-21 03:47:00 CEST} changedby={ldnam} properties={} id={}
+val: guid={1642006C0059AAEB} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-21 03:47:42 CEST} validto={} changed={2018-06-21 03:47:50 CEST} changedby={ldnam} properties={} id={}
