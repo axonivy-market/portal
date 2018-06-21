@@ -51,6 +51,7 @@ function barChartExtender() {
 
 function elapsedTimeBarChartExtender() {
   var currentAngle;
+  var showLabel = !isNaN(this.cfg.data[0]);
   if (window.screen.availWidth < 1366 || this.cfg.data[0].length > 3) {
     currentAngle = -70;
   } else {
@@ -64,7 +65,7 @@ function elapsedTimeBarChartExtender() {
   };
   this.cfg.axes.yaxis.labelOptions = {
     textColor : 'black',
-    fontSize : '11.4px',
+    fontSize : '11.4px'
   };
   this.cfg.axes.xaxis.labelOptions = {
     textColor : 'black',
@@ -73,7 +74,8 @@ function elapsedTimeBarChartExtender() {
   this.cfg.axes.xaxis.tickOptions = {
     textColor : 'black',
     fontSize : '11.4px',
-    angle : currentAngle
+    angle : currentAngle,
+    showLabel: showLabel
   };
   this.cfg.axes.yaxis.tickOptions = {
     textColor : 'black',
