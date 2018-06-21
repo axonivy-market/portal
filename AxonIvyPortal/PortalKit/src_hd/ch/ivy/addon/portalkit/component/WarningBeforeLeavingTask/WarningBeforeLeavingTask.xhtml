@@ -16,7 +16,7 @@
       widgetVar="#{cc.attrs.widgetVar}" appendTo="@(body)" modal="true">
 
       <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state != 'CREATED'}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resumedTaskLostBeforeLeave')}" />
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
       <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state == 'CREATED'}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLostBeforeLeave')}" />
 
