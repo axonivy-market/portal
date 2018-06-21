@@ -1,0 +1,4 @@
+co: name={caseByFinishedTaskDescription} description={} changed={2018-06-21 03:47:26 CEST} changedby={ldnam} visualorder={0} guid={1642005FA29941E3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1642006617728436} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-21 03:47:06 CEST} validto={} changed={2018-06-21 03:47:26 CEST} changedby={ldnam} properties={} id={}
+val: guid={1642005FA2C32B90} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-21 03:47:00 CEST} validto={} changed={2018-06-21 03:47:00 CEST} changedby={ldnam} properties={} id={}
+val: guid={164200662452520B} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-21 03:47:10 CEST} validto={} changed={2018-06-21 03:47:26 CEST} changedby={ldnam} properties={} id={}

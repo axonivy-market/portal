@@ -805,7 +805,7 @@ Fs0 f62 actionTable 'out=in;
 Fs0 f62 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.ExpressProcessUtils;
 ExpressProcessUtils utils = new ExpressProcessUtils();
-in.isValidated = !(in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));' #txt
+in.isValidated = !(!in.data.editFlag && in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));' #txt
 Fs0 f62 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
