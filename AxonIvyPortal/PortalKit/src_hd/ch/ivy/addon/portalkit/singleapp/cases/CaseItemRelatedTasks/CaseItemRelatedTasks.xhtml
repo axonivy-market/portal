@@ -9,25 +9,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <!-- <div class="grid-item" id="#{cc.clientId}">
-    <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasks')}</h2>
-    <div class="grid-item-content">
-      <div class="grid-item-content-list">
-        <div jsf:rendered="#{empty data.relatedTasks}" class="grid-item-content-list-item">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasks')}" />
-        </div>
-        <ui:repeat id="tasks" var="task" value="#{data.relatedTasks}">
-          <h:panelGroup id="task" layout="block" class="grid-item-content-list-item">
-            <i class="fa #{taskBean.getStateIcon(task.state)} related-task-list-item-status" />
-             <p:commandLink id="task-name" value="#{task.name}" actionListener="#{logic.openPortalTask}">
-             	<f:attribute name="taskId" value="#{task.id}"/>
-             </p:commandLink>
-          </h:panelGroup>
-          <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTipSingleApp(task)}" trackMouse="true" />
-        </ui:repeat>
-      </div>
-    </div>
-  </div> -->
   <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-related-task-column #{cc.attrs.styleClass}">
     <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasksAndCases')}</div>
     <div class="Separator" />
