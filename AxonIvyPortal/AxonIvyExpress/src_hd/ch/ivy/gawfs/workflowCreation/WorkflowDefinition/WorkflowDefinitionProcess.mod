@@ -93,6 +93,7 @@ Fs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 <gawfs.Data data> param = methodEvent.getInputArguments();
 ' #txt
 Fs0 f0 inParameterMapAction 'out.data=param.data;
+out.originalProcessName=param.data.processName;
 ' #txt
 Fs0 f0 outParameterDecl '<gawfs.Data data> result;
 ' #txt
@@ -102,6 +103,8 @@ Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(Data)</name>
+        <nameStyle>11,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -802,10 +805,17 @@ Fs0 f62 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDef
 ' #txt
 Fs0 f62 actionTable 'out=in;
 ' #txt
-Fs0 f62 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+Fs0 f62 actionCode 'import org.apache.commons.codec.binary.StringUtils;
+import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.ExpressProcessUtils;
 ExpressProcessUtils utils = new ExpressProcessUtils();
-in.isValidated = !(!in.data.editFlag && in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));' #txt
+if(in.data.editFlag) {
+	in.isValidated = !(!StringUtils.equals(in.originalProcessName, in.data.processName) && in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));
+}
+else{
+	in.isValidated = !(in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));
+}
+' #txt
 Fs0 f62 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
