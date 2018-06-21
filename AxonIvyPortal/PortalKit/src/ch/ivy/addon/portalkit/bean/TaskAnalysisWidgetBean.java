@@ -1,7 +1,12 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -9,6 +14,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
+import org.primefaces.event.ToggleEvent;
+import org.primefaces.model.Visibility;
 
 import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -27,6 +34,14 @@ public class TaskAnalysisWidgetBean implements Serializable {
   private Long expandedTaskId;
   private TaskAnalysisLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
+  private List<Boolean> columns;
+  private String fileName;
+  
+  @PostConstruct
+  public void init() {
+	columns = Arrays.asList(true, false, true, false, true, true, false,
+				true, false, false, true, true, false, true);
+  }
 
   public TaskAnalysisWidgetBean() {
     expandedTaskId = -1L;
@@ -91,6 +106,17 @@ public class TaskAnalysisWidgetBean implements Serializable {
     TaskAnalysisFilterService filterService = new TaskAnalysisFilterService();
     return filterService.isDeleteFilterEnabledFor(filterData);
   }
+  
+  public void onToggle(ToggleEvent e) {
+	columns.set((Integer) e.getData(),
+				e.getVisibility() == Visibility.VISIBLE);
+  }
+  
+  public void formatFileName() {
+	SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmm");
+	Date createdFileTime = new Date();
+	fileName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/exportedTasksCasesFileName", Arrays.asList(dateFormat.format(createdFileTime)));
+  }
 
   public Long getTaskListRefreshInterval() {
     return taskListRefreshInterval;
@@ -98,6 +124,15 @@ public class TaskAnalysisWidgetBean implements Serializable {
 
   public Boolean getIsTaskDetailOpenning() {
     return isTaskDetailOpenning;
+  }
+  
+  public List<Boolean> getColumns() {
+	return columns;
+  }
+  
+  public String getFileName() {
+	formatFileName();
+	return fileName;
   }
 
   public void setIsTaskDetailOpenning(Boolean isTaskDetailOpenning) {
