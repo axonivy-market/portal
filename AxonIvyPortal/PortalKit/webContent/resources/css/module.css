@@ -4787,6 +4787,10 @@ margin-top
 	border: solid 1px #E0E0E0 !important;
 }
 
+_:-ms-fullscreen, :root .statistic-filter-accordion-panel .ui-accordion-content {
+	max-width: 27.3rem;
+}
+
 .statistic-filter-container.ui-scrollpanel {
 	border: none;
 	padding: 0;
