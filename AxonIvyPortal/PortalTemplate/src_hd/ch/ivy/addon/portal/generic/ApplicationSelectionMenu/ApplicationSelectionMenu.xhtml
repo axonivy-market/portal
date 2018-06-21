@@ -75,12 +75,10 @@
     <p:dialog id="task-leave-warning-dialog" resizable="false" rendered="#{data.isWorkingOnATask}"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
       widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" modal="true">
-
       <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state != 'CREATED'}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resumedTaskLostBeforeLeave')}" />
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
       <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state == 'CREATED'}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLostBeforeLeave')}" />
-
       <f:facet name="footer">
         <h:form prependId="false">
           <h:panelGroup styleClass="Fs14">
