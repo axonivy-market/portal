@@ -322,12 +322,6 @@ function TaskListSmallScreenHandler() {
         } else {
           $('.js-task-details-item:first').removeAttr("style");
         }
-        
-        if ($mainMenu.hasClass('in') && isDisplaySecondLevelMenu) {
-          $taskDetails.css({'padding-left': '10px', 'padding-right': '10px'});
-        } else {
-          $taskDetails.removeAttr("style");
-        }
       }
       
       function taskItem() {
