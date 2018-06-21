@@ -26,3 +26,5 @@ resetData Boolean #field
 resetData PERSISTENT #fieldModifier
 isValidated Boolean #field
 isValidated PERSISTENT #fieldModifier
+originalProcessName String #field
+originalProcessName PERSISTENT #fieldModifier
