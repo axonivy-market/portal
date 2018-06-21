@@ -13,6 +13,7 @@
   <cc:attribute name="enableCaseAction" default="true" />
   <cc:attribute name="expandCallback" />
   <cc:attribute name="alwaysShowDetails" default="false" />
+  <cc:attribute name="canDestroyCase" default="true" />
   <cc:facet name="caseHeader" shortDescription="Header content of one case item" />
   <cc:facet name="caseBody" shortDescription="Body content of one case item" />
 </cc:interface>
@@ -40,7 +41,7 @@
       </div>
       <h:panelGroup layout="block" styleClass="case-header-action-cell" rendered="#{cc.attrs.enableCaseAction}">
         <h:panelGroup layout="block" styleClass="action-cell-container">
-          <p:commandLink id="destroy-case" rendered="#{case.canDestroy and case.state ne 'DONE'}" update="#{cc.attrs.update}"
+          <p:commandLink id="destroy-case" rendered="#{case.canDestroy and case.state ne 'DONE' and cc.attrs.canDestroyCase}" update="#{cc.attrs.update}"
             actionListener="#{caseWidgetBean.setDeletingCase(case)}" styleClass="case-destroy-command case-command"
             process="@this" oncomplete="#{cc.attrs.onDestroyComplete}">
             <span class="action-icon fa fa-remove" />
