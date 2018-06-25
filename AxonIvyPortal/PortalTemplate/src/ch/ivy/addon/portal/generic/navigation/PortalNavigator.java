@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.extensions.util.json.GsonConverter;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -26,10 +25,10 @@ import ch.ivyteam.ivy.server.ServerFactory;
 public final class PortalNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/PortalStart.ivp";
   private static final String PORTAL_END_PAGE = "Start Processes/PortalStart/DefaultEndPage.ivp";
-  private static final String PORTAL_PROCESS = "Start Processes/PortalProcess/start.ivp";
-  private static final String PORTAL_TASK = "Start Processes/PortalTask/startPortalTask.ivp";
-  private static final String PORTAL_CASE = "Start Processes/PortalCase/startPortalCase.ivp";
-  private static final String PORTAL_STATISTIC = "Start Processes/PortalStatistic/start.ivp";
+  private static final String PORTAL_PROCESS = "Start Processes/PortalStart/startPortalProcess.ivp";
+  private static final String PORTAL_TASK = "Start Processes/PortalStart/startPortalTask.ivp";
+  private static final String PORTAL_CASE = "Start Processes/PortalStart/startPortalCase.ivp";
+  private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/startPortalStatistic.ivp";
 
   public String getPortalStartUrl() throws MalformedURLException {
     String homePageURL = getHomePageFromSetting();
@@ -97,33 +96,29 @@ public final class PortalNavigator {
   }
 
   public void navigateToPortalProcess() throws MalformedURLException {
-    navigate(PORTAL_PROCESS);
+    navigateByKeyword("startPortalProcess.ivp", PORTAL_PROCESS);
   }
 
   public void navigateToPortalCase() throws MalformedURLException {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
-    final String customizePortalCaseFriendlyRequestPath = collector.findFriendlyRequestPathContainsKeyword("startPortalCase.ivp", 
-            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    if (StringUtils.isNotEmpty(customizePortalCaseFriendlyRequestPath)) {
-      navigate(customizePortalCaseFriendlyRequestPath);
-    } else {
-      navigate(PORTAL_CASE);
-    }
+    navigateByKeyword("startPortalCase.ivp", PORTAL_CASE);
   }
 
   public void navigateToPortalTask() throws MalformedURLException {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
-    final String customizePortalTaskFriendlyRequestPath = collector.findFriendlyRequestPathContainsKeyword("startPortalTask.ivp", 
-            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    if (StringUtils.isNotEmpty(customizePortalTaskFriendlyRequestPath)) {
-      navigate(customizePortalTaskFriendlyRequestPath);
-    } else {
-      navigate(PORTAL_TASK);
-    }
+    navigateByKeyword("startPortalTask.ivp", PORTAL_TASK);
   }
 
   public void navigateToPortalStatistic() throws MalformedURLException {
-    navigate(PORTAL_STATISTIC);
+    navigateByKeyword("startPortalStatistic.ivp", PORTAL_STATISTIC);
+  }
+
+  private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) throws MalformedURLException {
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
+    final String customizePortalFriendlyRequestPath = collector.findFriendlyRequestPathContainsKeyword(keyword);
+    if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
+      navigate(customizePortalFriendlyRequestPath);
+    } else {
+      navigate(defaultFriendlyRequestPath );
+    }
   }
 
   private void navigate(String friendlyRequestPath) throws MalformedURLException {
