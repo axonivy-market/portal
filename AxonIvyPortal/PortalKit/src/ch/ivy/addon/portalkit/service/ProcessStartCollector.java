@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -63,11 +64,14 @@ public class ProcessStartCollector {
     return processStarts;
   }
   
-  public String findFriendlyRequestPathContainsKeyword(String keyword, List<String> excludedLibraries) {
-    List<IProcessStart> processStarts = findProcessStartRequestPathContainsKeyword(keyword);
-    final Optional<IProcessStart> findFirst = processStarts.stream().filter(ps -> !excludedLibraries.contains(getLibraryId(ps))).findFirst();
-    if (findFirst.isPresent()) {
-      return findFirst.get().getUserFriendlyRequestPath();
+  public String findFriendlyRequestPathContainsKeyword(String keyword) {
+    final Object portalStartPmvId = SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
+    final IProcessModelVersion findProcessModelVersion = application.findProcessModelVersion(portalStartPmvId);
+    if (findProcessModelVersion != null){
+      List<IProcessStart> processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, findProcessModelVersion);
+      if (processStarts != null && processStarts.size() > 0) {
+        return processStarts.get(0).getUserFriendlyRequestPath();
+      }
     }
     return StringUtils.EMPTY;
   }
@@ -203,12 +207,5 @@ public class ProcessStartCollector {
 
   private boolean isActive(IApplication ivyApplication) {
     return ivyApplication.getActivityState() == ActivityState.ACTIVE;
-  }
-  
-  private String getLibraryId(IProcessStart processStart) {
-    return Optional.ofNullable(processStart)
-            .map(IProcessStart::getProcessModelVersion)
-            .map(IProcessModelVersion::getLibrary)
-            .map(ILibrary::getId).orElse(StringUtils.EMPTY);
   }
 }

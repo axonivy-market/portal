@@ -9,7 +9,25 @@
     <ui:param name="useOverrideFilter" value="true" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="isNotRequiredLogin" value="false" />
-    
+    <ui:param name="useOverrideBody" value="true" />
+     
+     <ui:define name="caseBody">
+
+      Internal support. This is the customized content of the case: #{case.getId()}
+      
+      <ui:fragment rendered="#{case.getCustomVarCharField1().equals('I am a secret')}">
+      
+      <h:outputText value="I'm a secret case so I'm displayed differently" />
+      
+      </ui:fragment>
+      
+      <ui:fragment rendered="#{case.getCustomVarCharField1().equals('I am even more secret')}">
+      
+      Put your secret content here
+      
+      </ui:fragment>
+      
+      </ui:define> 
     <ui:define name="caseFilter">
 	  	<c:set var="filterContainer" value="#{caseView.getDataModel().filterContainer}" />
 	    <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseDescriptionFilter filter="#{filterContainer.caseDescriptionFilter}"

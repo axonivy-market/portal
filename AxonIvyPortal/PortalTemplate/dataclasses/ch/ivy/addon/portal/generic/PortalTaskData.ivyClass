@@ -1,4 +1,0 @@
-PortalTaskData #class
-ch.ivy.addon.portal.generic #namespace
-taskDataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
-taskView ch.ivy.addon.portal.generic.view.TaskView #field
