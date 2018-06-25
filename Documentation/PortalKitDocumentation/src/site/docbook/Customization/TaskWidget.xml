@@ -48,11 +48,6 @@
                     Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project. Point PortalHome element to your custom home page in previous step. This process is new home page and administrator should register this link by Portal's Admin Settings.  
                   </para>
                 </listitem>
-                <listitem>
-                  <para>
-                    Copy the <code>PortalTask</code> process from <code>PortalTemplate</code> to your project. It's used to navigate to customization portal task.
-                  </para>
-                </listitem>
 				<listitem>
 					<para>
 						Override Task widget in: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
