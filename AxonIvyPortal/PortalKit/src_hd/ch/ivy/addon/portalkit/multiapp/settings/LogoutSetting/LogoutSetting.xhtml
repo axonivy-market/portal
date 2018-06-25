@@ -19,9 +19,9 @@
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
       rendered="#{!userMenuBean.hiddenLogout and cc.attrs.isWorkingOnATask}" onclick="PF('logoutConfirmation').show()" />
 
-    <p:dialog id="logout-confirmation-dialog"
+    <p:dialog id="logout-confirmation-dialog" dynamic="true"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="logoutConfirmation"
-      appendTo="@(body)">
+      appendTo="@(body)" modal="true">
       <h:outputText escape="false" rendered="#{ivy.task.state != 'CREATED'}" styleClass="ui-confirm-dialog-message"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout')}" />
       <h:outputText escape="false" rendered="#{ivy.task.state == 'CREATED'}" styleClass="ui-confirm-dialog-message"
