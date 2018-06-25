@@ -11,8 +11,7 @@
 		<title>Introduction</title>
 		<para>
 			The default home page of Portal has three built-in widgets in order: <code>Process widget</code>, <code>Task widget</code>, <code>Statistic widget</code>. If it does not fit your needs, you can replace it by your own one.
-            We decided that based on screen size, widget may become hidden, not smaller. So we set <emphasis role="strong">fix length</emphasis> for each widget.
-            Length of <code>Process widget</code> is <emphasis role="strong">270 pixels</emphasis>, <code>Task widget</code> is <emphasis role="strong">520 pixels</emphasis> and <code>Task widget</code> is <emphasis role="strong">270 pixels</emphasis>.
+            We decided that based on screen size, widget may become hidden, not smaller. 
 			<mediaobject>
 				<imageobject>
 					<imagedata fileref="images/PortalHome/HomePageTemplate.png" />

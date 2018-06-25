@@ -69,7 +69,7 @@ public class ProcessStartCollector {
     final IProcessModelVersion findProcessModelVersion = application.findProcessModelVersion(portalStartPmvId);
     if (findProcessModelVersion != null){
       List<IProcessStart> processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, findProcessModelVersion);
-      if (processStarts != null && processStarts.size() > 0) {
+      if (CollectionUtils.isNotEmpty(processStarts)){
         return processStarts.get(0).getUserFriendlyRequestPath();
       }
     }
