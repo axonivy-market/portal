@@ -25,8 +25,8 @@ public class TaskTemplatePage extends TemplatePage {
     String addNoteButtonId = "case-item:history:add-note-command";
     String addNoteDialogId = "case-item:history:add-note-dialog";
     findElementById(addNoteButtonId).click();
-    waitForElementDisplayed(By.id(addNoteDialogId), true);
-    WebElement addNoteDialog = findElementById(addNoteDialogId);
+    waitForElementDisplayed(By.cssSelector("div[id^='" + addNoteDialogId + "']"), true);
+    WebElement addNoteDialog = findElementByCssSelector("div[id^='" + addNoteDialogId + "']");
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
     addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
     waitAjaxIndicatorDisappear();
@@ -60,11 +60,11 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public int countNoteItems() {
-    return findListElementsByCssSelector("div.truncate-note").size();
+    return findListElementsByCssSelector("a[id$='note-content']").size();
   }
 
   public int countHistoryItems() {
-    return findListElementsByCssSelector("div[id='case-item:history:case-histories'] > div.author")
+    return findListElementsByCssSelector("a[id$='show-task-note-link']")
         .size();
   }
 
