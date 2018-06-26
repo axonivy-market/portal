@@ -6,8 +6,8 @@ import org.openqa.selenium.support.Color;
 public class HomePage extends TemplatePage {
 
   public final static String PORTAL_HOME_PAGE_URL = "portalTemplate/1549F58C18A6C562/PortalStart.ivp";
-  public final static String INTERNAL_SUPPORT_HOME_PAGE_URL = "internalSupport/15B0ED067061F4DE/PortalStart.ivp";
-  public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portalExamples/1624CFBB822FB1C9/PortalStart.ivp";
+  public final static String INTERNAL_SUPPORT_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/PortalStart.ivp";
+  public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portalExamples/164211E97C598DAA/PortalStart.ivp";
   public final static String TASK_SWITCH_MODE_BTN_LOCATOR = "id('task-widget:task-list-link:task-list-link')";
 
   @Override
