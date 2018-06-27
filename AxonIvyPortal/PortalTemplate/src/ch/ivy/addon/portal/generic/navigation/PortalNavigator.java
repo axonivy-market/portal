@@ -50,8 +50,7 @@ public final class PortalNavigator {
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
       return serverUrl + requestPath;
     }
-    return "/"
-            + RequestUriFactory
+    return "/" + RequestUriFactory
                     .getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager())
             + requestPath;
   }
@@ -87,11 +86,13 @@ public final class PortalNavigator {
   }
 
   public void navigateToPortalEndPage() throws MalformedURLException {
-    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(PORTAL_END_PAGE);
-    if (StringUtils.isNotEmpty(requestPath)) {
-      UrlDetector urlDetector = new UrlDetector();
-      String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      redirect(serverUrl + requestPath + "?endedTaskId=" + Ivy.wfTask().getId());
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
+    final String customizePortalEndPage = collector.findFriendlyRequestPathContainsKeyword("DefaultEndPage.ivp");
+    final String param = "?endedTaskId=" + Ivy.wfTask().getId();
+    if (StringUtils.isNotEmpty(customizePortalEndPage)) {
+      navigate(customizePortalEndPage, param);
+    } else {
+      navigate(PORTAL_END_PAGE, param);
     }
   }
 
@@ -115,19 +116,19 @@ public final class PortalNavigator {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
     final String customizePortalFriendlyRequestPath = collector.findFriendlyRequestPathContainsKeyword(keyword);
     if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
-      navigate(customizePortalFriendlyRequestPath);
+      navigate(customizePortalFriendlyRequestPath, StringUtils.EMPTY);
     } else {
-      navigate(defaultFriendlyRequestPath );
+      navigate(defaultFriendlyRequestPath, StringUtils.EMPTY);
     }
   }
 
-  private void navigate(String friendlyRequestPath) throws MalformedURLException {
+  private void navigate(String friendlyRequestPath, String param) throws MalformedURLException {
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath))
     {
       UrlDetector urlDetector = new UrlDetector();
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      redirect(serverUrl + requestPath);
+      redirect(serverUrl + requestPath + param);
     }
   }
 }
