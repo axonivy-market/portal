@@ -14,7 +14,6 @@ import org.primefaces.extensions.util.json.GsonConverter;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -86,9 +85,8 @@ public final class PortalNavigator {
   }
 
   public void navigateToPortalEndPage() throws MalformedURLException {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
-    final String customizePortalEndPage = collector.findFriendlyRequestPathContainsKeyword("DefaultEndPage.ivp");
-    final String param = "?endedTaskId=" + Ivy.wfTask().getId();
+    String customizePortalEndPage = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("DefaultEndPage.ivp"); 
+    String param = "?endedTaskId=" + Ivy.wfTask().getId();
     if (StringUtils.isNotEmpty(customizePortalEndPage)) {
       navigate(customizePortalEndPage, param);
     } else {
@@ -113,8 +111,7 @@ public final class PortalNavigator {
   }
 
   private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) throws MalformedURLException {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
-    final String customizePortalFriendlyRequestPath = collector.findFriendlyRequestPathContainsKeyword(keyword);
+    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
       navigate(customizePortalFriendlyRequestPath, StringUtils.EMPTY);
     } else {

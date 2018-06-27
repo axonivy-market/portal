@@ -58,7 +58,6 @@ public class SecurityServiceUtils {
           requestUri = "/pro/" + fullRequestPath;
         }
       }
-
       return requestUri;
     });
   }
@@ -143,5 +142,12 @@ public class SecurityServiceUtils {
   public static String getApplicationDisplayNameFromSession() {
     Object selectedAppDisplayNameAttribute = getSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
     return selectedAppDisplayNameAttribute != null ? selectedAppDisplayNameAttribute.toString() : null;
+  }
+  
+  public static String findFriendlyRequestPathContainsKeyword(String keyword){
+    return IvyExecutor.executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
+      return collector.findFriendlyRequestPathContainsKeyword(keyword);
+    });
   }
 }
