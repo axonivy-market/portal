@@ -1,5 +1,5 @@
 [Ivy]
-14B33FEBF587FE2D 3.20 #module
+14B33FEBF587FE2D 3.23 #module
 >Proto >Proto Collection #zClass
 Ss0 TaskFormProcess Big #zClass
 Ss0 RD #cInfo
@@ -102,6 +102,7 @@ Ss0 f11 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigato
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();
 ' #txt
+Ss0 f11 security system #txt
 Ss0 f11 type internaltest.TaskForm.TaskFormData #txt
 Ss0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
