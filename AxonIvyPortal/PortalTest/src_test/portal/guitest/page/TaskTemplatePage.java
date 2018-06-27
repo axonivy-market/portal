@@ -35,12 +35,12 @@ public class TaskTemplatePage extends TemplatePage {
   public void openDocumentUploadingDialog() {
     findElementById("case-item:document:add-document-command").click();
     String documentUploadingDialogId = "case-item:document:document-upload-dialog";
-    waitForElementDisplayed(By.id(documentUploadingDialogId), true);
+    waitForElementDisplayed(By.cssSelector("[id^='" + documentUploadingDialogId +"']"), true);
   }
 
   public Boolean isDocumentUploadingDialogDisplayed() {
     String documentUploadingDialogId = "case-item:document:document-upload-dialog";
-    return findElementById(documentUploadingDialogId).isDisplayed();
+    return findElementByCssSelector("[id^='" + documentUploadingDialogId +"']").isDisplayed();
   }
 
   public TaskWidgetPage openFinishedTaskInHistoryArea() {
@@ -93,6 +93,6 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public String getCaseName(){
-    return findElementById("case-item:case-name-inplace").getText();
+    return findElementById("case-item:case-header:case-header-name-cell").getText();
   }
 }

@@ -56,6 +56,7 @@ public class MenuTest extends BaseTest {
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
+    dashboardPage.waitForPageLoaded();
     dashboardPage.waitForElementDisplayed(By.cssSelector(".js-left-sidebar-toggle"), true, 30);
     dashboardPage.closeMainMenu();
     homePage = dashboardPage.goToHomePage();
