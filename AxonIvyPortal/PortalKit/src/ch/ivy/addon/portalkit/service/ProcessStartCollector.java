@@ -9,9 +9,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
@@ -64,8 +62,14 @@ public class ProcessStartCollector {
     return processStarts;
   }
   
-  public String findFriendlyRequestPathContainsKeyword(String keyword) {
-    final Object portalStartPmvId = SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
+  /**
+   * find friendly request path in specific pmv base on keyword
+   * If pmv id not found, get pmv of current task 
+   * @param keyword
+   * @param portalStartPmvId
+   * @return user friendly request path
+   */
+  public String findFriendlyRequestPathContainsKeyword(String keyword, Object portalStartPmvId) {
     IProcessModelVersion findProcessModelVersion = portalStartPmvId == null ? Ivy.wfTask().getProcessModelVersion() : 
       application.findProcessModelVersion(portalStartPmvId);
     if (findProcessModelVersion != null){
