@@ -41,6 +41,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createTextAreaField(String label, boolean isRequired) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[2]"));
+    Sleeper.sleepTight(1000);
     waitForElementDisplayed(By.id("form:createTabs:createInputAreaTab"), true);
     type(By.id("form:createTabs:InputAreaLabel"), label);
     if(isRequired) {
@@ -53,26 +54,28 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createCheckboxField(String label, int numberOfSelection) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[3]"));
+    Sleeper.sleepTight(1000);
     waitForElementDisplayed(By.id("form:createTabs:createManyCheckboxTab"), true);
     type(By.id("form:createTabs:ManyCheckboxLabel"), label);
     addCheckboxOptions(numberOfSelection);
+    Sleeper.sleepTight(1000);
     click(By.id("form:createTabs:add-checkbox-btn"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleepTight(1000);
   }
   
   public void createRadioButtonField(String label, int numberOfOption) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[4]"));
+    Sleeper.sleepTight(1000);
     waitForElementDisplayed(By.id("form:createTabs:createOneRadioGrid"), true);
     type(By.id("form:createTabs:OneRadioLabel"), label);
     addRadioOptions(numberOfOption);
     click(By.id("form:createTabs:add-radio-btn"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleepTight(1000);
   }
   
   public void createUploadComponent(String label) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[5]"));
+    Sleeper.sleepTight(1000);
     waitForElementDisplayed(By.id("form:createTabs:createFileUploadTab"), true);
     type(By.id("form:createTabs:FileUploadLabel"), label);
     click(By.id("form:createTabs:add-upload-file-btn"));
@@ -103,6 +106,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
   
   public void moveAllElementToDragAndDrogPanel() {
+	driver.manage().window().setSize(new Dimension(2000, 1000));
     int size = driver.findElements(By.xpath("//div[@id='form:availableFormelements_content']/table/tbody/tr")).size();
     for(int i=size-1; i>= 0; i--){
       moveFormElementToPanel(i, getRandomPosition());
