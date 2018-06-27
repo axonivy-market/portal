@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.request.RequestUriFactory;
@@ -20,8 +21,6 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 
 /**
  * Utility for security service.
- * 
- * @author maonguyen
  *
  */
 public class SecurityServiceUtils {
@@ -95,7 +94,7 @@ public class SecurityServiceUtils {
       }
     });
   }
-
+  
   /**
    * Finds portal home page of the default portal application
    * 
@@ -158,5 +157,16 @@ public class SecurityServiceUtils {
     Object selectedAppDisplayNameAttribute = getSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
     String selectedAppDisplayName = selectedAppDisplayNameAttribute != null ? selectedAppDisplayNameAttribute.toString() : null;
     return selectedAppDisplayName;
+  }
+  
+  public static String findFriendlyRequestPathContainsKeyword(String keyword) throws Exception{
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
+      @Override
+      public String call() throws Exception {
+        ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
+        Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
+        return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
+      }
+    });
   }
 }

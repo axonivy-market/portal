@@ -6,5 +6,6 @@ public enum SessionAttribute {
   SELECTED_APP_DISPLAY_NAME,
   SERVER_ID,
   TASK_CATEGORY,
-  TASK_END_INFO;
+  TASK_END_INFO, 
+  PORTAL_START_PMV_ID;
 }
