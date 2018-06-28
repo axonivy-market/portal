@@ -14,6 +14,7 @@ import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -52,7 +53,7 @@ public class ProcessStartCollector {
       for (IProcessModel processModel : processModels) {
         Optional<List<IProcessStart>> processStartsOptional =
             Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
-                .filter(this::isActive).map(p -> findProcessStartRequestPathContainsKeywordAndPmv(keyword, p))
+                .filter(this::isActiveAndReleased).map(p -> findProcessStartRequestPathContainsKeywordAndPmv(keyword, p))
                 .filter(CollectionUtils::isNotEmpty);
         if (processStartsOptional.isPresent()) {
           return processStartsOptional.get();
@@ -97,7 +98,7 @@ public class ProcessStartCollector {
       for (IProcessModel processModel : processModels) {
         Optional<IProcessStart> processStartOptional =
             Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
-                .filter(this::isActive).map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p))
+                .filter(this::isActiveAndReleased).map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p))
                 .filter(Objects::nonNull);
         if (processStartOptional.isPresent()) {
           return processStartOptional.get();
@@ -113,7 +114,7 @@ public class ProcessStartCollector {
       for (IProcessModel processModel : processModels) {
         Optional<IProcessStart> processStartOptional =
             Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
-                .filter(this::isActive).map(p -> getProcessStart(requestPath, p))
+                .filter(this::isActiveAndReleased).map(p -> getProcessStart(requestPath, p))
                 .filter(processStart -> Ivy.session().getStartableProcessStarts().contains(processStart));
         if (processStartOptional.isPresent()) {
           return processStartOptional.get();
@@ -202,8 +203,9 @@ public class ProcessStartCollector {
 
   }
 
-  private boolean isActive(IProcessModelVersion processModelVersion) {
-    return processModelVersion != null && processModelVersion.getActivityState() == ActivityState.ACTIVE;
+  private boolean isActiveAndReleased(IProcessModelVersion processModelVersion) {
+    return processModelVersion != null && processModelVersion.getActivityState() == ActivityState.ACTIVE 
+        && processModelVersion.getReleaseState() == ReleaseState.RELEASED;
   }
 
   private boolean isActive(IProcessModel processModel) {
