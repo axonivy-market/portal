@@ -11,17 +11,18 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
@@ -29,6 +30,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.TaskAnalysisCaseFilterContainer;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
@@ -65,6 +67,9 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   private static final long serialVersionUID = -6615871274830927272L;
 
   protected static final int BUFFER_LOAD = 10;
+  private static final String TASK_COLUMN_PREFIX = "TASK_";
+  private static final String CASE_COLUMN_PREFIX = "CASE_";
+
   protected String taskWidgetComponentId;
   protected List<RemoteTask> data;
   protected Map<String, RemoteTask> displayedTaskMap;
@@ -98,6 +103,11 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   private boolean isNotKeepFilter = false;
 
   private CaseQueryCriteria caseQueryCriteria;
+  protected List<CaseFilter> caseFilters;
+  protected List<CaseFilter> selectedCaseFilters;
+  protected CaseFilterContainer caseFilterContainer;
+  private boolean compactMode;
+  private Integer chunkSize;
 
   public TaskAnalysisLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -143,7 +153,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     taskFilterContainer = new TaskAnalysisTaskFilterContainer();
   }
 
-  public void initTaskFilters() throws ReflectiveOperationException {
+  public void initTaskFilters() {
     if (taskFilterContainer == null) {
       if (isRelatedTaskDisplayed) {
         if (!taskQueryCriteria.getIncludedStates().contains(TaskState.DONE)) {
@@ -160,26 +170,6 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
         TaskStateFilter stateFilter = taskFilterContainer.getStateFilter();
         stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
       }
-      restoreSessionAdvancedFilters();
-    }
-  }
-
-  private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
-    if (shouldSaveAndLoadSessionFilters()) {
-      List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
-      for (TaskFilter filter : taskFilters) {
-        for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
-          copyProperties(sessionTaskFilter, filter);
-        }
-      }
-    }
-  }
-
-  private void copyProperties(TaskFilter sessionTaskFilter, TaskFilter filter) throws IllegalAccessException,
-      InvocationTargetException {
-    if (sessionTaskFilter.getClass() == filter.getClass()) {
-      BeanUtils.copyProperties(filter, sessionTaskFilter);
-      selectedTaskFilters.add(filter);
     }
   }
 
@@ -196,13 +186,15 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
       initializedDataModel(searchCriteria);
     }
 
-    List<RemoteTask> foundTasks = findTasks(first, pageSize, searchCriteria);
+    taskQueryCriteria.setSortField(sortField);
+    taskQueryCriteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+
+    List<RemoteTask> foundTasks = findTasks(first, chunkSize, searchCriteria);
     putTasksToNotDisplayedTaskMap(foundTasks);
     List<RemoteTask> notDisplayedTasks = sortTasksInNotDisplayedTaskMap();
-    List<RemoteTask> displayedTasks = getDisplayedTasks(notDisplayedTasks, pageSize);
+    List<RemoteTask> displayedTasks = getDisplayedTasks(notDisplayedTasks, chunkSize);
     storeDisplayedTasks(displayedTasks);
 
-    RequestContext.getCurrentInstance().execute("taskListToolKit.responsive()");
     return displayedTasks;
   }
 
@@ -262,27 +254,108 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   private List<RemoteTask> sortTasksInNotDisplayedTaskMap() {
     List<RemoteTask> notDisplayedTasks = new ArrayList<>();
     notDisplayedTasks.addAll(notDisplayedTaskMap.values());
-    comparator = comparator(RemoteTask::getId);
-    if (TaskSortField.PRIORITY.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
-      comparator = comparator(RemoteTask::getPriority);
-    } else if (TaskSortField.NAME.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
-      comparator = comparatorString(RemoteTask::getName);
-    } else if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
-      comparator = comparatorString(activatorName());
-    } else if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
-      comparator = comparator(RemoteTask::getStartTimestamp);
-    } else if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
-      comparator = comparator(RemoteTask::getExpiryTimestamp);
-    } else if (TaskSortField.STATE.toString().equalsIgnoreCase(taskQueryCriteria.getSortField())) {
-      comparator = comparator(RemoteTask::getState);
+
+    if (taskQueryCriteria.getSortField() == null) {
+      taskQueryCriteria.setSortField(TaskAndCaseAnalysisColumn.TASK_ID.name());
     }
 
-    if (taskQueryCriteria.isSortDescending()) {
-      comparator = comparator.reversed();
-    }
+    if (taskQueryCriteria.getSortField().startsWith(TASK_COLUMN_PREFIX)) {
+      TaskSortField taskSortField = TaskSortField.valueOf(taskQueryCriteria.getSortField().replaceAll(TASK_COLUMN_PREFIX, ""));
 
-    notDisplayedTasks.sort(comparator);
-    return notDisplayedTasks;
+      switch (taskSortField) {
+      case PRIORITY:
+        comparator = comparator(RemoteTask::getPriority);
+        break;
+      case ID:
+        comparator = comparator(RemoteTask::getId);
+        break;
+      case CREATION_TIME:
+        comparator = comparator(RemoteTask::getStartTimestamp);
+        break;
+      case EXPIRY_TIME:
+        comparator = comparator(RemoteTask::getExpiryTimestamp);
+        break;
+      case STATE:
+        comparator = comparator(RemoteTask::getState);
+        break;
+      case FINISHED_TIME:
+        comparator = comparator(RemoteTask::getEndTimestamp);
+        break;
+      case NAME:
+        comparator = comparatorString(RemoteTask::getName);
+        break;
+      case ACTIVATOR:
+        comparator = comparatorString(RemoteTask::getActivatorName);
+        break;
+      case CATEGORY:
+        comparator = comparatorString(RemoteTask::getCategoryName);
+        break;
+      case DESCRIPTION:
+        comparator = comparatorString(RemoteTask::getDescription);
+        break;
+      case WORKER:
+        comparator = comparatorString(RemoteTask::getWorkerFullName);
+        break;
+      default:
+        break;
+      }
+
+      if (taskQueryCriteria.isSortDescending()) {
+        comparator = comparator.reversed();
+      }
+      notDisplayedTasks.sort(comparator);
+      return notDisplayedTasks;
+    } else {
+      CaseSortField caseSortField = CaseSortField.valueOf(taskQueryCriteria.getSortField().replaceAll(CASE_COLUMN_PREFIX, ""));
+      Comparator<RemoteCase> caseComparator = caseComparator(RemoteCase::getId);
+
+      switch (caseSortField) {
+      case CATEGORY:
+        caseComparator = caseComparatorString(RemoteCase::getCategoryName);
+        break;
+      case CREATOR:
+        caseComparator = caseComparatorString(RemoteCase::getCreatorFullName);
+        break;
+      case END_TIME:
+        caseComparator = caseComparator(RemoteCase::getEndTimestamp);
+        break;
+      case ID:
+        caseComparator = caseComparator(RemoteCase::getId);
+        break;
+      case NAME:
+        caseComparator = caseComparatorString(RemoteCase::getName);
+        break;
+      case PM:
+        caseComparator = caseComparatorString(RemoteCase::getProcessModelName);
+        break;
+      case PMV:
+        caseComparator = caseComparator(RemoteCase::getProcessModelVersionNumber);
+        break;
+      case PROCESS_NAME:
+        caseComparator = caseComparatorString(RemoteCase::getProcessName);
+        break;
+      case START_TIME:
+        caseComparator = caseComparator(RemoteCase::getStartTimestamp);
+        break;
+      case STATE:
+        caseComparator = caseComparator(RemoteCase::getState);
+        break;
+      default:
+        break;
+      }
+
+      if (taskQueryCriteria.isSortDescending()) {
+        caseComparator = caseComparator.reversed();
+      }
+      List<RemoteCase> caseList = notDisplayedTasks.stream().map(RemoteTask::getCase).distinct().collect(Collectors.toList());
+      caseList.sort(caseComparator);
+
+      List<RemoteTask> sortedTaskList = new ArrayList<>();
+      for (RemoteCase caseForCompare : caseList) {
+        sortedTaskList.addAll(notDisplayedTasks.stream().filter(task -> task.getCase() == caseForCompare).collect(Collectors.toList()));
+      }
+      return sortedTaskList;
+    }
   }
 
   protected Function<RemoteTask, String> activatorName() {
@@ -300,6 +373,16 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   protected Comparator<RemoteTask> comparatorString(Function<? super RemoteTask, String> function) {
+    Collator collator = Collator.getInstance(Locale.GERMAN);
+    return Comparator.comparing(function, Comparator.nullsLast(collator));
+  }
+
+  protected <U extends Comparable<? super U>> Comparator<RemoteCase> caseComparator( // NOSONAR
+      Function<? super RemoteCase, ? extends U> function) {
+    return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
+  }
+
+  protected Comparator<RemoteCase> caseComparatorString(Function<? super RemoteCase, String> function) {
     Collator collator = Collator.getInstance(Locale.GERMAN);
     return Comparator.comparing(function, Comparator.nullsLast(collator));
   }
@@ -540,9 +623,9 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
    */
   public TaskAnalysisFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
     TaskAnalysisFilterData taskAnalysisFilterData = new TaskAnalysisFilterData();
-    List<TaskFilter> taskFilters = new ArrayList<>(selectedTaskFilters);
-    addCustomSettingsToTaskFilters(taskFilters);
-    taskAnalysisFilterData.setTaskFilters(taskFilters);
+    List<TaskFilter> taskFiltersToSave = new ArrayList<>(selectedTaskFilters);
+    addCustomSettingsToTaskFilters(taskFiltersToSave);
+    taskAnalysisFilterData.setTaskFilters(taskFiltersToSave);
     List<CaseFilter> filtersToSave = new ArrayList<>(selectedCaseFilters);
     taskAnalysisFilterData.setCaseFilters(filtersToSave);
     taskAnalysisFilterData.setUserId(Ivy.session().getSessionUser().getId());
@@ -606,6 +689,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
+   * 
    */
   protected void buildQueryToSearchCriteria() {
     if (taskQueryCriteria.getTaskQuery() == null) {
@@ -637,6 +721,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
     TaskQuery taskQuery = buildTaskQuery();
     CaseQuery caseQuery = buildCaseQuery();
     taskQuery = taskQuery.where().cases(caseQuery);
+
     searchCriteria.setJsonQuery(taskQuery.asJson());
   }
 
@@ -870,10 +955,7 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
       toggleFilters.get(0).resetValues();
     }
   }
-  
-  protected List<CaseFilter> caseFilters;
-  protected List<CaseFilter> selectedCaseFilters;
-  protected CaseFilterContainer caseFilterContainer;
+
   public List<CaseFilter> getSelectedCaseFilters() {
     return selectedCaseFilters;
   }
@@ -935,8 +1017,6 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
       restoreSessionAdvancedCaseFilters();
     }
   }
-  
-  private boolean compactMode;
 
   public boolean isCompactMode() {
     return compactMode;
@@ -944,6 +1024,14 @@ public class TaskAnalysisLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void setCompactMode(boolean compactMode) {
     this.compactMode = compactMode;
+  }
+
+  public Integer getChunkSize() {
+    return chunkSize;
+  }
+
+  public void setChunkSize(Integer chunkSize) {
+    this.chunkSize = chunkSize;
   }
   
 }

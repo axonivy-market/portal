@@ -147,3 +147,7 @@ technicalCaseSubTypeName String #field
 technicalCaseTypeCode String #field
 technicalCaseTypeName String #field
 canUploadDeleteDocument Boolean #field
+categoryName String #field
+categoryPath String #field
+caseCategoryName String #field
+caseCategoryPath String #field
