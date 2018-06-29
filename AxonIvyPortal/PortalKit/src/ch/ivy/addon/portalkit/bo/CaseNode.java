@@ -46,4 +46,9 @@ public class CaseNode extends MainMenuNode implements Serializable {
   public void setFirstCategoryNode(boolean isFirstCategoryNode) {
     this.isFirstCategoryNode = isFirstCategoryNode;
   }
+  
+  @Override
+  public String toString() {
+    return this.getCategory();
+  }
 }

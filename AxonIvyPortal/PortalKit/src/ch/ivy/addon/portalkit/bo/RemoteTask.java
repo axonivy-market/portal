@@ -87,6 +87,10 @@ public class RemoteTask {
   private boolean canChangeName;
   private boolean hasMoreActions;
   private boolean canUploadDeleteDocument;
+
+  private String categoryName;
+  private String categoryPath;
+
   /**
    * @{link {@link Application} object that this task belongs to
    */
@@ -820,5 +824,21 @@ public class RemoteTask {
 
   public void setCanUploadDeleteDocument(boolean canUploadDeleteDocument) {
     this.canUploadDeleteDocument = canUploadDeleteDocument;
+  }
+
+  public String getCategoryName() {
+    return categoryName;
+  }
+
+  public void setCategoryName(String categoryName) {
+    this.categoryName = categoryName;
+  }
+
+  public String getCategoryPath() {
+    return categoryPath;
+  }
+
+  public void setCategoryPath(String categoryPath) {
+    this.categoryPath = categoryPath;
   }
 }

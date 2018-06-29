@@ -672,7 +672,7 @@ Ae0 f47 actionTable 'out=in1;
 Ae0 f47 outTypes "internaltest.Data" #txt
 Ae0 f47 outLinks "TaskA.ivp" #txt
 Ae0 f47 caseData case.name=TestCase #txt
-Ae0 f47 taskData 'TaskA.CATEGORY=<%\=in1.count%>
+Ae0 f47 taskData 'TaskA.CATEGORY=<%\=in1.category%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
@@ -712,7 +712,17 @@ Ae0 f58 actionDecl 'internaltest.Data out;
 ' #txt
 Ae0 f58 actionTable 'out=in;
 ' #txt
-Ae0 f58 actionCode 'String a = "TestCase" + in.count;
+Ae0 f58 actionCode 'String a;
+if(in.count % 3 == 0){
+	a = "CaseGroup/Group1/TestCase" + in.count;
+	in.category = "TaskGroup/Group1/TestCase" + in.count;
+} else if(in.count % 3 == 1) {
+	a = "CaseGroup/Group2/TestCase" + in.count;
+	in.category = "TaskGroup/Group2/TestCase" + in.count;
+} else {
+	a = "CaseGroup/Group3/TestCase" + in.count;
+	in.category = "TaskGroup/Group3/TestCase" + in.count;
+}
 ivy.case.setCategoryPath(a);' #txt
 Ae0 f58 type internaltest.Data #txt
 Ae0 f58 168 874 112 44 0 -8 #rect
