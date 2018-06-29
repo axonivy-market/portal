@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="taskView" value="#{data.taskView}" />
+    <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
+    <ui:param name="menuState" value="#{data.menuState}" />
+    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
+
+    <ui:define name="secondLevelMenu">
+      <div id="second-level-menu" class="second-level-menu js-left-sidebar-second left-sidebar-animation ">
+        <a href="#" class="second-level-menu-header">
+          <i class="fa fa-angle-left icon-left left-sidebar-animation" />
+          <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
+          <i class="fa fa-angle-right icon-right left-sidebar-animation" />
+        </a>
+        <div class="second-level-menu-body">
+          <h:form prependId="false">
+            <ic:ch.ivy.addon.portal.generic.PortalTaskMenu menuState="#{data.menuState}"/>
+          </h:form>
+        </div>
+        </div>
+	</ui:define>
+
+    <ui:define name="simplePageContent">
+      <ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget id="task-widget" keyword="#{taskView.dataModel.queryCriteria.keyword}"
+        hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
+        showHeaderToolbar="#{taskView.showHeaderToolbar}" selectedTaskId="#{taskView.remoteTaskId}"
+        selectedTaskServerId="#{taskView.dataModel.serverId}" noTaskFoundMessage="#{taskView.noTaskFoundMessage}"
+        hideWidgetHeader="#{hideWidgetHeader}" chunkSize="#{taskView.chunkSize}">
+          <f:facet name="title">
+            <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
+            <h:commandLink value="##{taskView.dataModel.queryCriteria.caseId}" styleClass="ui-link"
+                actionListener="#{navigatorBean.navigateToCaseDetail(dataModel.caseName, dataModel.queryCriteria.caseId, dataModel.serverId)}" />
+            #{taskView.dataModel.caseName}
+          </h:form>
+            <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
+              value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}" />
+          </f:facet>
+  
+          <f:facet name="taskListHeader">
+          </f:facet>
+  
+          <f:facet name="taskHeader">
+            <ui:fragment rendered="#{useOverrideHeader}">
+              <ui:insert name="taskHeader">
+              </ui:insert>
+            </ui:fragment>
+  
+            <ui:fragment rendered="#{not useOverrideHeader}">
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
+                priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
+              <div class="task-start-info">
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}"
+                  isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
+              </div>
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
+                userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}" dataModel="#{taskView.dataModel}" />
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
+                componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
+                componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}"
+                state="#{task.state}" />
+            </ui:fragment>
+          </f:facet>
+  
+          <f:facet name="taskBody">
+          </f:facet>
+  
+          <f:facet name="taskFilter">
+          </f:facet>
+        </ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
