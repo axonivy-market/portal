@@ -138,6 +138,9 @@ public class IvyTaskTransformer {
 
       result.setCaseTypeCode(c.getTypeCode());
       result.setCaseTypeName(c.getTypeName());
+
+      result.setCaseCategoryName(c.getCategoryName());
+      result.setCaseCategoryPath(c.getCategoryPath());
     }
 
     // Add technical case object
@@ -196,6 +199,9 @@ public class IvyTaskTransformer {
 
       result.setTechnicalCaseTypeCode(c.getTypeCode());
       result.setTechnicalCaseTypeName(c.getTypeName());
+
+      result.setCategoryName(t.getCategory().getName());
+      result.setCategoryPath(t.getCategoryPath());
     }
 
     return result;

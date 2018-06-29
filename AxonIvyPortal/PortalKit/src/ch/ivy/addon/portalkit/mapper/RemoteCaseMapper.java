@@ -101,6 +101,9 @@ public class RemoteCaseMapper {
     result.setServerUrl(ivyCase.getServerUrl());
     result.setCanUploadDeleteDocument(ivyCase.getCanUploadDeleteDocument());
 
+    result.setCategoryName(ivyCase.getCategoryName());
+    result.setCategoryPath(ivyCase.getCategoryPath());
+
     return result;
 
   }
@@ -210,6 +213,8 @@ public class RemoteCaseMapper {
     result.setDescription(ivyTask.getTechnicalCaseDescription());
     result.setName(ivyTask.getTechnicalCaseName());
 
+    result.setCategoryName(ivyTask.getCaseCategoryName());
+    result.setCategoryPath(ivyTask.getCaseCategoryPath());
 
     try {
       result.setPriority(WorkflowPriority.valueOf(ivyTask.getTechnicalCasePriority()));
@@ -305,6 +310,8 @@ public class RemoteCaseMapper {
     result.setDescription(ivyTask.getCaseDescription());
     result.setName(ivyTask.getCaseName());
 
+    result.setCategoryName(ivyTask.getCaseCategoryName());
+    result.setCategoryPath(ivyTask.getCaseCategoryPath());
 
     try {
       result.setPriority(WorkflowPriority.valueOf(ivyTask.getCasePriority()));
@@ -392,6 +399,8 @@ public class RemoteCaseMapper {
     remoteCase.setName(ivyCase.getName());
     remoteCase.setBusinessCase(ivyCase.isBusinessCase());
 
+    remoteCase.setCategoryName(ivyCase.getCategoryName());
+    remoteCase.setCategoryPath(ivyCase.getCategoryPath());
 
     try {
       remoteCase.setPriority(ivyCase.getPriority());

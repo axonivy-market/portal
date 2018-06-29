@@ -92,6 +92,9 @@ public class RemoteCase {
   
   private String serverUrl;
 
+  private String categoryName;
+  private String categoryPath;
+
   public String getAdditionalProperty(String name) throws PersistencyException {
     return additionalProperties.get(name);
   }
@@ -725,6 +728,22 @@ public class RemoteCase {
 
   public void setCanUploadDeleteDocument(boolean canUploadDeleteDocument) {
     this.canUploadDeleteDocument = canUploadDeleteDocument;
+  }
+
+  public String getCategoryName() {
+    return categoryName;
+  }
+
+  public void setCategoryName(String categoryName) {
+    this.categoryName = categoryName;
+  }
+
+  public String getCategoryPath() {
+    return categoryPath;
+  }
+
+  public void setCategoryPath(String categoryPath) {
+    this.categoryPath = categoryPath;
   }
 
 }

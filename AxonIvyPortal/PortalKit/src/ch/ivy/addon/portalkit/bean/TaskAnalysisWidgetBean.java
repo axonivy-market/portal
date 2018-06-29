@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +20,7 @@ import org.primefaces.model.Visibility;
 
 import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
@@ -33,15 +35,8 @@ public class TaskAnalysisWidgetBean implements Serializable {
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private TaskAnalysisLazyDataModel dataModel;
-  private Boolean isTaskDetailOpenning;
-  private List<Boolean> columns;
+  private Map<String, Boolean> columns;
   private String fileName;
-  
-  @PostConstruct
-  public void init() {
-	columns = Arrays.asList(true, false, true, false, true, true, false,
-				true, false, false, true, true, false, true);
-  }
 
   public TaskAnalysisWidgetBean() {
     expandedTaskId = -1L;
@@ -53,20 +48,17 @@ public class TaskAnalysisWidgetBean implements Serializable {
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
   }
 
+  @PostConstruct
+  public void init() {
+    columns = new HashMap<>();
+    for(TaskAndCaseAnalysisColumn column : TaskAndCaseAnalysisColumn.values()) {
+      columns.put(column.name(), column.isDefaultColumn());
+    }
+  }
+
   public Long getExpandedTaskId() {
     return expandedTaskId;
   }
-
-  public void setExpandedTaskId(Long expandedTaskId, boolean alreadyExpanded) {
-    if (alreadyExpanded) {
-      setIsTaskDetailOpenning(false);
-      this.expandedTaskId = 0L;
-    } else {
-      setIsTaskDetailOpenning(true);
-      this.expandedTaskId = expandedTaskId;
-    }
-  }
-  
 
   public TaskAnalysisLazyDataModel getDataModel() {
     return dataModel;
@@ -107,9 +99,9 @@ public class TaskAnalysisWidgetBean implements Serializable {
     return filterService.isDeleteFilterEnabledFor(filterData);
   }
   
-  public void onToggle(ToggleEvent e) {
-	columns.set((Integer) e.getData(),
-				e.getVisibility() == Visibility.VISIBLE);
+  public void onToggleColumns(ToggleEvent e) {
+    TaskAndCaseAnalysisColumn toggledColumn = TaskAndCaseAnalysisColumn.values()[(Integer) e.getData()];
+    columns.put(toggledColumn.name(), e.getVisibility() == Visibility.VISIBLE);
   }
   
   public void formatFileName() {
@@ -122,20 +114,16 @@ public class TaskAnalysisWidgetBean implements Serializable {
     return taskListRefreshInterval;
   }
 
-  public Boolean getIsTaskDetailOpenning() {
-    return isTaskDetailOpenning;
-  }
-  
-  public List<Boolean> getColumns() {
-	return columns;
-  }
-  
   public String getFileName() {
 	formatFileName();
 	return fileName;
   }
 
-  public void setIsTaskDetailOpenning(Boolean isTaskDetailOpenning) {
-    this.isTaskDetailOpenning = isTaskDetailOpenning;
+  public Map<String, Boolean> getColumns() {
+    return columns;
+  }
+
+  public void setColumns(Map<String, Boolean> columns) {
+    this.columns = columns;
   }
 }
