@@ -87,15 +87,16 @@ Ts0 @PushWFArc f1 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
-Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel,java.lang.Long) #txt
+Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel,java.lang.Long,java.lang.Integer) #txt
 Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel dataModel,java.lang.Long filterGroupId> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel dataModel,java.lang.Long filterGroupId,java.lang.Integer chunkSize> param = methodEvent.getInputArguments();
 ' #txt
 Ts0 f0 inParameterMapAction 'out.taskFilterGroupId=param.filterGroupId;
 ' #txt
 Ts0 f0 inActionCode 'if (param.#dataModel is initialized){
 	out.dataModel = param.dataModel;
+	out.dataModel.chunkSize = param.chunkSize;
 }' #txt
 Ts0 f0 outParameterDecl '<> result;
 ' #txt
@@ -103,6 +104,8 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(TaskAnalysisLazyDataModel,Long)</name>
+        <nameStyle>37,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
