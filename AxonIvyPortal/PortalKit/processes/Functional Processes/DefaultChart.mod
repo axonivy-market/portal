@@ -75,16 +75,16 @@ String chartName = "My default chart";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
 StatisticFilter statisticFilter = new StatisticFilter();
 
-if (!service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
-  StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), false);
+if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
+  StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart);		
 }</name>
-        <nameStyle>771
+        <nameStyle>777
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f5 288 34 752 268 -371 -128 #rect
+Dt0 f5 288 34 752 268 -368 -128 #rect
 Dt0 f5 @|IBIcon #fIcon
 >Proto Dt0 .type ch.ivy.addon.portalkit.DefaultChartData #txt
 >Proto Dt0 .processKind CALLABLE_SUB #txt
