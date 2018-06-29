@@ -10,7 +10,6 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="outerPanelId" default="main-area-panel" />
   <cc:attribute name="styleClass" />
-  <cc:attribute name="dataModel" />
   <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
   <cc:attribute name="selectedTaskId" />
@@ -91,27 +90,27 @@
         <p:fieldset legend="Task Filters" toggleable="false" styleClass="filter-fieldset MarTop20">
           <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container">
             <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container js-additional-filter-container">
-              <c:set var="filterContainer" value="#{cc.attrs.dataModel.taskFilterContainer}" />
+              <c:set var="filterContainer" value="#{data.dataModel.taskFilterContainer}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskPriorityFilter filter="#{filterContainer.priorityFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskStateFilter filter="#{filterContainer.stateFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCreationDateFilter filter="#{filterContainer.creationDateFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskExpiredDateFilter filter="#{filterContainer.expiredDateFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskDescriptionFilter filter="#{filterContainer.descriptionFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter filter="#{filterContainer.responsibleFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskNameFilter filter="#{filterContainer.NameFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskWorkerFilter filter="#{filterContainer.workerFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCategoryFilter filter="#{filterContainer.categoryFilter}"
-                dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
 
-              <h:panelGroup id="task-filter-add-container" styleClass="filter-add-container" style="order: #{cc.attrs.dataModel.selectedTaskFilters.size()}">
+              <h:panelGroup id="task-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedTaskFilters.size()}">
                 <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
                 <p:commandButton id="task-filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
                   styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
@@ -145,26 +144,26 @@
         <p:fieldset legend="Case Filters" toggleable="false" styleClass="MarTop20 filter-fieldset">
           <h:panelGroup id="case-filters-container" layout="block" styleClass="advanced-filter-container">
             <h:panelGroup id="additional-case-filter" styleClass="additional-filter-container js-additional-filter-container">
-              <c:set var="caseFilterContainer" value="#{cc.attrs.dataModel.caseFilterContainer}" />
+              <c:set var="caseFilterContainer" value="#{data.dataModel.caseFilterContainer}" />
               <cc:attribute name="filterContainerId" default="#{p:component('task-filters-container')}" />
               <cc:attribute name="filterAddingContainerId" default="#{p:component('filter-add-container')}" />
               <cc:attribute name="caseListId" default="#{p:component('case-list')}" />
               <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCreationDateFilter filter="#{caseFilterContainer.caseCreationDateFilter}"
-                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
+                   dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
               <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseFinishedDateFilter filter="#{caseFilterContainer.caseFinishedDateFilter}"
-                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/> 
+                   dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/> 
                <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseDescriptionFilter componentId="case-description-filter" filter="#{caseFilterContainer.caseDescriptionFilter}"
-                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
+                   dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
               <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseStateFilter filter="#{caseFilterContainer.stateFilter}"
-                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
+                   dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
               <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCreatorFilter filter="#{caseFilterContainer.caseCreatorFilter}"
-                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
+                   dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
               <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseNameFilter filter="#{caseFilterContainer.caseNameFilter}"
-                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
+                   dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
               <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCategoryFilter filter="#{caseFilterContainer.caseCategoryFilter}"
-                   dataModel="#{cc.attrs.dataModel}" selectedFilters="#{cc.attrs.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
+                   dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
 
-              <h:panelGroup id="case-filter-add-container" styleClass="filter-add-container" style="order: #{cc.attrs.dataModel.selectedCaseFilters.size()}">
+              <h:panelGroup id="case-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedCaseFilters.size()}">
                 <p:commandButton id="case-filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
                   styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
                 <p:overlayPanel id="case-filter-add-panel" styleClass="filter-add-panel" for="case-filter-add-action" my="left top"
