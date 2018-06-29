@@ -107,6 +107,9 @@ public class IvyCaseTransformer {
     ivyCase.setIvyNotes(new IvyNoteTransformer().transform(iCase.getNotes()));
     ivyCase.setIsBusinessCase(iCase.isBusinessCase());
     ivyCase.setServerUrl(ServerUrlUtils.buildUrlFromSystemProperties());
+
+    ivyCase.setCategoryName(iCase.getCategory().getName());
+    ivyCase.setCategoryPath(iCase.getCategoryPath());
     return ivyCase;
   }
 

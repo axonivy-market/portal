@@ -5,12 +5,14 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" default="state-filter" />
   <cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.taskfilter.TaskStateFilter" />
-  <cc:attribute name="dataModel" required="true" type="ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" />
+  <cc:attribute name="dataModel" required="true" />
+  <cc:attribute name="selectedFilters" />
+  <cc:attribute name="resultContainerUpdated" />
 </cc:interface>
 
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}" taskFilter="#{cc.attrs.filter}"
-    dataModel="#{cc.attrs.dataModel}">
+    selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
     <p:selectManyCheckbox id="state-selection" layout="pageDirection" value="#{cc.attrs.filter.selectedFilteredStates}">
       <f:selectItems value="#{cc.attrs.filter.filteredStates}" var="state" itemValue="#{state}"
         itemLabel="#{cc.attrs.filter.userFriendlyState(state)}" />

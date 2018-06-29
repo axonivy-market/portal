@@ -30,3 +30,6 @@ canCreateNewCharts 'Check user has permission to creating new charts' #fieldComm
 canCreateNewCharts PERSISTENT #fieldModifier
 hasDefaultChart Boolean #field
 hasDefaultChart PERSISTENT #fieldModifier
+canAnalyzeTask Boolean #field
+canAnalyzeTask 'Check user has permission to analyzing task' #fieldComment
+canAnalyzeTask PERSISTENT #fieldModifier
