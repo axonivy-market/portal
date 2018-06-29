@@ -125,6 +125,8 @@ public class RemoteTaskMapper {
     RemoteSecurityMember rsmExpiryActivator = getLocalSecurityMember(ivyTask.getExpireActivatorName());
     result.setExpiryActivator(rsmExpiryActivator);
     result.setExpiryTaskStartElementPid(ivyTask.getExpireTaskStartElementPid());
+    result.setCategoryName(ivyTask.getCategoryName());
+    result.setCategoryPath(ivyTask.getCategoryPath());
     return result;
   }
 

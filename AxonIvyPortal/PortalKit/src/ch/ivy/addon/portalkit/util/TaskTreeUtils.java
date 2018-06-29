@@ -116,9 +116,6 @@ public class TaskTreeUtils {
   }
   
   public static CheckboxTreeNode buildTaskCategoryCheckboxTreeRoot() {
-    if (root != null){
-      return root;
-    }
     List<String> involvedApplications = null;
     String appName = SecurityServiceUtils.getApplicationNameFromSession();
     if (StringUtils.isNotEmpty(appName)) {

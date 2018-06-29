@@ -240,6 +240,8 @@
           <xs:element minOccurs="0" name="caseBusinessObjectName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="caseBusinessPriority" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="caseBusinessStartTimestamp" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="caseCategoryName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="caseCategoryPath" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="caseCreatorUserName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="caseCustomDecimalField1" type="xs:float"></xs:element>
           <xs:element minOccurs="0" name="caseCustomDecimalField2" type="xs:float"></xs:element>
@@ -272,6 +274,8 @@
           <xs:element minOccurs="0" name="caseSubTypeName" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="caseTypeCode" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="caseTypeName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="categoryName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="categoryPath" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="customDecimalField1" type="xs:float"></xs:element>
           <xs:element minOccurs="0" name="customDecimalField2" type="xs:float"></xs:element>
           <xs:element minOccurs="0" name="customDecimalField3" type="xs:float"></xs:element>
