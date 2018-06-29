@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="componentId" default="task-worker-filter" />
+  <cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.taskfilter.TaskWorkerFilter" />
+  <cc:attribute name="dataModel" required="true" />
+  <cc:attribute name="selectedFilters" />
+  <cc:attribute name="resultContainerUpdated" />
+</cc:interface>
+
+<cc:implementation>
+  <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}"
+    taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
+    dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
+    <p:autoComplete id="worker" scrollHeight="200" dropdown="true" size="35" 
+      completeMethod="#{logic.autoCompleteForWorker}" value="#{cc.attrs.filter.selectedWorker}"
+      var="worker" itemValue="#{worker}" itemLabel="#{worker.displayName}"
+      converter="pojoConverter" cache="true" maxResults="100"
+      moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      styleClass="responsible-list-filter">
+      <f:event listener="#{data.setWorkers(cc.attrs.filter.workers)}" type="preRenderComponent" />
+      <p:ajax event="query" global="false" />
+      <p:column>
+        <i class="fa #{worker.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+        <h:outputText value="#{cc.attrs.filter.formatName(worker)}" />
+      </p:column>
+    </p:autoComplete>
+  </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
+</cc:implementation>
+</html>

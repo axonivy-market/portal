@@ -47,6 +47,10 @@
         update="#{p:component('widget-container')} create-chart-header">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
       </p:commandLink>
+      <p:commandLink id="task-analysis-page-navigation-link" actionListener="#{logic.navigateToTaskAnalysisPage}" rendered="#{!data.createMode and data.canAnalyzeTask}"
+      	styleClass="task-analysis-page-navigation-link">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/navigationLink')}"/>
+      </p:commandLink>
     </h:panelGroup>
 
     <h:panelGroup id="widget-container" layout="block"

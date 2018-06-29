@@ -38,4 +38,9 @@ public class TaskNode extends MainMenuNode {
   public void setCategoryRawPath(String categoryRawPath) {
     this.categoryRawPath = categoryRawPath;
   }
+  
+  @Override
+  public String toString() {
+    return this.getCategory();
+  }
 }
