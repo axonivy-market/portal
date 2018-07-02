@@ -11,7 +11,7 @@
         </p:commandButton>
   
         <p:commandButton id="toggler" type="button" value="Columns"/>
-        <p:columnToggler datasource="task-table" trigger="toggler">
+        <p:columnToggler id="task-table-toggler" datasource="task-table" trigger="toggler" >
           <p:ajax event="toggle" listener="#{taskAnalysisWidgetBean.onToggleColumns}" oncomplete="initializeScrollbar();" />
         </p:columnToggler>
       </h:panelGroup>
