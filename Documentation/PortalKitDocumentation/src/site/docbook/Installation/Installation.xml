@@ -707,8 +707,22 @@
 			<title>Migrate 7.1.0 to 7.2.0</title>
 			<para>
 					There are some changes (DefaultApplicationHomePage, DefaultLoginPage, GlobalSearch) in PortalStart process of Portal Template. If you have customized this process in your project,
-					copy the new PortalStart from Portal Template to your project and re-apply your customization. <code>Do not delete</code> PortalStart proccess in your project and copy new again, copy and override it.
+					copy the new PortalStart from Portal Template to your project and re-apply your customization. 
 			</para>
+            <important>
+              <para>    
+                In case you already have PortalStart process in your project, delete all elements in that process and copy everything from PortalStart process of Portal Template (to prevent start link id change).
+                <code>Do not delete</code> PortalStart proccess in your project and copy new again. 
+              </para>
+              <para>
+                  Check map param result of callable process after copy to make sure it's the same as original process.
+                  <mediaobject>
+                    <imageobject>
+                      <imagedata fileref="images/Installation/copy-start-process.png" />
+                    </imageobject>
+                </mediaobject>
+              </para>
+            </important>
 			<para>
 					EXPIRY_CHART_LAST_DRILLDOWN_LEVEL global variable is removed. User now can use a context menu to drilldown Task By Expiry chart. 
 			</para>
@@ -717,13 +731,27 @@
 			<title>Migrate 7.0.3 to 7.0.5 (or 7.1.0)</title>
 			<para>
 				There are some changes in PortalStart process of Portal Template. If you have customized this process in your project, copy the new PortalStart from Portal Template to your project and re-apply your customization. 
-                <code>Do not delete</code> PortalStart proccess in your project and copy new again, copy and override it.
-			</para>
+            </para>
+            
 			<para>
 				We introduce new method <code>findStartableLinkByUserFriendlyRequestPath(String requestPath)</code> in <code>ProcessStartCollector</code> class. If your project has customized 
 				<link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" />, use this method to generate link to your process.
 				If user doesn't have permission to start the process, this method will return empty string.
 			</para>
+            <important>
+              <para>    
+                In case you already have PortalStart process in your project, delete all elements in that process and copy everything from PortalStart process of Portal Template (to prevent start link id change).
+                <code>Do not delete</code> PortalStart proccess in your project and copy new again. 
+              </para>
+              <para>
+                  Check map param result of callable process after copy to make sure it's the same as original process.
+                  <mediaobject>
+                    <imageobject>
+                      <imagedata fileref="images/Installation/copy-start-process.png" />
+                    </imageobject>
+                </mediaobject>
+              </para>
+            </important>
 		</sect2>
 		<sect2>
 			<title>Migrate 7.0.2 to 7.0.3</title>
