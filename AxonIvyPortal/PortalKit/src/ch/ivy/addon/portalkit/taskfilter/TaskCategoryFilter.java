@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
 import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
+import ch.ivy.addon.portalkit.util.NodeUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -37,17 +37,7 @@ public class TaskCategoryFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (categories == null || categories.length == 0) {
-      return ALL;
-    }
-    List<String> values = new ArrayList<>();
-    for (CheckboxTreeNode node : categories) {
-      if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
-        TaskNode nodeData = (TaskNode) node.getData();
-        values.add(nodeData.getCategory());
-      }
-    }
-    return StringUtils.join(values, ", ");
+    return NodeUtils.getNodeValue(categories, TaskNode.class);
   }
 
   @Override
@@ -74,13 +64,9 @@ public class TaskCategoryFilter extends TaskFilter {
   @Override
   public void resetValues() {
     categories = new CheckboxTreeNode[] {};
-    unselectCheckboxTreeNode(root);
+    root.setSelected(false);
   }
 
-  private void unselectCheckboxTreeNode(CheckboxTreeNode node) {
-    node.setSelected(false);
-    node.getChildren().forEach(child -> unselectCheckboxTreeNode((CheckboxTreeNode) child));
-  }
 
   public CheckboxTreeNode[] getCategories() {
     return categories;
@@ -99,12 +85,8 @@ public class TaskCategoryFilter extends TaskFilter {
   }
 
   public List<String> getCategoryPaths() {
-    categoryPaths = new ArrayList<>();
-    for (CheckboxTreeNode node : categories) {
-      TaskNode nodeData = (TaskNode) node.getData();
-      categoryPaths.add(nodeData.getValue());
-    }
-    return categoryPaths;
+    this.categoryPaths = NodeUtils.getCategoryPaths(categories, TaskNode.class);
+    return this.categoryPaths;
   }
 
   public void setCategoryPaths(List<String> categoryPaths) {
