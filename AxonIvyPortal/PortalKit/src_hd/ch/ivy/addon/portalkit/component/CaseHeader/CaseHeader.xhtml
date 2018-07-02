@@ -44,10 +44,6 @@
   <h:outputText value="#{case.endTimestamp}" styleClass="case-header-end-time-cell case-header-default-cell">
     <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
   </h:outputText>
-
-  <h:panelGroup styleClass="case-header-pm-cell hidden-sm">
-    <h:outputText value="#{case.processModelName}" />
-  </h:panelGroup>
   <h:panelGroup id="case-state-cell" styleClass="case-header-default-cell">
     <h:panelGroup styleClass="fa fa-play-circle case-state-in-progress"
       rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
