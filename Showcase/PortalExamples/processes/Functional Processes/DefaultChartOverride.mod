@@ -57,12 +57,12 @@ String chartName2 = "My default chart 2";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
 StatisticFilter statisticFilter = new StatisticFilter();
 
-if (!service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1)) {
+if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1)) {
   StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart1);		
 }
 
-if (!service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2)) {
+if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2)) {
   StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartName2, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart2);		
 }' #txt

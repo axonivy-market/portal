@@ -7,7 +7,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_CATEGORIES_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DEFAULT_CHART;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXCEPTION_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXPIRY_PERIOD_CMS;
@@ -1162,9 +1161,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public boolean hasDefaultChart(long userId) {
-    List<StatisticChart> result =
-        repo().search(getType()).numberField(USER_ID).isEqualTo(userId).and().textField(DEFAULT_CHART)
-            .isEqualToIgnoringCase("true").execute().getAll();
-    return !result.isEmpty();
+    List<StatisticChart> findStatisticChartsByUserId = findStatisticChartsByUserId(userId);
+    return findStatisticChartsByUserId.stream().anyMatch(chart -> StringUtils.equalsIgnoreCase("true", chart.getDefaultChart()));
+  }
+  
+  public boolean checkDefaultStatisticChartNameExisted(long userId, String chartName) {
+    List<StatisticChart> statisticChartList = findStatisticChartsByUserId(userId);
+    return statisticChartList.stream().filter(
+        chart -> StringUtils.equals(chart.getName(), chartName) && 
+        StringUtils.equalsIgnoreCase("true", chart.getDefaultChart()))
+        .findFirst().isPresent();
   }
 }
