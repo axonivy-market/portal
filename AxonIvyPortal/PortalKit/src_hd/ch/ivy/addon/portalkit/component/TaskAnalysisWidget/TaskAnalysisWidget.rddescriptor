@@ -2,14 +2,6 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>sortByPriority</name>
-        <description></description>
-    </method>
-    <method>
-        <name>sortByExpiry</name>
-        <description></description>
-    </method>
-    <method>
         <name>findTasks</name>
         <description></description>
         <inputParameter>
@@ -86,16 +78,6 @@
             <name>taskFilterData</name>
             <description></description>
             <parameterType>ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>refreshTaskList</name>
-        <description></description>
-        <inputParameter>
-            <name>expandedTaskId</name>
-            <description></description>
-            <parameterType>java.lang.Long</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>

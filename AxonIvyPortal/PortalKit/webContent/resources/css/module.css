@@ -5031,3 +5031,20 @@ margin-top
 .statistic-result-list .task-table .ui-datatable-scrollable-body {
   height: 300px;
 }
+
+.ui-columntoggler[id$='task-table-toggler'] {
+  min-width: 200px;
+  padding: 0 !important;
+}
+
+.ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item:not(:first-child) {
+  margin-top: 2px;
+}
+
+.ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
+  font-size: 1.2rem;
+}
+
+.ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-close {
+  display: none;
+}
