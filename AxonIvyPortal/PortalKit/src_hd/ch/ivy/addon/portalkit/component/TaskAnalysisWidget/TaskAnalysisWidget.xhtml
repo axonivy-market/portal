@@ -187,13 +187,19 @@
 
         <!-- FILTER BUTTONS -->
         <div id="filter-buttons-container" class="MarTop20 filter-buttons-container">
-          <p:commandButton id="apply-filter" value="Apply filters" update="@(.statistic-result-list)" />
+          <p:commandButton id="apply-filter" value="Apply filters" process="@(.statistic-result-list)" update="@(.statistic-result-list)" />
           <p:commandButton id="filter-save-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
             icon="fa fa-save" update="save-filter-set-dialog #{cc.clientId}:filter-selection-container" resetValues="true"
             oncomplete="PF('save-filter-set-dialog').show();" />
         </div>
 
+        <!-- RESULT SECTION -->
         <ui:include src="StatisticResult.xhtml" />
+
+        <!-- FOOTER -->
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left"
+          styleClass="buttonDelegate floatLeft MarTop50" actionListener="#{logic.redirectToStatisticPage}" update="@(form)"/>
+        <p:spacer width="5" />
   </div>
 
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
@@ -237,7 +243,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.deleteFilter()}" styleClass=""
+      actionListener="#{logic.deleteFilter()}"
       oncomplete="PF('delete-filter-confirmation-dialog').hide();"
       update="task-filters-container filter-selection-form statistic-result-list task-filter-add-form
             case-filters-container case-filter-add-container" />
