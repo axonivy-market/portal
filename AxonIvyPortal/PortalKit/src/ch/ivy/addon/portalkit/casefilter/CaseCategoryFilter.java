@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
 import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
+import ch.ivy.addon.portalkit.util.NodeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
@@ -37,17 +37,7 @@ public class CaseCategoryFilter extends CaseFilter {
 
   @Override
   public String value() {
-    if (categories == null || categories.length == 0) {
-      return ALL;
-    }
-    List<String> values = new ArrayList<>();
-    for (CheckboxTreeNode node : categories) {
-      if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
-        CaseNode nodeData = (CaseNode) node.getData();
-        values.add(nodeData.getCategory());
-      }
-    }
-    return StringUtils.join(values, ", ");
+    return NodeUtils.getNodeValue(categories, CaseNode.class);
   }
 
   @Override
@@ -74,12 +64,7 @@ public class CaseCategoryFilter extends CaseFilter {
   @Override
   public void resetValues() {
     categories = new CheckboxTreeNode[] {};
-    unselectCheckboxTreeNode(root);
-  }
-  
-  private void unselectCheckboxTreeNode(CheckboxTreeNode node){
-    node.setSelected(false);
-    node.getChildren().forEach(child -> unselectCheckboxTreeNode((CheckboxTreeNode)child));
+    root.setSelected(false);
   }
 
   public CheckboxTreeNode[] getCategories() {
@@ -99,12 +84,8 @@ public class CaseCategoryFilter extends CaseFilter {
   }
 
   public List<String> getCategoryPaths() {
-    categoryPaths = new ArrayList<>();
-    for (CheckboxTreeNode node : categories) {
-      CaseNode nodeData = (CaseNode) node.getData();
-      categoryPaths.add(nodeData.getValue());
-    }
-    return categoryPaths;
+    this.categoryPaths = NodeUtils.getCategoryPaths(categories, CaseNode.class);
+    return this.categoryPaths;
   }
 
   public void setCategoryPaths(List<String> categoryPaths) {

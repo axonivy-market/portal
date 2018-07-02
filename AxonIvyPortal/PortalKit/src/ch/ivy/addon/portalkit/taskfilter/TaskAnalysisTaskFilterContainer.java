@@ -4,68 +4,18 @@ import java.util.Collections;
 
 import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
 
-public class TaskAnalysisTaskFilterContainer extends TaskFilterContainer {
+public class TaskAnalysisTaskFilterContainer extends DefaultTaskFilterContainer {
 
-  private TaskPriorityFilter priorityFilter = new TaskPriorityFilter();
-  private TaskDescriptionFilter descriptionFilter = new TaskDescriptionFilter();
-  private TaskCreationDateFilter creationDateFilter = new TaskCreationDateFilter();
-  private TaskExpiredDateFilter expiredDateFilter = new TaskExpiredDateFilter();
-  private TaskResponsibleFilter responsibleFilter = new TaskResponsibleFilter();
   private TaskNameFilter nameFilter = new TaskNameFilter();
   private TaskWorkerFilter workerFilter = new TaskWorkerFilter();
   private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
 
   public TaskAnalysisTaskFilterContainer() {
     super();
-    filters.add(priorityFilter);
-    filters.add(descriptionFilter);
-    filters.add(creationDateFilter);
-    filters.add(expiredDateFilter);
-    filters.add(responsibleFilter);
     filters.add(nameFilter);
     filters.add(workerFilter);
     filters.add(categoryFilter);
     Collections.sort(filters, new TaskFilterComparator());
-  }
-  
-  public TaskPriorityFilter getPriorityFilter() {
-    return priorityFilter;
-  }
-
-  public void setPriorityFilter(TaskPriorityFilter priorityFilter) {
-    this.priorityFilter = priorityFilter;
-  }
-
-  public TaskDescriptionFilter getDescriptionFilter() {
-    return descriptionFilter;
-  }
-
-  public void setDescriptionFilter(TaskDescriptionFilter descriptionFilter) {
-    this.descriptionFilter = descriptionFilter;
-  }
-
-  public TaskCreationDateFilter getCreationDateFilter() {
-    return creationDateFilter;
-  }
-
-  public void setCreationDateFilter(TaskCreationDateFilter creationDateFilter) {
-    this.creationDateFilter = creationDateFilter;
-  }
-
-  public TaskExpiredDateFilter getExpiredDateFilter() {
-    return expiredDateFilter;
-  }
-
-  public void setExpiredDateFilter(TaskExpiredDateFilter expiredDateFilter) {
-    this.expiredDateFilter = expiredDateFilter;
-  }
-
-  public TaskResponsibleFilter getResponsibleFilter() {
-    return responsibleFilter;
-  }
-
-  public void setResponsibleFilter(TaskResponsibleFilter responsibleFilter) {
-    this.responsibleFilter = responsibleFilter;
   }
 
   public TaskWorkerFilter getWorkerFilter() {
