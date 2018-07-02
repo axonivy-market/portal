@@ -76,7 +76,6 @@ public class StatisticChartConstants {
 
   public static final String USER_ID = "userId";
   public static final String NAME = "name";
-  public static final String DEFAULT_CHART = "defaultChart";
 
   public static final String JSON_QUERY = "jsonQuery";
   public static final String RESULT = "result";
