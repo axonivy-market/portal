@@ -68,32 +68,6 @@ public class TaskAnalysisWidgetBean implements Serializable {
     this.dataModel = dataModel;
   }
 
-  public String sanitizeHTML(String text) {
-    String sanitizedText = sanitize(text);
-    if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
-    }
-    return sanitizedText;
-  }
-
-  public String createTaskDescriptionInTaskStart(String text) {
-    String extractedText = extractTextFromHtml(text);
-    if (StringUtils.isBlank(extractedText)) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
-    }
-    return extractedText;
-  }
-
-  private String extractTextFromHtml(String text) {
-    String sanitizedText = sanitize(text);
-    Document doc = Jsoup.parse(sanitizedText);
-    return doc.body().text();
-  }
-
-  private String sanitize(String text) {
-    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
-  }
-
   public boolean isDeleteFilterEnabledFor(TaskAnalysisFilterData filterData) {
     TaskAnalysisFilterService filterService = new TaskAnalysisFilterService();
     return filterService.isDeleteFilterEnabledFor(filterData);

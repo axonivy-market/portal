@@ -234,7 +234,7 @@ Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskAnalysisFilterServ
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.enums.FilterType;
 TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
-TaskAnalysisFilterData taskFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
+TaskAnalysisFilterData taskFilterData = in.dataModel.saveTaskAnalysisFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
 if(FilterType.ONLY_ME == taskFilterData.type) {
 	in.taskPrivateFilters.add(taskFilterData);
 	in.taskPrivateFilters = taskFilterService.sortFilters(in.taskPrivateFilters) as List;
