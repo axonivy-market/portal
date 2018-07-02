@@ -195,7 +195,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return displayedTasks;
   }
 
-  private void storeDisplayedTasks(List<RemoteTask> displayedTasks) {
+  protected void storeDisplayedTasks(List<RemoteTask> displayedTasks) {
     data.addAll(displayedTasks);
     for (RemoteTask task : displayedTasks) {
       displayedTaskMap.put(keyOfTask(task), task);
@@ -222,7 +222,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         startIndex, count, criteria, serverId});
   }
 
-  private void initializedDataModel(TaskSearchCriteria criteria) {
+  protected void initializedDataModel(TaskSearchCriteria criteria) {
     data.clear();
     displayedTaskMap.clear();
     notDisplayedTaskMap.clear();
@@ -230,7 +230,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     setRowCount(getTaskCount(criteria));
   }
 
-  private List<RemoteTask> getDisplayedTasks(List<RemoteTask> notDisplayedTasks, int pageSize) {
+  protected List<RemoteTask> getDisplayedTasks(List<RemoteTask> notDisplayedTasks, int pageSize) {
     int displayedTaskCount = notDisplayedTasks.size() > pageSize ? pageSize : notDisplayedTasks.size();
     List<RemoteTask> displayedTasks = notDisplayedTasks.subList(0, displayedTaskCount);
     for (RemoteTask task : displayedTasks) {
@@ -239,7 +239,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return displayedTasks;
   }
 
-  private void putTasksToNotDisplayedTaskMap(List<RemoteTask> tasks) {
+  protected void putTasksToNotDisplayedTaskMap(List<RemoteTask> tasks) {
     for (RemoteTask task : tasks) {
       String keyOfTask = keyOfTask(task);
       if (!displayedTaskMap.containsKey(keyOfTask) && !notDisplayedTaskMap.containsKey(keyOfTask)) {
@@ -248,7 +248,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
   }
 
-  private List<RemoteTask> sortTasksInNotDisplayedTaskMap() {
+  protected List<RemoteTask> sortTasksInNotDisplayedTaskMap() {
     List<RemoteTask> notDisplayedTasks = new ArrayList<>();
     notDisplayedTasks.addAll(notDisplayedTaskMap.values());
     comparator = comparator(RemoteTask::getId);
@@ -574,7 +574,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     return taskFilterData;
   }
 
-  private void addCustomSettingsToTaskFilters(List<TaskFilter> taskFilters) {
+  public void addCustomSettingsToTaskFilters(List<TaskFilter> taskFilters) {
     if (isInProgressFilterDisplayed) {
       taskFilters.add(inProgressFilter);
     }
@@ -678,7 +678,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     // Placeholder for customization
   }
 
-  private void autoInitForNoAppConfiguration() {
+  protected void autoInitForNoAppConfiguration() {
     String applicationName = StringUtils.EMPTY;
     String applicationNameFromRequest =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
@@ -690,7 +690,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
   }
 
-  private void setValuesForStateFilter(TaskQueryCriteria querycriteria) {
+  protected void setValuesForStateFilter(TaskQueryCriteria querycriteria) {
     if (filterContainer != null) {
       filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(querycriteria.getIncludedStates()));
       filterContainer.getStateFilter().setSelectedFilteredStates(querycriteria.getIncludedStates());
@@ -698,7 +698,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
   }
 
-  private TaskQuery buildTaskQuery() {
+  protected TaskQuery buildTaskQuery() {
     TaskQuery taskQuery = TaskQueryService.service().createQuery(queryCriteria);
     IFilterQuery filterQuery = taskQuery.where();
     selectedFilters.forEach(selectedFilter -> {
@@ -728,7 +728,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     initSelectedColumns();
   }
 
-  private void initSelectedColumns() {
+  protected void initSelectedColumns() {
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
     Long applicationId = Ivy.request().getApplication().getId();
