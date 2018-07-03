@@ -199,8 +199,10 @@ As0 f17 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData
 ' #txt
 As0 f17 actionTable 'out=in;
 ' #txt
-As0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-ivy.task.reset();
+As0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+TaskUtils.resetTask(ivy.task);
+
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
 As0 f17 security system #txt
