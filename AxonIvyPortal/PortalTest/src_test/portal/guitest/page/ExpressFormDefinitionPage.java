@@ -68,6 +68,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     Sleeper.sleepTight(1000);
     waitForElementDisplayed(By.id("form:createTabs:createOneRadioGrid"), true);
     type(By.id("form:createTabs:OneRadioLabel"), label);
+    Sleeper.sleepTight(2000);
     addRadioOptions(numberOfOption);
     click(By.id("form:createTabs:add-radio-btn"));
     waitAjaxIndicatorDisappear();
