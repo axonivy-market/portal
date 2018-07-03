@@ -5,10 +5,13 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.TreeSet;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,11 +21,15 @@ import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.comparator.RemoteUserComparator;
+import ch.ivy.addon.portalkit.mapper.RemoteSecurityMemberMapper;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.ws.addon.IvyUser;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
@@ -56,6 +63,8 @@ public class UserUtils {
   private static final String SELECTED_CASE_FILTER_SET = "SELECTED_CASE_FILTER_SET";
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
+
+  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
   
   private UserUtils() {
 
@@ -393,5 +402,37 @@ public class UserUtils {
       return "";
     }
     return keyword;
+  }
+
+  @SuppressWarnings("unchecked")
+  public static List<RemoteSecurityMember> findAllUserByApplication(String errorMessage) {
+    List<RemoteSecurityMember> result = new ArrayList<>();
+    try {
+      List<RemoteUser> users =
+          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
+            @Override
+            public List<RemoteUser> call() throws Exception {
+              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+                return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
+                    .get("users", List.class);
+              }
+              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
+                  .call(Ivy.request().getApplication().getName()).get("users", List.class);
+            }
+          });
+
+      List<RemoteUser> distinctUsers =
+          users.stream().collect(
+              Collectors.collectingAndThen(
+                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))),
+                  ArrayList::new));
+
+      Collections.sort(distinctUsers, new RemoteUserComparator());
+
+      result.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
+    } catch (Exception e) {
+      Ivy.log().error(errorMessage, e);
+    }
+    return result;
   }
 }
