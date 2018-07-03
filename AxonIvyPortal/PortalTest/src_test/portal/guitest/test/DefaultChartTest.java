@@ -34,6 +34,7 @@ public class DefaultChartTest extends BaseTest {
 
   @Test
   public void testCreateDefaultChart() {
+    grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     Sleeper.sleepTight(20000);
@@ -54,6 +55,7 @@ public class DefaultChartTest extends BaseTest {
   
   @Test
   public void testRestoreDefaultChart() {
+    grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     Sleeper.sleepTight(2000);
@@ -106,5 +108,10 @@ public class DefaultChartTest extends BaseTest {
     chartNameInput.sendKeys("User chart");
     createChartButton.click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();
+  }
+  
+  private void grantPermissionToCreateChart() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
 }

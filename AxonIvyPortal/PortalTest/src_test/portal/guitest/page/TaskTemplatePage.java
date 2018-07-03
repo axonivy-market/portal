@@ -1,6 +1,7 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 public class TaskTemplatePage extends TemplatePage {
@@ -43,9 +44,10 @@ public class TaskTemplatePage extends TemplatePage {
     return findElementByCssSelector("[id^='" + documentUploadingDialogId +"']").isDisplayed();
   }
 
-  public TaskWidgetPage openFinishedTaskInHistoryArea() {
-    String firstFinishedTaskCssSelector = "div[id='case-item:history:case-histories'] > div > a";
-    return openATaskInCaseDetails(firstFinishedTaskCssSelector);
+  public void openFinishedTaskInHistoryArea() {
+    WebElement element = findElementById("case-item:history:show-more-note-link");
+    String url = element.getAttribute("href");
+    ((JavascriptExecutor) driver).executeScript("window.open('"+ url +"','_blank');");
   }
 
   public TaskWidgetPage openFirstRelatedTaskInHistoryArea() {
