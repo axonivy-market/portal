@@ -101,6 +101,7 @@ As0 f72 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent method
 <java.lang.String appUrl> param = methodEvent.getInputArguments();
 ' #txt
 As0 f72 inParameterMapAction 'out.applicationUrl=param.appUrl;
+out.selectedSubMenuItem=null;
 ' #txt
 As0 f72 outParameterDecl '<> result;
 ' #txt
@@ -108,6 +109,8 @@ As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>openApp(String)</name>
+        <nameStyle>15,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
