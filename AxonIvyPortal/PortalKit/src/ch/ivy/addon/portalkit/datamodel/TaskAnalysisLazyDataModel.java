@@ -288,28 +288,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   @Override
-  public void setRowIndex(int index) {
-    int idx = index;
-    if (idx >= data.size()) {
-      idx = -1;
-    }
-    this.rowIndex = idx;
-  }
-
-  @Override
-  public RemoteTask getRowData() {
-    return data.get(rowIndex);
-  }
-
-  @Override
-  public boolean isRowAvailable() {
-    if (data == null) {
-      return false;
-    }
-    return rowIndex >= 0 && rowIndex < data.size();
-  }
-
-  @Override
   public void setSortField(String sortField, boolean sortDescending) {
     taskQueryCriteria.setSortField(sortField);
     taskQueryCriteria.setSortDescending(sortDescending);
