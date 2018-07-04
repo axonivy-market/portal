@@ -27,19 +27,19 @@ import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 import portal.guitest.page.UserTaskWithMailFormPage;
 
-public class AxonExpressTest extends BaseTest{
-  private static final int USER_TASK_INDEX = 0;
-  private static final int USER_TASK_WITH_EMAIL_INDEX = 1;
-  private static final int INFORMATION_EMAIL_INDEX = 2;
-  private static final int APPROVAL_INDEX = 3;
+public class PortalExpressTest extends BaseTest{
+  protected static final int USER_TASK_INDEX = 0;
+  protected static final int USER_TASK_WITH_EMAIL_INDEX = 1;
+  protected static final int INFORMATION_EMAIL_INDEX = 2;
+  protected static final int APPROVAL_INDEX = 3;
   
-  private static final int INPUT_TEXT_TYPE_INDEX = 0;
-  private static final int INPUT_NUMBER_TYPE_INDEX = 1;
-  private static final int INPUT_DATE_TYPE_INDEX = 2;
+  protected static final int INPUT_TEXT_TYPE_INDEX = 0;
+  protected static final int INPUT_NUMBER_TYPE_INDEX = 1;
+  protected static final int INPUT_DATE_TYPE_INDEX = 2;
   
-  private HomePage homePage;
-  private ProcessWidgetPage processWidget;
-  private TaskWidgetPage taskWidgetPage;
+  protected HomePage homePage;
+  protected ProcessWidgetPage processWidget;
+  protected TaskWidgetPage taskWidgetPage;
   @Override
   @Before
   public void setup() {
@@ -159,17 +159,6 @@ public class AxonExpressTest extends BaseTest{
   }
 
   @Test
-  public void testAdhocMultiApprovalWhenMultiTask() {
-    goToCreateExpressProcess();
-    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
-    
-    ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
-    formDefinition.executeWorkflow();
-    executeExpressProcessWhenMultiApproval();
-  }
-
-  @Test
   public void testRejectedApprovalWhenMultiTask() {
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
@@ -193,7 +182,7 @@ public class AxonExpressTest extends BaseTest{
     executeComplexProcess();
   }
 
-  private void rejectWhenMultiApproval() {
+  protected void rejectWhenMultiApproval() {
     executeUserTask();
     assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.ADMIN_USER);
@@ -206,7 +195,7 @@ public class AxonExpressTest extends BaseTest{
     new ExpressEndPage().finish();
   }
 
-  private ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
+  protected ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ExpressResponsible responsible2 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
     
@@ -224,7 +213,7 @@ public class AxonExpressTest extends BaseTest{
     return formDefinition;
   }
 
-  private ExpressFormDefinitionPage configureComplexProcess(ExpressProcessPage expressProcessPage) {
+  protected ExpressFormDefinitionPage configureComplexProcess(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ExpressResponsible responsible2 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
     
@@ -251,7 +240,7 @@ public class AxonExpressTest extends BaseTest{
     return formDefinition;
   }
 
-  private void executeExpressProcessWhenMultiApproval() {
+  protected void executeExpressProcessWhenMultiApproval() {
     executeUserTask();
     assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.ADMIN_USER);
@@ -275,8 +264,8 @@ public class AxonExpressTest extends BaseTest{
     new ExpressEndPage().finish();
   }
 
-  private void executeComplexProcess() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+  protected void executeComplexProcess() {
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
     UserTaskWithMailFormPage userTaskWithMailFormPage = new UserTaskWithMailFormPage();
     userTaskWithMailFormPage.selectEmailTab();
@@ -289,8 +278,8 @@ public class AxonExpressTest extends BaseTest{
     new ExpressEndPage().finish();
   }
 
-  private String executeReview() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+  protected String executeReview() {
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
@@ -298,8 +287,8 @@ public class AxonExpressTest extends BaseTest{
     return approvalResult;
   }
   
-  private String executeReview(String taskName) {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+  protected String executeReview(String taskName) {
+    taskWidgetPage = new TaskWidgetPage();
     Sleeper.sleepTight(2000);
     taskWidgetPage.filterTasksBy(taskName);
     taskWidgetPage.startTask(0);
@@ -309,15 +298,15 @@ public class AxonExpressTest extends BaseTest{
     return approvalResult;
   }
 
-  private void executeUserTask() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+  protected void executeUserTask() {
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
   }
   
-  private void executeUserTask(String taskName) {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+  protected void executeUserTask(String taskName) {
+    taskWidgetPage = new TaskWidgetPage();
     Sleeper.sleepTight(2000);
     taskWidgetPage.filterTasksBy(taskName);
     taskWidgetPage.startTask(0);
@@ -325,30 +314,30 @@ public class AxonExpressTest extends BaseTest{
     expressTaskPage.finish();
   }
   
-  private void startExpressProcess(String processName) {
-    HomePage homePage = new HomePage();
+  protected void startExpressProcess(String processName) {
+    homePage = new HomePage();
     GlobalSearch globalSearch= homePage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
     searchResultPage.startProcess(processName);
   }
 
-  private void executeApproval(String comment) {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+  protected void executeApproval(String comment) {
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
   }
 
-  private void rejectApproval(String comment) {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+  protected void rejectApproval(String comment) {
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.reject();
   }
   
-  private void goToCreateExpressProcess() {
+  protected void goToCreateExpressProcess() {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
     processWidget.openExpressPage();
