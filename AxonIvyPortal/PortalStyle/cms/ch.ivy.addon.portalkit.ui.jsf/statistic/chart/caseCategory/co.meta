@@ -1,4 +1,4 @@
-co: name={caseCategory} description={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} visualorder={0} guid={160483F8383DF390} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={caseCategory} description={} changed={2018-07-04 10:28:37 CEST} changedby={mnhnam} visualorder={0} guid={160483F8383DF390} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={1604840BA614EDFD} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} properties={} id={}
-val: guid={160483F838C3BE70} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-12 02:03:30 CET} validto={} changed={2017-12-12 02:03:30 CET} changedby={mnhnam} properties={} id={}
+val: guid={160483F838C3BE70} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-12 02:03:30 CET} validto={} changed={2018-07-04 10:28:36 CEST} changedby={mnhnam} properties={} id={}
 val: guid={1604840B8F9C5CB0} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:13 CET} validto={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} properties={} id={}

@@ -49,12 +49,12 @@ public class TaskCategoryFilter extends TaskFilter {
     IFilterQuery filterQuery = taskQuery.where();
     for (CheckboxTreeNode node : categories) {
       if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
-        TaskNode nodeData = (TaskNode) node.getData();
+        String category = ((TaskNode) node.getData()).getCategoryRawPath();
         if (node.isLeaf()) {
-          filterQuery.or().category().isEqualIgnoreCase(nodeData.getValue());
+          filterQuery.or().category().isEqualIgnoreCase(category);
         } else {
-          filterQuery.or().category().isEqualIgnoreCase(nodeData.getValue());
-          filterQuery.or().category().isLikeIgnoreCase(String.format("%s%%", nodeData.getValue() + CaseTreeUtils.DELIMITER));
+          filterQuery.or().category().isEqualIgnoreCase(category);
+          filterQuery.or().category().isLikeIgnoreCase(String.format("%s%%", category + CaseTreeUtils.DELIMITER));
         }
       }
     }

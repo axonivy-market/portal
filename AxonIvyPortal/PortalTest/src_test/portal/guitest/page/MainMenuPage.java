@@ -113,6 +113,7 @@ public class MainMenuPage extends TemplatePage {
 
   public StatisticWidgetPage selectStatisticDashboard() {
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")").click();
+    waitForPageLoaded();
     waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     return new StatisticWidgetPage();
   }

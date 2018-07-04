@@ -393,6 +393,12 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     this.selectedTaskAnalysisFilterData = selectedTaskAnalysisFilterData;
   }
 
+  @Override
+  public void removeFilter(TaskFilter filter) {
+    filter.resetValues();
+    selectedTaskFilters.remove(filter);
+  }
+
   public void removeFilter(CaseFilter filter) {
     filter.resetValues();
     selectedCaseFilters.remove(filter);

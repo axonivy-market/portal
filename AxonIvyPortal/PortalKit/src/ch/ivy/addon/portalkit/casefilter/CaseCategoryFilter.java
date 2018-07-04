@@ -49,12 +49,12 @@ public class CaseCategoryFilter extends CaseFilter {
     IFilterQuery filterQuery = caseQuery.where();
     for (CheckboxTreeNode node : categories) {
       if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
-        CaseNode nodeData = (CaseNode) node.getData();
+        String category = ((CaseNode) node.getData()).getCategoryRawPath();
         if (node.isLeaf()) {
-          filterQuery.or().category().isEqualIgnoreCase(nodeData.getValue());
+          filterQuery.or().category().isEqualIgnoreCase(category);
         } else {
-          filterQuery.or().category().isEqualIgnoreCase(nodeData.getValue());
-          filterQuery.or().category().isLikeIgnoreCase(String.format("%s%%", nodeData.getValue() + CaseTreeUtils.DELIMITER));
+          filterQuery.or().category().isEqualIgnoreCase(category);
+          filterQuery.or().category().isLikeIgnoreCase(String.format("%s%%", category + CaseTreeUtils.DELIMITER));
         }
       }
     }
