@@ -2,6 +2,7 @@ package portal.guitest.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -39,6 +40,17 @@ public class StatisticWidgetPage extends TemplatePage {
     switchLink.click();
   }
 
+  public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
+    String taskAnalysisLinkString = "statistics-widget:task-analysis-page-navigation-link";
+    waitForElementDisplayed(By.id(taskAnalysisLinkString), true, DEFAULT_TIMEOUT);
+    WebElement taskAnalysisLink = findElementById(taskAnalysisLinkString);
+
+    taskAnalysisLink.click();
+    waitForElementDisplayed(By.id("task-widget"), true, DEFAULT_TIMEOUT);
+
+    return new TaskAnalysisWidgetPage();
+  }
+
   public boolean isCompactMode() {
     waitForPageLoaded();
     waitForElementDisplayed(By.id("statistics-widget:widget-container"), true, DEFAULT_TIMEOUT);
@@ -57,5 +69,9 @@ public class StatisticWidgetPage extends TemplatePage {
   
   public boolean hasCreateChartsLink(){
     return isElementPresent(By.id("statistics-widget:create-chart-link-label"));
+  }
+
+  public boolean hasTaskAnalysisLink() {
+    return isElementPresent(By.id("statistics-widget:task-analysis-page-navigation-link"));
   }
 }

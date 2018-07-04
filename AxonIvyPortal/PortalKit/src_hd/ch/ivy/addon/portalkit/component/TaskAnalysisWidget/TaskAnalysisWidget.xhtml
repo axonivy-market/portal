@@ -39,7 +39,7 @@
                 global="false" />
               <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
                 hideEffect="fade" my="left top" at="left bottom">
-                <h:panelGroup id="private-filters" rendered="#{not empty data.taskPublicFilters}">
+                <h:panelGroup id="public-filters" rendered="#{not empty data.taskPublicFilters}">
                   <div class="filter-type-label">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                   </div>
@@ -61,7 +61,7 @@
                 </h:panelGroup>
                 <p:separator rendered="#{not empty data.taskPublicFilters and not empty data.taskPrivateFilters}"
                   styleClass="filter-separator" />
-                <h:panelGroup id="public-filters" rendered="#{not empty data.taskPrivateFilters}">
+                <h:panelGroup id="private-filters" rendered="#{not empty data.taskPrivateFilters}">
                   <div class="filter-type-label">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                   </div>
@@ -87,7 +87,7 @@
         </h:panelGroup>
 
         <!-- TASK FILTERS -->
-        <p:fieldset legend="Task Filters" toggleable="false" styleClass="filter-fieldset MarTop20">
+        <p:fieldset id="task-filters-fieldset" legend="Task Filters" toggleable="false" styleClass="filter-fieldset MarTop20">
           <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container">
             <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container js-additional-filter-container">
               <c:set var="filterContainer" value="#{data.dataModel.taskFilterContainer}" />
@@ -141,7 +141,7 @@
         </p:fieldset>
 
         <!-- CASE FILTERS -->
-        <p:fieldset legend="Case Filters" toggleable="false" styleClass="MarTop20 filter-fieldset">
+        <p:fieldset id="case-filters-fieldset" legend="Case Filters" toggleable="false" styleClass="MarTop20 filter-fieldset">
           <h:panelGroup id="case-filters-container" layout="block" styleClass="advanced-filter-container">
             <h:panelGroup id="additional-case-filter" styleClass="additional-filter-container js-additional-filter-container">
               <c:set var="caseFilterContainer" value="#{data.dataModel.caseFilterContainer}" />
@@ -197,7 +197,7 @@
         <ui:include src="StatisticResult.xhtml" />
 
         <!-- FOOTER -->
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left"
+        <p:commandButton id="back-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left"
           styleClass="buttonDelegate floatLeft MarTop50" actionListener="#{logic.redirectToStatisticPage}" update="@(form)"/>
         <p:spacer width="5" />
   </div>
@@ -227,7 +227,7 @@
         <p:commandButton id="filter-save-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
-          actionListener="#{logic.saveFilter}" update="#{cc.clientId}:filter-save-form">
+          actionListener="#{logic.saveFilter}" update="#{cc.clientId}:filter-save-form #{cc.clientId}:filter-selection-container">
         </p:commandButton>
         <p:spacer width="5px" />
         <p:commandButton type="button" styleClass="portal-cancel-button"
