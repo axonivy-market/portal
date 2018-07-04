@@ -243,6 +243,7 @@ if(FilterType.ONLY_ME == taskFilterData.type) {
 	in.taskPublicFilters = taskFilterService.sortFilters(in.taskPublicFilters) as List;
 }
 in.dataModel.selectedTaskAnalysisFilterData = taskFilterData;' #txt
+Ts0 f24 security system #txt
 Ts0 f24 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -311,6 +312,7 @@ TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
 in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
 in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
 in.filterType = FilterType.ONLY_ME;' #txt
+Ts0 f27 security system #txt
 Ts0 f27 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
