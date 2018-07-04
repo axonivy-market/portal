@@ -20,20 +20,20 @@
          lazy="true" scrollable="true" liveScroll="true" scrollRows="10" styleClass="task-table">
 
         <p:column id="case-name" headerText="Case name" sortBy="#{CASE_NAME}" width="250"
-          visible="#{taskAnalysisWidgetBean.columns.get('CASE_NAME')}"
-          exportable="#{taskAnalysisWidgetBean.columns.get('CASE_NAME')}">
+          visible="#{taskAnalysisWidgetBean.columns['CASE_NAME']}"
+          exportable="#{taskAnalysisWidgetBean.columns['CASE_NAME']}">
           <h:outputText value="#{task.case.name}"/>
         </p:column>
 
         <p:column id="case-description" headerText="Case Description" sortBy="#{CASE_DESCRIPTION}" width="250"
-          visible="#{taskAnalysisWidgetBean.columns.get('CASE_DESCRIPTION')}"
-          exportable="#{taskAnalysisWidgetBean.columns.get('CASE_DESCRIPTION')}">
+          visible="#{taskAnalysisWidgetBean.columns['CASE_DESCRIPTION']}"
+          exportable="#{taskAnalysisWidgetBean.columns['CASE_DESCRIPTION']}">
           <h:outputText value="#{task.case.description}" />
         </p:column>
 
         <p:column id="case-id" headerText="Case Id" sortBy="#{CASE_ID}" width="120"
-          visible="#{taskAnalysisWidgetBean.columns.get('CASE_ID')}"
-          exportable="#{taskAnalysisWidgetBean.columns.get('CASE_ID')}">
+          visible="#{taskAnalysisWidgetBean.columns['CASE_ID']}"
+          exportable="#{taskAnalysisWidgetBean.columns['CASE_ID']}">
           <h:outputText value="#{task.case.getId()}" />
         </p:column>
 
@@ -41,7 +41,6 @@
           visible="#{taskAnalysisWidgetBean.columns['CASE_CATEGORY']}"
           exportable="#{taskAnalysisWidgetBean.columns['CASE_CATEGORY']}">
           <h:outputText id="case-category-value" value="#{task.case.categoryName}" />
-          <p:tooltip id="case-category-value-tooltip" for="case-category-value" value="Full category: #{task.case.categoryPath}" />
         </p:column>
 
         <p:column id="case-creator" headerText="Case Creator" sortBy="#{CASE_CREATOR}" width="200"
