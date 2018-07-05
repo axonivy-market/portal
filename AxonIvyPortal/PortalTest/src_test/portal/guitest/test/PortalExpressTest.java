@@ -303,6 +303,8 @@ public class PortalExpressTest extends BaseTest{
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
+    HomePage home = new HomePage();
+    home.waitForPageLoaded();
   }
   
   protected void executeUserTask(String taskName) {
@@ -327,6 +329,8 @@ public class PortalExpressTest extends BaseTest{
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
+    HomePage home = new HomePage();
+    home.waitForPageLoaded();
   }
 
   protected void rejectApproval(String comment) {
