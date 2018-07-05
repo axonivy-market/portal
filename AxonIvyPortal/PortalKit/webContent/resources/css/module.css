@@ -5029,7 +5029,11 @@ margin-top
 }
 
 .statistic-result-list .task-table .ui-datatable-scrollable-body {
-  height: 300px;
+  max-height: 315px;
+}
+
+.statistic-result-list .task-table .ui-datatable-scrollable-body table {
+  box-sizing: border-box;
 }
 
 .ui-columntoggler[id$='task-table-toggler'] {
