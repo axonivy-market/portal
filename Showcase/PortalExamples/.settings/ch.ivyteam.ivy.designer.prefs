@@ -1,4 +1,13 @@
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_DATA_CLASS=ch.ivyteam.ivy.project.portal.examples.Data
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_NAMESPACE=ch.ivyteam.ivy.project.portal.examples
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:ACTIVATE_PROCESS_DATA_HISTORY=true
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:ANIMATION_FOLLOWING_MODE=NONE
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:EXECUTE_INTERMEDIATE_EVENT_BEANS=true
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:EXECUTE_START_EVENT_BEANS=true
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:EXTENAL_BROWSER=false
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:NUMBER_OF_EXECUTIONS_FOR_WHICH_TO_KEEP_PROCESS_DATA_IN_HISTORY=10
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:NUMBER_OF_REQUESTS_FOR_WHICH_TO_KEEP_PROCESS_DATA_IN_HISTORY=10
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:START_ENGINES_ON_DESIGNER_START=true
+ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:useProjectSettings=true
 ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=63000
 eclipse.preferences.version=1
