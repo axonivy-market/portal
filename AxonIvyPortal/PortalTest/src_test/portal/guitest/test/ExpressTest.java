@@ -108,6 +108,8 @@ public class ExpressTest extends BaseTest{
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
+    HomePage home = new HomePage();
+    home.waitForPageLoaded();
   }
   
   private void executeApproval(String comment) {
@@ -116,6 +118,8 @@ public class ExpressTest extends BaseTest{
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
+    HomePage home = new HomePage();
+    home.waitForPageLoaded();
   }
 
   private void goToCreateExpressProcess() {
