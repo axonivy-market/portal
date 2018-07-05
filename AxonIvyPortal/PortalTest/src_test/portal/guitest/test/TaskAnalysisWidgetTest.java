@@ -172,7 +172,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
         .findElementById("task-widget:statistic-result-form:task-table_data")
         .findElements(By.cssSelector("tr[role='row']"));
 
-    assertEquals(1, results.size());
+    assertEquals(2, results.size());
   }
 
   @Test
