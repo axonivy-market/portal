@@ -57,7 +57,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
-  protected static final int BUFFER_LOAD = 10;
   private static final String TASK_COLUMN_PREFIX = "TASK_";
   private static final String CASE_COLUMN_PREFIX = "CASE_";
 
