@@ -81,6 +81,22 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
+    <method>
+        <name>getExportedFile</name>
+        <description></description>
+        <inputParameter>
+            <name>columnsVisibility</name>
+            <description></description>
+            <parameterType>java.util.Map</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <outputParameter>
+            <name>exportedFile</name>
+            <description></description>
+            <parameterType>org.primefaces.model.StreamedContent</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </outputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

@@ -1,9 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +18,6 @@ import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
@@ -33,7 +29,7 @@ public class TaskAnalysisWidgetBean implements Serializable {
   private Long expandedTaskId;
   private TaskAnalysisLazyDataModel dataModel;
   private Map<String, Boolean> columns;
-  private String fileName;
+
 
   public TaskAnalysisWidgetBean() {
     expandedTaskId = -1L;
@@ -74,20 +70,10 @@ public class TaskAnalysisWidgetBean implements Serializable {
     TaskAndCaseAnalysisColumn toggledColumn = TaskAndCaseAnalysisColumn.values()[(Integer) e.getData()];
     columns.put(toggledColumn.name(), e.getVisibility() == Visibility.VISIBLE);
   }
-  
-  public void formatFileName() {
-	SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmm");
-	Date createdFileTime = new Date();
-	fileName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/exportedTasksCasesFileName", Arrays.asList(dateFormat.format(createdFileTime)));
-  }
+
 
   public Long getTaskListRefreshInterval() {
     return taskListRefreshInterval;
-  }
-
-  public String getFileName() {
-	formatFileName();
-	return fileName;
   }
 
   public Map<String, Boolean> getColumns() {

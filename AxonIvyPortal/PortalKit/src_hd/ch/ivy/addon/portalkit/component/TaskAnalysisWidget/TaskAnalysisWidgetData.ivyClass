@@ -46,3 +46,9 @@ scrollPosition Integer #field
 scrollPosition PERSISTENT #fieldModifier
 expandedTaskId Long #field
 expandedTaskId PERSISTENT #fieldModifier
+exportedFile org.primefaces.model.StreamedContent #field
+exportedFile PERSISTENT #fieldModifier
+exportedTasks java.util.List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+exportedTasks PERSISTENT #fieldModifier
+columnsVisibility java.util.Map #field
+columnsVisibility PERSISTENT #fieldModifier
