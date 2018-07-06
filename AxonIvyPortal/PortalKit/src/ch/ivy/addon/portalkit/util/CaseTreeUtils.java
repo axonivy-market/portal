@@ -32,7 +32,7 @@ public class CaseTreeUtils {
   private CaseTreeUtils() {}
 
   /**
-   * Convert field CustomVarCharField5 of cases to TreeNode
+   * Convert categories of cases to TreeNode
    * 
    * @param categories
    * @param firstCategory
@@ -197,9 +197,9 @@ public class CaseTreeUtils {
 
   public static String getLastCategoryFromCategoryPath(String categoryPath) {
     if (!StringUtils.isBlank(categoryPath)) {
-      String[] categories = categoryPath.split("/");
+      String[] categories = categoryPath.split(DELIMITER);
       return categories[categories.length - 1];
     }
-    return "";
+    return StringUtils.EMPTY;
   }
 }

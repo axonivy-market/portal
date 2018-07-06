@@ -5,7 +5,6 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.filter.AbstractFilterData;
-import ch.ivyteam.ivy.environment.Ivy;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,14 +37,12 @@ public class TaskAnalysisFilterData extends AbstractFilterData {
   @Override
   @JsonIgnore
   public List getFilters() {
-    Ivy.log().warn("==getFilters===");
     throw new UnsupportedOperationException();
   }
 
   @Override
   @JsonIgnore
   public String getKeyword() {
-    Ivy.log().warn("==getKeyword===");
     return super.getKeyword();
   }
 
