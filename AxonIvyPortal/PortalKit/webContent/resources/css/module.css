@@ -4860,6 +4860,7 @@ margin-top
 
 .custom-val-selection {
 	width: 100% !important;
+	margin-bottom: 20px;
 }
 
 .custom-val-selection .ui-autocomplete-input {
