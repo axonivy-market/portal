@@ -7,7 +7,7 @@
     <h:form id="statistic-result-form">
       <h:panelGroup layout="block" id="statistic-result-buttons-container" styleClass="ui-g statistic-result-buttons-container MarTop50">
         <p:commandButton ajax="false" styleClass="FRight" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-          <p:dataExporter type="xls" target="task-table" fileName="#{taskAnalysisWidgetBean.fileName}" />
+          <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
         </p:commandButton>
   
         <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}"/>
@@ -83,7 +83,7 @@
         <p:column id="task-activator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskResponsible')}" sortBy="#{TASK_ACTIVATOR}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_ACTIVATOR']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_ACTIVATOR']}">
-          <h:outputText value="#{task.activatorName}" />
+          <h:outputText value="#{task.activatorUserName}" />
         </p:column>
 
         <p:column id="task-worker" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskWorker')}" sortBy="#{TASK_WORKER}" width="200"
