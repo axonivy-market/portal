@@ -87,7 +87,7 @@
         </h:panelGroup>
 
         <!-- TASK FILTERS -->
-        <p:fieldset id="task-filters-fieldset" legend="Task Filters" toggleable="false" styleClass="filter-fieldset MarTop20">
+        <p:fieldset id="task-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFilter')}" toggleable="false" styleClass="filter-fieldset MarTop20">
           <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container">
             <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container js-additional-filter-container">
               <c:set var="filterContainer" value="#{data.dataModel.taskFilterContainer}" />
@@ -141,7 +141,7 @@
         </p:fieldset>
 
         <!-- CASE FILTERS -->
-        <p:fieldset id="case-filters-fieldset" legend="Case Filters" toggleable="false" styleClass="MarTop20 filter-fieldset">
+        <p:fieldset id="case-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseFilter')}" toggleable="false" styleClass="MarTop20 filter-fieldset">
           <h:panelGroup id="case-filters-container" layout="block" styleClass="advanced-filter-container">
             <h:panelGroup id="additional-case-filter" styleClass="additional-filter-container js-additional-filter-container">
               <c:set var="caseFilterContainer" value="#{data.dataModel.caseFilterContainer}" />
@@ -187,7 +187,7 @@
 
         <!-- FILTER BUTTONS -->
         <div id="filter-buttons-container" class="MarTop20 filter-buttons-container">
-          <p:commandButton id="apply-filter" value="Apply filters" process="@(.statistic-result-list)" update="@(.statistic-result-list)" />
+          <p:commandButton id="apply-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" process="@(.statistic-result-list)" update="@(.statistic-result-list)" />
           <p:commandButton id="filter-save-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
             icon="fa fa-save" update="save-filter-set-dialog #{cc.clientId}:filter-selection-container" resetValues="true"
             oncomplete="PF('save-filter-set-dialog').show();" />
