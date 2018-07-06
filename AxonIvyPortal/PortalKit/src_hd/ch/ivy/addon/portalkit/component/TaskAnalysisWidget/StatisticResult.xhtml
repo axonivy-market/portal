@@ -6,11 +6,11 @@
   <h:panelGroup id="statistic-result-list" layout="block" styleClass="statistic-result-list MarTop10">
     <h:form id="statistic-result-form">
       <h:panelGroup layout="block" id="statistic-result-buttons-container" styleClass="ui-g statistic-result-buttons-container MarTop50">
-        <p:commandButton ajax="false" style="float:right" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-          <p:dataExporter type="xls" target="task-table" fileName="#{taskAnalysisWidgetBean.fileName}"/>
+        <p:commandButton ajax="false" styleClass="FRight" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
+          <p:dataExporter type="xls" target="task-table" fileName="#{taskAnalysisWidgetBean.fileName}" />
         </p:commandButton>
   
-        <p:commandButton id="toggler" type="button" value="Columns"/>
+        <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}"/>
         <p:columnToggler id="task-table-toggler" datasource="task-table" trigger="toggler" >
           <p:ajax event="toggle" listener="#{taskAnalysisWidgetBean.onToggleColumns}" oncomplete="initializeScrollbar();" />
         </p:columnToggler>
@@ -19,112 +19,112 @@
       <p:dataTable id="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.identifier}" sortMode="single"
          lazy="true" scrollable="true" liveScroll="true" scrollRows="10" styleClass="task-table">
 
-        <p:column id="case-name" headerText="Case name" sortBy="#{CASE_NAME}" width="250"
+        <p:column id="case-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortBy="#{CASE_NAME}" width="250"
           visible="#{taskAnalysisWidgetBean.columns['CASE_NAME']}"
           exportable="#{taskAnalysisWidgetBean.columns['CASE_NAME']}">
           <h:outputText value="#{task.case.name}"/>
         </p:column>
 
-        <p:column id="case-description" headerText="Case Description" sortBy="#{CASE_DESCRIPTION}" width="250"
+        <p:column id="case-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseDescription')}" sortBy="#{CASE_DESCRIPTION}" width="250"
           visible="#{taskAnalysisWidgetBean.columns['CASE_DESCRIPTION']}"
           exportable="#{taskAnalysisWidgetBean.columns['CASE_DESCRIPTION']}">
           <h:outputText value="#{task.case.description}" />
         </p:column>
 
-        <p:column id="case-id" headerText="Case Id" sortBy="#{CASE_ID}" width="120"
+        <p:column id="case-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortBy="#{CASE_ID}" width="120"
           visible="#{taskAnalysisWidgetBean.columns['CASE_ID']}"
           exportable="#{taskAnalysisWidgetBean.columns['CASE_ID']}">
           <h:outputText value="#{task.case.getId()}" />
         </p:column>
 
-        <p:column id="case-category" headerText="Case Category" sortBy="#{CASE_CATEGORY}" width="200"
+        <p:column id="case-category" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCategory')}" sortBy="#{CASE_CATEGORY}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_CATEGORY']}"
           exportable="#{taskAnalysisWidgetBean.columns['CASE_CATEGORY']}">
           <h:outputText id="case-category-value" value="#{task.case.categoryName}" />
         </p:column>
 
-        <p:column id="case-creator" headerText="Case Creator" sortBy="#{CASE_CREATOR}" width="200"
+        <p:column id="case-creator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCreator')}" sortBy="#{CASE_CREATOR}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}"
           exportable="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}">
           <h:outputText value="#{task.case.creatorUserName}" />
         </p:column>
 
-        <p:column id="case-state" headerText="Case State" sortBy="#{CASE_STATE}" width="120"
+        <p:column id="case-state" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseState')}" sortBy="#{CASE_STATE}" width="120"
           visible="#{taskAnalysisWidgetBean.columns['CASE_STATE']}"
           exportable="#{taskAnalysisWidgetBean.columns['CASE_STATE']}">
           <h:outputText value="#{task.getCase().getState().toString()}" />
         </p:column>
 
-        <p:column id="task-name" headerText="Task Name" sortBy="#{TASK_NAME}" width="250"
+        <p:column id="task-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskName')}" sortBy="#{TASK_NAME}" width="250"
           visible="#{taskAnalysisWidgetBean.columns['TASK_NAME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_NAME']}">
           <h:outputText value="#{task.name}" />
         </p:column>
 
-        <p:column id="task-id" headerText="Task ID" sortBy="#{TASK_ID}" width="120"
+        <p:column id="task-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskID')}" sortBy="#{TASK_ID}" width="120"
           visible="#{taskAnalysisWidgetBean.columns['TASK_ID']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_ID']}">
           <h:outputText value="#{task.id}" />
         </p:column>
 
-        <p:column id="task-category" headerText="Task Category" sortBy="#{TASK_CATEGORY}" width="200"
+        <p:column id="task-category" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskCategory')}" sortBy="#{TASK_CATEGORY}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_CATEGORY']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_CATEGORY']}">
           <h:outputText id="task-category-value" value="#{task.categoryName}" />
           <p:tooltip id="task-category-value-tooltip" for="task-category-value" value="Full category: #{task.categoryPath}" />
         </p:column>
 
-        <p:column id="task-description" headerText="Task Description" sortBy="#{TASK_DESCRIPTION}" width="250"
+        <p:column id="task-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskDescription')}" sortBy="#{TASK_DESCRIPTION}" width="250"
           visible="#{taskAnalysisWidgetBean.columns['TASK_DESCRIPTION']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_DESCRIPTION']}">
           <h:outputText value="#{task.description}" />
         </p:column>
 
-        <p:column id="task-activator" headerText="Task Responsible" sortBy="#{TASK_ACTIVATOR}" width="200"
+        <p:column id="task-activator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskResponsible')}" sortBy="#{TASK_ACTIVATOR}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_ACTIVATOR']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_ACTIVATOR']}">
           <h:outputText value="#{task.activatorName}" />
         </p:column>
 
-        <p:column id="task-worker" headerText="Task Worker" sortBy="#{TASK_WORKER}" width="200"
+        <p:column id="task-worker" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskWorker')}" sortBy="#{TASK_WORKER}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_WORKER']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_WORKER']}">
           <h:outputText value="#{task.workerUserName}" />
         </p:column>
 
-        <p:column id="task-priority" headerText="Task Priority" sortBy="#{TASK_PRIORITY}"
+        <p:column id="task-priority" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskPriority')}" sortBy="#{TASK_PRIORITY}"
           visible="#{taskAnalysisWidgetBean.columns['TASK_PRIORITY']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_PRIORITY']}" width="120">
           <h:outputText value="#{task.priority}" />
         </p:column>
 
-        <p:column id="task-state" headerText="Task State" sortBy="#{TASK_STATE}" width="120"
+        <p:column id="task-state" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskState')}" sortBy="#{TASK_STATE}" width="120"
           visible="#{taskAnalysisWidgetBean.columns['TASK_STATE']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_STATE']}">
           <h:outputText value="#{task.getState().toString()}" />
         </p:column>
 
-        <p:column id="task-created" headerText="Task Created" sortBy="#{TASK_CREATION_TIME}" width="120"
+        <p:column id="task-created" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskCreationTime')}" sortBy="#{TASK_CREATION_TIME}" width="120"
           visible="#{taskAnalysisWidgetBean.columns['TASK_CREATION_TIME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_CREATION_TIME']}">
           <h:outputText value="#{task.getStartTimestamp()}">
-            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+            <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
           </h:outputText>
         </p:column>
 
-        <p:column id="task-expiry" headerText="Task Expiry" sortBy="#{TASK_EXPIRY_TIME}" width="120"
+        <p:column id="task-expiry" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskExpiryTime')}" sortBy="#{TASK_EXPIRY_TIME}" width="120"
           visible="#{taskAnalysisWidgetBean.columns['TASK_EXPIRY_TIME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_EXPIRY_TIME']}">
           <h:outputText value="#{task.getExpiryTimestamp()}">
-            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+            <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
           </h:outputText>
         </p:column>
 
-        <p:column id="task-finished" headerText="Task Finished" sortBy="#{TASK_FINISHED_TIME}" width="120"
+        <p:column id="task-finished" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFinishedTime')}" sortBy="#{TASK_FINISHED_TIME}" width="120"
           visible="#{taskAnalysisWidgetBean.columns['TASK_FINISHED_TIME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_FINISHED_TIME']}">
           <h:outputText value="#{task.getEndTimestamp()}">
-            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+            <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
           </h:outputText>
         </p:column>
 

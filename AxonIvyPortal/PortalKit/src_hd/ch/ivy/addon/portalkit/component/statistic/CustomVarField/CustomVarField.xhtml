@@ -20,8 +20,8 @@
     <h:panelGroup id="custom-field-panel-header-container" layout="block" styleClass="custom-field-panel-header-container">
           <p:autoComplete id="custom-val-selection" scrollHeight="400" dropdown="true" styleClass="custom-val-selection"
             value="#{data.selectedCustomValue}" completeMethod="#{cc.attrs.completeMethod}" var="customVal"
-            itemLabel="#{customVal}" style="margin-bottom: 20px;"
-            itemValue="#{customVal}" cache="true" queryDelay="500" maxResults="10" selectLimit="10" converter="pojoConverter"
+            itemLabel="#{customVal}" itemValue="#{customVal}" 
+            cache="true" queryDelay="500" maxResults="10" selectLimit="10" converter="pojoConverter"
             moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." >
               <p:ajax event="query" global="false" />
               <p:ajax event="itemSelect" update="add-custom-val" />
