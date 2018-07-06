@@ -25,7 +25,7 @@ public class CaseNameFilter extends CaseFilter {
     }
 
     String containingKeyword = String.format("%%%s%%", name.trim());
-    return CaseQuery.create().where().description().isLikeIgnoreCase(containingKeyword);
+    return CaseQuery.create().where().name().isLikeIgnoreCase(containingKeyword);
   }
 
   @Override
