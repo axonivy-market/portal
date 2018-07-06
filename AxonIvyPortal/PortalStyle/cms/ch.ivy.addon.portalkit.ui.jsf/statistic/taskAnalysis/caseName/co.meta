@@ -1,0 +1,4 @@
+co: name={caseName} description={} changed={2018-07-06 12:41:50 CEST} changedby={ldnam} visualorder={0} guid={1646F259A176DEA6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1646F259A2674547} datatype={} isdefault={true} langid={en} description={} validfrom={2018-07-06 12:31:32 CEST} validto={} changed={2018-07-06 12:31:32 CEST} changedby={ldnam} properties={} id={}
+val: guid={1646F2F08E448847} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-07-06 12:41:44 CEST} validto={} changed={2018-07-06 12:41:50 CEST} changedby={ldnam} properties={} id={}
+val: guid={1646F2F07BC37D40} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-06 12:41:47 CEST} validto={} changed={2018-07-06 12:41:50 CEST} changedby={ldnam} properties={} id={}
