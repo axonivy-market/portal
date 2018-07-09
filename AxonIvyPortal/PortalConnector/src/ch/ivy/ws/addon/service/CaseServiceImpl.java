@@ -644,25 +644,25 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
   
   @Override
-  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit) throws WSException {
+  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit, List<IvyApplication> applications) throws WSException {
     try {
       List<String> customVarChars = new ArrayList<>();
       PortalCaseDAO portalCaseDAO = new PortalCaseDAO();
       switch (portalCaseCustomVarField) {
         case CUSTOM_VAR_CHAR_1:
-            customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit);
+            customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit, applications);
           break;
         case CUSTOM_VAR_CHAR_2:
-          customVarChars = portalCaseDAO.findCustomVarChar2Fields(keyword, limit);
+          customVarChars = portalCaseDAO.findCustomVarChar2Fields(keyword, limit, applications);
           break;
         case CUSTOM_VAR_CHAR_3:
-          customVarChars = portalCaseDAO.findCustomVarChar3Fields(keyword, limit);
+          customVarChars = portalCaseDAO.findCustomVarChar3Fields(keyword, limit, applications);
           break;
         case CUSTOM_VAR_CHAR_4:
-          customVarChars = portalCaseDAO.findCustomVarChar4Fields(keyword, limit);
+          customVarChars = portalCaseDAO.findCustomVarChar4Fields(keyword, limit, applications);
           break;
         case CUSTOM_VAR_CHAR_5:
-          customVarChars = portalCaseDAO.findCustomVarChar5Fields(keyword, limit);
+          customVarChars = portalCaseDAO.findCustomVarChar5Fields(keyword, limit, applications);
           break;
         default:
           break;

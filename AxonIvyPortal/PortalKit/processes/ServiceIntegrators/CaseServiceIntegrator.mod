@@ -236,14 +236,14 @@ Ce0 @Alternative f222 '' #zField
 Ce0 @WSElement f223 '' #zField
 Ce0 @EndSub f224 '' #zField
 Ce0 @WSElement f225 '' #zField
-Ce0 @StartSub f226 '' #zField
 Ce0 @PushWFArc f227 '' #zField
 Ce0 @PushWFArc f228 '' #zField
 Ce0 @PushWFArc f229 '' #zField
 Ce0 @PushWFArc f230 '' #zField
-Ce0 @PushWFArc f231 '' #zField
 Ce0 @PushWFArc f232 '' #zField
 Ce0 @PushWFArc f233 '' #zField
+Ce0 @PushWFArc f231 '' #zField
+Ce0 @StartSub f226 '' #zField
 >Proto Ce0 Ce0 CaseServiceIntegrator #zField
 Ce0 f10 .resExport export #txt
 Ce0 f10 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
@@ -3195,6 +3195,38 @@ Ce0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ce0 f225 430 2174 36 24 21 -2 #rect
 Ce0 f225 @|WebServiceIcon #fIcon
+Ce0 f227 expr out #txt
+Ce0 f227 288 2198 288 2315 #arcP
+Ce0 f228 expr in #txt
+Ce0 f228 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Ce0 f228 274 2090 128 2174 #arcP
+Ce0 f228 1 128 2090 #addKink
+Ce0 f228 0 0.8582831105414763 0 0 #arcLabel
+Ce0 f229 expr in #txt
+Ce0 f229 302 2090 448 2174 #arcP
+Ce0 f229 1 448 2090 #addKink
+Ce0 f229 0 0.7875410210393261 0 0 #arcLabel
+Ce0 f230 expr out #txt
+Ce0 f230 128 2198 275 2328 #arcP
+Ce0 f230 1 128 2328 #addKink
+Ce0 f230 1 0.20679742620065877 0 0 #arcLabel
+Ce0 f232 expr in #txt
+Ce0 f232 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Ce0 f232 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f232 288 2104 288 2174 #arcP
+Ce0 f232 0 0.6216297675645117 0 0 #arcLabel
+Ce0 f233 expr out #txt
+Ce0 f233 448 2198 301 2328 #arcP
+Ce0 f233 1 448 2328 #addKink
+Ce0 f233 1 0.3062426517680915 0 0 #arcLabel
+Ce0 f231 expr out #txt
+Ce0 f231 288 2039 288 2076 #arcP
 Ce0 f226 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria,java.lang.String endpoint> param;' #txt
 Ce0 f226 inParamTable 'out.caseCustomVarCharSearchCriteria=param.caseCustomVarCharSearchCriteria;
 out.endpoint=param.endpoint;
@@ -3220,38 +3252,6 @@ Ce0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ce0 f226 275 2013 26 26 13 -30 #rect
 Ce0 f226 @|StartSubIcon #fIcon
-Ce0 f227 expr out #txt
-Ce0 f227 288 2198 288 2315 #arcP
-Ce0 f228 expr in #txt
-Ce0 f228 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
-Ce0 f228 274 2090 128 2174 #arcP
-Ce0 f228 1 128 2090 #addKink
-Ce0 f228 0 0.8582831105414763 0 0 #arcLabel
-Ce0 f229 expr in #txt
-Ce0 f229 302 2090 448 2174 #arcP
-Ce0 f229 1 448 2090 #addKink
-Ce0 f229 0 0.7875410210393261 0 0 #arcLabel
-Ce0 f230 expr out #txt
-Ce0 f230 128 2198 275 2328 #arcP
-Ce0 f230 1 128 2328 #addKink
-Ce0 f230 1 0.20679742620065877 0 0 #arcLabel
-Ce0 f231 expr out #txt
-Ce0 f231 288 2039 288 2076 #arcP
-Ce0 f232 expr in #txt
-Ce0 f232 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
-Ce0 f232 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name></name>
-    </language>
-</elementInfo>
-' #txt
-Ce0 f232 288 2104 288 2174 #arcP
-Ce0 f232 0 0.6216297675645117 0 0 #arcLabel
-Ce0 f233 expr out #txt
-Ce0 f233 448 2198 301 2328 #arcP
-Ce0 f233 1 448 2328 #addKink
-Ce0 f233 1 0.3062426517680915 0 0 #arcLabel
 >Proto Ce0 .type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

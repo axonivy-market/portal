@@ -1264,7 +1264,7 @@ import ch.ivy.ws.addon.bo.CaseServiceResult;
 import ch.ivy.ws.addon.WSException;
 
 try {
-	CaseServiceResult result = WsServiceFactory.getCaseService().findCustomVarChars(in.caseCustomVarCharSearchCriteria.portalCaseCustomVarField, in.caseCustomVarCharSearchCriteria.keyword, in.caseCustomVarCharSearchCriteria.limit);
+	CaseServiceResult result = WsServiceFactory.getCaseService().findCustomVarChars(in.caseCustomVarCharSearchCriteria.portalCaseCustomVarField, in.caseCustomVarCharSearchCriteria.keyword, in.caseCustomVarCharSearchCriteria.limit, in.caseCustomVarCharSearchCriteria.applications);
 	in.caseCustomVarChars = result.customVarChars;
 	in.errors = result.errors;
 } catch (WSException e) {

@@ -1098,8 +1098,8 @@ Ce0 f105 expr out #txt
 Ce0 f105 320 77 320 100 #arcP
 Ce0 f106 expr in #txt
 Ce0 f106 306 168 1002 832 #arcP
-Ce0 f106 1 240 168 #addKink
-Ce0 f106 2 240 832 #addKink
+Ce0 f106 1 0 168 #addKink
+Ce0 f106 2 0 832 #addKink
 Ce0 f106 2 0.4840228013644575 0 0 #arcLabel
 Ce0 f93 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f93 processCall ServiceIntegrators/CaseServiceIntegrator:findCasesByCriteria(Integer,Integer,String,ch.ivy.addon.portalkit.persistence.domain.Server,ch.ivy.ws.addon.CaseSearchCriteria) #txt
@@ -2649,6 +2649,8 @@ Ce0 f188 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>ApplicationService</name>
+        <nameStyle>18,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2957,6 +2959,7 @@ Ce0 f215 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server se
 ' #txt
 Ce0 f215 requestMappingAction 'param.server=in.server;
 param.caseCustomVarCharSearchCriteria=in.caseCustomVarCharSearchCriteria;
+param.caseCustomVarCharSearchCriteria.applications=in.applications;
 param.endpoint=in.endpoint;
 ' #txt
 Ce0 f215 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
@@ -3113,6 +3116,8 @@ Ce0 f222 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>ApplicationService</name>
+        <nameStyle>18,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
