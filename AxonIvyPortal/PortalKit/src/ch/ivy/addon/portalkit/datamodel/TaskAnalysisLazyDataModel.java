@@ -93,13 +93,10 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     caseQueryCriteria = buildInitQueryCriteria();
     comparator = comparator(RemoteTask::getId);
     serverId = SecurityServiceUtils.getServerIdFromSession();
-    if (shouldSaveAndLoadSessionFiltersOfTaskAnalysis()) {
-      inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
-      if (inProgressFilter != null) {
-        isInProgressFilterDisplayed = true;
-      } else {
-        inProgressFilter = new TaskInProgressByOthersFilter();
-      }
+    if (inProgressFilter != null) {
+      isInProgressFilterDisplayed = true;
+    } else {
+      inProgressFilter = new TaskInProgressByOthersFilter();
     }
 
     autoInitForNoAppConfiguration();
@@ -143,12 +140,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
         stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
       }
     }
-  }
-
-  private boolean shouldSaveAndLoadSessionFiltersOfTaskAnalysis() {
-    boolean isValidQueryCriteria =
-        (this.taskQueryCriteria == null) || (this.taskQueryCriteria != null && !this.taskQueryCriteria.isQueryForUnassignedTask());
-    return isValidQueryCriteria && !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
   @Override
@@ -514,14 +505,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
         filterQuery.and(subQuery);
       }
     });
-    if (shouldSaveAndLoadSessionFiltersOfTaskAnalysis()) {
-      UserUtils.setSessionTaskAdvancedFilterAttribute(selectedTaskFilters);
-      if (isInProgressFilterDisplayed) {
-        UserUtils.setSessionTaskInProgressFilterAttribute(inProgressFilter);
-      } else {
-        UserUtils.setSessionTaskInProgressFilterAttribute(null);
-      }
-    }
     return taskQuery;
   }
 
@@ -633,6 +616,16 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   public void setChunkSize(Integer chunkSize) {
     this.chunkSize = chunkSize;
+  }
+
+  @Override
+  public boolean isInProgressFilterDisplayed() {
+    return isInProgressFilterDisplayed;
+  }
+
+  @Override
+  public void setInProgressFilterDisplayed(boolean isInProgressFilterDisplayed) {
+    this.isInProgressFilterDisplayed = isInProgressFilterDisplayed;
   }
   
 }
