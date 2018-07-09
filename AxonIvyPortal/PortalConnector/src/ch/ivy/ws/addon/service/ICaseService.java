@@ -7,6 +7,7 @@ import ch.ivy.ws.addon.bo.CaseServiceResult;
 import ch.ivy.ws.addon.bo.NoteServiceResult;
 import ch.ivy.ws.addon.enums.PortalCaseCustomVarField;
 import ch.ivy.ws.addon.types.IvyAdditionalProperty;
+import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvyCase;
 import ch.ivyteam.ivy.scripting.objects.Binary;
 
@@ -139,5 +140,5 @@ public interface ICaseService {
 
   void saveCase(IvyCase ivyCase) throws WSException;
   
-  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit) throws WSException;
+  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit, List<IvyApplication> applications) throws WSException;
 }

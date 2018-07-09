@@ -37,3 +37,5 @@ businessMilestoneTimestamp java.util.Date #field
 businessMilestoneTimestamp PERSISTENT #fieldModifier
 businessObjectName String #field
 businessObjectName PERSISTENT #fieldModifier
+applicationId Long #field
+applicationId PERSISTENT #fieldModifier
