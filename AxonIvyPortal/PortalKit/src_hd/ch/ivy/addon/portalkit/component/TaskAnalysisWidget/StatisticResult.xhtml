@@ -16,9 +16,10 @@
         </p:columnToggler>
       </h:panelGroup>
 
-      <p:dataTable id="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.identifier}" sortMode="single"
+      <p:dataTable id="task-table" widgetVar="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.identifier}" sortMode="single"
          lazy="true" scrollable="true" liveScroll="true" scrollRows="10" styleClass="task-table">
-
+         
+		<p:ajax  event="sort" update="task-table" onstart="liveScroll()"/>
         <p:column id="case-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortBy="#{CASE_NAME}" width="250"
           visible="#{taskAnalysisWidgetBean.columns['CASE_NAME']}"
           exportable="#{taskAnalysisWidgetBean.columns['CASE_NAME']}">
@@ -135,7 +136,13 @@
       $(document).ready(function(){
         setTimeout(function(){initializeScrollbar();}, 100);
       });
-
+		
+	  function liveScroll(){
+	  	PF('task-table').scrollOffset=0;    
+        PF('task-table').scrollBody.scrollTop(1);   
+        PF('task-table').allLoadedLiveScroll = false; 
+	  }
+	  
       function initializeScrollbar() {
         var $taskTable = $("[id$='statistic-result-form:task-table']");
         var resultTableBody = $taskTable.find(".ui-datatable-scrollable-body").get(0);
