@@ -83,8 +83,9 @@ public class TaskAnalysisExporter {
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskExpiryTime");
       case TASK_FINISHED_TIME:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFinishedTime");
+      default:
+        return "";
     }
-    return "";
   }
 
   private String getColumnValue(TaskAndCaseAnalysisColumn column, RemoteTask task) { //NOSONAR
@@ -125,8 +126,9 @@ public class TaskAnalysisExporter {
       case TASK_FINISHED_TIME:
         Date endTimestamp = task.getEndTimestamp();
         return endTimestamp != null ? formatDate(endTimestamp): "";
+      default:
+        return "";
     }
-    return "";
   }
   private List<List<Object>> generateData(List<RemoteTask> tasks) {
     List<List<Object>> rows = new ArrayList<>();
