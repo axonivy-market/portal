@@ -393,10 +393,23 @@
 
   <xs:complexType name="caseCustomVarCharSearchCriteria">
     <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" nillable="true" type="tns:ivyApplication"></xs:element>
       <xs:element minOccurs="0" name="keyword" type="xs:string"></xs:element>
       <xs:element name="limit" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="portalCaseCustomVarField" type="tns:portalCaseCustomVarField"></xs:element>
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ivyApplication">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+          <xs:element minOccurs="0" name="isActive" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="findCustomVarCharsResponse">
