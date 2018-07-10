@@ -11,3 +11,6 @@ categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 priorityStatistic ch.ivy.ws.addon.types.PriorityStatistic #field
 expiryStatistic ch.ivy.ws.addon.types.ExpiryStatistic #field
 elapsedTimeStatistic ch.ivy.ws.addon.types.ElapsedTimeStatistic #field
+groupTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+personalTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+unassignedTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
