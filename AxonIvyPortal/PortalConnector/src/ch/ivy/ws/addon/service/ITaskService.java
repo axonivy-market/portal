@@ -19,30 +19,34 @@ public interface ITaskService {
 
   /**
    * Park task for user
-   * @param username 
-   * @param idenfier 
-   * @param isUrlBuiltFromSystemProperties 
+   * 
+   * @param username
+   * @param idenfier
+   * @param isUrlBuiltFromSystemProperties
    * @return TaskServiceResult
-   * @throws WSException 
+   * @throws WSException
    */
-  public TaskServiceResult parkTask(String username, Integer idenfier, Boolean isUrlBuiltFromSystemProperties) throws WSException;
+  public TaskServiceResult parkTask(String username, Integer idenfier, Boolean isUrlBuiltFromSystemProperties)
+      throws WSException;
 
   /**
    * Delegate a task to a given security member
-   * @param idenfier 
-   * @param securityMember 
-   * @param isUrlBuiltFromSystemProperties 
+   * 
+   * @param idenfier
+   * @param securityMember
+   * @param isUrlBuiltFromSystemProperties
    * @return TaskServiceResult
-   * @throws WSException 
+   * @throws WSException
    */
   public TaskServiceResult delegateTask(Integer idenfier, IvySecurityMember securityMember,
       Boolean isUrlBuiltFromSystemProperties) throws WSException;
 
   /**
    * Create note for task
-   * @param username 
-   * @param taskId 
-   * @param message 
+   * 
+   * @param username
+   * @param taskId
+   * @param message
    * @return NoteServiceResult
    * @throws WSException
    */
@@ -59,11 +63,12 @@ public interface ITaskService {
 
   /**
    * Resets a task
-   * @param currentUserName 
-   * @param taskId 
-   * @param isUrlBuiltFromSystemProperties 
+   * 
+   * @param currentUserName
+   * @param taskId
+   * @param isUrlBuiltFromSystemProperties
    * @return TaskServiceResult
-   * @throws WSException 
+   * @throws WSException
    */
   TaskServiceResult resetTask(String currentUserName, Integer taskId, Boolean isUrlBuiltFromSystemProperties)
       throws WSException;
@@ -73,10 +78,11 @@ public interface ITaskService {
 
   /**
    * Check if the given user can resume the given task
-   * @param taskId 
-   * @param userName 
+   * 
+   * @param taskId
+   * @param userName
    * @return TaskServiceResult
-   * @throws WSException 
+   * @throws WSException
    */
   public TaskServiceResult canUserResumeTask(Integer taskId, String userName) throws WSException;
 
@@ -94,13 +100,14 @@ public interface ITaskService {
 
   public TaskServiceResult countTasksByCriteria(TaskSearchCriteria taskSearchCriteria) throws WSException;
 
-  public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language) throws WSException;
+  public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language)
+      throws WSException;
 
-  TaskServiceResult findPersonalTaskCategories(String jsonQuery, String username, List<String> apps, String language) throws WSException;
+  public TaskServiceResult findTaskCategoriesOfUserWithoutReadAllPermission(String jsonQuery, String username,
+      List<String> apps, String language) throws WSException;
 
-  TaskServiceResult findGroupTaskCategories(String jsonQuery, String username, List<String> apps, String language) throws WSException;
-  
-  TaskServiceResult findUnassignedTaskCategories(String jsonQuery, List<String> apps, String language) throws WSException;
+  public TaskServiceResult findTaskCategoriesOfUserWithReadAllPermission(String jsonQuery, String username,
+      List<String> apps, String language) throws WSException;
 
   void setAdditionalProperty(Long taskId, String name, String value) throws WSException;
 
@@ -113,7 +120,8 @@ public interface ITaskService {
    * @return statistic data
    * @throws WSException
    */
-  public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
+  public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps)
+      throws WSException;
 
   /**
    * Get statistic data by task expiry date
@@ -124,7 +132,8 @@ public interface ITaskService {
    * @return statistic data
    * @throws WSException
    */
-  public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
+  public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps)
+      throws WSException;
 
   /**
    * Get statistic data about elapsed time of done tasks
@@ -135,4 +144,5 @@ public interface ITaskService {
    * @throws WSException
    */
   public TaskServiceResult analyzeElapsedTimeOfTasks(String jsonQuery, List<String> apps) throws WSException;
+
 }

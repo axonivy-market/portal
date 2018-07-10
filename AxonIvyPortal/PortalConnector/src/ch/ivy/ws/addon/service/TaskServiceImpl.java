@@ -373,31 +373,33 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return securityManager().executeAsSystem(
-          () -> {
-            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
-            if (StringUtils.isNotBlank(jsonQuery)) {
-              TaskQuery.fromJson(jsonQuery);
-            }
-            queryExcludeHiddenTasks(taskQuery);
-
-            if (username != null && !StringUtils.isEmpty(username)) {
-              AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
-              taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
-                  .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
-            } else {
-              taskQuery.where().and(queryForInvolvedApplications(apps));
-            }
-            taskQuery.where()
-                .and(
-                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
-                        TaskState.DONE)));
-            taskQuery.where().and().category().isNotNull();
-            return result(createCategoryDataList(language, taskQuery), errors);
-          });
+      return securityManager().executeAsSystem(() -> {
+        TaskQuery taskQuery = allTaskCategoriesQuery(jsonQuery, username, apps);
+        return result(createCategoryDataList(language, taskQuery), errors);
+      });
     } catch (Exception e) {
       throw new WSException(10016, e);
     }
+  }
+
+  private TaskQuery allTaskCategoriesQuery(String jsonQuery, final String username, List<String> apps) {
+    TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+    if (StringUtils.isNotBlank(jsonQuery)) {
+      TaskQuery.fromJson(jsonQuery);
+    }
+    queryExcludeHiddenTasks(taskQuery);
+
+    if (username != null && !StringUtils.isEmpty(username)) {
+      AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+      taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
+          .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+    } else {
+      taskQuery.where().and(queryForInvolvedApplications(apps));
+    }
+    taskQuery.where().and(
+        queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE)));
+    taskQuery.where().and().category().isNotNull();
+    return taskQuery;
   }
 
   private List<CategoryData> createCategoryDataList(String language, TaskQuery taskQuery) {
@@ -413,94 +415,112 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   @Override
-  public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps,
-      String language) throws WSException {
-    List<WSException> errors = Collections.emptyList();
-    try {
-      return securityManager().executeAsSystem(
-          () -> {
-            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
-            if (StringUtils.isNotBlank(jsonQuery)) {
-              taskQuery = TaskQuery.fromJson(jsonQuery);
-            }
-            queryExcludeHiddenTasks(taskQuery);
-
-            AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
-            taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
-                .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
-            TaskQuery reservedTaskQuery =
-                TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
-            taskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
-            taskQuery.where()
-                .and(
-                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
-                        TaskState.DONE)));
-            taskQuery.where().and().category().isNotNull();
-
-            List<CategoryData> categories = createCategoryDataList(language, taskQuery);
-
-            return result(categories, errors);
-          });
-    } catch (Exception e) {
-      throw new WSException(10016, e);
-    }
-  }
-
-  @Override
-  public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps,
-      String language) throws WSException {
-    List<WSException> errors = Collections.emptyList();
-    try {
-      return securityManager().executeAsSystem(
-          () -> {
-            TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
-            if (StringUtils.isNotBlank(jsonQuery)) {
-              taskQuery = TaskQuery.fromJson(jsonQuery);
-            }
-            queryExcludeHiddenTasks(taskQuery);
-
-            AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
-            taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
-                .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
-            taskQuery.where().and().activatorRoleId().isNotNull();
-            taskQuery.where()
-                .and(
-                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
-                        TaskState.DONE)));
-            taskQuery.where().and().category().isNotNull();
-
-            List<CategoryData> categories = createCategoryDataList(language, taskQuery);
-
-            return result(categories, errors);
-          });
-    } catch (Exception e) {
-      throw new WSException(10016, e);
-    }
-  }
-
-  @Override
-  public TaskServiceResult findUnassignedTaskCategories(String jsonQuery, List<String> apps, String language)
-      throws WSException {
+  public TaskServiceResult findTaskCategoriesOfUserWithReadAllPermission(String jsonQuery, final String username,
+      List<String> apps, String language) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(() -> {
-        TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
-        if (StringUtils.isNotBlank(jsonQuery)) {
-          taskQuery = TaskQuery.fromJson(jsonQuery);
-        }
-        queryExcludeHiddenTasks(taskQuery);
+        TaskQuery taskQuery = personalTaskCategoriesQuery(jsonQuery, username, apps);
+        List<CategoryData> personalTaskCategories = createCategoryDataList(language, taskQuery);
 
-        taskQuery.where().and(queryForInvolvedApplications(apps));
-        taskQuery.where().and(queryForStates(Arrays.asList(TaskState.UNASSIGNED)));
-        taskQuery.where().and().category().isNotNull();
+        taskQuery = groupTaskCategoriesQuery(jsonQuery, username, apps);
+        List<CategoryData> groupTaskCategories = createCategoryDataList(language, taskQuery);
 
-        List<CategoryData> categories = createCategoryDataList(language, taskQuery);
+        taskQuery = unassignedTaskCategoriesQuery(jsonQuery, apps);
+        List<CategoryData> unassignedTaskCategories = createCategoryDataList(language, taskQuery);
 
-        return result(categories, errors);
+        taskQuery = allTaskCategoriesQuery(jsonQuery, "", apps);
+        List<CategoryData> allTaskCategories = createCategoryDataList(language, taskQuery);
+
+        TaskServiceResult result = new TaskServiceResult();
+        result.setCategories(allTaskCategories);
+        result.setPersonalTaskCategories(personalTaskCategories);
+        result.setGroupTaskCategories(groupTaskCategories);
+        result.setUnassignedTaskCategories(unassignedTaskCategories);
+        result.setErrors(errors);
+
+        return result;
       });
     } catch (Exception e) {
       throw new WSException(10016, e);
     }
+  }
+
+  @Override
+  public TaskServiceResult findTaskCategoriesOfUserWithoutReadAllPermission(String jsonQuery, final String username,
+      List<String> apps, String language) throws WSException {
+    List<WSException> errors = Collections.emptyList();
+    try {
+      return securityManager().executeAsSystem(() -> {
+        TaskQuery taskQuery = personalTaskCategoriesQuery(jsonQuery, username, apps);
+        List<CategoryData> personalTaskCategories = createCategoryDataList(language, taskQuery);
+
+        taskQuery = groupTaskCategoriesQuery(jsonQuery, username, apps);
+        List<CategoryData> groupTaskCategories = createCategoryDataList(language, taskQuery);
+
+        taskQuery = allTaskCategoriesQuery(jsonQuery, username, apps);
+        List<CategoryData> allTaskCategories = createCategoryDataList(language, taskQuery);
+
+        TaskServiceResult result = new TaskServiceResult();
+        result.setCategories(allTaskCategories);
+        result.setPersonalTaskCategories(personalTaskCategories);
+        result.setGroupTaskCategories(groupTaskCategories);
+        result.setErrors(errors);
+
+        return result;
+      });
+    } catch (Exception e) {
+      throw new WSException(10016, e);
+    }
+  }
+
+  private TaskQuery personalTaskCategoriesQuery(String jsonQuery, final String username, List<String> apps) {
+    TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+    if (StringUtils.isNotBlank(jsonQuery)) {
+      taskQuery = TaskQuery.fromJson(jsonQuery);
+    }
+    queryExcludeHiddenTasks(taskQuery);
+
+    AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+    taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
+        .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+    TaskQuery reservedTaskQuery =
+        TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
+    taskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
+    taskQuery.where().and(
+        queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE)));
+    taskQuery.where().and().category().isNotNull();
+    return taskQuery;
+  }
+
+  private TaskQuery groupTaskCategoriesQuery(String jsonQuery, final String username, List<String> apps) {
+    TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+    if (StringUtils.isNotBlank(jsonQuery)) {
+      taskQuery = TaskQuery.fromJson(jsonQuery);
+    }
+    queryExcludeHiddenTasks(taskQuery);
+
+    AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+    taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
+        .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+    taskQuery.where().and().activatorRoleId().isNotNull();
+    taskQuery.where().and(
+        queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE)));
+    taskQuery.where().and().category().isNotNull();
+    return taskQuery;
+  }
+
+  private TaskQuery unassignedTaskCategoriesQuery(String jsonQuery, List<String> apps) {
+    TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
+    if (StringUtils.isNotBlank(jsonQuery)) {
+      taskQuery = TaskQuery.fromJson(jsonQuery);
+    }
+    queryExcludeHiddenTasks(taskQuery);
+
+    taskQuery.where().and(queryForInvolvedApplications(apps));
+    taskQuery.where().and(queryForStates(Arrays.asList(TaskState.UNASSIGNED)));
+    taskQuery.where().and().category().isNotNull();
+    return taskQuery;
   }
 
   @Override
