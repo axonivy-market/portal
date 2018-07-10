@@ -1,5 +1,5 @@
 [Ivy]
-146C8E81DE07F973 3.20 #module
+146C8E81DE07F973 3.23 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 B #cInfo
@@ -221,34 +221,7 @@ Te0 @PushWFArc f216 '' #zField
 Te0 @PushWFArc f217 '' #zField
 Te0 @PushWFArc f218 '' #zField
 Te0 @PushWFArc f219 '' #zField
-Te0 @CallSub f220 '' #zField
-Te0 @GridStep f221 '' #zField
-Te0 @GridStep f222 '' #zField
-Te0 @GridStep f223 '' #zField
-Te0 @Alternative f224 '' #zField
-Te0 @StartSub f225 '' #zField
-Te0 @GridStep f226 '' #zField
-Te0 @GridStep f227 '' #zField
-Te0 @Alternative f228 '' #zField
-Te0 @CallSub f229 '' #zField
-Te0 @Alternative f230 '' #zField
-Te0 @GridStep f231 '' #zField
-Te0 @PushWFArc f232 '' #zField
-Te0 @PushWFArc f233 '' #zField
-Te0 @PushWFArc f234 '' #zField
-Te0 @PushWFArc f235 '' #zField
-Te0 @PushWFArc f236 '' #zField
-Te0 @PushWFArc f237 '' #zField
-Te0 @PushWFArc f238 '' #zField
-Te0 @PushWFArc f239 '' #zField
-Te0 @PushWFArc f240 '' #zField
-Te0 @PushWFArc f241 '' #zField
-Te0 @PushWFArc f242 '' #zField
-Te0 @PushWFArc f243 '' #zField
-Te0 @PushWFArc f244 '' #zField
-Te0 @PushWFArc f245 '' #zField
 Te0 @PushWFArc f246 '' #zField
-Te0 @PushWFArc f247 '' #zField
 Te0 @PushWFArc f94 '' #zField
 Te0 @GridStep f248 '' #zField
 Te0 @PushWFArc f29 '' #zField
@@ -2652,7 +2625,7 @@ Te0 f124 1 0.4930555555555556 0 0 #arcLabel
 Te0 f86 expr out #txt
 Te0 f86 3496 572 3496 596 #arcP
 Te0 f128 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f128 processCall ServiceIntegrators/TaskServiceIntegrator:findPersonalCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f128 processCall ServiceIntegrators/TaskServiceIntegrator:findTaskCategoriesOfUserWithReadAllPermission(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f128 doCall true #txt
 Te0 f128 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
 ' #txt
@@ -2666,7 +2639,10 @@ Te0 f128 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
 Te0 f128 responseMappingAction 'out=in;
 out.categories=in.categories.addAll(result.categories);
+out.groupTaskCategories=in.groupTaskCategories.addAll(result.groupTaskCategories);
+out.personalTaskCategories=in.personalTaskCategories.addAll(result.personalTaskCategories);
 out.tempErrors=result.errors;
+out.unassignedTaskCategories=in.unassignedTaskCategories.addAll(result.unassignedTaskCategories);
 ' #txt
 Te0 f128 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2744,7 +2720,19 @@ import java.util.HashSet;
 
 Set categories = new HashSet(in.categories);
 in.categories.clear();
-in.categories.addAll(categories);' #txt
+in.categories.addAll(categories);
+
+Set groupTaskCategories = new HashSet(in.groupTaskCategories);
+in.groupTaskCategories.clear();
+in.groupTaskCategories.addAll(groupTaskCategories);
+
+Set personalTaskCategories = new HashSet(in.personalTaskCategories);
+in.personalTaskCategories.clear();
+in.personalTaskCategories.addAll(personalTaskCategories);
+
+Set unassignedTaskCategories = new HashSet(in.unassignedTaskCategories);
+in.unassignedTaskCategories.clear();
+in.unassignedTaskCategories.addAll(unassignedTaskCategories);' #txt
 Te0 f140 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2769,27 +2757,30 @@ Te0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f158 2130 282 28 28 14 0 #rect
 Te0 f158 @|AlternativeIcon #fIcon
-Te0 f161 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
+Te0 f161 inParamDecl '<java.lang.String jsonQuery,java.lang.String username,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
 Te0 f161 inParamTable 'out.apps=param.apps;
 out.hasNoSelectedApp=param.apps.isEmpty();
 out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
-out.userName=param.userName;
+out.userName=param.username;
 ' #txt
-Te0 f161 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f161 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> groupTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> personalTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> unassignedTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
-Te0 f161 outParamTable 'result.categories=in.categories;
+Te0 f161 outParamTable 'result.groupTaskCategories=in.groupTaskCategories;
+result.personalTaskCategories=in.personalTaskCategories;
+result.unassignedTaskCategories=in.unassignedTaskCategories;
+result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f161 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
-Te0 f161 callSignature findPersonalCategories(String,String,List<String>,Long) #txt
+Te0 f161 callSignature findTaskCategoriesOfUserWithReadAllPermission(String,String,List<String>,Long) #txt
 Te0 f161 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f161 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findPersonalCategories(String,String,List&lt;String&gt;,Long)</name>
-        <nameStyle>55,5,7
+        <name>findTaskCategoriesOfUserWithReadAllPermission(String,String,List&lt;String&gt;,Long)</name>
+        <nameStyle>78,5,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -2963,328 +2954,11 @@ Te0 f219 2130 296 2126 536 #arcP
 Te0 f219 1 2099 296 #addKink
 Te0 f219 2 2099 536 #addKink
 Te0 f219 1 0.4930555555555556 0 0 #arcLabel
-Te0 f220 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f220 processCall ServiceIntegrators/TaskServiceIntegrator:findGroupCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
-Te0 f220 doCall true #txt
-Te0 f220 requestActionDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
-' #txt
-Te0 f220 requestMappingAction 'param.jsonQuery=in.jsonQuery;
-param.userName=in.userName;
-param.apps=in.apps;
-param.server=in.server;
-param.endpoint=in.endpoint;
-' #txt
-Te0 f220 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f220 responseMappingAction 'out=in;
-out.categories=in.categories.addAll(result.categories);
-out.tempErrors=result.errors;
-' #txt
-Te0 f220 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>FindCategories</name>
-        <nameStyle>14,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f220 2406 580 36 24 20 -2 #rect
-Te0 f220 @|CallSubIcon #fIcon
-Te0 f221 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f221 actionTable 'out=in;
-' #txt
-Te0 f221 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.service.ApplicationService;
-import ch.ivy.ws.addon.IvyApplication;
-import ch.ivy.addon.portalkit.service.UserService;
-
-in.apps.clear();
-
-UserService userService = new UserService();
-java.util.List<String> apps = userService.findApplicationNamesUserCanWorkOn(in.userName, in.server.id);
-for(String appName: apps) {
-	for (Application application : in.server.getApplications()) {
-		if(appName.equals(application.name) && application.isVisible && !in.apps.contains(appName)){
-			in.apps.add(appName);					
-		}
-	}
-}
-if (in.apps.isEmpty()) {
-	ApplicationService applicationService = new ApplicationService();
-	in.apps = applicationService.getApplicationNames(in.applications);
-}
-' #txt
-Te0 f221 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f221 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get Alive Apps</name>
-        <nameStyle>14,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f221 2406 404 36 24 21 -7 #rect
-Te0 f221 @|StepIcon #fIcon
-Te0 f222 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f222 actionTable 'out=in;
-' #txt
-Te0 f222 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Server;
-
-in.server = in.listIterator.next() as Server;' #txt
-Te0 f222 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f222 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get server</name>
-        <nameStyle>10,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f222 2406 212 36 24 20 -2 #rect
-Te0 f222 @|StepIcon #fIcon
-Te0 f223 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f223 actionTable 'out=in;
-' #txt
-Te0 f223 actionCode 'import java.util.Set;
-import java.util.HashSet;
-
-Set categories = new HashSet(in.categories);
-in.categories.clear();
-in.categories.addAll(categories);' #txt
-Te0 f223 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f223 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>add categories</name>
-        <nameStyle>14,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f223 2406 636 36 24 20 -2 #rect
-Te0 f223 @|StepIcon #fIcon
-Te0 f224 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f224 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no selected apps?</name>
-        <nameStyle>17
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f224 2410 274 28 28 14 0 #rect
-Te0 f224 @|AlternativeIcon #fIcon
-Te0 f225 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
-Te0 f225 inParamTable 'out.apps=param.apps;
-out.hasNoSelectedApp=param.apps.isEmpty();
-out.jsonQuery=param.jsonQuery;
-out.server.id=param.serverId;
-out.userName=param.userName;
-' #txt
-Te0 f225 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
-' #txt
-Te0 f225 outParamTable 'result.categories=in.categories;
-result.errors=in.errors;
-' #txt
-Te0 f225 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f225 callSignature findGroupCategories(String,String,List<String>,Long) #txt
-Te0 f225 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>findGroupCategories(String,String,List&lt;String&gt;,Long)</name>
-        <nameStyle>52,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f225 2411 51 26 26 -50 -39 #rect
-Te0 f225 @|StartSubIcon #fIcon
-Te0 f226 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f226 actionTable 'out=in;
-' #txt
-Te0 f226 actionCode 'import java.util.Arrays;
-import ch.ivy.addon.portalkit.service.ServerService;
-
-ServerService serverService = new ServerService();
-Long serverId = in.server.#id;
-if (#serverId is initialized && serverId != 0) {
-	in.servers = Arrays.asList(serverService.findById(serverId));
-} else {
-	in.servers = serverService.findActiveServers();
-}
-in.listIterator = in.servers.listIterator();' #txt
-Te0 f226 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get servers</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f226 2406 100 36 24 20 -2 #rect
-Te0 f226 @|StepIcon #fIcon
-Te0 f227 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f227 actionTable 'out=in;
-' #txt
-Te0 f227 actionCode 'import ch.ivy.addon.portalkit.enums.WebServiceEndPoint;
-import ch.ivy.addon.portalkit.service.PortalConnectorDetector;
-
-PortalConnectorDetector detector = new PortalConnectorDetector();
-in.endpoint = detector.getPortalConnectorURLOf(in.server) + WebServiceEndPoint.TASK.toString();' #txt
-Te0 f227 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f227 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get ws endpoint</name>
-        <nameStyle>15
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f227 2406 516 36 24 20 -2 #rect
-Te0 f227 @|StepIcon #fIcon
-Te0 f228 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f228 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>has apps?</name>
-        <nameStyle>9,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f228 2410 458 28 28 14 0 #rect
-Te0 f228 @|AlternativeIcon #fIcon
-Te0 f229 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f229 processCall MultiPortal/ApplicationService:getApplicationConfiguredOn(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
-Te0 f229 doCall true #txt
-Te0 f229 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server> param;
-' #txt
-Te0 f229 requestMappingAction 'param.server=in.server;
-' #txt
-Te0 f229 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f229 responseMappingAction 'out=in;
-out.applications=result.applications;
-out.tempErrors=result.errors;
-' #txt
-Te0 f229 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Get applications 
-of server</name>
-        <nameStyle>27,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f229 2406 340 36 24 20 -2 #rect
-Te0 f229 @|CallSubIcon #fIcon
-Te0 f230 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f230 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>next server</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f230 2410 154 28 28 22 -21 #rect
-Te0 f230 @|AlternativeIcon #fIcon
-Te0 f231 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f231 actionTable 'out=in;
-' #txt
-Te0 f231 actionCode 'import ch.ivy.ws.addon.WsException;
-for(int i = 0 ; i < in.tempErrors.size() ; i++){
-	WsException w = in.tempErrors.get(i) as WsException;
-	w.server = in.server.name;
-	in.tempErrors.set(i,w);
-	}
-in.errors.addAll(in.tempErrors);
-
-if (in.hasNoSelectedApp) {
-	in.apps.clear();
-}' #txt
-Te0 f231 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f231 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>utils</name>
-        <nameStyle>5,7
-</nameStyle>
-        <desc>add server name for exceptions
-
-clear apps list</desc>
-    </language>
-</elementInfo>
-' #txt
-Te0 f231 2574 212 36 24 20 -2 #rect
-Te0 f231 @|StepIcon #fIcon
-Te0 f232 expr out #txt
-Te0 f232 2442 648 2592 236 #arcP
-Te0 f232 1 2592 648 #addKink
-Te0 f232 1 0.3622224354814317 0 0 #arcLabel
-Te0 f233 expr out #txt
-Te0 f233 2592 212 2438 168 #arcP
-Te0 f233 1 2592 168 #addKink
-Te0 f233 1 0.251489130890622 0 0 #arcLabel
-Te0 f234 expr out #txt
-Te0 f234 2424 428 2424 458 #arcP
-Te0 f235 expr in #txt
-Te0 f235 2438 472 2592 236 #arcP
-Te0 f235 1 2592 472 #addKink
-Te0 f235 0 0.8799989356997663 0 0 #arcLabel
-Te0 f236 expr out #txt
-Te0 f236 2424 604 2424 636 #arcP
-Te0 f237 expr in #txt
-Te0 f237 outCond in.listIterator.hasNext() #txt
-Te0 f237 2424 182 2424 212 #arcP
-Te0 f238 expr out #txt
-Te0 f238 2424 77 2424 100 #arcP
-Te0 f239 expr out #txt
-Te0 f239 2424 124 2424 154 #arcP
-Te0 f240 expr out #txt
-Te0 f240 2424 364 2424 404 #arcP
-Te0 f241 expr out #txt
-Te0 f241 2424 236 2424 274 #arcP
-Te0 f242 expr in #txt
-Te0 f242 outCond in.hasNoSelectedApp #txt
-Te0 f242 2424 302 2424 340 #arcP
-Te0 f243 expr in #txt
-Te0 f243 outCond 'in.apps.size() > 0' #txt
-Te0 f243 2424 486 2424 516 #arcP
-Te0 f244 expr out #txt
-Te0 f244 2424 540 2424 580 #arcP
-Te0 f245 expr in #txt
-Te0 f245 2410 288 2406 528 #arcP
-Te0 f245 1 2378 288 #addKink
-Te0 f245 2 2378 528 #addKink
-Te0 f245 1 0.4930555555555556 0 0 #arcLabel
 Te0 f246 expr in #txt
 Te0 f246 2130 176 1374 880 #arcP
 Te0 f246 1 2048 176 #addKink
 Te0 f246 2 2048 880 #addKink
 Te0 f246 2 0.11428571428571428 0 0 #arcLabel
-Te0 f247 expr in #txt
-Te0 f247 2410 168 1374 880 #arcP
-Te0 f247 1 2336 168 #addKink
-Te0 f247 2 2336 880 #addKink
-Te0 f247 2 0.21333333333333335 0 0 #arcLabel
 Te0 f94 expr out #txt
 Te0 f94 1552 628 1552 660 #arcP
 Te0 f248 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
@@ -3605,7 +3279,7 @@ Te0 f270 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f270 2737 458 28 28 14 0 #rect
+Te0 f270 2633 442 28 28 14 0 #rect
 Te0 f270 @|AlternativeIcon #fIcon
 Te0 f271 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -3626,7 +3300,7 @@ Te0 f271 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f271 2733 516 36 24 20 -2 #rect
+Te0 f271 2629 500 36 24 20 -2 #rect
 Te0 f271 @|StepIcon #fIcon
 Te0 f272 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -3656,7 +3330,7 @@ clear apps list</desc>
     </language>
 </elementInfo>
 ' #txt
-Te0 f272 2933 212 36 24 20 -2 #rect
+Te0 f272 2829 196 36 24 20 -2 #rect
 Te0 f272 @|StepIcon #fIcon
 Te0 f273 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -3693,7 +3367,7 @@ Te0 f273 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f273 2733 404 36 24 21 -7 #rect
+Te0 f273 2629 388 36 24 21 -7 #rect
 Te0 f273 @|StepIcon #fIcon
 Te0 f274 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f274 processCall MultiPortal/ApplicationService:getApplicationConfiguredOn(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -3718,7 +3392,7 @@ of server</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f274 2733 340 36 24 20 -2 #rect
+Te0 f274 2629 324 36 24 20 -2 #rect
 Te0 f274 @|CallSubIcon #fIcon
 Te0 f275 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -3729,7 +3403,15 @@ import java.util.HashSet;
 
 Set categories = new HashSet(in.categories);
 in.categories.clear();
-in.categories.addAll(categories);' #txt
+in.categories.addAll(categories);
+
+Set groupTaskCategories = new HashSet(in.groupTaskCategories);
+in.groupTaskCategories.clear();
+in.groupTaskCategories.addAll(groupTaskCategories);
+
+Set personalTaskCategories = new HashSet(in.personalTaskCategories);
+in.personalTaskCategories.clear();
+in.personalTaskCategories.addAll(personalTaskCategories);' #txt
 Te0 f275 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f275 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3740,14 +3422,15 @@ Te0 f275 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f275 2733 636 36 24 20 -2 #rect
+Te0 f275 2629 620 36 24 20 -2 #rect
 Te0 f275 @|StepIcon #fIcon
 Te0 f276 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f276 processCall ServiceIntegrators/TaskServiceIntegrator:findUnassignedCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f276 processCall ServiceIntegrators/TaskServiceIntegrator:findTaskCategoriesOfUserWithoutReadAllPermission(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f276 doCall true #txt
-Te0 f276 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+Te0 f276 requestActionDecl '<java.lang.String username,java.lang.String jsonQuery,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
 ' #txt
-Te0 f276 requestMappingAction 'param.jsonQuery=in.jsonQuery;
+Te0 f276 requestMappingAction 'param.username=in.userName;
+param.jsonQuery=in.jsonQuery;
 param.apps=in.apps;
 param.server=in.server;
 param.endpoint=in.endpoint;
@@ -3756,6 +3439,8 @@ Te0 f276 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
 Te0 f276 responseMappingAction 'out=in;
 out.categories=in.categories.addAll(result.categories);
+out.groupTaskCategories=in.groupTaskCategories.addAll(result.groupTaskCategories);
+out.personalTaskCategories=in.personalTaskCategories.addAll(result.personalTaskCategories);
 out.tempErrors=result.errors;
 ' #txt
 Te0 f276 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3767,7 +3452,7 @@ Te0 f276 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f276 2733 580 36 24 20 -2 #rect
+Te0 f276 2629 564 36 24 20 -2 #rect
 Te0 f276 @|CallSubIcon #fIcon
 Te0 f277 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -3794,7 +3479,7 @@ Te0 f277 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f277 2733 100 36 24 20 -2 #rect
+Te0 f277 2629 84 36 24 20 -2 #rect
 Te0 f277 @|StepIcon #fIcon
 Te0 f278 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f278 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3806,31 +3491,34 @@ Te0 f278 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f278 2737 154 28 28 22 -21 #rect
+Te0 f278 2633 138 28 28 22 -21 #rect
 Te0 f278 @|AlternativeIcon #fIcon
-Te0 f279 inParamDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
+Te0 f279 inParamDecl '<java.lang.String username,java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId> param;' #txt
 Te0 f279 inParamTable 'out.apps=param.apps;
 out.hasNoSelectedApp=param.apps.isEmpty();
 out.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
+out.userName=param.username;
 ' #txt
-Te0 f279 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f279 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> groupTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> personalTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
-Te0 f279 outParamTable 'result.categories=in.categories;
+Te0 f279 outParamTable 'result.groupTaskCategories=in.groupTaskCategories;
+result.personalTaskCategories=in.personalTaskCategories;
+result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f279 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
-Te0 f279 callSignature findUnassignedCategories(String,List<String>,Long) #txt
+Te0 f279 callSignature findTaskCategoriesOfUserWithoutReadAllPermission(String,String,List<String>,Long) #txt
 Te0 f279 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f279 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findUnassignedCategories(String,List&lt;String&gt;,Long)</name>
+        <name>findTaskCategoriesOfUserWithoutReadAllPermission(String,String,List&lt;String&gt;,Long)</name>
     </language>
 </elementInfo>
 ' #txt
-Te0 f279 2738 51 26 26 -50 -39 #rect
+Te0 f279 2634 35 26 26 -50 -39 #rect
 Te0 f279 @|StartSubIcon #fIcon
 Te0 f280 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f280 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3842,7 +3530,7 @@ Te0 f280 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f280 2737 274 28 28 14 0 #rect
+Te0 f280 2633 258 28 28 14 0 #rect
 Te0 f280 @|AlternativeIcon #fIcon
 Te0 f281 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -3861,53 +3549,54 @@ Te0 f281 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f281 2733 212 36 24 20 -2 #rect
+Te0 f281 2629 196 36 24 20 -2 #rect
 Te0 f281 @|StepIcon #fIcon
 Te0 f282 expr out #txt
-Te0 f282 2751 540 2751 580 #arcP
+Te0 f282 2647 524 2647 564 #arcP
 Te0 f283 expr in #txt
 Te0 f283 outCond in.listIterator.hasNext() #txt
-Te0 f283 2751 182 2751 212 #arcP
+Te0 f283 2647 166 2647 196 #arcP
 Te0 f284 expr in #txt
-Te0 f284 2737 288 2733 528 #arcP
-Te0 f284 1 2704 288 #addKink
-Te0 f284 2 2704 528 #addKink
+Te0 f284 2633 272 2629 512 #arcP
+Te0 f284 1 2584 272 #addKink
+Te0 f284 2 2584 512 #addKink
 Te0 f284 1 0.4930555555555556 0 0 #arcLabel
 Te0 f285 expr in #txt
 Te0 f285 outCond 'in.apps.size() > 0' #txt
-Te0 f285 2751 486 2751 516 #arcP
+Te0 f285 2647 470 2647 500 #arcP
 Te0 f286 expr out #txt
-Te0 f286 2769 648 2951 236 #arcP
-Te0 f286 1 2951 648 #addKink
+Te0 f286 2665 632 2847 220 #arcP
+Te0 f286 1 2847 632 #addKink
 Te0 f286 1 0.3622224354814317 0 0 #arcLabel
 Te0 f287 expr in #txt
 Te0 f287 outCond in.hasNoSelectedApp #txt
-Te0 f287 2751 302 2751 340 #arcP
+Te0 f287 2647 286 2647 324 #arcP
 Te0 f288 expr out #txt
-Te0 f288 2751 428 2751 458 #arcP
+Te0 f288 2647 412 2647 442 #arcP
 Te0 f289 expr out #txt
-Te0 f289 2951 212 2765 168 #arcP
-Te0 f289 1 2951 168 #addKink
+Te0 f289 2847 196 2661 152 #arcP
+Te0 f289 1 2847 152 #addKink
 Te0 f289 1 0.251489130890622 0 0 #arcLabel
 Te0 f290 expr out #txt
-Te0 f290 2751 236 2751 274 #arcP
+Te0 f290 2647 220 2647 258 #arcP
 Te0 f291 expr out #txt
-Te0 f291 2751 77 2751 100 #arcP
+Te0 f291 2647 61 2647 84 #arcP
 Te0 f292 expr out #txt
-Te0 f292 2751 124 2751 154 #arcP
+Te0 f292 2647 108 2647 138 #arcP
 Te0 f293 expr in #txt
-Te0 f293 2765 472 2951 236 #arcP
-Te0 f293 1 2951 472 #addKink
+Te0 f293 2661 456 2847 220 #arcP
+Te0 f293 1 2847 456 #addKink
 Te0 f293 0 0.8799989356997663 0 0 #arcLabel
 Te0 f294 expr out #txt
-Te0 f294 2751 604 2751 636 #arcP
+Te0 f294 2647 588 2647 620 #arcP
 Te0 f295 expr out #txt
-Te0 f295 2751 364 2751 404 #arcP
+Te0 f295 2647 348 2647 388 #arcP
 Te0 f296 expr in #txt
-Te0 f296 2737 168 1374 880 #arcP
-Te0 f296 1 2656 168 #addKink
-Te0 f296 2 2656 880 #addKink
-Te0 f296 1 0.7513873294614658 0 0 #arcLabel
+Te0 f296 2633 152 1374 880 #arcP
+Te0 f296 1 2520 152 #addKink
+Te0 f296 2 2520 880 #addKink
+Te0 f296 3 2656 880 #addKink
+Te0 f296 1 0.7628403163173908 0 0 #arcLabel
 Te0 f297 inParamDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;' #txt
 Te0 f297 inParamTable 'out.apps=param.apps;
 out.hasNoSelectedApp=param.apps.isEmpty();
@@ -4498,38 +4187,8 @@ Te0 f167 mainOut f218 tail #connect
 Te0 f218 head f128 mainIn #connect
 Te0 f158 out f219 tail #connect
 Te0 f219 head f167 mainIn #connect
-Te0 f223 mainOut f232 tail #connect
-Te0 f232 head f231 mainIn #connect
-Te0 f231 mainOut f233 tail #connect
-Te0 f233 head f230 in #connect
-Te0 f221 mainOut f234 tail #connect
-Te0 f234 head f228 in #connect
-Te0 f235 head f231 mainIn #connect
-Te0 f220 mainOut f236 tail #connect
-Te0 f236 head f223 mainIn #connect
-Te0 f230 out f237 tail #connect
-Te0 f237 head f222 mainIn #connect
-Te0 f225 mainOut f238 tail #connect
-Te0 f238 head f226 mainIn #connect
-Te0 f226 mainOut f239 tail #connect
-Te0 f239 head f230 in #connect
-Te0 f229 mainOut f240 tail #connect
-Te0 f240 head f221 mainIn #connect
-Te0 f222 mainOut f241 tail #connect
-Te0 f241 head f224 in #connect
-Te0 f224 out f242 tail #connect
-Te0 f242 head f229 mainIn #connect
-Te0 f228 out f243 tail #connect
-Te0 f243 head f227 mainIn #connect
-Te0 f228 out f235 tail #connect
-Te0 f227 mainOut f244 tail #connect
-Te0 f244 head f220 mainIn #connect
-Te0 f224 out f245 tail #connect
-Te0 f245 head f227 mainIn #connect
 Te0 f174 out f246 tail #connect
 Te0 f246 head f148 in #connect
-Te0 f230 out f247 tail #connect
-Te0 f247 head f148 in #connect
 Te0 f248 mainOut f29 tail #connect
 Te0 f29 head f19 mainIn #connect
 Te0 f252 mainOut f43 tail #connect

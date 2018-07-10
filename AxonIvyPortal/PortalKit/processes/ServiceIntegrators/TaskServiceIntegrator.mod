@@ -1,5 +1,5 @@
 [Ivy]
-14E8BC51CC56193A 3.20 #module
+14E8BC51CC56193A 3.23 #module
 >Proto >Proto Collection #zClass
 Te0 TaskServiceIntegrator Big #zClass
 Te0 B #cInfo
@@ -151,18 +151,6 @@ Te0 @WSElement f120 '' #zField
 Te0 @PushWFArc f147 '' #zField
 Te0 @PushWFArc f118 '' #zField
 Te0 @PushWFArc f148 '' #zField
-Te0 @WSElement f72 '' #zField
-Te0 @EndSub f141 '' #zField
-Te0 @WSElement f142 '' #zField
-Te0 @StartSub f163 '' #zField
-Te0 @Alternative f164 '' #zField
-Te0 @WSElement f165 '' #zField
-Te0 @PushWFArc f166 '' #zField
-Te0 @PushWFArc f167 '' #zField
-Te0 @PushWFArc f168 '' #zField
-Te0 @PushWFArc f170 '' #zField
-Te0 @PushWFArc f171 '' #zField
-Te0 @PushWFArc f172 '' #zField
 Te0 @WSElement f173 '' #zField
 Te0 @EndSub f174 '' #zField
 Te0 @WSElement f175 '' #zField
@@ -184,9 +172,6 @@ Te0 @PushWFArc f38 '' #zField
 Te0 @GridStep f3 '' #zField
 Te0 @PushWFArc f6 '' #zField
 Te0 @PushWFArc f65 '' #zField
-Te0 @GridStep f70 '' #zField
-Te0 @PushWFArc f76 '' #zField
-Te0 @PushWFArc f77 '' #zField
 Te0 @GridStep f104 '' #zField
 Te0 @PushWFArc f149 '' #zField
 Te0 @PushWFArc f151 '' #zField
@@ -302,21 +287,24 @@ out.errors=wsResponse.resetTaskResponse.result.errors;
 out.task=wsResponse.resetTaskResponse.result.ivyTask;
 ' #txt
 Te0 f16 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f16 timeout 10 #txt
-Te0 f16 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=resetTask
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.resetTask.currentUserName__@@__String__@@__ivy.session.getSessionUserName()"",""arg0.resetTask.id__@@__Long__@@__in.taskId"",""arg0.resetTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"""' #txt
+Te0 f16 clientId 146B90974252183F #txt
+Te0 f16 port TaskServicePort #txt
+Te0 f16 operation resetTask #txt
+Te0 f16 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f16 inputParams 'arg0.resetTask.currentUserName=ivy.session.getSessionUserName();
+arg0.resetTask.id=in.taskId;
+arg0.resetTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+' #txt
 Te0 f16 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f16 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f16 returningObjectList '[wsResponse]' #txt
 Te0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -352,21 +340,19 @@ out.errors=wsResponse.resetTaskResponse.result.errors;
 out.task=wsResponse.resetTaskResponse.result.ivyTask;
 ' #txt
 Te0 f20 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f20 timeout 10 #txt
-Te0 f20 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=resetTask
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.resetTask.currentUserName__@@__String__@@__ivy.session.getSessionUserName()"",""arg0.resetTask.id__@@__Long__@@__in.taskId"",""arg0.resetTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"""' #txt
+Te0 f20 clientId 146B90974252183F #txt
+Te0 f20 port TaskServicePort #txt
+Te0 f20 operation resetTask #txt
+Te0 f20 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f20 inputParams 'arg0.resetTask.currentUserName=ivy.session.getSessionUserName();
+arg0.resetTask.id=in.taskId;
+arg0.resetTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+' #txt
 Te0 f20 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f20 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f20 returningObjectList '[wsResponse]' #txt
 Te0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -391,21 +377,24 @@ out.errors=wsResponse.delegateTaskResponse.result.errors;
 out.task=wsResponse.delegateTaskResponse.result.ivyTask;
 ' #txt
 Te0 f23 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f23 timeout 10 #txt
-Te0 f23 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=delegateTask
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.delegateTask.id__@@__Long__@@__in.taskId"",""arg0.delegateTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.delegateTask.ivySecurityMember__@@__ch.ivy.ws.addon.IvySecurityMember__@@__in.ivySecurityMember"""' #txt
+Te0 f23 clientId 146B90974252183F #txt
+Te0 f23 port TaskServicePort #txt
+Te0 f23 operation delegateTask #txt
+Te0 f23 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f23 inputParams 'arg0.delegateTask.id=in.taskId;
+arg0.delegateTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.delegateTask.ivySecurityMember=in.ivySecurityMember;
+' #txt
 Te0 f23 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f23 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f23 returningObjectList '[wsResponse]' #txt
 Te0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -468,21 +457,19 @@ out.errors=wsResponse.delegateTaskResponse.result.errors;
 out.task=wsResponse.delegateTaskResponse.result.ivyTask;
 ' #txt
 Te0 f27 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f27 timeout 10 #txt
-Te0 f27 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=delegateTask
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.delegateTask.id__@@__Long__@@__in.taskId"",""arg0.delegateTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.delegateTask.ivySecurityMember__@@__ch.ivy.ws.addon.IvySecurityMember__@@__in.ivySecurityMember"""' #txt
+Te0 f27 clientId 146B90974252183F #txt
+Te0 f27 port TaskServicePort #txt
+Te0 f27 operation delegateTask #txt
+Te0 f27 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f27 inputParams 'arg0.delegateTask.id=in.taskId;
+arg0.delegateTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.delegateTask.ivySecurityMember=in.ivySecurityMember;
+' #txt
 Te0 f27 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f27 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f27 returningObjectList '[wsResponse]' #txt
 Te0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -524,21 +511,20 @@ out.errors=wsResponse.findTasksByCriteriaResponse.result.errors;
 out.tasks=wsResponse.findTasksByCriteriaResponse.result.ivyTasks;
 ' #txt
 Te0 f34 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f34 timeout 10 #txt
-Te0 f34 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=findTasksByCriteria
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findTasksByCriteria.count__@@__Integer__@@__in.count"",""arg0.findTasksByCriteria.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.findTasksByCriteria.startIndex__@@__Integer__@@__in.startIndex"",""arg0.findTasksByCriteria.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f34 clientId 146B90974252183F #txt
+Te0 f34 port TaskServicePort #txt
+Te0 f34 operation findTasksByCriteria #txt
+Te0 f34 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f34 inputParams 'arg0.findTasksByCriteria.count=in.count;
+arg0.findTasksByCriteria.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.findTasksByCriteria.startIndex=in.startIndex;
+arg0.findTasksByCriteria.taskSearchCriteria=in.taskSearchCriteria;
+' #txt
 Te0 f34 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f34 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f34 returningObjectList '[wsResponse]' #txt
 Te0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -601,21 +587,25 @@ out.errors=wsResponse.findTasksByCriteriaResponse.result.errors;
 out.tasks=wsResponse.findTasksByCriteriaResponse.result.ivyTasks;
 ' #txt
 Te0 f37 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f37 timeout 10 #txt
-Te0 f37 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findTasksByCriteria
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findTasksByCriteria.count__@@__Integer__@@__in.count"",""arg0.findTasksByCriteria.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.findTasksByCriteria.startIndex__@@__Integer__@@__in.startIndex"",""arg0.findTasksByCriteria.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f37 clientId 146B90974252183F #txt
+Te0 f37 port TaskServicePort #txt
+Te0 f37 operation findTasksByCriteria #txt
+Te0 f37 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f37 inputParams 'arg0.findTasksByCriteria.count=in.count;
+arg0.findTasksByCriteria.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.findTasksByCriteria.startIndex=in.startIndex;
+arg0.findTasksByCriteria.taskSearchCriteria=in.taskSearchCriteria;
+' #txt
 Te0 f37 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f37 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f37 returningObjectList '[wsResponse]' #txt
 Te0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -679,19 +669,16 @@ out.errors=wsResponse.canUserResumeTaskResponse.result.errors;
 out.workerUserName=wsResponse.canUserResumeTaskResponse.result.workerUserName;
 ' #txt
 Te0 f46 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f46 timeout 10 #txt
-Te0 f46 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_USERNAME=
-KEY_OPERATION=canUserResumeTask
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.canUserResumeTask.id__@@__Long__@@__in.taskId"",""arg0.canUserResumeTask.userName__@@__String__@@__in.resumeTaskRequester"""' #txt
+Te0 f46 clientId 146B90974252183F #txt
+Te0 f46 port TaskServicePort #txt
+Te0 f46 operation canUserResumeTask #txt
+Te0 f46 properties 'timeout.timeInSeconds=10;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f46 inputParams 'arg0.canUserResumeTask.id=in.taskId;
+arg0.canUserResumeTask.userName=in.resumeTaskRequester;
+' #txt
 Te0 f46 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f46 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f46 returningObjectList '[wsResponse]' #txt
 Te0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -728,19 +715,21 @@ out.errors=wsResponse.canUserResumeTaskResponse.result.errors;
 out.workerUserName=wsResponse.canUserResumeTaskResponse.result.workerUserName;
 ' #txt
 Te0 f49 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f49 timeout 10 #txt
-Te0 f49 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=canUserResumeTask
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.canUserResumeTask.id__@@__Long__@@__in.taskId"",""arg0.canUserResumeTask.userName__@@__String__@@__in.resumeTaskRequester"""' #txt
+Te0 f49 clientId 146B90974252183F #txt
+Te0 f49 port TaskServicePort #txt
+Te0 f49 operation canUserResumeTask #txt
+Te0 f49 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f49 inputParams 'arg0.canUserResumeTask.id=in.taskId;
+arg0.canUserResumeTask.userName=in.resumeTaskRequester;
+' #txt
 Te0 f49 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f49 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f49 returningObjectList '[wsResponse]' #txt
 Te0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -823,19 +812,17 @@ in.taskId=6;
 in.userName="Developer";
 ' #txt
 Te0 f63 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f63 timeout 10 #txt
-Te0 f63 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=createTaskNote
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.createTaskNote.id__@@__Long__@@__in.taskId"",""arg0.createTaskNote.message__@@__String__@@__in.noteContent"",""arg0.createTaskNote.user__@@__String__@@__in.noteCreator"""' #txt
+Te0 f63 clientId 146B90974252183F #txt
+Te0 f63 port TaskServicePort #txt
+Te0 f63 operation createTaskNote #txt
+Te0 f63 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Te0 f63 inputParams 'arg0.createTaskNote.id=in.taskId;
+arg0.createTaskNote.message=in.noteContent;
+arg0.createTaskNote.user=in.noteCreator;
+' #txt
 Te0 f63 returningObjectList '[wsResponse]' #txt
 Te0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -866,19 +853,22 @@ in.taskId=6;
 in.userName="Developer";
 ' #txt
 Te0 f57 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f57 timeout 10 #txt
-Te0 f57 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=createTaskNote
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.createTaskNote.id__@@__Long__@@__in.taskId"",""arg0.createTaskNote.message__@@__String__@@__in.noteContent"",""arg0.createTaskNote.user__@@__String__@@__in.noteCreator"""' #txt
+Te0 f57 clientId 146B90974252183F #txt
+Te0 f57 port TaskServicePort #txt
+Te0 f57 operation createTaskNote #txt
+Te0 f57 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Te0 f57 inputParams 'arg0.createTaskNote.id=in.taskId;
+arg0.createTaskNote.message=in.noteContent;
+arg0.createTaskNote.user=in.noteCreator;
+' #txt
 Te0 f57 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f57 returningObjectList '[wsResponse]' #txt
 Te0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -942,19 +932,20 @@ out.errors=wsResponse.countTasksByCriteriaResponse.result.errors;
 out.taskCount=wsResponse.countTasksByCriteriaResponse.result.taskCount;
 ' #txt
 Te0 f74 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f74 timeout 10 #txt
-Te0 f74 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=countTasksByCriteria
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.countTasksByCriteria.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f74 clientId 146B90974252183F #txt
+Te0 f74 port TaskServicePort #txt
+Te0 f74 operation countTasksByCriteria #txt
+Te0 f74 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f74 inputParams 'arg0.countTasksByCriteria.taskSearchCriteria=in.taskSearchCriteria;
+' #txt
 Te0 f74 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f74 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f74 returningObjectList '[wsResponse]' #txt
 Te0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -998,19 +989,15 @@ out.errors=wsResponse.countTasksByCriteriaResponse.result.errors;
 out.taskCount=wsResponse.countTasksByCriteriaResponse.result.taskCount;
 ' #txt
 Te0 f78 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f78 timeout 10 #txt
-Te0 f78 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_USERNAME=
-KEY_OPERATION=countTasksByCriteria
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.countTasksByCriteria.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f78 clientId 146B90974252183F #txt
+Te0 f78 port TaskServicePort #txt
+Te0 f78 operation countTasksByCriteria #txt
+Te0 f78 properties 'timeout.timeInSeconds=10;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f78 inputParams 'arg0.countTasksByCriteria.taskSearchCriteria=in.taskSearchCriteria;
+' #txt
 Te0 f78 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f78 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f78 returningObjectList '[wsResponse]' #txt
 Te0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1101,21 +1088,25 @@ out.categories=wsResponse.findCategoriesResponse.result.categories;
 out.errors=wsResponse.findCategoriesResponse.result.errors;
 ' #txt
 Te0 f88 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f88 timeout 10 #txt
-Te0 f88 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findCategories
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.language__@@__String__@@__in.language"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+Te0 f88 clientId 146B90974252183F #txt
+Te0 f88 port TaskServicePort #txt
+Te0 f88 operation findCategories #txt
+Te0 f88 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f88 inputParams 'arg0.findCategories.apps=in.applicationNames;
+arg0.findCategories.jsonQuery=in.jsonQuery;
+arg0.findCategories.language=in.language;
+arg0.findCategories.userName=in.taskCategoryRequester;
+' #txt
 Te0 f88 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f88 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f88 returningObjectList '[wsResponse]' #txt
 Te0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1136,21 +1127,20 @@ out.categories=wsResponse.findCategoriesResponse.result.categories;
 out.errors=wsResponse.findCategoriesResponse.result.errors;
 ' #txt
 Te0 f89 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f89 timeout 10 #txt
-Te0 f89 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=findCategories
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.language__@@__String__@@__in.language"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+Te0 f89 clientId 146B90974252183F #txt
+Te0 f89 port TaskServicePort #txt
+Te0 f89 operation findCategories #txt
+Te0 f89 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f89 inputParams 'arg0.findCategories.apps=in.applicationNames;
+arg0.findCategories.jsonQuery=in.jsonQuery;
+arg0.findCategories.language=in.language;
+arg0.findCategories.userName=in.taskCategoryRequester;
+' #txt
 Te0 f89 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f89 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f89 returningObjectList '[wsResponse]' #txt
 Te0 f89 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1217,21 +1207,24 @@ out.errors=wsResponse.analyzePriorityStatisticResponse.result.errors;
 out.priorityStatistic=wsResponse.analyzePriorityStatisticResponse.result.priorityStatistic;
 ' #txt
 Te0 f96 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f96 timeout 10 #txt
-Te0 f96 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=analyzePriorityStatistic
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+Te0 f96 clientId 146B90974252183F #txt
+Te0 f96 port TaskServicePort #txt
+Te0 f96 operation analyzePriorityStatistic #txt
+Te0 f96 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f96 inputParams 'arg0.analyzePriorityStatistic.apps=in.applicationNames;
+arg0.analyzePriorityStatistic.jsonQuery=in.jsonQuery;
+arg0.analyzePriorityStatistic.userName=in.taskStatisticRequester;
+' #txt
 Te0 f96 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f96 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f96 returningObjectList '[wsResponse]' #txt
 Te0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1252,21 +1245,19 @@ out.errors=wsResponse.analyzePriorityStatisticResponse.result.errors;
 out.priorityStatistic=wsResponse.analyzePriorityStatisticResponse.result.priorityStatistic;
 ' #txt
 Te0 f103 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f103 timeout 10 #txt
-Te0 f103 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=analyzePriorityStatistic
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+Te0 f103 clientId 146B90974252183F #txt
+Te0 f103 port TaskServicePort #txt
+Te0 f103 operation analyzePriorityStatistic #txt
+Te0 f103 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f103 inputParams 'arg0.analyzePriorityStatistic.apps=in.applicationNames;
+arg0.analyzePriorityStatistic.jsonQuery=in.jsonQuery;
+arg0.analyzePriorityStatistic.userName=in.taskStatisticRequester;
+' #txt
 Te0 f103 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f103 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f103 returningObjectList '[wsResponse]' #txt
 Te0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1316,21 +1307,24 @@ out.errors=wsResponse.analyzeExpiryStatisticResponse.result.errors;
 out.expiryStatistic=wsResponse.analyzeExpiryStatisticResponse.result.expiryStatistic;
 ' #txt
 Te0 f111 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f111 timeout 10 #txt
-Te0 f111 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=analyzeExpiryStatistic
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+Te0 f111 clientId 146B90974252183F #txt
+Te0 f111 port TaskServicePort #txt
+Te0 f111 operation analyzeExpiryStatistic #txt
+Te0 f111 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f111 inputParams 'arg0.analyzeExpiryStatistic.apps=in.applicationNames;
+arg0.analyzeExpiryStatistic.jsonQuery=in.jsonQuery;
+arg0.analyzeExpiryStatistic.userName=in.taskStatisticRequester;
+' #txt
 Te0 f111 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f111 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f111 returningObjectList '[wsResponse]' #txt
 Te0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1351,21 +1345,19 @@ out.errors=wsResponse.analyzeExpiryStatisticResponse.result.errors;
 out.expiryStatistic=wsResponse.analyzeExpiryStatisticResponse.result.expiryStatistic;
 ' #txt
 Te0 f112 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f112 timeout 10 #txt
-Te0 f112 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=analyzeExpiryStatistic
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+Te0 f112 clientId 146B90974252183F #txt
+Te0 f112 port TaskServicePort #txt
+Te0 f112 operation analyzeExpiryStatistic #txt
+Te0 f112 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f112 inputParams 'arg0.analyzeExpiryStatistic.apps=in.applicationNames;
+arg0.analyzeExpiryStatistic.jsonQuery=in.jsonQuery;
+arg0.analyzeExpiryStatistic.userName=in.taskStatisticRequester;
+' #txt
 Te0 f112 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f112 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f112 returningObjectList '[wsResponse]' #txt
 Te0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1484,21 +1476,19 @@ Te0 f10 actionTable 'out=in;
 out.task=wsResponse.parkTaskResponse.result.ivyTask;
 ' #txt
 Te0 f10 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f10 timeout 10 #txt
-Te0 f10 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=parkTask
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.parkTask.id__@@__Long__@@__in.taskId"",""arg0.parkTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.parkTask.user__@@__String__@@__in.parkTaskRequester"""' #txt
+Te0 f10 clientId 146B90974252183F #txt
+Te0 f10 port TaskServicePort #txt
+Te0 f10 operation parkTask #txt
+Te0 f10 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f10 inputParams 'arg0.parkTask.id=in.taskId;
+arg0.parkTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.parkTask.user=in.parkTaskRequester;
+' #txt
 Te0 f10 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f10 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f10 returningObjectList '[wsResponse]' #txt
 Te0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1522,21 +1512,24 @@ Te0 f62 actionTable 'out=in;
 out.task=wsResponse.parkTaskResponse.result.ivyTask;
 ' #txt
 Te0 f62 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f62 timeout 10 #txt
-Te0 f62 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=parkTask
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.parkTask.id__@@__Long__@@__in.taskId"",""arg0.parkTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.parkTask.user__@@__String__@@__in.parkTaskRequester"""' #txt
+Te0 f62 clientId 146B90974252183F #txt
+Te0 f62 port TaskServicePort #txt
+Te0 f62 operation parkTask #txt
+Te0 f62 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f62 inputParams 'arg0.parkTask.id=in.taskId;
+arg0.parkTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.parkTask.user=in.parkTaskRequester;
+' #txt
 Te0 f62 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f62 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f62 returningObjectList '[wsResponse]' #txt
 Te0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1571,17 +1564,18 @@ Te0 f97 actionTable 'out=in;
 out.errors=wsResponse.saveResponse.errors;
 ' #txt
 Te0 f97 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f97 timeout 10 #txt
-Te0 f97 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=save
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.save.task__@@__ch.ivy.ws.addon.IvyTask__@@__in.task"""' #txt
+Te0 f97 clientId 146B90974252183F #txt
+Te0 f97 port TaskServicePort #txt
+Te0 f97 operation save #txt
+Te0 f97 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+' #txt
+Te0 f97 inputParams 'arg0.save.task=in.task;
+' #txt
 Te0 f97 returningObjectList '[wsResponse]' #txt
 Te0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1640,17 +1634,13 @@ Te0 f121 actionTable 'out=in;
 out.errors=wsResponse.saveResponse.errors;
 ' #txt
 Te0 f121 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f121 timeout 10 #txt
-Te0 f121 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_USERNAME=
-KEY_OPERATION=save
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.save.task__@@__ch.ivy.ws.addon.IvyTask__@@__in.task"""' #txt
+Te0 f121 clientId 146B90974252183F #txt
+Te0 f121 port TaskServicePort #txt
+Te0 f121 operation save #txt
+Te0 f121 properties 'timeout.timeInSeconds=10;
+' #txt
+Te0 f121 inputParams 'arg0.save.task=in.task;
+' #txt
 Te0 f121 returningObjectList '[wsResponse]' #txt
 Te0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1676,21 +1666,22 @@ Te0 f4 actionTable 'out=in;
 out.task=wsResponse.parkTaskResponse.result.ivyTask;
 ' #txt
 Te0 f4 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f4 timeout 10 #txt
-Te0 f4 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=parkTask
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.parkTask.id__@@__Long__@@__in.taskId"",""arg0.parkTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.parkTask.user__@@__String__@@__in.parkTaskRequester"""' #txt
+Te0 f4 clientId 146B90974252183F #txt
+Te0 f4 port TaskServicePort #txt
+Te0 f4 operation parkTask #txt
+Te0 f4 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f4 inputParams 'arg0.parkTask.id=in.taskId;
+arg0.parkTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.parkTask.user=in.parkTaskRequester;
+' #txt
 Te0 f4 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f4 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f4 returningObjectList '[wsResponse]' #txt
 Te0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1725,17 +1716,16 @@ Te0 f126 actionTable 'out=in;
 out.errors=wsResponse.saveResponse.errors;
 ' #txt
 Te0 f126 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f126 timeout 10 #txt
-Te0 f126 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=save
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.save.task__@@__ch.ivy.ws.addon.IvyTask__@@__in.task"""' #txt
+Te0 f126 clientId 146B90974252183F #txt
+Te0 f126 port TaskServicePort #txt
+Te0 f126 operation save #txt
+Te0 f126 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+' #txt
+Te0 f126 inputParams 'arg0.save.task=in.task;
+' #txt
 Te0 f126 returningObjectList '[wsResponse]' #txt
 Te0 f126 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1779,21 +1769,22 @@ out.errors=wsResponse.resetTaskResponse.result.errors;
 out.task=wsResponse.resetTaskResponse.result.ivyTask;
 ' #txt
 Te0 f71 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f71 timeout 10 #txt
-Te0 f71 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=resetTask
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.resetTask.currentUserName__@@__String__@@__ivy.session.getSessionUserName()"",""arg0.resetTask.id__@@__Long__@@__in.taskId"",""arg0.resetTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"""' #txt
+Te0 f71 clientId 146B90974252183F #txt
+Te0 f71 port TaskServicePort #txt
+Te0 f71 operation resetTask #txt
+Te0 f71 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f71 inputParams 'arg0.resetTask.currentUserName=ivy.session.getSessionUserName();
+arg0.resetTask.id=in.taskId;
+arg0.resetTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+' #txt
 Te0 f71 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f71 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f71 returningObjectList '[wsResponse]' #txt
 Te0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1827,21 +1818,22 @@ out.errors=wsResponse.delegateTaskResponse.result.errors;
 out.task=wsResponse.delegateTaskResponse.result.ivyTask;
 ' #txt
 Te0 f66 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f66 timeout 10 #txt
-Te0 f66 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=delegateTask
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.delegateTask.id__@@__Long__@@__in.taskId"",""arg0.delegateTask.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.delegateTask.ivySecurityMember__@@__ch.ivy.ws.addon.IvySecurityMember__@@__in.ivySecurityMember"""' #txt
+Te0 f66 clientId 146B90974252183F #txt
+Te0 f66 port TaskServicePort #txt
+Te0 f66 operation delegateTask #txt
+Te0 f66 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f66 inputParams 'arg0.delegateTask.id=in.taskId;
+arg0.delegateTask.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.delegateTask.ivySecurityMember=in.ivySecurityMember;
+' #txt
 Te0 f66 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f66 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f66 returningObjectList '[wsResponse]' #txt
 Te0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1883,19 +1875,20 @@ in.taskId=6;
 in.userName="Developer";
 ' #txt
 Te0 f56 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f56 timeout 10 #txt
-Te0 f56 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=createTaskNote
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.createTaskNote.id__@@__Long__@@__in.taskId"",""arg0.createTaskNote.message__@@__String__@@__in.noteContent"",""arg0.createTaskNote.user__@@__String__@@__in.noteCreator"""' #txt
+Te0 f56 clientId 146B90974252183F #txt
+Te0 f56 port TaskServicePort #txt
+Te0 f56 operation createTaskNote #txt
+Te0 f56 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+' #txt
+Te0 f56 inputParams 'arg0.createTaskNote.id=in.taskId;
+arg0.createTaskNote.message=in.noteContent;
+arg0.createTaskNote.user=in.noteCreator;
+' #txt
 Te0 f56 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f56 returningObjectList '[wsResponse]' #txt
 Te0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1937,19 +1930,18 @@ out.errors=wsResponse.countTasksByCriteriaResponse.result.errors;
 out.taskCount=wsResponse.countTasksByCriteriaResponse.result.taskCount;
 ' #txt
 Te0 f84 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f84 timeout 10 #txt
-Te0 f84 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=countTasksByCriteria
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.countTasksByCriteria.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f84 clientId 146B90974252183F #txt
+Te0 f84 port TaskServicePort #txt
+Te0 f84 operation countTasksByCriteria #txt
+Te0 f84 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f84 inputParams 'arg0.countTasksByCriteria.taskSearchCriteria=in.taskSearchCriteria;
+' #txt
 Te0 f84 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f84 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f84 returningObjectList '[wsResponse]' #txt
 Te0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1984,21 +1976,23 @@ out.errors=wsResponse.findTasksByCriteriaResponse.result.errors;
 out.tasks=wsResponse.findTasksByCriteriaResponse.result.ivyTasks;
 ' #txt
 Te0 f69 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f69 timeout 10 #txt
-Te0 f69 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findTasksByCriteria
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findTasksByCriteria.count__@@__Integer__@@__in.count"",""arg0.findTasksByCriteria.isUrlBuiltFromSystemProperties__@@__Boolean__@@__in.isUrlBuiltFromSystemProperties"",""arg0.findTasksByCriteria.startIndex__@@__Integer__@@__in.startIndex"",""arg0.findTasksByCriteria.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f69 clientId 146B90974252183F #txt
+Te0 f69 port TaskServicePort #txt
+Te0 f69 operation findTasksByCriteria #txt
+Te0 f69 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f69 inputParams 'arg0.findTasksByCriteria.count=in.count;
+arg0.findTasksByCriteria.isUrlBuiltFromSystemProperties=in.isUrlBuiltFromSystemProperties;
+arg0.findTasksByCriteria.startIndex=in.startIndex;
+arg0.findTasksByCriteria.taskSearchCriteria=in.taskSearchCriteria;
+' #txt
 Te0 f69 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f69 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f69 returningObjectList '[wsResponse]' #txt
 Te0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2033,19 +2027,19 @@ out.errors=wsResponse.canUserResumeTaskResponse.result.errors;
 out.workerUserName=wsResponse.canUserResumeTaskResponse.result.workerUserName;
 ' #txt
 Te0 f156 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f156 timeout 10 #txt
-Te0 f156 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=canUserResumeTask
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.canUserResumeTask.id__@@__Long__@@__in.taskId"",""arg0.canUserResumeTask.userName__@@__String__@@__in.resumeTaskRequester"""' #txt
+Te0 f156 clientId 146B90974252183F #txt
+Te0 f156 port TaskServicePort #txt
+Te0 f156 operation canUserResumeTask #txt
+Te0 f156 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f156 inputParams 'arg0.canUserResumeTask.id=in.taskId;
+arg0.canUserResumeTask.userName=in.resumeTaskRequester;
+' #txt
 Te0 f156 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f156 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f156 returningObjectList '[wsResponse]' #txt
 Te0 f156 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2079,21 +2073,23 @@ out.categories=wsResponse.findCategoriesResponse.result.categories;
 out.errors=wsResponse.findCategoriesResponse.result.errors;
 ' #txt
 Te0 f101 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f101 timeout 10 #txt
-Te0 f101 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findCategories
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findCategories.language__@@__String__@@__in.language"",""arg0.findCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+Te0 f101 clientId 146B90974252183F #txt
+Te0 f101 port TaskServicePort #txt
+Te0 f101 operation findCategories #txt
+Te0 f101 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f101 inputParams 'arg0.findCategories.apps=in.applicationNames;
+arg0.findCategories.jsonQuery=in.jsonQuery;
+arg0.findCategories.language=in.language;
+arg0.findCategories.userName=in.taskCategoryRequester;
+' #txt
 Te0 f101 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f101 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f101 returningObjectList '[wsResponse]' #txt
 Te0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2129,21 +2125,22 @@ out.errors=wsResponse.analyzePriorityStatisticResponse.result.errors;
 out.priorityStatistic=wsResponse.analyzePriorityStatisticResponse.result.priorityStatistic;
 ' #txt
 Te0 f110 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f110 timeout 10 #txt
-Te0 f110 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=analyzePriorityStatistic
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzePriorityStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzePriorityStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+Te0 f110 clientId 146B90974252183F #txt
+Te0 f110 port TaskServicePort #txt
+Te0 f110 operation analyzePriorityStatistic #txt
+Te0 f110 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f110 inputParams 'arg0.analyzePriorityStatistic.apps=in.applicationNames;
+arg0.analyzePriorityStatistic.jsonQuery=in.jsonQuery;
+arg0.analyzePriorityStatistic.userName=in.taskStatisticRequester;
+' #txt
 Te0 f110 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f110 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f110 returningObjectList '[wsResponse]' #txt
 Te0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2179,21 +2176,22 @@ out.errors=wsResponse.analyzeExpiryStatisticResponse.result.errors;
 out.expiryStatistic=wsResponse.analyzeExpiryStatisticResponse.result.expiryStatistic;
 ' #txt
 Te0 f120 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f120 timeout 10 #txt
-Te0 f120 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=analyzeExpiryStatistic
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.analyzeExpiryStatistic.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.analyzeExpiryStatistic.userName__@@__String__@@__in.taskStatisticRequester"""' #txt
+Te0 f120 clientId 146B90974252183F #txt
+Te0 f120 port TaskServicePort #txt
+Te0 f120 operation analyzeExpiryStatistic #txt
+Te0 f120 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f120 inputParams 'arg0.analyzeExpiryStatistic.apps=in.applicationNames;
+arg0.analyzeExpiryStatistic.jsonQuery=in.jsonQuery;
+arg0.analyzeExpiryStatistic.userName=in.taskStatisticRequester;
+' #txt
 Te0 f120 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f120 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f120 returningObjectList '[wsResponse]' #txt
 Te0 f120 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2219,205 +2217,34 @@ Te0 f148 expr in #txt
 Te0 f148 2286 576 2432 660 #arcP
 Te0 f148 1 2432 576 #addKink
 Te0 f148 0 0.7199483620017699 0 0 #arcLabel
-Te0 f72 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f72 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
-' #txt
-Te0 f72 actionTable 'out=in;
-out.categories=wsResponse.findPersonalTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findPersonalTaskCategoriesResponse.result.errors;
-' #txt
-Te0 f72 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f72 timeout 10 #txt
-Te0 f72 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findPersonalTaskCategories
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.language__@@__String__@@__in.language"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
-Te0 f72 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f72 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f72 returningObjectList '[wsResponse]' #txt
-Te0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>HTTP Basic</name>
-        <nameStyle>10,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f72 1070 1068 36 24 20 -2 #rect
-Te0 f72 @|WebServiceIcon #fIcon
-Te0 f141 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f141 1235 1163 26 26 14 0 #rect
-Te0 f141 @|EndSubIcon #fIcon
-Te0 f142 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f142 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
-' #txt
-Te0 f142 actionTable 'out=in;
-out.categories=wsResponse.findPersonalTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findPersonalTaskCategoriesResponse.result.errors;
-' #txt
-Te0 f142 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f142 timeout 10 #txt
-Te0 f142 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findPersonalTaskCategories
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.language__@@__String__@@__in.language"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
-Te0 f142 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f142 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f142 returningObjectList '[wsResponse]' #txt
-Te0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>NTLM</name>
-        <nameStyle>4,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f142 1230 1068 36 24 20 -2 #rect
-Te0 f142 @|WebServiceIcon #fIcon
-Te0 f163 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
-Te0 f163 inParamTable 'out.applicationNames=param.apps;
-out.endpoint=param.endpoint;
-out.jsonQuery=param.jsonQuery;
-out.server=param.server;
-out.taskCategoryRequester=param.userName;
-' #txt
-Te0 f163 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
-' #txt
-Te0 f163 outParamTable 'result.categories=in.categories;
-result.errors=in.errors;
-' #txt
-Te0 f163 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
-' #txt
-Te0 f163 callSignature findPersonalCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
-Te0 f163 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f163 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>findPersonalCategories(String,List&lt;String&gt;,Server,String)</name>
-        <nameStyle>57,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f163 1235 843 26 26 14 0 #rect
-Te0 f163 @|StartSubIcon #fIcon
-Te0 f164 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f164 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Authentication Type?</name>
-        <nameStyle>20,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f164 1234 970 28 28 14 -22 #rect
-Te0 f164 @|AlternativeIcon #fIcon
-Te0 f165 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f165 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
-' #txt
-Te0 f165 actionTable 'out=in;
-out.categories=wsResponse.findPersonalTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findPersonalTaskCategoriesResponse.result.errors;
-' #txt
-Te0 f165 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f165 timeout 10 #txt
-Te0 f165 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=findPersonalTaskCategories
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findPersonalTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findPersonalTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findPersonalTaskCategories.language__@@__String__@@__in.language"",""arg0.findPersonalTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
-Te0 f165 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f165 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f165 returningObjectList '[wsResponse]' #txt
-Te0 f165 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>default settings</name>
-        <nameStyle>16,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f165 1390 1068 36 24 20 -2 #rect
-Te0 f165 @|WebServiceIcon #fIcon
-Te0 f166 expr in #txt
-Te0 f166 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
-Te0 f166 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name></name>
-    </language>
-</elementInfo>
-' #txt
-Te0 f166 1248 998 1248 1068 #arcP
-Te0 f167 expr out #txt
-Te0 f167 1248 1092 1248 1163 #arcP
-Te0 f168 expr out #txt
-Te0 f168 1408 1092 1261 1176 #arcP
-Te0 f168 1 1408 1176 #addKink
-Te0 f168 1 0.3307129966491883 0 0 #arcLabel
-Te0 f170 expr in #txt
-Te0 f170 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
-Te0 f170 1234 984 1088 1068 #arcP
-Te0 f170 1 1088 984 #addKink
-Te0 f170 0 0.8205772000292113 0 0 #arcLabel
-Te0 f171 expr out #txt
-Te0 f171 1088 1092 1235 1176 #arcP
-Te0 f171 1 1088 1176 #addKink
-Te0 f171 1 0.1992377706230372 0 0 #arcLabel
-Te0 f172 expr in #txt
-Te0 f172 1262 984 1408 1068 #arcP
-Te0 f172 1 1408 984 #addKink
-Te0 f172 0 0.7875410210393261 0 0 #arcLabel
 Te0 f173 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f173 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
 Te0 f173 actionTable 'out=in;
-out.categories=wsResponse.findGroupTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findGroupTaskCategoriesResponse.result.errors;
+out.categories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.categories;
+out.errors=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.errors;
+out.groupTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.groupTaskCategories;
+out.personalTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.personalTaskCategories;
+out.unassignedTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.unassignedTaskCategories;
 ' #txt
 Te0 f173 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f173 timeout 10 #txt
-Te0 f173 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findGroupTaskCategories
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.language__@@__String__@@__in.language"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+Te0 f173 clientId 146B90974252183F #txt
+Te0 f173 port TaskServicePort #txt
+Te0 f173 operation findTaskCategoriesOfUserWithReadAllPermission #txt
+Te0 f173 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f173 inputParams 'arg0.findTaskCategoriesOfUserWithReadAllPermission.apps=in.applicationNames;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.jsonQuery=in.jsonQuery;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.language=in.language;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.userName=in.taskCategoryRequester;
+' #txt
 Te0 f173 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f173 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f173 returningObjectList '[wsResponse]' #txt
 Te0 f173 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2428,34 +2255,41 @@ Te0 f173 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f173 1606 1052 36 24 20 -2 #rect
+Te0 f173 1414 1052 36 24 20 -2 #rect
 Te0 f173 @|WebServiceIcon #fIcon
 Te0 f174 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f174 1771 1147 26 26 14 0 #rect
+Te0 f174 1579 1147 26 26 14 0 #rect
 Te0 f174 @|EndSubIcon #fIcon
 Te0 f175 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f175 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
 Te0 f175 actionTable 'out=in;
-out.categories=wsResponse.findGroupTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findGroupTaskCategoriesResponse.result.errors;
+out.categories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.categories;
+out.errors=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.errors;
+out.groupTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.groupTaskCategories;
+out.personalTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.personalTaskCategories;
+out.unassignedTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.unassignedTaskCategories;
 ' #txt
 Te0 f175 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f175 timeout 10 #txt
-Te0 f175 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findGroupTaskCategories
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.language__@@__String__@@__in.language"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+Te0 f175 clientId 146B90974252183F #txt
+Te0 f175 port TaskServicePort #txt
+Te0 f175 operation findTaskCategoriesOfUserWithReadAllPermission #txt
+Te0 f175 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f175 inputParams 'arg0.findTaskCategoriesOfUserWithReadAllPermission.apps=in.applicationNames;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.jsonQuery=in.jsonQuery;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.language=in.language;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.userName=in.taskCategoryRequester;
+' #txt
 Te0 f175 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f175 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f175 returningObjectList '[wsResponse]' #txt
 Te0 f175 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2466,7 +2300,7 @@ Te0 f175 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f175 1766 1052 36 24 20 -2 #rect
+Te0 f175 1574 1052 36 24 20 -2 #rect
 Te0 f175 @|WebServiceIcon #fIcon
 Te0 f176 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f176 inParamTable 'out.applicationNames=param.apps;
@@ -2475,25 +2309,28 @@ out.jsonQuery=param.jsonQuery;
 out.server=param.server;
 out.taskCategoryRequester=param.userName;
 ' #txt
-Te0 f176 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f176 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> groupTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> personalTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> unassignedTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
-Te0 f176 outParamTable 'result.categories=in.categories;
+Te0 f176 outParamTable 'result.groupTaskCategories=in.groupTaskCategories;
+result.personalTaskCategories=in.personalTaskCategories;
+result.unassignedTaskCategories=in.unassignedTaskCategories;
+result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f176 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
-Te0 f176 callSignature findGroupCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f176 callSignature findTaskCategoriesOfUserWithReadAllPermission(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f176 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findGroupCategories(String,List&lt;String&gt;,Server,String)</name>
-        <nameStyle>54,5,7
+        <name>findTaskCategoriesOfUserWithReadAllPermission(String,List&lt;String&gt;,Server,String)</name>
+        <nameStyle>80,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Te0 f176 1771 827 26 26 14 0 #rect
+Te0 f176 1579 827 26 26 13 2 #rect
 Te0 f176 @|StartSubIcon #fIcon
 Te0 f177 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f177 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2505,31 +2342,33 @@ Te0 f177 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f177 1770 954 28 28 14 -22 #rect
+Te0 f177 1578 954 28 28 14 -22 #rect
 Te0 f177 @|AlternativeIcon #fIcon
 Te0 f178 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f178 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
 Te0 f178 actionTable 'out=in;
-out.categories=wsResponse.findGroupTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findGroupTaskCategoriesResponse.result.errors;
+out.categories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.categories;
+out.errors=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.errors;
+out.groupTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.groupTaskCategories;
+out.personalTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.personalTaskCategories;
+out.unassignedTaskCategories=wsResponse.findTaskCategoriesOfUserWithReadAllPermissionResponse.result.unassignedTaskCategories;
 ' #txt
 Te0 f178 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f178 timeout 10 #txt
-Te0 f178 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=findGroupTaskCategories
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findGroupTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findGroupTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findGroupTaskCategories.language__@@__String__@@__in.language"",""arg0.findGroupTaskCategories.userName__@@__String__@@__in.taskCategoryRequester"""' #txt
+Te0 f178 clientId 146B90974252183F #txt
+Te0 f178 port TaskServicePort #txt
+Te0 f178 operation findTaskCategoriesOfUserWithReadAllPermission #txt
+Te0 f178 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f178 inputParams 'arg0.findTaskCategoriesOfUserWithReadAllPermission.apps=in.applicationNames;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.jsonQuery=in.jsonQuery;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.language=in.language;
+arg0.findTaskCategoriesOfUserWithReadAllPermission.userName=in.taskCategoryRequester;
+' #txt
 Te0 f178 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f178 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f178 returningObjectList '[wsResponse]' #txt
 Te0 f178 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2540,7 +2379,7 @@ Te0 f178 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f178 1926 1052 36 24 20 -2 #rect
+Te0 f178 1734 1052 36 24 20 -2 #rect
 Te0 f178 @|WebServiceIcon #fIcon
 Te0 f179 expr in #txt
 Te0 f179 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
@@ -2551,25 +2390,25 @@ Te0 f179 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f179 1784 982 1784 1052 #arcP
+Te0 f179 1592 982 1592 1052 #arcP
 Te0 f180 expr out #txt
-Te0 f180 1784 1076 1784 1147 #arcP
+Te0 f180 1592 1076 1592 1147 #arcP
 Te0 f181 expr out #txt
-Te0 f181 1944 1076 1797 1160 #arcP
-Te0 f181 1 1944 1160 #addKink
+Te0 f181 1752 1076 1605 1160 #arcP
+Te0 f181 1 1752 1160 #addKink
 Te0 f181 1 0.3353862987498499 0 0 #arcLabel
 Te0 f183 expr in #txt
 Te0 f183 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
-Te0 f183 1770 968 1624 1052 #arcP
-Te0 f183 1 1624 968 #addKink
+Te0 f183 1578 968 1432 1052 #arcP
+Te0 f183 1 1432 968 #addKink
 Te0 f183 0 0.7954957451949382 0 0 #arcLabel
 Te0 f184 expr out #txt
-Te0 f184 1624 1076 1771 1160 #arcP
-Te0 f184 1 1624 1160 #addKink
+Te0 f184 1432 1076 1579 1160 #arcP
+Te0 f184 1 1432 1160 #addKink
 Te0 f184 1 0.20679742620065877 0 0 #arcLabel
 Te0 f185 expr in #txt
-Te0 f185 1798 968 1944 1052 #arcP
-Te0 f185 1 1944 968 #addKink
+Te0 f185 1606 968 1752 1052 #arcP
+Te0 f185 1 1752 968 #addKink
 Te0 f185 0 0.7875410210393261 0 0 #arcLabel
 Te0 f186 expr out #txt
 Te0 f186 256 493 256 532 #arcP
@@ -2611,34 +2450,6 @@ Te0 f6 expr out #txt
 Te0 f6 1248 493 1248 532 #arcP
 Te0 f65 expr out #txt
 Te0 f65 1248 556 1248 594 #arcP
-Te0 f70 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
-' #txt
-Te0 f70 actionTable 'out=in;
-' #txt
-Te0 f70 actionCode 'import java.util.Locale;
-
-Locale emailLanguage = ivy.cms.getDefaultLanguage();
-if (ivy.session.getSessionUser().getEMailLanguage() != null) {
-	emailLanguage = ivy.session.getSessionUser().getEMailLanguage();
-}
-
-in.language = emailLanguage.toLanguageTag();' #txt
-Te0 f70 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Get user language</name>
-        <nameStyle>17,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f70 1230 908 36 24 20 -2 #rect
-Te0 f70 @|StepIcon #fIcon
-Te0 f76 expr out #txt
-Te0 f76 1248 869 1248 908 #arcP
-Te0 f77 expr out #txt
-Te0 f77 1248 932 1248 970 #arcP
 Te0 f104 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
 Te0 f104 actionTable 'out=in;
@@ -2661,12 +2472,12 @@ Te0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f104 1766 892 36 24 20 -2 #rect
+Te0 f104 1574 892 36 24 20 -2 #rect
 Te0 f104 @|StepIcon #fIcon
 Te0 f149 expr out #txt
-Te0 f149 1784 853 1784 892 #arcP
+Te0 f149 1592 853 1592 892 #arcP
 Te0 f151 expr out #txt
-Te0 f151 1784 916 1784 954 #arcP
+Te0 f151 1592 916 1592 954 #arcP
 Te0 f152 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f152 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
@@ -2674,21 +2485,22 @@ Te0 f152 actionTable 'out=in;
 out.errors=wsResponse.setAdditionalPropertyResponse.errors;
 ' #txt
 Te0 f152 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f152 timeout 10 #txt
-Te0 f152 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=setAdditionalProperty
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.setAdditionalProperty.id__@@__Long__@@__in.taskId"",""arg0.setAdditionalProperty.name__@@__String__@@__in.name"",""arg0.setAdditionalProperty.value__@@__String__@@__in.value"""' #txt
+Te0 f152 clientId 146B90974252183F #txt
+Te0 f152 port TaskServicePort #txt
+Te0 f152 operation setAdditionalProperty #txt
+Te0 f152 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f152 inputParams 'arg0.setAdditionalProperty.id=in.taskId;
+arg0.setAdditionalProperty.name=in.name;
+arg0.setAdditionalProperty.value=in.value;
+' #txt
 Te0 f152 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f152 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f152 returningObjectList '[wsResponse]' #txt
 Te0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2737,21 +2549,19 @@ Te0 f159 actionTable 'out=in;
 out.errors=wsResponse.setAdditionalPropertyResponse.errors;
 ' #txt
 Te0 f159 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f159 timeout 10 #txt
-Te0 f159 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=setAdditionalProperty
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.setAdditionalProperty.id__@@__Long__@@__in.taskId"",""arg0.setAdditionalProperty.name__@@__String__@@__in.name"",""arg0.setAdditionalProperty.value__@@__String__@@__in.value"""' #txt
+Te0 f159 clientId 146B90974252183F #txt
+Te0 f159 port TaskServicePort #txt
+Te0 f159 operation setAdditionalProperty #txt
+Te0 f159 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f159 inputParams 'arg0.setAdditionalProperty.id=in.taskId;
+arg0.setAdditionalProperty.name=in.name;
+arg0.setAdditionalProperty.value=in.value;
+' #txt
 Te0 f159 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f159 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f159 returningObjectList '[wsResponse]' #txt
 Te0 f159 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2783,21 +2593,24 @@ Te0 f169 actionTable 'out=in;
 out.errors=wsResponse.setAdditionalPropertyResponse.errors;
 ' #txt
 Te0 f169 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f169 timeout 10 #txt
-Te0 f169 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=setAdditionalProperty
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.setAdditionalProperty.id__@@__Long__@@__in.taskId"",""arg0.setAdditionalProperty.name__@@__String__@@__in.name"",""arg0.setAdditionalProperty.value__@@__String__@@__in.value"""' #txt
+Te0 f169 clientId 146B90974252183F #txt
+Te0 f169 port TaskServicePort #txt
+Te0 f169 operation setAdditionalProperty #txt
+Te0 f169 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f169 inputParams 'arg0.setAdditionalProperty.id=in.taskId;
+arg0.setAdditionalProperty.name=in.name;
+arg0.setAdditionalProperty.value=in.value;
+' #txt
 Te0 f169 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f169 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f169 returningObjectList '[wsResponse]' #txt
 Te0 f169 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2866,31 +2679,37 @@ Te0 f193 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f193 2257 893 36 24 20 -2 #rect
+Te0 f193 2233 893 36 24 20 -2 #rect
 Te0 f193 @|StepIcon #fIcon
 Te0 f194 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f194 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
 Te0 f194 actionTable 'out=in;
-out.categories=wsResponse.findUnassignedTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findUnassignedTaskCategoriesResponse.result.errors;
+out.categories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.categories;
+out.errors=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.errors;
+out.groupTaskCategories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.groupTaskCategories;
+out.personalTaskCategories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.personalTaskCategories;
 ' #txt
 Te0 f194 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f194 timeout 10 #txt
-Te0 f194 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findUnassignedTaskCategories
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findUnassignedTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findUnassignedTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findUnassignedTaskCategories.language__@@__String__@@__in.language"""' #txt
+Te0 f194 clientId 146B90974252183F #txt
+Te0 f194 port TaskServicePort #txt
+Te0 f194 operation findTaskCategoriesOfUserWithoutReadAllPermission #txt
+Te0 f194 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f194 inputParams 'arg0.findTaskCategoriesOfUserWithoutReadAllPermission.apps=in.applicationNames;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.jsonQuery=in.jsonQuery;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.language=in.language;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.userName=in.taskCategoryRequester;
+' #txt
 Te0 f194 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f194 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f194 returningObjectList '[wsResponse]' #txt
 Te0 f194 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2901,31 +2720,35 @@ Te0 f194 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f194 2257 1053 36 24 20 -2 #rect
+Te0 f194 2233 1053 36 24 20 -2 #rect
 Te0 f194 @|WebServiceIcon #fIcon
 Te0 f195 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f195 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
 Te0 f195 actionTable 'out=in;
-out.categories=wsResponse.findUnassignedTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findUnassignedTaskCategoriesResponse.result.errors;
+out.categories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.categories;
+out.errors=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.errors;
+out.groupTaskCategories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.groupTaskCategories;
+out.personalTaskCategories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.personalTaskCategories;
 ' #txt
 Te0 f195 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f195 timeout 10 #txt
-Te0 f195 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\\=in.server.username%>
-KEY_OPERATION=findUnassignedTaskCategories
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findUnassignedTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findUnassignedTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findUnassignedTaskCategories.language__@@__String__@@__in.language"""' #txt
+Te0 f195 clientId 146B90974252183F #txt
+Te0 f195 port TaskServicePort #txt
+Te0 f195 operation findTaskCategoriesOfUserWithoutReadAllPermission #txt
+Te0 f195 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f195 inputParams 'arg0.findTaskCategoriesOfUserWithoutReadAllPermission.apps=in.applicationNames;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.jsonQuery=in.jsonQuery;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.language=in.language;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.userName=in.taskCategoryRequester;
+' #txt
 Te0 f195 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f195 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f195 returningObjectList '[wsResponse]' #txt
 Te0 f195 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2936,7 +2759,7 @@ Te0 f195 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f195 2097 1053 36 24 20 -2 #rect
+Te0 f195 2081 1053 36 24 20 -2 #rect
 Te0 f195 @|WebServiceIcon #fIcon
 Te0 f196 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f196 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2948,31 +2771,32 @@ Te0 f196 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f196 2261 955 28 28 14 -22 #rect
+Te0 f196 2237 955 28 28 14 -22 #rect
 Te0 f196 @|AlternativeIcon #fIcon
 Te0 f197 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f197 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
 Te0 f197 actionTable 'out=in;
-out.categories=wsResponse.findUnassignedTaskCategoriesResponse.result.categories;
-out.errors=wsResponse.findUnassignedTaskCategoriesResponse.result.errors;
+out.categories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.categories;
+out.errors=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.errors;
+out.groupTaskCategories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.groupTaskCategories;
+out.personalTaskCategories=wsResponse.findTaskCategoriesOfUserWithoutReadAllPermissionResponse.result.personalTaskCategories;
 ' #txt
 Te0 f197 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f197 timeout 10 #txt
-Te0 f197 beanConfig '"KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=findUnassignedTaskCategories
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findUnassignedTaskCategories.apps__@@__Array<String>__@@__in.applicationNames"",""arg0.findUnassignedTaskCategories.jsonQuery__@@__String__@@__in.jsonQuery"",""arg0.findUnassignedTaskCategories.language__@@__String__@@__in.language"""' #txt
+Te0 f197 clientId 146B90974252183F #txt
+Te0 f197 port TaskServicePort #txt
+Te0 f197 operation findTaskCategoriesOfUserWithoutReadAllPermission #txt
+Te0 f197 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f197 inputParams 'arg0.findTaskCategoriesOfUserWithoutReadAllPermission.apps=in.applicationNames;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.jsonQuery=in.jsonQuery;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.language=in.language;
+arg0.findTaskCategoriesOfUserWithoutReadAllPermission.userName=in.taskCategoryRequester;
+' #txt
 Te0 f197 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f197 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f197 returningObjectList '[wsResponse]' #txt
 Te0 f197 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2983,41 +2807,46 @@ Te0 f197 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f197 2417 1053 36 24 20 -2 #rect
+Te0 f197 2393 1053 36 24 20 -2 #rect
 Te0 f197 @|WebServiceIcon #fIcon
-Te0 f198 inParamDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f198 inParamDecl '<java.lang.String username,java.lang.String jsonQuery,List<java.lang.String> apps,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
 Te0 f198 inParamTable 'out.applicationNames=param.apps;
 out.endpoint=param.endpoint;
 out.jsonQuery=param.jsonQuery;
 out.server=param.server;
+out.taskCategoryRequester=param.username;
 ' #txt
-Te0 f198 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+Te0 f198 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> groupTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> personalTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
 ' #txt
-Te0 f198 outParamTable 'result.categories=in.categories;
+Te0 f198 outParamTable 'result.groupTaskCategories=in.groupTaskCategories;
+result.personalTaskCategories=in.personalTaskCategories;
+result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f198 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
 ' #txt
-Te0 f198 callSignature findUnassignedCategories(String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f198 callSignature findTaskCategoriesOfUserWithoutReadAllPermission(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f198 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f198 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findUnassignedCategories(String,List&lt;String&gt;,Server,String)</name>
+        <name>findTaskCategoriesOfUserWithoutReadAllPermission(String,List&lt;String&gt;,Server,String)</name>
+        <nameStyle>83,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Te0 f198 2262 828 26 26 14 0 #rect
+Te0 f198 2238 828 26 26 10 5 #rect
 Te0 f198 @|StartSubIcon #fIcon
 Te0 f199 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
-Te0 f199 2262 1148 26 26 14 0 #rect
+Te0 f199 2238 1148 26 26 14 0 #rect
 Te0 f199 @|EndSubIcon #fIcon
 Te0 f200 expr out #txt
-Te0 f200 2435 1077 2288 1161 #arcP
-Te0 f200 1 2435 1161 #addKink
+Te0 f200 2411 1077 2264 1161 #arcP
+Te0 f200 1 2411 1161 #addKink
 Te0 f200 1 0.3353862987498499 0 0 #arcLabel
 Te0 f201 expr out #txt
-Te0 f201 2275 1077 2275 1148 #arcP
+Te0 f201 2251 1077 2251 1148 #arcP
 Te0 f202 expr in #txt
 Te0 f202 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
 Te0 f202 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3027,23 +2856,23 @@ Te0 f202 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f202 2275 983 2275 1053 #arcP
+Te0 f202 2251 983 2251 1053 #arcP
 Te0 f203 expr out #txt
-Te0 f203 2115 1077 2262 1161 #arcP
-Te0 f203 1 2115 1161 #addKink
+Te0 f203 2099 1077 2238 1161 #arcP
+Te0 f203 1 2099 1161 #addKink
 Te0 f203 1 0.20679742620065877 0 0 #arcLabel
 Te0 f204 expr out #txt
-Te0 f204 2275 854 2275 893 #arcP
+Te0 f204 2251 854 2251 893 #arcP
 Te0 f205 expr in #txt
 Te0 f205 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
-Te0 f205 2261 969 2115 1053 #arcP
-Te0 f205 1 2115 969 #addKink
+Te0 f205 2237 969 2099 1053 #arcP
+Te0 f205 1 2099 969 #addKink
 Te0 f205 0 0.7954957451949382 0 0 #arcLabel
 Te0 f206 expr out #txt
-Te0 f206 2275 917 2275 955 #arcP
+Te0 f206 2251 917 2251 955 #arcP
 Te0 f207 expr in #txt
-Te0 f207 2289 969 2435 1053 #arcP
-Te0 f207 1 2435 969 #addKink
+Te0 f207 2265 969 2411 1053 #arcP
+Te0 f207 1 2411 969 #addKink
 Te0 f207 0 0.7875410210393261 0 0 #arcLabel
 Te0 f208 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f208 2772 756 26 26 14 0 #rect
@@ -3056,21 +2885,23 @@ out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeStatisticResponse.result.e
 out.errors=wsResponse.analyzeElapsedTimeStatisticResponse.result.errors;
 ' #txt
 Te0 f209 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f209 timeout 10 #txt
-Te0 f209 beanConfig 'KEY_PASSWORD=<%\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=<%\=in.server.domain%>
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\=in.server.username%>
-KEY_OPERATION=analyzeElapsedTimeStatistic
-KEY_AUTHENTICATION_KIND=4
-KEY_HOST=<%\=in.server.host%>
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.analyzeElapsedTimeStatistic.apps__@@__Array<String>__@@__in.applicationNames","arg0.analyzeElapsedTimeStatistic.jsonQuery__@@__String__@@__in.jsonQuery"' #txt
+Te0 f209 clientId 146B90974252183F #txt
+Te0 f209 port TaskServicePort #txt
+Te0 f209 operation analyzeElapsedTimeStatistic #txt
+Te0 f209 properties 'timeout.timeInSeconds=10;
+authType="NTLM";
+username=in.server.username;
+password=in.server.password;
+NTLM.domain=in.server.domain;
+NTLM.workstation=in.server.host;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f209 inputParams 'arg0.analyzeElapsedTimeStatistic.apps=in.applicationNames;
+arg0.analyzeElapsedTimeStatistic.jsonQuery=in.jsonQuery;
+' #txt
 Te0 f209 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f209 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f209 returningObjectList '[wsResponse]' #txt
 Te0 f209 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3118,21 +2949,21 @@ out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeStatisticResponse.result.e
 out.errors=wsResponse.analyzeElapsedTimeStatisticResponse.result.errors;
 ' #txt
 Te0 f211 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f211 timeout 10 #txt
-Te0 f211 beanConfig 'KEY_PASSWORD=<%\=in.server.password%>
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=<%\=in.server.username%>
-KEY_OPERATION=analyzeElapsedTimeStatistic
-KEY_AUTHENTICATION_KIND=1
-KEY_HOST=
-KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.analyzeElapsedTimeStatistic.apps__@@__Array<String>__@@__in.applicationNames","arg0.analyzeElapsedTimeStatistic.jsonQuery__@@__String__@@__in.jsonQuery"' #txt
+Te0 f211 clientId 146B90974252183F #txt
+Te0 f211 port TaskServicePort #txt
+Te0 f211 operation analyzeElapsedTimeStatistic #txt
+Te0 f211 properties 'timeout.timeInSeconds=10;
+authType="HTTP_BASIC";
+username=in.server.username;
+password=in.server.password;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f211 inputParams 'arg0.analyzeElapsedTimeStatistic.apps=in.applicationNames;
+arg0.analyzeElapsedTimeStatistic.jsonQuery=in.jsonQuery;
+' #txt
 Te0 f211 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f211 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f211 returningObjectList '[wsResponse]' #txt
 Te0 f211 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3153,21 +2984,18 @@ out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeStatisticResponse.result.e
 out.errors=wsResponse.analyzeElapsedTimeStatisticResponse.result.errors;
 ' #txt
 Te0 f212 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f212 timeout 10 #txt
-Te0 f212 beanConfig 'KEY_PASSWORD=
-KEY_AXIS_PORTNAME=TaskServicePort
-KEY_WEBSERVICECONFIG_ID=146B90974252183F
-KEY_DOMAIN=
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
-KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
-KEY_USERNAME=
-KEY_OPERATION=analyzeElapsedTimeStatistic
-KEY_AUTHENTICATION_KIND=0
-KEY_HOST=
-KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA="arg0.analyzeElapsedTimeStatistic.apps__@@__Array<String>__@@__in.applicationNames","arg0.analyzeElapsedTimeStatistic.jsonQuery__@@__String__@@__in.jsonQuery"' #txt
+Te0 f212 clientId 146B90974252183F #txt
+Te0 f212 port TaskServicePort #txt
+Te0 f212 operation analyzeElapsedTimeStatistic #txt
+Te0 f212 properties 'timeout.timeInSeconds=10;
+AXIS.mapNullValues=false;
+AXIS2.autoInitFirstLevelFields=true;
+timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
+' #txt
+Te0 f212 inputParams 'arg0.analyzeElapsedTimeStatistic.apps=in.applicationNames;
+arg0.analyzeElapsedTimeStatistic.jsonQuery=in.jsonQuery;
+' #txt
 Te0 f212 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
-Te0 f212 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
 Te0 f212 returningObjectList '[wsResponse]' #txt
 Te0 f212 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -3371,18 +3199,6 @@ Te0 f120 mainOut f118 tail #connect
 Te0 f118 head f115 mainIn #connect
 Te0 f114 out f148 tail #connect
 Te0 f148 head f112 mainIn #connect
-Te0 f164 out f166 tail #connect
-Te0 f166 head f142 mainIn #connect
-Te0 f142 mainOut f167 tail #connect
-Te0 f167 head f141 mainIn #connect
-Te0 f165 mainOut f168 tail #connect
-Te0 f168 head f141 mainIn #connect
-Te0 f164 out f170 tail #connect
-Te0 f170 head f72 mainIn #connect
-Te0 f72 mainOut f171 tail #connect
-Te0 f171 head f141 mainIn #connect
-Te0 f164 out f172 tail #connect
-Te0 f172 head f165 mainIn #connect
 Te0 f177 out f179 tail #connect
 Te0 f179 head f175 mainIn #connect
 Te0 f175 mainOut f180 tail #connect
@@ -3411,10 +3227,6 @@ Te0 f85 mainOut f6 tail #connect
 Te0 f6 head f3 mainIn #connect
 Te0 f3 mainOut f65 tail #connect
 Te0 f65 head f87 in #connect
-Te0 f163 mainOut f76 tail #connect
-Te0 f76 head f70 mainIn #connect
-Te0 f70 mainOut f77 tail #connect
-Te0 f77 head f164 in #connect
 Te0 f176 mainOut f149 tail #connect
 Te0 f149 head f104 mainIn #connect
 Te0 f104 mainOut f151 tail #connect
