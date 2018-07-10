@@ -121,7 +121,7 @@
                       <p:selectManyCheckbox id="task-filter-selection" layout="pageDirection"
                         valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedTaskFilters}"
                         converter="pojoConverter">
-                        <p:ajax update="#{cc.clientId}:task-filters-container #{cc.clientId}:statistic-result-list" global="false" />
+                        <p:ajax update="#{cc.clientId}:task-filters-container" global="false" />
                         <f:selectItems value="#{data.dataModel.taskFilters}" var="filter" itemLabel="#{filter.label()}"
                           itemValue="#{filter}" />
                       </p:selectManyCheckbox>

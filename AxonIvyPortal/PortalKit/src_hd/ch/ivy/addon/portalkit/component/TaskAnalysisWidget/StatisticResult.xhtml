@@ -16,8 +16,8 @@
         </p:columnToggler>
       </h:panelGroup>
 
-      <p:dataTable id="task-table" widgetVar="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.identifier}" sortMode="single"
-         lazy="true" scrollable="true" liveScroll="true" scrollRows="10" styleClass="task-table">
+      <p:dataTable id="task-table" widgetVar="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.id}" sortMode="single"
+         lazy="true" scrollable="true" liveScroll="true" scrollRows="10" styleClass="task-table" sortBy="#{CASE_NAME}" rows="#{cc.attrs.chunkSize}">
          
 		<p:ajax  event="sort" update="task-table" onstart="liveScroll()"/>
         <p:column id="case-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortBy="#{CASE_NAME}" width="250"
@@ -59,7 +59,7 @@
         <p:column id="task-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskName')}" sortBy="#{TASK_NAME}" width="250"
           visible="#{taskAnalysisWidgetBean.columns['TASK_NAME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_NAME']}">
-          <h:outputText value="#{task.name}" />
+          <h:outputText value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
         </p:column>
 
         <p:column id="task-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskID')}" sortBy="#{TASK_ID}" width="120"
@@ -72,7 +72,6 @@
           visible="#{taskAnalysisWidgetBean.columns['TASK_CATEGORY']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_CATEGORY']}">
           <h:outputText id="task-category-value" value="#{task.categoryName}" />
-          <p:tooltip id="task-category-value-tooltip" for="task-category-value" value="Full category: #{task.categoryPath}" />
         </p:column>
 
         <p:column id="task-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskDescription')}" sortBy="#{TASK_DESCRIPTION}" width="250"

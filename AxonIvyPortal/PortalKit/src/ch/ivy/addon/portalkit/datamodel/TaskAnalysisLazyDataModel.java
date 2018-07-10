@@ -51,6 +51,7 @@ import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 
 public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   
@@ -77,8 +78,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   protected List<CaseFilter> caseFilters;
   protected List<CaseFilter> selectedCaseFilters;
   protected CaseFilterContainer caseFilterContainer;
-
-  private Integer chunkSize;
 
   public TaskAnalysisLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -145,17 +144,17 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   @Override
   public List<RemoteTask> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
+    taskQueryCriteria.setSortField(sortField);
+    taskQueryCriteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+
     if (first == 0) {
       initializedDataModel(searchCriteria);
     }
 
-    taskQueryCriteria.setSortField(sortField);
-    taskQueryCriteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
-
-    List<RemoteTask> foundTasks = findTasks(first, chunkSize, searchCriteria);
+    List<RemoteTask> foundTasks = findTasks(first, pageSize, searchCriteria);
     putTasksToNotDisplayedTaskMap(foundTasks);
     List<RemoteTask> notDisplayedTasks = sortTasksInNotDisplayedTaskMap();
-    List<RemoteTask> displayedTasks = getDisplayedTasks(notDisplayedTasks, chunkSize);
+    List<RemoteTask> displayedTasks = getDisplayedTasks(notDisplayedTasks, pageSize);
     storeDisplayedTasks(displayedTasks);
 
     return displayedTasks;
@@ -492,6 +491,14 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     CaseQuery caseQuery = buildCaseQuery();
     taskQuery = taskQuery.where().cases(caseQuery);
 
+    String sortField = taskQueryCriteria.getSortField();
+    if (sortField.startsWith(TASK_COLUMN_PREFIX)) {
+      buildSortTaskQuery(taskQuery);
+    } else {
+      buildSortCaseQuery(caseQuery);
+    }
+
+    extendSort(taskQuery);
     searchCriteria.setJsonQuery(taskQuery.asJson());
   }
 
@@ -518,6 +525,82 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       }
     });
     return caseQuery;
+  }
+
+  private void buildSortTaskQuery(TaskQuery taskQuery) {
+    TaskAndCaseAnalysisColumn sortColumn = TaskAndCaseAnalysisColumn.valueOf(taskQueryCriteria.getSortField());
+    OrderByColumnQuery orderQuery = null;
+    switch (sortColumn) {
+      case TASK_ACTIVATOR:
+        orderQuery = taskQuery.orderBy().activatorDisplayName();
+        break;
+      case TASK_CATEGORY:
+        orderQuery = taskQuery.orderBy().category();
+        break;
+      case TASK_CREATION_TIME:
+        orderQuery = taskQuery.orderBy().startTimestamp();
+        break;
+      case TASK_DESCRIPTION:
+        orderQuery =taskQuery.orderBy().description();
+        break;
+      case TASK_EXPIRY_TIME:
+        orderQuery = taskQuery.orderBy().expiryTimestamp();
+        break;
+      case TASK_FINISHED_TIME:
+        orderQuery = taskQuery.orderBy().endTimestamp();
+        break;
+      case TASK_NAME:
+        orderQuery = taskQuery.orderBy().name();
+        break;
+      case TASK_PRIORITY:
+        orderQuery = taskQuery.orderBy().priority();
+        break;
+      case TASK_STATE:
+        orderQuery = taskQuery.orderBy().state();
+        break;
+      case TASK_WORKER:
+        orderQuery = taskQuery.orderBy().workerUserDisplayName();
+        break;
+      default:
+        orderQuery = taskQuery.orderBy().taskId();
+        break;
+    }
+
+    if (taskQueryCriteria.isSortDescending()) {
+      orderQuery.descending();
+    } else {
+      orderQuery.ascending();
+    }
+  }
+
+  private void buildSortCaseQuery(CaseQuery caseQuery) {
+    TaskAndCaseAnalysisColumn sortColumn = TaskAndCaseAnalysisColumn.valueOf(taskQueryCriteria.getSortField());
+    ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery orderQuery = null;
+    switch (sortColumn) {
+      case CASE_CATEGORY:
+        orderQuery = caseQuery.orderBy().category();
+        break;
+      case CASE_CREATOR:
+        orderQuery = caseQuery.orderBy().creatorUserDisplayName();
+        break;
+      case CASE_DESCRIPTION:
+        orderQuery = caseQuery.orderBy().description();
+        break;
+      case CASE_NAME:
+        orderQuery = caseQuery.orderBy().name();
+        break;
+      case CASE_STATE:
+        orderQuery = caseQuery.orderBy().state();
+        break;
+      default:
+        orderQuery = caseQuery.orderBy().caseId();
+        break;
+    }
+    if (taskQueryCriteria.isSortDescending()) {
+      orderQuery.descending();
+    } else {
+      orderQuery.ascending();
+    }
   }
 
   @Override
@@ -610,14 +693,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     }
   }
 
-  public Integer getChunkSize() {
-    return chunkSize;
-  }
-
-  public void setChunkSize(Integer chunkSize) {
-    this.chunkSize = chunkSize;
-  }
-
   @Override
   public boolean isInProgressFilterDisplayed() {
     return isInProgressFilterDisplayed;
@@ -627,5 +702,4 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   public void setInProgressFilterDisplayed(boolean isInProgressFilterDisplayed) {
     this.isInProgressFilterDisplayed = isInProgressFilterDisplayed;
   }
-  
 }
