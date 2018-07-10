@@ -21,20 +21,8 @@ import ch.ivyteam.ivy.scripting.objects.DateTime;
 import ch.ivyteam.ivy.scripting.objects.Time;
 import ch.ivyteam.ivy.scripting.objects.util.IvyDefaultValues;
 
-/**
- * Helper methods that permits the export to Excel.
- * 
- * @author Rifat Binjos, TI-Informatique
- * @author Patrick Joly, TI-Informatique
- * @author Emmanuel Comba, Soreco
- * @since 11.05.2010
- */
 public final class ExcelExport
 {
-  // @see org.apache.poi.ss.usermodel.BuiltinFormats
-  // 0xe, "m/d/yy"
-  // 0x15, "h:mm:ss"
-  // 0x16, "m/d/yy h:mm"
 
   private static final int NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN = 100;
 
@@ -202,11 +190,9 @@ public final class ExcelExport
   {
     int currentColumn;
     int currentRow;
-    short columnNumber;
 
     currentRow = 0;
 
-    columnNumber = 0;
     if (headers != null)
     {
       sheet.trackAllColumnsForAutoSizing();
@@ -216,7 +202,6 @@ public final class ExcelExport
       {
         addHeaderCell(currentColumn++, columnHeader);
       }
-      columnNumber = (short) currentColumn;
     }
 
     if (rows != null)
@@ -230,9 +215,12 @@ public final class ExcelExport
           addCell(currentColumn, cellContent);
           currentColumn++;
         }
-        if (i == NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN) {
-          autoSizeColumn(columnNumber);
+        if (i == NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN && headers != null) {
+          autoSizeColumn(headers.size());
         }
+      }
+      if (rows.size() < NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN && headers != null) {
+        autoSizeColumn(headers.size());
       }
     }
 
@@ -240,8 +228,8 @@ public final class ExcelExport
     return workBook;
   }
 
-  private void autoSizeColumn(short columnNumber) {
-    for (short colIndex = 0; colIndex < columnNumber; colIndex++)
+  private void autoSizeColumn(int numberOfColumns) {
+    for (int colIndex = 0; colIndex < numberOfColumns; colIndex++)
     {
       sheet.autoSizeColumn(colIndex, false);
     }
