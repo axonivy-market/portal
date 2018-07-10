@@ -186,7 +186,7 @@ public final class ExcelExport
     else
     {
       cell = excelRow.createCell(currentColumn);
-      cell.setCellValue(new XSSFRichTextString(usedCellContent == null ? "" : usedCellContent.toString()));
+      cell.setCellValue(usedCellContent == null ? "" : usedCellContent.toString());
       cell.setCellStyle(defaultCellStyle);
     }
   }
