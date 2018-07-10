@@ -514,7 +514,7 @@ Te0 f34 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime
 Te0 f34 clientId 146B90974252183F #txt
 Te0 f34 port TaskServicePort #txt
 Te0 f34 operation findTasksByCriteria #txt
-Te0 f34 properties 'timeout.timeInSeconds=10;
+Te0 f34 properties 'timeout.timeInSeconds=in.timeoutInSecond;
 AXIS.mapNullValues=false;
 AXIS2.autoInitFirstLevelFields=true;
 timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
@@ -590,7 +590,7 @@ Te0 f37 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime
 Te0 f37 clientId 146B90974252183F #txt
 Te0 f37 port TaskServicePort #txt
 Te0 f37 operation findTasksByCriteria #txt
-Te0 f37 properties 'timeout.timeInSeconds=10;
+Te0 f37 properties 'timeout.timeInSeconds=in.timeoutInSecond;
 authType="NTLM";
 username=in.server.username;
 password=in.server.password;
@@ -905,6 +905,12 @@ Te0 f99 actionCode 'if(!in.#startIndex is initialized){
 
 if(!in.#count is initialized){
 	in.count = -1;
+}
+
+if (in.count > 1000) {
+	in.timeoutInSecond = 120;
+} else {
+	in.timeoutInSecond = 10;
 }' #txt
 Te0 f99 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f99 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1979,7 +1985,7 @@ Te0 f69 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime
 Te0 f69 clientId 146B90974252183F #txt
 Te0 f69 port TaskServicePort #txt
 Te0 f69 operation findTasksByCriteria #txt
-Te0 f69 properties 'timeout.timeInSeconds=10;
+Te0 f69 properties 'timeout.timeInSeconds=in.timeoutInSecond;
 authType="HTTP_BASIC";
 username=in.server.username;
 password=in.server.password;
