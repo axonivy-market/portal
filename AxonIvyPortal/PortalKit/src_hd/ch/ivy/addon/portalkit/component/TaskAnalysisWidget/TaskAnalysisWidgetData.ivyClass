@@ -52,3 +52,11 @@ exportedTasks java.util.List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
 exportedTasks PERSISTENT #fieldModifier
 columnsVisibility java.util.Map #field
 columnsVisibility PERSISTENT #fieldModifier
+wsCallCount Integer #field
+wsCallCount PERSISTENT #fieldModifier
+collectedTasksForExporting java.util.List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+collectedTasksForExporting PERSISTENT #fieldModifier
+numOfTasksPerWSCall Integer #field
+numOfTasksPerWSCall PERSISTENT #fieldModifier
+numOfWSCalls Integer #field
+numOfWSCalls PERSISTENT #fieldModifier
