@@ -38,3 +38,5 @@ elapsedTimeStatistic ch.ivy.ws.addon.ElapsedTimeStatistic #field
 groupTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 personalTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 unassignedTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+timeoutInSecond Integer #field
+timeoutInSecond PERSISTENT #fieldModifier

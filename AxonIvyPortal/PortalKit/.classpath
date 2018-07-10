@@ -19,7 +19,6 @@
 	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_14EFDA6C3FD72228.jar"/>
 	<classpathentry kind="lib" path="lib/plexus-utils-3.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/maven-invoker-3.0.0.jar"/>
-	<classpathentry kind="lib" path="lib/poi-ooxml-3.15.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
@@ -40,6 +39,5 @@
 	<classpathentry kind="lib" path="lib/itextpdf-5.5.13.jar"/>
 	<classpathentry kind="lib" path="lib/bcpkix-jdk15on-1.59.jar"/>
 	<classpathentry kind="lib" path="lib/bcprov-jdk15on-1.59.jar"/>
-	<classpathentry kind="lib" path="lib/poi-3.15.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
