@@ -109,7 +109,7 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f0 61 61 22 22 14 0 #rect
+Ts0 f0 101 61 22 22 14 0 #rect
 Ts0 f0 @|RichDialogInitStartIcon #fIcon
 Ts0 f82 guid 153E0DE6762B6C64 #txt
 Ts0 f82 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -473,24 +473,30 @@ Ts0 f27 actionTable 'out=in;
 Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
-TaskFilterService taskFilterService = new TaskFilterService();
-in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
-in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
-in.filterType = FilterType.ONLY_ME;' #txt
+if(!in.dataModel.compactMode) {
+	TaskFilterService taskFilterService = new TaskFilterService();
+	in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
+	in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
+	in.filterType = FilterType.ONLY_ME;
+	in.dataModel.initColumnsConfiguration();
+}
+' #txt
 Ts0 f27 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>load filter set</name>
-        <nameStyle>15,7
+        <name>load filter set&#xD;
+and init column &#xD;
+configuration</name>
+        <nameStyle>48,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f27 54 220 36 24 20 -2 #rect
+Ts0 f27 48 202 128 60 -41 -24 #rect
 Ts0 f27 @|StepIcon #fIcon
 Ts0 f3 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
-Ts0 f3 59 283 26 26 0 12 #rect
+Ts0 f3 99 283 26 26 0 12 #rect
 Ts0 f3 @|RichDialogProcessEndIcon #fIcon
 Ts0 f34 guid 15F5C0F9B77406B4 #txt
 Ts0 f34 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -825,7 +831,7 @@ Ts0 f15 880 1056 1008 1056 #arcP
 Ts0 f21 expr out #txt
 Ts0 f21 332 1056 388 1056 #arcP
 Ts0 f57 expr out #txt
-Ts0 f57 72 244 72 283 #arcP
+Ts0 f57 112 262 112 283 #arcP
 Ts0 f18 expr out #txt
 Ts0 f18 93 1056 188 1056 #arcP
 Ts0 f63 expr in #txt
@@ -858,12 +864,12 @@ Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f8 16 122 112 44 -40 -8 #rect
+Ts0 f8 56 122 112 44 -40 -8 #rect
 Ts0 f8 @|StepIcon #fIcon
 Ts0 f10 expr out #txt
-Ts0 f10 72 83 72 122 #arcP
+Ts0 f10 112 83 112 122 #arcP
 Ts0 f1 expr out #txt
-Ts0 f1 72 166 72 220 #arcP
+Ts0 f1 112 166 112 202 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
