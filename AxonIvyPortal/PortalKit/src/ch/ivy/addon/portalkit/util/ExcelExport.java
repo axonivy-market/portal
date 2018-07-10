@@ -6,16 +6,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.xssf.streaming.SXSSFCell;
+import org.apache.poi.xssf.streaming.SXSSFRow;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 
 import ch.ivyteam.ivy.scripting.objects.Date;
 import ch.ivyteam.ivy.scripting.objects.DateTime;
@@ -37,6 +36,8 @@ public final class ExcelExport
   // 0x15, "h:mm:ss"
   // 0x16, "m/d/yy h:mm"
 
+  private static final int NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN = 100;
+
   private static final int EXCEL_DATETIME_CELL_FORMAT = 0x16;
 
   private static final int EXCEL_TIME_CELL_FORMAT = 0x15;
@@ -47,23 +48,23 @@ public final class ExcelExport
 
   private static final String DEFAULT_SHEET_NAME = "Table";
 
-  private HSSFWorkbook workBook;
+  private SXSSFWorkbook workBook;
 
-  private HSSFSheet sheet;
+  private SXSSFSheet sheet;
 
-  private HSSFRow excelRow;
+  private SXSSFRow excelRow;
 
-  private HSSFCell cell;
+  private SXSSFCell cell;
 
-  private HSSFCellStyle defaultCellStyle;
+  private CellStyle defaultCellStyle;
 
-  private HSSFCellStyle headerCellStyle;
+  private CellStyle headerCellStyle;
 
-  private HSSFCellStyle dateCellStyle;
+  private CellStyle dateCellStyle;
 
-  private HSSFCellStyle timeCellStyle;
+  private CellStyle timeCellStyle;
 
-  private HSSFCellStyle dateTimeCellStyle;
+  private CellStyle dateTimeCellStyle;
 
   private DateFormat dateFormatter;
 
@@ -74,11 +75,11 @@ public final class ExcelExport
 
   private ExcelExport(String sheetName)
   {
-    HSSFFont font;
+    Font font;
 
     sheet = null;
 
-    workBook = new HSSFWorkbook();
+    workBook = new SXSSFWorkbook(1000);
     defaultCellStyle = workBook.createCellStyle();
     defaultCellStyle.setWrapText(true);
     dateCellStyle = workBook.createCellStyle();
@@ -89,16 +90,16 @@ public final class ExcelExport
     dateTimeCellStyle.setDataFormat((short) EXCEL_DATETIME_CELL_FORMAT);
 
     headerCellStyle = workBook.createCellStyle();
-    headerCellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+    headerCellStyle.setAlignment(HorizontalAlignment.CENTER);
     font = workBook.createFont();
-    font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+    font.setBold(true);
     headerCellStyle.setFont(font);
     dateFormatter = new SimpleDateFormat(INTERNAL_DATE_FORMAT);
 
     sheet = workBook.createSheet(sheetName == null ? DEFAULT_SHEET_NAME : sheetName);
   }
 
-  private static HSSFWorkbook exportListAsExcel(List<String> headers, List<List<Object>> rows,
+  private static SXSSFWorkbook exportListAsExcel(List<String> headers, List<List<Object>> rows,
           String sheetName)
   {
     ExcelExport export;
@@ -120,14 +121,13 @@ public final class ExcelExport
   public static void exportListAsExcel(List<String> headers, List<List<Object>> rows, String sheetName,
           OutputStream outputStream) throws IOException
   {
-    HSSFWorkbook workbook;
-
+    SXSSFWorkbook workbook;
     workbook = exportListAsExcel(headers, rows, sheetName);
 
     write(workbook, outputStream);
   }
 
-  private static void write(HSSFWorkbook workbook, OutputStream outputStream) throws IOException
+  private static void write(SXSSFWorkbook workbook, OutputStream outputStream) throws IOException
   {
     workbook.write(outputStream);
   }
@@ -157,7 +157,7 @@ public final class ExcelExport
 
     if (usedCellContent instanceof Number)
     {
-      cell = excelRow.createCell(currentColumn, Cell.CELL_TYPE_NUMERIC);
+      cell = excelRow.createCell(currentColumn, CellType.NUMERIC);
       cell.setCellValue(((Number) usedCellContent).doubleValue());
       cell.setCellStyle(defaultCellStyle);
     }
@@ -168,7 +168,7 @@ public final class ExcelExport
 
       dateString = dateFormatter.format(date);
 
-      cell = excelRow.createCell(currentColumn, Cell.CELL_TYPE_NUMERIC);
+      cell = excelRow.createCell(currentColumn, CellType.NUMERIC);
       cell.setCellValue((java.util.Date) usedCellContent);
       if (dateString.startsWith("00000000T") || cellContent instanceof Time)
       {
@@ -186,7 +186,7 @@ public final class ExcelExport
     else
     {
       cell = excelRow.createCell(currentColumn);
-      cell.setCellValue(new HSSFRichTextString(usedCellContent == null ? "" : usedCellContent.toString()));
+      cell.setCellValue(new XSSFRichTextString(usedCellContent == null ? "" : usedCellContent.toString()));
       cell.setCellStyle(defaultCellStyle);
     }
   }
@@ -194,14 +194,14 @@ public final class ExcelExport
   private void addHeaderCell(int currentColumn, String columnHeader)
   {
     cell = excelRow.createCell(currentColumn);
-    cell.setCellValue(new HSSFRichTextString(columnHeader));
+    cell.setCellValue(new XSSFRichTextString(columnHeader));
     cell.setCellStyle(headerCellStyle);
   }
 
-  private HSSFWorkbook exportListAsExcel(List<String> headers, List<List<Object>> rows)
+  private SXSSFWorkbook exportListAsExcel(List<String> headers, List<List<Object>> rows)
   {
     int currentColumn;
-    short currentRow;
+    int currentRow;
     short columnNumber;
 
     currentRow = 0;
@@ -209,6 +209,7 @@ public final class ExcelExport
     columnNumber = 0;
     if (headers != null)
     {
+      sheet.trackAllColumnsForAutoSizing();
       excelRow = sheet.createRow(currentRow++);
       currentColumn = 0;
       for (String columnHeader : headers)
@@ -220,22 +221,30 @@ public final class ExcelExport
 
     if (rows != null)
     {
-      for (Iterable<Object> row : rows)
+      for (int i = 0; i < rows.size(); i++)
       {
         excelRow = sheet.createRow(currentRow++);
         currentColumn = 0;
-        for (Object cellContent : row)
+        for (Object cellContent : rows.get(i))
         {
           addCell(currentColumn, cellContent);
           currentColumn++;
         }
+        if (i == NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN) {
+          autoSizeColumn(columnNumber);
+        }
       }
     }
-    for (short i = 0; i < columnNumber; i++)
-    {
-      sheet.autoSizeColumn(i, false);
-    }
+
 
     return workBook;
+  }
+
+  private void autoSizeColumn(short columnNumber) {
+    for (short colIndex = 0; colIndex < columnNumber; colIndex++)
+    {
+      sheet.autoSizeColumn(colIndex, false);
+    }
+    sheet.untrackAllColumnsForAutoSizing();
   }
 }
