@@ -39,6 +39,18 @@
       <version>3.15</version>
     </dependency>
   </dependencies>
+  <repositories>
+      <repository>
+          <id>central-maven</id>
+          	<url>http://central.maven.org/maven2</url>
+          <releases>
+              <enabled>true</enabled>
+          </releases>
+          <snapshots>
+              <enabled>true</enabled>
+          </snapshots>
+      </repository>
+  </repositories>
   <build>
     <sourceDirectory>${basedir}/src/</sourceDirectory>
     <outputDirectory>${basedir}/classes</outputDirectory>
