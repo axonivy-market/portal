@@ -75,10 +75,6 @@ Te0 @GridStep f74 '' #zField
 Te0 @StartWS f75 '' #zField
 Te0 @PushWFArc f76 '' #zField
 Te0 @PushWFArc f77 '' #zField
-Te0 @GridStep f78 '' #zField
-Te0 @StartWS f79 '' #zField
-Te0 @PushWFArc f80 '' #zField
-Te0 @PushWFArc f81 '' #zField
 Te0 @GridStep f54 '' #zField
 Te0 @PushWFArc f0 '' #zField
 Te0 @PushWFArc f1 '' #zField
@@ -631,13 +627,13 @@ Te0 f4 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findCategories</name>
-        <nameStyle>14,7
+        <name>find categories</name>
+        <nameStyle>15,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Te0 f4 334 124 36 24 20 -2 #rect
+Te0 f4 366 124 36 24 20 -2 #rect
 Te0 f4 @|StepIcon #fIcon
 Te0 f10 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f10 inParamTable 'out.language=param.language;
@@ -666,13 +662,13 @@ Te0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f10 @C|.responsibility Everybody #txt
-Te0 f10 339 51 26 26 13 0 #rect
+Te0 f10 371 51 26 26 13 0 #rect
 Te0 f10 @|StartWSIcon #fIcon
 Te0 f15 expr out #txt
-Te0 f15 352 77 352 124 #arcP
+Te0 f15 384 77 384 124 #arcP
 Te0 f18 expr out #txt
-Te0 f18 352 148 1498 312 #arcP
-Te0 f18 1 352 312 #addKink
+Te0 f18 384 148 1498 312 #arcP
+Te0 f18 1 384 312 #addKink
 Te0 f18 1 0.4763779527559055 0 0 #arcLabel
 Te0 f45 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -824,8 +820,10 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findGroupTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, in.language);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findTaskCategoriesOfUserWithoutReadAllPermission(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, in.language);
 	in.categories = tsResult.getCategories();
+	in.groupTaskCategories = tsResult.getGroupTaskCategories();
+	in.personalTaskCategories = tsResult.getPersonalTaskCategories();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
 	in.errors.add(e);
@@ -834,14 +832,13 @@ Te0 f66 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>find group
-Categories</name>
-        <nameStyle>21,7
+        <name>find categories</name>
+        <nameStyle>15,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Te0 f66 630 124 36 24 20 -2 #rect
+Te0 f66 838 116 36 24 20 -2 #rect
 Te0 f66 @|StepIcon #fIcon
 Te0 f67 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f67 inParamTable 'out.language=param.language;
@@ -849,31 +846,33 @@ out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
 out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
-Te0 f67 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
+Te0 f67 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> groupTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> personalTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
-Te0 f67 outParamTable 'result.categories=in.categories;
+Te0 f67 outParamTable 'result.groupTaskCategories=in.groupTaskCategories;
+result.personalTaskCategories=in.personalTaskCategories;
+result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f67 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f67 callSignature findGroupTaskCategories(String,String,String,List<String>) #txt
+Te0 f67 callSignature findTaskCategoriesOfUserWithoutReadAllPermission(String,String,String,List<String>) #txt
 Te0 f67 useUserDefinedException false #txt
 Te0 f67 taskData TaskTriggered.PRI=2 #txt
 Te0 f67 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findGroupTaskCategories</name>
-        <nameStyle>23,5,7
+        <name>findTaskCategoriesOfUserWithoutReadAllPermission</name>
+        <nameStyle>48,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Te0 f67 @C|.responsibility Everybody #txt
-Te0 f67 635 51 26 26 13 0 #rect
+Te0 f67 843 43 26 26 -98 -30 #rect
 Te0 f67 @|StartWSIcon #fIcon
 Te0 f68 expr out #txt
-Te0 f68 648 77 648 124 #arcP
+Te0 f68 856 69 856 116 #arcP
 Te0 f69 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
 Te0 f69 actionTable 'out=in;
@@ -883,8 +882,11 @@ import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.WSException;
 
 try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findPersonalTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, in.language);
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findTaskCategoriesOfUserWithReadAllPermission(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedUsername, in.taskSearchCriteria.involvedApplications, in.language);
 	in.categories = tsResult.getCategories();
+	in.groupTaskCategories = tsResult.getGroupTaskCategories();
+	in.personalTaskCategories = tsResult.getPersonalTaskCategories();
+	in.unassignedTaskCategories = tsResult.getUnassignedTaskCategories();
 	in.errors = tsResult.getErrors();
 }catch(WSException e){
 	in.errors.add(e);
@@ -893,14 +895,13 @@ Te0 f69 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>find personal
-Categories</name>
-        <nameStyle>24,7
+        <name>find categories</name>
+        <nameStyle>15,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Te0 f69 478 124 36 24 20 -2 #rect
+Te0 f69 582 124 36 24 20 -2 #rect
 Te0 f69 @|StepIcon #fIcon
 Te0 f70 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,java.lang.String userName,List<java.lang.String> apps> param;' #txt
 Te0 f70 inParamTable 'out.language=param.language;
@@ -908,38 +909,41 @@ out.taskSearchCriteria.involvedApplications=param.apps;
 out.taskSearchCriteria.involvedUsername=param.userName;
 out.taskSearchCriteria.jsonQuery=param.jsonQuery;
 ' #txt
-Te0 f70 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
+Te0 f70 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> groupTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> personalTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> unassignedTaskCategories,java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
 ' #txt
-Te0 f70 outParamTable 'result.categories=in.categories;
+Te0 f70 outParamTable 'result.groupTaskCategories=in.groupTaskCategories;
+result.personalTaskCategories=in.personalTaskCategories;
+result.unassignedTaskCategories=in.unassignedTaskCategories;
+result.categories=in.categories;
 result.errors=in.errors;
 ' #txt
 Te0 f70 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
-Te0 f70 callSignature findPersonalTaskCategories(String,String,String,List<String>) #txt
+Te0 f70 callSignature findTaskCategoriesOfUserWithReadAllPermission(String,String,String,List<String>) #txt
 Te0 f70 useUserDefinedException false #txt
 Te0 f70 taskData TaskTriggered.PRI=2 #txt
 Te0 f70 type ch.ivy.ws.addon.TaskServiceData #txt
 Te0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findPersonalCategories</name>
-        <nameStyle>22,5,7
+        <name>findTaskCategoriesOfUserWithReadAllPermission</name>
+        <nameStyle>45,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Te0 f70 @C|.responsibility Everybody #txt
-Te0 f70 483 51 26 26 13 0 #rect
+Te0 f70 587 51 26 26 -140 -38 #rect
 Te0 f70 @|StartWSIcon #fIcon
 Te0 f71 expr out #txt
-Te0 f71 496 77 496 124 #arcP
+Te0 f71 600 77 600 124 #arcP
 Te0 f72 expr out #txt
-Te0 f72 496 148 1498 312 #arcP
-Te0 f72 1 496 312 #addKink
+Te0 f72 600 148 1498 312 #arcP
+Te0 f72 1 600 312 #addKink
 Te0 f72 1 0.408992960074398 0 0 #arcLabel
 Te0 f73 expr out #txt
-Te0 f73 648 148 1498 312 #arcP
-Te0 f73 1 648 312 #addKink
+Te0 f73 856 140 1498 312 #arcP
+Te0 f73 1 856 312 #addKink
 Te0 f73 1 0.39212345493702755 0 0 #arcLabel
 Te0 f74 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -999,68 +1003,6 @@ Te0 f77 expr out #txt
 Te0 f77 3440 156 1526 312 #arcP
 Te0 f77 1 3440 312 #addKink
 Te0 f77 0 0.6965586369176562 0 0 #arcLabel
-Te0 f78 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
-' #txt
-Te0 f78 actionTable 'out=in;
-' #txt
-Te0 f78 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
-import ch.ivy.ws.addon.WsServiceFactory;
-import ch.ivy.ws.addon.WSException;
-
-try{
-	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findUnassignedTaskCategories(in.taskSearchCriteria.jsonQuery, in.taskSearchCriteria.involvedApplications, in.language);
-	in.categories = tsResult.getCategories();
-	in.errors = tsResult.getErrors();
-}catch(WSException e){
-	in.errors.add(e);
-}' #txt
-Te0 f78 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>find unassigned
-Categories</name>
-        <nameStyle>26,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f78 814 123 36 24 20 -2 #rect
-Te0 f78 @|StepIcon #fIcon
-Te0 f79 inParamDecl '<java.lang.String language,java.lang.String jsonQuery,List<java.lang.String> apps> param;' #txt
-Te0 f79 inParamTable 'out.language=param.language;
-out.taskSearchCriteria.involvedApplications=param.apps;
-out.taskSearchCriteria.jsonQuery=param.jsonQuery;
-' #txt
-Te0 f79 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WSException> errors> result;
-' #txt
-Te0 f79 outParamTable 'result.categories=in.categories;
-result.errors=in.errors;
-' #txt
-Te0 f79 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
-' #txt
-Te0 f79 callSignature findUnassignedTaskCategories(String,String,List<String>) #txt
-Te0 f79 useUserDefinedException false #txt
-Te0 f79 taskData TaskTriggered.PRI=2 #txt
-Te0 f79 type ch.ivy.ws.addon.TaskServiceData #txt
-Te0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>findUnassignedTaskCategories</name>
-        <nameStyle>28,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Te0 f79 @C|.responsibility Everybody #txt
-Te0 f79 819 50 26 26 13 0 #rect
-Te0 f79 @|StartWSIcon #fIcon
-Te0 f80 expr out #txt
-Te0 f80 832 76 832 123 #arcP
-Te0 f81 expr out #txt
-Te0 f81 832 147 1498 312 #arcP
-Te0 f81 1 832 312 #addKink
-Te0 f81 1 0.3670320543791164 0 0 #arcLabel
 Te0 f54 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
 Te0 f54 actionTable 'out=in;
@@ -1285,10 +1227,6 @@ Te0 f75 mainOut f76 tail #connect
 Te0 f76 head f74 mainIn #connect
 Te0 f74 mainOut f77 tail #connect
 Te0 f77 head f58 in #connect
-Te0 f79 mainOut f80 tail #connect
-Te0 f80 head f78 mainIn #connect
-Te0 f78 mainOut f81 tail #connect
-Te0 f81 head f58 in #connect
 Te0 f56 mainOut f0 tail #connect
 Te0 f0 head f54 mainIn #connect
 Te0 f54 mainOut f1 tail #connect

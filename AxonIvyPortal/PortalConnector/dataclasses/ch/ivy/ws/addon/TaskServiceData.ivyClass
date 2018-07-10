@@ -30,3 +30,6 @@ name 'Additional property''s name' #fieldComment
 value String #field
 value 'Additional property''s value' #fieldComment
 elapsedTimeStatistic ch.ivy.ws.addon.types.ElapsedTimeStatistic #field
+groupTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+personalTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+unassignedTaskCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field

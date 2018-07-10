@@ -34,13 +34,13 @@
 
   <xs:element name="findCategoriesResponse" type="tns:findCategoriesResponse"></xs:element>
 
-  <xs:element name="findGroupTaskCategories" type="tns:findGroupTaskCategories"></xs:element>
+  <xs:element name="findTaskCategoriesOfUserWithReadAllPermission" type="tns:findTaskCategoriesOfUserWithReadAllPermission"></xs:element>
 
-  <xs:element name="findGroupTaskCategoriesResponse" type="tns:findGroupTaskCategoriesResponse"></xs:element>
+  <xs:element name="findTaskCategoriesOfUserWithReadAllPermissionResponse" type="tns:findTaskCategoriesOfUserWithReadAllPermissionResponse"></xs:element>
 
-  <xs:element name="findPersonalTaskCategories" type="tns:findPersonalTaskCategories"></xs:element>
+  <xs:element name="findTaskCategoriesOfUserWithoutReadAllPermission" type="tns:findTaskCategoriesOfUserWithoutReadAllPermission"></xs:element>
 
-  <xs:element name="findPersonalTaskCategoriesResponse" type="tns:findPersonalTaskCategoriesResponse"></xs:element>
+  <xs:element name="findTaskCategoriesOfUserWithoutReadAllPermissionResponse" type="tns:findTaskCategoriesOfUserWithoutReadAllPermissionResponse"></xs:element>
 
   <xs:element name="findTaskNotes" type="tns:findTaskNotes"></xs:element>
 
@@ -49,10 +49,6 @@
   <xs:element name="findTasksByCriteria" type="tns:findTasksByCriteria"></xs:element>
 
   <xs:element name="findTasksByCriteriaResponse" type="tns:findTasksByCriteriaResponse"></xs:element>
-
-  <xs:element name="findUnassignedTaskCategories" type="tns:findUnassignedTaskCategories"></xs:element>
-
-  <xs:element name="findUnassignedTaskCategoriesResponse" type="tns:findUnassignedTaskCategoriesResponse"></xs:element>
 
   <xs:element name="parkTask" type="tns:parkTask"></xs:element>
 
@@ -367,39 +363,6 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="findGroupTaskCategories">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="findGroupTaskCategoriesResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="result" type="tns:findGroupTaskCategoriesResult"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="findGroupTaskCategoriesResult">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="categoryData">
-    <xs:complexContent>
-      <xs:extension base="tns:compositeObject">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="path" type="xs:string"></xs:element>
-          <xs:element minOccurs="0" name="rawPath" type="xs:string"></xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
   <xs:complexType name="analyzeExpiryStatistic">
     <xs:sequence>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
@@ -445,28 +408,6 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="findPersonalTaskCategories">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="findPersonalTaskCategoriesResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="result" type="tns:findPersonalTaskCategoriesResult"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="findPersonalTaskCategoriesResult">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:complexType name="findCategories">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
@@ -487,6 +428,17 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="categoryData">
+    <xs:complexContent>
+      <xs:extension base="tns:compositeObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="path" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="rawPath" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="resetTask">
@@ -544,24 +496,52 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="findUnassignedTaskCategories">
+  <xs:complexType name="findTaskCategoriesOfUserWithoutReadAllPermission">
     <xs:sequence>
       <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="findUnassignedTaskCategoriesResponse">
+  <xs:complexType name="findTaskCategoriesOfUserWithoutReadAllPermissionResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="result" type="tns:findUnassignedTaskCategoriesResult"></xs:element>
+      <xs:element minOccurs="0" name="result" type="tns:findTaskCategoriesOfUserWithoutReadAllPermissionResult"></xs:element>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="findUnassignedTaskCategoriesResult">
+  <xs:complexType name="findTaskCategoriesOfUserWithoutReadAllPermissionResult">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="groupTaskCategories" nillable="true" type="tns:categoryData"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="personalTaskCategories" nillable="true" type="tns:categoryData"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTaskCategoriesOfUserWithReadAllPermission">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="jsonQuery" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="apps" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTaskCategoriesOfUserWithReadAllPermissionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:findTaskCategoriesOfUserWithReadAllPermissionResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTaskCategoriesOfUserWithReadAllPermissionResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:categoryData"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:wsException"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="groupTaskCategories" nillable="true" type="tns:categoryData"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="personalTaskCategories" nillable="true" type="tns:categoryData"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="unassignedTaskCategories" nillable="true" type="tns:categoryData"></xs:element>
     </xs:sequence>
   </xs:complexType>
 
@@ -741,6 +721,10 @@
     <wsdl:part element="tns:delegateTask" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="findTaskCategoriesOfUserWithReadAllPermission">
+    <wsdl:part element="tns:findTaskCategoriesOfUserWithReadAllPermission" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="analyzeElapsedTimeStatistic">
     <wsdl:part element="tns:analyzeElapsedTimeStatistic" name="parameters">
     </wsdl:part>
@@ -757,20 +741,16 @@
     <wsdl:part element="tns:parkTaskResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="findTaskCategoriesOfUserWithoutReadAllPermissionResponse">
+    <wsdl:part element="tns:findTaskCategoriesOfUserWithoutReadAllPermissionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="canUserResumeTask">
     <wsdl:part element="tns:canUserResumeTask" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="findUnassignedTaskCategoriesResponse">
-    <wsdl:part element="tns:findUnassignedTaskCategoriesResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="findTasksByCriteriaResponse">
     <wsdl:part element="tns:findTasksByCriteriaResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="findPersonalTaskCategoriesResponse">
-    <wsdl:part element="tns:findPersonalTaskCategoriesResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="countTasksByCriteria">
@@ -789,10 +769,6 @@
     <wsdl:part element="tns:setAdditionalPropertyResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="findGroupTaskCategories">
-    <wsdl:part element="tns:findGroupTaskCategories" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="findCategoriesResponse">
     <wsdl:part element="tns:findCategoriesResponse" name="parameters">
     </wsdl:part>
@@ -805,14 +781,6 @@
     <wsdl:part element="tns:setAdditionalProperty" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="findPersonalTaskCategories">
-    <wsdl:part element="tns:findPersonalTaskCategories" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="findGroupTaskCategoriesResponse">
-    <wsdl:part element="tns:findGroupTaskCategoriesResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="findCategories">
     <wsdl:part element="tns:findCategories" name="parameters">
     </wsdl:part>
@@ -821,12 +789,16 @@
     <wsdl:part element="tns:resetTask" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="findTaskCategoriesOfUserWithoutReadAllPermission">
+    <wsdl:part element="tns:findTaskCategoriesOfUserWithoutReadAllPermission" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="countTasksByCriteriaResponse">
     <wsdl:part element="tns:countTasksByCriteriaResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="findUnassignedTaskCategories">
-    <wsdl:part element="tns:findUnassignedTaskCategories" name="parameters">
+  <wsdl:message name="findTaskCategoriesOfUserWithReadAllPermissionResponse">
+    <wsdl:part element="tns:findTaskCategoriesOfUserWithReadAllPermissionResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="findTaskNotes">
@@ -878,14 +850,6 @@
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="findGroupTaskCategories">
-      <wsdl:input message="tns:findGroupTaskCategories" name="findGroupTaskCategories">
-    </wsdl:input>
-      <wsdl:output message="tns:findGroupTaskCategoriesResponse" name="findGroupTaskCategoriesResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
-    </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="analyzeExpiryStatistic">
       <wsdl:input message="tns:analyzeExpiryStatistic" name="analyzeExpiryStatistic">
     </wsdl:input>
@@ -898,14 +862,6 @@
       <wsdl:input message="tns:setAdditionalProperty" name="setAdditionalProperty">
     </wsdl:input>
       <wsdl:output message="tns:setAdditionalPropertyResponse" name="setAdditionalPropertyResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="findPersonalTaskCategories">
-      <wsdl:input message="tns:findPersonalTaskCategories" name="findPersonalTaskCategories">
-    </wsdl:input>
-      <wsdl:output message="tns:findPersonalTaskCategoriesResponse" name="findPersonalTaskCategoriesResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -934,10 +890,18 @@
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="findUnassignedTaskCategories">
-      <wsdl:input message="tns:findUnassignedTaskCategories" name="findUnassignedTaskCategories">
+    <wsdl:operation name="findTaskCategoriesOfUserWithoutReadAllPermission">
+      <wsdl:input message="tns:findTaskCategoriesOfUserWithoutReadAllPermission" name="findTaskCategoriesOfUserWithoutReadAllPermission">
     </wsdl:input>
-      <wsdl:output message="tns:findUnassignedTaskCategoriesResponse" name="findUnassignedTaskCategoriesResponse">
+      <wsdl:output message="tns:findTaskCategoriesOfUserWithoutReadAllPermissionResponse" name="findTaskCategoriesOfUserWithoutReadAllPermissionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findTaskCategoriesOfUserWithReadAllPermission">
+      <wsdl:input message="tns:findTaskCategoriesOfUserWithReadAllPermission" name="findTaskCategoriesOfUserWithReadAllPermission">
+    </wsdl:input>
+      <wsdl:output message="tns:findTaskCategoriesOfUserWithReadAllPermissionResponse" name="findTaskCategoriesOfUserWithReadAllPermissionResponse">
     </wsdl:output>
       <wsdl:fault message="tns:WebServiceProcessTechnicalException" name="WebServiceProcessTechnicalException">
     </wsdl:fault>
@@ -1029,18 +993,6 @@
         <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="findGroupTaskCategories">
-      <soap:operation soapAction="" style="document"></soap:operation>
-      <wsdl:input name="findGroupTaskCategories">
-        <soap:body use="literal"></soap:body>
-      </wsdl:input>
-      <wsdl:output name="findGroupTaskCategoriesResponse">
-        <soap:body use="literal"></soap:body>
-      </wsdl:output>
-      <wsdl:fault name="WebServiceProcessTechnicalException">
-        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="analyzeExpiryStatistic">
       <soap:operation soapAction="" style="document"></soap:operation>
       <wsdl:input name="analyzeExpiryStatistic">
@@ -1059,18 +1011,6 @@
         <soap:body use="literal"></soap:body>
       </wsdl:input>
       <wsdl:output name="setAdditionalPropertyResponse">
-        <soap:body use="literal"></soap:body>
-      </wsdl:output>
-      <wsdl:fault name="WebServiceProcessTechnicalException">
-        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="findPersonalTaskCategories">
-      <soap:operation soapAction="" style="document"></soap:operation>
-      <wsdl:input name="findPersonalTaskCategories">
-        <soap:body use="literal"></soap:body>
-      </wsdl:input>
-      <wsdl:output name="findPersonalTaskCategoriesResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
@@ -1113,12 +1053,24 @@
         <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="findUnassignedTaskCategories">
+    <wsdl:operation name="findTaskCategoriesOfUserWithoutReadAllPermission">
       <soap:operation soapAction="" style="document"></soap:operation>
-      <wsdl:input name="findUnassignedTaskCategories">
+      <wsdl:input name="findTaskCategoriesOfUserWithoutReadAllPermission">
         <soap:body use="literal"></soap:body>
       </wsdl:input>
-      <wsdl:output name="findUnassignedTaskCategoriesResponse">
+      <wsdl:output name="findTaskCategoriesOfUserWithoutReadAllPermissionResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceProcessTechnicalException">
+        <soap:fault name="WebServiceProcessTechnicalException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findTaskCategoriesOfUserWithReadAllPermission">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findTaskCategoriesOfUserWithReadAllPermission">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findTaskCategoriesOfUserWithReadAllPermissionResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
       <wsdl:fault name="WebServiceProcessTechnicalException">
