@@ -25,14 +25,6 @@ public class SearchResultsDataModel implements Serializable {
     
     caseDataModel = initCaseDataModel();
     caseDataModel.setIgnoreInvolvedUser(hasReadAllCasesPermission);
-    Long serverId = SecurityServiceUtils.getServerIdFromSession();
-    if (serverId != null) {
-      caseDataModel.setServerId(serverId);
-    }
-    String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-    if (StringUtils.isNotBlank(applicationName)) {
-      caseDataModel.setInvolvedApplications(applicationName);
-    }
   }
   
   public void search() {
