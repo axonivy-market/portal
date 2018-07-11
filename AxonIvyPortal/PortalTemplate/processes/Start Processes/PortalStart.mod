@@ -1208,16 +1208,6 @@ import ch.ivy.addon.portal.generic.view.CaseView;
 boolean hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();
 in.caseDataModel.setIgnoreInvolvedUser(hasReadAllCasesPermission);
 
-Long serverId = SecurityServiceUtils.getServerIdFromSession();
-if (#serverId is initialized) {
-	in.caseDataModel.setServerId(serverId);
-}
-
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.caseDataModel.setInvolvedApplications(applicationName);
-}
-
 in.caseView = CaseView.create().dataModel(in.caseDataModel).buildNewView();' #txt
 Pt0 f59 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
