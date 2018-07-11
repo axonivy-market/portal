@@ -6,7 +6,8 @@
   <h:panelGroup id="statistic-result-list" layout="block" styleClass="statistic-result-list MarTop10">
     <h:form id="statistic-result-form">
       <h:panelGroup layout="block" id="statistic-result-buttons-container" styleClass="ui-g statistic-result-buttons-container MarTop50">
-        <p:commandButton ajax="false" styleClass="FRight" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
+        <p:commandButton ajax="false" styleClass="FRight" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+           onclick="PrimeFaces.monitorDownload(start, stop);">
           <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
         </p:commandButton>
   
@@ -151,8 +152,21 @@
           $taskTable.find(".ui-datatable-scrollable-header").css("width", "calc(100% - " + scrollbarWidth + "px)" );
         }
       };
-    </script>
 
+      function start() {
+          PF('status-dialog').show();
+      }
+
+      function stop() {
+          PF('status-dialog').hide();
+      }
+    </script>
+ 
 </h:panelGroup>
+
+  <p:dialog modal="true" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false">
+    #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}
+  </p:dialog>
+
 </h:body>
 </html>
