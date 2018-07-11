@@ -79,6 +79,39 @@
 				</itemizedlist>
 			</para>
 		</sect2>
+		<sect2 xml:id="axonivyportal.installation.basicinstallation.addlibraries">
+			<title xml:id="axonivyportal.installation.basicinstallation.addlibraries.title">Add required libraries</title>
+			<para>
+				Portal needs <link xlink:show="new" xlink:href="https://poi.apache.org">Apache POI</link> for exporting to Excel features. Follow these steps to add Apache POI libraries:
+				<orderedlist>
+					<listitem>
+						<para>
+							Copy libraries below and then paste into <code>webapps/ivy/WEB-INF/lib</code> folder located on <code>AxonIvyEngine, AxonIvyDesigner.</code>
+							<note>
+								You can find libraries inside <code>AxonIvyDesigner</code> folder, under <code>configuration/org.eclipse.osgi</code> (search libraries in this directory), or download from this site.
+							</note>
+							<itemizedlist>
+								<listitem>
+								<para><link xlink:href="documents/Export/poi-3.15.jar">poi-3.15.jar</link></para>
+								</listitem>
+								<listitem>
+									<para><link xlink:href="documents/Export/poi-ooxml-3.15.jar">poi-ooxml-3.15.jar</link></para>
+								</listitem>
+								<listitem>
+									<para><link xlink:href="documents/Export/poi-ooxml-schemas-3.15.jar">poi-ooxml-schemas-3.15.jar</link></para>
+								</listitem>
+								<listitem>
+									<para><link xlink:href="documents/Export/xmlbeans-2.6.0.jar">xmlbeans-2.6.0.jar</link></para>
+								</listitem>
+							</itemizedlist>
+						</para>
+					</listitem>
+					<listitem>
+						Restart AxonIvy Designer/Engine.
+					</listitem>
+				</orderedlist>
+			</para>
+		</sect2>
 		<sect2>
 			<title>Specify servers, applications used in Portal</title>
 			<sect3 xml:id="axonivyportal.installation.basicinstallation.specifyservers.generalConcept">
@@ -706,8 +739,12 @@
 		<sect2>
 			<title>Migrate 7.1.0 to 7.2.0</title>
 			<para>
-					There are some changes (DefaultApplicationHomePage, DefaultLoginPage, GlobalSearch) in PortalStart process of Portal Template. If you have customized this process in your project,
-					copy the new PortalStart from Portal Template to your project and re-apply your customization. 
+				Portal needs <link xlink:show="new" xlink:href="https://poi.apache.org">Apache POI</link> for exporting to Excel features.
+				Refer to <link linkend="axonivyportal.installation.basicinstallation.addlibraries" endterm="axonivyportal.installation.basicinstallation.addlibraries.title" />.
+			</para>
+			<para>
+				There are some changes (DefaultApplicationHomePage, DefaultLoginPage, GlobalSearch) in PortalStart process of Portal Template. If you have customized this process in your project,
+				copy the new PortalStart from Portal Template to your project and re-apply your customization. 
 			</para>
             <important>
               <para>    
