@@ -2,11 +2,8 @@ package ch.ivy.addon.portalkit.datamodel;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
-
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 public class SearchResultsDataModel implements Serializable {
 
@@ -15,26 +12,26 @@ public class SearchResultsDataModel implements Serializable {
   protected String keyword;
   protected TaskLazyDataModel taskDataModel;
   protected CaseLazyDataModel caseDataModel;
-  
+
   public SearchResultsDataModel() {
     boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
     boolean hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();
     taskDataModel = initTaskDataModel();
     taskDataModel.setIgnoreInvolvedUser(hasReadAllTasksPermisson);
     taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
-    
+
     caseDataModel = initCaseDataModel();
     caseDataModel.setIgnoreInvolvedUser(hasReadAllCasesPermission);
   }
-  
+
   public void search() {
     // Placeholder for customization
   }
-  
+
   protected TaskLazyDataModel initTaskDataModel() {
-    return new TaskLazyDataModel(TASK_WIDGET_COMPONENT_ID); 
+    return new TaskLazyDataModel(TASK_WIDGET_COMPONENT_ID);
   }
-  
+
   protected CaseLazyDataModel initCaseDataModel() {
     return new CaseLazyDataModel(CASE_WIDGET_COMPONENT_ID);
   }
@@ -60,7 +57,7 @@ public class SearchResultsDataModel implements Serializable {
   public void setCaseDataModel(CaseLazyDataModel caseDataModel) {
     this.caseDataModel = caseDataModel;
   }
-  
+
   public CaseLazyDataModel getCaseDataModel() {
     return caseDataModel;
   }
