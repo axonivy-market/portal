@@ -759,13 +759,14 @@ List removedTasks = new ArrayList();
 if (collectedTaskSize > numOfDuplicatedTasksToCheck) {
 	for (int i = 0; i < numOfDuplicatedTasksToCheck; i++) {
 		int j = i;
-		for (j; j < numOfDuplicatedTasksToCheck; j++) {
+		int taskCount = numOfDuplicatedTasksToCheck < in.tasks.size() ? numOfDuplicatedTasksToCheck : in.tasks.size();
+		for (j; j < taskCount; j++) {
 			if(in.tasks.get(j).getId() == in.collectedTasksForExporting.get(collectedTaskSize - i - 1).getId()) {
 				removedTasks.add(in.collectedTasksForExporting.get(collectedTaskSize - i - 1));
 				break;
 			}
 		}
-		if (j == numOfDuplicatedTasksToCheck) {
+		if (j == taskCount) {
 			break;
 		}
 	}
