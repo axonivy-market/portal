@@ -2607,6 +2607,7 @@ Ce0 f187 inParamDecl '<java.lang.String jsonQuery,java.util.List<java.lang.Strin
 Ce0 f187 inParamTable 'out.apps=param.apps;
 out.caseSearchCriteria.businessCase=true;
 out.caseSearchCriteria.ignoreInvolvedUser=false;
+out.caseSearchCriteria.involvedApplications=param.apps;
 out.caseSearchCriteria.involvedUsername=param.userName;
 out.caseSearchCriteria.jsonQuery=param.jsonQuery;
 out.server.id=param.serverId;
