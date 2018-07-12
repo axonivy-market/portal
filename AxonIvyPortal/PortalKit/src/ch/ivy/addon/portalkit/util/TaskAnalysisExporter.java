@@ -115,12 +115,12 @@ public class TaskAnalysisExporter {
         return task.getDescription();
       case TASK_ACTIVATOR:
         if (task.getActivatorUserName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable");
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return userFormatBean.formatWithTip(task.getActivatorFullName(), task.getActivatorUserName());
       case TASK_WORKER:
         if (task.getWorkerUserName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable");
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return userFormatBean.formatWithTip(task.getWorkerFullName(), task.getWorkerUserName());
       case TASK_PRIORITY:
