@@ -575,12 +575,12 @@
 						<para>
 							Create Express Workflow function will be enabled if session user has
 							<code>PortalPermission.EXPRESS_CREATE_WORKFLOW</code>
-							(This permission belongs to Portal permission group).
+							(This permission belongs to Portal permission group, assigned to role Everybody by default).
 						</para>
 					</listitem>
 				</itemizedlist>
 			</sect3>
-            <sect3>
+			<sect3>
 				<title>Statistics permission</title>
 				<itemizedlist>
 					<listitem>
@@ -590,7 +590,17 @@
 						<para>
 							Add new charts function will be enabled if session user has
 							<code>PortalPermission.STATISTIC_ADD_DASHBOARD_CHART</code>
-							(This permission belongs to Portal permission group).
+							(This permission belongs to Portal permission group, assigned to role Everybody by default).
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ANALYZE TASK
+						</para>
+						<para>
+							Filter tasks and export data to excel for advanced analysis. This function will be enabled if session user has
+							<code>PortalPermission.STATISTIC_ANALYZE_TASK</code>
+							(This permission belongs to Portal permission group, assigned to user admin by default).
 						</para>
 					</listitem>
 				</itemizedlist>
