@@ -76,12 +76,8 @@ Ts0 @GridStep f61 '' #zField
 Ts0 @PushWFArc f62 '' #zField
 Ts0 @PushWFArc f38 '' #zField
 Ts0 @PushWFArc f54 '' #zField
-Ts0 @GridStep f53 '' #zField
-Ts0 @PushWFArc f55 '' #zField
-Ts0 @PushWFArc f15 '' #zField
-Ts0 @GridStep f56 '' #zField
-Ts0 @PushWFArc f58 '' #zField
-Ts0 @PushWFArc f59 '' #zField
+Ts0 @PushWFArc f60 '' #zField
+Ts0 @PushWFArc f56 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
@@ -623,7 +619,7 @@ Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f13 67 979 26 26 -46 15 #rect
 Ts0 f13 @|RichDialogMethodStartIcon #fIcon
 Ts0 f14 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
-Ts0 f14 1107 1083 26 26 0 12 #rect
+Ts0 f14 955 1083 26 26 0 12 #rect
 Ts0 f14 @|RichDialogProcessEndIcon #fIcon
 Ts0 f22 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f22 processCall MultiPortal/TaskService:findTasksByCriteria(Long,ch.ivy.ws.addon.TaskSearchCriteria,Integer,Integer) #txt
@@ -651,7 +647,7 @@ Ts0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f22 686 980 36 24 -25 21 #rect
+Ts0 f22 534 980 36 24 -25 21 #rect
 Ts0 f22 @|CallSubIcon #fIcon
 Ts0 f37 actionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
 ' #txt
@@ -668,7 +664,7 @@ Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f37 776 1074 112 44 -32 -8 #rect
+Ts0 f37 624 1074 112 44 -32 -8 #rect
 Ts0 f37 @|StepIcon #fIcon
 Ts0 f44 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f44 processCall MultiPortal/TaskService:countTasksByCriteria(Long,ch.ivy.ws.addon.TaskSearchCriteria) #txt
@@ -703,7 +699,7 @@ Ts0 f21 actionTable 'out=in;
 ' #txt
 Ts0 f21 actionCode 'import java.util.ArrayList;
 in.wsCallCount = 0;
-in.numOfTasksPerWSCall = 10;
+in.numOfTasksPerWSCall = 5000;
 in.collectedTasksForExporting = new ArrayList();
 int temp = (in.taskCount - 1)/in.numOfTasksPerWSCall;
 in.numOfWSCalls = temp + 1;
@@ -729,7 +725,7 @@ tasks?</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f52 576 976 32 32 -51 18 #rect
+Ts0 f52 424 976 32 32 -51 18 #rect
 Ts0 f52 @|AlternativeIcon #fIcon
 Ts0 f18 expr in #txt
 Ts0 f18 outCond 'in.wsCallCount < in.numOfWSCalls' #txt
@@ -742,7 +738,7 @@ Ts0 f18 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f18 608 992 686 992 #arcP
+Ts0 f18 456 992 534 992 #arcP
 Ts0 f18 0 0.41025641025641024 0 -9 #arcLabel
 Ts0 f33 expr out #txt
 Ts0 f33 185 992 248 992 #arcP
@@ -783,10 +779,10 @@ Ts0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f61 768 970 128 44 -59 -8 #rect
+Ts0 f61 616 970 128 44 -59 -8 #rect
 Ts0 f61 @|StepIcon #fIcon
 Ts0 f62 expr out #txt
-Ts0 f62 722 992 768 992 #arcP
+Ts0 f62 570 992 616 992 #arcP
 Ts0 f38 expr in #txt
 Ts0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -797,60 +793,19 @@ Ts0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f38 592 1008 776 1096 #arcP
-Ts0 f38 1 592 1096 #addKink
+Ts0 f38 440 1008 624 1096 #arcP
+Ts0 f38 1 440 1096 #addKink
 Ts0 f38 1 0.2391304347826087 0 -12 #arcLabel
 Ts0 f54 expr out #txt
-Ts0 f54 832 970 592 976 #arcP
-Ts0 f54 1 832 920 #addKink
-Ts0 f54 2 592 920 #addKink
+Ts0 f54 680 970 440 976 #arcP
+Ts0 f54 1 680 920 #addKink
+Ts0 f54 2 440 920 #addKink
 Ts0 f54 0 0.7270590020826535 0 0 #arcLabel
-Ts0 f53 actionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
-' #txt
-Ts0 f53 actionTable 'out=in;
-' #txt
-Ts0 f53 actionCode 'in.dataModel.queryCriteria.sortField = in.sortField;
-in.dataModel.queryCriteria.sortDescending = in.sortDescending;' #txt
-Ts0 f53 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
-Ts0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>restore sorting&#xD;
-in data model</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f53 928 1074 128 44 -40 -16 #rect
-Ts0 f53 @|StepIcon #fIcon
-Ts0 f55 expr out #txt
-Ts0 f55 888 1096 928 1096 #arcP
-Ts0 f55 0 0.9184538480715879 0 0 #arcLabel
-Ts0 f15 expr out #txt
-Ts0 f15 1056 1096 1107 1096 #arcP
-Ts0 f15 0 0.9184538480715879 0 0 #arcLabel
-Ts0 f56 actionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
-' #txt
-Ts0 f56 actionTable 'out=in;
-' #txt
-Ts0 f56 actionCode 'in.sortField = in.dataModel.queryCriteria.sortField;
-in.sortDescending = in.dataModel.queryCriteria.sortDescending;
-in.dataModel.queryCriteria.sortField = "TASK_ID";
-in.dataModel.queryCriteria.sortDescending = true;' #txt
-Ts0 f56 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
-Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>sort by&#xD;
-task ID</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f56 408 970 112 44 -19 -16 #rect
-Ts0 f56 @|StepIcon #fIcon
-Ts0 f58 expr out #txt
-Ts0 f58 360 992 408 992 #arcP
-Ts0 f59 expr out #txt
-Ts0 f59 520 992 576 992 #arcP
+Ts0 f60 expr out #txt
+Ts0 f60 360 992 424 992 #arcP
+Ts0 f56 expr out #txt
+Ts0 f56 736 1096 955 1096 #arcP
+Ts0 f56 0 0.9184538480715879 0 0 #arcLabel
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -907,11 +862,7 @@ Ts0 f52 out f38 tail #connect
 Ts0 f38 head f37 mainIn #connect
 Ts0 f61 mainOut f54 tail #connect
 Ts0 f54 head f52 in #connect
-Ts0 f37 mainOut f55 tail #connect
-Ts0 f55 head f53 mainIn #connect
-Ts0 f53 mainOut f15 tail #connect
-Ts0 f15 head f14 mainIn #connect
-Ts0 f21 mainOut f58 tail #connect
-Ts0 f58 head f56 mainIn #connect
-Ts0 f56 mainOut f59 tail #connect
-Ts0 f59 head f52 in #connect
+Ts0 f21 mainOut f60 tail #connect
+Ts0 f60 head f52 in #connect
+Ts0 f37 mainOut f56 tail #connect
+Ts0 f56 head f14 mainIn #connect
