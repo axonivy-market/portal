@@ -2098,6 +2098,22 @@
 						</row>
 						<row>
 							<entry>
+								<para>categoryName</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>categoryPath</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
 								<para>creatorFullName</para>
 							</entry>
 							<entry>
@@ -3217,7 +3233,23 @@
 						</row>
 						<row>
 							<entry>
-								<para>caseCreatorUserName</para>
+								<para>caseBusinessStartTimestamp</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>caseCategoryName</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>caseCategoryPath</para>
 							</entry>
 							<entry>
 								<para>String</para>
@@ -3466,6 +3498,22 @@
 						<row>
 							<entry>
 								<para>caseTypeName</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>caseCategoryName</para>
+							</entry>
+							<entry>
+								<para>String</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>caseCategoryPath</para>
 							</entry>
 							<entry>
 								<para>String</para>
