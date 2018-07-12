@@ -5,7 +5,7 @@
 <h:body>
   <h:panelGroup id="statistic-result-list" layout="block" styleClass="statistic-result-list MarTop10">
     <h:form id="statistic-result-form">
-      <h:panelGroup layout="block" id="statistic-result-buttons-container" styleClass="ui-g statistic-result-buttons-container MarTop50">
+      <h:panelGroup layout="block" id="statistic-result-buttons-container" styleClass="ui-g statistic-result-buttons-container MarTop10">
         <p:commandButton ajax="false" styleClass="FRight" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
            onclick="PrimeFaces.monitorDownload(start, stop);">
           <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
@@ -18,7 +18,7 @@
       </h:panelGroup>
 
       <p:dataTable id="task-table" widgetVar="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.id}" sortMode="single"
-         lazy="true" scrollable="true" liveScroll="true" scrollRows="10" styleClass="task-table" sortBy="#{TASK_NAME}" rows="#{cc.attrs.chunkSize}">
+         lazy="true" scrollable="true" liveScroll="true" scrollRows="20" styleClass="task-table" sortBy="#{TASK_NAME}" rows="#{cc.attrs.chunkSize}">
          
 		<p:ajax  event="sort" update="task-table" onstart="liveScroll()"/>
         <p:column id="case-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortable="false" width="250"
