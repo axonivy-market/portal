@@ -995,11 +995,13 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Pt0 f47 caseData businessCase.attach=true #txt
-Pt0 f47 showInStartList 1 #txt
+Pt0 f47 showInStartList 0 #txt
 Pt0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>startPortalProcess.ivp</name>
+        <nameStyle>22,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1030,11 +1032,13 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Pt0 f54 caseData businessCase.attach=true #txt
-Pt0 f54 showInStartList 1 #txt
+Pt0 f54 showInStartList 0 #txt
 Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>startPortalStatistic.ivp</name>
+        <nameStyle>24,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1065,11 +1069,13 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Pt0 f59 caseData businessCase.attach=true #txt
-Pt0 f59 showInStartList 1 #txt
+Pt0 f59 showInStartList 0 #txt
 Pt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>startPortalTask.ivp</name>
+        <nameStyle>19,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1100,11 +1106,13 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Pt0 f64 caseData businessCase.attach=true #txt
-Pt0 f64 showInStartList 1 #txt
+Pt0 f64 showInStartList 0 #txt
 Pt0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>startPortalCase.ivp</name>
+        <nameStyle>19,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1158,11 +1166,13 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Pt0 f72 caseData businessCase.attach=true #txt
-Pt0 f72 showInStartList 1 #txt
+Pt0 f72 showInStartList 0 #txt
 Pt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>DefaultApplicationHomePage.ivp</name>
+        <nameStyle>30,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1192,11 +1202,13 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Pt0 f75 caseData businessCase.attach=true #txt
-Pt0 f75 showInStartList 1 #txt
+Pt0 f75 showInStartList 0 #txt
 Pt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>DefaultLoginPage.ivp</name>
+        <nameStyle>20,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
