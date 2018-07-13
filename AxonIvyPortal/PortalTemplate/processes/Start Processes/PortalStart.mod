@@ -609,7 +609,7 @@ Pt0 f24 0 0.37297345905809204 -1 -17 #arcLabel
 Pt0 f26 expr out #txt
 Pt0 f26 1716 416 1816 416 #arcP
 Pt0 f32 expr in #txt
-Pt0 f32 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.HOME_PAGE, in.portalPage) || java.util.Objects.isNull(in.portalPage)' #txt
+Pt0 f32 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.HOME_PAGE, in.#portalPage) || java.util.Objects.isNull(in.#portalPage)' #txt
 Pt0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -622,7 +622,7 @@ Pt0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f32 1246 160 1438 160 #arcP
 Pt0 f32 0 0.32167832167832167 0 -9 #arcLabel
 Pt0 f36 expr in #txt
-Pt0 f36 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.ERROR_PAGE ,in.portalPage) ' #txt
+Pt0 f36 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.ERROR_PAGE ,in.#portalPage) ' #txt
 Pt0 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -636,7 +636,7 @@ Pt0 f36 1238 168 1408 288 #arcP
 Pt0 f36 1 1324 288 #addKink
 Pt0 f36 1 0.37012987012987014 0 -13 #arcLabel
 Pt0 f37 expr in #txt
-Pt0 f37 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.LINK_TO_TASK, in.portalPage)' #txt
+Pt0 f37 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.LINK_TO_TASK, in.#portalPage)' #txt
 Pt0 f37 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -746,7 +746,7 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f6 1384 394 144 44 -66 -8 #rect
 Pt0 f6 @|CallSubIcon #fIcon
 Pt0 f16 expr in #txt
-Pt0 f16 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.CASE_DETAIL_FROM_TASK, in.portalPage)' #txt
+Pt0 f16 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)' #txt
 Pt0 f16 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
