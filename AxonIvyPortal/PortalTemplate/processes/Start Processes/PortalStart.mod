@@ -88,6 +88,10 @@ Pt0 @PushWFArc f67 '' #zField
 Pt0 @GridStep f68 '' #zField
 Pt0 @PushWFArc f70 '' #zField
 Pt0 @PushWFArc f14 '' #zField
+Pt0 @StartRequest f72 '' #zField
+Pt0 @PushWFArc f74 '' #zField
+Pt0 @StartRequest f75 '' #zField
+Pt0 @PushWFArc f76 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -263,7 +267,7 @@ Pt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f30 368 401 32 32 27 -7 #rect
+Pt0 f30 368 433 32 32 27 -7 #rect
 Pt0 f30 @|AlternativeIcon #fIcon
 Pt0 f33 targetWindow NEW #txt
 Pt0 f33 targetDisplay TOP #txt
@@ -325,7 +329,7 @@ Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f10 @C|.responsibility Everybody #txt
-Pt0 f10 51 404 26 26 -46 17 #rect
+Pt0 f10 51 436 26 26 -46 17 #rect
 Pt0 f10 @|StartRequestIcon #fIcon
 Pt0 f11 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -366,7 +370,7 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f11 156 395 112 44 -47 -8 #rect
+Pt0 f11 156 427 112 44 -47 -8 #rect
 Pt0 f11 @|StepIcon #fIcon
 Pt0 f34 expr in #txt
 Pt0 f34 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
@@ -379,13 +383,13 @@ Pt0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f34 384 433 384 523 #arcP
+Pt0 f34 384 465 384 523 #arcP
 Pt0 f34 0 0.3793103448275862 13 -1 #arcLabel
 Pt0 f29 expr out #txt
 Pt0 f29 440 545 501 545 #arcP
 Pt0 f29 0 0.2732919254658385 -1 -8 #arcLabel
 Pt0 f15 expr in #txt
-Pt0 f15 391 408 553 169 #arcP
+Pt0 f15 390 439 554 170 #arcP
 Pt0 f15 0 0.4763694877411137 0 0 #arcLabel
 Pt0 f12 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f12 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
@@ -759,9 +763,9 @@ Pt0 f38 expr out #txt
 Pt0 f38 1528 416 1612 416 #arcP
 Pt0 f38 0 0.5114942528735632 0 -12 #arcLabel
 Pt0 f48 expr out #txt
-Pt0 f48 77 417 156 417 #arcP
+Pt0 f48 77 449 156 449 #arcP
 Pt0 f50 expr out #txt
-Pt0 f50 268 417 368 417 #arcP
+Pt0 f50 268 449 368 449 #arcP
 Pt0 f56 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f56 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
 Pt0 f56 doCall true #txt
@@ -1137,6 +1141,72 @@ Pt0 f70 expr out #txt
 Pt0 f70 77 160 120 160 #arcP
 Pt0 f14 expr out #txt
 Pt0 f14 264 160 312 160 #arcP
+Pt0 f72 outLink DefaultApplicationHomePage.ivp #txt
+Pt0 f72 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f72 inParamDecl '<> param;' #txt
+Pt0 f72 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f72 guid 1649151E16263B73 #txt
+Pt0 f72 requestEnabled true #txt
+Pt0 f72 triggerEnabled false #txt
+Pt0 f72 callSignature DefaultApplicationHomePage() #txt
+Pt0 f72 persist false #txt
+Pt0 f72 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Pt0 f72 caseData businessCase.attach=true #txt
+Pt0 f72 showInStartList 1 #txt
+Pt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultApplicationHomePage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f72 @C|.responsibility Everybody #txt
+Pt0 f72 49 49 30 30 -51 16 #rect
+Pt0 f72 @|StartRequestIcon #fIcon
+Pt0 f74 expr out #txt
+Pt0 f74 79 64 560 144 #arcP
+Pt0 f74 1 560 64 #addKink
+Pt0 f74 0 0.5831600831600832 0 0 #arcLabel
+Pt0 f75 outLink DefaultLoginPage.ivp #txt
+Pt0 f75 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f75 inParamDecl '<java.lang.String originalUrl> param;' #txt
+Pt0 f75 inParamTable 'out.callbackUrl=param.#originalUrl is initialized ? param.originalUrl : null;
+' #txt
+Pt0 f75 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f75 guid 1649152A620ECC97 #txt
+Pt0 f75 requestEnabled true #txt
+Pt0 f75 triggerEnabled false #txt
+Pt0 f75 callSignature DefaultLoginPage(String) #txt
+Pt0 f75 persist false #txt
+Pt0 f75 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Pt0 f75 caseData businessCase.attach=true #txt
+Pt0 f75 showInStartList 1 #txt
+Pt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultLoginPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f75 @C|.responsibility Everybody #txt
+Pt0 f75 49 353 30 30 -58 17 #rect
+Pt0 f75 @|StartRequestIcon #fIcon
+Pt0 f76 expr out #txt
+Pt0 f76 79 368 377 440 #arcP
+Pt0 f76 1 320 368 #addKink
+Pt0 f76 0 0.5540983606557377 0 0 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1213,3 +1283,7 @@ Pt0 f0 mainOut f70 tail #connect
 Pt0 f70 head f68 mainIn #connect
 Pt0 f68 mainOut f14 tail #connect
 Pt0 f14 head f20 mainIn #connect
+Pt0 f72 mainOut f74 tail #connect
+Pt0 f74 head f4 in #connect
+Pt0 f75 mainOut f76 tail #connect
+Pt0 f76 head f30 in #connect

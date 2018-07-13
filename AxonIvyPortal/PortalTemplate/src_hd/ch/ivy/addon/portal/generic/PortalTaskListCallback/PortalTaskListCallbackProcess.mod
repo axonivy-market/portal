@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Fri Jun 02 15:29:31 ICT 2017]
 15C67FEA143420EE 3.20 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskListCallbackProcess Big #zClass
@@ -74,7 +73,7 @@ Ps0 f4 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTask
 Ps0 f4 actionTable 'out=in;
 ' #txt
 Ps0 f4 actionCode 'import javax.faces.context.FacesContext;
-FacesContext.getCurrentInstance().getExternalContext().redirect(in.callbackUrl);' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(java.net.URLDecoder.decode(in.callbackUrl, "UTF-8"));' #txt
 Ps0 f4 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 Ps0 f4 168 138 112 44 0 -8 #rect
 Ps0 f4 @|StepIcon #fIcon
