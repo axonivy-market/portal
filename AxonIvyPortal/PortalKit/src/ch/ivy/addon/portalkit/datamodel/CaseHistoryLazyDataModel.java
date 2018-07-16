@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.ws.addon.CaseSearchCriteria;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -55,6 +56,19 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
     searchCriteria = buildInitSearchCriteria();
     queryCriteria = buildInitQueryCriteria();
     setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
+    autoInitForNoAppConfiguration();
+  }
+
+  protected void autoInitForNoAppConfiguration() {
+    String applicationName = StringUtils.EMPTY;
+    String applicationNameFromRequest =
+        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
+    if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+      applicationName = applicationNameFromRequest;
+    }
+    if (StringUtils.isNotBlank(applicationName)) {
+      searchCriteria.setInvolvedApplications(new String[] {applicationName});
+    }
   }
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
@@ -68,10 +82,6 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
     CaseSearchCriteria crit = new CaseSearchCriteria();
     crit.setInvolvedUsername(Ivy.session().getSessionUserName());
     crit.setBusinessCase(true);
-    String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-    if (applicationName != null) {
-      crit.setInvolvedApplications(new String[] {applicationName});
-    }
     return crit;
   }
 

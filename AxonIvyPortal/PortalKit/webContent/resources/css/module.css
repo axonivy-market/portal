@@ -5030,7 +5030,7 @@ margin-top
 }
 
 .statistic-result-list .task-table .ui-datatable-scrollable-body {
-  max-height: 315px;
+  max-height: 500px;
 }
 
 .statistic-result-list .task-table .ui-datatable-scrollable-body table {
@@ -5052,4 +5052,8 @@ margin-top
 
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-close {
   display: none;
+}
+
+.ui-columntoggler label {
+	color: #000;
 }
