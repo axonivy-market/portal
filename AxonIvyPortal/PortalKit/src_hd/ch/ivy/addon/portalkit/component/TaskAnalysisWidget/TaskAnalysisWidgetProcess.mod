@@ -66,7 +66,6 @@ Ts0 @RichDialogMethodStart f13 '' #zField
 Ts0 @RichDialogProcessEnd f14 '' #zField
 Ts0 @CallSub f22 '' #zField
 Ts0 @GridStep f37 '' #zField
-Ts0 @PushWFArc f15 '' #zField
 Ts0 @CallSub f44 '' #zField
 Ts0 @PushWFArc f49 '' #zField
 Ts0 @GridStep f21 '' #zField
@@ -75,9 +74,10 @@ Ts0 @PushWFArc f18 '' #zField
 Ts0 @PushWFArc f33 '' #zField
 Ts0 @GridStep f61 '' #zField
 Ts0 @PushWFArc f62 '' #zField
-Ts0 @PushWFArc f63 '' #zField
 Ts0 @PushWFArc f38 '' #zField
 Ts0 @PushWFArc f54 '' #zField
+Ts0 @PushWFArc f60 '' #zField
+Ts0 @PushWFArc f56 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
@@ -619,7 +619,7 @@ Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f13 67 979 26 26 -46 15 #rect
 Ts0 f13 @|RichDialogMethodStartIcon #fIcon
 Ts0 f14 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
-Ts0 f14 883 1083 26 26 0 12 #rect
+Ts0 f14 955 1083 26 26 0 12 #rect
 Ts0 f14 @|RichDialogProcessEndIcon #fIcon
 Ts0 f22 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f22 processCall MultiPortal/TaskService:findTasksByCriteria(Long,ch.ivy.ws.addon.TaskSearchCriteria,Integer,Integer) #txt
@@ -647,7 +647,7 @@ Ts0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f22 542 980 36 24 -25 21 #rect
+Ts0 f22 534 980 36 24 -25 21 #rect
 Ts0 f22 @|CallSubIcon #fIcon
 Ts0 f37 actionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
 ' #txt
@@ -664,11 +664,8 @@ Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f37 632 1074 112 44 -32 -8 #rect
+Ts0 f37 624 1074 112 44 -32 -8 #rect
 Ts0 f37 @|StepIcon #fIcon
-Ts0 f15 expr out #txt
-Ts0 f15 744 1096 883 1096 #arcP
-Ts0 f15 0 0.9184538480715879 0 0 #arcLabel
 Ts0 f44 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f44 processCall MultiPortal/TaskService:countTasksByCriteria(Long,ch.ivy.ws.addon.TaskSearchCriteria) #txt
 Ts0 f44 doCall true #txt
@@ -728,7 +725,7 @@ tasks?</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f52 432 976 32 32 -51 18 #rect
+Ts0 f52 424 976 32 32 -51 18 #rect
 Ts0 f52 @|AlternativeIcon #fIcon
 Ts0 f18 expr in #txt
 Ts0 f18 outCond 'in.wsCallCount < in.numOfWSCalls' #txt
@@ -741,7 +738,7 @@ Ts0 f18 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f18 464 992 542 992 #arcP
+Ts0 f18 456 992 534 992 #arcP
 Ts0 f18 0 0.41025641025641024 0 -9 #arcLabel
 Ts0 f33 expr out #txt
 Ts0 f33 185 992 248 992 #arcP
@@ -750,7 +747,29 @@ Ts0 f61 actionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnal
 ' #txt
 Ts0 f61 actionTable 'out=in;
 ' #txt
-Ts0 f61 actionCode 'in.collectedTasksForExporting.addAll(in.tasks);
+Ts0 f61 actionCode 'import java.util.ArrayList;
+int collectedTaskSize = in.collectedTasksForExporting.size();
+int numOfDuplicatedTasksToCheck = 100;
+List removedTasks = new ArrayList();
+//To prevent duplicated tasks due to multiple WS call
+if (collectedTaskSize > numOfDuplicatedTasksToCheck) {
+	for (int i = 0; i < numOfDuplicatedTasksToCheck; i++) {
+		int j = i;
+		int taskCount = numOfDuplicatedTasksToCheck < in.tasks.size() ? numOfDuplicatedTasksToCheck : in.tasks.size();
+		for (j; j < taskCount; j++) {
+			if(in.tasks.get(j).getId() == in.collectedTasksForExporting.get(collectedTaskSize - i - 1).getId()) {
+				removedTasks.add(in.collectedTasksForExporting.get(collectedTaskSize - i - 1));
+				break;
+			}
+		}
+		if (j == taskCount) {
+			break;
+		}
+	}
+}
+in.collectedTasksForExporting.removeAll(removedTasks);
+//end preventing duplicated tasks
+in.collectedTasksForExporting.addAll(in.tasks);
 in.wsCallCount++;' #txt
 Ts0 f61 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -760,12 +779,10 @@ Ts0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f61 624 970 128 44 -59 -8 #rect
+Ts0 f61 616 970 128 44 -59 -8 #rect
 Ts0 f61 @|StepIcon #fIcon
 Ts0 f62 expr out #txt
-Ts0 f62 578 992 624 992 #arcP
-Ts0 f63 expr out #txt
-Ts0 f63 360 992 432 992 #arcP
+Ts0 f62 570 992 616 992 #arcP
 Ts0 f38 expr in #txt
 Ts0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -776,14 +793,19 @@ Ts0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f38 448 1008 632 1096 #arcP
-Ts0 f38 1 448 1096 #addKink
+Ts0 f38 440 1008 624 1096 #arcP
+Ts0 f38 1 440 1096 #addKink
 Ts0 f38 1 0.2391304347826087 0 -12 #arcLabel
 Ts0 f54 expr out #txt
-Ts0 f54 688 970 448 976 #arcP
-Ts0 f54 1 688 920 #addKink
-Ts0 f54 2 448 920 #addKink
+Ts0 f54 680 970 440 976 #arcP
+Ts0 f54 1 680 920 #addKink
+Ts0 f54 2 440 920 #addKink
 Ts0 f54 0 0.7270590020826535 0 0 #arcLabel
+Ts0 f60 expr out #txt
+Ts0 f60 360 992 424 992 #arcP
+Ts0 f56 expr out #txt
+Ts0 f56 736 1096 955 1096 #arcP
+Ts0 f56 0 0.9184538480715879 0 0 #arcLabel
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -828,8 +850,6 @@ Ts0 f11 mainOut f6 tail #connect
 Ts0 f6 head f5 mainIn #connect
 Ts0 f5 mainOut f12 tail #connect
 Ts0 f12 head f4 mainIn #connect
-Ts0 f37 mainOut f15 tail #connect
-Ts0 f15 head f14 mainIn #connect
 Ts0 f13 mainOut f49 tail #connect
 Ts0 f49 head f44 mainIn #connect
 Ts0 f52 out f18 tail #connect
@@ -838,9 +858,11 @@ Ts0 f44 mainOut f33 tail #connect
 Ts0 f33 head f21 mainIn #connect
 Ts0 f22 mainOut f62 tail #connect
 Ts0 f62 head f61 mainIn #connect
-Ts0 f21 mainOut f63 tail #connect
-Ts0 f63 head f52 in #connect
 Ts0 f52 out f38 tail #connect
 Ts0 f38 head f37 mainIn #connect
 Ts0 f61 mainOut f54 tail #connect
 Ts0 f54 head f52 in #connect
+Ts0 f21 mainOut f60 tail #connect
+Ts0 f60 head f52 in #connect
+Ts0 f37 mainOut f56 tail #connect
+Ts0 f56 head f14 mainIn #connect

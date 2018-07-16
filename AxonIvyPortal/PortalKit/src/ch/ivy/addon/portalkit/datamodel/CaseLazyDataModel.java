@@ -35,8 +35,10 @@ import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivy.ws.addon.CaseSearchCriteria;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -78,6 +80,20 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     queryCriteria = buildInitQueryCriteria();
     setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
     selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
+    serverId = SecurityServiceUtils.getServerIdFromSession();
+    autoInitForNoAppConfiguration();
+  }
+
+  protected void autoInitForNoAppConfiguration() {
+    String applicationName = StringUtils.EMPTY;
+    String applicationNameFromRequest =
+        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
+    if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+      applicationName = applicationNameFromRequest;
+    }
+    if (StringUtils.isNotBlank(applicationName)) {
+      setInvolvedApplications(applicationName);
+    }
   }
 
   @Override
@@ -92,7 +108,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     List<RemoteCase> notDisplayedCases = new ArrayList<>();
     notDisplayedCases.addAll(notDisplayedCaseMap.values());
     Optional<Comparator<? super RemoteCase>> comparator = getComparatorForSorting();
-    comparator.ifPresent(c -> notDisplayedCases.sort(c)); //NOSONAR
+    comparator.ifPresent(c -> notDisplayedCases.sort(c)); // NOSONAR
     List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
 
     storeDisplayedCases(notDisplayedCases);

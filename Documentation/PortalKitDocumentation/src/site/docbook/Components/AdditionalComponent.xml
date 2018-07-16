@@ -98,4 +98,53 @@
 			</important>
 		</sect3>
 	</sect2>
+	<sect2 xml:id="axonivyportal.components.additionalcomponent.taskanalysis">
+		<title>Task Analysis</title>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.taskanalysis.introduction">
+			<title>Introduction</title>
+			<para>
+				Task Analysis component of Portal provides features for users to analyze not only tasks but also cases.
+				These features are:
+			</para>
+			<orderedlist>
+				<listitem>
+					<para>
+						Set of filters for both tasks and cases which allow user to filter and to find tasks, cases more better.
+						More, user can create and manage their own filter set for future usage.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Dynamic result table with lots of information for both task and case.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Support export result as Excel files (currently we only support .xlsx extension).
+					</para>
+				</listitem>
+			</orderedlist>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/AdditionalComponent/taskAnalysis.png" />
+				</imageobject>
+			</mediaobject>
+		</sect3>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.taskanalysis.howtouse">
+			<title>How to use</title>
+			<para>
+				Task Analysis component is integrated into Statistic widget. You can use this component directly when open Statistic widget.
+				If you want to use this component, you only have to redirect to Task Analysis component with following code:
+			</para>
+			<para>
+				<code>import javax.faces.context.FacesContext;</code>
+			</para>
+			<para>
+				<code>String taskAnalysisUrl = ivy.html.startref("Start Processes/TaskAnalysis/start.ivp");</code>
+			</para>
+			<para>
+				<code>FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);</code>
+			</para>
+		</sect3>
+	</sect2>
 </sect1>
