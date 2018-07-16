@@ -255,7 +255,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     } else if (TaskSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparatorString(RemoteTask::getName);
     } else if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = comparatorString(activatorName());
+      comparator = comparator(activatorName());
     } else if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getStartTimestamp);
     } else if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {

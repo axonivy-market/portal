@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -19,10 +21,14 @@ import ch.ivyteam.ivy.security.IPermissionGroup;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
+import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 
 public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
+
+  private static final String USER_ADMIN = "admin";
 
   public PortalPermissionInitBean() {
     super("Init Portal Permissions", "Create Portal permissions if missing");
@@ -53,7 +59,8 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
           initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
           initSystemPermission(statisticsPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.STATISTIC_GROUP));
           initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
-          grantPortalPermissionsForEverybody(Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW, PortalPermission.STATISTIC_ANALYZE_TASK));
+          grantPortalPermissionsForEverybody(Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW));
+          grantPortalPermissionsForUserAdmin(Arrays.asList(PortalPermission.STATISTIC_ANALYZE_TASK));
         });
   }
 
@@ -121,10 +128,22 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   
   private void grantPortalPermissionsForEverybody(List<PortalPermission> iPermissions) {
     IRole everybody = Ivy.session().getSecurityContext().findRole(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
+    grantPermissionsToForSecurityMember(iPermissions, everybody);
+  }
+
+  private void grantPortalPermissionsForUserAdmin(List<PortalPermission> iPermissions) {
+    IUser userAdmin = Ivy.session().getSecurityContext().findUser(USER_ADMIN);
+    grantPermissionsToForSecurityMember(iPermissions, userAdmin);
+  }
+
+  private void grantPermissionsToForSecurityMember(List<PortalPermission> iPermissions, ISecurityMember securityMember) {
+    if (CollectionUtils.isEmpty(iPermissions) || securityMember == null) {
+      return;
+    }
     ISecurityDescriptor portalSecurity = Ivy.wf().getApplication().getSecurityDescriptor();
     iPermissions.forEach(iPermission -> {
       IPermission newPortalPermission = IPermissionRepository.get().findByName(iPermission.getValue());
-      portalSecurity.grantPermission(newPortalPermission, everybody);
+      portalSecurity.grantPermission(newPortalPermission, securityMember);
     });
   }
 

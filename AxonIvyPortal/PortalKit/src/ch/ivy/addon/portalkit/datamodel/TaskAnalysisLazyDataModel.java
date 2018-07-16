@@ -1,16 +1,12 @@
 package ch.ivy.addon.portalkit.datamodel;
 
 import java.lang.reflect.InvocationTargetException;
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
@@ -19,7 +15,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortOrder;
 
-import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
@@ -59,7 +54,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   private static final long serialVersionUID = -6615871274830927272L;
 
   private static final String TASK_COLUMN_PREFIX = "TASK_";
-  private static final String CASE_COLUMN_PREFIX = "CASE_";
 
   protected TaskQueryCriteria taskQueryCriteria;
 
@@ -178,24 +172,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       }
 
       notDisplayedTasks.sort(comparator);
-      return notDisplayedTasks;
-    } else {
-      CaseSortField caseSortField = CaseSortField.valueOf(taskQueryCriteria.getSortField().replaceAll(CASE_COLUMN_PREFIX, ""));
-      Comparator<RemoteCase> caseComparator = generateComparatorForCaseColumns(caseSortField);
-
-      if (taskQueryCriteria.isSortDescending()) {
-        caseComparator = caseComparator.reversed();
-      }
-
-      List<RemoteCase> caseList = notDisplayedTasks.stream().map(RemoteTask::getCase).distinct().collect(Collectors.toList());
-      caseList.sort(caseComparator);
-
-      List<RemoteTask> sortedTaskList = new ArrayList<>();
-      for (RemoteCase caseForCompare : caseList) {
-        sortedTaskList.addAll(notDisplayedTasks.stream().filter(task -> task.getCase() == caseForCompare).collect(Collectors.toList()));
-      }
-      return sortedTaskList;
     }
+    return notDisplayedTasks;
   }
 
   private Comparator<RemoteTask> generateComparatorForTaskColumns(TaskSortField taskSortField) {
@@ -213,51 +191,16 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       case NAME:
         return comparatorString(RemoteTask::getName);
       case ACTIVATOR:
-        return comparatorString(RemoteTask::getActivatorName);
+        return comparator(RemoteTask::getActivatorFullName);
       case CATEGORY:
         return comparatorString(RemoteTask::getCategoryName);
       case DESCRIPTION:
         return comparatorString(RemoteTask::getDescription);
       case WORKER:
-        return comparatorString(RemoteTask::getWorkerFullName);
+        return comparator(RemoteTask::getWorkerFullName);
       default:
         return comparator(RemoteTask::getId);
     }
-  }
-
-  private Comparator<RemoteCase> generateComparatorForCaseColumns(CaseSortField caseSortField) {
-    switch (caseSortField) {
-      case CATEGORY:
-        return caseComparatorString(RemoteCase::getCategoryName);
-      case CREATOR:
-        return caseComparatorString(RemoteCase::getCreatorFullName);
-      case END_TIME:
-        return caseComparator(RemoteCase::getEndTimestamp);
-      case NAME:
-        return caseComparatorString(RemoteCase::getName);
-      case PM:
-        return caseComparatorString(RemoteCase::getProcessModelName);
-      case PMV:
-        return caseComparator(RemoteCase::getProcessModelVersionNumber);
-      case PROCESS_NAME:
-        return caseComparatorString(RemoteCase::getProcessName);
-      case START_TIME:
-        return caseComparator(RemoteCase::getStartTimestamp);
-      case STATE:
-        return caseComparator(RemoteCase::getState);
-      default:
-        return caseComparator(RemoteCase::getId);
-    }
-  }
-
-  protected <U extends Comparable<? super U>> Comparator<RemoteCase> caseComparator( // NOSONAR
-      Function<? super RemoteCase, ? extends U> function) {
-    return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
-  }
-
-  protected Comparator<RemoteCase> caseComparatorString(Function<? super RemoteCase, String> function) {
-    Collator collator = Collator.getInstance(Locale.GERMAN);
-    return Comparator.comparing(function, Comparator.nullsLast(collator));
   }
 
   /**
@@ -494,8 +437,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     String sortField = taskQueryCriteria.getSortField();
     if (sortField.startsWith(TASK_COLUMN_PREFIX)) {
       buildSortTaskQuery(taskQuery);
-    } else {
-      buildSortCaseQuery(caseQuery);
     }
 
     extendSort(taskQuery);
@@ -566,36 +507,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
         break;
     }
 
-    if (taskQueryCriteria.isSortDescending()) {
-      orderQuery.descending();
-    } else {
-      orderQuery.ascending();
-    }
-  }
-
-  private void buildSortCaseQuery(CaseQuery caseQuery) {
-    TaskAndCaseAnalysisColumn sortColumn = TaskAndCaseAnalysisColumn.valueOf(taskQueryCriteria.getSortField());
-    ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery orderQuery = null;
-    switch (sortColumn) {
-      case CASE_CATEGORY:
-        orderQuery = caseQuery.orderBy().category();
-        break;
-      case CASE_CREATOR:
-        orderQuery = caseQuery.orderBy().creatorUserDisplayName();
-        break;
-      case CASE_DESCRIPTION:
-        orderQuery = caseQuery.orderBy().description();
-        break;
-      case CASE_NAME:
-        orderQuery = caseQuery.orderBy().name();
-        break;
-      case CASE_STATE:
-        orderQuery = caseQuery.orderBy().state();
-        break;
-      default:
-        orderQuery = caseQuery.orderBy().caseId();
-        break;
-    }
     if (taskQueryCriteria.isSortDescending()) {
       orderQuery.descending();
     } else {
