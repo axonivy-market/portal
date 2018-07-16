@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portal.chat.ChatContact;
 import ch.ivy.addon.portal.chat.ChatContactManager;
 import ch.ivy.addon.portal.chat.ChatMessageManager;
-import ch.ivy.addon.portal.chat.ChatResource;
 import ch.ivy.addon.portal.chat.Message;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -22,7 +21,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class ChatBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
-//  private final EventBus eventBus = EventBusFactory.getDefault().eventBus();
 
   private String username;
   private List<ChatContact> contacts;
@@ -43,12 +41,6 @@ public class ChatBean implements Serializable {
     messages = ChatMessageManager.loadMessages(participants);
   }
 
-  public void handleChatMessageSending() {
-    Message message = constructMessageFromRequestParameter();
-    publish(message);
-    saveToPersistence(message);
-  }
-
   private Map<String, String> getRequestParameterMap() {
     return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
@@ -57,28 +49,6 @@ public class ChatBean implements Serializable {
     List<String> recipients = new ArrayList<>();
     recipients.add(string);
     return recipients;
-  }
-
-  private void publish(Message message) {
-    for (String recipient : message.getRecipients()) {
-      String chanel = ChatResource.PORTAL_CHAT_CHANNEL + "/" + recipient;
-//      eventBus.publish(chanel, message);
-    }
-  }
-
-  private Message constructMessageFromRequestParameter() {
-    Map<String, String> params = getRequestParameterMap();
-    Message message = new Message();
-    message.setSender(params.get("sender"));
-    message.setContent(params.get("content"));
-    List<String> recipients = toList(params.get("recipients"));
-    message.setRecipients(recipients);
-    message.setTimestamp(params.get("timestamp"));
-    return message;
-  }
-
-  private void saveToPersistence(Message message) {
-    ChatMessageManager.saveMessage(message);
   }
 
   public List<ChatContact> getContacts() {
