@@ -14,14 +14,17 @@ import java.util.Map;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import ch.ivy.addon.portalkit.bean.UserFormatBean;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskAnalysisExporter {
   private Map<String, Boolean> columnsVisibility;
+  private UserFormatBean userFormatBean;
   public TaskAnalysisExporter(Map<String, Boolean> columnsVisibility) {
     this.columnsVisibility = columnsVisibility;
+    this.userFormatBean = new UserFormatBean();
   }
 
   public StreamedContent getStreamedContent(List<RemoteTask> tasks) {
@@ -111,9 +114,15 @@ public class TaskAnalysisExporter {
       case TASK_DESCRIPTION:
         return task.getDescription();
       case TASK_ACTIVATOR:
-        return task.getActivatorUserName();
+        if (task.getActivatorUserName() == null) {
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+        }
+        return userFormatBean.formatWithTip(task.getActivatorFullName(), task.getActivatorUserName());
       case TASK_WORKER:
-        return task.getWorkerUserName();
+        if (task.getWorkerUserName() == null) {
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+        }
+        return userFormatBean.formatWithTip(task.getWorkerFullName(), task.getWorkerUserName());
       case TASK_PRIORITY:
         return task.getPriority().toString();
       case TASK_STATE:
