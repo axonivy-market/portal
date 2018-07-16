@@ -1,30 +1,26 @@
 package ch.ivy.addon.portal.chat;
 
-import static org.apache.commons.lang3.CharEncoding.UTF_8;
-
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import com.google.gson.Gson;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
 
-import com.google.gson.Gson;
-
 public final class ChatMessageManager {
 
   private static final String UNDER_SCORE = "_";
-  private static final String TEMP_CONVERSATIONS_FOLDER = "temp_conversations";
   private static final String FILE_NAME_ENCRYPT_ALGORITHM = "MD5";
   private static final String LINE_SEPARATOR = System.getProperty("line.separator");
   private static final String CONVERSATION_FILE_PATH = "conversations" + java.io.File.separator + "%s.token";
-  private static final String TEMP_CONVERSATION_FILE_PATH = TEMP_CONVERSATIONS_FOLDER + java.io.File.separator + "%s.token";
+  private static final String UTF_8 = "UTF-8";
 
   private ChatMessageManager() {}
 
@@ -34,19 +30,9 @@ public final class ChatMessageManager {
     return loadMessagesFromFilePath(filepath);
   }
 
-  public static List<Message> loadTempMessagesAndDeleteTempMessages(String filename) {
-    return loadTempMessagesFromFileAndDelete(filename);
-  }
-
   public static void saveMessage(Message message) {
     String filename = prepareFilename(message);
     String filepath = generateFilePath(filename);
-    saveMessageToFile(message, filepath);
-  }
-
-  public static void saveTempMessage(Message message) {
-    String filename = prepareTempFilename(message) + UNDER_SCORE + UUID.randomUUID().toString();
-    String filepath = generateTempFilePath(filename);
     saveMessageToFile(message, filepath);
   }
 
@@ -62,32 +48,6 @@ public final class ChatMessageManager {
           // Message message = new MessageDecoder().decode(decryptedRecord);
           Message message = new Gson().fromJson(decryptedRecord, Message.class);
           messages.add(message);
-        }
-      }
-    } catch (IOException e) {
-      Ivy.log().warn("Could not load previous conversation. Chat history file could not be decoded", e);
-    }
-    return messages;
-  }
-
-  private static List<Message> loadTempMessagesFromFileAndDelete(String filename) {
-    List<Message> messages = new ArrayList<>();
-    try {
-      File folder = new File(TEMP_CONVERSATIONS_FOLDER);
-      for (final File file : folder.listFiles()) {
-        String filepath = file.getPath();
-        if (file.exists() && filepath.contains(filename + UNDER_SCORE)) {
-          String conversation = file.read(UTF_8);
-          file.delete();
-          if (StringUtils.isNotEmpty(conversation)) {
-            String[] records = conversation.split(LINE_SEPARATOR);
-            for (String record : records) {
-              String decryptedRecord = SecureMessage.decrypt(record, java.io.File.separator + filepath);
-              // Message message = new MessageDecoder().decode(decryptedRecord);
-              Message message = new Gson().fromJson(decryptedRecord, Message.class);
-              messages.add(message);
-            }
-          }
         }
       }
     } catch (IOException e) {
@@ -126,19 +86,8 @@ public final class ChatMessageManager {
     return generateFileName(participants);
   }
 
-  private static String prepareTempFilename(Message message) {
-    List<String> participants = new ArrayList<>();
-    participants.addAll(message.getRecipients());
-    String filename = generateFileName(participants);
-    return filename;
-  }
-
   private static String generateFilePath(String filename) {
     return String.format(CONVERSATION_FILE_PATH, filename);
-  }
-
-  public static String generateTempFilePath(String filename) {
-    return String.format(TEMP_CONVERSATION_FILE_PATH, filename);
   }
 
   public static String generateFileName(List<String> participants) {
@@ -157,5 +106,27 @@ public final class ChatMessageManager {
     }
     String defaultFileName = String.valueOf(StringUtils.join(participants.toArray()).hashCode());
     return defaultFileName;
+  }
+  
+  public static void storeUnreadMessageInMemory(Message message) {
+    String attrName = messageAttribute(message.getRecipients());
+    List<Message> messages = getUnreadMessagesInMemory(message.getRecipients());
+    messages.add(message);
+    Ivy.wf().getApplication().setAttribute(attrName, messages);
+  }
+  
+  @SuppressWarnings("unchecked")
+  public static List<Message> getUnreadMessagesInMemory(List<String> participants) {
+    String attrName = messageAttribute(participants);
+    return (List<Message>) ObjectUtils.defaultIfNull(Ivy.wf().getApplication().getAttribute(attrName), new ArrayList<>());
+  }
+  
+  public static void clearMessagesInMemory(List<String> participants) {
+    String attrName = messageAttribute(participants);
+    Ivy.wf().getApplication().removeAttribute(attrName);
+  }
+
+  private static String messageAttribute(List<String> participants) {
+    return "Portal_Chat_" + generateFileName(participants);
   }
 }
