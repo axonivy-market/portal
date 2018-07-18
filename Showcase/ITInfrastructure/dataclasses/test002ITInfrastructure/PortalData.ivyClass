@@ -1,6 +1,0 @@
-PortalData #class
-test002ITInfrastructure #namespace
-taskId Number #field
-taskId PERSISTENT #fieldModifier
-caseId Number #field
-caseId PERSISTENT #fieldModifier

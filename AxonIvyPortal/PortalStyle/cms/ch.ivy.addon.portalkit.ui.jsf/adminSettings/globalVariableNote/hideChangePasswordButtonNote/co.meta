@@ -1,4 +1,4 @@
-co: name={hideChangePasswordButtonNote} description={} changed={2018-06-14 06:25:13 CEST} changedby={tdnguyen} visualorder={0} guid={163FC6FBDC1D1527} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={hideChangePasswordButtonNote} description={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} visualorder={0} guid={163FC6FBDC1D1527} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={163FC6FBDC519BB5} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-14 05:56:11 CEST} validto={} changed={2018-06-14 06:24:34 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={163FC8A5065FCC1C} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-14 06:25:01 CEST} validto={} changed={2018-06-14 06:25:13 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={163FC8A5065FCC1C} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:36 CEST} validto={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} properties={} id={}
 val: guid={163FC8A518E1395A} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-14 06:24:59 CEST} validto={} changed={2018-06-14 06:25:13 CEST} changedby={tdnguyen} properties={} id={}

@@ -1,4 +1,4 @@
-co: name={affectedCharts} description={} changed={2018-06-08 11:00:05 CEST} changedby={ldnam} visualorder={0} guid={163AB5AAEB1B83AA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={affectedCharts} description={} changed={2018-07-18 10:55:38 CEST} changedby={ldnam} visualorder={0} guid={163AB5AAEB1B83AA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={163AB5AAEB41762E} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-29 12:03:56 CEST} validto={} changed={2018-05-29 12:03:56 CEST} changedby={ldnam} properties={} id={}
 val: guid={163DE9FD142911E9} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-08 10:59:56 CEST} validto={} changed={2018-06-08 11:00:05 CEST} changedby={ldnam} properties={} id={}
-val: guid={163DE9FCF895A145} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-08 10:59:58 CEST} validto={} changed={2018-06-08 11:00:05 CEST} changedby={ldnam} properties={} id={}
+val: guid={163DE9FCF895A145} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:38 CEST} validto={} changed={2018-07-18 10:55:38 CEST} changedby={ldnam} properties={} id={}

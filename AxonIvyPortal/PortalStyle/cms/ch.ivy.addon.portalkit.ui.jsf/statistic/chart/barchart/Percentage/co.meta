@@ -1,4 +1,4 @@
-co: name={Percentage} description={} changed={2018-06-12 03:12:04 CEST} changedby={anhnguyenhoang} visualorder={0} guid={163F18C3A99A29A2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={163F18C3A9D78AFD} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-12 03:11:29 CEST} validto={} changed={2018-06-12 03:12:04 CEST} changedby={anhnguyenhoang} properties={} id={}
+co: name={Percentage} description={} changed={2018-07-18 10:55:38 CEST} changedby={ldnam} visualorder={0} guid={163F18C3A99A29A2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163F18C3A9D78AFD} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:38 CEST} validto={} changed={2018-07-18 10:55:38 CEST} changedby={ldnam} properties={} id={}
 val: guid={163F18C3AAC7F8D3} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-12 03:11:29 CEST} validto={} changed={2018-06-12 03:11:29 CEST} changedby={anhnguyenhoang} properties={} id={}
 val: guid={163F18C3ABCDF50C} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-12 03:11:29 CEST} validto={} changed={2018-06-12 03:12:04 CEST} changedby={anhnguyenhoang} properties={} id={}
