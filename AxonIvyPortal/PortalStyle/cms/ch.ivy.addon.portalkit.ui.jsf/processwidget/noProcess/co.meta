@@ -1,4 +1,4 @@
-co: name={noProcess} description={} changed={2018-06-07 11:36:46 CEST} changedby={dhtlong} visualorder={0} guid={163D99AE911C11D2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={163D99AE9FC48C4F} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-07 11:36:38 CEST} validto={} changed={2018-06-07 11:36:46 CEST} changedby={dhtlong} properties={} id={}
+co: name={noProcess} description={} changed={2018-07-18 10:55:37 CEST} changedby={ldnam} visualorder={0} guid={163D99AE911C11D2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163D99AE9FC48C4F} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:37 CEST} validto={} changed={2018-07-18 10:55:37 CEST} changedby={ldnam} properties={} id={}
 val: guid={163D99AEA0D15718} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-07 11:36:38 CEST} validto={} changed={2018-06-07 11:36:38 CEST} changedby={dhtlong} properties={} id={}
 val: guid={163D99AEA179F99C} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-07 11:36:38 CEST} validto={} changed={2018-06-07 11:36:43 CEST} changedby={dhtlong} properties={} id={}

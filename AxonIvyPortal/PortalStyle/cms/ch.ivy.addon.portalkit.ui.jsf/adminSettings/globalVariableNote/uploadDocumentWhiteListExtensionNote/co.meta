@@ -1,4 +1,4 @@
-co: name={uploadDocumentWhiteListExtensionNote} description={} changed={2018-06-14 06:29:23 CEST} changedby={tdnguyen} visualorder={0} guid={163FC717A4C8A4F3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={uploadDocumentWhiteListExtensionNote} description={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} visualorder={0} guid={163FC717A4C8A4F3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={163FC717A5014F96} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-14 05:58:05 CEST} validto={} changed={2018-06-14 06:29:11 CEST} changedby={tdnguyen} properties={} id={}
 val: guid={163FC8E21F567B23} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-14 06:29:15 CEST} validto={} changed={2018-06-14 06:29:23 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={163FC8E20FE667EA} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-14 06:29:18 CEST} validto={} changed={2018-06-14 06:29:23 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={163FC8E20FE667EA} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:36 CEST} validto={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} properties={} id={}

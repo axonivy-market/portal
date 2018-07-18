@@ -1,4 +1,4 @@
-co: name={taskCreationTime} description={} changed={2018-07-06 12:40:57 CEST} changedby={ldnam} visualorder={0} guid={1646F259AE7589FF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1646F2E385615D4D} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-06 12:40:52 CEST} validto={} changed={2018-07-06 12:40:57 CEST} changedby={ldnam} properties={} id={}
+co: name={taskCreationTime} description={} changed={2018-07-18 10:55:38 CEST} changedby={ldnam} visualorder={0} guid={1646F259AE7589FF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1646F2E385615D4D} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:38 CEST} validto={} changed={2018-07-18 10:55:38 CEST} changedby={ldnam} properties={} id={}
 val: guid={1646F259AEAFE0FE} datatype={} isdefault={true} langid={en} description={} validfrom={2018-07-06 12:31:32 CEST} validto={} changed={2018-07-06 12:31:32 CEST} changedby={ldnam} properties={} id={}
 val: guid={1646F2E39BF8DAB4} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-07-06 12:40:49 CEST} validto={} changed={2018-07-06 12:40:57 CEST} changedby={ldnam} properties={} id={}
