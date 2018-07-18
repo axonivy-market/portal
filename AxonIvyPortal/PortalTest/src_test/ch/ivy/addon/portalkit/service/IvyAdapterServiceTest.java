@@ -45,7 +45,7 @@ public class IvyAdapterServiceTest {
     IvyAdapterService service = new IvyAdapterService();
     int result = service.getMaximumRetryPortalDataSynchonizationTimes();
     
-    Mockito.verify(logger).error(any(String.class), any(String.class));
+    Mockito.verify(logger).error(any(String.class), any(Exception.class));
     assertEquals(0, result);
   }
 }
