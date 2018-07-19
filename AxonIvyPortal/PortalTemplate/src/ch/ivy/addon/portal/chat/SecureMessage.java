@@ -1,7 +1,5 @@
 package ch.ivy.addon.portal.chat;
 
-import static org.apache.commons.lang3.CharEncoding.UTF_8;
-
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -17,6 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
 public final class SecureMessage {
 
   private static final String ALGORITHM = "AES";
+  private static final String UTF_8 = "UTF-8";
 
   private SecureMessage() {}
 

@@ -21,7 +21,8 @@ public enum GlobalVariable {
   REFRESH_TASK_LIST_INTERVAL(String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION(String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
   HOMEPAGE_URL("homePageUrlNote"),
-  CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote");
+  CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote"),
+  ENABLE_CHAT(Boolean.FALSE.toString(), "chatNote");
 
   private String defaultValue;
   private String noteCMS;
@@ -49,7 +50,7 @@ public enum GlobalVariable {
 
   public static List<GlobalVariable> getBooleanType() {
     return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, SHOW_TASK_BUTTON_LABELS, HIDE_CHANGE_PASSWORD_BUTTON,
-            HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE);
+            HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE, ENABLE_CHAT);
   }
 
   public static List<GlobalVariable> getNumberType() {
