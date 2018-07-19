@@ -27,22 +27,12 @@ import ch.ivy.addon.portal.chat.Command;
 import ch.ivy.addon.portal.chat.Message;
 import ch.ivyteam.ivy.environment.Ivy;
 
-
 @Path("chat")
 @Singleton
 public class ChatStream {
 
   private static final int SLEEP_TIME = 2000;
   
-//  private long pingTime = new DateTime().toNumber();
-//  
-//  @POST
-//  @Path("ping")
-//  public Response ping() {
-//    pingTime = new DateTime().toNumber();
-//    return Response.ok("SUCCESSFUL").build();
-//  }
-
   @POST
   public Response write(Message message) {
     ChatMessageManager.storeUnreadMessageInMemory(message);
@@ -60,11 +50,11 @@ public class ChatStream {
       }
 
       private void distributeIncomingMessages(PrintWriter out) {
+        out.println(new Gson().toJson(""));
         String sessionUserName = Ivy.session().getSessionUserName();
-        boolean isClientDisconntected = false;
+        boolean isClientDisconnected = false;
         List<String> oldOnlineUsers = ChatContactManager.getOnlineContacts();
-//        while (isUserWorking(sessionUserName) && (Math.abs(pingTime - new DateTime().toNumber()) <= 60)) {
-        while (!isClientDisconntected) {
+        while (!isClientDisconnected) {
           try {
             List<String> onlineUsers = ChatContactManager.getOnlineContacts();
             Map<String, Command> changedUsers = new HashMap<>();
@@ -84,18 +74,17 @@ public class ChatStream {
                 }
               }
             }
+            oldOnlineUsers = onlineUsers;
             if (!changedUsers.isEmpty()) {
               out.println(new Gson().toJson(changedUsers.values()));
             }
-            oldOnlineUsers = onlineUsers;
-            
             List<Message> messages = ChatMessageManager.getUnreadMessagesInMemory(Arrays.asList(sessionUserName));
             if (CollectionUtils.isNotEmpty(messages)) {
               out.println(new Gson().toJson(messages));
               ChatMessageManager.clearMessagesInMemory(Arrays.asList(sessionUserName));
             }
+            isClientDisconnected = out.checkError();
             Thread.sleep(SLEEP_TIME);
-            isClientDisconntected = out.checkError();
           } catch (Exception e) {
             Ivy.log().error("Error in chat stream", e);
           }
@@ -104,8 +93,4 @@ public class ChatStream {
     };
     return Response.ok(streamingOutput).build();
   }
-//
-//  private boolean isUserWorking(String username) {
-//    return Ivy.wf().getSecurityContext().getSessions().stream().anyMatch(s -> StringUtils.equals(s.getSessionUserName(), username));
-//  }
 }
