@@ -13,6 +13,8 @@ import ch.ivyteam.ivy.security.IUser;
 
 public final class ChatContactManager {
 
+  private final static String UNKNOWN_USER = "Unknown User";
+  
   private ChatContactManager() {}
 
   public static List<ChatContact> loadOnlineContacts() {
@@ -24,7 +26,7 @@ public final class ChatContactManager {
 
   public static List<String> getOnlineContacts() {
     return Ivy.wf().getSecurityContext().getSessions().stream().map(ISession::getSessionUserName)
-        .filter(session -> !StringUtils.equals(session, Ivy.session().getSessionUserName())).collect(Collectors.toList());
+        .filter(session -> !StringUtils.equals(session, Ivy.session().getSessionUserName()) && !StringUtils.contains(session, UNKNOWN_USER)).collect(Collectors.toList());
   }
 
   private static List<ChatContact> loadContacts() {
