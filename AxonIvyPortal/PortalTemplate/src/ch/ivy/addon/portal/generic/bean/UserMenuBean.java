@@ -44,6 +44,12 @@ public class UserMenuBean implements Serializable {
     return userName;
   }
 
+  public boolean isChatEnabled() {
+    GlobalSettingService globalSettingSerive = new GlobalSettingService();
+    String isShowServerInformation = globalSettingSerive.findGlobalSettingValue(GlobalVariable.ENABLE_CHAT.toString());
+    return Boolean.parseBoolean(isShowServerInformation);
+  }
+  
   public boolean isShowServerInformation() {
     GlobalSettingService globalSettingSerive = new GlobalSettingService();
     String isShowServerInformation = globalSettingSerive.findGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO.toString());

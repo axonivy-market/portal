@@ -1,26 +1,11 @@
 $(document).ready(function() {
 	chatHandler = new ChatHandler();
 	chatHandler.stream();
-//	ping();
 	chatHandler.setHeightForContactList();
   $(window).resize(function() {
     chatHandler.setHeightForContactList();
   });
 });
-
-//function ping() {
-//  $.ajax({
-//    type : 'POST',
-//    url : "/" + window.location.pathname.split("/")[1] + "/api/" + window.location.pathname.split("/")[4] + "/chat/ping",
-//    headers : {
-//      "X-Requested-By" : "IVY"
-//    },
-//    complete : function() {
-//      // Schedule the next request when the current one's complete
-//      setTimeout(ping, 10000);
-//    }
-//  });
-//}
 
 function ChatHandler() {
 	
@@ -184,6 +169,7 @@ function ChatHandler() {
         return;
       }
       var xhr = new XMLHttpRequest();
+      xhr.seenBytes = 0;
       xhr.onerror = function() {
         console.log('Error in streaming!');
       };
@@ -213,14 +199,6 @@ function ChatHandler() {
           $('.js-message-card-list').scrollTop($('.js-message-card-list').prop('scrollHeight'));
 
           xhr.seenBytes = xhr.responseText.length;
-        }
-      };
-      xhr.onload = function() {
-        var newData = xhr.response;
-      };
-      xhr.onprogress = function(event) {
-        if (event.lengthComputable) {
-          console.log(event);
         }
       };
       xhr.open("GET", "/" + window.location.pathname.split("/")[1] + "/api/" + window.location.pathname.split("/")[4] + "/chat", true);

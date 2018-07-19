@@ -45,7 +45,6 @@ public final class ChatMessageManager {
         String[] records = conversation.split(LINE_SEPARATOR);
         for (String record : records) {
           String decryptedRecord = SecureMessage.decrypt(record, java.io.File.separator + filepath);
-          // Message message = new MessageDecoder().decode(decryptedRecord);
           Message message = new Gson().fromJson(decryptedRecord, Message.class);
           messages.add(message);
         }
@@ -57,7 +56,6 @@ public final class ChatMessageManager {
   }
 
   private static void saveMessageToFile(Message message, String filepath) {
-    // String convertedMessage = new JSONEncoder().encode(message);
     String convertedMessage = new Gson().toJson(message);
     String encryptedMessage = SecureMessage.encrypt(convertedMessage, java.io.File.separator + filepath);
     try {

@@ -1044,6 +1044,9 @@
 				<title>Changes in 7.2</title>
 				<itemizedlist>
                     <listitem>
+                      <para>Set the chat feature to disable as default. Introduce the global variable in admin settings to disable/enable it.</para>
+                    </listitem>
+                    <listitem>
                       <para>Introduces the new page: Global search result, and supports the customization</para>
                     </listitem>
                     <listitem>
