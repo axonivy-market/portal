@@ -473,19 +473,21 @@
 
 .ui-datatable table thead tr th {
   height: 30px;
-  color: rgba(0, 0, 0, 1);
+  color: #757575;
   background-color: rgba(236, 236, 236, 1);
-  font-size: 1.2rem;
-  font-family: 'robotobold';
+  font-size: 1.4rem !important;
+  font-weight: normal !important;
+  font-family: 'robotoregular' !important;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   text-align: left;
+  vertical-align: top;
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon.ui-icon {
   background-image: none;
   text-indent: 0;
-  margin: 2px 0px -1px 10px;
-  height: 17px;
+  margin: -4px 0px -1px 10px;
+  height: 20px;
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon:before {
@@ -498,8 +500,12 @@
   font-family: 'FontAwesome';
   content: "\f107";
   position: relative;
-  left: -8px;
-  top: 6px;
+  left: -9px;
+  top: 7px;
+}
+
+.ui-datatable table thead tr th .ui-column-customfilter span input {
+	width: 100%;
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon.ui-icon-triangle-1-n:after {
@@ -1020,6 +1026,31 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   padding: 15px 0 !important;
 }
 /* =================== END AUTOCOMPLETE ====================== */
+
+/* =================== FIELDSET ====================== */
+.ui-fieldset-legend {
+  background-color: #fff;
+  color: #000;
+  padding: 0 10px !important;
+  font-family: "robotoregular";
+}
+
+.ui-fieldset-legend .ui-icon-minusthick {
+    background-image: url(/ivy/faces/javax.faces.resource/images/minus-sign-gray.svg?ln=primefaces-modena-ivy);
+   
+}
+
+.ui-fieldset-legend .ui-icon-plusthick {
+    background-image: url(/ivy/faces/javax.faces.resource/images/plus-sign-gray.svg?ln=primefaces-modena-ivy);
+
+}
+
+.ui-fieldset-legend.ui-state-hover {
+    background-color: #ffffff;
+}
+
+/* =================== END FIELDSET ====================== */
+
 .widget-header {
   display: flex;
   flex-flow: row wrap;
