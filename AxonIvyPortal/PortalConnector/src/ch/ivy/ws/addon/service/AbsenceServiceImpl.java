@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
