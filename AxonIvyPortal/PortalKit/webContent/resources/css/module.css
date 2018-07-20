@@ -915,7 +915,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   width: 93% !important;
 }
 .ui-autocomplete-input {
-  padding: 6px 10px 6px 0 !important;
+  padding: 6px 10px 6px 6px !important;
   font-family: "robotoregular" !important;
   font-size: 1.4rem !important;
   color: #757575 !important;
