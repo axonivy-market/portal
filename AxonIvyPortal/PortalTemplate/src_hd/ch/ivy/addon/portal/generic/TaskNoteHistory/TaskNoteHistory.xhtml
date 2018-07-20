@@ -23,7 +23,7 @@
 						<h:outputText value="#{note.creatorFullName}" />
 					</p:column>
 
-					<p:column width="10%" sortBy="#{note.creationTimestamp.time}" filterBy="#{note.creationTimestamp.time}" filterFunction="#{dateFilterBean.filterByDate}">
+					<p:column width="20%" sortBy="#{note.creationTimestamp.time}" filterBy="#{note.creationTimestamp.time}" filterFunction="#{dateFilterBean.filterByDate}">
 						<f:facet name="header">
 							<h:outputText
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}" />
