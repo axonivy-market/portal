@@ -102,54 +102,7 @@
 		</h:panelGroup>
 
 		<h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header #{cc.attrs.listHeaderStyleClass}">
-			<ui:include src="ColumnHeader.xhtml">
-				<ui:param name="id" value="name-desc-column-header" />
-				<ui:param name="styleClass" value="case-list-header-cell case-list-name-desc-header-cell" />
-				<ui:param name="componentToBeUpdated" value="" />
-				<ui:param name="sortedField" value="NAME" />
-				<ui:param name="sortable" value="true" />
-				<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/NAME')}" />
-			</ui:include>
-			<ui:include src="ColumnHeader.xhtml">
-				<ui:param name="id" value="id-column-header" />
-				<ui:param name="styleClass" value="TexAlCenter case-list-header-cell" />
-				<ui:param name="componentToBeUpdated" value="" />
-				<ui:param name="sortedField" value="ID" />
-				<ui:param name="sortable" value="true" />
-				<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}" />
-			</ui:include>
-			<ui:include src="ColumnHeader.xhtml">
-				<ui:param name="id" value="creator-column-header" />
-				<ui:param name="styleClass" value="case-list-header-cell" />
-				<ui:param name="componentToBeUpdated" value="" />
-				<ui:param name="sortedField" value="CREATOR" />
-				<ui:param name="sortable" value="true" />
-				<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
-			</ui:include>
-			<ui:include src="ColumnHeader.xhtml">
-				<ui:param name="id" value="created-date-column-header" />
-				<ui:param name="styleClass" value="TexAlCenter case-list-header-cell" />
-				<ui:param name="componentToBeUpdated" value="" />
-				<ui:param name="sortedField" value="START_TIME" />
-				<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
-				<ui:param name="sortable" value="true" />
-			</ui:include>
-			<ui:include src="ColumnHeader.xhtml">
-				<ui:param name="id" value="mofified-date-column-header" />
-				<ui:param name="styleClass" value="TexAlCenter case-list-header-cell" />
-				<ui:param name="componentToBeUpdated" value="" />
-				<ui:param name="sortedField" value="END_TIME" />
-				<ui:param name="sortable" value="true" />
-				<ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
-			</ui:include>
-			<ui:include src="ColumnHeader.xhtml">
-				<ui:param name="id" value="state-column-header" />
-				<ui:param name="styleClass" value="case-list-header-cell TexAlCenter" />
-				<ui:param name="componentToBeUpdated" value="" />
-				<ui:param name="sortedField" value="STATE" />
-				<ui:param name="sortable" value="true" />
-				<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
-			</ui:include>
+			<cc:renderFacet name="caseListHeader" />
 		</h:panelGroup>
 		<div class="widget-content">
 			<h:panelGroup id="case-list" layout="block" styleClass="case-list">

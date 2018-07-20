@@ -78,22 +78,6 @@
         </outputParameter>
     </method>
     <method>
-        <name>sort</name>
-        <description></description>
-        <inputParameter>
-            <name>sortedField</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>isSortingDescending</name>
-            <description></description>
-            <parameterType>Boolean</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
         <name>applyFilter</name>
         <description></description>
         <inputParameter>
