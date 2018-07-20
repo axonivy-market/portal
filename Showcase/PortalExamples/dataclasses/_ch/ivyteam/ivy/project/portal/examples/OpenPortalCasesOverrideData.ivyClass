@@ -1,0 +1,3 @@
+OpenPortalCasesOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+view ch.ivy.addon.portal.generic.view.CaseView #field
