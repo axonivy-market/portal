@@ -1,6 +1,5 @@
 package ch.ivy.ws.addon.service;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
@@ -24,13 +23,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IEMailNotificationSettings;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserEMailNotificationSettings;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.util.date.Weekday;
 
 public class UserSettingServiceImpl extends AbstractService implements IUserSettingService {
   private static final String ENABLE_CUSTOM_MAIL = "useCustomMails";
   private static final String OLD_VAR_DISABLE_CUSTOM_MAIL = "DisableCustomMails";
-  private static final String TRUE = "true";
 
   /**
    * 
@@ -156,7 +153,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   public UserSettingServiceResult getEMailSettings(final List<String> applications, final String user)
       throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<UserSettingServiceResult>() {
+      return executeAsSystem(new Callable<UserSettingServiceResult>() {
         @Override
         public UserSettingServiceResult call() throws WSException {
           UserSettingServiceResult result = initUserSettingServiceResult();
@@ -164,11 +161,10 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
             result.getErrors().add(new WSException(WSErrorType.WARNING, 10029, Arrays.asList(user), null));
             return result;
           }
-          AvailableAppsResult aaResult = findAvailableApplicationsAndUsers(applications, user);
+          AvailableAppsResult aaResult = findAvailableApplicationsForUser(applications, user); 
           result.getErrors().addAll(aaResult.getErrors());
-          for (IApplication serverApp : getServer().getApplicationConfigurationManager().getApplications()) {
-            if (aaResult.getAvailableApps().contains(serverApp.getName())
-                && serverApp.getSecurityContext().findUser(user) != null) {
+          for (IApplication serverApp : getApplications()) {
+            if (aaResult.getAvailableApps().contains(serverApp.getName())) {
               result.getEmailSettings().add(getUserEmailSetting(user, serverApp));
             }
           }
@@ -214,12 +210,12 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
 
   private boolean isUsingOldCustomVariable(IUser iuser) {
     return iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL) != null
-        && TRUE.equalsIgnoreCase(iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL));
+        && Boolean.TRUE.toString().equalsIgnoreCase(iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL));
   }
 
   private boolean isUsingNewCustomVariable(IUser iuser) {
     return iuser.getProperty(ENABLE_CUSTOM_MAIL) != null
-        && TRUE.equalsIgnoreCase(iuser.getProperty(ENABLE_CUSTOM_MAIL));
+        && Boolean.TRUE.toString().equalsIgnoreCase(iuser.getProperty(ENABLE_CUSTOM_MAIL));
   }
 
   private void setEmailSettingFromEmail(IvyEmailSetting setting, IEMailNotificationSettings defaultSettings) {
@@ -249,7 +245,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   @Override
   public List<WSException> setEMailSettings(final List<IvyEmailSetting> settings, final String user) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
+      return executeAsSystem(new Callable<List<WSException>>() {
         @Override
         public List<WSException> call() throws WSException {
           List<WSException> errors = new ArrayList<>();
@@ -267,13 +263,13 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   }
 
   private List<WSException> setEmailSettingsToUser(final String user, IvyEmailSetting setting) {
-    IApplication serverApp = getServer().getApplicationConfigurationManager().findApplication(setting.getAppName());
+    IApplication serverApp = findApplication(setting.getAppName());
     if (serverApp == null) {
-      return Arrays.asList(new WSException(WSErrorType.WARNING, 10030, Arrays.asList(setting.getAppName()), null));
+      return createExceptions(WSErrorType.WARNING, 10030, setting.getAppName());
     }
     IUser iuser = serverApp.getSecurityContext().findUser(user);
     if (iuser == null) {
-      return Arrays.asList(new WSException(WSErrorType.WARNING, 10029, Arrays.asList(user), null));
+      return createExceptions(WSErrorType.WARNING, 10029, user);
     }
     /*
      * IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings(); // If change
@@ -293,12 +289,12 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   public List<WSException> changePassword(final List<String> apps, final String username, final String password)
       throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
+      return executeAsSystem(new Callable<List<WSException>>() {
         @Override
         public List<WSException> call() throws Exception {
 
           List<WSException> errors = new ArrayList<>();
-          List<IApplication> appsFromServer = getServer().getApplicationConfigurationManager().getApplications();
+          List<IApplication> appsFromServer = getApplications();
           appsFromServer.stream().filter(app -> apps.contains(app.getName())).forEach(app -> {
             IUser user = app.getSecurityContext().findUser(username);
             if (user != null) {
