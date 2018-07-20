@@ -84,19 +84,6 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		autoInitForNoAppConfiguration();
 	}
 
-	protected void autoInitForNoAppConfiguration() {
-		String applicationName = StringUtils.EMPTY;
-		String applicationNameFromRequest =
-				Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName)
-						.orElse(StringUtils.EMPTY);
-		if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
-			applicationName = applicationNameFromRequest;
-		}
-		if (StringUtils.isNotBlank(applicationName)) {
-			setInvolvedApplications(applicationName);
-		}
-	}
-
 	@Override
 	public List<RemoteCase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 			Map<String, Object> filters) {
@@ -117,6 +104,122 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		return displayedCases;
 	}
 
+	public void initFilters() throws ReflectiveOperationException {
+		if (filterContainer == null) {
+			initFilterContainer();
+			filters = filterContainer.getFilters();
+			setValuesForCaseStateFilter(queryCriteria);
+			restoreSessionAdvancedFilters();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void onFilterChange(ValueChangeEvent event) {
+		List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
+		List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
+		List<CaseFilter> toggleFilters =
+				(List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+		if (CollectionUtils.isNotEmpty(toggleFilters)) {
+			toggleFilters.get(0).resetValues();
+		}
+	}
+
+	public void removeFilter(CaseFilter filter) {
+		filter.resetValues();
+		selectedFilters.remove(filter);
+	}
+
+	public void resetFilters() {
+		for (CaseFilter selectedFilter : selectedFilters) {
+			selectedFilter.resetValues();
+		}
+		selectedFilters = new ArrayList<>();
+		selectedFilterData = null;
+	}
+
+	public void setSorting(String sortedField, boolean descending) {
+		queryCriteria.setSortField(sortedField);
+		queryCriteria.setSortDescending(descending);
+	}
+
+	@Override
+	public void setRowIndex(int index) {
+		int idx = index;
+		if (idx >= data.size()) {
+			idx = -1;
+		}
+		this.rowIndex = idx;
+	}
+
+	@Override
+	public RemoteCase getRowData() {
+		return data.get(rowIndex);
+	}
+
+	@Override
+	public boolean isRowAvailable() {
+		if (data == null) {
+			return false;
+		}
+		return rowIndex >= 0 && rowIndex < data.size();
+	}
+
+	public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
+		searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
+		if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(CaseState.DONE)) {
+			queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+			setValuesForCaseStateFilter(queryCriteria);
+		}
+	}
+
+	public void setTaskId(Long taskId) {
+		queryCriteria.setTaskId(taskId);
+		queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+		setValuesForCaseStateFilter(queryCriteria);
+	}
+
+	public void setCaseId(Long caseId) {
+		queryCriteria.setCaseId(caseId);
+		queryCriteria.setIncludedStates(new ArrayList<>());
+		setValuesForCaseStateFilter(queryCriteria);
+	}
+
+	/**
+	 * Save all filter settings to business data
+	 * 
+	 * @param filterName
+	 * @param filterType
+	 * @param filterGroupId
+	 * @return saved CaseFilterData
+	 */
+	public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
+		CaseFilterData filterData = new CaseFilterData();
+		List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
+		filterData.setFilters(filtersToSave);
+		filterData.setKeyword(queryCriteria.getKeyword());
+		filterData.setUserId(Ivy.session().getSessionUser().getId());
+		filterData.setFilterGroupId(filterGroupId);
+		filterData.setFilterName(filterName);
+		filterData.setType(filterType);
+		CaseFilterService filterService = new CaseFilterService();
+		BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
+		filterData = filterService.findById(info.getId());
+		UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
+		return filterData;
+	}
+
+	/**
+	 * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
+	 * 
+	 * @param caseFilterData
+	 * @throws ReflectiveOperationException
+	 */
+	public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
+		selectedFilterData = caseFilterData;
+		new CaseFilterService().applyFilter(this, caseFilterData);
+		applyCustomSettings(caseFilterData);
+	}
+
 	/**
 	 * <p>
 	 * Initialize CaseFilterContainer with your customized CaseFilterContainer class.
@@ -131,13 +234,69 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		filterContainer = new DefaultCaseFilterContainer();
 	}
 
-	public void initFilters() throws ReflectiveOperationException {
-		if (filterContainer == null) {
-			initFilterContainer();
-			filters = filterContainer.getFilters();
-			setValuesForCaseStateFilter(queryCriteria);
-			restoreSessionAdvancedFilters();
+	protected void autoInitForNoAppConfiguration() {
+		String applicationName = StringUtils.EMPTY;
+		String applicationNameFromRequest =
+				Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName)
+						.orElse(StringUtils.EMPTY);
+		if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+			applicationName = applicationNameFromRequest;
 		}
+		if (StringUtils.isNotBlank(applicationName)) {
+			setInvolvedApplications(applicationName);
+		}
+	}
+
+	/**
+	 * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
+	 */
+	protected void buildQueryToSearchCriteria() {
+		if (queryCriteria.getCaseQuery() == null) {
+			String jsonQuery =
+					SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery")
+							.withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
+			CaseQuery customizedCaseQuery =
+					StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
+			queryCriteria.setCaseQuery(customizedCaseQuery);
+		}
+		if (filterContainer != null) {
+			if (selectedFilters.contains(filterContainer.getStateFilter())) {
+				queryCriteria.setIncludedStates(new ArrayList<>());
+			} else {
+				queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
+			}
+		}
+		CaseQuery caseQuery = buildCaseQuery();
+		searchCriteria.setJsonQuery(caseQuery.asJson());
+	}
+
+	protected CaseQueryCriteria buildInitQueryCriteria() {
+		CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
+		jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING,
+				CaseState.DONE)));
+		jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
+		jsonQueryCriteria.setSortDescending(true);
+		if (!isNotKeepFilter) {
+			jsonQueryCriteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
+		}
+		return jsonQueryCriteria;
+	}
+
+	private CaseQuery buildCaseQuery() {
+		CaseQuery caseQuery = CaseQueryService.service().createQuery(queryCriteria);
+		IFilterQuery filterQuery = caseQuery.where();
+		selectedFilters.forEach(selectedFilter -> {
+			CaseQuery subQuery = selectedFilter.buildQuery();
+			if (subQuery != null) {
+				filterQuery.and(subQuery);
+			}
+		});
+		if (!isNotKeepFilter) {
+			UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
+			UserUtils.setSessionCaseKeywordFilterAttribute(queryCriteria.getKeyword());
+			UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
+		}
+		return caseQuery;
 	}
 
 	private void setValuesForCaseStateFilter(CaseQueryCriteria criteria) {
@@ -222,30 +381,6 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public void onFilterChange(ValueChangeEvent event) {
-		List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
-		List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
-		List<CaseFilter> toggleFilters =
-				(List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
-		if (CollectionUtils.isNotEmpty(toggleFilters)) {
-			toggleFilters.get(0).resetValues();
-		}
-	}
-
-	public void removeFilter(CaseFilter filter) {
-		filter.resetValues();
-		selectedFilters.remove(filter);
-	}
-
-	public void resetFilters() {
-		for (CaseFilter selectedFilter : selectedFilters) {
-			selectedFilter.resetValues();
-		}
-		selectedFilters = new ArrayList<>();
-		selectedFilterData = null;
-	}
-
 	private GlobalCaseId globalCaseId(RemoteCase oneCase) {
 		return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId(), oneCase.isBusinessCase());
 	}
@@ -265,51 +400,67 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		return crit;
 	}
 
-	public void setSorting(String sortedField, boolean descending) {
-		queryCriteria.setSortField(sortedField);
-		queryCriteria.setSortDescending(descending);
+	private void applyCustomSettings(CaseFilterData caseFilterData) {
+		queryCriteria.setKeyword(caseFilterData.getKeyword());
 	}
 
-	@Override
-	public void setRowIndex(int index) {
-		int idx = index;
-		if (idx >= data.size()) {
-			idx = -1;
-		}
-		this.rowIndex = idx;
-	}
-
-	@Override
-	public RemoteCase getRowData() {
-		return data.get(rowIndex);
-	}
-
-	@Override
-	public boolean isRowAvailable() {
-		if (data == null) {
-			return false;
-		}
-		return rowIndex >= 0 && rowIndex < data.size();
-	}
-
-	public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-		searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
-		if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(CaseState.DONE)) {
-			queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
-			setValuesForCaseStateFilter(queryCriteria);
+	private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
+		if (!isNotKeepFilter) {
+			List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
+			for (CaseFilter filter : filters) {
+				for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
+					copyProperties(sessionCaseFilter, filter);
+				}
+			}
 		}
 	}
 
-	public void setTaskId(Long taskId) {
-		queryCriteria.setTaskId(taskId);
-		queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
-		setValuesForCaseStateFilter(queryCriteria);
+	private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException,
+			InvocationTargetException {
+		if (sessionCaseFilter.getClass() == filter.getClass()) {
+			BeanUtils.copyProperties(filter, sessionCaseFilter);
+			selectedFilters.add(filter);
+		}
 	}
 
-	public void setCaseId(Long caseId) {
-		queryCriteria.setCaseId(caseId);
-		queryCriteria.setIncludedStates(new ArrayList<>());
-		setValuesForCaseStateFilter(queryCriteria);
+	public CaseFilterData getSelectedFilterData() {
+		return selectedFilterData;
+	}
+
+	public void setSelectedFilterData(CaseFilterData selectedFilterData) {
+		this.selectedFilterData = selectedFilterData;
+	}
+
+	public boolean isNotKeepFilter() {
+		return isNotKeepFilter;
+	}
+
+	public void setNotKeepFilter(boolean isNotKeepFilter) {
+		this.isNotKeepFilter = isNotKeepFilter;
+	}
+
+	public List<CaseFilter> getFilters() {
+		return filters;
+	}
+
+	public void setFilters(List<CaseFilter> filters) {
+		this.filters = filters;
+	}
+
+	public CaseFilterContainer getFilterContainer() {
+		return filterContainer;
+	}
+
+	public void setFilterContainer(CaseFilterContainer filterContainer) {
+		this.filterContainer = filterContainer;
+	}
+
+	public List<CaseFilter> getSelectedFilters() {
+		return selectedFilters;
+	}
+
+	public void setSelectedFilters(List<CaseFilter> selectedFilters) {
+		this.selectedFilters = selectedFilters;
 	}
 
 	public void setServerId(Long serverId) {
@@ -346,156 +497,5 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
 	public CaseQueryCriteria getQueryCriteria() {
 		return queryCriteria;
-	}
-
-	protected CaseQueryCriteria buildInitQueryCriteria() {
-		CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
-		jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING,
-				CaseState.DONE)));
-		jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
-		jsonQueryCriteria.setSortDescending(true);
-		if (!isNotKeepFilter) {
-			jsonQueryCriteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
-		}
-		return jsonQueryCriteria;
-	}
-
-	public List<CaseFilter> getFilters() {
-		return filters;
-	}
-
-	public void setFilters(List<CaseFilter> filters) {
-		this.filters = filters;
-	}
-
-	public CaseFilterContainer getFilterContainer() {
-		return filterContainer;
-	}
-
-	public void setFilterContainer(CaseFilterContainer filterContainer) {
-		this.filterContainer = filterContainer;
-	}
-
-	public List<CaseFilter> getSelectedFilters() {
-		return selectedFilters;
-	}
-
-	public void setSelectedFilters(List<CaseFilter> selectedFilters) {
-		this.selectedFilters = selectedFilters;
-	}
-
-	/**
-	 * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
-	 */
-	protected void buildQueryToSearchCriteria() {
-		if (queryCriteria.getCaseQuery() == null) {
-			String jsonQuery =
-					SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery")
-							.withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
-			CaseQuery customizedCaseQuery =
-					StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
-			queryCriteria.setCaseQuery(customizedCaseQuery);
-		}
-		if (filterContainer != null) {
-			if (selectedFilters.contains(filterContainer.getStateFilter())) {
-				queryCriteria.setIncludedStates(new ArrayList<>());
-			} else {
-				queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
-			}
-		}
-		CaseQuery caseQuery = buildCaseQuery();
-		searchCriteria.setJsonQuery(caseQuery.asJson());
-	}
-
-	private CaseQuery buildCaseQuery() {
-		CaseQuery caseQuery = CaseQueryService.service().createQuery(queryCriteria);
-		IFilterQuery filterQuery = caseQuery.where();
-		selectedFilters.forEach(selectedFilter -> {
-			CaseQuery subQuery = selectedFilter.buildQuery();
-			if (subQuery != null) {
-				filterQuery.and(subQuery);
-			}
-		});
-		if (!isNotKeepFilter) {
-			UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
-			UserUtils.setSessionCaseKeywordFilterAttribute(queryCriteria.getKeyword());
-			UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
-		}
-		return caseQuery;
-	}
-
-	/**
-	 * Save all filter settings to business data
-	 * 
-	 * @param filterName
-	 * @param filterType
-	 * @param filterGroupId
-	 * @return saved CaseFilterData
-	 */
-	public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
-		CaseFilterData filterData = new CaseFilterData();
-		List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
-		filterData.setFilters(filtersToSave);
-		filterData.setKeyword(queryCriteria.getKeyword());
-		filterData.setUserId(Ivy.session().getSessionUser().getId());
-		filterData.setFilterGroupId(filterGroupId);
-		filterData.setFilterName(filterName);
-		filterData.setType(filterType);
-		CaseFilterService filterService = new CaseFilterService();
-		BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
-		filterData = filterService.findById(info.getId());
-		UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
-		return filterData;
-	}
-
-	public CaseFilterData getSelectedFilterData() {
-		return selectedFilterData;
-	}
-
-	public void setSelectedFilterData(CaseFilterData selectedFilterData) {
-		this.selectedFilterData = selectedFilterData;
-	}
-
-	/**
-	 * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
-	 * 
-	 * @param caseFilterData
-	 * @throws ReflectiveOperationException
-	 */
-	public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
-		selectedFilterData = caseFilterData;
-		new CaseFilterService().applyFilter(this, caseFilterData);
-		applyCustomSettings(caseFilterData);
-	}
-
-	private void applyCustomSettings(CaseFilterData caseFilterData) {
-		queryCriteria.setKeyword(caseFilterData.getKeyword());
-	}
-
-	public boolean isNotKeepFilter() {
-		return isNotKeepFilter;
-	}
-
-	public void setNotKeepFilter(boolean isNotKeepFilter) {
-		this.isNotKeepFilter = isNotKeepFilter;
-	}
-
-	private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
-		if (!isNotKeepFilter) {
-			List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
-			for (CaseFilter filter : filters) {
-				for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
-					copyProperties(sessionCaseFilter, filter);
-				}
-			}
-		}
-	}
-
-	private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException,
-			InvocationTargetException {
-		if (sessionCaseFilter.getClass() == filter.getClass()) {
-			BeanUtils.copyProperties(filter, sessionCaseFilter);
-			selectedFilters.add(filter);
-		}
 	}
 }
