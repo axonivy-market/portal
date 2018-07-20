@@ -47,454 +47,455 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
-  private static final int BUFFER_LOAD = 10;
-  private static final long serialVersionUID = 1L;
-  private final List<RemoteCase> data;
-  private Map<GlobalCaseId, RemoteCase> displayedCaseMap;
-  private Map<GlobalCaseId, RemoteCase> notDisplayedCaseMap;
+	private static final int BUFFER_LOAD = 10;
+	private static final long serialVersionUID = 1L;
+	private final List<RemoteCase> data;
+	private Map<GlobalCaseId, RemoteCase> displayedCaseMap;
+	private Map<GlobalCaseId, RemoteCase> notDisplayedCaseMap;
 
-  private String caseWidgetComponentId;
-  private int rowIndex;
-  private CaseSearchCriteria searchCriteria;
-  private CaseQueryCriteria queryCriteria;
-  private Long serverId;
+	private String caseWidgetComponentId;
+	private int rowIndex;
+	private CaseSearchCriteria searchCriteria;
+	private CaseQueryCriteria queryCriteria;
+	private Long serverId;
 
-  protected List<CaseFilter> filters;
-  protected List<CaseFilter> selectedFilters;
-  protected CaseFilterContainer filterContainer;
-  private CaseFilterData selectedFilterData;
-  private boolean isNotKeepFilter = false;
+	protected List<CaseFilter> filters;
+	protected List<CaseFilter> selectedFilters;
+	protected CaseFilterContainer filterContainer;
+	private CaseFilterData selectedFilterData;
+	private boolean isNotKeepFilter = false;
 
-  public CaseLazyDataModel() {
-    this("case-widget");
-  }
+	public CaseLazyDataModel() {
+		this("case-widget");
+	}
 
-  public CaseLazyDataModel(String caseWidgetComponentId) {
-    super();
-    data = new ArrayList<>();
-    displayedCaseMap = new HashMap<>();
-    notDisplayedCaseMap = new HashMap<>();
-    selectedFilters = new ArrayList<>();
-    this.caseWidgetComponentId = caseWidgetComponentId;
-    searchCriteria = buildInitSearchCriteria();
-    queryCriteria = buildInitQueryCriteria();
-    setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
-    selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
-    serverId = SecurityServiceUtils.getServerIdFromSession();
-    autoInitForNoAppConfiguration();
-  }
+	public CaseLazyDataModel(String caseWidgetComponentId) {
+		super();
+		data = new ArrayList<>();
+		displayedCaseMap = new HashMap<>();
+		notDisplayedCaseMap = new HashMap<>();
+		selectedFilters = new ArrayList<>();
+		this.caseWidgetComponentId = caseWidgetComponentId;
+		searchCriteria = buildInitSearchCriteria();
+		queryCriteria = buildInitQueryCriteria();
+		setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
+		selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
+		serverId = SecurityServiceUtils.getServerIdFromSession();
+		autoInitForNoAppConfiguration();
+	}
 
-  protected void autoInitForNoAppConfiguration() {
-    String applicationName = StringUtils.EMPTY;
-    String applicationNameFromRequest =
-        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
-      applicationName = applicationNameFromRequest;
-    }
-    if (StringUtils.isNotBlank(applicationName)) {
-      setInvolvedApplications(applicationName);
-    }
-  }
+	protected void autoInitForNoAppConfiguration() {
+		String applicationName = StringUtils.EMPTY;
+		String applicationNameFromRequest =
+				Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName)
+						.orElse(StringUtils.EMPTY);
+		if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+			applicationName = applicationNameFromRequest;
+		}
+		if (StringUtils.isNotBlank(applicationName)) {
+			setInvolvedApplications(applicationName);
+		}
+	}
 
-  @Override
-  public List<RemoteCase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, Object> filters) {
-    if (first == 0) {
-      initializedDataModel(searchCriteria);
-    }
+	@Override
+	public List<RemoteCase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+			Map<String, Object> filters) {
+		if (first == 0) {
+			initializedDataModel(searchCriteria);
+		}
 
-    List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
-    putCasesToNotDisplayedTaskMap(foundCases);
-    List<RemoteCase> notDisplayedCases = new ArrayList<>();
-    notDisplayedCases.addAll(notDisplayedCaseMap.values());
-    Optional<Comparator<? super RemoteCase>> comparator = getComparatorForSorting();
-    comparator.ifPresent(c -> notDisplayedCases.sort(c)); // NOSONAR
-    List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
+		List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
+		putCasesToNotDisplayedTaskMap(foundCases);
+		List<RemoteCase> notDisplayedCases = new ArrayList<>();
+		notDisplayedCases.addAll(notDisplayedCaseMap.values());
+		Optional<Comparator<? super RemoteCase>> comparator = getComparatorForSorting();
+		comparator.ifPresent(c -> notDisplayedCases.sort(c)); // NOSONAR
+		List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
 
-    storeDisplayedCases(notDisplayedCases);
+		storeDisplayedCases(notDisplayedCases);
 
-    return displayedCases;
-  }
+		return displayedCases;
+	}
 
-  /**
-   * <p>
-   * Initialize CaseFilterContainer with your customized CaseFilterContainer class.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * filterContainer = new CustomizedCaseFilterContainer();
-   * </pre></code>
-   * </p>
-   */
-  protected void initFilterContainer() {
-    filterContainer = new DefaultCaseFilterContainer();
-  }
+	/**
+	 * <p>
+	 * Initialize CaseFilterContainer with your customized CaseFilterContainer class.
+	 * </p>
+	 * <p>
+	 * <b>Example: </b> <code><pre>
+	 * filterContainer = new CustomizedCaseFilterContainer();
+	 * </pre></code>
+	 * </p>
+	 */
+	protected void initFilterContainer() {
+		filterContainer = new DefaultCaseFilterContainer();
+	}
 
-  public void initFilters() throws ReflectiveOperationException {
-    if (filterContainer == null) {
-      initFilterContainer();
-      filters = filterContainer.getFilters();
-      setValuesForCaseStateFilter(queryCriteria);
-      restoreSessionAdvancedFilters();
-    }
-  }
+	public void initFilters() throws ReflectiveOperationException {
+		if (filterContainer == null) {
+			initFilterContainer();
+			filters = filterContainer.getFilters();
+			setValuesForCaseStateFilter(queryCriteria);
+			restoreSessionAdvancedFilters();
+		}
+	}
 
-  private void setValuesForCaseStateFilter(CaseQueryCriteria criteria) {
-    if (filterContainer != null) {
-      filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
-      filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
-    }
-  }
+	private void setValuesForCaseStateFilter(CaseQueryCriteria criteria) {
+		if (filterContainer != null) {
+			filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
+			filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
+		}
+	}
 
-  private Optional<Comparator<? super RemoteCase>> getComparatorForSorting() {
-    Comparator<? super RemoteCase> comparator = null;
-    if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = comparatorString(RemoteCase::getName);
-    } else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = naturalOrderNullsFirst(RemoteCase::getId);
-    } else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = naturalOrderNullsFirst(RemoteCase::getStartTimestamp);
-    } else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
-    } else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = comparatorString(caseCreator());
-    } else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = naturalOrderNullsFirst(RemoteCase::getState);
-    }
-    if (comparator != null && queryCriteria.isSortDescending()) {
-      comparator = comparator.reversed();
-    }
-    return Optional.ofNullable(comparator);
-  }
+	private Optional<Comparator<? super RemoteCase>> getComparatorForSorting() {
+		Comparator<? super RemoteCase> comparator = null;
+		if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = comparatorString(RemoteCase::getName);
+		} else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = naturalOrderNullsFirst(RemoteCase::getId);
+		} else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = naturalOrderNullsFirst(RemoteCase::getStartTimestamp);
+		} else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
+		} else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = comparatorString(caseCreator());
+		} else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = naturalOrderNullsFirst(RemoteCase::getState);
+		}
+		if (comparator != null && queryCriteria.isSortDescending()) {
+			comparator = comparator.reversed();
+		}
+		return Optional.ofNullable(comparator);
+	}
 
-  private Function<RemoteCase, String> caseCreator() {
-    return remoteCase -> {
-      if (StringUtils.isNotEmpty(remoteCase.getCreatorFullName())) {
-        return remoteCase.getCreatorFullName();
-      }
-      return remoteCase.getCreatorUserName();
-    };
-  }
+	private Function<RemoteCase, String> caseCreator() {
+		return remoteCase -> {
+			if (StringUtils.isNotEmpty(remoteCase.getCreatorFullName())) {
+				return remoteCase.getCreatorFullName();
+			}
+			return remoteCase.getCreatorUserName();
+		};
+	}
 
-  private void storeDisplayedCases(List<RemoteCase> displayedCases) {
-    data.addAll(displayedCases);
-    for (RemoteCase oneCase : displayedCases) {
-      displayedCaseMap.put(globalCaseId(oneCase), oneCase);
-    }
-  }
+	private void storeDisplayedCases(List<RemoteCase> displayedCases) {
+		data.addAll(displayedCases);
+		for (RemoteCase oneCase : displayedCases) {
+			displayedCaseMap.put(globalCaseId(oneCase), oneCase);
+		}
+	}
 
-  private List<RemoteCase> findCases(int first, int pageSize, CaseSearchCriteria criteria) {
-    IvyComponentLogicCaller<List<RemoteCase>> findCaseCaller = new IvyComponentLogicCaller<>();
-    int startIndex = first - BUFFER_LOAD;
-    int count = pageSize + BUFFER_LOAD;
-    if (startIndex < 0) {
-      startIndex = 0;
-      count = first + pageSize;
-    }
-    return findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}", new Object[] {startIndex,
-        count, criteria, serverId});
-  }
+	private List<RemoteCase> findCases(int first, int pageSize, CaseSearchCriteria criteria) {
+		IvyComponentLogicCaller<List<RemoteCase>> findCaseCaller = new IvyComponentLogicCaller<>();
+		int startIndex = first - BUFFER_LOAD;
+		int count = pageSize + BUFFER_LOAD;
+		if (startIndex < 0) {
+			startIndex = 0;
+			count = first + pageSize;
+		}
+		return findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}", new Object[] {
+				startIndex, count, criteria, serverId});
+	}
 
-  private void initializedDataModel(CaseSearchCriteria criteria) {
-    data.clear();
-    displayedCaseMap.clear();
-    notDisplayedCaseMap.clear();
-    buildQueryToSearchCriteria();
-    setRowCount(getCaseCount(criteria));
-  }
+	private void initializedDataModel(CaseSearchCriteria criteria) {
+		data.clear();
+		displayedCaseMap.clear();
+		notDisplayedCaseMap.clear();
+		buildQueryToSearchCriteria();
+		setRowCount(getCaseCount(criteria));
+	}
 
-  private List<RemoteCase> getDisplayedCases(List<RemoteCase> notDisplayedCases, int pageSize) {
-    int displayedCaseCount = notDisplayedCases.size() > pageSize ? pageSize : notDisplayedCases.size();
-    List<RemoteCase> displayedCases = notDisplayedCases.subList(0, displayedCaseCount);
-    for (RemoteCase oneCase : displayedCases) {
-      notDisplayedCaseMap.remove(globalCaseId(oneCase));
-    }
-    return displayedCases;
-  }
+	private List<RemoteCase> getDisplayedCases(List<RemoteCase> notDisplayedCases, int pageSize) {
+		int displayedCaseCount = notDisplayedCases.size() > pageSize ? pageSize : notDisplayedCases.size();
+		List<RemoteCase> displayedCases = notDisplayedCases.subList(0, displayedCaseCount);
+		for (RemoteCase oneCase : displayedCases) {
+			notDisplayedCaseMap.remove(globalCaseId(oneCase));
+		}
+		return displayedCases;
+	}
 
-  private void putCasesToNotDisplayedTaskMap(List<RemoteCase> cases) {
-    for (RemoteCase oneCase : cases) {
-      GlobalCaseId keyOfCase = globalCaseId(oneCase);
-      if (!displayedCaseMap.containsKey(keyOfCase) && !notDisplayedCaseMap.containsKey(keyOfCase)) {
-        notDisplayedCaseMap.put(keyOfCase, oneCase);
-      }
-    }
-  }
+	private void putCasesToNotDisplayedTaskMap(List<RemoteCase> cases) {
+		for (RemoteCase oneCase : cases) {
+			GlobalCaseId keyOfCase = globalCaseId(oneCase);
+			if (!displayedCaseMap.containsKey(keyOfCase) && !notDisplayedCaseMap.containsKey(keyOfCase)) {
+				notDisplayedCaseMap.put(keyOfCase, oneCase);
+			}
+		}
+	}
 
-  @SuppressWarnings("unchecked")
-  public void onFilterChange(ValueChangeEvent event) {
-    List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
-    List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
-    List<CaseFilter> toggleFilters =
-        (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
-    if (CollectionUtils.isNotEmpty(toggleFilters)) {
-      toggleFilters.get(0).resetValues();
-    }
-  }
+	@SuppressWarnings("unchecked")
+	public void onFilterChange(ValueChangeEvent event) {
+		List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
+		List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
+		List<CaseFilter> toggleFilters =
+				(List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+		if (CollectionUtils.isNotEmpty(toggleFilters)) {
+			toggleFilters.get(0).resetValues();
+		}
+	}
 
-  public void removeFilter(CaseFilter filter) {
-    filter.resetValues();
-    selectedFilters.remove(filter);
-  }
+	public void removeFilter(CaseFilter filter) {
+		filter.resetValues();
+		selectedFilters.remove(filter);
+	}
 
-  public void resetFilters() {
-    for (CaseFilter selectedFilter : selectedFilters) {
-      selectedFilter.resetValues();
-    }
-    selectedFilters = new ArrayList<>();
-    selectedFilterData = null;
-  }
+	public void resetFilters() {
+		for (CaseFilter selectedFilter : selectedFilters) {
+			selectedFilter.resetValues();
+		}
+		selectedFilters = new ArrayList<>();
+		selectedFilterData = null;
+	}
 
-  private GlobalCaseId globalCaseId(RemoteCase oneCase) {
-    return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId(), oneCase.isBusinessCase());
-  }
+	private GlobalCaseId globalCaseId(RemoteCase oneCase) {
+		return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId(), oneCase.isBusinessCase());
+	}
 
-  private int getCaseCount(CaseSearchCriteria criteria) {
-    IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
-    Long caseCount =
-        countCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.countCases}", new Object[] {criteria,
-            serverId});
-    return caseCount.intValue();
-  }
+	private int getCaseCount(CaseSearchCriteria criteria) {
+		IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
+		Long caseCount =
+				countCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.countCases}", new Object[] {
+						criteria, serverId});
+		return caseCount.intValue();
+	}
 
-  private CaseSearchCriteria buildInitSearchCriteria() {
-    CaseSearchCriteria crit = new CaseSearchCriteria();
-    crit.setInvolvedUsername(Ivy.session().getSessionUserName());
-    crit.setBusinessCase(true);
-    return crit;
-  }
+	private CaseSearchCriteria buildInitSearchCriteria() {
+		CaseSearchCriteria crit = new CaseSearchCriteria();
+		crit.setInvolvedUsername(Ivy.session().getSessionUserName());
+		crit.setBusinessCase(true);
+		return crit;
+	}
 
-  public void setSorting(String sortedField, boolean descending) {
-    queryCriteria.setSortField(sortedField);
-    queryCriteria.setSortDescending(descending);
-  }
+	public void setSorting(String sortedField, boolean descending) {
+		queryCriteria.setSortField(sortedField);
+		queryCriteria.setSortDescending(descending);
+	}
 
-  @Override
-  public void setRowIndex(int index) {
-    int idx = index;
-    if (idx >= data.size()) {
-      idx = -1;
-    }
-    this.rowIndex = idx;
-  }
+	@Override
+	public void setRowIndex(int index) {
+		int idx = index;
+		if (idx >= data.size()) {
+			idx = -1;
+		}
+		this.rowIndex = idx;
+	}
 
-  @Override
-  public RemoteCase getRowData() {
-    return data.get(rowIndex);
-  }
+	@Override
+	public RemoteCase getRowData() {
+		return data.get(rowIndex);
+	}
 
-  @Override
-  public boolean isRowAvailable() {
-    if (data == null) {
-      return false;
-    }
-    return rowIndex >= 0 && rowIndex < data.size();
-  }
+	@Override
+	public boolean isRowAvailable() {
+		if (data == null) {
+			return false;
+		}
+		return rowIndex >= 0 && rowIndex < data.size();
+	}
 
-  public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-    searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
-    if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(CaseState.DONE)) {
-      queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
-      setValuesForCaseStateFilter(queryCriteria);
-    }
-  }
+	public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
+		searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
+		if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(CaseState.DONE)) {
+			queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+			setValuesForCaseStateFilter(queryCriteria);
+		}
+	}
 
-  public void setTaskId(Long taskId) {
-    queryCriteria.setTaskId(taskId);
-    queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
-    setValuesForCaseStateFilter(queryCriteria);
-  }
+	public void setTaskId(Long taskId) {
+		queryCriteria.setTaskId(taskId);
+		queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+		setValuesForCaseStateFilter(queryCriteria);
+	}
 
-  public void setCaseId(Long caseId) {
-    queryCriteria.setCaseId(caseId);
-    queryCriteria.setIncludedStates(new ArrayList<>());
-    setValuesForCaseStateFilter(queryCriteria);
-  }
+	public void setCaseId(Long caseId) {
+		queryCriteria.setCaseId(caseId);
+		queryCriteria.setIncludedStates(new ArrayList<>());
+		setValuesForCaseStateFilter(queryCriteria);
+	}
 
-  public void setServerId(Long serverId) {
-    this.serverId = serverId;
-  }
+	public void setServerId(Long serverId) {
+		this.serverId = serverId;
+	}
 
-  public void setInvolvedApplications(String... involvedApplications) {
-    searchCriteria.setInvolvedApplications(involvedApplications);
-  }
+	public void setInvolvedApplications(String... involvedApplications) {
+		searchCriteria.setInvolvedApplications(involvedApplications);
+	}
 
-  public void setCaseAssigneeType(CaseAssigneeType assigneeType) {
-    queryCriteria.setCaseAssigneeType(assigneeType);
-  }
+	public void setCaseAssigneeType(CaseAssigneeType assigneeType) {
+		queryCriteria.setCaseAssigneeType(assigneeType);
+	}
 
-  public void setCategory(String category) {
-    queryCriteria.setCategory(category);
-  }
+	public void setCategory(String category) {
+		queryCriteria.setCategory(category);
+	}
 
-  public String getSortField() {
-    return queryCriteria.getSortField();
-  }
+	public String getSortField() {
+		return queryCriteria.getSortField();
+	}
 
-  public boolean isSortDescending() {
-    return queryCriteria.isSortDescending();
-  }
+	public boolean isSortDescending() {
+		return queryCriteria.isSortDescending();
+	}
 
-  public CaseSearchCriteria getSearchCriteria() {
-    return searchCriteria;
-  }
+	public CaseSearchCriteria getSearchCriteria() {
+		return searchCriteria;
+	}
 
-  public void setQueryCriteria(CaseQueryCriteria queryCriteria) {
-    this.queryCriteria = queryCriteria;
-  }
+	public void setQueryCriteria(CaseQueryCriteria queryCriteria) {
+		this.queryCriteria = queryCriteria;
+	}
 
-  public CaseQueryCriteria getQueryCriteria() {
-    return queryCriteria;
-  }
+	public CaseQueryCriteria getQueryCriteria() {
+		return queryCriteria;
+	}
 
-  protected CaseQueryCriteria buildInitQueryCriteria() {
-    CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
-    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING,
-        CaseState.DONE)));
-    jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
-    jsonQueryCriteria.setSortDescending(true);
-    if (!isNotKeepFilter) {
-      jsonQueryCriteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
-    }
-    return jsonQueryCriteria;
-  }
+	protected CaseQueryCriteria buildInitQueryCriteria() {
+		CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
+		jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING,
+				CaseState.DONE)));
+		jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
+		jsonQueryCriteria.setSortDescending(true);
+		if (!isNotKeepFilter) {
+			jsonQueryCriteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
+		}
+		return jsonQueryCriteria;
+	}
 
-  public List<CaseFilter> getFilters() {
-    return filters;
-  }
+	public List<CaseFilter> getFilters() {
+		return filters;
+	}
 
-  public void setFilters(List<CaseFilter> filters) {
-    this.filters = filters;
-  }
+	public void setFilters(List<CaseFilter> filters) {
+		this.filters = filters;
+	}
 
-  public CaseFilterContainer getFilterContainer() {
-    return filterContainer;
-  }
+	public CaseFilterContainer getFilterContainer() {
+		return filterContainer;
+	}
 
-  public void setFilterContainer(CaseFilterContainer filterContainer) {
-    this.filterContainer = filterContainer;
-  }
+	public void setFilterContainer(CaseFilterContainer filterContainer) {
+		this.filterContainer = filterContainer;
+	}
 
-  public List<CaseFilter> getSelectedFilters() {
-    return selectedFilters;
-  }
+	public List<CaseFilter> getSelectedFilters() {
+		return selectedFilters;
+	}
 
-  public void setSelectedFilters(List<CaseFilter> selectedFilters) {
-    this.selectedFilters = selectedFilters;
-  }
+	public void setSelectedFilters(List<CaseFilter> selectedFilters) {
+		this.selectedFilters = selectedFilters;
+	}
 
-  /**
-   * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
-   */
-  protected void buildQueryToSearchCriteria() {
-    if (queryCriteria.getCaseQuery() == null) {
-      String jsonQuery =
-          SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery").withStartSignature("buildCaseJsonQuery()")
-              .call().get("jsonQuery", String.class);
-      CaseQuery customizedCaseQuery =
-          StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
-      queryCriteria.setCaseQuery(customizedCaseQuery);
-    }
-    if (filterContainer != null) {
-      if (selectedFilters.contains(filterContainer.getStateFilter())) {
-        queryCriteria.setIncludedStates(new ArrayList<>());
-      } else {
-        queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
-      }
-    }
-    CaseQuery caseQuery = buildCaseQuery();
-    searchCriteria.setJsonQuery(caseQuery.asJson());
-  }
+	/**
+	 * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
+	 */
+	protected void buildQueryToSearchCriteria() {
+		if (queryCriteria.getCaseQuery() == null) {
+			String jsonQuery =
+					SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery")
+							.withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
+			CaseQuery customizedCaseQuery =
+					StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
+			queryCriteria.setCaseQuery(customizedCaseQuery);
+		}
+		if (filterContainer != null) {
+			if (selectedFilters.contains(filterContainer.getStateFilter())) {
+				queryCriteria.setIncludedStates(new ArrayList<>());
+			} else {
+				queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
+			}
+		}
+		CaseQuery caseQuery = buildCaseQuery();
+		searchCriteria.setJsonQuery(caseQuery.asJson());
+	}
 
-  private CaseQuery buildCaseQuery() {
-    CaseQuery caseQuery = CaseQueryService.service().createQuery(queryCriteria);
-    IFilterQuery filterQuery = caseQuery.where();
-    selectedFilters.forEach(selectedFilter -> {
-      CaseQuery subQuery = selectedFilter.buildQuery();
-      if (subQuery != null) {
-        filterQuery.and(subQuery);
-      }
-    });
-    if (!isNotKeepFilter) {
-      UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
-      UserUtils.setSessionCaseKeywordFilterAttribute(queryCriteria.getKeyword());
-      UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
-    }
-    return caseQuery;
-  }
+	private CaseQuery buildCaseQuery() {
+		CaseQuery caseQuery = CaseQueryService.service().createQuery(queryCriteria);
+		IFilterQuery filterQuery = caseQuery.where();
+		selectedFilters.forEach(selectedFilter -> {
+			CaseQuery subQuery = selectedFilter.buildQuery();
+			if (subQuery != null) {
+				filterQuery.and(subQuery);
+			}
+		});
+		if (!isNotKeepFilter) {
+			UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
+			UserUtils.setSessionCaseKeywordFilterAttribute(queryCriteria.getKeyword());
+			UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
+		}
+		return caseQuery;
+	}
 
-  /**
-   * Save all filter settings to business data
-   * 
-   * @param filterName
-   * @param filterType
-   * @param filterGroupId
-   * @return saved CaseFilterData
-   */
-  public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
-    CaseFilterData filterData = new CaseFilterData();
-    List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
-    filterData.setFilters(filtersToSave);
-    filterData.setKeyword(queryCriteria.getKeyword());
-    filterData.setUserId(Ivy.session().getSessionUser().getId());
-    filterData.setFilterGroupId(filterGroupId);
-    filterData.setFilterName(filterName);
-    filterData.setType(filterType);
-    CaseFilterService filterService = new CaseFilterService();
-    BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
-    filterData = filterService.findById(info.getId());
-    UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
-    return filterData;
-  }
+	/**
+	 * Save all filter settings to business data
+	 * 
+	 * @param filterName
+	 * @param filterType
+	 * @param filterGroupId
+	 * @return saved CaseFilterData
+	 */
+	public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
+		CaseFilterData filterData = new CaseFilterData();
+		List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
+		filterData.setFilters(filtersToSave);
+		filterData.setKeyword(queryCriteria.getKeyword());
+		filterData.setUserId(Ivy.session().getSessionUser().getId());
+		filterData.setFilterGroupId(filterGroupId);
+		filterData.setFilterName(filterName);
+		filterData.setType(filterType);
+		CaseFilterService filterService = new CaseFilterService();
+		BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
+		filterData = filterService.findById(info.getId());
+		UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
+		return filterData;
+	}
 
-  public CaseFilterData getSelectedFilterData() {
-    return selectedFilterData;
-  }
+	public CaseFilterData getSelectedFilterData() {
+		return selectedFilterData;
+	}
 
-  public void setSelectedFilterData(CaseFilterData selectedFilterData) {
-    this.selectedFilterData = selectedFilterData;
-  }
+	public void setSelectedFilterData(CaseFilterData selectedFilterData) {
+		this.selectedFilterData = selectedFilterData;
+	}
 
-  /**
-   * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
-   * 
-   * @param caseFilterData
-   * @throws ReflectiveOperationException
-   */
-  public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
-    selectedFilterData = caseFilterData;
-    new CaseFilterService().applyFilter(this, caseFilterData);
-    applyCustomSettings(caseFilterData);
-  }
+	/**
+	 * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
+	 * 
+	 * @param caseFilterData
+	 * @throws ReflectiveOperationException
+	 */
+	public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
+		selectedFilterData = caseFilterData;
+		new CaseFilterService().applyFilter(this, caseFilterData);
+		applyCustomSettings(caseFilterData);
+	}
 
-  private void applyCustomSettings(CaseFilterData caseFilterData) {
-    queryCriteria.setKeyword(caseFilterData.getKeyword());
-  }
+	private void applyCustomSettings(CaseFilterData caseFilterData) {
+		queryCriteria.setKeyword(caseFilterData.getKeyword());
+	}
 
-  public boolean isNotKeepFilter() {
-    return isNotKeepFilter;
-  }
+	public boolean isNotKeepFilter() {
+		return isNotKeepFilter;
+	}
 
-  public void setNotKeepFilter(boolean isNotKeepFilter) {
-    this.isNotKeepFilter = isNotKeepFilter;
-  }
+	public void setNotKeepFilter(boolean isNotKeepFilter) {
+		this.isNotKeepFilter = isNotKeepFilter;
+	}
 
-  private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
-    if (!isNotKeepFilter) {
-      List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
-      for (CaseFilter filter : filters) {
-        for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
-          copyProperties(sessionCaseFilter, filter);
-        }
-      }
-    }
-  }
+	private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
+		if (!isNotKeepFilter) {
+			List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
+			for (CaseFilter filter : filters) {
+				for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
+					copyProperties(sessionCaseFilter, filter);
+				}
+			}
+		}
+	}
 
-  private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException,
-      InvocationTargetException {
-    if (sessionCaseFilter.getClass() == filter.getClass()) {
-      BeanUtils.copyProperties(filter, sessionCaseFilter);
-      selectedFilters.add(filter);
-    }
-  }
+	private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException,
+			InvocationTargetException {
+		if (sessionCaseFilter.getClass() == filter.getClass()) {
+			BeanUtils.copyProperties(filter, sessionCaseFilter);
+			selectedFilters.add(filter);
+		}
+	}
 }
