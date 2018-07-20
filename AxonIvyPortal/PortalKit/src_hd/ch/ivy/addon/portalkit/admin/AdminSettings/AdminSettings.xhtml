@@ -454,7 +454,7 @@
 					<p:outputLabel rendered="#{data.isIvyApplicationType}" styleClass="admin-settings-form-input-label"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationName')}" for="appName" />
 					<p:inputText value="#{data.selectedApp.name}" id="appName" rendered="#{data.isIvyApplicationType}"
-						disabled="#{!data.isAddMode}" required="true" styleClass="admin-settings-form-input"
+						disabled="#{!data.isAddMode}" required="true" styleClass="admin-settings-form-input application-input-with-button"
 						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameRequiredMsg')}"
 						validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameCharactersLimit')}">
 						<p:keyFilter regEx="/[a-zA-Z0-9_]/i" preventPaste="false" />
@@ -470,7 +470,7 @@
 					<p:outputLabel rendered="#{data.isIvyApplicationType}" styleClass="admin-settings-form-input-label"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}" for="appDisplayName" />
 					<p:inputText value="#{data.displayNameInCurrentLanguage}" rendered="#{data.isIvyApplicationType}"
-						id="appDisplayName" styleClass="admin-settings-form-input">
+						id="appDisplayName" styleClass="admin-settings-form-input application-input-with-button">
 						<f:converter converterId="displayNameConvertor" />
 						<f:validator validatorId="displayNameValidator" />
 					</p:inputText>

@@ -721,10 +721,10 @@
 .ui-inputfield.hasDatepicker,
 .ui-inputfield.ui-password,
 .ui-selectlistbox-filter.ui-inputfield.ui-widget {
-  padding: 6px 0 !important;
-  font-family: "robotomedium" !important;
-  font-size: 1.8rem;
-  color: rgba(0,0,0,1);
+  padding: 6px 0 6px 6px !important;
+  font-family: "robotoregular" !important;
+  font-size: 1.4rem;
+  color: #757575 !important;
   background-color: rgba(0,0,0,0);
   border-bottom: none;
   -webkit-box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
@@ -839,11 +839,11 @@
   background-color: rgba(0,0,0,0) !important;
 }
 .ui-inputfield.ui-selectonemenu-label {
-  font-family: 'robotomedium' !important;
-  font-size: 1.8rem;
-  color: rgba(0,0,0,1);
+  font-family:'robotoregular' !important;
+  font-size: 1.4rem !important;
+  color: #757575 !important;
   background-color: rgba(0,0,0,0);
-  padding: 0 !important;
+  padding: 9px 0 6px 6px !important;
 }
 div.ui-selectonemenu-panel {
   border-top: solid 1px rgba(0,0,0,0.3);
@@ -894,13 +894,13 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   font-size: 1.4rem;
   left:-5px;
   position:absolute;
-  top:-7px;
+  top:-2px;
 }
 .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon.rotate-icon:after {
   content: "\f077";
 }
 .ui-inplace-content .ui-selectonemenu-trigger .ui-icon:after {
-  top:-14px !important;
+  top:-3px !important;
 }
 /* =================== END DROPDOWN ====================== */
 
@@ -913,10 +913,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   width: 93% !important;
 }
 .ui-autocomplete-input {
-  padding: 6px 10px 6px 0 !important;
-  font-family: "robotomedium" !important;
-  font-size: 1.8rem !important;
-  color: rgba(0,0,0,1) !important;
+  padding: 6px 10px 6px 6px !important;
+  font-family: "robotoregular" !important;
+  font-size: 1.4rem !important;
+  color: #757575 !important;
   background-color: rgba(0,0,0,0);
   border-bottom: 0 !important;
   -webkit-box-shadow: 0 1px 0px 0px rgba(0,0,0,0.3) !important;
@@ -4582,6 +4582,21 @@ margin-top
   margin-top: -1rem;
   top: 50%;
   right: 1rem;
+}
+
+.application-input-with-button {
+  margin-top: 3px !important;
+}
+
+.ui-panelgrid .ui-panelgrid-content .ui-grid-row .ui-panelgrid-cell {
+  position: relative;
+  min-height: 27px;
+}
+
+.ui-panelgrid .ui-panelgrid-content .ui-grid-row .ui-panelgrid-cell > label {
+  position: absolute;
+  margin-top: -1rem;
+  top: 50%;
 }
 
 /*Style for express ----------------------------------------------*/
