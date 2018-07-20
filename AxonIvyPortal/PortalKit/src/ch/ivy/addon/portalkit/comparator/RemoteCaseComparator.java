@@ -11,17 +11,17 @@ import ch.ivy.addon.portalkit.bo.RemoteCase;
 
 public final class RemoteCaseComparator {
 
-  private RemoteCaseComparator() {}
-  
-  public static <U extends Comparable<? super U>> Comparator<RemoteCase> naturalOrderNullsFirst(
-      Function<RemoteCase, U> function) {
-    return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
-  }
+	private RemoteCaseComparator() {}
 
-  public static Comparator<RemoteCase> comparatorString(
-      Function<? super RemoteCase, String> function) {
-    Collator collator = Collator.getInstance(Locale.GERMAN);
-    Function<? super RemoteCase, String> filteredFunction = function.andThen(s -> s == null ? StringUtils.EMPTY : s);
-    return Comparator.comparing(filteredFunction, collator);
-  }
+	public static <U extends Comparable<? super U>> Comparator<RemoteCase> naturalOrderNullsFirst(
+			Function<RemoteCase, U> function) {
+		return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
+	}
+
+	public static Comparator<RemoteCase> comparatorString(Function<? super RemoteCase, String> function) {
+		Collator collator = Collator.getInstance(Locale.GERMAN);
+		Function<? super RemoteCase, String> filteredFunction =
+				function.andThen(s -> s == null ? StringUtils.EMPTY : s);
+		return Comparator.comparing(filteredFunction, collator);
+	}
 }
