@@ -94,7 +94,7 @@ public final class ChatMessageManager {
       MessageDigest md = MessageDigest.getInstance(FILE_NAME_ENCRYPT_ALGORITHM);
       md.update(StringUtils.join(participants.toArray(), UNDER_SCORE).getBytes());
       byte[] digest = md.digest();
-      StringBuffer sb = new StringBuffer();
+      StringBuilder sb = new StringBuilder();
       for (byte b : digest) {
         sb.append(String.format("%02x", b & 0xff));
       }
@@ -102,8 +102,7 @@ public final class ChatMessageManager {
     } catch (NoSuchAlgorithmException e) {
       Ivy.log().warn("Could not generate file name.", e);
     }
-    String defaultFileName = String.valueOf(StringUtils.join(participants.toArray()).hashCode());
-    return defaultFileName;
+    return String.valueOf(StringUtils.join(participants.toArray()).hashCode());
   }
   
   public static void storeUnreadMessageInMemory(Message message) {

@@ -13,7 +13,7 @@ import ch.ivyteam.ivy.security.IUser;
 
 public final class ChatContactManager {
 
-  private final static String UNKNOWN_USER = "Unknown User";
+  private static final String UNKNOWN_USER = "Unknown User";
   
   private ChatContactManager() {}
 
