@@ -35,7 +35,7 @@
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
       
       <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        actionListener="#{logic.save}" styleClass=""
+        actionListener="#{logic.save}"
         oncomplete="if (args &amp;&amp; !args.validationFailed) { 
         if (args.mailLanguageNotFound === false) {window.location.reload();}  
         else {PF('#{cc.attrs.dialogName}').hide();PF('mailLanguageDialog').show();}} 
@@ -43,7 +43,7 @@
         update="@widgetVar(errorLanguageDialog) errors-message @widgetVar(mailLanguageDialog)" />
       <p:spacer width="5px" />
       <p:commandButton id="cancel-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        actionListener="#{logic.cancel}" oncomplete="PF('#{cc.attrs.dialogName}').hide()" global="false" update="@(form)"
+         onclick="PF('#{cc.attrs.dialogName}').hide()" type="button" immediate="true"
         styleClass="portal-cancel-button" />
     </h:panelGroup>
 

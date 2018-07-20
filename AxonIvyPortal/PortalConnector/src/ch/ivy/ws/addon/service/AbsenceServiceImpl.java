@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
@@ -24,15 +24,12 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
 import ch.ivyteam.ivy.security.IUserSubstitute;
-import ch.ivyteam.ivy.server.IServer;
-import ch.ivyteam.ivy.server.ServerFactory;
-
 public class AbsenceServiceImpl extends AbstractService implements IAbsenceService {
 
   @Override
   public AbsenceServiceResult getAbsences(final String username, final List<String> apps) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<AbsenceServiceResult>() {
+      return executeAsSystem(new Callable<AbsenceServiceResult>() {
         @Override
         public AbsenceServiceResult call() throws Exception {
 
@@ -40,15 +37,14 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
           List<WSException> errors = new ArrayList<WSException>();
           List<String> availableApps = new ArrayList<String>();
 
-          if (username != null && !username.trim().equals("")) {
-            AvailableAppsResult aaResult = findAvailableApplicationsAndUsers(apps, username);
+          if (StringUtils.isNotBlank(username)) {
+            AvailableAppsResult aaResult = findAvailableApplicationsForUser(apps, username);
             errors.addAll(aaResult.getErrors());
             availableApps.addAll(aaResult.getAvailableApps());
 
             List<Absence> absences = new ArrayList<Absence>();
-            IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
             for (String applicationName : availableApps) {
-              IApplication application = server.getApplicationConfigurationManager().findApplication(applicationName);
+              IApplication application = findApplication(applicationName);
               if (application != null) {
                 IUser user = application.getSecurityContext().findUser(username);
                 if (user != null && user.getAbsences().size() > 0) {
@@ -76,8 +72,7 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
   @Override
   public AbsenceServiceResult getAbsences(List<String> applicationNames) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager()
-          .executeAsSystem(new GetAbsencesMappedByUserNamesCommand(applicationNames));
+      return executeAsSystem(new GetAbsencesMappedByUserNamesCommand(applicationNames));
     } catch (Exception e) {
       throw new WSException(10034, e);
     }
@@ -139,10 +134,9 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
   private SubstituteServiceResult getSubStituteOfUserOnApps(final String username, final List<String> apps)
       throws WSException {
     try {
-      AvailableAppsResult availableApps = findAvailableApplicationsAndUsers(apps, username);
+      AvailableAppsResult availableApps = findAvailableApplicationsForUser(apps, username);
       SubstituteServiceResult substituteServiceResult =
-          ServerFactory.getServer().getSecurityManager()
-              .executeAsSystem(new GetSubstituteWebserviceCallable(username, availableApps.getAvailableApps()));
+          executeAsSystem(new GetSubstituteWebserviceCallable(username, availableApps.getAvailableApps()));
       substituteServiceResult.setErrors(availableApps.getErrors());
       return substituteServiceResult;
     } catch (Exception e) {
@@ -206,12 +200,11 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
    */
   private List<WSException> saveUserSubstitute(final String appName, final String username,
       final List<IvySubstitute> substitutes) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
+    return executeAsSystem(new Callable<List<WSException>>() {
       @Override
       public List<WSException> call() throws Exception {
         List<WSException> errors = new ArrayList<WSException>();
-        IApplication application =
-            ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
+        IApplication application = findApplication(appName);
         if (application != null) {
           IUser user = application.getSecurityContext().findUser(username);
           if (user != null) {
@@ -339,12 +332,11 @@ public class AbsenceServiceImpl extends AbstractService implements IAbsenceServi
    */
   private List<WSException> saveUserAbsence(final String appName, final String username, final List<IvyAbsence> absences)
       throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
+    return executeAsSystem(new Callable<List<WSException>>() {
       @Override
       public List<WSException> call() throws Exception {
         List<WSException> errors = new ArrayList<WSException>();
-        IApplication application =
-            ServerFactory.getServer().getApplicationConfigurationManager().findApplication(appName);
+        IApplication application = findApplication(appName);
         if (application != null) {
           IUser user = application.getSecurityContext().findUser(username);
           if (user != null) {

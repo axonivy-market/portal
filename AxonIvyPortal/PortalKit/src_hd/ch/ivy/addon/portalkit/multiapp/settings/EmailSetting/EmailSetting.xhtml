@@ -135,12 +135,12 @@
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
       <p:commandButton id="save-settings" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.save}"
-        update="@widgetVar(errorDialogEmail)" styleClass=""
+        update="@widgetVar(errorDialogEmail)"
         oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();updateGrowlEmail();} else {PF('#{cc.attrs.dialogName}').hide();PF('errorDialogEmail').show();}" />
       <p:spacer width="5px" />
-      <p:commandButton id="cancel-settings" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.cancel}"
-        update="email-setting-container" oncomplete="PF('#{cc.attrs.dialogName}').hide();" styleClass="portal-cancel-button" />
+      <p:commandButton id="cancel-settings" immediate="true" type="button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+        onclick="PF('#{cc.attrs.dialogName}').hide();" styleClass="portal-cancel-button" />
     </h:panelGroup>
   </div>
 </cc:implementation>

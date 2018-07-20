@@ -1,8 +1,14 @@
 package ch.ivy.ws.addon.service;
 
+import static ch.ivyteam.ivy.server.ServerFactory.getServer;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Callable;
+
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
@@ -17,8 +23,6 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.IServer;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
-
-// import ch.ivyteam.ivy.scripting.objects.List;
 
 /**
  * Abstract service implementation that provides some basic operations
@@ -228,5 +232,61 @@ public abstract class AbstractService {
     resultData = resultData.substring(separator.length());
 
     return resultData;
+  }
+  
+  protected <T> T executeAsSystem(Callable<T> callable) {
+    try {
+      return getServer().getSecurityManager().executeAsSystem(callable);
+    } catch (Exception ex) {
+      throw new RuntimeException(ex);
+    }
+  }
+  
+  protected AvailableAppsResult findAvailableApplicationsForUser(final List<String> apps, final String username) {
+    return executeAsSystem(() -> {
+      if (apps.isEmpty()) {
+        return resultOf(Arrays.asList(new WSException(WSErrorType.WARNING, 10026, null, null)));
+      }
+      return findAvailableAppsForUser(apps, username);
+    });
+  }
+  
+  private AvailableAppsResult resultOf(List<WSException> errors) {
+    AvailableAppsResult result = new AvailableAppsResult();
+    result.setErrors(errors);
+    return result;
+  }
+  
+  private AvailableAppsResult initAvailableAppsResult() {
+    AvailableAppsResult result = new AvailableAppsResult();
+    result.setUsers(new ArrayList<IUser>());
+    result.setAvailableApps(new ArrayList<>());
+    result.setErrors(new ArrayList<>());
+    return result;
+  }
+  
+  private AvailableAppsResult findAvailableAppsForUser(final List<String> apps, final String username) {
+    AvailableAppsResult result = initAvailableAppsResult();
+    List<IApplication> serverApps = getApplications();
+    for (String app : apps) {
+      Optional<IApplication> serverApp = serverApps.stream().filter(sApp -> StringUtils.equals(sApp.getName(), app)).findFirst();
+      IUser user = serverApp.get().getSecurityContext().findUser(username);
+      if (serverApp.get().getActivityOperationState() == ActivityOperationState.ACTIVE && user != null) {
+        result.getAvailableApps().add(app);
+      }
+    }
+    return result;
+  }
+  
+  protected IApplication findApplication(final String appName) {
+    return getServer().getApplicationConfigurationManager().findApplication(appName);
+  }
+  
+  protected List<IApplication> getApplications() {
+    return getServer().getApplicationConfigurationManager().getApplications();
+  }
+  
+  protected List<WSException> createExceptions(WSErrorType type, int code, String userText) {
+    return Arrays.asList(new WSException(type, code, Arrays.asList(userText), null));
   }
 }

@@ -12,7 +12,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSErrorType;
-import ch.ivy.ws.addon.WSException;
+import ch.ivy.ws.addon.WSException;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 import ch.ivy.ws.addon.bo.AvailableAppsResult;
 import ch.ivy.ws.addon.bo.UserSettingServiceResult;
 import ch.ivy.ws.addon.types.IvyEmailSetting;
@@ -22,14 +22,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IEMailNotificationSettings;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserEMailNotificationSettings;
-import ch.ivyteam.ivy.server.IServer;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.util.date.Weekday;
 
 public class UserSettingServiceImpl extends AbstractService implements IUserSettingService {
   private static String ENABLE_CUSTOM_MAIL = "useCustomMails";
   private static String OLD_VAR_DISABLE_CUSTOM_MAIL = "DisableCustomMails";
-  private static String TRUE = "true";
 
   /**
    * 
@@ -149,7 +146,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   @Override
   public UserSettingServiceResult getEMailSettings(final List<String> applications, final String user) throws WSException{
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<UserSettingServiceResult>() {
+      return executeAsSystem(new Callable<UserSettingServiceResult>() {
         @Override
         public UserSettingServiceResult call() throws WSException {
           UserSettingServiceResult result = new UserSettingServiceResult();
@@ -158,11 +155,11 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
           List<String> availableApps = new ArrayList<String>();
           try {
             if (user != null && StringUtils.isNotBlank(user)) {
-              AvailableAppsResult aaResult = findAvailableApplicationsAndUsers(applications, user);
+              AvailableAppsResult aaResult = findAvailableApplicationsForUser(applications, user);
               errors.addAll(aaResult.getErrors());
               availableApps.addAll(aaResult.getAvailableApps());
-              IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-              for (IApplication serverApp : server.getApplicationConfigurationManager().getApplications()) {
+              List<IApplication> allApplication = getApplications();
+              for (IApplication serverApp : allApplication) {
                 IvyEmailSetting setting = new IvyEmailSetting();
                 if (availableApps.contains(serverApp.getName())) {
                   if (serverApp.getSecurityContext().findUser(user) != null) {
@@ -171,12 +168,12 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
 
                     // set value for useCustomMails base on property in IUser
                     boolean useNewCustomMailVariable = iuser.getProperty(ENABLE_CUSTOM_MAIL) != null
-                        && TRUE.equals(iuser.getProperty(ENABLE_CUSTOM_MAIL).toLowerCase());
+                        && Boolean.TRUE.toString().equalsIgnoreCase(iuser.getProperty(ENABLE_CUSTOM_MAIL));
 
                     // In old versions of Portal, we use property disableCustomMails instead of useCustomMails.
                     // To make Portal more compatible and easier to migrate, we decided not to ignore old property disableCustomMails.
                     boolean useOldCustomMailVariable = iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL) != null
-                        && TRUE.equals(iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL).toLowerCase());
+                        && Boolean.TRUE.toString().equalsIgnoreCase(iuser.getProperty(OLD_VAR_DISABLE_CUSTOM_MAIL));
 
                     if (useNewCustomMailVariable || useOldCustomMailVariable) {
                       setting.setCustomMailEnabled(true);
@@ -246,16 +243,14 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   @Override
   public List<WSException> setEMailSettings(final List<IvyEmailSetting> settings, final String user) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
+      return executeAsSystem(new Callable<List<WSException>>() {
         @Override
         public List<WSException> call() throws WSException {
           List<WSException> errors = new ArrayList<WSException>();
           try {
-            IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
             for (IvyEmailSetting setting : settings) {
               if (setting != null) {
-                IApplication serverApp =
-                    server.getApplicationConfigurationManager().findApplication(setting.getAppName());
+                IApplication serverApp = findApplication(setting.getAppName());
                 if (serverApp != null) {
                   IUser iuser = serverApp.getSecurityContext().findUser(user);
                   if (iuser != null) {
@@ -299,13 +294,13 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   public List<WSException> changePassword(final List<String> apps, final String username, final String password)
       throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<WSException>>() {
+      return executeAsSystem(new Callable<List<WSException>>() {
         @Override
         public List<WSException> call() throws Exception {
 
           List<WSException> errors = new ArrayList<WSException>();
-          IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-          for (IApplication app : server.getApplicationConfigurationManager().getApplications()) {
+          List<IApplication> allApplications = getApplications();
+          for (IApplication app : allApplications) {
             if (apps.contains(app.getName())) {
               IUser user = app.getSecurityContext().findUser(username);
               if (user != null) {
@@ -341,30 +336,23 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
           out.setSendOnNewWorkTasks(setting.getEmailSendOnNewWorkTasks());
         }
         
-        if (setting.getEmailSendDailyTaskSummaryOnMonday() != null) {
-          out.setSendDailyTaskSummaryOnDay(Weekday.MONDAY, setting.getEmailSendDailyTaskSummaryOnMonday());
-        }
-        if (setting.getEmailSendDailyTaskSummaryOnTuesday() != null) {
-          out.setSendDailyTaskSummaryOnDay(Weekday.TUESDAY, setting.getEmailSendDailyTaskSummaryOnTuesday());
-        }
-        if (setting.getEmailSendDailyTaskSummaryOnWednesday() != null) {
-          out.setSendDailyTaskSummaryOnDay(Weekday.WEDNESDAY, setting.getEmailSendDailyTaskSummaryOnWednesday());
-        }
-        if (setting.getEmailSendDailyTaskSummaryOnThursday() != null) {
-          out.setSendDailyTaskSummaryOnDay(Weekday.THURSDAY, setting.getEmailSendDailyTaskSummaryOnThursday());
-        }
-        if (setting.getEmailSendDailyTaskSummaryOnFriday() != null) {
-          out.setSendDailyTaskSummaryOnDay(Weekday.FRIDAY, setting.getEmailSendDailyTaskSummaryOnFriday());
-        }
-        if (setting.getEmailSendDailyTaskSummaryOnSaturday() != null) {
-          out.setSendDailyTaskSummaryOnDay(Weekday.SATURDAY, setting.getEmailSendDailyTaskSummaryOnSaturday());
-        }
-        if (setting.getEmailSendDailyTaskSummaryOnSunday() != null) {
-          out.setSendDailyTaskSummaryOnDay(Weekday.SUNDAY, setting.getEmailSendDailyTaskSummaryOnSunday());
-        }
+        setUserEmailDailyTaskSettingValue(Weekday.MONDAY, setting.getEmailSendDailyTaskSummaryOnMonday(), out);
+        setUserEmailDailyTaskSettingValue(Weekday.TUESDAY, setting.getEmailSendDailyTaskSummaryOnTuesday(), out);
+        setUserEmailDailyTaskSettingValue(Weekday.WEDNESDAY, setting.getEmailSendDailyTaskSummaryOnWednesday(), out);
+        setUserEmailDailyTaskSettingValue(Weekday.THURSDAY, setting.getEmailSendDailyTaskSummaryOnThursday(), out);
+        setUserEmailDailyTaskSettingValue(Weekday.FRIDAY, setting.getEmailSendDailyTaskSummaryOnFriday(), out);
+        setUserEmailDailyTaskSettingValue(Weekday.SATURDAY, setting.getEmailSendDailyTaskSummaryOnSaturday(), out);
+        setUserEmailDailyTaskSettingValue(Weekday.SUNDAY, setting.getEmailSendDailyTaskSummaryOnSunday(), out);
         out.setUseApplicationDefault(false);
       }
     }
     return out;
+  }
+  
+  private void setUserEmailDailyTaskSettingValue(Weekday weekday, Boolean sendTaskSummary,
+      IUserEMailNotificationSettings userSetting) {
+    if (sendTaskSummary != null) {
+      userSetting.setSendDailyTaskSummaryOnDay(weekday, sendTaskSummary);
+    }
   }
 }
