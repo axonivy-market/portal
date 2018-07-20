@@ -43,7 +43,7 @@
         update="@widgetVar(errorLanguageDialog) errors-message @widgetVar(mailLanguageDialog)" />
       <p:spacer width="5px" />
       <p:commandButton id="cancel-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        oncomplete="PF('#{cc.attrs.dialogName}').hide()" global="false" update="@none" immediate="true"
+        onclick="PF('#{cc.attrs.dialogName}').hide()" type="button" immediate="true"
         styleClass="portal-cancel-button" />
     </h:panelGroup>
 
@@ -62,7 +62,7 @@
       styleClass="language-settings-exception-dialog" widgetVar="mailLanguageDialog" modal="true" appendTo="@(body)">
 		<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/cannotSetEmailLanguage')}" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button" immediate="true"
           onclick="window.location.reload();" />
       </f:facet>
     </p:dialog>

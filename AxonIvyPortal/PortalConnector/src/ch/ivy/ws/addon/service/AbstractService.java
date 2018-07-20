@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.ws.addon.PortalException;
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
@@ -19,8 +21,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.server.IServer;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 /**
@@ -40,9 +40,9 @@ public abstract class AbstractService {
     return executeAsSystem(() -> {
       List<IUser> result = new ArrayList<>();
 
-      IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
+      List<IApplication> applications = getApplications();
 
-      for (IApplication i : server.getApplicationConfigurationManager().getApplications()) {
+      for (IApplication i : applications) {
         if (apps.contains(i.getName()) && i.getSecurityContext().findUser(username) != null) {
           result.add(i.getSecurityContext().findUser(username));
         }
@@ -54,7 +54,7 @@ public abstract class AbstractService {
 
   protected <T> T executeAsSystem(Callable<T> callable) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(callable);
+      return getServer().getSecurityManager().executeAsSystem(callable);
     } catch (Exception ex) {
       throw new PortalException(ex);
 
@@ -75,22 +75,22 @@ public abstract class AbstractService {
       return findAvailableAppsAndUsers(apps, username);
     });
   }
-
+  
   private AvailableAppsResult findAvailableAppsAndUsers(final List<String> apps, final String username) {
     AvailableAppsResult result = initAvailableAppsResult();
     boolean userNotFound = false;
     List<String> notFoundApps = new ArrayList<>();
     List<String> notActiveApps = new ArrayList<>();
-    List<IApplication> serverApps = getServer().getApplicationConfigurationManager().getApplications();
+    List<IApplication> serverApps = getApplications();
     for (String app : apps) {
-      Optional<IApplication> serverApp = serverApps.stream().filter(sApp -> sApp.getName().equals(app)).findFirst();
+      Optional<IApplication> serverApp = serverApps.stream().filter(sApp -> StringUtils.equals(sApp.getName(), app)).findFirst();
       if (!serverApp.isPresent()) {
         notFoundApps.add(app);
         continue;
       }
       IUser user = serverApp.get().getSecurityContext().findUser(username);
       if (user != null) {
-        if (serverApp.get().getActivityOperationState().equals(ActivityOperationState.ACTIVE)) {
+        if (serverApp.get().getActivityOperationState() == ActivityOperationState.ACTIVE) {
           result.getAvailableApps().add(app);
           result.getUsers().add(user);
         } else {
@@ -143,7 +143,7 @@ public abstract class AbstractService {
   protected IWorkflowSession findUserWorkflowSession(final String username, final IApplication app) throws WSException {
     try {
       final ISecurityContext securityContext = app.getSecurityContext();
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IWorkflowSession>() {
+      return getServer().getSecurityManager().executeAsSystem(new Callable<IWorkflowSession>() {
         @Override
         public IWorkflowSession call() throws Exception {
           ISession session = securityContext.createSession();
@@ -169,20 +169,13 @@ public abstract class AbstractService {
    */
   protected IvyApplication isApplicationActive(final String name) {
     IvyApplication ivyApplication = new IvyApplication();
-    IApplication application = getApplicationByName(name);
+    IApplication application = findApplication(name);
     if (application != null) {
-      ivyApplication.setIsActive(application.getActivityOperationState().equals(ActivityOperationState.ACTIVE));
+      ivyApplication.setIsActive(application.getActivityOperationState() == ActivityOperationState.ACTIVE);
       ivyApplication.setName(name);
       ivyApplication.setId(application.getId());
     }
     return ivyApplication;
-  }
-
-  protected IApplication getApplicationByName(final String applicationName) {
-    return executeAsSystem(() -> {
-      IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-      return server.getApplicationConfigurationManager().findApplication(applicationName);
-    });
   }
 
   /**
@@ -202,5 +195,45 @@ public abstract class AbstractService {
     resultData = resultData.substring(separator.length());
 
     return resultData;
+  }
+  
+  /**
+   * find applications which user exists
+   * @param apps
+   * @param username
+   * @return list of applications where user exists
+   */
+  protected AvailableAppsResult findAvailableApplicationsForUser(final List<String> apps, final String username) {
+    return executeAsSystem(() -> {
+      if (apps.isEmpty()) {
+        return resultOf(Arrays.asList(new WSException(WSErrorType.WARNING, 10026, null, null)));
+      }
+      return findAvailableAppsForUser(apps, username);
+    });
+  }
+  
+  private AvailableAppsResult findAvailableAppsForUser(final List<String> apps, final String username) {
+    AvailableAppsResult result = initAvailableAppsResult();
+    List<IApplication> serverApps = getApplications();
+    for (String app : apps) {
+      Optional<IApplication> serverApp = serverApps.stream().filter(sApp -> StringUtils.equals(sApp.getName(), app)).findFirst();
+      IUser user = serverApp.get().getSecurityContext().findUser(username);
+      if (serverApp.get().getActivityOperationState() == ActivityOperationState.ACTIVE && user != null) {
+        result.getAvailableApps().add(app);
+      }
+    }
+    return result;
+  }
+  
+  protected IApplication findApplication(final String appName) {
+    return getServer().getApplicationConfigurationManager().findApplication(appName);
+  }
+  
+  protected List<IApplication> getApplications() {
+    return getServer().getApplicationConfigurationManager().getApplications();
+  }
+  
+  protected List<WSException> createExceptions(WSErrorType type, int code, String userText) {
+    return Arrays.asList(new WSException(type, code, Arrays.asList(userText), null));
   }
 }
