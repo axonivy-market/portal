@@ -1,5 +1,5 @@
 [Ivy]
-14C30066460AD7AA 3.20 #module
+14C30066460AD7AA 3.23 #module
 >Proto >Proto Collection #zClass
 As0 AbsencesAndDeputyProcess Big #zClass
 As0 RD #cInfo
@@ -34,7 +34,6 @@ As0 @RichDialogProcessEnd f55 '' #zField
 As0 @RichDialogProcessStart f46 '' #zField
 As0 @RichDialogProcessEnd f80 '' #zField
 As0 @GridStep f82 '' #zField
-As0 @PushWFArc f83 '' #zField
 As0 @PushWFArc f47 '' #zField
 As0 @RichDialogProcessEnd f1 '' #zField
 As0 @GridStep f3 '' #zField
@@ -65,7 +64,6 @@ As0 @RichDialogMethodStart f104 '' #zField
 As0 @Alternative f105 '' #zField
 As0 @PushWFArc f96 '' #zField
 As0 @CallSub f110 '' #zField
-As0 @PushWFArc f19 '' #zField
 As0 @RichDialogMethodStart f65 '' #zField
 As0 @RichDialogProcessEnd f66 '' #zField
 As0 @CallSub f24 '' #zField
@@ -150,8 +148,9 @@ As0 @GridStep f140 '' #zField
 As0 @PushWFArc f141 '' #zField
 As0 @PushWFArc f27 '' #zField
 As0 @RichDialogMethodStart f16 '' #zField
+As0 @PushWFArc f18 '' #zField
+As0 @PushWFArc f19 '' #zField
 As0 @PushWFArc f17 '' #zField
-As0 @RichDialogProcessStart f18 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f5 guid 14BD99040C72C9E8 #txt
 As0 f5 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
@@ -455,11 +454,8 @@ As0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f82 78 116 36 25 20 -2 #rect
+As0 f82 1454 172 36 25 20 -2 #rect
 As0 f82 @|StepIcon #fIcon
-As0 f83 expr out #txt
-As0 f83 96 74 96 115 #arcP
-As0 f83 0 0.6482391981034313 0 0 #arcLabel
 As0 f47 expr out #txt
 As0 f47 1616 531 1616 558 #arcP
 As0 f1 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
@@ -809,8 +805,6 @@ Absences
 ' #txt
 As0 f110 1182 196 36 24 24 -12 #rect
 As0 f110 @|CallSubIcon #fIcon
-As0 f19 expr out #txt
-As0 f19 96 140 96 183 #arcP
 As0 f65 guid 14EFD4B924E8A574 #txt
 As0 f65 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f65 method loadAllUsers() #txt
@@ -1006,8 +1000,8 @@ As0 f100 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f100 3026 200 3030 464 #arcP
-As0 f100 1 2976 200 #addKink
-As0 f100 2 2976 464 #addKink
+As0 f100 1 2978 200 #addKink
+As0 f100 2 2978 464 #addKink
 As0 f100 0 0.3780487804878049 0 -9 #arcLabel
 As0 f99 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f99 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1402,8 +1396,8 @@ As0 f125 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f125 2610 128 2614 368 #arcP
-As0 f125 1 2560 128 #addKink
-As0 f125 2 2560 368 #addKink
+As0 f125 1 2562 128 #addKink
+As0 f125 2 2562 368 #addKink
 As0 f125 1 0.4895833333333333 -17 0 #arcLabel
 As0 f9 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f9 1602 450 28 28 14 0 #rect
@@ -1605,27 +1599,16 @@ As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f16 1459 51 26 26 -42 15 #rect
 As0 f16 @|RichDialogMethodStartIcon #fIcon
+As0 f18 expr out #txt
+As0 f18 96 74 96 183 #arcP
+As0 f18 0 0.6482391981034313 0 0 #arcLabel
+As0 f19 expr out #txt
+As0 f19 1472 77 1472 171 #arcP
+As0 f19 0 0.9080769656919869 0 0 #arcLabel
 As0 f17 expr out #txt
-As0 f17 1472 77 1602 312 #arcP
+As0 f17 1472 196 1602 312 #arcP
 As0 f17 1 1472 312 #addKink
-As0 f17 1 0.3871797712799135 0 0 #arcLabel
-As0 f18 guid 15F8F95BC493FC67 #txt
-As0 f18 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f18 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
-As0 f18 actionTable 'out=in;
-' #txt
-As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>openAbsence</name>
-        <nameStyle>11,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f18 1379 51 26 26 -38 15 #rect
-As0 f18 @|RichDialogProcessStartIcon #fIcon
+As0 f17 1 0.07367363260303823 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1658,8 +1641,6 @@ As0 f28 mainOut f48 tail #connect
 As0 f48 head f4 mainIn #connect
 As0 f4 mainOut f50 tail #connect
 As0 f50 head f49 mainIn #connect
-As0 f0 mainOut f83 tail #connect
-As0 f83 head f82 mainIn #connect
 As0 f49 mainOut f62 tail #connect
 As0 f62 head f59 mainIn #connect
 As0 f36 mainOut f35 tail #connect
@@ -1688,8 +1669,6 @@ As0 f96 head f95 mainIn #connect
 As0 f99 out f107 tail #connect
 As0 f107 head f105 in #connect
 As0 f99 out f100 tail #connect
-As0 f82 mainOut f19 tail #connect
-As0 f19 head f80 mainIn #connect
 As0 f45 mainOut f67 tail #connect
 As0 f67 head f21 mainIn #connect
 As0 f20 mainOut f73 tail #connect
@@ -1772,5 +1751,9 @@ As0 f76 mainOut f141 tail #connect
 As0 f141 head f140 mainIn #connect
 As0 f140 mainOut f27 tail #connect
 As0 f27 head f66 mainIn #connect
-As0 f16 mainOut f17 tail #connect
+As0 f0 mainOut f18 tail #connect
+As0 f18 head f80 mainIn #connect
+As0 f16 mainOut f19 tail #connect
+As0 f19 head f82 mainIn #connect
+As0 f82 mainOut f17 tail #connect
 As0 f17 head f8 in #connect
