@@ -42,7 +42,7 @@ public class ChatStream {
 
   @GET
   public Response listen() {
-    IvyStreamingOutput streamingOutput = new IvyStreamingOutput() {
+    IvyStreamingOutput streamingOutput = new IvyStreamingOutput() { // NOSONAR
       @Override
       public void writeInIvyContext(OutputStream stream) throws IOException, WebApplicationException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(stream)), true);
@@ -50,30 +50,14 @@ public class ChatStream {
       }
 
       private void distributeIncomingMessages(PrintWriter out) {
-        out.println(new Gson().toJson(""));
+        out.println(new Gson().toJson("")); // This code line solves the problem that client doesn't receive the signal when there is the first stream data 
         String sessionUserName = Ivy.session().getSessionUserName();
         boolean isClientDisconnected = false;
         List<String> oldOnlineUsers = ChatContactManager.getOnlineContacts();
         while (!isClientDisconnected) {
           try {
             List<String> onlineUsers = ChatContactManager.getOnlineContacts();
-            Map<String, Command> changedUsers = new HashMap<>();
-            for (int i = 0; i < Math.max(onlineUsers.size(), oldOnlineUsers.size()); i++) {
-              if (i < onlineUsers.size()) {
-                if (!changedUsers.containsKey(onlineUsers.get(i))) {
-                  changedUsers.put(onlineUsers.get(i), new Command(Command.ADD_CONTACT, onlineUsers.get(i)));
-                } else {
-                  changedUsers.remove(onlineUsers.get(i));
-                }
-              }
-              if (i < oldOnlineUsers.size()) {
-                if (!changedUsers.containsKey(oldOnlineUsers.get(i))) {
-                  changedUsers.put(oldOnlineUsers.get(i), new Command(Command.REMOVE_CONTACT, oldOnlineUsers.get(i)));
-                } else {
-                  changedUsers.remove(oldOnlineUsers.get(i));
-                }
-              }
-            }
+            Map<String, Command> changedUsers = detectUserState(oldOnlineUsers, onlineUsers);
             oldOnlineUsers = onlineUsers;
             if (!changedUsers.isEmpty()) {
               out.println(new Gson().toJson(changedUsers.values()));
@@ -89,6 +73,28 @@ public class ChatStream {
             Ivy.log().error("Error in chat stream", e);
           }
         }
+      }
+
+      private Map<String, Command> detectUserState(List<String> oldOnlineUsers,
+          List<String> onlineUsers) {
+        Map<String, Command> changedUsers = new HashMap<>();
+        for (int i = 0; i < Math.max(onlineUsers.size(), oldOnlineUsers.size()); i++) {
+          if (i < onlineUsers.size()) {
+            if (!changedUsers.containsKey(onlineUsers.get(i))) {
+              changedUsers.put(onlineUsers.get(i), new Command(Command.ADD_CONTACT, onlineUsers.get(i)));
+            } else {
+              changedUsers.remove(onlineUsers.get(i));
+            }
+          }
+          if (i < oldOnlineUsers.size()) {
+            if (!changedUsers.containsKey(oldOnlineUsers.get(i))) {
+              changedUsers.put(oldOnlineUsers.get(i), new Command(Command.REMOVE_CONTACT, oldOnlineUsers.get(i)));
+            } else {
+              changedUsers.remove(oldOnlineUsers.get(i));
+            }
+          }
+        }
+        return changedUsers;
       }
     };
     return Response.ok(streamingOutput).build();
