@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+
+	<!-- In this HTML dialog, we override task list header, task header, task filter, and task body -->
+
+	<ui:composition template="/layouts/PortalCasesTemplate.xhtml">
+		<ui:param name="menuState" value="#{data.menuState}" />
+		<ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
+		<ui:param name="isNotRequiredLogin" value="false" />
+
+		<ui:param name="useOverrideListHeader" value="true" />
+		<ui:param name="useOverrideHeader" value="true" />
+		<ui:param name="useOverrideBody" value="true" />
+		<ui:param name="useOverrideFilter" value="true" />
+
+		<ui:define name="caseListHeader">
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" styleClass="case-list-header-cell case-list-name-desc-header-cell" componentToBeUpdated=""
+				sortedField="NAME" sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/NAME')}" dataModel="#{caseView.dataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="ID" sortable="true"
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}" dataModel="#{caseView.dataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" styleClass="case-list-header-cell" componentToBeUpdated="" sortedField="CREATOR" sortable="true"
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" dataModel="#{caseView.dataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="START_TIME"
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" dataModel="#{caseView.dataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="END_TIME"
+				sortable="true" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" dataModel="#{caseView.dataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" styleClass="case-list-header-cell TexAlCenter" componentToBeUpdated="" sortedField="STATE"
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" dataModel="#{caseView.dataModel}" />
+		</ui:define>
+
+		<ui:define name="caseHeader">
+			<c:set var="active" value="#{caseWidgetBean.expandedCaseId == -1 and cc.attrs.initialActive}" />
+			<c:set var="expanded" value="#{case.id eq caseWidgetBean.expandedCaseId or active}" />
+
+			<h:panelGroup class="case-header-name-desc-cell">
+				<h:outputText id="case-header-name-cell" styleClass="case-header-name-cell" rendered="#{!expanded or case.state eq 'DONE'}"
+					value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"></h:outputText>
+				<span class="case-header-name-cell"> <h:form id="case-name-form">
+						<p:inplace id="case-name-edit-inplace" editor="true" rendered="#{expanded and case.state ne 'DONE'}" disabled="#{!case.canChangeName}"
+							saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="case-name-edit-inplace"
+							label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}">
+							<p:inputText id="case-name-input" value="#{case.name}" maxlength="200" styleClass="case-name-input" onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
+							<p:ajax event="save" listener="#{logic.updateName(case)}" process="case-name-edit-inplace" update="case-name-edit-inplace" />
+							<f:passThroughAttribute name="onclick" value="if('#{case.canChangeName}'=='true') {event.stopPropagation()}" />
+						</p:inplace>
+					</h:form>
+				</span>
+				<h:outputText id="description-cell" styleClass="case-header-desc-cell" value="#{case.description}" />
+			</h:panelGroup>
+			<h:outputText styleClass="case-header-id-cell case-header-default-cell" value="#{case.id}" />
+			<ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText styleClass="case-header-creator-cell" fullname="#{case.creatorFullName}" username="#{case.creatorUserName}" />
+			<h:outputText value="#{case.startTimestamp}" styleClass="case-header-start-time-cell case-header-default-cell">
+				<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+			</h:outputText>
+			<h:outputText value="#{case.endTimestamp}" styleClass="case-header-end-time-cell case-header-default-cell">
+				<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+			</h:outputText>
+			<h:panelGroup id="case-state-cell" styleClass="case-header-default-cell">
+				<h:panelGroup styleClass="fa fa-play-circle case-state-in-progress" rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
+				<h:panelGroup styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
+			</h:panelGroup>
+			<p:tooltip for="case-state-cell" value="#{caseBean.getState(case)}" />
+		</ui:define>
+
+		<ui:define name="caseBody">
+			<ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+			<ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
+			<ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
+			<ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}" />
+			<ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" descriptionComponentToUpdate="#{p:component('description-cell')}" />
+			<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
+				<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-share-alt js-related-task-column-responsive-button" displayedSelectors="['.js-related-task-column']"
+					hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+				<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
+					hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+				<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
+					hiddenSelectorsInLargeScreen="['.case-details .replaced']" hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+				<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-clipboard js-description-column-responsive-button" displayedSelectors="['.js-description-column']"
+					hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+				<h:outputScript library="js" name="case-detail-default-responsiveness.js" />
+			</ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+		</ui:define>
+
+		<ui:define name="caseFilter">
+
+		</ui:define>
+
+		<ui:define name="css">
+			<h:outputStylesheet library="css" name="examples.css" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
