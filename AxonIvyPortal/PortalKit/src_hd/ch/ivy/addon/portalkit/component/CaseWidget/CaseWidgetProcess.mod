@@ -1,5 +1,5 @@
 [Ivy]
-152E8EDB33C1BDC1 3.20 #module
+152E8EDB33C1BDC1 3.23 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -42,11 +42,6 @@ Cs0 @Alternative f32 '' #zField
 Cs0 @PushWFArc f33 '' #zField
 Cs0 @PushWFArc f34 '' #zField
 Cs0 @PushWFArc f37 '' #zField
-Cs0 @RichDialogMethodStart f15 '' #zField
-Cs0 @GridStep f35 '' #zField
-Cs0 @RichDialogProcessEnd f36 '' #zField
-Cs0 @PushWFArc f38 '' #zField
-Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f28 '' #zField
 Cs0 @RichDialogProcessStart f46 '' #zField
 Cs0 @GridStep f47 '' #zField
@@ -407,54 +402,6 @@ Cs0 f37 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f37 302 512 382 512 #arcP
 Cs0 f37 0 0.5 0 8 #arcLabel
-Cs0 f15 guid 157B274E4D4ACF6E #txt
-Cs0 f15 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f15 method sort(String,Boolean) #txt
-Cs0 f15 disableUIEvents false #txt
-Cs0 f15 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String sortedField,java.lang.Boolean isSortingDescending> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f15 inParameterMapAction 'out.isSortingDescending=param.isSortingDescending;
-out.sortedField=param.sortedField;
-' #txt
-Cs0 f15 outParameterDecl '<> result;
-' #txt
-Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>sort(CaseSortedField,Boolean)</name>
-        <nameStyle>29,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f15 53 781 22 22 14 0 #rect
-Cs0 f15 @|RichDialogMethodStartIcon #fIcon
-Cs0 f35 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
-Cs0 f35 actionTable 'out=in;
-' #txt
-Cs0 f35 actionCode in.dataModel.setSorting(in.sortedField,in.isSortingDescending); #txt
-Cs0 f35 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>set sorting
-to lazy model</name>
-        <nameStyle>25,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f35 270 780 36 24 20 14 #rect
-Cs0 f35 @|StepIcon #fIcon
-Cs0 f36 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f36 469 781 22 22 14 0 #rect
-Cs0 f36 @|RichDialogProcessEndIcon #fIcon
-Cs0 f38 expr out #txt
-Cs0 f38 75 792 270 792 #arcP
-Cs0 f39 expr out #txt
-Cs0 f39 306 792 469 792 #arcP
 Cs0 f28 expr out #txt
 Cs0 f28 370 608 469 608 #arcP
 Cs0 f46 guid 15FFBC1713CF0D50 #txt
@@ -785,10 +732,6 @@ Cs0 f34 head f23 mainIn #connect
 Cs0 f32 out f37 tail #connect
 Cs0 f37 head f13 mainIn #connect
 Cs0 f32 out f34 tail #connect
-Cs0 f15 mainOut f38 tail #connect
-Cs0 f38 head f35 mainIn #connect
-Cs0 f35 mainOut f39 tail #connect
-Cs0 f39 head f36 mainIn #connect
 Cs0 f48 mainOut f60 tail #connect
 Cs0 f60 head f51 mainIn #connect
 Cs0 f51 mainOut f54 tail #connect
