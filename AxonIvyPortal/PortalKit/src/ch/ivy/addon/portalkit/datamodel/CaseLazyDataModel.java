@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.datamodel;
 
-import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.comparatorString;
-import static ch.ivy.addon.portalkit.comparator.RemoteCaseComparator.naturalOrderNullsFirst;
+import ch.ivy.addon.portalkit.comparator.RemoteCaseComparator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -47,23 +46,25 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
-	private static final int BUFFER_LOAD = 10;
 	private static final long serialVersionUID = 1L;
-	private final List<RemoteCase> data;
-	private Map<GlobalCaseId, RemoteCase> displayedCaseMap;
-	private Map<GlobalCaseId, RemoteCase> notDisplayedCaseMap;
 
-	private String caseWidgetComponentId;
-	private int rowIndex;
-	private CaseSearchCriteria searchCriteria;
-	private CaseQueryCriteria queryCriteria;
-	private Long serverId;
+	protected static final int BUFFER_LOAD = 10;
+	protected final List<RemoteCase> data;
+	protected Map<GlobalCaseId, RemoteCase> displayedCaseMap;
+	protected Map<GlobalCaseId, RemoteCase> notDisplayedCaseMap;
+
+	protected String caseWidgetComponentId;
+	protected int rowIndex;
+	protected CaseSearchCriteria searchCriteria;
+	protected CaseQueryCriteria queryCriteria;
+	protected Long serverId;
+	protected Comparator<RemoteCase> comparator;
 
 	protected List<CaseFilter> filters;
 	protected List<CaseFilter> selectedFilters;
 	protected CaseFilterContainer filterContainer;
-	private CaseFilterData selectedFilterData;
-	private boolean isNotKeepFilter = false;
+	protected CaseFilterData selectedFilterData;
+	protected boolean isNotKeepFilter = false;
 
 	public CaseLazyDataModel() {
 		this("case-widget");
@@ -78,6 +79,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		this.caseWidgetComponentId = caseWidgetComponentId;
 		searchCriteria = buildInitSearchCriteria();
 		queryCriteria = buildInitQueryCriteria();
+		comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getId);
 		setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
 		selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
 		serverId = SecurityServiceUtils.getServerIdFromSession();
@@ -93,10 +95,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
 		List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
 		putCasesToNotDisplayedTaskMap(foundCases);
-		List<RemoteCase> notDisplayedCases = new ArrayList<>();
-		notDisplayedCases.addAll(notDisplayedCaseMap.values());
-		Optional<Comparator<? super RemoteCase>> comparator = getComparatorForSorting();
-		comparator.ifPresent(c -> notDisplayedCases.sort(c)); // NOSONAR
+		List<RemoteCase> notDisplayedCases = sortCasesInNotDisplayedTaskMap();
 		List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
 
 		storeDisplayedCases(notDisplayedCases);
@@ -234,6 +233,53 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		filterContainer = new DefaultCaseFilterContainer();
 	}
 
+	protected List<RemoteCase> sortCasesInNotDisplayedTaskMap() {
+		List<RemoteCase> notDisplayedTasks = new ArrayList<>();
+		notDisplayedTasks.addAll(notDisplayedCaseMap.values());
+		if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = RemoteCaseComparator.comparatorString(RemoteCase::getName);
+		} else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getId);
+		} else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getStartTimestamp);
+		} else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
+		} else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = RemoteCaseComparator.comparatorString(caseCreator());
+		} else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getState);
+		} else {
+			extendSortTasksInNotDisplayedTaskMap();
+		}
+
+		if (comparator != null && queryCriteria.isSortDescending()) {
+			comparator = comparator.reversed();
+		}
+		notDisplayedTasks.sort(comparator);
+		return notDisplayedTasks;
+	}
+
+	/**
+	 * <p>
+	 * Your customized data model needs to override this method if your customized task list has new columns/fields.
+	 * </p>
+	 * <p>
+	 * <b>Example: </b> <code><pre>
+	 * import ch.ivy.addon.portalkit.bo.RemoteCase;
+	 * 
+	 * // The value of queryCriteria.getSortField() is defined in the CaseColumnHeader Portal component when you use it to add new column headers.
+	 * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
+	 * 
+	 *   // comparatorString(...): String, comparator(...): others.
+	 *   comparator = comparatorString(RemoteCase::getCustomVarCharField5);
+	 * }
+	 * </pre></code>
+	 * </p>
+	 */
+	protected void extendSortTasksInNotDisplayedTaskMap() {
+		// Placeholder for customization
+	}
+
 	protected void autoInitForNoAppConfiguration() {
 		String applicationName = StringUtils.EMPTY;
 		String applicationNameFromRequest =
@@ -267,7 +313,31 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 			}
 		}
 		CaseQuery caseQuery = buildCaseQuery();
+		extendSort(caseQuery);
 		searchCriteria.setJsonQuery(caseQuery.asJson());
+	}
+
+	/**
+	 * <p>
+	 * If your customized case list has new columns/fields, please extend the {@code caseQuery} parameter with the sort
+	 * query for these fields and also override the "extendSortCasesInNotDisplayedTaskMap" method.
+	 * </p>
+	 * <p>
+	 * <b>Example: </b> <code><pre>
+	 * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
+	 *   if (queryCriteria.isSortDescending()) {
+	 *     caseQuery.orderBy().customVarCharField5().descending();
+	 *   } else {
+	 *     caseQuery.orderBy().customVarCharField5();
+	 *   }
+	 * }
+	 * </pre></code>
+	 * </p>
+	 * 
+	 * @param caseQuery
+	 */
+	protected void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
+		// Placeholder for customization
 	}
 
 	protected CaseQueryCriteria buildInitQueryCriteria() {
@@ -304,27 +374,6 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 			filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
 			filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
 		}
-	}
-
-	private Optional<Comparator<? super RemoteCase>> getComparatorForSorting() {
-		Comparator<? super RemoteCase> comparator = null;
-		if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = comparatorString(RemoteCase::getName);
-		} else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = naturalOrderNullsFirst(RemoteCase::getId);
-		} else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = naturalOrderNullsFirst(RemoteCase::getStartTimestamp);
-		} else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
-		} else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = comparatorString(caseCreator());
-		} else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = naturalOrderNullsFirst(RemoteCase::getState);
-		}
-		if (comparator != null && queryCriteria.isSortDescending()) {
-			comparator = comparator.reversed();
-		}
-		return Optional.ofNullable(comparator);
 	}
 
 	private Function<RemoteCase, String> caseCreator() {
