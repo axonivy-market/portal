@@ -27,7 +27,7 @@ public final class SecureMessage {
       byte[] encrypted = cipher.doFinal(dataToEncrypt.getBytes(UTF_8));
       return Base64.getEncoder().encodeToString(encrypted);
     } catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | UnsupportedEncodingException e) {
-      throw new RuntimeException("The give data was not encrypted successfully.", e);
+      throw new PortalChatException("The give data was not encrypted successfully.", e);
     }
   }
 
@@ -40,7 +40,7 @@ public final class SecureMessage {
       byte[] decrypted = cipher.doFinal(Base64.getDecoder().decode(dataToDecrypt.getBytes(UTF_8)));
       return new String(decrypted, UTF_8);
     } catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | UnsupportedEncodingException e) {
-      throw new RuntimeException("The give data was not decrypted successfully.", e);
+      throw new PortalChatException("The give data was not decrypted successfully.", e);
     }
   }
 
@@ -48,7 +48,7 @@ public final class SecureMessage {
     try {
       return Cipher.getInstance(ALGORITHM);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
-      throw new RuntimeException("Could not get cipher instance.");
+      throw new PortalChatException("Could not get cipher instance.", e);
     }
   }
 
@@ -56,7 +56,7 @@ public final class SecureMessage {
     try {
       return new SecretKeySpec(key.getBytes(UTF_8), 0, 16, ALGORITHM);
     } catch (UnsupportedEncodingException e) {
-      throw new RuntimeException("Could not get secrect key.");
+      throw new PortalChatException("Could not get secrect key.", e);
     }
   }
 }
