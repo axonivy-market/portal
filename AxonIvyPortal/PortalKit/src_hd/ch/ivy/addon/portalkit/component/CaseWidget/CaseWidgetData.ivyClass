@@ -24,10 +24,6 @@ filteredCases List<ch.ivy.addon.portalkit.bo.RemoteCase> #field
 filteredCases PERSISTENT #fieldModifier
 errors List<ch.ivy.ws.addon.WsException> #field
 errors PERSISTENT #fieldModifier
-sortedField String #field
-sortedField PERSISTENT #fieldModifier
-isSortingDescending Boolean #field
-isSortingDescending PERSISTENT #fieldModifier
 filterSetName String #field
 filterSetName PERSISTENT #fieldModifier
 filterType ch.ivy.addon.portalkit.enums.FilterType #field
