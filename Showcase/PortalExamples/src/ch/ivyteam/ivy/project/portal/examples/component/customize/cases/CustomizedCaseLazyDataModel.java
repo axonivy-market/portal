@@ -45,4 +45,9 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getCustomTimestampField1);
 		}
 	}
+
+	@Override
+	protected void initFilterContainer() {
+		filterContainer = new CustomizedCaseFilterContainer();
+	}
 }
