@@ -709,11 +709,12 @@ ac0 f55 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f55 753 641 30 30 0 15 #rect
 ac0 f55 @|EndSubIcon #fIcon
 ac0 f56 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f56 processCall MultiPortal/CaseService:findCaseCustomVarchars(List<String>,Long,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria) #txt
+ac0 f56 processCall MultiPortal/CaseService:findCaseCustomVarchars(String,List<String>,Long,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria) #txt
 ac0 f56 doCall true #txt
-ac0 f56 requestActionDecl '<java.util.List<java.lang.String> apps,java.lang.Long serverId,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;
+ac0 f56 requestActionDecl '<java.lang.String userName,java.util.List<java.lang.String> apps,java.lang.Long serverId,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;
 ' #txt
-ac0 f56 requestMappingAction 'param.apps=in.involvedApplications;
+ac0 f56 requestMappingAction 'param.userName=ch.ivy.addon.portalkit.util.PermissionUtils.checkReadAllCasesPermission() ? null : ivy.session.getSessionUserName();
+param.apps=in.involvedApplications;
 param.serverId=in.serverId;
 param.caseCustomVarCharSearchCriteria=in.caseCustomVarCharSearchCriteria;
 ' #txt
