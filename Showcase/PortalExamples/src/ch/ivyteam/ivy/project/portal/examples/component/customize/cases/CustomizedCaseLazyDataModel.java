@@ -7,7 +7,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	private static final String CUSTOM_TIMESTAMP_FIELD1 = "customTimestampField1";
-	private static final String CUSTOM_VARCHAR_FIELD5 = "customVarcharField5";
+	private static final String CUSTOM_VARCHAR_FIELD1 = "customVarcharField1";
 
 	public CustomizedCaseLazyDataModel() {
 		super();
@@ -22,11 +22,11 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	// Extend sort fields, include 1 text field and 1 date time field
 	@Override
 	public void extendSort(CaseQuery caseQuery) {
-		if (CUSTOM_VARCHAR_FIELD5.equalsIgnoreCase(queryCriteria.getSortField())) {
+		if (CUSTOM_VARCHAR_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
 			if (queryCriteria.isSortDescending()) {
-				caseQuery.orderBy().customVarCharField5().descending();
+				caseQuery.orderBy().customVarCharField1().descending();
 			} else {
-				caseQuery.orderBy().customVarCharField5();
+				caseQuery.orderBy().customVarCharField1();
 			}
 		} else if (CUSTOM_TIMESTAMP_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
 			if (queryCriteria.isSortDescending()) {
@@ -39,8 +39,8 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 
 	@Override
 	public void extendSortTasksInNotDisplayedTaskMap() {
-		if (CUSTOM_VARCHAR_FIELD5.equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.comparatorString(RemoteCase::getCustomVarCharField5);
+		if (CUSTOM_VARCHAR_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
+			comparator = RemoteCaseComparator.comparatorString(RemoteCase::getCustomVarCharField1);
 		} else if (CUSTOM_TIMESTAMP_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
 			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getCustomTimestampField1);
 		}

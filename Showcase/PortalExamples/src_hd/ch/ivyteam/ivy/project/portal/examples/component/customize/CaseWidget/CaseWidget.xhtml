@@ -33,6 +33,12 @@
 
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" styleClass="case-list-header-cell TexAlCenter" componentToBeUpdated="" sortedField="STATE"
 				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" dataModel="#{caseView.dataModel}" />
+
+			<!-- New field -->
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
+				componentToBeUpdated="" sortedField="customVarCharField1" sortable="true" value="customVarCharField1" dataModel="#{caseView.dataModel}" />
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
+				componentToBeUpdated="" sortedField="customTimestampField1" sortable="true" value="customTimestampField1" dataModel="#{caseView.dataModel}" />
 		</ui:define>
 
 		<ui:define name="caseHeader">
@@ -67,6 +73,16 @@
 				<h:panelGroup styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
 			</h:panelGroup>
 			<p:tooltip for="case-state-cell" value="#{caseBean.getState(case)}" />
+
+			<!-- New field -->
+			<h:panelGroup styleClass="customized-case-header-column">
+				<h:outputText value="#{case.customVarCharField1}" styleClass="case-header-default-cell customized-case-header-column" />
+			</h:panelGroup>
+			<h:panelGroup styleClass="customized-case-header-column">
+				<h:outputText value="#{case.customTimestampField1}" styleClass="case-header-end-time-cell case-header-default-cell customized-case-header-column">
+					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+				</h:outputText>
+			</h:panelGroup>
 		</ui:define>
 
 		<ui:define name="caseBody">
@@ -86,6 +102,11 @@
 					hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
 				<h:outputScript library="js" name="case-detail-default-responsiveness.js" />
 			</ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+			
+			<!-- Add new panel -->
+			<div class="task-details-item custom-task-details-panel">
+				<p>Custom panel</p>
+			</div>
 		</ui:define>
 
 		<ui:define name="caseFilter">
