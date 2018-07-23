@@ -10,7 +10,6 @@ caseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 caseCount Integer #field
 caseCountOfOneServer Integer #field
 caseCustomVarChars java.util.List<String> #field
-caseCustomVarCharSearchCriteria ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria #field
 caseId Long #field
 cases java.util.List<ch.ivy.addon.portalkit.bo.RemoteCase> #field
 caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
@@ -44,3 +43,4 @@ tempElapsedTimeStatistic ch.ivy.ws.addon.ElapsedTimeStatistic #field
 tempErrors java.util.List<ch.ivy.ws.addon.WsException> #field
 username String #field
 tempCaseCustomVarChars java.util.List<String> #field
+caseCustomVarCharSearchCriteria ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria #field
