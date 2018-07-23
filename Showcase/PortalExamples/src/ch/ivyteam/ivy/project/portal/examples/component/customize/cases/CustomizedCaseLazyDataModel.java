@@ -38,7 +38,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	}
 
 	@Override
-	public void extendSortTasksInNotDisplayedTaskMap() {
+	public void extendSortCasesInNotDisplayedCaseMap() {
 		if (CUSTOM_VARCHAR_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
 			comparator = RemoteCaseComparator.comparatorString(RemoteCase::getCustomVarCharField1);
 		} else if (CUSTOM_TIMESTAMP_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
