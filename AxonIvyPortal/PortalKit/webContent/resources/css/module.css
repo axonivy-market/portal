@@ -4922,6 +4922,10 @@ margin-top
 	width: 90%;
 }
 
+.custom-val-selection > input {
+	padding-left: 0px !important;
+}
+
 .add-custom-val {
 	float: right;
 	margin-top: 10px;
