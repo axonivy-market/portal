@@ -8,7 +8,7 @@
 
   <h:panelGroup id="username-deputy" class="substitution-user-selection-container" layout="block"
     rendered="#{absenceBean.substitutionManagementCapable and !data.isLoadDeputy}">
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}:" />
+    <h:outputText styleClass="substituted-user-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}:" />
     <p:spacer styleClass="u-buttons-spacer" />
     <p:autoComplete id="substituted-user" scrollHeight="200" dropdown="true" size="35" value="#{data.selectedUser}"
       required="true" completeMethod="#{logic.autoCompleteForUser}" var="user" itemLabel="#{user.name}"
