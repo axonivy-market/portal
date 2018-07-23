@@ -116,7 +116,7 @@
 .ui-selectoneradio label, .ui-selectoneradio label.ui-state-disabled {
   font-size: 1.2rem;
   opacity: 1;
-  color: rgba(0, 0, 0, 1);
+  color: #757575;
 }
 
 .ui-selectoneradio label.ui-state-disabled {
@@ -529,7 +529,7 @@
 
 .ui-datatable table tbody tr td {
   height: 18px;
-  color: rgba(0, 0, 0, 1) !important;
+  color: #757575 !important;
   font-size: 1.2rem;
   border-left: none;
   border-top: none;
@@ -1986,6 +1986,9 @@ a.case-details-document-add-link {
 
 .case-description-input {
   width: 75%;
+}
+.js-description-column .ui-inplace .ui-inplace-display {
+  color: rgba(0,0,0,0.5) !important;
 }
 
 .case-name-input {
