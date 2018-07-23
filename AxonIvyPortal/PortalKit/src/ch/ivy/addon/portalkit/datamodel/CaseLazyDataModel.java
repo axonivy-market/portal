@@ -249,7 +249,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		} else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
 			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getState);
 		} else {
-			extendSortTasksInNotDisplayedTaskMap();
+			extendSortCasesInNotDisplayedCaseMap();
 		}
 
 		if (comparator != null && queryCriteria.isSortDescending()) {
@@ -261,7 +261,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
 	/**
 	 * <p>
-	 * Your customized data model needs to override this method if your customized task list has new columns/fields.
+	 * Your customized data model needs to override this method if your customized case list has new columns/fields.
 	 * </p>
 	 * <p>
 	 * <b>Example: </b> <code><pre>
@@ -276,7 +276,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 	 * </pre></code>
 	 * </p>
 	 */
-	protected void extendSortTasksInNotDisplayedTaskMap() {
+	protected void extendSortCasesInNotDisplayedCaseMap() {
 		// Placeholder for customization
 	}
 
