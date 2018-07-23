@@ -652,7 +652,7 @@ TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
 Ae0 f43 caseData 'customFields.timestamp.1=new DateTime()
-customFields.varchar.1="CustomVarcharField1"
+customFields.varchar.1="CustomVarcharField1" + param.count
 businessCase.attach=false' #txt
 Ae0 f43 showInStartList 1 #txt
 Ae0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
