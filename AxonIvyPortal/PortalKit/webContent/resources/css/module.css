@@ -114,7 +114,7 @@
 
 /* =================== RADIO BUTTON ====================== */
 .ui-selectoneradio label, .ui-selectoneradio label.ui-state-disabled {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   opacity: 1;
   color: #757575;
 }
@@ -178,8 +178,8 @@
 
 /* =================== CHECKBOX ====================== */
 .ui-selectmanycheckbox label, .ui-selectmanycheckbox label.ui-state-disabled {
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 1);
+  font-size: 1.4rem;
+  color: #757575;
   opacity: 1;
 }
 
