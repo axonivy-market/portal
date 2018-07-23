@@ -6,10 +6,10 @@ import ch.ivy.addon.portalkit.comparator.CaseFilterComparator;
 
 public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
-  private CaseCreationDateFilter caseCreationDateFilter = new CaseCreationDateFilter();
-  private CaseCreatorFilter caseCreatorFilter = new CaseCreatorFilter();
-  private CaseDescriptionFilter caseDescriptionFilter = new CaseDescriptionFilter();
-  private CaseFinishedDateFilter caseFinishedDateFilter = new CaseFinishedDateFilter();
+  protected CaseCreationDateFilter caseCreationDateFilter = new CaseCreationDateFilter();
+  protected CaseCreatorFilter caseCreatorFilter = new CaseCreatorFilter();
+  protected CaseDescriptionFilter caseDescriptionFilter = new CaseDescriptionFilter();
+  protected CaseFinishedDateFilter caseFinishedDateFilter = new CaseFinishedDateFilter();
 
   public DefaultCaseFilterContainer() {
     super();
