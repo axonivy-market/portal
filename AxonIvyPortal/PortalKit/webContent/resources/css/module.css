@@ -633,10 +633,10 @@
 .ui-treetable table tbody tr td {
   padding-left: 10px;
   padding-right: 10px;
-  color: rgba(0,0,0,1);
+  color: #757575;
   border: none;  
   height: 19px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: left;
 }
 
@@ -3580,6 +3580,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   line-height: 39px;
 }
 /********************************** ABSENCES AND DEPUTY **********************************/
+.substituted-user-text {
+  font-size: 1.4rem;
+  font-family: 'robotoregular';
+  color: #757575;
+}
+
 .absences-view-command-buttons {
   float: right;
 }
