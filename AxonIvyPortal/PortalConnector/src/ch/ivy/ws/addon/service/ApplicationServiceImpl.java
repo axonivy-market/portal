@@ -2,10 +2,14 @@ package ch.ivy.ws.addon.service;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivyteam.ivy.application.ActivityOperationState;
@@ -64,5 +68,16 @@ public class ApplicationServiceImpl implements IApplicationService {
     application.setId(foundApplication.getId());
     return application;
   }
-
+  
+  @Override
+  public List<Long> convertApplicationIdsToList(String applicationIds) {
+	if (StringUtils.isBlank(applicationIds)) {
+		return Collections.emptyList();
+	}
+	return Arrays.stream(applicationIds.split("\\s*,\\s*"))
+			.filter(id -> id.trim().matches("\\d+"))
+			.map(id -> Long.valueOf(id.trim()))
+			.collect(Collectors.toList());
+  }
+	
 }
