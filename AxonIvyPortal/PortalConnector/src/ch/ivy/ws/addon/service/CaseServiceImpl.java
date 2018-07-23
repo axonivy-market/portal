@@ -644,25 +644,27 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
   
   @Override
-  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit, List<IvyApplication> applications) throws WSException {
+  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit, String applications) throws WSException {
     try {
       List<String> customVarChars = new ArrayList<>();
       PortalCaseDAO portalCaseDAO = new PortalCaseDAO();
+      
+      List<Long> applicationIds = WsServiceFactory.getApplicationService().convertApplicationIdsToList(applications);
       switch (portalCaseCustomVarField) {
         case CUSTOM_VAR_CHAR_1:
-            customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit, applications);
+            customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit, applicationIds);
           break;
         case CUSTOM_VAR_CHAR_2:
-          customVarChars = portalCaseDAO.findCustomVarChar2Fields(keyword, limit, applications);
+          customVarChars = portalCaseDAO.findCustomVarChar2Fields(keyword, limit, applicationIds);
           break;
         case CUSTOM_VAR_CHAR_3:
-          customVarChars = portalCaseDAO.findCustomVarChar3Fields(keyword, limit, applications);
+          customVarChars = portalCaseDAO.findCustomVarChar3Fields(keyword, limit, applicationIds);
           break;
         case CUSTOM_VAR_CHAR_4:
-          customVarChars = portalCaseDAO.findCustomVarChar4Fields(keyword, limit, applications);
+          customVarChars = portalCaseDAO.findCustomVarChar4Fields(keyword, limit, applicationIds);
           break;
         case CUSTOM_VAR_CHAR_5:
-          customVarChars = portalCaseDAO.findCustomVarChar5Fields(keyword, limit, applications);
+          customVarChars = portalCaseDAO.findCustomVarChar5Fields(keyword, limit, applicationIds);
           break;
         default:
           break;

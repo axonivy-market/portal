@@ -1,7 +1,12 @@
 package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
@@ -63,6 +68,35 @@ public class ApplicationService extends AbstractService<Application> {
       }
     }
     return applicationNames;
+  }
+  
+  public List<Long> getApplicationIds(List<IvyApplication> ivyApplications) {
+	if (CollectionUtils.isEmpty(ivyApplications)) {
+		return Collections.emptyList();
+	}
+	return ivyApplications.stream()
+			.filter(app -> app.getIsActive())
+			.map(IvyApplication::getId)
+			.collect(Collectors.toList());
+  }
+  
+  public List<Long> getApplicationIdsByApplicationNames(List<String> applicationNames, List<IvyApplication> ivyApplications){
+	if (CollectionUtils.isEmpty(applicationNames) || CollectionUtils.isEmpty(ivyApplications)) {
+		return Collections.emptyList();
+	}
+	return ivyApplications.stream()
+			.filter(app -> applicationNames.contains(app.getName()))
+			.map(IvyApplication::getId)
+			.collect(Collectors.toList());
+  }
+  
+  public String convertApplicationIdsToString(List<Long> applicationIds) {
+	if (CollectionUtils.isEmpty(applicationIds)) {
+		return StringUtils.EMPTY;
+	}
+	return applicationIds.stream()
+			.map(id -> String.valueOf(id))
+			.collect(Collectors.joining(","));
   }
   
   public long countIvyApplications(List<Application> applications) {
