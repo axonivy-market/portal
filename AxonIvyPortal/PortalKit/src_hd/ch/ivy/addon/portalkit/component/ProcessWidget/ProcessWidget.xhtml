@@ -279,7 +279,7 @@
 					<div class="field-group">
 						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
 							for="external-process-name" />
-						<p:inputText id="external-process-name" value="#{processWidgetBean.editingProcess.processName}" required="true"
+						<p:inputText id="external-process-name" value="#{processWidgetBean.editingProcess.processName}" required="true" styleClass="favorite-process-input-field"
 							requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} 
                     #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
 						<p:message for="external-process-name" />
@@ -288,7 +288,7 @@
 				<div class="field-group">
 					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}"
 						for="process-start-link" />
-					<p:inputText id="process-start-link" value="#{processWidgetBean.editingProcess.link}" required="true"
+					<p:inputText id="process-start-link" value="#{processWidgetBean.editingProcess.link}" required="true" styleClass="favorite-process-input-field"
 						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} 
                     #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
 						placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}"

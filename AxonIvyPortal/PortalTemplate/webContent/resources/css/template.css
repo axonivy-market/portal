@@ -287,6 +287,13 @@
 }
 
 /*Task template*/
+.task-template-title {
+	font-family: robotoregular;
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: #757575
+}
+
 .task-template-title-icon {
 	margin-right: 5px;
 }

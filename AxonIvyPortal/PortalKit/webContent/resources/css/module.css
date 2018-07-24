@@ -114,9 +114,9 @@
 
 /* =================== RADIO BUTTON ====================== */
 .ui-selectoneradio label, .ui-selectoneradio label.ui-state-disabled {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   opacity: 1;
-  color: rgba(0, 0, 0, 1);
+  color: #757575;
 }
 
 .ui-selectoneradio label.ui-state-disabled {
@@ -179,7 +179,7 @@
 /* =================== CHECKBOX ====================== */
 .ui-selectmanycheckbox label, .ui-selectmanycheckbox label.ui-state-disabled {
   font-size: 1.2rem;
-  color: rgba(0, 0, 0, 1);
+  color: #757575;
   opacity: 1;
 }
 
@@ -532,7 +532,7 @@
 
 .ui-datatable table tbody tr td {
   height: 18px;
-  color: rgba(0, 0, 0, 1) !important;
+  color: #757575 !important;
   font-size: 1.2rem;
   border-left: none;
   border-top: none;
@@ -632,10 +632,10 @@
 .ui-treetable table tbody tr td {
   padding-left: 10px;
   padding-right: 10px;
-  color: rgba(0,0,0,1);
+  color: #757575;
   border: none;  
   height: 19px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: left;
 }
 
@@ -916,7 +916,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: -ms-inline-flexbox !important;
 }
 .dialog-autocomplete-add-new-process .ui-autocomplete-input {
-  width: 93% !important;
+  width: 95% !important;
 }
 .ui-autocomplete-input {
   padding: 6px 10px 6px 6px !important;
@@ -997,10 +997,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   font-family: 'FontAwesome';
   content: "\f077";
   font-size: 1.4rem;
-}
-
-.ui-autocomplete .ui-autocomplete-input {
-  padding-right: 25px !important;
 }
 
 .ui-autocomplete-panel {
@@ -1940,6 +1936,10 @@ a.case-details-document-add-link {
   width: 75%;
 }
 
+.js-description-column .ui-inplace .ui-inplace-display {
+  color: rgba(0,0,0,0.5) !important;
+}
+
 .case-name-input {
   flex: 1 0 70%;
   height: 38px;
@@ -2145,6 +2145,10 @@ a.case-details-document-add-link {
 .process-widget .favorite-process-title {
   font-size: 1.4rem; 
   margin-top: 8px;
+}
+
+.favorite-process-input-field {
+  width: 88% !important;
 }
 
 .process-widget .default-process-title {
@@ -3523,6 +3527,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   line-height: 39px;
 }
 /********************************** ABSENCES AND DEPUTY **********************************/
+.substituted-user-text {
+  font-size: 1.4rem;
+  font-family: 'robotoregular';
+  color: #757575;
+}
+
 .absences-view-command-buttons {
   float: right;
 }
@@ -4773,6 +4783,8 @@ margin-top
 
 .ui-tabs-top .ui-tabs-nav li a {
   font-size: 1.4rem;
+  font-family: robotoregular;
+  color: #757575 !important;
 }
 
 .create-express-workflow-container {
