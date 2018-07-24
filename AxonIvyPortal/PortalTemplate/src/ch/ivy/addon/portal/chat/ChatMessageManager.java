@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,6 +23,8 @@ public final class ChatMessageManager {
   private static final String LINE_SEPARATOR = System.getProperty("line.separator");
   private static final String CONVERSATION_FILE_PATH = "conversations" + java.io.File.separator + "%s.token";
   private static final String UTF_8 = "UTF-8";
+  
+  private static Map<String, Object> lockMap = new Hashtable<>();
 
   private ChatMessageManager() {}
 
@@ -107,9 +111,11 @@ public final class ChatMessageManager {
   
   public static void storeUnreadMessageInMemory(Message message) {
     String attrName = messageAttribute(message.getRecipients());
-    List<Message> messages = getUnreadMessagesInMemory(message.getRecipients());
-    messages.add(message);
-    Ivy.wf().getApplication().setAttribute(attrName, messages);
+    synchronized (getCommon(attrName)) {
+      List<Message> messages = getUnreadMessagesInMemory(message.getRecipients());
+      messages.add(message);
+      Ivy.wf().getApplication().setAttribute(attrName, messages);
+    }
   }
   
   @SuppressWarnings("unchecked")
@@ -125,5 +131,16 @@ public final class ChatMessageManager {
 
   private static String messageAttribute(List<String> participants) {
     return "Portal_Chat_" + generateFileName(participants);
+  }
+  
+  private static Object getCommon(String value) {
+    synchronized (lockMap) {
+      Object common = lockMap.get(value);
+      if (common == null) {
+        common = new Object();
+        lockMap.put(value, common);
+      }
+      return common;
+    }
   }
 }
