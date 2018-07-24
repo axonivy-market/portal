@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.CasePage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
@@ -29,7 +29,7 @@ public class CaseCategoryMenuTest extends BaseTest {
 
     homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     caseWidgetPage.toggleCategoryMenu();
     assertEquals(1, caseWidgetPage.getNumberOfCases());
     assertEquals(1, caseWidgetPage.countCategoryRoots());
@@ -42,7 +42,7 @@ public class CaseCategoryMenuTest extends BaseTest {
 
     homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     caseWidgetPage.toggleCategoryMenu();
     assertEquals(1, caseWidgetPage.getNumberOfCases());
     assertEquals(2, caseWidgetPage.countCategoryRoots());

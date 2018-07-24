@@ -10,7 +10,7 @@ import org.openqa.selenium.TimeoutException;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
-import portal.guitest.page.CasePage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
@@ -47,7 +47,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     
     @Test
     public void testShowCaseNoteHistory() {
-        CasePage casePage = mainMenuPage.selectCaseMenu();
+        CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
         detailsPage = casePage.openDetailsOfCaseHasName(CASE_NAME);        
         String caseName = casePage.getCaseName();
         String caseId = casePage.getCaseId();

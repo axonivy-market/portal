@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.CasePage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
@@ -33,7 +33,7 @@ public class BusinessCaseTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.isCaseDisplayed(BUSINESS_CASE_NAME));
     assertFalse(casePage.isCaseDisplayed(TECHNICAL_CASE_NAME));
   }
@@ -45,7 +45,7 @@ public class BusinessCaseTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.isCaseDisplayed(BUSINESS_CASE_NAME));
     assertFalse(casePage.isCaseDisplayed(TECHNICAL_CASE_NAME));
   }

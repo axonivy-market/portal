@@ -35,9 +35,9 @@
 				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" dataModel="#{caseView.dataModel}" />
 
 			<!-- New field -->
-			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
 				componentToBeUpdated="" sortedField="customVarCharField1" sortable="true" value="customVarCharField1" dataModel="#{caseView.dataModel}" />
-			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
 				componentToBeUpdated="" sortedField="customTimestampField1" sortable="true" value="customTimestampField1" dataModel="#{caseView.dataModel}" />
 		</ui:define>
 
@@ -75,8 +75,8 @@
 			<p:tooltip for="case-state-cell" value="#{caseBean.getState(case)}" />
 
 			<!-- New field -->
-			<h:panelGroup styleClass="customized-case-header-column">
-				<h:outputText value="#{case.customVarCharField1}" styleClass="case-header-default-cell customized-case-header-column" />
+			<h:panelGroup id="customVarCharField1-column-case-header-panel" styleClass="customized-case-header-column">
+				<h:outputText id="customVarCharField1-column-case-header-text" value="#{case.customVarCharField1}" styleClass="case-header-default-cell customized-case-header-column" />
 			</h:panelGroup>
 			<h:panelGroup styleClass="customized-case-header-column">
 				<h:outputText value="#{case.customTimestampField1}" styleClass="case-header-end-time-cell case-header-default-cell customized-case-header-column">
