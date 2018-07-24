@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.CasePage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
@@ -26,7 +26,7 @@ public class CaseFilterTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
     casePage.openAdvancedFilter("Description", "description");
     casePage.filterByDescription("random text");
@@ -43,7 +43,7 @@ public class CaseFilterTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
     casePage.openAdvancedFilter("Description", "description");
     casePage.filterByDescription("Leave");
@@ -60,7 +60,7 @@ public class CaseFilterTest extends BaseTest {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
     String filterName = "MyFilter";
 

@@ -7,7 +7,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
-import portal.guitest.page.CasePage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -16,7 +16,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
   private HomePage homePage;
   private AdminSettingsPage adminSettingsPage;
-  private CasePage casePage;
+  private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
   private TaskWidgetPage taskWidgetPage;
 

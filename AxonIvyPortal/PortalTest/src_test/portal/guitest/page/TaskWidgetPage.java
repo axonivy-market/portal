@@ -139,10 +139,10 @@ public class TaskWidgetPage extends TemplatePage {
     return Long.valueOf(text);
   }
 
-  public CasePage openRelatedCaseOfTask() {
+  public CaseWidgetPage openRelatedCaseOfTask() {
     click(findElementByCssSelector("*[id$='task-details-container'] *[id$='related-case']"));
     waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
-    return new CasePage();
+    return new CaseWidgetPage();
   }
 
   public String getRelatedCase() {
