@@ -60,7 +60,7 @@
               sortBy="#{absence.userFullName}">
               <h:outputText value="#{absenceBean.getDisplayedName(absence)}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" width="100"
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}" width="100"
               styleClass="absence-date-field" sortBy="#{absence.startDateInclusive}">
               <h:outputText value="#{absence.startDateInclusive}">
                 <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
