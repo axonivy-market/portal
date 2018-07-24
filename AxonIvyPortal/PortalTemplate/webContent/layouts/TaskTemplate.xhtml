@@ -18,10 +18,10 @@
       <ui:insert name="breadCrumb" />
 
       <div>
-        <div class="Fleft Wid100 Fs20 foreground-text-color MarTop10">
+        <div class="Fleft Wid100 Fs14 foreground-text-color MarTop10">
           <ui:insert name="taskName">
             <span class=" fa fa-check-square-o task-template-title-icon"></span>
-            <h:outputText id="title" title="#{task.name} (##{task.id})" value="#{task.name} (##{task.id})" />
+            <h:outputText styleClass="task-template-title" id="title" title="#{task.name} (##{task.id})" value="#{task.name} (##{task.id})" />
           </ui:insert>
         </div>
         <div class="Fright Wid70 MarBot20" >

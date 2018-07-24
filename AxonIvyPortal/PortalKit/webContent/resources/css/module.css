@@ -4801,6 +4801,8 @@ margin-top
 
 .ui-tabs-top .ui-tabs-nav li a {
   font-size: 1.4rem;
+  font-family: robotoregular;
+  color: #757575 !important;
 }
 
 .create-express-workflow-container {
