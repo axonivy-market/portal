@@ -138,9 +138,9 @@ public class MainMenuPage extends TemplatePage {
     return isReadAllCasePermission;
   }
 
-  public CasePage selectCaseMenu() {
+  public CaseWidgetPage selectCaseMenu() {
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + CASE_MENU_ICON_POSITION + ")").click();
-    return new CasePage();
+    return new CaseWidgetPage();
   }
 
   public void toggleCaseMenu() {

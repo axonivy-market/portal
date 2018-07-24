@@ -217,12 +217,12 @@ public abstract class TemplatePage extends AbstractPage {
     return new TaskWidgetPage();
   }
   
-  public CasePage openCaseList() {
+  public CaseWidgetPage openCaseList() {
     openMainMenu();
     WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
     caseListToggle.click();
     waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
-    return new CasePage();
+    return new CaseWidgetPage();
   }
 
   public GlobalSearch getGlobalSearch() {
