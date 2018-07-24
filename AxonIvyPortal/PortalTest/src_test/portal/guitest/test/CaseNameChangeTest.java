@@ -6,7 +6,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
-import portal.guitest.page.CasePage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
@@ -34,7 +34,7 @@ public class CaseNameChangeTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     detailsPage.changeCaseName(newCaseName, caseIndex);
     String updatedCaseName = detailsPage.getNameOfCaseAt(caseIndex);
@@ -47,7 +47,7 @@ public class CaseNameChangeTest extends BaseTest {
     int caseIndex = 0;
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     assertFalse(detailsPage.isCaseNameChangeComponentPresented(caseIndex));
   }

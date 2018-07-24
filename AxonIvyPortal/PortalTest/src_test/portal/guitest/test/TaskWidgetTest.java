@@ -12,7 +12,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.CasePage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -67,7 +67,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.openTaskDetails(0);
 
     String relatedCaseName = taskWidgetPage.getRelatedCase();
-    CasePage casePage = taskWidgetPage.openRelatedCaseOfTask();
+    CaseWidgetPage casePage = taskWidgetPage.openRelatedCaseOfTask();
 
     String caseName = casePage.getCaseName();
     assertEquals(relatedCaseName, caseName);

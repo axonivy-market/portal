@@ -220,7 +220,7 @@
 							<listitem>
 								<para>By default, filters are stored/restored in process model level. You can change this by setting the ui:param <code>filterGroupId</code> in <code>PortalCases.xhtml</code> to a new Long value.
 									<tip>
-										<para>If you have multiple task lists in your project, you may want to set <code>filterGroupId</code> to an unique identifier for each of your <code>PortalCases.xhtml across your projects</code></para>
+										<para>If you have multiple case lists in your project, you may want to set <code>filterGroupId</code> to an unique identifier for each of your <code>PortalCases.xhtml</code> across your projects</para>
 									</tip> 
 								</para>
 							</listitem>
@@ -244,10 +244,10 @@
 				</listitem>
 			</itemizedlist>
 			<screen>
-			CaseLazyDataModel dataModel = new CaseLazyDataModel();
-			dataModel.getQueryCriteria().setCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
-			dataModel.getSearchCriteria().setInvolvedUsername(true); // Use this code line if you would like to display the cases for all users
-			out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();
+CaseLazyDataModel dataModel = new CaseLazyDataModel();
+dataModel.getQueryCriteria().setCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
+dataModel.getSearchCriteria().setInvolvedUsername(true); // Use this code line if you would like to display the cases for all users
+out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();
 			</screen>
 		</para>
 	</sect2>

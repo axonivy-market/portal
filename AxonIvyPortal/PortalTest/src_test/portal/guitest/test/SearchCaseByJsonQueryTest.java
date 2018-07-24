@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.CasePage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 
@@ -27,7 +27,7 @@ public class SearchCaseByJsonQueryTest extends BaseTest {
     @Test
     public void testSearchCaseByJsonQuery() {
         redirectToRelativeLink("internalSupport/15FA421D253C6746/searchByCaseJsonQuery.ivp");
-        CasePage casePage = new CasePage();
+        CaseWidgetPage casePage = new CaseWidgetPage();
         assertEquals(1, casePage.getNumberOfCases());
     }
 

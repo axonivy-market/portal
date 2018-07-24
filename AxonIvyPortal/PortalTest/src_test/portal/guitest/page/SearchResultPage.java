@@ -47,17 +47,17 @@ public class SearchResultPage extends TemplatePage {
   }
 
   public String getCaseResult(int index) {
-    CasePage caseWidgetPage = new CasePage("search-results-tabview:case-results");
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage("search-results-tabview:case-results");
     return caseWidgetPage.getCaseNameAt(index);
   }
 
   public int countCase() {
-    CasePage caseWidgetPage = new CasePage("search-results-tabview:case-results");
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage("search-results-tabview:case-results");
     return caseWidgetPage.getNumberOfCases();
   }
 
   public boolean isCaseResultEmpty() {
-    CasePage caseWidgetPage = new CasePage("search-results-tabview:case-results");
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage("search-results-tabview:case-results");
     return caseWidgetPage.isEmpty();
   }
   
