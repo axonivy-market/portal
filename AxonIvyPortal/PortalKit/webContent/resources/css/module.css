@@ -189,7 +189,7 @@
 
 .ui-chkbox .ui-chkbox-label {
   font-size: 1.2rem;
-  color: rgba(0, 0, 0, 1);
+  color: #757575;
   margin: 3px 15px 0px 5px !important;
 }
 
@@ -488,6 +488,7 @@
   text-indent: 0;
   margin: -4px 0px -1px 10px;
   height: 20px;
+  width: 18px;
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon:before {
@@ -718,7 +719,7 @@
 /* override color of primefaces/modena label */
 
 .widget .ui-outputlabel {
-    color: black;
+    color: #757575;
 }
 /* =================== END LINK ====================== */
 
@@ -916,10 +917,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: -ms-inline-flexbox !important;
 }
 .dialog-autocomplete-add-new-process .ui-autocomplete-input {
-  width: 95% !important;
+  width: 93% !important;
 }
 .ui-autocomplete-input {
-  padding: 6px 10px 6px 6px !important;
+  padding: 6px 10px 6px 0 !important;
   font-family: "robotoregular" !important;
   font-size: 1.4rem !important;
   color: #757575 !important;
@@ -997,6 +998,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   font-family: 'FontAwesome';
   content: "\f077";
   font-size: 1.4rem;
+}
+
+.ui-autocomplete .ui-autocomplete-input {
+  padding-right: 25px !important;
 }
 
 .ui-autocomplete-panel {
@@ -2148,7 +2153,7 @@ a.case-details-document-add-link {
 }
 
 .favorite-process-input-field {
-  width: 88% !important;
+  width: 89% !important;
 }
 
 .process-widget .default-process-title {
