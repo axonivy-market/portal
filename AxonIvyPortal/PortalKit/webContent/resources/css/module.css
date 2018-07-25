@@ -178,7 +178,7 @@
 
 /* =================== CHECKBOX ====================== */
 .ui-selectmanycheckbox label, .ui-selectmanycheckbox label.ui-state-disabled {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #757575;
   opacity: 1;
 }
@@ -918,7 +918,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: -ms-inline-flexbox !important;
 }
 .dialog-autocomplete-add-new-process .ui-autocomplete-input {
-  width: 93% !important;
+  width: 95% !important;
 }
 .ui-autocomplete-input {
   padding: 6px 10px 6px 6px !important;
@@ -999,10 +999,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   font-family: 'FontAwesome';
   content: "\f077";
   font-size: 1.4rem;
-}
-
-.ui-autocomplete .ui-autocomplete-input {
-  padding-right: 25px !important;
 }
 
 .ui-autocomplete-panel {
@@ -2196,6 +2192,10 @@ a.case-details-document-add-link {
 .process-widget .favorite-process-title {
   font-size: 1.4rem; 
   margin-top: 8px;
+}
+
+.favorite-process-input-field {
+  width: 88% !important;
 }
 
 .process-widget .default-process-title {
@@ -4922,10 +4922,6 @@ margin-top
 
 .custom-val-selection .ui-autocomplete-input {
 	width: 90%;
-}
-
-.custom-val-selection > input {
-	padding-left: 0px !important;
 }
 
 .add-custom-val {
