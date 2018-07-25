@@ -169,14 +169,29 @@ div.ui-timepicker-div {
 }
 
 /*Style for stages process chain -----------------------------------------------------------------------------------*/
-.process-chain .process-step.visited .step-count-container span:before {
+.process-chain .circle-process-step.visited .circle-step-count-container span:before {
   border-color: @process-chain-menu-color;
 }
 
-.process-chain .process-step.waiting .step-count-container {
+.process-chain .circle-process-step.waiting .circle-step-count-container {
   border: solid 2px @process-chain-menu-color;
 }
 
-.process-chain .process-step .step-count-container {
+.process-chain .circle-process-step .circle-step-count-container {
+  background-color: @process-chain-menu-color;
+}
+
+.process-chain .horizontal-process-step.visited .horizontal-step-count-container span:before {
+  border-color: @process-chain-menu-color;
+}
+
+.process-chain .horizontal-process-step.waiting .horizontal-step-count-container {
+  border: solid 2px @process-chain-menu-color;
+}
+
+.process-chain .horizontal-process-step .horizontal-step-count-container {
+  background-color: @process-chain-menu-color;
+}
+.process-chain .line-process-step .line-step-count-container {
   background-color: @process-chain-menu-color;
 }
