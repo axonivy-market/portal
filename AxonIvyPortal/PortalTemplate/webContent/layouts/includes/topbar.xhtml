@@ -128,7 +128,7 @@
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
       <f:facet name="footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
-          id="close-button" type="button" onclick="PF('adminUI').hide();" immediate="true" />
+          id="close-button" type="button" onclick="PF('adminUI').hide();" />
       </f:facet>
     </p:dialog>
 
@@ -138,7 +138,7 @@
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
       <f:facet name="footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" 
-          id="close-dialog-button" type="button" onclick="PF('dialogClosingInformation').hide();" immediate="true" />
+          id="close-dialog-button" type="button" onclick="PF('dialogClosingInformation').hide();" />
       </f:facet>
     </p:dialog>
 
@@ -148,7 +148,7 @@
       <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy id="absence-settings" dialogName="absenceSetting" />
       <f:facet name="footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
-          id="cancel-absences-command" type="button" onclick="PF('absenceSetting').hide();" immediate="true" />
+          id="cancel-absences-command" type="button" onclick="PF('absenceSetting').hide();" />
       </f:facet>
     </p:dialog>
 
@@ -176,7 +176,7 @@
       <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
-          id="project-version-close-button" type="button" onclick="PF('project-info-dialog').hide();" immediate="true" />
+          id="project-version-close-button" type="button" onclick="PF('project-info-dialog').hide();" />
       </h:panelGroup>
     </p:dialog>
     

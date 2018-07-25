@@ -138,7 +138,7 @@
         update="@widgetVar(errorDialogEmail)"
         oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();updateGrowlEmail();} else {PF('#{cc.attrs.dialogName}').hide();PF('errorDialogEmail').show();}" />
       <p:spacer width="5px" />
-      <p:commandButton id="cancel-settings" immediate="true" type="button"
+      <p:commandButton id="cancel-settings" type="button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
         onclick="PF('#{cc.attrs.dialogName}').hide();" styleClass="portal-cancel-button" />
     </h:panelGroup>

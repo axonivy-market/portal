@@ -43,8 +43,7 @@
         update="@widgetVar(errorLanguageDialog) errors-message @widgetVar(mailLanguageDialog)" />
       <p:spacer width="5px" />
       <p:commandButton id="cancel-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-         onclick="PF('#{cc.attrs.dialogName}').hide()" type="button" immediate="true"
-        styleClass="portal-cancel-button" />
+         onclick="PF('#{cc.attrs.dialogName}').hide()" type="button" styleClass="portal-cancel-button" />
     </h:panelGroup>
 
     <p:dialog id="exception-handler-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
