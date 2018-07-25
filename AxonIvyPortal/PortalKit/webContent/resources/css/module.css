@@ -3403,6 +3403,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 /********************************** PROCESS CHAIN **********************************/
 
+/* CIRLE***/
 .process-chain {
   position: relative;
   float: right;
@@ -3411,7 +3412,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   clear: both;
 }
 
-.process-chain .process-step {
+.process-chain .circle-process-step {
   width: 14rem;
   height: 50px;
   display: inline-block;
@@ -3421,7 +3422,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   padding-left: 1rem;
 }
 
-.process-chain .process-step:not(:last-child) .step-count-container span:before {
+.process-chain .circle-process-step:not(:last-child ) .circle-step-count-container span:before {
   display: inline-block;
   content: "";
   border-top: 3px solid #E0E0E0;
@@ -3430,11 +3431,11 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   transform: translate(3.2rem, 1rem);
 }
 
-.process-chain .process-step.waiting .step-count-container {
+.process-chain .circle-process-step.waiting .circle-step-count-container {
   background-color: transparent;
 }
 
-.process-chain .process-step .step-count-container {
+.process-chain .circle-process-step .circle-step-count-container {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -3445,11 +3446,11 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin: auto;
 }
 
-.process-chain .process-step:last-child .step-count-container {
+.process-chain .circle-process-step:last-child .circle-step-count-container {
   line-height: 2.7;
 }
 
-.step-title {
+.process-chain .circle-step-title {
   margin-top: -20px;
   margin-bottom: 10px;
   display: block;
@@ -3459,7 +3460,78 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 100%;
 }
 
-.process-chain .process-step.current .step-title {
+.process-chain .circle-process-step.current .circle-step-title {
+  font-weight: bold;
+}
+
+/** HORIZONTAL */
+.process-chain .horizontal-process-step {
+  width: 14rem;
+  height: 120px;
+  font-size: 1.2rem;
+}
+
+.process-chain .horizontal-process-step:not(:last-child ) .horizontal-step-count-container span:before {
+  display: block;
+  content: "";
+  border-left: 3px solid #E0E0E0;
+  height: 77px;
+  margin: 42px 0px -106px 19px;
+}
+
+.process-chain .horizontal-process-step.waiting .horizontal-step-count-container {
+  background-color: transparent;
+}
+
+.process-chain .horizontal-process-step .horizontal-step-count-container {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: solid 2px transparent;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  float: left;
+}
+
+.process-chain .horizontal-process-step:last-child .horizontal-step-count-container {
+  line-height: 2.7;
+}
+
+.process-chain .horizontal-step-title {
+  padding-top: 14px;
+  padding-left: 10px;
+  display: flex;
+}
+
+.process-chain .horizontal-process-step.current .horizontal-step-title {
+  font-weight: bold;
+}
+
+/** LINE */
+.process-chain .line-process-step {
+  width: 14rem;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.process-chain .line-process-step.waiting .line-step-count-container {
+  background-color: #E0E0E0;
+}
+
+.process-chain .line-process-step .line-step-count-container {
+  height: 10px;
+  width: 99%
+}
+
+.process-chain .line-step-title {
+  margin-bottom: 10px;
+  display: block;
+  overflow: hidden;
+}
+
+.process-chain .line-process-step.current .line-step-title {
   font-weight: bold;
 }
 

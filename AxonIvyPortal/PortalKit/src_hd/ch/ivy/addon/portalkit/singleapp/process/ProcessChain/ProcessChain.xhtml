@@ -6,9 +6,11 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pm="http://primefaces.org/mobile">
 
 <cc:interface componentType="IvyComponent">
-	<cc:attribute name="componentId" type="java.lang.String" default="process-chain" />
-	<cc:attribute name="actualStepIndex" shortDescription="Actual step index or current step index" />
+	<cc:attribute name="componentId" type="java.lang.String" default="process-chain-component-id" />
+	<cc:attribute name="actualStepIndex" type="java.lang.Integer" default="2" shortDescription="Actual step index or current step index" />
 	<cc:attribute name="steps" shortDescription="List of step in the process chain" />
+	<cc:attribute name="type" type="java.lang.String" default="LINE" shortDescription="type of process chain: CIRCLE, LINE, HORIZONTAL" />
+
 	<cc:attribute name="stages" type="java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;" />
 	<cc:attribute name="currentIndex" type="java.lang.Integer" />
 </cc:interface>
@@ -17,12 +19,24 @@
 	<!-- Process chain of axon express -->
 	<div id="#{cc.attrs.componentId}" class="process-chain">
 		<c:forEach items="#{cc.attrs.steps}" var="stepName" varStatus="counter">
-			<h:panelGroup layout="block" id="step-info-#{counter.index}"
-				class="process-step #{cc.attrs.actualStepIndex eq counter.index ? 'current' :  cc.attrs.actualStepIndex > counter.index ? 'visited' : 'waiting'}">
-				<span class="step-title">${stepName}</span>
-				<h:panelGroup layout="block" id="step-count-container-#{counter.index}" styleClass="step-count-container">
-					<span>#{counter.index}</span>
+			<h:panelGroup rendered="#{cc.attrs.type == 'CIRCLE'}" layout="block" id="step-info-#{counter.index}"
+				class="circle-process-step #{cc.attrs.actualStepIndex eq counter.index ? 'current' :  cc.attrs.actualStepIndex > counter.index ? 'visited' : 'waiting'}">
+				<span class="circle-step-title">${stepName}</span>
+				<h:panelGroup layout="block" id="step-count-container-#{counter.index}" styleClass="circle-step-count-container">
+					<span>#{counter.index + 1}</span>
 				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{cc.attrs.type == 'HORIZONTAL'}" layout="block" id="step-info-#{counter.index}"
+				class="horizontal-process-step #{cc.attrs.actualStepIndex eq counter.index ? 'current' :  cc.attrs.actualStepIndex > counter.index ? 'visited' : 'waiting'}">
+				<h:panelGroup layout="block" id="step-count-container-#{counter.index}" styleClass="horizontal-step-count-container">
+					<span>#{counter.index + 1}</span>
+				</h:panelGroup>
+				<span class="horizontal-step-title">${stepName}</span>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{cc.attrs.type == 'LINE'}" layout="block" id="step-info-#{counter.index}"
+				class="line-process-step #{cc.attrs.actualStepIndex eq counter.index ? 'current' :  cc.attrs.actualStepIndex > counter.index ? 'visited' : 'waiting'}">
+				<span class="line-step-title">${stepName}</span>
+				<h:panelGroup layout="block" id="step-count-container-#{counter.index}" styleClass="line-step-count-container"/>
 			</h:panelGroup>
 			<p:tooltip for="step-info-#{counter.index}" value="#{stepName}" trackMouse="true" />
 		</c:forEach>
