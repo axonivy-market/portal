@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public final class ChatMessageManager {
   private static final String CONVERSATION_FILE_PATH = "conversations" + java.io.File.separator + "%s.token";
   private static final String UTF_8 = "UTF-8";
   
-  private static Map<String, Object> lockMap = new Hashtable<>();
+  private static Map<String, Object> lockMap = new HashMap<>();
 
   private ChatMessageManager() {}
 
