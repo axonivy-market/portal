@@ -75,7 +75,7 @@ public class ApplicationService extends AbstractService<Application> {
 		return Collections.emptyList();
 	}
 	return ivyApplications.stream()
-			.filter(app -> app.getIsActive())
+			.filter(IvyApplication::getIsActive)
 			.map(IvyApplication::getId)
 			.collect(Collectors.toList());
   }
@@ -95,7 +95,7 @@ public class ApplicationService extends AbstractService<Application> {
 		return StringUtils.EMPTY;
 	}
 	return applicationIds.stream()
-			.map(id -> String.valueOf(id))
+			.map(String::valueOf)
 			.collect(Collectors.joining(","));
   }
   
