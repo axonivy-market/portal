@@ -47,13 +47,11 @@ public class PortalCaseDAO extends AbstractDAO{
       query = getEM().createQuery(queryString);
       query.setParameter(fieldName, keyword);
       query.setParameter("applicationId", applicationIds);
-      //query.setParameter("applicationId", applications.stream().map(IvyApplication::getId).collect(Collectors.toList()));
     }
     else {
       queryString = String.format("Select distinct %1$s from PortalSystemIvyCase where %1$s is not null and applicationId in (:applicationId) order by %1$s", fieldName);
       query = getEM().createQuery(queryString);
       query.setParameter("applicationId", applicationIds);
-      //query.setParameter("applicationId", applications.stream().map(IvyApplication::getId).collect(Collectors.toList()));
     }
     if(limit > 0) {
       query.setMaxResults(limit);
