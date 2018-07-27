@@ -293,8 +293,10 @@ Dt0 f3 actionTable 'out=in1;
 ' #txt
 Dt0 f3 outTypes "portalKit_test.DataCreationData","portalKit_test.DataCreationData","portalKit_test.DataCreationData" #txt
 Dt0 f3 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Dt0 f3 caseData case.name=<%\=in1.caseName%> #txt
-Dt0 f3 taskData 'TaskA.EXPRI=2
+Dt0 f3 caseData 'case.name=<%\=in1.caseName%>
+case.category=<%\=in1.taskStructureInfo%>' #txt
+Dt0 f3 taskData 'TaskA.CATEGORY=<%\=in1.taskStructureInfo%>
+TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.caseName%>_A
@@ -302,6 +304,7 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0
+TaskB.CATEGORY=<%\=in1.taskStructureInfo%>
 TaskB.EXPRI=2
 TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
@@ -310,6 +313,7 @@ TaskB.PRI=2
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
+TaskC.CATEGORY=<%\=in1.taskStructureInfo%>
 TaskC.EXPRI=2
 TaskC.EXROL=Everybody
 TaskC.EXTYPE=0
