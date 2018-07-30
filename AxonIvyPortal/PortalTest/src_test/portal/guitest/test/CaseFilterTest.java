@@ -56,7 +56,7 @@ public class CaseFilterTest extends BaseTest {
   }
 
   @Test
-  public void testSaveTaskFilterOnDifferentTaskList() {
+  public void testSaveCaseFilterOnDifferentCaseList() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     MainMenuPage mainMenuPage = new MainMenuPage();
