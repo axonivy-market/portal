@@ -234,8 +234,8 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 	}
 
 	protected List<RemoteCase> sortCasesInNotDisplayedCaseMap() {
-		List<RemoteCase> notDisplayedTasks = new ArrayList<>();
-		notDisplayedTasks.addAll(notDisplayedCaseMap.values());
+		List<RemoteCase> notDisplayedCases = new ArrayList<>();
+		notDisplayedCases.addAll(notDisplayedCaseMap.values());
 		if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
 			comparator = RemoteCaseComparator.comparatorString(RemoteCase::getName);
 		} else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
@@ -255,8 +255,8 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		if (comparator != null && queryCriteria.isSortDescending()) {
 			comparator = comparator.reversed();
 		}
-		notDisplayedTasks.sort(comparator);
-		return notDisplayedTasks;
+		notDisplayedCases.sort(comparator);
+		return notDisplayedCases;
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 	/**
 	 * <p>
 	 * If your customized case list has new columns/fields, please extend the {@code caseQuery} parameter with the sort
-	 * query for these fields and also override the "extendSortCasesInNotDisplayedTaskMap" method.
+	 * query for these fields and also override the "extendSortCasesInNotDisplayedCaseMap" method.
 	 * </p>
 	 * <p>
 	 * <b>Example: </b> <code><pre>
