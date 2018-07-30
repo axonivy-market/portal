@@ -36,9 +36,9 @@
 
 			<!-- New field -->
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
-				componentToBeUpdated="" sortedField="customVarCharField1" sortable="true" value="customVarCharField1" dataModel="#{caseView.dataModel}" />
+				componentToBeUpdated="" sortedField="customVarCharField1" sortable="true" value="Customer Name" dataModel="#{caseView.dataModel}" />
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
-				componentToBeUpdated="" sortedField="customTimestampField1" sortable="true" value="customTimestampField1" dataModel="#{caseView.dataModel}" />
+				componentToBeUpdated="" sortedField="customTimestampField1" sortable="true" value="Shipment Date" dataModel="#{caseView.dataModel}" />
 		</ui:define>
 
 		<ui:define name="caseHeader">
@@ -118,8 +118,22 @@
 			<ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCreatorFilter filter="#{filterContainer.caseCreatorFilter}" dataModel="#{caseView.dataModel}" />
 
 			<!-- Add new filter -->
-			<ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="customVarCharField1-case-filter" caseFilter="#{filterContainer.customVarCharField1Filter}" dataModel="#{caseView.dataModel}">
-				<p:inputText id="customVarCharField1" value="#{filterContainer.customVarCharField1Filter.customVarCharField1}" />
+			<ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="customerNameField-case-filter" caseFilter="#{filterContainer.customerNameFieldFilter}" dataModel="#{caseView.dataModel}">
+				<p:inputText id="customVarCharField1" value="#{filterContainer.customerNameFieldFilter.customerNameField}" />
+			</ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
+			<ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="shipment-date-case-filter" caseFilter="#{filterContainer.shipmentDateFieldFilter}" dismissableOverlayPanel="false"
+				dataModel="#{caseView.dataModel}">
+				<h:panelGrid columns="3">
+					<h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" for="from-created-calendar" />
+					<p:spacer width="5" />
+					<p:calendar id="from-created-calendar" value="#{filterContainer.shipmentDateFieldFilter.fromFinishedDate}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredPattern}"
+						showOn="button" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+
+					<h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-created-calendar" />
+					<p:spacer width="5" />
+					<p:calendar id="to-created-calendar" value="#{filterContainer.shipmentDateFieldFilter.toFinishedDate}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredPattern}"
+						showOn="button" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+				</h:panelGrid>
 			</ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
 		</ui:define>
 
