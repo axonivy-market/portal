@@ -7,19 +7,29 @@ import ch.ivy.addon.portalkit.comparator.CaseFilterComparator;
 
 public class CustomizedCaseFilterContainer extends DefaultCaseFilterContainer {
 
-	private CustomVarCharField1Filter customVarCharField1Filter = new CustomVarCharField1Filter();
+  private CustomerNameFieldFilter customerNameFieldFilter = new CustomerNameFieldFilter();
+  private ShipmentDateFieldFilter shipmentDateFieldFilter = new ShipmentDateFieldFilter();
 
-	public CustomizedCaseFilterContainer() {
-		super();
-		filters.add(customVarCharField1Filter);
-		Collections.sort(filters, new CaseFilterComparator());
-	}
+  public CustomizedCaseFilterContainer() {
+    super();
+    filters.add(customerNameFieldFilter);
+    filters.add(shipmentDateFieldFilter);
+    Collections.sort(filters, new CaseFilterComparator());
+  }
 
-	public CustomVarCharField1Filter getCustomVarCharField1Filter() {
-		return customVarCharField1Filter;
-	}
+  public CustomerNameFieldFilter getCustomerNameFieldFilter() {
+    return customerNameFieldFilter;
+  }
 
-	public void setCustomVarCharField1Filter(CustomVarCharField1Filter customVarCharField1Filter) {
-		this.customVarCharField1Filter = customVarCharField1Filter;
-	}
+  public void setCustomerNameFieldFilter(CustomerNameFieldFilter customerNameFieldFilter) {
+    this.customerNameFieldFilter = customerNameFieldFilter;
+  }
+
+  public ShipmentDateFieldFilter getShipmentDateFieldFilter() {
+    return shipmentDateFieldFilter;
+  }
+
+  public void setShipmentDateFieldFilter(ShipmentDateFieldFilter shipmentDateFieldFilter) {
+    this.shipmentDateFieldFilter = shipmentDateFieldFilter;
+  }
 }

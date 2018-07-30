@@ -94,8 +94,8 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		}
 
 		List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
-		putCasesToNotDisplayedTaskMap(foundCases);
-		List<RemoteCase> notDisplayedCases = sortCasesInNotDisplayedTaskMap();
+		putCasesToNotDisplayedCaseMap(foundCases);
+		List<RemoteCase> notDisplayedCases = sortCasesInNotDisplayedCaseMap();
 		List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
 
 		storeDisplayedCases(notDisplayedCases);
@@ -233,7 +233,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		filterContainer = new DefaultCaseFilterContainer();
 	}
 
-	protected List<RemoteCase> sortCasesInNotDisplayedTaskMap() {
+	protected List<RemoteCase> sortCasesInNotDisplayedCaseMap() {
 		List<RemoteCase> notDisplayedTasks = new ArrayList<>();
 		notDisplayedTasks.addAll(notDisplayedCaseMap.values());
 		if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
@@ -421,7 +421,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		return displayedCases;
 	}
 
-	private void putCasesToNotDisplayedTaskMap(List<RemoteCase> cases) {
+	private void putCasesToNotDisplayedCaseMap(List<RemoteCase> cases) {
 		for (RemoteCase oneCase : cases) {
 			GlobalCaseId keyOfCase = globalCaseId(oneCase);
 			if (!displayedCaseMap.containsKey(keyOfCase) && !notDisplayedCaseMap.containsKey(keyOfCase)) {
