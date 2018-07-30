@@ -3403,8 +3403,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 /********************************** PROCESS CHAIN **********************************/
 
-/* CIRLE***/
-.process-chain {
+/* CIRCLE***/
+.circle-process-chain {
   position: relative;
   float: right;
   top: 20px;
@@ -3426,9 +3426,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   display: inline-block;
   content: "";
   border-top: 3px solid #E0E0E0;
-  width: 10.2rem;
-  margin: 0 1rem;
+  width: 102px;
+  margin: 0 10px;
   transform: translate(3.2rem, 1rem);
+}
+.process-chain .circle-process-step.hide-steps:not(:last-child ) .circle-step-count-container span:before {
+  border-top-style: dashed;
 }
 
 .process-chain .circle-process-step.waiting .circle-step-count-container {
@@ -3465,6 +3468,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 /** HORIZONTAL */
+.horizontal-process-chain {
+  position: relative;
+  float: left;
+  clear: both;
+}
+
 .process-chain .horizontal-process-step {
   width: 14rem;
   height: 120px;
@@ -3477,6 +3486,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   border-left: 3px solid #E0E0E0;
   height: 77px;
   margin: 42px 0px -106px 19px;
+}
+
+.process-chain .horizontal-process-step.hide-steps:not(:last-child ) .horizontal-step-count-container span:before {
+  border-left-style: dashed;
 }
 
 .process-chain .horizontal-process-step.waiting .horizontal-step-count-container {
@@ -3509,11 +3522,33 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 /** LINE */
+.line-process-chain {
+  position: relative;
+  float: right;
+  top: 20px;
+  right: 20px;
+  clear: both;
+}
+
 .process-chain .line-process-step {
-  width: 14rem;
+  width: 13rem;
   display: inline-block;
   text-align: center;
   font-size: 1.2rem;
+}
+
+.process-chain .line-process-step.hide-left-steps  {
+  width: 5rem;
+  height: 10px;
+  margin-bottom: -10px;
+  margin: 0px 0px -10px 10px;
+}
+
+.process-chain .line-process-step.hide-right-steps {
+  width: 5rem;
+  height: 10px;
+  margin-bottom: -10px;
+  margin: 0px 0px -10px 10px;
 }
 
 .process-chain .line-process-step.waiting .line-step-count-container {
@@ -3522,7 +3557,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .process-chain .line-process-step .line-step-count-container {
   height: 10px;
-  width: 99%
+  width: 99%;
 }
 
 .process-chain .line-step-title {
