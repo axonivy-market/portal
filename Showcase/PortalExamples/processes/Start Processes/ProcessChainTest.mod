@@ -43,6 +43,9 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>showSampleProcessChain.ivp</name>
+        <nameStyle>26,5,7
+</nameStyle>
+        <desc>This process will open a page, which contains 4 process chains.</desc>
     </language>
 </elementInfo>
 ' #txt
@@ -84,14 +87,17 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>This process open a page, which contains all process chain types:
-CIRCLE: All steps were displayed horizontal </name>
+1. sharp is circle, direction is horizontal
+2. sharp is circle, direction is vertical
+3. sharp is line, direction is horizontal
+4. sharp is line, direction is vertical</name>
         <nameStyle>66,7
-44,7
+167,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f5 40 162 368 44 -181 -16 #rect
+Pt0 f5 160 130 368 92 -181 -40 #rect
 Pt0 f5 @|IBIcon #fIcon
 >Proto Pt0 .type ch.ivyteam.ivy.project.portal.examples.Data #txt
 >Proto Pt0 .processKind NORMAL #txt

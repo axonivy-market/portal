@@ -101,7 +101,14 @@ Ps0 f9 actionTable 'out=in;
 ' #txt
 Ps0 f9 actionCode 'in.actualCurrentIndex = 0;' #txt
 Ps0 f9 type ch.ivyteam.ivy.project.portal.examples.customization.ProcessChainTest.ProcessChainTestData #txt
-Ps0 f9 168 42 112 44 0 -8 #rect
+Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init data</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f9 168 42 112 44 -21 -8 #rect
 Ps0 f9 @|StepIcon #fIcon
 Ps0 f10 expr out #txt
 Ps0 f10 109 64 168 64 #arcP
