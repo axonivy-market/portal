@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
+
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
@@ -15,9 +18,6 @@ import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
-
-import com.jayway.awaitility.Awaitility;
-import com.jayway.awaitility.Duration;
 
 public class ShowTaskNoteHistoryTest extends BaseTest {
     
@@ -46,7 +46,7 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
         taskTemplatePage.addNewNote(noteContent);
         taskTemplatePage.clickCancelButton();
         MainMenuPage mainMenuPage = new MainMenuPage();
-        Sleeper.sleepTight(2000);
+        Sleeper.sleepTight(15000);
         mainMenuPage.openTaskList();
         taskWidgetPage.openTaskDetails(0);
         taskWidgetPage.showNoteHistory();
