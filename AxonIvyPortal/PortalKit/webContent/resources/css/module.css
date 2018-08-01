@@ -3403,16 +3403,16 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 /********************************** PROCESS CHAIN **********************************/
 
-/* CIRCLE***/
-.circle-process-chain {
+/* CIRCLE HONRIZONTAL***/
+.circle-process-chain.horizontal-process-chain {
   position: relative;
-  float: right;
   top: 20px;
   right: 20px;
   clear: both;
+  float: right;
 }
 
-.process-chain .circle-process-step {
+.circle-process-chain .circle-horizontal-process-step {
   width: 14rem;
   height: 50px;
   display: inline-block;
@@ -3422,7 +3422,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   padding-left: 1rem;
 }
 
-.process-chain .circle-process-step:not(:last-child ) .circle-step-count-container span:before {
+.circle-process-chain .circle-horizontal-process-step:not(:last-child ) .circle-horizontal-step-container span:before {
   display: inline-block;
   content: "";
   border-top: 3px solid #E0E0E0;
@@ -3430,15 +3430,15 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin: 0 10px;
   transform: translate(3.2rem, 1rem);
 }
-.process-chain .circle-process-step.hide-steps:not(:last-child ) .circle-step-count-container span:before {
+.circle-process-chain .circle-horizontal-process-step.hide-steps:not(:last-child ) .circle-horizontal-step-container span:before {
   border-top-style: dashed;
 }
 
-.process-chain .circle-process-step.waiting .circle-step-count-container {
+.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
   background-color: transparent;
 }
 
-.process-chain .circle-process-step .circle-step-count-container {
+.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -3449,11 +3449,11 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin: auto;
 }
 
-.process-chain .circle-process-step:last-child .circle-step-count-container {
+.circle-process-chain .circle-horizontal-process-step:last-child .circle-horizontal-step-container {
   line-height: 2.7;
 }
 
-.process-chain .circle-step-title {
+.circle-process-chain .circle-horizontal-step-title {
   margin-top: -20px;
   margin-bottom: 10px;
   display: block;
@@ -3463,24 +3463,26 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 100%;
 }
 
-.process-chain .circle-process-step.current .circle-step-title {
+.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
   font-weight: bold;
 }
 
-/** HORIZONTAL */
-.horizontal-process-chain {
+/** CIRCLE VERTICAL */
+.circle-process-chain.vertical-process-chain {
   position: relative;
-  float: left;
+  top: 20px;
+  right: 20px;
   clear: both;
+  float: left;
 }
 
-.process-chain .horizontal-process-step {
+.circle-process-chain .circle-vertical-process-step {
   width: 14rem;
   height: 120px;
   font-size: 1.2rem;
 }
 
-.process-chain .horizontal-process-step:not(:last-child ) .horizontal-step-count-container span:before {
+.circle-process-chain .circle-vertical-process-step:not(:last-child ) .circle-vertical-step-container span:before {
   display: block;
   content: "";
   border-left: 3px solid #E0E0E0;
@@ -3488,15 +3490,15 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin: 42px 0px -106px 19px;
 }
 
-.process-chain .horizontal-process-step.hide-steps:not(:last-child ) .horizontal-step-count-container span:before {
+.circle-process-chain .circle-vertical-process-step.hide-steps:not(:last-child ) .circle-vertical-step-container span:before {
   border-left-style: dashed;
 }
 
-.process-chain .horizontal-process-step.waiting .horizontal-step-count-container {
+.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
   background-color: transparent;
 }
 
-.process-chain .horizontal-process-step .horizontal-step-count-container {
+.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -3507,22 +3509,22 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   float: left;
 }
 
-.process-chain .horizontal-process-step:last-child .horizontal-step-count-container {
+.circle-process-chain .circle-vertical-process-step:last-child .circle-vertical-step-container {
   line-height: 2.7;
 }
 
-.process-chain .horizontal-step-title {
+.circle-process-chain .circle-vertical-step-title {
   padding-top: 14px;
   padding-left: 10px;
   display: flex;
 }
 
-.process-chain .horizontal-process-step.current .horizontal-step-title {
+.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
   font-weight: bold;
 }
 
-/** LINE */
-.line-process-chain {
+/** LINE HORIZONTAL*/
+.line-process-chain.horizontal-process-chain {
   position: relative;
   float: right;
   top: 20px;
@@ -3530,46 +3532,90 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   clear: both;
 }
 
-.process-chain .line-process-step {
+.line-process-chain .line-horizontal-process-step {
   width: 13rem;
   display: inline-block;
   text-align: center;
   font-size: 1.2rem;
 }
 
-.process-chain .line-process-step.hide-left-steps  {
+.line-process-chain .line-horizontal-process-step.hide-left-steps  {
   width: 5rem;
   height: 10px;
   margin-bottom: -10px;
   margin: 0px 0px -10px 10px;
 }
 
-.process-chain .line-process-step.hide-right-steps {
+.line-process-chain .line-horizontal-process-step.hide-right-steps {
   width: 5rem;
   height: 10px;
   margin-bottom: -10px;
   margin: 0px 0px -10px 10px;
 }
 
-.process-chain .line-process-step.waiting .line-step-count-container {
+.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container {
   background-color: #E0E0E0;
 }
 
-.process-chain .line-process-step .line-step-count-container {
+.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
+  font-weight: bold;
+}
+
+.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
   height: 10px;
   width: 99%;
 }
 
-.process-chain .line-step-title {
+.line-process-chain .line-horizontal-step-title {
   margin-bottom: 10px;
   display: block;
   overflow: hidden;
 }
 
-.process-chain .line-process-step.current .line-step-title {
+/** LINE VERTICAL*/
+.line-process-chain.vertical-process-chain {
+  float: left;
+}
+.line-process-chain .line-vertical-process-step {
+  width: 7rem;
+  height: 120px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.line-process-chain .line-vertical-process-step.hide-left-steps {
+  width: 10px;
+  height: 30px;
+  margin: 9px 0px 10px 0px;
+}
+
+.line-process-chain .line-vertical-process-step.hide-right-steps {
+  width: 10px;
+  height: 30px;
+  margin: 9px 0px 10px 0px;
+}
+
+.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
+  background-color: #E0E0E0;
+}
+
+.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
   font-weight: bold;
 }
 
+.line-process-chain .line-vertical-process-step .line-vertical-step-container {
+  height: 99%;
+  width: 10px;
+  float: left;
+  width: 10px;
+}
+
+.line-process-chain .line-vertical-step-title {
+  margin-bottom: 10px;
+  display: block;
+  overflow: hidden;
+  padding-top: 49px;
+}
 /********************************** END PROCESS CHAIN **********************************/
 
 /********************************** ALL TASKS **********************************/
