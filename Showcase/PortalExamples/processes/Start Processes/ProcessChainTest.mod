@@ -17,8 +17,9 @@ Pt0 @EndTask f1 '' #zField
 Pt0 @RichDialog f3 '' #zField
 Pt0 @PushWFArc f4 '' #zField
 Pt0 @PushWFArc f2 '' #zField
+Pt0 @InfoButton f5 '' #zField
 >Proto Pt0 Pt0 ProcessChainTest #zField
-Pt0 f0 outLink start.ivp #txt
+Pt0 f0 outLink showSampleProcessChain.ivp #txt
 Pt0 f0 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Pt0 f0 inParamDecl '<> param;' #txt
 Pt0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
@@ -26,20 +27,30 @@ Pt0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
 Pt0 f0 guid 164DB506D426209F #txt
 Pt0 f0 requestEnabled true #txt
 Pt0 f0 triggerEnabled false #txt
-Pt0 f0 callSignature start() #txt
+Pt0 f0 callSignature showSampleProcessChain() #txt
+Pt0 f0 persist false #txt
+Pt0 f0 startName 'Show All Sample Process Chains' #txt
+Pt0 f0 startDescription 'Show All Sample Process Chains' #txt
+Pt0 f0 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f0 caseData businessCase.attach=true #txt
+Pt0 f0 showInStartList 1 #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start.ivp</name>
+        <name>showSampleProcessChain.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Pt0 f0 @C|.responsibility Everybody #txt
-Pt0 f0 81 49 30 30 -21 17 #rect
+Pt0 f0 81 49 30 30 -85 17 #rect
 Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f1 type ch.ivyteam.ivy.project.portal.examples.Data #txt
-Pt0 f1 337 49 30 30 0 15 #rect
+Pt0 f1 481 49 30 30 0 15 #rect
 Pt0 f1 @|EndIcon #fIcon
 Pt0 f3 targetWindow NEW #txt
 Pt0 f3 targetDisplay TOP #txt
@@ -54,12 +65,34 @@ Pt0 f3 responseMappingAction 'out=in;
 Pt0 f3 isAsynch false #txt
 Pt0 f3 isInnerRd false #txt
 Pt0 f3 userContext '* ' #txt
-Pt0 f3 168 42 112 44 0 -8 #rect
+Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show All Sample Process Chains</name>
+        <nameStyle>30,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f3 208 42 192 44 -92 -8 #rect
 Pt0 f3 @|RichDialogIcon #fIcon
 Pt0 f4 expr out #txt
-Pt0 f4 111 64 168 64 #arcP
+Pt0 f4 111 64 208 64 #arcP
 Pt0 f2 expr out #txt
-Pt0 f2 280 64 337 64 #arcP
+Pt0 f2 400 64 481 64 #arcP
+Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>This process open a page, which contains all process chain types:
+CIRCLE: All steps were displayed horizontal </name>
+        <nameStyle>66,7
+44,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f5 40 162 368 44 -181 -16 #rect
+Pt0 f5 @|IBIcon #fIcon
 >Proto Pt0 .type ch.ivyteam.ivy.project.portal.examples.Data #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
