@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/TaskTemplate.xhtml">
+		<ui:define name="title">ProcessChainTest</ui:define>
+		<ui:define name="simplePageContent">
+			<h:form id="form" style="heigh: 500px">
+				<div style="height: 200px; display: block;">
+					<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-circle-horizontal" componentId="component-circle-horizontal" sharp="CIRCLE" direction="HORIZONTAL"
+						isShowAllSteps="false" actualStepIndex="#{data.actualCurrentIndex}" steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
+				</div>
+				<div style="height: 200px; display: block;">
+					<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-line-horizontal" componentId="component-line-horizontal" sharp="LINE" direction="HORIZONTAL" isShowAllSteps="false"
+						actualStepIndex="#{data.actualCurrentIndex}" steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
+				</div>
+				<div style="height: 700px; width: 200px; float: left; display: block;">
+					<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-circle-vertical" componentId="component-circle-vertical" sharp="CIRCLE" direction="VERTICAL" isShowAllSteps="false"
+						actualStepIndex="#{data.actualCurrentIndex}" steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
+				</div>
+				<div style="height: 700px; width: 600px; float: left; display: block;">
+					<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-line-vertical" componentId="component-line-vertical" sharp="LINE" direction="VERTICAL" isShowAllSteps="false"
+						actualStepIndex="#{data.actualCurrentIndex}" steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
+				</div>
+				<div style="height: 200px; display: block; width: 600px;">
+					<h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
+						<p:commandButton value="Next Step" actionListener="#{logic.next}" id="next-button" process="@form" update="@form">
+						</p:commandButton>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -43,7 +43,7 @@
 						<code>customization.less</code>: to change the styles of Portal deeply. E.g. Portal's component styles.
 					</para>
 					<note>
-						Portal provides several variables (<code>@body-background-color</code>, <code>@menu-color</code>, <code>@sidebar-dimension-transition-duration</code>, <code>@sidebar-opacity-transition-duration</code>) to change Portal's style.
+						Portal provides several variables (<code>@body-background-color</code>, <code>@menu-color</code>, <code>@sidebar-dimension-transition-duration</code>, <code>@sidebar-opacity-transition-duration</code>, <code>@process-chain-menu-color</code>) to change Portal's style.
 						To override the variables, you should put overriding code (e.g. <code>@body-background-color: red</code>) at <code>customization.less</code> file.
 						<itemizedlist>
 							<listitem>
@@ -66,7 +66,11 @@
 									<code>@sidebar-opacity-transition-duration</code>: it is the opacity transition duration of the text on application menu.
 								</para>
 							</listitem>
-							
+							<listitem>
++								<para>
++									<code>@process-chain-menu-color</code>: it is the color of Process Chain component.
++								</para>
++							</listitem>
 						</itemizedlist>
 					</note>
 				</listitem>

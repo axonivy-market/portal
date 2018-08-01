@@ -98,4 +98,79 @@
 			</important>
 		</sect3>
 	</sect2>
+	<sect2 xml:id="axonivyportal.components.additionalcomponent.processchain">
+		<title>Process Chain</title>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.processchain.introduction">
+			<title>Introduction</title>
+			<para>
+				Process Chain component of Portal provides features for users to know status of all steps in a process: the step's working, these steps are done, these steps is not done.
+				These features are:
+			</para>
+			<orderedlist>
+				<listitem>
+					<para>
+						Support to display all working steps or display only helpful steps as begin, last, current, previous current, next current steps.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Support to change the sharp of process chain: circle or line.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Support to change direction of process chain: horizontal or vertical.
+					</para>
+				</listitem>
+			</orderedlist>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/AdditionalComponent/processChain.png" />
+				</imageobject>
+			</mediaobject>
+		</sect3>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.processchain.howtouse">
+			<title>How to use</title>
+			<para>
+				Process Chain component can be integrated in any widget by including this component into a page.
+				In order to use this component in a page, include this component to this page with following code:
+			</para>
+			<para>
+				<code>&lt;ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-circle-horizontal" </code>
+			</para>
+			<para>
+				<code>componentId="component-circle-horizontal" sharp="CIRCLE" direction="HORIZONTAL"</code>
+			</para>
+			<para>
+				<code>isShowAllSteps="FALSE" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" /&gt;</code>
+			</para>
+			<orderedlist>
+				<listitem>
+					<para>
+						Must to set value for <code>actualStepIndex</code> parameter. This is current step index.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Must to set value for <code>steps</code> parameter. This is list of working steps.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Can change <code>sharp</code> parameter to <code>CIRCLE</code> or <code>LINE</code> based on the requirement. Default value of this is <code>CIRCLE</code>.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Can change <code>direction</code> parameter to <code>HORIZONTAL</code> or <code>VERTICAL</code> based on the requirement. Default value of this is <code>HORIZONTAL</code>.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Can change <code>isShowAllSteps</code> parameter to <code>TRUE</code> or <code>FALSE</code> based on the requirement. Default value of this is <code>FALSE</code>.
+					</para>
+				</listitem>
+			</orderedlist>
+		</sect3>
+	</sect2>
 </sect1>

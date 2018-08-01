@@ -149,3 +149,52 @@ img[id*='additonalTaskUserAvatar'] {
 div.ui-timepicker-div {
 	width: 199px;
 }
+
+/*Style for stages process chain -----------------------------------------------------------------------------------*/
+.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
+  border-color: @process-chain-menu-color;
+}
+
+.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
+  border: solid 2px @process-chain-menu-color;
+}
+
+.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
+  background-color: @process-chain-menu-color;
+}
+
+.circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
+  border-color: @process-chain-menu-color;
+}
+
+.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
+  border: solid 2px @process-chain-menu-color;
+}
+
+.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
+  background-color: @process-chain-menu-color;
+}
+
+.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
+  background-color: @process-chain-menu-color;
+}
+
+.line-process-chain .line-horizontal-process-step.hide-left-steps  {
+  background: repeating-linear-gradient(90deg, @process-chain-menu-color, @process-chain-menu-color 10px, @body-background-color 10px, @body-background-color 20px);
+}
+
+.line-process-chain .line-horizontal-process-step.hide-right-steps {
+  background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, @body-background-color 10px, @body-background-color 20px);
+}
+
+.line-process-chain .line-vertical-process-step .line-vertical-step-container {
+  background-color: @process-chain-menu-color;
+}
+
+.line-process-chain .line-vertical-process-step.hide-left-steps  {
+  background: repeating-linear-gradient(180deg, @process-chain-menu-color, @process-chain-menu-color 10px, @body-background-color 10px, @body-background-color 20px);
+}
+
+.line-process-chain .line-vertical-process-step.hide-right-steps {
+  background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, @body-background-color 10px, @body-background-color 20px);
+}
