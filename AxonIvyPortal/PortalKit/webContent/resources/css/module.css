@@ -3539,18 +3539,26 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   font-size: 1.2rem;
 }
 
-.line-process-chain .line-horizontal-process-step.hide-left-steps  {
-  width: 5rem;
+.line-process-chain .line-horizontal-process-step.hide-left-steps {
+  width: 40px;
   height: 10px;
-  margin-bottom: -10px;
-  margin: 0px 0px -10px 10px;
+  vertical-align: bottom;
+  margin: 0px 0px 0px 10px;
+}
+
+_:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step.hide-left-steps {
+  vertical-align: auto;
 }
 
 .line-process-chain .line-horizontal-process-step.hide-right-steps {
-  width: 5rem;
+  width: 40px;
   height: 10px;
-  margin-bottom: -10px;
-  margin: 0px 0px -10px 10px;
+  vertical-align: bottom;
+  margin: 0px 0px 0px 10px;
+}
+
+_:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step.hide-right-steps {
+  vertical-align: auto;
 }
 
 .line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container {
@@ -3585,14 +3593,14 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .line-process-chain .line-vertical-process-step.hide-left-steps {
   width: 10px;
-  height: 30px;
-  margin: 9px 0px 10px 0px;
+  height: 40px;
+  margin: 9px 0px 0px 0px;
 }
 
 .line-process-chain .line-vertical-process-step.hide-right-steps {
   width: 10px;
-  height: 30px;
-  margin: 9px 0px 10px 0px;
+  height: 40px;
+  margin: 9px 0px 0px 0px;
 }
 
 .line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
