@@ -19,7 +19,7 @@
 			</p:selectOneRadio>
 
 			<h:panelGroup id="select-assignee" layout="block" styleClass="select-assignee">
-				<p:autoComplete id="user-selection" rendered="#{data.isAssignToUser}" scrollHeight="400" dropdown="true"
+				<p:autoComplete id="user-selection" rendered="#{data.isAssignToUser}" scrollHeight="400" dropdown="true" styleClass="express-assignee-autocomplete"
 					value="#{data.selectedUser}" completeMethod="#{workflowDefinitionBean.populateUserAutoComplete}" var="user" itemLabel="#{user.displayName}"
 					itemValue="#{user}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
 					moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
@@ -31,7 +31,7 @@
 					</p:column>
 				</p:autoComplete>
 
-				<p:autoComplete id="role-selection" rendered="#{!data.isAssignToUser}" scrollHeight="400" dropdown="true" 
+				<p:autoComplete id="role-selection" rendered="#{!data.isAssignToUser}" scrollHeight="400" dropdown="true" styleClass="express-assignee-autocomplete"
 					value="#{data.selectedRole}" completeMethod="#{workflowDefinitionBean.populateRoleAutoComplete}" var="role"
 					itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
 					itemValue="#{role}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100" selectLimit="100"
