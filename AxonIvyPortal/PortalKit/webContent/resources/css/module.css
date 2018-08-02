@@ -4863,6 +4863,10 @@ margin-top
   border-radius: 4px;
 }
 
+.express-assignee-autocomplete .ui-autocomplete-input {
+	padding-right: 20px !important;
+}
+
 /*Style for Stages breadcrumb-------------------------------------*/
 .stages-chain {
   position: relative;
