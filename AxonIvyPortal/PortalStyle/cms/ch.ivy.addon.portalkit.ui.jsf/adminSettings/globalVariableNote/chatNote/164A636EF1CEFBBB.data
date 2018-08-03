@@ -1,1 +1,0 @@
-Set to true to enable the chat feature. To make chat work with IIS, add the properties: enable_chunked_encoding=true; flush_packets=true to the isapi_redirect-1.2.42.properties file (<ivy engine>\misc\iis)

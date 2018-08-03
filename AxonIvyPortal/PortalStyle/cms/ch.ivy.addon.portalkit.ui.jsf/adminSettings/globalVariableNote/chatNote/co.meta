@@ -1,4 +1,0 @@
-co: name={chatNote} description={} changed={2018-07-19 10:56:38 CEST} changedby={dhtlong} visualorder={0} guid={164A636EF0E98418} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={164A636EF1CEFBBB} datatype={} isdefault={true} langid={en} description={} validfrom={2018-07-17 05:09:35 CEST} validto={} changed={2018-07-19 10:56:35 CEST} changedby={dhtlong} properties={} id={}
-val: guid={164A6378477376C5} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-17 05:10:08 CEST} validto={} changed={2018-07-19 10:56:38 CEST} changedby={dhtlong} properties={} id={}
-val: guid={164A637852485B07} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-07-17 05:10:11 CEST} validto={} changed={2018-07-19 10:56:38 CEST} changedby={dhtlong} properties={} id={}

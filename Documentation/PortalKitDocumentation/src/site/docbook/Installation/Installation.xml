@@ -775,13 +775,6 @@
 			</para>
 		</sect2>
 		<sect2>
-			<title>Migrate 7.0.5 to 7.0.6</title>
-			<para>
-				There are some changes (DefaultApplicationHomePage, DefaultLoginPage) in PortalStart process of Portal Template. If you have customized this process in your project,
-					copy the new PortalStart from Portal Template to your project and re-apply your customization. 
-			</para>
-		</sect2>
-		<sect2>
 			<title>Migrate 7.0.3 to 7.0.5 (or 7.1.0)</title>
 			<para>
 				There are some changes in PortalStart process of Portal Template. If you have customized this process in your project, copy the new PortalStart from Portal Template to your project and re-apply your customization. 
@@ -1044,9 +1037,6 @@
 				<title>Changes in 7.2</title>
 				<itemizedlist>
                     <listitem>
-                      <para>Set the chat feature to disable as default. Introduce the global variable in admin settings to disable/enable it.</para>
-                    </listitem>
-                    <listitem>
                       <para>Introduces the new page: Global search result, and supports the customization</para>
                     </listitem>
                     <listitem>
@@ -1093,9 +1083,6 @@
 			<sect2>
 				<title>Changes in 7.0 (Jakobshorn)</title>
 				<itemizedlist>
-					<listitem>
-						<para>Overrides the DefaultApplicationHomePage.ivp, DefaultLoginPage.ivp, DefaultEndPage.ivp processes, refer to <link xlink:show="new" xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#ServerAdministration-htmlworkflowui">Replacement Project</link>, check migration notes if you have the customized PortalStart.ivp process.</para>
-					</listitem>
 					<listitem>
 						<para>More search criteria for user in Task list are added and allowed to customize.</para>
 					</listitem>

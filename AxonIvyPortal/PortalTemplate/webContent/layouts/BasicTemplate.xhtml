@@ -70,7 +70,7 @@
           <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
           <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
           <ui:param name="showGlobalSearch" value="#{empty portalValidationBean.errorMessages}" />
-          <ui:param name="enablesChat" value="true" />
+          <ui:param name="enablesChat" value="#{enablesChat}" />
         </ui:include>
       </div>
 
