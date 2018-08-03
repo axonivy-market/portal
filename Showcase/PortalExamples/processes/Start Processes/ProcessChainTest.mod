@@ -87,10 +87,10 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>This process open a page, which contains all process chain types:
-1. sharp is circle, direction is horizontal
-2. sharp is circle, direction is vertical
-3. sharp is line, direction is horizontal
-4. sharp is line, direction is vertical</name>
+1. shape is circle, direction is horizontal
+2. shape is circle, direction is vertical
+3. shape is line, direction is horizontal
+4. shape is line, direction is vertical</name>
         <nameStyle>66,7
 167,7
 </nameStyle>
