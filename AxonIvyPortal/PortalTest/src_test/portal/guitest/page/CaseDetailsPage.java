@@ -15,21 +15,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
-  private static final String DOCUMENT_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:document";
+  private static final String DOCUMENT_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:case-body:document";
   private static final String CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR = "span[id$='responsive-handle-container']";
   private static final String HISTORY_COMPONENT_ID =
-      "case-widget:case-list-scroller:0:case-item:history:case-histories";
-  private static final String RELATED_TASKS_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:related-tasks";
+      "case-widget:case-list-scroller:0:case-item:case-body:history:case-histories";
+  private static final String RELATED_TASKS_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:case-body:related-tasks";
   private static final String HISTORY_LIST_CSS_SELECTOR = "div[id$='case-histories'] .author";
   private static final String GENERAL_INFORMATION_COMPONENT_ID =
-      "case-widget:case-list-scroller:0:case-item:general-information";
+      "case-widget:case-list-scroller:0:case-item:case-body:general-information";
   private static final String HISTORY_NOTE_CONTENT_CSS_SELECTOR = "a[id$='note-content']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[id$='user-full-name:user']";
   private static final String VIEW_NOTE_DIALOG_ID =
-      "case-widget:case-list-scroller:0:case-item:history:view-note-dialog";
-  private static final String UPLOAD_DOCUMENT_BUTTON_ID = "case-widget:case-list-scroller:0:case-item:document:add-document-command";
-  private static final String DELETE_DOCUMENT_BUTTON_ID = "case-widget:case-list-scroller:0:case-item:document:document-list:0:delete-file";
+      "case-widget:case-list-scroller:0:case-item:case-body:history:view-note-dialog";
+  private static final String UPLOAD_DOCUMENT_BUTTON_ID = "case-widget:case-list-scroller:0:case-item:case-body:document:add-document-command";
+  private static final String DELETE_DOCUMENT_BUTTON_ID = "case-widget:case-list-scroller:0:case-item:case-body:document:document-list:0:delete-file";
   private WebElement caseItem;
 
   @Override
@@ -195,14 +195,14 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isCaseDescriptionChangeComponentPresented(int caseIndex) {
-    return isElementPresent(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-description-input",
+    return isElementPresent(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:case-description-input",
         caseIndex)));
   }
 
   private void onSubmitDescriptionInplaceEditor(int caseIndex) {
     WebElement editor =
         findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:description:case-description-form:case-desription-inplace_editor", caseIndex));
+            "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-desription-inplace_editor", caseIndex));
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
     waitAjaxIndicatorDisappear();
@@ -210,7 +210,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onChangeDescriptionInput(String newDescription, int caseIndex) {
     WebElement caseDescriptionInput =
-        findElementById(String.format("case-widget:case-list-scroller:%d:case-item:description:case-description-form:case-description-input",
+        findElementById(String.format("case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-input",
             caseIndex));
     waitForElementDisplayed(caseDescriptionInput, true);
     caseDescriptionInput.clear();
@@ -220,7 +220,7 @@ public class CaseDetailsPage extends TemplatePage {
   private void onClickDescriptionInplace(int caseIndex) {
     WebElement caseDescriptionInplace =
         findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:description:case-description-form:case-desription-inplace_display", caseIndex));
+            "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-desription-inplace_display", caseIndex));
     waitForElementDisplayed(caseDescriptionInplace, true);
     caseDescriptionInplace.click();
   }
@@ -294,30 +294,30 @@ public class CaseDetailsPage extends TemplatePage {
   
   public void uploadDocumentWithoutError(String pathToFile) {
     openAddDocumentDialogAndUploadDocument(0, pathToFile);
-    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-close-command", 0)));
+    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
   }
   
   public String uploadDocumentWithError(String pathToFile){
     openAddDocumentDialogAndUploadDocument(0, pathToFile);
-    WebElement errorMsg = findElementByXpath(String.format("//*[@id='case-widget:case-list-scroller:%d:case-item:document:document-upload-form:upload-messages']/div/ul/li/span", 0));
+    WebElement errorMsg = findElementByXpath(String.format("//*[@id='case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-form:upload-messages']/div/ul/li/span", 0));
     String returnMsg = StringUtils.EMPTY;
     if(errorMsg.isDisplayed()){
       returnMsg =  errorMsg.getText();
     }
-    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-close-command", 0)));
+    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
     return returnMsg;
   }
   
   private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
     try{
-      click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:add-document-command", index)));
+      click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:add-document-command", index)));
     }
     catch (UnhandledAlertException e) {
       Alert alert = driver.switchTo().alert();
       alert.accept();
     }
     String uploadDialogId =
-        String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-dialog-", index);
+        String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-dialog-", index);
     waitForElementDisplayed(By.id(uploadDialogId), true);
     try{
       click(By.className("ui-fileupload-choose"));
