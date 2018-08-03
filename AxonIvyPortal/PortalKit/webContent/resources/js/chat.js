@@ -1,14 +1,13 @@
 $(document).ready(function() {
-	chatHandler = new ChatHandler();
-	chatHandler.stream();
-	chatHandler.setHeightForContactList();
+  chatHandler = new ChatHandler();
+  chatHandler.setHeightForContactList();
   $(window).resize(function() {
     chatHandler.setHeightForContactList();
   });
 });
 
 function ChatHandler() {
-	
+  
   function contain(s, keyword) {
     return s.indexOf(keyword) >= 0;
   }
@@ -123,35 +122,18 @@ function ChatHandler() {
   }
   
   function sendMessage() {
-    var messageContent = $('.js-input-message').val().trim();
-    if (messageContent) {
-      var messageCard = createMessageCard(messageContent);
+    var message = $('.js-input-message').val().trim();
+    if (message) {
+      var messageCard = createMessageCard(message);
       $(messageCard).addClass('sent');
       $('.js-message-card-list').append(messageCard);
       $('.js-input-message').val('');
       $('.js-message-card-list').scrollTop($('.js-message-card-list').prop('scrollHeight'));
       
       var recipient = $('.js-contact-card-name', '.js-show-chat-message.active').text();
-      $.ajax({
-          type: 'POST',
-          contentType: 'application/json',
-          url: "/"+ window.location.pathname.split("/")[1] + "/api/" + window.location.pathname.split("/")[4] + "/chat",
-          headers: {
-              "X-Requested-By": "IVY"
-          },
-          data: messageToJson(sender, messageContent, recipient),
-      });
+      handleChatMessageSending([{name: 'sender', value: sender}, {name: 'recipients', value: recipient}, {name: 'content', value: message}, {name: 'timestamp', value: new Date().toISOString()}]);
     }
   }
-  
-  function messageToJson(sender, message, recipient) {
-	    return JSON.stringify({
-	        "sender": sender,
-	        "content": message,
-	        "recipients": [recipient],
-	        "timestamp": new Date().toISOString()
-	    });
-	}
   
   function createMessageCard(message) {
     var div = document.createElement('div');
@@ -163,49 +145,7 @@ function ChatHandler() {
   }
   
   return {
-    stream : function () {
-      if (!window.XMLHttpRequest) {
-        console.log('XMLHttpRequest is not supported in your browser, so you can not use the chat feature!');
-        return;
-      }
-      var xhr = new XMLHttpRequest();
-      xhr.seenBytes = 0;
-      xhr.onerror = function() {
-        console.log('Error in streaming!');
-      };
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 3) {
-          var newData = xhr.response.substr(xhr.seenBytes);
-          var messages = JSON.parse(newData);
-          for (var i = 0; i < messages.length; i++) {
-            var message = messages[i];
-            
-            if (message.sender) {
-              if (!$(findContact(message.sender)).hasClass('active')) {
-                showNotification(message.sender);
-              } else {
-                showMessage(message);
-              }
-            } else {
-              if (message.action === 'REMOVE_CONTACT') {
-                setContactOffline(message.data);
-              } else if (message.action === 'ADD_CONTACT') {
-                setContactOnline(message.data);
-              }
-            }
-          }
-          
-          // TODO assume that whenever the chat message panel is active then the user already read the message.
-          $('.js-message-card-list').scrollTop($('.js-message-card-list').prop('scrollHeight'));
-
-          xhr.seenBytes = xhr.responseText.length;
-        }
-      };
-      xhr.open("GET", "/" + window.location.pathname.split("/")[1] + "/api/" + window.location.pathname.split("/")[4] + "/chat", true);
-      xhr.setRequestHeader("X-Requested-By", "IVY");
-      xhr.send();
-    },
-		
+    
     filter: function() {
       var chatMessages = $('.js-show-chat-message');
       $(chatMessages).show();
@@ -235,6 +175,27 @@ function ChatHandler() {
       if (e.keyCode === 13) {
         e.preventDefault();
         sendMessage();
+      }
+    },
+    
+    onMessage: function(message) {
+      
+      if (message.action) {
+        if (message.action === 'REMOVE_CONTACT') {
+          setContactOffline(message.data);
+        } else if (message.action === 'ADD_CONTACT') {
+          setContactOnline(message.data);
+        }
+      } else if (message.sender) {
+        if (!$(findContact(message.sender)).hasClass('active')) {
+          showNotification(message.sender);
+        } else {
+          showMessage(message);
+          // notifyMessageHasBeenRead();
+        }
+        
+        // TODO assume that whenever the chat message panel is active then the user already read the message.
+        $('.js-message-card-list').scrollTop($('.js-message-card-list').prop('scrollHeight'));
       }
     }
   }
