@@ -114,7 +114,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						Support to change the sharp of process chain: circle or line.
+						Support to change the shape of process chain: circle or line.
 					</para>
 				</listitem>
 				<listitem>
@@ -139,7 +139,7 @@
 				<code>&lt;ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-circle-horizontal" </code>
 			</para>
 			<para>
-				<code>componentId="component-circle-horizontal" sharp="CIRCLE" direction="HORIZONTAL"</code>
+				<code>componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"</code>
 			</para>
 			<para>
 				<code>isShowAllSteps="FALSE" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" /&gt;</code>
@@ -157,7 +157,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						Can change <code>sharp</code> parameter to <code>CIRCLE</code> or <code>LINE</code> based on the requirement. Default value of this is <code>CIRCLE</code>.
+						Can change <code>shape</code> parameter to <code>CIRCLE</code> or <code>LINE</code> based on the requirement. Default value of this is <code>CIRCLE</code>.
 					</para>
 				</listitem>
 				<listitem>

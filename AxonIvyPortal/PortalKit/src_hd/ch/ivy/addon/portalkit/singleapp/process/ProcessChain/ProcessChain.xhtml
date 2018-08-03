@@ -9,10 +9,10 @@
   
 <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            !!!!!THIS IS PROCESS CHAIN COMPONENT. JUST PUT THIS COMPONENT TO OUR PAGE, DEFAULT IS CIRCLE SHARP WITH HORIZONTAL DIRECTION.!!!!!!
+            !!!!!THIS IS PROCESS CHAIN COMPONENT. JUST PUT THIS COMPONENT TO OUR PAGE, DEFAULT IS CIRCLE SHAPE WITH HORIZONTAL DIRECTION.!!!!!!
             !!!!!WE CAN CHANGE BELOW PARAMETERS IN ORDER TO USING ANOTHER PROCESS CHAINS:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             !!!!!1. direction: DEFAULT IS HORIZONTAL, WE CAN ALSO CHANGE IT TO VERTICAL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            !!!!!2. sharp: DEFAULT IS CIRCLE, WE CAN ALSO CHANGE IT TO LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            !!!!!2. shape: DEFAULT IS CIRCLE, WE CAN ALSO CHANGE IT TO LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             !!!!!3. isShowAllSteps: DEFAULT IS FALSE, SHOWING IMPORTANCE STEPS. WE CAN SHOW ALL STEPS BY CHANGING IT TO TRUE !!!!!!!!!!!!!!!!!!
             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
@@ -23,7 +23,7 @@
   <cc:attribute name="actualStepIndex" type="java.lang.Integer" default="0" shortDescription="Actual step index or current step index" />
 
   <cc:attribute name="direction" type="java.lang.String" default="HORIZONTAL" shortDescription="direction of process chain: VERTICAL, HORIZONTAL" />
-  <cc:attribute name="sharp" type="java.lang.String" default="CIRCLE" shortDescription="sharp of process chain: CIRCLE, LINE" />
+  <cc:attribute name="shape" type="java.lang.String" default="CIRCLE" shortDescription="shape of process chain: CIRCLE, LINE" />
   <cc:attribute name="isShowAllSteps" type="java.lang.Boolean" default="false" />
 
   <cc:attribute name="stages" type="java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;" />
@@ -32,10 +32,10 @@
 
 <cc:implementation>
   <!-- Process chain of axon express -->
-  <c:set var="isSharpCircle" value="#{cc.attrs.sharp eq 'CIRCLE'}" />
+  <c:set var="isShapeCircle" value="#{cc.attrs.shape eq 'CIRCLE'}" />
   <c:set var="isDirectionHorizontal" value="#{cc.attrs.direction eq 'HORIZONTAL'}" />
   <c:set var="isShowAllSteps" value="#{cc.attrs.isShowAllSteps}" />
-  <h:panelGroup id="#{cc.attrs.componentId}" class="#{isSharpCircle ? 'circle-process-chain' : 'line-process-chain'} #{isDirectionHorizontal ? 'horizontal-process-chain' : 'vertical-process-chain'}">
+  <h:panelGroup id="#{cc.attrs.componentId}" class="#{isShapeCircle ? 'circle-process-chain' : 'line-process-chain'} #{isDirectionHorizontal ? 'horizontal-process-chain' : 'vertical-process-chain'}">
     <c:forEach items="#{cc.attrs.steps}" var="stepName" varStatus="counter">
       <c:set var="isFirstStep" value="#{counter.index eq 0}" />
       <c:set var="isLastStep" value="#{counter.index eq (cc.attrs.steps.size() - 1)}" />
@@ -50,7 +50,7 @@
       <c:set var="isDisplayedStep" value="#{isFirstStep or isLastStep or isCurrentStep or isNextCurrentStep or isPreCurrentStep}" />
       <c:set var="processStepTypeCssClass" value="#{isCurrentStep ? 'current' :  isVisitedStep ? 'visited' : 'waiting'}" />
 
-      <c:if test="#{isSharpCircle}">
+      <c:if test="#{isShapeCircle}">
         <h:panelGroup layout="block" id="step-info-#{counter.index}" rendered="#{isShowAllSteps or isDisplayedStep}"
           class="#{isDirectionHorizontal ? 'circle-horizontal-process-step' : 'circle-vertical-process-step'} #{isHideNextSteps and !isShowAllSteps ? 'hide-steps' : ''} #{processStepTypeCssClass}">
           <c:if test="#{isDirectionHorizontal}">
@@ -65,7 +65,7 @@
         </h:panelGroup>
       </c:if>
 
-      <c:if test="#{!isSharpCircle}">
+      <c:if test="#{!isShapeCircle}">
         <c:set var="isHideLeftSteps" value="#{isPreCurrentStep and isCurrentStepPassedThreeSteps}" />
         <c:set var="isHideRightSteps" value="#{isNextCurrentStep and isStepNeedMoreThreeSteps}" />
 
