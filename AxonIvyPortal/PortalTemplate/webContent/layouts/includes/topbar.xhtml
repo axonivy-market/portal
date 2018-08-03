@@ -73,7 +73,7 @@
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
           </li>
         </ul></li>
-      <li jsf:rendered="#{userMenuBean.chatEnabled}"><a jsf:id="toggle-chat-panel-command"
+      <li jsf:rendered="#{enablesChat}"><a jsf:id="toggle-chat-panel-command"
         class="notification-badge mod-chat-menu js-toggle-chat-panel"><i class="fa fa-comment" /></a></li>
     </ul>
 
@@ -144,7 +144,7 @@
       </h:panelGroup>
     </p:dialog>
   </ui:insert>
-  <c:if test="#{userMenuBean.chatEnabled}">
+  <c:if test="#{enablesChat eq true}">
     <ui:include src="/layouts/includes/chat.xhtml" />
   </c:if>
   <!-- TOPBAR END -->

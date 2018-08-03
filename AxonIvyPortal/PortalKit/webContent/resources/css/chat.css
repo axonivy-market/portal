@@ -285,8 +285,6 @@
 /*Need to add "data-badge" attribute to element*/
 .notification-badge {
   position: relative;
-  line-height: 30px;
-  font-size: 20px !important;
 }
 
 .notification-badge[data-badge]:after {
