@@ -189,7 +189,7 @@
 
 .ui-chkbox .ui-chkbox-label {
   font-size: 1.2rem;
-  color: rgba(0, 0, 0, 1);
+  color: #757575;
   margin: 3px 15px 0px 5px !important;
 }
 
@@ -485,6 +485,7 @@
   text-indent: 0;
   margin: -4px 0px -1px 10px;
   height: 20px;
+  width: 18px;
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon:before {
@@ -518,12 +519,7 @@
   background-color: rgba(236, 236, 236, 1) !important;
 }
 
-.ui-datatable table thead tr th:first-child {
-  border-top-left-radius: 10px;
-}
-
 .ui-datatable table thead tr th:last-child {
-  border-top-right-radius: 10px;
   border-right: none;
 }
 
@@ -563,8 +559,6 @@
 }
 
 .ui-datatable .ui-datatable-scrollable-header table {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   border-left: 1px solid rgba(244, 244, 244, 1);
   border-right: 1px solid rgba(244, 244, 244, 1);
   border-top: 1px solid rgba(244, 244, 244, 1);
@@ -576,8 +570,6 @@
 
 .ui-datatable .ui-datatable-tablewrapper{
   border: 1px solid rgba(244, 244, 244, 1);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   margin: 0px;
 }
 
@@ -593,8 +585,6 @@
 
 
 .ui-treetable {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   border: 1px solid rgba(244, 244, 244 ,1);
   background-color: rgba(236,236,236,1);
 }
@@ -616,14 +606,6 @@
   height: 25px;
   border-bottom: 1px solid rgba(244, 244, 244 ,1);
   text-align: left;
-}
-
-.ui-treetable table thead tr th:first-child {
-  border-top-left-radius: 10px;
-}
-
-.ui-treetable table thead tr th:last-child {
-  border-top-right-radius: 10px;
 }
 
 .ui-treetable table thead tr th:not(:last-child) {
@@ -719,7 +701,7 @@
 /* override color of primefaces/modena label */
 
 .widget .ui-outputlabel {
-    color: black;
+    color: #757575;
 }
 /* =================== END LINK ====================== */
 
@@ -918,10 +900,11 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: -ms-inline-flexbox !important;
 }
 .dialog-autocomplete-add-new-process .ui-autocomplete-input {
-  width: 95% !important;
+  width: 93% !important;
 }
+
 .ui-autocomplete-input {
-  padding: 6px 10px 6px 6px !important;
+  padding: 6px 10px 6px 0 !important;
   font-family: "robotoregular" !important;
   font-size: 1.4rem !important;
   color: #757575 !important;
@@ -999,6 +982,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   font-family: 'FontAwesome';
   content: "\f077";
   font-size: 1.4rem;
+}
+
+.ui-autocomplete .ui-autocomplete-input {
+  padding-right: 25px !important;
 }
 
 .ui-autocomplete-panel {
@@ -2195,7 +2182,7 @@ a.case-details-document-add-link {
 }
 
 .favorite-process-input-field {
-  width: 88% !important;
+  width: 89% !important;
 }
 
 .process-widget .default-process-title {
@@ -3397,15 +3384,16 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 /********************************** PROCESS CHAIN **********************************/
 
-.process-chain {
+/* CIRCLE HONRIZONTAL***/
+.circle-process-chain.horizontal-process-chain {
   position: relative;
-  float: right;
   top: 20px;
   right: 20px;
   clear: both;
+  float: right;
 }
 
-.process-chain .process-step {
+.circle-process-chain .circle-horizontal-process-step {
   width: 14rem;
   height: 50px;
   display: inline-block;
@@ -3415,20 +3403,23 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   padding-left: 1rem;
 }
 
-.process-chain .process-step:not(:last-child) .step-count-container span:before {
+.circle-process-chain .circle-horizontal-process-step:not(:last-child ) .circle-horizontal-step-container span:before {
   display: inline-block;
   content: "";
   border-top: 3px solid #E0E0E0;
-  width: 10.2rem;
-  margin: 0 1rem;
+  width: 102px;
+  margin: 0 10px;
   transform: translate(3.2rem, 1rem);
 }
+.circle-process-chain .circle-horizontal-process-step.hide-steps:not(:last-child ) .circle-horizontal-step-container span:before {
+  border-top-style: dashed;
+}
 
-.process-chain .process-step.waiting .step-count-container {
+.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
   background-color: transparent;
 }
 
-.process-chain .process-step .step-count-container {
+.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -3439,11 +3430,11 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin: auto;
 }
 
-.process-chain .process-step:last-child .step-count-container {
+.circle-process-chain .circle-horizontal-process-step:last-child .circle-horizontal-step-container {
   line-height: 2.7;
 }
 
-.step-title {
+.circle-process-chain .circle-horizontal-step-title {
   margin-top: -20px;
   margin-bottom: 10px;
   display: block;
@@ -3453,10 +3444,167 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 100%;
 }
 
-.process-chain .process-step.current .step-title {
+.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
   font-weight: bold;
 }
 
+/** CIRCLE VERTICAL */
+.circle-process-chain.vertical-process-chain {
+  position: relative;
+  top: 20px;
+  right: 20px;
+  clear: both;
+  float: left;
+}
+
+.circle-process-chain .circle-vertical-process-step {
+  width: 14rem;
+  height: 120px;
+  font-size: 1.2rem;
+}
+
+.circle-process-chain .circle-vertical-process-step:not(:last-child ) .circle-vertical-step-container span:before {
+  display: block;
+  content: "";
+  border-left: 3px solid #E0E0E0;
+  height: 77px;
+  margin: 42px 0px -106px 19px;
+}
+
+.circle-process-chain .circle-vertical-process-step.hide-steps:not(:last-child ) .circle-vertical-step-container span:before {
+  border-left-style: dashed;
+}
+
+.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
+  background-color: transparent;
+}
+
+.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: solid 2px transparent;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  float: left;
+}
+
+.circle-process-chain .circle-vertical-process-step:last-child .circle-vertical-step-container {
+  line-height: 2.7;
+}
+
+.circle-process-chain .circle-vertical-step-title {
+  padding-top: 14px;
+  padding-left: 10px;
+  display: flex;
+}
+
+.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
+  font-weight: bold;
+}
+
+/** LINE HORIZONTAL*/
+.line-process-chain.horizontal-process-chain {
+  position: relative;
+  float: right;
+  top: 20px;
+  right: 20px;
+  clear: both;
+}
+
+.line-process-chain .line-horizontal-process-step {
+  width: 13rem;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.line-process-chain .line-horizontal-process-step.hide-left-steps {
+  width: 40px;
+  height: 10px;
+  vertical-align: bottom;
+  margin: 0px 0px 0px 10px;
+}
+
+_:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step.hide-left-steps {
+  vertical-align: auto;
+}
+
+.line-process-chain .line-horizontal-process-step.hide-right-steps {
+  width: 40px;
+  height: 10px;
+  vertical-align: bottom;
+  margin: 0px 0px 0px 10px;
+}
+
+_:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step.hide-right-steps {
+  vertical-align: auto;
+}
+
+.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container {
+  background-color: #E0E0E0;
+}
+
+.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
+  font-weight: bold;
+}
+
+.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
+  height: 10px;
+  width: 99%;
+}
+
+.line-process-chain .line-horizontal-step-title {
+  margin-bottom: 10px;
+  display: block;
+  overflow: hidden;
+}
+
+/** LINE VERTICAL*/
+.line-process-chain.vertical-process-chain {
+  float: left;
+}
+.line-process-chain .line-vertical-process-step {
+  width: 7rem;
+  height: 120px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.line-process-chain .line-vertical-process-step.hide-left-steps {
+  width: 10px;
+  height: 40px;
+  margin: 9px 0px 0px 0px;
+}
+
+.line-process-chain .line-vertical-process-step.hide-right-steps {
+  width: 10px;
+  height: 40px;
+  margin: 9px 0px 0px 0px;
+}
+
+.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
+  background-color: #E0E0E0;
+}
+
+.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
+  font-weight: bold;
+}
+
+.line-process-chain .line-vertical-process-step .line-vertical-step-container {
+  height: 99%;
+  width: 10px;
+  float: left;
+  width: 10px;
+}
+
+.line-process-chain .line-vertical-step-title {
+  margin-bottom: 10px;
+  display: block;
+  overflow: hidden;
+  padding-top: 49px;
+}
 /********************************** END PROCESS CHAIN **********************************/
 
 /********************************** ALL TASKS **********************************/
@@ -4704,6 +4852,10 @@ margin-top
   border-radius: 4px;
 }
 
+.express-assignee-autocomplete .ui-autocomplete-input {
+	padding-right: 20px !important;
+}
+
 /*Style for Stages breadcrumb-------------------------------------*/
 .stages-chain {
   position: relative;
@@ -5106,4 +5258,9 @@ margin-top
 
 .ui-columntoggler label {
 	color: #000;
+}
+
+.ui-panel .ui-panel-titlebar {
+	padding: .3em 1em !important;
+	margin-top: -.15em;
 }

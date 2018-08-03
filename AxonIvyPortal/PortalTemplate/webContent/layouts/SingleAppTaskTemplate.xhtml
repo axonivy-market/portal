@@ -26,7 +26,7 @@
         </div>
         <div class="Fright Wid70 MarBot20" >
           <ui:insert name="process_chain_area">
-            <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain startMethod="start"
+            <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain startMethod="start" componentId="process-chain-component-id" sharp="CIRCLE" direction="HORIZONTAL" isShowAllSteps="false"
               actualStepIndex="#{actualStepIndex}" steps="#{steps}" 
               currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}" stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId)}" />
           </ui:insert>

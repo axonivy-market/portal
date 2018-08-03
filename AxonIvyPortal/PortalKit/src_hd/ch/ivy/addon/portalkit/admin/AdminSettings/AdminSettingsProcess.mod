@@ -529,7 +529,10 @@ in.isIvyApplicationType = true;
 in.type = ApplicationType.IVY_APPLICATION;
 in.displayNameInCurrentLanguage = null;
 in.supportedLanguages = new List();
-in.selectedApp.isOnline = true;' #txt
+in.selectedApp.isOnline = true;
+in.selectedApp.isSupportAbsenceSettings = true;
+in.selectedApp.isSupportEmailSettings = true;
+in.selectedApp.isVisible = true;' #txt
 As0 f35 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
