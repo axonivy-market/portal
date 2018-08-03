@@ -84,7 +84,7 @@ public class UploadDocumentTest extends BaseTest{
   }
   
   private int countNumberOfDocument() {
-    WebElement caseDocument = caseDetailsPage.findElementById("case-widget:case-list-scroller:0:case-item:document");
+    WebElement caseDocument = caseDetailsPage.findElementById("case-widget:case-list-scroller:0:case-item:case-body:document");
     return caseDocument.findElements(By.cssSelector(".case-details-document-scrollpanel form")).size();
   }
   
