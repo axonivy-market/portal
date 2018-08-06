@@ -11,6 +11,8 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public StatisticWidgetPage() {
     WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
+    waitForPageLoaded();
+    waitForElementDisplayed(By.id("statistics-widget"), true);
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget")));
     statisticWidget = findElementById("statistics-widget");
   }
