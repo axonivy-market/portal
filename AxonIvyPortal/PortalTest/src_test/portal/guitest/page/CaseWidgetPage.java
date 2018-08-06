@@ -12,13 +12,13 @@ public class CaseWidgetPage extends TemplatePage {
 	private String caseWidgetId;
 	private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
 	private static final String CASE_NAME_CSS_SELECTOR = "span[class='case-header-name-cell']";
-	private static final String CASE_PAGE_LOCATION = "//*[contains(@id,'case-list')]";
+	private static final String CASE_PAGE_LOCATION = "//*[contains(@id,'case-view')]";
 
 	public CaseWidgetPage() {
 		this("case-widget");
 	}
 
-	public CaseWidgetPage(String caseWidgetId) {
+	public CaseWidgetPage(String caseWidgetId) {   
 		this.caseWidgetId = caseWidgetId;
 	}
 
