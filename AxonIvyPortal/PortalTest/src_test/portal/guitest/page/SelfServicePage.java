@@ -48,6 +48,7 @@ public class SelfServicePage extends TemplatePage {
       WebElement userInput = firstAddTodoTaskElement.findElement(By.cssSelector("input:first-of-type"));
       userInput.click();
     }
+    waitForPageLoaded();
     waitForElementDisplayed(By.id("userList"), true);
   }
   
