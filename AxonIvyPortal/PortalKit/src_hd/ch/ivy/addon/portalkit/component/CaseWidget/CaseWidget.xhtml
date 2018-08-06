@@ -104,7 +104,7 @@
 		<h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header #{cc.attrs.listHeaderStyleClass}">
 			<cc:renderFacet name="caseListHeader" />
 		</h:panelGroup>
-		<div class="widget-content">
+		<h:panelGroup id="case-view" layout="block" class="widget-content">
 			<h:panelGroup id="case-list" layout="block" styleClass="case-list">
 				<p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}" lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
 					<ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
@@ -119,7 +119,7 @@
 					<cc:renderFacet name="emptyMessage" />
 				</div>
 			</h:panelGroup>
-		</div>
+		</h:panelGroup>
 	</div>
 
 	<p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575" modal="true"
