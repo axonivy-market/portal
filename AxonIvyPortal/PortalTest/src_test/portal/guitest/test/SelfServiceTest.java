@@ -60,6 +60,7 @@ public class SelfServiceTest extends BaseTest {
     SelfServicePage selfServicePage = new SelfServicePage();
     selfServicePage.openUserListSelectionOfFirstTodoTaskDef();
     selfServicePage.inputUser(TestAccount.DEMO_USER.getUsername());
+    selfServicePage.waitForPageLoaded();
     selfServicePage.waitForElementDisplayed(By.id("error-message"), true);
     assertEquals("Assignee is already selected or invalid", selfServicePage.getUserListErrorMessage());
   }
