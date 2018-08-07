@@ -1,0 +1,12 @@
+TaskServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+canUserResumeTask Boolean #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+task ch.ivy.ws.addon.types.IvyTask #field
+tasks java.util.List<ch.ivy.ws.addon.types.IvyTask> #field
+allTasks java.util.List<ch.ivy.ws.addon.types.IvyTask> #field
+workerUserName String #field
+taskCount Long #field
+categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+priorityStatistic ch.ivy.ws.addon.types.PriorityStatistic #field
+expiryStatistic ch.ivy.ws.addon.types.ExpiryStatistic #field

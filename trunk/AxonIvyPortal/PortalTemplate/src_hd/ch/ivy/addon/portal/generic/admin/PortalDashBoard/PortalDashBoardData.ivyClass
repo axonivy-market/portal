@@ -1,0 +1,13 @@
+PortalDashBoardData #class
+ch.ivy.addon.portal.generic.admin.PortalDashBoard #namespace
+statistic ch.ivy.addon.portal.generic.StatisticData #field
+statistic PERSISTENT #fieldModifier
+serverId Long #field
+serverId PERSISTENT #fieldModifier
+involvedApplications List<String> #field
+involvedApplications PERSISTENT #fieldModifier
+menuState String #field
+menuState PERSISTENT #fieldModifier
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment
+jsonQuery PERSISTENT #fieldModifier

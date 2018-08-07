@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userConfig>
+    <user>
+        <username>demo</username>
+        <password>+d3m0++</password>
+        <fullName>demo</fullName>
+    </user>
+    <user>
+        <username>portaladmin</username>
+        <password>+d3m0++</password>
+        <role>AXONIVY_PORTAL_ADMIN</role>
+    </user>
+</userConfig>

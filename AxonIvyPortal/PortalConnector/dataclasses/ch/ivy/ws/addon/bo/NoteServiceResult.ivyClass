@@ -1,0 +1,5 @@
+NoteServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+notes java.util.List<ch.ivy.ws.addon.types.IvyNote> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+newNote ch.ivy.ws.addon.types.IvyNote #field

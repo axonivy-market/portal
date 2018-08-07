@@ -1,0 +1,93 @@
+/*Default variables*/
+@body-background-color: white;
+@menu-color: #afca05;
+
+@sidebar-dimension-transition-duration: 1s;
+@sidebar-opacity-transition-duration: 1s;
+
+/*Style For Background --------------------------------------------------------------------------------------*/
+body {
+  background: @body-background-color;
+}
+
+/*Style For Main menu (Left Sidebar) */
+.left-sidebar-color {
+	background-color: @menu-color;
+}
+
+.left-sidebar-animation {
+  transition: width @sidebar-dimension-transition-duration, height @sidebar-dimension-transition-duration, opacity @sidebar-opacity-transition-duration, color @sidebar-opacity-transition-duration !important;
+}
+
+
+/*Style For Process Widget --------------------------------------------------------------------------------------*/
+.process-start-list-item:hover .process-start-list-item-icon {
+  color: @menu-color;
+}
+
+/*Style For Buttons --------------------------------------------------------------------------------------*/
+.ui-widget.ui-button {
+  background-color: fade(@menu-color, 50%);
+}
+
+.ui-widget.ui-button.ui-state-hover, .ui-widget.ui-buttonset .ui-state-hover {
+  background-color: fade(@menu-color, 60%) !important;
+}
+
+.ui-widget.ui-button.ui-state-focus {
+  background-color: fade(@menu-color, 80%);
+}
+
+.ui-widget.ui-button.ui-state-disabled:not(.portal-ok-button, .portal-cancel-button, .ui-inplace-save, .ui-inplace-cancel, .ui-fileupload-cancel) {
+  background-color: fade(@menu-color, 20%);
+  opacity: 0;
+}
+
+/*Style for table --------------------------------------------------------------------------------------*/
+.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td  {
+  background-color: rgba(red(@menu-color), green(@menu-color), blue(@menu-color), 0.6);
+}
+
+.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-hover td {
+  background-color: rgba(red(@menu-color), green(@menu-color), blue(@menu-color), 0.25);
+}
+
+.ui-treetable table tbody .ui-state-highlight td  {
+  background-color: rgba(red(@menu-color), green(@menu-color), blue(@menu-color), 0.6) !important;
+}
+
+.ui-treetable table tbody .ui-state-hover td {
+  background-color: rgba(red(@menu-color), green(@menu-color), blue(@menu-color), 0.25) !important;
+}
+
+/*Style for self service --------------------------------------------------------------------------------------*/
+img[id*='additonalTaskUserAvatar'] {
+	border:	solid 2px;
+	border-color : @menu-color;
+}
+
+@import "font-faces.less";
+@import "customization.less";
+
+/*Style for express --------------------------------------------------------------------------------------*/
+.express-start-process-panel .process-list .icon-placeholder .fa {
+  color: @menu-color;
+}
+
+.express-start-process-panel .process-list .icon-placeholder .fa:hover {
+  color: fade(@menu-color, 60%) !important;
+}
+
+.process-start-list-item .process-start-list-item-action .express-workflow:hover {
+  color: @menu-color !important;
+}
+
+.process-start-list-item.express-workflow .process-start-list-item-icon {
+  color: @menu-color !important;
+  opacity: 1;
+}
+
+/*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
+.stages-chain .current i {
+  color: @menu-color;
+}

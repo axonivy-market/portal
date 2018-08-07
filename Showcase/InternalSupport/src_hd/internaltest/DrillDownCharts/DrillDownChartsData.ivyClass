@@ -1,0 +1,6 @@
+DrillDownChartsData #class
+internaltest.DrillDownCharts #namespace
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskView PERSISTENT #fieldModifier
+event org.primefaces.event.ItemSelectEvent #field
+event PERSISTENT #fieldModifier
