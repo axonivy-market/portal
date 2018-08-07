@@ -1,0 +1,8 @@
+ProcessesData #class
+ch.ivy.addon.portal.generic.Processes #namespace
+keyword String #field
+keyword PERSISTENT #fieldModifier
+title String #field
+title PERSISTENT #fieldModifier
+processStartLink String #field
+processStartLink PERSISTENT #fieldModifier

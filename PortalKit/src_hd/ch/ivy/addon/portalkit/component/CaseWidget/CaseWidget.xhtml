@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="outerPanelId" default="main-area-panel" />
+  <cc:attribute name="dataModel" shortDescription="List of cases to be displayed" />
+  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
+  <cc:attribute name="emptyMessage"
+    default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/defaultEmptyMessage')}"
+    shortDescription="A message when the cases are empty" />
+  <cc:attribute name="hideCaseFilter" default="false" shortDescription="Case filter text field is hidden or not"
+    type="java.lang.Boolean" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}" />
+  <cc:attribute name="autoSelectCaseId" />
+  <cc:facet name="emptyMessage" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="outerPanelId" value="#{empty cc.attrs.outerPanelId ? 'main-area-panel' : cc.attrs.outerPanelId}" />
+
+  <h:outputScript name="case-widget.js" library="js" />
+  <h:form id="case-widget-form" prependId="false">
+    <div id="#{cc.clientId}" class="widget case-widget-container">
+      <div class="widget-header js-widget-header">
+        <div class="widget-header-main">
+          <div class="widget-header-main-title">
+            <h:outputText value="#{cc.attrs.title}" />
+          </div>
+        </div>
+        <div jsf:rendered="#{!cc.attrs.hideCaseFilter}" class="widget-header-sub">
+          <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.filteringKeyword}"
+            listener="#{logic.filter()}" updateComponent="#{p:component('case-list')}" onCompletedCallback="caseWidget.setUpScrollbar();"/>
+        </div>
+      </div>
+      <div class="widget-content">
+        <h:panelGroup id="case-list" layout="block" styleClass="widget-content-list">
+          <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
+            lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
+            <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
+              isSelected="#{case.id eq cc.attrs.autoSelectCaseId.id() and case.server.id eq cc.attrs.autoSelectCaseId.serverId()}"
+              destroyCaseActionListener="#{data.setSelectedCase(case)}" showDestroyButton="#{case.canDestroy}"
+              onCompleteDestroyCase="PF('destroy-case-dialog').show()">
+              <cc:insertChildren />
+            </ic:ch.ivy.addon.portalkit.component.CaseItem>
+          </p:dataScroller>
+          <div jsf:rendered="#{data.dataModel.rowCount eq 0}" class="case-widget-empty-message">
+            <p:outputLabel rendered="#{empty cc.facets.emptyMessage}" value="#{cc.attrs.emptyMessage}" />
+            <cc:renderFacet name="emptyMessage" />
+          </div>
+        </h:panelGroup>
+      </div>
+    </div>
+  </h:form>
+  <script type="text/javascript">
+  	var caseWidget = new CaseWidget("#{outerPanelId}");
+  	$(function(){
+  		caseWidget.setUpScrollbar();
+  	});
+  </script>
+  <p:confirmDialog id="destroy-case-confirmation-dialog"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" widgetVar="destroy-case-dialog"
+    appendTo="@(body)" severity="alert">
+    <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+      actionListener="#{logic.destroyCase}" oncomplete="caseWidget.setUpScrollbar(); PF('destroy-case-dialog').hide()" update="case-widget-form" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+      onclick="PF('destroy-case-dialog').hide();" type="button" />
+  </p:confirmDialog>
+</cc:implementation>
+</html>

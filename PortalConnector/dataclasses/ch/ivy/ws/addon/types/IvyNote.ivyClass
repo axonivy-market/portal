@@ -1,0 +1,10 @@
+IvyNote #class
+ch.ivy.ws.addon.types #namespace
+id java.lang.Long #field
+id 'ID of the note' #fieldComment
+message String #field
+message Message #fieldComment
+creationTimestamp java.util.Date #field
+creationTimestamp 'Creation timetstamp' #fieldComment
+creatorUserName String #field
+creatorUserName 'Creator username' #fieldComment

@@ -1,0 +1,6 @@
+TaskExpiryDateData #class
+ch.ivy.addon.portalkit.singleapp.tasks.TaskExpiryDate #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+expiryTimestamp Date #field
+expiryTimestamp PERSISTENT #fieldModifier
