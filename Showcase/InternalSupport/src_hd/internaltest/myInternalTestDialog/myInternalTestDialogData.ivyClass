@@ -1,0 +1,3 @@
+myInternalTestDialogData #class
+internaltest.myInternalTestDialog #namespace
+cases List<ch.ivy.ws.addon.IvyCase> #field

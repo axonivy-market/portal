@@ -1,0 +1,31 @@
+#taskTreeForm .ui-tree {
+	float : left;
+	min-height: 500px;
+	margin-right: 20px;
+}
+
+#taskTreeForm .ui-panel {
+	float : left;
+	min-height: 500px;
+}
+
+
+#caseTreeForm .ui-tree {
+	width: 20% !important;
+	float : left;
+	min-height: 500px;
+	margin-right: 20px;
+}
+
+
+#caseTreeForm .ui-panel {
+	margin: 0px 10px !important;
+	float : left;
+	width: 70% !important;
+	min-height: 500px;
+}
+
+
+#accordionPanel .ui-accordion-content {
+	padding: 2px 5px !important;
+}
