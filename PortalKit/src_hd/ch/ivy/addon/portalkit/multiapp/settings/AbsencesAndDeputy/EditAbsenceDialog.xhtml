@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+<ui:composition>
+  <p:dialog id="edit-absence-dialog" widgetVar="editAbsenceDialog" dynamic="true" modal="true" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}">
+    <h:form id="edit-absence-form">
+      <p:messages id="edit-absence-messages" />
+      <h:panelGroup layout="block">
+        <ui:include src="Absence.xhtml">
+          <ui:param name="uneditedUserName" value="true" />
+          <ui:param name="updateComponent" value="edit-absence-messages save-absence" />
+        </ui:include>
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer ui-widget-content">
+        <p:commandButton id="save-absence" process="@form" disabled="#{data.validationError}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          actionListener="#{logic.saveModifiedAbsence}" update="@form :#{p:component('absence-table')}"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) PF('editAbsenceDialog').hide();" />
+        <p:spacer width="5px" />
+        <p:commandButton id="close-edit-absence-dialog" actionListener="#{logic.cancel}"
+          update=":#{p:component('absence-table')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          oncomplete="PF('editAbsenceDialog').hide();" process="@this">
+          <p:resetInput target="@form" />
+        </p:commandButton>
+      </h:panelGroup>
+    </h:form>
+  </p:dialog>
+</ui:composition>
+</html>

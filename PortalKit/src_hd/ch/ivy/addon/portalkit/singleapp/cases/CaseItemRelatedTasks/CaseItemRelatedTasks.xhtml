@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <div class="grid-item" id="#{cc.clientId}">
+    <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasks')}</h2>
+    <div class="grid-item-content">
+      <div class="grid-item-content-list">
+        <div jsf:rendered="#{empty data.relatedTasks}" class="grid-item-content-list-item">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasks')}" />
+        </div>
+        <ui:repeat id="tasks" var="task" value="#{data.relatedTasks}">
+          <h:panelGroup id="task" layout="block" class="grid-item-content-list-item">
+            <i class="fa #{taskBean.getStateIcon(task.state)} related-task-list-item-status" />
+             <p:commandLink id="task-name" value="#{task.name}" actionListener="#{logic.openPortalTask}">
+             	<f:attribute name="taskId" value="#{task.id}"/>
+             </p:commandLink>
+          </h:panelGroup>
+          <p:tooltip for="task" value="#{taskBean.getStateByITask(task)}" trackMouse="true" />
+        </ui:repeat>
+      </div>
+    </div>
+  </div>
+</cc:implementation>
+</html>
