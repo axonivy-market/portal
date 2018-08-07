@@ -1,0 +1,106 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: small;
+}
+
+/*! Hack for IE10+11 that the scrollbar not overlays the page */
+@-ms-viewport {
+  width:auto;
+}
+
+.navbar {
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.navbar-inverse {
+  background-color: #575656;
+  border-color: #080808;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #9d9d9d;
+}
+
+.navbar-inverse .navbar-text,
+.navbar-inverse .navbar-link {
+  color: #dfdfdf;
+  font-size: 12px;
+}
+
+.navbar-collapse {
+  border-top: 0;
+}
+
+#headerdiv {
+  padding-left: 180px;
+  height: 100px;
+  background-image: url("#{resource['layouts/images/header_ivy.png']}");
+  background-repeat: no-repeat;
+}
+
+#navbar-ivy-title {
+  z-index: 110;
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+#navbar-ivy-links {
+  z-index: 100;
+  position: absolute;
+  margin-top: 50px;
+  width: 600px;
+  background-color: #575656;
+  font-size: 14px;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+  background-color: #575656;
+  font-weight: bold;
+  color: #9d9d9d;
+}
+
+.jumbotron {
+  margin-top: 20px;
+}
+
+.navbar-toggle {
+  z-index: 120;
+}
+
+.ivy-subnav {
+  margin-bottom: 0px;
+  font-size: 13px;
+}
+
+.ivy-subnav .navbar-inner {
+  background: #dfdfdf;
+}
+
+.ivy-subnav .nav-pills li.active,
+.ivy-subnav .nav-pills li.active > a,
+.ivy-subnav .nav-pills li.active > a:hover,
+.ivy-subnav .nav-pills li.active > a:focus {
+  background-color: #afca05;
+  color: #ffffff;
+}
+
+.ivy-subnav .nav-pills li a {
+  border-radius: 0;
+  color: #575656;
+}
+
+footer {
+  color: #9d9d9d;
+  margin-bottom: 20px;
+}

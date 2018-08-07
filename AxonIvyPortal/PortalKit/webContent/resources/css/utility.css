@@ -1,0 +1,154 @@
+/**
+ * Sometimes we need a universal class that can be used in any component. 
+ * Things like clear fixes, vertical alignment, and text truncation.
+ * Denote these classes by prefixing them with .u-.
+ *
+ * All the utils should be in a single file. There shouldn�t be any need to overwrite them in components or mixins.
+ *
+ * You should really only need a few utilities. 
+ * We don�t need something like .u-float-left { float: left; } where including float: left; in the component is just as easy
+ * and more visible.
+ */
+.u-truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.u-break-word {
+  word-wrap: break-word;
+}
+
+.u-underline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+}
+
+.u-underline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 55%;
+  right: 55%;
+  bottom: 0;
+  background: #fff;
+  height: 1px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.u-underline-from-center:hover:before, .u-underline-from-center:focus:before, .u-underline-from-center:active:before {
+  left: 0;
+  right: 0;
+}
+
+.u-display-none {
+  display: none;
+}
+
+.u-cursor-pointer {
+  cursor: pointer;
+}
+
+.u-hover-effect {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.u-hover-effect:hover {
+  opacity: 0.8;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.u-shadow-effect {
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(43, 59, 93, 0.4);
+  -moz-box-shadow: 0px 1px 3px 0px rgba(43, 59, 93, 0.4);
+  box-shadow: 0px 1px 3px 0px rgba(43, 59, 93, 0.4);
+}
+
+.u-unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.u-line-separator {
+  border-bottom: solid 1px #E0E0E0;
+  display: block;
+  overflow: hidden;
+  height: 0px;
+  margin: 10px -20px;
+  clear: both;
+}
+
+.u-separator {
+  border-bottom: solid 1px #E0E0E0;
+  width: 100%;
+  overflow: hidden;
+  height: 0px;
+  margin: 10px 0px;
+  clear: both;
+}
+
+.u-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.u-no-border {
+  border: none;
+}
+
+.u-buttons-spacer {
+  width: 5px;
+}
+
+.u-text-align-center {
+  text-align: center;
+}
+
+.u-vertical-align-center {
+  vertical-align: middle;
+}
+
+.ui-dialog .ui-dialog-footer.u-dialog-footer {
+ 	margin: 20px -20px -20px !important;
+}
+
+.u-italic-font {
+  font-style: italic;
+}
+
+.u-hidden {
+  display: none !important;
+}
+
+.u-invisibility{
+  visibility:hidden;
+}

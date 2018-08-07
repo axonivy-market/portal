@@ -1,0 +1,6 @@
+GetSupportedLanguagesServiceData #class
+ch.ivyteam.wf.processes #namespace
+applicationName String #field
+endpoint String #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+supportedLanguages List<String> #field

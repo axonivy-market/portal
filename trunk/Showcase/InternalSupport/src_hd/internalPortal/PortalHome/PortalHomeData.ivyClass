@@ -1,0 +1,4 @@
+PortalHomeData #class
+internalPortal.PortalHome #namespace
+dataModel ch.internalsupport.CustomizedTaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier

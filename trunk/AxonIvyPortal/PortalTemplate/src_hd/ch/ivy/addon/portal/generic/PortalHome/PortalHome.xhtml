@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
+<h:body>
+  <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+    <!-- IF UNCOMMENT, PLEASE CORRECT OR REMOVE <!- ... -> -->
+    <!--
+    <!- A method returns your own customized data model extends TaskLazyDataModel ->
+    <ui:param name="tasks" value="#{logic.getDataModel()}" />
+
+    <ui:param name="useOverrideListHeader" value="true" />
+    <ui:param name="useOverrideHeader" value="true" />
+    <ui:param name="useOverrideBody" value="true" />
+
+    <ui:define name="taskListHeader">
+      <!- use the TaskListHeader component to keep default columns, and add a new one with TaskColumnHeader. ->
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{data.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{data.dataModel}"
+        componentId="task-custom" sortField="customVarcharField5" value="CustomVarcharField5" />
+    </ui:define>
+
+    <ui:define name="taskHeader">
+      <!- Flexbox is applied, so please set your column's width by flex style. The TaskName column takes the remaining width. ->
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" />
+      <div class="task-start-info">
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" />
+      </div>
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
+        fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
+        value="#{task.startTimestamp}" styleClass="js-create-cell" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
+        value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.state}" />
+
+      <!- New field ->
+      <h:outputText id="category" style="flex: 0 0 120px;" value="#{task.customVarCharField5}" />
+    </ui:define>
+
+    <ui:define name="taskBody">
+      <!- These are the default components, reuse them if you want. ->
+      <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-description" task="#{task}"
+        descriptionComponentToUpdate="#{p:component('task-description')}" />
+      <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="task-general-info" task="#{task}"
+        priorityComponentToUpdate="#{p:component('task-priority')}"
+        componentToUpdate="#{p:component('task-details-notes')}" />
+      <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}" />
+      <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
+
+      <!- Replace the responsiveness support by your own one. ->
+      <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
+        <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+          icon="fa fa-file js-note-column-responsive-button" displayedSelectors="['#task-note']"
+          hiddenSelectorsInMediumScreen="['.task-details .replaced']"
+          hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
+        <h:outputScript library="js" name="task-detail-default-responsiveness.js" />
+      </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+    </ui:define>
+    -->
+  </ui:composition>
+</h:body>
+</html>

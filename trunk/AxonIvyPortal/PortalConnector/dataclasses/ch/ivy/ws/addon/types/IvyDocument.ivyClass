@@ -1,0 +1,9 @@
+IvyDocument #class
+ch.ivy.ws.addon.types #namespace
+contentType String #field
+creation ch.ivyteam.ivy.workflow.document.ModificationInfo #field
+id Long #field
+lastModification ch.ivyteam.ivy.workflow.document.ModificationInfo #field
+name String #field
+path ch.ivyteam.ivy.workflow.document.Path #field
+size Long #field

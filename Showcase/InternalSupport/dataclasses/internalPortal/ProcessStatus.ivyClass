@@ -1,0 +1,6 @@
+ProcessStatus #class
+internalPortal #namespace
+steps List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier

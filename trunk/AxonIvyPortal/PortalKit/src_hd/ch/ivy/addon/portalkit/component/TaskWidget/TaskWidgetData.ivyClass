@@ -1,0 +1,28 @@
+TaskWidgetData #class
+ch.ivy.addon.portalkit.component.TaskWidget #namespace
+compactMode Boolean #field
+compactMode PERSISTENT #fieldModifier
+count Integer #field
+count PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+keyword String #field
+keyword PERSISTENT #fieldModifier
+modeInitialized Boolean #field
+modeInitialized PERSISTENT #fieldModifier
+startIndex Integer #field
+startIndex PERSISTENT #fieldModifier
+taskCount Long #field
+taskCount PERSISTENT #fieldModifier
+tasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+tasks PERSISTENT #fieldModifier
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+taskSearchCriteria PERSISTENT #fieldModifier
+sortField String #field
+sortField PERSISTENT #fieldModifier
+sortDescending Boolean #field
+sortDescending PERSISTENT #fieldModifier
+serverId Long #field
+serverId PERSISTENT #fieldModifier
