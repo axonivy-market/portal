@@ -1,0 +1,29 @@
+CaseServiceData #class
+ch.ivyteam.wf.processes #namespace
+additionalProperties List<ch.ivy.ws.addon.IvyAdditionalProperty> #field
+additionalProperties 'used to store additional properties that use in get/setAdditionalProperties web service' #fieldComment
+applications java.util.List<ch.ivy.ws.addon.IvyApplication> #field
+apps java.util.List<String> #field
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+cases java.util.List<ch.ivy.addon.portalkit.bo.RemoteCase> #field
+caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
+document ch.ivy.ws.addon.IvyDocument #field
+documentContent javax.activation.DataHandler #field
+documentId Long #field
+documentName String #field
+documents List<ch.ivy.ws.addon.IvyDocument> #field
+endpoint String #field
+errors java.util.List<ch.ivy.ws.addon.WsException> #field
+isServerAlive Boolean #field
+ivyCases java.util.List<ch.ivy.ws.addon.IvyCase> #field
+listIterator java.util.ListIterator #field
+nbv String #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+tempErrors java.util.List<ch.ivy.ws.addon.WsException> #field
+username String #field
+caseId Long #field
+noteContent String #field
+noteContent 'to create note' #fieldComment
+note ch.ivy.ws.addon.IvyNote #field
+note 'return value after creating note' #fieldComment
+notes List<ch.ivy.ws.addon.IvyNote> #field

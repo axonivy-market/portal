@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Installation</title>
+	</properties>
+
+	<body>
+		<section name="Installation">
+
+			<p>The installation section describes all the steps, that are
+				necessary to install and setup the Process Application. If you
+				install the application for the first time than it's important to
+				start with the Basic installation. It describes all the initial
+				steps, that must be done for the first installation.
+			</p>
+			<ul>
+				<li>
+					<a href="./basicinstallation.html"> Basic Installation</a>
+				</li>
+			</ul>
+		</section>
+
+		<section name="Release Installations">
+			<p>If the application is already installed and initial prepared,
+				than
+				refer to the Release Installation Steps, that are provided,
+				here you
+				will only find those steps, that are necessary to install
+				this
+				release.
+			</p>
+		</section>
+	</body>
+</document>

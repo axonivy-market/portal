@@ -1,0 +1,8 @@
+SynchronizingTriggerProcessData #class
+ch.ivy.add.portalkit.synchronization #namespace
+customPropertyPairs List<ch.ivy.ws.addon.CustomPropertyPair> #field
+isNTLMAuthentication Boolean #field
+serverURL String #field
+key String #field
+keyPrefix String #field
+keys List<String> #field

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+<cc:implementation>
+  <h:outputStylesheet name="module.css" library="css" />
+  <script>
+      $(document).ready(function() {
+        init();
+      });
+      function init() {
+
+        $("#enhancedFilterPanel").hide();
+        $(".function-case-hide-filter").hide();
+      }
+
+      function hideFilter() {
+
+        $("#enhancedFilterPanel").slideUp("slow");
+
+        $(".function-case-hide-filter").hide();
+        $(".function-case-show-filter").show();
+      }
+      function showFilter() {
+
+        $("#enhancedFilterPanel").slideDown("slow");
+
+        $(".function-case-hide-filter").show();
+        $(".function-case-show-filter").hide();
+      }
+
+      function preventHideButton() {
+        $(".function-case-show-filter").hide();
+      }
+
+      function fastHide() {
+        $("#enhancedFilterPanel").hide();
+        $(".function-case-hide-filter").hide();
+      }
+    </script>
+
+
+  <p:panel id="casePanel" toggleable="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseHome/casePanel')}">
+
+    <p:messages widgetVar="growl" escape="false" showDetail="true" closable="true"></p:messages>
+    <p:growl id="errorGrowl" showDetail="true" sticky="false" life="400" widgetVar="growl" escape="false"></p:growl>
+    <br />
+    <br />
+    <p:dataTable id="cases" value="#{data.cases}" var="case" scrollHeight="300" scrollable="true" widgetVar="table"
+      sortMode="multiple" selectionMode="single" selection="#{data.selectedCase}" filteredValue="#{data.filteredList}"
+      rowKey="#{case.application.name}-#{case.startTimestamp}">
+
+      <f:facet name="header">
+
+        <div id="filterLink">
+          <p:commandButton id="hideFilter"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/enhancedFilter')}" onclick="hideFilter()"
+            icon="ui-icon-flow-up" styleClass="function-case-hide-filter" />
+
+          <p:commandButton id="showFilter"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/enhancedFilter')}" onclick="showFilter()"
+            icon="ui-icon-flow-down" styleClass="function-case-show-filter" />
+
+        </div>
+        <div id="enhancedFilterPanel">
+          <p:panelGrid>
+            <p:row>
+              <p:column styleClass="filter-table-column">
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/applications')}:" />
+              </p:column>
+              <p:column>
+                <p:selectCheckboxMenu label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/chooseApp')}"
+                  value="#{data.selectedApps}" filter="true" filterMatchMode="contains">
+                  <f:selectItems value="#{data.apps}" />
+                </p:selectCheckboxMenu>
+              </p:column>
+              <p:column styleClass="filter-table-column">
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/created')}" />
+              </p:column>
+              <p:column>
+                <div class="filter-field">
+                  <div class="filter-field-group">
+                    <h:outputText id="from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+                    <p:calendar value="#{data.createdFrom}"
+                      pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+                      locale="#{ivy.session.getContentLocale()}" />
+                  </div>
+                  <div class="filter-field-group">
+                    <h:outputText id="to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+                    <p:calendar value="#{data.createdTo}"
+                      pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+                      locale="#{ivy.session.getContentLocale()}" />
+                  </div>
+                </div>
+              </p:column>
+            </p:row>
+            <p:row>
+              <p:column>
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/priorities')}:" />
+              </p:column>
+              <p:column>
+                <p:selectCheckboxMenu label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/choosePrio')}"
+                  value="#{data.selectedWorkflowPriorities}" filter="true" filterMatchMode="contains">
+                  <f:selectItem itemLabel="High" itemValue="HIGH" />
+                  <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                  <f:selectItem itemLabel="Low" itemValue="LOW" />
+                </p:selectCheckboxMenu>
+              </p:column>
+              <p:column>
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/created')}" />
+              </p:column>
+              <p:column>
+
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
+                  styleClass="MarRight10" />
+                <p:calendar value="#{data.createdFrom}" style="margin-right: 15px;"
+                  pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+                  locale="#{ivy.session.getContentLocale()}" />
+                <br />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
+                  style="margin-right: 15px;" />
+                <p:calendar value="#{data.createdTo}"
+                  pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+                  locale="#{ivy.session.getContentLocale()}" />
+              </p:column>
+              <p:column>
+                <p:commandButton id="filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/search')}"
+                  partialSubmit="true" update=":main-form:caseList:cases :main-form:caseList:errorGrowl"
+                  process=":main-form:caseList:cases" actionListener="#{logic.onFilter}"
+                  oncomplete="preventHideButton()" icon="ui-icon-search" />
+              </p:column>
+            </p:row>
+          </p:panelGrid>
+        </div>
+
+        <div>
+          <p:commandButton id="refresh-case" icon="ui-icon-refresh" title="Icon Only" actionListener="#{logic.onFilter}"
+            oncomplete="fastHide(); PF('table').filter()"
+            update=":main-form:caseList:cases :main-form:caseList:errorGrowl" />
+          <p:commandButton id="toggler" type="button" title="Icon Only" style="float:right" icon="ui-icon-settings" />
+          <p:columnToggler datasource="cases" trigger="toggler" />
+        </div>
+      </f:facet>
+
+      <p:ajax event="rowDblselect" oncomplete="PF('caseDescription').show()"
+        update=":main-form:caseList:descriptionDialog" />
+      <p:ajax event="rowSelect" listener="#{logic.selectRow}" update=":main-form:caseList:descriptionDialog" />
+
+      <p:column id="applicationName" sortBy="#{case.application.name}" filterBy="#{case.application.name}"
+        filterMatchMode="contains">
+        <f:facet name="header">
+					#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/application")}
+				</f:facet>
+        <f:facet name="filter">
+          <p:selectOneMenu onchange="PF('table').filter()" style="width: 100%">
+            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/all')}" itemValue="#{null}"
+              noSelectionOption="true" />
+            <f:selectItems value="#{data.apps}" />
+          </p:selectOneMenu>
+        </f:facet>
+        <h:outputText value="#{case.application.name}" />
+      </p:column>
+      <!-- 					<p:column> -->
+      <!-- 						<f:facet name="header"> -->
+      <!-- 							#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/priority")} -->
+      <!-- 						</f:facet> -->
+      <!-- 						<h:outputText value="#{case.priority}"/> -->
+      <!-- 					</p:column> -->
+
+      <p:column id="state" sortBy="#{case.state}" filterBy="#{case.state}">
+        <f:facet name="header">
+					#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/state")}
+				</f:facet>
+        <f:facet name="filter">
+          <p:selectOneMenu onchange="PF('table').filter()">
+            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/all')}" itemValue="#{null}"
+              noSelectionOption="true" />
+            <f:selectItem itemLabel="Created" itemValue="CREATED" />
+            <f:selectItem itemLabel="Destroyed" itemValue="DESTROYED" />
+            <f:selectItem itemLabel="Done" itemValue="DONE" />
+            <f:selectItem itemLabel="Running" itemValue="RUNNING" />
+          </p:selectOneMenu>
+        </f:facet>
+        <h:outputText value="#{case.state}" />
+      </p:column>
+      <p:column id="processName" sortBy="#{case.name}" filterBy="#{case.name}" filterMatchMode="contains">
+        <f:facet name="header">
+					#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/name")}
+				</f:facet>
+        <h:outputText value="#{case.name}" />
+      </p:column>
+      <!-- 					<p:column> -->
+      <!-- 						<f:facet name="header"> -->
+      <!-- 							#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/creator")} -->
+      <!-- 						</f:facet> -->
+      <!-- 						<h:outputText value="#{case.creatorUserName}"/> -->
+      <!-- 					</p:column> -->
+      <p:column id="startTimestamp" sortBy="#{case.startTimestamp}" filterBy="#{case.startTimestamp}"
+        filterMatchMode="contains">
+        <f:facet name="header">
+					#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/startTimestamp")}
+				</f:facet>
+        <h:outputText value="#{case.startTimestamp}">
+          <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+            locale="#{ivy.session.getContentLocale()}" />
+        </h:outputText>
+      </p:column>
+
+    </p:dataTable>
+    <p:dialog id="dialog" header="#{ivy.cms.co('/errors/header')}" width="50%" widgetVar="errorDialogUniversalCase"
+      modal="true" appendTo="@(body)">
+      <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}">
+      </ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay>
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+        onclick="PF('errorDialogUniversalCase').hide();" icon="fa fa-close" />
+    </p:dialog>
+    <p:dialog id="descriptionDialog" widgetVar="caseDescription" modal="true" appendTo="@(body)">
+      <f:facet name="header" style="width: 100%">
+        <h3>Case ##{data.selectedCase.id}: #{data.selectedCase.name}</h3>
+      </f:facet>
+      <f:facet name="footer">
+        <p:panelGrid style="width: 100%">
+          <p:row>
+            <p:column>
+            </p:column>
+            <p:column styleClass="TexAlRight">
+              <p:commandButton value="Close" onclick="PF('caseDescription').hide()" icon="ui-icon-close" />
+            </p:column>
+          </p:row>
+        </p:panelGrid>
+      </f:facet>
+      <p:panel id="dialogData">
+        <p:panelGrid>
+          <p:row>
+            <p:column>
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/state')}:" />
+            </p:column>
+            <p:column>
+              <h:outputText value="#{data.selectedCase.state}" />
+            </p:column>
+            <p:column>
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/processCategory')}:" />
+            </p:column>
+            <p:column>
+              <h:outputText value="#{data.selectedCase.processCategoryName}" />
+            </p:column>
+          </p:row>
+          <p:row>
+            <p:column>
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/processName')}:" />
+            </p:column>
+            <p:column>
+              <h:outputText value="#{data.selectedCase.processName}" />
+            </p:column>
+            <p:column>
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/type')}:" />
+            </p:column>
+            <p:column>
+              <h:outputText value="#{data.selectedCase.typeName}" />
+            </p:column>
+          </p:row>
+          <p:row>
+            <p:column>
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/startTimestamp')}:" />
+            </p:column>
+            <p:column>
+              <h:outputText value="#{data.selectedCase.startTimestamp}">
+                <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+                  locale="#{ivy.session.getContentLocale()}" />
+              </h:outputText>
+            </p:column>
+            <p:column>
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/subType')}:" />
+            </p:column>
+            <p:column>
+              <h:outputText value="#{data.selectedCase.subTypeName}" />
+            </p:column>
+          </p:row>
+
+          <p:row>
+            <p:column>
+              <!-- 			<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/id')}"/> -->
+              <!-- 			<h:outputText value="#{data.selectedCase.id}"/> -->
+
+
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseDescription')}:" />
+            </p:column>
+            <p:column colspan="2">
+              <h:outputText value="#{data.selectedCase.description}" />
+            </p:column>
+          </p:row>
+
+        </p:panelGrid>
+      </p:panel>
+    </p:dialog>
+  </p:panel>
+</cc:implementation>
+
+</html>

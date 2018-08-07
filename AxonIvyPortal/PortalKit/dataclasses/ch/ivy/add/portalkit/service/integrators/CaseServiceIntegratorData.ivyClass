@@ -1,0 +1,21 @@
+CaseServiceIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+additionalProperties List<ch.ivy.ws.addon.IvyAdditionalProperty> #field
+applicationNames List<String> #field
+caseId Long #field
+cases List<ch.ivy.ws.addon.IvyCase> #field
+caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
+document ch.ivy.ws.addon.IvyDocument #field
+documentContent javax.activation.DataHandler #field
+documentId Long #field
+documentName String #field
+documents List<ch.ivy.ws.addon.IvyDocument> #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+userName String #field
+serverUrl String #field
+note ch.ivy.ws.addon.IvyNote #field
+note 'Return value after creating note' #fieldComment
+noteContent String #field
+notes List<ch.ivy.ws.addon.IvyNote> #field

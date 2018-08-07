@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<ui:composition>
+  <p:dialog widgetVar="addNewAbsence" id="add-new-absence-dialog" modal="true" dynamic="true" resizable="false"
+    closable="true" appendTo="@(body)" position="center"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/newAbsence')}">
+
+    <h:form id="new-absence-form">
+      <p:messages id="absence-messages" />
+      <h:panelGroup id="input-adsence-data-section" layout="block" rendered="#{data.isLoadDeputy eq 'false'}">
+        <ui:include src="Absence.xhtml">
+          <ui:param name="updateComponent" value="next-to-deputy absence-messages" />
+          <ui:param name="uneditedUserName" value="false" />
+        </ui:include>
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{data.isLoadDeputy}" id="input-deputy-data-section"
+        styleClass="OvAuto deputy-data-section">
+        <ui:include src="Deputy.xhtml" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer ui-widget-content">
+        <p:commandButton id="next-to-deputy"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/next')}"
+          disabled="#{data.validationError}" process="input-adsence-data-section" actionListener="#{logic.loadDeputy}"
+          rendered="#{data.isLoadDeputy eq 'false'}" update="@form" oncomplete="PF('addNewAbsence').initPosition();" />
+
+        <p:spacer width="5px" />
+
+        <p:commandButton id="back-to-adsences"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/back')}"
+          process="input-deputy-data-section" rendered="#{data.isLoadDeputy}" update="@form"
+          oncomplete="PF('addNewAbsence').initPosition();">
+          <f:setPropertyActionListener target="#{data.isLoadDeputy}" value="false" />
+        </p:commandButton>
+
+        <p:spacer width="5px" rendered="#{data.isLoadDeputy}" />
+
+        <p:commandButton process="@form" id="save-new-absence" rendered="#{data.isLoadDeputy}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.saveNewAbsence}"
+          update=":#{p:component('absence-table')}" oncomplete="PF('addNewAbsence').hide();" />
+
+        <p:spacer width="5px" rendered="#{data.isLoadDeputy}" />
+        <p:commandButton id="close-add-new-absence-dialog" actionListener="#{logic.cancel}"
+          update=":#{p:component('absence-table')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" oncomplete="PF('addNewAbsence').hide();"
+          process="@this">
+          <p:resetInput target="@form" />
+        </p:commandButton>
+      </h:panelGroup>
+    </h:form>
+  </p:dialog>
+</ui:composition>
+</html>
