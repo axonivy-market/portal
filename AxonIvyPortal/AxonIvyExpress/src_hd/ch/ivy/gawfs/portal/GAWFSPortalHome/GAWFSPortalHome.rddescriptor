@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<richDialogDescriptor>
+    <autoScreenshot>true</autoScreenshot>
+    <method>
+        <name>startProcess</name>
+        <description></description>
+        <inputParameter>
+            <name>link</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
+    <method>
+        <name>select</name>
+        <description></description>
+        <inputParameter>
+            <name>workflow</name>
+            <description></description>
+            <parameterType>gawfs.AvailWorkflow</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
+    <startMethod>
+        <name>start</name>
+        <description>Default dialog start method.</description>
+    </startMethod>
+    <property>
+        <name>guid</name>
+        <value>15803452241D40CA</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>version</name>
+        <value>1</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>binary</name>
+        <value>false</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>viewTechnology</name>
+        <value>JSF</value>
+        <readOnly>true</readOnly>
+    </property>
+</richDialogDescriptor>

@@ -1,0 +1,9 @@
+Data #class
+internaltest #namespace
+cases List<ch.ivy.ws.addon.IvyCase> #field
+apps List<String> #field
+error ch.ivy.ws.addon.WsException #field
+expiredDate Duration #field
+taskPriority ch.ivyteam.ivy.workflow.WorkflowPriority #field
+taskName String #field
+caseName String #field

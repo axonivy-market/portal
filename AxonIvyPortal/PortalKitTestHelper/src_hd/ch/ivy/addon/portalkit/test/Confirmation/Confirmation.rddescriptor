@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<richDialogDescriptor>
+    <autoScreenshot>true</autoScreenshot>
+    <startMethod>
+        <name>start</name>
+        <description>Default dialog start method.</description>
+        <inputParameter>
+            <name>message</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>title</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <outputParameter>
+            <name>approved</name>
+            <description></description>
+            <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </outputParameter>
+    </startMethod>
+    <property>
+        <name>guid</name>
+        <value>14B7775CB819863D</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>version</name>
+        <value>1</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>binary</name>
+        <value>false</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>viewTechnology</name>
+        <value>JSF</value>
+        <readOnly>true</readOnly>
+    </property>
+</richDialogDescriptor>
