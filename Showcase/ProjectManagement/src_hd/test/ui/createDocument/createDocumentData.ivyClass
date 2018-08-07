@@ -1,0 +1,11 @@
+createDocumentData #class
+test.ui.createDocument #namespace
+ProjectManager String #field
+ProjectStart Date #field
+ProjectEnd Date #field
+ProjectID Number #field
+ProjectName String #field
+steps List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier

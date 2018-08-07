@@ -1,0 +1,8 @@
+Data #class
+portalKit_test #namespace
+iTask ch.ivyteam.ivy.workflow.ITask #field
+iTask PERSISTENT #fieldModifier
+taskId Number #field
+taskId PERSISTENT #fieldModifier
+taskCounter Number #field
+taskCounter PERSISTENT #fieldModifier

@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/TaskTemplate.xhtml">
+		<ui:param name="businessMainContactFolderId"
+			value="#{ivy.case.businessMainContactFolderId}" />
+		<ui:param name="caseId" value="#{ivy.case.getBusinessCase().getId()}" />
+		<ui:param name="homeLink"
+			value="#{ivy.html.startref('Start Processes/InternalSupportPortalHome/start.ivp')}" />
+		<!-- Hide default tabs -->
+		<ui:param name="showCaseStatusInfoTab" value="false" />
+		<ui:param name="showHistoryTab" value="false" />
+		<ui:param name="showDocumentTab" value="false" />
+
+		<ui:define name="login">
+			<ic:internaltest.ui.CustomLogin />
+		</ui:define>
+
+		<ui:define name="taskName">
+			<span class="fa fa-subway" />
+			<h:outputText value="#{ivy.task.name} #(#{ivy.task.id})"></h:outputText>
+		</ui:define>
+
+		<ui:define name="errorsZone">
+			<h:form id="messageForm">
+				<p:messages></p:messages>
+			</h:form>
+		</ui:define>
+
+		<ui:define name="documentIframe">
+		</ui:define>
+
+		<ui:define name="taskForm">
+			<h3>Cancel Approval Request</h3>
+			<h:form prependId="false" id="myForm">
+				<h:panelGrid columns="2">
+					<p:outputLabel for="cancelReason"
+						value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/cancelReason')}" />
+					<p:inputText id="cancelReason" value="#{data.cancelReason}"></p:inputText>
+				</h:panelGrid>
+				 <h:panelGroup styleClass="MarTop20 DispBlock">
+					<p:commandButton value="Submit" styleClass="portal-ok-button"
+						icon="fa fa-paper-plane" actionListener="#{logic.cancelApprovalRequest(ivy.case.getBusinessCase().getId())}" />
+					<p:spacer width="5px"/>
+	      		</h:panelGroup>
+			</h:form>
+		</ui:define>
+		<ui:define name="leftButtons">
+			
+		</ui:define>
+
+		<ui:define name="rightButtons">
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

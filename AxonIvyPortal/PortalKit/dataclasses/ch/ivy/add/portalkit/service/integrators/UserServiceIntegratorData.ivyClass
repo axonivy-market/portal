@@ -1,0 +1,14 @@
+UserServiceIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+absences List<ch.ivy.ws.addon.Absence> #field
+absencesToUpdate List<ch.ivy.ws.addon.IvyAbsence> #field
+applicationNames List<String> #field
+emailSettings List<ch.ivy.ws.addon.IvyEmailSetting> #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+languageSettings List<ch.ivy.ws.addon.IvyLanguageSetting> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+substitutes List<ch.ivy.ws.addon.IvySubstitute> #field
+targetUser String #field
+users List<ch.ivy.ws.addon.IvyUser> #field
+newPassword String #field

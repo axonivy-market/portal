@@ -1,0 +1,3 @@
+StartTaskData #class
+ch.ivyteam.wf.processes #namespace
+url String #field

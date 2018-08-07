@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+	xml:id="axonivyportal.installation">
+	<title>Installation</title>
+	<sect1 xml:id="axonivyportal.installation.releaseinstallation">
+		<title>Release installation</title>
+		<sect2>
+			<title>Installation</title>
+			<para>
+				The installation section describes all the steps, that are necessary to install and setup the Process
+				Application.
+			</para>
+			<para>
+				If you install the application for the first time than it's important to start with the
+				<link linkend="axonivyportal.installation.basicinstallation" endterm="axonivyportal.installation.basicinstallation.title" />
+				. It describes all the initial steps, that must be done for the first installation.
+			</para>
+		</sect2>
+		<sect2>
+			<title>Release Installation</title>
+			<para>
+				If the application is already installed and initial prepared, than refer to the Release Installation Steps,
+				that are provided, here you will only find those steps, that are necessary to install this release.
+			</para>
+		</sect2>
+	</sect1>
+	<sect1 xml:id="axonivyportal.installation.basicinstallation">
+		<title xml:id="axonivyportal.installation.basicinstallation.title">Basic installation</title>
+		<sect2>
+			<title>Project modules</title>
+			<para>
+				The application consists of 5 process modules. For detailed information of each module, refer to
+				<link linkend="axonivyportal.architecture" endterm="axonivyportal.architecture.title" />
+				.
+				<itemizedlist>
+					<listitem>
+						<para>
+							PortalStyle
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							PortalKit
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							PortalTemplate
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							SelfServiceBPM
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							AxonIvyExpress
+						</para>
+					</listitem>
+				</itemizedlist>
+				<para>
+					The project deployment of Ivy project are described in
+					<link xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration-deployment">project deployment</link>
+					.
+				</para>
+			</para>
+		</sect2>
+		<sect2>
+			<title>Server configuration</title>
+			<para>
+				<itemizedlist>
+					<listitem>
+						<para>
+							The minimum required engine version is
+							<code>6.0.0.49863</code>
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+		</sect2>
+		<sect2>
+			<title>Specify servers, applications used in Portal</title>
+			<sect3 xml:id="axonivyportal.installation.basicinstallation.specifyservers.generalConcept">
+				<title xml:id="axonivyportal.installation.basicinstallation.specifyservers.generalConcept.title">General concept</title>
+				<para>Portal has 3 different configurations:</para>
+				<itemizedlist>
+					<listitem>
+						<emphasis role="bold">Single mode</emphasis>
+						: Only one Portal application on one engine. The Portal application must include portalKit, portalTemplate and
+						portalStyle modules.
+						By default, portalConnector is already deployed on the System application of Axon.ivy engine.
+					</listitem>
+					<listitem>
+						<emphasis role="bold">Multi-application mode</emphasis>
+						: Multiple Portal applications on one engine. Each Portal application must include portalKit, portalTemplate and
+						portalStyle modules. Only one portalConnector of the System application is needed.
+					</listitem>
+					<listitem>
+						<emphasis role="bold">Multi-portal mode</emphasis>
+						: Single or multiple Portal applications on multiple engines. The engines will communicate with each other via the
+						portalConnector of their System
+						application (This mode is not supported yet).
+					</listitem>
+				</itemizedlist>
+			</sect3>
+			<sect3>
+				<title>Automatically detect servers, applications</title>
+				<para>
+					By default, PortalKit will connect to PortalConnector using the address specified by the system property
+					<code>WebServer.HTTP.Address</code>
+					. If the property is not set, PortalKit will use the address localhost to connect to PortalConnector. All
+					applications of the server which have the logged-in user are used in Portal.
+				</para>
+				<note>
+					System property
+					<code>WebServer.HTTP.Address</code>
+					specifies the address that will listen on the ivy engine port.
+				</note>
+				<para>
+					Steps to set the system property
+					<code>WebServer.HTTP.Address</code>
+					<orderedlist>
+						<listitem>
+							Open AdminUI and go to System Properties.
+						</listitem>
+						<listitem>
+							Set the
+							<code>WebServer.HTTP.Address</code>
+							property to the value of the address that will be used to connect to PortalConnector.
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/Installation/serveraddress-settings.png" />
+								</imageobject>
+							</mediaobject>
+						</listitem>
+						<listitem>
+							Restart the ivy engine.
+						</listitem>
+					</orderedlist>
+				</para>
+			</sect3>
+			<sect3>
+				<title>Manually configure servers, applications</title>
+				<para>
+					Refer
+					<link linkend="axonivyportal.settings.adminsettings.setupmultiportals" endterm="axonivyportal.settings.adminsettings.setupmultiportals.title" />
+					.
+				</para>
+			</sect3>
+		</sect2>
+		<sect2>
+			<title>Default user credentials</title>
+			<para>Portal provides 3 default users: </para>
+			<table>
+				<title>Default user credentials</title>
+				<tgroup cols="3">
+					<thead>
+						<row>
+							<entry>Username</entry>
+							<entry>Password</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>admin</entry>
+							<entry>admin</entry>
+							<entry>This user has all Portal permissions, can access to Portal Admin Settings.</entry>
+						</row>
+						<row>
+							<entry>demo</entry>
+							<entry>demo</entry>
+							<entry>This user has permission to manage user absences.</entry>
+						</row>
+						<row>
+							<entry>guest</entry>
+							<entry>guest</entry>
+							<entry>Default normal user of portal.</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			<tip>
+				You can change these accounts info in the AdminUI.
+			</tip>
+		</sect2>
+		<sect2>
+			<title>Global settings</title>
+			<table>
+				<title>Global settings</title>
+				<tgroup cols="3">
+					<thead>
+						<row>
+							<entry>Keyword</entry>
+							<entry>Value</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>HOMEPAGE_URL</entry>
+							<entry>
+								http://PORTAL_SERVER:PORTAL_PORT /pro/Portal/portalTemplate /1549F58C18A6C562/PortalStart.ivp
+							</entry>
+							<entry>
+								<para>
+									Portal administrator home page link.
+								</para>
+								<para>
+									Note: Only valid if there are not any registered ivy applications.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry>HIDE_LOGOUT_BUTTON</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								If
+								<code>true</code>
+								(none case-sensitive), the logout button on top
+								menu will be hidden, otherwise it
+								will be
+								shown. If this
+								property is
+								not set, the logout
+								menu will be displayed by
+								default.
+							</entry>
+						</row>
+						<row>
+							<entry>SHOW_ENVIRONMENT_INFO</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>For switch on/off the display of environment information.</entry>
+						</row>
+						<row>
+							<entry>HIDE_TIME</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								to hide hours and minutes next to date.
+							</entry>
+						</row>
+						<row>
+							<entry>SHOW_TASK_BUTTON_LABELS</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								to show button labels from task list.
+							</entry>
+						</row>
+						<row>
+							<entry>HIDE_CHANGE_PASSWORD_BUTTON</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								(none case-sensitive), the change password option 
+								in top menu will be hidden, otherwise it
+								will be	shown. If this
+								property is	not set, the change password option
+								will be displayed by
+								default.
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
+		<sect2>
+			<title>Role configuration</title>
+			<table>
+				<title>Role configuration</title>
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>PortalKit roles</entry>
+							<entry>Rights</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>AXONIVY_PORTAL_ADMIN</entry>
+							<entry>
+								<para>
+									User belong to this role can handle AdminUI page, configure the internal role properties, users who own this
+									role need some permissions. See
+									<link linkend="axonivyportal.installation.basicinstallation.permissionsettings" endterm="axonivyportal.installation.basicinstallation.permissionsettings.title" />
+									.
+								</para>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
+		<sect2 xml:id="axonivyportal.installation.basicinstallation.permissionsettings">
+			<title xml:id="axonivyportal.installation.basicinstallation.permissionsettings.title">Permission settings</title>
+			<sect3>
+				<title>Absences</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							READ
+						</para>
+						<para>
+							This function will be disabled if session user does not have
+							<code>IPermission.USER_READ_OWN_ABSENCES</code>
+							or
+							<code>IPermission.USER_READ_ABSENCES</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							CREATE/MODIFY
+						</para>
+						<para>
+							This function will be disabled if session user does not have
+							<code>IPermission.USER_CREATE_OWN_ABSENCES</code>
+							or
+							<code>IPermission.USER_CREATE_OWN_ABSENCES</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							DELETE
+						</para>
+						<para>
+							This function will be disabled if session user does not have
+							<code>IPermission.USER_DELETE_OWN_ABSENCES</code>
+							or
+							<code>IPermission.USER_DELETE_ABSENCE</code>
+							.
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect3>
+			<sect3>
+				<title>Personal task permission</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							DELEGATE
+						</para>
+						<para>
+							This function will be enabled if session user has permission
+							<code>IPermission.TASK_WRITE_ACTIVATOR</code>
+							.
+						</para>
+						<important>
+							Task state cannot be one of the following:
+							<code>DONE</code>
+							,
+							<code>DESTROYED</code>
+							,
+							<code>RESUMED</code>
+							,
+							<code>FAILED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							ADD NOTE
+						</para>
+						<para>
+							No permission requires.
+						</para>
+						<important>
+							Task state cannot be one of the following:
+							<code>DONE</code>
+							,
+							<code>DESTROYED</code>
+							,
+							<code>RESUMED</code>
+							,
+							<code>FAILED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							RESET
+						</para>
+						<para>
+							This function will be enabled if session user has permission
+							<code>IPermission.TASK_RESET_OWN_WORKING_TASK</code>
+							.
+						</para>
+						<important>
+							Task state has to be one of following:
+							<code>RESUMED</code>
+							,
+							<code>PARKED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							PARK
+						</para>
+						<para>
+							This function will be enabled if session user has permission
+							<code>IPermission.TASK_PARK_OWN_WORKING_TASK</code>
+							.
+						</para>
+						<important>
+							Task state has to be
+							<code>RESUMED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							CHANGE DEADLINE
+						</para>
+						<para>
+							This function will be enabled if session user has
+							<code>IPermission.TASK_WRITE_EXPIRY_TIMESTAMP</code>
+							.
+						</para>
+						<important>
+							Task state cannot be one of following values:
+							<code>DONE</code>
+							,
+							<code>DESTROYED</code>
+							,
+							<code>RESUMED</code>
+							,
+							<code>FAILED</code>
+							.
+						</important>
+					</listitem>
+					<listitem>
+						<para>
+							CHANGE PRIORITY
+						</para>
+						<para>
+							This function will be disabled if session user does not have
+							<code>IPermission.TASK_WRITE_ORIGINAL_PRIORITY</code>
+							.
+						</para>
+						<important>
+							Task state has to be one of following:
+							<code>DONE</code>
+							,
+							<code>DESTROYED</code>
+							,
+							<code>RESUMED</code>
+							,
+							<code>FAILED</code>
+							.
+						</important>
+					</listitem>
+				</itemizedlist>
+			</sect3>
+			<sect3>
+				<title>Personal case permission</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							ADD NOTE
+						</para>
+						<para>
+							Add note function will be enabled if case state is
+							<code>RUNNING</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							DELETE CASE
+						</para>
+						<para>
+							Delete case function will be enabled if session user has
+							<code>IPermission.CASE_DESTROY</code>
+							.
+						</para>
+						<important>
+							Case state has to be
+							<code>RUNNING</code>
+							.
+						</important>
+					</listitem>
+				</itemizedlist>
+			</sect3>
+			<sect3>
+				<title>Administrator permission can see all tasks/cases in the application</title>
+				<para>
+					Normal users can only see their tasks/cases they can work on.
+				</para>
+				<para>
+					Administrator can see all tasks/cases in the application.
+				</para>
+				<para>
+					Permissions needed:
+					<code>IPermission.TASK_READ_ALL</code>
+					,
+					<code>IPermission.CASE_READ_ALL</code>
+					.
+				</para>
+			</sect3>
+			<sect3>
+				<title>Administrator permission can interact with all workflows in the application</title>
+				<para>
+					Normal users can updates and deletes workflows which created by him and can interact with workflow's task
+					which assigned to him.
+				</para>
+				<para>
+					Administrator can creates, updates and deletes all workflows in the application.
+				</para>
+			</sect3>
+		</sect2>
+		<sect2>
+			<title>Global variables</title>
+			<table>
+				<title>Global variables</title>
+				<tgroup cols="3">
+					<thead>
+						<row>
+							<entry>Variable</entry>
+							<entry>Default value</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>PortalStartTimeSynchUserExpression</entry>
+							<entry>0 0 5 * * ?</entry>
+							<entry>
+								Cron expression define the time to reload application user datas. E.g.: expression for at 5AM every
+								day is
+								<code>0 0 5 * * ?</code>
+								. Refer to
+								<link xlink:href="http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger">crontrigger</link>
+								. Please restart Ivy engine after changing this variable.
+							</entry>
+						</row>
+						<row>
+							<entry>PortalCallWebserviceMaxRetry</entry>
+							<entry>10</entry>
+							<entry>
+								Maximum time that PortalConnector will retry to synchronize data to Portal on the system. If beyond this limit,
+								system will create a Task for
+								<code>AXONIVY_PORTAL_ADMIN</code>
+								role to handle this error.
+							</entry>
+						</row>
+						<row>
+							<entry>PortalSearchDelayInMilliseconds</entry>
+							<entry>500</entry>
+							<entry>The delay time of search function at top menu.</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
+		<sect2>
+			<title>Email settings</title>
+			<sect3>
+				<title>Task notification mail</title>
+				<para>
+					Users can receive standard Ivy new task email notification. More information about the email notification can be
+					found
+					<link
+						xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration.emailnotification">here</link>
+					.
+				</para>
+			</sect3>
+			<sect3>
+				<title>Individual Mails</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							List of individual mails, that are send in the process.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Application specific mail is stored in the user profile within the attribute
+							<code>useCustomMails</code>
+							.The value of this attribute is
+							<code>True/False</code>
+							.
+						</para>
+						<para>
+							If
+							<code>True</code>
+							then this user will receive notification email send out from the process, otherwise they will not receive email.
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect3>
+		</sect2>
+		<sect2>
+			<title>Look and feel</title>
+			<para>
+				Portal doesn't use
+				<link xlink:href="http://www.primefaces.org/eos/modena/">Modena</link>
+				theme from version 6.3.
+			</para>
+			<para>
+				Please notice that all dialogs in Portal and screens of <emphasis role="bold">Self service BPM</emphasis> 
+				and <emphasis role="bold">Axon.ivy Express</emphasis> have following buttons orders:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						Yes/Ok buttons on the left, No/Cancel buttons on the right
+					</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+	</sect1>
+	<sect1 xml:id="axonivyportal.installation.migrationnotes">
+		<title xml:id="axonivyportal.installation.migrationnotes.title">Migration notes</title>
+		<para>
+			This document informs you in detail about incompatibilities that were introduced between Portal versions and
+			tells you what needs to be done to made your existing Portal working with current Axon.ivy engine.
+		</para>
+		<sect2>
+			<title>Migrate 7.0 to 7.1</title>
+			<para>
+				<emphasis role="bold">Ajax error handling</emphasis>: By default, Portal handles all exceptions from ajax requests. Old configuration, customization of ajax error handling should be removed.
+			</para>
+            <para>
+                Custom fields in Portal task list can now be sorted properly. The method <code>extendSort()</code> of <code>TaskLazyDataModel</code> is changed
+                to have a <code>taskQuery</code> parameter. If you override this method, please change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
+           </para>
+           <para>
+                Portal does not have separate full task list in the homepage anymore. It's mean that you don't have to customize the task list in <code>/layouts/DefaultHomePageTemplate.xhtml</code>. You can remove your
+                 task list customization code in <code>PortalHome.xhtml</code>.
+           </para>
+		</sect2>
+		<sect2>
+			<title>Migrate 6.x to 7.0</title>
+			<para>
+				If you copy the
+				<code>PortalStart</code>
+				process or the
+				<code>PortalHome</code>
+				HTMLDialog for customizations, please adapt the changes:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>The whole process is refactored to be clearer. So it is recommended that you copy it again.</para>
+				</listitem>
+				<listitem>
+					<para>New process is introduced: restorePortalTaskList.ivp</para>
+				</listitem>
+				<listitem>
+					<para>PortalStart: some new ivy scripts are added to handle the navigation back to the same page before starting a
+						task.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						PortalHome: The
+						<code>taskView</code>
+						parameter is added to the start method.
+					</para>
+				</listitem>
+			</itemizedlist>
+			<sect3>
+				<title>SQL conversion</title>
+				<para>
+					From Portal
+					<code>7.0</code>
+					, we use standard axon.ivy Task Category field to store task category.
+				</para>
+				<para>
+					To migrate task categories, please deploy
+					<link xlink:href="documents/MigrateTaskCategorySample.iar">MigrateTaskCategorySample.iar</link>
+					to your application and run
+					<code>Migrate Task Category</code>
+					process to:
+				</para>
+				<orderedlist>
+					<listitem>
+						<para>
+							Migrate data from column
+							<code>customVarCharField5</code>
+							to
+							<code>category</code>
+							for all tasks in the application.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Delete leftover data in
+							<code>customVarCharField5</code>
+							of all tasks in the application.
+						</para>
+					</listitem>
+					<listitem>
+						<para>Create CMS entries for task categories in the application.</para>
+					</listitem>
+				</orderedlist>
+				<para>
+					If you have queries which referring to task category, plese replace
+					<code>customVarCharField5()</code>
+					part with
+					<code>category()</code>
+					part.
+				</para>
+			</sect3>
+		</sect2>
+		<sect2>
+			<title>Migrate 6.4 or 6.5 to 6.6</title>
+			<para>
+				Task header is supported to be customized. The
+				<code>useOverride</code>
+				param, which is used to override the task item's body, is changed to
+				<code>useOverrideBody</code>
+			</para>
+		</sect2>
+		<sect2>
+			<title>Migrate 6.4 to 6.5</title>
+			<para>The relative link in default user processes starts with ivy context path instead of "pro"</para>
+		</sect2>
+		<sect2>
+			<title>Migrate 6.x (x &lt; 4) ... 6.4 (Jakobshorn)</title>
+			<sect3>
+				<title>Portal appearance</title>
+				<para>
+					Portal
+					<code>6.4</code>
+					are redesigned. Therefore many components look different from the previous version like menu, task list, case list
+					... . Portal
+					<code>BasicTemplate</code>
+					does not use
+					<code>p:layout</code>
+					and
+					<code>p:layoutUnit</code>
+					anymore.
+					You may need to adapt your pages to this change.
+				</para>
+				<para>
+					For now the menu customization is not supported.
+				</para>
+				<para>
+					From
+					<code>6.4</code>
+					, Portal applies
+					<link xlink:show="new" xlink:href="http://lesscss.org/">LESS</link>
+					to support customizing Portal styles. You can customize colors, fonts and Portal's component styles. For more
+					information about customizing Portal's style with LESS,
+					please refer to
+					<link linkend="axonivyportal.customization.portallogosandcolors" endterm="axonivyportal.customization.portallogosandcolors.title" />
+					.
+				</para>
+				<para>
+					Steps to migrate
+					<orderedlist>
+						<listitem>
+							<para>
+								Copy PortalStyle/webContent/resources of Portal
+								<code>6.4</code>
+								to PortalStyle/webContent/resources of the current Portal.
+							</para>
+						</listitem>
+						<listitem>
+							<para>Modify PortalStyle/webContent/resources/less/theme.less, update value of @body-background-color for the
+								background color and @menu-color for the menu, button color.
+							</para>
+						</listitem>
+						<listitem>
+							<para>Put custom styles to PortalStyle/webContent/resources/less/customization.less.</para>
+						</listitem>
+						<listitem>
+							<para>
+								Add properties and plugins which are defined in PortalStyle/pom.xml of Portal
+								<code>6.4</code>
+								to PortalStyle/pom.xml of the current Portal.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								Run the maven command
+								<code>mvn lesscss:compile</code>
+								in PortalStyle to build CSS file.
+							</para>
+						</listitem>
+						<listitem>
+							<para>PortalStyle/webContent/resources/css/theme.css is obsolete, please remove it.</para>
+						</listitem>
+					</orderedlist>
+				</para>
+			</sect3>
+		</sect2>
+		<sect2>
+			<title>Migrate 5.0 (Rothorn) ... 6.0 (Säntis)</title>
+			<sect3>
+				<title>Database conversion</title>
+				<para>
+					If you are using Portal
+					<code>5.0</code>
+					, you have to manual configure all settings (create servers, applications, variables) again since Portal now
+					doesn't use external database. All settings on from Portal
+					<code>6.0</code>
+					are stored in Ivy system database.
+					If you are using Portal
+					<code>6.0</code>
+					, you don't need to convert database.
+				</para>
+			</sect3>
+			<sect3>
+				<title>Portal appearance</title>
+				<para>
+					Portal now doesn't use
+					<link xlink:show="new" xlink:href="http://primefaces.org/eos/modena">Modena</link>
+					theme, it's a big difference to previous
+					<code>6.0</code>
+					. Therefore many things in Portal
+					<code>5.0</code>
+					and
+					<code>6.0</code>
+					will not look the same in new Portal. Many things have been redesigned like menu, task list, case list ...
+				</para>
+			</sect3>
+		</sect2>
+	</sect1>
+	<sect1 xml:id="axonivyportal.installation.releasenotes">
+		<title>Release notes</title>
+		<para>
+			This part lists all relevant changes since the last official product releases of Axon.ivy.
+			<sect2>
+				<title>Changes in 7.0 (Jakobshorn)</title>
+				<itemizedlist>
+					<listitem>
+						<para>More search criteria for user in Task list are added and allowed to customize.</para>
+					</listitem>
+					<listitem>
+						<para>Task delegate customization is supported</para>
+					</listitem>
+					<listitem>
+						<para>The same task list is displayed before and after a task. Set default end page to another project to remove
+							this feature.
+						</para>
+					</listitem>
+					<listitem>
+						<para>Task category of Portal is now stored in new Task category field of ivy.</para>
+						<para>
+							Please refer to
+							<link linkend="axonivyportal.installation.migrationnotes" endterm="axonivyportal.installation.migrationnotes.title" />
+							to learn how to migrate data from
+							<code>customVarCharField5</code>
+							to new
+							<code>category</code>
+							field.
+						</para>
+					</listitem>
+					<listitem>
+						<para>Hide technical tasks (the HIDE additional property is set), so that they are not displayed in any Portal
+							task lists.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+						Change password is supported to be customized. Please refer to 
+						<link linkend="axonivyportal.customization.changepasswordprocess" endterm="axonivyportal.customization.changepasswordprocess.title" /> 
+						to know how to customize this feature.
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
+			<sect2>
+				<title>Changes in 6.6 (Jakobshorn)</title>
+				<itemizedlist>
+					<listitem>
+						<para>Task widget's customization is extended with task header and task data query.</para>
+					</listitem>
+					<listitem>
+						<para>Hide technical roles (the HIDE property is set), so that they are not displayed anywhere (e.g. delegate,
+							absence mgmt). The default hidden role is AXONIVY_PORTAL_ADMIN
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
+			<sect2>
+				<title>Changes in 6.0 (Säntis)</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							Portal has 2 level menu with animation.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							All components such as button, text field ...have been re-styled, not applied Modena's styles.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Portal supports responsiveness with 3 screen widths: 1920, 1366 and 1024.
+							Please refer to
+							<link linkend="axonivyportal.components.layouttemplates.reponsiveness" endterm="axonivyportal.components.layouttemplates.reponsiveness.title" />
+							for more details.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Some customizations are not supported in this release: main menu, case header.
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
+		</para>
+	</sect1>
+</chapter>
