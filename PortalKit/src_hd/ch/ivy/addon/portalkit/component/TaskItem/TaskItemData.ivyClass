@@ -1,0 +1,4 @@
+TaskItemData #class
+ch.ivy.addon.portalkit.component.TaskItem #namespace
+task ch.ivy.addon.portalkit.bo.RemoteTask #field
+task PERSISTENT #fieldModifier

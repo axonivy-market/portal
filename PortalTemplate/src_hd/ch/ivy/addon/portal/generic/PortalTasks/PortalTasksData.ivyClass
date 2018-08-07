@@ -1,0 +1,4 @@
+PortalTasksData #class
+ch.ivy.addon.portal.generic.PortalTasks #namespace
+view ch.ivy.addon.portal.generic.view.TaskView #field
+view PERSISTENT #fieldModifier

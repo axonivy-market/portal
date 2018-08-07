@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="view" value="#{data.view}" />
+
+    <!--
+      - The ui:param `useOverride` is for pages uses this template to decide
+      whether the customContent should be shown
+      - Default to `false`.
+    -->
+    <ui:param name="useOverride" value="false"/>
+
+    <ui:define name="pageTitle">#{view.pageTitle}</ui:define>
+    
+    <ui:define name="pageContent">
+      <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" hideTaskFilter="#{not empty view.keyword}"
+        dataModel="#{view.dataModel}"
+        compactMode="false" title="#{view.category.value}" selectedTaskId="#{view.remoteTaskId}"
+        selectedTaskServerId="#{view.serverId}">
+        	<ui:fragment rendered="#{not useOverride}">
+				 <ic:ch.ivy.addon.portalkit.component.TaskItemDescription task="#{task}" />
+			     <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo task="#{task}" />
+			     <ic:ch.ivy.addon.portalkit.component.TaskItemNotes task="#{task}" />
+			     <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments task="#{task}" />
+		    </ui:fragment>
+		    
+		    <ui:fragment rendered="#{useOverride}">
+		    	<ui:insert name="taskBody">
+		    	</ui:insert>
+		    </ui:fragment>
+       </ic:ch.ivy.addon.portalkit.component.TaskWidget>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

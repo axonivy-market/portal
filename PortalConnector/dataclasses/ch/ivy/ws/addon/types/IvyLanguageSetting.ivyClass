@@ -1,0 +1,5 @@
+IvyLanguageSetting #class
+ch.ivy.ws.addon.types #namespace
+appName String #field
+userLanguage String #field
+supportedLanguages java.util.List<String> #field

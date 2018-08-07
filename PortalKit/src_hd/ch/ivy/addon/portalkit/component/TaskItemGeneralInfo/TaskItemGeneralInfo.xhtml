@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" type="ch.ivy.addon.portalkit.bo.RemoteTask" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="task-data" class="task-details-data">
+    <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/data')}</h2>
+    <h:panelGrid columns="2" columnClasses="task-details-data-1st-column, task-details-data-2nd-column"
+      rowClasses="task-details-row-space">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/priority')}" />
+      <h:panelGroup>
+        <h:panelGroup rendered="#{task.priority == 'LOW'}"
+          styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
+        <h:panelGroup rendered="#{task.priority == 'NORMAL'}"
+          styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
+        <h:panelGroup rendered="#{task.priority == 'HIGH' or task.priority == 'EXCEPTION'}"
+          styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
+        <h:outputText value="#{taskBean.getPriority(task.priority)}" styleClass="DispInlBlock" />
+      </h:panelGroup>
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workingUser')}" />
+      <h:outputText
+        value="#{empty task.getWorkerUserName() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.getWorkerUserName()}" />
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/responsible')}" />
+      <h:outputText
+        value="#{empty task.activator.getDisplayName() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.activator.getDisplayName()}" />
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
+      <h:outputText
+        value="#{empty task.getExpiryActivatorName() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.getExpiryActivatorName()}" />
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/case')}" />
+      <p:commandLink id="related-case" value="#{task.getCase().name}"
+        title="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})"
+        actionListener="#{logic.navigateToRelatedCase}" />
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/createOn')}" />
+      <h:outputText value="#{task.startTimestamp}">
+        <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+      </h:outputText>
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expiry')}" />
+
+      <ui:fragment rendered="#{'RESUMED' eq task.state or 'SUSPENDED' eq task.state or 'PARKED' eq task.state}">
+        <h:form id="expiry-form">
+          <p:inplace id="edit-inplace" editor="true"
+            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            label="#{dateFormatBean.format(task.expiryTimestamp)}">
+            <p:ajax event="save" listener="#{logic.save(task)}" />
+            <p:ajax event="cancel" resetValues="true" />
+            <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}"
+              locale="#{ivy.session.getContentLocale()}">
+              <f:validator validatorId="taskExpiryTimestampValidator" />
+            </p:calendar>
+          </p:inplace>
+        </h:form>
+      </ui:fragment>
+      <ui:fragment rendered="#{'RESUMED' ne task.state and 'SUSPENDED' ne task.state and 'PARKED' ne task.state}">
+        <h:outputText value="#{task.expiryTimestamp}">
+          <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+        </h:outputText>
+      </ui:fragment>
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
+      <h:outputText
+        value="#{empty task.getDelayTimestamp() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.getDelayTimestamp()}" />
+    </h:panelGrid>
+  </div>
+
+</cc:implementation>
+</html>
