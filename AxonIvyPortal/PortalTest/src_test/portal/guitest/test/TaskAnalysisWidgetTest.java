@@ -31,11 +31,17 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
+    grantPermissionOfPortal();
 
     homePage = new HomePage();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForPageLoaded();
+  }
+
+  private void grantPermissionOfPortal() {
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
 
   @Test
