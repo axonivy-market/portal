@@ -1,0 +1,4 @@
+NumberOfExpiryTasks #class
+ch.ivy.ws.addon.types #namespace
+numberOfExpiryTasks Long #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field

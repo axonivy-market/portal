@@ -1,0 +1,171 @@
+body, td	{ font-family:	Verdana, 'Myriad Web', Syntax, sans-serif; }
+PRE, CODE, TT	{ font-family:	Verdana, 'Myriad Web', Syntax, sans-serif; }
+
+h1, h2, h3, h4, h5, h6, th, dt	{ font-family:	Verdana, 'Myriad Web', Syntax, sans-serif; }
+	
+A, ADDRESS, BLOCKQUOTE, BODY, CITE, CODE, DD, DEL, DFN,		
+DIV, DL, DT, EM, FORM, H1, H2, H3, H4, H5, H6, IFRAME, IMG, KBD,		
+LI, OBJECT, OL, P, Q, SAMP, SMALL, SPAN, STRONG, SUB, SUP, UL, VAR, 		
+APPLET, BIG, CENTER, DIR, FONT, HR, MENU, PRE,		
+ABBR, ACRONYM, BDO, BUTTON, FIELDSET, INS, LABEL, LEGEND	{	
+	word-spacing:	normal;
+	letter-spacing:	normal;
+	text-transform:	none;
+	text-decoration:	none;
+	border-color:	#999;
+	border-style:	none;
+	}	
+	
+		
+BODY	{	
+	color:	white;
+	background: #2a3d7c;
+	}	
+		
+EM	{	
+	font-style:	normal;
+	font-weight:	bold;
+	color:	#e7e8ed;
+	}	
+		
+STRONG	{	
+	font-style:	normal;
+	font-weight:	bold;
+	color:	#e7e8ed;
+	}	
+		
+EM STRONG, STRONG EM	{	
+	text-transform:	uppercase;
+	font-style:	normal;
+	font-weight:	bolder;
+	color:	#e7e8ed;
+	}	
+		
+DEL	{	
+	text-decoration:	line-through;
+	background:	#FC6;
+	}	
+		
+INS	{	
+	text-decoration:	none;
+	background:	9F3;
+	}	
+		
+VAR, CITE, DFN, .note	{	
+	font-style:	normal;
+	}	
+		
+ADDRESS	{	
+	font-style:	normal;
+	letter-spacing:	.1em;
+	}	
+		
+CODE, KBD, SAMP	{	
+	font-family:	Monotype.com, Courier New, monospace;
+	}	
+		
+ACRONYM	{	
+	font-variant:	small-caps;
+	letter-spacing:	0.1em;
+	}	
+		
+H1, H2, H3, H4, H5, H6, DT, LEGEND, CAPTION	{	
+	color:	#e7e8ed;
+	font-style:	normal;
+}	
+		
+HR	{	
+	color:	#e7e8ed;
+	}	
+			
+INPUT {
+  background-color: #e7e8ed;
+}
+	
+TEXTAREA {
+  background-color: #e7e8ed;
+}
+
+SELECT {
+  background-color: #e7e8ed;
+}
+
+
+TABLE.data {
+  text-decoration:	none;
+  background-color: #e7e8ed;
+  border-style: none;
+}
+
+TD.data, THEAD.data, TFOOT.data, TBODY.data, TR.data, CAPTION.data, COL.data, COLGROUP.data {
+  background-color: #e7e8ed;
+  text-color: #2a3d7c;
+  color: #2a3d7c;
+  border-style: none;
+  text-align: left;
+}		
+
+TH.data {
+  background-color: #e7e8ed;
+  text-color: #2a3d7c;
+  color: #2a3d7c;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: #2a3d7c;
+  text-align: left;
+  padding: 4px 4px 4px 0px;
+}
+		
+A:link	{	
+	text-decoration:	none;
+	font-weight:	bold; 
+	font-style:	normal;	
+	color:	#e7e8ed;
+	}	
+		
+A:visited	{	
+	text-decoration:	none;
+	font-weight:	bold;
+	font-style:	italic;
+	color:	#e7e8ed;
+	}	
+		
+A:active	{	
+	text-decoration:	none;
+	font-weight:	bold;
+	font-style:	italic;
+	color:	#e7e8ed;
+	background:	#e7e8ed;
+	}	
+		
+A:hover	{	
+	text-decoration:	none;
+	color:	#ffffff;
+	font-style:	italic;
+	}	
+		
+A.offsite	{	
+	text-decoration:	none;
+	font-weight:	normal;
+	font-style:	italic;
+	color:	#33F;
+	}	
+		
+BODY	{
+	margin-top:	1.58em;
+	margin-left:	11%;
+	margin-right:	8%;
+	margin-bottom:	1.58em;
+	padding-top:	0;
+	padding-left:	0;
+	padding-right:	0;
+	padding-bottom:	0;
+	border-top:	0;
+	border-left:	0;
+	border-bottom:	0;
+	border-right:	0;
+	width:	36em;
+}
+
+
+
