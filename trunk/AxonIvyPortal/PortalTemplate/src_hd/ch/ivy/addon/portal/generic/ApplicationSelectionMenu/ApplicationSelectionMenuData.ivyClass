@@ -1,0 +1,18 @@
+ApplicationSelectionMenuData #class
+ch.ivy.addon.portal.generic.ApplicationSelectionMenu #namespace
+applications List<ch.ivy.addon.portalkit.persistence.domain.Application> #field
+applications PERSISTENT #fieldModifier
+isNotRequiredLogin Boolean #field
+isNotRequiredLogin PERSISTENT #fieldModifier
+menuItems java.util.List<org.primefaces.component.button.Button> #field
+menuItems PERSISTENT #fieldModifier
+applicationUrl String #field
+applicationUrl PERSISTENT #fieldModifier
+caseView ch.ivy.addon.portal.generic.view.CaseView #field
+caseView PERSISTENT #fieldModifier
+hasReadAllCasesPermission Boolean #field
+hasReadAllCasesPermission PERSISTENT #fieldModifier
+hasReadAllTasksPermisson Boolean #field
+hasReadAllTasksPermisson PERSISTENT #fieldModifier
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskView PERSISTENT #fieldModifier

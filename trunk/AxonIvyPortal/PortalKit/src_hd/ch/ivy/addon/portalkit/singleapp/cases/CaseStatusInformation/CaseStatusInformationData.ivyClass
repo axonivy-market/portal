@@ -1,0 +1,14 @@
+CaseStatusInformationData #class
+ch.ivy.addon.portalkit.singleapp.cases.CaseStatusInformation #namespace
+caseId Number #field
+caseId PERSISTENT #fieldModifier
+caseInfo ch.ivyteam.ivy.workflow.ICase #field
+caseInfo PERSISTENT #fieldModifier
+tasks java.util.List<ch.ivy.addon.portalkit.vo.TaskVO> #field
+tasks PERSISTENT #fieldModifier
+contact ch.ivy.addon.portalkit.bo.Contact #field
+contact PERSISTENT #fieldModifier
+creatorName String #field
+creatorName PERSISTENT #fieldModifier
+selectedTask ch.ivyteam.ivy.workflow.ITask #field
+selectedTask PERSISTENT #fieldModifier

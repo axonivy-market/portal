@@ -1,0 +1,23 @@
+TaskDefp #class
+true #isEntity
+gawfs #namespace
+taskDefinitions #dbTableName
+id Integer #field
+id Identifier #fieldComment
+id PERSISTENT #fieldModifier
+id ID #fieldModifier
+id GENERATED #fieldModifier
+processID Integer #field
+processID PERSISTENT #fieldModifier
+taskActor String #field
+taskActor PERSISTENT #fieldModifier
+subject String #field
+subject PERSISTENT #fieldModifier
+prio String #field
+prio PERSISTENT #fieldModifier
+description String #field
+description PERSISTENT #fieldModifier
+taskCount Integer #field
+taskCount PERSISTENT #fieldModifier
+untilDays Integer #field
+untilDays PERSISTENT #fieldModifier

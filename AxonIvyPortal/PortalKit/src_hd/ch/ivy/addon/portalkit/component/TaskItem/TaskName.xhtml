@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<ui:composition>
+  <h:outputText id="task-name" styleClass="name-cell"
+    value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
+    rendered="#{!isExpanded or taskBean.isDone(task)}" />
+  <p:tooltip for="task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}"/>  
+  <span class="name-cell" onclick="if('#{task.canChangeName}'=='true') {event.stopPropagation()}"> 
+    <h:form id="task-name-edit-form" onsubmit="return false;">
+      <p:inplace id="task-name-inplace" editor="true" rendered="#{isExpanded and taskBean.isNotDone(task)}"
+        disabled="#{!task.canChangeName}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="task-name-inplace" styleClass="name-cell"
+        label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
+        <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200"
+          valueChangeListener="#{logic.keepOldNameValue}"
+          onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
+        <p:ajax event="save" listener="#{logic.updateName(task)}" process="task-name-edit-form"
+          update="task-name-edit-form #{cc.attrs.componentToUpdate}" />
+      </p:inplace>
+    </h:form>
+  </span>
+  <h:outputText id="description-cell" styleClass="description-cell" value="#{task.description}" />
+</ui:composition>
+</html>

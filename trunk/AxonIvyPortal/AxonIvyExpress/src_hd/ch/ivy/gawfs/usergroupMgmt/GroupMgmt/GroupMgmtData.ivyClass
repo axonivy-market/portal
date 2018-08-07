@@ -1,0 +1,27 @@
+GroupMgmtData #class
+ch.ivy.gawfs.usergroupMgmt.GroupMgmt #namespace
+actCase ch.ivyteam.ivy.workflow.ICase #field
+caseDetailsMode Boolean #field
+header String #field
+creationMode Boolean #field
+isPrecreation Boolean #field
+taskDescription String #field
+inputString String #field
+actualGroup String #field
+actualUsers List<ch.ivyteam.ivy.security.IUser> #field
+actualUser ch.ivyteam.ivy.security.IUser #field
+actualUserId String #field
+removeUserId String #field
+changed Boolean #field
+emptyUsers List<ch.ivyteam.ivy.security.IUser> #field
+emptyUsers 'empty list for initialization' #fieldComment
+actualGroupOriginal String #field
+actualGroupOriginal 'name of group on selection' #fieldComment
+isNew Boolean #field
+link String #field
+link 'Link to APPTIO (Groups)' #fieldComment
+link PERSISTENT #fieldModifier
+groups List<ch.ivyteam.ivy.security.IRole> #field
+groups PERSISTENT #fieldModifier
+users List<ch.ivyteam.ivy.security.IUser> #field
+users PERSISTENT #fieldModifier

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userConfig>
+    <user>
+        <username>UserA</username>
+        <fullName>User Adam</fullName>
+    </user>
+    <user>
+        <username>UserB</username>
+        <fullName>User Beny</fullName>
+    </user>
+    <user>
+        <username>UserC</username>
+        <fullName>User Charly</fullName>
+    </user>
+</userConfig>

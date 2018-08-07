@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+  xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:f="http://xmlns.jcp.org/jsf/core" 
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" 
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" 
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <p:panel
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/generalInformation')}">
+    <p:panelGrid id="panelTaskDetails">
+      <p:row>
+        <p:column styleClass="Wid10">
+          <p:outputLabel for="description" styleClass="Fright"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/description')}:" />
+        </p:column>
+        <p:column>
+          <h:outputText id="description" value="#{data.caseInfo.description}" escape="false" />
+        </p:column>
+        <p:column styleClass="Wid20">
+          <h:outputLabel for="created" styleClass="Fright"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/created')}:" />
+        </p:column>
+        <p:column>
+          <h:outputText id="created" value="#{data.caseInfo.startTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column>
+          <p:outputLabel for="state" styleClass="Fright"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/status')}:" />
+        </p:column>
+        <p:column>
+          <span class="#{caseBean.getCaseStateIcon(data.caseInfo.state)}" />
+          <h:outputText id="state" value=" #{data.caseInfo.state}" />
+        </p:column>
+        <p:column>
+          <h:outputLabel styleClass="Fright" for="creator"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/creator')}:" />
+        </p:column>
+        <p:column>
+          <p:commandLink id="creator" value="#{data.creatorName}" styleClass="fa fa-info-circle" />
+          <pe:tooltip for="creator" atPosition="bottom right" showEvent="click" hideEvent="focusout" myPosition="center,left">
+            <ic:ch.ivy.addon.portalkit.multiapp.general.ContactPopover contact="#{data.contact}" />
+          </pe:tooltip>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column>
+          <p:outputLabel for="lastEdit" styleClass="Fright"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/lastEdit')}:" />
+        </p:column>
+        <p:column>
+          <h:outputText id="lastEdit" value="#{data.caseInfo.endTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+        <p:column>
+          <h:outputLabel styleClass="Fright" for="processModel"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/processModel')}:" />
+        </p:column>
+        <p:column>
+          <p:commandLink id="processModel" value="#{data.caseInfo.processModel.name}" />
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column>
+          <h:outputLabel for="caseId" styleClass="Fright" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}:" />
+        </p:column>
+        <p:column>
+          <h:outputText id="caseId" value="##{data.caseInfo.id}" />
+        </p:column>
+        <p:column>
+          <h:outputLabel for="processVersion" styleClass="Fright"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/processVersion')}:" />
+        </p:column>
+        <p:column id="processVersion">
+          <h:outputText value="#{data.caseInfo.processModelVersion}" />
+        </p:column>
+      </p:row>
+
+    </p:panelGrid>
+  </p:panel>
+</cc:implementation>
+
+</html>

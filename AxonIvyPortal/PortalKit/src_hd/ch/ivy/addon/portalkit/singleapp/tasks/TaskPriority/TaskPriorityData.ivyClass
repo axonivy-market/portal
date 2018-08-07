@@ -1,0 +1,8 @@
+TaskPriorityData #class
+ch.ivy.addon.portalkit.singleapp.tasks.TaskPriority #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+priorities List #field
+priorities PERSISTENT #fieldModifier
+currentPriority ch.ivyteam.ivy.workflow.WorkflowPriority #field
+currentPriority PERSISTENT #fieldModifier

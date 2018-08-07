@@ -1,0 +1,18 @@
+DevLoadWorkflowsData #class
+gawfs #namespace
+workflows List<gawfs.Workflow> #field
+workflows PERSISTENT #fieldModifier
+workflowID Integer #field
+workflowID PERSISTENT #fieldModifier
+workflowName String #field
+workflowName PERSISTENT #fieldModifier
+workflowDescription String #field
+workflowDescription PERSISTENT #fieldModifier
+workflowType String #field
+workflowType PERSISTENT #fieldModifier
+devWorkflows List<gawfs.Workflow> #field
+devWorkflows PERSISTENT #fieldModifier
+deleteFlag Boolean #field
+deleteFlag PERSISTENT #fieldModifier
+editFlag Boolean #field
+editFlag PERSISTENT #fieldModifier

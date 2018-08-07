@@ -1,0 +1,4 @@
+deletePredefinedWorkflowData #class
+gawfs #namespace
+workflowID Integer #field
+workflowID PERSISTENT #fieldModifier

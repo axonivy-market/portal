@@ -1,0 +1,22 @@
+PortalTaskMenuData #class
+ch.ivy.addon.portal.generic.PortalTaskMenu #namespace
+loginUser String #field
+loginUser PERSISTENT #fieldModifier
+hasReadAllTasksPermisson Boolean #field
+hasReadAllTasksPermisson PERSISTENT #fieldModifier
+myTaskCategories List<String> #field
+myTaskCategories PERSISTENT #fieldModifier
+allTaskCategories List<String> #field
+allTaskCategories PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskView PERSISTENT #fieldModifier
+selectedMenuItem ch.ivy.addon.portalkit.bo.MainMenuNode #field
+selectedMenuItem PERSISTENT #fieldModifier
+selectedNode org.primefaces.model.DefaultTreeNode #field
+selectedNode PERSISTENT #fieldModifier
+involvedApplications List<String> #field
+involvedApplications PERSISTENT #fieldModifier
+groupTaskCategories java.util.List<String> #field
+groupTaskCategories PERSISTENT #fieldModifier

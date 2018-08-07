@@ -1,0 +1,6 @@
+PortalHomeData #class
+ch.ivy.addon.portal.generic.PortalHome #namespace
+dataModel org.primefaces.model.LazyDataModel #field
+dataModel PERSISTENT #fieldModifier
+statistic ch.ivy.addon.portal.generic.StatisticData #field
+statistic PERSISTENT #fieldModifier
