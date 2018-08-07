@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="caseView" value="#{data.caseView}" />
+
+    <!--
+      - The ui:param `useOverride` is for pages uses this template to decide
+      whether the customContent should be shown
+      - Default to `false`.
+    -->
+    <ui:param name="useOverride" value="false"></ui:param>
+
+    <ui:define name="pageTitle">#{caseView.getTitle()}</ui:define>
+    <ui:define name="pageContent">
+      <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{caseView.getTitle()}"
+        dataModel="#{caseView.getDataModel()}" hideCaseFilter="#{not empty caseView.getKeyword()}"
+        autoSelectCaseId="#{caseView.getAutoSelectCaseId()}">
+
+        <ui:fragment rendered="#{not useOverride}">
+          <div class="grid">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
+          </div>
+        </ui:fragment>
+
+        <ui:fragment rendered="#{useOverride}">
+          <ui:insert name="caseBody">
+            <!-- Put customized XHTMLs here -->
+          </ui:insert>
+        </ui:fragment>
+
+      </ic:ch.ivy.addon.portalkit.component.CaseWidget>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

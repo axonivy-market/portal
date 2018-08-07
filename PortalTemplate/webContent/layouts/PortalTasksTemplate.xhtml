@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="taskView" value="#{data.taskView}" />
+
+    <!--
+      - The ui:param `useOverride` is for pages uses this template to decide
+      whether the customContent should be shown
+      - Default to `false`.
+    -->
+    <ui:param name="useOverride" value="false" />
+
+    <ui:define name="pageTitle">#{taskView.pageTitle}</ui:define>
+
+    <ui:define name="pageContent">
+      <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget"
+        hideTaskFilter="#{taskView.hideTaskFilter or not empty taskView.keyword}" dataModel="#{taskView.dataModel}"
+        showHeaderToolbar="#{taskView.showHeaderToolbar}" compactMode="false" selectedTaskId="#{taskView.remoteTaskId}"
+        selectedTaskServerId="#{taskView.serverId}" noTaskFoundMessage="#{taskView.noTaskFoundMessage}">
+        <f:facet name="title">
+          <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
+	        		#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
+	        			<h:commandLink value="##{taskView.caseId}" styleClass="ui-link"
+              actionListener="#{navigatorBean.navigateToCaseDetail(taskView.caseName, taskView.caseId, taskView.serverId)}" />
+	        		#{taskView.caseName}
+	        	</h:form>
+          <h:outputText rendered="#{! taskView.canLinkBackCaseDetail()}" value="#{taskView.category.value}" />
+        </f:facet>
+        <ui:fragment rendered="#{not useOverride}">
+          <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="description" task="#{task}" />
+          <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-info" task="#{task}" />
+          <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}" />
+          <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" />
+        </ui:fragment>
+        <ui:fragment rendered="#{useOverride}">
+          <ui:insert name="taskBody">
+          </ui:insert>
+        </ui:fragment>
+      </ic:ch.ivy.addon.portalkit.component.TaskWidget>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

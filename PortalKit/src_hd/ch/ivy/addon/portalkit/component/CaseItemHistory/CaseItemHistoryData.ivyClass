@@ -1,0 +1,18 @@
+CaseItemHistoryData #class
+ch.ivy.addon.portalkit.component.CaseItemHistory #namespace
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+remoteCase PERSISTENT #fieldModifier
+remoteTasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+remoteTasks PERSISTENT #fieldModifier
+histories List<ch.ivy.addon.portalkit.bo.History> #field
+histories PERSISTENT #fieldModifier
+noteContent String #field
+noteContent PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+note ch.ivy.ws.addon.IvyNote #field
+note PERSISTENT #fieldModifier
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+taskSearchCriteria PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier

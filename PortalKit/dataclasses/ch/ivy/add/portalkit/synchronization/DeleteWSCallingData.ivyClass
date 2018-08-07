@@ -1,0 +1,17 @@
+DeleteWSCallingData #class
+ch.ivy.add.portalkit.synchronization #namespace
+endpoint String #field
+isNTLMAuthentication Boolean #field
+isNTLMAuthentication PERSISTENT #fieldModifier
+key String #field
+key PERSISTENT #fieldModifier
+keyPrefix String #field
+keyPrefix PERSISTENT #fieldModifier
+message String #field
+returnedStatus ch.ivy.ws.addon.ReturnedStatus #field
+serverURL String #field
+serverURL PERSISTENT #fieldModifier
+retryTime Integer #field
+retryTime PERSISTENT #fieldModifier
+keys List<String> #field
+keys PERSISTENT #fieldModifier

@@ -1,0 +1,6 @@
+CaseItemData #class
+ch.ivy.addon.portalkit.singleapp.cases.CaseItem #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+internalCase ch.ivyteam.ivy.workflow.ICase #field
+internalCase PERSISTENT #fieldModifier

@@ -1,0 +1,6 @@
+PortalStartData #class
+ch.ivy.addon.portal.generic #namespace
+portalNavigator String #field
+parameters String #field
+caseView ch.ivy.addon.portal.generic.view.CaseView #field
+taskView ch.ivy.addon.portal.generic.view.TaskView #field

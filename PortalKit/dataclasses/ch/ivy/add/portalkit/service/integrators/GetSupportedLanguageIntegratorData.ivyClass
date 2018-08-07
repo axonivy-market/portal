@@ -1,0 +1,7 @@
+GetSupportedLanguageIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+applicationName String #field
+supportedLanguages List<String> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+endpoint String #field
+wsExceptions List<ch.ivy.ws.addon.WsException> #field
