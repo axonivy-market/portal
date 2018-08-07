@@ -1,0 +1,5 @@
+SubstituteServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+substitutes java.util.List<ch.ivy.ws.addon.types.IvySubstitute> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+applicationUsers java.util.List<ch.ivy.ws.addon.types.IvyUser> #field

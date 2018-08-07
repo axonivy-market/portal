@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+	<cc:attribute name="caseItem"
+		type="ch.ivy.addon.portalkit.bo.RemoteCase" />
+	<cc:attribute name="destroyCaseActionListener"
+		method-signature="void actionListener(ch.ivy.addon.portalkit.bo.RemoteCase)" />
+	<cc:attribute name="update" default="" required="false" />
+	<cc:attribute name="showDestroyButton" default="false"
+		type="java.lang.Boolean" />
+	<cc:attribute name="isSelected" default="false"
+		type="java.lang.Boolean" />
+	<cc:attribute name="oncomplete" />
+</cc:interface>
+
+<cc:implementation>
+	<h:outputScript library="js" name="case-widget.js" />
+
+	<c:set var="caseItem" value="#{cc.attrs.caseItem}" />
+
+	<div id="#{cc.clientId}"
+		class="widget-content-list-item u-shadow-effect js-case-item #{cc.attrs.isSelected ? 'is-selected' : ''}">
+		<div class="case-header">
+			<div class="case-header-data js-case-item-header">
+				<div id="#{cc.clientId}:case-header-data-top"
+					class="case-header-data-top">##{caseItem.id}
+					#{caseBean.getState(caseItem).toUpperCase()}</div>
+				<div id="#{cc.clientId}:case-header-data-middle"
+					class="case-header-data-middle">#{empty caseItem.getName() ?
+					ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot')
+					: caseItem.getName()}</div>
+				<div id="#{cc.clientId}:case-header-data-bottom"
+					class="case-header-data-bottom">
+					<span class="js-case-timestamp">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Created')}
+						#{caseItem.getStartTimestamp()}</span> <span
+						class="case-description js-case-description">#{caseItem.getDescription()}</span>
+				</div>
+			</div>
+			<div class="case-header-action">
+				<div class="case-header-action-list">
+					<p:commandLink id="destroy-case"
+						rendered="#{(not empty cc.attrs.destroyCaseActionListener) and cc.attrs.showDestroyButton}"
+						update="#{cc.attrs.update}"
+						actionListener="#{cc.attrs.destroyCaseActionListener}"
+						styleClass="case-header-action-list-item" process="@this"
+						oncomplete="#{cc.attrs.oncomplete}">
+						<div class="case-header-action-list-item-icon">
+							<i class="fa fa-remove" />
+						</div>
+						<div class="case-header-action-list-item-name">
+							<span>#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Destroy')}</span>
+						</div>
+					</p:commandLink>
+				</div>
+			</div>
+		</div>
+		<div class="case-body js-case-item-body">
+			<div class="grid">
+				<cc:insertChildren/>
+			</div>
+		</div>
+	</div>
+</cc:implementation>
+</html>

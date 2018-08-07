@@ -1,0 +1,22 @@
+TaskServiceData #class
+ch.ivy.ws.addon #namespace
+applications List<String> #field
+canUserResumeTask Boolean #field
+error ch.ivy.ws.addon.WSException #field
+errors List<ch.ivy.ws.addon.WSException> #field
+ivySecurityMember ch.ivy.ws.addon.types.IvySecurityMember #field
+ivyTask ch.ivy.ws.addon.types.IvyTask #field
+ivyTasks List<ch.ivy.ws.addon.types.IvyTask> #field
+keyword String #field
+note ch.ivy.ws.addon.types.IvyNote #field
+notes List<ch.ivy.ws.addon.types.IvyNote> #field
+serverId Long #field
+simpleFilter String #field
+user String #field
+serverUrl String #field
+serverUrl 'To create URL of a task. E.g. URL of a task = serverUrl + ivy/pro/designer/InternalSupport$1/14B2FC03D2E87141/14B2FC03D2E87141-f7/TaskA.ivp?taskId=2' #fieldComment
+allIvyTasks List<ch.ivy.ws.addon.types.IvyTask> #field
+allIvyTasks 'For admin to find all running tasks' #fieldComment
+ivyCase ch.ivy.ws.addon.types.IvyCase #field
+ivyCase 'To find tasks related to the case' #fieldComment
+taskSearchCriteria ch.ivy.ws.addon.service.TaskSearchCriteria #field

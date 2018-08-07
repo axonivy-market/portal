@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/modena">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="numberOfDisplayedTasks" default="7" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="reloadTasks" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}" />
+  <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
+  <cc:attribute name="onSwitchToCompactModeCompletedCallback" />
+  <cc:attribute name="onSwitchToExpandedModeCompletedCallback" />
+  <cc:attribute name="hideTaskFilter" default="false" shortDescription="Task filter text field is hidden or not" type="java.lang.Boolean" />
+  <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="selectedTaskId" />
+  <cc:attribute name="selectedTaskServerId" />
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{taskWidgetBean.setIsCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
+  <f:event listener="#{logic.setTasks(cc.attrs.reloadTasks)}" type="preRenderComponent" />
+  <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+  <h:outputScript name="task-widget.js" library="js" />
+
+  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass}">
+    <div class="task-widget-header-container">
+      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header" layout="block">
+        <div class="widget-header-main">
+          <div class="widget-header-main-title task-widget-header-content-title">#{cc.attrs.title}</div>
+          <ul class="widget-header-main-menu js-widget-header-menu">
+            <ui:fragment rendered="#{cc.attrs.compactMode}">
+              <li class="u-underline-from-center js-ignore-selected-state"><p:commandLink id="switch-mode-command"
+                  actionListener="#{taskWidgetBean.switchMode()}" update="task-view switch-mode-command priority-sort filter-view expiry-sort #{cc.attrs.componentToUpdate}"
+                  oncomplete="#{taskWidgetBean.compactMode ? 'taskWidget.hideScrollbar()' : 'taskWidget.setupScrollbar()'}; #{taskWidgetBean.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}()">
+                  <f:actionListener binding="#{logic.clearExpandedTask()}" />
+                  <f:actionListener binding="#{logic.clearFilter()}" />
+                  <f:actionListener binding="#{logic.setTasks(cc.attrs.reloadTasks)}"/>
+                  <f:actionListener binding="#{taskWidgetBean.taskSortType == 'BY_EXPIRY_TIME'? taskWidgetBean.sortByExpiryTime(data.filteredTasks, data.tasks) : ''}"/>
+                  <span class="fa fa-chevron-right switch-mode-command-icon" />
+                  <h:outputText id="switch-mode-command-value"
+                    value="#{taskWidgetBean.getDisplayTextForSwitchModeButton()}" />
+                </p:commandLink></li>
+            </ui:fragment>
+             <li class="u-underline-from-center is-selected"><p:commandLink id="priority-sort"
+                actionListener="#{taskWidgetBean.sortByPriority(data.filteredTasks, data.tasks)}" update="task-view-container"
+                oncomplete="#{taskWidgetBean.compactMode ? 'taskWidget.setupScrollbar()' : 'taskWidget.hideScrollbar()'}">
+                <f:actionListener binding="#{logic.clearExpandedTask()}" />
+                <span class="fa fa-chevron-right switch-mode-command-icon" />
+                <h:outputText id="priority-sort-name"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByPriority')}" />
+              </p:commandLink></li>
+            <li class="u-underline-from-center"><p:commandLink id="expiry-sort"
+                actionListener="#{taskWidgetBean.sortByExpiryTime(data.filteredTasks, data.tasks)}" update="task-view-container"
+                oncomplete="#{taskWidgetBean.compactMode ? 'taskWidget.setupScrollbar()' : 'taskWidget.hideScrollbar()'}">
+                <f:actionListener binding="#{logic.clearExpandedTask()}" />
+                <span class="fa fa-chevron-right switch-mode-command-icon" />
+                <h:outputText id="expiry-sort-name"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByExpiryTime')}" />
+              </p:commandLink></li>
+          </ul>
+        </div>
+        <h:panelGroup styleClass="task-widget-header-content-filter" id="filter-view" >
+          <h:form id="filter-form" onsubmit="return false;">
+            <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" updateComponent="#{p:component('task-view-container')}"
+              keywordStoresIn="#{data.keyword}" rendered="#{!taskWidgetBean.compactMode and !cc.attrs.hideTaskFilter}"/>
+          </h:form>
+        </h:panelGroup>      
+      </h:panelGroup>
+    </div>
+
+    <h:panelGroup layout="block" id="task-view">
+      <h:panelGroup styleClass="widget-content-scroll-button" layout="block">
+        <p:outputLabel id="task-widget-scroll-up-command"
+          styleClass="js-task-start-list-scroll-up fa fa-chevron-up Fs14 u-unselectable"
+          rendered="#{cc.attrs.compactMode and data.filteredTasks.size() gt cc.attrs.numberOfDisplayedTasks}" />
+      </h:panelGroup>
+      <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container js-task-start-list">
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask')}"
+          rendered="#{empty data.filteredTasks}" />
+        <ui:repeat id="task-start" var="task" value="#{data.filteredTasks}" varStatus="taskStatus">
+          <ui:include src="TaskStart.xhtml">
+            <ui:param name="taskStartId" value="task-start-#{taskStatus.index}" />
+            <ui:param name="task" value="#{task}" />
+            <ui:param name="isSelected" value="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}" />
+          </ui:include>
+        </ui:repeat>
+      </h:panelGroup>
+      <h:panelGroup>
+        <f:event listener="#{data.setFindingPreExpandedTaskFinished(true)}" type="preRenderComponent"  />
+      </h:panelGroup>
+      <h:panelGroup styleClass="widget-content-scroll-button" layout="block">
+        <p:outputLabel id="task-widget-scroll-down-command"
+          styleClass="js-task-start-list-scroll-down fa fa-chevron-down Fs14 u-unselectable"
+          rendered="#{cc.attrs.compactMode and data.filteredTasks.size() gt cc.attrs.numberOfDisplayedTasks}" />
+      </h:panelGroup>
+    </h:panelGroup>
+  </div>
+
+  <ui:include src="TaskDelegateDialog.xhtml" />
+
+  <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
+    <f:facet name="message">
+      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+    </f:facet>
+    <h:panelGroup styleClass="Fs14">
+      <h:form id="reset-task-form">
+        <p:commandButton actionListener="#{logic.resetAndOpenTask}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+        <p:commandButton onclick="PF('reset-task-dialog').hide()"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+      </h:form>
+    </h:panelGroup>
+  </p:confirmDialog>
+  <script type="text/javascript">
+    var taskWidget = new TaskWidget(#{data.filteredTasks.size()}, #{cc.attrs.numberOfDisplayedTasks});
+    // set a delay to make sure the scrollbar is configured correctly, e.g.: in case 
+    // css was not finished loading...
+    setTimeout(function() {
+      if("#{cc.attrs.compactMode}" === "true") {
+        taskWidget.setupScrollbar();
+      }
+    }, 1000);
+    
+    function hideTaskDetails(taskId){
+      $("#"+taskId+'-task-details').slideUp('fast', function(){
+        $("#"+taskId).removeClass('show-task-details-mode');
+      });
+    }
+    
+    function displayTaskDetails(taskDetailsId){
+      $("#"+taskDetailsId).slideDown();
+    }
+  </script>
+</cc:implementation>
+</html>

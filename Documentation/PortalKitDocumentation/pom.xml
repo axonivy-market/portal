@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ch.ivyteam.ivy.project.portal</groupId>
+  <artifactId>portalKitDocumentation</artifactId>
+  <packaging>jar</packaging>
+  <version>6.1.0.0-SNAPSHOT</version>
+  <name>Portal Kit Documentation</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.3</version>
+        <executions>
+          <execution>
+            <id>attach-site</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pdf-plugin</artifactId>
+        <version>1.2</version>
+        <executions>
+          <execution>
+            <id>pdf</id>
+            <phase>site</phase>
+            <goals>
+              <goal>pdf</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.reporting.outputDirectory}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changelog-plugin</artifactId>
+        <version>2.3</version>
+        <reportSets>
+          <reportSet>
+            <id>dual-report</id>
+            <configuration>
+              <type>range</type>
+              <range>60</range>
+            </configuration>
+            <reports>
+              <report>changelog</report>
+              <report>file-activity</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+
+  <scm>
+    <connection>scm:svn:https://vcs.soreco.ch/svn/development/xpertivy/AxonIvyPortal/trunk/Documentation/PortalKitDocumentation</connection>
+    <developerConnection>scm:svn:https://vcs.soreco.ch/svn/development/xpertivy/AxonIvyPortal/trunk/Documentation/PortalKitDocumentation</developerConnection>
+    <url>https://vcs.soreco.ch/svn/development/xpertivy/AxonIvyPortal/trunk/Documentation/PortalKitDocumentation</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>local-filesystem</id>
+      <url>file:///C:/maven/</url>
+    </repository>
+    <snapshotRepository>
+      <id>local-filesystem</id>
+      <uniqueVersion>true</uniqueVersion>
+      <url>file:///C:/maven/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+</project>

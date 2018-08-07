@@ -1,0 +1,10 @@
+Data #class
+ch.ivy.addon.portal.generic #namespace
+caseId Number #field
+taskId Number #field
+url String #field
+appName String #field
+errorCode String #field
+keyword String #field
+serverId Long #field
+processFullRequestPath String #field

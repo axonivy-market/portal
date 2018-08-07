@@ -1,0 +1,21 @@
+CaseServiceData #class
+ch.ivy.ws.addon #namespace
+additionalProperties java.util.Map<java.lang.String,java.lang.String> #field
+applications List<String> #field
+caseSearchCriteria ch.ivy.ws.addon.service.CaseSearchCriteria #field
+document ch.ivy.ws.addon.types.IvyDocument #field
+documentContent Binary #field
+documentId Long #field
+documentName String #field
+documents List<ch.ivy.ws.addon.types.IvyDocument> #field
+error ch.ivy.ws.addon.WSException #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+ivyAdditionalPropertiesList List<ch.ivy.ws.addon.types.IvyAdditionalProperty> #field
+ivyCase ch.ivy.ws.addon.types.IvyCase #field
+ivyCases List<ch.ivy.ws.addon.types.IvyCase> #field
+ivyTasks List<ch.ivy.ws.addon.types.IvyTask> #field
+note ch.ivy.ws.addon.types.IvyNote #field
+notes List<ch.ivy.ws.addon.types.IvyNote> #field
+simpleFilter String #field
+user String #field
+serverUrl String #field

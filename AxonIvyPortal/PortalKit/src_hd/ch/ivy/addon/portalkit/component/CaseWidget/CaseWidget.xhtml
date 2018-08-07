@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="cases" required="true" shortDescription="List of cases to be displayed" />
+  <cc:attribute name="emptyMessage" default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/defaultEmptyMessage')}" shortDescription="A message when the cases are empty"/>
+  <cc:attribute name="hideCaseFilter" default="false" shortDescription="Case filter text field is hidden or not" type="java.lang.Boolean" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}"/>
+  <cc:facet name="emptyMessage"/>
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}" class="widget">
+  	<c:set var="hasCases" value="#{not empty cc.attrs.cases}"/>
+    <f:event listener="#{logic.setCases(cc.attrs.cases)}" type="preRenderComponent" />
+    
+    <div class="widget-header">
+      <div class="widget-header-main">
+        <div class="widget-header-main-title">
+         	#{cc.attrs.title}
+        </div>
+      </div>
+      <div jsf:rendered="#{!cc.attrs.hideCaseFilter}" class="widget-header-sub">
+        <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.filteringKeyword}" listener="#{logic.filter()}" updateComponent="#{p:component('case-list')}" />
+      </div>
+    </div>
+    <div class="widget-content">
+      <h:panelGroup id="case-list" layout="block" rendered="#{hasCases}" styleClass="widget-content-list">
+      	<ui:repeat id="case-items" var="case" value="#{data.filteredCases}">
+      		<cc:insertChildren/>
+      	</ui:repeat>
+      </h:panelGroup>
+      <div jsf:rendered="#{not hasCases}" class="case-widget-empty-message">
+      	<p:outputLabel rendered="#{empty cc.facets.emptyMessage}" value="#{cc.attrs.emptyMessage}"/>
+      	<cc:renderFacet name="emptyMessage"/>
+      </div>
+    </div>
+  </div>
+</cc:implementation>
+</html>

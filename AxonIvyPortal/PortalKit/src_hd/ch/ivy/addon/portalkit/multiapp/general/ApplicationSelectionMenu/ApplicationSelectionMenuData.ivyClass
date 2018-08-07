@@ -1,0 +1,30 @@
+ApplicationSelectionMenuData #class
+ch.ivy.addon.portalkit.multiapp.general.ApplicationSelectionMenu #namespace
+applications List<ch.ivy.addon.portalkit.persistence.domain.Application> #field
+applications PERSISTENT #fieldModifier
+appName String #field
+appName PERSISTENT #fieldModifier
+contextPath String #field
+contextPath PERSISTENT #fieldModifier
+displayName String #field
+displayName PERSISTENT #fieldModifier
+homepageUrl String #field
+homepageUrl PERSISTENT #fieldModifier
+hostName String #field
+hostName PERSISTENT #fieldModifier
+isHiddenLogout Boolean #field
+isHiddenLogout PERSISTENT #fieldModifier
+isNotRequiredLogin Boolean #field
+isNotRequiredLogin PERSISTENT #fieldModifier
+isShowServerInformation Boolean #field
+processModelName String #field
+processModelName PERSISTENT #fieldModifier
+processStartLink String #field
+processStartLink PERSISTENT #fieldModifier
+serverInformation ch.ivy.addon.portalkit.multiapp.general.ApplicationSelectionMenu.ServerInformation #field
+userLogin org.primefaces.component.commandlink.CommandLink #field
+userLogin PERSISTENT #fieldModifier
+menuItems java.util.List<org.primefaces.component.button.Button> #field
+menuItems PERSISTENT #fieldModifier
+applicationUrl String #field
+applicationUrl PERSISTENT #fieldModifier

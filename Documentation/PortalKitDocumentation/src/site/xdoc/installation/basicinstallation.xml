@@ -1,0 +1,572 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>Basic Installation</title>
+  </properties>
+
+  <body>
+    <section name="Basic Installation">
+      <div class="section">
+        <div class="section">
+          <h3>
+            Project Modules
+            <a name="Project_Modules"></a>
+          </h3>
+          <p>The application consists of several process modules, that are
+            listed in the table. The image shows the
+            Deployment Model and
+            connections to other systems.
+          </p>
+          <p>
+            <img src="../images/DeploymentMap.png" />
+          </p>
+          <table border="1" class="table table-striped">
+            <tbody>
+              <tr class="a">
+                <th align="left">Module</th>
+                <th align="left">Description</th>
+              </tr>
+              <tr class="b">
+                <td align="left">PortalConnector</td>
+                <td align="left">
+                  This is communication channel between all Portal servers
+                  to retrieve (Task,Case,User and for Synchronization
+                  Portal Data). This module
+                  has to be installed on every AxonIvy engine. It should be
+                  installed one separate
+                  application for
+                  this connector(named "PortalConnector"). In future Ivy versions,
+                  it might be provided along with
+                  AxonIvy Engine. If you want to set another name for PortalConnector
+                  application,
+                  you also have to change its value on
+                  "ch_ivy_portalconnector_application_name" Global variable on
+                  PortalKit PM.
+                  See more
+                  information at
+                  <a href="http://swbntsrv24.soreco.wan/confluence/pages/viewpage.action?pageId=152469532">here</a>
+                </td>
+              </tr>
+              <tr class="a">
+                <td align="left">PortalPersistence</td>
+                <td align="left">Contains the Data Access Objects layer that is to
+                  access Portal data by
+                  ICustomProperty API.
+                </td>
+              </tr>
+              <tr class="b">
+                <td align="left">PortalKit</td>
+                <td align="left">Contains a set of components helping you to build a
+                  portal application with virtually no
+                  effort. It also Contains a
+                  set of templates and CSS style definitions used for portal
+                  applications.
+                  <br />
+                  <b>Note</b>: PortalKit contains <b>Admin Settings</b> component to configure Server, Application, Setting.
+                </td>
+              </tr>
+              <tr class="a">
+                <td align="left">PortalTemplate</td>
+                <td align="left">This project contains a foundation for build
+                  application portals. Use it and you will have
+                  all standard
+                  features on the sport. Create your own portal project with
+                  PortalTemplate as a dependency
+                  to extend and
+                  customize it.
+                </td>
+              </tr>
+              <tr class="b">
+                <td align="left">PortalStyle</td>
+                <td align="left">This package contains definition of styles.
+                </td>
+              </tr>
+              <tr class="a">
+                <td align="left">InternalSupport</td>
+                <td align="left">This package contains the extension to
+                  PortalTemplate and customize for each customer.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            The project deployment of Ivy project are described
+            <a class="externalLink"
+              href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration-deployment ">here</a>
+            .
+          </p>
+        </div>
+        <div class="section">
+          <h3>
+            Process Model Versions
+            <a name="Process_Model_Versions"></a>
+          </h3>
+          <p>An application can have multiple process models. Each process
+            model can have different versions. A process
+            model corresponds to
+            the concept of a project on the Axon.ivy Designer. A process model
+            version corresponds to
+            a versioned snapshot of that project at
+            some point of time.
+          </p>
+          <p>
+            <a class="externalLink"
+              href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration.processmodel">More Details to Process Model Versions</a>
+            .
+          </p>
+          <p>
+            <b>DEFAULT DEPLOYMENT PROCEDURE IS TO REPLACE THE LATEST ACTIVE
+              PROCESS MODEL VERSION WITH THE PROVIDED
+              MODULES IN THE RELEASE
+              PACKAGE
+            </b>
+          </p>
+          <p>In most cases the process models can be replaced that are
+            provided by the Release Package. Therefore if
+            there is no extra
+            hint in the release installation to create a new process model
+            version, the existing process
+            model version of the component can
+            be replaced with the new package version. Ivy asks you if you want
+            to
+            overwrite the existing process model version, this warning can
+            be committed.
+          </p>
+        </div>
+        <div class="section">
+          <h3>
+            Preconditions for Installation
+            <a name="Preconditions_for_Installation"></a>
+          </h3>
+        </div>
+        <div class="section">
+          <h3>
+            Server configuration
+            <a name="Server_configuration"></a>
+          </h3>
+          <ul>
+            <li>System required the minimum needed Ivy Server Version is
+              6.0.0.49863
+            </li>
+          </ul>
+        </div>
+        <div class="section">
+          <h3>
+            Global Settings
+            <a name="Global Settings"></a>
+          </h3>
+          <table class="table table-striped" border="1">
+            <tbody>
+              <tr class="a">
+                <th align="left">Keyword</th>
+                <th align="left">Value</th>
+                <td align="left">Description</td>
+              </tr>
+              <tr class="b">
+                <td align="left">HOMEPAGE_URL</td>
+                <td align="left">http://ivyserveraddress/ivy/pro/PortalKit/PortalAdmin/14BC9D37576AF1C4/GlobalTaskList.ivp
+                </td>
+                <td align="left">Portal Admin's home page link.</td>
+              </tr>
+              <tr class="b">
+                <td align="left">HIDE_LOGOUT_BUTTON</td>
+                <td align="left">TRUE/FALSE</td>
+                <td align="left">For show/hide logout menu configuration, if need to
+                  hide menu
+                  logout, add more bellow record
+                  to table.
+                  Setting value to display logout menu item or not.
+                  If
+                  true (none case-sensitive), it will be
+                  hidden, otherwise it
+                  will
+                  be showed. If record HIDE_LOGOUT_BUTTON is not set in
+                  database,
+                  the logout menu
+                  will be displayed by default.
+                </td>
+              </tr>
+              <tr class="b">
+                <td align="left">SHOW_ENVIRONMENT_INFO</td>
+                <td align="left">TRUE/FALSE</td>
+                <td align="left">For switch on/off the display of environment
+                  information.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="section">
+          <h3>
+            Global Directory Service
+            <a name="Global_Directory_Service"></a>
+          </h3>
+        </div>
+        <div class="section">
+          <h3>
+            Role configuration
+            <a name="Role_configuration"></a>
+          </h3>
+          <table border="1" class="table table-striped">
+            <tbody>
+              <tr class="a">
+                <td align="left">
+                  <b>PortalKit Role</b>
+                </td>
+                <td align="left">
+                  <b>Rights</b>
+                </td>
+              </tr>
+              <tr class="b">
+                <td align="left">AXONIVY_PORTAL_ADMIN</td>
+                <td align="left">
+                  User belong to this role can handle AdminUI page, view dash
+                  board page, and configure the internal role
+                  properties, users
+                  who own this role need some permissions. See
+                  <a href="#Permissions">Permission settings</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="section">
+          <h3>
+            Permissions Settings
+            <a name="Permissions"></a>
+          </h3>
+          <h4>Everybody Role</h4>
+          <p>Set all permissions and system permissions to "granted".</p>
+
+          <h4>Absences</h4>
+          <ul>
+            <li>
+              <b>READ</b>
+            </li>
+          </ul>
+          <p>
+            This function will be disabled if Session User does not have
+            IPermission.USER_READ_OWN_ABSENCES or
+            IPermission.USER_READ_ABSENCES.
+          </p>
+          <ul>
+            <li>
+              <b>CREATE/MODIFY</b>
+            </li>
+          </ul>
+          <p>
+            This function will be disabled if Session User does not have
+            IPermission.USER_CREATE_OWN_ABSENCES or
+            IPermission.USER_CREATE_ABSENCE.
+          </p>
+          <ul>
+            <li>
+              <b>DELETE</b>
+            </li>
+          </ul>
+          <p>
+            This function will be disabled if Session User does not have
+            IPermission.USER_DELETE_OWN_ABSENCES or
+            IPermission.USER_DELETE_ABSENCE.
+          </p>
+
+          <h4>Personal Task Permission</h4>
+          <ul>
+            <li>
+              <b>DELEGATE</b>
+            </li>
+          </ul>
+          <p>This function will be disabled if SessionUser does not have
+            IPermission.DELEGATE_TASKS
+            or TaskState is one of
+            following
+            values:
+            DONE, DESTROYED, RESUMED,
+            FAILED.
+          </p>
+          <ul>
+            <li>
+              <b>ADD NOTE</b>
+            </li>
+          </ul>
+          <p>This function will be disabled if TaskState is one of following
+            values: DONE, DESTROYED, RESUMED, FAILED
+          </p>
+          <ul>
+            <li>
+              <b>RESET</b>
+            </li>
+          </ul>
+          <p>This function will be enabled if SessionUser has permission
+            TASK_RESET_OWN_WORKING_TASK and TaskState is one
+            of following
+            values: RESUMED, PARKED
+          </p>
+          <ul>
+            <li>
+              <b>PARK</b>
+            </li>
+          </ul>
+          <p>This function will be enabled if SessionUser has permission
+            TASK_PARK_OWN_WORKING_TASK and TaskState has
+            value as RESUMED
+          </p>
+          <ul>
+            <li>
+              <b>CHANGE DEADLINE</b>
+            </li>
+          </ul>
+          <p>This function will be disabled if SessionUser does not have
+            IPermission.TASK_WRITE_EXPIRY_ACTIVATOR
+            or
+            TaskState is one of
+            following values: DONE, DESTROYED, RESUMED,
+            FAILED.
+          </p>
+          <ul>
+            <li>
+              <b>CHANGE PRIORITY</b>
+            </li>
+          </ul>
+          <p>This function will be disabled if SessionUser does not have
+            IPermission.TASK_WRITE_EXPIRY_PRIORITY OR
+            IPermission.TASK_WRITE_ORIGINAL_PRIORITY
+            or TaskState is one of
+            following values: DONE, DESTROYED, RESUMED,
+            FAILED.
+          </p>
+          <h4>Personal Case Permission</h4>
+          <ul>
+            <li>
+              <b>ADD NOTE</b>
+            </li>
+          </ul>
+          <p>ADD NOTE function will be enabled if CaseState is RUNNING</p>
+          <ul>
+            <li>
+              <b>DELETE CASE</b>
+            </li>
+          </ul>
+          <p>DELETE CASE function will be enabled if SessionUser has
+            permission CASE_DESTROY and CaseState has value as
+            RUNNING
+          </p>
+          <h4>An administrator can see all tasks/cases in the application
+          </h4>
+          <p>The current task/case list shows only tasks/cases, where the
+            current session user involved as a person.
+          </p>
+          <p>But As an administrator he can see all tasks/cases in the
+            application
+          </p>
+          <p>- To set a user has this permission, he need to have permission
+            to see all tasks :
+            IPermission.ADMINISTRATE_WORKFLOW AND
+            IPermission.TASK_READ_ALL/IPermission.CASE_READ_ALL
+          </p>
+          <ul>
+            <li>
+              <b>Permission for the AXONIVY_PORTAL_ADMIN role</b>
+            </li>
+          </ul>
+          <p>
+            For use the dashboard, the user in the AXONIVY_PORTAL_ADMIN role
+            need to have the following permissions:
+            <ul>
+              <li>IPermission.CASE_READ_ALL</li>
+              <li>IPermission.CASE_READ</li>
+            </ul>
+          </p>
+
+        </div>
+        <div class="section">
+          <h3>
+            Global Variables
+            <a name="Global_Variables"></a>
+          </h3>
+          <table border="1" class="table table-striped">
+            <tbody>
+              <tr class="a">
+                <th align="left">Variable</th>
+                <th align="left" width="15%">Default Value</th>
+                <th align="left">Description</th>
+              </tr>
+              <tr class="b">
+                <td align="left">PortalStartTimeSynchUserExpression
+                </td>
+                <td align="left">0 0 5 * * ?</td>
+                <td align="left">
+                  Cron expression define the time to reload
+                  application users into
+                  table cache.
+                  Ex. expression for at 5AM
+                  every day is '0 0 5 * *
+                  ?'
+                  Refer to
+                  <a href="http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger">http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger
+                  </a>
+                  Please restart Ivy Server after change this variable.
+                </td>
+              </tr>
+              <tr class="b">
+
+                <td align="left">PortalServerAddress
+                </td>
+
+                <td align="left"></td>
+
+                <td align="left">
+                  Address of this ivy server.
+                  This variable is setting
+                  on PortalConnector application.
+                  E.g: http://localhost:8081
+                  Note: This URL will be detected automatically, if its value is empty.
+                </td>
+              </tr>
+              <tr class="a">
+
+                <td align="left">PortalWSUsername</td>
+                <td align="left"></td>
+                <td align="left">
+                  Username of IIS server login account.
+                  This variable
+                  is setting on AdminUI application
+                </td>
+
+              </tr>
+
+              <tr class="b">
+
+                <td align="left">PortalWSPassword</td>
+                <td align="left"></td>
+                <td align="left">
+                  Password of IIS server login account.
+                  This variable
+                  is setting on AdminUI application.
+                </td>
+
+              </tr>
+
+              <tr class="a">
+
+                <td align="left">PortalWSHost</td>
+                <td align="left"></td>
+                <td align="left">
+                  Host of IIS server.
+                  This variable is setting on
+                  AdminUI application.
+                </td>
+
+              </tr>
+
+              <tr class="b">
+
+                <td align="left">PortalWSDomain</td>
+                <td align="left"></td>
+                <td align="left">
+                  Domain of IIS server.
+                  This variable is setting on
+                  AdminUI application.
+                </td>
+              </tr>
+
+              <tr class="b">
+                <td align="left">PortalCallWebserviceMaxRetry</td>
+                <td align="left">10</td>
+                <td align="left">
+                  Maximum time that PortalConnector will retry to synchronize data to
+                  Portal Servers on the
+                  system.
+                  If beyond this limit, system will create a Task for
+                  AXONIVY_PORTAL_ADMIN role to handle this error.
+                </td>
+              </tr>
+
+              <tr class="a">
+                <td align="left">PortalSearchDelayInMilliseconds</td>
+                <td align="left">500</td>
+                <td align="left">
+                  The delay time of search function at top menu
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="section">
+          <h3>
+            Email Settings
+            <a name="Email_Settings"></a>
+          </h3>
+          <div class="section">
+            <h4>
+              Task Notification Mails
+              <a name="Task_Notification_Mails"></a>
+            </h4>
+            <p>
+              The users can receive standard ivy new task email notification.
+              It is necessary to select a subprocess
+              which is than
+              automatically called by ivy when a user receives a task.
+              More information about the email settings can be found
+              <a class="externalLink"
+                href=" http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration.emailnotification">here</a>
+              .
+            </p>
+          </div>
+          <div class="section">
+            <h4>
+              Individual Mails
+              <a name="Individual_Mails"></a>
+            </h4>
+            <ul>
+              <li>List of individual mails, that are send in the process</li>
+              <li>
+                Application specific mails is stores in the User Profile within
+                the attribute DisableCustomMails.The
+                value of this attribute is
+                True/False.
+                <br />
+                If True then this user will receive notification email send out
+                from the process, otherwise they will not
+                receive email.
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <div class="section">
+          <h3>
+            Look and Feel
+            <a name="Look_and_Feel"></a>
+          </h3>
+          <p>Special Look &amp; Feel settings for the application ?</p>
+        </div>
+        <div class="section">
+          <h3>
+            Portal Settings
+            <a name="Portal_Settings"></a>
+          </h3>
+          <p>
+            The primary portal settings are part of the project portal
+            component and you must do no more additional
+            settings for the
+            portal.
+            <a href="../docu/PortalSettings.html"> Here you get more details about the portal</a>
+          </p>
+        </div>
+        <div class="section">
+          <h3>
+            Portal install with IIS
+          </h3>
+          <p>
+            It could be a problem when install portal with IIS with proxy,
+            depends on your environment.
+            Consider to configure if your IIS is
+            called via proxy. Add -Dhttp.proxyHost to VM argument could help
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</document>

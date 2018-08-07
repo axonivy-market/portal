@@ -1,0 +1,205 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" required="true" shortDescription="Case" type="ch.ivyteam.ivy.workflow.RemoteCase" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <c:set var="case" value="#{cc.attrs.case}" />
+    <f:event type="preRenderComponent" listener="#{logic.initCaseDetailsOf(case)}" />
+
+    <div class="grid">
+      <div class="grid-item">
+        <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/data')}</h2>
+        <div class="grid-item-content">
+          <div class="grid-item-content-list">
+            <div class="grid-item-content-list-item">
+              <span class="grid-item-content-list-item-left"> <h:outputText
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/creator')}" />
+              </span> <span class="grid-item-content-list-item-right"> <h:outputText id="case-creator-full-name"
+                  value="#{case.creatorFullName} (#{case.creatorUserName})" rendered="#{not empty case.creatorFullName}" />
+                <h:outputText id="case-creator-name" value="#{case.creatorUserName}"
+                  rendered="#{empty case.creatorFullName}" />
+              </span>
+            </div>
+            <div class="grid-item-content-list-item">
+              <span class="grid-item-content-list-item-left"> <h:outputText
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/created')}" />
+              </span> <span class="grid-item-content-list-item-right"> <h:outputText id="case-start-time"
+                  value="#{case.startTimestamp}">
+                  <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+                </h:outputText>
+              </span>
+            </div>
+            <div class="grid-item-content-list-item">
+              <span class="grid-item-content-list-item-left"> <h:outputText
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/lastModified')}" />
+              </span> <span class="grid-item-content-list-item-right"> <h:outputText id="case-end-time"
+                  value="#{case.endTimestamp}">
+                  <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+                </h:outputText>
+              </span>
+            </div>
+            <div class="grid-item-content-list-item">
+              <span class="grid-item-content-list-item-left"> <h:outputText
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModel')}" />
+              </span> <span class="grid-item-content-list-item-right"> <h:outputText id="process-model-name"
+                  value="#{case.processModelName}" />
+              </span>
+            </div>
+            <div class="grid-item-content-list-item">
+              <span class="grid-item-content-list-item-left"> <h:outputText
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModelVersion')}" />
+              </span> <span class="grid-item-content-list-item-right"> <h:outputText id="process-model-version"
+                  value="#{case.processModelVersionNumber}" />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-item">
+        <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasks')}</h2>
+        <div class="grid-item-content">
+          <div class="grid-item-content-list">
+            <ui:repeat var="task" value="#{data.relatedTasks}">
+              <div class="grid-item-content-list-item">
+                <i jsf:rendered="#{task.state eq 'SUSPENDED'}" class="fa fa-play-circle related-task-list-item-status" />
+                <i jsf:rendered="#{task.state eq 'RESUMED'}" class="fa fa-pause-circle related-task-list-item-status" />
+                <i jsf:rendered="#{task.state eq 'PARKED'}" class="fa fa-lock-circle related-task-list-item-status" />
+                <h:outputText value="#{task.name}" />
+              </div>
+            </ui:repeat>
+          </div>
+        </div>
+      </div>
+      <div class="grid-item">
+        <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}</h2>
+        <div class="grid-item-content">
+          <div class="grid-item-content-list" jsf:id="case-histories">
+            <div jsf:rendered="#{empty data.histories}" class="grid-item-content-list-item">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noHistories')}" />
+            </div>
+            <ui:repeat var="history" value="#{data.histories}">
+              <div jsf:rendered="#{history.type eq 'TASK'}" class="grid-item-content-list-item">
+                <i class="fa fa-check-circle related-task-list-item-status" />
+                <h:outputText value="#{history.content}" />
+              </div>
+              <div jsf:rendered="#{history.type eq 'NOTE'}" class="grid-item-content-list-item note">
+                <div class="author">
+                  <h:outputText id="note-creator"
+                    value="#{history.involvedUser} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/at')} " />
+                  <h:outputText id="history-timestamp" value="#{history.timestamp}">
+                    <f:convertDateTime dateStyle="short" pattern="dd.MM.yyyy HH:mm:ss" />
+                  </h:outputText>
+                </div>
+                <h:outputText value="#{history.content}" styleClass="history-note-content" />
+              </div>
+            </ui:repeat>
+          </div>
+        </div>
+        <h:panelGroup layout="block" styleClass="grid-item-footer">
+          <p:commandLink id="add-note-command" onclick="PF('add-note-dialog-#{case.id}').show()"
+            actionListener="#{data.setRemoteCase(case)}">
+            <i class="fa fa-plus-circle grid-item-footer-icon" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </div>
+      <div class="grid-item">
+        <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}</h2>
+        <div class="grid-item-content">
+          <h:panelGroup layout="block" id="case-details-documents" styleClass="grid-item-content-list">
+            <div jsf:rendered="#{empty data.documents}" class="grid-item-content-list-item">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDocuments')}" />
+            </div>
+            <ui:repeat var="document" value="#{data.documents}">
+              <div class="grid-item-content-list-item mod-has-action">
+                <p:commandLink actionListener="#{logic.downloadDocument(document,case)}" ajax="false">
+                  <i class="fa fa-file-pdf-o task-details-document-download-icon" />
+                  <h:outputText value="#{document.name}" />
+                  <p:fileDownload value="#{data.documentFile}" />
+                </p:commandLink>
+                <p:commandLink actionListener="#{data.setDocument(document)}" styleClass="fa fa-trash-o Fright"
+                  oncomplete="PF('document-deletion-dialog-#{case.id}').show()" />
+              </div>
+            </ui:repeat>
+          </h:panelGroup>
+        </div>
+        <h:panelGroup layout="block" styleClass="grid-item-footer">
+          <p:commandLink id="add-document-command" actionListener="#{data.setRemoteCase(case)}"
+            onclick="PF('document-upload-dialog-#{case.id}').show()">
+            <i class="fa fa-plus-circle grid-item-footer-icon" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocument')}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </div>
+    </div>
+
+    <p:dialog id="document-upload-dialog-#{case.id}" widgetVar="document-upload-dialog-#{case.id}" appendTo="@(body)"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocument')}" modal="true" resizable="false"
+      showEffect="fade" hideEffect="fade" width="800">
+      <p:messages id="upload-messages" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
+      <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
+        mode="advanced" dragDropSupport="true" multiple="true" update="upload-messages case-details-documents"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}"
+        uploadLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/upload')}"
+        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+
+      <f:facet name="footer">
+        <p:commandButton id="document-upload-close-command" type="button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          onclick="PF('document-upload-dialog-#{case.id}').hide(); scrollDocumentsToBottom()" />
+      </f:facet>
+    </p:dialog>
+
+    <p:confirmDialog widgetVar="document-deletion-dialog-#{case.id}"
+      message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
+      <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
+        update="case-details-documents" actionListener="#{logic.deleteDocument()}"
+        oncomplete="PF('document-deletion-dialog-#{case.id}').hide()" />
+      <p:commandButton id="document-deletion-cancellation-command" type="button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+        onclick="PF('document-deletion-dialog-#{case.id}').hide()" />
+    </p:confirmDialog>
+
+    <p:dialog id="add-note-dialog-#{case.id}" widgetVar="add-note-dialog-#{case.id}" dynamic="true" closable="true"
+      closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}"
+      showEffect="fade" resizable="false" modal="true" width="40%" appendTo="@(body)">
+      <h:form id="add-note-form">
+        <h:panelGroup layout="block">
+          <p:messages id="create-note-msg" for="note-content" />
+          <p:inputTextarea id="note-content" value="#{data.noteContent}" required="true"
+            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNoteHelpText')}"
+            styleClass="note-content-textarea" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="add-new-note-command-buttons">
+          <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
+            update="note-content create-note-msg #{p:component('case-histories')}"
+            actionListener="#{logic.createNote()}"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();}" />
+          <p:commandButton id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+            onsuccess="PF('add-note-dialog-#{case.id}').hide()" update="note-content create-note-msg" />
+        </h:panelGroup>
+      </h:form>
+    </p:dialog>
+    <script>
+		     function scrollDocumentsToBottom() {
+		        $("[id$='case-details-documents']").scrollTop(10000);
+		      }
+    	</script>
+
+  </div>
+</cc:implementation>
+</html>
