@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <p:dialog id="addTask" header="Add ad-hoc task" widgetVar="addTask" modal="true" appendTo="@(body)">
+    <h:form id="addform">
+      <p:fieldset id="remark" legend="TASK" toggleable="false" collapsed="false">
+        <h:panelGrid columns="2">
+          <p:outputLabel escape="false" for="text" value="Description:" />
+          <p:inputTextarea id="text" value="#{data.remark}" required="true" cols="40" rows="2" />
+          <p:outputLabel value="Assign to:" />
+          <h:panelGrid columns="2" cellpadding="0">
+            <pe:gravatar id="portrait"
+              value="#{ivy.wf.getSecurityContext().findUser(data.addTask.actor).getEMailAddress()}" size="60"
+              notFound="mm" style="border-radius:30px" />
+            <h:panelGrid columns="1">
+              <p:selectOneMenu id="actor" editable="false" value="#{data.addTask.actor}" filter="true">
+                <f:selectItems value="#{data.userList}" var="user" itemValue="#{user.getName()}"
+                  itemLabel="#{user.getDisplayName().length() ne 0 ? user.getDisplayName() : user.getName()}" />
+                <p:ajax update="portrait" />
+              </p:selectOneMenu>
+              <h:panelGrid columns="2" cellpadding="0">
+                <p:calendar id="taskTill" value="#{data.addTask.until}" required="false" pattern="dd.MM.yyyy HH:mm"
+                  size="20">
+                  <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                </p:calendar>
+              </h:panelGrid>
+            </h:panelGrid>
+          </h:panelGrid>
+          <script>
+                      function validateToHide(args, dialog) {
+                        if (!args.validationFailed) {
+                          dialog.hide();
+                        }
+                      }
+                    </script>
+          <h:panelGrid columns="1">
+            <p:commandButton actionListener="#{logic.insertTask}" value="#{ivy.cms.co('/Labels/InsertTheTask')}"
+              title="#{ivy.cms.co('/Labels/InsertTask-Explain')}" icon="fa fa-check" update=":addform"
+              rendered="#{data.ok eq 'insert'}" />
+            <p:commandButton actionListener="#{logic.appendTask}" value="#{ivy.cms.co('/Labels/AppendTheTask')}"
+              title="#{ivy.cms.co('/Labels/AppendTask-Explain')}" icon="fa fa-check" update=":addform :caseform"
+              oncomplete="validateToHide(args, PF('addTask'));" rendered="#{data.ok eq 'append'}" />
+          </h:panelGrid>
+        </h:panelGrid>
+        <p:focus context="remark" />
+      </p:fieldset>
+    </h:form>
+  </p:dialog>
+
+</h:body>
+</html>
