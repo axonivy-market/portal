@@ -1,0 +1,14 @@
+PortalCaseListData #class
+ch.ivy.addon.portal.generic.PortalCaseList #namespace
+selectedNode org.primefaces.model.TreeNode #field
+selectedNode PERSISTENT #fieldModifier
+caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
+caseSearchCriteria PERSISTENT #fieldModifier
+selectedCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+selectedCase PERSISTENT #fieldModifier
+serverId Long #field
+serverId PERSISTENT #fieldModifier
+category ch.ivy.addon.portalkit.bo.MainMenuNode #field
+category PERSISTENT #fieldModifier
+documents java.util.ArrayList #field
+documents PERSISTENT #fieldModifier

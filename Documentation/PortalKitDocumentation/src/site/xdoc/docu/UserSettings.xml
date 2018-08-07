@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>User Settings</title>
+    <author email="chi.le@axonactive.vn">The Bolt Team</author>
+  </properties>
+
+  <body>
+    <section name="User Settings">
+      User Settings provide options for configuring Portal applications:
+      <ul>
+        <li>
+          <a href="#Admin_Settings">Admin Settings</a>
+        </li>
+        <li>
+          <a href="#Absence and Substitute">Absence and Substitute</a>
+        </li>
+        <li>
+          <a href="#Email Settings">Email Settings</a>
+        </li>
+        <li>
+          <a href="#Language Settings">Language Settings</a>
+        </li>
+      </ul>
+      <img src="../images/portalHeader.png" />
+
+      <a name="Admin_Settings" />
+      <subsection name="1. Admin Settings">
+        User need to have role AXONIVY_PORTAL_ADMIN to see this item, 
+        this item is to configure Portal configuration, see how to configure Portal in <a href="DeveloperGuidelines.html">DeveloperGuidelines</a>
+      </subsection>
+      <a name="Absence and Substitute" />
+      <subsection name="2. Absence and Substitute">
+        <ul>
+          <li>Choose "Absences" from "User Settings" options.</li>
+          <li>
+            To create new Absence, click Add button to open the dialog as below:
+
+            <img src="../images/absence-settings.png" />
+
+            <b>Note: </b>
+            User cannot leave popup if errors for validation exists :
+            <ul>
+              <li>"till/from date" must not be empty</li>
+              <li>"till date" must be >= form</li>
+              <li>"till date" must not be in the past ( >= today)</li>
+            </ul>
+          </li>
+
+          <li>We can edit or delete Absences by click function edit/delete on the Absences list</li>
+
+          <li>
+            Deputies area will display all the information of deputy on each application
+            <img src="../images/absence-settings-deputy.png" />
+            <b>Note:</b>
+            Comment field will be disabled and empty when Deputy is “no deputy”, otherwise we can fill in this item
+          </li>
+
+          <li>All the items will be saved after click Save button.</li>
+        </ul>
+
+        <h4>Implementation methods : (AbsenceServiceImpl.java)</h4>
+        <ul>
+          <li>
+            <b>getAbsences</b>
+            <ul>
+              <li>
+                Input Parameters:
+                <ul>
+                  <li>applications:List&lt;String&gt;</li>
+                  <li>user:String</li>
+                </ul>
+              </li>
+              <li>
+                Output Parameters:
+                <ul>
+                  <li>errors:List&lt;WSException&gt; </li>
+                  <li>absences:List&lt;IvyAbsence&gt; </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>setAbsences</b>
+            <ul>
+              <li>
+                Input Parameters:
+                <ul>
+                  <li>applications:List&lt;String&gt;
+                    <p>Note: for use case "delete all absences of an application " the application will not appear in
+                      absences list</p>
+                  </li>
+                  <li>user:String</li>
+                  <li>absences:List&lt;IvyAbsence&gt;
+                    <p>Note: Absences must be specified for each application. This service support setting different
+                      absences for each application, despite out UI does not support it.</p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Output Parameters:
+                <ul>
+                  <li>errors:List&lt;WSException&gt; </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>getSubtitues</b>
+            <ul>
+              <li>
+                Input Parameters:
+                <ul>
+                  <li>applications:List&lt;String&gt;</li>
+                  <li>user:String</li>
+                </ul>
+              </li>
+              <li>
+                Output Parameters:
+                <ul>
+                  <li>errors:List&lt;WSException&gt; </li>
+                  <li>substitutes:List&lt;IvyAbsence&gt;
+                    <p>Note: This list contains an IvySubstitute object for every role a user is member of plus one
+                      additional for personally owned tasks.</p>
+                  </li>
+                  <li>applicationUsers:List&lt;IvyUser&gt;
+                    <p>Note: This list contains all users of this application that can be used to define a substitute
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>setSubstitues</b>
+            <ul>
+              <li>
+                Input Parameters:
+                <ul>
+                  <li>user:String</li>
+                  <li>substitutes:List&lt;IvySubstitute&gt;
+                    <p>Note: Absences must be specified for each application. This service support setting different
+                      absences for each application, despite out UI does not support it.</p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Output Parameters:
+                <ul>
+                  <li>errors:List&lt;WSException&gt; </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </subsection>
+
+      <a name="Email Settings" />
+      <subsection name="3. Email Settings">
+        <ul>
+          <li>
+            <p>To configure mails of Portal applications, select "Email Settings" in "User Settings"</p>
+          </li>
+          <li>
+            <p>UI reads current settings for all applications.</p>
+          </li>
+          <li>
+            <p>If all settings are same, UI will be displayed in "same settings for all" mode.</p>
+            <img src="../images/mail-settings-all.png" />
+          </li>
+          <li>
+            <p>Otherwise, UI will be display “for each application separate”</p>
+            <img src="../images/mail-settings-separate.png" />
+          </li>
+          <li>All the items will be saved when click save button.</li>
+        </ul>
+        <h4>Implementation methods : (UserSettingServiceImpl.java)</h4>
+        <ul>
+          <li>
+            <b>getEMailSettings</b>
+            <ul>
+              <li>Returns settings for all applications contained in input parameter 'applications'.
+                If user settings is set to default, return default settings of the application (for this reason we do not need to
+                return useUserEmailSettings).
+              </li>
+              <li>
+                Input Parameters:
+                <ul>
+                  <li>applications:List&lt;String&gt;</li>
+                  <li>user:String</li>
+                </ul>
+              </li>
+              <li>
+                Output Parameters:
+                <ul>
+                  <li>errors:List&lt;WSException&gt; </li>
+                  <li>settings:List&lt;IvyEmailSetting&gt; </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>setEMailSettings</b>
+            <ul>
+              <li>save values in user settings.</li>
+              <li>
+                Input Parameters:
+                <ul>
+                  <li>user:String</li>
+                  <li>settings:List&lt;IvyEmailSetting&gt;</li>
+                </ul>
+              </li>
+              <li>
+                Output Parameters:
+                <ul>
+                  <li>errors:List&lt;WSException&gt; </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </subsection>
+
+      <a name="Language Settings" />
+      <subsection name="4. Language Settings">
+        <ul>
+          <li>To configure languages of Portal applications, select "Language Settings" in "User Settings"</li>
+          <li>
+            <p>UI reads current languages settings for all applications.</p>
+          </li>
+          <li>
+            <p>To change language for application, select one in the languages dropdown list of application.
+              When the change is saved, the language will be set for application (Click on the application in header menu to reload
+              application and see the change of language).
+            </p>
+            <img src="../images/language-settings.png" />
+          </li>
+        </ul>
+        <h4>Implementation methods : (LanguagesSettingsServiceImpl.java)</h4>
+        <ul>
+          <li>
+            <b>getLanguageSetting</b>
+            <ul>
+              <li>
+                Input Parameters:
+                <ul>
+                  <li>applications:List&lt;String&gt;</li>
+                  <li>user:String</li>
+                </ul>
+              </li>
+              <li>
+                Output Parameters:
+                <ul>
+                  <li>errors:List&lt;WSException&gt; </li>
+                  <li>settings:List&lt;IvyLanguageSetting&gt; </li>
+                </ul>
+              </li>
+              <li>if user's settings are set to default ("use user settings" = false), return default language of
+                application settings.</li>
+            </ul>
+          </li>
+          <li>
+            <b>setLanguageSetting</b>
+            <ul>
+              <li>
+                Input Parameters:
+                <ul>
+                  <li>user:String</li>
+                  <li>settings:List&lt;IvyLanguageSetting&gt;</li>
+                </ul>
+              </li>
+              <li>
+                Output Parameters:
+                <ul>
+                  <li>errors:List&lt;WSException&gt; </li>
+                </ul>
+              </li>
+              <li>if "use user settings" is set to false, then set to true and copy all settings (except language) from
+                application's default.</li>
+            </ul>
+          </li>
+        </ul>
+      </subsection>
+    </section>
+  </body>
+</document>

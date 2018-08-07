@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/modena">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <h:form id="main-menu-form">
+    <f:event listener="#{logic.findTasksAndCases}" type="preRenderComponent" />
+    <f:event listener="#{mainMenuBean.generateMainMenu(data)}" type="preRenderComponent" />
+    <p:treeTable id="main-menu-container" selectionMode="single" value="#{mainMenuBean.rootNode}"
+      var="menuItem" styleClass="main-menu-container" selection="#{data.selectedNode}">
+      <p:ajax event="select" listener="#{logic.selectMenu}" global="false" />
+      <p:ajax event="expand" global="false" listener="#{mainMenuBean.onNodeExpand}" />
+      <p:column>
+        <h:outputText styleClass="#{menuItem.icon}" value="#{menuItem.value}" />
+      </p:column>
+    </p:treeTable>
+  </h:form>
+</cc:implementation>
+</html>

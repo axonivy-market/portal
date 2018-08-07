@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:cc="http://java.sun.com/jsf/composite" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="value" required="true" default="fa-cog"
+    shortDescription="Value expression to bind selected Icon on" />
+  <cc:attribute name="tabindex" required="false" default="1" />
+</cc:interface>
+<cc:implementation>
+  <h:panelGroup id="awesome-icon-selection">
+    <h:outputText id="awesome-icon-display" styleClass="fa #{cc.attrs.value} fa-2x u-vertical-align-center" />
+    <p:inputText type="hidden" id="awesome-icon-hidden-value" value="#{cc.attrs.value}" />
+    <p:commandButton styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/selectIcon')}" process="@this"
+      onclick="PF('select-icon-dialog').show()" />
+  </h:panelGroup>
+  <script>
+      function updateSelectedIConDisplay(iconCode) {
+        var iconDisplayJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-display"));
+        iconDisplayJQ.removeClass();
+        iconDisplayJQ.addClass("fa fa-2x");
+        iconDisplayJQ.addClass(iconCode);
+        var iconOupputValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-value"));
+        iconOupputValueJQ.text(iconCode);
+        var iconHiddenValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-hidden-value"));
+        iconHiddenValueJQ.val(iconCode);
+      }
+    </script>
+  <p:dialog id="select-icon-dialog" widgetVar="select-icon-dialog" width="80%" modal="true" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true">
+    <h:form>
+      <c:forEach items="#{masterDataBean.awesomeIcons}" var="icon">
+        <h:link styleClass="icon-selection-dialog-selecting-icon"
+          onclick="updateSelectedIConDisplay('#{icon.iconCode}');PF('select-icon-dialog').hide();return false;">
+          <span class="fa #{icon.iconCode} fa-lg" />
+        </h:link>
+      </c:forEach>
+    </h:form>
+  </p:dialog>
+</cc:implementation>
+</html>

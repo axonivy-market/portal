@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+
+  <p:panel id="processPanel" toggleable="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processStartList/processStartPanel')}">
+    <p:messages widgetVar="growl" escape="false" showDetail="true" closable="true"></p:messages>
+    <p:growl id="errorGrowl" showDetail="true" life="400" sticky="false" widgetVar="growl" escape="false"></p:growl>
+    <br />
+    <br />
+    <p:dataTable id="starts" value="#{data.processStarts}" var="start" scrollHeight="300" scrollable="true"
+      widgetVar="table" sortMode="multiple" rowIndexVar="rowIndex">
+
+      <f:facet name="header">
+        <div>
+          <p:commandButton id="refresh-starts" icon="ui-icon-refresh" title="Icon Only"
+            actionListener="#{logic.onRefresh}" oncomplete="PF('table').filter()"
+            update=":main-form:processStartList:starts :main-form:processStartList:errorGrowl" />
+
+        </div>
+      </f:facet>
+
+      <p:column id="applicationName" sortBy="applicationName" filterPosition="bottom" filterBy="applicationName"
+        filterMatchMode="contains">
+        <f:facet name="header">
+							#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/processStartList/application")}
+						</f:facet>
+        <f:facet name="filter">
+          <p:selectOneMenu onchange="PF('table').filter()" styleClass="Wid100">
+            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/all')}" itemValue="#{null}"
+              noSelectionOption="true" />
+            <f:selectItems value="#{data.apps}" />
+          </p:selectOneMenu>
+        </f:facet>
+        <h:outputText id="application" value="#{start.applicationName}" />
+        <p:tooltip id="appTooltip" for="application" value="#{start.description}" trackMouse="true" />
+      </p:column>
+
+      <p:column id="name" sortBy="name" filterPosition="bottom" filterBy="name" filterMatchMode="contains">
+        <f:facet name="header">
+							#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/processStartList/name")}
+						</f:facet>
+        <h:outputText id="startName" value="#{start.name}" />
+        <p:tooltip id="nameTooltip" for="startName" value="#{start.description}" trackMouse="true" />
+      </p:column>
+      <p:column id="startLink">
+        <f:facet name="header">
+							#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/processStartList/start")}
+						</f:facet>
+        <h:outputLink id="link" target="_blank" value="#{start.startLink}">
+          <label>Start</label>
+          <span></span>
+        </h:outputLink>
+
+        <p:tooltip id="linkTooltip" for="link" value="#{start.description}" trackMouse="true" />
+      </p:column>
+
+    </p:dataTable>
+    <p:dialog id="dialog" header="#{ivy.cms.co('/errors/header')}" widgetVar="errorDialog" modal="true"
+      appendTo="@(body)">
+      <p:dataTable value="#{data.errors}" var="error">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/server')}">
+          <h:outputText value="#{error.server}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/errorCode')}">
+          <h:outputText value="#{error.errorCode}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/errorType')}">
+          <h:outputText value="#{error.errorType}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/description')}">
+          <h:outputText value="#{error.userText}" />
+        </p:column>
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/occurredAt')}">
+          <h:outputText value="#{error.errorDateTime.getTime()} #{error.errorDateTime.get(Calendar.HOUR)}">
+          </h:outputText>
+        </p:column>
+      </p:dataTable>
+    </p:dialog>
+
+  </p:panel>
+</cc:implementation>
+
+</html>

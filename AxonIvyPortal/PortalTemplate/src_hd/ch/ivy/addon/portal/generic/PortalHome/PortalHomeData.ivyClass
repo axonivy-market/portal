@@ -1,0 +1,4 @@
+PortalHomeData #class
+ch.ivy.addon.portal.generic.PortalHome #namespace
+tasks java.util.List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+tasks PERSISTENT #fieldModifier

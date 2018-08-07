@@ -1,0 +1,6 @@
+ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_DATA_CLASS=portalKit_test.Data
+ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_NAMESPACE=portalKit_test
+ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:ELEMENT_STYLE=CLASSIC
+ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:useProjectSettings=true
+ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=51917
+eclipse.preferences.version=1

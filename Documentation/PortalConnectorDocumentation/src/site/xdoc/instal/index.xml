@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>pc_documentation - </title>
+	</properties>
+	<body>
+		<section name="Portal Connector installation as System Application">
+			<p>Setting rescanning of system application.</p>
+			<ul>
+				<li>In YOUR_SERVERNAME_FOLDER/bin make copy of Example.ilc file</li>
+				<li>Rename it to XpertIvyServer.ilc or XpertIvyServerService.ilc if server running as service</li>
+				<li>Find line &quot;#ivy.vm.additional.options=&quot; and replace it by &quot;ivy.vm.additional.options=-Dch.ivyteam.ivy.server.rescanApplications=true&quot;</li>
+				<li>Restart ivy server</li>
+			</ul>
+			<p>With this new parameter server will always check folder with system applications. </p>
+			<p>Installation of Portal Connector</p>
+			<ul>
+				<li>Export Portal Connector from workspace as .zip file</li>
+				<li>On server extract all files from .zip to YOUR_SERVERNAME_FOLDER/applications/System/PortalConnector/1/</li>
+				<li>Restart ivy server </li>
+			</ul>
+		</section>	
+		<section name="Global Variables">
+			<table border="1" class="table table-striped">
+				<tr class="a">
+				<td align="left">Variable</td>
+				<td align="left">Value</td>
+				<td align="left">Description</td></tr>
+				<tr class="b">
+				<td align="left">xivy_addons_ws_ivy_server_address</td>
+				<td align="left">http://localhost:8081/ivy/pro</td>
+				<td align="left">Address of the ivy server</td>
+				</tr>
+			</table>
+			<p>It is not so easy to set a global variable by System application. You have 2 possibilities:</p>
+			<p>1. Change it direct in system database (IWA_GLOBALVARIABLE)</p>
+			<p>2. Change Ivy Administration Tool:</p>
+			<ul>
+				<li>download it from server from folder YOUR_SERVERNAME_FOLDER/applications/System/Administration</li>
+				<li>change RIA panel ApplicationList - set visible = true for showSystemCheckbox</li>
+				<li>deploy Administration into System application</li>
+				<li>start administration, set checkbox &quot;Show system applications&quot; to true and you can edit global variables normally (see Pic. 1) 
+					</li>
+				</ul>
+				<img src="../images/01_SystemApplication.png" alt="Administration tool" style="margin-left:210px"/>
+				<p style="margin-left:250px">Pic. 1: Administration tool</p>
+				
+		</section>		
+		
+		<section name="Roles">
+			<table border="1" class="table table-striped">
+				<tr class="a">
+				<td align="left">Role</td>
+				<td align="left">Right</td></tr>
+				<tr class="b">
+				<td align="left">AXONIVY_PORTAL_ADMIN</td>
+				<td align="left">Allowed to acces Admin UI of Portal Kit</td>
+				</tr>
+			</table>
+		</section>		
+	</body>
+</document>

@@ -1,0 +1,275 @@
+/* Style for Basic Template */
+.header-panel {
+  position: static !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.ui-layout-container .ui-layout-unit {
+  border: none;
+  border-radius: 0;
+}
+
+.ui-layout-unit-content.ui-widget-content {
+  padding: 0 !important;
+}
+
+.main-menu-panel .ui-layout-unit-content {
+  width: 100%;
+}
+
+.main-menu-panel.ui-layout-unit, .main-area-panel.ui-layout-unit {
+  padding: 0;
+}
+
+.main-area-panel-container {
+  min-width: 1000px; 
+  padding: 20px;
+}
+
+.main-area-panel-container.third-party-application {
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/*Uses for customize modena layout (modena-layout.css) */
+#layout-portlets-cover {
+  height: calc(100% - 80px);
+}
+
+#layout-portlets-cover>div {
+  height: 100%;
+}
+
+#logo>img {
+  height: 42px;
+  margin: 5px 0 0 10px;
+}
+
+#top-menu {
+  transition: margin-right .3s;
+}
+
+#top-menu.mod-chat-active {
+  margin-right: 300px;
+}
+
+#top-menu.mod-chat-active.mod-chat-message-displayed {
+  margin-right: 600px;
+}
+
+#top-menu li ul {
+  border-radius: 5px !important;
+}
+
+#top-menu li ul li input[type="text"] {
+  padding: 0 !important;
+  width: 100%;
+  border-bottom-color: #D1D3D4;
+}
+
+#top-menu li ul li input[type="text"]::-webkit-input-placeholder {
+  color: #465B65;
+  opacity: 0.5
+}
+
+#top-menu li ul li input[type="text"]:-moz-placeholder {
+  color: #465B65;
+  opacity: 0.5;
+}
+
+#top-menu li ul li input[type="text"]::-moz-placeholder {
+  color: #465B65;
+  opacity: 0.5;
+}
+
+#top-menu li ul li input[type="text"]:-ms-input-placeholder {
+  color: #465B65;
+  opacity: 0.5;
+}
+
+#top-menu li a {
+  color: rgb(84, 110, 122) !important;
+  padding-left: 15px;
+  padding-right: 13px;
+  border-radius: 0;
+  width: auto;
+  font-size: 20px;
+}
+
+#top-menu>li>a {
+  height: auto;
+  border-left: 2px solid rgba(84, 110, 122, 0.4);
+  padding-top: 0;
+  margin-top: 5px;
+}
+
+#global-search-container>li>span {
+  color: #546E7A;
+  padding: 15px;
+  display: block;
+  font-family: "robotoregular";
+}
+
+#global-search-container.active-menu {
+  margin: 20px 0px 0px -400px !important;
+  width: 450px;
+}
+
+#global-search-container li div.global-search-result {
+  padding: 0 15px 15px;
+}
+
+#global-search-container div a {
+  padding: 0 0 0 25px !important;
+  line-height: 1.5;
+}
+
+#global-search-container .global-search-result-container div span {
+  display: block;
+  border-bottom: 1px solid #D1D3D4;
+  margin-bottom: 10px;
+  color: #546E7A;
+  line-height: 2;
+}
+
+#global-search-result-container {
+  height: auto;
+  max-height: 75vh;
+  position: relative;
+  overflow: hidden;
+}
+
+#user-setting-container.active-menu {
+  margin: 20px 0px 0px -100px !important;
+}
+
+/*
+	Overide default state of ui-layout-container in Internet Explorer
+*/
+.ui-layout-container {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  height: 100%;
+}
+
+.fa:before {
+  font-family: 'FontAwesome' !important;
+}
+
+.ui-outputlabel .ui-outputlabel-rfi {
+  margin-left: 0.2em;
+  color: #f03369;
+}
+
+.ui-message-error {
+  border: none;
+  margin: 5px 0 0 0;
+  padding: 0 !important;
+}
+
+.ui-dialog .ui-dialog-content .ui-icon-alert {
+  margin-top: 0;
+}
+/*Case Template*/
+.case-template-title-icon {
+  margin-right: 5px;
+}
+
+.case-template-content {
+  margin-top: 30px;
+}
+
+.case-template-add-note-command {
+  z-index: 1;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: calc(98% - 65px);
+}
+
+/*Portal Home*/
+.l-widget-container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: -20px;
+}
+
+.l-widget-container > * {
+  margin: 20px;
+}
+
+.l-process-widget {
+  flex: 3 200px;
+}
+
+.l-task-widget {
+  flex: 6 400px;
+}
+
+.l-statistic-widget {
+  flex: 3 300px;
+}
+
+/*Task template*/
+.task-template-title-icon {
+  margin-right: 5px;
+}
+
+.task-template-content {
+  margin-top: 30px;
+}
+
+.task-template-tasks-command {
+  z-index: 1;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: calc(98% - 115px);
+}
+
+/*ERROR PAGE*/
+.error-container {
+  width: 33.3%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10%;
+  text-align: center;
+  color: #546E7A;
+}
+
+.message {
+  background-color: white;
+  padding: 20px;
+}
+
+.message .message-header {
+  margin: 16px 0px;
+  font-size: 2em;
+  color: #E67163;
+}
+
+.message .message-separator {
+  border: 0;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.message .message-container {
+  font-size: 1.5em;
+  margin: 16px 0px;
+}
+
+.message .message-container .message-detail {
+  font-size: 0.7em;
+}
+
+.message .message-container .message-detail:hover {
+  text-decoration: underline;
+}
+
+.message .message-footer .ui-button {
+  font-size: 1.1em;
+}
+
+.message .message-footer {
+  margin-top: 10px;
+}

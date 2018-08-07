@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="selectedNode" value="#{data.selectedNode}" />
+    <ui:define name="pageTitle">#{data.category.value}</ui:define>
+    <ui:define name="pageContent">
+      <h:form id="case-widget-form" prependId="false">
+        <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{data.category.value}"
+          cases="#{mainMenuBean.getCasesOfSelectedCategory(data.selectedNode, data.caseSearchCriteria.keyword)}"
+          hideCaseFilter="#{not empty data.caseSearchCriteria.keyword}">
+          <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
+            isSelected="#{case.id eq data.selectedCase.id and case.server.id eq data.serverId}"
+            destroyCaseActionListener="#{data.setSelectedCase(case)}" showDestroyButton="#{case.canDestroy}"
+            oncomplete="PF('destroy-case-dialog').show()">
+            	<ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}"/>
+            	<ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}"/>
+            	<ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}"/>
+            	<ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}"  documents="#{logic.documentsOfCase(case)}"/>
+            </ic:ch.ivy.addon.portalkit.component.CaseItem>
+        </ic:ch.ivy.addon.portalkit.component.CaseWidget>
+      </h:form>
+      <p:confirmDialog id="destroy-case-confirmation-dialog"
+        message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}"
+        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" widgetVar="destroy-case-dialog"
+        appendTo="@(body)" severity="alert">
+        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+          actionListener="#{logic.destroyCase}" oncomplete="PF('destroy-case-dialog').hide()" update="case-widget-form" />
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+          onclick="PF('destroy-case-dialog').hide();" type="button" />
+      </p:confirmDialog>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

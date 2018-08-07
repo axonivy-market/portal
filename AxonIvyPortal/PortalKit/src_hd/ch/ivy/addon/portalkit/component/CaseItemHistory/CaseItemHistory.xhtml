@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+	<cc:attribute name="case" type="ch.ivy.addon.portalkit.bo.RemoteCase"/>
+</cc:interface>
+
+<cc:implementation>
+	<div class="grid-item" id="#{cc.clientId}">
+		<f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent"/>
+		<h2 class="grid-item-header">
+			#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}</h2>
+		<div class="grid-item-content">
+			<div class="grid-item-content-list" jsf:id="case-histories">
+				<div jsf:rendered="#{empty data.histories}"
+					class="grid-item-content-list-item">
+					<h:outputText
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noHistories')}" />
+				</div>
+				<ui:repeat var="history" value="#{data.histories}">
+					<div jsf:rendered="#{history.type eq 'TASK'}"
+						class="grid-item-content-list-item">
+						<i class="fa fa-check related-task-list-item-status" />
+						<h:outputText value="#{history.content}" />
+					</div>
+					<div jsf:rendered="#{history.type eq 'NOTE'}"
+						class="grid-item-content-list-item note">
+						<div class="author">
+							<h:outputText id="note-creator"
+								value="#{history.involvedUser} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/at')} " />
+							<h:outputText id="history-timestamp" value="#{history.timestamp}">
+								<f:convertDateTime dateStyle="short"
+									pattern="dd.MM.yyyy HH:mm:ss" />
+							</h:outputText>
+						</div>
+						<h:outputText value="#{history.content}"
+							styleClass="history-note-content" />
+					</div>
+				</ui:repeat>
+			</div>
+		</div>
+		<h:panelGroup layout="block" styleClass="grid-item-footer">
+			<p:commandLink id="add-note-command"
+				onclick="PF('add-note-dialog-#{case.id}').show()"
+				actionListener="#{data.setRemoteCase(case)}">
+				<i class="fa fa-plus-circle grid-item-footer-icon" />
+				<h:outputText
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}" />
+			</p:commandLink>
+		</h:panelGroup>
+		
+		
+		<p:dialog id="add-note-dialog-#{case.id}"
+			widgetVar="add-note-dialog-#{case.id}" dynamic="true" closable="true"
+			closeOnEscape="true"
+			header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNote')}"
+			showEffect="fade" resizable="false" modal="true" width="40%"
+			appendTo="@(body)">
+			<h:form id="add-note-form">
+				<h:panelGroup layout="block">
+					<p:messages id="create-note-msg" for="note-content" />
+					<p:inputTextarea id="note-content" value="#{data.noteContent}"
+						required="true"
+						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+						rows="8"
+						placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNoteHelpText')}"
+						styleClass="note-content-textarea" />
+				</h:panelGroup>
+				<h:panelGroup layout="block"
+					styleClass="add-new-note-command-buttons">
+					<p:commandButton styleClass="add-new-note-save-command"
+						id="save-add-note-command"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+						process="note-content"
+						update="note-content create-note-msg #{p:component('case-histories')}"
+						actionListener="#{logic.createNote()}"
+						oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();}" />
+					<p:commandButton id="cancel-add-note-command"
+						actionListener="#{data.setNoteContent('')}"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+						process="@this"
+						onsuccess="PF('add-note-dialog-#{case.id}').hide()"
+						update="note-content create-note-msg" />
+				</h:panelGroup>
+			</h:form>
+		</p:dialog>
+	</div>
+
+</cc:implementation>
+</html>

@@ -1,0 +1,42 @@
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd"
+	outputName="${project.artifactId}">
+
+	<meta>
+		<title>Your project name</title>
+		<author>Axon.ivy</author>
+	</meta>
+
+	<toc name="Table of Contents">
+
+		<!-- FIX Part, do no changes here -->
+		<item name="Project Overview" ref="index.html" />
+		<item name="Team" ref="/project/team.html" />
+		<item name="Document History" ref="/project/documentChangeHistory.html" />
+
+		<!-- FIX Part, do no changes here -->
+		<item name="Basic Installation" ref="/installation/basicinstallation.html" />
+		<item name="Release Installation" ref="/installation/index.html" />
+
+		<!-- FIX Part, do no changes here -->
+		<item name="Release Notes" ref="/release/index.html" />
+
+		<!-- Project Part, please add here your documentation sections -->
+		<item name="Process Architecture" ref="/docu/ProcessArchitecture.html" />
+		<item name="Developer Guidelines" ref="/docu/DeveloperGuidelines.html" />
+		<item name="Layout Templates" ref="/docu/Templates.html" />
+		<item name="User Settings" ref="/docu/UserSettings.html" />
+		<item name="Database Schema" ref="/docu/DatabaseSchema.html" />
+		<item name="Portal Settings" ref="/docu/PortalSettings.html" />
+	</toc>
+
+	<cover>
+		<coverTitle>${project.name}</coverTitle>
+		<coverSubTitle>v. ${project.version}</coverSubTitle>
+		<coverType>Project Documentation</coverType>
+		<projectName>${project.name}</projectName>
+		<projectLogo>images/AxonIvySuite.png</projectLogo>
+		<companyName>Axon.ivy</companyName>
+		<companyLogo></companyLogo>
+	</cover>
+</document>
