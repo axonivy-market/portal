@@ -1,0 +1,9 @@
+Data #class
+selfServiceBPM #namespace
+definedTasks List<selfServiceBPM.TaskDef> #field
+definedTasks PERSISTENT #fieldModifier
+caseInfo selfServiceBPM.CaseDef #field
+caseInfo PERSISTENT #fieldModifier
+nextTask selfServiceBPM.TaskDef #field
+nextTask PERSISTENT #fieldModifier
+answer String #field

@@ -1,0 +1,12 @@
+CaseItemRelatedTasksData #class
+ch.ivy.addon.portalkit.singleapp.cases.CaseItemRelatedTasks #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+relatedTasks List<ch.ivyteam.ivy.workflow.ITask> #field
+relatedTasks PERSISTENT #fieldModifier
+currentServer ch.ivy.addon.portalkit.persistence.domain.Server #field
+currentServer PERSISTENT #fieldModifier
+internalCase ch.ivyteam.ivy.workflow.ICase #field
+internalCase PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier

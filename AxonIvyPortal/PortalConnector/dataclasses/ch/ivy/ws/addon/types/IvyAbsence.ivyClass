@@ -1,0 +1,6 @@
+IvyAbsence #class
+ch.ivy.ws.addon.types #namespace
+startDateInclusive java.util.Date #field
+stopDateInclusive java.util.Date #field
+description String #field
+appName String #field

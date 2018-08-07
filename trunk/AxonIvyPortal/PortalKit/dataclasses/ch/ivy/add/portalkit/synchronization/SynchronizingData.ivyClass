@@ -1,0 +1,8 @@
+SynchronizingData #class
+ch.ivy.add.portalkit.synchronization #namespace
+servers List<ch.ivy.addon.portalkit.persistence.domain.Server> #field
+counter Integer #field
+keyToBeDeleted String #field
+keyPrefixToBeDeleted String #field
+customPropertyPairs List<ch.ivy.ws.addon.CustomPropertyPair> #field
+keysToBeDeleted List<String> #field
