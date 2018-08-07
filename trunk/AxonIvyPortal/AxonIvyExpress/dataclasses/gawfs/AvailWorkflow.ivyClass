@@ -1,0 +1,26 @@
+AvailWorkflow #class
+gawfs #namespace
+id Integer #field
+id PERSISTENT #fieldModifier
+processName String #field
+processName PERSISTENT #fieldModifier
+processDescription String #field
+processDescription PERSISTENT #fieldModifier
+processType String #field
+processType PERSISTENT #fieldModifier
+processPermission String #field
+processPermission PERSISTENT #fieldModifier
+processOwner String #field
+processOwner PERSISTENT #fieldModifier
+permitted Boolean #field
+permitted PERSISTENT #fieldModifier
+owner Boolean #field
+owner PERSISTENT #fieldModifier
+processStartLink String #field
+processStartLink PERSISTENT #fieldModifier
+processEditLink String #field
+processEditLink PERSISTENT #fieldModifier
+processDeleteLink String #field
+processDeleteLink PERSISTENT #fieldModifier
+ownerDetails String #field
+ownerDetails PERSISTENT #fieldModifier

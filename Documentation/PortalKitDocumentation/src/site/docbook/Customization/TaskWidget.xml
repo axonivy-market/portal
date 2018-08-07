@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.taskdetails">
+	<title>Task widget</title>	
+	<para>TaskWidget is a built-in component of Portal which contains the tasks users can interact with.
+	In order to show needed task's information, Portal supports overriding concept for TaskWidget. 
+	Each TaskWidget contains 2 parts:
+	</para>
+	<orderedlist>
+		<listitem>
+			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: TaskHeader and TaskListHeader and TaskBody</para>
+		</listitem>
+		<listitem>
+			<para><link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery">Data query</link>: display the tasks as you want</para>
+		</listitem>
+	</orderedlist>
+	<important>
+		<para>
+			<orderedlist>
+				<listitem>
+					<para>Task header customization does not support responsive design, smaller resolutions (iPad, etc.)</para>
+				</listitem>
+				<listitem>
+					<para>Additional properties cannot be displayed right now as a column</para>
+				</listitem>
+				<listitem>
+					<para>Task header's buttons cannot be modified (they stay where they are)</para>
+				</listitem>
+			</orderedlist>
+		</para>
+	</important>
+	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverideui">
+		<title>How to override task widget's UI</title>
+		<para>
+			<orderedlist>
+				<listitem>
+					<para>
+						Introduce an Axon.ivy project which has <code>PortalTemplate</code> as a required library.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Open <code>Admin settings</code> dialog, select <code>Settings</code> tab and add new setting (global variable) with <code>HOMEPAGE_URL</code> as key and your home page link as value.
+					</para>
+					<para>
+						For example: <code>http://localhost:8081/ivy/pro/Portal/MyCustomTaskWidget/01548075757CBCAA/PortalStart.ivp</code>. By default the portal home link is <code>http://localhost:8081/ivy/pro/Portal/PortalTemplate/1549F58C18A6C562/PortalStart.ivp</code> and overridden by the new specified link.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Override Task widget at home page.
+						<itemizedlist>
+							<listitem>
+								<para>
+									Introduce a new HTMLDialog which uses template <code>/layouts/DefaultHomePageTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override task details's responsiveness). You can take a look at <code>PortalHome.xhtml</code> to see how to customize it.
+									<tip>
+										<para>Highly recommend to copy the <code>PortalHome</code> HTMLDialog in PortalTemplate and change the copied one's view.</para>
+									</tip>
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+									Replace the old home HTMLDialog of PortalTemplate to the new one at the copied process which you have done at step 2.
+								</para>
+							</listitem>
+						</itemizedlist>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Override Task widget in other places: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
+						<itemizedlist>
+							<listitem>
+								<para>
+									It is the same way as home page. You should introduce a new HTMLDialog which uses template <code>/layouts/PortalTasksTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). You can take a look at <code>PortalTasks.xhtml</code> to see how to customize it.
+									<tip>
+										<para>Highly recommend to copy the <code>PortalTasks</code> HTMLDialog in PortalTemplate and change the copied one's view.</para>
+									</tip>
+								</para>
+							</listitem>
+							<listitem>
+								Use Axon.ivy Override to override the <code>OpenPortalTasks</code> callable. The original implementation of this callable is calling <code>PortalTasks</code>, change it to call the customized Page introduced in the step above. The signature of this callable is <code>useView(TaskView)</code> and customized page must receive this <code>TaskView</code> instance, put in the dialog's <code>Data</code> with the exact name <code>taskView</code>.
+							</listitem>
+						</itemizedlist>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						In case your task widget has new columns, you should override TaskLazyDataModel to make the sort function of these columns work:
+						<itemizedlist>
+							<listitem>
+								<para>Introduce a java class extends TaskLazyDataModel</para>
+							</listitem>
+							<listitem>
+								<para>Override the <code>extendSort</code> method, the <code>extendSortTasksInNotDisplayedTaskMap</code> method and extend the sort function for the added columns (see the methods' Javadoc comments)</para>
+							</listitem>
+							<listitem>
+								<para>In your customized portal home HTMLDialog, the customized data model should be passed as a parameter to template and components (refer to <code>PortalHome.xhtml</code>)</para>
+							</listitem>
+							<listitem>
+								<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>) and in OpenPortalTasksOverride callable process, use the script from note element with your data model class</para>
+							</listitem>
+						</itemizedlist>
+					</para>
+					</listitem>
+				<listitem>
+					<para>
+						If you need to apply the responsiveness behavior of Portal for task details, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
+						<itemizedlist>
+							<listitem>
+								<para>
+									ResponsivenessHandleContainer: a container contains <code>ResponsivenessHandleButton</code> and your javascript which contains the onstart and oncomplete function of <code>ResponsivenessHandleButton</code>.
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+									ResponsivenessHandleButton: contains the params which handle responsiveness:
+									<para>
+										<itemizedlist>
+											<listitem>
+												<para>
+													icon: the icon of button
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													displayedSelectors: css selectors of the components which need to be displayed.
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													hiddenSelectorsInLargeScreen: css selectors of the components which need to be hidden in large screen (width: 1920).
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													hiddenSelectorsInMediumScreen: css selectors of the components which need to be hidden in medium screen (width: 1366).
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													hiddenSelectorsInSmallScreen: css selectors of the components which need to be hidden in small screen (width: 1024).
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													fadeTime: the fade in/out time.
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													onstart: client side callback to execute before responsiveness execution.
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													oncomplete: client side callback to execute after responsiveness execution.
+												</para>
+											</listitem>
+										</itemizedlist>
+									</para> 
+								</para>
+							</listitem>
+						</itemizedlist>
+						<para>
+							For example:
+							<para>
+									<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
+							</para>
+							<para>
+									<code>&lt;ui:param name="useOverrideBody" value="true" /&gt;</code>
+							</para>
+							<para>
+									<code>&lt;ui:define name="taskBody"&gt;</code>
+							</para>
+							<para>
+									<code>Customized content</code>
+							</para>
+							<para>
+									<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg"&gt;</code>
+							</para>
+							<para>
+									<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-note-column-responsive-button" displayedSelectors="['#task-note']" hiddenSelectorsInMediumScreen="['.task-details .replaced']" hiddenSelectorsInSmallScreen="['.task-details .replaced']" /&gt;</code>
+							</para>
+							<para>
+									<code>&lt;h:outputScript library="js" name="task-detail-default-responsiveness.js" /&gt;</code>
+							</para>
+							<para>
+									<code>&lt;/ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer&gt;</code>
+							</para>
+							<para>
+									<code>&lt;/ui:define&gt;</code>
+							</para>
+							<para>
+									<code>&lt;/ui:composition&gt;</code>
+							</para>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/TaskWidget/TaskDetailsResponsiveness.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+			</orderedlist>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverridedataquery">
+		<title>How to override task widget's data query</title>
+		<para>
+			Override the <code>BuildTaskJsonQuery</code> callable process of PortalKit and build your own query to effect the data of task widget, task categories and statistic widget.
+		</para>
+		<para>
+			Apply the following steps in case you would like to provide data for task list after navigating to task list from your page, e.g. clicking on a bar chart then opening the tasks of that bar:
+			<itemizedlist>
+				<listitem>
+					<para>Use the <code>OpenPortalTasks</code> callable process with the <code>TaskView</code> parameter. It is used to define which information are displayed in TaskWidget.</para>
+				</listitem>
+				<listitem>
+					<para>Refer to TaskView, TaskSearchCriteria, TaskQueryCriteria to build your TaskView</para>
+				</listitem>
+			</itemizedlist>
+<screen>
+TaskLazyDataModel dataModel = new TaskLazyDataModel();
+dataModel.getQueryCriteria().setTaskQuery(YOUR_TASK_QUERY); // Set your TaskQuery
+dataModel.getSearchCriteria().setInvolvedUsername(true); // Use this code line if you would like to display the tasks for all users
+out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();
+</screen>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.taskwidget.customtaskdelegate">
+		<title>Custom task delegate</title>
+		<para>
+			Portal allows to customize the list of users and roles that a task can be delegated to. This can be done following these steps:
+		</para>
+		<orderedlist>
+			<listitem>
+				<para>Introduce a Axon.ivy project which has <code>PortalTemplate</code> as a required library and its own <code>PortalStart</code> process. Refer to step 1, 2, 3, 4 in <link linkend="axonivyportal.customization.taskwidget.howtooverideui">override task widget's UI</link> guide.</para>
+			</listitem>
+			<listitem>
+				<para>In your project, override the callable subprocess <code>CalculateTaskDelegate</code></para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/TaskWidget/CalculateTaskDelegate.png" />
+					</imageobject>
+				</mediaobject>
+			</listitem>
+			<listitem>
+				<para>The callable subprocess data contains the current user <code>in.currentUser</code> and the current task to be delegated <code>in.task</code>. The lists <code>in.users</code> and <code>in.roles</code> contain all possible users and roles that the task can be delegated to. Modify those two to have your own delegate list.</para> 
+			</listitem>
+		</orderedlist>
+	</sect2>
+</sect1>

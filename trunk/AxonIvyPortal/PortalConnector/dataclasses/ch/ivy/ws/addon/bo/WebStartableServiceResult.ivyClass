@@ -1,0 +1,4 @@
+WebStartableServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+webStartables java.util.List<ch.ivy.ws.addon.types.IvyWebStartable> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field

@@ -1,0 +1,9 @@
+{
+  /PROCESS {
+    /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
+    /Functional-Processes.DefaultUserProcess "Functional Processes/DefaultUserProcessOverride"
+    /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
+    /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"
+  }
+  /RICH_DIALOG *
+}

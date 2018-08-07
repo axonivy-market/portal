@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<webServiceConfigurationNode>
+    <name>Portal Connector Services</name>
+    <id>146B90A91C33A7BB</id>
+    <webServiceConfig>
+        <name>taskService</name>
+        <id>146B90974252183F</id>
+        <description></description>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/1380566F9095B9C4?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>TaskServicePort="save","parkTask","resetTask","canUserResumeTask","setAdditionalProperty","findTasksByCriteria","analyzePriorityStatistic","findPersonalTaskCategories","countTasksByCriteria","findGroupTaskCategories","analyzeExpiryStatistic","delegateTask","createTaskNote","findTaskNotes","findCategories"</axisOperationsToPort>
+            <axisEndPointForPortType>TaskServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>TaskServicePortcreateNote="arg0__@@__ch.ivy.ws.addon.CreateNoteE__@@__"
+TaskServicePortfindNotes="arg0__@@__ch.ivy.ws.addon.FindNotesE__@@__"
+TaskServicePortfindGroupTaskCategories="arg0__@@__ch.ivy.ws.addon.FindGroupTaskCategoriesE__@@__"
+TaskServicePortfindSuspendedTasksByFilter="arg0__@@__ch.ivy.ws.addon.FindSuspendedTasksByFilterE__@@__"
+TaskServicePortfindPersonalTaskCategories="arg0__@@__ch.ivy.ws.addon.FindPersonalTaskCategoriesE__@@__"
+TaskServicePortanalyzeExpiryStatistic="arg0__@@__ch.ivy.ws.addon.AnalyzeExpiryStatisticE__@@__"
+TaskServicePortfindTasksByFilter="arg0__@@__ch.ivy.ws.addon.FindTasksByFilterE__@@__"
+TaskServicePortfindTasks="arg0__@@__ch.ivy.ws.addon.FindTasksE__@@__"
+TaskServicePortparkTask="arg0__@@__ch.ivy.ws.addon.ParkTaskE__@@__"
+TaskServicePortfindTasksOfCase="arg0__@@__ch.ivy.ws.addon.FindTasksOfCaseE__@@__"
+TaskServicePortfindTask="arg0__@@__ch.ivy.ws.addon.FindTaskE__@@__"
+TaskServicePortfindTasksByCriteria="arg0__@@__ch.ivy.ws.addon.FindTasksByCriteriaE__@@__"
+TaskServicePortfindAllRunningTasks="arg0__@@__ch.ivy.ws.addon.FindAllRunningTasksE__@@__"
+TaskServicePortfindCategories="arg0__@@__ch.ivy.ws.addon.FindCategoriesE__@@__"
+TaskServicePortcreateTaskNote="arg0__@@__ch.ivy.ws.addon.CreateTaskNoteE__@@__"
+TaskServicePortfindActiveTasksByFilter="arg0__@@__ch.ivy.ws.addon.FindActiveTasksByFilterE__@@__"
+TaskServicePortfindDoneTasksByFilter="arg0__@@__ch.ivy.ws.addon.FindDoneTasksByFilterE__@@__"
+TaskServicePortsetAdditionalProperty="arg0__@@__ch.ivy.ws.addon.SetAdditionalPropertyE__@@__"
+TaskServicePortfindExpiredTasks="arg0__@@__ch.ivy.ws.addon.FindExpiredTasksE__@@__"
+TaskServicePortsave="arg0__@@__ch.ivy.ws.addon.SaveE__@@__"
+TaskServicePortdelegateTask="arg0__@@__ch.ivy.ws.addon.DelegateTaskE__@@__"
+TaskServicePortsearchTasks="arg0__@@__ch.ivy.ws.addon.SearchTasksE__@@__"
+TaskServicePortcountTasksByCriteria="arg0__@@__ch.ivy.ws.addon.CountTasksByCriteriaE__@@__"
+TaskServicePortcanUserResumeTask="arg0__@@__ch.ivy.ws.addon.CanUserResumeTaskE__@@__"
+TaskServicePortsearchTaskByKeyword="arg0__@@__ch.ivy.ws.addon.SearchTaskByKeywordE__@@__"
+TaskServicePortanalyzePriorityStatistic="arg0__@@__ch.ivy.ws.addon.AnalyzePriorityStatisticE__@@__"
+TaskServicePortresetTask="arg0__@@__ch.ivy.ws.addon.ResetTaskE__@@__"
+TaskServicePortfindTaskNotes="arg0__@@__ch.ivy.ws.addon.FindTaskNotesE__@@__"</axisParameterProperties>
+            <axisPortList>TaskServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.TaskServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>TaskServicePortcreateNote=ch.ivy.ws.addon.CreateNoteResponseE
+TaskServicePortfindNotes=ch.ivy.ws.addon.FindNotesResponseE
+TaskServicePortfindGroupTaskCategories=ch.ivy.ws.addon.FindGroupTaskCategoriesResponseE
+TaskServicePortfindSuspendedTasksByFilter=ch.ivy.ws.addon.FindSuspendedTasksByFilterResponseE
+TaskServicePortfindPersonalTaskCategories=ch.ivy.ws.addon.FindPersonalTaskCategoriesResponseE
+TaskServicePortanalyzeExpiryStatistic=ch.ivy.ws.addon.AnalyzeExpiryStatisticResponseE
+TaskServicePortfindTasksByFilter=ch.ivy.ws.addon.FindTasksByFilterResponseE
+TaskServicePortfindTasks=ch.ivy.ws.addon.FindTasksResponseE
+TaskServicePortparkTask=ch.ivy.ws.addon.ParkTaskResponseE
+TaskServicePortfindTasksOfCase=ch.ivy.ws.addon.FindTasksOfCaseResponseE
+TaskServicePortfindTask=ch.ivy.ws.addon.FindTaskResponseE
+TaskServicePortfindTasksByCriteria=ch.ivy.ws.addon.FindTasksByCriteriaResponseE
+TaskServicePortfindAllRunningTasks=ch.ivy.ws.addon.FindAllRunningTasksResponseE
+TaskServicePortfindCategories=ch.ivy.ws.addon.FindCategoriesResponseE
+TaskServicePortcreateTaskNote=ch.ivy.ws.addon.CreateTaskNoteResponseE
+TaskServicePortfindActiveTasksByFilter=ch.ivy.ws.addon.FindActiveTasksByFilterResponseE
+TaskServicePortfindDoneTasksByFilter=ch.ivy.ws.addon.FindDoneTasksByFilterResponseE
+TaskServicePortsetAdditionalProperty=ch.ivy.ws.addon.SetAdditionalPropertyResponseE
+TaskServicePortfindExpiredTasks=ch.ivy.ws.addon.FindExpiredTasksResponseE
+TaskServicePortsave=ch.ivy.ws.addon.SaveResponseE
+TaskServicePortdelegateTask=ch.ivy.ws.addon.DelegateTaskResponseE
+TaskServicePortsearchTasks=ch.ivy.ws.addon.SearchTasksResponseE
+TaskServicePortcountTasksByCriteria=ch.ivy.ws.addon.CountTasksByCriteriaResponseE
+TaskServicePortcanUserResumeTask=ch.ivy.ws.addon.CanUserResumeTaskResponseE
+TaskServicePortsearchTaskByKeyword=ch.ivy.ws.addon.SearchTaskByKeywordResponseE
+TaskServicePortanalyzePriorityStatistic=ch.ivy.ws.addon.AnalyzePriorityStatisticResponseE
+TaskServicePortresetTask=ch.ivy.ws.addon.ResetTaskResponseE
+TaskServicePortfindTaskNotes=ch.ivy.ws.addon.FindTaskNotesResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.TaskServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\AnalyzeExpiryStatistic.java","ch\\ivy\\ws\\addon\\AnalyzeExpiryStatisticE.java","ch\\ivy\\ws\\addon\\AnalyzeExpiryStatisticResponse.java","ch\\ivy\\ws\\addon\\AnalyzeExpiryStatisticResponseE.java","ch\\ivy\\ws\\addon\\AnalyzeExpiryStatisticResult.java","ch\\ivy\\ws\\addon\\AnalyzePriorityStatistic.java","ch\\ivy\\ws\\addon\\AnalyzePriorityStatisticE.java","ch\\ivy\\ws\\addon\\AnalyzePriorityStatisticResponse.java","ch\\ivy\\ws\\addon\\AnalyzePriorityStatisticResponseE.java","ch\\ivy\\ws\\addon\\AnalyzePriorityStatisticResult.java","ch\\ivy\\ws\\addon\\CanUserResumeTask.java","ch\\ivy\\ws\\addon\\CanUserResumeTaskE.java","ch\\ivy\\ws\\addon\\CanUserResumeTaskResponse.java","ch\\ivy\\ws\\addon\\CanUserResumeTaskResponseE.java","ch\\ivy\\ws\\addon\\CanUserResumeTaskResult.java","ch\\ivy\\ws\\addon\\CategoryData.java","ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\CountTasksByCriteria.java","ch\\ivy\\ws\\addon\\CountTasksByCriteriaE.java","ch\\ivy\\ws\\addon\\CountTasksByCriteriaResponse.java","ch\\ivy\\ws\\addon\\CountTasksByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\CountTasksByCriteriaResult.java","ch\\ivy\\ws\\addon\\CreateTaskNote.java","ch\\ivy\\ws\\addon\\CreateTaskNoteE.java","ch\\ivy\\ws\\addon\\CreateTaskNoteResponse.java","ch\\ivy\\ws\\addon\\CreateTaskNoteResponseE.java","ch\\ivy\\ws\\addon\\CreateTaskNoteResult.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\DelegateTask.java","ch\\ivy\\ws\\addon\\DelegateTaskE.java","ch\\ivy\\ws\\addon\\DelegateTaskResponse.java","ch\\ivy\\ws\\addon\\DelegateTaskResponseE.java","ch\\ivy\\ws\\addon\\DelegateTaskResult.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExpiryStatistic.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindCategories.java","ch\\ivy\\ws\\addon\\FindCategoriesE.java","ch\\ivy\\ws\\addon\\FindCategoriesResponse.java","ch\\ivy\\ws\\addon\\FindCategoriesResponseE.java","ch\\ivy\\ws\\addon\\FindCategoriesResult.java","ch\\ivy\\ws\\addon\\FindGroupTaskCategories.java","ch\\ivy\\ws\\addon\\FindGroupTaskCategoriesE.java","ch\\ivy\\ws\\addon\\FindGroupTaskCategoriesResponse.java","ch\\ivy\\ws\\addon\\FindGroupTaskCategoriesResponseE.java","ch\\ivy\\ws\\addon\\FindGroupTaskCategoriesResult.java","ch\\ivy\\ws\\addon\\FindPersonalTaskCategories.java","ch\\ivy\\ws\\addon\\FindPersonalTaskCategoriesE.java","ch\\ivy\\ws\\addon\\FindPersonalTaskCategoriesResponse.java","ch\\ivy\\ws\\addon\\FindPersonalTaskCategoriesResponseE.java","ch\\ivy\\ws\\addon\\FindPersonalTaskCategoriesResult.java","ch\\ivy\\ws\\addon\\FindTaskNotes.java","ch\\ivy\\ws\\addon\\FindTaskNotesE.java","ch\\ivy\\ws\\addon\\FindTaskNotesResponse.java","ch\\ivy\\ws\\addon\\FindTaskNotesResponseE.java","ch\\ivy\\ws\\addon\\FindTaskNotesResult.java","ch\\ivy\\ws\\addon\\FindTasksByCriteria.java","ch\\ivy\\ws\\addon\\FindTasksByCriteriaE.java","ch\\ivy\\ws\\addon\\FindTasksByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindTasksByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindTasksByCriteriaResult.java","ch\\ivy\\ws\\addon\\IvyNote.java","ch\\ivy\\ws\\addon\\IvySecurityMember.java","ch\\ivy\\ws\\addon\\IvyTask.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\ParkTask.java","ch\\ivy\\ws\\addon\\ParkTaskE.java","ch\\ivy\\ws\\addon\\ParkTaskResponse.java","ch\\ivy\\ws\\addon\\ParkTaskResponseE.java","ch\\ivy\\ws\\addon\\ParkTaskResult.java","ch\\ivy\\ws\\addon\\PriorityStatistic.java","ch\\ivy\\ws\\addon\\ResetTask.java","ch\\ivy\\ws\\addon\\ResetTaskE.java","ch\\ivy\\ws\\addon\\ResetTaskResponse.java","ch\\ivy\\ws\\addon\\ResetTaskResponseE.java","ch\\ivy\\ws\\addon\\ResetTaskResult.java","ch\\ivy\\ws\\addon\\Save.java","ch\\ivy\\ws\\addon\\SaveE.java","ch\\ivy\\ws\\addon\\SaveResponse.java","ch\\ivy\\ws\\addon\\SaveResponseE.java","ch\\ivy\\ws\\addon\\SetAdditionalProperty.java","ch\\ivy\\ws\\addon\\SetAdditionalPropertyE.java","ch\\ivy\\ws\\addon\\SetAdditionalPropertyResponse.java","ch\\ivy\\ws\\addon\\SetAdditionalPropertyResponseE.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\TaskSearchCriteria.java","ch\\ivy\\ws\\addon\\TaskServiceService.java","ch\\ivy\\ws\\addon\\TaskServiceServiceStub.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1497319964956</codeGenerationTimestamp>
+            <wsdlWebserviceName>TaskServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>caseService</name>
+        <id>146B9AACE506491D</id>
+        <description></description>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD8C8C617F9?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>CaseServicePort="findDocuments","destroyCase","uploadDocument","downloadDocument","saveCase","findNotes","removeDocument","createNote","findCase","getAddtionalProperties","setAdditionalProperties","findCasesByCriteria","countCasesByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>CaseServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>CaseServicePortdownloadDocument="arg0__@@__ch.ivy.ws.addon.DownloadDocumentE__@@__"
+CaseServicePortsave="arg0__@@__ch.ivy.ws.addon.SaveE__@@__"
+CaseServicePortfindDoneByFilter="arg0__@@__ch.ivy.ws.addon.FindDoneByFilterE__@@__"
+CaseServicePortcreateNote="arg0__@@__ch.ivy.ws.addon.CreateNoteE__@@__"
+CaseServicePortuploadDocument="arg0__@@__ch.ivy.ws.addon.UploadDocumentE__@@__"
+CaseServicePortfindCasesByCriteria="arg0__@@__ch.ivy.ws.addon.FindCasesByCriteriaE__@@__"
+CaseServicePortfindDocuments="arg0__@@__ch.ivy.ws.addon.FindDocumentsE__@@__"
+CaseServicePortgetAddtionalProperties="arg0__@@__ch.ivy.ws.addon.GetAddtionalPropertiesE__@@__"
+CaseServicePortsetAdditionalProperties="arg0__@@__ch.ivy.ws.addon.SetAdditionalPropertiesE__@@__"
+CaseServicePortfindNotes="arg0__@@__ch.ivy.ws.addon.FindNotesE__@@__"
+CaseServicePortsaveCase="arg0__@@__ch.ivy.ws.addon.SaveCaseE__@@__"
+CaseServicePortfindTasks="arg0__@@__ch.ivy.ws.addon.FindTasksE__@@__"
+CaseServicePortfindByFilter="arg0__@@__ch.ivy.ws.addon.FindByFilterE__@@__"
+CaseServicePortremoveDocument="arg0__@@__ch.ivy.ws.addon.RemoveDocumentE__@@__"
+CaseServicePortfindAllCases="arg0__@@__ch.ivy.ws.addon.FindAllCasesE__@@__"
+CaseServicePortfindCasesWithPermissionByCriteria="arg0__@@__ch.ivy.ws.addon.FindCasesWithPermissionByCriteriaE__@@__"
+CaseServicePortdestroyCase="arg0__@@__ch.ivy.ws.addon.DestroyCaseE__@@__"
+CaseServicePortfindCasesHaveCaseLinkByCriteria="arg0__@@__ch.ivy.ws.addon.FindCasesHaveCaseLinkByCriteriaE__@@__"
+CaseServicePortfindCasesWithDestroyPermissionByCriteria="arg0__@@__ch.ivy.ws.addon.FindCasesWithDestroyPermissionByCriteriaE__@@__"
+CaseServicePortcountCasesByCriteria="arg0__@@__ch.ivy.ws.addon.CountCasesByCriteriaE__@@__"
+CaseServicePortfindCase="arg0__@@__ch.ivy.ws.addon.FindCaseE__@@__"</axisParameterProperties>
+            <axisPortList>CaseServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.CaseServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>CaseServicePortdownloadDocument=ch.ivy.ws.addon.DownloadDocumentResponseE
+CaseServicePortsave=ch.ivy.ws.addon.SaveResponseE
+CaseServicePortfindDoneByFilter=ch.ivy.ws.addon.FindDoneByFilterResponseE
+CaseServicePortcreateNote=ch.ivy.ws.addon.CreateNoteResponseE
+CaseServicePortuploadDocument=ch.ivy.ws.addon.UploadDocumentResponseE
+CaseServicePortfindCasesByCriteria=ch.ivy.ws.addon.FindCasesByCriteriaResponseE
+CaseServicePortfindDocuments=ch.ivy.ws.addon.FindDocumentsResponseE
+CaseServicePortgetAddtionalProperties=ch.ivy.ws.addon.GetAddtionalPropertiesResponseE
+CaseServicePortsetAdditionalProperties=ch.ivy.ws.addon.SetAdditionalPropertiesResponseE
+CaseServicePortfindNotes=ch.ivy.ws.addon.FindNotesResponseE
+CaseServicePortsaveCase=ch.ivy.ws.addon.SaveCaseResponseE
+CaseServicePortfindTasks=ch.ivy.ws.addon.FindTasksResponseE
+CaseServicePortfindByFilter=ch.ivy.ws.addon.FindByFilterResponseE
+CaseServicePortremoveDocument=ch.ivy.ws.addon.RemoveDocumentResponseE
+CaseServicePortfindAllCases=ch.ivy.ws.addon.FindAllCasesResponseE
+CaseServicePortfindCasesWithPermissionByCriteria=ch.ivy.ws.addon.FindCasesWithPermissionByCriteriaResponseE
+CaseServicePortdestroyCase=ch.ivy.ws.addon.DestroyCaseResponseE
+CaseServicePortfindCasesHaveCaseLinkByCriteria=ch.ivy.ws.addon.FindCasesHaveCaseLinkByCriteriaResponseE
+CaseServicePortfindCasesWithDestroyPermissionByCriteria=ch.ivy.ws.addon.FindCasesWithDestroyPermissionByCriteriaResponseE
+CaseServicePortcountCasesByCriteria=ch.ivy.ws.addon.CountCasesByCriteriaResponseE
+CaseServicePortfindCase=ch.ivy.ws.addon.FindCaseResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.CaseServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CaseSearchCriteria.java","ch\\ivy\\ws\\addon\\CaseServiceService.java","ch\\ivy\\ws\\addon\\CaseServiceServiceStub.java","ch\\ivy\\ws\\addon\\CaseSortedField.java","ch\\ivy\\ws\\addon\\CaseState.java","ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\CountCasesByCriteria.java","ch\\ivy\\ws\\addon\\CountCasesByCriteriaE.java","ch\\ivy\\ws\\addon\\CountCasesByCriteriaResponse.java","ch\\ivy\\ws\\addon\\CountCasesByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\CountCasesByCriteriaResult.java","ch\\ivy\\ws\\addon\\CreateNote.java","ch\\ivy\\ws\\addon\\CreateNoteE.java","ch\\ivy\\ws\\addon\\CreateNoteResponse.java","ch\\ivy\\ws\\addon\\CreateNoteResponseE.java","ch\\ivy\\ws\\addon\\CreateNoteResult.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\DestroyCase.java","ch\\ivy\\ws\\addon\\DestroyCaseE.java","ch\\ivy\\ws\\addon\\DestroyCaseResponse.java","ch\\ivy\\ws\\addon\\DestroyCaseResponseE.java","ch\\ivy\\ws\\addon\\DownloadDocument.java","ch\\ivy\\ws\\addon\\DownloadDocumentE.java","ch\\ivy\\ws\\addon\\DownloadDocumentResponse.java","ch\\ivy\\ws\\addon\\DownloadDocumentResponseE.java","ch\\ivy\\ws\\addon\\DownloadDocumentResult.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindCase.java","ch\\ivy\\ws\\addon\\FindCaseE.java","ch\\ivy\\ws\\addon\\FindCaseResponse.java","ch\\ivy\\ws\\addon\\FindCaseResponseE.java","ch\\ivy\\ws\\addon\\FindCaseResult.java","ch\\ivy\\ws\\addon\\FindCasesByCriteria.java","ch\\ivy\\ws\\addon\\FindCasesByCriteriaE.java","ch\\ivy\\ws\\addon\\FindCasesByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindCasesByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindCasesByCriteriaResult.java","ch\\ivy\\ws\\addon\\FindDocuments.java","ch\\ivy\\ws\\addon\\FindDocumentsE.java","ch\\ivy\\ws\\addon\\FindDocumentsResponse.java","ch\\ivy\\ws\\addon\\FindDocumentsResponseE.java","ch\\ivy\\ws\\addon\\FindDocumentsResult.java","ch\\ivy\\ws\\addon\\FindNotes.java","ch\\ivy\\ws\\addon\\FindNotesE.java","ch\\ivy\\ws\\addon\\FindNotesResponse.java","ch\\ivy\\ws\\addon\\FindNotesResponseE.java","ch\\ivy\\ws\\addon\\FindNotesResult.java","ch\\ivy\\ws\\addon\\GetAddtionalProperties.java","ch\\ivy\\ws\\addon\\GetAddtionalPropertiesE.java","ch\\ivy\\ws\\addon\\GetAddtionalPropertiesResponse.java","ch\\ivy\\ws\\addon\\GetAddtionalPropertiesResponseE.java","ch\\ivy\\ws\\addon\\GetAddtionalPropertiesResult.java","ch\\ivy\\ws\\addon\\IvyAdditionalProperty.java","ch\\ivy\\ws\\addon\\IvyCase.java","ch\\ivy\\ws\\addon\\IvyDocument.java","ch\\ivy\\ws\\addon\\IvyNote.java","ch\\ivy\\ws\\addon\\ModificationInfo.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\Path.java","ch\\ivy\\ws\\addon\\RemoveDocument.java","ch\\ivy\\ws\\addon\\RemoveDocumentE.java","ch\\ivy\\ws\\addon\\RemoveDocumentResponse.java","ch\\ivy\\ws\\addon\\RemoveDocumentResponseE.java","ch\\ivy\\ws\\addon\\SaveCase.java","ch\\ivy\\ws\\addon\\SaveCaseE.java","ch\\ivy\\ws\\addon\\SaveCaseResponse.java","ch\\ivy\\ws\\addon\\SaveCaseResponseE.java","ch\\ivy\\ws\\addon\\SetAdditionalProperties.java","ch\\ivy\\ws\\addon\\SetAdditionalPropertiesE.java","ch\\ivy\\ws\\addon\\SetAdditionalPropertiesResponse.java","ch\\ivy\\ws\\addon\\SetAdditionalPropertiesResponseE.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\UploadDocument.java","ch\\ivy\\ws\\addon\\UploadDocumentE.java","ch\\ivy\\ws\\addon\\UploadDocumentResponse.java","ch\\ivy\\ws\\addon\\UploadDocumentResponseE.java","ch\\ivy\\ws\\addon\\UploadDocumentResult.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1496299812047</codeGenerationTimestamp>
+            <wsdlWebserviceName>CaseServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>isAlive</name>
+        <id>146C8FD0DD5620DA</id>
+        <description></description>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/14684B7E15F81BA6?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>IsAliveServicePort="isAlive"</axisOperationsToPort>
+            <axisEndPointForPortType>IsAliveServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>IsAliveServicePortisAlive="arg0__@@__ch.ivy.ws.addon.IsAliveE__@@__"</axisParameterProperties>
+            <axisPortList>IsAliveServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.IsAliveServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>IsAliveServicePortisAlive=ch.ivy.ws.addon.IsAliveResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.IsAliveServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\IsAlive.java","ch\\ivy\\ws\\addon\\IsAliveE.java","ch\\ivy\\ws\\addon\\IsAliveResponse.java","ch\\ivy\\ws\\addon\\IsAliveResponseE.java","ch\\ivy\\ws\\addon\\IsAliveResult.java","ch\\ivy\\ws\\addon\\IsAliveServiceService.java","ch\\ivy\\ws\\addon\\IsAliveServiceServiceStub.java","ch\\ivy\\ws\\addon\\IvyApplication.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1461554668981</codeGenerationTimestamp>
+            <wsdlWebserviceName>IsAliveServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>processStartsService</name>
+        <id>1473A1D4EEBABA93</id>
+        <description></description>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/137A1AD0988B83E7?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>ProcessStartServicePort="findProcessesStartsByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>ProcessStartServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>ProcessStartServicePortfindProcessStarts="arg0__@@__ch.ivy.ws.addon.FindProcessStartsE__@@__"
+ProcessStartServicePortfindAllProcessStarts="arg0__@@__ch.ivy.ws.addon.FindAllProcessStartsE__@@__"
+ProcessStartServicePortfindProcessesStartsByKeyword="arg0__@@__ch.ivy.ws.addon.FindProcessesStartsByKeywordE__@@__"
+ProcessStartServicePortfindProcessesStartsByCriteria="arg0__@@__ch.ivy.ws.addon.FindProcessesStartsByCriteriaE__@@__"</axisParameterProperties>
+            <axisPortList>ProcessStartServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.ProcessStartServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>ProcessStartServicePortfindProcessStarts=ch.ivy.ws.addon.FindProcessStartsResponseE
+ProcessStartServicePortfindAllProcessStarts=ch.ivy.ws.addon.FindAllProcessStartsResponseE
+ProcessStartServicePortfindProcessesStartsByKeyword=ch.ivy.ws.addon.FindProcessesStartsByKeywordResponseE
+ProcessStartServicePortfindProcessesStartsByCriteria=ch.ivy.ws.addon.FindProcessesStartsByCriteriaResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.ProcessStartServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindProcessesStartsByCriteria.java","ch\\ivy\\ws\\addon\\FindProcessesStartsByCriteriaE.java","ch\\ivy\\ws\\addon\\FindProcessesStartsByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindProcessesStartsByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindProcessesStartsByCriteriaResult.java","ch\\ivy\\ws\\addon\\IvyProcessStart.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\ProcessSearchCriteria.java","ch\\ivy\\ws\\addon\\ProcessStartServiceService.java","ch\\ivy\\ws\\addon\\ProcessStartServiceServiceStub.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1483426518712</codeGenerationTimestamp>
+            <wsdlWebserviceName>ProcessStartServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>SecurityService</name>
+        <id>1485F2F441BFB375</id>
+        <description>Web Service to get Security Data from the Portal Connector</description>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/138056017E3F98C2?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>SecurityServicePort="findSecurityMembersToDelegate","findAllRoles","findAllUsers","findUsersByRoleId"</axisOperationsToPort>
+            <axisEndPointForPortType>SecurityServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>SecurityServicePortfindAllUsers="arg0__@@__ch.ivy.ws.addon.FindAllUsersE__@@__"
+SecurityServicePortfindUsersByRoleId="arg0__@@__ch.ivy.ws.addon.FindUsersByRoleIdE__@@__"
+SecurityServicePortfindAllRoles="arg0__@@__ch.ivy.ws.addon.FindAllRolesE__@@__"
+SecurityServicePortfindSecurityMembersToDelegate="arg0__@@__ch.ivy.ws.addon.FindSecurityMembersToDelegateE__@@__"</axisParameterProperties>
+            <axisPortList>SecurityServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.SecurityServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>SecurityServicePortfindAllUsers=ch.ivy.ws.addon.FindAllUsersResponseE
+SecurityServicePortfindUsersByRoleId=ch.ivy.ws.addon.FindUsersByRoleIdResponseE
+SecurityServicePortfindAllRoles=ch.ivy.ws.addon.FindAllRolesResponseE
+SecurityServicePortfindSecurityMembersToDelegate=ch.ivy.ws.addon.FindSecurityMembersToDelegateResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.SecurityServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindAllRoles.java","ch\\ivy\\ws\\addon\\FindAllRolesE.java","ch\\ivy\\ws\\addon\\FindAllRolesResponse.java","ch\\ivy\\ws\\addon\\FindAllRolesResponseE.java","ch\\ivy\\ws\\addon\\FindAllRolesResult.java","ch\\ivy\\ws\\addon\\FindAllUsers.java","ch\\ivy\\ws\\addon\\FindAllUsersE.java","ch\\ivy\\ws\\addon\\FindAllUsersResponse.java","ch\\ivy\\ws\\addon\\FindAllUsersResponseE.java","ch\\ivy\\ws\\addon\\FindAllUsersResult.java","ch\\ivy\\ws\\addon\\FindSecurityMembersToDelegate.java","ch\\ivy\\ws\\addon\\FindSecurityMembersToDelegateE.java","ch\\ivy\\ws\\addon\\FindSecurityMembersToDelegateResponse.java","ch\\ivy\\ws\\addon\\FindSecurityMembersToDelegateResponseE.java","ch\\ivy\\ws\\addon\\FindSecurityMembersToDelegateResult.java","ch\\ivy\\ws\\addon\\FindUsersByRoleId.java","ch\\ivy\\ws\\addon\\FindUsersByRoleIdE.java","ch\\ivy\\ws\\addon\\FindUsersByRoleIdResponse.java","ch\\ivy\\ws\\addon\\FindUsersByRoleIdResponseE.java","ch\\ivy\\ws\\addon\\FindUsersByRoleIdResult.java","ch\\ivy\\ws\\addon\\IvyRole.java","ch\\ivy\\ws\\addon\\IvyUser.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\SecurityServiceService.java","ch\\ivy\\ws\\addon\\SecurityServiceServiceStub.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1446202315202</codeGenerationTimestamp>
+            <wsdlWebserviceName>SecurityServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>userService</name>
+        <id>14BDDEDAB1EB1D1E</id>
+        <description></description>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/138D76541AF4C4CF?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>UserServicePort="getSubstitutes","saveUserSetting","setEMailSettings","findUserSetting","setSubstitutes","getEmailSetttings","getLanguagesSettings","setLanguagesSettings"</axisOperationsToPort>
+            <axisEndPointForPortType>UserServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>UserServicePortsaveUserSetting="arg0__@@__ch.ivy.ws.addon.SaveUserSettingE__@@__"
+UserServicePortgetLanguagesSettings="arg0__@@__ch.ivy.ws.addon.GetLanguagesSettingsE__@@__"
+UserServicePortgetSubstitutes="arg0__@@__ch.ivy.ws.addon.GetSubstitutesE__@@__"
+UserServicePortsetAbsences="arg0__@@__ch.ivy.ws.addon.SetAbsencesE__@@__"
+UserServicePortsetLanguagesSettings="arg0__@@__ch.ivy.ws.addon.SetLanguagesSettingsE__@@__"
+UserServicePortgetAbsences="arg0__@@__ch.ivy.ws.addon.GetAbsencesE__@@__"
+UserServicePortfindUserSetting="arg0__@@__ch.ivy.ws.addon.FindUserSettingE__@@__"
+UserServicePortsetEMailSettings="arg0__@@__ch.ivy.ws.addon.SetEMailSettingsE__@@__"
+UserServicePortgetEmailSetttings="arg0__@@__ch.ivy.ws.addon.GetEmailSetttingsE__@@__"
+UserServicePortsetSubstitutes="arg0__@@__ch.ivy.ws.addon.SetSubstitutesE__@@__"</axisParameterProperties>
+            <axisPortList>UserServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.UserServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>UserServicePortsaveUserSetting=ch.ivy.ws.addon.SaveUserSettingResponseE
+UserServicePortgetLanguagesSettings=ch.ivy.ws.addon.GetLanguagesSettingsResponseE
+UserServicePortgetSubstitutes=ch.ivy.ws.addon.GetSubstitutesResponseE
+UserServicePortsetAbsences=ch.ivy.ws.addon.SetAbsencesResponseE
+UserServicePortsetLanguagesSettings=ch.ivy.ws.addon.SetLanguagesSettingsResponseE
+UserServicePortgetAbsences=ch.ivy.ws.addon.GetAbsencesResponseE
+UserServicePortfindUserSetting=ch.ivy.ws.addon.FindUserSettingResponseE
+UserServicePortsetEMailSettings=ch.ivy.ws.addon.SetEMailSettingsResponseE
+UserServicePortgetEmailSetttings=ch.ivy.ws.addon.GetEmailSetttingsResponseE
+UserServicePortsetSubstitutes=ch.ivy.ws.addon.SetSubstitutesResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.UserServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindUserSetting.java","ch\\ivy\\ws\\addon\\FindUserSettingE.java","ch\\ivy\\ws\\addon\\FindUserSettingResponse.java","ch\\ivy\\ws\\addon\\FindUserSettingResponseE.java","ch\\ivy\\ws\\addon\\FindUserSettingResult.java","ch\\ivy\\ws\\addon\\GetEmailSetttings.java","ch\\ivy\\ws\\addon\\GetEmailSetttingsE.java","ch\\ivy\\ws\\addon\\GetEmailSetttingsResponse.java","ch\\ivy\\ws\\addon\\GetEmailSetttingsResponseE.java","ch\\ivy\\ws\\addon\\GetEmailSetttingsResult.java","ch\\ivy\\ws\\addon\\GetLanguagesSettings.java","ch\\ivy\\ws\\addon\\GetLanguagesSettingsE.java","ch\\ivy\\ws\\addon\\GetLanguagesSettingsResponse.java","ch\\ivy\\ws\\addon\\GetLanguagesSettingsResponseE.java","ch\\ivy\\ws\\addon\\GetLanguagesSettingsResult.java","ch\\ivy\\ws\\addon\\GetSubstitutes.java","ch\\ivy\\ws\\addon\\GetSubstitutesE.java","ch\\ivy\\ws\\addon\\GetSubstitutesResponse.java","ch\\ivy\\ws\\addon\\GetSubstitutesResponseE.java","ch\\ivy\\ws\\addon\\GetSubstitutesResult.java","ch\\ivy\\ws\\addon\\IvyEmailSetting.java","ch\\ivy\\ws\\addon\\IvyLanguageSetting.java","ch\\ivy\\ws\\addon\\IvySubstitute.java","ch\\ivy\\ws\\addon\\IvyUser.java","ch\\ivy\\ws\\addon\\IvyUserSetting.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\SaveUserSetting.java","ch\\ivy\\ws\\addon\\SaveUserSettingE.java","ch\\ivy\\ws\\addon\\SaveUserSettingResponse.java","ch\\ivy\\ws\\addon\\SaveUserSettingResponseE.java","ch\\ivy\\ws\\addon\\SetEMailSettings.java","ch\\ivy\\ws\\addon\\SetEMailSettingsE.java","ch\\ivy\\ws\\addon\\SetEMailSettingsResponse.java","ch\\ivy\\ws\\addon\\SetEMailSettingsResponseE.java","ch\\ivy\\ws\\addon\\SetLanguagesSettings.java","ch\\ivy\\ws\\addon\\SetLanguagesSettingsE.java","ch\\ivy\\ws\\addon\\SetLanguagesSettingsResponse.java","ch\\ivy\\ws\\addon\\SetLanguagesSettingsResponseE.java","ch\\ivy\\ws\\addon\\SetSubstitutes.java","ch\\ivy\\ws\\addon\\SetSubstitutesE.java","ch\\ivy\\ws\\addon\\SetSubstitutesResponse.java","ch\\ivy\\ws\\addon\\SetSubstitutesResponseE.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\UserServiceService.java","ch\\ivy\\ws\\addon\\UserServiceServiceStub.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1497007259701</codeGenerationTimestamp>
+            <wsdlWebserviceName>UserServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>getSupportedLanguages</name>
+        <id>14E91368EA389FD7</id>
+        <description></description>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/14E90F0F6A258B63?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>SupportedLanguageServicePort="getSupportedLanguages"</axisOperationsToPort>
+            <axisEndPointForPortType>SupportedLanguageServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>SupportedLanguageServicePortgetSupportedLanguages="arg0__@@__ch.ivy.ws.addon.GetSupportedLanguagesE__@@__"</axisParameterProperties>
+            <axisPortList>SupportedLanguageServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.SupportedLanguageServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>SupportedLanguageServicePortgetSupportedLanguages=ch.ivy.ws.addon.GetSupportedLanguagesResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.SupportedLanguageServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\GetSupportedLanguages.java","ch\\ivy\\ws\\addon\\GetSupportedLanguagesE.java","ch\\ivy\\ws\\addon\\GetSupportedLanguagesResponse.java","ch\\ivy\\ws\\addon\\GetSupportedLanguagesResponseE.java","ch\\ivy\\ws\\addon\\GetSupportedLanguagesResult.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\SupportedLanguageServiceService.java","ch\\ivy\\ws\\addon\\SupportedLanguageServiceServiceStub.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1437374059555</codeGenerationTimestamp>
+            <wsdlWebserviceName>SupportedLanguageServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>absenceService</name>
+        <id>14EFDA6C3FD72228</id>
+        <description></description>
+        <wsdlUrl>http://127.0.0.1:8081/ivy/ws/designer/PortalConnector/14EFD6DC6E4A27E6?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>AbsenceServicePort="getAbsences","getAbsencesOfAllUsers","setAbsences"</axisOperationsToPort>
+            <axisEndPointForPortType>AbsenceServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>AbsenceServicePortgetAbsences="arg0__@@__ch.ivy.ws.addon.GetAbsencesE__@@__"
+AbsenceServicePortsetAbsences="arg0__@@__ch.ivy.ws.addon.SetAbsencesE__@@__"
+AbsenceServicePortgetAbsencesOfAllUsers="arg0__@@__ch.ivy.ws.addon.GetAbsencesOfAllUsersE__@@__"
+AbsenceServicePorttestWS="arg0__@@__ch.ivy.ws.addon.TestWSE__@@__"</axisParameterProperties>
+            <axisPortList>AbsenceServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.AbsenceServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>AbsenceServicePortgetAbsences=ch.ivy.ws.addon.GetAbsencesResponseE
+AbsenceServicePortsetAbsences=ch.ivy.ws.addon.SetAbsencesResponseE
+AbsenceServicePortgetAbsencesOfAllUsers=ch.ivy.ws.addon.GetAbsencesOfAllUsersResponseE
+AbsenceServicePorttestWS=ch.ivy.ws.addon.TestWSResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.AbsenceServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\Absence.java","ch\\ivy\\ws\\addon\\AbsenceServiceService.java","ch\\ivy\\ws\\addon\\AbsenceServiceServiceStub.java","ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\GetAbsences.java","ch\\ivy\\ws\\addon\\GetAbsencesE.java","ch\\ivy\\ws\\addon\\GetAbsencesOfAllUsers.java","ch\\ivy\\ws\\addon\\GetAbsencesOfAllUsersE.java","ch\\ivy\\ws\\addon\\GetAbsencesOfAllUsersResponse.java","ch\\ivy\\ws\\addon\\GetAbsencesOfAllUsersResponseE.java","ch\\ivy\\ws\\addon\\GetAbsencesOfAllUsersResult.java","ch\\ivy\\ws\\addon\\GetAbsencesResponse.java","ch\\ivy\\ws\\addon\\GetAbsencesResponseE.java","ch\\ivy\\ws\\addon\\GetAbsencesResult.java","ch\\ivy\\ws\\addon\\IvyAbsence.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\SetAbsences.java","ch\\ivy\\ws\\addon\\SetAbsencesE.java","ch\\ivy\\ws\\addon\\SetAbsencesResponse.java","ch\\ivy\\ws\\addon\\SetAbsencesResponseE.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1452047766186</codeGenerationTimestamp>
+            <wsdlWebserviceName>AbsenceServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>synchronizePortalDataService</name>
+        <id>1503AE0FAA915FAA</id>
+        <description></description>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/150374D567D113F5?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>PortalDataServicePort="delete","deleteByPrefixThenUpdate","deleteManyProperties","addOrUpdate","deleteByPrefix"</axisOperationsToPort>
+            <axisEndPointForPortType>PortalDataServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>PortalDataServicePortdeleteAll="arg0__@@__ch.ivy.ws.addon.DeleteAllE__@@__"
+PortalDataServicePortdeleteByPrefix="arg0__@@__ch.ivy.ws.addon.DeleteByPrefixE__@@__"
+PortalDataServicePortdeleteManyProperties="arg0__@@__ch.ivy.ws.addon.DeleteManyPropertiesE__@@__"
+PortalDataServicePortdeleteByPrefixThenUpdate="arg0__@@__ch.ivy.ws.addon.DeleteByPrefixThenUpdateE__@@__"
+PortalDataServicePortaddOrUpdate="arg0__@@__ch.ivy.ws.addon.AddOrUpdateE__@@__"
+PortalDataServicePortdelete="arg0__@@__ch.ivy.ws.addon.DeleteE__@@__"</axisParameterProperties>
+            <axisPortList>PortalDataServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.PortalDataServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>PortalDataServicePortdeleteAll=ch.ivy.ws.addon.DeleteAllResponseE
+PortalDataServicePortdeleteByPrefix=ch.ivy.ws.addon.DeleteByPrefixResponseE
+PortalDataServicePortdeleteManyProperties=ch.ivy.ws.addon.DeleteManyPropertiesResponseE
+PortalDataServicePortdeleteByPrefixThenUpdate=ch.ivy.ws.addon.DeleteByPrefixThenUpdateResponseE
+PortalDataServicePortaddOrUpdate=ch.ivy.ws.addon.AddOrUpdateResponseE
+PortalDataServicePortdelete=ch.ivy.ws.addon.DeleteResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.PortalDataServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\AddOrUpdate.java","ch\\ivy\\ws\\addon\\AddOrUpdateE.java","ch\\ivy\\ws\\addon\\AddOrUpdateResponse.java","ch\\ivy\\ws\\addon\\AddOrUpdateResponseE.java","ch\\ivy\\ws\\addon\\AddOrUpdateResult.java","ch\\ivy\\ws\\addon\\CustomPropertyPair.java","ch\\ivy\\ws\\addon\\Delete.java","ch\\ivy\\ws\\addon\\DeleteByPrefix.java","ch\\ivy\\ws\\addon\\DeleteByPrefixE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResponse.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResponseE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixResult.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdate.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdateE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdateResponse.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdateResponseE.java","ch\\ivy\\ws\\addon\\DeleteByPrefixThenUpdateResult.java","ch\\ivy\\ws\\addon\\DeleteE.java","ch\\ivy\\ws\\addon\\DeleteManyProperties.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesE.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResponse.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResponseE.java","ch\\ivy\\ws\\addon\\DeleteManyPropertiesResult.java","ch\\ivy\\ws\\addon\\DeleteResponse.java","ch\\ivy\\ws\\addon\\DeleteResponseE.java","ch\\ivy\\ws\\addon\\DeleteResult.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\PortalDataServiceService.java","ch\\ivy\\ws\\addon\\PortalDataServiceServiceStub.java","ch\\ivy\\ws\\addon\\ReturnedStatus.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1496649499882</codeGenerationTimestamp>
+            <wsdlWebserviceName>PortalDataServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>applicationService</name>
+        <id>154F091E0FE17F3C</id>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/154F054217050170?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>ApplicationServicePort="getAllApplications","getApplicationsByAppNames"</axisOperationsToPort>
+            <axisEndPointForPortType>ApplicationServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>ApplicationServicePortgetAllApplications="arg0__@@__ch.ivy.ws.addon.GetAllApplicationsE__@@__"
+ApplicationServicePortgetAllApplication="arg0__@@__ch.ivy.ws.addon.GetAllApplicationE__@@__"
+ApplicationServicePortgetApplicationsByAppNames="arg0__@@__ch.ivy.ws.addon.GetApplicationsByAppNamesE__@@__"</axisParameterProperties>
+            <axisPortList>ApplicationServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.ApplicationServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>ApplicationServicePortgetAllApplications=ch.ivy.ws.addon.GetAllApplicationsResponseE
+ApplicationServicePortgetAllApplication=ch.ivy.ws.addon.GetAllApplicationResponseE
+ApplicationServicePortgetApplicationsByAppNames=ch.ivy.ws.addon.GetApplicationsByAppNamesResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.ApplicationServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\ApplicationServiceService.java","ch\\ivy\\ws\\addon\\ApplicationServiceServiceStub.java","ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\GetAllApplications.java","ch\\ivy\\ws\\addon\\GetAllApplicationsE.java","ch\\ivy\\ws\\addon\\GetAllApplicationsResponse.java","ch\\ivy\\ws\\addon\\GetAllApplicationsResponseE.java","ch\\ivy\\ws\\addon\\GetAllApplicationsResult.java","ch\\ivy\\ws\\addon\\GetApplicationsByAppNames.java","ch\\ivy\\ws\\addon\\GetApplicationsByAppNamesE.java","ch\\ivy\\ws\\addon\\GetApplicationsByAppNamesResponse.java","ch\\ivy\\ws\\addon\\GetApplicationsByAppNamesResponseE.java","ch\\ivy\\ws\\addon\\GetApplicationsByAppNamesResult.java","ch\\ivy\\ws\\addon\\IvyApplication.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1464336479860</codeGenerationTimestamp>
+            <wsdlWebserviceName>ApplicationServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>serverService</name>
+        <id>155B8E8D03D38D19</id>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/155B8D3292AB7784?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>ServerServicePort="getExternalHost"</axisOperationsToPort>
+            <axisEndPointForPortType>ServerServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>ServerServicePortgetExternalHost="arg0__@@__ch.ivy.ws.addon.GetExternalHostE__@@__"</axisParameterProperties>
+            <axisPortList>ServerServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.ServerServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>ServerServicePortgetExternalHost=ch.ivy.ws.addon.GetExternalHostResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.ServerServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\GetExternalHost.java","ch\\ivy\\ws\\addon\\GetExternalHostE.java","ch\\ivy\\ws\\addon\\GetExternalHostResponse.java","ch\\ivy\\ws\\addon\\GetExternalHostResponseE.java","ch\\ivy\\ws\\addon\\GetExternalHostResult.java","ch\\ivy\\ws\\addon\\ServerServiceService.java","ch\\ivy\\ws\\addon\\ServerServiceServiceStub.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1467773478334</codeGenerationTimestamp>
+            <wsdlWebserviceName>ServerServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>sideStepService</name>
+        <id>15C7646A4BDA62E7</id>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/15C62875FD98F850?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>SideStepProcessServicePort="findSideStepsByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>SideStepProcessServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>SideStepProcessServicePortfindSideStepsByCriteria="arg0__@@__ch.ivy.ws.addon.FindSideStepsByCriteriaE__@@__"</axisParameterProperties>
+            <axisPortList>SideStepProcessServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.SideStepProcessServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>SideStepProcessServicePortfindSideStepsByCriteria=ch.ivy.ws.addon.FindSideStepsByCriteriaResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.SideStepProcessServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteria.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaE.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindSideStepsByCriteriaResult.java","ch\\ivy\\ws\\addon\\IvySideStep.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\SideStepProcessServiceService.java","ch\\ivy\\ws\\addon\\SideStepProcessServiceServiceStub.java","ch\\ivy\\ws\\addon\\SideStepSearchCriteria.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1498474422029</codeGenerationTimestamp>
+            <wsdlWebserviceName>SideStepProcessServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+    <webServiceConfig>
+        <name>webStartableService</name>
+        <id>15CD313699949A45</id>
+        <wsdlUrl>http://localhost:8081/ivy/ws/designer/PortalConnector/15CD2EB4E7714D02?WSDL</wsdlUrl>
+        <transportSession>false</transportSession>
+        <sessionHandlingMode>2</sessionHandlingMode>
+        <wsdlGeneratedInfo>
+            <axisLocatorClassname></axisLocatorClassname>
+            <axisNamespacesNew>http\://addon.ws.ivy.ch/=ch.ivy.ws.addon
+ch.ivyteam.ivy.webservice.process=process.webservice.ivy.ivyteam.ch</axisNamespacesNew>
+            <axisOperationsToPort>WebStartableServicePort="findWebStartablesByCriteria"</axisOperationsToPort>
+            <axisEndPointForPortType>WebStartableServicePort=&lt;%\= in.endpoint%&gt;</axisEndPointForPortType>
+            <axisParameterProperties>WebStartableServicePortfindWebStartablesByCriteria="arg0__@@__ch.ivy.ws.addon.FindWebStartablesByCriteriaE__@@__"</axisParameterProperties>
+            <axisPortList>WebStartableServicePort</axisPortList>
+            <axisStubClassnameList>ch.ivy.ws.addon.WebStartableServiceServiceStub</axisStubClassnameList>
+            <axisReturnTypes>WebStartableServicePortfindWebStartablesByCriteria=ch.ivy.ws.addon.FindWebStartablesByCriteriaResponseE</axisReturnTypes>
+            <axisServiceClassname>ch.ivy.ws.addon.WebStartableServiceService</axisServiceClassname>
+            <axisUsedJavaclasses>"ch\\ivy\\ws\\addon\\CompositeObject.java","ch\\ivy\\ws\\addon\\DateTime.java","ch\\ivy\\ws\\addon\\Exception.java","ch\\ivy\\ws\\addon\\ExtensionMapper.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteria.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteriaE.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteriaResponse.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteriaResponseE.java","ch\\ivy\\ws\\addon\\FindWebStartablesByCriteriaResult.java","ch\\ivy\\ws\\addon\\IvyWebStartable.java","ch\\ivy\\ws\\addon\\NestedObject.java","ch\\ivy\\ws\\addon\\StackTraceElement.java","ch\\ivy\\ws\\addon\\Throwable.java","ch\\ivy\\ws\\addon\\WebServiceProcessTechnicalException.java","ch\\ivy\\ws\\addon\\WebStartableSearchCriteria.java","ch\\ivy\\ws\\addon\\WebStartableServiceService.java","ch\\ivy\\ws\\addon\\WebStartableServiceServiceStub.java","ch\\ivy\\ws\\addon\\WsErrorType.java","ch\\ivy\\ws\\addon\\WsException.java","process\\webservice\\ivy\\ivyteam\\ch\\TechnicalException.java"</axisUsedJavaclasses>
+            <codeGenerationTimestamp>1498444093123</codeGenerationTimestamp>
+            <wsdlWebserviceName>WebStartableServiceService</wsdlWebserviceName>
+            <wsClassGenerationImplementationUsed>AXIS_2_0</wsClassGenerationImplementationUsed>
+            <jarPacked>true</jarPacked>
+        </wsdlGeneratedInfo>
+        <webServiceVersion/>
+    </webServiceConfig>
+</webServiceConfigurationNode>

@@ -1,0 +1,7 @@
+AbsenceServiceData #class
+ch.ivy.ws.addon #namespace
+absences List<ch.ivy.ws.addon.types.Absence> #field
+absencesToUpdate List<ch.ivy.ws.addon.types.IvyAbsence> #field
+applicationNames List<String> #field
+errors List<ch.ivy.ws.addon.WSException> #field
+userName String #field

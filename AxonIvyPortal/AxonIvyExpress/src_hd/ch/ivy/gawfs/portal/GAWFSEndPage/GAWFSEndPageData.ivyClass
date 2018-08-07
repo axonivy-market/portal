@@ -1,0 +1,12 @@
+GAWFSEndPageData #class
+ch.ivy.gawfs.portal.GAWFSEndPage #namespace
+endPageProcessData gawfs.EndPageProcessData #field
+endPageProcessData PERSISTENT #fieldModifier
+taskx ch.ivyteam.ivy.workflow.ITask #field
+taskx PERSISTENT #fieldModifier
+casex ch.ivyteam.ivy.workflow.ICase #field
+casex PERSISTENT #fieldModifier
+title String #field
+title PERSISTENT #fieldModifier
+subtitle String #field
+subtitle PERSISTENT #fieldModifier

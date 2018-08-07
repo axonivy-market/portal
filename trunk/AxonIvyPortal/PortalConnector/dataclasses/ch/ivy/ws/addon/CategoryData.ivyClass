@@ -1,0 +1,4 @@
+CategoryData #class
+ch.ivy.ws.addon #namespace
+path String #field
+rawPath String #field

@@ -1,0 +1,30 @@
+ExecutePredefinedWorkflowData #class
+gawfs #namespace
+steps List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Integer #field
+actualStepIndex PERSISTENT #fieldModifier
+definedTasks List<gawfs.TaskDef> #field
+definedTasks PERSISTENT #fieldModifier
+workflowID Integer #field
+workflowID PERSISTENT #fieldModifier
+workflowName String #field
+workflowName PERSISTENT #fieldModifier
+workflowDescription String #field
+workflowDescription PERSISTENT #fieldModifier
+workflowType String #field
+workflowType PERSISTENT #fieldModifier
+dynaFormController ch.ivy.gawfs.DynaFormController #field
+dynaFormController PERSISTENT #fieldModifier
+dragAndDropController ch.ivy.gawfs.DragAndDropController #field
+dragAndDropController PERSISTENT #fieldModifier
+nextTask gawfs.TaskDef #field
+nextTask PERSISTENT #fieldModifier
+applicant gawfs.Applicant #field
+applicant PERSISTENT #fieldModifier
+denied Boolean #field
+denied PERSISTENT #fieldModifier
+creatorUser ch.ivyteam.ivy.security.IUser #field
+creatorUser PERSISTENT #fieldModifier
+discard Boolean #field
+discard PERSISTENT #fieldModifier
