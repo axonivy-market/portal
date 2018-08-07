@@ -1,0 +1,10 @@
+Data #class
+internaltest #namespace
+cases List<ch.ivy.ws.addon.IvyCase> #field
+cases PERSISTENT #fieldModifier
+apps List<String> #field
+apps PERSISTENT #fieldModifier
+error ch.ivy.ws.addon.WsException #field
+error PERSISTENT #fieldModifier
+expiredDate Duration #field
+expiredDate PERSISTENT #fieldModifier
