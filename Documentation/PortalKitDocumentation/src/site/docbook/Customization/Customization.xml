@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization">
+	<title>Customization</title>
+	<xi:include href="BuildYourOwnPortal.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="PortalLogosAndColors.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="Login.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="PortalHome.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="TaskWidget.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="CaseItem.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="DefaultUserProcess.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="ChangePassword.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="Logout.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="HideTechnicalStuffs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>

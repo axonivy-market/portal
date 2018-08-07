@@ -1,0 +1,24 @@
+Data #class
+gawfs #namespace
+steps List<String> #field
+steps 'Process Steps for ProcessChain' #fieldComment
+definedTasks List<gawfs.TaskDef> #field
+definedTasks 'List of Tasks for execution' #fieldComment
+processName String #field
+processName 'Name of the Process also later CaseName' #fieldComment
+processDescription String #field
+processDescription 'Description of the Process later CaseDescription' #fieldComment
+processType String #field
+processType Processtype #fieldComment
+wfusers List<ch.ivyteam.ivy.security.IUser> #field
+processRepository ch.ivy.addon.portalkit.bo.ExpressProcess #field
+taskRepository ch.ivy.addon.portalkit.bo.ExpressTaskDefinition #field
+formelementRepository ch.ivy.addon.portalkit.bo.ExpressFormElement #field
+dragAndDropController ch.ivy.gawfs.DragAndDropController #field
+dynaFormController ch.ivy.gawfs.DynaFormController #field
+backFlag Boolean #field
+processID String #field
+directExecutionFlag Boolean #field
+taskId Number #field
+taskId 'Taskid for Endpage' #fieldComment
+discard Boolean #field

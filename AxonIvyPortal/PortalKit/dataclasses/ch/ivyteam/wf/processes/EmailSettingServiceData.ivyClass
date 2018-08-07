@@ -1,0 +1,16 @@
+EmailSettingServiceData #class
+ch.ivyteam.wf.processes #namespace
+username String #field
+portalConfig ch.ivy.addon.portalkit.bo.PortalConfiguration #field
+listIterator java.util.ListIterator #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+apps List<String> #field
+applications List<ch.ivy.ws.addon.IvyApplication> #field
+endpoint String #field
+errorWs ch.ivy.ws.addon.WsException #field
+errors List<ch.ivy.ws.addon.WsException> #field
+tempErrors List<ch.ivy.ws.addon.WsException> #field
+ivyEmailSettings List<ch.ivy.ws.addon.IvyEmailSetting> #field
+emailSettings List<ch.ivy.addon.portalkit.bo.RemoteEmailSetting> #field
+emailSettingMaps List<java.util.Map> #field
+totalApps List<String> #field

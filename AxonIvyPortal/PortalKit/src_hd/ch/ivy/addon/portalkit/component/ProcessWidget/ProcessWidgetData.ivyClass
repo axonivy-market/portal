@@ -1,0 +1,23 @@
+ProcessWidgetData #class
+ch.ivy.addon.portalkit.component.ProcessWidget #namespace
+processes List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> #field
+processes PERSISTENT #fieldModifier
+userProcess ch.ivy.addon.portalkit.persistence.domain.UserProcess #field
+userProcess PERSISTENT #fieldModifier
+synData List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> #field
+synData 'List contain userSetting and userProcess to synchronize with other servers' #fieldComment
+synData PERSISTENT #fieldModifier
+webStartables List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
+webStartables PERSISTENT #fieldModifier
+webStartableSearchCriteria ch.ivy.ws.addon.WebStartableSearchCriteria #field
+webStartableSearchCriteria PERSISTENT #fieldModifier
+changeDefaultProcess Boolean #field
+changeDefaultProcess PERSISTENT #fieldModifier
+processesToBeDeleted List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> #field
+processesToBeDeleted PERSISTENT #fieldModifier
+hasDataToSynch Boolean #field
+hasDataToSynch PERSISTENT #fieldModifier
+language String #field
+language PERSISTENT #fieldModifier
+processLink String #field
+processLink PERSISTENT #fieldModifier

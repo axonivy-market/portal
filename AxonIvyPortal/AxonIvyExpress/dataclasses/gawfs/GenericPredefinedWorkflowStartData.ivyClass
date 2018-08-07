@@ -1,0 +1,3 @@
+GenericPredefinedWorkflowStartData #class
+gawfs #namespace
+workflowID String #field

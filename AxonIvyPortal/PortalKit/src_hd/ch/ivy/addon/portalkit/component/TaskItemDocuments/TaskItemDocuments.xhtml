@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" type="ch.ivy.addon.portalkit.bo.RemoteTask" />
+  <cc:attribute name="styleClass" />
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
+  <div id="task-document" class="task-details-item js-task-details-item js-document-column #{cc.attrs.styleClass}">
+    <p:scrollPanel styleClass="task-details-document-scrollpanel" mode="native" id="task-details-documents">
+      <ui:repeat var="document" value="#{data.documents}" varStatus="status">
+        <h:form styleClass="task-details-document-download">
+          <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
+            <p:commandLink actionListener="#{logic.downloadDocument(task,document)}" ajax="false" styleClass="download-command js-download-command">
+              <span class="fa fa-file-pdf-o task-details-document-download-icon" />
+              <h:outputText value="#{document.name}" styleClass="js-document-name" />
+              <p:fileDownload value="#{data.documentFile}" />
+            </p:commandLink>
+  
+            <p:commandLink actionListener="#{logic.onSelectDeletedDocument(task,document)}"
+              styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog').show()" />
+          </h:panelGroup>
+        </h:form>
+      </ui:repeat>
+
+      <h:outputText styleClass="no-documents-message"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDocuments')}"
+        rendered="#{empty data.documents}" />
+    </p:scrollPanel>
+    <h:panelGroup layout="block" styleClass="task-details-document-add">
+      <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
+        actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
+        <span class="fa fa-plus-circle task-details-document-add-link-icon" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocument')}" />
+      </p:commandLink>
+    </h:panelGroup>
+  </div>
+
+  <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocument')}" modal="true" resizable="false"
+    showEffect="fade" hideEffect="fade" width="800">
+    <h:form id="document-upload-form">
+      <p:messages id="upload-messages" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
+      <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
+        mode="advanced" dragDropSupport="true" multiple="true" oncomplete="documentTruncation.truncate();"
+        update="upload-messages #{p:component('task-details-documents')}" auto="true"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" />
+    </h:form>
+    <f:facet name="footer">
+      <p:commandButton id="document-upload-close-command" type="button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        onclick="PF('document-upload-dialog').hide(); scrollTaskDocumentsToBottom()" />
+    </f:facet>
+    <p:ajax event="close" global="false" listener="#{logic.resetMessageUploadDocument}"
+      update="#{p:component('upload-messages')}" />
+  </p:dialog>
+
+  <p:confirmDialog id="document-deletion-dialog" widgetVar="document-deletion-dialog"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
+    <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
+      <p:commandButton styleClass="document-deletion-command portal-ok-button" id="document-deletion-command"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
+        update="#{p:component('task-details-documents')}" actionListener="#{logic.deleteDocument}"
+        oncomplete="PF('document-deletion-dialog').hide()" />
+      <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"
+        onsuccess="PF('document-deletion-dialog').hide()" />
+    </h:panelGroup>
+  </p:confirmDialog>
+  <script>
+      function scrollTaskDocumentsToBottom() {
+        $("[id$='task-details-documents']").scrollTop(10000);
+      }
+    </script>
+    
+  <h:outputScript library="js" name="document-truncation.js" />
+</cc:implementation>
+</html>

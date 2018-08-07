@@ -1,0 +1,10 @@
+CalculateTaskDelegateOverrideData #class
+internaltest #namespace
+currentUser ch.ivyteam.ivy.security.ISecurityMember #field
+currentUser PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+users List<ch.ivy.ws.addon.IvyUser> #field
+users PERSISTENT #fieldModifier
+roles List<ch.ivy.ws.addon.IvyRole> #field
+roles PERSISTENT #fieldModifier

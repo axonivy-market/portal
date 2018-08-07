@@ -1,0 +1,15 @@
+TaskDef #class
+gawfs #namespace
+actor String #field
+actor PERSISTENT #fieldModifier
+subject String #field
+subject PERSISTENT #fieldModifier
+prio Number #field
+prio PERSISTENT #fieldModifier
+description String #field
+description PERSISTENT #fieldModifier
+count Integer #field
+count PERSISTENT #fieldModifier
+untilDays Number #field
+untilDays PERSISTENT #fieldModifier
+actorDisplayName String #field

@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+		<h:form id="userListForm" styleClass="user-list-form">
+			<p:selectOneMenu id="userSelection"
+				value="#{data.selectedRoleOrUser}" var="u"
+				filter="true" filterMatchMode="contains" converter="ivy.ListItem"
+				styleClass="user-selection">
+
+				<f:selectItems value="#{data.AvailableRolesAndUsers}" var="role"
+					itemValue="#{role}"
+					itemLabel="#{role.getDisplayName().length() ne 0 ? role.getDisplayName() : role.getMemberName()}" />
+				<p:column>
+					<p:outputPanel rendered="#{u.user}">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</p:outputPanel>
+					<p:outputPanel rendered="#{!u.user}">
+						<i class="fa fa-users" aria-hidden="true"></i>
+					</p:outputPanel>
+				</p:column>
+
+				<p:column>
+					<h:outputText
+						value="#{u.getDisplayName().length() ne 0 ? u.getDisplayName() : u.getMemberName()}" />
+				</p:column>
+				<p:ajax update="userListForm" listener="#{logic.updateAssignement}" />
+			</p:selectOneMenu>
+
+
+			<p:spacer height="60"></p:spacer>
+
+			<p:outputPanel styleClass="TexAlRight">
+
+				<p:commandButton
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+					process="form:processFlowField"
+					update="form:processFlowField" styleClass="portal-ok-button"
+					actionListener="#{logic.updateAssignement}" icon="fa fa-check"
+					oncomplete="PF('chooseAssignee').hide();" /> 
+			</p:outputPanel>
+		</h:form>
+</h:body>
+
+</html>

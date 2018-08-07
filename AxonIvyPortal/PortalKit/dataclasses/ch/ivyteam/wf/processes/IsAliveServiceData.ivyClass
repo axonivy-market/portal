@@ -1,0 +1,8 @@
+IsAliveServiceData #class
+ch.ivyteam.wf.processes #namespace
+applicationList List<ch.ivy.ws.addon.IvyApplication> #field
+apps List<String> #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+isServerAlive Boolean #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
