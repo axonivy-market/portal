@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" type="ch.ivy.addon.portalkit.bo.RemoteCase" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set value="#{cc.attrs.case}" var="case" />
+  <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
+  
+  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-document-column #{cc.attrs.styleClass}">
+    <p:scrollPanel styleClass="case-details-document-scrollpanel" mode="native" id="case-details-documents">
+      <ui:repeat var="document" value="#{data.documents}" varStatus="status">
+      	<h:form>
+        <h:panelGroup layout="block" rendered="#{document ne null}"
+          styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
+          <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command">
+            <p:fileDownload value="#{logic.downloadDocument(document,case)}" />
+            <span class="fa fa-file-pdf-o case-details-document-download-icon" />
+            <h:outputText value="#{document.name}" styleClass="js-document-name" />
+          </p:commandLink>
+          <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}"
+            styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
+            <p:tooltip for="delete-file"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
+          </p:commandLink>
+        </h:panelGroup>
+        </h:form>
+      </ui:repeat>
+
+      <h:outputText styleClass="no-documents-message"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDocuments')}"
+        rendered="#{empty data.documents}" />
+    </p:scrollPanel>
+
+    <h:panelGroup layout="block" styleClass="case-details-document-add">
+      <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
+        actionListener="#{data.setRemoteCase(case)}" oncomplete="PF('document-upload-dialog-#{case.id}').show()">
+        <span class="fa fa-plus-circle case-details-document-add-link-icon" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocument')}" />
+      </p:commandLink>
+    </h:panelGroup>
+  </div>
+
+  <p:dialog id="document-upload-dialog-#{case.id}" widgetVar="document-upload-dialog-#{case.id}" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocument')}" modal="true" resizable="false"
+    showEffect="fade" hideEffect="fade" width="800" dynamic="true">
+    <h:form id="document-upload-form">
+      <p:messages id="upload-messages" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
+      <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
+        mode="advanced" dragDropSupport="true" multiple="true" oncomplete="documentTruncation.truncate();"
+        update="#{cc.clientId}:document-upload-form:upload-messages #{cc.clientId}:case-details-documents"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}" auto="true" />
+    </h:form>
+    <f:facet name="footer">
+      <p:commandButton id="document-upload-close-command" type="button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        onclick="PF('document-upload-dialog-#{case.id}').hide(); scrollDocumentsToBottom()" />
+    </f:facet>
+    <p:ajax event="close" global="false" listener="#{logic.resetDataUploadDialog()}"
+      update="#{cc.clientId}:document-upload-form:upload-messages" />
+  </p:dialog>
+
+  <p:confirmDialog widgetVar="document-deletion-dialog-#{case.id}"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
+    <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
+      <p:commandButton styleClass="document-deletion-command portal-ok-button" id="document-deletion-command"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
+        update="#{cc.clientId}:case-details-documents" actionListener="#{logic.deleteDocument}"
+        oncomplete="PF('document-deletion-dialog-#{case.id}').hide()" />
+      <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"
+        onsuccess="PF('document-deletion-dialog-#{case.id}').hide()" />
+    </h:panelGroup>
+  </p:confirmDialog>
+
+  <script>
+			function scrollDocumentsToBottom() {
+				$("[id$='case-details-documents']").scrollTop(10000);
+			}
+		</script>
+
+  <h:outputScript library="js" name="document-truncation.js" />
+</cc:implementation>
+</html>

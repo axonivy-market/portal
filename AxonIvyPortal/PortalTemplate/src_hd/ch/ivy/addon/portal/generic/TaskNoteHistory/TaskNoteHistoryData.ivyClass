@@ -1,0 +1,8 @@
+TaskNoteHistoryData #class
+ch.ivy.addon.portal.generic.TaskNoteHistory #namespace
+notes List<ch.ivy.ws.addon.IvyNote> #field
+notes PERSISTENT #fieldModifier
+exportedFileName String #field
+exportedFileName PERSISTENT #fieldModifier
+filteredNotes List<ch.ivy.ws.addon.IvyNote> #field
+filteredNotes PERSISTENT #fieldModifier

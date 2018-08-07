@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomToPortal')}" />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputScript name="login.js" library="js" />
+  <div id="#{cc.clientId}" class="login">
+    <h:form id="login-form" class="login-form"
+      onkeypress="onKeyPressForm(event, '#{cc.clientId}:login-form:error-message', '#{cc.clientId}:login-form:login-command');">
+      <div class="header">
+        <p:graphicImage value="#{resource['ivy-cms:images/logo/loginLogo']}"
+          alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" cache="false" height="50" />
+      </div>
+      <div class="content">
+        <p class="title">#{cc.attrs.title}</p>
+        <p:inputText id="username" styleClass="input"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" value="#{data.username}" />
+        <p:password id="password" styleClass="input"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/password')}" value="#{data.password}" />
+        <p:messages id="error-message" showDetail="true" escape="false" showIcon="false" />
+      </div>
+      <div class="footer">
+        <p:commandLink id="login-command" styleClass="login-command" actionListener="#{logic.login}" update="error-message"
+          oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}">
+          <i class="fa fa-sign-in login-command-icon" />
+          <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}</span>
+        </p:commandLink>
+      </div>
+    </h:form>
+  </div>
+</cc:implementation>
+</html>

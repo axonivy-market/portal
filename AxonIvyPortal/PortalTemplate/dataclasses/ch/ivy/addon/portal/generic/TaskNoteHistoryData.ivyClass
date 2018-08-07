@@ -1,0 +1,7 @@
+TaskNoteHistoryData #class
+ch.ivy.addon.portal.generic #namespace
+remoteTaskId Long #field
+remoteTask ch.ivy.addon.portalkit.bo.RemoteTask #field
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+notes List<ch.ivy.ws.addon.IvyNote> #field
+serverId Long #field

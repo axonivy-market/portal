@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="clientSideTimeOut" />
+</cc:interface>
+<cc:implementation>
+
+  <p:confirmDialog id="timeout-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
+    widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
+      styleClass="portal-ok-button" actionListener="#{logic.extendSession}"
+      oncomplete="hideWarningDialog();resetCounterAndTimeout();" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/logout')}"
+      styleClass="portal-cancel-button" actionListener="#{logic.logout}" oncomplete="returnHomePage()" />
+  </p:confirmDialog>
+
+  <h:form>
+    <p:remoteCommand id="logout-and-show-dialog" name="logoutAndShowDialog" actionListener="#{logic.logout}"
+      onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('viewExpiredExceptionDialog').show()" />
+  </h:form>
+  <script type="text/javascript">
+      var timeout = "#{cc.attrs.clientSideTimeOut}";
+      var timeOutSeconds = timeout/1000;
+	  document.cookie = createCookie('SessionCounter',timeOutSeconds);
+      var warningDialogShow = false;
+      var logOutCalled = false;
+      var intervalCheckSessionTimeout;
+	  document.cookie = createCookie('isLogout',false);
+      
+      $(function() { 
+        intervalCheckSessionTimeout = setInterval(TimerDecrement, 1000); // Call Every Second
+        window.onload = resetCounterAndTimeout;
+        document.onkeypress = resetCounterAndTimeout;
+        document.onclick = resetCounterAndTimeout;
+        document.onmousedown = resetCounterAndTimeout;
+        document.ontouchstart = resetCounterAndTimeout;
+        document.onscroll = resetCounterAndTimeout;
+      });
+      
+      function resetCounterAndTimeout(){
+        if(warningDialogShow == false){
+          document.cookie = createCookie('SessionCounterUpdatedOn',null);
+          timeOutSeconds = timeout/1000;
+          document.cookie = createCookie('SessionCounter',timeOutSeconds);
+        }
+      }
+
+      function TimerDecrement() {
+        var lastUpdated = getCookie('SessionCounterUpdatedOn'), now = new Date(), shouldCheck = false;
+        if (lastUpdated == 'null') {
+            document.cookie = createCookie('SessionCounterUpdatedOn', now);
+        } else if (now.getTime() - new Date(lastUpdated).getTime() >= 1000) {
+            document.cookie = createCookie('SessionCounterUpdatedOn', now);
+            shouldCheck = true;
+        }
+        
+        if (shouldCheck) {
+            if (timeOutSeconds > 0) {
+              
+              if (parseInt((getCookie('SessionCounter')), 10) > 0) {
+                timeOutSeconds = parseInt(getCookie('SessionCounter'), 10);
+              }
+              timeOutSeconds--;
+              document.cookie = createCookie('SessionCounter',timeOutSeconds);
+              
+            } else {
+                if (getCookie('isLogout') == "false") {
+				  document.cookie = createCookie('isLogout',true);
+                  logoutAndShowDialog();
+                } else {
+                  PF('timeout-warning-dialog').hide();
+                  PF('viewExpiredExceptionDialog').show();
+                  clearInterval(intervalCheckSessionTimeout);
+                } 
+            }
+        } else {
+            timeOutSeconds = parseInt(getCookie('SessionCounter'), 10);
+        }
+        
+        if (timeOutSeconds &lt; 60){
+          if(warningDialogShow == false){
+         	warningDialogShow = true;
+            PF('timeout-warning-dialog').show();
+          }
+        } else {
+          hideWarningDialog();
+        }
+
+      }
+      
+      function hideWarningDialog(){
+        warningDialogShow = false;
+        PF('timeout-warning-dialog').hide();
+      }
+      
+      function createCookie(name,value,days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+      }
+    </script>
+
+</cc:implementation>
+</html>

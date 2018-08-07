@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="**/*.ivyClass|**/*.mod|**/*.rddescriptor|**/*.eventmappings|**/*.xhtml" kind="src" path="src_hd"/>
+	<classpathentry excluding="**/*.ivyClass|**/*.mod|**/*.eventmappings|**/*.rddescriptor" kind="src" path="src_rd"/>
+	<classpathentry kind="src" path="src_ws"/>
+	<classpathentry kind="src" path="src_wsproc"/>
+	<classpathentry kind="src" path="src_dataClasses"/>
+	<classpathentry exported="true" kind="con" path="IVY_CONTAINER"/>
+	<classpathentry kind="con" path="WEBAPP_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_146B90974252183F.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_146B9AACE506491D.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_146C8FD0DD5620DA.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_1473A1D4EEBABA93.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_1485F2F441BFB375.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_14BDDEDAB1EB1D1E.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_14E91368EA389FD7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_14EFDA6C3FD72228.jar"/>
+	<classpathentry kind="lib" path="lib/plexus-utils-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/maven-invoker-3.0.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_1503AE0FAA915FAA.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/boon-0.33.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_154F091E0FE17F3C.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_155B8E8D03D38D19.jar"/>
+	<classpathentry kind="con" path="WS_CALL_AXIS2_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15C7646A4BDA62E7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib_ws/client/wsClient_15CD313699949A45.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.10.3.jar"/>
+	<classpathentry kind="lib" path="lib/quartz-2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/vt-password-3.1.1.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

@@ -1,0 +1,10 @@
+SideStepProcessData #class
+ch.ivyteam.wf.processes #namespace
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+ivySideSteps java.util.List<ch.ivy.ws.addon.IvySideStep> #field
+sideSteps java.util.List<ch.ivy.addon.portalkit.bo.RemoteSideStep> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+tempErrors List<ch.ivy.ws.addon.WsException> #field
+sideStepSearchCriteria ch.ivy.ws.addon.SideStepSearchCriteria #field
+isMultiServer Boolean #field

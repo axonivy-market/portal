@@ -1,0 +1,13 @@
+AvailWorkflow #class
+gawfs #namespace
+id String #field
+processName String #field
+processDescription String #field
+processType String #field
+processPermission String #field
+processOwner String #field
+permitted Boolean #field
+owner Boolean #field
+processStartLink String #field
+processEditLink String #field
+ownerDetails String #field

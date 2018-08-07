@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:ic="http://ivyteam.ch/jsf/component">
+<h:head>
+  <f:facet name="first">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+  </f:facet>
+  <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
+  <link rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.ico']}" type="image/x-icon" />
+
+  <h:outputStylesheet name="css/animate.css" library="modena-layout" />
+  <h:outputStylesheet name="css/modena-font.css" library="modena-layout" />
+  <h:outputStylesheet name="css/ripple-effect.css" library="modena-layout" />
+  <h:outputStylesheet name="css/perfect-scrollbar.css" library="modena-layout" />
+  <h:outputStylesheet name="css/modena-layout.css" library="modena-layout" />
+  <h:outputStylesheet name="css/core-layout.css" library="modena-layout" />
+
+  <h:outputStylesheet library="css" name="base.css" />
+  <h:outputStylesheet library="css" name="state.css" />
+  <h:outputStylesheet library="css" name="layout.css" />
+  <h:outputStylesheet library="css" name="utility.css" />
+
+  <h:outputScript name="js/ripple-effect.js" library="modena-layout" />
+  <h:outputScript name="js/perfect-scrollbar.js" library="modena-layout" />
+  <h:outputScript name="js/layout.js" library="modena-layout" />
+
+  <h:outputStylesheet library="css" name="template.css" />
+  <h:outputStylesheet library="css" name="module.css" />
+  <h:outputStylesheet library="css" name="theme.min.css" />
+  
+  <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
+  <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
+
+  <h:outputScript library="js" name="jquery.colourbrightness.min.js" />
+  
+  <h:outputScript name="responsive-toolkit.js" library="js" />
+  <h:outputScript name="main.js" library="js" />
+  <h:outputScript name="portal-components.js" library="js" /> 
+  <h:outputScript name="portal.js" library="js"/>  
+  <h:outputScript name="viewport.js" library="js"/>
+  <ui:insert name="head" />
+</h:head>
+
+<h:body>
+
+  <c:choose>
+    <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
+      <ui:insert name="login">
+        <ic:ch.ivy.addon.portalkit.singleapp.general.Login id="login" />
+      </ui:insert>
+    </c:when>
+    <c:otherwise>
+      <!-- CALL THIS METHOD TO INITIALIZE THE APPLICATION BEAN TO SET HIDE PROPERTY FOR ROLE -->
+      <f:event type="preRenderView" listener="#{dataInitializationBean.run()}" />
+
+      <f:event type="preRenderView"
+        listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
+      <f:event listener="#{menuStateBean.initMenuState(menuState)}" type="preRenderView" />
+    
+      <div class="topbar-container">
+        <ui:include src="/layouts/includes/topbar.xhtml">
+          <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+          <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
+          <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
+          <ui:param name="enablesChat" value="#{enablesChat}" />
+        </ui:include>
+      </div>
+    
+      <div class="left-sidebar-container u-invisibility" id="left-menu">
+        <h:outputText id="output-menu-state-info" value="#{menuStateBean.menuState}" styleClass="hide"/>
+        <div id="app-menu-panel" class="left-sidebar js-left-sidebar u-shadow-effect left-sidebar-color left-sidebar-animation">
+          <c:choose>
+            <c:when test="#{isNotRequiredLogin}">
+              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu
+                onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" startMethod="StartNotRequiredLogin"
+                id="user-menu-without-login" />
+            </c:when>
+            <c:otherwise>
+              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu menuState="#{menuState}"
+                onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" isWorkingOnATask="#{isWorkingOnATask}"
+                id="user-menu-required-login" />
+            </c:otherwise>
+          </c:choose>
+        </div>
+        <div id="second-level-menu" class="second-level-menu js-left-sidebar-second left-sidebar-animation ">
+          <a href="#" class="second-level-menu-header"> 
+            <i class="fa fa-angle-left icon-left left-sidebar-animation" /> 
+            <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portal.generic/SecondLevelMenu/tasks')}</span>
+            <i class="fa fa-angle-right icon-right left-sidebar-animation" />
+          </a> 
+          <div class="second-level-menu-body">
+            <h:form prependId="false">
+              <ic:ch.ivy.addon.portal.generic.PortalTaskMenu menuState="#{menuState}"/>
+            </h:form>
+          </div>
+        </div>
+      </div>
+    
+      <div class="container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
+        <ui:insert name="pageContent">
+          <div class="simple-container js-simple-container #{simpleContainerClass}">
+            <div class="js-simple-main-col #{simpleMainColClass}">
+              <ui:insert name="simplePageContent">
+              </ui:insert>
+            </div>
+          </div>
+        </ui:insert>
+      </div>
+      
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session" clientSideTimeOut="#{userMenuBean.clientSideTimeout}"/>
+    </c:otherwise>
+  </c:choose>
+
+  <ui:insert name="exception">
+    <ui:include src="/layouts/includes/exception.xhtml" />
+  </ui:insert>
+
+  <ic:ch.ivy.addon.portalkit.component.GlobalAjaxStatus id="ajax-indicator" />
+ 
+  
+  <ui:insert name="css" />
+  <ui:insert name="footer">
+    <script type="text/javascript">
+          $(function() {
+            var simpleLargeScreen = new SimpleLargeScreen();
+            var simpleMediumScreen = new SimpleMediumScreen();
+            var simpleSmallScreen = new SimpleSmallScreen();
+            var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+            Portal.init(responsiveToolkit);
+          });
+        </script>
+  </ui:insert>
+</h:body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="caseView" value="#{data.caseView}" />
+
+    <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}</ui:define>
+    <ui:define name="pageContent">
+      <div class="js-case-default-widget-container case-default-widget-container js-simple-container">
+        <div class="js-simple-main-col case-main-container">
+          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{data.caseView.getTitle() != '' ? data.caseView.getTitle() : ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}"
+            dataModel="#{caseView.getDataModel()}" hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"
+            autoSelectCaseId="#{caseView.getAutoSelectCaseId()}" filterGroupId="#{filterGroupId}">
+            <f:facet name="caseHeader">
+              <ic:ch.ivy.addon.portalkit.component.CaseHeader id="case-header" case="#{case}"
+                initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" />
+            </f:facet>
+            <f:facet name="caseBody">
+              <ui:fragment rendered="#{not useOverrideBody}">
+                <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" >
+                    <f:facet name="showCateNoteHistory">
+                      <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link"
+                      target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}">
+                        <span class="fa fa-external-link-square note-show-more-link-icon" />
+                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
+                      </p:link>
+                    </f:facet>
+                </ic:ch.ivy.addon.portalkit.component.CaseItemHistory>
+                <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}"
+                  descriptionComponentToUpdate="#{p:component('description-cell')}" />
+                <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-share-alt js-related-task-column-responsive-button"
+                    displayedSelectors="['.js-related-task-column']"
+                    hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
+                    hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+                    hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
+                    hiddenSelectorsInLargeScreen="['.case-details .replaced']"
+                    hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+                    hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
+                    icon="fa fa-clipboard js-description-column-responsive-button"
+                    displayedSelectors="['.js-description-column']"
+                    hiddenSelectorsInMediumScreen="['.case-details .replaced']"
+                    hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+                  <h:outputScript library="js" name="case-detail-default-responsiveness.js" />
+                </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{useOverrideBody}">
+                <ui:insert name="caseBody">
+                  <!-- Put customized XHTMLs here -->
+                </ui:insert>
+              </ui:fragment>
+            </f:facet>
+            
+            <f:facet name="caseFilter">
+              <ui:fragment rendered="#{useOverrideFilter}">
+                <ui:insert name="caseFilter">
+                </ui:insert>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{not useOverrideFilter}">
+                <ic:ch.ivy.addon.portalkit.component.cases.filter.DefaultCaseFilters dataModel="#{caseView.getDataModel()}" />
+              </ui:fragment>
+            </f:facet>
+          </ic:ch.ivy.addon.portalkit.component.CaseWidget>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="footer">
+      <script type="text/javascript">
+        $(function() {
+          var simpleLargeScreen = new CaseListLargeScreenHandler();
+          var simpleMediumScreen = new CaseListMediumScreenHandler();
+          var simpleSmallScreen = new CaseListSmallScreenHandler();
+          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+          Portal.init(responsiveToolkit);
+        });
+      </script>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
