@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.taskdetails">
+	<title>Task details</title>	
+	<sect2 xml:id="axonivyportal.customization.taskdetails.howtoovveridetaskdetails">
+		<title>How to override task details</title>
+		<para>
+			Task details are used in many places including TaskWidget in Homepage, Task list page, Task search result, Related tasks of a case, History tasks of a case, task information of sharing link.
+			<orderedlist>
+				<listitem>
+					<para>
+						Introduce an Axon.ivy project which has <code>PortalTemplate</code> as a required library.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Copy the <code>PortalStart</code> process from <code>PortalTemplate</code> to your project.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Open <code>Admin settings</code> dialog, select <code>Settings</code> tab and add new setting (global variable) with <code>HOMEPAGE_URL</code> as key and your home page link as value.
+					</para>
+					<para>
+						For example: <code>http://localhost:8081/ivy/pro/Portal/MyCustomCaseDetails/01548075757CBCAA/PortalStart.ivp</code>. By default the portal home link is <code>http://localhost:8081/ivy/pro/Portal/PortalTemplate/1549F58C18A6C562/PortalStart.ivp</code> and overridden by the new specified link.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Override Task details in task widget at home page.
+						<itemizedlist>
+							<listitem>
+								<para>
+									Introduce a new HTMLPage which uses template <code>/layouts/DefaultHomePageTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). The <code>DefaultHomePageTemplate.xhtml</code> is designed for default portal home page which contents default components: ProcessList, TaskList, Statistic. In this page, there is a placeholder (<code>taskBody</code>) to custom task details of TaskList widget at home page. The effect only takes place when the <code>ui:param</code> named <code>useOverride</code> is set to <code>true</code>. Clients can set this parameter to a value expression for flexibility.
+								</para>
+								<para>
+									For example:
+									<para>
+										<code>&lt;ui:composition template="/layouts/DefaultHomePageTemplate.xhtml"&gt;</code>
+									</para>
+									<para>
+										<code>&lt;ui:param name="useOverride" value="true" /&gt;</code>
+									</para>
+									<para>
+										<code>&lt;ui:define name="taskBody"&gt;</code>
+									</para>
+									<para>
+										<code>This is the customized content of the task: #{task.getId()}</code>
+									</para>
+									<para>
+										<code>&lt;ui:fragment rendered="#{task.getCustomVarCharField1().equals('I am a custom task')}"&gt;</code>
+									</para>
+									<para>
+										<code>&lt;h:outputText value="I'm a secret task so I'm displayed differently" /&gt;</code>
+									</para>
+									<para>
+										<code>&lt;/ui:fragment&gt;</code>
+									</para>
+									<para>
+										<code>&lt;ui:fragment rendered="#{task.getCustomVarCharField1().equals('I am another custom task')}"&gt;</code>
+									</para>
+									<para>
+										<code>&lt;!-- Put your secret content here --&gt;</code>
+									</para>
+									<para>
+										<code>&lt;/ui:fragment&gt;</code>
+									</para>
+									<para>
+										<code>&lt;/ui:define&gt;</code>
+									</para>
+									<para>
+										<code>&lt;/ui:composition&gt;</code>
+									</para>									
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+									Replace the old home HTMLDialog of PortalTemplate to the new one at the copied process which you have done at step 2.
+								</para>
+							</listitem>
+						</itemizedlist>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Override Task details in other places: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
+						<itemizedlist>
+							<listitem>
+								<para>
+									It is the same way with custom task detail at home page. You should create a new HTMLDialog which uses template <code>/layouts/PortalTasksTemplate.xhtml</code> (refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override responsiveness). The template also provide a placeholder (<code>taskBody</code>) to custom your task details. The effect only takes place when the <code>ui:param</code> named <code>useOverride</code> is set to <code>true</code>. Clients can set this parameter to a value expression for flexibility.
+								</para>
+								<para>
+									For example:
+									<para>
+										<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
+									</para>
+									<para>
+										<code>&lt;ui:param name="useOverride" value="true" /&gt;</code>
+									</para>
+									<para>
+										<code>&lt;ui:define name="taskBody"&gt;</code>
+									</para>
+									<para>
+										<code>This is the customized content of the task: #{task.getId()}</code>
+									</para>
+									<para>
+										<code>&lt;ui:fragment rendered="#{task.getCustomVarCharField1().equals('I am a custom task')}"&gt;</code>
+									</para>
+									<para>
+										<code>&lt;h:outputText value="I'm a secret task so I'm displayed differently" /&gt;</code>
+									</para>
+									<para>
+										<code>&lt;/ui:fragment&gt;</code>
+									</para>
+									<para>
+										<code>&lt;ui:fragment rendered="#{task.getCustomVarCharField1().equals('I am another custom task')}"&gt;</code>
+									</para>
+									<para>
+										<code>&lt;!-- Put your secret content here --&gt;</code>
+									</para>
+									<para>
+										<code>&lt;/ui:fragment&gt;</code>
+									</para>
+									<para>
+										<code>&lt;/ui:define&gt;</code>
+									</para>
+									<para>
+										<code>&lt;/ui:composition&gt;</code>
+									</para>
+								</para>
+							</listitem>
+							<listitem>
+								Use Axon.ivy Override to override the <code>OpenPortalTasks</code> callable. The original implementation of this callable is calling <code>PortalTasks</code>, change it to call the customized Page introduced in the step above. The signature of this callable is <code>useView(TaskView)</code> and customized page must receive this <code>TaskView</code> instance, put in the dialog's <code>Data</code> with the exact name <code>taskView</code>.
+							</listitem>
+						</itemizedlist>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						If you need to apply the responsiveness behavior of Portal, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
+						<itemizedlist>
+							<listitem>
+								<para>
+									ResponsivenessHandleContainer: a container contains <code>ResponsivenessHandleButton</code> and your javascript which contains the onstart and oncomplete function of <code>ResponsivenessHandleButton</code>.
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+									ResponsivenessHandleButton: contains the params which handle responsiveness:
+									<para>
+										<itemizedlist>
+											<listitem>
+												<para>
+													icon: the icon of button
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													displayedSelectors: css selectors of the components which need to be displayed.
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													hiddenSelectorsInLargeScreen: css selectors of the components which need to be hidden in large screen (width: 1920).
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													hiddenSelectorsInMediumScreen: css selectors of the components which need to be hidden in medium screen (width: 1366).
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													hiddenSelectorsInSmallScreen: css selectors of the components which need to be hidden in small screen (width: 1024).
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													fadeTime: the fade in/out time.
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													onstart: client side callback to execute before responsiveness execution.
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													oncomplete: client side callback to execute after responsiveness execution.
+												</para>
+											</listitem>
+										</itemizedlist>
+									</para> 
+								</para>
+							</listitem>
+						</itemizedlist>
+						<para>
+							For example:
+							<para>
+									<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
+							</para>
+							<para>
+									<code>&lt;ui:param name="useOverride" value="true" /&gt;</code>
+							</para>
+							<para>
+									<code>&lt;ui:define name="taskBody"&gt;</code>
+							</para>
+							<para>
+									<code>Customized content</code>
+							</para>
+							<para>
+									<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg"&gt;</code>
+							</para>
+							<para>
+									<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-note-column-responsive-button" displayedSelectors="['#task-note']" hiddenSelectorsInMediumScreen="['.task-details .replaced']" hiddenSelectorsInSmallScreen="['.task-details .replaced']" /&gt;</code>
+							</para>
+							<para>
+									<code>&lt;h:outputScript library="js" name="task-detail-default-responsiveness.js" /&gt;</code>
+							</para>
+							<para>
+									<code>&lt;/ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer&gt;</code>
+							</para>
+							<para>
+									<code>&lt;/ui:define&gt;</code>
+							</para>
+							<para>
+									<code>&lt;/ui:composition&gt;</code>
+							</para>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/TaskDetails/TaskDetailsResponsiveness.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+			</orderedlist>
+		</para>
+	</sect2>
+</sect1>

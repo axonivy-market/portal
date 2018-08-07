@@ -1,0 +1,16 @@
+onboarding #class
+test003HumanRessources #namespace
+Mitarbeiter String #field
+Mitarbeiter PERSISTENT #fieldModifier
+Manager String #field
+Manager PERSISTENT #fieldModifier
+Personalnummer Number #field
+Personalnummer PERSISTENT #fieldModifier
+Checklist_id Number #field
+Checklist_id PERSISTENT #fieldModifier
+EntryDate Date #field
+EntryDate PERSISTENT #fieldModifier
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier
+steps List<String> #field
+steps PERSISTENT #fieldModifier
