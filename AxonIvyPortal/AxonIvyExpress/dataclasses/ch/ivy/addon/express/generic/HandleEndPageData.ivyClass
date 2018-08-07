@@ -1,0 +1,3 @@
+HandleEndPageData #class
+ch.ivy.addon.express.generic #namespace
+callbackUrl String #field

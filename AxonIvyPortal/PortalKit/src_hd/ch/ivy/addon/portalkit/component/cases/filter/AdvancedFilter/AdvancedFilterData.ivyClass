@@ -1,0 +1,4 @@
+AdvancedFilterData #class
+ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter #namespace
+caseContainerId String #field
+caseContainerId PERSISTENT #fieldModifier

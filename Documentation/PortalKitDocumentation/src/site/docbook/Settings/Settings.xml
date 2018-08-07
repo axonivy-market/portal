@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+	xml:id="axonivyportal.settings">
+	<title xml:id="axonivyportal.settings.title">Settings</title>
+	<sect1 xml:id="axonivyportal.settings.thefirstsection">
+		<para>
+			User Settings provide options for configuring Portal applications:
+			<itemizedlist>
+				<listitem>
+					<para>
+						<link linkend="axonivyportal.settings.adminsettings" endterm="axonivyportal.settings.adminsettings.title" />
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="axonivyportal.settings.absenceandsubstitutesettings" endterm="axonivyportal.settings.absenceandsubstitutesettings.title" />
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="axonivyportal.settings.emailsettings" endterm="axonivyportal.settings.emailsettings.title" />
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="axonivyportal.settings.languagesettings" endterm="axonivyportal.settings.languagesettings.title" />
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+		<mediaobject>
+			<imageobject>
+				<imagedata fileref="images/Settings/portal-header.png" />
+			</imageobject>
+		</mediaobject>
+	</sect1>
+	<sect1 xml:id="axonivyportal.settings.adminsettings">
+		<title xml:id="axonivyportal.settings.adminsettings.title">Admin settings</title>
+		<para>
+			User needs to have role
+			<code>AXONIVY_PORTAL_ADMIN</code>
+			to see this menu item, it is used to configure Portal configuration,
+			see different Portal configurations in
+			<link linkend="axonivyportal.installation.basicinstallation.specifyservers.generalConcept" endterm="axonivyportal.installation.basicinstallation.specifyservers.generalConcept.title" />
+		</para>
+		<sect2>
+			<title>Global settings</title>
+			<para>Global settings for Portal can be set in Settings tab</para>
+			<mediaobject>
+				<imageobject>
+				<imagedata fileref="images/Settings/global-settings.png" />
+				</imageobject>
+			</mediaobject>
+            <para></para>
+			<table>
+				<title>Global settings</title>
+				<tgroup cols="3">
+					<thead>
+						<row>
+							<entry>Keyword</entry>
+							<entry>Value</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>HOMEPAGE_URL</entry>
+							<entry>
+								http://PORTAL_SERVER:PORTAL_PORT /pro/Portal/portalTemplate /1549F58C18A6C562/PortalStart.ivp
+							</entry>
+							<entry>
+								<para>
+									Portal administrator home page link.
+								</para>
+								<para>
+									Note: Only valid if there are not any registered ivy applications.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry>HIDE_LOGOUT_BUTTON</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								If
+								<code>TRUE</code>
+								(none case-sensitive), the logout button on top
+								menu will be hidden, otherwise it
+								will be
+								shown. If this
+								property is
+								not set, the logout
+								menu will be displayed by
+								default.
+							</entry>
+						</row>
+						<row>
+							<entry>SHOW_ENVIRONMENT_INFO</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>For switch on/off the display of environment information.</entry>
+						</row>
+						<row>
+							<entry>HIDE_TIME</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								to hide hours and minutes next to date.
+							</entry>
+						</row>
+						<row>
+							<entry>SHOW_TASK_BUTTON_LABELS</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								to show button labels from task list.
+							</entry>
+						</row>
+						<row>
+							<entry>HIDE_CHANGE_PASSWORD_BUTTON</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								(none case-sensitive), the change password option 
+								in top menu will be hidden, otherwise it
+								will be	shown. If this
+								property is	not set, the change password option
+								will be displayed by
+								default.
+							</entry>
+						</row>
+						<row>
+							<entry>REFRESH_TASK_LIST_INTERVAL</entry>
+							<entry>Number</entry>
+							<entry>
+								Task list refresh interval in seconds
+							</entry>
+						</row>
+						<row>
+							<entry>CLIENT_SIDE_TIMEOUT</entry>
+							<entry>INTEGER</entry>
+							<entry>
+								Client side timeout in minute, must be <code>more than 1 and less than server side timeout (e.g. 25).</code>
+								If not set, default client side timeout is server side timeout minus 3 minutes.
+							</entry>
+						</row>
+						<row>
+							<entry>EXPRESS_END_PAGE</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Display the custom end page at the end of each Express process. Default is true.
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</sect2>
+		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
+			<title xml:id="axonivyportal.settings.adminsettings.setupmultiportals.title">Setup multi portals</title>
+			<warning>
+				Multi applications on multi engines is not officially supported, only an
+				experimental mode is
+				available.
+			</warning>
+			<important>
+				<itemizedlist>
+					<listitem>
+						<para>If number of configured applications is more than one, the default Portal application must not be configured and it must be active. </para>
+					</listitem>
+					<listitem>
+						<para>If the login user is existed in only one application, application menu shows only the menu item for that application.</para>
+					</listitem>
+					<listitem>
+						<para>If the login user is existed in more than one application, application menu shows menu items for those applications and Dashboard menu item.</para> 
+						<para>Dashboard menu item is used for displaying all tasks, cases, processes of configured applications.</para> 
+						<para>Dashboard menu item is linked to the default Portal application. Therefore, the default Portal application must be active.</para>
+					</listitem>
+				</itemizedlist>
+			</important>
+			<para>
+				<orderedlist>
+					<listitem>
+						<para>
+							Add a new server
+							<orderedlist>
+								<listitem>
+									<para>
+										Open
+										<code>Admin Settings</code>
+										by selecting the item in
+										<code>UserMenu</code>
+										on the topbar, if your page using layout of
+										<code>PortalTemplate</code>
+										.
+										<mediaobject>
+											<imageobject>
+												<imagedata fileref="images/Settings/multi-portal-open-settings.png" />
+											</imageobject>
+										</mediaobject>
+									</para>
+									<important>
+										If your application does not use templates of
+										<code>PortalTemplate</code>
+										project, you have to create a page and use
+										<code>AdminSettings</code>
+										component inside.
+									</important>
+									<tip>
+										To be able to open Admin Settings dialog, user needs to have
+										role
+										<code>AXONIVY_PORTAL_ADMIN</code>
+										.
+									</tip>
+								</listitem>
+								<listitem>
+									<para>
+										Click on
+										<code>New</code>
+										button to add new server.
+										<mediaobject>
+											<imageobject>
+												<imagedata fileref="images/Settings/multi-portal-add-server.png" />
+											</imageobject>
+										</mediaobject>
+									</para>
+									<note>
+										<itemizedlist>
+											<listitem>
+												<para>
+													<code>Server path</code>
+													must be the link of the
+													<code>PortalConnector</code>
+													application (e.g.
+													<code>http://path-to-ivy:8080/ivy/ws/System/PortalConnector
+													</code>
+													)
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													Web services authentication of the built-in PortalConnector
+													of the Axon.ivy engine are configured as
+													<code>HTTP Basic</code>
+													. Therefore, when adding a new server using the built-in
+													PortalConnector, use authentication type
+													<code>HTTP Basic</code>
+													.
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													The username, password are used by PortalKit to invoke
+													the web
+													services of PortalConnector.
+												</para>
+												<para>
+													These are accounts of the application that deploys
+													PortalConnector.
+												</para>
+												<para>
+													The built-in PortalConnector are deployed to application
+													System therefore use the
+													<code>username/password of system administrators</code>
+													when connecting to built-in PortalConnector.
+												</para>
+												<para>
+													To create system administrators, refer to the document
+													<code>EngineGuide > chapter Configuration
+														> Engine Configuration > System Administrators
+													</code>
+													. E.g. in the latest EngineGuide, refer to
+													<link xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#d5e1756">this guideline</link>
+													.
+												</para>
+											</listitem>
+										</itemizedlist>
+									</note>
+									<tip>
+										<itemizedlist>
+											<listitem>
+												<para>
+													In multi-Portal mode, Portal uses the
+													External Host value as host value for task or process starts
+													URLs.
+													If this value is empty, Portal will use the host value as configured in the server path field. For
+													other
+													mode, Portal will use the host value of the web address of the engine for the URLs.
+												</para>
+											</listitem>
+											<listitem>
+												<para>
+													External Host value is returned from configured server's
+													system property
+													<code>WebServer.ExternalHostName</code>
+													(you might want to change it via Engine's
+													<code>AdminUI</code>
+													).
+												</para>
+												<para>
+													You can sync this value by clicking
+													<code>Test Connection</code>
+													button, if
+													<code>WebServer.ExternalHostName</code>
+													is set the value would be updated, otherwise displays
+													<code>AUTO_DETECT</code>
+													.
+												</para>
+												<para>
+													Configured server information is needed for calling
+													service to get
+													this value.
+												</para>
+											</listitem>
+										</itemizedlist>
+									</tip>
+								</listitem>
+							</orderedlist>
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Add a new application
+							<para>
+								Choose
+								<code>Application</code>
+								tab on
+								<code>Admin Settings</code>
+								dialog and click on
+								<code>New</code>
+								button to add new application. Here you can choose application
+								type either as Ivy application or Third Party
+								application.
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/Settings/multi-portal-add-application.png" />
+									</imageobject>
+								</mediaobject>
+							</para>
+						</para>
+						<tip>
+							<itemizedlist>
+								<listitem>
+									<para>
+										<code>Application name</code>
+										is the name of the application when you create it.
+										<code>Display name</code>
+										is the name of the application to be shown on Portal UI.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										If
+										<code>Active</code>
+										is not checked, the application will be disabled on the application menu. To prevent its tasks, cases and
+										processes to be shown, you must leave the
+										<code>Visible</code>
+										box unchecked.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										<code>Portal link</code>
+										specifies the link you will be redirect to when select the application on the application menu.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										<code>Absence planning</code>
+										if checked will enable absence feature for the application.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										<code>Mail notification</code>
+										If checked will enable email setting feature for the application.
+									</para>
+								</listitem>
+								<listitem>
+									<para>
+										For multiple languages of application display name, you need to create the "AppInfo/SupportedLanguages"
+										CMS
+										which defines how
+										many languages your application supports. See the below "Language settings" for more
+										details.
+									</para>
+								</listitem>
+							</itemizedlist>
+						</tip>
+					</listitem>
+					<listitem>
+						<para>
+							Synchronize data
+							<para>
+								After adding new settings (server, application), click on
+								<code>Synchronize Settings</code>
+								to synch new settings and information about users to registered
+								servers. Close dialog (logging out may be
+								required) and check if
+								newly created application is available on left menu.
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/Settings/multi-portal-result.png" />
+									</imageobject>
+								</mediaobject>
+							</para>
+							<tip>
+								In single mode, Portal detects the applications that have
+								the
+								login user in the current engine. Based on that,
+								Portal will
+								collect tasks, cases of those applications. In multi-portal
+								mode, Portal will only collect on
+								registered applications.
+							</tip>
+							<para>
+								By default, Portal will automatically synchronize user settings to registered servers at 5AM everyday.
+								This
+								synchronization process is needed to run at only one application for each server. If there are
+								multiple
+								applications registered for one server, the first application in alphabetical order will run
+								the synchronization
+								process. You can change the time when the synchronization start by going to AdminUI
+								and change the value of the
+								global variable
+								<code class="code"> PortalStartTimeSynchUserExpression</code>
+								of the application that will run the synchronization process.
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/Settings/synchronization-time-setting.png" />
+									</imageobject>
+								</mediaobject>
+							</para>
+						</para>
+					</listitem>
+				</orderedlist>
+			</para>
+		</sect2>
+		<sect2 xml:id="axonivyportal.settings.adminsettings.changelogosandcolors">
+			<title xml:id="axonivyportal.settings.adminsettings.changelogosandcolors.title">Change logos and colors</title>
+			<para>
+				Open the "Design" tab and you can upload new logos or change new colors.
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/admin-design-tab.png" />
+					</imageobject>
+				</mediaobject>
+				<warning>
+					If you change colors on Google Chrome browser, please reload page with no cache to get new colors.
+				</warning>
+			</para>
+		</sect2>
+	</sect1>
+	<sect1 xml:id="axonivyportal.settings.absenceandsubstitutesettings">
+		<title xml:id="axonivyportal.settings.absenceandsubstitutesettings.title">Absence and substitute settings</title>
+		<itemizedlist>
+			<listitem>
+				<para>
+					Choose
+					<code>Absences</code>
+					from
+					<code>User Settings</code>
+					options.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					To create new Absence, click
+					<code>New Absence</code>
+					to open the dialog as below:
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/absence-settings.png" />
+					</imageobject>
+				</mediaobject>
+				<itemizedlist>
+					<listitem>
+						<para>
+							<code>till/from date</code>
+							must not be empty.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<code>till date</code>
+							must be greater than or equal
+							<code>from</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<code>till date</code>
+							must not be in the past (greater than or equal today).
+						</para>
+					</listitem>
+				</itemizedlist>
+			</listitem>
+			<listitem>
+				<para>
+					User can edit or delete Absences by click edit/delete on the
+					Absences list.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Deputies area will display all the information of deputy on
+					each application.
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/deputy-settings.png" />
+					</imageobject>
+				</mediaobject>
+			</listitem>
+			<listitem>
+				<para>
+					User cannot set deputies for hidden roles.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					All the items will be saved after click Save button.
+				</para>
+			</listitem>
+		</itemizedlist>
+	</sect1>
+	<sect1 xml:id="axonivyportal.settings.emailsettings">
+		<title xml:id="axonivyportal.settings.emailsettings.title">Email settings</title>
+		<itemizedlist>
+			<listitem>
+				<para>
+					To configure mails of Portal applications, select
+					<code>Email Settings</code>
+					in
+					<code>User Settings</code>
+					.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					You can configure one email setting for all applications or each application separately.
+				</para>
+			</listitem>
+			<listitem>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/email-settings.png" />
+					</imageobject>
+				</mediaobject>
+			</listitem>
+			<listitem>
+				<para>
+					All the items will be saved when click save button.
+				</para>
+			</listitem>
+		</itemizedlist>
+	</sect1>
+	<sect1 xml:id="axonivyportal.settings.languagesettings">
+		<title xml:id="axonivyportal.settings.languagesettings.title">Language settings</title>
+		<itemizedlist>
+			<listitem>
+				<para>
+					To configure languages of Portal applications, select
+					<code>Language Settings</code>
+					in
+					<code>User Settings</code>
+					.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					UI reads current languages settings for all applications.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					To change language for application, select one in the
+					languages dropdown list of application. When the change
+					is saved,
+					the language will be set for application (Click on the application
+					in header menu to reload application and
+					see the change of
+					language).
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/language-settings.png" />
+					</imageobject>
+				</mediaobject>
+			</listitem>
+			<listitem>
+				<para>
+					For multiple languages, the CMS key
+					<code>/AppInfo/SupportedLanguages</code>
+					must exist in your application. From Portal 7.1, this CMS entry is moved to Portal Style.
+					It contains list of all languages supported by your application, separated
+					by comma.
+				</para>
+				<itemizedlist>
+					<listitem>Must not contain spaces</listitem>
+					<listitem>Same as display name of Locale</listitem>
+					<listitem>Separated by comma</listitem>
+					<listitem>Process model version, which has this CMS, must active</listitem>
+				</itemizedlist>
+			</listitem>
+			<listitem>
+				<para>
+					To add new language to Portal, what you have to do is					
+				</para>
+				<itemizedlist>
+					<listitem>Add new language locale to cms entry of Portal Style <code>/AppInfo/SupportedLanguages</code> </listitem>
+					<listitem>Export all CMS entries of Portal Style to excel file</listitem>
+					<listitem>Add translation of new language for all CMS entries</listitem>
+					<listitem>Import file excel back, then redeploy Portal Style</listitem>
+				</itemizedlist>
+			</listitem>
+		</itemizedlist>
+	</sect1>
+</chapter>
