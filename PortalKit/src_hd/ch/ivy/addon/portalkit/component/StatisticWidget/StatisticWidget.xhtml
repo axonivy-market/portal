@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
+  <cc:attribute name="priorityStatistic" type="ch.ivy.ws.addon.PriorityStatistic" />
+  <cc:attribute name="expiryStatistic" type="ch.ivy.ws.addon.ExpiryStatistic" />
+  <cc:attribute name="onSwitchToCompactModeCompletedCallback" />
+  <cc:attribute name="onSwitchToExpandedModeCompletedCallback" />
+  <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputScript library="js" name="statistic-widget.js" />
+  <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
+  <f:event listener="#{logic.setStatistics(cc.attrs.priorityStatistic, cc.attrs.expiryStatistic)}" type="preRenderComponent" />
+  <div id="#{cc.clientId}" class="widget">
+    <h:panelGroup id="header" layout="block" styleClass="widget-header">
+      <div class="widget-header-main">
+        <span class="widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics')}</span>
+        <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{cc.attrs.compactMode}">
+          <ul class="widget-header-main-menu">
+            <li class="u-underline-from-center js-ignore-selected-state"><p:commandLink id="switch-mode-command"
+                actionListener="#{logic.switchMode}"
+                update="widget-container statistic-widget-header #{p:component('statistic-widget-empty-state')}"
+                oncomplete="#{data.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}()">
+                <span class="fa fa-chevron-right switch-mode-command-icon" />
+                <h:outputText id="switch-mode-command-value"
+                  value="#{data.compactMode? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/showAllCharts') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/backToOverview')}" />
+              </p:commandLink></li>
+          </ul>
+        </h:panelGroup>
+      </div>
+    </h:panelGroup>
+
+    <h:panelGroup id="widget-container" layout="block" styleClass="statistic-widget #{data.compactMode? 'compact-mode': ''}" rendered="#{data.hasStatistic}">
+      <p:chart id="tasks-priority-chart" type="pie" model="#{data.priorityPieModel}" styleClass="chart-height"
+        responsive="true" />
+      <p:chart id="tasks-expiry-chart" rendered="#{!data.compactMode}" type="bar" model="#{data.expiryBarChartModel}"
+        styleClass="chart-height" responsive="true" />
+    </h:panelGroup>
+    <h:panelGroup id="statistic-widget-empty-state"
+      styleClass="statistic-widget-empty-message #{!data.compactMode ? 'not-compact-mode': ''}" layout="block"
+      rendered="#{!data.hasStatistic}">
+      <h:panelGroup layout="block" rendered="#{empty cc.facets.emptyDataPlace}">
+        <p:outputLabel escape="false"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages')}" />
+      </h:panelGroup>
+      <cc:renderFacet name="emptyDataPlace" />
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+</html>

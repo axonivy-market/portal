@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<ui:composition>
+  <p:panelGrid id="absence-panel-grid" styleClass="new-absence-container">
+    <p:row rendered="#{data.isSupervisor}">
+      <p:column styleClass="new-absence-label">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/userName')}:" />
+      </p:column>
+      <p:column>
+       <p:autoComplete scrollHeight="200" dropdown="true" id="username" size="35" 
+          completeMethod="#{logic.autoCompleteForUser}"
+          value="#{data.selectedUser}"
+          var="user" itemValue="#{user}" itemLabel="#{user.name}"
+          converter="pojoConverter"
+          rendered="#{uneditedUserName eq 'false'}" required="true"
+          forceSelection="true" cache="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}">
+          <f:event listener="#{logic.loadAllUsers}" type="preRenderComponent" />
+          <p:ajax event="itemSelect" listener="#{logic.userSelect}"
+            process="@this comment absence-start-date absence-end-date" update="#{updateComponent}" />
+        </p:autoComplete>
+        <h:outputText rendered="#{empty data.selectedAbsence.userFullName and uneditedUserName}" 
+        	value="#{data.selectedAbsence.userName}" />
+        <h:outputText rendered="#{not empty data.selectedAbsence.userFullName and uneditedUserName}"  
+        	value="#{data.selectedAbsence.userFullName} (#{data.selectedAbsence.userName})"/>
+      </p:column>
+    </p:row>
+    <p:row>
+      <p:column styleClass="new-absence-label">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
+      </p:column>
+      <p:column>
+        <p:calendar id="absence-start-date" value="#{data.selectedAbsence.startDateInclusive}"
+          showOn="button"
+          converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromWrongDateFormat')}"
+          pattern="#{dateTimePatternBean.datePattern}" required="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromRequired')}">
+          <p:ajax event="dateSelect" listener="#{logic.fromChange}" process="@this username absence-start-date comment"
+            update="#{updateComponent}" />
+        </p:calendar>
+        <h:outputLabel for="absence-end-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" styleClass="new-absence-till-label" />
+        <p:calendar id="absence-end-date" value="#{data.selectedAbsence.stopDateInclusive}" showOn="button"
+          converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/tillWrongDateFormat')}"
+          pattern="#{dateTimePatternBean.datePattern}" required="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/tillRequired')}">
+          <p:ajax event="dateSelect" listener="#{logic.tillChange}" process="@this username comment absence-start-date"
+            update="#{updateComponent}" />
+        </p:calendar>
+      </p:column>
+    </p:row>
+
+    <p:row>
+      <p:column styleClass="new-absence-label">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/comment')}:" />
+      </p:column>
+      <p:column>
+        <p:inputText value="#{data.selectedAbsence.description}" maxlength="100" id="comment"
+          styleClass="add-absences-dialog-input-comment" />
+      </p:column>
+    </p:row>
+  </p:panelGrid>
+</ui:composition>
+</html>

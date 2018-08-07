@@ -1,0 +1,13 @@
+UserServiceData #class
+ch.ivy.ws.addon #namespace
+absences List<ch.ivy.ws.addon.types.IvyAbsence> #field
+applications java.util.List<String> #field
+applicationUsers java.util.List<ch.ivy.ws.addon.types.IvyUser> #field
+appName String #field
+emailSettings java.util.List<ch.ivy.ws.addon.types.IvyEmailSetting> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+languagesSettings List<ch.ivy.ws.addon.types.IvyLanguageSetting> #field
+serverId Long #field
+substitutes java.util.List<ch.ivy.ws.addon.types.IvySubstitute> #field
+user String #field
+userSetting ch.ivy.ws.addon.types.IvyUserSetting #field

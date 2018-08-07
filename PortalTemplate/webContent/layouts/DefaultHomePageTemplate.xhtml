@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="pageTitle">Cockpit</ui:define>
+    <ui:define name="pageContent">
+      <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
+      <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
+      <c:set var="displayStatisticWidget" value="#{not empty displayStatisticWidget ? displayStatisticWidget : true}" />
+
+      <c:set var="processWidgetPosition" value="#{empty processWidgetPosition ? 0 : processWidgetPosition}" />
+      <c:set var="taskWidgetPosition" value="#{empty taskWidgetPosition ? 0 : taskWidgetPosition}" />
+      <c:set var="statisticWidgetPosition" value="#{empty statisticWidgetPosition ? 0 : statisticWidgetPosition}" />
+
+      <c:set var="processWidgetStyle"
+        value="-webkit-box-ordinal-group: #{processWidgetPosition + 1}; -ms-flex-order: #{processWidgetPosition}; order: #{processWidgetPosition}" />
+      <c:set var="taskWidgetStyle"
+        value="-webkit-box-ordinal-group: #{taskWidgetPosition + 1}; -ms-flex-order: #{taskWidgetPosition}; order: #{taskWidgetPosition}" />
+      <c:set var="statisticWidgetStyle"
+        value="-webkit-box-ordinal-group: #{statisticWidgetPosition + 1}; -ms-flex-order: #{statisticWidgetPosition}; order: #{statisticWidgetPosition}" />
+
+      <h:outputScript name="portal-home.js" library="js" />
+
+      <div class="l-widget-container js-widget-container">
+        <ui:insert name="processWidget">
+          <h:panelGroup layout="block" styleClass="l-process-widget js-process-widget" style="#{processWidgetStyle}"
+            rendered="#{displayProcessWidget}">
+            <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader')}" showBackButton="true"
+              onSwitchToCompactModeCompletedCallback="switchProcessWidgetToCompactMode"
+              onSwitchToExpandedModeCompletedCallback="switchProcessWidgetToExpandedMode" />
+          </h:panelGroup>
+        </ui:insert>
+
+        <ui:insert name="taskWidget">
+          <ui:param name="useOverride" value="false" />
+          <h:panelGroup layout="block" styleClass="l-task-widget js-task-widget #{taskWidgetPosition}"
+            style="#{taskWidgetStyle}" rendered="#{displayTaskWidget}">
+            <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{tasks}"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}"
+              componentToUpdateWhenInCompactMode="#{p:component('statistic-widget-container')} #{p:component('main-menu-container')}"
+              componentToUpdateWhenInExpandedMode="#{p:component('main-menu-container')}"
+              onSwitchToCompactModeCompletedCallback="switchTaskWidgetToCompactMode"
+              onSwitchToExpandedModeCompletedCallback="switchTaskWidgetToExpandedMode">
+
+              <ui:fragment rendered="#{not useOverride}">
+                <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="description" task="#{task}" />
+                <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-info" task="#{task}"  priorityComponentToUpdate="#{p:component('task-start-priority')}" />
+                <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}" />
+                <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" />
+              </ui:fragment>
+
+              <ui:fragment rendered="#{useOverride}">
+                <ui:insert name="taskBody">
+                </ui:insert>
+              </ui:fragment>
+            </ic:ch.ivy.addon.portalkit.component.TaskWidget>
+
+          </h:panelGroup>
+        </ui:insert>
+
+        <ui:insert name="statisticWidget">
+          <h:panelGroup layout="block" styleClass="l-statistic-widget js-statistic-widget"
+            style="#{statisticWidgetStyle}" rendered="#{displayStatisticWidget}" id="statistic-widget-container">
+            <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
+              onSwitchToCompactModeCompletedCallback="switchStatisticWidgetToCompactMode"
+              priorityStatistic="#{statistic.priorityStatistic}" expiryStatistic="#{statistic.expiryStatistic}"
+              onSwitchToExpandedModeCompletedCallback="switchStatisticWidgetToExpandedMode" />
+          </h:panelGroup>
+        </ui:insert>
+
+        <ui:insert name="customWidget">
+        </ui:insert>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

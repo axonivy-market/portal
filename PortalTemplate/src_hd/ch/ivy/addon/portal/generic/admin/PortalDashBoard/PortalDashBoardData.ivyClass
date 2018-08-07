@@ -1,0 +1,4 @@
+PortalDashBoardData #class
+ch.ivy.addon.portal.generic.admin.PortalDashBoard #namespace
+statistic ch.ivy.addon.portal.generic.StatisticData #field
+statistic PERSISTENT #fieldModifier

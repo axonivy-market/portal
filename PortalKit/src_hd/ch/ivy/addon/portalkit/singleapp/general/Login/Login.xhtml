@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginRequiredMessage')}" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
+      <div class="Wid33 MarAuto WidAutoOnMobile">
+        <div class="Card ShadowEffect">
+          <h:form id="main-form">
+            <div class="EmptyBox20"></div>
+            <div class="Wid100 OvHidden BigTopic Fs30">
+              <h:graphicImage library="ivy-cms" name="/images/logo/loginLogo" />
+              <br />
+              #{cc.attrs.title}
+            </div>
+            <div class="Wid100">
+              <p:messages showDetail="true" escape="false" />
+            </div>
+            <div class="EmptyBox30"></div>
+            <div class="Wid100">
+              <p:inputText id="username" styleClass="Wid80 TexAlCenter Fs18"
+                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" value="#{data.username}" />
+            </div>
+            <div class="EmptyBox10"></div>
+            <div class="Wid100">
+              <p:password id="password" styleClass="Wid80 TexAlCenter Fs18"
+                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/password')}" value="#{data.password}" />
+            </div>
+            <div class="EmptyBox30"></div>
+
+            <div class="Wid100">
+              <p:commandButton id="login-button" styleClass=" Fs18 RaisedButton TexAlCenter FloatNoneOnMobile"
+                oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}" actionListener="#{logic.login}"
+                update="@form" />
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </div>
+  </div>
+</cc:implementation>
+</html>

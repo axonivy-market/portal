@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ic="http://ivyteam.ch/jsf/component"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:pm="http://primefaces.org/mobile">
+      
+  <cc:interface componentType="IvyComponent">
+  	<cc:attribute name="task" type="ch.ivy.addon.portalkit.bo.RemoteTask" shortDescription="Remote task to get task's editor"></cc:attribute>
+  </cc:interface>
+  
+  <cc:implementation>
+    <h3 class="popover-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/editorPopover/taskEditor')}</h3>
+			<p:panelGrid columns="2">
+				<p:column>
+					<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/editorPopover/editor')}" styleClass="FontBold Fleft TexAlLeft"/>	
+				</p:column>
+				<p:column>
+					<h:outputText id="editorName" value="#{cc.attributes.task.workerFullName} (#{cc.attributes.task.workerUserName})"/>
+				</p:column>
+			</p:panelGrid>
+  </cc:implementation>
+  
+</html>
