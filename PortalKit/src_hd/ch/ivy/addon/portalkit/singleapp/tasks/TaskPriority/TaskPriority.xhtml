@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" shortDescription="the task will be set priority" />
+  <cc:attribute name="updateElement" shortDescription="the name of component will be updated after set priority" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <h:form id="task-priority-form">
+      <p:remoteCommand name="onHidePriorityDialog" actionListener="#{logic.cancel}" process="@this"
+        update="task-priority-form" />
+      <c:if test="#{cc.attrs.task != null}">
+        <f:event listener="#{logic.preTaskPriority(cc.attrs.task)}" type="preRenderComponent" />
+      </c:if>
+      <div>
+        <p:row>
+          <p:column>
+            <p:panel id="priorityPanel">
+              <p:panelGrid>
+                <p:row>
+                  <p:column>
+                    <h:outputLabel for="task-priority-input"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskPriorityDialog/setPriority')} " />
+                  </p:column>
+                  <p:column>
+                    <p:selectOneMenu id="task-priority-input" value="#{data.currentPriority}">
+                      <f:selectItems value="#{data.priorities}" var="priority"
+                        itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskPriority/'.concat(priority))}" />
+                    </p:selectOneMenu>
+                  </p:column>
+                </p:row>
+              </p:panelGrid>
+            </p:panel>
+          </p:column>
+        </p:row>
+      </div>
+      <div class="MarTop10 Fright">
+        <p:commandButton id="proceed-set-priority-command"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          actionListener="#{logic.savePriority(cc.attrs.task)}" update="#{cc.attrs.updateElement}"
+          oncomplete="PF('taskPriorityDialog').hide()" />
+        <p:spacer width="5px" />
+        <p:commandButton id="cancel-set-priority-command"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/cancelButton')}"
+          actionListener="#{logic.cancel}" immediate="true" oncomplete="PF('taskPriorityDialog').hide()" process="@this" />
+      </div>
+    </h:form>
+  </div>
+</cc:implementation>
+</html>

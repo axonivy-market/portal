@@ -1,0 +1,8 @@
+CaseItemData #class
+ch.ivy.addon.portalkit.component.CaseItem #namespace
+expandedCaseId Long #field
+expandedCaseId PERSISTENT #fieldModifier
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+remoteCase PERSISTENT #fieldModifier
+ivyCase ch.ivy.ws.addon.IvyCase #field
+ivyCase PERSISTENT #fieldModifier

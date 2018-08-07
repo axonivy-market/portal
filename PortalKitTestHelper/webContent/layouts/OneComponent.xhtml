@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:ic="http://ivyteam.ch/jsf/component">
+
+<h:head>
+  <f:facet name="first">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+  </f:facet>
+  <title>Portalkit component</title>
+
+  <h:outputScript name="js/ripple-effect.js" library="modena-layout" />
+  <h:outputScript name="js/perfect-scrollbar.js" library="modena-layout" />
+  <h:outputScript name="js/layout.js" library="modena-layout" />
+
+  <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
+  <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
+  <ui:insert name="head" />
+</h:head>
+
+<h:body>
+  <p:layout>
+    <p:layoutUnit position="center">
+      <ui:insert name="component" />
+    </p:layoutUnit>
+  </p:layout>
+
+		<h:outputStylesheet library="css" name="portal-style.css" />
+        <h:outputStylesheet name="css/core-layout.css" library="modena-layout" />
+        <h:outputStylesheet name="css/animate.css" library="modena-layout" />
+        <h:outputStylesheet name="css/modena-font.css" library="modena-layout" />
+        <h:outputStylesheet name="css/ripple-effect.css" library="modena-layout" />
+        <h:outputStylesheet name="css/perfect-scrollbar.css" library="modena-layout" />
+        <h:outputStylesheet name="css/font-awesome.css" library="modena-layout" />
+        <h:outputStylesheet name="css/modena-layout.css" library="modena-layout" />
+        
+        <h:outputStylesheet library="css" name="module.css" />
+        <h:outputStylesheet library="css" name="layout.css" />
+        <h:outputStylesheet library="css" name="theme.css" />
+</h:body>
+</html>

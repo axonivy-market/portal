@@ -1,0 +1,162 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+	<cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.RemoteTask" />
+	<cc:attribute name="rowIndex" />
+	<cc:attribute name="compactMode" type="Boolean" />
+	<cc:attribute name="isSelected" type="Boolean" />
+	<cc:attribute name="componentToUpdate" />
+</cc:interface>
+
+<cc:implementation>
+	<c:set var="task" value="#{cc.attrs.task}" />
+	<c:set var="rowIndex" value="#{cc.attrs.rowIndex}" />
+	<c:set var="compactMode" value="#{cc.attrs.compactMode}" />
+	<c:set var="isSelected" value="#{data.expandedTask eq null and cc.attrs.isSelected}" />
+	<c:set var="isExpanded" value="#{task eq data.expandedTask}" />
+
+	<!-- This remote command needs to be run when being display as the first time to set the id of the expanded case -->
+	<f:event listener="#{logic.initExpandedTask(task, isSelected)}" type="preRenderComponent"></f:event>
+
+	<h:panelGroup id="task-start" layout="block"
+		class="#{(!compactMode) ? 'mod-expanded-mode' : ''} task-start-list-item task-start-list-item-position u-shadow-effect js-task-start-list-item #{isExpanded ? 'show-task-details-mode' : ''}">
+		<h:panelGroup id="task-start-container" layout="block" class="task-start-container u-unselectable u-hover-effect">
+			<div id="task-start-task-info" class="task-start-link">
+				<h:panelGroup id="show-hide-task-details-command" styleClass="task-start-button">
+					<p:ajax event="click" delay="100"
+						onstart="if('#{compactMode}'=='true') {$('#task-start-#{rowIndex}-task-action-container>a').click(); return false;}"
+						listener="#{logic.toggleTaskDetails(task)}" oncomplete="taskWidget.setupScrollbar()"
+						update="#{cc.clientId}:task-start @(.show-task-details-mode)" />
+					<f:passThroughAttribute name="data-content"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/showDetailsHint')}" />
+					<h:panelGroup id="task-start-priority" styleClass="task-start-priority">
+						<h:panelGroup rendered="#{task.priority == 'LOW'}"
+							styleClass="fa fa-circle task-start-priority-icon task-priority-low" />
+						<h:panelGroup rendered="#{task.priority == 'NORMAL'}"
+							styleClass="fa fa-circle task-start-priority-icon task-priority-normal" />
+						<h:panelGroup rendered="#{task.priority == 'HIGH' or task.priority == 'EXCEPTION'}"
+							styleClass="fa fa-circle task-start-priority-icon task-priority-high" />
+					</h:panelGroup>
+					<div class="task-start-info">
+						<div class="task-start-info-header">
+							<h:outputText value="##{task.id}" />
+							<h:outputText id="task-state" value=" #{taskBean.getStateByITask(task).toUpperCase()}" />
+						</div>
+						<div class="task-start-info-content">
+							<h:outputText
+								value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
+								rendered="#{!isExpanded or taskBean.isDone(task)}" />
+							<span onclick="if('#{task.canChangeName}'=='true') {event.stopPropagation()}"> <h:form
+									id="task-name-edit-form" onsubmit="return false;">
+									<p:inplace id="task-name-inplace" editor="true" rendered="#{isExpanded and taskBean.isNotDone(task)}"
+										disabled="#{!task.canChangeName}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+										cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="task-name-inplace"
+										label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
+										<p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200"
+											valueChangeListener="#{logic.keepOldNameValue}" onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
+										<p:ajax event="save" listener="#{logic.updateName(task)}" process="task-name-edit-form"
+											update="task-name-edit-form #{cc.attrs.componentToUpdate}" />
+									</p:inplace>
+								</h:form>
+							</span>
+						</div>
+						<h:panelGroup rendered="#{!isExpanded}" styleClass="task-start-info-footer">
+							<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/create')}: " />
+							<h:outputText value="#{task.startTimestamp}">
+								<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+							</h:outputText>
+							<h:outputText value=" / #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/expired')}: "
+								rendered="#{task.expiryTimestamp ne null}" />
+							<h:outputText value="#{task.expiryTimestamp}">
+								<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+							</h:outputText>
+						</h:panelGroup>
+					</div>
+				</h:panelGroup>
+			</div>
+
+			<div id="task-start-#{rowIndex}-task-action-container"
+				class="task-start-action #{compactMode ? 'mod-compact-mode' : 'task-start-action-before'}">
+				<p:commandLink id="task-reset-command" rendered="#{!compactMode and task.state ne 'SUSPENDED' and task.canReset}"
+					styleClass="task-command" actionListener="#{logic.resetTask(task)}" update="task-state task-start-container">
+					<span class="action-icon tmi-box-arrow-left" />
+					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reset')}" />
+				</p:commandLink>
+				<p:commandLink id="task-delegate-command" rendered="#{!compactMode and task.canDelegate}" styleClass="task-command"
+					actionListener="#{logic.initDataToDelegate(task)}" oncomplete="PF('task-delegate-dialog').show()"
+					update="#{p:component('task-delegate-dialog')}">
+					<span class="action-icon tmi-box-arrow-right" />
+					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" />
+				</p:commandLink>
+				<p:commandLink id="task-reserve-command" rendered="#{!compactMode and (task.canPark or task.state eq 'PARKED')}"
+					disabled="#{task.state eq 'PARKED'}"
+					styleClass="task-command #{task.state eq 'PARKED' ? 'disabled-task-command' : ''}"
+					actionListener="#{logic.parkTask(task)}" update="task-state task-start-container">
+					<span class="action-icon tmi-box-arrow-toinside" />
+					<p:outputLabel
+						value="#{task.state eq 'PARKED'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserved') :ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTask')}" />
+				</p:commandLink>
+				<p:tooltip for="task-reserve-command"
+					value="#{task.state eq 'PARKED'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/freeReservationTaskTooltip'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTaskTooltip')}"
+					styleClass="task-command-tooltip" />
+				<h:panelGroup>
+					<p:commandLink id="task-start-command" rendered="#{task.state != 'RESUMED' and task.canResume}"
+						styleClass="task-command" actionListener="#{logic.openTask(task)}">
+						<span class="action-icon tmi-chevorn-right #{compactMode ? 'icon-compact-mode' : ''}" />
+						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}"
+							rendered="#{!compactMode}" />
+					</p:commandLink>
+					<p:commandLink id="task-reset-and-start-command" rendered="#{task.state == 'RESUMED' and task.canResume}"
+						styleClass="task-command" oncomplete="PF('reset-task-dialog').show()"
+						actionListener="#{data.setSelectedTask(task)}">
+						<span class="action-icon tmi-chevorn-right #{compactMode ? 'icon-compact-mode' : ''}" />
+						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}"
+							rendered="#{!compactMode}" />
+					</p:commandLink>
+				</h:panelGroup>
+			</div>
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" id="task-details-container" styleClass="task-details">
+			<h:panelGroup rendered="#{isExpanded}">
+				<div class="u-line-separator"></div>
+				<div class="task-details">
+					<cc:insertChildren />
+				</div>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+
+	<p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog"
+		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
+		<f:facet name="message">
+			<h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+		</f:facet>
+		<h:panelGroup styleClass="Fs14">
+			<h:form id="reset-task-form">
+				<p:commandButton actionListener="#{logic.resetAndOpenTask}"
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+				<p:commandButton onclick="PF('reset-task-dialog').hide()"
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+			</h:form>
+		</h:panelGroup>
+	</p:confirmDialog>
+
+	<p:dialog id="is-another-user-working-dialog" closeOnEscape="true"
+		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/errorStartTask')}"
+		widgetVar="is-another-user-working-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade"
+		resizable="false" appendTo="@(body)">
+		<h:outputText id="is-another-user-working-message" value="#{data.isAnotherUserWorkingMessage}" />
+		<f:facet name="footer">
+			<p:commandButton id="close-command" onclick="PF('is-another-user-working-dialog').hide();"
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+		</f:facet>
+	</p:dialog>
+
+	<ui:include src="TaskDelegateDialog.xhtml" />
+</cc:implementation>
+</html>

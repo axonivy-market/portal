@@ -1,0 +1,10 @@
+ApplicationSelectionMenuData #class
+ch.ivy.addon.portalkit.multiapp.general.ApplicationSelectionMenu #namespace
+applications List<ch.ivy.addon.portalkit.persistence.domain.Application> #field
+applications PERSISTENT #fieldModifier
+isNotRequiredLogin Boolean #field
+isNotRequiredLogin PERSISTENT #fieldModifier
+menuItems java.util.List<org.primefaces.component.button.Button> #field
+menuItems PERSISTENT #fieldModifier
+applicationUrl String #field
+applicationUrl PERSISTENT #fieldModifier
