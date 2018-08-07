@@ -1,0 +1,658 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>Developer Guidelines</title>
+    <author>The Bolt Team</author>
+  </properties>
+
+  <body>
+    <section name="How to build your own portal">
+      <h3 id="1-build-your-own-portal-using-portal-kit">1. Build your
+        own portal using Portal Kit
+      </h3>
+      <h4 id="1-1-create-new-project">1.1. Create new project</h4>
+      <p>
+        Create a new project that depends on
+        <strong>PortalTemplate</strong>
+      </p>
+      <p>
+        <img src="../images/addNewProject.png" alt="alt text" title="Create new project" />
+      </p>
+      <h4>Project Structure</h4>
+      <img src="../images/structure.png" alt="Administration tool" style="margin-left:40px" />
+      <br></br>
+      <b>PortalConnector</b>
+      <p>
+        This is communication channel between all Portal servers
+        to retrieve (Task,Case,User and for Synchronization
+        Portal Data). This module
+        has to be installed on every AxonIvy engine. It should be
+        installed one separate
+        application for
+        this connector(named "PortalConnector"). In future Ivy versions,
+        it might be provided along with
+        AxonIvy Engine. If you want to set another name for PortalConnector application,
+        you also have to change its value on "ch_ivy_portalconnector_application_name" Global variable on PortalKit PM.
+        See more
+        information at
+        <a href="http://swbntsrv24.soreco.wan/confluence/pages/viewpage.action?pageId=152469532">here</a>
+      </p>
+      <b>PortalPersistence</b>
+      <p>Contains the Data Access Objects layer that is to access Portal data by
+        ICustomProperty API.
+      </p>
+      <b>PortalKit</b>
+      <p>Contains a set of components helping you to build a portal
+        application with virtually no effort. It also
+        Contains a set of
+        templates and CSS style definitions used for portal applications.
+        <br />
+        <b>Note</b>: PortalKit also contains <b>Admin Settings</b> component to configure Server, Application, Setting.
+        Read more information on <a href="DeveloperGuidelines.html">DeveloperGuidelines</a>
+      </p>
+      <b>PortalKit_test</b>
+      <p>Showroom project for portal kit components. This project contains
+        examples for testing and demonstration of all
+        PortalKit components.
+      </p>
+      <b>PortalTemplate</b>
+      <p>This project contains a foundation for build application portals.
+        Use it and you will have all standard features
+        on the sport. Create
+        your own portal project with PortalTemplate as a
+        dependency to extend and customize it.
+      </p>
+      <b>Projects for demonstration.</b>
+      <p>There are some more projects implementing examples how to use the
+        PortalKit
+      </p>
+      <ul>
+        <li>InternalSupport</li>
+        <li>ITInfrastructure</li>
+        <li>HumanRessources</li>
+        <li>QualityManagement</li>
+        <li>ProjectManagement</li>
+      </ul>
+      <p>You can refer some examples inside projects for building your
+        application. Each project here will be deployed to
+        each server for
+        testing.
+      </p>
+
+      <h4 id="1-2-create-home-page">1.2. Create home page</h4>
+      <p>
+        Create a new
+        <strong>Html User Dialog</strong>
+        for your home page and
+        then use
+        <strong>ui:composition</strong>
+        to define template which you
+        use inside.
+      </p>
+      <blockquote>
+        <p>
+          Note: you can find more information about templates in the
+          <a href="Templates.html">templates document</a>
+          .
+        </p>
+      </blockquote>
+      <p>
+        <img src="../images/homePage.png" alt="alt text" title="Create home page" />
+      </p>
+      <p>
+        Create a new
+        <strong>Start process</strong>
+        for your home page
+      </p>
+      <p>
+        <img src="../images/newStartProcess.png" alt="alt text" title="Create new start process" />
+      </p>
+      <p>
+        Inside
+        <strong>Start process</strong>
+        , choose
+        <strong>User
+          Dialog
+        </strong>
+        for your home page
+      </p>
+      <p>
+        <img src="../images/insideStartProcess.png" alt="alt text" title="Inside start process" />
+      </p>
+      <p>
+        <img src="../images/chooseHomePage.png" alt="alt text" title="Choose home page" />
+      </p>
+      <p>Run your application and see result</p>
+      <p>
+        <img src="../images/homePageResult.png" alt="alt text" title="Check home page display" />
+      </p>
+      <h4 id="1-3-add-new-links-to-left-menu">1.3. Add new links to
+        left menu
+      </h4>
+      <p>
+        Right click on
+        <strong>Functional Processes</strong>
+        . Then, select
+        <strong>New-&gt;Override</strong>
+      </p>
+      <p>
+        <img src="../images/newSubProcesses.png" alt="alt text" title="Create new sub process" />
+      </p>
+      <p>
+        Check on
+        <strong>Sub process</strong>
+        radio and choose
+        <strong>Identifier</strong>
+        from
+        <strong>PortalTemplate</strong>
+      </p>
+      <p>
+        <img src="../images/identiferOveride.png" alt="alt text" title="Choose identifier" />
+      </p>
+      <p>
+        Click
+        <strong>Finish</strong>
+        button and see result inside override
+        functional process
+      </p>
+      <p>
+        <img src="../images/insideSubFunction.png" alt="alt text" title="Inside sub process" />
+      </p>
+      <p>Config display default left menu</p>
+      <p>
+        <img src="../images/showHideMenuItem.png" alt="alt text" title="Inside sub process" />
+      </p>
+
+      <p>Double click on apply app config . Use following segment of
+        code for adding new link to the left menu:
+      </p>
+      <source><![CDATA[CustomPortalLink publication = new CustomPortalLink();
+publication.displayName = "Publication Request";
+publication.url = ivy.html.startref("Start Processes/InternalSupportPortalHome/publicactionRequest.ivp");
+publication.icon = "fa fa-book";
+out.portalConfig.customLinkList.add(publication);
+]]></source>
+      <p>Run your application and see result after adding new link to
+        left menu
+      </p>
+      <p>
+        <img src="../images/afterAddNewLink.png" alt="alt text" title="Adding new link result" />
+      </p>
+      <h4 id="1-4-define-supported-languages">1.4. Define supported
+        languages
+      </h4>
+      <p> In our system, we have a web service functionality which get
+        supported languages for language setting feature,
+        the supported language will get from CMS that is defined in your PortalKit.
+        As below to make everything works
+        fine. In order to configure
+        languages available in your application, please create
+        “PortalKit/AppInfor/SupportedLanguages” in CMS as shown below.
+      </p>
+      <p>
+        <img src="../images/01_supportedLanguageCMS.png" alt="alt text" title="Define supported languages" />
+      </p>
+      <p>
+        For multiple languages of application display name. We have to add "AppInfor/SupportedLanguages" in CMS that is
+        define
+        how many languages that application is supported.
+        And then we can setting its display name in others
+        language at AdminUI page.
+      </p>
+      <p>
+        <img src="../images/02_supportedLanguageCMS.png" alt="alt text" title="Define supported languages" />
+      </p>
+      <h4 id="1-5-set-category-for-a-task">1.5. Set category for a task</h4>
+      <p>
+        When you create tasks, don&#39;t forget to set values to variable
+        <strong>CustomVarcharField5</strong>
+        to separate tasks into different categories in the task tree
+      </p>
+      <p>
+        <img src="../images/taskCategory.png" alt="alt text" title="Task category" />
+      </p>
+      <p>For example: if you want to display tasks like structure below</p>
+      <p>
+        <img src="../images/exampleTaskCat.png" alt="alt text" title="Sample task category" />
+      </p>
+      <p>you have to set:</p>
+      <blockquote>
+        <p>CustomVarcharField5 =
+          &quot;CategoryDemo/ApproveByCREATOR&quot;</p>
+      </blockquote>
+      <p>
+        for task
+        <strong>ApproveByCREATOR</strong>
+        and
+      </p>
+      <blockquote>
+        <p>CustomVarcharField5 =
+          &quot;CategoryDemo/ApproveByManager&quot;</p>
+      </blockquote>
+      <p>
+        for task
+        <strong>ApproveByManager</strong>
+      </p>
+      <h4 id="1-6-make-internal-start-process-be-invisible-in-the-left-menu-process-start-list">1.6.
+        Make internal start process be invisible in the left menu process
+        start list
+      </h4>
+      <p>
+        In left menu, there is a item
+        <strong>Create New</strong>
+        , where you
+        can choose to start in a list of process.
+      </p>
+      <p>
+        <img src="../images/start-process-list.png" alt="alt text" title="Start process list" />
+      </p>
+      <p>
+        If you want to create
+        <strong>start processes</strong>
+        that will be
+        invisible in the left menu process start list, there are four
+        possibilities:
+      </p>
+      <blockquote>
+        <p>Note: &quot;Internal&quot; mentioned below is case-insensitive</p>
+      </blockquote>
+      <h5 id="1-6-1-in-request-start-set-start-name-starts-with-internal-the-process-start-will-be-hidden">1.6.1.
+        In request start, set start name starts with &quot;Internal&quot;,
+        the process start will be hidden
+      </h5>
+      <p>
+        <img src="../images/dev_hideprocess_RequestStartName.png" alt="alt text" title="Request start name" />
+      </p>
+      <h5 id="1-6-2-in-request-start-set-start-signature-name-starts-with-internal-the-process-start-will-be-hidden">1.6.2.
+        In request start, set start signature name starts with
+        &quot;Internal&quot;, the process start will
+        be hidden
+      </h5>
+      <p>
+        <img src="../images/dev_hideprocess_startSignatureName.png" alt="alt text" title="Start signature name" />
+      </p>
+      <h5
+        id="1-6-3-put-start-processes-in-the-process-that-has-name-starts-with-internal-so-all-start-processes-in-that-process-will-be-hidden">1.6.3.
+        Put start processes in the process that has name starts with
+        &quot;Internal&quot;, so all start
+        processes in that process will be
+        hidden
+      </h5>
+      <p>
+        <img src="../images/dev_hideprocess_ProcessName.png" alt="alt text" title="Process name" />
+      </p>
+      <h5
+        id="1-6-4-put-start-processes-in-the-process-group-that-has-name-starts-with-internal-so-all-start-processes-in-the-group-will-be-hidden">1.6.4.
+        Put start processes in the process group that has name starts with
+        &quot;Internal&quot;, so all start
+        processes in the group will be
+        hidden
+      </h5>
+      <p>
+        <img src="../images/dev_hideprocess_ProcessGroupName.png" alt="alt text" title="Process group name" />
+      </p>
+
+      <h4 id="1-7-define-custom-filter-for-case-history">1.7.
+        Define custom filter for case history
+      </h4>
+      <blockquote>
+        <p>
+          Idea is to add a functional process. This is empty in default. Input for the process is the list of tasks,
+          output also
+          list of tasks.
+          If developer wants to filter the tasks, he/she can override the process and implement
+          a script step to remove some
+          items from the list.
+        </p>
+      </blockquote>
+      <ul>
+        <li>
+          Create a new component override definition by right click on
+          <b>Functional Processes</b>
+          . Then, selects
+          <b>New->Override</b>
+          <p>
+            <img src="../images/createOveride.png" />
+          </p>
+        </li>
+        <li>
+          Checks on
+          <b>Sub process</b>
+          radio and chooses
+          <b>Identifier</b>
+          from Portalkit
+          <p>
+            <img src="../images/selectProcess.png" />
+          </p>
+        </li>
+        <li>
+          Double click on
+          <b>Sub Start</b>
+          and creates parameters as image below
+          <p>
+            <img src="../images/subStartCaseHistory.png" />
+          </p>
+          <p>
+            <img src="../images/subStartCaseHistory1.png" />
+          </p>
+        </li>
+        <li>
+          Add a script step for filtering tasks.
+          <p>
+            <img src="../images/scriptsStepCaseHistory.png" />
+          </p>
+        </li>
+        <li>
+          Uses following segment of code to remove tasks which has state as SYSTEM for example.
+          <source><![CDATA[import ch.ivyteam.ivy.workflow.TaskState;
+import java.util.ArrayList;
+import ch.ivyteam.ivy.workflow.ITask;
+
+in.filterdTasks.addAll(in.tasks);
+
+for(ITask itask:in.tasks){
+	if (itask.getActivator()==null || itask.getActivatorName()==null){
+		in.filterdTasks.remove(itask);		
+	}
+}
+]]></source>
+        </li>
+      </ul>
+
+      <h4 id="1-8-define-user-permission-for-tasks-and-cases">1.8.
+        Define user permission for tasks and cases
+      </h4>
+      <blockquote>
+        <p>
+          In
+          <strong>Task Information</strong>
+          area, there are buttons like
+          <strong>Add
+            note
+          </strong>
+          and
+          <strong>Delegate</strong>
+          . These buttons are enable or not
+          based on user permission and task state
+        </p>
+      </blockquote>
+      <h5 id="1-8-1-user-permission-for-task">1.8.1. User permission
+        for task
+      </h5>
+      <ul>
+        <li>
+          <strong>DELEGATE</strong>
+          : This function will be disabled
+          if SessionUser does not have IPermission.DELEGATE_TASKS or
+          TaskState is one of
+          following values: DONE, DESTROYED, RESUMED,
+          FAILED.
+        </li>
+        <li>
+          <strong>ADD NOTE</strong>
+          : This function will be disabled
+          if TaskState is one of following values: DONE, DESTROYED, RESUMED,
+          FAILED
+        </li>
+        <li>
+          <strong>RESET</strong>
+          : This function will be enabled if
+          SessionUser has permission TASK_RESET_OWN_WORKING_TASK and
+          TaskState is one
+          of following values: RESUMED, PARKED
+        </li>
+        <li>
+          <strong>PARK</strong>
+          : This function will be enabled if
+          SessionUser has permission TASK_PARK_OWN_WORKING_TASK and TaskState
+          has value
+          as RESUMED
+        </li>
+        <li>
+          <strong>CHANGE DEADLINE</strong>
+          : This function will be
+          disabled if SessionUser does not have
+          IPermission.TASK_WRITE_EXPIRY_ACTIVATOR or
+          TaskState is one of
+          following values: DONE, DESTROYED, RESUMED, FAILED.
+        </li>
+        <li>
+          <strong>CHANGE PRIORITY</strong>
+          : This function will be
+          disabled if SessionUser does not have
+          IPermission.TASK_WRITE_EXPIRY_PRIORITY OR
+          IPermission.TASK_WRITE_ORIGINAL_PRIORITY or TaskState is one of
+          following values: DONE, DESTROYED, RESUMED,
+          FAILED.
+        </li>
+      </ul>
+      <h5 id="1-8-2-user-permission-for-case">1.8.2. User permission
+        for case
+      </h5>
+      <ul>
+        <li>
+          <strong>ADD NOTE</strong>
+          : this function will be enabled if
+          CaseState is RUNNING
+        </li>
+        <li>
+          <strong>DELETE CASE</strong>
+          : this function will be enabled
+          if SessionUser has permission CASE_DESTROY and CaseState has value
+          as RUNNING
+        </li>
+      </ul>
+
+      <h4 id="1-9-How-to-add-HTML">1.9. How to add HTML to Case/Task notes and Case/Task
+        description
+      </h4>
+      <blockquote>
+        <p>
+          If you want to add HTML to Case/Task notes and Case/Task description, please set attribute
+          escape to false
+          where the content of notes or description is display.
+        </p>
+      </blockquote>
+      <p>
+        <img src="../images/addHTMLtoCaseorTask.png" alt="alt text" title="add HTML to Case/Task" />
+      </p>
+
+      <h4 id="1-10-Warn-on-closing-browser-tab">1.10. How to use feature warning on closing browser/tab</h4>
+      <p>
+        Sometimes when users are working on a task, if they close tab, browser or refresh page then they may lose their
+        current work.
+        It's a good idea to ask users to verify that they truly want to proceed with the action they just
+        invoke.
+        To use this feature, add WarnOnClosingBrowserTab component to the page you want to be affected.
+      </p>
+      <source><![CDATA[<ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab
+			confirmMessage="You may lose your work in progress. Do you want to continue?" />]]></source>
+      <p>
+        Depending on browser, content of
+        <b>confirmMessage</b>
+        and names of buttons may vary.
+      </p>
+      <p>
+        <img src="../images/warn-on-closing-browser-tab.png" alt="warn-on-closing-browser-tab.png" title="Warn on closing browser/tab.png" />
+      </p>
+
+      <b>NOTE:</b>
+      <blockquote>
+        <p>
+          Normally, when using this component, actions that user invoked outside Portal area like closing tab/browser,
+          refreshing
+          page, clicking on a link on bookmark bar of browser will cause browser to display a confirmation
+          dialog.
+          Actions that lead to navigation that user invoke inside Portal area like clicking on a link/button,
+          submitting
+          a form will not display any confirmation popup.
+          In some cases, user might use javascript to navigate
+          to another page, for example: set value for window.location.href
+          or call location.reload(). That might cause
+          the feature work incorrectly.
+          If that happens, add this to your javascript function:
+        </p>
+      </blockquote>
+      <source><![CDATA[showConfirmDialogBeforeUnload = false;]]></source>
+
+      <h4 id="1-11-deploy-your-portal-on-axon-engine">1.11. Deploy your
+        portal on Axon Engine
+      </h4>
+      <ul>
+        <li>Deploy your application on server, the name and the link of
+          application should be saved somewhere for
+          Integration step.
+        </li>
+        <li>
+          Don&#39;t forget to deploy required packages:
+          <strong>PortalConnector</strong>
+          ,
+          <strong>PortalKit</strong>
+          ,
+          <strong>PortalTemplate</strong>
+          .
+          When you deploy
+          <strong>PortalConnector</strong>
+          on your server, it
+          should be a single application. Because it will be used for many
+          applications. In our example
+          setup, we call this application
+          <strong>PortalConnector</strong>
+        </li>
+      </ul>
+
+      <p>
+        <img src="../images/portalConnector.png" alt="alt text" title="Portal Connector" />
+      </p>
+
+      <h3 id="2-integrate-your-portal-into-portal-admin">2. Integrate
+        your portal into Portal Admin
+      </h3>
+      <blockquote>
+        <p>
+          The PortalAdmin could be opened by selecting AdminUI item on UserMenu on the topbar, 
+          if your page using layout of PortalTemplate.
+          <br />
+          <b class="note">Note</b>: If your application did not use template of PortalTemplate project, 
+          you have to create a Page, then put <strong>AdminUI</strong> component, so you can use PortalAdmin.
+        </p>
+      </blockquote>
+      <h4 id="2-1-add-server-to-portal-admin">2.1. Add server to
+        Portal Admin
+      </h4>
+      <p>After open AdminUI, the UI will be: </p>
+      <p>
+        <img src="../images/adminUI.jpg" alt="alt text" title="Admin UI" />
+      </p>
+      <p>
+        Click on
+        <strong>New</strong>
+        button to add new server to
+        <strong>Global
+          portal
+        </strong>
+      </p>
+      <p>
+        <img src="../images/addNewServer.png" alt="alt text" title="Add new server" />
+      </p>
+      <blockquote>
+        <p>
+          Note:
+          <strong>Server path</strong>
+          must be the link of the
+          <strong>PortalConnector</strong>
+          application (e.g.:
+          <a href="http://path-to-ivy.local/ivy50_2/ws/PortalConnector/PortalConnector">http://path-to-ivy.local/ivy50_2/ws/PortalConnector/PortalConnector</a>
+          )
+        </p>
+      </blockquote>
+      <h4 id="2-2-add-application-to-portal-admin">2.2. Add
+        application to Portal Admin
+      </h4>
+      <p>
+        Choose
+        <strong>Application</strong>
+        tab on Admin UI screen
+      </p>
+      <p>
+        <img src="../images/choose-application-tab.png" alt="alt text" title="Choose application tab" />
+      </p>
+      <p>
+        Click on
+        <strong>New</strong>
+        button to add new application to
+        <strong>Global
+          portal
+        </strong>
+      </p>
+      <p>
+        <img src="../images/add-new-application.png" alt="alt text" title="Add new application" />
+      </p>
+      <p>
+        <strong>Application name</strong>
+        must have the same name with
+        application deployed on your server. For example: Application name =
+        <strong>HRManagement</strong>
+        as image below
+      </p>
+      <p>
+        <img src="../images/application-name.png" alt="alt text" title="Sample application name" />
+      </p>
+      <h4 id="2-3-synchronize-your-application-to-portal-admin-original-">2.3.
+        Synchronize your application to Portal Admin
+      </h4>
+      <p>After have done above steps, you have to run script to
+        synchronize data between APPLICATION_REGISTER and
+        APPLICATION_USER_CATCH for displaying your application on Global
+        portal.
+      </p>
+      <p>
+        Choose
+        <strong>Application</strong>
+        tab on Admin UI screen. Then,
+        click on
+        <strong>Refresh User Permissions</strong>
+      </p>
+      <p>
+        <img src="../images/refresh-user-permission.png" alt="alt text" title="Synchronize application" />
+      </p>
+      <h4 id="2-4-check-it-out-portal-admin-home-original-">2.4. Check
+        it out Portal Admin Home
+      </h4>
+      <p>Click on Global Task List</p>
+      <p>
+        <img src="../images/portalAdmin.png" alt="alt text" title="Portal Admin" />
+      </p>
+      <p>Check if your application is available on header</p>
+      <p>
+        <img src="../images/portal-admin-task-list.png" alt="alt text" title="Application task list" />
+      </p>
+      <h3 id="3-important-notes">3. Important notes</h3>
+      <h4 id="3-1-set-read-all-tasks-cases-permission-for-administrator-user">3.1.
+        Set read all tasks/cases permission for administrator user
+      </h4>
+      <p>The current task/case list shows only tasks/cases, where the
+        current session user involved as a person. But As
+        an administrator he
+        can see all tasks/cases in the application To set a user has this
+        permission, he need to have
+        permission to see all tasks :
+        IPermission.ADMINISTRATE_WORKFLOW AND
+        IPermission.TASK_READ_ALL/IPermission.CASE_READ_ALL
+      </p>
+      <h4 id="3-2-use-default-endpage-on-designer">3.2. Use default
+        endpage on Designer
+      </h4>
+      <p>To use the default endpage on Ivy designer, go to
+        PortaKit/Processes/Start
+        Processes/ActivateDesignerDefaultEndpage,
+        update defaultProcessLibraryName variable to your process (Project ID
+        in deployment) that you overrided default endpage. Then run the
+        request start, now it will activate the override
+        default endpage on
+        Ivy Designer.
+      </p>
+    </section>
+  </body>
+</document>

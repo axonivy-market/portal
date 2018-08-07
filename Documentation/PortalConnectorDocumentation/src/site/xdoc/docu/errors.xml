@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>pc_documentation - </title>
+	</properties>
+	<body>
+		<section name="Error Codes">
+			<table border="1" class="table table-striped">
+
+				<tr class="a">
+
+				<th align="left">Error code</th>
+
+				<th align="left">Error description (user text)</th></tr>
+
+				<tr class="b">
+
+				<td align="left">10000</td>
+
+				<td align="left">An error occurred while finding case by id</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10001</td>
+
+				<td align="left">An error occurred while searching cases for user</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10002</td>
+
+				<td align="left">An error occurred while searching cases for user by filter</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10003</td>
+
+				<td align="left">An error occurred while searching notes for case</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10004</td>
+
+				<td align="left">An error occurred while creating note for case</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10005</td>
+
+				<td align="left">An error occurred while searching tasks for case</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10006</td>
+
+				<td align="left">An error occurred while checking if application/s is/are active</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10007</td>
+
+				<td align="left">An error occurred while searching process starts for applications</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10008</td>
+
+				<td align="left">An error occurred while searching applications process starts for user</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10009</td>
+
+				<td align="left">An error occurred while roles searching</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10010</td>
+
+				<td align="left">An error occurred while users searching</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10011</td>
+
+				<td align="left">An error occurred while roles searching for user by role id</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10012</td>
+
+				<td align="left">An error occurred while creating note for task</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10013</td>
+
+				<td align="left">An error occurred while searching notes for task</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10014</td>
+
+				<td align="left">An error occurred while task delegating</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10015</td>
+
+				<td align="left">An error occurred while searching task by id</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10016</td>
+
+				<td align="left">An error occurred while searching tasks for user by filter</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10017</td>
+
+				<td align="left">An error occurred while task parking</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10018</td>
+
+				<td align="left">An error occurred while searching setting for user</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10019</td>
+
+				<td align="left">An error occurred while saving user setting</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10020</td>
+
+				<td align="left">An error occurred while searching setting for user in application</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10021</td>
+
+				<td align="left">An error occurred while saving setting for user in application</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10022</td>
+
+				<td align="left">Case: ID {<i>CASE_ID</i>} not found</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10023</td>
+
+				<td align="left">Application(s) {<i>LIST_OF_APPLICATIONS</i>} is/are not active</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10024</td>
+
+				<td align="left"><i>Empty, error is not used</i></td></tr>
+
+				<tr class="a">
+
+				<td align="left">10025</td>
+
+				<td align="left">No case found for user {<i>USERNAME</i>}</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10026</td>
+
+				<td align="left">No application specified.</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10027</td>
+
+				<td align="left">Task ID &quot;{<i>TASK_ID</i>}&quot; not found</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10028</td>
+
+				<td align="left">Fault error: Unmarshalling Error: For input: &quot;{<i>INPUT_STRING</i>}&quot;</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10029</td>
+
+				<td align="left">User &quot;{<i>USER_NAME</i>}&quot; not found</td></tr>
+
+				<tr class="b">
+
+				<td align="left">10030</td>
+
+				<td align="left">Application(s) &quot;{<i>LIST_OF_APPLICATIONS</i>}&quot; not found</td></tr>
+
+				<tr class="a">
+
+				<td align="left">10031</td>
+
+				<td align="left">Task id {<i>TASK_ID</i>} not found for user {<i>USER_NAME</i>}</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10032</td>
+
+				<td align="left">An error occurred while getting settings for all applications.</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10033</td>
+
+				<td align="left">An error occurred while saving email settings.</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10034</td>
+
+				<td align="left">An error occurred while getting absences for user in applications.</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10035</td>
+
+				<td align="left">An error occurred while saving absences.</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10036</td>
+
+				<td align="left">An error occurred while getting substitutes for user in applications.</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10037</td>
+
+				<td align="left">An error occurred while saving substitutes.</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10038</td>
+
+				<td align="left">Role &quot;{<i>ROLE_NAME</i>}&quot; not found for user</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10039</td>
+
+				<td align="left">No username specified.</td>
+				</tr>
+				<tr class="b">
+
+				<td align="left">10040</td>
+
+				<td align="left">
+				An error occurred while get languages settings, key {<i>CMS_LANG_KEY</i>} not found on {<i>PROCESS_MODEL_VERSION</i>}
+				</td>
+				</tr>
+				<tr class="a">
+
+				<td align="left">10041</td>
+
+				<td align="left">
+					Language {<i>LANGUAGE</i>} not supported
+				</td>
+				</tr>
+			</table>
+        </section>
+	</body>
+</document>

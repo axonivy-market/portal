@@ -1,0 +1,4 @@
+PortalDashBoardData #class
+ch.ivy.addon.portal.generic.admin.PortalDashBoard #namespace
+tasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+tasks PERSISTENT #fieldModifier

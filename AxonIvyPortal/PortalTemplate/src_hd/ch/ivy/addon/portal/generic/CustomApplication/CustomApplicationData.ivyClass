@@ -1,0 +1,6 @@
+CustomApplicationData #class
+ch.ivy.addon.portal.generic.CustomApplication #namespace
+url String #field
+url PERSISTENT #fieldModifier
+appName String #field
+appName PERSISTENT #fieldModifier

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="disableAddNote" type="java.lang.Boolean" default="false"
+    shortDescription="disable new note inputtext & add note button"></cc:attribute>
+</cc:interface>
+<cc:implementation>
+  <p:commandButton id="case-note-open" value="#{data.notesSize}" title="#{data.notesSize} note(s)"
+    onclick="PF('caseNoteWV').show();" rendered="#{data.wfCase ne null}" />
+
+  <p:dialog widgetVar="caseNoteWV" header="Case Notes" resizable="false" appendTo="@(body)">
+    <p:panelGrid columns="1">
+      <p:selectOneMenu id="case-note-type" value="#{data.selectedFilter}" styleClass="Fright">
+        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit/cases/CaseNote/userFilter/allNotes')}"
+          itemValue="0" noSelectionOption="true" />
+        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit/cases/CaseNote/userFilter/notesOfSystemUser')}"
+          itemValue="1" />
+        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit/cases/CaseNote/userFilter/notesOfUsers')}"
+          itemValue="2" />
+        <p:ajax event="change" listener="#{logic.applyFilter}" update="case-note-view" />
+      </p:selectOneMenu>
+      <p:scrollPanel id="case-note-view" styleClass="case-note-view-container">
+        <p:dataList value="#{data.currentNotes}" var="caseNote" itemType="none" styleClass="Wid100">
+          <p:outputPanel>
+            <h:outputText value="#{caseNote.creationTimestamp}" styleClass="FontBold">
+              <f:convertDateTime type="both" pattern="dd.MM.yyyy hh:mm" />
+            </h:outputText>
+            <h:outputText value=" #{caseNote.writterName}" escape="false" styleClass="FontBold" />
+            <br />
+            <h:outputText value="#{caseNote.message}" escape="false" styleClass="case-note-message" />
+          </p:outputPanel>
+        </p:dataList>
+      </p:scrollPanel>
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit/cases/CaseNote/newNote')}" />
+      <p:inputTextarea id="case-note-input" value="#{data.newNoteStr}" styleClass="Wid100"
+        disabled="#{cc.attrs.disableAddNote}" />
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit/cases/CaseNote/addNote')}"
+        actionListener="#{logic.addNote}" disabled="#{cc.attrs.disableAddNote}"
+        update="case-note-view case-note-input case-note-view case-note-open" styleClass="Fright" />
+    </p:panelGrid>
+  </p:dialog>
+</cc:implementation>
+</html>

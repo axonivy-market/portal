@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>Using Templates</title>
+    <author email="chi.le@axonactive.vn">Wawa team</author>
+  </properties>
+
+  <body>
+    <section name="Templates for development">
+      <p>Your Portal Project is dependent on PortalTemplate project, in which there are 4 templates that can be used
+        directly.
+      </p>
+      <ul>
+        <li>
+          <a href="#BasicTemplate">Basic Template</a>
+        </li>
+        <li>
+          <a href="#TwoColumnTemplate">Two Column Template</a>
+        </li>
+        <li>
+          <a href="#CaseTemplate">Case Template</a>
+        </li>
+        <li>
+          <a href="#TaskTemplate">Task Template</a>
+        </li>
+      </ul>
+      <p>
+        These templates have the same header, which is a menu of applications that you configure in Administration page.
+        Besides, there are user settings like: Absences, Email, Language Settings and Administration (for admin only).
+        Details about user settings can be found
+        <a href="./UserSettings.html">here</a>
+        .
+      </p>
+      <img src="../images/portalHeader.png" />
+      <br></br>
+
+      <a name="BasicTemplate" />
+      <subsection name="1. Basic Template">
+        <p>This template provide basic layout where user can put their custom content.</p>
+
+        <h5>How to use Basic Template</h5>
+        <ul>
+          <li>
+            Create a new HTML User Dialog and then use
+            <b>ui:composition</b>
+            to define the template inside
+
+            <source><![CDATA[<ui:composition template="/layouts/BaseTemplate.xhtml">
+    <ui:define name="pageTitle">
+        Sample Page
+    </ui:define>
+	<ui:define name="pageContent">
+		This is sample content.
+	</ui:define>
+</ui:composition>]]></source>
+          </li>
+
+          <li>
+            Result after using template for example
+            <img src="../images/BasicTemplate.png" />
+          </li>
+        </ul>
+      </subsection>
+      <br></br>
+
+      <a name="TwoColumnTemplate" />
+      <subsection name="2. Two Column Template">
+        <p>This template inherits BaseTemplate. It has 2 columns which user can customize their contents.
+          Normally, the first column is for navigation, the second for displaying corresponding content.
+        </p>
+
+        <h5>How to use Two Column Template</h5>
+        <ul>
+          <li>
+            Create a HTML User Dialog, define template in
+            <b>ui:composition</b>
+            and insert content of second column and third column using
+            <b>ui:define</b>
+
+            <source><![CDATA[<ui:composition template="/layouts/TwoColumnTemplate.xhtml">
+	<ui:define name="pageTitle">Sample Page</ui:define>
+	<ui:define name="navigationRegion">
+		    Navigation Region
+	</ui:define>
+	<ui:define name="contentRegion">
+		Content Region
+	</ui:define>
+</ui:composition>]]></source>
+          </li>
+
+          <li>
+            Result after using template for example
+            <img src="../images/TwoColumnTemplate.png" />
+          </li>
+        </ul>
+      </subsection>
+
+      <br></br>
+      <a name="CaseTemplate" />
+      <subsection name="3. Case Template">
+        <p>This template is used for displaying case details functionality. There are a lot of regions to be filled with
+          your custom content:</p>
+        <ul>
+          <li>Request name</li>
+          <li>Process chain</li>
+          <li>Errors</li>
+          <li>Information</li>
+          <li>Dynamic tabs</li>
+          <li>Request form</li>
+          <li>Document Tab</li>
+          <li>Case Status Tab</li>
+          <li>Buttons at footer</li>
+        </ul>
+        <p>It also has 3 standard functionalites as described below:</p>
+        <ul>
+          <li>
+            <p>
+              <b>Document</b>
+            </p>
+            Documents shown in Iframe. Link to the Iframe must be provided in
+            your Case object in property as below
+            <source><![CDATA[ivy.case.businessMainContactFolderId]]></source>
+          </li>
+          <li>
+            <p>
+              <b>Case Information</b>
+            </p>
+            <img src="../images/caseInformation.png" />
+          </li>
+
+
+          <li>
+            <p>
+              <b>History</b>
+            </p>
+            <p>Note: you can overwrite data list of case history table by add</p>
+            <img src="../images/history.png" />
+          </li>
+        </ul>
+
+        <h5>How to use Case Template</h5>
+        <ul>
+          <li>
+            Create a new HTML User Dialog and then use
+            <b>ui:composition</b>
+            to define template which you use inside
+
+            <source><![CDATA[<ui:composition template="/layouts/CaseTemplate.xhtml">]]></source>
+          </li>
+
+          <li>
+            Set data to caseId variable which is defined in template. It's
+            mandatory.
+
+            <source><![CDATA[<ui:param name="caseId" value="#{data.caseId}"/></ui:define>]]></source>
+          </li>
+
+          <li>
+            Set data to businessMainContactFolderId variable to display
+            default content of Iframe in Document tab.
+
+            <source><![CDATA[<ui:param name="businessMainContactFolderId" value="#{ivy.case.businessMainContactFolderId}"/>]]></source>
+          </li>
+
+          <li>
+            Set data to actualStepIndex and steps variables which is
+            defined
+            for ProcessChain component in template. It's mandatory.
+
+            <source><![CDATA[<ui:param name="actualStepIndex" value="#{data.actualStepIndex}"/>
+<ui:param name="steps" value="#{data.steps}"/>]]></source>
+          </li>
+
+          <li>
+            Inserts contents for requestName, errorsZone, infoZone. It's
+            optional.
+
+            <source><![CDATA[<ui:define name="taskName">...</ui:define>
+<ui:define name="errorsZone">...</ui:define>
+<ui:define name="infoZone">...</ui:define>]]></source>
+          </li>
+
+          <li>
+            Inserts some new tabs, refers some segment of code as below.
+            It's optional.
+
+            <source><![CDATA[<ui:define name="dynamicTabs">
+  <p:tab title="DynamicTab1">Tab1</p:tab>
+  <p:tab title="DynamicTab2">Tab2</p:tab> 
+</ui:define>
+]]></source>
+          </li>
+
+          <li>
+            Inserts left buttons and right buttons which stay at the bottom of the page. It's optional.
+
+            <source><![CDATA[<ui:define name="leftButtons">
+	 <p:commandButton value="Left Button"></p:commandButton>
+</ui:define>
+
+<ui:define name="rightButtons">
+	<p:commandButton value="Right Button"></p:commandButton>
+</ui:define>
+]]></source>
+          </li>
+
+          <li>
+            Overwrite contents of default tabs. It's optional
+            <source><![CDATA[<ui:define name="taskForm">content for overwrite</ui:define>
+<ui:define name="documentTab">content for overwrite</ui:define>
+<ui:define name="caseStatusTab">content for overwrite</ui:define>
+<ui:define name="caseHistoryTab">content for overwrite</ui:define>
+]]></source>
+          </li>
+          <li>
+            Visible/Invisible default Tabs. Set following variables as True
+            if you want to visible and converse
+
+            <source><![CDATA[<ui:param name="showCaseStatusInfoTab" value="true"/>
+<ui:param name="showHistoryTab" value="false"/>
+<ui:param name="showTaskFormTab" value="true"/>
+<ui:param name="showDocumentTab" value="false"/>
+]]></source>
+          </li>
+
+          <li>
+            Result after using template for example
+            <img src="../images/CaseTemplate.png" />
+          </li>
+        </ul>
+      </subsection>
+      <br></br>
+
+      <a name="TaskTemplate" />
+      <subsection name="4. Task Template ">
+        <p>It's similar to Case Template. The difference is it's used for displaying task details functionality.</p>
+        <br></br>
+        <img src="../images/TaskTemplate.png" />
+
+        <h5>How to use Task Template</h5>
+        <ul>
+          <li>
+            Create a new HTML User Dialog and then use
+            <b>ui:composition</b>
+            to define template which you use inside
+            <source><![CDATA[<ui:composition template="/layouts/TaskTemplate.xhtml">]]></source>
+          </li>
+          <li>
+            The others steps are the same as Case Template.
+            Except step for setting value to
+            <b>caseId</b>
+            variable. Because there's
+            no caseId variable defined in this template
+          </li>
+        </ul>
+
+      </subsection>
+      <subsection name="5. Handle required Login in templates">
+        <p>
+          All templates require login to access by DEFAULT. But templates also provide functionality to access page
+          without login by adding the parameter
+          <b>isNotRequiredLogin</b>
+        </p>
+
+        <h5>How to use </h5>
+        <ul>
+          <li>
+            Create a new HTML User Dialog and then use
+            <b>ui:param</b>
+            to define the template inside
+
+            <source><![CDATA[<ui:composition template="/layouts/BasicTemplate.xhtml">
+	<ui:param name="isNotRequiredLogin" value="#{data.isNotRequiredLogin}"></ui:param>
+	<ui:define name="pageContent">
+		This is sample content.
+	</ui:define>
+</ui:composition>]]></source>
+          </li>
+
+          <li>
+            Result after using template for example( All user settings and application menus will not visible)
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="6. Customize login component">
+        <h5>How to customize </h5>
+        <ul>
+          <li>
+            Extend existing templates with
+            <b>ui:define name="login"</b>
+            to define new login component.
+            <source><![CDATA[<ui:define name="login">
+	<ic:internaltest.ui.CustomLogin />
+</ui:define>]]></source>
+          </li>
+        </ul>
+      </subsection>
+    </section>
+  </body>
+</document>

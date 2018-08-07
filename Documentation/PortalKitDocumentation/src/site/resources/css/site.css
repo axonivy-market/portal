@@ -1,0 +1,64 @@
+ a{
+	color:#0091CF;
+ }
+  
+ .dropdown-menu li>a:hover,.dropdown-menu li>a:focus,.dropdown-submenu:hover>a{
+	 background-image:-moz-linear-gradient(top,#0091CF,#0077b3);
+	 background-image:-webkit-gradient(linear,0 0,0 100%,from(#0091CF),to(#0077b3));
+	 background-image:-webkit-linear-gradient(top,#0091CF,#0077b3);
+	 background-image:-o-linear-gradient(top,#0091CF,#0077b3);
+	 background-image:linear-gradient(to bottom,#0091CF,#0077b3);
+	 background-repeat:repeat-x;
+	 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0091CF',endColorstr='#ff0077b3',GradientType=0)
+ }
+  
+ .dropdown-menu .active>a,.dropdown-menu .active>a:hover{
+	 background-color:#0091CF;
+	 background-image:-moz-linear-gradient(top,#0091CF,#0077b3);
+	 background-image:-webkit-gradient(linear,0 0,0 100%,from(#0091CF),to(#0077b3));
+	 background-image:-webkit-linear-gradient(top,#0091CF,#0077b3);
+	 background-image:-o-linear-gradient(top,#0091CF,#0077b3);
+	 background-image:linear-gradient(to bottom,#0091CF,#0077b3);
+	 background-repeat:repeat-x;
+	 outline:0;
+	 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0091CF',endColorstr='#ff0077b3',GradientType=0)
+ }
+ 
+ .btn-primary{
+	 background-color:#006dcc;
+	 *background-color:#04c;
+	 background-image:-moz-linear-gradient(top,#0091CF,#04c);
+	 background-image:-webkit-gradient(linear,0 0,0 100%,from(#0091CF),to(#04c));
+	 background-image:-webkit-linear-gradient(top,#0091CF,#04c);
+	 background-image:-o-linear-gradient(top,#0091CF,#04c);
+	 background-image:linear-gradient(to bottom,#0091CF,#04c);
+	 border-color:#04c #0044cc #002a80;
+	 border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+	 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0091CF',endColorstr='#ff0044cc',GradientType=0);
+	 filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
+ }
+ 
+ .btn-link{
+	color:#0091CF;
+ }
+ 
+.nav-list>.active>a,.nav-list>.active>a:hover{
+	background-color:#0091CF;
+}
+
+.nav-pills>.active>a,.nav-pills>.active>a:hover{
+	background-color:#0091CF;
+}
+
+.nav .dropdown-toggle .caret{
+	border-top-color:#0091CF;
+	border-bottom-color:#0091CF;
+}
+
+a.thumbnail:hover{
+	border-color:#0091CF;
+}
+
+.table th, .table td {
+	border: 1px solid #DDD;
+}

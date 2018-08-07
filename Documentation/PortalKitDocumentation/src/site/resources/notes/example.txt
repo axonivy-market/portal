@@ -1,0 +1,37 @@
+Title: INC000006451810 / E-SD014555258 
+
+Description: NYTTA - Not possible to change requested execution date on Temporary disconnection
+
+Solution (Running / new instances): The data binding was updated, so the requested execution date can be changed 
+(Please test for temporary disconnection, but all other errand types with this field visible are affected)
+All running instances will be affected as well
+
+Impact: Whole Nytta application
+
+Tests: opened SN 322697771, changed the date, pressed continue, checked if the date was still the same when the confirmation popup appears (task was not executed by developer)
+
+-----------------------------------------------------------------------
+
+Title: INC000006446503 / E-SD014515299 
+
+Description: NYTTA - current central designation should not be an editable field
+
+Solution (Running / new instances): The field current central designation is now read only for Change 1 to 3 phase
+All running instances will be affected as well
+
+Impact: Whole Nytta application
+
+Tests: opened SN 322597130, the field is not editable
+
+-----------------------------------------------------------------------
+
+Title: INC000006444738 / E-SD014501240
+
+Description: NYTTA - empty error task after automatic approval of SKA codes
+
+Solution (Running / new instances): An additional check was implemented when showing the error task
+All running instances will be affected as well
+
+Impact: Whole Nytta application
+
+Tests: -

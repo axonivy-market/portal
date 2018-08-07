@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-fragment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"
+  id="WebAppFragment_ID" version="3.0">
+  <servlet>
+    <servlet-name>Push Servlet</servlet-name>
+    <servlet-class>org.primefaces.push.PushServlet</servlet-class>
+    <async-supported>true</async-supported>
+    <init-param>
+      <!-- use non blocking IO threads for AJP connections -->
+      <param-name>org.atmosphere.useWebSocketAndServlet3</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <!-- give a hint where the @PushEndpoint annotated classes are -->
+      <param-name>org.atmosphere.cpr.atmosphereHandlerPath</param-name>
+      <param-value>/WEB-INF/lib/portal-chat-endpoints.jar</param-value>
+    </init-param>
+    <init-param>
+      <!-- disable google analytics -->
+      <param-name>org.atmosphere.cpr.AtmosphereFramework.analytics</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Push Servlet</servlet-name>
+    <url-pattern>/primepush/*</url-pattern>
+  </servlet-mapping>
+</web-fragment>

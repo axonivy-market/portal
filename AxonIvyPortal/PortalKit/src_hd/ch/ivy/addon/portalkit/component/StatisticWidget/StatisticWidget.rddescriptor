@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<richDialogDescriptor>
+    <autoScreenshot>true</autoScreenshot>
+    <method>
+        <name>switchMode</name>
+        <description></description>
+    </method>
+    <method>
+        <name>setCompactMode</name>
+        <description></description>
+        <inputParameter>
+            <name>compactMode</name>
+            <description></description>
+            <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
+    <method>
+        <name>setTasks</name>
+        <description></description>
+        <inputParameter>
+            <name>tasks</name>
+            <description></description>
+            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.RemoteTask&gt;</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
+    <startMethod>
+        <name>start</name>
+        <description>Default dialog start method.</description>
+        <inputParameter>
+            <name>lowPriorityColor</name>
+            <description>The low priority piece's color</description>
+            <parameterType>String</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>normalPriorityColor</name>
+            <description>The normal priority piece's color</description>
+            <parameterType>String</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>highPriorityColor</name>
+            <description>The high priority piece's color</description>
+            <parameterType>String</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>exceptionPriorityColor</name>
+            <description>The exception priority piece's color</description>
+            <parameterType>String</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>expiryBarColor</name>
+            <description>The expiry bar's color</description>
+            <parameterType>String</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </inputParameter>
+    </startMethod>
+    <property>
+        <name>guid</name>
+        <value>1521B28EEBCA85A3</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>version</name>
+        <value>1</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>binary</name>
+        <value>false</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>viewTechnology</name>
+        <value>JSF</value>
+        <readOnly>true</readOnly>
+    </property>
+</richDialogDescriptor>
