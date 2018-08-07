@@ -1,0 +1,4 @@
+WebServiceInformationData #class
+ch.ivy.add.portalkit.synchronization #namespace
+serverURL String #field
+endpoint String #field

@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>pc_documentation - </title>
+	</properties>
+	<body>
+		<section name="Services">
+			<div class="section">
+			<h3>Case services<a name="Case_services"></a></h3>
+				<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Web service name</th>
+					<th align="left">Input parameters</th>
+					<th align="left">Output parameters</th>
+					<th align="left">Description</th></tr>
+					<tr class="b">
+					<td align="left">findCase</td>
+					<td align="left"><b>id</b>(Long)</td>
+					<td align="left"><b>ivyCase</b>(IvyCase)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search case by caseId through all applications.</td></tr>
+					<tr class="a">
+					<td align="left">findAllCases</td>
+					<td align="left"><b>apps</b>(List of Strings)&#xa0;<br /><b>user</b>(String)</td>
+					<td align="left"><b>ivyCases</b>(List of IvyCases)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search cases for user in input list of applications.</td></tr>
+					<tr class="b">
+					<td align="left">findByFilter</td>
+					<td align="left"><b>apps</b>(List of strings)&#xa0;<br /><b>user</b>(String)&#xa0;<br /><b>filter</b>(String)</td>
+					<td align="left"><b>ivyCases</b>(List of IvyCases)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for all cases for user in input list of applications and filtering by input filter parameter.</td></tr>
+					<tr class="a">
+					<td align="left">findDoneByFilter</td>
+					<td align="left"><b>apps</b>(List of strings)&#xa0;<br /><b>user</b>(String)&#xa0;<br /><b>filter</b>(String)</td>
+					<td align="left"><b>ivyCases</b>(List of IvyCases)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for all cases with &quot;DONE&quot; status for user in input list of applications and filtering by input filter parameter.</td></tr>
+					<tr class="b">
+					<td align="left">findNotes</td>
+					<td align="left"><b>id</b>(Long)</td>
+					<td align="left"><b>notes</b>(List of IvyNotes)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for note by caseId.</td></tr>
+					<tr class="a">
+					<td align="left">createNote</td>
+					<td align="left"><b>id</b>(Long)&#xa0;<br /><b>user</b>(String)&#xa0;<br /><b>message</b>(String)</td>
+					<td align="left"><b>note</b>(IvyNote)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Creates new note for case.</td></tr>
+					<tr class="b">
+					<td align="left">findTasks</td>
+					<td align="left"><b>id</b>(Long)</td>
+					<td align="left"><b>ivyTasks</b>(List of IvyTasks)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for all tasks by caseId.</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section">
+			<h3>Process start services<a name="Process_start_services"></a></h3>
+				<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Web service name</th>
+					<th align="left">Input parameters</th>
+					<th align="left">Output parameters</th>
+					<th align="left">Description</th></tr>
+					<tr class="b">
+					<td align="left">findAllProcessStarts</td>
+					<td align="left"><b>apps</b>(List of strings)</td>
+					<td align="left"><b>processStarts</b>(List of IvyProcessStarts)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for applications starts by input list of applications.</td></tr>
+					<tr class="a">
+					<td align="left">findProcessStarts</td>
+					<td align="left"><b>user</b>(String)&#xa0;<br /><b>apps</b>(List of strings)</td>
+					<td align="left"><b>processStarts</b>(List of IvyProcessStarts)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for applications starts by input list of applications for user.</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section">
+			<h3>Security services<a name="Security_services"></a></h3>
+				<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Web service name</th>
+					<th align="left">Input parameters</th>
+					<th align="left">Output parameters</th>
+					<th align="left">Description</th></tr>
+					<tr class="b">
+					<td align="left">findAllUsers</td>
+					<td align="left">-</td>
+					<td align="left"><b>users</b>(List of IvySecurityMembers)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for all users through whole server</td></tr>
+					<tr class="a">
+					<td align="left">findAllRoles</td>
+					<td align="left">-</td>
+					<td align="left"><b>roles</b>(List of IvySecurityMembers)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for all roles on the server</td></tr>
+					<tr class="b">
+					<td align="left">findUserByRoleId</td>
+					<td align="left"><b>id</b>(Long)</td>
+					<td align="left"><b>users</b>(List of IvySecurityMembers)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for all users that have role with id equals to input id</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section">
+			<h3>Task service<a name="Task_service"></a></h3>
+				<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Web service name</th>
+					<th align="left">Input parameters</th>
+					<th align="left">Output parameters</th>
+					<th align="left">Description</th></tr>
+					<tr class="b">
+					<td align="left">findTask</td>
+					<td align="left"><b>id</b>(Long)</td>
+					<td align="left"><b>ivyTask</b>(IvyTask)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search task by taskId through all applications.</td></tr>
+					<tr class="a">
+					<td align="left">findTasksByFilter</td>
+					<td align="left"><b>apps</b>(List of strings)&#xa0;<br /><b>user</b>(String)&#xa0;<br /><b>filter</b>(String)</td>
+					<td align="left"><b>ivyTasks</b>(List of IvyTasks)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for all task for user in input list of applications and filtering by input filter parameter.</td></tr>
+					<tr class="b">
+					<td align="left">findDoneTasksByFilter</td>
+					<td align="left"><b>apps</b>(List of strings)&#xa0;<br /><b>user</b>(String)&#xa0;<br /><b>filter</b>(String)</td>
+					<td align="left"><b>ivyTasks</b>(List of IvyTasks)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for all tasks with &quot;DONE&quot; status for user in input list of applications and filtering by input filter parameter.</td></tr>
+					<tr class="a">
+					<td align="left">parkTask</td>
+					<td align="left"><b>id</b>(Long)&#xa0;<br /><b>user</b>(String)</td>
+					<td align="left"><b>ivyTask</b>(IvyTask)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Park found users task by taskId.</td></tr>
+					<tr class="b">
+					<td align="left">delegateTask</td>
+					<td align="left"><b>id</b>(Long)&#xa0;<br /><b>ivySecurityMember</b>(IvySecurityMember)</td>
+					<td align="left"><b>ivyTask</b>(IvyTask)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Delegate task found by taskId to ivySecurityMember.</td></tr>
+					<tr class="a">
+					<td align="left">findNotes</td>
+					<td align="left"><b>id</b>(Long)</td>
+					<td align="left"><b>ivyNotes</b>(List of IvyNotes)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for note by taskId.</td></tr>
+					<tr class="b">
+					<td align="left">createNote</td>
+					<td align="left"><b>id</b>(Long)&#xa0;<br /><b>user</b>(String)&#xa0;<br /><b>message</b>(String)</td>
+					<td align="left"><b>ivyNote</b>(IvyNote)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Creates new note for task.</td>
+					</tr>
+					<tr class="a">
+					<td align="left">resetTask</td>
+					<td align="left"><b>id</b>(Long)</td>
+					<td align="left"><b>ivyTask</b>(IvyTask)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Resets the given task.</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section">
+			<h3>User setting services<a name="User_setting_services"></a></h3>
+				<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Web service name</th>
+					<th align="left">Input parameters</th>
+					<th align="left">Output parameters</th>
+					<th align="left">Description</th></tr>
+					<tr class="b">
+					<td align="left">findUserSetting</td>
+					<td align="left"><b>user</b>(String)&#xa0;<br /><b>appName</b>(String)</td>
+					<td align="left"><b>userSetting</b>(IvyUserSetting)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Search for setting for user by username in application.</td></tr>
+					<tr class="a">
+					<td align="left">saveUserSetting</td>
+					<td align="left"><b>user</b>(String)&#xa0;<br /><b>userSetting</b>(IvyUserSetting)&#xa0;<br /><b>appName</b>(String)</td>
+					<td align="left"><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Saving input IvyUserSetting for user by username in application.</td></tr>
+					<tr class="b">
+					<td align="left">getEMailSettings</td>
+					<td align="left"><b>applications</b>(List of String)&#xa0;<br /><b>user</b>(String)&#xa0;</td>
+					<td align="left"><b>settings</b>(List of IvyEmailSetting)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Get all settings for all applications contained in input parameter 'applications'.</td></tr>
+					<tr class="a">
+					<td align="left">setEMailSettings</td>
+					<td align="left"><b>settings</b>(List of IvyEmailSetting)&#xa0;<br /><b>user</b>(String)&#xa0;</td>
+					<td align="left"><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Save input IvyEmailSetting for user settings in application.</td></tr>
+					<tr class="b">
+					<td align="left">getAbsences</td>
+					<td align="left"><b>applications</b>(List of String)&#xa0;<br /><b>user</b>(String)&#xa0;</td>
+					<td align="left"><b>absences</b>(List of IvyAbsence)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Get all absences for user by in input list of applications.</td></tr>
+					<tr class="a">
+					<td align="left">setAbsences</td>
+					<td align="left"><b>applications</b>(List of String)&#xa0;<br /><b>user</b>(String)&#xa0;<br /><b>absences</b>(List of IvyAbsences)&#xa0;</td>
+					<td align="left"><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Delete all absences of user in input list of applications<br />Save/update input list of IvyAbsence for user.</td></tr>
+					<tr class="b">
+					<td align="left">getSubstitutes</td>
+					<td align="left"><b>applications</b>(List of String)&#xa0;<br /><b>user</b>(String)&#xa0;</td>
+					<td align="left"><b>substitutes</b>(List of IvySubstitute)&#xa0;<br /><b>userApplications</b>(List of IvyUser)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Get all substitutes for user in all input list of applications, and all users in applications</td></tr>
+					<tr class="a">
+					<td align="left">setSubstitutes</td>
+					<td align="left"><b>user</b>(String)&#xa0;<br /><b>substitutes</b>(List of IvySubstitute)&#xa0;</td>
+					<td align="left"><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Save/update input list of IvySubstitute for user.</td>
+					</tr>
+					<tr class="b">
+					<td align="left">getLanguagesSettings</td>
+					<td align="left"><b>username</b>(String)&#xa0;<br /><b>apps</b>(List of String)&#xa0;</td>
+					<td align="left"><b>errors</b>(List of WSExceptions)&#xa0;<br /><b>LanguagesSettingsServiceResult</b>LanguagesSettingsServiceResult&#xa0;</td>
+					<td align="left">Get Languages settings for the passed user and applications</td>
+					</tr>
+					<tr class="a">
+					<td align="left">setLanguagesSettings</td>
+					<td align="left"><b>user</b>(String)&#xa0;<br /><b>settings</b>(List of IvyLanguageSetting)&#xa0;</td>
+					<td align="left"><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Save/update languages settings for the passed user</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section">
+			<h3>Is alive service<a name="Is_alive_service"></a></h3>
+				<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Web service name</th>
+					<th align="left">Input parameters</th>
+					<th align="left">Output parameters</th>
+					<th align="left">Description</th></tr>
+					<tr class="b">
+					<td align="left">isAlive</td>
+					<td align="left"><b>apps</b>(List of strings)</td>
+					<td align="left"><b>applicationList</b>(List of IvyApplication)&#xa0;<br /><b>isAlive</b>(Boolean)&#xa0;<br /><b>errors</b>(List of WSExceptions)</td>
+					<td align="left">Checking if connector is &quot;alive&quot; and the applications are running| If apps list is empty, it gives back all applications &#xa0;<br />If not, it searches only for apps in list</td>
+					</tr>
+				</table>
+			</div>
+        </section>
+	</body>
+</document>

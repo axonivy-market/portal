@@ -1,0 +1,27 @@
+UniversalCaseListData #class
+ch.ivy.addon.portalkit.multiapp.cases.UniversalCaseList #namespace
+cases List<ch.ivyteam.ivy.workflow.ICase> #field
+cases PERSISTENT #fieldModifier
+user String #field
+user PERSISTENT #fieldModifier
+errorLink String #field
+errorLink PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+apps List<String> #field
+apps PERSISTENT #fieldModifier
+selectedApps List<String> #field
+selectedApps PERSISTENT #fieldModifier
+selectedWorkflowPriorities List<String> #field
+selectedWorkflowPriorities PERSISTENT #fieldModifier
+createdFrom java.util.Date #field
+createdFrom PERSISTENT #fieldModifier
+createdTo java.util.Date #field
+createdTo PERSISTENT #fieldModifier
+selectedCase ch.ivyteam.ivy.workflow.ICase #field
+selectedCase PERSISTENT #fieldModifier
+prevCase ch.ivyteam.ivy.workflow.ICase #field
+prevCase PERSISTENT #fieldModifier
+nextCase ch.ivyteam.ivy.workflow.ICase #field
+nextCase PERSISTENT #fieldModifier
+filteredList List<ch.ivyteam.ivy.workflow.ICase> #field

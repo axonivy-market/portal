@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<richDialogDescriptor>
+    <autoScreenshot>true</autoScreenshot>
+    <method>
+        <name>getTask</name>
+        <description></description>
+        <outputParameter>
+            <name>tasks</name>
+            <description></description>
+            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.RemoteTask&gt;</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </outputParameter>
+    </method>
+    <startMethod>
+        <name>start</name>
+        <description>Default dialog start method.</description>
+        <inputParameter>
+            <name>taskId</name>
+            <description></description>
+            <parameterType>Long</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </startMethod>
+    <property>
+        <name>guid</name>
+        <value>153892C76EB2AF5E</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>version</name>
+        <value>1</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>binary</name>
+        <value>false</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>viewTechnology</name>
+        <value>JSF</value>
+        <readOnly>true</readOnly>
+    </property>
+</richDialogDescriptor>

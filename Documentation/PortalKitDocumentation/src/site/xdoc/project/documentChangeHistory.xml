@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Welcome</title>
+		<author email="chi.le@axonactive.vn">The Bolt Team</author>
+	</properties>
+
+	<body>
+	<section name="Document History">
+
+			<div class="section">
+				<p>The document history holds the changes on the documentation, in
+					short words</p>
+				<table border="1" class="table table-striped">
+					<tbody>
+						<tr class="a">
+							<th align="left">Date</th>
+							<th align="left">Editor</th>
+							<td align="left">Changes</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</body>
+</document>
+

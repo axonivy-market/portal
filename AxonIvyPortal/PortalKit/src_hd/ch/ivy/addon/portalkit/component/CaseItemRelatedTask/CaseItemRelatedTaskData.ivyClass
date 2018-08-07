@@ -1,0 +1,8 @@
+CaseItemRelatedTaskData #class
+ch.ivy.addon.portalkit.component.CaseItemRelatedTask #namespace
+remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
+remoteCase PERSISTENT #fieldModifier
+relatedTasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+relatedTasks PERSISTENT #fieldModifier
+tasksOfCaseProcessLink String #field
+tasksOfCaseProcessLink PERSISTENT #fieldModifier

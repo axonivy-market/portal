@@ -1,0 +1,14 @@
+PortalSingleTaskData #class
+ch.ivy.addon.portal.generic.PortalSingleTask #namespace
+remoteTaskId Long #field
+remoteTaskId PERSISTENT #fieldModifier
+remoteTask ch.ivy.addon.portalkit.bo.RemoteTask #field
+remoteTask PERSISTENT #fieldModifier
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+server PERSISTENT #fieldModifier
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+taskSearchCriteria PERSISTENT #fieldModifier
+remoteTasks java.util.List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+remoteTasks PERSISTENT #fieldModifier
+errors java.util.List #field
+errors PERSISTENT #fieldModifier

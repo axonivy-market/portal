@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="taskListHeader" shortDescription="Set the Task list header"
+    default="#{ivy.cms.co('/de.heg.components/TaskList/title')}" />
+</cc:interface>
+
+<cc:implementation>
+  <h:form id="tasks-view-form">
+    <h3>
+      <h:panelGroup layout="block">
+        <span class="fa fa-list" /> &nbsp;
+          <h:outputText styleClass="task-list-header" value="#{cc.attrs.taskListHeader}" />
+      </h:panelGroup>
+    </h3>
+    <p:remoteCommand name="onHideTaskDetailDialog" process="@this" update="tasks-view" />
+    <p:dataTable value="#{data.tasks}" id="tasks-view" styleClass="task-list-table" var="task"
+      filteredValue="#{data.filteredTasks}" selectionMode="single"
+      emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" sortBy="#{task.id}"
+      rowKey="#{task.id}">
+      <p:column id="task-id-header" headerText="#" width="80" filterBy="#{task.id}" filterMatchMode="contains"
+        sortBy="#{task.id}">
+        <h:outputText value="#{task.id}" id="task-id-value" />
+      </p:column>
+
+      <p:column id="case-id-header" width="80" filterBy="#{task.caseId}" filterMatchMode="contains"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/case')} #" sortBy="#{task.caseId}">
+        <h:outputText value=" #{task.caseId}" id="case-id-value" />
+      </p:column>
+
+      <p:column id="task-description-header" width="200" filterBy="#{task.description}" filterMatchMode="contains"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}"
+        sortBy="#{task.description}">
+        <h:outputText value="#{task.description}" id="task-description-value" title="#{task.description}" escape="false" />
+      </p:column>
+
+      <p:column id="case-description-header" width="200" filterBy="#{task.caseDescription}" filterMatchMode="contains"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/caseDescription')}"
+        sortBy="#{task.caseDescription}">
+        <h:outputText value="#{task.caseDescription}" id="case-description-value" title="#{task.caseDescription}"
+          escape="false" />
+      </p:column>
+
+      <p:column id="created-date-header" width="150" filterBy="#{task.createdOn}" filterMatchMode="contains"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/createdOn')}" sortBy="#{task.caseDescription}">
+        <h:outputText value="#{task.createdOn}" id="created-date-value">
+          <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+        </h:outputText>
+      </p:column>
+
+      <p:column id="task-state-header" width="150" filterBy="#{taskBean.getStateByITask(task.ivyTask)}"
+        filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskState')}"
+        sortBy="#{task.state}">
+        <span class="#{taskBean.getStateIcon(task.state)}" />
+        <h:outputText value=" #{taskBean.getStateByITask(task.ivyTask)}" id="task-state-value" />
+      </p:column>
+
+      <p:column id="responsible-header" width="180"
+        filterBy="#{task.activator.getDisplayName() !=''? task.activator.getDisplayName() :task.activator.getName()}"
+        filterMatchMode="contains" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/responsibe')}"
+        sortBy="#{task.activator.getDisplayName() !=''? task.activator.getDisplayName() :task.activator.getName()}">
+        <span class="#{taskBean.checkActivator(task.activator.isUser())}" />
+        <h:outputText id="responsible-value"
+          value=" #{task.activator.getDisplayName() !=''? task.activator.getDisplayName() :task.activator.getName()}" />
+      </p:column>
+
+      <p:column styleClass="TexAlCenter" width="100"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/actions')}">
+        <p:commandLink id="show-detail" styleClass="fa fa-eye"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}"
+          actionListener="#{logic.taskDetail(task.ivyTask)}" update=":#{p:component('taskInforDialog')}"
+          oncomplete="PF('taskInforDialog').show()">
+        </p:commandLink>
+      </p:column>
+    </p:dataTable>
+  </h:form>
+
+  <p:dialog id="taskInforDialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskInforDialogTitle')}"
+    widgetVar="taskInforDialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+    appendTo="@(body)">
+    <p:ajax event="close" listener="#{logic.close}" global="false" onstart="onHideTaskDetailDialog()" process="@this"
+      update="tasks-view-form" />
+    <p:outputPanel id="taskInforDetail" styleClass="TexAlLeft">
+      <ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskInformation id="task-view-container" buttonClicked="#{logic.close}"
+        updateMasterForm=":#{p:component('tasks-view-form')}" task="#{data.selectedTask}"
+        homeLink="#{cc.attrs.homeLink}" isDialogMode="#{true}" visible="#{true}" updateElement="@form">
+      </ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskInformation>
+    </p:outputPanel>
+  </p:dialog>
+</cc:implementation>
+</html>

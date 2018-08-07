@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Developer Guidelines</title>
+		<author>The Wawa Team</author>
+	</properties>
+
+	<body>
+		<section name="Default user process's customization">
+			<h3 id="introduction">Introduction</h3>
+			<p>
+				In Portal homepage, the
+				<strong>Process widget</strong>
+				displays default processes, you can customize them so that project
+				important starts are displayed.
+			</p>
+			<h3>Customization</h3>
+			<p>
+				Create a callable sub process in your project with the
+				<strong>createDefaultUserProcesses()</strong>
+				signature. It must return a list of user processes: defaultUserProcesses
+				(List&lt;UserProcess&gt;) (you can override this process in PortalKit):
+			</p>
+			<p>
+				<img
+					src="../images/DefaultUserProcessCustomization/DefaultUserProcesses.png"
+					alt="alt text" title="Home Page" />
+				<img
+					src="../images/DefaultUserProcessCustomization/DefaultProcessReturn.png"
+					alt="alt text" title="Home Page" />
+			</p>
+		</section>
+	</body>
+</document>

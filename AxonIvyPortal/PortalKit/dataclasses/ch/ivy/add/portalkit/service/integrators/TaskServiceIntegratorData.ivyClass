@@ -1,0 +1,19 @@
+TaskServiceIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+applicationNames List<String> #field
+canUserResumeTask Boolean #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+ivySecurityMember ch.ivy.ws.addon.IvySecurityMember #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+task ch.ivy.ws.addon.IvyTask #field
+taskId Long #field
+tasks List<ch.ivy.ws.addon.IvyTask> #field
+userName String #field
+noteContent String #field
+note ch.ivy.ws.addon.IvyNote #field
+serverUrl String #field
+allTasks List<ch.ivy.ws.addon.IvyTask> #field
+caseId Long #field
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+workerUserName String #field

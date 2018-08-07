@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+<ui:composition>
+  <h:panelGroup>
+    <f:event listener="#{logic.findPreExpandedTask(task, isSelected)}" type="preRenderComponent" />
+  </h:panelGroup>
+  <div id="#{taskStartId}"
+    class="#{taskWidgetBean.expandedMode and data.expandedTask == task ? 'show-task-details-mode' : ''} #{(!taskWidgetBean.compactMode) ? 'mod-expanded-mode' : ''} task-start-list-item task-start-list-item-position u-shadow-effect js-task-start-list-item">
+    <h:panelGroup id="task-start-container" layout="block" class="task-start-container u-unselectable u-hover-effect">
+      <div id="#{taskStartId}-task-info" class="task-start-link">
+        <p:commandLink id="show-hide-task-details-command" delay="100" styleClass="task-start-button"
+          onclick="if('#{taskWidgetBean.compactMode}'=='true') {$('##{taskStartId}-task-action-container>a').click(); return false;} else {if('#{task == data.expandedTask}'=='true') hideTaskDetails('#{taskStartId}');}"
+          actionListener="#{logic.toggleTaskDetails(task)}"
+          oncomplete="if('#{task == data.expandedTask}'=='false') displayTaskDetails('#{taskStartId}-task-details');"
+          update="#{task == data.expandedTask ? '@this' : p:component('task-view-container')}">
+          <f:passThroughAttribute name="data-content" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/showDetailsHint')}" />
+          <div class="task-start-priority">
+            <h:panelGroup rendered="#{task.priority == 'LOW'}"
+              styleClass="fa fa-circle task-start-priority-icon task-priority-low" />
+            <h:panelGroup rendered="#{task.priority == 'NORMAL'}"
+              styleClass="fa fa-circle task-start-priority-icon task-priority-normal" />
+            <h:panelGroup rendered="#{task.priority == 'HIGH' or task.priority == 'EXCEPTION'}"
+              styleClass="fa fa-circle task-start-priority-icon task-priority-high" />
+          </div>
+          <div class="task-start-info">
+            <div class="task-start-info-header">
+              <h:outputText value="##{task.id}" />
+              <h:outputText id="task-state" value=" #{taskBean.getStateByITask(task).toUpperCase()}" />
+            </div>
+            <div class="task-start-info-content">
+              <h:outputText value="#{task.name}" />
+            </div>
+            <div class="task-start-info-footer">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/create')}: " />
+              <h:outputText value="#{task.startTimestamp}">
+                <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+              </h:outputText>
+              <h:outputText value=" / #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/expired')}: "
+                rendered="#{task.expiryTimestamp ne null}" />
+              <h:outputText value="#{task.expiryTimestamp}">
+                <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+              </h:outputText>
+            </div>
+          </div>
+        </p:commandLink>
+      </div>
+
+      <div id="#{taskStartId}-task-action-container"
+        class="task-start-action #{taskWidgetBean.compactMode ? 'mod-compact-mode' : 'task-start-action-before'}">
+        <p:commandLink id="task-reset-command"
+          rendered="#{taskWidgetBean.expandedMode and task.state ne 'SUSPENDED' and task.canReset}"
+          styleClass="task-command" actionListener="#{logic.resetTask(task)}" update="task-state task-start-container">
+          <span class="fa fa-refresh" />
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reset')}" />
+        </p:commandLink>
+        <p:commandLink id="task-delegate-command" rendered="#{taskWidgetBean.expandedMode and task.canDelegate}"
+          styleClass="task-command" actionListener="#{logic.initDataToDelegate(task)}"
+          oncomplete="PF('task-delegate-dialog').show()" update="#{p:component('task-delegate-dialog')}">
+          <span class="fa fa-share" />
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" />
+        </p:commandLink>
+        <h:panelGroup>
+          <p:commandLink id="task-start-command" rendered="#{task.state != 'RESUMED' and task.canResume}"
+            styleClass="task-command" actionListener="#{logic.openTask(task)}">
+            <span class="fa fa-chevron-right #{taskWidgetBean.compactMode ? 'icon-compact-mode' : ''}" />
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}"
+              rendered="#{taskWidgetBean.expandedMode}" />
+          </p:commandLink>
+          <p:commandLink id="task-reset-and-start-command" rendered="#{task.state == 'RESUMED' and task.canResume}"
+            styleClass="task-command" oncomplete="PF('reset-task-dialog').show()"
+            actionListener="#{data.setSelectedTask(task)}">
+            <span class="fa fa-chevron-right #{taskWidgetBean.compactMode ? 'icon-compact-mode' : ''}" />
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}"
+              rendered="#{taskWidgetBean.expandedMode}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </div>
+    </h:panelGroup>
+
+    <h:panelGroup id="task-details-container" rendered="#{taskWidgetBean.expandedMode and data.expandedTask == task}">
+      <div id="#{taskStartId}-task-details" class="task-details u-display-none">
+        <div class="u-line-separator" />
+        <ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskDetails id="task-details" task="#{task}" />
+      </div>
+    </h:panelGroup>
+  </div>
+
+</ui:composition>
+</html>
