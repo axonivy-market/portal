@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="isWorkingOnATask" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <h:form id="main-navigator">
+      <p:menubar styleClass="menu-toolbar" id="menu-toolbar">
+        <c:forEach items="#{data.menuItems}" var="menuItem" varStatus="theCount">
+          <c:choose>
+            <c:when test="#{cc.attrs.isWorkingOnATask}">
+              <p:menuitem value="#{menuItem.value}" id="application-menu-item-${theCount.index}"
+                styleClass="#{menuItem.styleClass}" disabled="#{menuItem.disabled}"
+                update=":#{p:component('task-losing-confirmation-dialog')}" icon="#{menuItem.icon}"
+                oncomplete="PF('task-losing-confirmation-dialog').show()" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}">
+                <f:setPropertyActionListener value="#{menuItem.href}" target="#{data.applicationUrl}" />
+              </p:menuitem>
+            </c:when>
+            <c:otherwise>
+              <p:menuitem value="#{menuItem.value}" id="application-menu-item-${theCount.index}"
+                rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}" styleClass="#{menuItem.styleClass}"
+                disabled="#{menuItem.disabled}" icon="#{menuItem.icon}"
+                actionListener="#{logic.openApp(menuItem.href)}">
+              </p:menuitem>
+            </c:otherwise>
+          </c:choose>
+
+          <p:menuitem value="#{menuItem.value}" id="third-party-application-menu-item-${theCount.index}" url="#{menuItem.href}"
+            rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}" styleClass="#{menuItem.styleClass}"
+            disabled="#{menuItem.disabled}" icon="#{menuItem.icon}" target="_blank" />
+        </c:forEach>
+      </p:menubar>
+    </h:form>
+
+    <p:dialog id="task-losing-confirmation-dialog" resizable="false"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
+      widgetVar="task-losing-confirmation-dialog" rendered="#{cc.attrs.isWorkingOnATask}" appendTo="@(body)"
+      modal="true" dynamic="true">
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state != 'CREATED'}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskResetBeforeLeaving')}" />
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state == 'CREATED'}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskLosingWarning')}" />
+      <f:facet name="footer">
+        <h:form prependId="false">
+          <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
+            <p:commandButton actionListener="#{logic.resetCurrentTaskAndOpenApp}" process="@this" update="@none"
+              value="#{ivy.task.state == 'CREATED' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+              styleClass="ui-confirmdialog-yes" />
+            <p:commandButton actionListener="#{logic.openApp}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" styleClass="ui-confirmdialog-yes"
+              rendered="#{ivy.task.state != 'CREATED'}" />
+            <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide()"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
+              styleClass="ui-confirmdialog-no" />
+          </h:panelGroup>
+        </h:form>
+      </f:facet>
+    </p:dialog>
+
+  </div>
+</cc:implementation>
+</html>
