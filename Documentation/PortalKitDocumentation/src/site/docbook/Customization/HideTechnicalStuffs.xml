@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.hideTechnicalStuffs">
+	<title>Hide technical stuffs</title>
+	<sect2>
+		<title>Hide technical roles</title>
+		<para>
+			A technical role is the role which is not displayed anywhere (e.g. delegate, absence management). AXONIVY_PORTAL_ADMIN
+			is a technical role by default.
+		</para>
+		<para>
+			To mark a role as a technical role, set the
+			<emphasis role="strong">HIDE</emphasis>
+			property with any value to the role.
+		</para>
+		<tip>
+			<para>Use the utility method of Portal to set property:</para>
+			<para>ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.util.HIDE, [ANY_VALUE])</para>
+		</tip>
+	</sect2>
+		<sect2>
+		<title>Hide technical tasks</title>
+		<para>
+			A technical task is the task which is not displayed in any task lists of Portal.
+		</para>
+		<para>
+			To mark a task as a technical task, set the
+			<emphasis role="strong">HIDE</emphasis>
+			additional property with any value to the task.
+		</para>
+		<tip>
+			<para>Use the utility methods of Portal:</para>
+			<itemizedlist>
+				<listitem>
+					<para>Set property: ch.ivy.addon.portalkit.util.TaskUtils.setHidePropertyToHideInPortal(ITask)</para>
+				</listitem>
+				<listitem>
+					<para>Remove property: ch.ivy.addon.portalkit.util.TaskUtils.removeHidePropertyToDisplayInPortal(ITask)</para>
+				</listitem>
+			</itemizedlist>
+		</tip>
+	</sect2>
+</sect1>
