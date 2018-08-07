@@ -1,0 +1,12 @@
+NewTaskMailContent #class
+ch.ivy.components #namespace
+user ch.ivyteam.ivy.security.IUser #field
+user PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+taskStartLink String #field
+taskStartLink PERSISTENT #fieldModifier
+userIdForMail Number #field
+userIdForMail PERSISTENT #fieldModifier
+tasksForUser List<ch.ivy.components.bo.TaskForMail> #field
+tasksForUser PERSISTENT #fieldModifier

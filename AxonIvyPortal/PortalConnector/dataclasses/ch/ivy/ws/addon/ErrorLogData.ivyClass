@@ -1,0 +1,4 @@
+ErrorLogData #class
+ch.ivy.ws.addon #namespace
+errors java.util.List<java.lang.Exception> #field
+errors PERSISTENT #fieldModifier

@@ -1,0 +1,44 @@
+{
+  "uuid" : "764871e4-cf70-401f-83fb-9e99fa897fc4",
+  "id" : "case_map_leave",
+  "name" : "Case Map Leave",
+  "description" : "Case Map Leave sample project to demo casemap, sidesteps, stages breadcrumb",
+  "stages" : [ {
+    "id" : "request_leave",
+    "name" : "Request Leave",
+    "icon" : "css:fa fa-address-card-o",
+    "processes" : [ {
+      "id" : "employee_leave_request",
+      "name" : "Employee leave request",
+      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:14B2FC03D2E87141/leaveRequest.ivp"
+    } ],
+    "sidesteps" : [ {
+      "id" : "submit_leave_reason",
+      "name" : "Submit leave reason",
+      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:15C7B1E826E6485F/start.ivp"
+    }, {
+      "id" : "upload_additional_data",
+      "name" : "Upload additional data",
+      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:15C7B1DACB6CCA9D/start.ivp"
+    } ]
+  }, {
+    "id" : "approve_request",
+    "name" : "Approve request",
+    "icon" : "css:fa fa-check-circle",
+    "isTerminating" : true,
+    "processes" : [ {
+      "id" : "approveleave",
+      "name" : "Approve leave",
+      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:15C7B30FB93C827E/start.ivp"
+    } ]
+  }, {
+    "id" : "postponed",
+    "name" : "Postponed",
+    "icon" : "css:fa fa-exclamation-triangle",
+    "processes" : [ {
+      "id" : "cancel_approval_request",
+      "name" : "Cancel Approval Request",
+      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:15D4E4EBDE11BDC2/start.ivp"
+    } ]
+  } ]
+}

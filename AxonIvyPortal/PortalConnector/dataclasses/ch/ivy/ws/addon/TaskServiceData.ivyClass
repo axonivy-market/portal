@@ -1,0 +1,35 @@
+TaskServiceData #class
+ch.ivy.ws.addon #namespace
+canUserResumeTask Boolean #field
+error ch.ivy.ws.addon.WSException #field
+errors List<ch.ivy.ws.addon.WSException> #field
+ivySecurityMember ch.ivy.ws.addon.types.IvySecurityMember #field
+ivyTask ch.ivy.ws.addon.types.IvyTask #field
+ivyTasks List<ch.ivy.ws.addon.types.IvyTask> #field
+keyword String #field
+note ch.ivy.ws.addon.types.IvyNote #field
+notes List<ch.ivy.ws.addon.types.IvyNote> #field
+user String #field
+allIvyTasks List<ch.ivy.ws.addon.types.IvyTask> #field
+allIvyTasks 'For admin to find all running tasks' #fieldComment
+ivyCase ch.ivy.ws.addon.types.IvyCase #field
+ivyCase 'To find tasks related to the case' #fieldComment
+taskSearchCriteria ch.ivy.ws.addon.service.TaskSearchCriteria #field
+workerUserName String #field
+startIndex Integer #field
+count Integer #field
+taskCount Long #field
+taskCount 'result of counting number of tasks' #fieldComment
+categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+priorityStatistic ch.ivy.ws.addon.types.PriorityStatistic #field
+expiryStatistic ch.ivy.ws.addon.types.ExpiryStatistic #field
+expireToday Long #field
+expireTomorrow Long #field
+expireIn2Days Long #field
+expireIn3Days Long #field
+isUrlBuiltFromSystemProperties Boolean #field
+language String #field
+name String #field
+name 'Additional property''s name' #fieldComment
+value String #field
+value 'Additional property''s value' #fieldComment

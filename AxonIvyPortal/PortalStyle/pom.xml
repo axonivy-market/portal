@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>ch.ivyteam.ivy.project.portal</groupId>
+    <artifactId>portalMavenBuild</artifactId>
+    <version>6.6.141.0</version>
+  </parent>
+  <groupId>ch.ivyteam.ivy.project.portal</groupId>
+  <artifactId>portalStyle</artifactId>
+  <version>6.6.141.0</version>
+  <packaging>iar</packaging>
+  <properties>
+    <resources.directory.css>${resources.directory}/css</resources.directory.css>
+    <resources.directory.less>${resources.directory}/less/</resources.directory.less>
+    <resources.directory>${project.basedir}/webContent/resources</resources.directory>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.lesscss</groupId>
+        <artifactId>lesscss-maven-plugin</artifactId>
+        <version>1.7.0.1.1</version>
+        <configuration>
+          <sourceDirectory>${resources.directory.less}</sourceDirectory>
+          <outputDirectory>${resources.directory.css}</outputDirectory>
+          <outputFileFormat>theme.min.css</outputFileFormat>
+          <includes>
+            <include>theme.less</include>
+          </includes>
+          <force>true</force>
+          <compress>true</compress>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

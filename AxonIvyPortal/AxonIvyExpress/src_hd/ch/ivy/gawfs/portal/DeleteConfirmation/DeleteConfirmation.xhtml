@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/DeleteConfirmation/PageTitle')}</ui:define>
+		<ui:define name="simplePageContent">
+
+			
+			<h:form id="form">
+				<h:panelGrid columns="1" style="width: 100%">
+					<f:facet name="header">
+						<p:messages></p:messages>
+					</f:facet>
+					<h3>
+						<i class="fa fa-trash-o" aria-hidden="true"></i> #{ivy.cms.co('/Dialogs/DeleteConfirmation/DeleteConfirmationTitle')}
+					</h3>
+					
+
+					<h:outputText value="#{ivy.cms.co('/Dialogs/DeleteConfirmation/DeleteConfirmationContent')}" style="font-size:22px;  font-weight: 500;"></h:outputText>
+					<br/>
+
+
+					<h:outputText value="#{data.devLoadWorkflowsData.workflowName}" style="font-size:22px;  font-weight: 500;"></h:outputText>
+					<h:outputText value=" - #{data.devLoadWorkflowsData.workflowDescription}" style="font-size:16px;"></h:outputText>
+				
+					</h:panelGrid>
+					
+					<br />
+					
+				
+			</h:form>
+			
+			<p:commandButton actionListener="#{logic.closeCancel}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="form" icon="fa fa-trash-o" styleClass="portal-cancel-button" />
+			<p:spacer width="30px" />
+			<p:commandButton actionListener="#{logic.closeDelete}" value="#{ivy.cms.co('/Dialogs/DeleteConfirmation/DeleteButton')}" update="form" icon="fa fa-times" styleClass="portal-ok-button" />
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
