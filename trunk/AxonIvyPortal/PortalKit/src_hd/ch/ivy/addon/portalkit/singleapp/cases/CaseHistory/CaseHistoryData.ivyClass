@@ -1,0 +1,16 @@
+CaseHistoryData #class
+ch.ivy.addon.portalkit.singleapp.cases.CaseHistory #namespace
+tasks java.util.List<ch.ivy.addon.portalkit.vo.TaskVO> #field
+tasks PERSISTENT #fieldModifier
+filteredTasks java.util.List<ch.ivy.addon.portalkit.vo.TaskVO> #field
+filteredTasks PERSISTENT #fieldModifier
+caseId Number #field
+caseId PERSISTENT #fieldModifier
+wfCase ch.ivyteam.ivy.workflow.ICase #field
+wfCase PERSISTENT #fieldModifier
+selectedTask ch.ivyteam.ivy.workflow.ITask #field
+selectedTask PERSISTENT #fieldModifier
+comment String #field
+comment PERSISTENT #fieldModifier
+iTasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
+iTasks PERSISTENT #fieldModifier

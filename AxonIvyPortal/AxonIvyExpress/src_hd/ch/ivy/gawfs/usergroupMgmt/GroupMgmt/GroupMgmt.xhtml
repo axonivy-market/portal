@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<h:head>
+	<title>NOT USED</title>
+</h:head>
+<h:body>
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:define name="errorsZone">
+			<h:form id="messageForm">
+				<p:messages escape="false"></p:messages>
+			</h:form>
+		</ui:define>
+
+		<ui:define name="simplePageContent">
+
+			<script language="javascript" type="text/javascript">
+				//<![CDATA[
+				function killBackSpace(e) { //ignore backspace on non text fields or readonly fields
+					e = e ? e : window.event;
+					var t = e.target ? e.target : e.srcElement ? e.srcElement
+							: null;
+					if ((t
+							&& t.tagName
+							&& (t.type && /(password)|(text)|(file)/
+									.test(t.type.toLowerCase())) || t.tagName
+							.toLowerCase() == 'textarea')
+							&& (t && !t.getAttribute("readonly"))) {
+						return true;
+					}
+					var k = e.keyCode ? e.keyCode : e.which ? e.which : null;
+					if (k == 8) {
+						if (e.preventDefault) {
+							e.preventDefault();
+						}
+						return false;
+					}
+					;
+					return true;
+				};
+
+				if (typeof document.addEventListener != 'undefined')
+					document.addEventListener('keydown', killBackSpace, false);
+				else if (typeof document.attachEvent != 'undefined') {
+					document.attachEvent('onkeydown', killBackSpace);
+				} else {
+					if (document.onkeydown != null) {
+						var oldOnkeydown = document.onkeydown;
+						document.onkeydown = function(e) {
+							oldOnkeydown(e);
+							killBackSpace(e);
+						};
+					} else {
+						document.onkeydown = killBackSpace;
+					}
+				}
+				//]]>
+			</script>
+			<h3>
+				<i class="fa fa-group" aria-hidden="true"></i>
+				#{ivy.cms.co('/Dialogs/UsergroupMgmt/mainDIalog/DialogHeadline')}
+			</h3>
+
+
+			<h:form id="form">
+				<p:outputPanel id="groupList" style="text-align:left">
+
+					<h:panelGrid columns="1">
+						<f:facet name="header">
+							<p:messages></p:messages>
+						</f:facet>						
+						<p:dataTable rowsPerPageTemplate="5,10,15"
+							paginatorTemplate="Seite {PageLinks}  {RowsPerPageDropdown} Gruppen pro Seite"
+							paginator="true" paginatorPosition="bottom" rows="10"
+							var="userroles" value="#{data.groups}"
+							sortBy="#{userroles.displayName.length() > 0 ? userroles.displayName : userroles.name}">
+
+							<p:column
+								headerText="#{ivy.cms.co('/Dialogs/UsergroupMgmt/mainDIalog/GroupTableName')}">
+								<h:outputText
+									value="#{userroles.displayName.length() > 0 ? userroles.displayName : userroles.name}" />
+							</p:column>
+
+							<p:column
+								headerText="#{ivy.cms.co('/Dialogs/UsergroupMgmt/mainDIalog/GroupTableActions')}">
+								<p:commandButton onclick="PF('addUserToGroup').show();"
+									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/mainDIalog/GroupTableEdit')}"
+									styleClass="buttonDelegate" style="margin-right:20px"
+									icon="fa fa-pencil" update=":groupDetailsForm:groupDetail"
+									title="Edit group">
+									<f:setPropertyActionListener value="#{userroles.displayName}"
+										target="#{data.actualGroup}" />
+									<f:setPropertyActionListener
+										value="#{logic.getUsersFromRole(userroles.displayName)}"
+										target="#{data.actualUsers}" />
+								</p:commandButton>
+								<p:commandButton onclick="PF('deleteGroup').show();"
+									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/mainDIalog/GroupTableDelete')}"
+									styleClass="buttonDelegate" icon="fa fa-trash"
+									update=":groupDeleteForm:groupDelete" title="Delete group">
+									<f:setPropertyActionListener value="#{userroles.displayName}"
+										target="#{data.actualGroup}" />
+									<f:setPropertyActionListener
+										value="#{logic.getUsersFromRole(userroles.displayName)}"
+										target="#{data.actualUsers}" />
+								</p:commandButton>
+
+							</p:column>
+							<f:facet name="footer">
+                                <h:panelGroup layout="block" style="text-align: right;">
+    								<p:commandButton styleClass="buttonDelegate"
+    									onclick="PF('addUserToGroup').show();"
+    									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/mainDIalog/CreateNewGroup')}"
+    									icon="fa fa-plus"
+    									update=":groupDetailsForm:groupDetail, :groupDetailsForm:addConfirmButton">
+    									<f:setPropertyActionListener value=""
+    										target="#{data.actualGroup}" />
+    									<f:setPropertyActionListener value="true"
+    										target="#{data.isNew}" />
+    									<f:setPropertyActionListener value="#{data.emptyUsers}"
+    										target="#{data.actualUsers}" />
+    								</p:commandButton>
+                                </h:panelGroup>
+							</f:facet>
+
+						</p:dataTable>
+					</h:panelGrid>
+
+				</p:outputPanel>
+			</h:form>
+
+			<!-- Modal Dialogs start here -->
+
+			<!-- Code for Group Details  -->
+			<p:dialog
+				header="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/GroupDetailsHeader')}"
+				widgetVar="addUserToGroup" modal="true"
+				appendTo="@(body)" minHeight="80" resizable="false">
+				<h:form id="groupDetailsForm">
+					<p:outputPanel id="groupDetail">
+						<h:message for="Name" />
+						<h:panelGrid id="panel4" columns="2" styleClass="groupDetailsList">
+
+							<p:outputLabel for="Name"
+								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/GroupName')} *"
+								style="text-align:left" />
+
+							<p:inputText id="Name" maxlength="200"
+								value="#{data.actualGroup}"
+								requiredMessage="Please enter name for group"
+								style="width:220px"></p:inputText>
+
+							<p:outputLabel
+								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/GroupMembers')}"></p:outputLabel>
+
+							<h:panelGrid columns="2" style="float:right">
+								<p:commandButton onclick="PF('userSelection').show();"
+									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/AddUser')}"
+									icon="fa fa-plus" />
+
+								<p:commandButton onclick="PF('userRemoval').show();"
+									value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/RemoveUser')}"
+									icon="fa fa-minus" update=":userRemovalForm:userRemovals">
+									<!-- <f:setPropertyActionListener value="test" target="#{data.removeUserId}" /> -->
+								</p:commandButton>
+							</h:panelGrid>
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<p:selectOneListbox value="#{data.removeUserId}"
+								style="min-width:470px; text-align:left; height: 200px !important; overflow-y: scroll;"
+								converter="ivy.ListItem" styleClass="groupDetailsList">
+								<!-- <f:selectItem itemLabel="User"></f:selectItem> -->
+								<f:selectItems value="#{data.actualUsers}" var="c"
+									itemValue="#{c.name}" itemLabel="#{c.getDisplayName()}" />
+							</p:selectOneListbox>
+							<br />
+						</h:panelGrid>
+						<h:panelGrid columns="2" style="float:right; margin-right: 15px;">
+							<p:commandButton
+								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+								onclick="PF('addUserToGroup').hide();"
+								styleClass="ui-confirmdialog-no portal-cancel-button">
+								<f:setPropertyActionListener value="false"
+									target="#{data.changed}" />
+								<f:setPropertyActionListener value="false"
+									target="#{data.isNew}" />
+								<f:setPropertyActionListener value=""
+									target="#{data.actualGroupOriginal}" />
+							</p:commandButton>
+							<p:commandButton
+								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Confirm')}"
+								onclick="PF('addUserToGroup').hide();"
+								actionListener="#{logic.setUsersForRole(data.actualUsers,data.actualGroup)}"
+								update=":form:groupList" styleClass="ui-confirmdialog-yes portal-ok-button"
+								disabled="#{!(data.actualUsers.size() > 0)}"
+								id="addConfirmButton">
+							</p:commandButton>
+						</h:panelGrid>
+					</p:outputPanel>
+				</h:form>
+			</p:dialog>
+			<!-- Code for Group Details ends Here -->
+
+			<!-- Code for Group Delete  -->
+			<p:dialog
+				header="#{ivy.cms.co('/Dialogs/UsergroupMgmt/DeleteDialog/Header')}"
+				widgetVar="deleteGroup" modal="true"
+				appendTo="@(body)" minHeight="80" resizable="false">
+				<h:form id="groupDeleteForm">
+					<p:outputPanel id="groupDelete">
+						<h:message for="Name" />
+						<h:panelGrid id="panel4" columns="2" styleClass="groupDetailsList">
+
+							<p:outputLabel for="Name"
+								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/DeleteDialog/GroupName')}"
+								style="text-align:left" />
+
+							<p:inputText id="Name" maxlength="200"
+								value="#{data.actualGroup}"
+								requiredMessage="Please enter name for group"
+								style="width:220px" disabled="true"/>
+
+							<p:outputLabel
+								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/DeleteDialog/GroupMembers')}"></p:outputLabel>
+
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<p:selectOneListbox value="#{data.removeUserId}"
+								styleClass="userList"
+								style="width:369px; height: 200px !important;"
+								converter="ivy.ListItem">
+								<f:selectItems value="#{data.actualUsers}" var="c"
+									itemValue="#{c.name}" itemLabel="#{c.getDisplayName()}" />
+							</p:selectOneListbox>
+							<br />
+						</h:panelGrid>
+						<h:panelGrid columns="2" style="float:right">
+							<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+								onclick="PF('deleteGroup').hide();"
+								styleClass="ui-confirmdialog-no portal-cancel-button">
+							</p:commandButton>
+							<p:commandButton value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/DeleteDialog/Header')}"
+								onclick="PF('deleteGroup').hide();"
+								actionListener="#{logic.deleteRole(data.actualGroup)}"
+								update=":form:groupList" styleClass="ui-confirmdialog-yes portal-ok-button" />
+						</h:panelGrid>
+					</p:outputPanel>
+				</h:form>
+			</p:dialog>
+			<!-- Code for Group Details ends Here -->
+
+			<!-- Code for userSelection Starts here -->
+			<p:dialog
+				header="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/AddUser')}"
+				widgetVar="userSelection" modal="true"
+				appendTo="@(body)" resizable="false">
+				<h:form id="userSelectionForm">
+					<p:selectOneListbox value="#{data.actualUserId}" styleClass="userList"
+						style="width:300px; height: 257px !important;" filter="true"
+						filterMatchMode="contains">
+						<!-- 					<f:selectItem itemValue="UserA" itemLabel="User"></f:selectItem> -->
+						<!-- 					<f:selectItem itemValue="UserB" itemLabel="User2"></f:selectItem> -->
+						<f:selectItems value="#{data.users}" var="c" itemValue="#{c.name}"
+							itemLabel="#{c.getDisplayName()}" />
+					</p:selectOneListbox>
+
+					<h:panelGrid columns="2" style="float:right">
+
+						<h:panelGrid />
+						<h:panelGrid />
+						<h:panelGrid />
+						<h:panelGrid />
+
+						<p:commandButton
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+							onclick="PF('userSelection').hide();"
+							styleClass="ui-confirmdialog-no portal-cancel-button" />
+
+						<!-- <p:commandButton style="float:right" value="Ok"
+						onclick="PF('userSelection').hide();"
+						styleClass="ui-confirmdialog-yes" update=":groupDetail">
+						<f:setPropertyActionListener value="#{c}" target="#{data.actualUser}" />
+					</p:commandButton> -->
+						<p:commandButton onclick="PF('userSelection').hide();"
+							actionListener="#{logic.addToList}" styleClass="portal-ok-button"
+							value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Confirm')}"
+							update=":groupDetailsForm:groupDetail">
+						</p:commandButton>
+
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+			<!-- Code for userSelection ends here  -->
+
+			<!-- Code for userSelection Starts here -->
+			<p:dialog
+				header="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/RemoveUser')}"
+				widgetVar="userRemoval" modal="true"
+				appendTo="@(body)" minHeight="20">
+				<h:form id="userRemovalForm">
+					<p:outputPanel id="userRemovals">
+						<p:selectOneListbox value="#{data.removeUserId}"
+							styleClass="userList"
+							style="width:300px; height: 257px !important;" filter="true"
+							filterMatchMode="contains">
+							<f:selectItems value="#{data.actualUsers}" var="c"
+								itemValue="#{c.name}" itemLabel="#{c.getDisplayName()}" />
+						</p:selectOneListbox>
+
+						<h:panelGrid columns="2" style="float:right">
+
+							<h:panelGrid />
+							<h:panelGrid />
+							<h:panelGrid />
+							<h:panelGrid />
+
+							<p:commandButton
+								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+								onclick="PF('userRemoval').hide();"
+								styleClass="ui-confirmdialog-no portal-cancel-button" />
+
+							<p:commandButton onclick="PF('userRemoval').hide();"
+								actionListener="#{logic.removeFromList}" styleClass="portal-ok-button"
+								value="#{ivy.cms.co('/Dialogs/UsergroupMgmt/GroupDetails/Confirm')}"
+								update=":groupDetailsForm:groupDetail">
+							</p:commandButton>
+
+						</h:panelGrid>
+					</p:outputPanel>
+				</h:form>
+			</p:dialog>
+			<!-- Code for userSelection ends here  -->
+
+			<!-- Code for Group Details Casenote -->
+		<!-- 	<p:dialog widgetVar="addNoteRequestor"
+				header="#{ivy.cms.co('/de.eon.aifa.ui/Button/backToRequestor')}"
+				modal="true" appendToBody="true" appendTo="@(body)">
+				<h:form id="addNoteRequestorForm">
+					<h:panelGrid style="width: 100%;">
+						<p:row>
+							<p:column>
+								<p:outputLabel for="caseNote"
+									value="#{ivy.cms.co('/de.eon.aifa.ui/RequestWrapper/furtherInformationByRequestor')}" />
+							</p:column>
+							<p:column>
+								<p:inputTextarea id="caseNote" rows="5" style="width: 100%;"
+									maxlength="4000" autoResize="false" required="true"
+									value="#{data.inputString}" />
+							</p:column>
+						</p:row>
+					</h:panelGrid>
+					<div class="button-bar">
+						<p:commandButton
+							value="#{ivy.cms.co('/de.eon.components.ui/Buttons/ok')}"
+							icon="fa fa-check-circle-o" process="@form :form" styleClass="portal-ok-button"
+							oncomplete="backWithCaseNote([{name:'enableValidation', value:'true'}])" />
+						<p:commandButton
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="portal-cancel-button"
+							icon="fa fa-ban" onclick="PF('addNoteRequestor').hide()" />
+					</div>
+				</h:form>
+			</p:dialog> -->
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
+    <ui:param name="menuState" value="#{data.menuState}" />
+    <ui:param name="useOverrideListHeader" value="true" />
+    <ui:param name="useOverrideHeader" value="true" />
+    <ui:param name="useOverrideFilter" value="true" />
+
+    <ui:define name="taskListHeader">
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        componentId="priority-column-header" styleClass="priority-column-header TexAlCenter"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/priority')}"
+        sortField="#{masterDataBean.taskSortFieldPriority}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        componentId="name-column-header" styleClass="name-column-header"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/nameAndDescription')}"
+        sortField="#{masterDataBean.taskSortFieldName}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        componentId="responsible-column-header"
+        styleClass="responsible-column-header js-responsible-column-header hidden-sm"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}"
+        sortField="#{masterDataBean.taskSortFieldActivator}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        componentId="id-column-header" styleClass="id-column-header js-id-column-header TexAlCenter"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}"
+        sortField="#{masterDataBean.taskSortFieldId}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        componentId="create-column-header" styleClass="create-column-header js-create-column-header TexAlCenter"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}"
+        sortField="#{masterDataBean.taskSortFieldCreationTime}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        componentId="expiry-column-header" styleClass="expiry-column-header js-expiry-column-header TexAlCenter"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expiry')}"
+        sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        componentId="customer-name-header" sortField="customVarcharField5" value="Customer name"
+        styleClass="state-column-header TexAlCenter" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+        componentId="customer-type-header" sortField="customVarcharField1" value="Customer type"
+        styleClass="state-column-header TexAlCenter" />
+    </ui:define>
+
+    <ui:define name="taskHeader">
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" />
+
+      <div class="task-start-info">
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" />
+      </div>
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
+        fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
+        value="#{task.startTimestamp}" styleClass="js-create-cell" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
+        value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
+
+      <h:outputText id="customer-name" styleClass="TexAlCenter" style="flex: 0 0 150px;"
+        value="#{task.customVarCharField5}" />
+      <h:outputText id="customer-type" styleClass="TexAlCenter" style="flex: 0 0 150px;"
+        value="#{task.customVarCharField1}" />
+    </ui:define>
+
+    <ui:define name="taskFilter">
+      <c:set var="filterContainer" value="#{taskView.dataModel.filterContainer}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCreationDateFilter
+        filter="#{filterContainer.creationDateFilter}" dataModel="#{dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskExpiredDateFilter
+        filter="#{filterContainer.expiredDateFilter}" dataModel="#{dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskDescriptionFilter
+        filter="#{filterContainer.descriptionFilter}" dataModel="#{dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter
+        filter="#{filterContainer.responsibleFilter}" dataModel="#{dataModel}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="customer-name-filter" dataModel="#{taskView.dataModel}"
+        taskFilter="#{filterContainer.customerNameFilter}">
+        <p:inputText id="customVarChar5" value="#{filterContainer.customerNameFilter.customerName}" />
+      </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
+
+      <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="customer-type-filter" dataModel="#{taskView.dataModel}"
+        displayFooterButtons="false" taskFilter="#{filterContainer.customerTypeFilter}">
+        <p:selectOneRadio layout="pageDirection" value="#{filterContainer.customerTypeFilter.selectedCustomerType}">
+          <p:ajax update="@([id$='customer-type-filter:filter-open-form']) @form #{p:component('task-view-container')}"
+            global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+          <f:selectItems var="type" value="#{filterContainer.customerTypeFilter.customerTypes}" itemLabel="#{type}"
+            itemValue="#{type}" />
+        </p:selectOneRadio>
+      </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

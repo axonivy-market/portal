@@ -1,0 +1,13 @@
+IvyEmailSetting #class
+ch.ivy.ws.addon.types #namespace
+emailNotificationDisabled Boolean #field
+emailSendOnNewWorkTasks Boolean #field
+emailSendDailyTaskSummaryOnMonday Boolean #field
+emailSendDailyTaskSummaryOnTuesday Boolean #field
+emailSendDailyTaskSummaryOnWednesday Boolean #field
+emailSendDailyTaskSummaryOnThursday Boolean #field
+emailSendDailyTaskSummaryOnFriday Boolean #field
+emailSendDailyTaskSummaryOnSaturday Boolean #field
+emailSendDailyTaskSummaryOnSunday Boolean #field
+customMailEnabled Boolean #field
+appName String #field

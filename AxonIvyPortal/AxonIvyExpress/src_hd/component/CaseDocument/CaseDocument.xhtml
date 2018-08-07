@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<cc:interface componentType="IvyComponent">
+	<cc:attribute name="fileLimit" type="Integer"/>
+	<cc:attribute name="uploadPossible" />
+	<cc:attribute name="allowFiletypes" />
+</cc:interface>
+
+<cc:implementation>
+	<div id="document-table-div">
+
+		<p:dataTable id="document-table" value="#{data.caseDocuments}"
+			var="document"
+			emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}"
+			styleClass="MarTop5" widgetVar="fileTableVar">
+			<p:column
+				headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileName')}"
+				style="font-family:PoloR !important; font-size: 14px !important; font-weight: normal !important; vertical-align: middle !important;">
+				<h:outputText value="#{document.fileName}"
+					title="#{document.fileName}" />
+			</p:column>
+			<p:column
+				headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileSize')}"
+				style="font-family:PoloR !important; font-size: 14px !important; font-weight: normal !important; vertical-align: middle !important;">
+				<h:outputText value="#{document.fileSize}"
+					title="#{document.fileSize}" />
+			</p:column>
+			<p:column
+				headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileDate')}"
+				style="font-family:PoloR !important; font-size: 14px !important; font-weight: normal !important; vertical-align: middle !important;">
+				<h:outputText value="#{dateFormats.format(document.modifiedDate)}"
+					title="#{document.modifiedDate}">
+					<!-- 	         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" /> -->
+				</h:outputText>
+			</p:column>
+
+			<p:column styleClass="Fs14 TexAlCenter"
+				headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}"
+				style="font-family:PoloR !important; font-size: 14px !important; font-weight: normal !important; text-align: center;">
+
+				<p:commandLink id="download" styleClass="fa fa-download MarRight10"
+					immediate="true" ajax="false" process="@widgetVar(fileTableVar)"
+					actionListener="#{logic.downloadFile(document.downloadPath, document.fileName)}"
+					title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
+					<p:fileDownload value="#{data.downloadFile}" />
+				</p:commandLink>
+
+				<p:spacer width="20px"></p:spacer>
+				<p:commandLink id="document-delete" styleClass="fa fa-trash-o"
+					actionListener="#{logic.deleteFile(document.downloadPath)}"
+					rendered="#{cc.attrs.uploadPossible}"
+					update="document-table"
+					title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}"
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/delete')}">
+				</p:commandLink>
+			</p:column>
+
+
+
+		</p:dataTable>
+		<div class="MarTop10"
+			style="text-align: right; background-color: white !important;">
+
+
+		<p:fileUpload id="choose-uploading-file" value="#{data.selectedFile}"
+					mode="advanced" auto="true" dragDropSupport="true"
+					style="background: none !important; text-align: right;"
+					fileUploadListener="#{logic.submitUpload}" update="document-table"
+					label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
+					rendered="#{cc.attrs.uploadPossible}"
+					invalidSizeMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidSizeMessage')}"
+					cancelLabel="Abbrechen" onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}"
+					>
+					</p:fileUpload>
+					
+
+		</div>
+
+
+
+	</div>
+
+
+
+	<!--       <p:messages id="uploading-file-message" for="choose-uploading-file" closable="true" /> -->
+
+	<!-- 		<p:fileUpload id="choose-uploading-file" value="#{data.selectedFile}" -->
+	<!-- 			mode="advanced" auto="true" dragDropSupport="true" style="background: none !important; text-align: right; " -->
+	<!-- 			fileUploadListener="#{logic.submitUpload}" update="document-table" -->
+	<!-- 			fileLimit="#{cc.attrs.fileLimit}" -->
+	<!-- 			rendered="#{cc.attrs.uploadPossible}" /> -->
+
+	<!--         update="uploading-file-message"   -->
+	<!--         auto="true" rendered="#{cc.attrs.uploadPossible}" -->
+	<!--         fileLimit="#{cc.attrs.numberOfFilesLimit}" -->
+	<!--         fileLimitMessage="Limit an hochgeladenen Dateien erreicht!" -->
+	<!--         invalidFileMessage="Datei entspricht nicht den erlaubten Dateiformaten!" -->
+	<!--         sizeLimit="#{data.sizeLimitBytes}" -->
+
+
+	<!--   <p:confirmDialog id="delete-file-confirmation" -->
+	<!--     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmDeleteMessage')}" appendTo="@(body)" -->
+	<!--     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" severity="alert" -->
+	<!--     widgetVar="deleteFileConfirmation"> -->
+	<!--     <p:commandButton id="confirm-delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}" -->
+	<!--       styleClass="Fs14" actionListener="#{logic.submitDelete}" oncomplete="PF('deleteFileConfirmation').hide();" -->
+	<!--       update="document-table uploading-file-message"/> -->
+
+	<!--     <p:commandButton styleClass="Fs14" id="reject-delete-file" -->
+	<!--       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/no')}" onclick="PF('deleteFileConfirmation').hide()" -->
+	<!--       type="button" /> -->
+	<!--   </p:confirmDialog> -->
+
+</cc:implementation>
+</html>

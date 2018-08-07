@@ -1,0 +1,880 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+
+		<ui:composition template="/layouts/TaskTemplate.xhtml">
+		<ui:param name="caseId" value="#{ivy.case.id}" />
+		<ui:param name="task" value="#{ivy.task}" />
+		<ui:param name="caseName" value="#{ivy.case.name}" />
+		<ui:param name="showCommentFunction" value="false" />
+		<ui:param name="showDocumentTab" value="false" />
+		<ui:param name="showCaseFormTab" value="true" />
+		<ui:param name="showCaseStatusInfoTab" value="true" />
+		<ui:param name="showHistoryTab" value="false" />
+		<ui:param name="steps" value="#{data.data.steps}" />
+		<ui:param name="actualStepIndex" value="2" />
+
+
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
+		<ui:define name="taskForm">
+
+			<h:form id="form">
+				<!-- createFormelementTabs -->
+				<div>
+					<p:fieldset id="createTabsField" styleClass="createTabsFieldset" toggleable="true"
+						legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelements')}">
+
+						<p:tabView effect="" id="createTabs"
+							activeIndex="#{data.activeTab}" dynamic="false">
+							<p:ajax event="tabChange" listener="#{logic.tabChange}" />
+
+							<p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputField')}" id="createInputFieldTab">
+							
+								<f:facet name="title">
+					               	<h:outputText style="vertical-align: middle" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputField')}"/>
+					             	<p:graphicImage library="ivy-cms"
+											name="/Layouts/Icons/InputFieldText" width="70" style="vertical-align: middle"/>
+					            </f:facet>
+								<p:messages id="messagesInputFieldType" showDetail="false"
+									autoUpdate="true" closable="true" for="InputFieldName" />
+								<p:messages id="messagesInputFieldLabel" showDetail="false"
+									autoUpdate="true" closable="true" for="InputFieldLabel" />
+
+								<p:panelGrid id="createInputFieldPanelGrid" style="width:100%">
+
+									<p:row style="height: 20px">
+										<p:column style="width:15%; border:none">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:"
+												for="InputFieldName"/>
+										</p:column>
+										<p:column style="width:35%; border:none">
+											<p:inputText id="InputFieldName" required="true" type="text"
+												value="#{data.createInputFieldTab.name}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"/>
+										</p:column>
+										<p:column style="width:25%; border:none">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')}:" for="InputFieldType" />
+										</p:column>
+										<p:column style="width:25%; border:none">
+											<p:selectOneMenu id="InputFieldType"
+												value="#{data.createInputFieldTab.type}" style="width:75%" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}">
+												<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputTypes/TextBox')}"
+													itemValue="InputFieldText" />
+												<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputTypes/NumberField')}"
+													itemValue="InputFieldNumber" />
+												<f:selectItem itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputTypes/DateSelection')}"
+													itemValue="InputFieldDate" />
+												<f:selectItems></f:selectItems>
+
+											</p:selectOneMenu>
+										</p:column>
+									</p:row>
+									<p:row style="height: 20px">
+										<p:column style="border:none">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="InputFieldLabel" />
+										</p:column>
+										<p:column style="border:none">
+											<p:inputText id="InputFieldLabel" required="true"
+												value="#{data.createInputFieldTab.label}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"/>
+										</p:column>
+										<p:column style="border:none">
+
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RequiredField')}:" for="InputFieldRequired" />
+										</p:column>
+										<p:column style="border:none">
+											<p:selectBooleanCheckbox id="InputFieldRequired"
+												value="#{data.createInputFieldTab.required}" />
+										</p:column>
+									</p:row>
+									<p:row style="height: 70px">
+										<p:column colspan="4" style="text-align: right; border:none">
+											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+												actionListener="#{logic.createInputField()}" styleClass="buttonDelegate"
+												icon="fa fa-arrow-down"
+												update="form:availableFormelements form:createTabs"
+												process="form:createTabs:createInputFieldTab" />
+										</p:column>
+									</p:row>
+
+								</p:panelGrid>
+							</p:tab>
+							<p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputArea')}" id="createInputAreaTab">
+								<p:messages id="messagesInputAreaName" showDetail="false"
+									autoUpdate="true" closable="true" for="InputAreaName" />
+								<p:messages id="messagesInputAreaLabel" showDetail="false"
+									autoUpdate="true" closable="true" for="InputAreaLabel" />
+
+								<f:facet name="title">
+					               	<h:outputText style="vertical-align: middle" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputArea')}"/>
+					             	<p:graphicImage library="ivy-cms"
+											name="/Layouts/Icons/InputTextArea" width="70" style="vertical-align: middle"/>
+					            </f:facet>
+
+								<p:panelGrid id="createInputAreaPanelGrid" styleClass="createInputAreaPanelGrid" style="width:100%">
+									<p:row style="height: 20px">
+										<p:column style="width:15%; border:none">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:"
+												for="InputAreaName" />
+										</p:column>
+										<p:column style="width:35%; border:none">
+											<p:inputText id="InputAreaName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+												value="#{data.createInputAreaTab.name}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+										</p:column>
+										<p:column style="width:25%; border:none">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfRows')}:" for="InputAreaNoRows" />
+										</p:column>
+										<p:column style="width:25%; border:none">
+											<p:spinner id="InputAreaNoRows"
+												value="#{data.createInputAreaTab.intSetting}" min="0"
+												max="10" style="width: 70%;"/>
+										</p:column>
+									</p:row>
+									<p:row style="height: 20px">
+										<p:column style="border:none">
+
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="InputAreaLabel" />
+										</p:column>
+										<p:column style="border:none">
+											<p:inputText id="InputAreaLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+												value="#{data.createInputAreaTab.label}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+										</p:column>
+										<p:column style="border:none">
+
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RequiredField')}:" for="InputAreaRequired" />
+										</p:column>
+										<p:column style="border:none">
+											<p:selectBooleanCheckbox id="InputAreaRequired"
+												value="#{data.createInputAreaTab.required}" />
+
+										</p:column>
+									</p:row>
+									<p:row style="height: 70px">
+										<p:column colspan="4" style="text-align: right; border:none">
+
+											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}" styleClass="buttonDelegate"
+												actionListener="#{logic.createInputTextArea}"
+												icon="fa fa-arrow-down"
+												update="form:availableFormelements form:createTabs"
+												process="form:createTabs:createInputAreaTab" />
+										</p:column>
+									</p:row>
+								</p:panelGrid>
+							</p:tab>
+							<p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}" id="createManyCheckboxTab">
+
+								<p:messages id="messagesManyCheckboxName" showDetail="false"
+									autoUpdate="true" closable="true" for="ManyCheckboxName" />
+								<p:messages id="messagesManyCheckboxLabel" showDetail="false"
+									autoUpdate="true" closable="true" for="ManyCheckboxLabel" />
+									
+								<f:facet name="title">
+					               	<h:outputText style="vertical-align: middle" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}"/>
+					             	<p:graphicImage library="ivy-cms"
+											name="/Layouts/Icons/ManyCheckbox" width="70" style="vertical-align: middle"/>
+					            </f:facet>
+
+								<p:panelGrid id="createManyCheckboxGrid" style="width:100%" styleClass="createManyCheckboxGridTable">
+									<p:row style="height: 20px">
+										<p:column style="width: 50%; border:none; vertical-align: top;">
+											<p:panelGrid style="border:none;">
+												<p:row style="height: 20px">
+													<p:column style="width:15%; border:none">
+														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:"
+															for="ManyCheckboxName" />
+			
+													</p:column>
+													<p:column style="width:35%; border:none">
+														<p:inputText id="ManyCheckboxName" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+															type="text" value="#{data.createManyCheckboxTab.name}"
+															style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+													</p:column>
+												</p:row>
+												<p:row style="height: 20px">
+													<p:column style="border:none">
+														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="ManyCheckboxLabel" />
+													</p:column>
+													<p:column style="border:none">
+														<p:inputText id="ManyCheckboxLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+															value="#{data.createManyCheckboxTab.label}"
+															style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+													</p:column>
+												</p:row>
+											</p:panelGrid>
+										</p:column>
+
+										<p:column style="width:15%; border:none">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxFields')}:" />
+										</p:column>
+										
+										<p:column
+											style="width:35%; padding: 0px; border: solid 0px">
+
+											<p:dataTable id="ManyCheckboxOptions" var="option"
+												value="#{data.createManyCheckboxTab.options}"
+												style="padding: 0; border-style: none"
+												styleClass="hide-column-names"
+												emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoCheckboxFieldYet')}">
+
+												<p:column style="text-align: middle">
+
+
+													<p:inputText value="#{option.value}" style="width:70%" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxPlaceholder')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+														placeholder="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxPlaceholder')}" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}"/>
+
+													<p:spacer width="14" height="16" />
+													<p:commandButton icon="fa fa-trash-o fa-2x" title="" styleClass="buttonDelegate" style="padding-right: 8px;"													
+														actionListener="#{data.createManyCheckboxTab.deleteOption(option)}"
+														process="form:createTabs:ManyCheckboxOptions"
+														update="form:createTabs:ManyCheckboxOptions"
+														immediate="true">
+
+													</p:commandButton>
+												</p:column>
+												
+												<f:facet name="footer" >
+													<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AddCheckboxField')}" styleClass="buttonDelegate"
+														icon="fa fa-plus"
+														actionListener="#{data.createManyCheckboxTab.addOption()}"
+														update="form:createTabs:ManyCheckboxOptions"
+														process="form:createTabs:ManyCheckboxOptions" />
+												</f:facet>
+											</p:dataTable>
+										</p:column>
+
+									</p:row>
+
+									<p:row>
+										<p:column colspan="3" style="border:none">
+										</p:column>
+									</p:row>
+
+									<p:row style="height: 70px">
+
+										<p:column colspan="4" style="text-align: right; border:none">
+											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}" 
+												actionListener="#{logic.createManyCheckbox}" styleClass="buttonDelegate"
+												icon="fa fa-arrow-down"
+												update="form:availableFormelements form:createTabs form:createTabs:ManyCheckboxOptions"
+												process="form:createTabs:createManyCheckboxTab form:createTabs:ManyCheckboxOptions" />
+
+										</p:column>
+									</p:row>
+
+								</p:panelGrid>
+
+
+							</p:tab>
+
+							<p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}" id="createOneRadioTab">
+
+								<p:messages id="messagesOneRadioName" showDetail="false"
+									autoUpdate="true" closable="true" for="OneRadioName" />
+								<p:messages id="messagesOneRadioLabel" showDetail="false"
+									autoUpdate="true" closable="true" for="OneRadioLabel" />
+									
+								<f:facet name="title">
+					               	<h:outputText style="vertical-align: middle" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}"/>
+					             	<p:graphicImage library="ivy-cms"
+											name="/Layouts/Icons/OneRadio" width="70" style="vertical-align: middle"/>
+					            </f:facet>
+
+								<p:panelGrid id="createOneRadioGrid" styleClass="createOneRadioGridTable" style="width:100%">
+									<p:row style="height: 20px">
+										<p:column style="width: 50%; border:none; vertical-align: top;">
+											<p:panelGrid style="border:none;">
+												<p:row style="height: 20px">
+													<p:column style="width:15%; border:none">
+														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:" for="OneRadioName" />
+			
+													</p:column>
+													<p:column style="width:35%; border:none">
+														<p:inputText id="OneRadioName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+															value="#{data.createOneRadioTab.name}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+			
+													</p:column>
+												</p:row>
+												<p:row style="height: 20px">
+													<p:column style="border:none">
+														<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="OneRadioLabel" />
+													</p:column>
+													<p:column style="border:none">
+														<p:inputText id="OneRadioLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+															value="#{data.createOneRadioTab.label}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+													</p:column>
+												</p:row>
+											</p:panelGrid>
+										</p:column>
+
+										<p:column style="width:15%; border:none; vertical-align: top; padding-top: 10px;">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/OptionboxFields')}:" />
+
+										</p:column>
+										<p:column
+											style="width:35%; padding: 0px; border: solid 0px">
+
+											<p:dataTable id="OneRadioOptions" var="option"
+												value="#{data.createOneRadioTab.options}"
+												style="padding: 0; border-style: none"
+												emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoOptionboxFieldsYet')}"
+												styleClass="hide-column-names">
+
+												<p:column>
+
+													<p:inputText value="#{option.value}" style="width:70%" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoOptionboxFieldsYet')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+														placeholder="Option" required="true" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}"/>
+
+													<p:spacer width="14" height="16" />
+													<p:commandButton icon="fa fa-trash-o" title="" styleClass="buttonDelegate" style="padding-right: 8px;"
+														actionListener="#{data.createOneRadioTab.deleteOption(option)}"
+														process="form:createTabs:OneRadioOptions"
+														update="form:createTabs:OneRadioOptions"
+														immediate="true">
+
+													</p:commandButton>
+
+												</p:column>
+												<f:facet name="footer">
+													<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AddOptionboxField')}" styleClass="buttonDelegate"
+														icon="fa fa-plus"
+														actionListener="#{data.createOneRadioTab.addOption()}"
+														update="form:createTabs:OneRadioOptions"
+														process="form:createTabs:OneRadioOptions" />
+												</f:facet>
+											</p:dataTable>
+										</p:column>
+									</p:row>
+
+									<p:row>
+										<p:column colspan="3" style="border:none">
+										</p:column>
+
+									</p:row>
+									<p:row style="height: 70px">
+
+										<p:column colspan="4" style="text-align: right; border:none">
+											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+												actionListener="#{logic.createOneRadio}" styleClass="buttonDelegate"
+												icon="fa fa-arrow-down"
+												update="form:availableFormelements form:createTabs"
+												process="form:createTabs:createOneRadioTab" />
+
+										</p:column>
+									</p:row>
+
+								</p:panelGrid>
+
+
+
+							</p:tab>
+
+							<p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputFileUpload')}" id="createFileUploadTab">
+								<p:messages id="messagesFileUploadName" showDetail="false"
+									autoUpdate="true" closable="true" for="FileUploadName" />
+								<p:messages id="messagesFileUploadLabel" showDetail="false"
+									autoUpdate="true" closable="true" for="FileUploadLabel" />
+									
+								<f:facet name="title">
+					               	<h:outputText style="vertical-align: middle" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputFileUpload')}"/>
+					             	<p:graphicImage library="ivy-cms"
+											name="/Layouts/Icons/FileUpload" width="70" style="vertical-align: middle"/>
+					            </f:facet>
+
+								<p:panelGrid id="createFileUploadPanelGrid" styleClass="createFileUploadPanelGrid" style="width:100%">
+									<p:row style="height: 20px">
+										<p:column style="width:15%; border:none">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')}:"
+												for="FileUploadName" />
+										</p:column>
+										<p:column style="width:35%; border:none">
+											<p:inputText id="FileUploadName" required="true" type="text" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementName')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+												value="#{data.createFileUploadTab.name}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+										</p:column>
+										<p:column style="width:25%; border:none">
+
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AllowedFiletypes')}:"
+												for="FileFormats" />
+										</p:column>
+
+										<p:column style="width:25%; border:none" rowspan="3">
+											<p:selectManyCheckbox id="FileFormats"
+												value="#{data.createFileUploadTab.optionsStr}"
+												layout="pageDirection" disabled="true">
+												<f:selectItems value="#{data.createFileUploadTab.options}"
+													var="format" itemLabel="#{format.value}"
+													itemValue="#{format.value}" />
+											</p:selectManyCheckbox>
+										</p:column>
+									</p:row>
+									<p:row style="height: 20px">
+										<p:column style="border:none">
+
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="FileUploadLabel" />
+										</p:column>
+										<p:column style="border:none">
+											<p:inputText id="FileUploadLabel" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+												value="#{data.createFileUploadTab.label}" style="width:91%" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
+										</p:column>
+										<p:column style="border:none">
+
+										</p:column>
+									</p:row>
+									<p:row style="height: 20px">
+										<p:column style="border:none">
+											<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfFiles')}" for="FileUploadNoRows" />
+										</p:column>
+										<p:column style="border:none">
+											<p:spinner id="FileUploadNoRows"
+												value="#{data.createFileUploadTab.intSetting}" min="0"
+												max="10" />
+
+										</p:column>
+										<p:column style="border:none">
+
+
+										</p:column>
+
+									</p:row>
+									<p:row style="height: 70px">
+										<p:column colspan="4" style="text-align: right; border:none">
+
+											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+												actionListener="#{logic.createFileUpload}" styleClass="buttonDelegate"
+												icon="fa fa-arrow-down"
+												update="form:availableFormelements form:createTabs"
+												process="form:createTabs:createFileUploadTab" />
+										</p:column>
+									</p:row>
+								</p:panelGrid>
+
+							</p:tab>
+
+						</p:tabView>
+					</p:fieldset>
+				</div>
+
+				<br />
+
+
+
+				<!-- DragAndDropPanels -->
+				<p:fieldset id="availableFormelementsField" toggleable="true"
+					legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetAvailableFormelements')}">
+					<p:messages id="DnDmessage" showDetail="false" autoUpdate="true"
+						closable="true" for="availableFormelements" />
+					<p:dataGrid id="availableFormelements" var="formelement"
+						style="border: none"
+						emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}"
+						value="#{data.dragAndDropController.availableFormelements}"
+						columns="3">
+						<p:panel id="pnl"
+							style="text-align:center;  vertical-align: middle">
+							<p:panelGrid style="border: none; text-align: left;">
+								<p:row>
+									<p:column style="border: none">
+										<p:graphicImage library="ivy-cms"
+											name="/Layouts/Icons/#{formelement.type}" width="100" />
+									</p:column>
+									<p:column style="border: none">
+										<p:outputLabel value="#{formelement.name}"
+											style="font-size:18px; " />
+
+									</p:column>
+									<p:column style="border: none; text-align: right">
+										<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate"
+											actionListener="#{data.dragAndDropController.deleteFormelement(formelement)}"
+											process="form:availableFormelements" style="padding-right: 8px;"
+											update="form:availableFormelements">
+										</p:commandButton>
+
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+
+						</p:panel>
+
+						<p:draggable for="pnl" revert="true" stack=".ui-panel" />
+
+					</p:dataGrid>
+				</p:fieldset>
+
+				<p:outputPanel styleClass="u-text-align-center">
+					<br />
+					<h:panelGroup id="dragDropIcon" styleClass="u-cursor-pointer">
+						<i class="fa fa-hand-o-up fa-2x"></i>
+						<i class="fa fa-arrow-circle-o-down fa-2x"></i>
+
+					</h:panelGroup>
+
+					<p:tooltip id="dragDropIconTooltip" for="dragDropIcon"
+						value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/DragAndDropTooltip')}"
+						trackMouse="true" />
+				</p:outputPanel>
+
+				<p:fieldset id="selectedFormelementsField" toggleable="true"
+					legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelementsPlacing')}">
+
+					<p:panelGrid style="width:100%; border: solid #656565;">
+						<p:row id="selectedFormelementsHeaderFieldSet"
+							style="text-align:center; border: solid #656565;">
+							<p:column colspan="2">
+
+								<p:outputPanel id="selectedFormelementsHeaderPanel">
+									<p:outputPanel
+										rendered="#{empty data.dragAndDropController.selectedFormelementsHeader}">
+										<br />
+										<h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadHeaderArea')}"
+											style="font-size:24px;" />
+										<br />
+										<br />
+									</p:outputPanel>
+									<h:outputText value="#{ivy.cms.co('/Dialogs/FormDef/SecDefDialog/BreiterHeader')}"
+										rendered="#{not empty data.dragAndDropController.selectedFormelementsHeader}" />
+
+									<p:dataGrid id="selectedFormelementsHeader" var="formelement" style="border: none;"
+										value="#{data.dragAndDropController.selectedFormelementsHeader}"
+										rendered="#{not empty data.dragAndDropController.selectedFormelementsHeader}"
+										columns="1">
+
+										<p:panel id="pnl"
+											style="">
+											<p:panelGrid
+												style="border: none; ">
+												<p:row >
+													<p:column style="border: none;">
+														<p:graphicImage library="ivy-cms"
+															name="/Layouts/Icons/#{formelement.type}" width="80" />
+													</p:column>
+													<p:column style="border: none">
+														<p:outputLabel value="#{formelement.name}"
+															style="font-size:18px;" />
+
+													</p:column>
+													<p:column style="border: none; text-align: right">
+														<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate"
+															actionListener="#{data.dragAndDropController.resetFormelementHeader(formelement)}"
+															process="form:selectedFormelementsHeader" style="padding-right: 8px;"
+															update="form">
+
+														</p:commandButton>
+
+													</p:column>
+												</p:row>
+											</p:panelGrid>
+
+										</p:panel>
+
+									</p:dataGrid>
+
+									<p:droppable for="selectedFormelementsHeaderFieldSet"
+										tolerance="pointer" activeStyleClass="ui-state-highlight"
+										datasource="form:availableFormelements" onDrop="handleDrop">
+
+										<p:ajax
+											listener="#{data.dragAndDropController.onFieldDropHeader}"
+											update="form:selectedFormelementsHeaderPanel form:availableFormelements form:dynaFormFieldSet" />
+									</p:droppable>
+
+
+								</p:outputPanel>
+							</p:column>
+						</p:row>
+						<p:row style="text-align:center; border: solid #656565;">
+							<p:column colspan="1" id="selectedFormelementsLeftPanelFieldSet"
+								style="text-align:center; width: 50%; border-color: solid #656565;">
+
+								<p:outputPanel id="selectedFormelementsLeftPanelPanel">
+
+									<p:outputPanel
+										rendered="#{empty data.dragAndDropController.selectedFormelementsLeftPanel}">
+										<br />
+										<h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/LeftColumn')}" style="font-size:24px;" />
+										<br />
+										<br />
+									</p:outputPanel>
+									<h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/LeftColumn')}"
+										rendered="#{not empty data.dragAndDropController.selectedFormelementsLeftPanel}" />
+
+									<p:dataGrid id="selectedFormelementsLeftPanel"
+										var="formelement" style="border: none" columns="1"
+										value="#{data.dragAndDropController.selectedFormelementsLeftPanel}"
+										rendered="#{not empty data.dragAndDropController.selectedFormelementsLeftPanel}">
+
+										<p:panel id="pnl"
+											style="text-align:center;  vertical-align: middle">
+											<p:panelGrid
+												style="border: none; text-align: left; ">
+												<p:row>
+													<p:column style="border: none">
+														<p:graphicImage library="ivy-cms"
+															name="/Layouts/Icons/#{formelement.type}" width="80" />
+													</p:column>
+													<p:column style="border: none">
+														<p:outputLabel value="#{formelement.name}"
+															style="font-size:18px;" />
+
+													</p:column>
+													<p:column style="border: none; text-align: right">
+														<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate" style="padding-right: 8px;"
+															actionListener="#{data.dragAndDropController.resetFormelementLeftPanel(formelement)}"
+															process="form:selectedFormelementsLeftPanel" update="form">
+
+														</p:commandButton>
+
+													</p:column>
+												</p:row>
+											</p:panelGrid>
+
+										</p:panel>
+
+
+									</p:dataGrid>
+
+									<p:droppable for="selectedFormelementsLeftPanelFieldSet"
+										tolerance="pointer" activeStyleClass="ui-state-highlight"
+										datasource="form:availableFormelements" onDrop="handleDrop">
+
+										<p:ajax
+											listener="#{data.dragAndDropController.onFieldDropLeftPanel}"
+											update="form:selectedFormelementsLeftPanelPanel form:availableFormelements form:dynaFormFieldSet" />
+									</p:droppable>
+
+
+								</p:outputPanel>
+							</p:column>
+
+							<p:column colspan="1" id="selectedFormelementsRightPanelFieldSet"
+								style="text-align:center; width: 50%;">
+								<p:outputPanel id="selectedFormelementsRightPanelPanel">
+
+									<p:outputPanel
+										rendered="#{empty data.dragAndDropController.selectedFormelementsRightPanel}">
+										<br />
+										<h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RightColumn')}" style="font-size:24px;" />
+										<br />
+										<br />
+									</p:outputPanel>
+									<h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RightColumn')}"
+										rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}" />
+
+
+									<p:dataGrid id="selectedFormelementsRightPanel"
+										var="formelement" style="border: none; text-align:center" columns="1"
+										value="#{data.dragAndDropController.selectedFormelementsRightPanel}"
+										rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}">
+
+										<p:panel id="pnl"
+											style="text-align:center;  vertical-align: middle">
+											<p:panelGrid
+												style="border: none; text-align: left; ">
+												<p:row>
+													<p:column style="border: none">
+														<p:graphicImage library="ivy-cms"
+															name="/Layouts/Icons/#{formelement.type}" width="80" />
+													</p:column>
+													<p:column style="border: none">
+														<p:outputLabel value="#{formelement.name}"
+															style="font-size:18px;" />
+
+													</p:column>
+													<p:column style="border: none; text-align: right">
+														<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate" style="padding-right: 8px;"
+															actionListener="#{data.dragAndDropController.resetFormelementRightPanel(formelement)}"
+															process="form:selectedFormelementsRightPanel" update="form">
+
+														</p:commandButton>
+
+													</p:column>
+												</p:row>
+											</p:panelGrid>
+
+										</p:panel>
+
+									</p:dataGrid>
+
+									<p:droppable for="selectedFormelementsRightPanelFieldSet"
+										tolerance="pointer" activeStyleClass="ui-state-highlight"
+										datasource="form:availableFormelements" onDrop="handleDrop">
+
+										<p:ajax
+											listener="#{data.dragAndDropController.onFieldDropRightPanel}"
+											update="form:selectedFormelementsRightPanelPanel form:availableFormelements form:dynaFormFieldSet" />
+									</p:droppable>
+								</p:outputPanel>
+							</p:column>
+						</p:row>
+
+
+
+						<p:row id="selectedFormelementsFooterFieldSet"
+							style="text-align:center; border: solid #656565;">
+							<p:column colspan="2">
+								<p:outputPanel id="selectedFormelementsFooterPanel">
+
+									<p:outputPanel
+										rendered="#{empty data.dragAndDropController.selectedFormelementsFooter}">
+										<br />
+										<h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadFooterArea')}"
+											style="font-size:24px;" />
+										<br />
+										<br />
+									</p:outputPanel>
+									<h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadFooterArea')}"
+										rendered="#{not empty data.dragAndDropController.selectedFormelementsFooter}" />
+
+
+
+									<p:dataGrid id="selectedFormelementsFooter" var="formelement"
+										value="#{data.dragAndDropController.selectedFormelementsFooter}"
+										rendered="#{not empty data.dragAndDropController.selectedFormelementsFooter}"
+										style="border: none; text-align:center" columns="1">
+
+										<p:panel id="pnl"
+											style="text-align:center;  vertical-align: middle">
+											<p:panelGrid
+												style="border: none; text-align: left;">
+												<p:row>
+													<p:column style="border: none">
+														<p:graphicImage library="ivy-cms"
+															name="/Layouts/Icons/#{formelement.type}" width="80" />
+													</p:column>
+													<p:column style="border: none">
+														<p:outputLabel value="#{formelement.name}"
+															style="font-size:18px;" />
+
+													</p:column>
+													<p:column style="border: none; text-align: right">
+														<p:commandButton icon="fa fa-trash fa-3x" title="" styleClass="buttonDelegate" style="padding-right: 8px;"
+															actionListener="#{data.dragAndDropController.resetFormelementFooter(formelement)}"
+															process="form:selectedFormelementsFooter" update="form">
+
+														</p:commandButton>
+
+													</p:column>
+												</p:row>
+											</p:panelGrid>
+
+										</p:panel>
+
+									</p:dataGrid>
+
+									<p:droppable for="selectedFormelementsFooterFieldSet"
+										tolerance="pointer" activeStyleClass="ui-state-highlight"
+										datasource="form:availableFormelements" onDrop="handleDrop">
+
+										<p:ajax
+											listener="#{data.dragAndDropController.onFieldDropFooter}"
+											update="form:selectedFormelementsFooterPanel form:availableFormelements form:dynaFormFieldSet" />
+									</p:droppable>
+
+								</p:outputPanel>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+
+				</p:fieldset>
+
+
+				<!-- DynaForm Vorschau -->
+				<br />
+
+				<p:fieldset id="dynaFormFieldSet" toggleable="true"
+				legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetPreviewArea')}" styleClass="dynaFormFieldSet">
+
+					<pe:dynaForm id="dynaForm" value="#{data.dynaFormController.model}"
+						var="dynaData" columnClasses="label-container, field-container"
+						style="width:100%">
+
+						<pe:dynaFormControl type="InputFieldText" for="inputFieldText"  >
+							<p:inputText id="inputFieldText" value="#{dynaData.value}" 
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+								style="width: 90%"/>
+								
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="InputFieldNumber" for="inputFieldNumber">
+							<p:spinner id="inputFieldNumber" value="#{dynaData.value}"
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}" min="0" />
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="InputFieldDate" for="inputFieldDate"
+							styleClass="calendar">
+							<p:calendar id="inputFieldDate" value="#{dynaData.value}" style="width:128px"
+								required="#{dynaData.required}" showOn="button" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"/>
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="InputTextArea" for="inputTextArea">
+							<p:inputTextarea id="inputTextArea" value="#{dynaData.value}"
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+								rows="#{dynaData.intSetting}" autoResize="false" />
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="ManyCheckbox" for="manyCheckbox">
+							<p:selectManyCheckbox id="manyCheckbox" value="#{dynaData.value}"
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}" layout="pageDirection">
+								<f:selectItems value="#{dynaData.optionsStr}" />
+							</p:selectManyCheckbox>
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="OneRadio" for="oneRadio">
+							<p:selectOneRadio id="oneRadio" value="#{dynaData.value}"
+								required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/GenericReqMsg')}"
+								layout="pageDirection">
+								<f:selectItems value="#{dynaData.optionsStr}" />
+							</p:selectOneRadio>
+						</pe:dynaFormControl>
+
+
+						<pe:dynaFormControl type="FileUpload" for="fileUpload">
+								<ic:component.CaseDocument uploadPossible="false"
+								fileLimit="#{dynaData.intSetting}"
+								startMethod="start(#{dynaData.options})"
+								allowFiletypes="#{dynaData.options}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/genericErrMsg')}"/>
+
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="Spacer" for="spacer">
+							<p:spacer width="50" height="16" id="spacer" />
+						</pe:dynaFormControl>
+
+
+
+					</pe:dynaForm>
+
+
+
+				</p:fieldset>
+				<br/>
+				<p:outputPanel style="text-align: right">
+					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left" update="form:selectedFormelementsField" styleClass="buttonDelegate" process="form:selectedFormelementsField" actionListener="#{logic.back}"/>
+					
+					<p:spacer width="20px"></p:spacer>
+					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+						actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times" update="form:selectedFormelementsField" process="form:selectedFormelementsField"/>
+					<p:spacer width="20px"></p:spacer>
+					
+					<p:commandButton  value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save"  styleClass="buttonDelegate" update="form:selectedFormelementsField" process="form:selectedFormelementsField" actionListener="#{logic.close}"/>
+					<p:spacer width="20px" rendered="#{data.data.processType eq 'AHWF'}"></p:spacer>
+					<p:commandButton rendered="#{data.data.processType eq 'AHWF'}" icon="fa fa-check"  styleClass="buttonDelegate portal-ok-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}" update="form:selectedFormelementsField" process="form:selectedFormelementsField" actionListener="#{logic.directExecution}"/>
+					
+				</p:outputPanel>
+				
+				<script type="text/javascript">
+					function handleDrop(event, ui) {
+						var droppedFormelement = ui.draggable;
+						droppedFormelement.fadeOut('fast');
+					}
+				</script>
+
+
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

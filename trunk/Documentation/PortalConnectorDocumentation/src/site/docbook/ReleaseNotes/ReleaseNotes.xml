@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="portalconnectordocumentation.releasenotes">
+	<title>Release notes</title>
+	<sect1 xml:id="portalconnectordocumentation.releasenotes.projectdescription">
+		<title>Project description</title>
+		<para>
+			Portal connector provide web service to retrieve data for Portal. Portal connector works with ivy engine from <code>6.0</code>
+			<code>Säntis</code>. E.g. <code>6.2.</code>
+		</para>
+		<para>
+			In this release, <code>IsAlive</code> web service <emphasis role="bold">is deprecated</emphasis> and <emphasis role="bold">replaced</emphasis> by <code>ApplicationService</code>.
+		</para>
+	</sect1>
+	<sect1 xml:id="portalconnectordocumentation.releasenotes.features">
+		<title>Features</title>
+		<para>All <code>Portal connector</code> web services are secured now with authentication.</para>
+		<para>
+			Portal connector provide service to get data about:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Absence
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Application
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Case
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Process start
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Security
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Supported language
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Task
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						User setting
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Web start (Process start and case map)
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect1>
+	<sect1 xml:id="portalconnectordocumentation.releasenotes.changes">
+		<title>Changes</title>
+		<sect2>
+			<title>Changes in 6.6</title>
+			<itemizedlist>
+				<listitem>
+					<para>Param: JsonQuery is added to TaskService for TaskQuery customization</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+		<sect2>
+			<title>Changes in 6.5</title>
+			<itemizedlist>
+				<listitem>
+					<para>URL detection on single server: use request URL to generate links for processes, tasks</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+	</sect1>
+</chapter>

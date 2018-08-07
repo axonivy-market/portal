@@ -1,0 +1,150 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/GAWFSPortalHome/PageTitle')}</ui:define>
+		<ui:define name="simplePageContent">
+
+			<h:panelGrid columns="2"
+				style="width: 95%; vertical-align: top;">
+				<h:panelGroup style="vertical-align: top; font-size: 16px; line-height: 1.3;">
+					<h4>Welcome to Axon.ivy Express!</h4>
+				</h:panelGroup>
+			</h:panelGrid>
+			<h:form id="form" style="margin-top: 10px">
+				<h:panelGrid columns="1" style="width: 100%">
+					<f:facet name="header">
+						<p:messages></p:messages>
+					</f:facet>
+					<p:panelGrid style="border: none; width: 100%;">
+						<p:row>
+							<p:column styleClass="express-panel">
+								<h3>
+									<i class="fa fa-fire" aria-hidden="true"></i> #{ivy.cms.co('/Dialogs/GAWFSPortalHome/AvailableProcess')}
+								</h3>
+
+								<p:commandButton styleClass="create-process-button" value="Create Process" icon="fa fa-plus"
+											actionListener="#{logic.startProcess(data.createWorkflowStartLink)}" />
+
+
+								<p:dataGrid id="availableWorkflows" var="workflow" styleClass="workflow-data-grid"
+									emptyMessage="#{ivy.cms.co('/Dialogs/GAWFSPortalHome/NoWorkflowAvailable')}" 
+									value="#{data.workflows}" columns="1" layout="grid">
+
+									<p:panel style="vertical-align: middle; border:none; width: 100%;">
+										<p:panelGrid style="width: 100%;margin-top:-10px"
+											styleClass="express-start-process-panel processStartsPanelGrid">
+											<p:row style="width: 100%;">
+												<p:column style="padding: 1px 2px; border: none; vertial-align: middle; overflow:hidden; white-space:nowrap; -ms-text-overflow:ellipsis; text-overflow:ellipsis;">
+													<p:panel style="border:2px solid #f5f5f5;box-shadow: 3px 0 2px 0 rgba(150, 150, 150, 1); border-radius: 12px;">
+													<p:panelGrid  styleClass="process-list">
+														<p:row style="width: 100%;">
+														<p:column colspan="1" rowspan="2">
+															</p:column>
+															<p:column colspan="1" rowspan="2"
+																style="padding: 1px 2px; padding-right: 0px; padding-left: 0px;">
+																<i class="fa fa-chevron-right fa-sm" aria-hidden="true">&#160;</i>
+															</p:column>
+															<p:column colspan="1" rowspan="2" styleClass="separator" />
+															<p:column colspan="1" rowspan="2">
+															</p:column>
+															<p:column colspan="1" style="padding: 1px 2px; width: 100%;">
+																<h:outputText id="test1" value="#{workflow.processName}"
+																	style="font-size:15px; font-weight: bold;display: inline; overflow: hidden; height: 80px;"></h:outputText>
+
+																<p:spacer width="5px"></p:spacer>
+
+																<h:outputLink id="owner" value="" style="color: #656565">
+																	<i class="fa fa-user" aria-hidden="true"
+																		style="vertical-align: middle;margin-bottom:5px"></i>
+																</h:outputLink>
+
+																<p:tooltip id="toolTipTrack1" for="test1"
+																	value="#{workflow.processDescription}"
+																	trackMouse="true" />
+																<p:tooltip id="toolTipTrack2" for="owner"
+																	value="#{workflow.ownerDetails}" trackMouse="true" />
+																
+																<br/>
+																<h:outputText id="test2"
+																	value="#{workflow.processDescription}"
+																	style="font-size:14px; display: inline; overflow: hidden; height: 80px;"></h:outputText>
+															</p:column>
+																<p:column colspan="1" rowspan="2" />
+														
+															<p:column colspan="1" styleClass="separator" style="padding: 1px 2px; width: 100%;">
+																
+
+															</p:column>
+															<p:column styleClass="icon-placeholder" rendered="#{workflow.owner}">
+															<h:outputLink value="#{workflow.processDeleteLink}">
+																<i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+															</h:outputLink>
+
+															</p:column>
+															<p:column styleClass="icon-placeholder" rendered="#{workflow.owner}">
+																<h:outputLink value="#{workflow.processEditLink}">
+																	<i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+																</h:outputLink>
+															</p:column>
+
+															<p:column styleClass="icon-placeholder">
+																<h:outputLink value="#{workflow.processStartLink}">
+																	<i class="fa fa-play fa-2x" aria-hidden="true"></i>
+																</h:outputLink>
+															</p:column>
+														</p:row>
+														
+													</p:panelGrid>
+													</p:panel>
+												</p:column>
+												
+												
+											</p:row>
+										</p:panelGrid>
+										
+									</p:panel>
+
+								</p:dataGrid>
+
+							</p:column>
+							<p:column style="width: 40%; vertical-align: top; border: none">
+							
+								<h3>
+									<i class="fa fa-fire" aria-hidden="true"></i> #{ivy.cms.co('/Dialogs/GAWFSPortalHome/ProcessOverview')}
+								</h3>
+
+
+								<p:chart type="bar" model="#{data.barChartProcesses}"  responsive="true" style="height:inherit"/>
+							
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					<script>
+						function barChartExtender() {
+							this.cfg.grid = {
+								background : '#FFF' //Set background to white
+							};
+						}
+					</script>
+
+
+
+
+
+
+					<br />
+					<!-- 					<p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="ui-icon-check" /> -->
+				</h:panelGrid>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

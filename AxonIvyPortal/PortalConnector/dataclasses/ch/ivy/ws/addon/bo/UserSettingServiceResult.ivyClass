@@ -1,0 +1,5 @@
+UserSettingServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+userSetting ch.ivy.ws.addon.types.IvyUserSetting #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+emailSettings java.util.List<ch.ivy.ws.addon.types.IvyEmailSetting> #field

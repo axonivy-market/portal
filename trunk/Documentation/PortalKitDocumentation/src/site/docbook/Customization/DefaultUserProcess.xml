@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.defaultuserprocess">
+	<title>Default user process</title>
+	<sect2 xml:id="axonivyportal.customization.defaultuserprocess.introduction">
+		<title>Introduction</title>
+		<para>
+			In Portal homepage, the <code>Process widget</code> displays default processes, you can customize them so that project important starts are displayed.
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.defaultuserprocess.customization">
+		<title>Customization</title>
+		<para>
+			Create a callable sub process in your project with the <code>createDefaultUserProcesses()</code> signature. It must return a list of user processes: <code>defaultUserProcesses(List&lt;UserProcess&gt;)</code> (you can override this process in PortalKit):
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/DefaultUserProcess/DefaultUserProcesses.png" />
+				</imageobject>
+			</mediaobject>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/DefaultUserProcess/DefaultProcessReturn.png" />
+				</imageobject>
+			</mediaobject>
+		</para>
+	</sect2>
+</sect1>

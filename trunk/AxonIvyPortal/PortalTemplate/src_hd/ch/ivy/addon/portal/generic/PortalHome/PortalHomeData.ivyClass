@@ -1,0 +1,6 @@
+PortalHomeData #class
+ch.ivy.addon.portal.generic.PortalHome #namespace
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskView PERSISTENT #fieldModifier
+isNotLogin Boolean #field
+isNotLogin PERSISTENT #fieldModifier

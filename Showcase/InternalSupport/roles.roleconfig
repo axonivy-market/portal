@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<role>
+    <identifier>Everybody</identifier>
+    <role>
+        <identifier>Purchasing</identifier>
+        <displayName>Puschaser</displayName>
+    </role>
+    <role>
+        <identifier>Sales</identifier>
+        <displayName>Sales Man</displayName>
+    </role>
+    <role>
+        <identifier>Storage</identifier>
+    </role>
+    <role>
+        <identifier>Employee</identifier>
+    </role>
+    <role>
+        <identifier>Manager</identifier>
+    </role>
+    <role>
+        <identifier>FK</identifier>
+    </role>
+    <role>
+        <identifier>Human Ressources</identifier>
+    </role>
+    <role>
+        <identifier>HR</identifier>
+    </role>
+    <role>
+        <identifier>CEO</identifier>
+    </role>
+    <role>
+        <identifier>Qualitymanager</identifier>
+    </role>
+    <role>
+        <identifier>Projectmanager</identifier>
+    </role>
+</role>
