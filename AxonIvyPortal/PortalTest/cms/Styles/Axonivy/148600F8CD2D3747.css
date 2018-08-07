@@ -1,0 +1,83 @@
+th
+{
+  font-weight: bold;
+  background-color: #eaeaea;
+  color: #575656
+}
+
+td {
+  font-weight: normal;
+  color: #575656
+}
+
+thead tr th,
+tbody tr th,
+tfoot tr th,
+thead tr td,
+tbody tr td,
+tfoot tr td
+{
+  padding: 4px;
+  line-height: 1.42857143;
+}
+
+input{
+  font-weight: normal;
+  border: 1px solid #dfdfdf;
+  color: #272727;
+  padding: 4px;
+	outline: none;
+}
+
+input:focus, 
+input:hover,
+textarea:focus,
+textarea:hover,
+select:hover,
+select:focus
+{
+  border: 1px solid #afca05;
+  outline: none;
+}
+
+input[type="submit"]
+input[type="reset"] {
+  border: 1px solid #cccccc;
+  background: #dfdfdf;
+  font-weight: bold;
+  color: #272727;
+  padding: .3em 1em;
+}
+
+input[type="submit"]:focus,
+input[type="submit"]:hover, 
+input[type="reset"]:focus,
+input[type="reset"]:hover{
+  border: 1px solid #afca05;
+  background: #afca05;
+}
+
+input[type="file"] {
+  font-weight: normal;
+	border:0px;
+  background: #ffffff;
+  color: #272727;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+input[type="radio"] {
+	margin: 4px;
+}
+
+textarea, select {
+  font-weight: normal;
+  border: 1px solid #dfdfdf;
+  color: #272727;
+  padding: 4px;
+}
+
+
+

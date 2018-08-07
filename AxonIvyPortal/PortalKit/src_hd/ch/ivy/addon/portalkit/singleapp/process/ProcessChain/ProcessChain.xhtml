@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="actualStepIndex" shortDescription="Actual step index or current step index" />
+  <cc:attribute name="steps" shortDescription="List of step in the process chain" />
+  <cc:attribute name="stages" type="java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;" />
+  <cc:attribute name="currentIndex" type="java.lang.Integer" />
+</cc:interface>
+
+<cc:implementation>
+  <!-- Process chain of axon express -->
+  <div id="#{cc.clientId}">
+    <div class="process-chain">
+      <c:forEach items="#{cc.attrs.steps}" var="stepName" varStatus="counter">
+        <h:panelGroup layout="block" id="step-info-#{counter.index}" 
+          class="foreground-text-color process-step #{cc.attrs.actualStepIndex eq counter.index ? 'current' :  cc.attrs.actualStepIndex > counter.index ? 'visited' : 'waiting'}">
+          <span class="step-title">${stepName}</span>
+        </h:panelGroup>
+        <p:tooltip for="step-info-#{counter.index}" value="#{stepName}" escape="false" trackMouse="true" />
+      </c:forEach>
+    </div>
+  </div>
+
+  <!-- Stages breadcrumb for CaseMap -->
+  <div id="stage-breadcrumb" class="stages-chain">
+    <c:forEach items="#{cc.attrs.stages}" var="stage" varStatus="counter">
+      <h:panelGroup layout="block" id="stage-info-#{counter.index}"
+        class="process-step #{cc.attrs.currentIndex eq counter.index ? 'current' :  cc.attrs.currentIndex > counter.index ? 'visited' : 'waiting'}">
+        <span class="stage-title"><i class="#{stage.icon.cssClass eq '' ? 'fa fa-square' : stage.icon.cssClass}" /><br />
+          <span class="stage-name">#{stage.name}</span></span>
+      </h:panelGroup>
+      <p:tooltip for="stage-info-#{counter.index}" value="#{stage.name}" escape="false" trackMouse="true" />
+      <c:if test="#{cc.attrs.stages.size() gt counter.index+1}">
+        <div class="process-flow">
+          <span class="flow-txt"><div class="#{stage.isTerminating()  ? 'none' : 'visible'}" /></span>
+        </div>
+      </c:if>
+    </c:forEach>
+  </div>
+</cc:implementation>
+
+</html>

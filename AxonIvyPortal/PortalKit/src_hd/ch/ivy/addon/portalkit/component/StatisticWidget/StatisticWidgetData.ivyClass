@@ -1,0 +1,35 @@
+StatisticWidgetData #class
+ch.ivy.addon.portalkit.component.StatisticWidget #namespace
+priorityPieModel org.primefaces.model.chart.PieChartModel #field
+priorityPieModel PERSISTENT #fieldModifier
+expiryBarChartModel org.primefaces.model.chart.BarChartModel #field
+expiryBarChartModel PERSISTENT #fieldModifier
+compactMode Boolean #field
+compactMode PERSISTENT #fieldModifier
+username String #field
+username PERSISTENT #fieldModifier
+lowPriorityColor String #field
+lowPriorityColor PERSISTENT #fieldModifier
+normalPriorityColor String #field
+normalPriorityColor PERSISTENT #fieldModifier
+highPriorityColor String #field
+highPriorityColor PERSISTENT #fieldModifier
+exceptionPriorityColor String #field
+exceptionPriorityColor PERSISTENT #fieldModifier
+expiryBarColor String #field
+expiryBarColor PERSISTENT #fieldModifier
+priorityStatistic ch.ivy.ws.addon.PriorityStatistic #field
+priorityStatistic PERSISTENT #fieldModifier
+expiryStatistic ch.ivy.ws.addon.ExpiryStatistic #field
+expiryStatistic PERSISTENT #fieldModifier
+hasStatistic Boolean #field
+hasStatistic PERSISTENT #fieldModifier
+serverId Long #field
+serverId 'the id of the selected server' #fieldComment
+serverId PERSISTENT #fieldModifier
+involvedApplications List<String> #field
+involvedApplications 'the name of the selected app' #fieldComment
+involvedApplications PERSISTENT #fieldModifier
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment
+jsonQuery PERSISTENT #fieldModifier

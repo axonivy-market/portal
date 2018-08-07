@@ -1,0 +1,14 @@
+TaskItemNotesData #class
+ch.ivy.addon.portalkit.component.TaskItemNotes #namespace
+task ch.ivy.addon.portalkit.bo.RemoteTask #field
+task PERSISTENT #fieldModifier
+noteContent String #field
+noteContent PERSISTENT #fieldModifier
+note ch.ivy.ws.addon.IvyNote #field
+note PERSISTENT #fieldModifier
+notes List<ch.ivy.ws.addon.IvyNote> #field
+notes PERSISTENT #fieldModifier
+errors List<ch.ivy.ws.addon.WsException> #field
+errors PERSISTENT #fieldModifier
+fullNote String #field
+fullNote PERSISTENT #fieldModifier

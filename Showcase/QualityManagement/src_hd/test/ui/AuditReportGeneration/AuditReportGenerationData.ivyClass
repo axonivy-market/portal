@@ -1,0 +1,11 @@
+AuditReportGenerationData #class
+test.ui.AuditReportGeneration #namespace
+Mitarbeiter String #field
+Auditor String #field
+Termin Date #field
+compliant Boolean #field
+ReportID Number #field
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier
+steps List<String> #field
+steps PERSISTENT #fieldModifier

@@ -1,0 +1,14 @@
+WorkflowDefinitionData #class
+ch.ivy.gawfs.workflowCreation.WorkflowDefinition #namespace
+data gawfs.Data #field
+data PERSISTENT #fieldModifier
+one Number #field
+one PERSISTENT #fieldModifier
+openTask gawfs.TaskDef #field
+openTask PERSISTENT #fieldModifier
+AvailableRolesAndUsers List<ch.ivyteam.ivy.security.ISecurityMember> #field
+AvailableRolesAndUsers PERSISTENT #fieldModifier
+selectedRoleOrUser ch.ivyteam.ivy.security.ISecurityMember #field
+selectedRoleOrUser PERSISTENT #fieldModifier
+autoCompleteQuery String #field
+autoCompleteQuery PERSISTENT #fieldModifier
