@@ -1,0 +1,12 @@
+ProcessStartServiceIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+language String #field
+password String #field
+processSearchCriteria ch.ivy.ws.addon.ProcessSearchCriteria #field
+processStarts List<ch.ivy.ws.addon.IvyProcessStart> #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+serverUrl String #field
+userName String #field
+isNoConfigurationMode Boolean #field

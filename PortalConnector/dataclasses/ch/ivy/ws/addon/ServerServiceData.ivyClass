@@ -1,0 +1,4 @@
+ServerServiceData #class
+ch.ivy.ws.addon #namespace
+externalHost String #field
+errors List<ch.ivy.ws.addon.WSException> #field

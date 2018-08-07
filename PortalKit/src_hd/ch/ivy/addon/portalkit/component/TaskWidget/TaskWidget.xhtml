@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/modena" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="outerPanelId" default="main-area-panel" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="dataModel" />
+  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}" />
+  <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
+  <cc:attribute name="onSwitchToCompactModeCompletedCallback" />
+  <cc:attribute name="onSwitchToExpandedModeCompletedCallback" />
+  <cc:attribute name="hideTaskFilter" default="false" shortDescription="Task filter text field is hidden or not"
+    type="java.lang.Boolean" />
+  <cc:attribute name="componentToUpdateWhenInCompactMode" />
+  <cc:attribute name="componentToUpdateWhenInExpandedMode" />
+  <cc:attribute name="selectedTaskId" />
+  <cc:attribute name="selectedTaskServerId" />
+  <cc:attribute name="showHeaderToolbar" />
+  <cc:attribute name="noTaskFoundMessage"
+    default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask')}" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="showHeaderToolbar" value="#{cc.attrs.showHeaderToolbar eq null ? 'true' : cc.attrs.showHeaderToolbar}" />
+  <f:event listener="#{logic.init(cc.attrs.compactMode, cc.attrs.dataModel)}" type="preRenderComponent" />
+  <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+  <h:outputScript name="task-widget.js" library="js" />
+
+  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
+    <div class="task-widget-header-container js-task-widget-header-container">
+      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header" layout="block">
+        <div class="widget-header-main">
+          <div class="widget-header-main-title task-widget-header-content-title">
+          	<cc:renderFacet name="title"/>
+            <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}"/>
+          </div>
+          <ul class="widget-header-main-menu js-widget-header-menu" jsf:rendered="#{showHeaderToolbar}">
+            <ui:fragment rendered="#{cc.attrs.compactMode}">
+              <li class="u-underline-from-center js-ignore-selected-state"><p:commandLink id="switch-mode-command"
+                  actionListener="#{logic.switchMode}"
+                  update="task-view switch-mode-command priority-sort filter-view expiry-sort #{data.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
+                  oncomplete="taskWidget.setupScrollbar(); #{data.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}();prepareMainMenuCategory()">
+                  <f:actionListener binding="#{logic.clearFilter()}" />
+                  <span class="fa fa-chevron-right switch-mode-command-icon" />
+                  <h:outputText id="switch-mode-command-value"
+                    value="#{data.compactMode ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/showFullTaskList') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/backToOverview')}" />
+                </p:commandLink></li>
+            </ui:fragment>
+            <li class="u-underline-from-center #{data.dataModel.criteria.sortByPriority ? 'is-selected' : ''}"><p:commandLink
+                id="priority-sort"
+                update="#{data.compactMode ? cc.attrs.componentToUpdateWhenInCompactMode : cc.attrs.componentToUpdateWhenInExpandedMode} task-view-container"
+                oncomplete="taskWidget.setupScrollbar(); prepareMainMenuCategory()">
+                <f:actionListener binding="#{logic.sortByPriority()}" />
+                <span class="fa fa-chevron-right switch-mode-command-icon" />
+                <h:outputText id="priority-sort-name"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByPriority')}" />
+              </p:commandLink></li>
+            <li class="u-underline-from-center #{data.dataModel.criteria.sortByExpiryDate ? 'is-selected' : ''}"><p:commandLink
+                id="expiry-sort"
+                update="#{data.compactMode ? cc.attrs.componentToUpdateWhenInCompactMode : cc.attrs.componentToUpdateWhenInExpandedMode} task-view-container"
+                oncomplete="taskWidget.setupScrollbar(); prepareMainMenuCategory()">
+                <f:actionListener binding="#{logic.sortByExpiry()}" />
+                <span class="fa fa-chevron-right switch-mode-command-icon" />
+                <h:outputText id="expiry-sort-name"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByExpiryTime')}" />
+              </p:commandLink></li>
+          </ul>
+        </div>
+        <h:panelGroup styleClass="task-widget-header-content-filter" id="filter-view">
+          <h:form id="filter-form" onsubmit="return false;">
+            <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
+              updateComponent="#{p:component('task-view-container')}" keywordStoresIn="#{data.keyword}"
+              onCompletedCallback="taskWidget.setupScrollbar()"
+              rendered="#{!data.compactMode and !cc.attrs.hideTaskFilter}" />
+          </h:form>
+        </h:panelGroup>
+      </h:panelGroup>
+    </div>
+
+    <h:panelGroup layout="block" id="task-view">
+      <h:panelGroup styleClass="widget-content-scroll-button js-widget-content-scroll-button" layout="block">
+        <p:outputLabel id="task-widget-scroll-up-command"
+          styleClass="js-task-start-list-scroll-up fa fa-chevron-up Fs14 u-unselectable u-display-none" />
+      </h:panelGroup>
+      <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
+        <p:dataScroller id="task-list-scroller" value="#{data.dataModel}" var="task" chunkSize="#{cc.attrs.chunkSize}"
+          lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-task-start-list">
+          <ic:ch.ivy.addon.portalkit.component.TaskItem id="task-item" task="#{task}" rowIndex="#{rowIndex}"
+            isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}"
+            compactMode="#{data.compactMode}" componentToUpdate="#{p:component('task-details-notes')}" >
+            <cc:insertChildren />
+          </ic:ch.ivy.addon.portalkit.component.TaskItem>
+        </p:dataScroller>
+        <p:outputLabel styleClass="no-task-message" value="#{cc.attrs.noTaskFoundMessage}"
+          rendered="#{data.dataModel.rowCount eq 0}" />
+      </h:panelGroup>
+      <h:panelGroup styleClass="widget-content-scroll-button" layout="block">
+        <p:outputLabel id="task-widget-scroll-down-command"
+          styleClass="js-task-start-list-scroll-down fa fa-chevron-down Fs14 u-unselectable u-display-none" />
+      </h:panelGroup>
+    </h:panelGroup>
+  </div>
+
+  <script type="text/javascript">
+    var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");
+    $(function(){     
+      //restore widget mode on page load
+      if("#{cc.attrs.compactMode}" === "true" &amp;&amp; "#{data.compactMode}" === "false" &amp;&amp; "#{cc.attrs.onSwitchToExpandedModeCompletedCallback}") {
+        invokeMethod(#{cc.attrs.onSwitchToExpandedModeCompletedCallback});
+      }
+      taskWidget.setupScrollbar();
+      scrollToSelectedTaskItem();
+    });
+    
+    function invokeMethod(method){
+      method();
+    }
+    
+    function scrollToSelectedTaskItem() {
+      var expandedTaskItem = $('.show-task-details-mode');
+      if (expandedTaskItem &amp;&amp; expandedTaskItem[0]) {
+        expandedTaskItem[0].scrollIntoView(false);
+      }
+    }
+  </script>
+</cc:implementation>
+</html>
