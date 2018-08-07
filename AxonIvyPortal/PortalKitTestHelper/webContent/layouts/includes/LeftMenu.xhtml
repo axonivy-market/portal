@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<body>
+	<ui:composition>
+		<h:form>
+			<p:menu style="width:94%">
+				<p:submenu label="Case Document">
+					<p:menuitem value="Case Document"
+						url="#{ivy.html.startref('Start Processes/CasesShowRoom/documentPage.ivp')}" />
+				</p:submenu>
+				<p:submenu label="Case tree">
+					<p:menuitem value="Running Case"
+						url="#{ivy.html.startref('Start Processes/CasesShowRoom/runningCases.ivp')}" />
+					<p:menuitem value="Finished Case"
+						url="#{ivy.html.startref('Start Processes/CasesShowRoom/finishedCases.ivp')}" />
+					<p:menuitem value="Provided Cases Case Table Test"
+						url="#{ivy.html.startref('Start Processes/CasesShowRoom/ProvidedCasesCaseTableTest.ivp')}" />
+				</p:submenu>
+				<p:submenu label="Task tree">
+					<p:menuitem value="Running task"
+						url="#{ivy.html.startref('Start Processes/TasksShowRoom/RunningTaskTree.ivp')}" />
+				</p:submenu>
+				<p:submenu label="Task Table">
+					<p:menuitem value="Running Task Table"
+						url="#{ivy.html.startref('Start Processes/TasksShowRoom/RunningTaskTable.ivp')}" />
+					<p:menuitem value="Finished Task Table"
+						url="#{ivy.html.startref('Start Processes/TasksShowRoom/FinishedTaskTable.ivp')}" />
+				</p:submenu>
+				<p:submenu label="Case Table">
+					<p:menuitem value="Running Case Table"
+						url="#{ivy.html.startref('Start Processes/CasesShowRoom/RunningCaseTable.ivp')}" />
+					<p:menuitem value="Finished Case Table"
+						url="#{ivy.html.startref('Start Processes/CasesShowRoom/FinishedCaseTable.ivp')}" />
+					<p:menuitem value="Case Table Filter by IPropertyFilter"
+						url="#{ivy.html.startref('Start Processes/CasesShowRoom/startWithPropertyFilter.ivp')}" />	
+						
+				</p:submenu>
+				
+				<p:submenu label="Templates">
+					<p:menuitem value="Case History"
+						url="#{ivy.html.startref('Start Processes/CasesShowRoom/OpenCaseDetails.ivp')}" />
+					
+				</p:submenu>
+				
+				
+				<p:submenu label="Process Chain">
+					<p:menuitem value="Process Chain"
+						url="#{ivy.html.startref('Start Processes/ProcessChain/start.ivp')}" />
+				</p:submenu>
+				<p:submenu label="User setting">
+					<p:menuitem value="Absences"
+						url="#{ivy.html.startref('Start Processes/Settings/AbsenceSetting.ivp')}" />
+					<p:menuitem value="Email setting"
+						url="#{ivy.html.startref('Start Processes/Settings/EmailSetting.ivp')}" />
+					<p:menuitem value="Language setting"
+						url="#{ivy.html.startref('Start Processes/Settings/LanguageSetting.ivp')}" />
+				</p:submenu>
+				<p:submenu label="Process StartList">
+					<p:menuitem value="Process StartList"
+						url="#{ivy.html.startref('Start Processes/ProcessStarts/ProcessStartsStart.ivp')}" />					
+				</p:submenu>
+			</p:menu>
+		</h:form>
+	</ui:composition>
+</body>
+</html>

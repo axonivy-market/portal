@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
+<h:body>
+  <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+    <ui:param name="dataModel" value="#{logic.getDataModel()}" />
+    
+    <ui:param name="useOverrideListHeader" value="true" />
+    <ui:param name="useOverrideHeader" value="true" />
+    
+    <ui:define name="taskListHeader">
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
+        componentId="priority-column-header" styleClass="priority-column-header TexAlCenter"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/priority')}"
+        sortField="#{masterDataBean.taskSortFieldPriority}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
+        componentId="name-column-header" styleClass="name-column-header"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/nameAndDescription')}"
+        sortField="#{masterDataBean.taskSortFieldName}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
+        componentId="responsible-column-header"
+        styleClass="responsible-column-header js-responsible-column-header hidden-sm"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/responsible')}"
+        sortField="#{masterDataBean.taskSortFieldActivator}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
+        componentId="id-column-header" styleClass="id-column-header js-id-column-header TexAlCenter"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/taskId')}"
+        sortField="#{masterDataBean.taskSortFieldId}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
+        componentId="create-column-header" styleClass="create-column-header js-create-column-header TexAlCenter"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/create')}"
+        sortField="#{masterDataBean.taskSortFieldCreationTime}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}"
+        componentId="expiry-column-header" styleClass="expiry-column-header js-expiry-column-header TexAlCenter"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/expired')}"
+        sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel}" componentId="task-custom"
+        sortField="customVarcharField5" value="CustomVarcharField5" styleClass="state-column-header TexAlCenter" />
+
+    </ui:define>
+
+    <ui:define name="taskHeader">
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" />
+
+      <div class="task-start-info">
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" />
+      </div>
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
+        fullName="#{task.activatorFullName}" styleClass="hidden-sm" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" />
+
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
+        value="#{task.startTimestamp}" styleClass="js-create-cell" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
+        value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
+
+      <h:outputText id="custom-varchar-field5" styleClass="TexAlCenter" style="flex: 0 0 150px;" value="#{task.customVarCharField5}" />
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

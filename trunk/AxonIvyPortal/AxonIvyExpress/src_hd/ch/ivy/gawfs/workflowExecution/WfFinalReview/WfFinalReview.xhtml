@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+
+		<ui:composition template="/layouts/TaskTemplate.xhtml">
+		<ui:param name="caseId" value="#{ivy.case.id}" />
+		<ui:param name="task" value="#{ivy.task}" />
+		<ui:param name="taskName" value="#{ivy.task.name}" />
+		<ui:param name="steps"
+			value="#{data.executePredefinedWorkflowData.steps}" />
+		<ui:param name="actualStepIndex"
+			value="#{data.executePredefinedWorkflowData.actualStepIndex}" />
+		<ui:param name="showDocumentTab" value="false" />
+		<ui:param name="showCaseStatusInfoTab" value="true" />
+		<ui:define name="title"></ui:define>
+		<ui:define name="taskForm">
+
+			<h:form id="form">
+				<p:fieldset id="applicantFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/FieldSetApplicant')}">
+
+					<p:panelGrid id="prozessSettingsGrid"
+						style="width:100%; border: none">
+						<p:row>
+							<p:column style="width:25%; border: none">
+								<p:outputLabel value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/userName')}:" for="applicantName" />
+							</p:column>
+							<p:column style="width:25%; border: none">
+								<p:inputText id="applicantName" style="width:85%"
+									value="#{data.executePredefinedWorkflowData.applicant.username}" disabled="true"/>
+							</p:column>
+							<p:column style="width:25%; border: none;">
+								<p:outputLabel value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/fullName')}:" for="applicantLastname" />
+							</p:column>
+							<p:column style="width:25%; border: none">
+								<p:inputText id="applicantLastname" style="width:85%"
+									value="#{data.executePredefinedWorkflowData.applicant.fullname}" disabled="true"/>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column style="width:25%; border: none; vertical-align: top">
+								<p:outputLabel value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/eMail')}:" for="applicantMail" />
+							</p:column>
+							<p:column style="width:25%; border: none">
+								<p:inputText id="applicantMail" style="width:85%"
+									value="#{data.executePredefinedWorkflowData.applicant.email}" disabled="true"/>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+
+
+				</p:fieldset>
+				<br />
+				<p:fieldset id="dynaFormFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/FieldSetForm')}">
+
+					<pe:dynaForm id="dynaForm"
+						value="#{data.executePredefinedWorkflowData.dynaFormController.model}"
+						var="dynaData" columnClasses="label-container, field-container"
+						style="width:100%">
+
+						<pe:dynaFormControl type="InputFieldText" for="inputFieldText">
+							<p:inputText id="inputFieldText" value="#{dynaData.value}"
+								required="#{dynaData.required}" disabled="true"/>
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="InputFieldNumber" for="inputFieldNumber">
+							<p:spinner id="inputFieldNumber" value="#{dynaData.value}"
+								required="#{dynaData.required}" min="0" readonly="true" />
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="InputFieldDate" for="inputFieldDate"
+							styleClass="calendar">
+							<p:calendar id="inputFieldDate" value="#{dynaData.value}"
+								required="#{dynaData.required}" readonly="true" showOn="false"/>
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="InputTextArea" for="inputTextArea">
+							<p:inputTextarea id="inputTextArea" value="#{dynaData.value}"
+								required="#{dynaData.required}" rows="#{dynaData.intSetting}"
+								autoResize="false" disabled="true"/>
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="ManyCheckbox" for="manyCheckbox">
+						
+							<p:dataList value="#{dynaData.value}" var="checkItem" type="definition" styleClass="u-no-border">
+						        <i class="fa fa-check-square-o" aria-hidden="true"></i> #{checkItem}
+						    </p:dataList>
+
+						</pe:dynaFormControl>
+
+						<pe:dynaFormControl type="OneRadio" for="oneRadio">					
+							<p:dataList value="#{dynaData.value}" var="checkItem" type="definition" emptyMessage="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/NoSelection')}" styleClass="u-no-border">
+						        <i class="fa fa-dot-circle-o" aria-hidden="true"></i> #{checkItem}
+						    </p:dataList>
+						</pe:dynaFormControl>
+						
+						<pe:dynaFormControl type="FileUpload" for="fileUpload">
+							<ic:component.CaseDocument uploadPossible="false"
+								fileLimit="#{dynaData.intSetting}" startMethod="start(#{dynaData.options})" 
+								allowFiletypes="#{dynaData.options}"/>
+						</pe:dynaFormControl>
+
+
+						<pe:dynaFormControl type="Spacer" for="spacer">
+							<p:spacer width="50" height="16" id="spacer" />
+						</pe:dynaFormControl>
+
+
+
+					</pe:dynaForm>
+
+					<h:outputStylesheet id="dynaFormCSS">  
+					    pe-dynaform-label{
+					    	text-align: left;
+					    }
+					</h:outputStylesheet>
+
+
+				</p:fieldset>
+				<br/>
+				<h:panelGrid columns="2" styleClass="case-view-footer Wid100">
+					<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfSecondReviewForm/resetTask')}" update="form" icon="fa fa-undo" actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" />
+					<p:commandButton value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFinalReview/noticed')}" update="form" icon="fa fa-check" actionListener="#{logic.close}" styleClass="buttonDelegate portal-ok-button Fright"/>
+				</h:panelGrid>
+
+				
+
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

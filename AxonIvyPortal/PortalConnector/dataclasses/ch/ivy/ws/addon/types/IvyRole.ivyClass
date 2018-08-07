@@ -1,0 +1,7 @@
+IvyRole #class
+ch.ivy.ws.addon.types #namespace
+id java.lang.Long #field
+memberName String #field
+displayName String #field
+isUser Boolean #field
+application String #field

@@ -1,0 +1,40 @@
+Data #class
+gawfs #namespace
+steps List<String> #field
+steps 'Process Steps for ProcessChain' #fieldComment
+steps PERSISTENT #fieldModifier
+definedTasks List<gawfs.TaskDef> #field
+definedTasks 'List of Tasks for execution' #fieldComment
+definedTasks PERSISTENT #fieldModifier
+processName String #field
+processName 'Name of the Process also later CaseName' #fieldComment
+processName PERSISTENT #fieldModifier
+processDescription String #field
+processDescription 'Description of the Process later CaseDescription' #fieldComment
+processDescription PERSISTENT #fieldModifier
+processType String #field
+processType Processtype #fieldComment
+processType PERSISTENT #fieldModifier
+wfusers List<ch.ivyteam.ivy.security.IUser> #field
+wfusers PERSISTENT #fieldModifier
+processRepository gawfs.Workflow #field
+processRepository PERSISTENT #fieldModifier
+taskRepository gawfs.TaskDefp #field
+taskRepository PERSISTENT #fieldModifier
+formelementRepository gawfs.Formelement #field
+formelementRepository PERSISTENT #fieldModifier
+dragAndDropController ch.ivy.gawfs.DragAndDropController #field
+dragAndDropController PERSISTENT #fieldModifier
+dynaFormController ch.ivy.gawfs.DynaFormController #field
+dynaFormController PERSISTENT #fieldModifier
+backFlag Boolean #field
+backFlag PERSISTENT #fieldModifier
+processID Integer #field
+processID PERSISTENT #fieldModifier
+directExecutionFlag Boolean #field
+directExecutionFlag PERSISTENT #fieldModifier
+taskId Number #field
+taskId 'Taskid for Endpage' #fieldComment
+taskId PERSISTENT #fieldModifier
+discard Boolean #field
+discard PERSISTENT #fieldModifier

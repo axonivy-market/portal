@@ -1,0 +1,32 @@
+TaskServiceIntegratorData #class
+ch.ivy.add.portalkit.service.integrators #namespace
+allTasks List<ch.ivy.ws.addon.IvyTask> #field
+applicationNames List<String> #field
+canUserResumeTask Boolean #field
+caseId Long #field
+categories java.util.List<ch.ivy.ws.addon.CategoryData> #field
+count Integer #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+expiryStatistic ch.ivy.ws.addon.ExpiryStatistic #field
+ivySecurityMember ch.ivy.ws.addon.IvySecurityMember #field
+note ch.ivy.ws.addon.IvyNote #field
+noteContent String #field
+noteCreator String #field
+parkTaskRequester String #field
+priorityStatistic ch.ivy.ws.addon.PriorityStatistic #field
+resumeTaskRequester String #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+startIndex Integer #field
+task ch.ivy.ws.addon.IvyTask #field
+taskCategoryRequester String #field
+taskCount Long #field
+taskId Long #field
+tasks List<ch.ivy.ws.addon.IvyTask> #field
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+taskStatisticRequester String #field
+workerUserName String #field
+isUrlBuiltFromSystemProperties Boolean #field
+jsonQuery String #field
+jsonQuery 'Customized TaskQuery' #fieldComment
+language String #field

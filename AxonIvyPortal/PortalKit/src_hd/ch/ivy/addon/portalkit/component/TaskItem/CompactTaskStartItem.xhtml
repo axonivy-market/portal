@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<ui:composition>
+  <h:panelGroup layout="block" class="task-start-list-item js-task-start-list-item">
+    <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" id="task-start-priority" />
+    <div class="task-start-info">
+      <h:outputText id="task-start-task-state" value="##{task.id} #{taskBean.getUserFriendlyTaskState(task.state)}"
+        styleClass="task-start-info-header" />
+      <p:tooltip for="task-start-task-state" value="#{task.state}" trackMouse="true"/>
+      <h:outputText id="task-start-task-name" styleClass="task-start-info-content u-truncate-text"
+        value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
+      <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}"/>
+      <h:panelGroup layout="block" styleClass="task-start-info-footer">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/create')}: " />
+        <h:outputText value="#{task.startTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+        <h:outputText value=" / #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/expired')}: "
+          rendered="#{task.expiryTimestamp ne null}" />
+        <h:outputText value="#{task.expiryTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+      </h:panelGroup>
+    </div>
+
+    <span class="action-icon tmi-chevorn-right icon-compact-mode" />
+  </h:panelGroup>
+</ui:composition>
+</html>

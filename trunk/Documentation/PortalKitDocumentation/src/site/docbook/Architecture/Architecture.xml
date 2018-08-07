@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.architecture">
+	<title xml:id="axonivyportal.architecture.title">Architecture</title>
+	<sect1 xml:id="axonivyportal.architecture.portalprocessmodulesstructure">
+		<para>
+			Currently Portal system contains 5 modules
+		</para>
+		<mediaobject>
+			<imageobject>
+				<imagedata fileref="images/Architecture/process-module-structure.png" />
+			</imageobject>
+		</mediaobject>		
+	</sect1>
+	<sect1 xml:id="axonivyportal.architecture.portalkit">
+		<title>Portal kit</title>
+		<para>
+			Contains set of UI components. This module contains set of JSF Ivy Component to provide user the usages to work with Ivy Process Data such as: task, case, absence... , styles CSS and JavaScript file for component and Modena theme library. This is the most important module that user needs to use Portal. This module also contains AdminSettings component that is used to configure configuration data of Portal.
+		</para>
+	</sect1>
+	<sect1 xml:id="axonivyportal.architecture.portalstyle">
+		<title>Portal style</title>
+		<para>
+			Contains definition of styles that can be overridden/customized later. As now Portal supports user to customize various colors of the layout such as: background color, text color, border color, button color, focus/hover color. In the current version you have to change each color one by one. There are no common color definitions.
+		</para>
+		<note>
+			This module is prepared for process developers to override and keep customer styles by editing CSS file, CMS's style.
+		</note>
+	</sect1>
+	<sect1 xml:id="axonivyportal.architecture.portaltemplate">
+		<title>Portal template</title>
+		<para>
+			Provides default portal's templates and pages. This module contains templates page for Portal's user can use as composition, then they will have supporting features such as : top menu, application menu, user menu. It also contains some start process links to default page such as : Portal home, Portal task list, Portal case list... . Portal's user is advised to depend on this module to easily use Portal.
+		</para>
+	</sect1>
+	<sect1 xml:id="axonivyportal.architecture.selfservicebpm">
+		<title>Self service BPM</title>
+		<para>
+			This project extends PortalTemplate and is a utility which implements concept of Adaptive Case Management. The idea is that user can start any cases and add simultaneously new roles and tasks while doing your process work.
+		</para>
+	</sect1>
+	<sect1 xml:id="axonivyportal.architecture.portalconnector">
+		<title>Portal connector</title>
+		<para>
+			Communication channel to communicate between portal axon.ivy engine (e.g.: for synchronizing data, read ivy process data :task, case, absence, substitute,...). This module acts like service layer that contains web service's implementation for PortalKit can call to get data, just only PortalKit know about these web services.
+		</para>
+		<note>
+			By default, this module is integrated to System application of Axon.Ivy engine. To be able to run Portal in designer, you need to import this module.
+		</note>
+	</sect1>
+</chapter>

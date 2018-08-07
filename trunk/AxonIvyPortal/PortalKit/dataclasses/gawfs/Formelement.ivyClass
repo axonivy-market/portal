@@ -1,0 +1,29 @@
+Formelement #class
+true #isEntity
+gawfs #namespace
+Formelements #dbTableName
+id Integer #field
+id Identifier #fieldComment
+id PERSISTENT #fieldModifier
+id ID #fieldModifier
+id GENERATED #fieldModifier
+processID Integer #field
+processID PERSISTENT #fieldModifier
+elementID String #field
+elementID PERSISTENT #fieldModifier
+name String #field
+name PERSISTENT #fieldModifier
+label String #field
+label PERSISTENT #fieldModifier
+required Boolean #field
+required PERSISTENT #fieldModifier
+intSetting Integer #field
+intSetting PERSISTENT #fieldModifier
+elementType String #field
+elementType PERSISTENT #fieldModifier
+optionsStr String #field
+optionsStr PERSISTENT #fieldModifier
+elementPosition String #field
+elementPosition PERSISTENT #fieldModifier
+counter Integer #field
+counter PERSISTENT #fieldModifier

@@ -1,0 +1,6 @@
+PriorityStatistic #class
+ch.ivy.ws.addon.types #namespace
+low Long #field
+normal Long #field
+high Long #field
+exception Long #field

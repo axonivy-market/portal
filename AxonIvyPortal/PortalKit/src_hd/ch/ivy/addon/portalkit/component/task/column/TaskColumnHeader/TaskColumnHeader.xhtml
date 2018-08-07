@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="componentId" required="true" />
+  <cc:attribute name="value" required="true" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="sortField" required="true" />
+  <cc:attribute name="isSelected" />
+  <cc:attribute name="componentToBeUpdated" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="sortField" value="#{cc.attrs.sortField}" />
+  <c:set var="isSelected" value="#{data.dataModel.sortField eq sortField}" />
+
+  <p:commandLink id="#{cc.attrs.componentId}" styleClass="#{cc.attrs.styleClass} #{isSelected ? 'is-selected' : ''}"
+    update="#{cc.attrs.componentToBeUpdated} #{p:component('task-view-container')} #{p:component('task-widget-sort-menu')}"
+    oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
+    <f:actionListener
+      binding="#{logic.sort(sortField, isSelected and !data.dataModel.sortDescending)}" />
+    <f:actionListener binding="#{taskWidgetBean.setExpandedTaskId(0, false)}" />
+    <h:outputText value="#{cc.attrs.value}" />
+    <i class="sort-icon fa fa-angle-down"
+      jsf:rendered="#{isSelected and data.dataModel.sortDescending}" />
+    <i class="sort-icon fa fa-angle-up"
+      jsf:rendered="#{isSelected and !data.dataModel.sortDescending}" />
+  </p:commandLink>
+</cc:implementation>
+</html>
