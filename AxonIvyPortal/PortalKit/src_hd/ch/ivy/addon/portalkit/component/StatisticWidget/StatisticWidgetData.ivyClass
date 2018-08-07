@@ -1,0 +1,22 @@
+StatisticWidgetData #class
+ch.ivy.addon.portalkit.component.StatisticWidget #namespace
+priorityPieModel org.primefaces.model.chart.PieChartModel #field
+priorityPieModel PERSISTENT #fieldModifier
+expiryBarChartModel org.primefaces.model.chart.BarChartModel #field
+expiryBarChartModel PERSISTENT #fieldModifier
+compactMode Boolean #field
+compactMode PERSISTENT #fieldModifier
+tasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+tasks PERSISTENT #fieldModifier
+username String #field
+username PERSISTENT #fieldModifier
+lowPriorityColor String #field
+lowPriorityColor PERSISTENT #fieldModifier
+normalPriorityColor String #field
+normalPriorityColor PERSISTENT #fieldModifier
+highPriorityColor String #field
+highPriorityColor PERSISTENT #fieldModifier
+exceptionPriorityColor String #field
+exceptionPriorityColor PERSISTENT #fieldModifier
+expiryBarColor String #field
+expiryBarColor PERSISTENT #fieldModifier

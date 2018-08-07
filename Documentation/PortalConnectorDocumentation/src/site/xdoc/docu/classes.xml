@@ -1,0 +1,806 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>pc_documentation - </title>
+	</properties>
+	<body>
+		<section name="Service Objects">
+            <div class="section">
+				<subsection name="IvyApplication">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+						<th align="left">Name</th>
+						<th align="left">Type</th>
+					</tr>
+					<tr class="b">
+						<td align="left">name</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">isActive</td>
+						<td align="left">Boolean</td>
+					</tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvyCase">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+						<th align="left">Name</th>
+						<th align="left">Type</th>
+					</tr>
+					<tr class="b">
+						<td align="left">-//-</td>
+						<td align="left">All parameters from ICase</td>
+					</tr>
+					<tr class="a">
+						<td align="left">businessCorrespondentId</td>
+						<td align="left">Integer</td>
+					</tr>
+					<tr class="b">
+						<td align="left">businessCreatorUser</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">businessMainContactDocumentDatabaseCode</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">businessMainContactFolderId</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">businessMainContactId</td>
+						<td align="left">Integer</td>
+					</tr>
+					<tr class="b">
+						<td align="left">businessMainContactName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">businessContactType</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">businessMilestoneTimestamp</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">businessObjectCode</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">businessObjectDocumentDatabaseCode</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">businessObjectFolderId</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">businessObjectName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">businessPriority</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">businessStartTimestamp</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">creatorUserName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">customDecimalFiled1</td>
+						<td align="left">Float</td>
+					</tr>
+					<tr class="a">
+						<td align="left">customDecimalFiled2</td>
+						<td align="left">Float</td>
+					</tr>
+					<tr class="b">
+						<td align="left">customDecimalFiled3</td>
+						<td align="left">Float</td>
+					</tr>
+					<tr class="a">
+						<td align="left">customDecimalFiled4</td>
+						<td align="left">Float</td>
+					</tr>
+					<tr class="b">
+						<td align="left">customDecimalFiled5</td>
+						<td align="left">Float</td>
+					</tr>
+					<tr class="a">
+						<td align="left">customTimestampField1</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="b">
+						<td align="left">customTimestampField2</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">customTimestampField3</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="b">
+						<td align="left">customTimestampField4</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">customTimestampField5</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="b">
+						<td align="left">customVarCharField1</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">customVarCharField2</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">customVarCharField3</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">customVarCharField4</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">customVarCharField5</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">description</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">endTimestamp</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">id</td>
+						<td align="left">Long</td>
+					</tr>
+					<tr class="b">
+						<td align="left">name</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">priority</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">processCategoryCode</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">processCategoryName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">processCode</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">processName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">startTimestamp</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">state</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">subTypeCode</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">subTypeName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">typeCode</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">typeName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">showDetailLink</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">applicationName</td>
+						<td align="left">String</td>
+					</tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvyNote">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+						<th align="left">Name</th>
+						<th align="left">Type</th>
+					</tr>
+					<tr class="b">
+						<td align="left">id</td>
+						<td align="left">Long</td>
+					</tr>
+					<tr class="a">
+						<td align="left">message</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">creationTimestamp</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">creaetorUserName</td>
+						<td align="left">String</td>
+					</tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvyProcessStart">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+						<th align="left">Name</th>
+						<th align="left">Type</th>
+					</tr>
+					<tr class="b">
+						<td align="left">-//-</td>
+						<td align="left">All parameters from IProcessStart</td>
+					</tr>
+					<tr class="a">
+						<td align="left">description</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">fullRequestStart</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">fullUserFriendlyRequestPath</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">id</td>
+						<td align="left">Long</td>
+					</tr>
+					<tr class="a">
+						<td align="left">name</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">fullRequestPathWithDocId</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">startLink</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">serverAddress</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">applicationName</td>
+						<td align="left">String</td>
+					</tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+			<subsection name="IvySecurityMember">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+						<th align="left">Name</th>
+						<th align="left">Type</th>
+					</tr>
+					<tr class="b">
+						<td align="left">id</td>
+						<td align="left">Long</td>
+					</tr>
+					<tr class="a">
+						<td align="left">memberName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">displayName</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">isUser</td>
+						<td align="left">String</td>
+					</tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvyTask">
+					<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Name</th>
+					<th align="left">Type</th></tr>
+					<tr class="b">
+					<td align="left">-//-</td>
+					<td align="left">All parameters from ITask</td></tr>
+					<tr class="a">
+					<td align="left">activatorName</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">businessCreatorUser</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">businessMileStoneTimestamp</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">caseBusinessCorrespondentId</td>
+					<td align="left">Integer</td></tr>
+					<tr class="a">
+					<td align="left">caseBusinessCreatorUser</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseBusinessMainContactDocumentDatabaseCode</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseBusinessMainContactFolderId</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseBusinessMainContactId</td>
+					<td align="left">Integer</td></tr>
+					<tr class="a">
+					<td align="left">caseBusinessMainContactName</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseBusinessMainContactType</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseBusinessMilestoneTimestamp</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">caseBusinessObjectCode</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseBusinessObjectDocumentDatabaseCode</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseBusinessObjectFolderId</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseBusinessObjectName</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseBusinessPriority</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseBusinessStartTimestamp</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">caseCreatorUserName</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseCustomDecimalField1</td>
+					<td align="left">Float</td></tr>
+					<tr class="b">
+					<td align="left">caseCustomDecimalField2</td>
+					<td align="left">Float</td></tr>
+					<tr class="a">
+					<td align="left">caseCustomDecimalField3</td>
+					<td align="left">Float</td></tr>
+					<tr class="b">
+					<td align="left">caseCustomDecimalField4</td>
+					<td align="left">Float</td></tr>
+					<tr class="a">
+					<td align="left">caseCustomDecimalField5</td>
+					<td align="left">Float</td></tr>
+					<tr class="b">
+					<td align="left">caseCustomTimestampField1</td>
+					<td align="left">Date</td></tr>
+					<tr class="a">
+					<td align="left">caseCustomTimestampField2</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">caseCustomTimestampField3</td>
+					<td align="left">Date</td></tr>
+					<tr class="a">
+					<td align="left">caseCustomTimestampField4</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">caseCustomTimestampField5</td>
+					<td align="left">Date</td></tr>
+					<tr class="a">
+					<td align="left">caseCustomVarCharField1</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseCustomVarCharField2</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseCustomVarCharField3</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseCustomVarCharField4</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseCustomVarCharField5</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseDescription</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseEndTimestamp</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">caseId</td>
+					<td align="left">Long</td></tr>
+					<tr class="a">
+					<td align="left">caseName</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">casePriority</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseProcessCategoryCode</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseProcessCategoryName</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseProcessCode</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseProcessName</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseStartTimestamp</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">caseState</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseSubTypeCode</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseSubTypeName</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseTypeCode</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">caseTypeName</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">customDecimalField1</td>
+					<td align="left">Float</td></tr>
+					<tr class="b">
+					<td align="left">customDecimalField2</td>
+					<td align="left">Float</td></tr>
+					<tr class="a">
+					<td align="left">customDecimalField3</td>
+					<td align="left">Float</td></tr>
+					<tr class="b">
+					<td align="left">customDecimalField4</td>
+					<td align="left">Float</td></tr>
+					<tr class="a">
+					<td align="left">customDecimalField5</td>
+					<td align="left">Float</td></tr>
+					<tr class="b">
+					<td align="left">customTimestampField1</td>
+					<td align="left">Date</td></tr>
+					<tr class="a">
+					<td align="left">customTimestampField2</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">customTimestampField3</td>
+					<td align="left">Date</td></tr>
+					<tr class="a">
+					<td align="left">customTimestampField4</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">customTimestampField5</td>
+					<td align="left">Date</td></tr>
+					<tr class="a">
+					<td align="left">customVarCharField1</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">customVarCharField2</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">customVarCharField3</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">customVarCharField4</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">customVarCharField5</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">delayTimestamp</td>
+					<td align="left">Date</td></tr>
+					<tr class="a">
+					<td align="left">description</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">displayDescriptionTemplate</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">displayNameTemplate</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">expireActivatorName</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">expirePriority</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">expireTimestamp</td>
+					<td align="left">Date</td></tr>
+					<tr class="a">
+					<td align="left">id</td>
+					<td align="left">Long</td></tr>
+					<tr class="b">
+					<td align="left">isExpired</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">kindCode</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">kindName</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">name</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">originalActivatorName</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">originalPriority</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">priority</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">startTimestamp</td>
+					<td align="left">Date</td></tr>
+					<tr class="b">
+					<td align="left">state</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">workerUserName</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">fullRequestPath</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">caseShowDetailLink</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">applicationName</td>
+					<td align="left">String</td></tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvyUserSetting">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Name</th>
+					<th align="left">Type</th></tr>
+					<tr class="b">
+					<td align="left">language</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">useUserEmailSettings</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailNotificationDisabled</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">emailSendOnNewWorkTasks</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailSendDailyTaskSummaryOnMonday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">emailSendDailyTaskSummaryOnTuesday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailSendDailyTaskSummaryOnWednesday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">emailSendDailyTaskSummaryOnThursday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailSendDailyTaskSummaryOnFriday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">emailSendDailyTaskSummaryOnSaturday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailSendDailyTaskSummaryOnSunday</td>
+					<td align="left">Boolean</td></tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvyAbsence">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+						<th align="left">Name</th>
+						<th align="left">Type</th>
+					</tr>
+					<tr class="b">
+						<td align="left">appName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">startDateInclusive</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="b">
+						<td align="left">stopDateInclusive</td>
+						<td align="left">Date</td>
+					</tr>
+					<tr class="a">
+						<td align="left">description</td>
+						<td align="left">String</td>
+					</tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvySubstitute">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+						<th align="left">Name</th>
+						<th align="left">Type</th>
+					</tr>
+					<tr class="b">
+						<td align="left">appName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">forThisRole</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">mySubstitute</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">description</td>
+						<td align="left">String</td>
+					</tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvyLanguageSetting">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+						<th align="left">Name</th>
+						<th align="left">Type</th>
+					</tr>
+					<tr class="b">
+						<td align="left">appName</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="a">
+						<td align="left">userLanguage</td>
+						<td align="left">String</td>
+					</tr>
+					<tr class="b">
+						<td align="left">supportedLanguages</td>
+						<td align="left">List&lt;String&gt;</td>
+					</tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="IvyEmailSetting">
+				<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Name</th>
+					<th align="left">Type</th></tr>
+					<tr class="b">
+					<td align="left">customMailsDisabled</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">appName</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">emailNotificationDisabled</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">emailSendOnNewWorkTasks</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailSendDailyTaskSummaryOnMonday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">emailSendDailyTaskSummaryOnTuesday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailSendDailyTaskSummaryOnWednesday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">emailSendDailyTaskSummaryOnThursday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailSendDailyTaskSummaryOnFriday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">emailSendDailyTaskSummaryOnSaturday</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">emailSendDailyTaskSummaryOnSunday</td>
+					<td align="left">Boolean</td></tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="WSException">
+					<table border="1" class="table table-striped">
+					<tr class="a">
+					<th align="left">Name</th>
+					<th align="left">Type</th></tr>
+					<tr class="b">
+					<td align="left">helpTextData</td>
+					<td align="left">List&lt;Object&gt;</td></tr>
+					<tr class="a">
+					<td align="left">userTextData</td>
+					<td align="left">List&lt;Object&gt;</td></tr>
+					<tr class="b">
+					<td align="left">errorCode</td>
+					<td align="left">Integer</td></tr>
+					<tr class="a">
+					<td align="left">errorDateTime</td>
+					<td align="left">DateTime</td></tr>
+					<tr class="b">
+					<td align="left">errorType</td>
+					<td align="left">WSErrorType</td></tr>
+					<tr class="a">
+					<td align="left">exception</td>
+					<td align="left">Exception</td></tr>
+					<tr class="b">
+					<td align="left">exceptionAvailable</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="a">
+					<td align="left">helpText</td>
+					<td align="left">String</td></tr>
+					<tr class="b">
+					<td align="left">server</td>
+					<td align="left">String</td></tr>
+					<tr class="a">
+					<td align="left">textInitialized</td>
+					<td align="left">Boolean</td></tr>
+					<tr class="b">
+					<td align="left">userText</td>
+					<td align="left">String</td></tr>
+				</table>
+				</subsection>
+			</div>
+			<div class="section">
+				<subsection name="WSErrorType">
+				<ul>
+					<li>INFO</li>
+					<li>WARNING</li>
+					<li>ERROR</li>
+				</ul>
+				</subsection>
+			</div>
+        </section>
+	</body>
+</document>

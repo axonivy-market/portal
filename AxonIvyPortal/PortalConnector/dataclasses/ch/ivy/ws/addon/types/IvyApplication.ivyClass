@@ -1,0 +1,4 @@
+IvyApplication #class
+ch.ivy.ws.addon.types #namespace
+name String #field
+isActive Boolean #field

@@ -1,0 +1,26 @@
+TaskServiceData #class
+ch.ivyteam.wf.processes #namespace
+applications List<ch.ivy.ws.addon.IvyApplication> #field
+apps List<String> #field
+canUserResumeTask Boolean #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+errorWs ch.ivy.ws.addon.WsException #field
+isServerAlive Boolean #field
+ivySecurityMember ch.ivy.ws.addon.IvySecurityMember #field
+ivyTask ch.ivy.ws.addon.IvyTask #field
+ivyTasks List<ch.ivy.ws.addon.IvyTask> #field
+listIterator java.util.ListIterator #field
+portalConfig ch.ivy.addon.portalkit.bo.PortalConfiguration #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+taskId Long #field
+tasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+tempErrors List<ch.ivy.ws.addon.WsException> #field
+userName String #field
+noteContent String #field
+note ch.ivy.ws.addon.IvyNote #field
+allIvyTasks List<ch.ivy.ws.addon.IvyTask> #field
+allTasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+caseId Long #field
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
+workerUserName String #field

@@ -1,0 +1,205 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.RemoteTask" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="task" value="#{cc.attrs.task}" />
+  <div>
+    <div class="task-details-header-container">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/description')}"
+        styleClass="task-details-header task-details-header-description" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/data')}"
+        styleClass="task-details-header task-details-header-info" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/note')}"
+        styleClass="task-details-header task-details-header-notes" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/document')}"
+        styleClass="task-details-header task-details-header-documents" />
+    </div>
+
+    <div class="task-details">
+      <div id="task-description" class="task-details-description">
+        <div class="scroll-panel OvAuto">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}"
+            rendered="#{empty task.description}" />
+          <h:outputText rendered="#{not empty task.description}" value="#{task.description}" />
+        </div>
+      </div>
+
+      <div id="task-data" class="task-details-data">
+        <h:panelGrid columns="2" columnClasses="task-details-data-1st-column, task-details-data-2nd-column">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/priority')}" />
+          <h:panelGroup>
+            <h:panelGroup rendered="#{task.priority == 'LOW'}"
+              styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
+            <h:panelGroup rendered="#{task.priority == 'NORMAL'}"
+              styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
+            <h:panelGroup rendered="#{task.priority == 'HIGH' or task.priority == 'EXCEPTION'}"
+              styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
+            <h:outputText value="#{taskBean.getPriority(task.priority)}" styleClass="DispInlBlock" />
+          </h:panelGroup>
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workingUser')}" />
+          <h:outputText value="#{task.getWorkerUserName()}" />
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/responsible')}" />
+          <h:outputText value="#{task.activator.getDisplayName()}" />
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
+          <h:outputText value="#{task.getExpiryActivatorName()}" />
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/case')}" />
+          <h:outputText value="#{task.getCase().name}" />
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/createOn')}" />
+          <h:outputText value="#{task.startTimestamp}">
+            <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+          </h:outputText>
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expired')}" />
+          <h:outputText value="#{task.expiryTimestamp}">
+            <f:convertDateTime dateStyle="long" type="date" locale="#{ivy.session.getContentLocale()}" />
+          </h:outputText>
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
+          <h:outputText value="#{task.getDelayTimestamp()}" />
+
+        </h:panelGrid>
+      </div>
+
+      <h:panelGroup>
+        <f:event type="preRenderComponent" listener="#{logic.findDocuments(task)}" />
+      </h:panelGroup>
+
+      <div id="task-note" class="task-details-note">
+        <p:scrollPanel styleClass="task-details-note-scrollpanel" mode="native" id="task-details-notes">
+          <h:outputText id="empty-note-message" rendered="#{empty task.getRemoteNotes()}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noNotes')}" />
+          <ui:repeat var="note" value="#{task.getRemoteNotes()}">
+            <div class="FontBold">
+              <h:outputText id="note-creator"
+                value="#{note.creatorUserName} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/at')} " />
+              <h:outputText id="note-creation-date" value="#{note.creationTimestamp}">
+                <f:convertDateTime dateStyle="short" pattern="dd.MM.yyyy HH:mm:ss" />
+              </h:outputText>
+            </div>
+            <div>
+              <h:outputText id="note-message" value="#{note.message}" />
+            </div>
+            <div class="u-separator" />
+          </ui:repeat>
+        </p:scrollPanel>
+
+        <h:panelGroup layout="block" styleClass="task-details-note-add">
+          <p:commandLink id="add-note-command" styleClass="task-details-note-add-link"
+            actionListener="#{data.setTask(task)}" oncomplete="PF('addNewNoteDialog').show()">
+            <span class="fa fa-plus-circle task-details-note-add-link-icon" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNote')}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </div>
+
+      <div id="task-document" class="task-details-document">
+        <p:scrollPanel styleClass="task-details-document-scrollpanel" mode="native" id="task-details-documents">
+          <h:outputText rendered="#{empty data.documents}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDocuments')}" />
+          <ui:repeat var="document" value="#{data.documents}">
+            <h:form styleClass="task-details-document-download">
+              <p:commandLink actionListener="#{logic.downloadDocument(task,document)}" ajax="false">
+                <span class="fa fa-file-pdf-o task-details-document-download-icon" />
+                <h:outputText value="#{document.name}" />
+                <p:fileDownload value="#{data.documentFile}" />
+              </p:commandLink>
+
+              <p:commandLink actionListener="#{logic.onSelectDeletedDocument(task,document)}"
+                styleClass="fa fa-trash-o Fright" oncomplete="PF('document-deletion-dialog').show()" />
+            </h:form>
+          </ui:repeat>
+        </p:scrollPanel>
+        <h:panelGroup layout="block" styleClass="task-details-document-add">
+          <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
+            actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
+            <span class="fa fa-plus-circle task-details-document-add-link-icon" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocument')}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </div>
+    </div>
+  </div>
+
+  <p:dialog id="add-new-note-dialog" widgetVar="addNewNoteDialog" dynamic="true" closable="false" closeOnEscape="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNote')}" showEffect="fade" resizable="false"
+    modal="true" width="40%" appendTo="@(body)">
+    <h:form id="add-new-note-form">
+      <h:panelGroup layout="block">
+        <p:messages id="create-note-msg" for="note-content" />
+        <p:inputTextarea id="note-content" value="#{data.noteContent}" required="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}"
+          styleClass="note-content-textarea" />
+      </h:panelGroup>
+      <h:panelGroup layout="block" styleClass="add-new-note-command-buttons">
+        <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
+          update="note-content create-note-msg #{p:component('task-details-notes')}"
+          actionListener="#{logic.createNote()}"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('addNewNoteDialog').hide(); scrollTaskNotesToBottom();}" />
+        <p:commandButton id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          onsuccess="PF('addNewNoteDialog').hide()" update="note-content create-note-msg" />
+      </h:panelGroup>
+    </h:form>
+  </p:dialog>
+
+  <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocument')}" modal="true" resizable="false"
+    showEffect="fade" hideEffect="fade" width="800">
+    <h:form id="document-upload-form">
+      <p:messages id="upload-messages" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
+      <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
+        mode="advanced" dragDropSupport="true" multiple="true" update="upload-messages #{p:component('task-details-documents')}"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/choose')}"
+        uploadLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/upload')}"
+        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+    </h:form>
+    <f:facet name="footer">
+      <p:commandButton id="document-upload-close-command" type="button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        onclick="PF('document-upload-dialog').hide(); scrollTaskDocumentsToBottom()"/>
+    </f:facet>
+    <p:ajax event="close" global="false" listener="#{logic.resetMessageUploadDocument}" update="#{p:component('upload-messages')}"/>
+  </p:dialog>
+
+  <p:dialog id="document-deletion-dialog" widgetVar="document-deletion-dialog" modal="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)">
+    <h:form id="document-deletion-form">
+      <p:messages id="document-deletion-messages" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" />
+      <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
+        <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
+          update="#{p:component('task-details-documents')} document-deletion-messages"
+          actionListener="#{logic.deleteDocument()}" oncomplete="PF('document-deletion-dialog').hide()" />
+        <p:commandButton id="document-deletion-cancellation-command"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"
+          onsuccess="PF('document-deletion-dialog').hide()" />
+      </h:panelGroup>
+    </h:form>
+  </p:dialog>
+
+  <script>
+      function scrollTaskNotesToBottom() {
+        $("[id$='task-details-notes']").scrollTop(10000);
+      }
+      function scrollTaskDocumentsToBottom() {
+        $("[id$='task-details-documents']").scrollTop(10000);
+      }
+    </script>
+</cc:implementation>
+</html>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:cc="http://java.sun.com/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="universalHome" shortDescription="Start link of global task list"></cc:attribute>
+</cc:interface>
+<cc:implementation>
+  <br />
+  <br />
+  <h2 class="universal-tasks-header">
+    <span class="fa fa-inbox"></span> &nbsp;#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskHome/taskPanel')}
+  </h2>
+  <br />
+  <br />
+  <script>
+      function storeCookie(e) {
+        var host = '#{cc.attrs.universalHome}';
+        setCookie('last-position', host);
+      }
+      function openTask(e) {
+        setCookie('action', 'openTask');
+      }
+      function gotoProject(e) {
+        setCookie('action', 'gotoProject');
+      }
+    </script>
+  <p:messages id="universalMsg" widgetVar="growl" escape="false" showDetail="true" closable="true" />
+  <p:treeTable id="universal-tasks" value="#{data.taskTree}" var="node">
+    <!-- column of application group -->
+    <p:column colspan="#{node.application eq null ? '1' : '8'}">
+      <h:outputText rendered="#{node.task eq null}">
+        <h:outputText value="#{universalTaskListBean.getDisplayName(node.application)}" />
+      </h:outputText>
+      <h:outputText rendered="#{node.application eq null}">
+        <span class="#{taskBean.checkHighPriority(node.task.priority)} icon-high-priority-task-color Fs18" />
+      </h:outputText>
+    </p:column>
+    <!-- columns of task list -->
+    <p:column rendered="#{node.application eq null}" headerText="#" styleClass="universal-task-id-header"
+      sortBy="#{node.task.id}">
+      <h:outputText value="#{node.task.id}" id="task-id-value" />
+    </p:column>
+    <p:column rendered="#{node.application eq null}"
+      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}"
+      styleClass="universal-task-priority-header" sortBy="#{node.task.priority}">
+      <span class="#{taskBean.getPriorityIcon(node.task.priority)}" />
+      <h:outputText value="&#160;#{node.task.priorityLabel}" id="task-priority-value" />
+    </p:column>
+    <p:column rendered="#{node.application eq null}"
+      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/state')}"
+      styleClass="universal-task-state-header" sortBy="#{node.task.state}">
+      <span class="#{taskBean.getStateIcon(node.task.state)}" />
+      <p:commandLink id="task-worker-show">
+        <h:outputText value="&#160;#{node.task.stateLabel}" id="task-state-value" />
+      </p:commandLink>
+      <pe:tooltip for="task-worker-show" mouseTracking="true" rendered="#{node.task.state =='RESUMED'}">
+        <ic:ch.ivy.addon.portalkit.multiapp.general.EditorPopover task="#{node.task}" />
+      </pe:tooltip>
+    </p:column>
+    <p:column rendered="#{node.application eq null}"
+      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" sortBy="#{node.task.name}">
+      <h:outputText value="#{node.task.name}" id="task-name-value" />
+    </p:column>
+    <p:column rendered="#{node.application eq null}"
+      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/deadline')}"
+      styleClass="universal-task-deadline-header" sortBy="#{node.task.expiryTimestamp}">
+      <h:outputText value="#{node.task.expiryTimestamp}" id="task-deadline-value">
+        <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+          locale="#{ivy.session.getContentLocale()}" />
+      </h:outputText>
+    </p:column>
+    <p:column rendered="#{node.application eq null}" styleClass="universal-task-responsible-header"
+      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible')}"
+      sortBy="#{node.task.activator.displayName}">
+      <span class="#{node.task.activator.isUser() ? 'fa fa-user' : 'fa fa-users'}"></span>&#160;
+			<p:commandLink id="contact-show">
+        <h:outputText value="#{node.task.activator.displayName}" id="task-responsible-value" />
+        <h:outputText styleClass="fa fa-info-circle" rendered="#{node.task.activator.isUser()}" />
+      </p:commandLink>
+      <pe:tooltip for="contact-show" mouseTracking="true" rendered="#{node.task.activator.isUser()}">
+        <ic:ch.ivy.addon.portalkit.multiapp.general.ContactPopover contact="#{data.contact}" />
+      </pe:tooltip>
+    </p:column>
+    <p:column rendered="#{node.application eq null}" styleClass="TexAlCenter universal-task-actions-header"
+      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/actions')}">
+      <div class="TexAlCenter DispInlBlock MarRight10">
+        <h:outputLink id="open-non-resumed-task" value="#{node.task.fullRequestPath}"
+          onclick="storeCookie();openTask();" rendered="#{node.task.state != 'RESUMED'}">
+          <span class="DispBlock Fs14 fa fa-play" />
+					#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskHome/openTask')}
+				</h:outputLink>
+        <p:commandLink id="open-resumed-task" actionListener="#{logic.openTask(node.task)}"
+          rendered="#{node.task.state == 'RESUMED'}" onclick="storeCookie();openTask();"
+          update=":#{p:component('universalMsg')}">
+          <span class="DispBlock Fs14 fa fa-play" />
+					#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskHome/openTask')}
+					<p:confirm header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
+        </p:commandLink>
+      </div>
+      <div class="TexAlCenter DispInlBlock">
+        <h:outputLink id="go-to-app" value="#{node.task.applicationRegister.link}?taskIdentifier=#{node.task.id}"
+          onclick="gotoProject();">
+          <span class="DispBlock Fs14 fa fa-mail-forward" />
+					#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskHome/goto')}
+				</h:outputLink>
+      </div>
+    </p:column>
+  </p:treeTable>
+
+  <p:dialog id="dialog" header="#{ivy.cms.co('/errors/header')}" styleClass="Wid50" widgetVar="errorDialogUniversalTask"
+    modal="true" appendTo="@(body)">
+    <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}">
+    </ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay>
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+      onclick="PF('errorDialogUniversalTask').hide();" icon="fa fa-close" />
+  </p:dialog>
+
+  <p:confirmDialog id="reset-task-dialog" global="true" widgetVar="reset-task-dialog">
+    <f:facet name="message">
+      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+    </f:facet>
+    <h:panelGroup styleClass="Fs14">
+      <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+        icon="fa fa-check" />
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
+        icon="fa fa-close" />
+    </h:panelGroup>
+  </p:confirmDialog>
+</cc:implementation>
+</html>

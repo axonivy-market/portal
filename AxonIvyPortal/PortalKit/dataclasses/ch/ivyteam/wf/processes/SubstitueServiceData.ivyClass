@@ -1,0 +1,16 @@
+SubstitueServiceData #class
+ch.ivyteam.wf.processes #namespace
+username String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+listIterator java.util.ListIterator #field
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+endpoint String #field
+isServerAlive Boolean #field
+applications List<ch.ivy.ws.addon.IvyApplication> #field
+apps List<String> #field
+servers List<ch.ivy.addon.portalkit.persistence.domain.Server> #field
+tempErrors List<ch.ivy.ws.addon.WsException> #field
+remoteSusbtitutes java.util.List<ch.ivy.addon.portalkit.bo.RemoteSubstitute> #field
+substitutes java.util.List<ch.ivy.ws.addon.IvySubstitute> #field
+applicationUsers java.util.List<ch.ivy.ws.addon.IvyUser> #field
+remoteApplicationUsers List<ch.ivy.addon.portalkit.bo.RemoteApplicationUser> #field

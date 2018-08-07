@@ -1,0 +1,138 @@
+package ch.ivy.ws.addon.service;
+
+import java.util.List;
+
+import ch.ivy.ws.addon.WSException;
+import ch.ivy.ws.addon.bo.CaseServiceResult;
+import ch.ivy.ws.addon.bo.NoteServiceResult;
+import ch.ivy.ws.addon.types.IvyAdditionalProperty;
+import ch.ivyteam.ivy.scripting.objects.Binary;
+import ch.ivyteam.ivy.workflow.CaseState;
+
+/**
+ * Case service provides a set of service methods for Ivy case instances
+ * 
+ * @author mde
+ *
+ */
+public interface ICaseService {
+
+  /**
+   * Find an ivy case by id
+   * 
+   * @param caseId to look for
+   * @return case instance
+   */
+  public CaseServiceResult findCase(Integer caseId) throws WSException;
+
+  /**
+   * Find additional properties for case by case id
+   * 
+   * @param caseId
+   * @return Collection of properties <key, value>
+   * @throws WSException
+   */
+  public CaseServiceResult getAdditionalProperties(Long caseId) throws WSException;
+
+  /**
+   * Set additional properties for case by case id
+   * 
+   * @param caseId
+   * @param additionalProperties
+   * @return errors
+   * @throws WSException
+   */
+  public CaseServiceResult setAdditionalProperties(Long caseId, List<IvyAdditionalProperty> additionalProperties)
+      throws WSException;
+
+  /**
+   * Find all ivy cases for user
+   * 
+   * @param username
+   * @param apps list of applications
+   * @return list of cases
+   * @throws WSException
+   */
+  public CaseServiceResult findAllCases(String username, List<String> apps) throws WSException;
+
+  /**
+   * Find cases by filter
+   * 
+   * @param username
+   * @param filter simple filter string
+   * @param apps list of applications
+   * @return list of cases
+   * @throws WSException
+   */
+  public CaseServiceResult findByFilter(String username, String filter, CaseState state, List<String> apps)
+      throws WSException;
+
+  public CaseServiceResult findByFilter(String filter, CaseState state) throws WSException;
+
+  /**
+   * Create note for case
+   * 
+   * @param note
+   * @return
+   * @throws WSException
+   */
+  public NoteServiceResult createNote(String username, Integer caseId, String message) throws WSException;
+
+
+  /**
+   * Find all notes for a case
+   * 
+   * @param caseId
+   * @return list of case notes
+   * @throws WSException
+   */
+  public NoteServiceResult findNotes(Integer caseId) throws WSException;
+
+  /**
+   * Find all documents for the case
+   * 
+   * @param caseId
+   * @return
+   * @throws WSException
+   */
+  public CaseServiceResult findDocuments(Integer caseId) throws WSException;
+
+  /**
+   * Upload the given document into the case
+   * 
+   * @param caseId
+   * @param documentName
+   * @param documentContent
+   * @return
+   * @throws WSException
+   */
+  public CaseServiceResult uploadDocument(Integer caseId, String documentName, Binary documentContent)
+      throws WSException;
+
+  /**
+   * Download the given document
+   * 
+   * @param caseId
+   * @param documentId
+   * @return
+   * @throws WSException
+   */
+  public CaseServiceResult downloadDocument(Integer caseId, Integer documentId) throws WSException;
+
+  /**
+   * Remove the given document
+   * 
+   * @param caseId
+   * @param documentId
+   * @return
+   * @throws WSException
+   */
+  public CaseServiceResult removeDocument(Integer caseId, Integer documentId) throws WSException;
+
+  public void destroyCase(final Integer caseId) throws WSException;
+
+  public CaseServiceResult findCasesByCriteria(CaseSearchCriteria caseSearchCriteria) throws WSException;
+
+  public CaseServiceResult findCasesWithDestroyPermissionByCriteria(CaseSearchCriteria caseSearchCriteria,
+      String username) throws WSException;
+}

@@ -1,0 +1,9 @@
+CaseTaskCriteria #class
+ch.ivyteam.wf.processes #namespace
+user String #field
+createdFrom java.util.Date #field
+createdTo java.util.Date #field
+priorities java.util.List<String> #field
+cases java.util.List<ch.ivyteam.ivy.workflow.ICase> #field
+errors java.util.List<ch.ivy.ws.addon.WsException> #field
+tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field

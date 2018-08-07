@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>Welcome</title>
+    <author email="hcmc-wawa@axonactive.vn">The Wawa Team</author>
+  </properties>
+
+  <body>
+    <section name="Project Team">
+      <div class="section">
+        <h3>
+          Customer
+          <a name="Customer"></a>
+        </h3>
+        <p>AXON IVY AG</p>
+      </div>
+      <div class="section">
+        <h3>
+          Team Members
+          <a name="Team_Members"></a>
+        </h3>
+        <table border="1" class="table table-striped">
+          <tbody>
+            <tr class="a">
+              <th align="left">Member</th>
+              <th align="left">Role</th>
+            </tr>
+            <tr class="b">
+              <td align="left">Tamas Kis</td>
+              <td align="left">Product Owner</td>
+            </tr>
+            <tr class="a">
+              <td align="left">Tung Le</td>
+              <td align="left">Scrum master</td>
+            </tr>
+            <tr class="b">
+              <td align="left">Tai Nguyen</td>
+              <td align="left">Development</td>
+            </tr>
+            <tr class="a">
+              <td align="left">Thanh Le</td>
+              <td align="left">Development</td>
+            </tr>
+            <tr class="b">
+              <td align="left">Huy Dang</td>
+              <td align="left">Development</td>
+            </tr>
+            <tr class="a">
+              <td align="left">Nam Chu</td>
+              <td align="left">Development</td>
+            </tr>
+            <tr class="b">
+              <td align="left">Long Do</td>
+              <td align="left">Development</td>
+            </tr>
+            <tr class="a">
+              <td align="left">Anh Tran</td>
+              <td align="left">Development</td>
+            </tr>
+            <tr class="a">
+              <td align="left">Vu Hoang</td>
+              <td align="left">Development</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+  </body>
+</document>
+

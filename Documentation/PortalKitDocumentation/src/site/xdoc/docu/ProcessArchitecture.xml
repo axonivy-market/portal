@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Welcome</title>
+		<author email="chi.le@axonactive.vn">The Bolt Team</author>
+	</properties>
+
+	<body>
+		<section name="Portal Kit layers structure">
+				<h4>Middle layer: MultiPortal<a name="Middle_layer:_MultiPortal"></a></h4>
+				<p>MultiPortal provides communication between Portal Connectors deployed on remote servers (low layer) and the Portal (top layer).</p>
+				<h4>Top layer: Portal<a name="Top_layer:_Portal"></a></h4>
+				<p>The goal of the Portal is to get and process data from MultiPortal and transmit them to the user. </p>
+				
+
+        </section>
+		<section name="Portal Kit classes">
+				<ul>
+				<li><a href="./PortalKitClasses.html#RemoteApplication">RemoteApplication</a></li>
+				<li><a href="./PortalKitClasses.html#RemoteCase">RemoteCase</a></li>
+				<li><a href="./PortalKitClasses.html#RemoteTask">RemoteTask</a></li>
+				<li><a href="./PortalKitClasses.html#RemoteSecurityMember">RemoteSecurityMember</a></li>
+				</ul>
+		</section>		
+		<section name="Requirement for applications which use Portal Kit">
+				<p>The start process for case details must be implemented and it must accept <b>caseId</b> parameter to pass the case id.
+				Using code block to add start link href of case details page to case object with this key "CASE_DETAIL_PROCESS" 
+				<br/>
+				param : Number caseId
+				<br/>
+	     		for example :
+	     		<br/>
+	     		import ch.ivy.addon.portalkit.util.CaseUtils;<br/>
+				ivy.case.setAdditionalProperty(CaseUtils.CASE_DETAIL_PROCESS, ivy.html.startref("14BDECA22347DEF2/OpenCaseDetails.ivp"));
+				result :
+	     		http://localhost:8081/ivy/pro/designer/test001InternalSupport/14C7986FD23D7C89/caseDetails.ivp?<b>caseId=317</b>
+	     		</p>
+		</section>	
+	</body>
+</document>
