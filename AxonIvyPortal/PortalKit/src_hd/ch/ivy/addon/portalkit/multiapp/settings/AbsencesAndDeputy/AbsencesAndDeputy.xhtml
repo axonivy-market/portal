@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="dialogName" shortDescription="Name of the dialog absence and substitute" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <p:growl id="error-growl" showDetail="true" sticky="false" severity="info" life="400" widgetVar="growl"
+      escape="false" />
+
+    <h:panelGroup layout="block" id="absences-container">
+      <h:form id="absence-form">
+        <p:remoteCommand name="resetAbsence" process="@this" actionListener="#{logic.cancel}"
+          update=":#{p:component('absence-table')}" />
+        <p:remoteCommand name="updateGrowlAbsence" actionListener="#{logic.updateGrowlAbsence}"
+          update=":#{p:component('error-growl')}" />
+        <p:remoteCommand name="openAbsence" actionListener="#{logic.openAbsence}" process="@this"
+          update="absences-msg absence-form" oncomplete="PF('#{cc.attributes.dialogName}').show()" />
+
+        <h:panelGroup layout="block" id="absence-setting-container">
+          <!-- Absence -->
+          <p:messages widgetVar="growl" escape="false" showDetail="true" closable="true" id="absences-msg" />
+
+          <h:panelGroup layout="block" styleClass="absence-command-container">
+            <p:selectBooleanCheckbox styleClass="absence-in-the-past-command" id="show-absence-in-the-past"
+              value="#{data.absenceInThePastShown}"
+              itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}">
+              <p:ajax event="change" listener="#{logic.openAbsence}" update="absence-table" process="@this" />
+            </p:selectBooleanCheckbox>
+
+            <h:panelGroup layout="block" styleClass="absences-view-command-buttons">
+              <p:commandButton id="edit-deputy" process="@this" rendered="#{absenceBean.ownSubstituteCreatable}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setDeputies')}"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setDeputies')}"
+                actionListener="#{logic.editDeputy()}" update="@widgetVar(editDeputy)"
+                oncomplete="PF('editDeputy').show();" />
+              <p:spacer width="5px" />
+              <p:commandButton id="add-absence" process="@this" oncomplete="PF('addNewAbsence').show()"
+                actionListener="#{logic.add}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/newAbsence')}"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/newAbsence')}"
+                update="@widgetVar(addNewAbsence)" rendered="#{absenceBean.ownAbsencesCreatable}">
+              </p:commandButton>
+            </h:panelGroup>
+          </h:panelGroup>
+
+          <div class="absence-reset-float" />
+
+          <p:dataTable id="absence-table" styleClass="absence-table" scrollable="true" scrollHeight="300"
+            value="#{data.displayedAbsences}" var="absence" sortBy="#{absence.startDateInclusive}"
+            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+            <f:event listener="#{logic.filterDisplayedAbsences()}" type="preRenderComponent" />
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/name')}" width="150"
+              sortBy="#{absence.userFullName}">
+              <h:outputText value="#{absenceBean.getDisplayedName(absence)}" />
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}" width="100"
+              styleClass="absence-date-field" sortBy="#{absence.startDateInclusive}">
+              <h:outputText value="#{absence.startDateInclusive}">
+                <f:convertDateTime
+                  pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/datePattern')}" />
+              </h:outputText>
+            </p:column>
+
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}" width="100"
+              styleClass="absence-date-field" sortBy="#{absence.stopDateInclusive}">
+              <h:outputText value="#{absence.stopDateInclusive}">
+                <f:convertDateTime
+                  pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/datePattern')}" />
+              </h:outputText>
+            </p:column>
+
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/comment')}" width="400"
+              sortBy="#{absence.description}">
+              <h:outputText value="#{absence.description}" />
+            </p:column>
+
+            <p:column styleClass="absences-table-action-column" width="100">
+              <p:commandLink id="edit-absence" process="absence-table"
+                styleClass="absences-table-action-column-icon-button" actionListener="#{logic.editAbsence(absence)}"
+                oncomplete="PF('editAbsenceDialog').show()" update="@widgetVar(editAbsenceDialog)"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                rendered="#{absenceBean.isAbsenceEditable(absence) }">
+                <span class="fa fa-edit fa-lg" />
+              </p:commandLink>
+              <p:commandLink id="delete-absence" process="@this" actionListener="#{logic.preDelete(absence)}"
+                oncomplete="PF('deleteAbsenceConfirmation').show();"
+                styleClass="absences-table-action-column-icon-button"
+                rendered="#{absenceBean.isAbsenceDeletable(absence)}"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
+                <span class="fa fa-close fa-lg" />
+              </p:commandLink>
+            </p:column>
+          </p:dataTable>
+        </h:panelGroup>
+
+        <p:dialog id="error-substitue-dialog" header="#{ivy.cms.co('/errors/header')}"
+          styleClass="substitude-exception-dialog" widgetVar="errorDialogSubstitue" modal="true" appendTo="@(body)">
+          <p:messages id="errorsMessageE" widgetVar="messagInfo" severity="info" escape="false" showDetail="true"
+            closable="true" />
+
+          <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+            onclick="PF('errorDialogSubstitue').hide();" />
+        </p:dialog>
+
+      </h:form>
+    </h:panelGroup>
+
+    <p:confirmDialog id="delete-absence-confirmation-dialog"
+      message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" appendTo="@(body)"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
+      widgetVar="deleteAbsenceConfirmation" rendered="#{absenceBean.ownAbsencesDeletable}">
+      <p:commandButton process="@this" id="confirm-action"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.deleteAbsence}"
+        oncomplete="PF('deleteAbsenceConfirmation').hide();" update=":#{p:component('absence-form')}" />
+      <p:commandButton id="cancel-confirmation-action"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('deleteAbsenceConfirmation').hide()" type="button" />
+    </p:confirmDialog>
+
+    <ui:include src="EditDeputyDialog.xhtml" />
+    <c:if test="#{absenceBean.ownAbsencesCreatable}">
+      <ui:include src="AddNewAbsenceDialog.xhtml" />
+      <ui:include src="EditAbsenceDialog.xhtml" />
+    </c:if>
+
+  </div>
+</cc:implementation>
+</html>

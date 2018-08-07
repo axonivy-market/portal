@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>Developer Guidelines</title>
+    <author>The Bolt Team</author>
+  </properties>
+
+  <body>
+    <section name="Portal home's customization">
+      <h3 id="before-beginning">Before beginning</h3>
+      <p>This guide assumes that you are already familiar with Flexbox
+        layout in CSS to integrate your own widgets,
+        change the order of the
+        widgets.
+      </p>
+      <h3 id="introduction">Introduction</h3>
+      <p>
+        The default home page of Portal has three built-in widgets in
+        order:
+        <strong>Process widget</strong>
+        ,
+        <strong>Task widget</strong>
+        ,
+        <strong>Statistic widget</strong>
+        . If it doesn't
+        fit your needs, you can replace it by your own one.
+      </p>
+      <p>
+        <img src="../images/HomeCustomization/HomePageTemplate.png" alt="alt text" title="Home Page" />
+      </p>
+      <h3>Basic usage</h3>
+      <p>Following these steps to have your own Portal Home:</p>
+      <ol>
+        <li>
+          <p>
+            Create a new home page which uses the
+            <strong>DefaultHomePageTemplate.xhtml</strong>
+            template. By doing this, your new
+            home page will inherit the
+            widgets from the default home page and
+            has a place
+            holder for your
+            own widgets. You must pass data into
+            statistic widget based on the parameter:
+            <strong>tasksForStatistic</strong>
+            .
+          </p>
+          <p>Your custom home page should look like below:</p>
+          <pre><![CDATA[<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+    <ui:define name="customWidget">
+      ...
+    </ui:define>
+  </ui:composition>]]></pre>
+        </li>
+        <li>
+          <p>Create a new process start for the new home page. Now you will
+            use this
+            process start as the entry point of
+            your portal instead of
+            the
+            default one. To let portal know about your new portal home, you
+            have to go to the
+            portal settings and set the portal home url to
+            the new one.
+          </p>
+          <img src="../images/HomeCustomization/SetHomePageUrl.PNG" alt="alt text" title="Home Page Url" />
+        </li>
+      </ol>
+      <h3>Advanced usage</h3>
+      <p>
+        The
+        <strong>DefaultHomePageTemplate.xhtml</strong>
+        template supports some customization:
+      </p>
+      <ul>
+      	<li>
+          <a href="#custom-tasks">Display your own tasks and statistics data</a>
+        </li>
+        <li>
+          <a href="#change-order">Change the order of the default widgets</a>
+        </li>
+        <li>
+          <a href="#display-hide">Display/hide the default widgets</a>
+        </li>
+        <li>
+          <a href="#customize-section">Customize the default widgets' sections</a>
+        </li>
+        <li>
+          <a href="#add-widget">Add your own widgets</a>
+        </li>
+        <li>
+          <a href="#change-title">Change the page's title</a>
+        </li>
+      </ul>
+      <h4 id="custom-tasks">Display your own tasks and statistics data</h4>
+      <p>
+        The template has two parameters:
+        <strong>tasks</strong>
+        ,
+        <strong>statistic</strong>
+        to display the data
+        of tasks and statistic. Their default values are the tasks which the session user can work on.
+      </p>
+      <pre><![CDATA[<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+  <ui:param name="tasks" value="#{logic.getTasks()}" /> <!-- A method returns TaskLazyDataModel -->
+  <ui:param name="statistic" value="#{logic.getStatistic()}" /> <!-- A method returns StatisticData -->
+</ui:composition>]]></pre>
+      
+      <h4 id="change-order">Change the order of the default widgets</h4>
+      <p>
+        The template has three parameters:
+        <strong>processWidgetPosition</strong>
+        ,
+        <strong>taskWidgetPosition</strong>
+        ,
+        <strong>statisticWidgetPosition</strong>
+        to display the default
+        widgets in order. Their default values are 0,
+        you can set them to
+        integer numbers to have
+        the order as you need.
+      </p>
+      <pre><![CDATA[<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+  <ui:param name="processWidgetPosition" value="2" />
+  <ui:param name="taskWidgetPosition" value="1" />
+</ui:composition>
+  
+==> The order is changed: Statistic widget, Process widget, Task widget.]]></pre>
+
+      <h4 id="display-hide">Display/hide the default widgets</h4>
+      <p>
+        The template has three parameters:
+        <strong>displayProcessWidget</strong>
+        ,
+        <strong>displayTaskWidget</strong>
+        ,
+        <strong>displayStatisticWidget</strong>
+        to display or hide the
+        default widgets. Their default values are
+        true, you can set them to
+        boolean values
+        (true/false) to display or
+        hide them as you need.
+      </p>
+      <pre><![CDATA[<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+  <ui:param name="displayTaskWidget" value="false" />
+</ui:composition>
+  
+==> Task widget is hidden.]]></pre>
+
+      <h4 id="customize-section">Customize the default widgets' sections</h4>
+      <p>
+        The template has the placeholders to redefine the default widgets'
+        sections.
+      </p>
+      <pre><![CDATA[<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+  <ui:define name="statisticWidget">
+    <div styleClass="l-statistic-widget js-statistic-widget">
+  
+      <!-- KEEP THE STATISTIC WIDGET -->
+      <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
+        onSwitchToCompactModeCompletedCallback="switchStatisticWidgetToCompactMode" tasks="#{tasks}"
+        onSwitchToExpandedModeCompletedCallback="switchStatisticWidgetToExpandedMode" />
+ 
+ 
+      <!-- ADD THE WEATHER WIDGET BELOW STATISTIC WIDGET -->
+      <ic:my.namespace.WeatherWidget />
+    </div>
+  </ui:define>
+</ui:composition>]]></pre>
+      <h4 id="add-widget">Add your own widgets</h4>
+      <p>
+        The template has a placeholder to add your own widgets. Your own
+        widgets' default positions are next to
+        statistic widget, you can
+        change them by setting the default widgets' positions.
+      </p>
+      <pre><![CDATA[
+<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+  <ui:param name="taskWidgetPosition" value="1" />
+  <ui:param name="statisticWidgetPosition" value="2" />
+   
+  <ui:define name="customWidget">
+    <ic:my.namespace.ComponentName ... />
+  </ui:define>
+</ui:composition>
+  
+==> Your own widgets are added and their positions are between process widget and task widget.]]></pre>
+      <h4 id="change-title">Change the page's title</h4>
+      <p>
+        The default page title is Cockpit. Apply the following code to
+        change it:
+      </p>
+      <pre><![CDATA[<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+  <ui:define name="pageTitle">YOUR PAGE'S TITLE</ui:define>
+</ui:composition>]]></pre>
+    </section>
+  </body>
+</document>

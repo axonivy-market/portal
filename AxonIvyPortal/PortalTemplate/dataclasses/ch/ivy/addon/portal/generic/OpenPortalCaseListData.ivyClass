@@ -1,0 +1,6 @@
+OpenPortalCaseListData #class
+ch.ivy.addon.portal.generic #namespace
+selectedNode org.primefaces.model.TreeNode #field
+caseId Long #field
+serverId Long #field
+keyword String #field

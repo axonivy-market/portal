@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/modena" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="outerPanelId" default="main-area-panel" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="dataModel" />
+  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/title')}" />
+  <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
+  <cc:attribute name="onSwitchToCompactModeCompletedCallback" />
+  <cc:attribute name="onSwitchToExpandedModeCompletedCallback" />
+  <cc:attribute name="hideTaskFilter" default="false" shortDescription="Task filter text field is hidden or not"
+    type="java.lang.Boolean" />
+  <cc:attribute name="componentToUpdateWhenInCompactMode" />
+  <cc:attribute name="componentToUpdateWhenInExpandedMode" />
+  <cc:attribute name="selectedTaskId" />
+  <cc:attribute name="selectedTaskServerId" />
+  <cc:attribute name="showHeaderToolbar" />
+  <cc:attribute name="messageIfNoTasks"
+    default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask')}" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="showHeaderToolbar" value="#{cc.attrs.showHeaderToolbar eq null ? 'true' : cc.attrs.showHeaderToolbar}" />
+  <f:event listener="#{logic.init(cc.attrs.compactMode, cc.attrs.dataModel)}" type="preRenderComponent" />
+  <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+  <h:outputScript name="task-widget.js" library="js" />
+
+  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
+    <div class="task-widget-header-container js-task-widget-header-container">
+      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header" layout="block">
+        <div class="widget-header-main">
+          <div class="widget-header-main-title task-widget-header-content-title"><h:outputText value="#{cc.attrs.title}" escape="false" /></div>
+          <ul class="widget-header-main-menu js-widget-header-menu" jsf:rendered="#{showHeaderToolbar}">
+            <ui:fragment rendered="#{cc.attrs.compactMode}">
+              <li class="u-underline-from-center js-ignore-selected-state"><p:commandLink id="switch-mode-command"
+                  actionListener="#{logic.switchMode}"
+                  update="task-view switch-mode-command priority-sort filter-view expiry-sort #{data.compactMode ? cc.attrs.componentToUpdateWhenInExpandedMode : cc.attrs.componentToUpdateWhenInCompactMode}"
+                  oncomplete="taskWidget.setupScrollbar(); #{data.compactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}();prepareMainMenuCategory()">
+                  <f:actionListener binding="#{logic.clearExpandedTask()}" />
+                  <f:actionListener binding="#{logic.clearFilter()}" />
+                  <f:actionListener binding="#{data.dataModel.sortType == 'BY_EXPIRY_TIME'? logic.sortByExpiry() : ''}" />
+                  <span class="fa fa-chevron-right switch-mode-command-icon" />
+                  <h:outputText id="switch-mode-command-value"
+                    value="#{data.compactMode ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/showFullTaskList') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/backToOverview')}" />
+                </p:commandLink></li>
+            </ui:fragment>
+            <li class="u-underline-from-center #{data.dataModel.sortType eq 'BY_PRIORITY' ? 'is-selected' : ''}"><p:commandLink
+                id="priority-sort"
+                update="#{data.compactMode ? cc.attrs.componentToUpdateWhenInCompactMode : cc.attrs.componentToUpdateWhenInExpandedMode} task-view-container"
+                oncomplete="taskWidget.setupScrollbar(); prepareMainMenuCategory()">
+                <f:actionListener binding="#{logic.clearExpandedTask()}" />
+                <f:actionListener binding="#{logic.sortByPriority()}" />
+                <span class="fa fa-chevron-right switch-mode-command-icon" />
+                <h:outputText id="priority-sort-name"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByPriority')}" />
+              </p:commandLink></li>
+            <li class="u-underline-from-center #{data.dataModel.sortType eq 'BY_EXPIRY_TIME' ? 'is-selected' : ''}"><p:commandLink
+                id="expiry-sort"
+                update="#{data.compactMode ? cc.attrs.componentToUpdateWhenInCompactMode : cc.attrs.componentToUpdateWhenInExpandedMode} task-view-container"
+                oncomplete="taskWidget.setupScrollbar(); prepareMainMenuCategory()">
+                <f:actionListener binding="#{logic.clearExpandedTask()}" />
+                <f:actionListener binding="#{logic.sortByExpiry()}" />
+                <span class="fa fa-chevron-right switch-mode-command-icon" />
+                <h:outputText id="expiry-sort-name"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByExpiryTime')}" />
+              </p:commandLink></li>
+          </ul>
+        </div>
+        <h:panelGroup styleClass="task-widget-header-content-filter" id="filter-view">
+          <h:form id="filter-form" onsubmit="return false;">
+            <ic:ch.ivy.addon.portalkit.component.Filter listener="#{logic.filter()}" id="filter-container"
+              updateComponent="#{p:component('task-view-container')}" keywordStoresIn="#{data.keyword}"
+              onCompletedCallback="taskWidget.setupScrollbar()"
+              rendered="#{!data.compactMode and !cc.attrs.hideTaskFilter}" />
+          </h:form>
+        </h:panelGroup>
+      </h:panelGroup>
+    </div>
+
+    <h:panelGroup layout="block" id="task-view">
+      <h:panelGroup styleClass="widget-content-scroll-button js-widget-content-scroll-button" layout="block">
+        <p:outputLabel id="task-widget-scroll-up-command"
+          styleClass="js-task-start-list-scroll-up fa fa-chevron-up Fs14 u-unselectable u-display-none" />
+      </h:panelGroup>
+      <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
+        <p:dataScroller id="task-list-scroller" value="#{data.dataModel}" var="task" chunkSize="#{cc.attrs.chunkSize}" lazy="true"
+          mode="inline" rowIndexVar="rowIndex" styleClass="js-task-start-list">
+          <ui:include src="TaskStart.xhtml">
+            <ui:param name="taskStartId" value="task-start" />
+            <ui:param name="task" value="#{task}" />
+            <ui:param name="rowIndex" value="#{rowIndex}" />
+            <ui:param name="isSelected"
+              value="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}" />
+          </ui:include>
+        </p:dataScroller>
+        <p:outputLabel styleClass="no-task-message" value="#{cc.attrs.messageIfNoTasks}"
+          rendered="#{data.dataModel.rowCount eq 0}" />
+      </h:panelGroup>
+      <h:panelGroup styleClass="widget-content-scroll-button" layout="block">
+        <p:outputLabel id="task-widget-scroll-down-command"
+          styleClass="js-task-start-list-scroll-down fa fa-chevron-down Fs14 u-unselectable u-display-none" />
+      </h:panelGroup>
+      <h:panelGroup>
+        <f:event listener="#{data.setFindingPreExpandedTaskFinished(true)}" type="preRenderComponent" />
+      </h:panelGroup>
+    </h:panelGroup>
+  </div>
+
+  <h:panelGroup id="task-details-container-to-append" layout="block" styleClass="u-display-none">
+    <div id="task-details-to-append">
+      <h:panelGroup rendered="#{data.expandedTask != null}">
+        <div class="u-line-separator" />
+        <ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskDetails id="task-details" task="#{data.expandedTask}" />
+      </h:panelGroup>
+    </div>
+  </h:panelGroup>
+
+  <ui:include src="TaskDelegateDialog.xhtml" />
+
+  <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
+    <f:facet name="message">
+      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+    </f:facet>
+    <h:panelGroup styleClass="Fs14">
+      <h:form id="reset-task-form">
+        <p:commandButton actionListener="#{logic.resetAndOpenTask}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+        <p:commandButton onclick="PF('reset-task-dialog').hide()"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+      </h:form>
+    </h:panelGroup>
+  </p:confirmDialog>
+
+  <p:dialog id="is-another-user-working-dialog" closeOnEscape="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/errorStartTask')}"
+    widgetVar="is-another-user-working-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade"
+    resizable="false" appendTo="@(body)">
+    <h:outputText id="is-another-user-working-message" value="#{data.isAnotherUserWorkingMessage}" />
+    <f:facet name="footer">
+      <p:commandButton id="close-command" onclick="PF('is-another-user-working-dialog').hide();"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+    </f:facet>
+  </p:dialog>
+  <script type="text/javascript">
+    var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");
+    $(function(){
+      if('#{data.expandedRowIndex}') {
+        appendTaskDetails('task-start', '#{data.expandedRowIndex}');
+      }
+      //restore widget mode on page load
+      if("#{cc.attrs.compactMode}" === "true" &amp;&amp; "#{data.compactMode}" === "false" &amp;&amp; "#{cc.attrs.onSwitchToExpandedModeCompletedCallback}") {
+        invokeMethod(#{cc.attrs.onSwitchToExpandedModeCompletedCallback});
+      }
+      taskWidget.setupScrollbar();
+      scrollToSelectedTaskItem();
+    });
+    
+    function removeTaskDetails(taskStartId) {
+        $("[id$='task-details-container']").empty();
+        $("div[id*='"+taskStartId+"'].js-task-start-list-item").removeClass('show-task-details-mode');
+    }
+    
+    function appendTaskDetails(taskStartId, rowIndex) {
+      $("[id$='task-list-scroller:"+rowIndex+":task-details-container']").empty();
+      var taskDetailsAppend = $("[id$='task-details-to-append']");
+      if(isEmpty(taskDetailsAppend)) {
+        $("[id$='task-list-scroller:"+rowIndex+":task-details-container']").html(taskDetailsAppend.html());
+        $("div[id$='"+taskStartId+"-"+rowIndex+"'].js-task-start-list-item").addClass('show-task-details-mode');
+      } 
+    }
+    
+    function isEmpty(element){
+      return $.trim(element.html());
+    }
+    
+    function invokeMethod(method){
+      method();
+    }
+
+    function scrollToSelectedTaskItem() {
+      var expandedTaskItem = $('.show-task-details-mode');
+      if (expandedTaskItem &amp;&amp; expandedTaskItem[0]) {
+        expandedTaskItem[0].scrollIntoView(false);
+      }
+    }
+    
+    function hideTaskDetails(taskId){
+      $("#"+taskId+'-task-details').slideUp('fast', function(){
+        $("#"+taskId).removeClass('show-task-details-mode');
+      });
+    }
+    
+    function displayTaskDetails(taskDetailsId){
+      $("#"+taskDetailsId).slideDown();
+    }
+  </script>
+</cc:implementation>
+</html>

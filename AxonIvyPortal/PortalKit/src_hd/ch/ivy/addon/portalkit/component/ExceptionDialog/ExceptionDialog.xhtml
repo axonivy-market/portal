@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="message" required="true" shortDescription="Message Of Exception" />
+  <cc:attribute name="stackTrace" required="true" shortDescription="Stack trace Of Exception" />
+  <cc:attribute name="widgetVar" required="false" shortDescription="Primefaces widget variable" />
+</cc:interface>
+
+<cc:implementation>
+  <p:dialog closeOnEscape="true" id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false" appendTo="@(body)"
+    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/title')}" width="800px">
+    <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}: #{cc.attrs.message}" />
+    <p>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace")}:</p>
+    <div class="exception-handler-stacktrace">
+      <p:inputTextarea styleClass="exception-handler-stacktrace-text" value="#{cc.attrs.stackTrace}" readonly="true" />
+    </div>
+    <f:facet name="footer">
+      <div class="exception-handler-command">
+          <p:commandButton onclick="PF('#{cc.attrs.widgetVar}').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/close')}" type="button"/>
+      </div>
+    </f:facet>
+  </p:dialog>
+</cc:implementation>
+</html>

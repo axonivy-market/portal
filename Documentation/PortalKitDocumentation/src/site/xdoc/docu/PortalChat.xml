@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Welcome</title>
+		<author email="chi.le@axonactive.vn">The Bolt Team</author>
+	</properties>
+
+	<body>
+		<section name="Switch On/Off Portal's Chat">
+					<img src="../images/chat.png" alt=""/>
+					<h3>Information</h3>
+					<p>Chat feature was implemented and integrated since Ivy <code><big>6.1</big></code>.</p>
+					<p>On <code><big>6.0</big></code>(since <code><big>6.0.3</big></code>), It's intentionally switched off for some reasons.</p>
+					<ul>
+						<li>Some customers have their own Chat, they do not need another.
+						</li>
+						<li>For using Chat, user has to self configure it on their
+							server(needs additional Libs).
+						</li>
+						<li>Current implementation of Chat contains several problems,
+							might lead to bad user experience.
+						</li>
+					</ul>
+
+					<h3>For users who want to use Chat on Ivy 6.0</h3>
+					<li> First, IvyEngine needs to
+					be configured to use Chat.
+					Copy below two
+					libs into <code><big>WEB-INF/lib</big></code> folder located on <code><big>AxonIvyEngine, AxonIvyDesigner</big></code></li>
+					<ul>
+						<li>
+							<a href="../file/portal-chat-endpoints.jar">portal-chat-endpoints.jar</a>
+						</li>
+						<li>
+							<a href="../file/atmosphere-runtime-2.4.2.jar">atmosphere-runtime-2.4.2.jar</a>
+						</li>
+					</ul>
+					<li>Second, Enables
+					Chat on UI by setting <code><big>enablesChat</big></code> param</li>
+					<source class="prettyprint linenums"><![CDATA[<ui:param name="enablesChat" value="true" />]]></source>
+					Added this line to your pages that are using BasicTemplates of Portal(adds to 
+					<code><big>DefaultPortalHomeTemplate.xhtml</big></code>, <code><big>TaskTempate.xhtml</big></code>, etc.)
+					<br />e.g:
+					<source class="prettyprint linenums"><![CDATA[<ui:composition template="/layouts/BasicTemplate.xhtml">
+<ui:param name="enablesChat" value="true" />
+...
+</ui:composition>]]></source>
+                    <li>
+                    Third, extract this jar file <a href="../file/portal-chat-endpoints-sources.jar">portal-chat-endpoints-sources.jar</a>, 
+                    we will some java files and have to copy them to Portal Kit project as below
+                    <ul>
+                      <li>Copy ChatBean.java file in ch\ivy\addon\portalkit\bean to PortalKit\src\ch\ivy\addon\portalkit\bean folder</li>
+                      <li>Copy folder ch\ivy\addon\portalkit\chat to PortalKit\src\ch\ivy\addon\portalkit folder</li>
+                    </ul>  
+                    </li>
+					<li>Restarts Ivy Desinger/Ivy Engine, refresh Portal Kit project in designer since we have some new files, rebuild and re-deploy it to Engine. Then enjoy Chat</li>
+		</section>
+	</body>
+</document>

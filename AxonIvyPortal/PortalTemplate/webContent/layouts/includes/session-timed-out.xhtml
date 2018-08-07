@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+  <p:idleMonitor rendered="#{!ivy.wf.securityContext.currentSession.sessionUserUnknown}"
+    timeout="#{session.maxInactiveInterval * 1000}" onidle="PF('timeoutDialog').show()" />
+  <p:confirmDialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried')}" widgetVar="timeoutDialog"
+    appendTo="@(body)" closable="false">
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
+      type="button" />
+  </p:confirmDialog>
+  <script type="text/javascript">
+    	var redirectPage = "#{userMenuBean.homePageURL}";
+    	function redirectDefaultPage() {
+    		window.location.href = redirectPage;
+    	}
+	</script>
+</ui:composition>
+</html>

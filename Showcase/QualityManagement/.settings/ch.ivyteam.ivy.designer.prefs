@@ -1,0 +1,6 @@
+ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_DATA_CLASS=test004QualityManagement.Data
+ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_NAMESPACE=test004QualityManagement
+ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:ELEMENT_STYLE=CLASSIC
+ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:useProjectSettings=true
+ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=51917
+eclipse.preferences.version=1

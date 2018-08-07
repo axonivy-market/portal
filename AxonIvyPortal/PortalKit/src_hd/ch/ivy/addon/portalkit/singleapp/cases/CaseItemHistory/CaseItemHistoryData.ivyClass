@@ -1,0 +1,16 @@
+CaseItemHistoryData #class
+ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+internalCase ch.ivyteam.ivy.workflow.ICase #field
+internalCase PERSISTENT #fieldModifier
+currentServer ch.ivy.addon.portalkit.persistence.domain.Server #field
+currentServer PERSISTENT #fieldModifier
+histories List<ch.ivy.addon.portalkit.bo.History> #field
+histories PERSISTENT #fieldModifier
+noteContent String #field
+noteContent PERSISTENT #fieldModifier
+note ch.ivyteam.ivy.workflow.INote #field
+note PERSISTENT #fieldModifier
+tasksOfCaseProcessLink String #field
+tasksOfCaseProcessLink PERSISTENT #fieldModifier

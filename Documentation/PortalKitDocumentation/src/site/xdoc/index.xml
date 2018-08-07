@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>Welcome</title>
+    <author email="chi.le@axonactive.vn">The Bolt Team</author>
+  </properties>
+
+  <body>
+    <section name="PORTAL KIT">
+      <p>
+        <b>Process</b>
+        : Portal Kit
+      </p>
+      <p>
+        <b>Effort</b>
+        : ...
+      </p>
+      <p>
+        <b>Period</b>
+        : ...
+      </p>
+      <p>
+        <b>System</b>
+        : Axon.ivy Engine RC-6.0.0.50208
+      </p>
+      <div class="section">
+        <h3>
+          Main Features
+          <a name="Main_Features"></a>
+        </h3>
+        <ul>
+          <li>Central access for end users - Only one portal for all applications </li>
+          <li>Repository of reusable components</li>
+          <li>Fast integration of process applications to the portal</li>
+          <li>Provide customers and other system vendors the flexibility to built their own portals, but reuse portal
+            components of Ivy</li>
+          <li>Portal Kit components for single applications as well as multi server applications (supporting different
+            ivy servers)</li>
+          <li>
+            Central administration
+            <ul>
+              <li>License management</li>
+              <li>Platform administration and rollouts</li>
+            </ul>
+          </li>
+          <li>
+            Scalability between applications and servers
+            <ul>
+              <li>Organisation</li>
+              <li>Downtimes of maintainence (e.g. if one server is maintained, that not the whole Ivy platform is not
+                available)</li>
+              <li>Handle complex infrastructures(caching,...)</li>
+            </ul>
+          </li>
+        </ul>
+        <h3>Reference architecture</h3>
+        <p>The following image describes the reference architecture of the Portal Kit:</p>
+        <ul>
+          <li>
+            Organize Ivy Landscape in more Ivy Servers based on
+            <ul>
+              <li>Criticial Process Apps</li>
+              <li>Support Apps</li>
+            </ul>
+          </li>
+          <li>Ivy Landscape shares a Company wide LDAP</li>
+          <li>Ivy Landscape shares a Landscape wide DB for centralize settings</li>
+        </ul>
+        <img src="images/MultiServerArchitecture.png" alt="Multi-Server Reference Architecture" />
+      </div>
+    </section>
+  </body>
+</document>
+

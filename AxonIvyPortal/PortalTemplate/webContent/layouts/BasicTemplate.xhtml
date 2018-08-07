@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:ic="http://ivyteam.ch/jsf/component">
+<h:head>
+  <f:facet name="first">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+  </f:facet>
+  <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
+
+  <h:outputStylesheet name="css/animate.css" library="modena-layout" />
+  <h:outputStylesheet name="css/modena-font.css" library="modena-layout" />
+  <h:outputStylesheet name="css/ripple-effect.css" library="modena-layout" />
+  <h:outputStylesheet name="css/perfect-scrollbar.css" library="modena-layout" />
+  <h:outputStylesheet name="css/font-awesome.css" library="modena-layout" />
+  <h:outputStylesheet name="css/modena-layout.css" library="modena-layout" />
+  <h:outputStylesheet name="css/core-layout.css" library="modena-layout" />
+
+  <h:outputStylesheet library="css" name="base.css" />
+  <h:outputStylesheet library="css" name="state.css" />
+  <h:outputStylesheet library="css" name="layout.css" />
+  <h:outputStylesheet library="css" name="utility.css" />
+
+  <h:outputScript name="js/ripple-effect.js" library="modena-layout" />
+  <h:outputScript name="js/perfect-scrollbar.js" library="modena-layout" />
+  <h:outputScript name="js/layout.js" library="modena-layout" />
+
+  <h:outputStylesheet library="css" name="theme.css" />
+  <h:outputStylesheet library="css" name="template.css" />
+  <h:outputStylesheet library="css" name="module.css" />
+
+  <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
+  <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
+
+  <ui:insert name="head" />
+</h:head>
+
+<h:body>
+  <f:event type="preRenderView"
+    listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
+  <c:set var="defaultNotificationMessage"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/defaultNotificationMessage')}" />
+  <c:set var="actionLinkText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/seeMoreDetails')}" />
+  <p:ajaxExceptionHandler type="java.lang.Throwable" update="exception-dialog:exception-dialog"
+    onexception="portal.notifyError('#{defaultNotificationMessage}', '#{actionLinkText}')" />
+  <ic:ch.ivy.addon.portalkit.component.ExceptionDialog id="exception-dialog" widgetVar="exception-dialog"
+    message="#{pfExceptionHandler.message}" stackTrace="#{pfExceptionHandler.formattedStackTrace}" />
+  <ui:include src="/layouts/includes/session-timed-out.xhtml" />
+  <c:choose>
+    <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
+      <ui:insert name="login">
+        <ic:ch.ivy.addon.portalkit.singleapp.general.Login id="login-form" />
+      </ui:insert>
+    </c:when>
+    <c:otherwise>
+      <p:layout fullPage="true" widgetVar="portal-page-layout">
+        <p:ajax event="toggle" global="false" />
+        <p:layoutUnit position="north" size="60" gutter="0" styleClass="header-panel">
+          <ui:include src="/layouts/includes/topbar.xhtml">
+            <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+            <ui:param name="appName" value="#{appName}" />
+            <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
+            <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
+            <ui:param name="enablesChat" value="#{enablesChat}" />
+          </ui:include>
+        </p:layoutUnit>
+
+        <p:layoutUnit rendered="#{empty hasMainMenu ? true : hasMainMenu}" id="js-main-menu-panel" gutter="0"
+          position="west" collapseSize="0" size="280" collapsible="true" styleClass="main-menu-panel u-shadow-effect">
+          <h:panelGroup id="main-menu">
+            <ic:ch.ivy.addon.portal.generic.CustomLinkGenerator id="main-menu-container" />
+          </h:panelGroup>
+        </p:layoutUnit>
+
+        <p:layoutUnit id="main-area-panel" position="center" styleClass="main-area-panel" gutter="0">
+          <div class="main-area-panel-container #{isThirdPartyApplication ? 'third-party-application' : ''}">
+            <ui:insert name="pageContent">
+              <!--               Page content goes here -->
+            </ui:insert>
+          </div>
+        </p:layoutUnit>
+      </p:layout>
+    </c:otherwise>
+  </c:choose>
+  <ic:ch.ivy.addon.portalkit.component.GlobalAjaxStatus id="ajax-indicator" />
+  <ui:insert name="css" />
+
+  <h:outputScript name="main.js" library="js" />
+  <h:outputScript name="main-menu.js" library="js" rendered="#{empty hasMainMenu ? true : hasMainMenu}" />
+</h:body>
+</html>

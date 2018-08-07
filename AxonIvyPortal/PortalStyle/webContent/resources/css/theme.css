@@ -1,0 +1,632 @@
+/*===============================================================================================================*/
+/*===============================================================================================================*/
+/*========================================= HOW TO CHANGE THEME'S COLOR =========================================*/
+/*===============================================================================================================*/
+/*===============================================================================================================*/
+/*                                                                                                               */
+/* The theme's default color is Axon ivy's color, you can replace the following color codes by yours:            */
+/* # Color codes in order from dark to light:                                                                    */
+/*   + 38835a (The darkest color in body background, active state of ui-buttonset)                               */
+/*   + 4d9548 (MAIN COLOR: header's background in table, panel, border's color, etc.)                            */
+/*   + 6da66a (Focus state of ui-button, saturday and sunday header of schedule)                                 */
+/*   + 7bc377 (MAIN COLOR: text, link, checkbox, radio button, hover state, focus state, etc.)                   */
+/*                                                                                                               */
+/* # Topbar's background color:                                                                                  */
+/*   + eceff1                                                                                                    */
+/*                                                                                                               */
+/* # NOTE:                                                                                                       */
+/*   + To apply it efficiently, it is recommended to use the primefaces's components and icons from font-awesome */
+/*                                                                                                               */
+/*===============================================================================================================*/
+/*===============================================================================================================*/
+/*===============================================================================================================*/
+
+/*Style For Background --------------------------------------------------------------------------------------*/
+body, .main-area-panel {
+  background: #38835a; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #38835a 0%, #4d9548 50%, #7bc377 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #38835a), color-stop(50%, #4d9548),
+    color-stop(100%, #7bc377)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg, #38835a 0%, #4d9548 50%, #7bc377 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg, #38835a 0%, #4d9548 50%, #7bc377 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg, #38835a 0%, #4d9548 50%, #7bc377 100%); /* IE10+ */
+  background: linear-gradient(135deg, #38835a 0%, #4d9548 50%, #7bc377 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38835a', endColorstr='#7bc377', GradientType=1);
+  background-attachment: fixed;
+  /* IE6-9 fallback on horizontal gradient */
+}
+
+/*Style For TopBar*/
+#layout-topbar, .menu-toolbar {
+  background-color: #eceff1 !important;
+}
+
+#layout-topbar .ivy-active, #layout-topbar .ui-state-hover {
+  border-bottom: 3px solid #7bc377 !important;
+  color: #7bc377 !important;
+  padding-bottom: 17px !important;
+  background-color: #eceff1 !important;
+}
+
+/*Style For Main menu (Left Sidebar) */
+.main-menu-container.ui-treetable table tbody .ui-state-hover td {
+  color: #656565 !important;
+  background-color: #ddd;
+}
+
+.main-menu-container.ui-treetable table tbody .ui-state-highlight td
+{
+  color: #656565 !important;
+  background-color: #eee;
+}
+
+/* Override Primefaces styles */
+.widget a.ui-commandlink {
+  color: white !important;
+}
+
+.widget {
+  color: white;
+}
+
+/* override color of primefaces/modena label */
+.widget .ui-outputlabel {
+  color: white;
+}
+
+/*Style For UI InputField --------------------------------------------------------------------------------------*/
+.ui-inputfield.ui-state-hover, .ui-inputfield.ui-state-focus {
+  border-bottom-color: #7bc377 !important;
+  color: #7bc377 !important;
+}
+
+/*Style For UI Panel --------------------------------------------------------------------------------------*/
+.ui-panel .ui-panel-titlebar {
+  background-color: #4d9548;
+}
+
+/*Style For UI Button --------------------------------------------------------------------------------------*/
+.ui-button {
+  background-color: #4d9548;
+  color: #ffffff;
+}
+
+.ui-button.ui-state-hover, .ui-buttonset .ui-state-hover {
+  background-color: #7bc377;
+}
+
+.ui-button.ui-state-focus {
+  background-color: #6da66a;
+}
+
+/*Style For UI Link, CommandLink --------------------------------------------------------------------------------------*/
+.ui-commandlink, .ui-link {
+  color: #7bc377 !important;
+}
+
+.ui-state-highlight .ui-commandlink, .ui-widget-content .ui-state-highlight .ui-commandlink, .ui-widget-header .ui-state-highlight .ui-commandlink
+  {
+  color: #ffffff !important;
+}
+
+.ui-state-highlight .ui-link, .ui-widget-content .ui-state-highlight .ui-link, .ui-widget-header .ui-state-highlight .ui-link
+  {
+  color: #ffffff !important;
+}
+
+/*Style For UI ProgressBar --------------------------------------------------------------------------------------*/
+.ui-progressbar {
+  background-color: #7bc377;
+}
+
+.ui-progressbar-value {
+  background-color: #4d9548;
+}
+
+/*Style For UI Chbox --------------------------------------------------------------------------------------*/
+.ui-chkbox-box .ui-icon-check {
+  border-bottom-color: #7bc377;
+  border-right-color: #7bc377;
+}
+
+/*Style For UI Fieldset --------------------------------------------------------------------------------------*/
+.ui-fieldset-legend {
+  background-color: #4d9548;
+}
+
+/*Style For UI Radiobutton --------------------------------------------------------------------------------------*/
+.ui-radiobutton .ui-state-hover, .ui-radiobutton .ui-state-active {
+  border-color: #7bc377;
+}
+
+.ui-radiobutton .ui-state-active .ui-icon-bullet, .ui-radiobutton .ui-state-focus .ui-icon-bullet {
+  background-color: #7bc377;
+}
+
+.ui-selection-column .ui-radiobutton .ui-state-active {
+  border-color: #ffffff;
+}
+
+/*Style For UI Autocomplete --------------------------------------------------------------------------------------*/
+.ui-autocomplete-panel .ui-autocomplete-items .ui-state-highlight {
+  color: #7bc377;
+}
+
+.ui-autocomplete .ui-autocomplete-dropdown.ui-state-hover {
+  border-bottom-color: #7bc377;
+}
+
+.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-group {
+  background-color: #4d9548;
+}
+
+/*Style For UI Datepicker --------------------------------------------------------------------------------------*/
+.ui-datepicker-calendar tbody tr .ui-datepicker-today {
+  border-color: #7bc377;
+}
+
+.ui-datepicker-calendar tbody tr td:hover {
+  background-color: #7bc377;
+  border-color: #7bc377;
+}
+
+.ui-datepicker-calendar tbody tr .ui-datepicker-today a {
+  color: #7bc377 !important;
+}
+
+.ui-datepicker-calendar tbody tr .ui-datepicker-current-day a {
+  color: #f6fafc !important;
+}
+
+.ui-datepicker-calendar tbody tr .ui-datepicker-current-day {
+  background-color: #7bc377;
+  border-color: #7bc377;
+}
+
+/*Style For UI Slider --------------------------------------------------------------------------------------*/
+.ui-slider {
+  background-color: #7bc377;
+}
+
+.ui-slider-range {
+  background-color: #4d9548;
+}
+
+/*Style For UI Menu --------------------------------------------------------------------------------------*/
+.ui-menu .ui-state-hover .ui-menuitem-link {
+  color: #7bc377 !important;
+}
+
+/*Style For UI SelectOneMenuPanel --------------------------------------------------------------------------------------*/
+.ui-selectonemenu-panel .ui-selectonemenu-item-group {
+  background-color: #4d9548;
+}
+
+.ui-selectonemenu-panel tr.ui-state-highlight td {
+  color: #7bc377 !important;
+}
+
+/*Style For UI SelectOneListBox --------------------------------------------------------------------------------------*/
+.ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
+  color: #7bc377 !important;
+}
+
+.ui-selectonelistbox .ui-selectlistbox-item.ui-state-highlight {
+  color: #7bc377 !important;
+}
+
+.ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover td {
+  color: #7bc377 !important;
+}
+
+.ui-selectonelistbox .ui-selectlistbox-item.ui-state-highlight td {
+  color: #7bc377 !important;
+}
+
+/*Style For UI SelectManyMenu --------------------------------------------------------------------------------------*/
+.ui-selectmanymenu .ui-state-hover {
+  color: #7bc377;
+}
+
+.ui-selectmanymenu .ui-state-highlight {
+  color: #7bc377;
+}
+
+.ui-selectmanymenu .ui-selectlistbox-item.ui-state-hover td {
+  color: #7bc377;
+}
+
+.ui-selectmanymenu .ui-selectlistbox-item.ui-state-highlight td {
+  color: #7bc377 !important;
+}
+
+/*Style For UI MultiSelectionListBox --------------------------------------------------------------------------------------*/
+.ui-multiselectlistbox .ui-multiselectlistbox-listcontainer .ui-multiselectlistbox-header {
+  background-color: #4d9548;
+}
+
+.ui-multiselectlistbox .ui-multiselectlistbox-listcontainer .ui-multiselectlistbox-list .ui-state-highlight {
+  color: #7bc377;
+}
+
+.ui-multiselectlistbox .ui-multiselectlistbox-listcontainer .ui-multiselectlistbox-list .ui-state-hover {
+  color: #7bc377;
+}
+
+/*Style For UI InputSwitch --------------------------------------------------------------------------------------*/
+.ui-inputswitch {
+  border-color: #7bc377;
+  background-color: #7bc377;
+}
+
+.ui-inputswitch .ui-inputswitch-on span {
+  color: #ffffff;
+}
+
+.ui-inputswitch .ui-inputswitch-off span {
+  color: #ffffff;
+}
+
+/*Style For Keypad --------------------------------------------------------------------------------------*/
+#keypad-div .keypad-row button.ui-state-hover {
+  background-color: #7bc377;
+  border-color: #7bc377;
+}
+
+/*Style For UI ButtonSet --------------------------------------------------------------------------------------*/
+.ui-buttonset .ui-state-active {
+  background-color: #38835a !important;
+}
+
+/*Style For UI Carousel --------------------------------------------------------------------------------------*/
+.ui-carousel .ui-carousel-header {
+  background-color: #4d9548;
+}
+
+.ui-carousel .ui-carousel-header .ui-carousel-next-button:hover, .ui-carousel .ui-carousel-header .ui-carousel-prev-button:hover
+  {
+  background-color: #7bc377;
+}
+
+/*Style For UI DataList --------------------------------------------------------------------------------------*/
+.ui-datalist .ui-datalist-header {
+  background-color: #4d9548;
+}
+
+.ui-paginator-top {
+  background-color: #4d9548;
+}
+
+.ui-paginator-bottom {
+  background-color: #4d9548;
+}
+
+/*Style For UI DataTable --------------------------------------------------------------------------------------*/
+.ui-datatable .ui-datagrid-header, .ui-datatable .ui-datatable-header, .ui-datatable .ui-datatable-subtable-header,
+  .ui-datatable .ui-datatable-summaryrow {
+  background-color: #4d9548;
+}
+
+.ui-datatable table tbody .ui-state-highlight td {
+  background-color: #7bc377;
+}
+
+.ui-datatable .ui-column-resizer-helper {
+  background-color: #7bc377;
+}
+
+/*Style For UI Paginator --------------------------------------------------------------------------------------*/
+.ui-paginator .ui-paginator-rpp-options {
+  background-color: #4d9548;
+}
+
+.ui-paginator .ui-paginator-rpp-options.ui-state-focus {
+  background-color: #7bc377 !important;
+}
+
+/*Style For UI PickList --------------------------------------------------------------------------------------*/
+.ui-picklist .ui-picklist-caption {
+  background-color: #4d9548;
+}
+
+.ui-picklist .ui-picklist-list .ui-state-hover {
+  color: #7bc377;
+}
+
+.ui-picklist .ui-picklist-list .ui-state-highlight {
+  color: #7bc377;
+}
+
+/*Style For Schedule --------------------------------------------------------------------------------------*/
+.fc-toolbar {
+  background-color: #7bc377;
+}
+
+.fc-toolbar button {
+  border-color: #7bc377;
+  background-color: #7bc377;
+}
+
+.fc-toolbar button.ui-state-hover {
+  background-color: #7bc377;
+}
+
+.fc-view-container table thead tr th {
+  background-color: #4d9548;
+  color: #ffffff;
+}
+
+.fc-view-container table thead tr .fc-sun, .fc-view-container table thead tr .fc-sat {
+  background-color: #6da66a;
+}
+
+.fc-view-container .fc-month-view table tbody tr .fc-day:hover {
+  border-color: #7bc377 !important;
+  color: #7bc377;
+}
+
+.fc-view-container .fc-month-view>table>thead {
+  background-color: #4d9548;
+}
+
+/*Style For UI Tree --------------------------------------------------------------------------------------*/
+.ui-tree .ui-treenode .ui-treenode-label.ui-state-hover {
+  color: #7bc377;
+}
+
+.ui-tree .ui-treenode .ui-state-highlight {
+  color: #7bc377;
+}
+
+.ui-tree .ui-tree-droppoint.ui-state-hover {
+  background-color: #7bc377;
+}
+
+.ui-tree-horizontal .ui-treenode .ui-state-hover {
+  color: #7bc377;
+}
+
+.ui-tree-horizontal .ui-treenode .ui-state-highlight {
+  border-color: #7bc377 !important;
+}
+
+/*Style For UI DataGrid --------------------------------------------------------------------------------------*/
+.ui-datagrid .ui-datagrid-header {
+  background-color: #7bc377;
+}
+
+/*Style For UI DataScroller --------------------------------------------------------------------------------------*/
+.ui-datascroller .ui-datascroller-header {
+  background-color: #4d9548;
+}
+
+.task-view-container .ui-datascroller {
+  background-color: transparent;
+  border: none;
+}
+
+.task-view-container .ui-datascroller .ui-datascroller-content {
+  overflow: hidden;
+  position: relative;
+}
+
+.task-view-container .ui-datascroller .ui-datascroller-item {
+  border: none !important;
+}
+
+/*Style For UI OrderList --------------------------------------------------------------------------------------*/
+.ui-orderlist .ui-orderlist-list .ui-state-hover {
+  color: #7bc377 !important;
+}
+
+.ui-orderlist .ui-orderlist-list .ui-state-highlight {
+  color: #7bc377;
+}
+
+/*Style For UI TagCloud --------------------------------------------------------------------------------------*/
+.ui-tagcloud li a.ui-state-hover {
+  background-color: #4d9548;
+}
+
+/*Style For UI TreeTable --------------------------------------------------------------------------------------*/
+.ui-treetable table thead tr th {
+  background-color: #4d9548;
+  border-color: #7bc377;
+}
+
+.ui-treetable .ui-column-resizer-helper {
+  background-color: #7bc377;
+}
+
+.ui-treetable table tbody .ui-state-hover td {
+  color: #7bc377 !important;
+}
+
+.ui-treetable table tbody .ui-state-highlight td {
+  color: #7bc377 !important;
+}
+
+.ui-treetable table tbody tr td .ui-chkbox-box .ui-icon-check {
+  border-bottom-color: #7bc377;
+  border-right-color: #7bc377;
+}
+
+/*Style For UI Accordion --------------------------------------------------------------------------------------*/
+.ui-accordion-header {
+  background-color: #4d9548;
+}
+
+.ui-accordion .ui-accordion-header.ui-state-hover, .ui-accordion .ui-accordion-header.ui-state-active {
+  background-color: #7bc377;
+}
+
+.ui-accordion .ui-tabs-outline {
+  background-color: #4d9548;
+}
+
+/*Style For UI Fieldset --------------------------------------------------------------------------------------*/
+.ui-fieldset-legend.ui-state-hover {
+  background-color: #7bc377;
+}
+
+/*Style For UI PanelGrid --------------------------------------------------------------------------------------*/
+.ui-panelgrid thead tr td, .ui-panelgrid tfoot tr td {
+  color: #4d9548;
+}
+
+/*Style For UI NotificationBar --------------------------------------------------------------------------------------*/
+.ui-notificationbar {
+  background-color: #7bc377;
+}
+
+/*Style For UI Ribbon --------------------------------------------------------------------------------------*/
+.ui-ribbon .ui-ribbon-group-content .ui-button {
+  background-color: #4d9548;
+}
+
+.ui-ribbon .ui-ribbon-group-content .ui-button.ui-state-hover {
+  background-color: #7bc377;
+}
+
+/*Style For UI Tabs --------------------------------------------------------------------------------------*/
+.ui-tabs-top .ui-tabs-nav li.ui-tabs-selected, .ui-tabs-top .ui-tabs-nav li.ui-tabs-active, .ui-tabs-top .ui-tabs-nav li.ui-state-hover
+  {
+  border-bottom-color: #4d9548 !important;
+}
+
+.ui-tabs-top .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs-top .ui-tabs-nav li.ui-tabs-active a, .ui-tabs-top .ui-tabs-nav li.ui-state-hover a
+  {
+  color: #4d9548 !important;
+}
+
+.ui-tabs-left .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs-left .ui-tabs-nav li.ui-tabs-active a, .ui-tabs-left .ui-tabs-nav li.ui-state-hover a
+  {
+  color: #4d9548 !important;
+}
+
+.ui-tabs-left .ui-tabs-nav li.ui-tabs-selected, .ui-tabs-left .ui-tabs-nav li.ui-tabs-active, .ui-tabs-left .ui-tabs-nav li.ui-state-hover
+  {
+  border-right-color: #4d9548 !important;
+}
+
+.ui-tabs-bottom .ui-tabs-nav li.ui-tabs-selected, .ui-tabs-bottom .ui-tabs-nav li.ui-tabs-active, .ui-tabs-bottom .ui-tabs-nav li.ui-state-hover
+  {
+  border-top-color: #4d9548 !important;
+}
+
+.ui-tabs-bottom .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs-bottom .ui-tabs-nav li.ui-tabs-active a, .ui-tabs-bottom .ui-tabs-nav li.ui-state-hover a
+  {
+  color: #4d9548 !important;
+}
+
+.ui-tabs-right .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs-right .ui-tabs-nav li.ui-tabs-active a, .ui-tabs-right .ui-tabs-nav li.ui-state-hover a
+  {
+  color: #4d9548 !important;
+}
+
+.ui-tabs-right .ui-tabs-nav li.ui-tabs-selected, .ui-tabs-right .ui-tabs-nav li.ui-tabs-active, .ui-tabs-right .ui-tabs-nav li.ui-state-hover
+  {
+  border-left-color: #4d9548 !important;
+}
+
+/*Style For UI Wizard --------------------------------------------------------------------------------------*/
+.ui-wizard .ui-wizard-step-titles li {
+  background-color: #4d9548;
+}
+
+.ui-wizard .ui-wizard-step-titles li.ui-state-highlight {
+  background-color: #7bc377;
+}
+
+/*Style For UI OverlayPanel --------------------------------------------------------------------------------------*/
+.ui-overlaypanel .ui-overlaypanel-close {
+  background-color: #4d9548;
+}
+
+/*Style For UI Breadcrumb --------------------------------------------------------------------------------------*/
+.ui-breadcrumb ul li .ui-menuitem-link:hover {
+  color: #7bc377;
+}
+
+/*Style For UI Menu --------------------------------------------------------------------------------------*/
+.ui-menu .ui-menu-list .ui-widget-header {
+  background-color: #4d9548;
+}
+
+.ui-menu .ui-menu-list .ui-menuitem .ui-state-hover, .ui-menu .ui-menu-list .ui-state-hover {
+  color: #4d9548;
+}
+
+.ui-menu.ui-menu-toggleable li.ui-widget-header {
+  background-color: #4d9548;
+}
+
+.ui-menu.ui-menu-toggleable li.ui-widget-header:hover {
+  background-color: #7bc377;
+}
+
+.ui-menu .ui-slidemenu-wrapper .ui-slidemenu-backward:hover {
+  color: #7bc377;
+}
+
+/*Style For UI PanelMenu --------------------------------------------------------------------------------------*/
+.ui-panelmenu .ui-panelmenu-panel .ui-panelmenu-header {
+  background-color: #4d9548;
+}
+
+.ui-panelmenu .ui-panelmenu-panel h3.ui-state-hover {
+  background-color: #7bc377;
+}
+
+.ui-panelmenu .ui-panelmenu-panel .ui-panelmenu-content .ui-menuitem .ui-state-hover {
+  color: #7bc377;
+}
+
+/*Style For UI TabMenu --------------------------------------------------------------------------------------*/
+.ui-tabmenu .ui-tabmenu-nav .ui-state-hover a, .ui-tabmenu .ui-tabmenu-nav .ui-state-active a {
+  color: #7bc377;
+}
+
+.ui-tabmenu .ui-tabmenu-nav .ui-state-hover, .ui-tabmenu .ui-tabmenu-nav .ui-state-active {
+  border-bottom-color: #4d9548 !important;
+  color: #4d9548;
+}
+
+/*Style For UI Draggable Dragging --------------------------------------------------------------------------------------*/
+.ui-draggable-dragging {
+  color: #7bc377;
+}
+
+/*Style For UI Clock --------------------------------------------------------------------------------------*/
+.ui-clock {
+  background-color: #4d9548;
+  color: #ffffff;
+}
+
+/*Style For General --------------------------------------------------------------------------------------*/
+.ui-selectonemenu-panel .ui-state-highlight, .ui-selectcheckboxmenu-panel .ui-state-highlight {
+  color: #7bc377 !important;
+}
+
+.ui-selectonemenu.ui-state-focus, .ui-selectcheckboxmenu.ui-state-focus {
+  border-bottom-color: #7bc377 !important;
+}
+
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-focus,
+  .ui-selectonemenu .ui-selectonemenu-trigger.ui-state-hover, .ui-selectonemenu .ui-selectonemenu-trigger.ui-state-focus
+  {
+  border-bottom-color: #7bc377 !important;
+}
+
+.foreground-text-color {
+  color: #ffffff;
+}
+/*Icon selection component----------------------------------------------------------------------------------*/
+.icon-selection-dialog-selecting-icon:hover {
+  background-color: #7BC377;
+}
+
+.icon-selection-dialog-selecting-icon .fa {
+  color: #000000;
+}

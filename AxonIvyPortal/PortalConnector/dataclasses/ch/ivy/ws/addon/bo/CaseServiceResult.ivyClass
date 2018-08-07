@@ -1,0 +1,10 @@
+CaseServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+addtionalProperties java.util.List<ch.ivy.ws.addon.types.IvyAdditionalProperty> #field
+cases java.util.List<ch.ivy.ws.addon.types.IvyCase> #field
+document ch.ivy.ws.addon.types.IvyDocument #field
+documentContent Binary #field
+documents java.util.List<ch.ivy.ws.addon.types.IvyDocument> #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+oneCase ch.ivy.ws.addon.types.IvyCase #field
+tasks java.util.List<ch.ivy.ws.addon.types.IvyTask> #field

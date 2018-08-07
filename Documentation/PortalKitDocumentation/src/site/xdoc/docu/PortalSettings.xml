@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Welcome</title>
+		<author email="chi.le@axonactive.vn">The Bolt Team</author>
+	</properties>
+
+	<body>
+		<section name="Portal Customizings">
+
+			<div class="section">
+				<p>The Portal contains some special settings that are only necessary
+					for the Application</p>
+				<div class="section">
+					<h3>
+						Overriden Panels
+						<a name="Overriden_Panels"></a>
+					</h3>
+					<table border="1" class="table table-striped">
+						<tbody>
+							<tr class="a">
+								<th align="left">Dialog</th>
+								<th align="left">Description</th>
+							</tr>
+							<tr class="b">
+								<td align="left">Application Menu Override</td>
+								<td align="left">...</td>
+							</tr>
+							<tr class="a">
+								<td align="left">Welcome Page Override</td>
+								<td align="left">...</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="section">
+					<h3>
+						Portal Settings
+						<a name="Portal_Settings"></a>
+					</h3>
+					<p>The Portal Settings can be found in the
+						SetupGlobalConfigOverride process, that sets the portal config
+						object. The process also sets the content and formatting language
+						to swedish by default, regardless of the language of the user.
+						Please note that these portal settings can not be changed in the
+						Administration UI, it's part of the portal project. If there is a
+						change, than a Redeployment is necesary. Usually these settings
+						are changed one time, at the beginning of the project.</p>
+					<table border="1" class="table table-striped">
+						<tbody>
+							<tr class="a">
+								<th align="left">Configuration</th>
+								<th align="left">Setting</th>
+							</tr>
+							<tr class="b">
+								<td align="left">Show Header Banner</td>
+								<td align="left">Header Banner is shown, but no E.ON Logo</td>
+							</tr>
+							<tr class="a">
+								<td align="left">Show Welcome Page</td>
+								<td align="left">Yes, the Welcome Page Override dialog is displayed
+								</td>
+							</tr>
+							<tr class="b">
+								<td align="left">Show Process Start List</td>
+								<td align="left">No (only Developer role see the start list</td>
+							</tr>
+							<tr class="a">
+								<td align="left">Book Task Button</td>
+								<td align="left">Book Button is not present in toolbar when you open
+									a task</td>
+							</tr>
+							<tr class="b">
+								<td align="left">Max Tab Count</td>
+								<td align="left">6, Sets the number of parallel open tabs in the
+									portal</td>
+							</tr>
+							<tr class="a">
+								<td align="left">Running Task List</td>
+								<td align="left">Not all columns are displayed. Details see config
+									process</td>
+							</tr>
+							<tr class="b">
+								<td align="left">Finished Case List</td>
+								<td align="left">Not all columns are displayed. Details see config
+									process</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+	</body>
+</document>
