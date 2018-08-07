@@ -1,0 +1,6 @@
+UniversalCaseListHomeData #class
+ch.ivy.addon.portalkit.showroom.multiapp.cases.UniversalCaseListHome #namespace
+caseId String #field
+caseId PERSISTENT #fieldModifier
+spParameters String #field
+spParameters PERSISTENT #fieldModifier

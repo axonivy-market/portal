@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+
+	<cc:interface componentType="IvyComponent">
+		<cc:attribute name="confirmMessage" default="" required="false"></cc:attribute>
+	</cc:interface>
+	
+	<cc:implementation>
+		<script>
+			var confirmMessage = "#{cc.attrs.confirmMessage}";
+			var showConfirmDialogBeforeUnload = true;
+          
+			// Attach the event submit for all forms in the page
+			$("form").on("submit", function() {
+				showConfirmDialogBeforeUnload = false;
+			});
+
+			$(document).on('mousedown', 'a[href], :submit, :button', function(e) {
+				showConfirmDialogBeforeUnload = false;
+			}).on('mouseleave', 'a[href], :submit, :button', function(e) {
+				showConfirmDialogBeforeUnload = true;
+			});
+
+			PrimeFaces.ajax.ResponseProcessor.doRedirect = function(node) {
+				showConfirmDialogBeforeUnload = false;
+				window.location = node.getAttribute('url');
+			};
+	
+			// Wire up the events as soon as the DOM tree is ready
+			$(document).ready(function() {
+				window.onbeforeunload = function() {
+					if (showConfirmDialogBeforeUnload) {
+						return confirmMessage;
+					}
+				};
+			});
+		</script>
+	</cc:implementation>
+</html>

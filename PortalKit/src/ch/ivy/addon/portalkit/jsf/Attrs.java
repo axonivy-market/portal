@@ -1,0 +1,57 @@
+package ch.ivy.addon.portalkit.jsf;
+
+import javax.el.ELContext;
+import javax.el.ValueExpression;
+import javax.faces.context.FacesContext;
+
+/**
+ * <p>
+ * Small utility to set/get {@code cc.attrs} in HtmlDialog logic or {@code @ManagedBean}.
+ * </p>
+ * 
+ * <p>
+ * Typical use of {@code Attrs} is in HtmlDialog's process (methods & events)
+ * </p>
+ * 
+ * <pre>
+ * <code>
+ *  Attrs attrs = Attrs.currentContext();
+ *  String name = attrs.get("name");
+ *  SomeClass someClass = attrs.get("argumentSomeClass");
+ * </code>
+ * </pre>
+ */
+public class Attrs {
+
+  public static Attrs currentContext() {
+    return new Attrs(FacesContext.getCurrentInstance());
+  }
+
+  private final FacesContext facesContext;
+
+  private Attrs(FacesContext facesContext) {
+    if (facesContext == null) {
+      throw new IllegalArgumentException("FacesContext must not be null to use Attrs");
+    }
+    this.facesContext = facesContext;
+  }
+
+  // This method is defined but not in used yet.
+  // Set it `public` and remove the `@SuppressWarning` if you want to publish it.
+  @SuppressWarnings("unused")
+  private void set(String attribute, Object value) {
+    ELContext elContext = facesContext.getELContext();
+    ValueExpression valueExpression =
+        facesContext.getApplication().getExpressionFactory()
+            .createValueExpression(elContext, "#{cc.attrs." + attribute + "}", Object.class);
+    valueExpression.setValue(elContext, value);
+  }
+
+  public <T> T get(String attribute) {
+    FacesContext fc = FacesContext.getCurrentInstance();
+    @SuppressWarnings("unchecked")
+    T attributeValue = (T) fc.getApplication().evaluateExpressionGet(fc, "#{cc.attrs." + attribute + "}", Object.class);
+    return attributeValue;
+  }
+
+}
