@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="dialogName" shortDescription="Name of setting dialog's widget that contains this component" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+
+    <h:panelGrid>
+      <p:growl id="change-email-setting-info" showDetail="true" sticky="false" life="400" severity="info"
+        widgetVar="growl" escape="false" />
+    </h:panelGrid>
+    <p:remoteCommand name="updateGrowlEmail" actionListener="#{logic.updateGrowl}" update="change-email-setting-info" />
+    <p:remoteCommand name="startEmailSetting" actionListener="#{logic.startEmailSetting}" process="@this"
+      update="@next email-messages @widgetVar(errorDialogEmail)" oncomplete="PF('#{cc.attributes.dialogName}').show();" />
+
+    <h:panelGroup layout="block" id="email-setting-container">
+      <p:messages escape="false" showDetail="true" closable="true" id="email-messages" />
+      <h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <!--  SETTING -->
+          <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/setting')}">
+            <p:selectOneRadio id="select-setting-options" value="#{data.settingForAllApp}" layout="pageDirection"
+              columns="1">
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApps')}"
+                itemValue="#{true}" />
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forEachApp')}"
+                itemValue="#{false}" />
+              <p:ajax event="change" listener="#{logic.settingChange}"
+                update=":#{p:component('email-setting-container')}"
+                oncomplete="PF('#{cc.attributes.dialogName}').initPosition();" />
+            </p:selectOneRadio>
+
+          </p:fieldset>
+        </h:panelGrid>
+
+        <p:panel id="all-applications-email-setting"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}"
+          rendered="#{data.settingForAllApp}">
+          <h:panelGrid columns="2">
+            <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
+            <p:outputLabel id="mail-notification-on-task-assign-text"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
+              for="mail-notification-on-task-assign" rendered="#{data.settingForAllApp}" />
+            <p:selectOneMenu id="mail-notification-on-task-assign" value="#{data.generalEmailSetting.mailNotification}"
+              rendered="#{data.settingForAllApp}" appendTo="@this">
+              <f:selectItem id="enable-mail-notification"
+                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}" itemValue="true" />
+              <f:selectItem id="disable-mail-notification"
+                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}" itemValue="false" />
+            </p:selectOneMenu>
+
+            <!--  DAILY SUMMARY -->
+            <p:outputLabel id="daily-summary-text"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}" for="daily-summary"
+              rendered="#{data.settingForAllApp}" />
+            <p:selectManyCheckbox id="daily-summary" value="#{data.generalEmailSetting.weekDays}"
+              rendered="#{data.settingForAllApp}">
+              <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.label}" itemValue="#{day}" />
+            </p:selectManyCheckbox>
+
+            <!-- FURTHER MAILS FROM APPLICATION -->
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}"
+              for="further-mails-from-application" rendered="#{data.settingForAllApp}" />
+            <p:selectOneMenu id="further-mails-from-application" value="#{data.generalEmailSetting.furtherMailFromApp}"
+              rendered="#{data.settingForAllApp}" appendTo="@this">
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}" itemValue="true" />
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
+                itemValue="false" />
+            </p:selectOneMenu>
+          </h:panelGrid>
+        </p:panel>
+        <!--  SETTING FOR DYNAMIC APPLICATIONS -->
+
+        <h:panelGrid id="application-email-setting" columns="1" rendered="#{!data.settingForAllApp}">
+          <ui:repeat value="#{data.remoteEmailSettings}" var="appSetting" step="1">
+            <p:panel header="#{appSetting.appDisplayName}" id="application-name">
+              <h:panelGrid columns="2">
+                <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
+                <p:outputLabel
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
+                  for="mail-notification-on-task-assign" />
+                <p:selectOneMenu id="mail-notification-on-task-assign" value="#{appSetting.MailNotification}"
+                  appendTo="@this">
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}"
+                    itemValue="#{true}" />
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
+                    itemValue="#{false}" />
+                </p:selectOneMenu>
+
+                <!--  DAILY SUMMARY -->
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}"
+                  for="daily-summary" />
+                <p:selectManyCheckbox id="daily-summary" value="#{appSetting.weekDays}">
+                  <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.label}" itemValue="#{day}" />
+                </p:selectManyCheckbox>
+
+                <!-- FURTHER MAILS FROM APPLICATION -->
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}"
+                  for="further-mails-from-application" />
+                <p:selectOneMenu id="further-mails-from-application" value="#{appSetting.FurtherMailFromApp}"
+                  appendTo="@this">
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}"
+                    itemValue="#{true}" />
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
+                    itemValue="#{false}" />
+                </p:selectOneMenu>
+              </h:panelGrid>
+            </p:panel>
+            <br />
+          </ui:repeat>
+        </h:panelGrid>
+
+      </h:panelGrid>
+
+      <p:dialog id="exception-message-dialog" header="#{ivy.cms.co('/errors/header')}"
+        styleClass="email-setting-exception-dialog" widgetVar="errorDialogEmail" modal="true" appendTo="@(body)">
+        <p:messages id="errorsMessageE" severity="info" escape="false" showDetail="true" closable="true" />
+        <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
+        <f:facet name="footer">
+        	<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/close')}" type="button"
+          		onclick="PF('errorDialogEmail').hide();" />
+        </f:facet>
+      </p:dialog>
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
+      <p:commandButton id="save-settings" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.save}"
+        update="@widgetVar(errorDialogEmail)" styleClass="portal-ok-button"
+        oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();updateGrowlEmail();} else {PF('#{cc.attrs.dialogName}').hide();PF('errorDialogEmail').show();}" />
+      <p:spacer width="5px" />
+      <p:commandButton id="cancel-settings" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
+        onclick="PF('#{cc.attributes.dialogName}').hide();" styleClass="portal-cancel-button" />
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+
+</html>

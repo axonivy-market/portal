@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="outerPanelId" default="main-area-panel" />
+  <cc:attribute name="dataModel" shortDescription="List of cases to be displayed" />
+  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
+  <cc:attribute name="emptyMessage"
+    default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/defaultEmptyMessage')}"
+    shortDescription="A message when the cases are empty" />
+  <cc:attribute name="hideCaseFilter" default="false" shortDescription="Case filter text field is hidden or not"
+    type="java.lang.Boolean" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Cases')}" />
+  <cc:attribute name="autoSelectCaseId" />
+  <cc:facet name="emptyMessage" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="outerPanelId" value="#{empty cc.attrs.outerPanelId ? 'main-area-panel' : cc.attrs.outerPanelId}" />
+
+  <h:outputScript name="case-widget.js" library="js" />
+  <h:form id="case-widget-form" prependId="false">
+    <div id="#{cc.clientId}" class="widget case-widget-container">
+      <div class="case-widget-top-header js-widget-header">
+        <div class="case-widget-top-header-main-title-container">
+          <h:outputText styleClass="case-widget-top-header-main-title" value="#{cc.attrs.title}" />
+        </div>
+        <div jsf:rendered="#{!cc.attrs.hideCaseFilter}" class="filter">
+          <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.filteringKeyword}"
+            listener="#{logic.filter()}" updateComponent="#{p:component('case-list')}" icon="fa fa-filter"
+            onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
+        </div>
+      </div>
+      <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header">
+        <ui:include src="ColumnHeader.xhtml">
+          <ui:param name="id" value="name-desc-column-header" />
+          <ui:param name="styleClass" value="case-list-header-cell case-list-name-desc-header-cell" />
+          <ui:param name="componentToBeUpdated" value="" />
+          <ui:param name="sortedField" value="NAME" />
+          <ui:param name="sortable" value="true" />
+          <ui:param name="value"
+            value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/NameAndDescription')}" />
+        </ui:include>
+        <ui:include src="ColumnHeader.xhtml">
+          <ui:param name="id" value="id-column-header" />
+          <ui:param name="styleClass" value="TexAlCenter case-list-header-cell" />
+          <ui:param name="componentToBeUpdated" value="" />
+          <ui:param name="sortedField" value="ID" />
+          <ui:param name="sortable" value="true" />
+          <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Id')}" />
+        </ui:include>
+        <ui:include src="ColumnHeader.xhtml">
+          <ui:param name="id" value="creator-column-header" />
+          <ui:param name="styleClass" value="case-list-header-cell" />
+          <ui:param name="componentToBeUpdated" value="" />
+          <ui:param name="sortedField" value="CREATOR" />
+          <ui:param name="sortable" value="true" />
+          <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Creator')}" />
+        </ui:include>
+        <ui:include src="ColumnHeader.xhtml">
+          <ui:param name="id" value="created-date-column-header" />
+          <ui:param name="styleClass" value="TexAlCenter case-list-header-cell" />
+          <ui:param name="componentToBeUpdated" value="" />
+          <ui:param name="sortedField" value="START_TIME" />
+          <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Created')}" />
+          <ui:param name="sortable" value="true" />
+        </ui:include>
+        <ui:include src="ColumnHeader.xhtml">
+          <ui:param name="id" value="mofified-date-column-header" />
+          <ui:param name="styleClass" value="TexAlCenter case-list-header-cell" />
+          <ui:param name="componentToBeUpdated" value="" />
+          <ui:param name="sortedField" value="END_TIME" />
+          <ui:param name="sortable" value="true" />
+          <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
+        </ui:include>
+        <ui:include src="ColumnHeader.xhtml">
+          <ui:param name="id" value="pm-column-header" />
+          <ui:param name="styleClass" value="case-list-header-cell hidden-sm" />
+          <ui:param name="componentToBeUpdated" value="" />
+          <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Pm')}" />
+        </ui:include>
+        <ui:include src="ColumnHeader.xhtml">
+          <ui:param name="id" value="state-column-header" />
+          <ui:param name="styleClass" value="case-list-header-cell TexAlCenter" />
+          <ui:param name="componentToBeUpdated" value="" />
+          <ui:param name="sortedField" value="STATE" />
+          <ui:param name="sortable" value="true" />
+          <ui:param name="value" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/State')}" />
+        </ui:include>
+      </h:panelGroup>
+      <div class="widget-content">
+        <h:panelGroup id="case-list" layout="block" styleClass="case-list">
+          <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
+            lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
+            <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
+              initialActive="#{case.id eq cc.attrs.autoSelectCaseId.id() and case.server.id eq cc.attrs.autoSelectCaseId.serverId()}"
+              onDestroyComplete="PF('destroy-case-dialog').show()" itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}" >
+              <cc:insertFacet name="caseHeader" />
+              <cc:insertFacet name="caseBody" />
+            </ic:ch.ivy.addon.portalkit.component.CaseItem>
+          </p:dataScroller>
+          <div jsf:rendered="#{data.dataModel.rowCount eq 0}" class="case-widget-empty-message">
+            <p:outputLabel rendered="#{empty cc.facets.emptyMessage}" value="#{cc.attrs.emptyMessage}" />
+            <cc:renderFacet name="emptyMessage" />
+          </div>
+        </h:panelGroup>
+      </div>
+    </div>
+  </h:form>
+  <script type="text/javascript">
+      var caseWidget = new CaseWidget("#{outerPanelId}");
+      var caseListToolkit = CaseListToolKit();
+      $(function() {
+        caseWidget.setUpScrollbar();
+        caseWidget.setupHeader();
+      });
+    </script>
+  <p:confirmDialog id="destroy-case-confirmation-dialog"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" widgetVar="destroy-case-dialog"
+    appendTo="@(body)" severity="alert">
+    <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+      actionListener="#{logic.destroyCase(caseWidgetBean.deletingCase)}" styleClass="portal-ok-button"
+      oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();PF('destroy-case-dialog').hide()" update="case-widget-form" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+      onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
+  </p:confirmDialog>
+</cc:implementation>
+</html>
