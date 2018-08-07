@@ -1,0 +1,14 @@
+PortalTasksData #class
+ch.ivy.addon.portal.generic.PortalTasks #namespace
+selectedNode org.primefaces.model.TreeNode #field
+selectedNode PERSISTENT #fieldModifier
+tasks java.util.List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
+tasks PERSISTENT #fieldModifier
+category ch.ivy.addon.portalkit.bo.MainMenuNode #field
+category PERSISTENT #fieldModifier
+keyword String #field
+keyword PERSISTENT #fieldModifier
+remoteTaskId Long #field
+remoteTaskId PERSISTENT #fieldModifier
+serverId Long #field
+serverId PERSISTENT #fieldModifier

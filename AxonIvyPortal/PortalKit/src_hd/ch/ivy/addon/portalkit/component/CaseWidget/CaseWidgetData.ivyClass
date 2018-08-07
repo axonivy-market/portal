@@ -1,0 +1,10 @@
+CaseWidgetData #class
+ch.ivy.addon.portalkit.component.CaseWidget #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+cases List<ch.ivy.addon.portalkit.bo.RemoteCase> #field
+cases PERSISTENT #fieldModifier
+filteredCases List<ch.ivy.addon.portalkit.bo.RemoteCase> #field
+filteredCases PERSISTENT #fieldModifier
+filteringKeyword String #field
+filteringKeyword PERSISTENT #fieldModifier

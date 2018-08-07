@@ -1,0 +1,8 @@
+TaskServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+canUserResumeTask Boolean #field
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+task ch.ivy.ws.addon.types.IvyTask #field
+tasks java.util.List<ch.ivy.ws.addon.types.IvyTask> #field
+allTasks java.util.List<ch.ivy.ws.addon.types.IvyTask> #field
+workerUserName String #field

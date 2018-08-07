@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>pc_documentation - </title>
+	</properties>
+	<body>
+		<section name="Application Requiredment">
+			<pre>Key <b>/AppInfo/SupportedLanguages</b> must exist in CMS. Contains comma separated list of all languages supported by this application.</pre> 
+			
+			<ul>
+				<li>Must non contain spaces</li>
+				<li>Same as display name of Locale</li>
+				<li>Separated by comma</li>
+				<li>Process Model version have this cms must active</li>
+			</ul>
+        </section>
+	</body>
+</document>

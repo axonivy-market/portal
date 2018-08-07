@@ -1,0 +1,41 @@
+/*
+ * Contains default styles, usually for single element selectors.
+ * 
+ * A Base style is applied to an element using an element selector, a
+ * descendant selector, or a child selector, along with any pseudo classes.
+ * It doesn’t include any class or ID selectors. It is defining the
+ * default styling for how that element should look in all occurrences
+ * on the page.
+ * 
+ * Example of base styles:
+ * 
+ * html, body, form { 
+ *   margin: 0;
+ *   padding: 0;
+ * }
+ * input[type=text] {
+ *   border: 1px solid #999;
+ * }
+ * a {
+ *   color: #039;
+ * }
+ * a:hover {
+ *   color: #03C;
+ * }
+ *
+ * Base styles include setting heading sizes, default link styles, default
+ * font styles, and body backgrounds. There should be no need to use
+ * !important in a Base style.
+ *
+ */
+a, div, span, input, textarea, li, strong, button {
+  outline: none;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+}
+
+a, div, span, p, input, textarea, li, strong, button {
+  font-family: 'robotoregular' !important;
+}

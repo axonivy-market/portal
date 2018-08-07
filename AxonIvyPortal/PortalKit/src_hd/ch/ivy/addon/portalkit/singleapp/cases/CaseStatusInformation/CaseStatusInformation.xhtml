@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="homeLink"
+    shortDescription="Set the homelink to remember the last position to go back after task is finished" />
+</cc:interface>
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <p:fieldset styleClass="case-status-general-information"
+      legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/generalInformation')}">
+      <p:panelGrid id="general-information-view" columns="4" styleClass="u-no-border"
+        columnClasses="case-status-label-column, ,case-status-label-column," layout="grid">
+
+        <h:outputLabel for="case-id" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}:" />
+        <h:outputText id="case-id" value="##{data.caseInfo.id}" />
+
+        <h:outputLabel for="created"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/created')}:" />
+        <h:outputText id="created" value="#{data.caseInfo.startTimestamp}">
+          <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+            locale="#{ivy.session.getContentLocale()}" />
+        </h:outputText>
+
+        <p:outputLabel for="state"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/status')}:" />
+        <h:panelGroup>
+          <span class="case-status-current-task-icon #{caseBean.getCaseStateIcon(data.caseInfo.state)}" />
+          <h:outputText id="state" value="#{caseBean.getState(data.caseInfo)}" />
+        </h:panelGroup>
+
+        <p:outputLabel for="last-edit"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/lastEdit')}:" />
+        <h:outputText id="last-edit" value="#{data.caseInfo.endTimestamp}">
+          <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+            locale="#{ivy.session.getContentLocale()}" />
+        </h:outputText>
+
+        <h:outputLabel for="creator"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/creator')}:" />
+        <h:panelGroup>
+          <p:commandLink id="creator" value="#{data.creatorName}" styleClass="fa fa-info-circle" />
+          <pe:tooltip for="creator" atPosition="bottom right" showEvent="click" hideEvent="focusout"
+            myPosition="center,left">
+            <ic:ch.ivy.addon.portalkit.multiapp.general.ContactPopover contact="#{data.contact}" />
+          </pe:tooltip>
+        </h:panelGroup>
+
+        <h:outputLabel for="process-model-name"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/processModel')}:" />
+        <h:outputText id="process-model-name" value="#{data.caseInfo.processModel.name}" />
+
+        <p:outputLabel for="description"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/description')}:" />
+        <h:outputText id="description" styleClass="FontBold" value="#{data.caseInfo.description}" escape="false" />
+
+        <h:outputLabel for="process-model-version"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/processVersion')}:" />
+        <h:outputText id="process-model-version" value="#{data.caseInfo.processModelVersion}" />
+      </p:panelGrid>
+    </p:fieldset>
+
+    <p:fieldset id="current-tasks" styleClass="case-status-current-tasks"
+      legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/CurrentTasks/currentTasks')}">
+      <h:form id="case-status-form">
+        <p:dataTable id="case-status-view" value="#{data.tasks}" var="task" rowIndexVar="row" styleClass="u-no-border"
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/CurrentTasks/noTasksFound')}"
+          sortBy="#{task.priority.intValue()}" sortOrder="DESCENDING" selectionMode="single" rowKey="#{task.id}">
+          <p:column styleClass="u-text-align-center" headerText="#">
+            <h:outputText id="id" value="#{task.id}" />
+          </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}"
+            sortBy="#{task.priority.intValue()}">
+            <span class="case-status-current-task-icon #{taskBean.getPriorityIcon(task.getPriority())}" />
+            <h:outputText id="priority" value="#{taskBean.getPriority(task.priority)}" />
+          </p:column>
+          <p:column styleClass="u-text-align-center"
+            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/state')}"
+            sortBy="#{task.state.intValue()}">
+            <span class="case-status-current-task-icon #{taskBean.getStateIcon(task.getState())}" />
+            <h:outputText id="status" value="#{taskBean.getState(task)}" />
+            <p:commandLink id="show-selected-task-command" rendered="#{taskBean.checkDelayedState(task)}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/showNow')}"
+              actionListener="#{logic.selectTaskShowNow(task, data.caseInfo)}"
+              styleClass="u-text-align-center fa fa-eye fa-bolt"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/showNow')}" />
+          </p:column>
+          <p:column sortBy="#{task.name}" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
+            <h:outputText id="name" value="#{task.name}" />
+          </p:column>
+          <p:column sortBy="#{task.lastEdit}" styleClass="u-text-align-center"
+            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/deadline')}">
+            <h:outputText id="deadline" value="#{task.deadline}">
+              <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+                locale="#{ivy.session.getContentLocale()}" />
+            </h:outputText>
+          </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/Editor')}"
+            sortBy="#{task.editorName}">
+            <p:commandLink id="show-contact-command" value="#{task.editorName}" rendered="#{task.editor.isUser()}"
+              styleClass="fa fa-info-circle" />
+            <h:outputText value="#{task.editorName}" rendered="#{!task.editor.isUser()}" />
+            <pe:tooltip for="show-contact-command" atPosition="bottom right" showEvent="click" hideEvent="focusout"
+              myPosition="center,left">
+              <ic:ch.ivy.addon.portalkit.multiapp.general.ContactPopover contact="#{task.contact}" />
+            </pe:tooltip>
+          </p:column>
+          <p:column sortBy="#{task.lastEdit}"
+            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/lastEdit')}">
+            <h:outputText id="last-edit" value="#{task.lastEdit}">
+              <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimeFormater')}"
+                locale="#{ivy.session.getContentLocale()}" />
+            </h:outputText>
+          </p:column>
+          <p:column styleClass="u-text-align-center"
+            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
+            <p:commandLink id="show-task-details-command" styleClass="fa fa-eye"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}"
+              actionListener="#{logic.taskDetail(data.caseInfo, task.id)}"
+              update=":#{p:component('task-details-dialog')}" oncomplete="PF('taskInforDialog').show()">
+            </p:commandLink>
+          </p:column>
+        </p:dataTable>
+      </h:form>
+    </p:fieldset>
+
+
+    <p:dialog id="task-details-dialog" width="80%"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskInforDialogTitle')}"
+      widgetVar="taskInforDialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+      appendTo="@(body)">
+      <p:ajax event="close" global="false" onstart="onHideTaskDetailDialog()" process="@this" update="case-status-form" />
+      <p:outputPanel id="task-details-container-wrapper" styleClass="TexAlLeft">
+        <ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskInformation id="task-details-container"
+          buttonClicked="#{logic.close}" updateMasterForm=":#{p:component('case-status-form')}"
+          task="#{data.selectedTask}" homeLink="#{cc.attrs.homeLink}" isDialogMode="#{true}" visible="#{true}"
+          updateElement="@form" />
+      </p:outputPanel>
+      <p:commandButton styleClass="Fright MarTop10" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+        onclick="PF('taskInforDialog').hide()" />
+    </p:dialog>
+
+    <script type="text/javascript">
+          function goBackHome() {
+            window.location.href = '#{facesContext.externalContext.requestContextPath}/pro/#{homeLinkHelper.getHomeLink()}?taskIdentifier=0';
+          }
+        </script>
+
+    <p:confirmDialog
+      message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/removeDelayConfirm')}"
+      appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/confirmation')}" severity="alert"
+      widgetVar="confirmation">
+      <p:commandButton id="proceed-remove-delay-command"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/yes')}"
+        styleClass="Fs14 case-status-proceed-remove-delay-command" actionListener="#{logic.submitResetTask}"
+        oncomplete="goBackHome()">
+      </p:commandButton>
+      <p:spacer width="5px" />
+      <p:commandButton id="cancel-remove-delay-command" styleClass="Fs14"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/no')}" onclick="PF('confirmation').hide()"
+        type="button" />
+    </p:confirmDialog>
+  </div>
+</cc:implementation>
+</html>

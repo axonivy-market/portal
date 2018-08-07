@@ -1,0 +1,13 @@
+AddOrUpdateWSCallingData #class
+ch.ivy.add.portalkit.synchronization #namespace
+customPropertyPairs List<ch.ivy.ws.addon.CustomPropertyPair> #field
+customPropertyPairs PERSISTENT #fieldModifier
+endpoint String #field
+isNTLMAuthentication Boolean #field
+isNTLMAuthentication PERSISTENT #fieldModifier
+message String #field
+returnedStatus ch.ivy.ws.addon.ReturnedStatus #field
+serverURL String #field
+serverURL PERSISTENT #fieldModifier
+retryTime Integer #field
+retryTime PERSISTENT #fieldModifier

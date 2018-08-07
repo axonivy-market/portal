@@ -1,0 +1,18 @@
+CaseNoteData #class
+ch.ivy.addon.portalkit.singleapp.cases.CaseNote #namespace
+wfCase ch.ivyteam.ivy.workflow.ICase #field
+wfCase PERSISTENT #fieldModifier
+notes List<ch.ivyteam.ivy.workflow.INote> #field
+notes PERSISTENT #fieldModifier
+notesSystem List<ch.ivyteam.ivy.workflow.INote> #field
+notesSystem PERSISTENT #fieldModifier
+notesUser List<ch.ivyteam.ivy.workflow.INote> #field
+notesUser PERSISTENT #fieldModifier
+currentNotes List<ch.ivyteam.ivy.workflow.INote> #field
+currentNotes PERSISTENT #fieldModifier
+selectedFilter String #field
+selectedFilter PERSISTENT #fieldModifier
+newNoteStr String #field
+newNoteStr PERSISTENT #fieldModifier
+notesSize Number #field
+notesSize PERSISTENT #fieldModifier
