@@ -1,0 +1,197 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="processCardStyle" />
+  <cc:attribute name="processCardStyleClass" />
+  <cc:attribute name="compactMode" default="true" />
+  <cc:attribute name="showBackButton" default="true" />
+  <cc:attribute name="onSwitchToCompactModeCompletedCallback" />
+  <cc:attribute name="onSwitchToExpandedModeCompletedCallback" />
+  <cc:attribute name="highlightedProcessStartLink" />
+  <cc:attribute name="hideProcessFilter" default="false" shortDescription="Process filter text field is hidden or not"
+    type="java.lang.Boolean" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/widgetHeader')}" />
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{processWidgetBean.init(data.processes)}" type="preRenderComponent" />
+  <h:outputScript library="js" name="process-widget.js" />
+  <c:set var="isCompactMode" value="#{cc.attrs.compactMode and processWidgetBean.compactMode}" />
+  <h:form>
+    <p:remoteCommand autoRun="true" actionListener="#{processWidgetBean.setCompactModeAsDefault}" />
+  </h:form>
+
+  <div id="#{cc.clientId}" class="widget process-widget">
+    <h:panelGroup id="header" styleClass="widget-header" layout="block">
+      <div class="widget-header-main">
+        <span class="widget-header-main-title">#{cc.attrs.title}</span>
+        <h:panelGroup layout="block" rendered="#{cc.attrs.showBackButton}">
+          <ul jsf:rendered="#{not processWidgetBean.deleteMode}" class="widget-header-main-menu">
+            <li class="u-underline-from-center js-ignore-selected-state"><p:commandLink id="switch-mode-command"
+                update="header process-list" actionListener="#{processWidgetBean.switchMode()}"
+                oncomplete="#{isCompactMode ? '' : 'processWidget.clearSearchField()'};#{isCompactMode ? cc.attrs.onSwitchToExpandedModeCompletedCallback : cc.attrs.onSwitchToCompactModeCompletedCallback}()">
+                <span class="fa fa-chevron-right switch-mode-command-icon" />
+                <h:outputText id="switch-mode-command-value"
+                  value="#{processWidgetBean.getDisplayTextForSwitchModeButton()}" />
+              </p:commandLink></li>
+          </ul>
+        </h:panelGroup>
+      </div>
+      <h:panelGroup rendered="#{not isCompactMode}" styleClass="widget-header-sub">
+        <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
+          styleClass="js-filter-process-widget-list-item" rendered="#{!cc.attrs.hideProcessFilter}" />
+      </h:panelGroup>
+    </h:panelGroup>
+
+
+    <h:panelGroup id="process-list" layout="block" styleClass="#{isCompactMode ? '' : 'process-start-list'}">
+      <h:panelGroup styleClass="widget-content-scroll-button" layout="block">
+      </h:panelGroup>
+      <p:outputLabel id="empty-process-message" rendered="#{isCompactMode and empty processWidgetBean.userProcesses}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noFavoriteProcess')}" />
+      <p jsf:rendered="#{isCompactMode and empty processWidgetBean.userProcesses}">
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messagePrefix')}
+        <p:commandLink id="add-new-process-message" actionListener="#{processWidgetBean.addNewUserProcess}"
+          update="@([id$='add-new-process-dialog'])" oncomplete="PF('add-new-process-dialog').show()">
+          <b>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messageSuffix')}</b>?</p:commandLink>
+      </p>
+      <ui:repeat id="process-list-items" varStatus="status" var="process"
+        value="#{isCompactMode ? processWidgetBean.userProcesses : logic.collectAllProcesses()}">
+        <p:link id="process-item" rendered="#{not processWidgetBean.deleteMode}" href="#{process.link}"
+          target="#{fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp')? '_self' : ' _blank'}"
+          styleClass="#{cc.attrs.processCardStyle} #{isCompactMode ? '' : 'process-start-list-item-wrapper js-process-start-list-item'}"
+          style="#{cc.attrs.processCardStyleClass}">
+          <div
+            class="process-start-list-item  u-shadow-effect #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}">
+            <div class="process-start-list-item-icon">
+              <span class="fa #{process.icon}" />
+            </div>
+            <div class="process-start-list-item-name">
+              <h:outputText id="process-name" value="#{process.processName}" escape="false"
+                styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
+              <p:tooltip for="process-name" value="#{process.processName}" escape="false" />
+            </div>
+            <div class="process-start-list-item-action">
+              <span class="fa fa-chevron-right" />
+            </div>
+          </div>
+        </p:link>
+
+        <h:panelGroup id="delete-process-item" layout="block" rendered="#{processWidgetBean.deleteMode}"
+          styleClass="process-start-list-item u-shadow-effect u-hover-effect u-cursor-pointer">
+          <f:passThroughAttribute name="onclick" value="PF('delete-process-checkbox-#{status.index}').toggle();" />
+          <div class="process-start-list-item-icon">
+            <span class="fa #{process.icon}" />
+          </div>
+          <div class="process-start-list-item-name">
+            <h:outputText id="delete-process-name" styleClass="process-start-list-item-name-text u-truncate-text"
+              value="#{process.processName}" title="#{process.processName}" />
+          </div>
+          <div class="process-start-list-item-action">
+            <h:form prependId="false">
+              <p:selectBooleanCheckbox id="delete-process-checkbox" widgetVar="delete-process-checkbox-#{status.index}">
+                <p:ajax async="true" listener="#{processWidgetBean.selectDeletingProcess}" update="@none"
+                  process="@this" global="false" />
+                <f:attribute name="selectedProcess" value="#{process}" />
+              </p:selectBooleanCheckbox>
+            </h:form>
+          </div>
+          <h:outputScript>processWidget.preventBubblingEvent('delete-process-checkbox-#{status.index}');</h:outputScript>
+        </h:panelGroup>
+      </ui:repeat>
+    </h:panelGroup>
+
+    <h:form id="process-widget-footer" rendered="#{isCompactMode}"
+      styleClass="js-compact-mode-element process-button-position process-action-button">
+      <h:panelGroup layout="block"
+        rendered="#{not processWidgetBean.deleteMode and (processWidgetBean.userProcesses.size() gt 0)}">
+        <p:commandLink id="show-adding-dialog-commmand"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
+          actionListener="#{processWidgetBean.addNewUserProcess}" update="@([id$='add-new-process-dialog'])"
+          oncomplete="PF('add-new-process-dialog').show()" />
+        <span class="action-separator">|</span>
+        <p:commandLink id="deletion-switch-command"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcess')}"
+          actionListener="#{processWidgetBean.switchDeleteMode}"
+          update="@form #{p:component('process-list')} #{p:component('header')}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{processWidgetBean.deleteMode}">
+        <p:commandLink id="delete-process-command" styleClass="underline-on-hover"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          actionListener="#{processWidgetBean.deleteSelectedProcess}"
+          update="@form #{p:component('process-list')} #{p:component('header')}"
+          onsuccess="synchDataAfterDeleteProcesses();" />
+        <span class="action-separator">|</span>
+        <p:commandLink id="cancel-deleting-process-command" styleClass="underline-on-hover"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          actionListener="#{processWidgetBean.cancelDeletingProcess}"
+          update="@form #{p:component('process-list')} #{p:component('header')}" />
+      </h:panelGroup>
+      <p:remoteCommand name="synchDataAfterDeleteProcesses"
+        actionListener="#{logic.synchronizeDeletedDataToPortalServer(processWidgetBean.selectedUserProcesses)}" />
+    </h:form>
+  </div>
+
+  <p:dialog id="add-new-process-dialog" styleClass="new-process-dialog" closeOnEscape="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcessDialogHeader')}"
+    widgetVar="add-new-process-dialog" modal="true" dynamic="true" appendTo="@(body)" resizable="false">
+    <h:form prependId="false">
+      <p:defaultCommand target="add-process-command" />
+      <div class="field-group">
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
+          for="new-process-name" />
+        <p:autoComplete tabindex="1" id="new-process-name" required="true" styleClass="autocomplete-group"
+          value="#{processWidgetBean.editingProcess.processName}" dropdown="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} 
+                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+          cache="true" minQueryLength="2" completeMethod="#{processWidgetBean.completeUserProcess}" var="userProcess"
+          itemValue="#{userProcess}" itemLabel="#{userProcess}" scrollHeight="300" queryDelay="500"
+          itemtipAtPosition="right top">
+          <f:event listener="#{processWidgetBean.preRenderProcessAutoComplete(logic.collectAllProcessStarts())}"
+            type="preRenderComponent" />
+          <p:ajax event="itemSelect" update="@form" listener="#{processWidgetBean.selectUserProcess}" />
+          <p:ajax event="query" global="false" />
+          <p:column>
+            <h:outputText styleClass="autocomplete-tooltip" value="#{userProcess}" escape="false"
+              title="#{processWidgetBean.getProcessDescription(userProcess)}" />
+          </p:column>
+        </p:autoComplete>
+        <p:tooltip globalSelector=".autocomplete-tooltip" escape="false" />
+        <p:message for="new-process-name" />
+      </div>
+      <div class="field-group">
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}"
+          for="process-start-link" />
+        <p:inputText tabindex="2" id="process-start-link" value="#{processWidgetBean.editingProcess.link}"
+          required="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} 
+                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}" />
+        <p:message for="process-start-link" />
+      </div>
+      <div class="field-group">
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" />
+        <ic:ch.ivy.addon.portalkit.component.IconSelection tabindex="3" value="#{processWidgetBean.editingProcess.icon}" />
+      </div>
+      <div class="new-process-command-buttons">
+        <p:commandButton id="add-process-command" tabindex="3"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}" process="@form"
+          actionListener="#{processWidgetBean.saveNewUserProcess}"
+          update="@form #{p:component('process-list')} #{p:component('process-widget-footer')}"
+          oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();callSynchronizeDataToPortalServer()}" />
+        <p:commandButton id="cancel-adding-process-command" tabindex="4" global="false"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@none" resetValues="true"
+          update="@form" onclick="PF('add-new-process-dialog').hide()" />
+        <p:remoteCommand name="callSynchronizeDataToPortalServer"
+          actionListener="#{logic.synchronizeUserProcessToPortalServer(processWidgetBean.editingProcess)}" />
+      </div>
+    </h:form>
+  </p:dialog>
+</cc:implementation>
+</html>

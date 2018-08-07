@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" required="true" shortDescription="Task object need to be displayed the information"
+    type="ch.ivyteam.ivy.workflow.ITask" />
+  <cc:attribute name="updateElement" shortDescription="The component need to be updated after task delegated" />
+  <cc:attribute name="updateMasterForm"
+    shortDescription="The component need to be updated after close task information dialog" />
+  <cc:attribute name="homeLink"
+    shortDescription="Set the homelink to remember the last position to go back after task is finished" />
+  <cc:attribute name="visible" required="true" shortDescription="invisible/visible for Task information component" />
+  <cc:attribute name="isDialogMode" default="#{false}"
+    shortDescription="check for button Add Comment, invisible if in Dialog mode" />
+  <cc:attribute name="taskNotFound" default="#{false}" shortDescription="Task with provided Id is found or not" />
+  <cc:attribute name="buttonClicked" shortDescription="Event that will be fired when the button cancel clicked."
+    method-signature="void handleEvent(javax.faces.event.FacesEvent)" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <c:set var="isTaskAbleToChangeDeadline" value="#{(taskBean.isTaskAbleToChangeDeadline(cc.attrs.task))}" scope="view" />
+    <c:set var="isTaskAbleToChangePriority" value="#{(taskBean.isTaskAbleToChangePriority(cc.attrs.task))}" scope="view" />
+    <script>
+          function openTaskId() {
+            var cookie = getCookie('action');
+            if (cookie == 'gotoProject') {
+              setCookie('last-position', '#{cc.attrs.homeLink}?taskIdentifier=' + '#{cc.attrs.task.id}');
+            }
+          }
+          function openDelegate() {
+            setCookie('last-position', '#{cc.attrs.homeLink}?taskIdentifier=' + '#{cc.attrs.task.id}');
+          }
+        </script>
+
+    <h:panelGroup layout="block" id="task-information-container"
+      rendered="#{cc.attrs.visible == null ? true : cc.attrs.visible}">
+      <h:panelGroup rendered="#{cc.attrs.taskNotFound}">
+        <div class="Container100 ui-fluid">
+          <h:outputText styleClass="foreground-text-color"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound')}" />
+        </div>
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{!cc.attrs.taskNotFound}">
+        <h:form id="task-details-form" styleClass="MarBot10">
+          <p:remoteCommand name="onHideTaskDetailDialog" actionListener="#{cc.attrs.buttonClicked}" process="@this"
+            update="#{cc.attrs.updateMasterForm}" />
+          <p:growl id="msgTaskInfo" life="400" />
+          <br />
+
+          <h:panelGroup layout="block" id="top-button-header">
+            <div class="Fs20 MarBot10 foreground-text-color">
+              <span class="fa fa-check-square-o task-icon" />
+              <h:outputText value="#{cc.attrs.task.name}" />
+            </div>
+            <p:toolbar styleClass="u-no-border" rendered="#{taskBean.checkActivatorPermisson(cc.attrs.task.activator)}">
+              <f:facet name="right">
+                <p:commandButton id="start-non-resumed-task-command"
+                  disabled="#{(taskBean.checkStartableTask(cc.attrs.task))}"
+                  rendered="#{('DONE' != cc.attrs.task.getState()) &amp;&amp; ('RESUMED' != cc.attrs.task.getState())}"
+                  onclick="openTaskId()" actionListener="#{logic.startTask(cc.attrs.task)}"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
+                <p:spacer width="5px"
+                  rendered="#{('DONE' != cc.attrs.task.getState()) &amp;&amp; ('RESUMED' != cc.attrs.task.getState())}" />
+                <p:commandButton id="start-resumed-task-command"
+                  disabled="#{(taskBean.checkStartableTask(cc.attrs.task))}"
+                  rendered="#{('DONE' != cc.attrs.task.getState()) &amp;&amp; ('RESUMED' == cc.attrs.task.getState())}"
+                  onclick="openTaskId(); PF('reset-task-dialog').show()"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
+                <p:spacer width="5px"
+                  rendered="#{('DONE' != cc.attrs.task.getState()) &amp;&amp; ('RESUMED' == cc.attrs.task.getState())}" />
+                <p:commandButton id="delegate-task-command" onclick="openDelegate()"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
+                  rendered="#{(taskBean.isDelegatable(cc.attrs.task))}" oncomplete="PF('taskDelegateDialog').show()"
+                  actionListener="#{logic.buttonDelegateClicked}" update=":#{p:component('task-information-container')}" />
+                <p:spacer width="5px" rendered="#{(taskBean.isDelegatable(cc.attrs.task))}" />
+                <p:commandButton id="reserve-task-command"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTask')}" process="@this"
+                  actionListener="#{logic.parkTask(cc.attrs.task)}"
+                  update="msgTaskInfo task-detail-container top-button-header :#{p:component('task-comment-form')}"
+                  rendered="#{'DONE' == cc.attrs.task.getState() ? false : !('PARKED' == cc.attrs.task.getState())}"
+                  disabled="#{(taskBean.checkDisablePark(cc.attrs.task))}" />
+                <p:spacer width="5px"
+                  rendered="#{'DONE' == cc.attrs.task.getState() ? false : !('PARKED' == cc.attrs.task.getState())}" />
+                <p:commandButton id="reset-task-command"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/backToGroup')}" process="@this"
+                  actionListener="#{logic.resetTask(cc.attrs.task)}"
+                  update="msgTaskInfo task-detail-container top-button-header :#{p:component('task-comment-form')}"
+                  disabled="#{(taskBean.checkDisableReset(cc.attrs.task))}"
+                  rendered="#{'DONE' == cc.attrs.task.getState() ? false : 'PARKED' == cc.attrs.task.getState()}" />
+                <p:spacer
+                  rendered="#{'DONE' == cc.attrs.task.getState() ? false : 'PARKED' == cc.attrs.task.getState()}" />
+                <p:commandButton id="more-action-command"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/more')}"
+                  rendered="#{isTaskAbleChangeDeadline or isTaskAbleToChangePriority}" />
+                <p:menu overlay="true" trigger="more-action-command" my="left top" id="more-action-menu"
+                  at="left bottom">
+                  <p:menuitem id="set-deadline-menu-item"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/setDeadline')}" process="@this"
+                    update=":#{p:component('taskExpiryDateDialog')}" actionListener="#{logic.buttonGenericClicked}"
+                    oncomplete="PF('taskExpiryDateDialog').show()" rendered="#{isTaskAbleToChangeDeadline}" />
+                  <p:menuitem id="set-priority-menu-item"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/setPriority')}" process="@this"
+                    update=":#{p:component('taskPriorityDialog')}" actionListener="#{logic.buttonGenericClicked}"
+                    oncomplete="PF('taskPriorityDialog').show()" rendered="#{isTaskAbleToChangePriority}" />
+                </p:menu>
+              </f:facet>
+            </p:toolbar>
+          </h:panelGroup>
+          <h:panelGroup id="container">
+            <h3></h3>
+          </h:panelGroup>
+          <!-- </h3> -->
+          <p:panel id="task-detail-container"
+            header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskDetails')}" styleClass="MarTop10">
+            <p:panelGrid styleClass="Wid100">
+              <p:row>
+                <p:column styleClass="Wid30">
+                  <p:outputLabel for="description" id="description-label"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/description')}:" />
+                </p:column>
+                <p:column>
+                  <h:outputText id="description" styleClass="FontBold" escape="false"
+                    value="#{cc.attrs.task.getDescription()}" />
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>
+                  <p:outputLabel for="priority"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}:" />
+                </p:column>
+                <p:column>
+                  <span class="#{taskBean.getPriorityIcon(cc.attrs.task.getPriority())}" />
+                  <h:outputText id="priority" value="#{taskBean.getPriority(cc.attrs.task.getPriority())}" />
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/deadlineTask')}:" />
+                </p:column>
+                <p:column>
+                  <h:outputText id="deadline" value="#{cc.attrs.task.expiryTimestamp}">
+                    <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+                  </h:outputText>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/state')}:" />
+                </p:column>
+                <p:column>
+                  <span class="#{taskBean.getStateIcon(cc.attrs.task.getState())}" />
+                  <h:outputText id="state" value=" #{taskBean.getStateByITask(cc.attrs.task)}" />
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible')}:" />
+                </p:column>
+                <p:column>
+                  <span class="#{taskBean.checkActivator(cc.attrs.task.activator.isUser())}" />
+                  <h:outputText id="responsible"
+                    value=" #{cc.attrs.task.activator.getDisplayName() !=''? cc.attrs.task.activator.getDisplayName() : cc.attrs.task.activator.getName()}" />
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>
+                  <p:outputLabel
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsibleAfterEscalation')}:" />
+                </p:column>
+                <p:column>
+                  <h:outputText id="responsible-after-escalation" value="#{cc.attrs.task.getExpiryActivatorName()}" />
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/createdAt')}:" />
+                </p:column>
+                <p:column>
+                  <h:outputText id="creation-date" value="#{cc.attrs.task.startTimestamp}">
+                    <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+                  </h:outputText>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskId')}:" />
+                </p:column>
+                <p:column>
+                  <h:outputText id="task-id" value="##{cc.attrs.task.id}" />
+                </p:column>
+              </p:row>
+            </p:panelGrid>
+          </p:panel>
+        </h:form>
+
+        <!-- Task Comment -->
+        <h:form id="task-comment-form">
+          <p:panel id="note-container"
+            header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}">
+            <p:dataTable id="task-notes-view" value="#{cc.attrs.task.getNotes()}" var="note"
+              emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNotesFound')}">
+              <p:column>
+                <b> <h:outputText id="note-creator"
+                    value="#{note.getWritter().getFullName()} 
+  									(#{note.getWritterName()}) 
+  									#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notes/wroteAt')} " />
+                  <h:outputText id="note-creation-date" value="#{note.creationTimestamp}">
+                    <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+                  </h:outputText>
+                </b>
+                <br />
+                <h:outputText id="note-value" styleClass="u-break-word"
+                  value="#{note.getMessage().length() gt 200 ? note.getMessage().substring(0,200).concat(' ...') : note.getMessage()}" />
+              </p:column>
+              <p:column styleClass="TexAlCenter Wid20">
+                <p:commandLink id="show-note-details" actionListener="#{logic.viewNote(note)}" styleClass="fa fa-eye"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}"
+                  update=":#{p:component('task-note-dialog')}" oncomplete="PF('taskCommentDialog').show()" />
+              </p:column>
+            </p:dataTable>
+            <f:facet name="footer">
+              <p:commandButton id="add-note-command"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/addNote')}"
+                onclick="PF('addTaskNoteDialog').show()"
+                rendered="#{!cc.attrs.isDialogMode and (taskBean.isTaskAbleToAddNote(cc.attrs.task))}" />
+            </f:facet>
+          </p:panel>
+
+        </h:form>
+        <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notes/newNoteHeader')}" id="addTaskNoteDialog"
+          widgetVar="addTaskNoteDialog" showEffect="fade" hideEffect="fade" resizable="false" width="47%"
+          appendTo="@(body)" modal="true">
+          <h:form id="add-note-form">
+            <h:panelGroup styleClass="Wid100">
+              <p:inputTextarea id="note-input" value="#{data.newNoteMessage}" styleClass="Wid100 note-input" />
+            </h:panelGroup>
+            <h:panelGroup layout="block" styleClass="Wid100 MarTop10 TexAlRight">
+
+              <p:commandButton id="proceed-add-note-command"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-input"
+                update="note-input :#{p:component('task-notes-view')}"
+                actionListener="#{logic.createTaskNote(cc.attrs.task)}" onsuccess="PF('addTaskNoteDialog').hide()" />
+              <p:spacer width="5px" />
+              <p:commandButton id="cancel-add-note-command"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                actionListener="#{logic.buttonCancelNoteClick}" oncomplete="PF('addTaskNoteDialog').hide()"
+                update="note-input">
+                <p:resetInput target="note-input" />
+              </p:commandButton>
+            </h:panelGroup>
+          </h:form>
+        </p:dialog>
+
+        <p:dialog id="task-note-dialog" closeOnEscape="true"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/note')}" widgetVar="taskCommentDialog"
+          dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="350" width="47%"
+          appendTo="@(body)">
+          <p:outputPanel id="task-note-container" styleClass="Hei100">
+            <p:panel id="task-note-details"
+              header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noteDetail')}" styleClass="Hei80">
+              <h:outputText value="#{data.selectedNote.message}" escape="false" styleClass="u-break-word" />
+            </p:panel>
+
+            <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              onclick="PF('taskCommentDialog').hide();" styleClass="MarTop10 Fright" />
+          </p:outputPanel>
+
+        </p:dialog>
+        <!-- End Task Comment -->
+
+        <p:dialog id="taskDelegateDialog"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTitleDialog')}"
+          widgetVar="taskDelegateDialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade"
+          resizable="false" appendTo="@(body)" styleClass="Wid30">
+          <p:ajax event="close" global="false" onstart="onHideDelegateDialog()" process="@this" />
+          <p:outputPanel id="taskDelegateDetail" styleClass="TexAlLeft">
+            <ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskDelegate id="task-delegate-container" task="#{cc.attrs.task}"
+              updateElement=":#{cc.attrs.updateElement}" />
+          </p:outputPanel>
+        </p:dialog>
+
+        <p:dialog id="taskPriorityDialog"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskPriorityDialog/title')}"
+          widgetVar="taskPriorityDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+          styleClass="Wid20" appendTo="@(body)">
+          <p:ajax event="close" global="false" onstart="onHidePriorityDialog()" process="@this" />
+          <p:outputPanel id="taskPriorityPanel" styleClass="TexAlLeft">
+            <ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskPriority id="task-priority-container" task="#{cc.attrs.task}"
+              updateElement=":#{p:component('task-information-container')} #{not empty cc.attrs.updateElement ? ':'.concat(cc.attrs.updateElement) : ''}" />
+          </p:outputPanel>
+        </p:dialog>
+
+        <p:dialog id="taskExpiryDateDialog"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskExpiryDateDialog/title')}"
+          widgetVar="taskExpiryDateDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+          styleClass="Wid30" appendTo="@(body)">
+          <p:ajax event="close" global="false" onstart="onHideTaskExpiryDateDialog()" process="@this" />
+          <p:outputPanel id="taskExpiryDatePanel" styleClass="TexAlLeft">
+            <ic:ch.ivy.addon.portalkit.singleapp.tasks.TaskExpiryDate id="task-deadline-container"
+              task="#{cc.attrs.task}"
+              updateElement=":#{p:component('task-information-container')} #{not empty cc.attrs.updateElement ? ':'.concat(cc.attrs.updateElement) : ''}" />
+          </p:outputPanel>
+        </p:dialog>
+
+        <p:confirmDialog id="reset-task-dialog" widgetVar="reset-task-dialog"
+          rendered="#{'RESUMED' == cc.attrs.task.getState()}"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" appendTo="@(body)">
+          <f:facet name="message">
+            <h:outputText escape="false"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+          </f:facet>
+          <h:panelGroup>
+            <p:commandButton actionListener="#{logic.startTask(cc.attrs.task)}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+            <p:commandButton onclick="PF('reset-task-dialog').hide()"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+          </h:panelGroup>
+        </p:confirmDialog>
+      </h:panelGroup>
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+</html>

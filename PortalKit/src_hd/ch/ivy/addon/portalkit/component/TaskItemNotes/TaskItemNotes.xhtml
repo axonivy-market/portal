@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" type="ch.ivy.addon.portalkit.bo.RemoteTask" />
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
+  <div id="task-note" class="task-details-note">
+    <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/notes')}</h2>
+    <p:scrollPanel styleClass="task-details-note-scrollpanel" mode="native" id="task-details-notes">
+      <h:outputText id="empty-note-message" rendered="#{empty data.notes}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noNotes')}" />
+      <ui:repeat var="note" value="#{data.notes}">
+        <div class="FontBold">
+          <h:outputText id="note-creator"
+            value="#{note.creatorUserName} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/at')} " />
+          <h:outputText id="note-creation-date" value="#{note.creationTimestamp.time}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </div>
+        <div>
+          <h:outputText id="note-message" value="#{note.message}" />
+        </div>
+        <div class="u-separator" />
+      </ui:repeat>
+    </p:scrollPanel>
+
+    <h:panelGroup layout="block" styleClass="task-details-note-add">
+      <p:commandLink id="add-note-command" styleClass="task-details-note-add-link"
+        actionListener="#{data.setTask(task)}" oncomplete="PF('addNewNoteDialog').show()">
+        <span class="fa fa-plus-circle task-details-note-add-link-icon" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNote')}" />
+      </p:commandLink>
+    </h:panelGroup>
+  </div>
+
+  <p:dialog id="add-new-note-dialog" widgetVar="addNewNoteDialog" dynamic="true" closable="false" closeOnEscape="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNote')}" showEffect="fade" resizable="false"
+    modal="true" width="40%" appendTo="@(body)">
+    <h:form id="add-new-note-form">
+      <h:panelGroup layout="block">
+        <p:messages id="create-note-msg" for="note-content" />
+        <p:inputTextarea id="note-content" value="#{data.noteContent}" required="true"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}"
+          styleClass="note-content-textarea" />
+      </h:panelGroup>
+      <h:panelGroup layout="block" styleClass="add-new-note-command-buttons">
+        <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
+          update="note-content create-note-msg #{p:component('task-details-notes')}"
+          actionListener="#{logic.createNote()}"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('addNewNoteDialog').hide();}" />
+        <p:commandButton id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          onsuccess="PF('addNewNoteDialog').hide()" update="note-content create-note-msg" />
+      </h:panelGroup>
+    </h:form>
+  </p:dialog>
+</cc:implementation>
+</html>

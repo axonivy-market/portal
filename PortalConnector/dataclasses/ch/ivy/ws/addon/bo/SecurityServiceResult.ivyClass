@@ -1,0 +1,5 @@
+SecurityServiceResult #class
+ch.ivy.ws.addon.bo #namespace
+errors java.util.List<ch.ivy.ws.addon.WSException> #field
+ivyRoles List<ch.ivy.ws.addon.types.IvyRole> #field
+ivyUsers List<ch.ivy.ws.addon.types.IvyUser> #field
