@@ -1,0 +1,6 @@
+DeleteConfirmationData #class
+ch.ivy.gawfs.portal.DeleteConfirmation #namespace
+devLoadWorkflowsData gawfs.DevLoadWorkflowsData #field
+devLoadWorkflowsData PERSISTENT #fieldModifier
+workflows List<gawfs.AvailWorkflow> #field
+workflows PERSISTENT #fieldModifier

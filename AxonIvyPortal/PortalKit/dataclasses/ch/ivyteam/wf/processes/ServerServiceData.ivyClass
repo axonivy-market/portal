@@ -1,0 +1,7 @@
+ServerServiceData #class
+ch.ivyteam.wf.processes #namespace
+server ch.ivy.addon.portalkit.persistence.domain.Server #field
+endpoint String #field
+errors List<ch.ivy.ws.addon.WsException> #field
+externalHost String #field
+isMultiServer Boolean #field

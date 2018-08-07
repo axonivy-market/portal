@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<cc:interface componentType="IvyComponent">
+	<cc:attribute name="title"
+		default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToFriendlyPortal')}" />
+</cc:interface>
+
+<cc:implementation>
+	<div id="#{cc.clientId}" class="login">
+		<h:form id="login-form" class="login-form">
+			<div class="header">
+				<h:graphicImage library="ivy-cms" name="/images/logo/loginLogo"
+					height="50" />
+			</div>
+			<div class="content">
+				<p class="title">#{cc.attrs.title}</p>
+				<p:panelGrid columns="3" styleClass="Wid100">
+					<p:row>
+						<p:column>
+							<p:outputLabel id="default-users"
+								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/logInWithDefaultUsers')}" />
+						</p:column>
+						<p:column>
+							<i class="fa fa-fw fa-info-circle"
+								title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/loginHint')}" />
+						</p:column>
+						<p:column>
+							<p:commandLink id="login-command" styleClass="login-command" 
+								title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/adminDescription')}"
+								actionListener="#{logic.loginAsAdmin}"
+								oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}"
+								update="login-result">
+								<span>Portal Admin</span>
+							</p:commandLink>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</div>
+			<div class="footer">
+				<p:selectBooleanCheckbox value="#{data.displayWelcomeLogin}" />
+				<p:outputLabel styleClass="admin-settings-form-input-label"
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/notDisplayWelcomeLogin')}" />
+				<p:panelGrid id="login-result">
+				<p:messages id="error-message" showDetail="true" escape="false" 
+					showIcon="false" />
+				<p:commandLink id="navigate-to-login" styleClass="login-command" rendered="#{!data.loginOk}" 					 
+					oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}"
+					actionListener="#{logic.goToLogin}">
+					<i class="fa fa-sign-in login-command-icon" />
+					<span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/navigateToLogin')}</span>
+				</p:commandLink>
+				</p:panelGrid> 
+			</div>
+		</h:form>
+	</div>
+</cc:implementation>
+</html>

@@ -1,0 +1,10 @@
+WelcomeLoginData #class
+ch.ivy.addon.portalkit.singleapp.general.WelcomeLogin #namespace
+displayWelcomeLogin Boolean #field
+displayWelcomeLogin PERSISTENT #fieldModifier
+username String #field
+username PERSISTENT #fieldModifier
+password String #field
+password PERSISTENT #fieldModifier
+loginOk Boolean #field
+loginOk PERSISTENT #fieldModifier

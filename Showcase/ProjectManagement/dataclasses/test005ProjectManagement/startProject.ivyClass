@@ -1,0 +1,16 @@
+startProject #class
+test005ProjectManagement #namespace
+ProjectManager String #field
+ProjectManager PERSISTENT #fieldModifier
+ProjectStart Date #field
+ProjectStart PERSISTENT #fieldModifier
+ProjectEnd Date #field
+ProjectEnd PERSISTENT #fieldModifier
+ProjectID Number #field
+ProjectID PERSISTENT #fieldModifier
+ProjectName String #field
+ProjectName PERSISTENT #fieldModifier
+steps List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier

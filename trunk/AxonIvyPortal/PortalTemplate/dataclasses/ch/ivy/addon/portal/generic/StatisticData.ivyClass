@@ -1,0 +1,4 @@
+StatisticData #class
+ch.ivy.addon.portal.generic #namespace
+priorityStatistic ch.ivy.ws.addon.PriorityStatistic #field
+expiryStatistic ch.ivy.ws.addon.ExpiryStatistic #field

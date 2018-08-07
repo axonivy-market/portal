@@ -1,0 +1,7 @@
+WebStartableServiceData #class
+ch.ivy.ws.addon #namespace
+errors List<ch.ivy.ws.addon.WSException> #field
+language String #field
+webStartableSearchCriteria ch.ivy.ws.addon.service.WebStartableSearchCriteria #field
+webStartables List<ch.ivy.ws.addon.types.IvyWebStartable> #field
+isUrlBuiltFromSystemProperties Boolean #field

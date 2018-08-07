@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="svn">
+	<title>@appname@ @version@</title>
+	<subtitle>Portal Connector Documentation</subtitle>
+	<info>
+		<copyright>
+			<year>2015-@year@</year>
+			<holder>@vendor@</holder>
+		</copyright>
+		<pubdate>@date@</pubdate>
+	</info>
+	<xi:include href="src/site/docbook/Installation/Installation.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="src/site/docbook/ServiceDocumentation/ServiceDocumentation.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="src/site/docbook/ReleaseNotes/ReleaseNotes.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="src/site/docbook/MigrationNotes/MigrationNotes.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>	
+</book>

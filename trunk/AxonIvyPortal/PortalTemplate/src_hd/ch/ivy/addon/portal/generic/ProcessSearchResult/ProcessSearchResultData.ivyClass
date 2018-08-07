@@ -1,0 +1,4 @@
+ProcessSearchResultData #class
+ch.ivy.addon.portal.generic.ProcessSearchResult #namespace
+processStartLink String #field
+processStartLink PERSISTENT #fieldModifier

@@ -1,0 +1,12 @@
+Applicant #class
+gawfs #namespace
+userid Integer #field
+userid PERSISTENT #fieldModifier
+user ch.ivyteam.ivy.security.IUser #field
+user PERSISTENT #fieldModifier
+fullname String #field
+fullname PERSISTENT #fieldModifier
+username String #field
+username PERSISTENT #fieldModifier
+email String #field
+email PERSISTENT #fieldModifier
