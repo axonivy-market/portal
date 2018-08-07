@@ -34,6 +34,7 @@ public class DateTimeDisplayTest extends BaseTest {
   @Test
   public void testDisplayDateTime() {
     TaskWidgetPage taskWidget = homePage.getTaskWidget();
+    taskWidget.waitForPageLoaded();
     taskWidget.expand();
     taskWidget.openTaskDetails(0);
     TaskDetailsPage taskDetailsPage = taskWidget.getTaskDetailsElement(0);

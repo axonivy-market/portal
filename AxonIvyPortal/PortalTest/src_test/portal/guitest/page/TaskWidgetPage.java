@@ -505,6 +505,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskListShown() {
     WebElement taskDetails = findElementByCssSelector("div.js-task-list-container");
+    waitForPageLoaded();
     return taskDetails.isDisplayed();
   }
 
