@@ -115,6 +115,7 @@ public class PortalExpressTest extends BaseTest{
   public void createUserDefaultProcess() {
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.waitForPageLoaded();
     expressProcessPage.fillProcessProperties(true, false, "Test create default process", "Test description");
     
     ExpressResponsible demoResponsible = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
