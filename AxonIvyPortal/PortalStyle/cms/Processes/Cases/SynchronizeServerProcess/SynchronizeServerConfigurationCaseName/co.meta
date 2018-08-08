@@ -1,4 +1,4 @@
-co: name={SynchronizeServerConfigurationCaseName} description={} changed={2017-11-22 03:00:11 CET} changedby={anhnguyenhoang} visualorder={0} guid={15F713D46C9C809B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={SynchronizeServerConfigurationCaseName} description={} changed={2018-08-08 06:39:58 CEST} changedby={mnhnam} visualorder={0} guid={15F713D46C9C809B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15F713D46CB3AE88} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:00 CEST} validto={} changed={2017-10-31 08:02:42 CET} changedby={chnam} properties={} id={}
 val: guid={15F713D46D036A6A} datatype={} isdefault={true} langid={en} description={} validfrom={2017-01-19 11:48:43 CET} validto={} changed={2017-10-31 08:02:42 CET} changedby={chnam} properties={} id={}
-val: guid={15FE17439A555C07} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-22 03:00:11 CET} validto={} changed={2017-11-22 03:00:11 CET} changedby={anhnguyenhoang} properties={} id={}
+val: guid={15FE17439A555C07} datatype={} isdefault={false} langid={de} description={} validfrom={2018-08-08 06:39:58 CEST} validto={} changed={2018-08-08 06:39:58 CEST} changedby={mnhnam} properties={} id={}

@@ -1,4 +1,4 @@
-co: name={DragAndDropTooltip} description={} changed={2017-11-15 09:12:19 CET} changedby={chnam} visualorder={0} guid={15FBEBC677FF7F5B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={DragAndDropTooltip} description={} changed={2018-08-08 06:39:58 CEST} changedby={mnhnam} visualorder={0} guid={15FBEBC677FF7F5B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15FBEBC679073B8A} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
 val: guid={15FBEBC6782ADDD2} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-09 13:01:52 CEST} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
-val: guid={15FBEBC6789FD6FB} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-26 02:29:28 CET} validto={} changed={2017-11-15 09:12:19 CET} changedby={chnam} properties={} id={}
+val: guid={15FBEBC6789FD6FB} datatype={} isdefault={true} langid={en} description={} validfrom={2018-08-08 06:39:58 CEST} validto={} changed={2018-08-08 06:39:58 CEST} changedby={mnhnam} properties={} id={}

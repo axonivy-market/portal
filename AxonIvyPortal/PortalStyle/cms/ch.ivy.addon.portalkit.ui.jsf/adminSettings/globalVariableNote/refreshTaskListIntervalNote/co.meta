@@ -1,4 +1,4 @@
-co: name={refreshTaskListIntervalNote} description={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} visualorder={0} guid={163FC710324C5885} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={refreshTaskListIntervalNote} description={} changed={2018-08-08 06:39:59 CEST} changedby={mnhnam} visualorder={0} guid={163FC710324C5885} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={163FC8C2F8BAE8D5} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-06-14 06:27:07 CEST} validto={} changed={2018-06-14 06:27:15 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={163FC8C2EB8BC456} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:36 CEST} validto={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} properties={} id={}
+val: guid={163FC8C2EB8BC456} datatype={} isdefault={false} langid={de} description={} validfrom={2018-08-08 06:39:59 CEST} validto={} changed={2018-08-08 06:39:59 CEST} changedby={mnhnam} properties={} id={}
 val: guid={163FC7103284DDBC} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-14 05:57:34 CEST} validto={} changed={2018-06-14 06:27:03 CEST} changedby={tdnguyen} properties={} id={}
