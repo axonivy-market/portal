@@ -1,4 +1,4 @@
-co: name={infoSynchronizeSettingsToAppsInSameIvyApplication} description={} changed={2017-10-31 07:59:31 CET} changedby={chnam} visualorder={0} guid={15F713A5D5DED291} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A5D693E439} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:50 CET} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}
+co: name={infoSynchronizeSettingsToAppsInSameIvyApplication} description={} changed={2018-08-08 06:39:59 CEST} changedby={mnhnam} visualorder={0} guid={15F713A5D5DED291} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A5D693E439} datatype={} isdefault={false} langid={de} description={} validfrom={2018-08-08 06:39:59 CEST} validto={} changed={2018-08-08 06:39:59 CEST} changedby={mnhnam} properties={} id={}
 val: guid={15F713A5D5F483DE} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:50 CET} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}
 val: guid={15F713A5D64D9B87} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}
