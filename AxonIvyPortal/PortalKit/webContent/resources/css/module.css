@@ -4760,6 +4760,12 @@ margin-top
   top: 50%;
 }
 
+_:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row .ui-panelgrid-cell > label {
+  position: relative;
+  margin-top: 0 !important;
+  top: auto !important;
+}
+
 /*Style for express ----------------------------------------------*/
 .express-panel {
   width: 60%;
