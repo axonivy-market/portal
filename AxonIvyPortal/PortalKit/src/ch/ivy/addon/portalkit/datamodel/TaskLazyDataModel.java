@@ -172,6 +172,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       Map<String, Object> filters) {
     if (first == 0) {
       initializedDataModel(searchCriteria);
+      RequestContext.getCurrentInstance().execute("updateTaskCount()");
     }
 
     List<RemoteTask> foundTasks = findTasks(first, pageSize, searchCriteria);

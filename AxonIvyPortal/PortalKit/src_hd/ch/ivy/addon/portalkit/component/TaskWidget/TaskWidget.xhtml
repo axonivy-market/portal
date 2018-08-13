@@ -36,9 +36,9 @@
 		<h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header"
 			layout="block">
 			<div class="widget-header-main #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}">
-				<span class="widget-header-main-title task-widget-header-content-title"> <cc:renderFacet name="title" /> <h:outputText
-						rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" />
-				</span>
+				<h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title"> <cc:renderFacet name="title" /> <h:outputText
+						rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" /> (#{data.dataModel.rowCount})
+				</h:panelGroup>
 
 				<h:form id="filter-selection-form" class="filter-selection-form" rendered="#{!cc.attrs.hideTaskFilter}">
 					<p:outputPanel id="filter-selection-panel"
@@ -281,5 +281,9 @@
       }
     });
   </script>
+  
+  <h:form>
+    <p:remoteCommand name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" />
+  </h:form>
 </cc:implementation>
 </html>

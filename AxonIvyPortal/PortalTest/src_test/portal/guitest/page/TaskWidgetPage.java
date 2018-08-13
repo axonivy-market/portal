@@ -1,17 +1,12 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import portal.guitest.common.TaskState;
+import ch.ivyteam.ivy.process.model.search.By;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -479,5 +474,12 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement taskElement = taskListElement.findElement(By.cssSelector("*[id*='" + index + ":task-item']"));
     WebElement state = taskElement.findElement(By.cssSelector("*[id*='task-start-task-state']"));
     return state.getText().substring(state.getText().indexOf(" ") + 1);
+  }
+  
+  public int getTaskCount() {
+	WebElement taskTitleElement = findElementById("task-widget:task-widget-title");
+	String regExp = "\\((.*?)\\)";
+	String title = taskTitleElement.getText();
+	return Integer.parseInt(title.substring(title.lastIndexOf("("), title.length() -1));
   }
 }

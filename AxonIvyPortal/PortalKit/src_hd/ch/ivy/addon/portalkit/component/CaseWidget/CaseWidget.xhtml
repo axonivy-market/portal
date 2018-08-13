@@ -28,9 +28,9 @@
   <div id="#{cc.clientId}" class="widget case-widget-container">
     <h:panelGroup id="case-widget-header" styleClass="widget-header" layout="block">
       <div class="case-widget-top-header js-widget-header">
-        <div class="case-widget-top-header-main-title-container">
-          <h:outputText styleClass="case-widget-top-header-main-title" value="#{cc.attrs.title}" />
-        </div>
+        <h:panelGroup id="case-widget-title" styleClass="case-widget-top-header-main-title-container">
+          <h:outputText styleClass="case-widget-top-header-main-title" value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
+        </h:panelGroup>
 
         <h:form id="filter-selection-form" class="filter-selection-form" rendered="#{!cc.attrs.hideCaseFilter}">
           <p:outputPanel id="filter-selection-panel"
@@ -277,5 +277,9 @@
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
+  
+  <h:form>
+  	<p:remoteCommand name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" />
+  </h:form>
 </cc:implementation>
 </html>

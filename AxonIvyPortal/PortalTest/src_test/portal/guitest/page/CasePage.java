@@ -139,4 +139,11 @@ public class CasePage extends TemplatePage {
   public void toggleCategoryMenu() {
     click(findElementByClassName("second-level-menu-header"));
   }
+  
+  public int getCaseCount() {
+    WebElement caseTitleElement = findElementById("case-widget:case-widget-title");
+    String regExp = "\\((.*?)\\)";
+    String title = caseTitleElement.getText();
+    return Integer.parseInt(title.substring(title.lastIndexOf("("), title.length() -1));
+  }
 }
