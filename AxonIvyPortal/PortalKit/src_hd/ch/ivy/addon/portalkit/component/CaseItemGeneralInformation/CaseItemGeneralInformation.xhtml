@@ -30,11 +30,8 @@
         <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
       </h:outputText>
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModel')}" />
-      <h:outputText id="process-model-name" value="#{case.processModelName}" />
-
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModelVersion')}" />
-      <h:outputText id="process-model-version" value="#{case.processModelVersionNumber}" />
+      <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
+      <h:outputText id="case-category" value="#{case.categoryPath}" />
     </h:panelGrid>
     <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
             href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}">
