@@ -17,6 +17,7 @@ import javax.faces.event.ValueChangeEvent;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -91,6 +92,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 			Map<String, Object> filters) {
 		if (first == 0) {
 			initializedDataModel(searchCriteria);
+			RequestContext.getCurrentInstance().execute("updateCaseCount()");
 		}
 
 		List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
