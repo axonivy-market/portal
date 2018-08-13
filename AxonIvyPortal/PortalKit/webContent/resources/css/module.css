@@ -2667,22 +2667,6 @@ a.compact-task-start-link:hover {
   position: absolute;
 }
 
-.task-state-open, .case-state-in-progress {
-  color: rgba(7,140,255,1);
-}
-
-.task-state-in-progress, .task-state-done, .case-state-done {
-  color: rgba(78,180,28,1);
-}
-
-.task-state-zombie-destroyed {
-  color: rgba(255,100,100,1);
-}
-
-.task-state-reserved, .task-state-system {
-  color: rgba(0,0,0,0.4);
-}
-
 .task-even-row.full-mode {
   background-color: rgba(255,255,255,1);
 }

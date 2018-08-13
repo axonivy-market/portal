@@ -946,6 +946,9 @@
 				<title>Changes in 7.0 (Jakobshorn)</title>
 				<itemizedlist>
 					<listitem>
+						<para>Introduced the variables to customize task priority and state colors</para>
+					</listitem>
+					<listitem>
 						<para>More search criteria for user in Task list are added and allowed to customize.</para>
 					</listitem>
 					<listitem>

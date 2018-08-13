@@ -28,7 +28,7 @@
 		<title>Change Portal styles</title>
 		<para>Portal administrators can change logos and colors by GUI, refer to <link linkend="axonivyportal.settings.adminsettings.changelogosandcolors" endterm="axonivyportal.settings.adminsettings.changelogosandcolors.title" /></para>
 		<para>
-			Portal applies <link xlink:show="new" xlink:href="http://lesscss.org">LESS</link> framework to support you in customizing the styles of Portal. There are 3 files: <code>theme.less</code> (shouldn't be customized), <code>font-faces.less</code>, <code>customization.less</code>, they are placed at <code>PortalStyle/webContent/resources/less</code>.
+			Portal applies <link xlink:show="new" xlink:href="http://lesscss.org">LESS</link> framework to support you in customizing the styles of Portal. There are 4 files: <code>theme.less</code> (shouldn't be modified), <code>variables.less</code> (shouldn't be modified), <code>font-faces.less</code>, <code>customization.less</code>, they are placed at <code>PortalStyle/webContent/resources/less</code>.
 			<itemizedlist>
 				<listitem>
 					<para>
@@ -43,7 +43,7 @@
 						<code>customization.less</code>: to change the styles of Portal deeply. E.g. Portal's component styles.
 					</para>
 					<note>
-						Portal provides several variables (<code>@body-background-color</code>, <code>@menu-color</code>, <code>@sidebar-dimension-transition-duration</code>, <code>@sidebar-opacity-transition-duration</code>, <code>@process-chain-menu-color</code>) to change Portal's style.
+						Portal provides several variables (<code>@body-background-color</code>, <code>@menu-color</code>, <code>@sidebar-dimension-transition-duration</code>, <code>@sidebar-opacity-transition-duration</code>, <code>@process-chain-menu-color</code>, etc.) to change Portal's style.
 						To override the variables, you should put overriding code (e.g. <code>@body-background-color: red</code>) at <code>customization.less</code> file.
 						<itemizedlist>
 							<listitem>
@@ -75,6 +75,9 @@
 					</note>
 				</listitem>
 			</itemizedlist>
+			<warning>
+				Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
+			</warning>
 			After you finish your customization, compile these above less files to build the css file named <code>theme.min.css</code> and put it at <code>PortalStyle/webContent/resources/css</code>. You are highly recommended to run the <code>mvn lesscss:compile</code> maven command in PortalStyle to do it quickly.
 		</para>
 	</sect2>
