@@ -524,4 +524,11 @@ public class TaskWidgetPage extends TemplatePage {
       findElementByCssSelector(ID_END + index + TASK_ITEM_TASK_INFO).click();
     }
   }
+  
+  public int getTaskCount() {
+    WebElement taskTitleElement = findElementById("task-widget:task-widget-title");
+    String regExp = "\\((.*?)\\)";
+    String title = taskTitleElement.getText();
+    return Integer.parseInt(title.substring(title.lastIndexOf("("), title.length() -1));
+  }
 }

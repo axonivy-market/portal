@@ -22,4 +22,11 @@ public class TaskDetailsPage extends TemplatePage {
     return findElement.getText();
   }
 
+  public String getTaskCategory() {
+    return taskDetailsItem.findElement(By.cssSelector("span[id$='task-category']")).getText();
+  }
+  
+  public String getCaseCategory() {
+    return taskDetailsItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
+  }
 }
