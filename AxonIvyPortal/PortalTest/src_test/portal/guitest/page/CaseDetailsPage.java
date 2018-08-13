@@ -41,8 +41,8 @@ public class CaseDetailsPage extends TemplatePage {
     this.caseItem = caseItem;
   }
 
-  public String getProcessModelName() {
-    return caseItem.findElement(By.cssSelector("span[id$='process-model-name']")).getText();
+  public String getCaseCategory() {
+    return caseItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
   }
 
   public int getNumberOfHistory() {

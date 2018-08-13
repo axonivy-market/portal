@@ -181,4 +181,11 @@ public class CaseWidgetPage extends TemplatePage {
 		WebElement columnHeader = findElementById(columnId);
 		return columnHeader.getText();
 	}
+	
+  public int getCaseCount() {
+    WebElement caseTitleElement = findElementById("case-widget:case-widget-title");
+    String regExp = "\\((.*?)\\)";
+    String title = caseTitleElement.getText();
+    return Integer.parseInt(title.substring(title.lastIndexOf("("), title.length() -1));
+  }
 }
