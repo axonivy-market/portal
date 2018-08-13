@@ -33,7 +33,7 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testDisplayCaseProperties() {
-    assertTrue(StringUtils.equalsIgnoreCase("InternalSupport", detailsPage.getProcessModelName()));
+    assertTrue(StringUtils.equalsIgnoreCase("LeaveRequest", detailsPage.getCaseCategory()));
   }
 
   @Test

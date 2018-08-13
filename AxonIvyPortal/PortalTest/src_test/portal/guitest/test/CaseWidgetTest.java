@@ -132,4 +132,12 @@ public class CaseWidgetTest extends BaseTest {
     loginPage.login();
     homePage = new HomePage();
   }
+  
+  @Test
+  public void testShowCaseCount() {
+    initHomePage(TestAccount.DEMO_USER);
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
+    assertEquals("In Case list, Case Count != 1", 1, casePage.getCaseCount());
+  }
 }
