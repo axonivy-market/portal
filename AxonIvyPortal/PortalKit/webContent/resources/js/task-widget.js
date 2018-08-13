@@ -27,7 +27,7 @@ function TaskWidget(outerPanelId) {
         if (taskWidgetSortMenuContainer.outerHeight(true) == 0) {
           taskWidgetSortMenuContainer = $('.js-task-widget-sort-menu');
         }
-        var taskWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
+        var taskWidgetFilterContainer = $('.js-filter-container');
         var customWidgetContainer = $('.js-custom-widget-container');
         var error = 5;
         var globalSearchInput = $('.js-global-search');
@@ -36,7 +36,7 @@ function TaskWidget(outerPanelId) {
           error = 55; // included margin, padding in search page
         }
         var availableHeight = mainAreaPanel.outerHeight() - taskWidgetHeaderContainer.outerHeight(true)
-            - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetAdvancedFilterContainer.outerHeight(true)
+            - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
             - customWidgetContainer.outerHeight(true) - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
 
         if (!!availableHeight) {
@@ -80,7 +80,7 @@ function TaskListToolKit() {
         } else {
           $(taskSortMenu).show();
         }
-        $.each(taskSortMenu.children(), function(i, header) {
+        $.each(taskSortMenu.children('a'), function(i, header) {
           var cell = $(taskEntry).children().get(i);
           $(header).outerWidth($(cell).outerWidth());
         });
