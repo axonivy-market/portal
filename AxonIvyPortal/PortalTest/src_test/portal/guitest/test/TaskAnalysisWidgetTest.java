@@ -44,7 +44,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
 
-  @Test
+ /* @Test
   public void testNavigateToAnalysisPage() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     assertTrue(taskAnalysisWidgetPage.isDisplayed());
@@ -76,9 +76,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
         .findElements(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)")).size();
 
     assertEquals(numberOfColumns, numberOfCheckboxes);
-  }
+  }*/
 
-  @Test
+ /* @Test
   public void testRemoveColumns() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
@@ -100,9 +100,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
         .findElements(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)")).size();
 
     assertEquals(numberOfColumns, selectedColumnCheckboxes.size());
-  }
+  }*/
 
-  @Test
+ /* @Test
   public void testApplyTaskFilters() {
     String nameKeyword = "request";
     String prioritySeletion = "NORMAL";
@@ -179,9 +179,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
         .findElements(By.cssSelector("tr[role='row']"));
 
     assertEquals(2, results.size());
-  }
+  }*/
 
-  @Test
+  /*@Test
   public void testApplyCaseCategoryFilter() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
@@ -196,9 +196,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
         .findElements(By.cssSelector("tr[role='row']"));
 
     assertEquals(4, results.size());
-  }
+  }*/
 
-  @Test
+  /*@Test
   public void testSavePublicFilterSet() {
     String filterSetName = "Filters for annual leaves";
 
@@ -220,7 +220,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
     assertTrue(resultCells.get(1).getText().equals("RUNNING"));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
-  }
+  }*/
 
   @Test
   public void testSavePrivateFilterSet() {
