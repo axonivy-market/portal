@@ -15,6 +15,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
@@ -157,5 +158,24 @@ public class TaskWidgetTest extends BaseTest {
     assertFalse(taskWidgetPage.isTaskDelegateOptionDisable(1));
     assertTrue(taskWidgetPage.isTaskDelegateOptionDisable(2));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
+  }
+  @Test
+  public void testDisplayTaskAndCaseCategory() {
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.openTaskDetails(0);
+    TaskDetailsPage taskDetailsPage = taskWidgetPage.getTaskDetailsElement(0);
+    assertEquals("OtherLeave/Maternity", taskDetailsPage.getTaskCategory());
+    assertEquals("LeaveRequest", taskDetailsPage.getCaseCategory());
+  }
+  
+  @Test
+  public void testShowTaskCount() {
+  TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+  Assert.assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount());
+  taskWidgetPage.openTaskList();
+  Assert.assertEquals("In Task list, Task Count != 3", 3, taskWidgetPage.getTaskCount());
   }
 }
