@@ -19,26 +19,18 @@
  *  and
  *  2. State styles indicate a JavaScript dependency.
  */
-.task-priority-low {
-  color: rgba(212,212,212,1);
-}
-
-.task-priority-normal {
-  color: rgba(150,220,130,1);
-}
-
-.task-priority-high {
-  color: rgba(255,192,192,1);
-}
-
-.task-priority-exception {
-  color: rgba(255,90,90,1)
-}
-
 .in-progress-case {
   color: #43A047;
 }
 
 .done-case {
   color: #546e7a;
+}
+
+.case-state-in-progress {
+  color: rgba(7,140,255,1);
+}
+
+.case-state-done {
+  color: rgba(78,180,28,1);
 }
