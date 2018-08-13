@@ -1337,6 +1337,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 /********************************** END FILTER WIDGET **********************************/
 
 /********************************** START ADVANCED FILTER WIDGET **********************************/
+.task-widget .advanced-filter-container {
+  margin-left: 10px;
+}
+
 .task-widget .in-progress-task-checkbox, 
 .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
@@ -1346,20 +1350,28 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .case-widget-container .in-progress-task-checkbox .ui-chkbox-label {
   margin-left: 0 !important;
 }
-  
+
 .task-widget .advanced-filter-container .additional-filter-container, 
 .case-widget-container .advanced-filter-container .additional-filter-container {
-  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.task-widget .filter-add-container, 
+.case-widget-container .advanced-filter-container .additional-filter-container {
+  margin-top: 10px;
+}
+
 .case-widget-container .filter-add-container {
   display: flex;
 }
 
-.task-widget .ui-widget.ui-button.filter-add-button, 
+.task-widget .ui-widget.ui-button.filter-add-button {
+  min-width: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 30px;
+} 
+
 .case-widget-container .ui-widget.ui-button.filter-add-button {
   min-width: 10px;
   margin-top: auto;
@@ -1542,10 +1554,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .case-widget-container .filter-widget {
-    width: 90%;
-  }
-
   .case-widget-container .filter-add-container {
     margin-top: 30px;
     margin-left: auto;
@@ -2375,16 +2383,20 @@ a.case-details-document-add-link {
   position: relative;
 }
 
-.widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form {
-  flex: 1 0 auto;
-  align-self: flex-end;
-  text-align: right;
-  padding-bottom: 4px;
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-selection-form {
+  margin-right: 10px;
 }
 
 .filter-selection-form label,
 .filter-selection-form a.ui-commandlink {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #000000 !important;
 }
 
@@ -2417,50 +2429,8 @@ a.case-details-document-add-link {
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode {
-    margin-left: 10px;
-    flex: 1 0 100%;
-    flex-flow: row nowrap;
-    border-bottom: none;
-  }
-
   .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
-    flex: 1 1 auto;
-    min-width: 0;
     overflow: hidden;
-    margin-right: 20px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-  }
-
-  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title form {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form {
-    flex: none;
-    width: 390px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    margin-right: 10px;
-  }
-
-  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form label,
-  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .filter-selection-form .filter-name {
-    float: left;
-  }
-
-  .task-widget .filter-add-container {
-    margin-left: auto;
-    margin-top: 10px;
-  }
-
-  .widget-header-content-filter.mod-expanded-mode {
-    margin-left: 0px;
-  }
-
-  .widget-header-content-filter.mod-expanded-mode .filter-widget {
-    float: right;
   }
 }
 
@@ -2694,22 +2664,6 @@ a.compact-task-start-link:hover {
 
 .task-start-list .action-cell .task-command.side-step-position {
   position: absolute;
-}
-
-.task-state-open, .case-state-in-progress {
-  color: rgba(7,140,255,1);
-}
-
-.task-state-in-progress, .task-state-done, .case-state-done {
-  color: rgba(78,180,28,1);
-}
-
-.task-state-zombie-destroyed {
-  color: rgba(255,100,100,1);
-}
-
-.task-state-reserved, .task-state-system {
-  color: rgba(0,0,0,0.4);
 }
 
 .task-even-row.full-mode {
@@ -4977,7 +4931,7 @@ margin-top
 }
 
 .config-columns-button {
-  margin-top: 21px;
+  margin-left: auto;
 }
 
 .config-checkbox-container {
