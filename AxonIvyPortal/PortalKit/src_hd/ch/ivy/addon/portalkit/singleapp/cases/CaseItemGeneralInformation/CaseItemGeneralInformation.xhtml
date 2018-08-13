@@ -26,12 +26,9 @@
         <h:outputText id="case-end-time" value="#{data.internalCase.endTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
-
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModel')}" />
-        <h:outputText id="process-model-name" value="#{data.internalCase.processModel.name}" />
-
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/processModelVersion')}" />
-        <h:outputText id="process-model-version" value="#{data.internalCase.processModel.releasedProcessModelVersion.versionNumber}" />
+        
+        <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
+      	<h:outputText id="case-category" value="#{data.internalCase.categoryPath}" />
       </h:panelGrid>
   </div>
   <!-- <div class="grid-item" id="#{cc.clientId}">

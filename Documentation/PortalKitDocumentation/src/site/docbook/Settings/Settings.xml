@@ -382,24 +382,6 @@
 				</orderedlist>
 			</para>
 		</sect2>
-		<sect2 xml:id="axonivyportal.settings.adminsettings.changelogosandcolors">
-			<title xml:id="axonivyportal.settings.adminsettings.changelogosandcolors.title">Change logos and colors</title>
-			<para>
-				Open the "Design" tab and you can upload new logos or change new colors.
-				<mediaobject>
-					<imageobject>
-						<imagedata fileref="images/Settings/admin-design-tab.png" />
-					</imageobject>
-				</mediaobject>
-				<tip>
-					If you work in Designer, refresh PortalStyle project after change color to see the effect.
-				</tip>
-				<warning>
-					<para>Make sure your machine has M2_HOME variable in the Windows environment.</para>
-					<para>If you change colors on Google Chrome browser, please reload page with no cache to get new colors.</para>
-				</warning>
-			</para>
-		</sect2>
 	</sect1>
 	<sect1 xml:id="axonivyportal.settings.absenceandsubstitutesettings">
 		<title xml:id="axonivyportal.settings.absenceandsubstitutesettings.title">Absence and substitute settings</title>
