@@ -105,24 +105,6 @@ public class TaskWidgetTest extends BaseTest {
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt(firstTask));
   }
 
-  /*
-   * Disable since refresh task list is increase to 10000
-   * 
-   * @Test public void testRefreshTaskList(){ TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-   * taskWidgetPage.openTaskList(); int taskBeforeRefresh = taskWidgetPage.countTasks(); JavascriptExecutor js =
-   * (JavascriptExecutor) getBrowser().getDriver(); String url =
-   * UrlHelpers.generateAbsoluteProcessStartLink("internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp");
-   * js.executeScript("window.open('');");
-   * 
-   * 
-   * String main = ""; for (String string : getBrowser().getDriver().getWindowHandles()) { WebDriver window =
-   * getBrowser().getDriver().switchTo().window(string); if (window.getCurrentUrl().contains("blank")){ window.get(url);
-   * } else { main = string; } }
-   * 
-   * Sleeper.sleepTight(60000); getBrowser().getDriver().switchTo().window(main); int taskAfterRefresh =
-   * taskWidgetPage.countTasks(); assertNotEquals(taskBeforeRefresh, taskAfterRefresh); }
-   */
-
   @Test
   public void testStickyTaskListOnCancel() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
@@ -159,12 +141,14 @@ public class TaskWidgetTest extends BaseTest {
     assertTrue(taskWidgetPage.isTaskDelegateOptionDisable(2));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
+  
   @Test
   public void testDisplayTaskAndCaseCategory() {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.openTaskList();
     taskWidgetPage.openTaskDetails(0);
     TaskDetailsPage taskDetailsPage = taskWidgetPage.getTaskDetailsElement(0);
     assertEquals("OtherLeave/Maternity", taskDetailsPage.getTaskCategory());
