@@ -144,6 +144,6 @@ public class CasePage extends TemplatePage {
     WebElement caseTitleElement = findElementById("case-widget:case-widget-title");
     String regExp = "\\((.*?)\\)";
     String title = caseTitleElement.getText();
-    return Integer.parseInt(title.substring(title.lastIndexOf("("), title.length() -1));
+    return Integer.parseInt(title.substring(title.lastIndexOf("(") + 1, title.length() -1));
   }
 }
