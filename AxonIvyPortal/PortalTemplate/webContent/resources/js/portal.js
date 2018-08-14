@@ -308,7 +308,7 @@ function searchIconByName(element) {
   var icons = $(".icon-selection-dialog-selecting-icon");
   for (i = 0; i < icons.length; i++) {
     var icon = icons[i].innerHTML;
-    if (icon.indexOf(keyword) > -1) {
+    if (icon.indexOf(keyword) > -1 || icon.split("-").join(" ").indexOf(keyword) > -1) {
       icons[i].style.display= "";
     } else {
 	  icons[i].style.display= "none";
