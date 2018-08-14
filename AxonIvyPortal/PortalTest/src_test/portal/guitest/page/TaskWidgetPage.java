@@ -527,8 +527,7 @@ public class TaskWidgetPage extends TemplatePage {
   
   public int getTaskCount() {
     WebElement taskTitleElement = findElementById("task-widget:task-widget-title");
-    String regExp = "\\((.*?)\\)";
     String title = taskTitleElement.getText();
-    return Integer.parseInt(title.substring(title.lastIndexOf("("), title.length() -1));
+    return Integer.parseInt(title.substring(title.lastIndexOf("(") + 1, title.length() -1));
   }
 }
