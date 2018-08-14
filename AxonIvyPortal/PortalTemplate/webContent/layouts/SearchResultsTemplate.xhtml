@@ -125,6 +125,16 @@
           <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result">
             <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
               dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">
+              <f:facet name="caseListHeader">
+                <ui:fragment rendered="#{useOverrideListHeader}">
+                  <ui:insert name="caseListHeader" />
+                </ui:fragment>
+
+                <ui:fragment rendered="#{not useOverrideListHeader}">
+                  <ic:ch.ivy.addon.portalkit.component.CaseListHeader id="case-list-header"
+                    dataModel="#{dataModel.caseDataModel}" />
+                </ui:fragment>
+              </f:facet>
               <f:facet name="caseHeader">
                 <ic:ch.ivy.addon.portalkit.component.CaseHeader id="case-header" case="#{case}" />
               </f:facet>
