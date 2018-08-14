@@ -1,5 +1,5 @@
 [Ivy]
-1538898FE5F1C3BA 3.20 #module
+1538898FE5F1C3BA 3.23 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -57,7 +57,7 @@ if (!StringUtils.isEmpty(acmLink)) {
 	UserProcess acmProcess = new UserProcess();
 	acmProcess.setLink(acmLink);
 	acmProcess.setProcessName("Axon.ivy Selfservice");
-	acmProcess.setIcon("fa-code-fork");
+	acmProcess.setIcon("fa-play");
 	in.defaultUserProcesses.add(acmProcess);
 }' #txt
 Ds0 f3 type ch.ivy.add.portalkit.DefaultUserProcessData #txt

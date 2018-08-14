@@ -1,5 +1,5 @@
 [Ivy]
-161D026618AB5F95 3.20 #module
+161D026618AB5F95 3.23 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -97,7 +97,7 @@ if (!StringUtils.isEmpty(acmLink)) {
 	UserProcess acmProcess = new UserProcess();
 	acmProcess.setLink(acmLink);
 	acmProcess.setProcessName("Axon.ivy Selfservice");
-	acmProcess.setIcon("fa-code-fork");
+	acmProcess.setIcon("fa-play");
 	acmProcess.setIndex(3);
 	in.defaultUserProcesses.add(acmProcess);
 }

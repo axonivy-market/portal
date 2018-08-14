@@ -2011,7 +2011,7 @@ a.case-details-document-add-link {
 }
 
 .process-start-list {
-  margin: 30px 0 10px 0;
+  margin: 15px 0 10px 0;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -2102,6 +2102,16 @@ a.case-details-document-add-link {
   padding-right: 15px;
 }
 
+.process-start-list .process-start-list-item-icon {
+  display: none;
+  padding-left: 5px;
+  width: 1%;
+}
+	
+.process-start-list .process-start-list-item-name {
+  padding-left: 3%;
+}
+
 .process-start-list-item:hover .process-start-list-item-icon,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   opacity: 1;
@@ -2182,6 +2192,22 @@ a.case-details-document-add-link {
 .process-start-list-item:hover ,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-action {
   opacity: 1;
+}
+
+.process-widget .process-group.express-workflow-group{
+  border: none;
+  display: block;
+  width: 100%;
+  padding: .6em 0;
+  margin: 20px 0 15px;
+}
+
+.process-widget .process-group.express-workflow-group .ui-fieldset-toggler.ui-icon-minusthick:before {
+  content: "\f0d7";
+}
+
+.process-widget .process-group.express-workflow-group .ui-fieldset-toggler.ui-icon-plusthick:before {
+  content: "\f0da";
 }
 
 .process-widget .favorite-process-title {
@@ -3275,8 +3301,23 @@ a.task-details-document-add-link {
 
 .icon-selection-dialog-selecting-icon {
   display: inline-flex;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
+  border: solid 1px transparent;
+}
+
+.icon-selection-dialog-selecting-icon:hover {
+  border: solid 1px black;
+}
+
+.icon-selection-dialog-selecting-icon .fa {
+  margin: auto;
+  font-size: 2rem;
+}
+
+_:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
+  top: 50%;
+  transform: translateY(25%);
 }
 
 .icon-selection-dialog-selecting-icon .fa {
@@ -5223,4 +5264,25 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .ui-panel .ui-panel-titlebar {
 	padding: .3em 1em !important;
 	margin-top: -.15em;
+}
+
+/*********** SEARCH ICON ***********/
+.search-icon-name-container {
+  display: inline-block;
+  position: relative;
+}
+
+.ui-inputfield.search-icon-input {
+  display: block;
+  margin: 5px 10px 20px 0;
+  width: 300px;
+}
+
+.search-icon-name-container .filter-widget-icon {
+  top: 25%;
+  right: 12px;
+} 
+
+.search-icon-input::-ms-clear {
+  display: none;
 }
