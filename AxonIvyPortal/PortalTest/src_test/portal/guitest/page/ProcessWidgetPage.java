@@ -1,12 +1,15 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+
+import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 
 public class ProcessWidgetPage extends TemplatePage {
 
@@ -180,6 +183,9 @@ public class ProcessWidgetPage extends TemplatePage {
   public class AddNewProcessDialog {
     private WebElement processDialog;
     private final String PROCESS_DIALOG_ID = processWidgetId + ":add-new-process-dialog";
+    private final String SEARCH_ICON_NAME_CSS_SELECTOR = "input[id$='search-icon-name-field']";
+    private final String DEFAULT_ICON_CSS_SELECTOR = "span[id$='awesome-icon-display']";
+    private final String ICON_CSS_SELECTOR = "a[id$='awesome-icon']";
 
     private AddNewProcessDialog() {
       processDialog = findElementById(PROCESS_DIALOG_ID);
@@ -214,6 +220,29 @@ public class ProcessWidgetPage extends TemplatePage {
       String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
       waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       return isElementPresent(By.cssSelector(processSelector));
+    }
+    
+    public void clickChangeIconButton() {
+      WebElement changeButton = findElementByCssSelector("a[class*='select-awesome-icon-button']");
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+      changeButton.click();
+    }
+    
+    public void inputSearchedIconName(String keyword) {
+      WebElement searchIconNameField = findDisplayedElementBySelector(SEARCH_ICON_NAME_CSS_SELECTOR);
+      searchIconNameField.sendKeys(keyword);
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    }
+    
+    public int getDisplayedIconAmount() {
+    	waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    	List<WebElement> icons = findListElementsByCssSelector(ICON_CSS_SELECTOR);
+    	return icons.stream().filter(icon -> !icon.getCssValue("display").equals("none")).collect(Collectors.toList()).size();
+    }
+    
+    public boolean isDefaultIcon() {
+    	WebElement element = findDisplayedElementBySelector(DEFAULT_ICON_CSS_SELECTOR);
+    	return element.getAttribute("class").contains(AwesomeIcon.DEFAULT_ICON);
     }
   }
 
