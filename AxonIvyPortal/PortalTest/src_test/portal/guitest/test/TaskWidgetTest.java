@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
@@ -103,17 +102,6 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.changeExpiryOfTaskAt(firstTask, tomorrowStringLiteral);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt(firstTask));
-  }
-
-  @Test
-  public void testStickyTaskListOnCancel() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.openTaskList();
-    taskWidgetPage.startAndCancelTask();
-    Sleeper.sleepTight(3000);
-    Assert.assertTrue(taskWidgetPage.isTaskListShown());
   }
 
   @Test
