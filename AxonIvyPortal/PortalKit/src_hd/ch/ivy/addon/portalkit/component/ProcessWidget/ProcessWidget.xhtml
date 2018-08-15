@@ -109,6 +109,7 @@
 							rendered="#{not processWidgetBean.editMode and isExternalProcess}"
 							styleClass="external-process-item #{cc.attrs.processCardStyle} " style="#{cc.attrs.processCardStyleClass}">
 							<ui:include src="ProcessItem.xhtml">
+								<ui:param name="renderIcon" value="true"></ui:param>
 								<ui:param name="processType" value="external-process-item" />
 							</ui:include>
 						</p:link>
@@ -170,6 +171,7 @@
                           styleClass="external-process-item #{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item"
                           style="#{cc.attrs.processCardStyleClass}">
                           <ui:include src="ProcessItem.xhtml">
+                          	<ui:param name="renderIcon" value="false"></ui:param>
                             <ui:param name="processType" value="external-process-item" />
                           </ui:include>
                         </p:link>
@@ -201,6 +203,7 @@
 							styleClass="external-process-item #{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item"
 							style="#{cc.attrs.processCardStyleClass}">
 							<ui:include src="ProcessItem.xhtml">
+								<ui:param name="renderIcon" value="false"></ui:param>
 								<ui:param name="processType" value="external-process-item" />
 							</ui:include>
 						</p:link>
@@ -249,6 +252,7 @@
 						styleClass="external-process-item #{cc.attrs.processCardStyle}"
 						style="#{cc.attrs.processCardStyleClass}">
 						<ui:include src="ProcessItem.xhtml">
+							<ui:param name="renderIcon" value="true"></ui:param>
 							<ui:param name="processType" value="external-process-item" />
 						</ui:include>
 					</p:link>
