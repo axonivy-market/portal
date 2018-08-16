@@ -1338,6 +1338,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 /********************************** START ADVANCED FILTER WIDGET **********************************/
 .task-widget .advanced-filter-container {
+  display: flex;
   margin-left: 10px;
 }
 
