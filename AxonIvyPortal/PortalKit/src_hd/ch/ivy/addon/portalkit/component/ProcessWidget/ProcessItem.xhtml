@@ -6,9 +6,9 @@
 	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 
 <ui:composition>
-	<div class="process-start-list-item-icon">
-		<span class="fa #{process.icon} fa-fw" />
-	</div>
+	<h:panelGroup layout="block" class="process-start-list-item-icon" rendered="#{renderIcon}">
+		<span class="fa #{process.icon} fa-fw"/>
+	</h:panelGroup>
 	<div class="process-start-list-item-name">
 		<h:outputText id="process-name-#{processType}" value="#{process.processName}"
 			styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
