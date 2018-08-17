@@ -1339,7 +1339,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 /********************************** START ADVANCED FILTER WIDGET **********************************/
 .task-widget .advanced-filter-container {
   display: flex;
-  margin-left: 10px;
 }
 
 .task-widget .in-progress-task-checkbox, 
@@ -2409,12 +2408,19 @@ a.case-details-document-add-link {
   position: relative;
 }
 
+.task-widget .filter-add-container {
+  margin-right: 10px;
+}
+
 .filter-container {
   display: flex;
   align-items: center;
-  margin-top: 10px;
   flex-wrap: wrap;
 }
+
+.filter-container > * {
+  margin-top: 10px;
+} 
 
 .filter-selection-form {
   margin-right: 10px;
