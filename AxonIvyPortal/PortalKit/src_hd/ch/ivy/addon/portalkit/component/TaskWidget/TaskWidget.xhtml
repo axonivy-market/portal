@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
-	xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:pm="http://primefaces.org/modena" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/modena" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-	<cc:attribute name="outerPanelId" default="main-area-panel" />
-	<cc:attribute name="styleClass" />
-	<cc:attribute name="listHeaderStyleClass" />
-	<cc:attribute name="dataModel" />
-	<cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
-	<cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
-	<cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
-	<cc:attribute name="hideTaskFilter" default="false" shortDescription="Task filter text field is hidden or not"
-		type="java.lang.Boolean" />
-	<cc:attribute name="selectedTaskId" />
-	<cc:attribute name="selectedTaskServerId" />
-	<cc:attribute name="showHeaderToolbar" default="true" />
-	<cc:attribute name="noTaskFoundMessage" />
-    <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
+  <cc:attribute name="outerPanelId" default="main-area-panel" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="listHeaderStyleClass" />
+  <cc:attribute name="dataModel" />
+  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
+  <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
+  <cc:attribute name="hideTaskFilter" default="false" shortDescription="Task filter text field is hidden or not"
+    type="java.lang.Boolean" />
+  <cc:attribute name="selectedTaskId" />
+  <cc:attribute name="selectedTaskServerId" />
+  <cc:attribute name="showHeaderToolbar" default="true" />
+  <cc:attribute name="noTaskFoundMessage" />
+  <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
 
-	<cc:facet name="taskListHeader" shortDescription="Header of task list" />
+  <cc:facet name="taskListHeader" shortDescription="Header of task list" />
 </cc:interface>
 
 <cc:implementation>
@@ -32,14 +32,15 @@
     value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
   <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
-  
+
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
     <p:growl id="cannot-start-task-notification" autoUpdate="false" severity="info" />
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header"
         layout="block">
         <h:panelGroup styleClass="widget-header-main #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}">
-          <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title"> <cc:renderFacet name="title" />
+          <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title">
+            <cc:renderFacet name="title" />
             <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" /> (#{data.dataModel.rowCount})
           </h:panelGroup>
 
@@ -60,10 +61,11 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <h:panelGroup styleClass="filter-container js-filter-container" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
+      <h:panelGroup styleClass="filter-container js-filter-container"
+        rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
         <h:panelGroup id="filter-selection-container">
           <h:form id="filter-selection-form" class="filter-selection-form"
-              rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}">
+            rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}">
             <p:outputPanel id="filter-selection-panel">
               <h:outputLabel rendered="#{not data.dataModel.compactMode}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" for="filter-name" />
@@ -74,7 +76,8 @@
                 hideEffect="fade" my="left top" at="left bottom">
                 <h:panelGroup id="private-filters" rendered="#{not empty data.taskPublicFilters}">
                   <div class="filter-type-label">
-                    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
+                    <h:outputText
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
                     <h:panelGroup layout="block" styleClass="user-definied-filter-container">
@@ -135,7 +138,8 @@
                 <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                   valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
                   converter="pojoConverter">
-                  <p:ajax update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
+                  <p:ajax
+                    update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
                     global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
                   <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                     itemValue="#{filter}" />
@@ -175,7 +179,7 @@
           </h:panelGroup>
         </h:panelGroup>
 
-        <h:panelGroup id="filter-save-container" rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
+        <h:panelGroup id="filter-save-container">
           <p:commandButton id="filter-save-action"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button"
             icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
@@ -192,7 +196,8 @@
         </h:panelGroup>
         <h:panelGroup rendered="#{!data.dataModel.compactMode}">
           <cc:renderFacet name="taskListHeader" />
-          <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnsConfiguration updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
+          <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnsConfiguration
+            updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
             rendered="#{!data.dataModel.compactMode}" dataModel="#{data.dataModel}" />
         </h:panelGroup>
       </h:panelGroup>
@@ -262,7 +267,7 @@
           process="@form"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
           actionListener="#{logic.saveFilter}"
-          update="#{cc.clientId}:task-widget-header #{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form">
+          update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form">
         </p:commandButton>
         <p:spacer width="5px" />
         <p:commandButton type="button" styleClass="portal-cancel-button"
@@ -301,7 +306,7 @@
       }
     });
   </script>
-  
+
   <h:form>
     <p:remoteCommand name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" />
   </h:form>

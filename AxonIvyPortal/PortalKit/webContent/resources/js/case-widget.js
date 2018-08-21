@@ -6,7 +6,7 @@ function CaseWidget(outerPanelId) {
       var mainAreaPanel = $('#' + outerPanelId);
       var caseWidgetHeaderContainer = $('.widget-header');
       var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
-      var caseWidgetAdvancedFilterContainer = $('.js-additional-filter-container');
+      var caseWidgetFilterContainer = $('.js-filter-container');
       var error = 5;
       var globalSearchInput = $('.js-global-search');
       var globalSearchTabHeader = $('.ui-tabs-nav');
@@ -15,7 +15,7 @@ function CaseWidget(outerPanelId) {
       }
 
       var availableHeight = mainAreaPanel.outerHeight() - caseWidgetHeaderContainer.outerHeight(true)
-          - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetAdvancedFilterContainer.outerHeight(true)
+          - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetFilterContainer.outerHeight(true)
           - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)- error;
 
       if (!!availableHeight) {

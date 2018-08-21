@@ -1337,7 +1337,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 /********************************** END FILTER WIDGET **********************************/
 
 /********************************** START ADVANCED FILTER WIDGET **********************************/
-.task-widget .advanced-filter-container {
+.task-widget .advanced-filter-container,
+.case-widget-container .advanced-filter-container {
   display: flex;
 }
 
@@ -1357,12 +1358,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   flex-wrap: wrap;
 }
 
-.case-widget-container .advanced-filter-container .additional-filter-container {
-  margin-top: 10px;
-}
-
 .case-widget-container .filter-add-container {
-  display: flex;
+  margin-right: 10px;
 }
 
 .task-widget .ui-widget.ui-button.filter-add-button {
@@ -1375,7 +1372,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .case-widget-container .ui-widget.ui-button.filter-add-button {
   min-width: 10px;
   margin-top: auto;
-  margin-left: 10px;
+  margin-left: auto;
   height: 30px;
 }
 
@@ -1552,13 +1549,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   transition: none;
 }
 
-/* Small screen */
-@media (max-width: 1365px) {
-  .case-widget-container .filter-add-container {
-    margin-top: 30px;
-    margin-left: auto;
-  }
-}
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/
@@ -1802,10 +1792,6 @@ a.case-details-document-add-link {
   padding: 0 2px 10px 2px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
   margin-bottom: 1px;
-}
-
-.case-default-widget-container .widget-column-header {
-  height: 30px;
 }
 
 .case-widget-container .widget-column-header .is-selected {
