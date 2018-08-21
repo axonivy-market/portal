@@ -537,6 +537,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   public void removeFilter(TaskFilter filter) {
     filter.resetValues();
     selectedFilters.remove(filter);
+    if (this.selectedTaskFilterData != null) {
+      this.selectedTaskFilterData = null;
+    }
   }
 
 
@@ -611,6 +614,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         (List<TaskFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
       toggleFilters.get(0).resetValues();
+    }
+    if (this.selectedTaskFilterData != null) {
+      this.selectedTaskFilterData = null;
     }
   }
 
