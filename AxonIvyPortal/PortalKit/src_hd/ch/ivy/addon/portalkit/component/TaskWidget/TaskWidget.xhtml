@@ -53,7 +53,8 @@
           styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
           <h:form id="expanded-mode-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container" icon="fa fa-filter"
-              updateComponent="#{p:component('task-view-container')}"
+              updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')}"
+              listener="#{data.dataModel.onKeywordChange()}"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
               keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" styleClass="widget-header-filter-input"
               onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
