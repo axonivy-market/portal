@@ -123,11 +123,17 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 		if (CollectionUtils.isNotEmpty(toggleFilters)) {
 			toggleFilters.get(0).resetValues();
 		}
+		if (this.selectedFilterData != null) {
+		  this.selectedFilterData = null;
+		}
 	}
 
 	public void removeFilter(CaseFilter filter) {
 		filter.resetValues();
 		selectedFilters.remove(filter);
+		if (this.selectedFilterData != null) {
+      this.selectedFilterData = null;
+    }
 	}
 
 	public void resetFilters() {
