@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -46,31 +45,34 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private void initPermissions() {
     IvyExecutor.executeOnceInAllProcessModelVersion(Ivy.request().getProcessModelVersion(), () -> {
-      cleanAllPortalPermissionGroups();
-      IPermissionGroup portalPermissionGroup = createPortalPermissionGroup();
-      IPermissionGroup taskPermissionGroup =
-          createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.TASK_PERMISSIONS_GROUP);
-      IPermissionGroup casePermissionGroup =
-          createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.CASE_PERMISSIONS_GROUP);
-      IPermissionGroup generalPermissionGroup =
-          createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
-      IPermissionGroup absenceAndSubPermissionGroup =
-          createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.ABSENCE_AND_SUBSTITUTE_GROUP);
-      IPermissionGroup statisticsPermissionGroup =
-          createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.STATISTIC_GROUP);
-      IPermissionGroup expressPermissionGroup =
-          createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.EXPRESS_GROUP);
-      initSystemPermission(taskPermissionGroup, getTaskPermissions());
-      initSystemPermission(casePermissionGroup, getCasePermissions());
-      initSystemPermission(generalPermissionGroup, getGeneralPermissions());
-      initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
-      initSystemPermission(statisticsPermissionGroup,
-          getPortalPermissionsByGroup(PortalPermissionGroup.STATISTIC_GROUP));
-      initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
-      grantPortalPermissionsForEverybody(
-          Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW));
-      grantPortalPermissionsForUserAdmin(Arrays.asList(PortalPermission.STATISTIC_ANALYZE_TASK));
+      recreateAndGrantPermissions();
     });
+  }
+
+  private void recreateAndGrantPermissions() {
+    cleanAllPortalPermissionGroups();
+    IPermissionGroup portalPermissionGroup = createPortalPermissionGroup();
+    IPermissionGroup taskPermissionGroup =
+        createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.TASK_PERMISSIONS_GROUP);
+    IPermissionGroup casePermissionGroup =
+        createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.CASE_PERMISSIONS_GROUP);
+    IPermissionGroup generalPermissionGroup =
+        createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
+    IPermissionGroup absenceAndSubPermissionGroup =
+        createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.ABSENCE_AND_SUBSTITUTE_GROUP);
+    IPermissionGroup statisticsPermissionGroup =
+        createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.STATISTIC_GROUP);
+    IPermissionGroup expressPermissionGroup =
+        createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.EXPRESS_GROUP);
+    initSystemPermission(taskPermissionGroup, getTaskPermissions());
+    initSystemPermission(casePermissionGroup, getCasePermissions());
+    initSystemPermission(generalPermissionGroup, getGeneralPermissions());
+    initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
+    initSystemPermission(statisticsPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.STATISTIC_GROUP));
+    initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
+    grantPortalPermissionsForEverybody(
+        Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW));
+    grantPortalPermissionsForUserAdmin(Arrays.asList(PortalPermission.STATISTIC_ANALYZE_TASK));
   }
 
   private void initSystemPermission(IPermissionGroup permissionGroup, List<IPermission> permissions) {
@@ -151,7 +153,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     }
     ISecurityDescriptor portalSecurity = Ivy.wf().getApplication().getSecurityDescriptor();
     List<IPermission> denniedPermission = portalSecurity.getPermissionAccesses(securityMember).stream()
-        .filter(access -> access.isDenied()).map(IPermissionAccess::getPermission).collect(Collectors.toList());
+        .filter(IPermissionAccess::isDenied).map(IPermissionAccess::getPermission).collect(Collectors.toList());
     iPermissions.forEach(iPermission -> {
       IPermission ivyPermission = IPermissionRepository.get().findByName(iPermission.getValue());
       if (!denniedPermission.contains(ivyPermission)) {
