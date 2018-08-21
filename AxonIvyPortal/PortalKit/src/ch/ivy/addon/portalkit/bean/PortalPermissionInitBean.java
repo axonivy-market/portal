@@ -44,9 +44,9 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private void initPermissions() {
-    IvyExecutor.executeOnceInAllProcessModelVersion(Ivy.request().getProcessModelVersion(), () -> {
-      recreateAndGrantPermissions();
-    });
+    IvyExecutor.executeOnceInAllProcessModelVersion(Ivy.request().getProcessModelVersion(),
+        this::recreateAndGrantPermissions);
+
   }
 
   private void recreateAndGrantPermissions() {
