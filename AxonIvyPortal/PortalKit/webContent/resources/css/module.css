@@ -1412,7 +1412,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command, 
-.case-widget-container .ui-widget.ui-button.advanced-filter-command  {
+.case-widget-container .ui-widget.ui-button.advanced-filter-command {
   display: inline-block;
   height: 35px;
   line-height: 35px;
@@ -1426,7 +1426,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after, 
-.case-widget-container .ui-widget.ui-button.advanced-filter-command:after {
+.case-widget-container .ui-widget.ui-button.advanced-filter-command:after,
+.filter-selection-form a.filter-name.ui-commandlink:after {
   content: "\f0d7";
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
