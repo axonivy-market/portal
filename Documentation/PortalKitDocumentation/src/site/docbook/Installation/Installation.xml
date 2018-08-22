@@ -1037,7 +1037,7 @@
 				<title>Changes in 7.2</title>
 				<itemizedlist>
 					<listitem>
-						<para>Introduced the variables to customize task priority and state colors</para>
+						<para>Introduced the variables to customize task priority and state colors and header bar colors</para>
 					</listitem>
                     <listitem>
                       <para>Introduces the new page: Global search result, and supports the customization</para>
