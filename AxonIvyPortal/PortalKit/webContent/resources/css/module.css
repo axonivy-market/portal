@@ -4682,6 +4682,11 @@ margin-top
   height: 65px;
 }
 
+.color-header {
+  height: 4px;
+  display: flex;
+}
+
 .container {
   flex-shrink: 1;
   height: calc(100% - 80px);
