@@ -4685,6 +4685,7 @@ margin-top
 .color-header {
   height: 4px;
   display: flex;
+  margin-top: 10px;
 }
 
 .container {
