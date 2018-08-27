@@ -1,8 +1,13 @@
 package ch.ivy.ws.addon.service;
 
+import static ch.ivy.ws.addon.WSErrorType.WARNING;
+import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DONE;
 import static ch.ivyteam.ivy.workflow.TaskState.PARKED;
 import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
 import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
+import static ch.ivyteam.ivy.workflow.TaskState.UNASSIGNED;
+import static ch.ivyteam.ivy.workflow.TaskState.ZOMBIE;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,10 +21,10 @@ import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.CategoryData;
-import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.WsServiceFactory;
 import ch.ivy.ws.addon.bo.AvailableAppsResult;
@@ -57,6 +62,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 import com.google.gson.Gson;
 
 public class TaskServiceImpl extends AbstractService implements ITaskService {
+  private static final List<TaskState> QUERY_STATES = Arrays.asList(SUSPENDED, RESUMED, PARKED, DONE);
 
   @Override
   public NoteServiceResult createNote(final String username, final Integer taskId, final String message)
@@ -71,7 +77,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
           if (username == null || username.trim().isEmpty()) {
             // No username given
-            errors.add(new WSException(WSErrorType.WARNING, 10044, null, null, null));
+            errors.add(new WSException(WARNING, 10044, null, null, null));
           } else {
 
             IvyNoteTransformer noteTransformer = new IvyNoteTransformer();
@@ -94,7 +100,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               List<Object> userText = new ArrayList<Object>();
               userText.add(taskId);
               userText.add(username);
-              errors.add(new WSException(WSErrorType.WARNING, 10031, e, userText, null));
+              errors.add(new WSException(WARNING, 10031, e, userText, null));
             } finally {
               if (session != null && application != null) {
                 ISecurityContext securityContext = application.getSecurityContext();
@@ -125,12 +131,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
           if (taskId == null) {
             // TaskId not given
-            errors.add(new WSException(WSErrorType.WARNING, 10027, null, null));
+            errors.add(new WSException(WARNING, 10027, null, null));
           } else if (securityMember == null) {
             // Wrong securityMember
             List<Object> userText = new ArrayList<Object>();
             userText.add("");
-            errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
+            errors.add(new WSException(WARNING, 10028, userText, null));
           } else {
 
             TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
@@ -143,7 +149,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               // Wrong securityMember
               List<Object> userText = new ArrayList<Object>();
               userText.add(taskId);
-              errors.add(new WSException(WSErrorType.WARNING, 10028, e, userText, null));
+              errors.add(new WSException(WARNING, 10028, e, userText, null));
             }
             if (t != null) {
               t.setActivator(member);
@@ -206,7 +212,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 application = t.getApplication();
                 workflowSession = findUserWorkflowSession(username, application);
                 if (workflowSession != null) {
-                  if (t.getState().equals(TaskState.SUSPENDED)) {
+                  if (t.getState() == SUSPENDED) {
                     t = workflowSession.resumeTask(t.getId());
                   }
                   workflowSession.parkTask(t);
@@ -216,7 +222,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 // Invalid username
                 List<Object> userText = new ArrayList<Object>();
                 userText.add(username);
-                errors.add(new WSException(WSErrorType.WARNING, 10029, e, userText, null));
+                errors.add(new WSException(WARNING, 10029, e, userText, null));
               } finally {
                 if (workflowSession != null && application != null) {
                   ISecurityContext securityContext = application.getSecurityContext();
@@ -227,13 +233,13 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               // Invalid taskId
               List<Object> userText = new ArrayList<Object>();
               userText.add(taskId);
-              errors.add(new WSException(WSErrorType.WARNING, 10027, userText, null));
+              errors.add(new WSException(WARNING, 10027, userText, null));
             }
           } else {
             // No taskId given
             List<Object> userText = new ArrayList<Object>();
             userText.add("");
-            errors.add(new WSException(WSErrorType.WARNING, 10027, userText, null));
+            errors.add(new WSException(WARNING, 10027, userText, null));
           }
           return result;
         }
@@ -291,10 +297,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public TaskServiceResult findTasksByCriteria(TaskSearchCriteria taskSearchCriteria, Integer startIndex,
       Integer count, Boolean isUrlBuiltFromSystemProperties) throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(() -> {
-        if (taskSearchCriteria.isEmpty() && StringUtils.isBlank(taskSearchCriteria.getJsonQuery())) {
+        if (taskSearchCriteria.isEmpty() || StringUtils.isBlank(taskSearchCriteria.getJsonQuery())) {
           return result(noErrors());
         }
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
@@ -315,13 +320,14 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             } catch (Exception e) {
               Ivy.log().error("Error when checking whether task has more actions", e);
             }
-            if (taskSearchCriteria.isQueryByTaskId()) {
-              ivyTasks.add(ivyTask);
-            } else if (canUserResumeTask || taskSearchCriteria.isTaskStartedByAnotherDisplayed()) {
-              ivyTasks.add(ivyTask);
-            } else if (isTaskDoneByInvolveUser(involvedUsername, task)){
+            
+            if (taskSearchCriteria.isQueryByTaskId() 
+                || canUserResumeTask 
+                || taskSearchCriteria.isTaskStartedByAnotherDisplayed()
+                || isTaskDoneByInvolveUser(involvedUsername, task)){
               ivyTasks.add(ivyTask);
             }
+            
             if (taskSearchCriteria.isIgnoreInvolvedUser()) {
               allIvyTasks.add(ivyTask);
             }
@@ -329,16 +335,16 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             ivyTasks.add(ivyTask);
           }
         });
-        return result(ivyTasks, allIvyTasks, errors);
+        return result(ivyTasks, allIvyTasks, noErrors());
       });
     } catch (Exception e) {
       throw new WSException(10016, e);
     }
   }
-
+  
   private boolean hasMoreActions(ITask task, String userName) throws Exception {
     boolean isAdmin = SessionUtil.doesUserHavePermission(task.getApplication(), userName, IPermission.TASK_READ_ALL);
-    boolean isOpenTask = Stream.of(SUSPENDED, RESUMED, PARKED).anyMatch(state -> state.equals(task.getState()));
+    boolean isOpenTask = Stream.of(SUSPENDED, RESUMED, PARKED).anyMatch(state -> state == task.getState());
     boolean canUserResumeTask = canUserResumeTask(userName, task);
     boolean isAdhocIncluded = (isAdmin && isOpenTask) || canUserResumeTask;
     SideStepServiceImpl sideStepService = new SideStepServiceImpl();
@@ -347,18 +353,17 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   @Override
   public TaskServiceResult countTasksByCriteria(TaskSearchCriteria taskSearchCriteria) throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(() -> {
         if (taskSearchCriteria.isEmpty()) {
-          return result(0, errors);
+          return result(0, noErrors());
         }
 
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
         queryExcludeHiddenTasks(taskQuery);
 
         long taskCount = countTasks(taskQuery);
-        return result(taskCount, errors);
+        return result(taskCount, noErrors());
 
       });
     } catch (Exception e) {
@@ -370,7 +375,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public TaskServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language)
       throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
@@ -387,10 +391,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             } else {
               taskQuery.where().and(queryForInvolvedApplications(apps));
             }
-            taskQuery.where()
-                .and(
-                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
-                        TaskState.DONE)));
+            taskQuery.where().and(queryForStates(QUERY_STATES));
             taskQuery.where().and().category().isNotNull();
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
@@ -401,7 +402,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               categoryData.setRawPath(category.getRawPath());
               categories.add(categoryData);
             });
-            return result(categories, errors);
+            return result(categories, noErrors());
           });
     } catch (Exception e) {
       throw new WSException(10016, e);
@@ -412,7 +413,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public TaskServiceResult findPersonalTaskCategories(String jsonQuery, final String username, List<String> apps,
       String language) throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
@@ -426,12 +426,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                 .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
             TaskQuery reservedTaskQuery =
-                TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
+                TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(PARKED);
             taskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
-            taskQuery.where()
-                .and(
-                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
-                        TaskState.DONE)));
+            taskQuery.where().and(queryForStates(QUERY_STATES));
             taskQuery.where().and().category().isNotNull();
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
@@ -443,7 +440,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               categories.add(categoryData);
             });
 
-            return result(categories, errors);
+            return result(categories, noErrors());
           });
     } catch (Exception e) {
       throw new WSException(10016, e);
@@ -454,7 +451,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public TaskServiceResult findGroupTaskCategories(String jsonQuery, final String username, List<String> apps,
       String language) throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
@@ -468,10 +464,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             taskQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
                 .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
             taskQuery.where().and().activatorRoleId().isNotNull();
-            taskQuery.where()
-                .and(
-                    queryForStates(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED,
-                        TaskState.DONE)));
+            taskQuery.where().and(queryForStates(QUERY_STATES));
             taskQuery.where().and().category().isNotNull();
 
             CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
@@ -483,7 +476,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               categories.add(categoryData);
             });
 
-            return result(categories, errors);
+            return result(categories, noErrors());
           });
     } catch (Exception e) {
       throw new WSException(10016, e);
@@ -494,7 +487,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public TaskServiceResult findUnassignedTaskCategories(String jsonQuery, List<String> apps, String language)
       throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(() -> {
         TaskQuery taskQuery = Ivy.wf().getGlobalContext().getTaskQueryExecutor().createTaskQuery();
@@ -504,7 +496,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         queryExcludeHiddenTasks(taskQuery);
 
         taskQuery.where().and(queryForInvolvedApplications(apps));
-        taskQuery.where().and(queryForStates(Arrays.asList(TaskState.UNASSIGNED)));
+        taskQuery.where().and(queryForStates(Arrays.asList(UNASSIGNED)));
         taskQuery.where().and().category().isNotNull();
 
         CategoryTree categoryTree = CategoryTree.createFor(taskQuery);
@@ -516,7 +508,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
           categories.add(categoryData);
         });
 
-        return result(categories, errors);
+        return result(categories, noErrors());
       });
     } catch (Exception e) {
       throw new WSException(10016, e);
@@ -526,7 +518,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps)
       throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
@@ -565,7 +556,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               });
             }
 
-            return result(priorityStatistic, errors);
+            return result(priorityStatistic, noErrors());
           });
     } catch (Exception e) {
       throw new WSException(10049, e);
@@ -574,7 +565,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   @Override
   public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
@@ -609,11 +599,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             Gson gsonConverter = new Gson();
             String json = "";
             if (recordMap.size() != 0) {
-              json= gsonConverter.toJson(recordMap);
+              json = gsonConverter.toJson(recordMap);
             }
             expiryStatistic.setResult(json);
 
-            return result(expiryStatistic, errors);
+            return result(expiryStatistic, noErrors());
           });
     } catch (Exception e) {
       throw new WSException(10050, e);
@@ -622,7 +612,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   @Override
   public TaskServiceResult analyzeElapsedTimeOfTasks(String jsonQuery, List<String> apps) throws WSException {
-    List<WSException> errors = Collections.emptyList();
     try {
       return securityManager().executeAsSystem(
           () -> {
@@ -656,7 +645,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
             elapsedTimeStatistic.setResult(json);
 
-            return result(elapsedTimeStatistic, errors);
+            return result(elapsedTimeStatistic, noErrors());
           });
     } catch (Exception e) {
       throw new WSException(10054, e);
@@ -698,10 +687,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             IUser workerUser = task.getWorkerUser();
             if (workerUser != null) {
               String fullName = workerUser.getFullName();
-              String workerName =
-                  fullName == null || fullName.isEmpty() ? workerUser.getName() : workerUser.getFullName() + " ("
-                      + workerUser.getName() + ")";
-                  result.setWorkerUserName(workerName);
+              String workerName = StringUtils.isBlank(fullName) ? workerUser.getName() : String.format("%s (%s)", fullName, workerUser.getName());
+              result.setWorkerUserName(workerName);
             }
           }
           result.setErrors(errors);
@@ -718,7 +705,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     if (taskId == null) {
       List<Object> userText = new ArrayList<Object>();
       userText.add(taskId);
-      errors.add(new WSException(WSErrorType.WARNING, 10028, userText, null));
+      errors.add(new WSException(WARNING, 10028, userText, null));
       return null;
     }
 
@@ -730,7 +717,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       // Wrong TaskId
       List<Object> userText = new ArrayList<Object>();
       userText.add(taskId);
-      errors.add(new WSException(WSErrorType.WARNING, 10027, e, userText, null));
+      errors.add(new WSException(WARNING, 10027, e, userText, null));
       return null;
     }
   }
@@ -774,8 +761,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   private boolean hasPermissionToResetTask(ITask task, String username, boolean canUserResumeTask) {
     TaskState taskState = task.getState();
-    if (!(TaskState.SUSPENDED.equals(taskState) || TaskState.RESUMED.equals(taskState) || TaskState.PARKED
-        .equals(taskState))) {
+    if (!(SUSPENDED == taskState || RESUMED == taskState || PARKED == taskState)) {
       return false;
     }
     return (SessionUtil
@@ -785,8 +771,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   private boolean hasPermissionToDelegateTask(ITask task, String username) {
     TaskState taskState = task.getState();
-    if (!(TaskState.SUSPENDED.equals(taskState) || TaskState.RESUMED.equals(taskState) || TaskState.PARKED
-        .equals(taskState))) {
+    if (!(SUSPENDED == taskState || RESUMED == taskState || PARKED == taskState)) {
       return false;
     }
 
@@ -799,7 +784,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     if (!canUserResumeTask(username, task)) {
       return false;
     }
-    if (!(TaskState.SUSPENDED.equals(taskState) || TaskState.RESUMED.equals(taskState))) {
+    if (!(SUSPENDED == taskState || RESUMED == taskState)) {
       return false;
     }
     return SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_PARK_OWN_WORKING_TASK);
@@ -808,11 +793,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   private boolean canUserResumeTask(String userName, ITask task) {
     IUser user = findUser(userName, task);
 
-    if (TaskState.SUSPENDED.equals(task.getState())) {
+    if (SUSPENDED == task.getState()) {
       return task.getActivatorUserCandidates().contains(user);
     }
 
-    if (TaskState.RESUMED.equals(task.getState()) || TaskState.PARKED.equals(task.getState())) {
+    if (RESUMED == task.getState() || PARKED == task.getState()) {
       return user.equals(task.getWorkerUser());
     }
     return false;
@@ -820,7 +805,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   
   private boolean isTaskDoneByInvolveUser(String userName, ITask task) {
     IUser user = findUser(userName, task);
-    return TaskState.DONE.equals(task.getState()) && user.equals(task.getWorkerUser());
+    return DONE == task.getState() && user.equals(task.getWorkerUser());
   }
 
   private boolean hasPermissionToChangeExpiry(String username, ITask task) {
@@ -870,7 +855,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     result.setErrors(errors);
     return result;
   }
-
+  
   private TaskServiceResult result(PriorityStatistic priorityStatistic, List<WSException> errors) {
     TaskServiceResult result = new TaskServiceResult();
     result.setPriorityStatistic(priorityStatistic);
@@ -925,9 +910,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   private TaskQuery queryForStates(List<TaskState> states) {
     TaskQuery stateFieldQuery = TaskQuery.create();
 
-    if (states == null || states.isEmpty()) {
-      stateFieldQuery.where().state().isNotEqual(TaskState.DONE).and().state().isNotEqual(TaskState.ZOMBIE).and()
-          .state().isNotEqual(TaskState.DESTROYED);
+    if (CollectionUtils.isEmpty(states)) {
+      stateFieldQuery.where().state().isNotEqual(DONE).and().state().isNotEqual(ZOMBIE).and()
+          .state().isNotEqual(DESTROYED);
     } else {
       IFilterQuery filterQuery = stateFieldQuery.where();
       for (TaskState state : states) {
@@ -970,6 +955,4 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   private ISecurityManager securityManager() {
     return ServerFactory.getServer().getSecurityManager();
   }
-
-
 }
