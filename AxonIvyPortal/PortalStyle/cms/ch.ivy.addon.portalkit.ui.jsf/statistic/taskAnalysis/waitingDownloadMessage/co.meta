@@ -1,4 +1,4 @@
-co: name={waitingDownloadMessage} description={} changed={2018-07-18 10:55:38 CEST} changedby={ldnam} visualorder={0} guid={164874B8E218ACE8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={waitingDownloadMessage} description={} changed={2018-08-27 11:51:12 CEST} changedby={chnam} visualorder={0} guid={164874B8E218ACE8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={164874C41CCFC7AB} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:38 CEST} validto={} changed={2018-07-18 10:55:38 CEST} changedby={ldnam} properties={} id={}
 val: guid={164874B8E27186F9} datatype={} isdefault={true} langid={en} description={} validfrom={2018-07-11 05:01:44 CEST} validto={} changed={2018-07-11 05:03:53 CEST} changedby={lttung} properties={} id={}
-val: guid={164874C4290896FD} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-07-11 05:04:11 CEST} validto={} changed={2018-07-11 05:04:39 CEST} changedby={lttung} properties={} id={}
+val: guid={164874C4290896FD} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:12 CEST} validto={} changed={2018-08-27 11:51:12 CEST} changedby={chnam} properties={} id={}

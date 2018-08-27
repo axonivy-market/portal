@@ -1,4 +1,4 @@
-co: name={serverPathIncorrectMsg} description={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} visualorder={0} guid={163D99FF256A9DD2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={serverPathIncorrectMsg} description={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} visualorder={0} guid={163D99FF256A9DD2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={163D99FF270E368A} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-09 11:15:27 CET} validto={} changed={2018-06-07 11:48:29 CEST} changedby={nttai} properties={} id={}
-val: guid={163D99FF2642F3FE} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2018-06-07 11:48:29 CEST} changedby={nttai} properties={} id={}
+val: guid={163D99FF2642F3FE} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} properties={} id={}
 val: guid={163D99FF27A3D02D} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:36 CEST} validto={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} properties={} id={}
