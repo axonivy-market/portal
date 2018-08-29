@@ -5,8 +5,13 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import portal.guitest.common.TaskState;
-import ch.ivyteam.ivy.process.model.search.By;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
