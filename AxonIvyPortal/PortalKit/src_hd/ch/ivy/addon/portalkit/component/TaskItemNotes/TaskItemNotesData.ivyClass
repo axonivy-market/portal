@@ -12,3 +12,5 @@ errors List<ch.ivy.ws.addon.WsException> #field
 errors PERSISTENT #fieldModifier
 fullNote String #field
 fullNote PERSISTENT #fieldModifier
+excludeSystemNotes Boolean #field
+excludeSystemNotes PERSISTENT #fieldModifier

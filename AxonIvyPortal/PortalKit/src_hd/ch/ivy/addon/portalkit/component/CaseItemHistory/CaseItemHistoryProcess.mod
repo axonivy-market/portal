@@ -1,5 +1,5 @@
 [Ivy]
-153362B0AC312EFB 3.23 #module
+153362B0AC312EFB 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -128,9 +128,12 @@ Cs0 f78 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHis
 Cs0 f78 actionTable 'out=in;
 ' #txt
 Cs0 f78 actionCode 'import ch.ivy.addon.portalkit.service.HistoryService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
-in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes);
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes, excludeTechnicalHistory);
 ' #txt
 Cs0 f78 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -286,9 +289,12 @@ Cs0 f39 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHis
 Cs0 f39 actionTable 'out=in;
 ' #txt
 Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.service.HistoryService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
-in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes);' #txt
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes, excludeTechnicalHistory);' #txt
 Cs0 f39 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

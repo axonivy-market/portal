@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
@@ -139,6 +138,6 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.DEMO_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
-    assertEquals("In Case list, Case Count != 1", 1, casePage.getCaseCount());
+    assertEquals(1, casePage.getCaseCount());
   }
 }

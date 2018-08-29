@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.util;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class PermissionUtils {
+  private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
+
   /**
    * Check if current user has read all tasks permission
    * 
@@ -31,5 +33,9 @@ public class PermissionUtils {
   public static boolean checkTaskReadOwnCaseTasksPermission() {
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
         ch.ivyteam.ivy.security.IPermission.TASK_READ_OWN_CASE_TASKS);
+  }
+
+  public static boolean isSessionUserHasAdminRole() {
+    return Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false);
   }
 }

@@ -54,7 +54,7 @@ public class UserUtils {
   public static final String MOBILE = "MOBILE";
   /** Property to get the hidden roles */
   private static final String HIDE_USERS_IN_DELEGATION = "HIDE_USERS_IN_DELEGATION";
-  
+
   private static final String SELECTED_TASK_FILTER_SET = "SELECTED_TASK_FILTER_SET";
   private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
   private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
@@ -166,7 +166,9 @@ public class UserUtils {
           } else {
             // Application Default
             Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
-            l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(), APPLICATION_DEFAULT);
+            l =
+                new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
+                    APPLICATION_DEFAULT);
           }
           getIvySession().setContentLocale(l);
           getIvySession().setFormattingLocale(l);
@@ -287,8 +289,8 @@ public class UserUtils {
       }
     }
 
-    filterUsers.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
-        second.getDisplayName().toLowerCase()));
+    filterUsers.sort((first, second) -> first.getDisplayName().toLowerCase()
+        .compareTo(second.getDisplayName().toLowerCase()));
     return filterUsers;
   }
 
@@ -299,7 +301,7 @@ public class UserUtils {
    * @param query provided query
    * @return Filtered and sorted list of ivy users
    */
-  public static List<IUser> filterIUsers (List<IUser> users, String query) {
+  public static List<IUser> filterIUsers(List<IUser> users, String query) {
     if (StringUtils.isEmpty(query)) {
       return users;
     }
@@ -312,8 +314,8 @@ public class UserUtils {
       }
     }
 
-    filterUsers.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
-        second.getDisplayName().toLowerCase()));
+    filterUsers.sort((first, second) -> first.getDisplayName().toLowerCase()
+        .compareTo(second.getDisplayName().toLowerCase()));
     return filterUsers;
   }
 
@@ -324,7 +326,8 @@ public class UserUtils {
    * @param query provided query
    * @return Filtered and sorted list of remote security member
    */
-  public static java.util.List<RemoteSecurityMember> filterSecurityMembers(java.util.List<RemoteSecurityMember> securityMembers, String query) {
+  public static java.util.List<RemoteSecurityMember> filterSecurityMembers(
+      java.util.List<RemoteSecurityMember> securityMembers, String query) {
     if (StringUtils.isEmpty(query)) {
       return securityMembers;
     }
@@ -332,36 +335,36 @@ public class UserUtils {
     java.util.List<RemoteSecurityMember> result = new ArrayList<>();
     for (RemoteSecurityMember securityMember : securityMembers) {
       if (securityMember.getDisplayName().toLowerCase().contains(query.toLowerCase())
-        || securityMember.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+          || securityMember.getMemberName().toLowerCase().contains(query.toLowerCase())) {
         result.add(securityMember);
       }
     }
 
-    result.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
-      second.getDisplayName().toLowerCase()));
+    result.sort((first, second) -> first.getDisplayName().toLowerCase()
+        .compareTo(second.getDisplayName().toLowerCase()));
     return result;
   }
-  
+
   public static void setSessionAttribute(String key, Object value) {
     Ivy.session().setAttribute(key, value);
   }
-  
+
   public static void setSessionSelectedTaskFilterSetAttribute(TaskFilterData value) {
     setSessionAttribute(SELECTED_TASK_FILTER_SET, value);
   }
-  
+
   public static void setSessionTaskAdvancedFilterAttribute(List<TaskFilter> value) {
     setSessionAttribute(SELECTED_TASK_FILTER, value);
   }
-  
+
   public static void setSessionTaskKeywordFilterAttribute(String keyword) {
     setSessionAttribute(TASK_KEYWORD_FILTER, keyword);
   }
-  
+
   public static void setSessionTaskInProgressFilterAttribute(TaskInProgressByOthersFilter filter) {
     setSessionAttribute(TASK_IN_PROGRESS_FILTER, filter);
   }
-  
+
   public static TaskFilterData getSessionSelectedTaskFilterSetAttribute() {
     return (TaskFilterData) Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
   }
@@ -374,7 +377,7 @@ public class UserUtils {
     }
     return filters;
   }
-  
+
   public static String getSessionTaskKeywordFilterAttribute() {
     String keyword = (String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER);
     if (StringUtils.isBlank(keyword)) {
@@ -382,27 +385,27 @@ public class UserUtils {
     }
     return keyword;
   }
-  
+
   public static TaskInProgressByOthersFilter getSessionTaskInProgressFilterAttribute() {
     return (TaskInProgressByOthersFilter) Ivy.session().getAttribute(TASK_IN_PROGRESS_FILTER);
   }
-  
+
   public static void setSessionSelectedCaseFilterSetAttribute(CaseFilterData value) {
     setSessionAttribute(SELECTED_CASE_FILTER_SET, value);
   }
-  
+
   public static void setSessionCaseAdvancedFilterAttribute(List<CaseFilter> value) {
     setSessionAttribute(SELECTED_CASE_FILTER, value);
   }
-  
+
   public static void setSessionCaseKeywordFilterAttribute(String keyword) {
     setSessionAttribute(CASE_KEYWORD_FILTER, keyword);
   }
-  
+
   public static CaseFilterData getSessionSelectedCaseFilterSetAttribute() {
     return (CaseFilterData) Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
   }
-  
+
   @SuppressWarnings("unchecked")
   public static List<CaseFilter> getSessionCaseAdvancedFilterAttribute() {
     List<CaseFilter> filters = (List<CaseFilter>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
@@ -411,12 +414,16 @@ public class UserUtils {
     }
     return filters;
   }
-  
+
   public static String getSessionCaseKeywordFilterAttribute() {
     String keyword = (String) Ivy.session().getAttribute(CASE_KEYWORD_FILTER);
     if (StringUtils.isBlank(keyword)) {
       return "";
     }
     return keyword;
+  }
+
+  public static String getIvySystemUserName() {
+    return Ivy.session().getSecurityContext().getSystemUser().getName();
   }
 }

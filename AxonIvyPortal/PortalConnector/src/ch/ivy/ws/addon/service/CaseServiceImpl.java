@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -223,7 +224,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
 
   @Override
-  public NoteServiceResult findNotes(final Integer caseId) throws WSException {
+  public NoteServiceResult findNotes(final Integer caseId, boolean excludeSystemNotes) throws WSException {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<NoteServiceResult>() {
         @Override
@@ -245,7 +246,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             }
 
             if (c != null) {
-              result.setNotes(noteTransformer.transform(c.getNotes()));
+              List<INote> notes = c.getNotes();
+              if (excludeSystemNotes) {
+                notes =
+                    notes.stream().filter(n -> !StringUtils.equals(n.getWritterName(), ivySystemUserName()))
+                        .collect(Collectors.toList());
+              }
+              result.setNotes(noteTransformer.transform(notes));
             }
 
           } else {
@@ -262,6 +269,10 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     } catch (Exception e) {
       throw new WSException(10003, e);
     }
+  }
+
+  private String ivySystemUserName() {
+    return Ivy.session().getSecurityContext().getSystemUser().getName();
   }
 
   @Override
@@ -286,7 +297,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             errors.add(new WSException(WSErrorType.WARNING, 10034, userText, null));
           } else {
             IvyNoteTransformer noteTransformer = new IvyNoteTransformer();
-            
+
             CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
             ICase c = null;
 
@@ -432,7 +443,8 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         private void createNoteWhenUploadDocument(String username, Integer caseId, String documentName)
             throws WSException {
           List<Object> parameter = Arrays.asList(username, documentName);
-          String uploadDocumentMessage = Ivy.cms().co("/ch/ivy/addon/portalconnector/document/uploadDocumentNote", parameter);
+          String uploadDocumentMessage =
+              Ivy.cms().co("/ch/ivy/addon/portalconnector/document/uploadDocumentNote", parameter);
           createNote(username, caseId, uploadDocumentMessage);
         }
       });
@@ -513,7 +525,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
               try {
                 IDocument document = iCase.documents().get(documentId);
                 iCase.documents().delete(documentId);
-                if(document != null){
+                if (document != null) {
                   createNoteWhenDeleteDocument(userName, caseId, document);
                 }
               } catch (Exception e) {
@@ -538,7 +550,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
             throws WSException {
           String documentName = document.getName();
           List<Object> parameter = Arrays.asList(userName, documentName);
-          String removeDocumentMessage = 
+          String removeDocumentMessage =
               Ivy.cms().co("/ch/ivy/addon/portalconnector/document/deleteDocumentNote", parameter);
           createNote(userName, caseId, removeDocumentMessage);
         }
@@ -605,125 +617,127 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       throw new WSException(10016, e);
     }
   }
-  
+
   @SuppressWarnings("static-access")
   @Override
   public CaseServiceResult findCategories(String jsonQuery, final String username, List<String> apps, String language)
       throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-          CaseQuery caseQuery = Ivy.wf().getGlobalContext().getCaseQueryExecutor().createCaseQuery();
-          if (StringUtils.isNotBlank(jsonQuery)) {
-            caseQuery.fromJson(jsonQuery);
-          }
-          queryExcludeHiddenCases(caseQuery);
+      return ServerFactory
+          .getServer()
+          .getSecurityManager()
+          .executeAsSystem(
+              () -> {
+                CaseQuery caseQuery = Ivy.wf().getGlobalContext().getCaseQueryExecutor().createCaseQuery();
+                if (StringUtils.isNotBlank(jsonQuery)) {
+                  caseQuery.fromJson(jsonQuery);
+                }
+                queryExcludeHiddenCases(caseQuery);
 
-          if (username != null && !StringUtils.isEmpty(username)) {
-            AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
-            caseQuery.where().and(queryForUsers(availableAppsResult.getUsers()))
-                .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
-          } else {
-            caseQuery.where().and(queryForInvolvedApplications(apps));
-          }
-          caseQuery.where()
-              .and(
-                  queryForStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-          caseQuery.where().and().category().isNotNull().and().category().isNotEqual("Portal");
+                if (username != null && !StringUtils.isEmpty(username)) {
+                  AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+                  caseQuery.where().and(queryForUsers(availableAppsResult.getUsers()))
+                      .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+                } else {
+                  caseQuery.where().and(queryForInvolvedApplications(apps));
+                }
+                caseQuery.where().and(
+                    queryForStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+                caseQuery.where().and().category().isNotNull().and().category().isNotEqual("Portal");
 
-          CategoryTree categoryTree = CategoryTree.createFor(caseQuery);
-          List<CategoryData> categories = new ArrayList<>();
-          categoryTree.getAllChildren().forEach(category -> {
-            CategoryData categoryData = new CategoryData();
-            categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
-            categoryData.setRawPath(category.getRawPath());
-            categories.add(categoryData);
-          });
-          return categoryResult(categories, errors);
-        });
+                CategoryTree categoryTree = CategoryTree.createFor(caseQuery);
+                List<CategoryData> categories = new ArrayList<>();
+                categoryTree.getAllChildren().forEach(category -> {
+                  CategoryData categoryData = new CategoryData();
+                  categoryData.setPath(category.getCategory().getPath(Locale.forLanguageTag(language)));
+                  categoryData.setRawPath(category.getRawPath());
+                  categories.add(categoryData);
+                });
+                return categoryResult(categories, errors);
+              });
     } catch (Exception e) {
       throw new WSException(10016, e);
     }
   }
 
   @Override
-  public CaseServiceResult analyzeCaseStateStatistic(CaseSearchCriteria caseSearchCriteria)
-      throws WSException {
+  public CaseServiceResult analyzeCaseStateStatistic(CaseSearchCriteria caseSearchCriteria) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(
-          () -> {
-            CaseQuery caseStateQuery = createCaseQuery(caseSearchCriteria);
-            queryExcludeHiddenCases(caseStateQuery);
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        CaseQuery caseStateQuery = createCaseQuery(caseSearchCriteria);
+        queryExcludeHiddenCases(caseStateQuery);
 
-            caseStateQuery.aggregate().countRows()
-              .groupBy().state()
-              .orderBy().state();
+        caseStateQuery.aggregate().countRows().groupBy().state().orderBy().state();
 
-            Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(caseStateQuery);
-            CaseStateStatistic caseStateStatistic = new CaseStateStatistic();
-            if (recordSet != null) {
-              recordSet.getRecords().forEach(record -> {
-                int state = Integer.parseInt(record.getField("STATE").toString());
-                long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
-                if (state == CaseState.DONE.intValue()) {
-                  caseStateStatistic.setDone((numberOfCases));
-                } else if (state == CaseState.CREATED.intValue()) {
-                  caseStateStatistic.setCreated(numberOfCases);
-                } else if (state == CaseState.DESTROYED.intValue()) {
-                  caseStateStatistic.setFailed(numberOfCases);
-                } else if (state == CaseState.RUNNING.intValue()) {
-                  caseStateStatistic.setRunning(numberOfCases);
-                }
-              });
+        Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(caseStateQuery);
+        CaseStateStatistic caseStateStatistic = new CaseStateStatistic();
+        if (recordSet != null) {
+          recordSet.getRecords().forEach(record -> {
+            int state = Integer.parseInt(record.getField("STATE").toString());
+            long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+            if (state == CaseState.DONE.intValue()) {
+              caseStateStatistic.setDone((numberOfCases));
+            } else if (state == CaseState.CREATED.intValue()) {
+              caseStateStatistic.setCreated(numberOfCases);
+            } else if (state == CaseState.DESTROYED.intValue()) {
+              caseStateStatistic.setFailed(numberOfCases);
+            } else if (state == CaseState.RUNNING.intValue()) {
+              caseStateStatistic.setRunning(numberOfCases);
             }
-
-            return result(caseStateStatistic, errors);
           });
+        }
+
+        return result(caseStateStatistic, errors);
+      });
     } catch (Exception e) {
       throw new WSException(10051, e);
     }
   }
 
   @Override
-  public CaseServiceResult analyzeElapsedTimeByCaseCategory(CaseSearchCriteria caseSearchCriteria)
-    throws WSException {
-      List<WSException> errors = Collections.emptyList();
-      try {
-        return ServerFactory.getServer().getSecurityManager().executeAsSystem(
-            () -> {
-              CaseQuery elapsedTimeQuery = createCaseQuery(caseSearchCriteria);
-              queryExcludeHiddenCases(elapsedTimeQuery);
+  public CaseServiceResult analyzeElapsedTimeByCaseCategory(CaseSearchCriteria caseSearchCriteria) throws WSException {
+    List<WSException> errors = Collections.emptyList();
+    try {
+      return ServerFactory
+          .getServer()
+          .getSecurityManager()
+          .executeAsSystem(
+              () -> {
+                CaseQuery elapsedTimeQuery = createCaseQuery(caseSearchCriteria);
+                queryExcludeHiddenCases(elapsedTimeQuery);
 
-              elapsedTimeQuery.where().and().businessRuntime().isNotNull();
-              elapsedTimeQuery.aggregate().avgBusinessRuntime()
-              .groupBy().category();
+                elapsedTimeQuery.where().and().businessRuntime().isNotNull();
+                elapsedTimeQuery.aggregate().avgBusinessRuntime().groupBy().category();
 
-              Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(elapsedTimeQuery);
-              HashMap<String, Long> recordMap = new HashMap<String, Long>();
-              if (recordSet != null) {
-                recordSet.getRecords().forEach(record -> {
-                  String categoryName = record.getField("CATEGORY").toString();
-                  BigDecimal averageElapsedTime
-                    = Optional.ofNullable((BigDecimal)record.getField("AVGBUSINESSRUNTIME")).orElse(new BigDecimal(0));
-                  long averageElapsedTimeValue = averageElapsedTime.longValue();
-                  recordMap.put(categoryName, averageElapsedTimeValue);
-                });
-              }
+                Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(elapsedTimeQuery);
+                HashMap<String, Long> recordMap = new HashMap<String, Long>();
+                if (recordSet != null) {
+                  recordSet.getRecords().forEach(
+                      record -> {
+                        String categoryName = record.getField("CATEGORY").toString();
+                        BigDecimal averageElapsedTime =
+                            Optional.ofNullable((BigDecimal) record.getField("AVGBUSINESSRUNTIME")).orElse(
+                                new BigDecimal(0));
+                        long averageElapsedTimeValue = averageElapsedTime.longValue();
+                        recordMap.put(categoryName, averageElapsedTimeValue);
+                      });
+                }
 
-              ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
-              Gson gsonConverter = new Gson();
-              String json = "";
-              if (recordMap.size() != 0) {
-                json = gsonConverter.toJson(recordMap);
-              }
-              elapsedTimeStatistic.setResult(json);
+                ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
+                Gson gsonConverter = new Gson();
+                String json = "";
+                if (recordMap.size() != 0) {
+                  json = gsonConverter.toJson(recordMap);
+                }
+                elapsedTimeStatistic.setResult(json);
 
-              return result(elapsedTimeStatistic, errors);
-            });
-      } catch (Exception e) {
-        throw new WSException(10052, e);
-      }
+                return result(elapsedTimeStatistic, errors);
+              });
+    } catch (Exception e) {
+      throw new WSException(10052, e);
+    }
   }
 
   private CaseServiceResult result(List<WSException> errors) {
@@ -746,7 +760,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     return result;
   }
 
-  private CaseServiceResult result(CaseStateStatistic caseStateStatistic , List<WSException> errors) {
+  private CaseServiceResult result(CaseStateStatistic caseStateStatistic, List<WSException> errors) {
     CaseServiceResult result = new CaseServiceResult();
     result.setCaseStateStatistic(caseStateStatistic);
     result.setErrors(errors);
@@ -759,7 +773,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     result.setErrors(errors);
     return result;
   }
-  
+
   private CaseServiceResult categoryResult(List<CategoryData> categories, List<WSException> errors) {
     CaseServiceResult result = new CaseServiceResult();
     result.setCategories(categories);
@@ -776,7 +790,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     users.forEach(user -> caseQuery.where().or().isInvolved(user));
     return caseQuery;
   }
-  
+
   private CaseQuery queryForStates(List<CaseState> states) {
     CaseQuery stateFieldQuery = CaseQuery.create();
     IFilterQuery filterQuery = stateFieldQuery.where();
@@ -784,7 +798,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       filterQuery.or().state().isEqual(state);
     }
     return stateFieldQuery;
-}
+  }
 
   private List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
     List<ICase> cases = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query, startIndex, count);
@@ -801,7 +815,8 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     if (caseSearchCriteria.isBusinessCase()) {
       finalQuery.where().and().isBusinessCase();
     } else if (caseSearchCriteria.isTechnicalCase()) {
-      finalQuery.where().and().isNotBusinessCase().and().businessCaseId().isEqual(caseSearchCriteria.getBusinessCaseId());
+      finalQuery.where().and().isNotBusinessCase().and().businessCaseId()
+          .isEqual(caseSearchCriteria.getBusinessCaseId());
     }
 
     if (caseSearchCriteria.hasInvolvedUsername() && !caseSearchCriteria.isIgnoreInvolvedUser()) {
@@ -847,8 +862,8 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         executeCaseQuery(CaseQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
 
     hiddenCases.forEach(hiddenCase -> {
-	      query.where().and().caseId().isNotEqual(hiddenCase.getId());
-	    });
-	  }
+      query.where().and().caseId().isNotEqual(hiddenCase.getId());
+    });
+  }
 
 }
