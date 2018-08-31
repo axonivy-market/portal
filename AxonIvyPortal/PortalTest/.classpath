@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry excluding="**/*.ivyClass|**/*.mod|**/*.rddescriptor|**/*.eventmappings|**/*.xhtml" kind="src" path="src_hd"/>
 	<classpathentry excluding="**/*.ivyClass|**/*.mod|**/*.eventmappings|**/*.rddescriptor" kind="src" path="src_rd"/>
 	<classpathentry kind="src" path="src_ws"/>
-	<classpathentry kind="src" path="src_wsproc"/>
-	<classpathentry kind="src" path="src_dataClasses"/>
 	<classpathentry kind="src" path="src_test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="IVY_CONTAINER"/>
@@ -17,10 +14,10 @@
 	<classpathentry kind="lib" path="lib_test/objenesis-2.2.jar"/>
 	<classpathentry kind="lib" path="lib_test/powermock-api-mockito-common-1.6.5.jar"/>
 	<classpathentry kind="lib" path="lib_test/powermock-mockito-1.6.5-full.jar"/>
-	<classpathentry kind="output" path="classes"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="output" path="classes"/>
 </classpath>
