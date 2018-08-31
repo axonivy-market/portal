@@ -27,7 +27,10 @@ public class PasswordChangeTest extends BaseTest {
     assertTrue(changePasswordPage.isWrongCurrentPasswordError());
 
     changePasswordPage.changePassword(TestAccount.TEST_CHANGE_PASSWORD_USER.getPassword(), newPassword);
+    assertTrue(changePasswordPage.isNewCurrentPasswordStrongEnough());
     
+    newPassword = "a2C!";
+    changePasswordPage.changePassword(TestAccount.TEST_CHANGE_PASSWORD_USER.getPassword(), newPassword);
     if (!SystemProperties.isInServerMode()) {
       launchBrowserAndLogoutInDesigner();
       navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);

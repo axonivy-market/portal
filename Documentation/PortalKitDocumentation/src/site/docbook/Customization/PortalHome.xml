@@ -69,21 +69,6 @@
 		<para>
 			The <code>DefaultHomePageTemplate.xhtml</code> template supports some customizations.
 		</para>
-		<sect3 xml:id="axonivyportal.customization.portalhome.advancedusage.displayyourowntasksandstatisticsdata">
-			<title>Display your statistics data</title>
-			<para>
-				The template has a parameter: <code>statistic</code> to display the statistic data. Their default values are the tasks which the session user can work on.
-				<para>
-					<code>&lt;ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" ... &gt;</code>
-				</para>
-				<para>
-					<code>&lt;ui:param name="statistic" value="#{logic.getStatistic()}" /&gt; &lt;!-- A method returns StatisticData --&gt;</code>
-				</para>
-				<para>
-					<code>&lt;/ui:composition&gt;</code>
-				</para>
-			</para>
-		</sect3>
 		<sect3 xml:id="axonivyportal.customization.portalhome.advancedusage.displayhidethedefaultwidgets">
 			<title>Display/hide the default widgets</title>
 			<para>

@@ -1,5 +1,5 @@
 [Ivy]
-161D026618AB5F95 3.23 #module
+1657E93190721001 3.23 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -14,20 +14,20 @@ Ds0 @TextInP .xml .xml #zField
 Ds0 @TextInP .responsibility .responsibility #zField
 Ds0 @StartSub f0 '' #zField
 Ds0 @EndSub f1 '' #zField
-Ds0 @InfoButton f5 '' #zField
-Ds0 @PushWFArc f2 '' #zField
-Ds0 @PushWFArc f4 '' #zField
 Ds0 @GridStep f3 '' #zField
+Ds0 @PushWFArc f4 '' #zField
+Ds0 @PushWFArc f2 '' #zField
+Ds0 @InfoButton f5 '' #zField
 >Proto Ds0 Ds0 DefaultUserProcess #zField
 Ds0 f0 inParamDecl '<> param;' #txt
 Ds0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> defaultUserProcesses> result;
 ' #txt
 Ds0 f0 outParamTable 'result.defaultUserProcesses=in.defaultUserProcesses;
 ' #txt
-Ds0 f0 actionDecl 'internaltest.DefaultUserProcessOverrideData out;
+Ds0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData out;
 ' #txt
 Ds0 f0 callSignature createDefaultUserProcesses() #txt
-Ds0 f0 type internaltest.DefaultUserProcessOverrideData #txt
+Ds0 f0 type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,46 +39,10 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f0 51 83 26 26 14 0 #rect
 Ds0 f0 @|StartSubIcon #fIcon
-Ds0 f1 type internaltest.DefaultUserProcessOverrideData #txt
+Ds0 f1 type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 Ds0 f1 51 339 26 26 14 0 #rect
 Ds0 f1 @|EndSubIcon #fIcon
-Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>HOW TO CREATE A DEFAULT USER PROCESS:
-
-UserProcess userProcess = new UserProcess();
-userProcess.setLink(&lt;PROCESS_LINK&gt;); //Absolute path or relative path starts with: /&lt;CONTEXT_PATH&gt;/pro/...
-userProcess.setProcessName(&lt;PROCESS_NAME&gt;);
-userProcess.setIcon(&lt;PROCESS_ICON&gt;); //Icons in Font Awesome
-
-in.defaultUserProcesses.add(userProcess);
-
-OUT: defaultUserProcesses: List&lt;UserProcess&gt;
-
-HINT: how to build a process url
-- Absolute path: ivy.html.startref(...)
-- Relative path: RequestUriFactory.createProcessStartUri(...)
-- We provide method to get startable link by UserFriendlyRequestPath (If user don''t have permission to start this link, the method will return empty string)
-ProcessStartCollector.findStartableLinkByUserFriendlyRequestPath(...) 
-Example: 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-String newEmployeeLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");
-</name>
-        <nameStyle>521,7
-451,7
-1,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f5 248 58 832 332 -413 -160 #rect
-Ds0 f5 @|IBIcon #fIcon
-Ds0 f2 expr out #txt
-Ds0 f2 64 220 64 339 #arcP
-Ds0 f4 expr out #txt
-Ds0 f4 64 109 64 196 #arcP
-Ds0 f3 actionDecl 'internaltest.DefaultUserProcessOverrideData out;
+Ds0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData out;
 ' #txt
 Ds0 f3 actionTable 'out=in;
 ' #txt
@@ -98,40 +62,50 @@ if (!StringUtils.isEmpty(acmLink)) {
 	acmProcess.setLink(acmLink);
 	acmProcess.setProcessName("Axon.ivy Selfservice");
 	acmProcess.setIcon("fa-play");
-	acmProcess.setIndex(3);
+	acmProcess.setIndex(5);
 	in.defaultUserProcesses.add(acmProcess);
 }
 
-String saleLink = collector.findStartableLinkByUserFriendlyRequestPath("Business Processes/testProcesses/TestTaskFlow/SaleDepartment.ivp");
-if (!StringUtils.isEmpty(saleLink)){	
+String createAlphaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");
+if (!StringUtils.isEmpty(createAlphaLink)){	
 	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(saleLink);
-	userProcess.setProcessName("Sale Information");
+	userProcess.setLink(createAlphaLink);
+	userProcess.setProcessName("Alpha Company Task");
 	userProcess.setIcon("fa-th");
 	userProcess.setIndex(1);
 	in.defaultUserProcesses.add(userProcess);
 }
 
-String inspectResourceLink = collector.findStartableLinkByUserFriendlyRequestPath("Business Processes/testProcesses/ProcessHistoryTest/InspectResource.ivp");
-if (!StringUtils.isEmpty(inspectResourceLink)){	
+String createBetaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createBetaCompany.ivp");
+if (!StringUtils.isEmpty(createBetaLink)){	
 	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(inspectResourceLink);
-	userProcess.setProcessName("Inspect Resource");
+	userProcess.setLink(createBetaLink);
+	userProcess.setProcessName("Beta Company Task");
 	userProcess.setIcon("fa-gavel");
-	userProcess.setIndex(1);
+	userProcess.setIndex(2);
 	in.defaultUserProcesses.add(userProcess);
 }
 
-String viewResourceCasesLink = collector.findStartableLinkByUserFriendlyRequestPath("Business Processes/testProcesses/ProcessHistoryTest/viewProcessHistoryOfResource.ivp");
-if (!StringUtils.isEmpty(viewResourceCasesLink)){	
+String viewAlphaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");
+if (!StringUtils.isEmpty(viewAlphaHistoryLink)){	
 	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(viewResourceCasesLink);
-	userProcess.setProcessName("View Resource");
+	userProcess.setLink(viewAlphaHistoryLink);
+	userProcess.setProcessName("View Alpha Process History");
 	userProcess.setIcon("fa-magic");
-	userProcess.setIndex(2);
+	userProcess.setIndex(3);
+	in.defaultUserProcesses.add(userProcess);
+}
+
+String viewBetaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfBetaCompany.ivp");
+if (!StringUtils.isEmpty(viewBetaHistoryLink)){	
+	UserProcess userProcess = new UserProcess();
+	userProcess.setLink(viewBetaHistoryLink);
+	userProcess.setProcessName("View Beta Process History");
+	userProcess.setIcon("fa-asterisk");
+	userProcess.setIndex(4);
 	in.defaultUserProcesses.add(userProcess);
 }' #txt
-Ds0 f3 type internaltest.DefaultUserProcessOverrideData #txt
+Ds0 f3 type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -144,7 +118,23 @@ processes</name>
 ' #txt
 Ds0 f3 46 196 36 24 20 -2 #rect
 Ds0 f3 @|StepIcon #fIcon
->Proto Ds0 .type internaltest.DefaultUserProcessOverrideData #txt
+Ds0 f4 expr out #txt
+Ds0 f4 64 109 64 196 #arcP
+Ds0 f2 expr out #txt
+Ds0 f2 64 220 64 339 #arcP
+Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>This process overrides DefaultUserProcess in Portal Kit. 
+It add 5 application favorites processes and determines their order using the setIndex method of UserProcess.</name>
+        <nameStyle>167,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f5 220 152 648 80 -301 -16 #rect
+Ds0 f5 @|IBIcon #fIcon
+>Proto Ds0 .type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
 >Proto Ds0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
