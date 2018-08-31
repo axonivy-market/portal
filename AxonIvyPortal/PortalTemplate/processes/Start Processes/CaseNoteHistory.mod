@@ -223,8 +223,8 @@ Cy0 f10 actionCode 'import ch.ivy.addon.portalkit.service.HistoryService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
-GlobalSettingService globalSettingSerive = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes, excludeTechnicalHistory);
 ' #txt
 Cy0 f10 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt
@@ -301,8 +301,8 @@ for(ITask task : in.internalCase.getTasks()) {
 }
 
 HistoryService historyService = new HistoryService();
-GlobalSettingService globalSettingSerive = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes(), excludeTechnicalHistory);' #txt
 Cy0 f17 security system #txt
 Cy0 f17 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt

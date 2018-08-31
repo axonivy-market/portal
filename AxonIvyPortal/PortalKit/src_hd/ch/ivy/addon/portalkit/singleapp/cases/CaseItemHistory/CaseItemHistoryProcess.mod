@@ -75,8 +75,8 @@ for(ITask task : in.internalCase.getTasks()) {
 }
 
 HistoryService historyService = new HistoryService(); 
-GlobalSettingService globalSettingSerive = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes(), excludeTechnicalHistory);' #txt
 Cs0 f78 security system #txt
 Cs0 f78 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory.CaseItemHistoryData #txt

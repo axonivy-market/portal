@@ -109,9 +109,8 @@ public class CaseDocumentService {
   public static boolean isDocumentSafe(UploadedFile uploadedFile) {
     if (uploadedFile != null) {
       DocumentDetectorFactory documentDetectorFactory = new DocumentDetectorFactory();
-      DocumentDetector documentDetector =
-          documentDetectorFactory.getDocumentDetector(FilenameUtils.getExtension(StringUtils.lowerCase(uploadedFile
-              .getFileName())));
+      DocumentDetector documentDetector = documentDetectorFactory
+          .getDocumentDetector(FilenameUtils.getExtension(StringUtils.lowerCase(uploadedFile.getFileName())));
       if (documentDetector != null) {
         try {
           return documentDetector.isSafe(uploadedFile.getInputstream());
@@ -128,9 +127,9 @@ public class CaseDocumentService {
   }
 
   public static boolean enableScriptCheckingForUploadedDocument() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String enableScriptCheckingForUploadedDocument =
-        globalSettingSerive.findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT.toString());
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    String enableScriptCheckingForUploadedDocument = globalSettingService
+        .findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT.toString());
     return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
   }
 
@@ -164,10 +163,10 @@ public class CaseDocumentService {
   }
 
   private static List<String> getAllowedUploadFileType() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    if (globalSettingSerive.isGlobalSettingAvailable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString())) {
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    if (globalSettingService.isGlobalSettingAvailable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString())) {
       String supportedFileType =
-          globalSettingSerive.findGlobalSettingValue(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString());
+          globalSettingService.findGlobalSettingValue(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString());
       if (StringUtils.EMPTY.equals(supportedFileType)) {
         return new ArrayList<>();
       } else {
