@@ -11,7 +11,7 @@ import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.bo.RemoteNote;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -65,7 +65,8 @@ public class HistoryService {
   }
 
   private List<History> createHistoriesFromNonTechnicalTasks(List<RemoteTask> tasks) {
-    return tasks.stream().filter(task -> !StringUtils.equals(task.getWorkerUserName(), ivySystemUserName()))
+    return tasks.stream()
+        .filter(task -> !StringUtils.equals(task.getWorkerUserName(), UserUtils.getIvySystemUserName()))
         .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
@@ -74,7 +75,8 @@ public class HistoryService {
   }
 
   private List<History> createHistoriesFromNonTechnicalITasks(List<ITask> tasks) {
-    return tasks.stream().filter(task -> !StringUtils.equals(task.getWorkerUserName(), ivySystemUserName()))
+    return tasks.stream()
+        .filter(task -> !StringUtils.equals(task.getWorkerUserName(), UserUtils.getIvySystemUserName()))
         .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
@@ -83,7 +85,8 @@ public class HistoryService {
   }
 
   private List<History> createToHistoriesFromNonTechnicalNotes(List<RemoteNote> notes) {
-    return notes.stream().filter(note -> !StringUtils.equals(note.getCreatorUserName(), ivySystemUserName()))
+    return notes.stream()
+        .filter(note -> !StringUtils.equals(note.getCreatorUserName(), UserUtils.getIvySystemUserName()))
         .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
@@ -92,12 +95,8 @@ public class HistoryService {
   }
 
   private List<History> createToHistoriesFromNonTechnicalINotes(List<INote> notes) {
-    return notes.stream().filter(note -> !StringUtils.equals(note.getWritterName(), ivySystemUserName()))
+    return notes.stream().filter(note -> !StringUtils.equals(note.getWritterName(), UserUtils.getIvySystemUserName()))
         .map(this::createHistoryFrom).collect(Collectors.toList());
-  }
-
-  private String ivySystemUserName() {
-    return Ivy.session().getSecurityContext().getSystemUser().getName();
   }
 
   private History createHistoryFrom(ITask task) {
