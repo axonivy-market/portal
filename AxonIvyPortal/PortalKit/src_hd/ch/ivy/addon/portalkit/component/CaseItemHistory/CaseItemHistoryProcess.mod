@@ -131,8 +131,8 @@ Cs0 f78 actionCode 'import ch.ivy.addon.portalkit.service.HistoryService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
-GlobalSettingService globalSettingSerive = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes, excludeTechnicalHistory);
 ' #txt
 Cs0 f78 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
@@ -292,8 +292,8 @@ Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.service.HistoryService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
-GlobalSettingService globalSettingSerive = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes, excludeTechnicalHistory);' #txt
 Cs0 f39 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
