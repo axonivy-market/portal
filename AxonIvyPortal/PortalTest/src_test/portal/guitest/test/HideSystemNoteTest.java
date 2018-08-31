@@ -44,9 +44,6 @@ public class HideSystemNoteTest extends BaseTest {
     loginPage.login();
 
     List<String> taskNoteAuthors = getTaskNoteAuthors();
-    for(String a: taskNoteAuthors) {
-    System.out.println(a);
-    }
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }
 
