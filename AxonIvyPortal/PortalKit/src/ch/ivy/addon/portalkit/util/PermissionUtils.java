@@ -15,7 +15,7 @@ public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
 
   private PermissionUtils() {}
-  
+
   /**
    * Check if current user has read all tasks permission
    * 
@@ -45,7 +45,7 @@ public class PermissionUtils {
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
         ch.ivyteam.ivy.security.IPermission.TASK_READ_OWN_CASE_TASKS);
   }
-  
+
   /**
    * Check if current user has document write permission
    * 
@@ -55,7 +55,7 @@ public class PermissionUtils {
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
         ch.ivyteam.ivy.security.IPermission.DOCUMENT_WRITE);
   }
-  
+
   /**
    * Check if current user has document of involved case write permission
    * 
@@ -73,8 +73,9 @@ public class PermissionUtils {
    * @return True: has permission to start Express workflow, False: Do not have permission to start Express workflow
    */
   public static boolean canStartExpressWorkflow(ExpressProcess workflow) {
-    boolean isWorkflowOwner = Ivy.session().canActAsUser(Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1)));
-    boolean hasAdminRole = Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false);
+    boolean isWorkflowOwner = Ivy.session().canActAsUser(
+        Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1)));
+    boolean hasAdminRole = isSessionUserHasAdminRole();
 
     if (isWorkflowOwner || hasAdminRole) {
       return true;
@@ -91,15 +92,20 @@ public class PermissionUtils {
 
     return false;
   }
-  
+
+  public static boolean isSessionUserHasAdminRole() {
+    return Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false);
+  }
+
   /**
    * Check if current user has portal permission
+   * 
    * @param portalPermission
-   * @return true : portal permission is grated, otherwise false 
+   * @return true : portal permission is grated, otherwise false
    */
   public static boolean hasPortalPermission(PortalPermission portalPermission) {
     IPermission iPermission = IPermissionRepository.get().findByName(portalPermission.getValue());
-    if (Objects.isNull(iPermission)){
+    if (Objects.isNull(iPermission)) {
       return false;
     }
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(), iPermission);

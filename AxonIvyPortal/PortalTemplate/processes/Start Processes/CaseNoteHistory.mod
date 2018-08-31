@@ -220,9 +220,12 @@ Cy0 f10 actionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;
 Cy0 f10 actionTable 'out=in;
 ' #txt
 Cy0 f10 actionCode 'import ch.ivy.addon.portalkit.service.HistoryService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
-in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes);
+GlobalSettingService globalSettingSerive = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();
+in.histories = historyService.createHistories(in.remoteTasks, in.remoteCase.remoteNotes, excludeTechnicalHistory);
 ' #txt
 Cy0 f10 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt
 Cy0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -281,7 +284,8 @@ Cy0 f17 actionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;
 ' #txt
 Cy0 f17 actionTable 'out=in;
 ' #txt
-Cy0 f17 actionCode 'import java.util.ArrayList;
+Cy0 f17 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import java.util.ArrayList;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
@@ -297,7 +301,9 @@ for(ITask task : in.internalCase.getTasks()) {
 }
 
 HistoryService historyService = new HistoryService();
-in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes());' #txt
+GlobalSettingService globalSettingSerive = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();
+in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes(), excludeTechnicalHistory);' #txt
 Cy0 f17 security system #txt
 Cy0 f17 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt
 Cy0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

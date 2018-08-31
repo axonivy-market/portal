@@ -44,3 +44,4 @@ tempErrors java.util.List<ch.ivy.ws.addon.WsException> #field
 username String #field
 tempCaseCustomVarChars java.util.List<String> #field
 caseCustomVarCharSearchCriteria ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria #field
+excludeSystemNotes Boolean #field
