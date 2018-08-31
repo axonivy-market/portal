@@ -49,7 +49,6 @@ if (in.isTaskReserve) {
 	ivy.session.parkTask(ivy.task);
 }
 ivy.session.logoutSessionUser();
-ivy.session.getSecurityContext().destroySession(ivy.session.getIdentifier());
 
 
 for (SessionAttribute item: SessionAttribute.values()){

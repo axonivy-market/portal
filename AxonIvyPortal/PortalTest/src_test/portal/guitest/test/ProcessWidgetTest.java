@@ -92,24 +92,32 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testSortDefaultProcessByName() {
     processWidget = homePage.getProcessWidget();
-    String inspectResource = "Inspect Resource";
-    String viewResource = "View Resource";
+    String alphaHistoryTask = "Alpha Company Task";
+    String betaHistoryTask = "Beta Company Task";
+    String viewAlphaHistory = "View Alpha Process History";
+    String viewBetaHistory = "View Beta Process History";
     String selfService = "Axon.ivy Selfservice";
     processWidget.clickSortDefaultProcessByName();
-    assertEquals(selfService, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(inspectResource, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(viewResource, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(alphaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(0));
+    assertEquals(selfService, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(betaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(3));
+    assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(4));
   }
 
   @Test
   public void testSortDefaultProcessByIndex() {
-    String inspectResource = "Inspect Resource";
-    String viewResource = "View Resource";
+    String alphaHistoryTask = "Alpha Company Task";
+    String betaHistoryTask = "Beta Company Task";
+    String viewAlphaHistory = "View Alpha Process History";
+    String viewBetaHistory = "View Beta Process History";
     String selfService = "Axon.ivy Selfservice";
     processWidget = homePage.getProcessWidget();
-    assertEquals(inspectResource, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(viewResource, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(selfService, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(alphaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(0));
+    assertEquals(betaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(3));
+    assertEquals(selfService, processWidget.getProcessNameFromDefaultProcessList(4));
   }
 
   @Test
@@ -177,33 +185,33 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.submitForm();
     assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
   }
-  
+
   @Test
   public void testDefaultIconOfANewFavoriteProcess() {
-	processWidget = homePage.getProcessWidget();
-	AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-	assertTrue(addNewProcessDialog.isDefaultIcon());
-	
+    processWidget = homePage.getProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    assertTrue(addNewProcessDialog.isDefaultIcon());
+
   }
-  
+
   @Test
   public void testSearchAnExistedIcon() {
-	processWidget = homePage.getProcessWidget();
-	AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-	addNewProcessDialog.clickChangeIconButton();
-	addNewProcessDialog.inputSearchedIconName("area chart");
-	assertEquals(1, addNewProcessDialog.getDisplayedIconAmount());
-	
+    processWidget = homePage.getProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.clickChangeIconButton();
+    addNewProcessDialog.inputSearchedIconName("area chart");
+    assertEquals(1, addNewProcessDialog.getDisplayedIconAmount());
+
   }
-  
+
   @Test
   public void testSearchANonExistedIcon() {
-	processWidget = homePage.getProcessWidget();
-	AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-	addNewProcessDialog.clickChangeIconButton();
-	addNewProcessDialog.inputSearchedIconName("chart1");
-	assertEquals(0, addNewProcessDialog.getDisplayedIconAmount());
-	
+    processWidget = homePage.getProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.clickChangeIconButton();
+    addNewProcessDialog.inputSearchedIconName("chart1");
+    assertEquals(0, addNewProcessDialog.getDisplayedIconAmount());
+
   }
 
   private void createExternalTestProcess(String processName, String processLink) {
