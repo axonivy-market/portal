@@ -17,3 +17,51 @@
 	width: 125px !important;
 	display: block;
 }
+
+.customized-home-task-widget {
+	width: 70%;
+}
+
+.customized-home-custom-widget {
+	border: 2px solid;
+	text-align: center;
+	height: 500px;
+}
+
+.welcome-page-div {
+	text-align: center;
+}
+
+.customized-login {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #afca05;
+}
+
+.customized-login-form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 430px;
+	background-color: white;
+	border-radius: 20px;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 10px;
+}
+
+.customized-login-form .ui-messages.ui-messages-noicon ul {
+	margin: 0px 45px 0 0;
+}
+
+.customized-login-form .ui-messages-error {
+	border: none;
+	margin: 10px 0 0;
+	padding: 0 !important;
+	color: red !important;
+	font-size: 1.2rem;
+}
