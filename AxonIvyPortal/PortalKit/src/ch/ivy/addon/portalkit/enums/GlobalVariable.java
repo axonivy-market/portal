@@ -21,7 +21,9 @@ public enum GlobalVariable {
   REFRESH_TASK_LIST_INTERVAL(String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION(String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
   HOMEPAGE_URL("homePageUrlNote"),
-  CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote");
+  CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote"),
+  HIDE_SYSTEM_TASKS_FROM_HISTORY(Boolean.TRUE.toString(), "hideSystemTasksFromHistory"),
+  HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(Boolean.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator");
 
   private String defaultValue;
   private String noteCMS;
@@ -49,7 +51,8 @@ public enum GlobalVariable {
 
   public static List<GlobalVariable> getBooleanType() {
     return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, SHOW_TASK_BUTTON_LABELS, HIDE_CHANGE_PASSWORD_BUTTON,
-            HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE);
+            HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE, HIDE_SYSTEM_TASKS_FROM_HISTORY, 
+            HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR);
   }
 
   public static List<GlobalVariable> getNumberType() {

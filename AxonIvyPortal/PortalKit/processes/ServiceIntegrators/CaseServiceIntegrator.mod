@@ -1419,9 +1419,10 @@ Ce0 f130 1 0.3062426517680915 0 0 #arcLabel
 Ce0 f101 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f101 755 1523 26 26 14 0 #rect
 Ce0 f101 @|EndSubIcon #fIcon
-Ce0 f102 inParamDecl '<java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;' #txt
+Ce0 f102 inParamDecl '<java.lang.Boolean excludeSystemNotes,java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;' #txt
 Ce0 f102 inParamTable 'out.caseId=param.caseId;
 out.endpoint=param.endpoint;
+out.excludeSystemNotes=param.excludeSystemNotes;
 out.server=param.server;
 ' #txt
 Ce0 f102 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.ws.addon.IvyNote> notes> result;
@@ -1431,12 +1432,12 @@ result.notes=in.notes;
 ' #txt
 Ce0 f102 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
 ' #txt
-Ce0 f102 callSignature findNotes(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Ce0 f102 callSignature findNotes(Boolean,String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ce0 f102 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f102 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findNotes(String,Server,Long)</name>
+        <name>findNotes(Boolean,String,Server,Long)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -1459,7 +1460,8 @@ password=in.server.password;
 NTLM.domain=in.server.domain;
 NTLM.workstation=in.server.host;
 ' #txt
-Ce0 f103 inputParams 'arg0.findNotes.id=in.caseId;
+Ce0 f103 inputParams 'arg0.findNotes.excludeSystemNotes=in.excludeSystemNotes;
+arg0.findNotes.id=in.caseId;
 ' #txt
 Ce0 f103 returningObjectList '[wsResponse]' #txt
 Ce0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1484,7 +1486,8 @@ Ce0 f104 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetim
 Ce0 f104 clientId 146B9AACE506491D #txt
 Ce0 f104 port CaseServicePort #txt
 Ce0 f104 operation findNotes #txt
-Ce0 f104 inputParams 'arg0.findNotes.id=in.caseId;
+Ce0 f104 inputParams 'arg0.findNotes.excludeSystemNotes=in.excludeSystemNotes;
+arg0.findNotes.id=in.caseId;
 ' #txt
 Ce0 f104 returningObjectList '[wsResponse]' #txt
 Ce0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2396,7 +2399,8 @@ Ce0 f153 properties 'authType="HTTP_BASIC";
 username=in.server.username;
 password=in.server.password;
 ' #txt
-Ce0 f153 inputParams 'arg0.findNotes.id=in.caseId;
+Ce0 f153 inputParams 'arg0.findNotes.excludeSystemNotes=in.excludeSystemNotes;
+arg0.findNotes.id=in.caseId;
 ' #txt
 Ce0 f153 returningObjectList '[wsResponse]' #txt
 Ce0 f153 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
