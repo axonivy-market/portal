@@ -144,6 +144,7 @@
 
   <xs:complexType name="findNotes">
     <xs:sequence>
+      <xs:element minOccurs="0" name="excludeSystemNotes" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
     </xs:sequence>
   </xs:complexType>

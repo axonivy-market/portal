@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Alert;
@@ -19,7 +20,8 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR = "span[id$='responsive-handle-container']";
   private static final String HISTORY_COMPONENT_ID =
       "case-widget:case-list-scroller:0:case-item:case-body:history:case-histories";
-  private static final String RELATED_TASKS_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:case-body:related-tasks";
+  private static final String RELATED_TASKS_COMPONENT_ID =
+      "case-widget:case-list-scroller:0:case-item:case-body:related-tasks";
   private static final String HISTORY_LIST_CSS_SELECTOR = "div[id$='case-histories'] .author";
   private static final String GENERAL_INFORMATION_COMPONENT_ID =
       "case-widget:case-list-scroller:0:case-item:case-body:general-information";
@@ -28,8 +30,10 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[id$='user-full-name:user']";
   private static final String VIEW_NOTE_DIALOG_ID =
       "case-widget:case-list-scroller:0:case-item:case-body:history:view-note-dialog";
-  private static final String UPLOAD_DOCUMENT_BUTTON_ID = "case-widget:case-list-scroller:0:case-item:case-body:document:add-document-command";
-  private static final String DELETE_DOCUMENT_BUTTON_ID = "case-widget:case-list-scroller:0:case-item:case-body:document:document-list:0:delete-file";
+  private static final String UPLOAD_DOCUMENT_BUTTON_ID =
+      "case-widget:case-list-scroller:0:case-item:case-body:document:add-document-command";
+  private static final String DELETE_DOCUMENT_BUTTON_ID =
+      "case-widget:case-list-scroller:0:case-item:case-body:document:document-list:0:delete-file";
   private WebElement caseItem;
 
   @Override
@@ -50,7 +54,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public int countRelatedTasks() {
-    return caseItem.findElement(By.cssSelector("div[id$='related-tasks']")).findElements(By.cssSelector("a[id$='task-name']")).size();
+    return caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+        .findElements(By.cssSelector("a[id$='task-name']")).size();
   }
 
   public int countTechnicalCases() {
@@ -63,7 +68,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     String engineUrl = System.getProperty("engineUrl");
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-        Sleeper.sleepTight(2000);
+      Sleeper.sleepTight(2000);
     }
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
@@ -71,7 +76,7 @@ public class CaseDetailsPage extends TemplatePage {
     addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
     waitAjaxIndicatorDisappear();
   }
-  
+
   public void showNoteHistory() {
     click(caseItem.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
@@ -86,7 +91,7 @@ public class CaseDetailsPage extends TemplatePage {
     }
     return "";
   }
-  
+
   public void openAdditionalCaseDetailsPage() {
     click(caseItem.findElement(By.cssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR)));
   }
@@ -131,7 +136,7 @@ public class CaseDetailsPage extends TemplatePage {
     click(By.cssSelector("a[id$='tasks:" + index + ":task-name']"));
     return new TaskWidgetPage();
   }
-  
+
   public String openDoneTask(int index) {
     WebElement showTaskNoteLink = caseItem.findElements(By.cssSelector("a[id$='show-task-note-link']")).get(index);
     String taskName = showTaskNoteLink.getText();
@@ -154,6 +159,13 @@ public class CaseDetailsPage extends TemplatePage {
     return getViewNoteDialog().isDisplayed();
   }
 
+  public List<String> getCaseNoteAuthors() {
+    WebElement caseHistoriesDiv = findElementById(HISTORY_COMPONENT_ID);
+    List<WebElement> noteAuthorElements =
+        caseHistoriesDiv.findElements(By.cssSelector("span[id$=user-full-name\\:user]"));
+    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
+  }
+
   private WebElement getViewNoteDialog() {
     return findElementById(VIEW_NOTE_DIALOG_ID);
   }
@@ -174,53 +186,52 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getNameOfCaseAt(int caseIndex) {
-    WebElement taskName =
-        findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_display", caseIndex));
+    WebElement taskName = findElementById(String.format(
+        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_display",
+        caseIndex));
     waitForElementDisplayed(taskName, true);
     return taskName.getText();
   }
 
   public boolean isCaseNameChangeComponentPresented(int caseIndex) {
-    return isElementPresent(By.id(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-input", caseIndex)));
+    return isElementPresent(By.id(String
+        .format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-input", caseIndex)));
   }
 
   public String getDescriptionOfCaseAt(int caseIndex) {
-    WebElement caseDescription =
-        findElementById(String.format("case-widget:case-list-scroller:%d:case-item:case-header:description-cell",
-            caseIndex));
+    WebElement caseDescription = findElementById(
+        String.format("case-widget:case-list-scroller:%d:case-item:case-header:description-cell", caseIndex));
     waitForElementDisplayed(caseDescription, true);
     return caseDescription.getText();
   }
 
   public boolean isCaseDescriptionChangeComponentPresented(int caseIndex) {
-    return isElementPresent(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:case-description-input",
-        caseIndex)));
+    return isElementPresent(By
+        .id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:case-description-input", caseIndex)));
   }
 
   private void onSubmitDescriptionInplaceEditor(int caseIndex) {
-    WebElement editor =
-        findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-desription-inplace_editor", caseIndex));
+    WebElement editor = findElementById(String.format(
+        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-desription-inplace_editor",
+        caseIndex));
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
     waitAjaxIndicatorDisappear();
   }
 
   private void onChangeDescriptionInput(String newDescription, int caseIndex) {
-    WebElement caseDescriptionInput =
-        findElementById(String.format("case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-input",
-            caseIndex));
+    WebElement caseDescriptionInput = findElementById(String.format(
+        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-input",
+        caseIndex));
     waitForElementDisplayed(caseDescriptionInput, true);
     caseDescriptionInput.clear();
     caseDescriptionInput.sendKeys(newDescription);
   }
 
   private void onClickDescriptionInplace(int caseIndex) {
-    WebElement caseDescriptionInplace =
-        findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-desription-inplace_display", caseIndex));
+    WebElement caseDescriptionInplace = findElementById(String.format(
+        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-desription-inplace_display",
+        caseIndex));
     waitForElementDisplayed(caseDescriptionInplace, true);
     caseDescriptionInplace.click();
   }
@@ -262,17 +273,17 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onSubmitNameInplaceEditor(int caseIndex) {
-    WebElement editor =
-        findElementById(String.format(
-            "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_editor", caseIndex));
+    WebElement editor = findElementById(String.format(
+        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_editor",
+        caseIndex));
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
     waitAjaxIndicatorDisappear();
   }
 
   private void onChangeNameInput(String newCaseName, int caseIndex) {
-    String caseNameInputId =
-        String.format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-input", caseIndex);
+    String caseNameInputId = String
+        .format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-input", caseIndex);
     WebElement caseNameInput = findElementById(caseNameInputId);
     waitForElementDisplayed(caseNameInput, true);
     caseNameInput.clear();
@@ -280,49 +291,52 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onClickNameInplace(int caseIndex) {
-    String caseNameInplaceId =
-        String.format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_display",
-            caseIndex);
+    String caseNameInplaceId = String.format(
+        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_display",
+        caseIndex);
     WebElement caseNameInplace = findElementById(caseNameInplaceId);
     caseNameInplace.click();
   }
-  
+
   public TaskWidgetPage clickShowAllTasks() {
     caseItem.findElement(By.cssSelector("a[id$='show-all-tasks']")).click();
     return new TaskWidgetPage();
   }
-  
+
   public void uploadDocumentWithoutError(String pathToFile) {
     openAddDocumentDialogAndUploadDocument(0, pathToFile);
-    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
+    click(By.id(String
+        .format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
   }
-  
-  public String uploadDocumentWithError(String pathToFile){
+
+  public String uploadDocumentWithError(String pathToFile) {
     openAddDocumentDialogAndUploadDocument(0, pathToFile);
-    WebElement errorMsg = findElementByXpath(String.format("//*[@id='case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-form:upload-messages']/div/ul/li/span", 0));
+    WebElement errorMsg = findElementByXpath(String.format(
+        "//*[@id='case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-form:upload-messages']/div/ul/li/span",
+        0));
     String returnMsg = StringUtils.EMPTY;
-    if(errorMsg.isDisplayed()){
-      returnMsg =  errorMsg.getText();
+    if (errorMsg.isDisplayed()) {
+      returnMsg = errorMsg.getText();
     }
-    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
+    click(By.id(String
+        .format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
     return returnMsg;
   }
-  
+
   private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
-    try{
-      click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:add-document-command", index)));
-    }
-    catch (UnhandledAlertException e) {
+    try {
+      click(By.id(
+          String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:add-document-command", index)));
+    } catch (UnhandledAlertException e) {
       Alert alert = driver.switchTo().alert();
       alert.accept();
     }
     String uploadDialogId =
         String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-dialog-", index);
     waitForElementDisplayed(By.id(uploadDialogId), true);
-    try{
+    try {
       click(By.className("ui-fileupload-choose"));
-    }
-    catch (UnhandledAlertException e) {
+    } catch (UnhandledAlertException e) {
       Alert alert = driver.switchTo().alert();
       alert.accept();
     }
@@ -340,16 +354,16 @@ public class CaseDetailsPage extends TemplatePage {
     } catch (AWTException e) {
       e.printStackTrace();
     }
-    //Wait 5 seconds for file uploaded, currently haven't found solution to check when the file upload finish
+    // Wait 5 seconds for file uploaded, currently haven't found solution to check when the file upload finish
     Sleeper.sleepTight(5000);
   }
-  
+
   public boolean isUploadDocumentButtonPresented() {
     return caseItem.findElements(By.id(UPLOAD_DOCUMENT_BUTTON_ID)).size() > 0;
   }
-  
+
   public boolean isDeleteDocumentButtonPresented() {
     return caseItem.findElements(By.id(DELETE_DOCUMENT_BUTTON_ID)).size() > 0;
   }
-  
+
 }

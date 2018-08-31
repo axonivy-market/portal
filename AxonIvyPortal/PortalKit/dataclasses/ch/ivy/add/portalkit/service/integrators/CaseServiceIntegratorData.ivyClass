@@ -29,3 +29,4 @@ notes List<ch.ivy.ws.addon.IvyNote> #field
 server ch.ivy.addon.portalkit.persistence.domain.Server #field
 startIndex Integer #field
 userName String #field
+excludeSystemNotes Boolean #field
