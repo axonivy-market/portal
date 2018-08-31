@@ -199,8 +199,9 @@ Ty0 f13 actionDecl 'ch.ivy.addon.portal.generic.TaskNoteHistoryData out;
 ' #txt
 Ty0 f13 actionTable 'out=in;
 ' #txt
-Ty0 f13 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;GlobalSettingService globalSettingSerive = new GlobalSettingService();
-in.excludeSystemNotes = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();' #txt
+Ty0 f13 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+GlobalSettingService globalSettingService = new GlobalSettingService();
+in.excludeSystemNotes = globalSettingService.findHideSystemTasksFromHistorySettingValue();' #txt
 Ty0 f13 type ch.ivy.addon.portal.generic.TaskNoteHistoryData #txt
 Ty0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

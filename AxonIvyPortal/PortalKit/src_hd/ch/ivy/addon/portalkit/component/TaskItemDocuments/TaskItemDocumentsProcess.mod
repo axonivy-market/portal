@@ -725,9 +725,9 @@ Ts0 f41 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivyteam.ivy.workflow.CaseState;GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-GlobalSettingService globalSettingSerive = new GlobalSettingService();
+GlobalSettingService globalSettingService = new GlobalSettingService();
 String isHideUploadDocumentForDoneCaseString =
-        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.toString());
+        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.toString());
 boolean isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCaseString);
 in.isShowUploadDocumentButton =  !(in.task.case.state == CaseState.DONE && isHideUploadDocumentForDoneCase) && in.task.canUploadDeleteDocument;' #txt
 Ts0 f41 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt

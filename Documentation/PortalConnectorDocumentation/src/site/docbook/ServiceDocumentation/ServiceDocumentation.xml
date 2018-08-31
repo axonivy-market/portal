@@ -402,6 +402,9 @@
 								<para>
 									id (Long)
 								</para>
+								<para>
+									excludeSystemNotes (Boolean)
+								</para>
 							</entry>
 							<entry>
 								<para>
