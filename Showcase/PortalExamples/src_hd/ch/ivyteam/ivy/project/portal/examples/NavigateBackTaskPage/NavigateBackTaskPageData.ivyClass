@@ -1,0 +1,8 @@
+NavigateBackTaskPageData #class
+ch.ivyteam.ivy.project.portal.examples.NavigateBackTaskPage #namespace
+employeeInfo ch.ivyteam.ivy.project.portal.examples.Employee #field
+employeeInfo PERSISTENT #fieldModifier
+userAction ch.ivyteam.ivy.project.portal.examples.enums.UserAction #field
+userAction PERSISTENT #fieldModifier
+s String #field
+s PERSISTENT #fieldModifier

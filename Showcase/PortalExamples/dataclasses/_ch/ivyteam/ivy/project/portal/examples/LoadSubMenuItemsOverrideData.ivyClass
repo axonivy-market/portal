@@ -1,0 +1,4 @@
+LoadSubMenuItemsOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+subMenuItems List<ch.addon.portal.generic.menu.SubMenuItem> #field
+subMenuItems PERSISTENT #fieldModifier
