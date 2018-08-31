@@ -95,8 +95,9 @@ Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 ' #txt
 Ts0 f6 inParameterMapAction 'out.task=param.task;
 ' #txt
-Ts0 f6 inActionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;GlobalSettingService globalSettingSerive = new GlobalSettingService();
-out.excludeSystemNotes = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();' #txt
+Ts0 f6 inActionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+GlobalSettingService globalSettingService = new GlobalSettingService();
+out.excludeSystemNotes = globalSettingService.findHideSystemTasksFromHistorySettingValue();' #txt
 Ts0 f6 outParameterDecl '<> result;
 ' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
