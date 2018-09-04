@@ -32,7 +32,7 @@ public abstract class TemplatePage extends AbstractPage {
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
         waitForElementDisplayed(locator, true, 300L);
     } else {
-        waitForElementDisplayed(locator, true, 100L);
+        waitForElementDisplayed(locator, true, 1000L);
     }
   }
 
