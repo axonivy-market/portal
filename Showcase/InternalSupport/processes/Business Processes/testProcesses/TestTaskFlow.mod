@@ -188,6 +188,8 @@ Tt0 @TkArc f175 '' #zField
 Tt0 @PushWFArc f176 '' #zField
 Tt0 @GridStep f177 '' #zField
 Tt0 @PushWFArc f178 '' #zField
+Tt0 @RichDialog f179 '' #zField
+Tt0 @PushWFArc f180 '' #zField
 Tt0 @PushWFArc f173 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
@@ -2586,7 +2588,7 @@ Tt0 f168 @C|.responsibility Everybody #txt
 Tt0 f168 1368 904 32 32 -77 17 #rect
 Tt0 f168 @|StartRequestIcon #fIcon
 Tt0 f169 type internaltest.Data #txt
-Tt0 f169 2057 905 30 30 0 15 #rect
+Tt0 f169 2217 905 30 30 0 15 #rect
 Tt0 f169 @|EndIcon #fIcon
 Tt0 f170 actionDecl 'internaltest.Data out;
 ' #txt
@@ -2668,8 +2670,25 @@ Tt0 f177 @|StepIcon #fIcon
 Tt0 f178 expr data #txt
 Tt0 f178 outCond ivp=="TaskA.ivp" #txt
 Tt0 f178 1832 920 1888 920 #arcP
+Tt0 f179 targetWindow NEW #txt
+Tt0 f179 targetDisplay TOP #txt
+Tt0 f179 richDialogId internaltest.TaskForm #txt
+Tt0 f179 startMethod start() #txt
+Tt0 f179 type internaltest.Data #txt
+Tt0 f179 requestActionDecl '<> param;' #txt
+Tt0 f179 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f179 responseMappingAction 'out=in;
+' #txt
+Tt0 f179 isAsynch false #txt
+Tt0 f179 isInnerRd false #txt
+Tt0 f179 userContext '* ' #txt
+Tt0 f179 2048 898 112 44 0 -8 #rect
+Tt0 f179 @|RichDialogIcon #fIcon
+Tt0 f180 expr out #txt
+Tt0 f180 2000 920 2048 920 #arcP
 Tt0 f173 expr out #txt
-Tt0 f173 2000 920 2057 920 #arcP
+Tt0 f173 2160 920 2217 920 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2859,5 +2878,7 @@ Tt0 f170 mainOut f175 tail #connect
 Tt0 f175 head f171 in #connect
 Tt0 f171 out f178 tail #connect
 Tt0 f178 head f177 mainIn #connect
-Tt0 f177 mainOut f173 tail #connect
+Tt0 f177 mainOut f180 tail #connect
+Tt0 f180 head f179 mainIn #connect
+Tt0 f179 mainOut f173 tail #connect
 Tt0 f173 head f169 mainIn #connect
