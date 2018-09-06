@@ -45,27 +45,27 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean isShowServerInformation() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String isShowServerInformation = globalSettingSerive.findGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO.toString());
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    String isShowServerInformation = globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO.toString());
     return Boolean.parseBoolean(isShowServerInformation);
   }
 
   public boolean isHiddenLogout() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String isHiddenLogout = globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_LOGOUT_BUTTON.toString());
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    String isHiddenLogout = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_LOGOUT_BUTTON.toString());
     return Boolean.parseBoolean(isHiddenLogout);
   }
 
   public boolean isHiddenChangePassword() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
+    GlobalSettingService globalSettingService = new GlobalSettingService();
     String isHiddenChangePassword =
-        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON.toString());
+        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON.toString());
     return Boolean.parseBoolean(isHiddenChangePassword);
   }
 
   public int getClientSideTimeout() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String clientSideTimeoutInMinute = globalSettingSerive.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT.toString());
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    String clientSideTimeoutInMinute = globalSettingService.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT.toString());
     if (clientSideTimeoutInMinute != null && !clientSideTimeoutInMinute.isEmpty()) {
       return Integer.valueOf(clientSideTimeoutInMinute) * MINUTE_TO_SECOND * SECONND_TO_MILLISECOND;
     }
@@ -133,8 +133,8 @@ public class UserMenuBean implements Serializable {
   }
 
   private String getHomePageFromSetting() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    return globalSettingSerive.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    return globalSettingService.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
   }
 
   private boolean isDefaultPortalApp() {

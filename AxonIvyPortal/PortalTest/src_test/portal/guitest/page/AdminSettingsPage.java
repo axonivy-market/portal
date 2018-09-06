@@ -123,7 +123,7 @@ public class AdminSettingsPage extends TemplatePage {
   
   public void setFileExtensionWhiteList(){
     openSettingTab();
-    editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", "abc, pdf, doc", false);
+    editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", ", abc, pdf, doc", false);
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }
