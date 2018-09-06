@@ -745,9 +745,9 @@ Cs0 f64 actionTable 'out=in;
 Cs0 f64 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-GlobalSettingService globalSettingSerive = new GlobalSettingService();
+GlobalSettingService globalSettingService = new GlobalSettingService();
 String isHideUploadDocumentForDoneCase =
-        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.toString());
+        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.toString());
 in.isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCase);' #txt
 Cs0 f64 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
