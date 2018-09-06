@@ -106,7 +106,7 @@
               <listitem>
                 <para>
                   <code>@action-button-color</code>
-                  : it is the color of action button in Portal e.g: close, add ...
+                  : it is the color of action button in Portal e.g: close, add, next ...
                 </para>
               </listitem>
               <listitem>
@@ -139,13 +139,9 @@
           </listitem>
         </itemizedlist>  
       </important>      
-      <para>After you finish your customization, compile these above less files to build the css file named
-      <code>theme.min.css</code> and put it at <code>PortalStyle/webContent/resources/css</code>
-      . You are highly recommended to run the
-      <code>mvn lesscss:compile</code>
-      maven command in PortalStyle to do it quickly.</para>
       <para>
-      There is additional button type allows developer to configure its color and shape. Use style class <code>context-button</code> for it. For example : 
+      There is additional button type allows developer to configure its color and shape. Use it when you need different button types in your own project.
+      How to: use style class <code>context-button</code> for it. For example : 
       <code>&lt;p:commandButton value="My button" styleClass="context-button" &gt;</code>
       There are 2 variables allow developers to change color and shape
       </para>
@@ -163,6 +159,11 @@
           </para>
         </listitem>
       </itemizedlist>  
+      <para>After you finish your customization, compile these above less files to build the css file named
+      <code>theme.min.css</code> and put it at <code>PortalStyle/webContent/resources/css</code>
+      . You are highly recommended to run the
+      <code>mvn lesscss:compile</code>
+      maven command in PortalStyle to do it quickly.</para>
       
     </para>
   </sect2>
