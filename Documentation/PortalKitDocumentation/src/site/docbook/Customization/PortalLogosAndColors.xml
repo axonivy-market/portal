@@ -1,90 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.portallogosandcolors" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<title xml:id="axonivyportal.customization.portallogosandcolors.title">PortalStyle customization (logos, colors, date patterns)</title>
-	<sect2 xml:id="axonivyportal.customization.portallogosandcolors.changeportallogos">
-		<title>Change Portal's logos</title>
-		<para>
-			You can change logo and login logo by modifying default logo in PortalStyle project.
-			<itemizedlist>
-				<listitem>
-					<para>
-						Modify cms entry <code>PortalStyle/images/logo/CorporateLogo.png</code> to update homepage logo.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Modify cms entry <code>PortalStyle/images/logo/loginLogo.png</code> to update login logo.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Override the variables: @login-logo-height, @home-logo-height in <code>customization.less</code> to scale your logos.
-					</para>
-				</listitem>
-			</itemizedlist>
-		</para>
-	</sect2>
-	<sect2 xml:id="axonivyportal.customization.portallogosandcolors.changeportalbackground">
-		<title>Change Portal styles</title>
-		<para>Portal administrators can change logos and colors by GUI, refer to <link linkend="axonivyportal.settings.adminsettings.changelogosandcolors" endterm="axonivyportal.settings.adminsettings.changelogosandcolors.title" /></para>
-		<para>
-			Portal applies <link xlink:show="new" xlink:href="http://lesscss.org">LESS</link> framework to support you in customizing the styles of Portal. There are 4 files: <code>theme.less</code> (shouldn't be modified), <code>variables.less</code> (shouldn't be modified), <code>font-faces.less</code>, <code>customization.less</code>, they are placed at <code>PortalStyle/webContent/resources/less</code>.
-			<itemizedlist>
-				<listitem>
-					<para>
-						<code>font-faces.less</code>: replace the default font url-s by your font url-s and add/change other font styles to customize the Portal's font styles.
-					</para>
-					<important>
-						Do not change <code>font-family</code> property values.
-					</important>
-				</listitem>
-				<listitem>
-					<para>
-						<code>customization.less</code>: to change the styles of Portal deeply. E.g. Portal's component styles.
-					</para>
-					<note>
-						Portal provides several variables (<code>@body-background-color</code>, <code>@menu-color</code>, <code>@sidebar-dimension-transition-duration</code>, <code>@sidebar-opacity-transition-duration</code>, <code>@process-chain-menu-color</code>, etc.) to change Portal's style.
-						To override the variables, you should put overriding code (e.g. <code>@body-background-color: red</code>) at <code>customization.less</code> file.
-						<itemizedlist>
-							<listitem>
-								<para>
-									<code>@body-background-color</code>: it is the background color of Portal.
-								</para>
-							</listitem>
-							<listitem>
-								<para>
-									<code>@menu-color</code>: it is the color of the application menu, the color of texts and icons on the menu will be calculated based on the brightness of the menu color.
-								</para>
-							</listitem>
-							<listitem>
-								<para>
-									<code>@sidebar-dimension-transition-duration</code>: it is the expanding/collapsing transition duration of the application menu.
-								</para>
-							</listitem>
-							<listitem>
-								<para>
-									<code>@sidebar-opacity-transition-duration</code>: it is the opacity transition duration of the text on application menu.
-								</para>
-							</listitem>
-							<listitem>
-+								<para>
-+									<code>@process-chain-menu-color</code>: it is the color of Process Chain component.
-+								</para>
-+							</listitem>
-						</itemizedlist>
-					</note>
-				</listitem>
-			</itemizedlist>
-			<warning>
-				Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
-			</warning>
-			After you finish your customization, compile these above less files to build the css file named <code>theme.min.css</code> and put it at <code>PortalStyle/webContent/resources/css</code>. You are highly recommended to run the <code>mvn lesscss:compile</code> maven command in PortalStyle to do it quickly.
-		</para>
-	</sect2>
-	<sect2 xml:id="axonivyportal.customization.portallogosandcolors.changedatepatterns">
-		<title>Change date time pattern</title>
-		<para>
-			You can change date pattern by modifying CMS in PortalStyle project: <code>PortalStyle/patterns/datePattern</code> and <code>PortalStyle/patterns/dateTimePattern</code>.
-		</para>
-	</sect2>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xml:id="axonivyportal.customization.portallogosandcolors" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title xml:id="axonivyportal.customization.portallogosandcolors.title">PortalStyle customization (logos, colors, date patterns)</title>
+  <sect2 xml:id="axonivyportal.customization.portallogosandcolors.changeportallogos">
+    <title>Change Portal's logos</title>
+    <para>
+      You can change logo and login logo by modifying default logo in PortalStyle project.
+      <itemizedlist>
+        <listitem>
+          <para>
+            Modify cms entry
+            <code>PortalStyle/images/logo/CorporateLogo.png</code>
+            to update homepage logo.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Modify cms entry
+            <code>PortalStyle/images/logo/loginLogo.png</code>
+            to update login logo.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Override the variables: @login-logo-height, @home-logo-height in
+            <code>customization.less</code>
+            to scale your logos.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+  </sect2>
+  <sect2 xml:id="axonivyportal.customization.portallogosandcolors.changeportalbackground">
+    <title>Change Portal styles</title>
+    <para>
+      Portal applies
+      <link xlink:show="new" xlink:href="http://lesscss.org">LESS</link>
+      framework to support you in customizing the styles of Portal. There are 4 files:
+      <code>theme.less</code>
+      (shouldn't be modified),
+      <code>variables.less</code>
+      (shouldn't be modified),
+      <code>font-faces.less</code>
+      ,
+      <code>customization.less</code>
+      , they are placed at
+      <code>PortalStyle/webContent/resources/less</code>
+      .
+      <itemizedlist>
+        <listitem>
+          <para>
+            <code>font-faces.less</code>
+            : replace the default font url-s by your font url-s and add/change other font styles to customize the
+            Portal's font styles.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <code>customization.less</code>
+            : to change the styles of Portal deeply. E.g. Portal's component styles.
+          </para>
+          <note>
+            Portal provides several variables (
+            <code>@body-background-color</code>
+            ,
+            <code>@menu-color</code>
+            ,
+            <code>@sidebar-dimension-transition-duration</code>
+            ,
+            <code>@sidebar-opacity-transition-duration</code>
+            ,
+            <code>@process-chain-menu-color</code>
+            , etc.) to change Portal's style.
+            To override the variables, you should put overriding code (e.g.
+            <code>@body-background-color: red</code>
+            ) at
+            <code>customization.less</code>
+            file.
+            <itemizedlist>
+              <listitem>
+                <para>
+                  <code>@body-background-color</code>
+                  : it is the background color of Portal.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@menu-color</code>
+                  : it is the color of the application menu, the color of texts and icons on the menu will be calculated
+                  based on the brightness of the menu color.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@sidebar-opacity-transition-duration</code>
+                  : it is the opacity transition duration of the text on application menu.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@process-chain-menu-color</code>
+                  : it is the color of Process Chain component.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@action-button-color</code>
+                  : it is the color of action button in Portal e.g: close, add, next ...
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@action-button-border-radius</code>
+                  : it sets shape of action button, it's rectangle when set @action-button-border-radius:0px;
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@sidebar-dimension-transition-duration</code>
+                  : it is the expanding/collapsing transition duration of the application menu.
+                </para>
+              </listitem>
+            </itemizedlist>
+          </note>
+        </listitem>
+      </itemizedlist>
+      <important>
+        <itemizedlist>
+          <listitem>
+            <para>
+              Do not change <code>font-family</code> property values.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
+            </para>
+          </listitem>
+        </itemizedlist>  
+      </important>      
+      <para>
+      There is additional button type allows developer to configure its color and shape. Use it when you need different button types in your own project.
+      How to: use style class <code>context-button</code> for it. For example : 
+      <code>&lt;p:commandButton value="My button" styleClass="context-button" &gt;</code>
+      There are 2 variables allow developers to change color and shape
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <code>@context-button-color</code>
+            : it is the color of context button 
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <code>@context-button-border-radius</code>
+            : it sets shape of action button, it's rectangle when set @context-button-border-radius:0px;
+          </para>
+        </listitem>
+      </itemizedlist>  
+      <para>After you finish your customization, compile these above less files to build the css file named
+      <code>theme.min.css</code> and put it at <code>PortalStyle/webContent/resources/css</code>
+      . You are highly recommended to run the
+      <code>mvn lesscss:compile</code>
+      maven command in PortalStyle to do it quickly.</para>
+      
+    </para>
+  </sect2>
+  <sect2 xml:id="axonivyportal.customization.portallogosandcolors.changedatepatterns">
+    <title>Change date time pattern</title>
+    <para>
+      You can change date pattern by modifying CMS in PortalStyle project:
+      <code>PortalStyle/patterns/datePattern</code>
+      and
+      <code>PortalStyle/patterns/dateTimePattern</code>
+      .
+    </para>
+  </sect2>
 </sect1>

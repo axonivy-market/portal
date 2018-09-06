@@ -1,5 +1,7 @@
 /*Default variables*/
 @import "variables.less";
+@import "font-faces.less";
+@import "customization.less";
 
 @sidebar-dimension-transition-duration: 1s;
 @sidebar-opacity-transition-duration: 1s;
@@ -103,19 +105,20 @@ body {
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
 .ui-widget.ui-button {
-  background-color: fade(@menu-color, 50%);
+  border-radius: @action-button-border-radius !important;
+  background-color: fade(@action-button-color, 50%);
 }
 
 .ui-widget.ui-button.ui-state-hover, .ui-widget.ui-buttonset .ui-state-hover {
-  background-color: fade(@menu-color, 60%) !important;
+  background-color: fade(@action-button-color, 60%) !important;
 }
 
 .ui-widget.ui-button.ui-state-focus {
-  background-color: fade(@menu-color, 80%);
+  background-color: fade(@action-button-color, 80%);
 }
 
 .ui-widget.ui-button.ui-state-disabled:not(.portal-cancel-button, .ui-inplace-cancel, .ui-fileupload-cancel) {
-  background-color: fade(@menu-color, 20%);
+  background-color: fade(@action-button-color, 20%);
   opacity: 0;
 }
 
@@ -134,6 +137,19 @@ body {
 .portal-cancel-button.ui-widget.ui-button.ui-state-disabled, .ui-inplace-cancel.ui-widget.ui-button.ui-state-disabled, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-disabled {
   background-color: fade(@cancel-button-background-color, 20%);
   opacity: 0;
+}
+
+.ui-widget.ui-button.context-button{
+  border-radius: @context-button-border-radius !important;
+  background-color:fade(@context-button-color, 50%);
+}
+
+.ui-widget.ui-button.context-button.ui-state-hover{
+  background-color:fade(@context-button-color, 60%)!important;
+}
+
+.ui-widget.ui-button.context-button.ui-state-focus{
+  background-color:fade(@context-button-color, 80%)!important;
 }
 
 /*Style for table --------------------------------------------------------------------------------------*/
@@ -158,9 +174,6 @@ img[id*='additonalTaskUserAvatar'] {
 	border:	solid 2px;
 	border-color : @menu-color;
 }
-
-@import "font-faces.less";
-@import "customization.less";
 
 /*Style for express --------------------------------------------------------------------------------------*/
 .express-start-process-panel .process-list .icon-placeholder .fa {
