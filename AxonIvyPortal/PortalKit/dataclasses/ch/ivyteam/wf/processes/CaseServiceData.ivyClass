@@ -41,3 +41,4 @@ caseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 tempCaseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 additionalPropertyName String #field
 additionalPropertyValue String #field
+excludeSystemNotes Boolean #field

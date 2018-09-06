@@ -5,15 +5,27 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang.StringUtils;
+
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.bo.RemoteNote;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class HistoryService {
+
+  public List<History> createHistories(List<RemoteTask> tasks, List<RemoteNote> notes, boolean excludeTechnicalHistory) {
+    return excludeTechnicalHistory ? createNonTechnicalHistories(tasks, notes) : createHistories(tasks, notes);
+  }
+
+  public List<History> getHistories(List<ITask> tasks, List<INote> notes, boolean excludeTechnicalHistory) {
+    return excludeTechnicalHistory ? getNonTechnicalHistories(tasks, notes) : getHistories(tasks, notes);
+  }
+
   public List<History> createHistories(List<RemoteTask> tasks, List<RemoteNote> notes) {
     List<History> historiesRelatedToTasks = createHistoriesFromTasks(tasks);
     List<History> historiesRelatedToNotes = createToHistoriesFromNotes(notes);
@@ -22,12 +34,24 @@ public class HistoryService {
     return soretedHistories;
   }
 
+  public List<History> createNonTechnicalHistories(List<RemoteTask> tasks, List<RemoteNote> notes) {
+    List<History> historiesRelatedToTasks = createHistoriesFromNonTechnicalTasks(tasks);
+    List<History> historiesRelatedToNotes = createToHistoriesFromNonTechnicalNotes(notes);
+    return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
+  }
+
   public List<History> getHistories(List<ITask> tasks, List<INote> notes) {
     List<History> historiesRelatedToTasks = createHistoriesFromITasks(tasks);
     List<History> historiesRelatedToNotes = createToHistoriesFromINotes(notes);
     List<History> soretedHistories =
         sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
     return soretedHistories;
+  }
+
+  public List<History> getNonTechnicalHistories(List<ITask> tasks, List<INote> notes) {
+    List<History> historiesRelatedToTasks = createHistoriesFromNonTechnicalITasks(tasks);
+    List<History> historiesRelatedToNotes = createToHistoriesFromNonTechnicalINotes(notes);
+    return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
   }
 
   private List<History> sortHistoriesByTimeStampDescending(List<List<History>> listOfHistories) {
@@ -45,10 +69,22 @@ public class HistoryService {
     }).collect(Collectors.toList());
   }
 
+  private List<History> createHistoriesFromNonTechnicalTasks(List<RemoteTask> tasks) {
+    return tasks.stream()
+        .filter(task -> !StringUtils.equals(task.getWorkerUserName(), UserUtils.getIvySystemUserName()))
+        .map(this::createHistoryFrom).collect(Collectors.toList());
+  }
+
   private List<History> createHistoriesFromITasks(List<ITask> tasks) {
     return tasks.stream().map(task -> {
       return createHistoryFrom(task);
     }).collect(Collectors.toList());
+  }
+
+  private List<History> createHistoriesFromNonTechnicalITasks(List<ITask> tasks) {
+    return tasks.stream()
+        .filter(task -> !StringUtils.equals(task.getWorkerUserName(), UserUtils.getIvySystemUserName()))
+        .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   private List<History> createToHistoriesFromNotes(List<RemoteNote> notes) {
@@ -57,10 +93,21 @@ public class HistoryService {
     }).collect(Collectors.toList());
   }
 
+  private List<History> createToHistoriesFromNonTechnicalNotes(List<RemoteNote> notes) {
+    return notes.stream()
+        .filter(note -> !StringUtils.equals(note.getCreatorUserName(), UserUtils.getIvySystemUserName()))
+        .map(this::createHistoryFrom).collect(Collectors.toList());
+  }
+
   private List<History> createToHistoriesFromINotes(List<INote> notes) {
     return notes.stream().map(note -> {
       return createHistoryFrom(note);
     }).collect(Collectors.toList());
+  }
+
+  private List<History> createToHistoriesFromNonTechnicalINotes(List<INote> notes) {
+    return notes.stream().filter(note -> !StringUtils.equals(note.getWritterName(), UserUtils.getIvySystemUserName()))
+        .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   private History createHistoryFrom(ITask task) {

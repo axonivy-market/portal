@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Mon May 09 14:08:57 ICT 2016]
-15493BD80A4C7D12 3.18 #module
+15493BD80A4C7D12 3.20 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemNotesProcess Big #zClass
 Ts0 RD #cInfo
@@ -62,11 +61,12 @@ Ts0 f1 @|RichDialogProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 64 107 64 213 #arcP
 Ts0 f64 type ch.ivy.addon.portalkit.component.TaskItemNotes.TaskItemNotesData #txt
-Ts0 f64 processCall MultiPortal/CaseService:findNotes(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Ts0 f64 processCall MultiPortal/CaseService:findNotes(Boolean,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ts0 f64 doCall true #txt
-Ts0 f64 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
+Ts0 f64 requestActionDecl '<java.lang.Boolean excludeSystemNotes,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
 ' #txt
-Ts0 f64 requestMappingAction 'param.server=in.task.applicationRegister.server;
+Ts0 f64 requestMappingAction 'param.excludeSystemNotes=in.excludeSystemNotes;
+param.server=in.task.applicationRegister.server;
 param.caseId=in.task.case.getId();
 ' #txt
 Ts0 f64 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemNotes.TaskItemNotesData out;
@@ -95,6 +95,8 @@ Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 ' #txt
 Ts0 f6 inParameterMapAction 'out.task=param.task;
 ' #txt
+Ts0 f6 inActionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;GlobalSettingService globalSettingSerive = new GlobalSettingService();
+out.excludeSystemNotes = globalSettingSerive.findHideSystemTasksFromHistorySettingValue();' #txt
 Ts0 f6 outParameterDecl '<> result;
 ' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

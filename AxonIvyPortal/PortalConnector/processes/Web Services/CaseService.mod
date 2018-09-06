@@ -1,5 +1,5 @@
 [Ivy]
-137A1AD8C8C617F9 3.23 #module
+137A1AD8C8C617F9 3.20 #module
 >Proto >Proto Collection #zClass
 Ce0 CaseService Big #zClass
 Ce0 WS #cInfo
@@ -92,7 +92,7 @@ import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.WsServiceFactory;
 
 try{
-	NoteServiceResult nsResult = WsServiceFactory.getCaseService().findNotes(in.ivyCase.id);
+	NoteServiceResult nsResult = WsServiceFactory.getCaseService().findNotes(in.ivyCase.id, in.excludeSystemNotes);
 	in.notes = nsResult.getNotes();
 	in.errors = nsResult.getErrors();
 }catch(WSException e){
@@ -113,8 +113,9 @@ by case id</name>
 ' #txt
 Ce0 f14 1270 140 36 24 20 -2 #rect
 Ce0 f14 @|StepIcon #fIcon
-Ce0 f15 inParamDecl '<java.lang.Long id> param;' #txt
-Ce0 f15 inParamTable 'out.ivyCase.id=param.id;
+Ce0 f15 inParamDecl '<java.lang.Boolean excludeSystemNotes,java.lang.Long id> param;' #txt
+Ce0 f15 inParamTable 'out.excludeSystemNotes=param.excludeSystemNotes;
+out.ivyCase.id=param.id;
 ' #txt
 Ce0 f15 outParamDecl '<List<ch.ivy.ws.addon.WSException> errors,List<ch.ivy.ws.addon.types.IvyNote> notes> result;
 ' #txt
@@ -123,40 +124,9 @@ result.notes=in.notes;
 ' #txt
 Ce0 f15 actionDecl 'ch.ivy.ws.addon.CaseServiceData out;
 ' #txt
-Ce0 f15 callSignature findNotes(Long) #txt
+Ce0 f15 callSignature findNotes(Boolean,Long) #txt
 Ce0 f15 useUserDefinedException false #txt
-Ce0 f15 taskData '#
-#Tue Jul 01 11:47:42 CEST 2014
-TaskTriggered.PRI=2
-' #txt
-Ce0 f15 caseData '#
-#Tue Jul 01 11:47:42 CEST 2014
-businessCalendarName=
-businessCreator.user=
-businessMilestone.timestamp=
-businessObject.code=
-businessObject.docDb.code=
-businessObject.folder.id=
-businessObject.name=
-businessPriority=
-businessStart.timestamp=
-case.description=
-case.name=
-correspondent.id=
-mainContact.docDb.code=
-mainContact.folder.id=
-mainContact.id=
-mainContact.name=
-mainContact.type=
-process.code=
-process.name=
-processCategory.code=
-processCategory.name=
-subType.code=
-subType.name=
-type.code=
-type.name=
-' #txt
+Ce0 f15 taskData TaskTriggered.PRI=2 #txt
 Ce0 f15 type ch.ivy.ws.addon.CaseServiceData #txt
 Ce0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

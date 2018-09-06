@@ -1444,9 +1444,10 @@ Ce0 f130 1 0.3062426517680915 0 0 #arcLabel
 Ce0 f101 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f101 755 1523 26 26 14 0 #rect
 Ce0 f101 @|EndSubIcon #fIcon
-Ce0 f102 inParamDecl '<java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;' #txt
+Ce0 f102 inParamDecl '<java.lang.Boolean excludeSystemNotes,java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;' #txt
 Ce0 f102 inParamTable 'out.caseId=param.caseId;
 out.endpoint=param.endpoint;
+out.excludeSystemNotes=param.excludeSystemNotes;
 out.server=param.server;
 ' #txt
 Ce0 f102 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.ws.addon.IvyNote> notes> result;
@@ -1456,12 +1457,14 @@ result.notes=in.notes;
 ' #txt
 Ce0 f102 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData out;
 ' #txt
-Ce0 f102 callSignature findNotes(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Ce0 f102 callSignature findNotes(Boolean,String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ce0 f102 type ch.ivy.add.portalkit.service.integrators.CaseServiceIntegratorData #txt
 Ce0 f102 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findNotes(String,Server,Long)</name>
+        <name>findNotes(Boolean,String,Server,Long)</name>
+        <nameStyle>37,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1487,7 +1490,7 @@ KEY_OPERATION=findNotes
 KEY_AUTHENTICATION_KIND=4
 KEY_HOST=<%\\=in.server.host%>
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findNotes.id__@@__Long__@@__in.caseId"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findNotes.excludeSystemNotes__@@__Boolean__@@__in.excludeSystemNotes"",""arg0.findNotes.id__@@__Long__@@__in.caseId"""' #txt
 Ce0 f103 returningObjectList '[wsResponse]' #txt
 Ce0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1520,7 +1523,7 @@ KEY_OPERATION=findNotes
 KEY_AUTHENTICATION_KIND=0
 KEY_HOST=
 KEY_USE_AUTHENTICATION=false
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findNotes.id__@@__Long__@@__in.caseId"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findNotes.excludeSystemNotes__@@__Boolean__@@__in.excludeSystemNotes"",""arg0.findNotes.id__@@__Long__@@__in.caseId"""' #txt
 Ce0 f104 returningObjectList '[wsResponse]' #txt
 Ce0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2477,7 +2480,7 @@ KEY_OPERATION=findNotes
 KEY_AUTHENTICATION_KIND=1
 KEY_HOST=
 KEY_USE_AUTHENTICATION=true
-KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findNotes.id__@@__Long__@@__in.caseId"""' #txt
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findNotes.excludeSystemNotes__@@__Boolean__@@__in.excludeSystemNotes"",""arg0.findNotes.id__@@__Long__@@__in.caseId"""' #txt
 Ce0 f153 returningObjectList '[wsResponse]' #txt
 Ce0 f153 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

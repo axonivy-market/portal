@@ -178,6 +178,17 @@ Tt0 @TkArc f164 '' #zField
 Tt0 @RichDialog f165 '' #zField
 Tt0 @PushWFArc f166 '' #zField
 Tt0 @PushWFArc f167 '' #zField
+Tt0 @StartRequest f168 '' #zField
+Tt0 @TaskSwitchSimple f169 '' #zField
+Tt0 @GridStep f170 '' #zField
+Tt0 @TaskSwitchSimple f171 '' #zField
+Tt0 @TkArc f172 '' #zField
+Tt0 @TkArc f173 '' #zField
+Tt0 @PushWFArc f174 '' #zField
+Tt0 @GridStep f175 '' #zField
+Tt0 @PushWFArc f176 '' #zField
+Tt0 @EndTask f177 '' #zField
+Tt0 @PushWFArc f178 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -2570,6 +2581,106 @@ Tt0 f166 outCond ivp=="TaskA.ivp" #txt
 Tt0 f166 1295 1152 1376 1152 #arcP
 Tt0 f167 expr out #txt
 Tt0 f167 1408 1152 1481 1152 #arcP
+Tt0 f168 outLink processWithSystemNote.ivp #txt
+Tt0 f168 type internaltest.Data #txt
+Tt0 f168 inParamDecl '<> param;' #txt
+Tt0 f168 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f168 guid 1658F49012DB1DFE #txt
+Tt0 f168 requestEnabled true #txt
+Tt0 f168 triggerEnabled false #txt
+Tt0 f168 callSignature processWithSystemNote() #txt
+Tt0 f168 persist false #txt
+Tt0 f168 startName 'Create note' #txt
+Tt0 f168 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f168 caseData businessCase.attach=true #txt
+Tt0 f168 showInStartList 1 #txt
+Tt0 f168 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>processWithSystemNote.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f168 @C|.responsibility Everybody #txt
+Tt0 f168 1393 881 30 30 -77 17 #rect
+Tt0 f168 @|StartRequestIcon #fIcon
+Tt0 f169 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f169 actionTable 'out=in1;
+' #txt
+Tt0 f169 outTypes "internaltest.Data" #txt
+Tt0 f169 outLinks "TaskA.ivp" #txt
+Tt0 f169 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=System\: create note
+TaskA.PRI=2
+TaskA.ROL=SYSTEM
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f169 type internaltest.Data #txt
+Tt0 f169 template "" #txt
+Tt0 f169 1553 881 30 30 0 16 #rect
+Tt0 f169 @|TaskSwitchSimpleIcon #fIcon
+Tt0 f170 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f170 actionTable 'out=in;
+' #txt
+Tt0 f170 actionCode 'ivy.case.createNote(ivy.session, "System note");' #txt
+Tt0 f170 type internaltest.Data #txt
+Tt0 f170 1640 874 112 44 0 -8 #rect
+Tt0 f170 @|StepIcon #fIcon
+Tt0 f171 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f171 actionTable 'out=in1;
+' #txt
+Tt0 f171 outTypes "internaltest.Data" #txt
+Tt0 f171 outLinks "TaskA.ivp" #txt
+Tt0 f171 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=User\: create note
+TaskA.PRI=2
+TaskA.ROL=Everybody
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f171 type internaltest.Data #txt
+Tt0 f171 template "" #txt
+Tt0 f171 1825 881 30 30 0 16 #rect
+Tt0 f171 @|TaskSwitchSimpleIcon #fIcon
+Tt0 f172 expr out #txt
+Tt0 f172 type internaltest.Data #txt
+Tt0 f172 var in1 #txt
+Tt0 f172 1752 896 1825 896 #arcP
+Tt0 f173 expr out #txt
+Tt0 f173 type internaltest.Data #txt
+Tt0 f173 var in1 #txt
+Tt0 f173 1423 896 1553 896 #arcP
+Tt0 f174 expr data #txt
+Tt0 f174 outCond ivp=="TaskA.ivp" #txt
+Tt0 f174 1583 896 1640 896 #arcP
+Tt0 f175 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f175 actionTable 'out=in;
+' #txt
+Tt0 f175 actionCode 'ivy.case.createNote(ivy.session, "User note");' #txt
+Tt0 f175 type internaltest.Data #txt
+Tt0 f175 1912 874 112 44 0 -8 #rect
+Tt0 f175 @|StepIcon #fIcon
+Tt0 f176 expr data #txt
+Tt0 f176 outCond ivp=="TaskA.ivp" #txt
+Tt0 f176 1855 896 1912 896 #arcP
+Tt0 f177 type internaltest.Data #txt
+Tt0 f177 2065 881 30 30 0 15 #rect
+Tt0 f177 @|EndIcon #fIcon
+Tt0 f178 expr out #txt
+Tt0 f178 2024 896 2065 896 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2751,3 +2862,13 @@ Tt0 f163 out f166 tail #connect
 Tt0 f166 head f165 mainIn #connect
 Tt0 f165 mainOut f167 tail #connect
 Tt0 f167 head f145 mainIn #connect
+Tt0 f170 mainOut f172 tail #connect
+Tt0 f172 head f171 in #connect
+Tt0 f168 mainOut f173 tail #connect
+Tt0 f173 head f169 in #connect
+Tt0 f169 out f174 tail #connect
+Tt0 f174 head f170 mainIn #connect
+Tt0 f171 out f176 tail #connect
+Tt0 f176 head f175 mainIn #connect
+Tt0 f175 mainOut f178 tail #connect
+Tt0 f178 head f177 mainIn #connect

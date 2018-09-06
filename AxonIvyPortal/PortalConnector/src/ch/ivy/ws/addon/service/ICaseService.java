@@ -64,7 +64,7 @@ public interface ICaseService {
    * @return list of case notes
    * @throws WSException
    */
-  public NoteServiceResult findNotes(Integer caseId) throws WSException;
+  public NoteServiceResult findNotes(Integer caseId, boolean excludeSystemNotes) throws WSException;
 
   /**
    * Find all documents for the case

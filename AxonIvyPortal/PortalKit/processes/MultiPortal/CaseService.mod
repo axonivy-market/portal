@@ -1,5 +1,5 @@
 [Ivy]
-14715F955CC5A35F 3.23 #module
+14715F955CC5A35F 3.20 #module
 >Proto >Proto Collection #zClass
 Ce0 CaseService Big #zClass
 Ce0 B #cInfo
@@ -1319,11 +1319,12 @@ Ce0 f181 2576 284 1030 832 #arcP
 Ce0 f181 1 2576 832 #addKink
 Ce0 f181 1 0.4351014082699338 0 0 #arcLabel
 Ce0 f123 type ch.ivyteam.wf.processes.CaseServiceData #txt
-Ce0 f123 processCall ServiceIntegrators/CaseServiceIntegrator:findNotes(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Ce0 f123 processCall ServiceIntegrators/CaseServiceIntegrator:findNotes(Boolean,String,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ce0 f123 doCall true #txt
-Ce0 f123 requestActionDecl '<java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
+Ce0 f123 requestActionDecl '<java.lang.Boolean excludeSystemNotes,java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
 ' #txt
-Ce0 f123 requestMappingAction 'param.endpoint=in.endpoint;
+Ce0 f123 requestMappingAction 'param.excludeSystemNotes=in.excludeSystemNotes;
+param.endpoint=in.endpoint;
 param.server=in.server;
 param.caseId=in.caseId;
 ' #txt
@@ -1387,8 +1388,9 @@ Ce0 f125 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ce0 f125 2910 276 36 24 20 -2 #rect
 Ce0 f125 @|StepIcon #fIcon
-Ce0 f126 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;' #txt
+Ce0 f126 inParamDecl '<java.lang.Boolean excludeSystemNotes,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;' #txt
 Ce0 f126 inParamTable 'out.caseId=param.caseId;
+out.excludeSystemNotes=param.excludeSystemNotes;
 out.server=param.server;
 ' #txt
 Ce0 f126 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.ws.addon.IvyNote> notes> result;
@@ -1398,14 +1400,14 @@ result.notes=in.notes;
 ' #txt
 Ce0 f126 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
-Ce0 f126 callSignature findNotes(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
+Ce0 f126 callSignature findNotes(Boolean,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
 Ce0 f126 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f126 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>findNotes
-(server, caseId)</name>
-        <nameStyle>26,5,7
+(Boolean,server, caseId)</name>
+        <nameStyle>34,5,7
 </nameStyle>
     </language>
 </elementInfo>
