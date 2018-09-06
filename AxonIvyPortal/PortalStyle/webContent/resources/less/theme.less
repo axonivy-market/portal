@@ -1,7 +1,5 @@
 /*Default variables*/
 @import "variables.less";
-@import "font-faces.less";
-@import "customization.less";
 
 @sidebar-dimension-transition-duration: 1s;
 @sidebar-opacity-transition-duration: 1s;
@@ -117,11 +115,6 @@ body {
   background-color: fade(@action-button-color, 80%);
 }
 
-.ui-widget.ui-button.ui-state-disabled:not(.portal-cancel-button, .ui-inplace-cancel, .ui-fileupload-cancel) {
-  background-color: fade(@action-button-color, 20%);
-  opacity: 0;
-}
-
 .portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
   background-color: fade(@cancel-button-background-color, 50%);
 }
@@ -132,11 +125,6 @@ body {
 
 .portal-cancel-button.ui-widget.ui-button.ui-state-focus, .ui-inplace-cancel.ui-widget.ui-button.ui-state-focus, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-focus {
   background-color: fade(@cancel-button-background-color, 80%);
-}
-
-.portal-cancel-button.ui-widget.ui-button.ui-state-disabled, .ui-inplace-cancel.ui-widget.ui-button.ui-state-disabled, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-disabled {
-  background-color: fade(@cancel-button-background-color, 20%);
-  opacity: 0;
 }
 
 .ui-widget.ui-button.context-button{
@@ -251,3 +239,6 @@ div.ui-timepicker-div {
 .line-process-chain .line-vertical-process-step.hide-right-steps {
   background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, @body-background-color 10px, @body-background-color 20px);
 }
+
+@import "font-faces.less";
+@import "customization.less";
