@@ -25,3 +25,4 @@ note ch.ivy.ws.addon.types.IvyNote #field
 notes List<ch.ivy.ws.addon.types.IvyNote> #field
 startIndex Integer #field
 user String #field
+excludeSystemNotes Boolean #field

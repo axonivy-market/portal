@@ -38,8 +38,8 @@ public final class PortalNavigator {
   }
 
   private String getHomePageFromSetting() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    return globalSettingSerive.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    return globalSettingService.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
   }
 
   private String defaultPortalStartUrl(boolean isAbsoluteLink) throws MalformedURLException {

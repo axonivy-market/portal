@@ -47,7 +47,7 @@ He0 f3 actionTable 'out=in;
 He0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 
 ProcessStartCollector collector = new ProcessStartCollector(ivy.wf.getApplication());
-String ourNewEndPageFriendlyRequestPath = "Start Processes/ExamplePortalStart/PortalStart.ivp";
+String ourNewEndPageFriendlyRequestPath = "Start Processes/ToCustomizedExpressEndPage/start.ivp";
 in.callbackUrl = collector.findLinkByFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);' #txt
 He0 f3 type ch.ivyteam.ivy.project.portal.examples.HandleEndPageData #txt
 He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -67,9 +67,9 @@ He0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>This process overrides HandleEndPage process in AxonIvyExpress. Now when user finish the last task of an 
-Express workflow, he will be redirected to the Portal home page of this example project.
+Express workflow, he will be redirected to the customized express end page of this example project.
 </name>
-        <nameStyle>195,7
+        <nameStyle>206,7
 </nameStyle>
     </language>
 </elementInfo>

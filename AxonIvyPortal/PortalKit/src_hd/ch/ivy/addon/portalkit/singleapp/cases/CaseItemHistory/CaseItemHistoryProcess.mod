@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Aug 16 15:07:39 ICT 2017]
-153A84D4509574FB 3.20 #module
+153A84D4509574FB 3.23 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -61,7 +60,8 @@ Cs0 f78 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory.CaseI
 ' #txt
 Cs0 f78 actionTable 'out=in;
 ' #txt
-Cs0 f78 actionCode 'import java.util.ArrayList;
+Cs0 f78 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import java.util.ArrayList;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
@@ -74,8 +74,10 @@ for(ITask task : in.internalCase.getTasks()) {
 	}
 }
 
-HistoryService historyService = new HistoryService();
-in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes());' #txt
+HistoryService historyService = new HistoryService(); 
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes(), excludeTechnicalHistory);' #txt
 Cs0 f78 security system #txt
 Cs0 f78 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
