@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -191,7 +192,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
 
   @Override
-  public NoteServiceResult findNotes(final Integer caseId) throws WSException {
+  public NoteServiceResult findNotes(final Integer caseId, boolean excludeSystemNotes) throws WSException {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<NoteServiceResult>() {
         @Override
@@ -200,7 +201,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           result.setErrors(new ArrayList<>());
 
           if (caseId != null) {
-            findNotes(caseId, result);
+            findNotes(caseId, excludeSystemNotes, result);
           } else {
             result.getErrors().add(new WSException(WSErrorType.WARNING, 10028, new ArrayList<>(), null));
           }
@@ -212,7 +213,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
 
-  private void findNotes(final Integer caseId, NoteServiceResult result) {
+  private void findNotes(final Integer caseId, boolean excludeSystemNotes, NoteServiceResult result) {
     CaseQuery query = CaseQuery.create().where().caseId().isEqual(caseId);
     ICase c = null;
     try {
@@ -221,8 +222,17 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       result.getErrors().add(new WSException(WSErrorType.WARNING, 10022, e, Arrays.asList(caseId), null));
     }
     if (c != null) {
-      result.setNotes(new IvyNoteTransformer().transform(c.getNotes()));
+      List<INote> notes = c.getNotes();
+      if (excludeSystemNotes) {
+        notes = notes.stream().filter(n -> !StringUtils.equals(n.getWritterName(), ivySystemUserName()))
+            .collect(Collectors.toList());
+      }
+      result.setNotes(new IvyNoteTransformer().transform(notes));
     }
+  }
+
+  private String ivySystemUserName() {
+    return Ivy.session().getSecurityContext().getSystemUser().getName();
   }
 
   @Override
@@ -642,17 +652,18 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       throw new WSException(10052, e);
     }
   }
-  
+
   @Override
-  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword, int limit, String applications) throws WSException {
+  public CaseServiceResult findCustomVarChars(PortalCaseCustomVarField portalCaseCustomVarField, String keyword,
+      int limit, String applications) throws WSException {
     try {
       List<String> customVarChars = new ArrayList<>();
       PortalCaseDAO portalCaseDAO = new PortalCaseDAO();
-      
+
       List<Long> applicationIds = WsServiceFactory.getApplicationService().convertApplicationIdsToList(applications);
       switch (portalCaseCustomVarField) {
         case CUSTOM_VAR_CHAR_1:
-            customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit, applicationIds);
+          customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit, applicationIds);
           break;
         case CUSTOM_VAR_CHAR_2:
           customVarChars = portalCaseDAO.findCustomVarChar2Fields(keyword, limit, applicationIds);
@@ -670,24 +681,22 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           break;
       }
       return customVarCharSearchResult(customVarChars);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       throw new WSException(10053, e);
     }
-   
+
   }
 
   private HashMap<String, Long> getCategoryToAverageElapsedTimeMap(Recordset recordSet) {
     HashMap<String, Long> recordMap = new HashMap<>();
     if (recordSet != null) {
-      recordSet.getRecords().forEach(
-          record -> {
-            String categoryName = record.getField("CATEGORY").toString();
-            BigDecimal averageElapsedTime =
-                Optional.ofNullable((BigDecimal) record.getField("AVGBUSINESSRUNTIME")).orElse(new BigDecimal(0));
-            long averageElapsedTimeValue = averageElapsedTime.longValue();
-            recordMap.put(categoryName, averageElapsedTimeValue);
-          });
+      recordSet.getRecords().forEach(record -> {
+        String categoryName = record.getField("CATEGORY").toString();
+        BigDecimal averageElapsedTime =
+            Optional.ofNullable((BigDecimal) record.getField("AVGBUSINESSRUNTIME")).orElse(new BigDecimal(0));
+        long averageElapsedTimeValue = averageElapsedTime.longValue();
+        recordMap.put(categoryName, averageElapsedTimeValue);
+      });
     }
     return recordMap;
   }
@@ -732,13 +741,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     result.setErrors(errors);
     return result;
   }
-  
+
   private CaseServiceResult customVarCharSearchResult(List<String> customVarChars) {
     CaseServiceResult result = new CaseServiceResult();
     result.setCustomVarChars(customVarChars);
     return result;
   }
-  
+
   private static List<WSException> noErrors() {
     return Collections.emptyList();
   }

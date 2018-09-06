@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.EnumUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.persistence.dao.GlobalSettingDao;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 public class GlobalSettingService extends AbstractService<GlobalSetting> {
-  
+
   public GlobalSettingService() {
     super(GlobalSettingDao.class);
   }
@@ -23,14 +25,15 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
   public String findGlobalSettingValue(String variableName) {
     return getDao().findGlobalSettingValue(variableName);
   }
-  
+
   public boolean isGlobalSettingAvailable(String variableName) {
-    return getDao().isGlobalSettingAvailable(variableName);   
+    return getDao().isGlobalSettingAvailable(variableName);
   }
 
   public List<GlobalSetting> findAllGlobalSetting() {
     List<GlobalSetting> globalSettings = super.findAll();
-    globalSettings = globalSettings.stream().filter(setting -> EnumUtils.isValidEnum(GlobalVariable.class, setting.getKey())).collect(Collectors.toList());
+    globalSettings = globalSettings.stream()
+        .filter(setting -> EnumUtils.isValidEnum(GlobalVariable.class, setting.getKey())).collect(Collectors.toList());
     List<String> allGlobalSettingKeys = globalSettings.stream().map(GlobalSetting::getKey).collect(Collectors.toList());
     for (GlobalVariable globalVariable : GlobalVariable.values()) {
       if (!allGlobalSettingKeys.contains(globalVariable.toString())) {
@@ -45,10 +48,20 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
   }
 
   private void sortByAlphabet(List<GlobalSetting> globalSettings) {
-    globalSettings.sort((GlobalSetting setting1, GlobalSetting setting2) -> setting1.getKey().compareTo(setting2.getKey()));
+    globalSettings
+        .sort((GlobalSetting setting1, GlobalSetting setting2) -> setting1.getKey().compareTo(setting2.getKey()));
   }
 
   public void resetGlobalSetting(String variableName) {
     getDao().resetGlobalSettingValue(variableName);
+  }
+
+  public boolean findHideSystemTasksFromHistorySettingValue() {
+    GlobalVariable globalVariable =
+        PermissionUtils.isSessionUserHasAdminRole() ? GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR
+            : GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY;
+    String settingValue = findGlobalSettingValue(globalVariable.toString());
+    return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue())
+        : Boolean.valueOf(settingValue);
   }
 }
