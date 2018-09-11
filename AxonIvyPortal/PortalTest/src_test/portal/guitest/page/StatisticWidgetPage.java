@@ -24,6 +24,12 @@ public class StatisticWidgetPage extends TemplatePage {
     return "id('statistics-widget')";
   }
 
+  
+  @Override
+  protected long getTimeOutForLocator() {
+    return 300L;
+  }
+
   public WebElement getStatisticWidget() {
     return statisticWidget;
   }
