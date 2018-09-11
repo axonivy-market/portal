@@ -20,12 +20,14 @@ import org.primefaces.context.RequestContext;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -54,6 +56,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private List<RemoteWebStartable> webStartables;
   private String processWidgetComponentId;
   private IProcessStart createExpressWorkflowProcessStart;
+  private boolean isUserFavoritesEnabled;
 
   @PostConstruct
   public void init() {
@@ -79,6 +82,9 @@ public class ProcessWidgetBean implements Serializable, Converter {
     userProcesses.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
     expressProcesses = userProcesses.stream().filter(this::isExpressWorkflow).collect(Collectors.toList());
     userProcesses.removeAll(expressProcesses);
+    
+    String isUserFavoritesEnabledGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES.toString());
+    isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
   }
 
   private List<UserProcess> findDefaultProcessUserCanStart() {
@@ -343,7 +349,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
       return StringUtils.EMPTY;
     });
   }
-
+  
   public IProcessStart getCreateExpressWorkflowProcessStart() {
     return createExpressWorkflowProcessStart;
   }
@@ -382,6 +388,10 @@ public class ProcessWidgetBean implements Serializable, Converter {
   
   public void setExpressProcesses(List<UserProcess> expressProcesses) {
     this.expressProcesses = expressProcesses;
+  }
+  
+  public boolean getIsUserFavoritesEnabled() {
+    return isUserFavoritesEnabled;
   }
 
   @Override

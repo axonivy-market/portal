@@ -1977,6 +1977,7 @@ a.case-details-document-add-link {
 /********************************** END CASE ITEM **********************************/
 .process-widget-action {
   line-height: 15px;
+  display: inline-block;
 }
 
 .process-widget-action-form {
@@ -2199,6 +2200,8 @@ a.case-details-document-add-link {
 .process-widget .favorite-process-title {
   font-size: 1.4rem; 
   margin-top: 8px;
+  margin-right: 20px;
+  display: inline-block;
 }
 
 .favorite-process-input-field {
@@ -2206,7 +2209,9 @@ a.case-details-document-add-link {
 }
 
 .process-widget .default-process-title {
-  font-size: 1.4rem; 
+  font-size: 1.4rem;
+  margin-right: 20px;
+  display: inline-block;
 }
 
 .process-widget .user-default-process-list {
