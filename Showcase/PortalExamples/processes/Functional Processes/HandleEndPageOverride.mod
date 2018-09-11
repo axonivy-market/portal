@@ -1,7 +1,7 @@
 [Ivy]
 165801CAE71C2982 3.23 #module
 >Proto >Proto Collection #zClass
-He0 HandleEndPage Big #zClass
+He0 HandleEndPageOverride Big #zClass
 He0 B #cInfo
 He0 #process
 He0 @TextInP .resExport .resExport #zField
@@ -18,7 +18,7 @@ He0 @GridStep f3 '' #zField
 He0 @PushWFArc f4 '' #zField
 He0 @PushWFArc f2 '' #zField
 He0 @InfoButton f5 '' #zField
->Proto He0 He0 HandleEndPage #zField
+>Proto He0 He0 HandleEndPageOverride #zField
 He0 f0 inParamDecl '<> param;' #txt
 He0 f0 outParamDecl '<java.lang.String callbackUrl> result;
 ' #txt
