@@ -33,7 +33,6 @@
 
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
-  <h:outputStylesheet library="css" name="theme.min.css" />
 
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
@@ -49,6 +48,9 @@
 </h:head>
 
 <h:body>
+  <f:facet name="last">
+    <h:outputStylesheet library="css" name="theme.min.css" />    
+  </f:facet>
 
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
   <c:choose>
