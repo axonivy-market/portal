@@ -23,7 +23,8 @@ public enum GlobalVariable {
   HOMEPAGE_URL("homePageUrlNote"),
   CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY(Boolean.TRUE.toString(), "hideSystemTasksFromHistory"),
-  HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(Boolean.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator");
+  HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(Boolean.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
+  ENABLE_USER_FAVORITES(Boolean.TRUE.toString(),"enableUserFavorites");
 
   private String defaultValue;
   private String noteCMS;
@@ -52,7 +53,7 @@ public enum GlobalVariable {
   public static List<GlobalVariable> getBooleanType() {
     return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, SHOW_TASK_BUTTON_LABELS, HIDE_CHANGE_PASSWORD_BUTTON,
             HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE, HIDE_SYSTEM_TASKS_FROM_HISTORY, 
-            HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR);
+            HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR, ENABLE_USER_FAVORITES);
   }
 
   public static List<GlobalVariable> getNumberType() {
