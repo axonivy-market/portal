@@ -26,13 +26,17 @@ public abstract class TemplatePage extends AbstractPage {
     waitForLocatorDisplayed(getLoadedLocator());
   }
 
+  protected long getTimeOutForLocator() {
+    return 30L;
+  }
+
   protected void waitForLocatorDisplayed(String locator) {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
     String engineUrl = System.getProperty("engineUrl");
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
         waitForElementDisplayed(locator, true, 300L);
     } else {
-        waitForElementDisplayed(locator, true, 1000L);
+        waitForElementDisplayed(locator, true, getTimeOutForLocator());
     }
   }
 

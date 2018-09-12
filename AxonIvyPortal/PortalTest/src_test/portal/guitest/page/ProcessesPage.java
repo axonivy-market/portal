@@ -9,7 +9,12 @@ public class ProcessesPage extends TemplatePage {
   public ProcessesPage() {
     this("process-widget");
   }
-
+  
+  @Override
+  protected String getLoadedLocator() {
+    return "id('process-widget:process-search')";
+  }
+  
   public ProcessesPage(String processesWidgetId) {
     this.processesWidgetId = processesWidgetId;
   }

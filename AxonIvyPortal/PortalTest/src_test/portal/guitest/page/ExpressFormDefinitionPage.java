@@ -15,6 +15,7 @@ import ch.xpertline.base.client.Browser;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
   
+  private static final int TIME_OUT = 60;
   private static final String LEFT_POSITION = "LeftPanel";
   private static final String RIGHT_POSITION = "RightPanel";
   private static final String HEADER_POSITION = "Header";
@@ -28,7 +29,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[1]"));
-    waitForElementDisplayed(By.id("form:createTabs:createInputFieldTab"), true);
+    waitForElementDisplayed(By.id("form:createTabs:createInputFieldTab"), true, TIME_OUT);
     type(By.id("form:createTabs:InputFieldLabel"), label);
     chooseInputFieldType(inputFieldTypeIndex);
     if(isRequired) {
@@ -42,7 +43,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   public void createTextAreaField(String label, boolean isRequired) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[2]"));
     Sleeper.sleepTight(1000);
-    waitForElementDisplayed(By.id("form:createTabs:createInputAreaTab"), true);
+    waitForElementDisplayed(By.id("form:createTabs:createInputAreaTab"), true, TIME_OUT);
     type(By.id("form:createTabs:InputAreaLabel"), label);
     if(isRequired) {
       click(By.xpath("//label[@for='form:createTabs:InputAreaRequired_input']"));
@@ -55,7 +56,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   public void createCheckboxField(String label, int numberOfSelection) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[3]"));
     Sleeper.sleepTight(1000);
-    waitForElementDisplayed(By.id("form:createTabs:createManyCheckboxTab"), true);
+    waitForElementDisplayed(By.id("form:createTabs:createManyCheckboxTab"), true, TIME_OUT);
     type(By.id("form:createTabs:ManyCheckboxLabel"), label);
     addCheckboxOptions(numberOfSelection);
     Sleeper.sleepTight(1000);
@@ -66,7 +67,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   public void createRadioButtonField(String label, int numberOfOption) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[4]"));
     Sleeper.sleepTight(1000);
-    waitForElementDisplayed(By.id("form:createTabs:createOneRadioGrid"), true);
+    waitForElementDisplayed(By.id("form:createTabs:createOneRadioGrid"), true, TIME_OUT);
     type(By.id("form:createTabs:OneRadioLabel"), label);
     Sleeper.sleepTight(2000);
     addRadioOptions(numberOfOption);
@@ -77,7 +78,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   public void createUploadComponent(String label) {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[5]"));
     Sleeper.sleepTight(1000);
-    waitForElementDisplayed(By.id("form:createTabs:createFileUploadTab"), true);
+    waitForElementDisplayed(By.id("form:createTabs:createFileUploadTab"), true, TIME_OUT);
     type(By.id("form:createTabs:FileUploadLabel"), label);
     click(By.id("form:createTabs:add-upload-file-btn"));
     waitAjaxIndicatorDisappear();
