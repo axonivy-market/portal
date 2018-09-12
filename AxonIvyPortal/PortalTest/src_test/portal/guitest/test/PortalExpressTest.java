@@ -45,9 +45,9 @@ public class PortalExpressTest extends BaseTest{
   public void setup() {
     super.setup();
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
+    redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp");
     homePage = new HomePage();
   }
   
