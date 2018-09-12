@@ -4,9 +4,7 @@
     /Functional-Processes.DefaultChart "Functional Processes/DefaultChartOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
-    /Functional-Processes.LogoutPage "Functional Processes/LogoutPageOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
-    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
   }
