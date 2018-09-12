@@ -25,7 +25,8 @@
 			</listitem>
 			<listitem>
 				<para>
-					Override the <code>LogoutPage</code> process to customize the page which will be redirect to after logout, default is Portal home page.
+					Create a callable sub process in your project with the <code>getLogoutPage()</code> signature to customize the page which will be redirect to after logout, default is Portal home page. 
+					Make sure this signature is unique in your application.
 				</para>
 			</listitem>
 		</orderedlist>
