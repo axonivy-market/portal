@@ -27,7 +27,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected long getTimeOutForLocator() {
-    return 30L;
+    return 100L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
