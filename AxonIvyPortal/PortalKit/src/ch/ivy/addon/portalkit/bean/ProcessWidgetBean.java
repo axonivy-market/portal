@@ -70,7 +70,6 @@ public class ProcessWidgetBean implements Serializable, Converter {
     if (compactMode) {
       defaultUserProcesses = findDefaultProcessUserCanStart();
     }
-    userProcesses = findUserProcessBaseOnUIMode(compactMode);
 
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     try {
@@ -79,12 +78,14 @@ public class ProcessWidgetBean implements Serializable, Converter {
       Ivy.log().error(e);
     }
     
+    String isUserFavoritesEnabledGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES.toString());
+    isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
+    
+    userProcesses = findUserProcessBaseOnUIMode(compactMode);
     userProcesses.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
     expressProcesses = userProcesses.stream().filter(this::isExpressWorkflow).collect(Collectors.toList());
     userProcesses.removeAll(expressProcesses);
     
-    String isUserFavoritesEnabledGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES.toString());
-    isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
   }
 
   private List<UserProcess> findDefaultProcessUserCanStart() {
@@ -119,6 +120,11 @@ public class ProcessWidgetBean implements Serializable, Converter {
   }
 
   private List<UserProcess> findUserProcessBaseOnUIMode(Boolean isCompactMode) {
+    if (isCompactMode && !isUserFavoritesEnabled) {
+      Ivy.log().error("AAAA");
+      return new ArrayList<>();
+    }
+    
     List<UserProcess> processes = isCompactMode ? userProcessService.findByUserName(userName) : findAllProcesses();
     if (!isCompactMode) {
       sortUserProcessList(processes);
