@@ -16,8 +16,8 @@
 	<sect2 xml:id="axonivyportal.customization.menu.customization">
 		<title>Customization</title>
 		<para>
-			In your project, override the process <code>LoadSubMenuItems</code> in PortalTemplate and follow
-            the hints.
+		Create a callable sub process in your project with the <code>loadSubMenuItems()</code> signature, 
+		make sure this signature is unique in your application and follow the hints.
 			<mediaobject>
 				<imageobject>
 					<imagedata fileref="images/Menu/LoadSubMenuItemsProcess.png" />
