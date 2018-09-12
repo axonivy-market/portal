@@ -121,7 +121,6 @@ public class ProcessWidgetBean implements Serializable, Converter {
 
   private List<UserProcess> findUserProcessBaseOnUIMode(Boolean isCompactMode) {
     if (isCompactMode && !isUserFavoritesEnabled) {
-      Ivy.log().error("AAAA");
       return new ArrayList<>();
     }
     
