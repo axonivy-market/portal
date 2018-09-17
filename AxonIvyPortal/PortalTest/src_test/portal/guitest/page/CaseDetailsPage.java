@@ -331,6 +331,7 @@ public class CaseDetailsPage extends TemplatePage {
     String uploadDialogId =
         String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-dialog-", index);
     waitForElementDisplayed(By.id(uploadDialogId), true);
+    waitForElementDisplayed(By.className("ui-fileupload-choose"), true);
     click(By.className("ui-fileupload-choose"));
     StringSelection ss = new StringSelection(pathToFile);
     Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
@@ -346,7 +347,7 @@ public class CaseDetailsPage extends TemplatePage {
     } catch (AWTException e) {
       e.printStackTrace();
     }
-    // Wait 2 seconds for file uploaded, currently haven't found solution to check when the file upload finish
+    // Wait 5 seconds for file uploaded, currently haven't found solution to check when the file upload finish
     Sleeper.sleepTight(5000);
   }
 
