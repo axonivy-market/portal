@@ -203,17 +203,13 @@ Cs0 f56 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDo
 ' #txt
 Cs0 f56 actionTable 'out=in;
 ' #txt
-Cs0 f56 actionCode 'import ch.ivy.addon.portalkit.document.WordDocumentDetector;
-import ch.ivy.addon.portalkit.document.PDFDocumentDetector;
-import ch.ivy.addon.portalkit.webservice.InputStreamDataSource;
+Cs0 f56 actionCode 'import ch.ivy.addon.portalkit.webservice.InputStreamDataSource;
 import javax.activation.DataHandler;
 import org.primefaces.model.UploadedFile;
 
 
 
 UploadedFile uploadedFile = in.documentUploadEvent.getFile();
-
-WordDocumentDetector detector = new ch.ivy.addon.portalkit.document.WordDocumentDetector();
 
 InputStreamDataSource source = new InputStreamDataSource(uploadedFile.getInputstream(), uploadedFile.getContentType(), uploadedFile.getFileName());
 in.documentContent = new DataHandler(source);' #txt
