@@ -1,5 +1,5 @@
 [Ivy]
-153361016FE4213A 3.23 #module
+153361016FE4213A 3.20 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemDocumentProcess Big #zClass
 Cs0 RD #cInfo
@@ -203,18 +203,13 @@ Cs0 f56 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDo
 ' #txt
 Cs0 f56 actionTable 'out=in;
 ' #txt
-Cs0 f56 actionCode 'import ch.ivy.addon.portalkit.document.WordDocumentDetector;
-import ch.ivy.addon.portalkit.document.PDFDocumentDetector;
-import ch.ivy.addon.portalkit.webservice.InputStreamDataSource;
+Cs0 f56 actionCode 'import ch.ivy.addon.portalkit.webservice.InputStreamDataSource;
 import javax.activation.DataHandler;
 import org.primefaces.model.UploadedFile;
 
 
 
 UploadedFile uploadedFile = in.documentUploadEvent.getFile();
-//PDFDocumentDetector pdfDetector = new ch.ivy.addon.portalkit.document.PDFDocumentDetector();
-WordDocumentDetector detector = new ch.ivy.addon.portalkit.document.WordDocumentDetector();
-ivy.log.error("Is valid file: " + detector.isSafe(uploadedFile.getInputstream()));
 
 InputStreamDataSource source = new InputStreamDataSource(uploadedFile.getInputstream(), uploadedFile.getContentType(), uploadedFile.getFileName());
 in.documentContent = new DataHandler(source);' #txt
