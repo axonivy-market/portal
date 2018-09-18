@@ -20,12 +20,16 @@ public abstract class TemplatePage extends AbstractPage {
 
   public TemplatePage() {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
-    String engineUrl = System.getProperty("engineUrl");
-    if (ENGINE_URL_LOCAL.equals(engineUrl)) {
+    if (isIntegrationTestRun()) {
         waitForElementDisplayed(getLoadedLocator(), true, 300L);
     } else {
         waitForElementDisplayed(getLoadedLocator(), true, 30L);
     }
+  }
+
+  protected boolean isIntegrationTestRun() {
+    String engineUrl = System.getProperty("engineUrl");
+    return ENGINE_URL_LOCAL.equals(engineUrl);
   }
 
   @Override

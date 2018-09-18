@@ -347,8 +347,12 @@ public class CaseDetailsPage extends TemplatePage {
     } catch (AWTException e) {
       e.printStackTrace();
     }
-    // Wait 5 seconds for file uploaded, currently haven't found solution to check when the file upload finish
-    Sleeper.sleepTight(5000);
+    // currently haven't found solution to check when the file upload finish, we have to wait
+    if (isIntegrationTestRun()) {
+        Sleeper.sleepTight(10000);
+    } else {
+      Sleeper.sleepTight(5000);
+    }
   }
 
 }
