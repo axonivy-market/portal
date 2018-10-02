@@ -37,7 +37,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     }
     click(By.id("form:createTabs:add-input-text-btn"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleepTight(1000);
+    ensureNoBackgroundRequest();
   }
   
   public void createTextAreaField(String label, boolean isRequired) {
@@ -50,7 +50,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     }
     click(By.id("form:createTabs:add-text-area-btn"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleepTight(1000);
+    ensureNoBackgroundRequest();
   }
   
   public void createCheckboxField(String label, int numberOfSelection) {
@@ -62,6 +62,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     Sleeper.sleepTight(1000);
     click(By.id("form:createTabs:add-checkbox-btn"));
     waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
   }
   
   public void createRadioButtonField(String label, int numberOfOption) {
@@ -73,6 +74,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     addRadioOptions(numberOfOption);
     click(By.id("form:createTabs:add-radio-btn"));
     waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
   }
   
   public void createUploadComponent(String label) {
@@ -82,7 +84,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     type(By.id("form:createTabs:FileUploadLabel"), label);
     click(By.id("form:createTabs:add-upload-file-btn"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleepTight(1000);
+    ensureNoBackgroundRequest();
   }
   
   private void addRadioOptions(int numberOfOptions) {
