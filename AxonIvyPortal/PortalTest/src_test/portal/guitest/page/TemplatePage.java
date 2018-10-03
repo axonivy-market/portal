@@ -2,19 +2,23 @@ package portal.guitest.page;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import portal.guitest.common.UrlHelpers;
-import ch.xpertline.base.pages.AbstractPage;
-
 import com.google.common.base.Predicate;
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
+
+import ch.xpertline.base.pages.AbstractPage;
+import portal.guitest.common.UrlHelpers;
 
 public abstract class TemplatePage extends AbstractPage {
 
@@ -32,12 +36,30 @@ public abstract class TemplatePage extends AbstractPage {
 
   protected void waitForLocatorDisplayed(String locator) {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
-    String engineUrl = System.getProperty("engineUrl");
-    if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-        waitForElementDisplayed(locator, true, 300L);
+    if (isIntegrationTestRun()) {
+        waitForElementDisplayed(locator, true,  getTimeOutForLocator() + 200L);
     } else {
         waitForElementDisplayed(locator, true, getTimeOutForLocator());
     }
+  }
+
+  
+  @Override
+  public <T> void waitForElementDisplayed(T locator, boolean expected, long timeout) {
+    Awaitility.await().atMost(new Duration(timeout, TimeUnit.SECONDS)).until(() -> {
+      try {
+          super.waitForElementDisplayed(locator, expected, timeout);
+          return;
+        } catch (WebDriverException e) {
+          System.out.println("Exception when waiting, try again.");
+          e.printStackTrace();
+        }
+    });
+  }
+
+protected boolean isIntegrationTestRun() {
+    String engineUrl = System.getProperty("engineUrl");
+    return ENGINE_URL_LOCAL.equals(engineUrl);
   }
 
   protected void ensureNoBackgroundRequest() {
@@ -57,7 +79,12 @@ public abstract class TemplatePage extends AbstractPage {
       }
       return false;
     };
-    wait.until(myPredicate);
+    try {
+		wait.until(myPredicate);
+	} catch (WebDriverException e) {
+		System.out.println("Error when ensuring not background request");
+		e.printStackTrace();
+	}
   }
 
   @Override
@@ -83,11 +110,11 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public <T> void waitForElementDisplayed(T locator, boolean expected) {
-    waitForElementDisplayed(locator, expected, DEFAULT_TIMEOUT);
+    waitForElementDisplayed(locator, expected, getTimeOutForLocator());
   }
 
   public <T> void waitForElementPresent(T locator, boolean expected) {
-    waitForElementPresent(locator, expected, DEFAULT_TIMEOUT);
+    waitForElementPresent(locator, expected, getTimeOutForLocator());
   }
 
   public int countBrowserTab() {
