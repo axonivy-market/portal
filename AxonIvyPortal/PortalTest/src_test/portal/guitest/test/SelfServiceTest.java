@@ -19,7 +19,7 @@ public class SelfServiceTest extends BaseTest {
    * differentiate them by using system property passed by maven.
    */
   private static final String SELF_SERVICE_BPM = System.getProperty("SelfServicePMName") != null ? System
-      .getProperty("SelfServicePMName") : "selfServiceBPM";
+      .getProperty("SelfServicePMName") : "selfServiceBpm";
   private String selfServiceProcessUrl = SELF_SERVICE_BPM + "/14232C3D829C4D71/start.ivp";
 
   @Override
