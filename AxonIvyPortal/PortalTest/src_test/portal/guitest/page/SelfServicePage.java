@@ -60,7 +60,7 @@ public class SelfServicePage extends TemplatePage {
     actorSelection.click();
     waitForElementEnabled(By.id("userListForm:addUserButton"), true, 30L);
     addUser();
-    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
   }
   
   private void addUser() {
