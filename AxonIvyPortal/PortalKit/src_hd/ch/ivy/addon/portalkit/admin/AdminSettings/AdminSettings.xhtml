@@ -640,12 +640,12 @@
 		id="previewUsersDialog" widgetVar="previewUsersDialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade"
 		resizable="false" styleClass="user-list-dialog" appendTo="@(body)">
 		<h:form>
-			<p:dataTable value="#{data.usersApplicationList}" var="user" sortBy="#{user.userName}" scrollable="true"
+			<p:dataTable value="#{data.usersApplicationList}" var="user" sortBy="#{userFormatBean.formatWithTip(user.fullUserName, user.userName)}" scrollable="true"
 				filteredValue="#{data.filteredUsers}" scrollHeight="300" styleClass="preview-users-datatable"
 				emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
 				<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
-					filterBy="#{user.userName}">
-					<h:outputText value="#{user.fullUserName}" />
+					filterBy="#{userFormatBean.formatWithTip(user.fullUserName, user.userName)}" filterMatchMode="contains">
+					<h:outputText value="#{userFormatBean.formatWithTip(user.fullUserName, user.userName)}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
