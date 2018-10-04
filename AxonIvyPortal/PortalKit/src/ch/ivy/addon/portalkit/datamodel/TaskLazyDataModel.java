@@ -642,8 +642,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected void buildQueryToSearchCriteria() {
     if (queryCriteria.getTaskQuery() == null) {
       String jsonQuery =
-          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()")
-              .call().get("jsonQuery", String.class);
+          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery")
+          .withStartSignature("buildTaskJsonQuery(Boolean)").withParam("isQueryForHomePage", compactMode)
+          .call().get("jsonQuery", String.class);
       TaskQuery customizedTaskQuery =
           StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
       queryCriteria.setTaskQuery(customizedTaskQuery);
