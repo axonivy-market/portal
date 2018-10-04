@@ -131,6 +131,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
+      initColumnsConfiguration();
       if (isRelatedTaskDisplayed) {
         if (!queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
           queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
