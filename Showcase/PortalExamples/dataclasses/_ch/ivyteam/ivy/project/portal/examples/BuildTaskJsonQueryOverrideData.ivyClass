@@ -1,0 +1,4 @@
+BuildTaskJsonQueryOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+jsonQuery String #field
+isQueryForHomePage Boolean #field

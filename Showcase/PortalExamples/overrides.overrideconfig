@@ -2,6 +2,7 @@
   /RICH_DIALOG *
   /PROCESS {
     /Functional-Processes.DefaultChart "Functional Processes/DefaultChartOverride"
+    /Functional-Processes.BuildTaskJsonQuery "Functional Processes/BuildTaskJsonQueryOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
