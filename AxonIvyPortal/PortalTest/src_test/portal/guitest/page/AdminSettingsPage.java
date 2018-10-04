@@ -108,12 +108,12 @@ public class AdminSettingsPage extends TemplatePage {
   }
   
   public boolean isWarningDialogShowWhenTimeoutIsLosing(){
-    waitForElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"), true, 90);
+    waitForElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"), true, 120);
     return isElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"));
   }
 
   public boolean isInformDialogShowAfterTimeout(){
-    waitForElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"), true, 150);
+    waitForElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"), true, 180);
     return isElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"));
   }
 }
