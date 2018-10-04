@@ -478,7 +478,6 @@ if(!in.dataModel.compactMode) {
 	in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
 	in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
 	in.filterType = FilterType.ONLY_ME;
-	in.dataModel.initColumnsConfiguration();
 }
 ' #txt
 Ts0 f27 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
