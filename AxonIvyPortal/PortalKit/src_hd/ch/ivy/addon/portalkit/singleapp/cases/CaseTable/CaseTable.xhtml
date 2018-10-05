@@ -53,7 +53,7 @@
 
       <p:column id="case-creator" filterBy="#{case.creator}" sortBy="#{case.creator}"
         styleClass="case-view-table-column" filterMatchMode="contains"
-        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}">
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}">
         <p:link id="show-contact-command" value="#{case.creator}" onclick="return false;" styleClass="fa fa-info-circle" />
         <pe:tooltip for="show-contact-command" atPosition="bottom right" showEvent="click" hideEvent="focusout"
           myPosition="center,left">
