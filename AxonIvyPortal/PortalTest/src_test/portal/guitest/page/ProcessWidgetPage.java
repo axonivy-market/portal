@@ -52,6 +52,19 @@ public class ProcessWidgetPage extends TemplatePage {
     return processItemElement;
   }
 
+  public boolean isProcessDisplay(String processName) {
+    return getProcess(processName) !=null;
+  }
+  
+  public boolean isNoProcessFound() {
+    return isElementPresent(By.xpath("//span[@id='process-widget:no-found-processes']"));
+  }
+  
+  public boolean isProcessGroupDisplay(String processGroupCharacter) {
+    List<WebElement> indexGroup = findListElementsByXpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']");
+    return indexGroup.stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
+  }
+  
   public String getProcessNameFromFavoriteProcessList(int index) {
     String id = index + ":process-item-form:process-name";
     WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
@@ -168,7 +181,12 @@ public class ProcessWidgetPage extends TemplatePage {
   public void loadLiveSearchTextField() {
     liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
   }
-
+  
+  public void enterSearchKeyword(String keyword) {
+    liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
+    type(liveSearchTextField, keyword);
+  }
+  
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
     driver.manage().window().setSize(new Dimension(2000, 1000));
     WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
@@ -259,5 +277,9 @@ public class ProcessWidgetPage extends TemplatePage {
   
   public boolean isProcessEmpty() {
     return isElementDisplayed(By.id("search-results-tabview:process-results:full-process-empty-message"));
+  }
+  
+  public boolean hasCreateNewExpressWorkflowLink() {
+    return isElementPresent(By.id("process-widget:axon-express-form:create-express-workflow"));
   }
 }
