@@ -9,7 +9,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
 
-public class HonePageTaskQueryCustomizationTest extends BaseTest {
+public class HomePageTaskQueryCustomizationTest extends BaseTest {
 
   @Override
   @Before

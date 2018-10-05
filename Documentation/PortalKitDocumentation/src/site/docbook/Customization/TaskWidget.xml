@@ -271,26 +271,39 @@
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.taskwidget.howtooverridedataquery">
 		<title xml:id="axonivyportal.customization.taskwidget.howtooverridedataquery.title">How to override task widget's data query</title>
-		<para>
-			Override the <code>BuildTaskJsonQuery</code> callable process of PortalKit and build your own query to effect the data of task widget, task categories and statistic widget.
-		</para>
-		<para>
-			Apply the following steps in case you would like to provide data for task list after navigating to task list from your page, e.g. clicking on a bar chart then opening the tasks of that bar:
-			<itemizedlist>
-				<listitem>
-					<para>Use the <code>OpenPortalTasks</code> callable process with the <code>TaskView</code> parameter. It is used to define which information are displayed in TaskWidget.</para>
-				</listitem>
-				<listitem>
-					<para>Refer to TaskView, TaskSearchCriteria, TaskQueryCriteria to build your TaskView</para>
-				</listitem>
-			</itemizedlist>
+		<itemizedlist>
+			<listitem>
+				Override the <code>BuildTaskJsonQuery</code> callable process of PortalKit and build your own query to effect the data of task widget, task categories and statistic widget.
+			</listitem>
+			<listitem>
+				If you want to apply a query for only Home page task list, not for Full mode task list, 
+				use attribute <code>isQueryForHomePage</code> in <code>BuildTaskJsonQuery</code> callable process to specify the query for Home page task list, e.g.
+				<para>
+<screen>
+if (in.isQueryForHomePage) { // in home page
+	in.jsonQuery = TaskQuery.create().where().activatorUserId().isNotNull().asJson();
+}
+</screen>
+				</para>
+			</listitem>
+			<listitem>
+				Apply the following steps in case you would like to provide data for task list after navigating to task list from your page, e.g. clicking on a bar chart then opening the tasks of that bar:
+				<itemizedlist>
+					<listitem>
+						<para>Use the <code>OpenPortalTasks</code> callable process with the <code>TaskView</code> parameter. It is used to define which information are displayed in TaskWidget.</para>
+					</listitem>
+					<listitem>
+						<para>Refer to TaskView, TaskSearchCriteria, TaskQueryCriteria to build your TaskView</para>
+					</listitem>
+				</itemizedlist>
 <screen>
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
 dataModel.getQueryCriteria().setTaskQuery(YOUR_TASK_QUERY); // Set your TaskQuery
 dataModel.getSearchCriteria().setInvolvedUsername(true); // Use this code line if you would like to display the tasks for all users
 out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();
 </screen>
-		</para>
+			</listitem>
+		</itemizedlist>
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.taskwidget.customtaskdelegate">
 		<title>Custom task delegate</title>
