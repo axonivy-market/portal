@@ -1,0 +1,4 @@
+co: name={CREATE} description={} changed={2018-10-05 06:21:33 CEST} changedby={ttthai} visualorder={0} guid={16642122463D315E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={166421224643295A} datatype={} isdefault={true} langid={en} description={} validfrom={2018-10-05 04:32:57 CEST} validto={} changed={2018-10-05 04:36:51 CEST} changedby={ttthai} properties={} id={}
+val: guid={1664215B8332AAD4} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-10-05 04:36:38 CEST} validto={} changed={2018-10-05 04:36:51 CEST} changedby={ttthai} properties={} id={}
+val: guid={1664215B5A0ABF38} datatype={} isdefault={false} langid={de} description={} validfrom={2018-10-05 04:36:46 CEST} validto={} changed={2018-10-05 04:36:51 CEST} changedby={ttthai} properties={} id={}

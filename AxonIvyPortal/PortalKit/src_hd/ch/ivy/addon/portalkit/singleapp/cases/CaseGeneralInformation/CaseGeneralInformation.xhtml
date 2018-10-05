@@ -48,7 +48,7 @@
         </p:column>
         <p:column>
           <h:outputLabel styleClass="Fright" for="creator"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}:" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}:" />
         </p:column>
         <p:column>
           <p:commandLink id="creator" value="#{data.creatorName}" styleClass="fa fa-info-circle" />
@@ -79,7 +79,7 @@
 
       <p:row>
         <p:column>
-          <h:outputLabel for="caseId" styleClass="Fright" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}:" />
+          <h:outputLabel for="caseId" styleClass="Fright" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}:" />
         </p:column>
         <p:column>
           <h:outputText id="caseId" value="##{data.caseInfo.id}" />

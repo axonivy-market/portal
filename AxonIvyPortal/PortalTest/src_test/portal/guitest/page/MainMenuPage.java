@@ -40,10 +40,10 @@ public class MainMenuPage extends TemplatePage {
     }
   }
   
-  public ProcessesPage selectProcessesMenu() {
+  public ProcessWidgetPage selectProcessesMenu() {
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + PROCESSES_MENU_ICON_POSITION + ")").click();
     waitForProcessesPageAfterSelectProcessesCategory();
-    return new ProcessesPage();
+    return new ProcessWidgetPage();
   }
 
   public TaskWidgetPage selectTaskMenu() {

@@ -70,4 +70,9 @@ public class SearchResultPage extends TemplatePage {
     click(By.id(String.format("search-results-tabview:employee-table:%d:detail-action", index)));
     waitAjaxIndicatorDisappear();
   }
+  
+  public boolean isProcessGroupDisplay(String group) {
+    ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
+    return processWidgetPage.isProcessGroupDisplay(group);
+  }
 }
