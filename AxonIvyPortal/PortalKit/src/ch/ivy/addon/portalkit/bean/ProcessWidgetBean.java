@@ -2,7 +2,10 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -57,6 +60,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private String processWidgetComponentId;
   private IProcessStart createExpressWorkflowProcessStart;
   private boolean isUserFavoritesEnabled;
+  private Map<Character, List<UserProcess>> userProcessByAlphabet;
 
   @PostConstruct
   public void init() {
@@ -85,9 +89,33 @@ public class ProcessWidgetBean implements Serializable, Converter {
     userProcesses.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
     expressProcesses = userProcesses.stream().filter(this::isExpressWorkflow).collect(Collectors.toList());
     userProcesses.removeAll(expressProcesses);
-    
+    if(!compactMode) {
+      userProcessByAlphabet = groupUserProcessByAlphabetIndex(userProcesses);
+    }
   }
 
+  private Map<Character, List<UserProcess>> groupUserProcessByAlphabetIndex(List<UserProcess> userProcesses) {
+    Map<Character, List<UserProcess>> userProcessGroupByAlphabet = new HashMap<>();
+    
+    for(UserProcess userProcess : userProcesses) {
+      String processNameUpperCase = StringUtils.trim(userProcess.getProcessName()).toUpperCase();
+      if(StringUtils.isNotEmpty(processNameUpperCase)) {
+        char firstLetter = processNameUpperCase.charAt(0);
+        if(!userProcessGroupByAlphabet.containsKey(firstLetter)) {
+          List<UserProcess> userProcessByMapKey = new ArrayList<>();
+          userProcessByMapKey.add(userProcess);
+          userProcessGroupByAlphabet.put(firstLetter, userProcessByMapKey);
+        }
+        else {
+          userProcessGroupByAlphabet.get(firstLetter).add(userProcess);
+        }
+      }
+    }
+    return userProcessGroupByAlphabet.entrySet().stream()
+                                .sorted(Map.Entry.comparingByKey())
+                                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2) -> e2, LinkedHashMap::new));
+  }
+  
   private List<UserProcess> findDefaultProcessUserCanStart() {
     IvyComponentLogicCaller<List<UserProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
     List<UserProcess> processes =
@@ -426,5 +454,13 @@ public class ProcessWidgetBean implements Serializable, Converter {
       return 0;
     }
     return webStartables.size();
+  }
+
+  public Map<Character, List<UserProcess>> getUserProcessByAlphabet() {
+    return userProcessByAlphabet;
+  }
+
+  public void setUserProcessByAlphabet(Map<Character, List<UserProcess>> userProcessByAlphabet) {
+    this.userProcessByAlphabet = userProcessByAlphabet;
   }
 }
