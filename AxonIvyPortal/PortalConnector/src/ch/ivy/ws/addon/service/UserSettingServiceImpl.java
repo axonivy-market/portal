@@ -19,8 +19,6 @@ import ch.ivy.ws.addon.bo.UserSettingServiceResult;
 import ch.ivy.ws.addon.types.IvyEmailSetting;
 import ch.ivy.ws.addon.types.IvyUserSetting;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IEMailNotificationSettings;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserEMailNotificationSettings;
 import ch.ivyteam.util.date.Weekday;
@@ -189,15 +187,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
     setting.setCustomMailEnabled(useCustomMailVariable);
 
     IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings();
-    // if user settings is set to default, return default settings of the application
-    if (emailSettings.isUseApplicationDefault()) {
-      IEMailNotificationSettings defaultSettings = Ivy.wf().getApplication().getDefaultEMailNotifcationSettings();
-      if (defaultSettings != null) {
-        setEmailSettingFromEmail(setting, defaultSettings);
-      }
-    } else {
-      setEmailSettingFromUserEmail(setting, emailSettings);
-    }
+    setEmailSettingFromUserEmail(setting, emailSettings);
     return setting;
   }
 
@@ -216,18 +206,6 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
   private boolean isUsingNewCustomVariable(IUser iuser) {
     return iuser.getProperty(ENABLE_CUSTOM_MAIL) != null
         && Boolean.TRUE.toString().equalsIgnoreCase(iuser.getProperty(ENABLE_CUSTOM_MAIL));
-  }
-
-  private void setEmailSettingFromEmail(IvyEmailSetting setting, IEMailNotificationSettings defaultSettings) {
-    setting.setEmailNotificationDisabled(defaultSettings.isNotificationDisabled());
-    setting.setEmailSendOnNewWorkTasks(defaultSettings.isSendOnNewWorkTasks());
-    setting.setEmailSendDailyTaskSummaryOnMonday(defaultSettings.isSendDailyTaskSummaryOnDay(Weekday.MONDAY));
-    setting.setEmailSendDailyTaskSummaryOnTuesday(defaultSettings.isSendDailyTaskSummaryOnDay(Weekday.TUESDAY));
-    setting.setEmailSendDailyTaskSummaryOnWednesday(defaultSettings.isSendDailyTaskSummaryOnDay(Weekday.WEDNESDAY));
-    setting.setEmailSendDailyTaskSummaryOnThursday(defaultSettings.isSendDailyTaskSummaryOnDay(Weekday.THURSDAY));
-    setting.setEmailSendDailyTaskSummaryOnFriday(defaultSettings.isSendDailyTaskSummaryOnDay(Weekday.FRIDAY));
-    setting.setEmailSendDailyTaskSummaryOnSaturday(defaultSettings.isSendDailyTaskSummaryOnDay(Weekday.SATURDAY));
-    setting.setEmailSendDailyTaskSummaryOnSunday(defaultSettings.isSendDailyTaskSummaryOnDay(Weekday.SUNDAY));
   }
 
   private void setEmailSettingFromUserEmail(IvyEmailSetting setting, IUserEMailNotificationSettings emailSettings) {
