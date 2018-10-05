@@ -32,7 +32,7 @@ public class CaseStateFilter extends CaseFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE");
   }
 
   @Override

@@ -20,7 +20,7 @@ public class CaseCreatorFilter extends CaseFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/creator");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR");
   }
 
   @Override
