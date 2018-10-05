@@ -34,6 +34,7 @@ public class SearchProcessTest extends BaseTest {
     String processName = "Employee Leave Request";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
     assertEquals(processName, searchResultPage.getProcessResult(processName));
+    assertTrue(searchResultPage.isProcessGroupDisplay("E"));
     
     searchResultPage.startProcess(processName);
     TaskTemplatePage taskPage = new TaskTemplatePage();

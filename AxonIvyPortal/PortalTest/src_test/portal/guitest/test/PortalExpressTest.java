@@ -21,7 +21,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.ProcessWidgetPage;
-import portal.guitest.page.ProcessesPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
@@ -56,8 +55,9 @@ public class PortalExpressTest extends BaseTest{
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    ProcessesPage processesWidgetPage = mainMenuPage.selectProcessesMenu();
-    assertEquals(false, processesWidgetPage.hasCreateNewExpressWorkflowLink());
+    processWidget = mainMenuPage.selectProcessesMenu();
+    assertEquals(false, processWidget.hasCreateNewExpressWorkflowLink());
+    //run process to grant permission back to normal
     grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
