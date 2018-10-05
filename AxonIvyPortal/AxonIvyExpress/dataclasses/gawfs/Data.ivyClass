@@ -33,3 +33,5 @@ readyToExecute 'Flag to marked whether process is ready to execute or not' #fiel
 readyToExecute PERSISTENT #fieldModifier
 editFlag Boolean #field
 editFlag PERSISTENT #fieldModifier
+savedFlag Boolean #field
+savedFlag PERSISTENT #fieldModifier
