@@ -18,6 +18,7 @@ import ch.ivy.ws.addon.bo.UserSettingServiceResult;
 import ch.ivy.ws.addon.types.IvyEmailSetting;
 import ch.ivy.ws.addon.types.IvyUserSetting;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.security.IEMailNotificationSettings;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserEMailNotificationSettings;
 import ch.ivyteam.util.date.Weekday;
@@ -180,7 +181,11 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
                     }
 
                     IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings();
-                    setEmailSettingFromUserEmail(setting, emailSettings);
+                    if (emailSettings.isUseApplicationDefault()) {
+                      setEmailSettingFromUserEmail(setting, serverApp.getDefaultEMailNotifcationSettings());
+                    } else {
+                      setEmailSettingFromUserEmail(setting, emailSettings);
+                    }
                     settings.add(setting);
                   }
                 }
@@ -205,7 +210,7 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
     }
   }
   
-  private void setEmailSettingFromUserEmail(IvyEmailSetting setting, IUserEMailNotificationSettings emailSettings) {
+  private void setEmailSettingFromUserEmail(IvyEmailSetting setting, IEMailNotificationSettings emailSettings) {
     setting.setEmailNotificationDisabled(emailSettings.isNotificationDisabled());
     setting.setEmailSendOnNewWorkTasks(emailSettings.isSendOnNewWorkTasks());
     setting.setEmailSendDailyTaskSummaryOnMonday(emailSettings.isSendDailyTaskSummaryOnDay(Weekday.MONDAY));
