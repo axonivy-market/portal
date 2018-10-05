@@ -17,22 +17,22 @@
 
 		<ui:define name="caseListHeader">
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" styleClass="case-list-header-cell case-list-name-desc-header-cell" componentToBeUpdated=""
-				sortedField="NAME" sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/NAME')}" dataModel="#{caseView.dataModel}" />
+				sortedField="NAME" sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" dataModel="#{caseView.dataModel}" />
 
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="ID" sortable="true"
-				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}" dataModel="#{caseView.dataModel}" />
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" dataModel="#{caseView.dataModel}" />
 
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" styleClass="case-list-header-cell" componentToBeUpdated="" sortedField="CREATOR" sortable="true"
-				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" dataModel="#{caseView.dataModel}" />
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" dataModel="#{caseView.dataModel}" />
 
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="START_TIME"
-				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" dataModel="#{caseView.dataModel}" />
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATE')}" dataModel="#{caseView.dataModel}" />
 
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="END_TIME"
-				sortable="true" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" dataModel="#{caseView.dataModel}" />
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISH')}" dataModel="#{caseView.dataModel}" />
 
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" styleClass="case-list-header-cell TexAlCenter" componentToBeUpdated="" sortedField="STATE"
-				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" dataModel="#{caseView.dataModel}" />
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" dataModel="#{caseView.dataModel}" />
 
 			<!-- New field -->
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
