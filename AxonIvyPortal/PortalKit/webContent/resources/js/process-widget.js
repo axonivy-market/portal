@@ -1,9 +1,9 @@
 function ProcessWidget() {
-  
+
   function contain(s, keyword) {
     return s.indexOf(keyword) >= 0;
   }
-  
+
   return {
     clearSearchField : function() {
       $('.js-filter-process-widget-list-item').val('');
@@ -15,8 +15,8 @@ function ProcessWidget() {
         PF(widgetComponentVar).toggle();
       }
     },
-    
-    filter: function () {
+
+    filter : function() {
       var processItems = $('.js-process-start-list-item');
       $(processItems).show();
       $.each(processItems, function() {
@@ -27,7 +27,15 @@ function ProcessWidget() {
         }
       });
       
-      var noFoundProcesses = $('.js-no-found-processes'); 
+      var processAlphabetGroups = $('.js-process-indexing-group');
+      $(processAlphabetGroups).show();
+      $.each(processAlphabetGroups, function() {
+        if($(this).find('.js-process-start-list-item:visible').length === 0) {
+          $(this).hide();
+        }
+      });
+      
+      var noFoundProcesses = $('.js-no-found-processes');
       if (!$(processItems).is(":visible")) {
         $(noFoundProcesses).removeClass('u-display-none');
       } else {
@@ -35,7 +43,6 @@ function ProcessWidget() {
       }
     }
   }
-  
 }
 
 $(document).ready(function() {
