@@ -1,0 +1,4 @@
+co: name={FINISH} description={} changed={2018-10-05 06:22:22 CEST} changedby={ttthai} visualorder={0} guid={1664212246859A01} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16642188DCE8B4C9} datatype={} isdefault={false} langid={de} description={} validfrom={2018-10-05 04:39:43 CEST} validto={} changed={2018-10-05 04:39:57 CEST} changedby={ttthai} properties={} id={}
+val: guid={16642188FE78651C} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-10-05 04:39:41 CEST} validto={} changed={2018-10-05 04:39:57 CEST} changedby={ttthai} properties={} id={}
+val: guid={166421224698404D} datatype={} isdefault={true} langid={en} description={} validfrom={2018-10-05 04:32:57 CEST} validto={} changed={2018-10-05 04:39:57 CEST} changedby={ttthai} properties={} id={}

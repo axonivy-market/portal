@@ -11,11 +11,11 @@
         <p:panelGrid columns="2" styleClass="u-no-border" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}"/>
           <p:outputLabel id="case-name" value="#{data.remoteCase.name}"/>
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}"/>
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}"/>
           <p:outputLabel id="case-id" value="#{data.remoteCase.id}"/>
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}"/>
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}"/>
           <p:outputLabel id="case-creator" value="#{data.remoteCase.creatorFullName}"/>
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"/>
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}"/>
           <p:outputLabel id="case-state" value="#{caseBean.getState(data.remoteCase)}"/>
         </p:panelGrid>
         <br/>
@@ -29,19 +29,19 @@
           </p:column>
           <p:column width="20%" >
             <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
             </f:facet>
             <h:outputText value="#{data.remoteCase.id}" />
           </p:column>
           <p:column width="20%">
             <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
             </f:facet>
             <h:outputText value="#{data.remoteCase.creatorFullName}" />
           </p:column>
           <p:column>
             <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
             </f:facet>
             <h:outputText value="#{caseBean.getState(data.remoteCase)}" />
           </p:column>
