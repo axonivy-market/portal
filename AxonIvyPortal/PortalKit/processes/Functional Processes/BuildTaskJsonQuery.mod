@@ -67,14 +67,14 @@ if (in.isQueryForHomePage) { // in home page
 	in.jsonQuery = TaskQuery.create().where().activatorUserId().isNotNull().asJson();
 }</name>
         <nameStyle>158,7
-277,7
+287,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-By0 f5 200 146 816 156 -398 -72 #rect
+By0 f5 184 146 848 156 -415 -72 #rect
 By0 f5 @|IBIcon #fIcon
-By0 f6 200 224 82 224 #arcP
+By0 f6 184 224 82 224 #arcP
 By0 f7 inParamDecl '<java.lang.Boolean isQueryForHomePage> param;' #txt
 By0 f7 inParamTable 'out.isQueryForHomePage=param.isQueryForHomePage;
 ' #txt
