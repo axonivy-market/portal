@@ -19,7 +19,6 @@ import ch.ivy.ws.addon.bo.UserSettingServiceResult;
 import ch.ivy.ws.addon.types.IvyEmailSetting;
 import ch.ivy.ws.addon.types.IvyUserSetting;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IEMailNotificationSettings;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserEMailNotificationSettings;
@@ -191,10 +190,8 @@ public class UserSettingServiceImpl extends AbstractService implements IUserSett
     IUserEMailNotificationSettings emailSettings = iuser.getEMailNotificationSettings();
     // if user settings is set to default, return default settings of the application
     if (emailSettings.isUseApplicationDefault()) {
-      IEMailNotificationSettings defaultSettings = Ivy.wf().getApplication().getDefaultEMailNotifcationSettings();
-      if (defaultSettings != null) {
-        setEmailSettingFromEmail(setting, defaultSettings);
-      }
+      IEMailNotificationSettings defaultSettings = serverApp.getDefaultEMailNotifcationSettings();
+      setEmailSettingFromEmail(setting, defaultSettings);
     } else {
       setEmailSettingFromUserEmail(setting, emailSettings);
     }
