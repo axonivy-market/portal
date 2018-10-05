@@ -753,12 +753,12 @@
 				Refer to <link linkend="axonivyportal.installation.basicinstallation.addlibraries" endterm="axonivyportal.installation.basicinstallation.addlibraries.title" />.
 			</para>
 			<para>
-				If you overrode task widget's data query, follow these steps to migrate
+				If you overrode task widget's data query described at <link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />, 
+				follow these steps to migrate
 				<itemizedlist>
 					<listitem>
 						Add new start method with signature <code>buildTaskJsonQuery(Boolean)</code> in your overridden file of BuildTaskJsonQuery.mod
-						(refer original file BuildTaskJsonQuery.mod). This is related to feature customizing task query only for Home page and described at 
-						<link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />.
+						(refer to original file BuildTaskJsonQuery.mod).
 					</listitem>
 					<listitem>
 						If you customized <code>TaskLazyDataModel</code>, change <code>withStartSignature("buildTaskJsonQuery()</code> to <code>withStartSignature("buildTaskJsonQuery(Boolean)").withParam("isQueryForHomePage", compactMode)</code> 
