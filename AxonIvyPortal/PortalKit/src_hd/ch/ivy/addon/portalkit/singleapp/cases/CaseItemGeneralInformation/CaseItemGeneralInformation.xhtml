@@ -13,11 +13,11 @@
       <div class="Separator" />
       <h:panelGrid columns="2" columnClasses="case-details-data-1st-column, case-details-data-2nd-column"
         rowClasses="case-details-row-space">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
         <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{data.internalCase.creatorUser.fullName}"
           username="#{data.internalCase.creatorUserName}" />
 
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATE')}" />
         <h:outputText id="case-start-time" value="#{data.internalCase.startTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
@@ -37,7 +37,7 @@
       <div class="grid-item-content-list">
         <div class="grid-item-content-list-item">
           <span class="grid-item-content-list-item-left"> <h:outputText
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" />
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
           </span> <span class="grid-item-content-list-item-right"> <h:outputText id="case-creator-display-name"
               value="#{data.internalCase.creatorUser.displayName}" />
           </span>
