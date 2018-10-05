@@ -753,9 +753,18 @@
 				Refer to <link linkend="axonivyportal.installation.basicinstallation.addlibraries" endterm="axonivyportal.installation.basicinstallation.addlibraries.title" />.
 			</para>
 			<para>
-				If you overrode task widget's data query, add new start method with signature <code>buildTaskJsonQuery(Boolean)</code> in your overridden file of BuildTaskJsonQuery.mod
-				to fix the compile error. This is related to feature customizing task query only for Home page and described at 
-				<link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />
+				If you overrode task widget's data query, follow these steps to migrate
+				<itemizedlist>
+					<listitem>
+						Add new start method with signature <code>buildTaskJsonQuery(Boolean)</code> in your overridden file of BuildTaskJsonQuery.mod
+						(refer original file BuildTaskJsonQuery.mod). This is related to feature customizing task query only for Home page and described at 
+						<link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />.
+					</listitem>
+					<listitem>
+						If you customized <code>TaskLazyDataModel</code>, change <code>withStartSignature("buildTaskJsonQuery()</code> to <code>withStartSignature("buildTaskJsonQuery(Boolean)").withParam("isQueryForHomePage", compactMode)</code> 
+						in your customized <code>TaskLazyDataModel</code> class.
+					</listitem>
+				</itemizedlist>
 			</para>
 			<para>
 				There are some changes (DefaultApplicationHomePage, DefaultLoginPage, GlobalSearch) in PortalStart process of Portal Template. If you have customized this process in your project,
