@@ -58,11 +58,13 @@ ew0 @Alternative f35 '' #zField
 ew0 @PushWFArc f36 '' #zField
 ew0 @TaskSwitchSimple f37 '' #zField
 ew0 @TkArc f38 '' #zField
-ew0 @PushWFArc f10 '' #zField
 ew0 @PushWFArc f40 '' #zField
 ew0 @GridStep f1 '' #zField
 ew0 @PushWFArc f39 '' #zField
 ew0 @PushWFArc f33 '' #zField
+ew0 @GridStep f42 '' #zField
+ew0 @PushWFArc f49 '' #zField
+ew0 @PushWFArc f10 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -229,6 +231,7 @@ ew0 f16 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f16 actionTable 'out=in;
 out.backFlag=false;
+out.savedFlag=true;
 ' #txt
 ew0 f16 type gawfs.Data #txt
 ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -520,12 +523,6 @@ ew0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f38 1888 208 1888 143 #arcP
 ew0 f38 0 0.4461538461538462 -10 0 #arcLabel
-ew0 f10 expr data #txt
-ew0 f10 outCond ivp=="TaskA.ivp" #txt
-ew0 f10 1888 113 504 208 #arcP
-ew0 f10 1 1888 64 #addKink
-ew0 f10 2 504 64 #addKink
-ew0 f10 1 0.4647529069767442 0 0 #arcLabel
 ew0 f40 expr in #txt
 ew0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -557,6 +554,30 @@ ew0 f39 expr out #txt
 ew0 f39 95 352 152 352 #arcP
 ew0 f33 expr out #txt
 ew0 f33 264 352 312 352 #arcP
+ew0 f42 actionDecl 'gawfs.Data out;
+' #txt
+ew0 f42 actionTable 'out=in;
+' #txt
+ew0 f42 actionCode 'in.savedFlag = true;' #txt
+ew0 f42 type gawfs.Data #txt
+ew0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set saved flag</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f42 1480 50 112 44 -38 -8 #rect
+ew0 f42 @|StepIcon #fIcon
+ew0 f49 expr data #txt
+ew0 f49 outCond ivp=="TaskA.ivp" #txt
+ew0 f49 1888 113 1592 72 #arcP
+ew0 f49 1 1888 72 #addKink
+ew0 f49 1 0.4647529069767442 0 0 #arcLabel
+ew0 f10 expr out #txt
+ew0 f10 1480 72 504 208 #arcP
+ew0 f10 1 504 72 #addKink
+ew0 f10 1 0.4647529069767442 0 0 #arcLabel
 >Proto ew0 .type gawfs.Data #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -682,14 +703,16 @@ ew0 f9 mainOut f36 tail #connect
 ew0 f36 head f35 in #connect
 ew0 f35 out f38 tail #connect
 ew0 f38 head f37 in #connect
-ew0 f37 out f10 tail #connect
-ew0 f10 head f13 in #connect
 ew0 f35 out f40 tail #connect
 ew0 f40 head f32 mainIn #connect
 ew0 f21 mainOut f39 tail #connect
 ew0 f39 head f1 mainIn #connect
 ew0 f1 mainOut f33 tail #connect
 ew0 f33 head S10 g0 #connect
+ew0 f37 out f49 tail #connect
+ew0 f49 head f42 mainIn #connect
+ew0 f42 mainOut f10 tail #connect
+ew0 f10 head f13 in #connect
 Ct0 f1 head g1 m #connect
 Ct0 f25 mainOut f1 tail #connect
 Ct0 g0 m f0 tail #connect

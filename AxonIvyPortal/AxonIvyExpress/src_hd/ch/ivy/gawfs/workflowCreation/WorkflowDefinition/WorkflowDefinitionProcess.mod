@@ -809,7 +809,7 @@ Fs0 f62 actionCode 'import org.apache.commons.codec.binary.StringUtils;
 import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.ExpressProcessUtils;
 ExpressProcessUtils utils = new ExpressProcessUtils();
-if(in.data.editFlag) {
+if(in.data.editFlag || in.data.savedFlag) {
 	in.isValidated = !(!StringUtils.equals(in.originalProcessName, in.data.processName) && in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));
 }
 else{
