@@ -16,11 +16,11 @@
       <p:panelGrid id="general-information-view" columns="4" styleClass="u-no-border"
         columnClasses="case-status-label-column, ,case-status-label-column," layout="grid">
 
-        <h:outputLabel for="case-id" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/caseId')}:" />
+        <h:outputLabel for="case-id" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}:" />
         <h:outputText id="case-id" value="##{data.caseInfo.id}" />
 
         <h:outputLabel for="created"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}:" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATE')}:" />
         <h:outputText id="created" value="#{data.caseInfo.startTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
@@ -39,7 +39,7 @@
         </h:outputText>
 
         <h:outputLabel for="creator"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}:" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}:" />
         <h:panelGroup>
           <p:commandLink id="creator" value="#{data.creatorName}" styleClass="fa fa-info-circle" />
           <pe:tooltip for="creator" atPosition="bottom right" showEvent="click" hideEvent="focusout"
