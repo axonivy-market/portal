@@ -36,7 +36,6 @@ Fs0 @PushWFArc f24 '' #zField
 Fs0 @RichDialogMethodStart f25 '' #zField
 Fs0 @RichDialogEnd f30 '' #zField
 Fs0 @GridStep f28 '' #zField
-Fs0 @PushWFArc f32 '' #zField
 Fs0 @PushWFArc f31 '' #zField
 Fs0 @RichDialogMethodStart f17 '' #zField
 Fs0 @RichDialogProcessEnd f18 '' #zField
@@ -84,6 +83,11 @@ Fs0 @GridStep f66 '' #zField
 Fs0 @PushWFArc f67 '' #zField
 Fs0 @RichDialogProcessEnd f68 '' #zField
 Fs0 @PushWFArc f69 '' #zField
+Fs0 @Alternative f70 '' #zField
+Fs0 @PushWFArc f71 '' #zField
+Fs0 @GridStep f72 '' #zField
+Fs0 @PushWFArc f73 '' #zField
+Fs0 @PushWFArc f32 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -146,10 +150,10 @@ import ch.ivy.gawfs.Helper;
 import gawfs.TaskDef;
 import ch.ivyteam.ivy.security.IUser;
 
-
-ivy.task.setName(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep"));
-ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskDescription"));
-
+if(!in.data.savedFlag) {
+	ivy.task.setName(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep"));
+	ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/WorkflowProperties/TaskDescription"));
+}
 
 if(in.data.definedTasks.size()<1){
 	TaskDef task = new TaskDef();
@@ -395,11 +399,11 @@ Fs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f25 83 635 26 26 -18 15 #rect
+Fs0 f25 83 595 26 26 -18 15 #rect
 Fs0 f25 @|RichDialogMethodStartIcon #fIcon
 Fs0 f30 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f30 guid 15AF77AA5D3C3910 #txt
-Fs0 f30 435 635 26 26 0 12 #rect
+Fs0 f30 499 675 26 26 0 12 #rect
 Fs0 f30 @|RichDialogEndIcon #fIcon
 Fs0 f28 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
@@ -415,12 +419,11 @@ Fs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f28 192 626 128 44 -54 -8 #rect
+Fs0 f28 248 666 128 44 -54 -8 #rect
 Fs0 f28 @|StepIcon #fIcon
-Fs0 f32 expr out #txt
-Fs0 f32 109 648 192 648 #arcP
 Fs0 f31 expr out #txt
-Fs0 f31 320 648 435 648 #arcP
+Fs0 f31 376 688 499 688 #arcP
+Fs0 f31 0 0.7464020996890814 0 0 #arcLabel
 Fs0 f17 guid 1628E5D94C6FDB31 #txt
 Fs0 f17 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f17 method addAssignee() #txt
@@ -439,10 +442,10 @@ Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f17 83 819 26 26 -40 15 #rect
+Fs0 f17 83 827 26 26 -40 15 #rect
 Fs0 f17 @|RichDialogMethodStartIcon #fIcon
 Fs0 f18 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f18 659 819 26 26 0 12 #rect
+Fs0 f18 659 827 26 26 0 12 #rect
 Fs0 f18 @|RichDialogProcessEndIcon #fIcon
 Fs0 f36 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -454,7 +457,7 @@ Fs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f36 360 816 32 32 -27 -37 #rect
+Fs0 f36 360 824 32 32 -27 -37 #rect
 Fs0 f36 @|AlternativeIcon #fIcon
 Fs0 f38 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
@@ -472,7 +475,7 @@ Fs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f38 472 810 112 44 -38 -8 #rect
+Fs0 f38 472 818 112 44 -38 -8 #rect
 Fs0 f38 @|StepIcon #fIcon
 Fs0 f39 expr in #txt
 Fs0 f39 outCond in.isValidAssignee #txt
@@ -485,10 +488,10 @@ Fs0 f39 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f39 392 832 472 832 #arcP
+Fs0 f39 392 840 472 840 #arcP
 Fs0 f39 0 0.425 0 -11 #arcLabel
 Fs0 f21 expr out #txt
-Fs0 f21 584 832 659 832 #arcP
+Fs0 f21 584 840 659 840 #arcP
 Fs0 f40 expr in #txt
 Fs0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -499,7 +502,7 @@ Fs0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f40 376 848 672 845 #arcP
+Fs0 f40 376 856 672 853 #arcP
 Fs0 f40 1 376 896 #addKink
 Fs0 f40 2 672 896 #addKink
 Fs0 f40 1 0.17229729729729729 0 -10 #arcLabel
@@ -528,12 +531,12 @@ Fs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f34 192 810 112 44 -22 -8 #rect
+Fs0 f34 192 818 112 44 -22 -8 #rect
 Fs0 f34 @|StepIcon #fIcon
 Fs0 f35 expr out #txt
-Fs0 f35 109 832 192 832 #arcP
+Fs0 f35 109 840 192 840 #arcP
 Fs0 f37 expr out #txt
-Fs0 f37 304 832 360 832 #arcP
+Fs0 f37 304 840 360 840 #arcP
 Fs0 f41 guid 1628EC1A853E57B8 #txt
 Fs0 f41 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f41 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
@@ -554,13 +557,13 @@ Fs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f41 83 723 26 26 -59 15 #rect
+Fs0 f41 83 731 26 26 -59 15 #rect
 Fs0 f41 @|RichDialogProcessStartIcon #fIcon
 Fs0 f42 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f42 435 723 26 26 0 12 #rect
+Fs0 f42 435 731 26 26 0 12 #rect
 Fs0 f42 @|RichDialogProcessEndIcon #fIcon
 Fs0 f43 expr out #txt
-Fs0 f43 109 736 435 736 #arcP
+Fs0 f43 109 744 435 744 #arcP
 Fs0 f27 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
 Fs0 f27 actionTable 'out=in;
@@ -867,6 +870,46 @@ Fs0 f68 1379 659 26 26 0 12 #rect
 Fs0 f68 @|RichDialogProcessEndIcon #fIcon
 Fs0 f69 expr out #txt
 Fs0 f69 1280 672 1379 672 #arcP
+Fs0 f70 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Is saved task?</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f70 176 592 32 32 -36 -42 #rect
+Fs0 f70 @|AlternativeIcon #fIcon
+Fs0 f71 expr out #txt
+Fs0 f71 109 608 176 608 #arcP
+Fs0 f72 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
+' #txt
+Fs0 f72 actionTable 'out=in;
+' #txt
+Fs0 f72 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+TaskUtils.resetTask(ivy.task);
+
+PortalNavigator navigator = new PortalNavigator();
+navigator.navigateToPortalEndPage();' #txt
+Fs0 f72 security system #txt
+Fs0 f72 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Reset task and navigate back</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f72 248 586 176 44 -80 -8 #rect
+Fs0 f72 @|StepIcon #fIcon
+Fs0 f73 expr in #txt
+Fs0 f73 outCond in.data.savedFlag #txt
+Fs0 f73 208 608 248 608 #arcP
+Fs0 f32 expr in #txt
+Fs0 f32 192 624 248 688 #arcP
+Fs0 f32 1 192 688 #addKink
+Fs0 f32 1 0.19396467700664802 0 0 #arcLabel
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -883,8 +926,6 @@ Fs0 f13 mainOut f15 tail #connect
 Fs0 f15 head f1 mainIn #connect
 Fs0 f19 mainOut f24 tail #connect
 Fs0 f24 head f23 mainIn #connect
-Fs0 f25 mainOut f32 tail #connect
-Fs0 f32 head f28 mainIn #connect
 Fs0 f28 mainOut f31 tail #connect
 Fs0 f31 head f30 mainIn #connect
 Fs0 f36 out f39 tail #connect
@@ -935,3 +976,9 @@ Fs0 f64 out f67 tail #connect
 Fs0 f67 head f66 mainIn #connect
 Fs0 f66 mainOut f69 tail #connect
 Fs0 f69 head f68 mainIn #connect
+Fs0 f25 mainOut f71 tail #connect
+Fs0 f71 head f70 in #connect
+Fs0 f70 out f73 tail #connect
+Fs0 f73 head f72 mainIn #connect
+Fs0 f70 out f32 tail #connect
+Fs0 f32 head f28 mainIn #connect
