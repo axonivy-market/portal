@@ -19,7 +19,7 @@ public class ProcessWidgetPage extends TemplatePage {
   private String processWidgetId;
 
   public ProcessWidgetPage() {
-    this("process-widget");
+    this("process-widget:process-search:non-ajax-keyword-filter");
   }
   
   public ProcessWidgetPage(String processWidgetId) {
