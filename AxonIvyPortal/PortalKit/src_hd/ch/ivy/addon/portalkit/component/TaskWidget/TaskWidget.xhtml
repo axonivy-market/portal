@@ -196,10 +196,11 @@
           <ui:include src="CompactSortMenu.xhtml" />
         </h:panelGroup>
         <h:panelGroup rendered="#{!data.dataModel.compactMode}">
+          <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
           <cc:renderFacet name="taskListHeader" />
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnsConfiguration
             updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
-            rendered="#{!data.dataModel.compactMode}" dataModel="#{data.dataModel}" />
+            dataModel="#{data.dataModel}" />
         </h:panelGroup>
       </h:panelGroup>
 
