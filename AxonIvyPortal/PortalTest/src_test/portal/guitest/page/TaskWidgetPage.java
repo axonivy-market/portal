@@ -44,6 +44,11 @@ public class TaskWidgetPage extends TemplatePage {
     return "//*[contains(@id,'task-view')]";
   }
 
+  @Override
+  protected long getTimeOutForLocator() {
+    return 150L;
+  }
+
   public void expand() {
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     fullModeButton.click();
