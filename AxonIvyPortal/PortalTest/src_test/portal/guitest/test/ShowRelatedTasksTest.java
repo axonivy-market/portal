@@ -3,6 +3,7 @@ package portal.guitest.test;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 
@@ -115,6 +116,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
   
   @Test
+  @Ignore
   public void testShowRelatedTasksWhenClickingDoneTask() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
