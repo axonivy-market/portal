@@ -131,7 +131,6 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
-      initColumnsConfiguration();
       if (isRelatedTaskDisplayed) {
         if (!queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
           queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
@@ -737,8 +736,10 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
 
   public void initColumnsConfiguration() {
-    allColumns.addAll(getDefaultColumns());
-    initSelectedColumns();
+    if (CollectionUtils.isEmpty(allColumns)) {
+      allColumns.addAll(getDefaultColumns());
+      initSelectedColumns();
+    }
   }
 
   protected void initSelectedColumns() {
