@@ -108,7 +108,7 @@ public class MainMenuPage extends TemplatePage {
   }
   
   private void waitForProcessesPageAfterSelectProcessesCategory() {
-    waitForElementDisplayed(By.id("process-widget:header"), true);
+    waitForElementDisplayed(By.id("process-widget:process-search:non-ajax-keyword-filter"), true);
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
