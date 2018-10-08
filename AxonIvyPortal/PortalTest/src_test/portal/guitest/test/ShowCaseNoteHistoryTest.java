@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 
@@ -21,6 +22,7 @@ import portal.guitest.page.TaskWidgetPage;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+@Ignore
 public class ShowCaseNoteHistoryTest extends BaseTest {
     
     private CaseDetailsPage detailsPage;
