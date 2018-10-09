@@ -42,7 +42,6 @@
             <p:selectManyCheckbox id="selected-custom-val" value="#{cc.attrs.selectedValues}" layout="grid" columns="1">
               <f:selectItems value="#{data.tempSelectedCustomValues}" var="customVal"
                 itemValue="#{customVal}" itemLabel="#{customVal}" />
-              <p:ajax update="#{cc.attrs.updateComponents}" listener="#{cc.attrs.updateListener}" />
             </p:selectManyCheckbox>
 
           </h:panelGroup>
