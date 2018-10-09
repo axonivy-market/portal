@@ -44,6 +44,15 @@ public class ProcessWidgetPage extends TemplatePage {
     return processItemElement;
   }
 
+  public boolean isProcessDisplay(String processName) {
+    return getProcess(processName) !=null;
+  }
+  
+  public boolean isProcessGroupDisplay(String processGroupCharacter) {
+    List<WebElement> indexGroup = findListElementsByXpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']");
+    return indexGroup.stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
+  }
+  
   public String getProcessNameFromFavoriteProcessList(int index) {
     String id = index + ":process-item-form:process-name";
     WebElement favoriteProcessList = findElementById("process-widget:process-list");
@@ -161,6 +170,16 @@ public class ProcessWidgetPage extends TemplatePage {
     liveSearchTextField = findElementById(searchInputField);
   }
 
+  public void enterSearchKeyword(String keyword) {
+    waitForElementDisplayed(By.id(searchInputField), true, DEFAULT_TIMEOUT);
+    loadLiveSearchTextField();
+    type(liveSearchTextField, keyword);
+  }
+  
+  public boolean hasCreateNewExpressWorkflowLink() {
+    return isElementPresent(By.id("process-widget:axon-express-form:create-express-workflow"));
+  }
+  
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
     driver.manage().window().setSize(new Dimension(2000, 1000));
     WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");

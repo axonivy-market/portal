@@ -1974,7 +1974,7 @@ a.case-details-document-add-link {
 }
 
 .process-start-list {
-  margin: 30px 0;
+  margin: 15px 0 10px 0;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -2145,6 +2145,21 @@ a.case-details-document-add-link {
 .process-start-list-item:hover ,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-action {
   opacity: 1;
+}
+
+.process-widget .process-group {
+  border: none;
+  display: block;
+  width: 100%;
+  padding: .6em 0;
+}
+
+.process-widget .process-group .ui-fieldset-toggler.ui-icon-minusthick:before {
+  content: "\f0d7";
+}
+
+.process-widget .process-group .ui-fieldset-toggler.ui-icon-plusthick:before {
+  content: "\f0da";
 }
 
 .process-widget .favorite-process-title {

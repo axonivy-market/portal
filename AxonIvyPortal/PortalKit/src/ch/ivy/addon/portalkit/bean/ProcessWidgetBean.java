@@ -1,8 +1,13 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Callable;
@@ -15,6 +20,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.context.RequestContext;
 
@@ -54,6 +60,8 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private List<RemoteWebStartable> webStartables;
   private String processWidgetComnponentId;
   private IProcessStart createExpressWorkflowProcessStart;
+  private Map<String, List<UserProcess>> userProcessByAlphabet;
+  private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
 
   @PostConstruct
   public void init() {
@@ -68,7 +76,9 @@ public class ProcessWidgetBean implements Serializable, Converter {
       defaultUserProcesses = findDefaultProcessUserCanStart();
     }
     userProcesses = findUserProcessBaseOnUIMode(compactMode);
-
+    if(!compactMode) {
+        userProcessByAlphabet = groupUserProcessByAlphabetIndex(userProcesses);
+    }
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     try {
       createExpressWorkflowProcessStart = collector.findCreateExpressWorlflowProcess();
@@ -76,7 +86,49 @@ public class ProcessWidgetBean implements Serializable, Converter {
       Ivy.log().error(e);
     }
   }
+  
+  private Map<String, List<UserProcess>> groupUserProcessByAlphabetIndex(List<UserProcess> userProcesses) {
+    Map<String, List<UserProcess>> userProcessGroupByAlphabet = new HashMap<>();
+    //Follow Oracle document about regex for punctual character
+    //https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+    String punctualRegex = "\\p{Punct}";
+    
+    for(UserProcess userProcess : userProcesses) {
+      String processNameUpperCase = StringUtils.trim(userProcess.getProcessName()).toUpperCase();
+      if(StringUtils.isNotEmpty(processNameUpperCase)) {
+        String firstLetter = processNameUpperCase.substring(0,1);
+        if(firstLetter.matches(punctualRegex)) {
+          addOrUpdateUserProcessGroupByKey(userProcessGroupByAlphabet, userProcess, SPECIAL_CHARACTER_KEY);
+        }
+        else {
+          addOrUpdateUserProcessGroupByKey(userProcessGroupByAlphabet, userProcess, firstLetter);
+        }
+      }
+    }
+    List<UserProcess> userProcessOfSpecialCharacterGroup = userProcessGroupByAlphabet.remove(SPECIAL_CHARACTER_KEY);
+    
+    Collator collator = Collator.getInstance(Locale.GERMAN);
+    userProcessGroupByAlphabet = userProcessGroupByAlphabet.entrySet().stream()
+                                .sorted(Map.Entry.comparingByKey((String s1, String s2) -> collator.compare(s1, s2)))
+                                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2) -> e2, LinkedHashMap::new));
+    if(!CollectionUtils.isEmpty(userProcessOfSpecialCharacterGroup)) {
+      userProcessGroupByAlphabet.put(SPECIAL_CHARACTER_KEY, userProcessOfSpecialCharacterGroup);
+    }
+    return userProcessGroupByAlphabet;
+  }
 
+  private void addOrUpdateUserProcessGroupByKey(Map<String, List<UserProcess>> userProcessGroupByAlphabet,
+      UserProcess userProcess, String key) {
+    if(!userProcessGroupByAlphabet.containsKey(key)) {
+      List<UserProcess> userProcessByMapKey = new ArrayList<>();
+      
+      userProcessByMapKey.add(userProcess);
+      userProcessGroupByAlphabet.put(key, userProcessByMapKey);
+    }
+    else {
+      userProcessGroupByAlphabet.get(key).add(userProcess);
+    }
+  }
   private List<UserProcess> findDefaultProcessUserCanStart() {
     IvyComponentLogicCaller<List<UserProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
     List<UserProcess> processes =
@@ -406,6 +458,14 @@ public class ProcessWidgetBean implements Serializable, Converter {
     }
     UserProcess process = (UserProcess) value;
     return process.getId() == null ? "" : process.getId().toString();
+  }
+  
+  public Map<String, List<UserProcess>> getUserProcessByAlphabet() {
+    return userProcessByAlphabet;
+  }
+
+  public void setUserProcessByAlphabet(Map<String, List<UserProcess>> userProcessByAlphabet) {
+    this.userProcessByAlphabet = userProcessByAlphabet;
   }
 
 }

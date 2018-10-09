@@ -26,6 +26,18 @@ function ProcessWidget() {
           $(this).hide();
         }
       });
+	  
+	  var processAlphabetGroups = $('.js-process-index-group');
+      $(processAlphabetGroups).show();
+      $.each(processAlphabetGroups, function() {
+        if($(this).find('.ui-icon-plusthick').length) {
+          $(this).find('div.ui-fieldset-content').show();
+          $(this).find('.ui-icon-plusthick').toggleClass('ui-icon-plusthick ui-icon-minusthick');
+        }
+        if($(this).find('.js-process-start-list-item:visible').length === 0) {
+          $(this).hide();
+        }
+      });
     }
   }
   
