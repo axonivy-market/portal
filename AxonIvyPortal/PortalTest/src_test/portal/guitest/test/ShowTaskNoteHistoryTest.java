@@ -3,6 +3,7 @@ package portal.guitest.test;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
@@ -19,6 +20,7 @@ import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
+@Ignore
 public class ShowTaskNoteHistoryTest extends BaseTest {
     
     private HomePage homePage;
