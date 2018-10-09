@@ -161,7 +161,7 @@
 				</h:form>
 			</ui:fragment>
 			<ui:fragment id="full-process-list" rendered="#{!processWidgetBean.compactMode}">
-				<p:fieldset id="express-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}" toggleable="true" styleClass="process-group js-process-indexing-group" rendered="#{not empty processWidgetBean.expressProcesses}">
+				<p:fieldset id="express-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}" toggleable="true" styleClass="process-group js-process-index-group" rendered="#{not empty processWidgetBean.expressProcesses}">
                   <h:panelGroup id="express-process-container" layout="block" styleClass="process-start-list">
                     <ui:repeat var="process" value="#{processWidgetBean.expressProcesses}">
                       <h:form id="express-process-item-form"
@@ -185,7 +185,7 @@
                   </h:panelGroup>
                </p:fieldset>
                <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.userProcessByAlphabet.entrySet().toArray()}">
-					<p:fieldset id="alphabet-process-index-fieldset" legend="#{entryProcess.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}" toggleable="true" styleClass="process-group js-process-indexing-group">
+					<p:fieldset id="alphabet-process-index-fieldset" legend="#{entryProcess.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}" toggleable="true" styleClass="process-group js-process-index-group">
 	                  <h:panelGroup id="none-express-process-container" layout="block" styleClass="process-start-list">
 	                  <ui:repeat id="none-express-processes" varStatus="status" var="process" value="#{entryProcess.value}">
 						<c:set var="isExternalProcess"
