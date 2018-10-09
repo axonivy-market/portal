@@ -1,10 +1,12 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -115,8 +117,9 @@ public class ProcessWidgetBean implements Serializable, Converter {
     }
     List<UserProcess> userProcessOfSpecialCharacterGroup = userProcessGroupByAlphabet.remove(SPECIAL_CHARACTER_KEY);
     
+    Collator collator = Collator.getInstance(Locale.GERMAN);
     userProcessGroupByAlphabet = userProcessGroupByAlphabet.entrySet().stream()
-                                .sorted(Map.Entry.comparingByKey())
+                                .sorted(Map.Entry.comparingByKey((String s1, String s2) -> collator.compare(s1, s2)))
                                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2) -> e2, LinkedHashMap::new));
     if(!CollectionUtils.isEmpty(userProcessOfSpecialCharacterGroup)) {
       userProcessGroupByAlphabet.put(SPECIAL_CHARACTER_KEY, userProcessOfSpecialCharacterGroup);
@@ -124,6 +127,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     return userProcessGroupByAlphabet;
   }
 
+  
   private void addOrUpdateUserProcessGroupByKey(Map<String, List<UserProcess>> userProcessGroupByAlphabet,
       UserProcess userProcess, String key) {
     if(!userProcessGroupByAlphabet.containsKey(key)) {
