@@ -27,7 +27,7 @@ function ProcessWidget() {
         }
       });
       
-      var processAlphabetGroups = $('.js-process-indexing-group');
+      var processAlphabetGroups = $('.js-process-index-group');
       $(processAlphabetGroups).show();
       $.each(processAlphabetGroups, function() {
         if($(this).find('.ui-icon-plusthick').length) {
