@@ -1,0 +1,4 @@
+co: name={allCheckboxSelected} description={} changed={2018-10-09 12:16:48 CEST} changedby={tdnguyen} visualorder={0} guid={1665853F35FC2251} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16658543F8D407D5} datatype={} isdefault={false} langid={de} description={} validfrom={2018-10-09 12:16:41 CEST} validto={} changed={2018-10-09 12:16:48 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={1665854405F9FB1E} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-10-09 12:16:38 CEST} validto={} changed={2018-10-09 12:16:48 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={1665853F37132E7E} datatype={} isdefault={true} langid={en} description={} validfrom={2018-10-09 12:16:28 CEST} validto={} changed={2018-10-09 12:16:28 CEST} changedby={tdnguyen} properties={} id={}
