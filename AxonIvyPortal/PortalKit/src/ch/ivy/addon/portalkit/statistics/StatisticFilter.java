@@ -40,18 +40,22 @@ public class StatisticFilter {
   @JsonIgnore
   private List<String> caseCategories = new ArrayList<>();
   private List<String> selectedCaseCategories = new ArrayList<>();
+  private boolean isAllCategoriesSelected = true;
 
   @JsonIgnore
   private List<Object> roles = new ArrayList<>();
   private List<String> selectedRoles = new ArrayList<>();
+  private boolean isAllRolesSelected = true;
 
   @JsonIgnore
   private List<CaseState> caseStates = new ArrayList<>();
   private List<CaseState> selectedCaseStates = new ArrayList<>();
+  private boolean isAllCaseStatesSelected = true;
   
   @JsonIgnore
   private List<WorkflowPriority> taskPriorities = new ArrayList<>();
   private List<WorkflowPriority> selectedTaskPriorities = new ArrayList<>();
+  private boolean isAllTaskPrioritiesSelected = true;
 
   @JsonIgnore
   private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
@@ -265,5 +269,44 @@ public class StatisticFilter {
   public void setSelectedCustomVarCharFields5(List<String> selectedCustomVarCharFields5) {
     this.selectedCustomVarCharFields5 = selectedCustomVarCharFields5;
   }
+
+  public boolean getIsAllCategoriesSelected()
+  {
+    return isAllCategoriesSelected;
+  }
+
+  public void setIsAllCategoriesSelected(boolean isAllCategoriesSelected)
+  {
+    this.isAllCategoriesSelected = isAllCategoriesSelected;
+  }
+
+  public boolean getIsAllRolesSelected()
+  {
+    return isAllRolesSelected;
+  }
+
+  public void setIsAllRolesSelected(boolean isAllRolesSelected)
+  {
+    this.isAllRolesSelected = isAllRolesSelected;
+  }
   
+  public boolean getIsAllCaseStatesSelected()
+  {
+    return isAllCaseStatesSelected;
+  }
+
+  public void setIsAllCaseStatesSelected(boolean isAllCaseStatesSelected)
+  {
+    this.isAllCaseStatesSelected = isAllCaseStatesSelected;
+  }
+  
+  public boolean getIsAllTaskPrioritiesSelected()
+  {
+    return isAllTaskPrioritiesSelected;
+  }
+
+  public void setIsAllTaskPrioritiesSelected(boolean isAllTaskPrioritiesSelected)
+  {
+    this.isAllTaskPrioritiesSelected = isAllTaskPrioritiesSelected;
+  }
 }
