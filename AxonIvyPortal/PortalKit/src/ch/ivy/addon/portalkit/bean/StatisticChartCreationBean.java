@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.DonutChartModel;
 
+import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
@@ -20,6 +21,9 @@ import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivy.ws.addon.ExpiryStatistic;
 import ch.ivy.ws.addon.PortalCaseCustomVarField;
 import ch.ivy.ws.addon.PriorityStatistic;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @ManagedBean
 @ViewScoped
@@ -36,6 +40,7 @@ public class StatisticChartCreationBean implements Serializable {
   private List<String> availableCustomValues;
   StatisticService statisticService = new StatisticService();
 
+  public static final int CASE_CATEGORIES_TYPE = 0;
   public StatisticChartCreationBean() {
     updateChartModels(new StatisticFilter());
   }
@@ -56,6 +61,78 @@ public class StatisticChartCreationBean implements Serializable {
     updateElapsedTimeByCaseCategory(filter);
     updateCaseByFinishedTaskModel(filter);
     updateCaseByFinishedTimeModel(filter);
+  }
+
+  public void updateCaseCategoriesCheckboxes(StatisticFilter filter) {
+    List<String> selectedCaseCategories = filter.getSelectedCaseCategories();
+    if (filter.getIsAllCategoriesSelected()) {
+      for (String category : filter.getCaseCategories()) {
+        addToListIfNotExist(selectedCaseCategories, category);
+      }
+    } else {
+      selectedCaseCategories.clear();
+    }
+  }
+
+  public void updateCaseCategoriesSelectAllCheckbox(StatisticFilter filter) {
+    filter.setIsAllCategoriesSelected(filter.getSelectedCaseCategories().size() == filter.getCaseCategories().size());
+  }
+
+  public void updateRolesCheckboxes(StatisticFilter filter) {
+    List<String> selectedRoles = filter.getSelectedRoles();
+    if (filter.getIsAllRolesSelected()) {
+      for (Object role : filter.getRoles()) {
+        if (role instanceof IUser) {
+          IUser user = (IUser)role;
+          addToListIfNotExist(selectedRoles, user.getMemberName());
+        } else if (role instanceof RemoteRole) {
+          RemoteRole remoteRole = (RemoteRole)role;
+          addToListIfNotExist(selectedRoles, remoteRole.getMemberName());
+        }
+      }
+    } else {
+      selectedRoles.clear();
+    }
+  }
+
+  public void updateRolesSelectAllCheckbox(StatisticFilter filter) {
+    filter.setIsAllRolesSelected(filter.getSelectedRoles().size() == filter.getRoles().size());
+  }
+
+  public void updateCaseStatesCheckboxes(StatisticFilter filter) {
+    List<CaseState> selectedCaseStates = filter.getSelectedCaseStates();
+    if (filter.getIsAllCaseStatesSelected()) {
+      for (CaseState state : filter.getCaseStates()) {
+        addToListIfNotExist(selectedCaseStates, state);
+      }
+    } else {
+      selectedCaseStates.clear();
+    }
+  }
+
+  public void updateCaseStatesSelectAllCheckbox(StatisticFilter filter) {
+    filter.setIsAllCaseStatesSelected(filter.getSelectedCaseStates().size() == filter.getCaseStates().size());
+  }
+
+  public void updateTaskPrioritiesCheckboxes(StatisticFilter filter) {
+    List<WorkflowPriority> selectedTaskPriorities = filter.getSelectedTaskPriorities();
+    if (filter.getIsAllTaskPrioritiesSelected()) {
+      for (WorkflowPriority priority : filter.getTaskPriorities()) {
+        addToListIfNotExist(selectedTaskPriorities, priority);
+      }
+    } else {
+      selectedTaskPriorities.clear();
+    }
+  }
+
+  public void updateTaskPrioritiesSelectAllCheckbox(StatisticFilter filter) {
+    filter.setIsAllTaskPrioritiesSelected(filter.getSelectedTaskPriorities().size() == filter.getTaskPriorities().size());
+  }
+
+  private <T> void addToListIfNotExist(List<T> list, T element) {
+    if (!list.contains(element)) {
+      list.add(element);
+    }
   }
 
   /**

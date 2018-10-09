@@ -9,7 +9,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.FAILED_C
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.HIGH_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.LOW_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_PRIORITY_KEY;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EXPIRY_KEY;
 
@@ -19,12 +18,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.event.ItemSelectEvent;
 
+import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
@@ -265,13 +266,21 @@ public class StatisticChartQueryUtils {
   }
 
   private static void generateTaskQueryForRoles(StatisticFilter filter, TaskQuery taskQuery) {
-    if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
-      TaskQuery subTaskQueryForRoles = TaskQuery.create();
-      IFilterQuery subTaskFilterForRoles = subTaskQueryForRoles.where();
-
-      filter.getSelectedRoles().forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
-      taskQuery.where().and(subTaskQueryForRoles);
+    TaskQuery subTaskQueryForRoles = TaskQuery.create();
+    IFilterQuery subTaskFilterForRoles = subTaskQueryForRoles.where();
+    if (filter.getIsAllRolesSelected()) {
+      subTaskFilterForRoles.or().activatorName().isEqual(Ivy.session().getSessionUser().getMemberName()); //include current user
+      subTaskFilterForRoles.or().activatorName().isNotLike("#%%"); //include roles only, activatorName start with # is user
+    } else {
+      if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
+        filter.getSelectedRoles().forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
+      } else {
+        subTaskFilterForRoles.and().activatorName().isNotLike("#%%"); //exclude other users
+        List<RemoteRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof RemoteRole).map(role -> (RemoteRole)role).collect(Collectors.toList());
+        roles.forEach(role -> subTaskFilterForRoles.and().activatorName().isNotEqual(role.getMemberName())); //exclude role
+      }
     }
+    taskQuery.where().and(subTaskQueryForRoles);
   }
 
   private static void generateTaskQueryForStartTimestamp(StatisticFilter filter, TaskQuery taskQuery) {
@@ -344,6 +353,9 @@ public class StatisticChartQueryUtils {
   }
 
   private static void generateCaseQueryForCaseCategory(StatisticFilter filter, CaseQuery caseQuery) {
+    if (filter.getIsAllCategoriesSelected()) {
+      return ;
+    }
     List<String> selectedCaseCategories =
         Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
     CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
@@ -351,21 +363,9 @@ public class StatisticChartQueryUtils {
         subCaseQueryForSelectedCaseCategories.where();
     if (selectedCaseCategories.isEmpty()) {
       List<String> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
-      caseCategories.forEach(category -> {
-        if (StringUtils.equals(category, Ivy.cms().co(NO_CATEGORY_CMS))) {
-          subCaseFilterForSelectedCaseCategories.and().category().isNotNull();
-        } else {
-          subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category);
-        }
-      });
+      caseCategories.forEach(category -> subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category));
     } else {
-      selectedCaseCategories.forEach(category -> {
-        if (StringUtils.equals(category, Ivy.cms().co(NO_CATEGORY_CMS))) {
-          subCaseFilterForSelectedCaseCategories.or().category().isNull();
-        } else {
-          subCaseFilterForSelectedCaseCategories.or().category().isEqual(category);
-        }
-      });
+      selectedCaseCategories.forEach(category -> subCaseFilterForSelectedCaseCategories.or().category().isEqual(category));
     }
     caseQuery.where().and(subCaseQueryForSelectedCaseCategories);
   }
@@ -481,9 +481,7 @@ public class StatisticChartQueryUtils {
    */
   public static CaseQuery generateCaseQueryForCaseState(StatisticFilter filter) {
     CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQuery(filter, false);
-    if(CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
-      generateCaseQueryForRole(filter, caseQuery);
-    }
+    generateCaseQueryForRole(filter, caseQuery);
     return caseQuery;
   }
 
@@ -575,13 +573,15 @@ public class StatisticChartQueryUtils {
   private static void generateTaskQueryForTaskPriority(StatisticFilter filter, TaskQuery taskQuery) {
     List<WorkflowPriority> selectedPriorities =
         Optional.ofNullable(filter.getSelectedTaskPriorities()).orElse(new ArrayList<>());
+    TaskQuery subTaskQueryForPriority = TaskQuery.create();
+    IFilterQuery subTaskFilterForPriority = subTaskQueryForPriority.where();
     if (!selectedPriorities.isEmpty()) {
-      TaskQuery subTaskQueryForPriority = TaskQuery.create();
-      IFilterQuery subTaskFilterForPriority = subTaskQueryForPriority.where();
-
       selectedPriorities.forEach(priority -> subTaskFilterForPriority.or().priority().isEqual(priority));
-      taskQuery.where().and(subTaskQueryForPriority);
+    } else {
+      List<WorkflowPriority> priorities = Optional.ofNullable(filter.getTaskPriorities()).orElse(new ArrayList<>());
+      priorities.forEach(priority -> subTaskFilterForPriority.and().priority().isNotEqual(priority));
     }
+    taskQuery.where().and(subTaskQueryForPriority);
   }
   
   private static TaskQuery filterOnlyTasksExpireInThisYear(TaskQuery taskQuery) {
