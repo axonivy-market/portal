@@ -60,8 +60,9 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private String processWidgetComponentId;
   private IProcessStart createExpressWorkflowProcessStart;
   private boolean isUserFavoritesEnabled;
-  private Map<Character, List<UserProcess>> userProcessByAlphabet;
-
+  private Map<String, List<UserProcess>> userProcessByAlphabet;
+  private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
+  
   @PostConstruct
   public void init() {
     processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
@@ -94,26 +95,46 @@ public class ProcessWidgetBean implements Serializable, Converter {
     }
   }
 
-  private Map<Character, List<UserProcess>> groupUserProcessByAlphabetIndex(List<UserProcess> userProcesses) {
-    Map<Character, List<UserProcess>> userProcessGroupByAlphabet = new HashMap<>();
+  private Map<String, List<UserProcess>> groupUserProcessByAlphabetIndex(List<UserProcess> userProcesses) {
+    Map<String, List<UserProcess>> userProcessGroupByAlphabet = new HashMap<>();
+    //Follow Oracle document about regex for punctual character
+    //https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+    String punctualRegex = "\\p{Punct}";
     
     for(UserProcess userProcess : userProcesses) {
       String processNameUpperCase = StringUtils.trim(userProcess.getProcessName()).toUpperCase();
       if(StringUtils.isNotEmpty(processNameUpperCase)) {
-        char firstLetter = processNameUpperCase.charAt(0);
-        if(!userProcessGroupByAlphabet.containsKey(firstLetter)) {
-          List<UserProcess> userProcessByMapKey = new ArrayList<>();
-          userProcessByMapKey.add(userProcess);
-          userProcessGroupByAlphabet.put(firstLetter, userProcessByMapKey);
+        String firstLetter = processNameUpperCase.substring(0,1);
+        if(firstLetter.matches(punctualRegex)) {
+          addOrUpdateUserProcessGroupByKey(userProcessGroupByAlphabet, userProcess, SPECIAL_CHARACTER_KEY);
         }
         else {
-          userProcessGroupByAlphabet.get(firstLetter).add(userProcess);
+          addOrUpdateUserProcessGroupByKey(userProcessGroupByAlphabet, userProcess, firstLetter);
         }
       }
     }
-    return userProcessGroupByAlphabet.entrySet().stream()
+    List<UserProcess> userProcessOfSpecialCharacterGroup = userProcessGroupByAlphabet.remove(SPECIAL_CHARACTER_KEY);
+    
+    userProcessGroupByAlphabet = userProcessGroupByAlphabet.entrySet().stream()
                                 .sorted(Map.Entry.comparingByKey())
                                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2) -> e2, LinkedHashMap::new));
+    if(!CollectionUtils.isEmpty(userProcessOfSpecialCharacterGroup)) {
+      userProcessGroupByAlphabet.put(SPECIAL_CHARACTER_KEY, userProcessOfSpecialCharacterGroup);
+    }
+    return userProcessGroupByAlphabet;
+  }
+
+  private void addOrUpdateUserProcessGroupByKey(Map<String, List<UserProcess>> userProcessGroupByAlphabet,
+      UserProcess userProcess, String key) {
+    if(!userProcessGroupByAlphabet.containsKey(key)) {
+      List<UserProcess> userProcessByMapKey = new ArrayList<>();
+      
+      userProcessByMapKey.add(userProcess);
+      userProcessGroupByAlphabet.put(key, userProcessByMapKey);
+    }
+    else {
+      userProcessGroupByAlphabet.get(key).add(userProcess);
+    }
   }
   
   private List<UserProcess> findDefaultProcessUserCanStart() {
@@ -456,11 +477,12 @@ public class ProcessWidgetBean implements Serializable, Converter {
     return webStartables.size();
   }
 
-  public Map<Character, List<UserProcess>> getUserProcessByAlphabet() {
+  public Map<String, List<UserProcess>> getUserProcessByAlphabet() {
     return userProcessByAlphabet;
   }
 
-  public void setUserProcessByAlphabet(Map<Character, List<UserProcess>> userProcessByAlphabet) {
+  public void setUserProcessByAlphabet(Map<String, List<UserProcess>> userProcessByAlphabet) {
     this.userProcessByAlphabet = userProcessByAlphabet;
   }
+
 }
