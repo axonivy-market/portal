@@ -5036,6 +5036,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /* STYLE FOR STATISTIC FILTER */
+.apply-filters-btn {
+	float: right;
+}
+
 .statistic-filter-accordion-panel {
 	border: none !important;
 }
@@ -5178,6 +5182,14 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .settings-table-action-buttons {
   text-align: center !important;
+}
+
+.select-all-checkbox {
+	padding-left: 3px;
+}
+
+.select-all-checkbox .ui-chkbox-box {
+	margin-right: 0px;
 }
 
 /*********** CASE AND TASK STATISTIC PAGE ***********/
