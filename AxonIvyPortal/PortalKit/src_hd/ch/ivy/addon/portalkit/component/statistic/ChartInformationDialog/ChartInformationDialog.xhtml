@@ -52,7 +52,7 @@
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/workflowStatesLabel')}" for="selected-case-states" />
         </p:column>
         <p:column>
-          <h:outputText rendered="#{filter.isAllCaseStatesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allCheckboxSelected')}"/>
+          <h:outputText rendered="#{filter.isAllCaseStatesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}"/>
           <ui:repeat rendered="#{!filter.isAllCaseStatesSelected and !filter.selectedCaseStates.isEmpty()}" var="state" value="#{filter.selectedCaseStates}">
             <h:outputText value="#{state}" styleClass="display-block" />
           </ui:repeat>
@@ -64,7 +64,7 @@
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPrioritiesLabel')}" for="selected-task-priorities" />
         </p:column>
         <p:column>
-          <h:outputText rendered="#{filter.isAllTaskPrioritiesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allCheckboxSelected')}"/>
+          <h:outputText rendered="#{filter.isAllTaskPrioritiesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}"/>
           <ui:repeat rendered="#{!filter.isAllTaskPrioritiesSelected and !filter.selectedTaskPriorities.isEmpty()}" var="priority" value="#{filter.selectedTaskPriorities}">
             <h:outputText value="#{priority}" styleClass="display-block" />
           </ui:repeat>
@@ -77,7 +77,7 @@
         </p:column>
         <p:column>
           <h:panelGroup id="selected-roles" layout="block" styleClass="list-container">
-            <h:outputText rendered="#{filter.isAllRolesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allCheckboxSelected')}"/>
+            <h:outputText rendered="#{filter.isAllRolesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}"/>
             <ui:repeat rendered="#{!filter.isAllRolesSelected and !filter.selectedRoles.isEmpty()}" var="role" value="#{filter.selectedRoles}">
               <h:outputText value="#{role}" styleClass="display-block" />
             </ui:repeat>
@@ -91,7 +91,7 @@
         </p:column>
         <p:column>
           <h:panelGroup id="selected-case-categories" layout="block" styleClass="list-container">
-            <h:outputText rendered="#{filter.isAllCategoriesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allCheckboxSelected')}"/>
+            <h:outputText rendered="#{filter.isAllCategoriesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}"/>
             <ui:repeat rendered="#{!filter.isAllCategoriesSelected and !filter.selectedCaseCategories.isEmpty()}" var="category" value="#{filter.selectedCaseCategories}">
               <h:outputText value="#{category == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category}" styleClass="display-block" />
             </ui:repeat>
