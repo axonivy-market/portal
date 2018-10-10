@@ -81,11 +81,10 @@
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCategoriesSelected}" >
             <p:ajax listener="#{statisticChartCreationBean.updateCaseCategoriesCheckboxes(filter)}" update="categories" />
           </p:selectBooleanCheckbox>
-          <p:selectManyCheckbox id="categories"
+          <p:selectManyCheckbox id="categories" disabled="#{filter.isAllCategoriesSelected}"
             value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
             <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category}"
               itemLabel="#{category == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category}" />
-              <p:ajax listener="#{statisticChartCreationBean.updateCaseCategoriesSelectAllCheckbox(filter)}" update="categories-select-all" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -108,11 +107,10 @@
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllRolesSelected}" >
             <p:ajax listener="#{statisticChartCreationBean.updateRolesCheckboxes(filter)}" update="roles" />
           </p:selectBooleanCheckbox>
-          <p:selectManyCheckbox id="roles" value="#{filter.selectedRoles}"
+          <p:selectManyCheckbox id="roles" value="#{filter.selectedRoles}" disabled="#{filter.isAllRolesSelected}"
             layout="grid" columns="1">
             <f:selectItems value="#{filter.roles}" var="role"
               itemLabel="#{role.displayName}" itemValue="#{role.memberName}" />
-            <p:ajax listener="#{statisticChartCreationBean.updateRolesSelectAllCheckbox(filter)}" update="roles-select-all" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -136,11 +134,10 @@
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCaseStatesSelected}" >
             <p:ajax listener="#{statisticChartCreationBean.updateCaseStatesCheckboxes(filter)}" update="case-states" />
           </p:selectBooleanCheckbox>
-          <p:selectManyCheckbox id="case-states"
+          <p:selectManyCheckbox id="case-states" disabled="#{filter.isAllCaseStatesSelected}"
             value="#{filter.selectedCaseStates}" layout="grid" columns="1">
             <f:selectItems value="#{filter.caseStates}" var="state"
               itemLabel="#{filter.getCaseStateName(state)}" itemValue="#{state}" />
-            <p:ajax listener="#{statisticChartCreationBean.updateCaseStatesSelectAllCheckbox(filter)}" update="case-states-select-all" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -163,11 +160,10 @@
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllTaskPrioritiesSelected}" >
             <p:ajax listener="#{statisticChartCreationBean.updateTaskPrioritiesCheckboxes(filter)}" update="task-priorities" />
           </p:selectBooleanCheckbox>
-          <p:selectManyCheckbox id="task-priorities"
+          <p:selectManyCheckbox id="task-priorities" disabled="#{filter.isAllTaskPrioritiesSelected}"
             value="#{cc.attrs.filter.selectedTaskPriorities}" layout="grid" columns="1">
             <f:selectItems value="#{cc.attrs.filter.taskPriorities}" var="priority"
               itemLabel="#{filter.getPriorityName(priority)}" itemValue="#{priority}" />
-            <p:ajax listener="#{statisticChartCreationBean.updateTaskPrioritiesSelectAllCheckbox(filter)}" update="task-priorities-select-all" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
