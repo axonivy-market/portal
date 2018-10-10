@@ -74,10 +74,6 @@ public class StatisticChartCreationBean implements Serializable {
     }
   }
 
-  public void updateCaseCategoriesSelectAllCheckbox(StatisticFilter filter) {
-    filter.setIsAllCategoriesSelected(filter.getSelectedCaseCategories().size() == filter.getCaseCategories().size());
-  }
-
   public void updateRolesCheckboxes(StatisticFilter filter) {
     List<String> selectedRoles = filter.getSelectedRoles();
     if (filter.getIsAllRolesSelected()) {
@@ -95,10 +91,6 @@ public class StatisticChartCreationBean implements Serializable {
     }
   }
 
-  public void updateRolesSelectAllCheckbox(StatisticFilter filter) {
-    filter.setIsAllRolesSelected(filter.getSelectedRoles().size() == filter.getRoles().size());
-  }
-
   public void updateCaseStatesCheckboxes(StatisticFilter filter) {
     List<CaseState> selectedCaseStates = filter.getSelectedCaseStates();
     if (filter.getIsAllCaseStatesSelected()) {
@@ -110,10 +102,6 @@ public class StatisticChartCreationBean implements Serializable {
     }
   }
 
-  public void updateCaseStatesSelectAllCheckbox(StatisticFilter filter) {
-    filter.setIsAllCaseStatesSelected(filter.getSelectedCaseStates().size() == filter.getCaseStates().size());
-  }
-
   public void updateTaskPrioritiesCheckboxes(StatisticFilter filter) {
     List<WorkflowPriority> selectedTaskPriorities = filter.getSelectedTaskPriorities();
     if (filter.getIsAllTaskPrioritiesSelected()) {
@@ -123,10 +111,6 @@ public class StatisticChartCreationBean implements Serializable {
     } else {
       selectedTaskPriorities.clear();
     }
-  }
-
-  public void updateTaskPrioritiesSelectAllCheckbox(StatisticFilter filter) {
-    filter.setIsAllTaskPrioritiesSelected(filter.getSelectedTaskPriorities().size() == filter.getTaskPriorities().size());
   }
 
   private <T> void addToListIfNotExist(List<T> list, T element) {
