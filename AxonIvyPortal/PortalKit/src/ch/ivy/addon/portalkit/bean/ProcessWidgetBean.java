@@ -109,7 +109,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     
     Collator collator = Collator.getInstance(Locale.GERMAN);
     userProcessGroupByAlphabet = userProcessGroupByAlphabet.entrySet().stream()
-                                .sorted(Map.Entry.comparingByKey((String s1, String s2) -> collator.compare(s1, s2)))
+                                .sorted(Map.Entry.comparingByKey(collator::compare))
                                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2) -> e2, LinkedHashMap::new));
     if(!CollectionUtils.isEmpty(userProcessOfSpecialCharacterGroup)) {
       userProcessGroupByAlphabet.put(SPECIAL_CHARACTER_KEY, userProcessOfSpecialCharacterGroup);
