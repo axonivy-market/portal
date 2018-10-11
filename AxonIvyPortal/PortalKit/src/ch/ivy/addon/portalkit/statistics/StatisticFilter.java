@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.bo.RemoteRole;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -29,7 +30,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class StatisticFilter {
+public class StatisticFilter implements Cloneable {
   
   private StatisticTimePeriodSelection timePeriodSelection;
   @JsonIgnore
@@ -84,7 +85,7 @@ public class StatisticFilter {
           remoteRoles.stream()
           .filter(role -> {
             IRole ivyRole = securityContext.findRole(role.getName());
-            return ivyRole != null && Ivy.session().hasRole(ivyRole, false);
+            return ivyRole != null && Ivy.session().hasRole(ivyRole, false) && ivyRole.getProperty(RoleUtils.HIDE) == null;
             }
           )
           .collect(
@@ -309,4 +310,10 @@ public class StatisticFilter {
   {
     this.isAllTaskPrioritiesSelected = isAllTaskPrioritiesSelected;
   }
+
+  @Override
+  public Object clone() throws CloneNotSupportedException { //NOSONAR
+    return super.clone();
+  }
+
 }
