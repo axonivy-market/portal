@@ -77,6 +77,7 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -732,8 +733,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setType(chartType);
     statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
-    statisticChart.setFilter(filter);
     statisticChart.setDefaultChart(String.valueOf(isDefault));
+    if (filter.getIsAllCaseStatesSelected() || filter.getIsAllCategoriesSelected()) {
+      StatisticFilter newFilter = (StatisticFilter) ObjectUtils.clone(filter);
+      if (filter.getIsAllCategoriesSelected()) {
+        newFilter.setSelectedCaseCategories(new ArrayList<>());
+      }
+      if (filter.getIsAllRolesSelected()) {
+        newFilter.setSelectedRoles(new ArrayList<>());
+      }
+      statisticChart.setFilter(newFilter);
+    } else {
+      statisticChart.setFilter(filter);
+    }
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
     return findById(info.getId());
   }
