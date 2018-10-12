@@ -680,24 +680,13 @@ function DashboardMediumScreen() {
 	  updateDashboard();
 	}
 	
-	function moveStatisticsToFirstCol() {
-	   $('.js-dashboard-main-content-1st-col').append($('.js-statistic-widget'));
-	   $('.js-dashboard-main-content-3rd-col').addClass('u-hidden');
-	}
-	
-	function moveStatisticsToThirdCol(){
-		$('.js-dashboard-main-content-3rd-col').removeClass('u-hidden').append($('.js-statistic-widget'));
-	}
-	
 	function updateDashboard() {
 		var $mainMenu = $('.js-left-sidebar');
 		var $dashboard = $('.js-dashboard-default-widget-container');
 
 		if ($mainMenu.hasClass('in')) {
-		   moveStatisticsToFirstCol();
-		   $dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuOpen}, animateDuration);
+		  $dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuOpen}, animateDuration);
 		} else {
-			moveStatisticsToThirdCol();
 			$dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuClose}, animateDuration);
 		}
 	}
