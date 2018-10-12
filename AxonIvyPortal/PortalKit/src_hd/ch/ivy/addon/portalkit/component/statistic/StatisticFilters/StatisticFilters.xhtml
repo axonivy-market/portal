@@ -37,7 +37,7 @@
             <p:column>
               <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
                 <f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
-                <p:ajax update="@([id$='filter-from']) @([id$='filter-to'])" listener="#{cc.attrs.updateListener}" />
+                <p:ajax update="@([id$='filter-from']) @([id$='filter-to'])" />
               </p:selectOneMenu>
             </p:column>
   
@@ -48,12 +48,14 @@
                 <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
                   pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
                   converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
+                  <p:ajax />
                 </p:calendar>
   
                 <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " />
                 <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
                   pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
                   converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
+                  <p:ajax />
                 </p:calendar>
   
               </h:panelGrid>
@@ -85,6 +87,7 @@
             value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
             <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category}"
               itemLabel="#{category == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category}" />
+            <p:ajax />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -111,6 +114,7 @@
             layout="grid" columns="1">
             <f:selectItems value="#{filter.roles}" var="role"
               itemLabel="#{role.displayName}" itemValue="#{role.memberName}" />
+            <p:ajax />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -138,6 +142,7 @@
             value="#{filter.selectedCaseStates}" layout="grid" columns="1">
             <f:selectItems value="#{filter.caseStates}" var="state"
               itemLabel="#{filter.getCaseStateName(state)}" itemValue="#{state}" />
+            <p:ajax />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -164,6 +169,7 @@
             value="#{cc.attrs.filter.selectedTaskPriorities}" layout="grid" columns="1">
             <f:selectItems value="#{cc.attrs.filter.taskPriorities}" var="priority"
               itemLabel="#{filter.getPriorityName(priority)}" itemValue="#{priority}" />
+            <p:ajax />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
