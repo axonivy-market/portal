@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
-import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
+import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
@@ -41,6 +42,7 @@ public class CleanUpObsoletedUserDataService {
     cleanUpUserFavouriteProcess();
     cleanUpUserTaskCaseFilter();
     cleanUpUserTaskColumnsConfigData();
+    cleanUpUserCaseColumnsConfigData();
     cleanUpUserStatisticChartData();
   }
 
@@ -102,15 +104,31 @@ public class CleanUpObsoletedUserDataService {
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     Long applicationId = Ivy.request().getApplication().getId();
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    List<TaskColumnsConfigurationData> allColumnConfigs = service.getAllConfiguration(serverId, applicationId);
+    List<TaskColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(serverId, applicationId);
     if (allColumnConfigs != null) {
-      for (TaskColumnsConfigurationData columnConfig : allColumnConfigs) {
+      for (TaskColumnsConfiguration columnConfig : allColumnConfigs) {
         if (!userIds.contains(columnConfig.getUserId())) {
           Ivy.repo().delete(columnConfig);
         }
       }
     }
   }
+  
+  private void cleanUpUserCaseColumnsConfigData() {
+    Long serverId = SecurityServiceUtils.getServerIdFromSession();
+    List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
+    Long applicationId = Ivy.request().getApplication().getId();
+    CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
+    List<CaseColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(serverId, applicationId);
+    if (allColumnConfigs != null) {
+      for (CaseColumnsConfiguration columnConfig : allColumnConfigs) {
+        if (!userIds.contains(columnConfig.getUserId())) {
+          Ivy.repo().delete(columnConfig);
+        }
+      }
+    }
+  }
+
 
   private void cleanUpUserStatisticChartData() {
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());

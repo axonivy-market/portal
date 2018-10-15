@@ -17,12 +17,12 @@
         <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{data.internalCase.creatorUser.fullName}"
           username="#{data.internalCase.creatorUserName}" />
 
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATE')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" />
         <h:outputText id="case-start-time" value="#{data.internalCase.startTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
 
-        <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/EXPIRY_TIME')}" />
         <h:outputText id="case-end-time" value="#{data.internalCase.endTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>

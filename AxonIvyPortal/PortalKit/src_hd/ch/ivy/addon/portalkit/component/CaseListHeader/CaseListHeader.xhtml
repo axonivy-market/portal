@@ -8,22 +8,34 @@
 
 <cc:implementation>
 	<c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" styleClass="case-list-header-cell case-list-name-desc-header-cell" componentToBeUpdated=""
-		sortedField="NAME" sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" dataModel="#{dataModel}" />
+	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" 
+		styleClass="case-list-header-cell case-list-name-desc-header-cell" 
+		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" 
+		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="NAME" />
 
-	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="ID" sortable="true"
-		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" dataModel="#{dataModel}" />
+	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" 
+		styleClass="TexAlCenter case-list-header-cell #{dataModel.isAutoHideColumns()?'js-id-column-header':''}" 
+		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" 
+		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="ID" />
 
-	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" styleClass="case-list-header-cell" componentToBeUpdated="" sortedField="CREATOR" sortable="true"
-		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" dataModel="#{dataModel}" />
+	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" 
+		styleClass="case-list-header-cell #{dataModel.isAutoHideColumns() ? 'js-creator-column-header' : ''}"  
+		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" 
+		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="CREATOR" />
 
-	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="START_TIME"
-		sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATE')}" dataModel="#{dataModel}" />
+	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" 
+		styleClass="TexAlCenter case-list-header-cell #{dataModel.isAutoHideColumns()?'js-create-column-header':''}" 
+		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" 
+		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="CREATION_TIME" />
 
-	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="END_TIME"
-		sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISH')}" dataModel="#{dataModel}" />
+	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" 
+		styleClass="TexAlCenter case-list-header-cell #{dataModel.isAutoHideColumns()?'js-expiry-column-header':''}" 
+		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/EXPIRY_TIME')}" 
+		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="EXPIRY_TIME" />
 
-	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" styleClass="case-list-header-cell TexAlCenter" componentToBeUpdated="" sortedField="STATE" sortable="true"
-		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" dataModel="#{dataModel}" />
+	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" 
+		styleClass="case-list-header-cell TexAlCenter"  
+		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" 
+		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="STATE" />
 </cc:implementation>
 </html>

@@ -38,8 +38,8 @@
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="created-date-column-header" />
 			<ui:param name="styleClass" value="process-history-list-header-default" />
-			<ui:param name="sortedField" value="START_TIME" />
-			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATE')}" />
+			<ui:param name="sortedField" value="CREATION_TIME" />
+			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" />
 			<ui:param name="sortable" value="true" />
 		</ui:include>
 		<ui:include src="ColumnHeader.xhtml">
@@ -67,23 +67,20 @@
 				expandCallback="caseWidget.setupHeader();caseWidget.setupCaseBody();">
 				<f:facet name="caseHeader">
 					<h:panelGroup class="case-header-name-desc-cell">
-						<h:outputText styleClass="case-header-name-cell"
-							value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}" />
+						<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" 
+							dataModel="#{processHistoryBean.dataModel}" 
+							initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" />
 					</h:panelGroup>
-					<h:outputText styleClass="process-history-list-cell-default" value="#{case.id}" />
-					<h:outputText styleClass="process-history-list-cell-default process-history-list-width-120"
-						value="#{case.processName}" />
-					<h:outputText value="#{case.startTimestamp}" styleClass="process-history-list-cell-default">
-						<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-					</h:outputText>
-					<ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText
-						styleClass="process-history-list-cell-default process-history-list-width-120" fullname="#{case.creatorFullName}"
-						username="#{case.creatorUserName}" />
-					<h:panelGroup id="case-state-cell" styleClass="process-history-list-cell-default">
-						<h:panelGroup styleClass="fa fa-play-circle case-state-in-progress"
-							rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
-						<h:panelGroup styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
-					</h:panelGroup>
+					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseId case="#{case}" dataModel="#{processHistoryBean.dataModel}"
+						styleClass="process-history process-history-list process-history-list-cell-default" />
+					<h:outputText value="#{case.processName}" dataModel="#{processHistoryBean.dataModel}"
+						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120" />
+					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-time-cell" value="#{case.startTimestamp}"
+						styleClass="process-history process-history-list process-history-list-cell-default" />
+					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator case="#{case}" dataModel="#{processHistoryBean.dataModel}"
+						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120" />
+					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" dataModel="#{processHistoryBean.dataModel}"
+						stateStyleClass="process-history process-history-list process-history-list-cell-default" />
 				</f:facet>
 				<f:facet name="caseBody">
 					<ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />

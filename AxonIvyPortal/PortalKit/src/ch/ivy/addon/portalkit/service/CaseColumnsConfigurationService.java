@@ -2,18 +2,18 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.List;
 
-import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
+import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 
-public class TaskColumnsConfigurationService extends BusinessDataService<TaskColumnsConfiguration> {
+public class CaseColumnsConfigurationService extends BusinessDataService<CaseColumnsConfiguration> {
 
   @Override
-  public Class<TaskColumnsConfiguration> getType() {
-    return TaskColumnsConfiguration.class;
+  public Class<CaseColumnsConfiguration> getType() {
+    return CaseColumnsConfiguration.class;
   }
 
-  public TaskColumnsConfiguration getConfiguration(Long serverId, Long applicationId, Long userId, Long processModelId){
-    Filter<TaskColumnsConfiguration> query;
+  public CaseColumnsConfiguration getConfiguration(Long serverId, Long applicationId, Long userId, Long processModelId){
+    Filter<CaseColumnsConfiguration> query;
     if(serverId != null){
       query =
           repo().search(getType())
@@ -31,8 +31,8 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
     return query.execute().getFirst();
   }
 
-  public List<TaskColumnsConfiguration> getAllConfiguration(Long serverId, Long applicationId) {
-    Filter<TaskColumnsConfiguration> query;
+  public List<CaseColumnsConfiguration> getAllConfiguration(Long serverId, Long applicationId) {
+    Filter<CaseColumnsConfiguration> query;
     if(serverId != null){
       query =
           repo().search(getType())

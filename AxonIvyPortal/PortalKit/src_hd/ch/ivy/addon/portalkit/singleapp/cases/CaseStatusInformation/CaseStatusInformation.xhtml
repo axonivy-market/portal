@@ -20,7 +20,7 @@
         <h:outputText id="case-id" value="##{data.caseInfo.id}" />
 
         <h:outputLabel for="created"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATE')}:" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}:" />
         <h:outputText id="created" value="#{data.caseInfo.startTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
