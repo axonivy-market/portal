@@ -24,12 +24,12 @@
             cache="true" queryDelay="500" maxResults="10" selectLimit="10" converter="pojoConverter"
             moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." >
               <p:ajax event="query" global="false" />
-              <p:ajax event="itemSelect" update="add-custom-val" />
+              <p:ajax event="itemSelect" global="false" update="add-custom-val" />
           </p:autoComplete>
 
           <h:panelGroup id="add-button-panel" styleClass="add-button-panel" layout="block">
             <p:commandButton id="add-custom-val" styleClass="add-custom-val" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-              disabled="#{data.selectedCustomValue == null}" icon="fa fa-plus-circle" iconPos="right">
+              disabled="#{data.selectedCustomValue == null or data.selectedCustomValue == ''}" icon="fa fa-plus-circle" iconPos="right" global="false">
               <p:ajax event="click" listener="#{logic.addCustomVal}" global="false" update="custom-field-panel-header-container selected-custom-val-container" />
             </p:commandButton>
           </h:panelGroup>
@@ -42,7 +42,7 @@
             <p:selectManyCheckbox id="selected-custom-val" value="#{cc.attrs.selectedValues}" layout="grid" columns="1">
               <f:selectItems value="#{data.tempSelectedCustomValues}" var="customVal"
                 itemValue="#{customVal}" itemLabel="#{customVal}" />
-                <p:ajax />
+                <p:ajax global="false" />
             </p:selectManyCheckbox>
 
           </h:panelGroup>
