@@ -148,7 +148,11 @@
 
     <h:panelGroup id="widget-column-header"
       class="widget-column-header js-case-widget-column-header #{cc.attrs.listHeaderStyleClass}">
+      <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
       <cc:renderFacet name="caseListHeader" />
+      <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration
+            updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header"
+            dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()"/>
     </h:panelGroup>
     <h:panelGroup id="case-view" layout="block" class="widget-content">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">

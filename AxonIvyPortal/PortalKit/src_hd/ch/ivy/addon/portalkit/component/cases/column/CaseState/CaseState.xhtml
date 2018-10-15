@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:p="http://primefaces.org/ui">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="componentId" default="case-state-cell" />
+  <cc:attribute name="case" required="true" />
+  <cc:attribute name="stateStyleClass" />
+  <cc:attribute name="stateIconStyleClass" />
+  <cc:attribute name="stateTooltipStyleClass" />
+  <cc:attribute name="dataModel" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="case" value="#{cc.attrs.case}" />
+  <c:set var="componentId" value="#{cc.attrs.componentId}" />
+  <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
+
+  <h:panelGroup rendered="#{dataModel.isSelectedColumn('STATE')}" id="#{componentId}" 
+    styleClass="case-header-default-cell #{cc.attrs.stateStyleClass}">
+    <h:panelGroup id="#{componentId}-in-progress" styleClass="fa fa-play-circle case-state-in-progress #{cc.attrs.stateIconStyleClass}"
+      rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
+    <h:panelGroup id="#{componentId}-done" styleClass="fa fa-check-circle case-state-done #{cc.attrs.stateIconStyleClass}" 
+      rendered="#{case.state eq 'DONE'}" />
+  </h:panelGroup>
+  <p:tooltip for="#{componentId}" value="#{caseBean.getState(case)}" styleClass="#{cc.attrs.stateTooltipStyleClass}"/>
+</cc:implementation>
+</html>

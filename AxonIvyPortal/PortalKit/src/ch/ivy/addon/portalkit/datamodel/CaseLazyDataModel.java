@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.datamodel;
 
-import ch.ivy.addon.portalkit.comparator.RemoteCaseComparator;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,15 +20,18 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
+import ch.ivy.addon.portalkit.comparator.RemoteCaseComparator;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
@@ -42,90 +43,103 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	protected static final int BUFFER_LOAD = 10;
-	protected final List<RemoteCase> data;
-	protected Map<GlobalCaseId, RemoteCase> displayedCaseMap;
-	protected Map<GlobalCaseId, RemoteCase> notDisplayedCaseMap;
+  protected static final int BUFFER_LOAD = 10;
+  protected final List<RemoteCase> data;
+  protected Map<GlobalCaseId, RemoteCase> displayedCaseMap;
+  protected Map<GlobalCaseId, RemoteCase> notDisplayedCaseMap;
 
-	protected String caseWidgetComponentId;
-	protected int rowIndex;
-	protected CaseSearchCriteria searchCriteria;
-	protected CaseQueryCriteria queryCriteria;
-	protected Long serverId;
-	protected Comparator<RemoteCase> comparator;
+  protected String caseWidgetComponentId;
+  protected int rowIndex;
+  protected CaseSearchCriteria searchCriteria;
+  protected CaseQueryCriteria queryCriteria;
+  protected Long serverId;
+  protected Comparator<RemoteCase> comparator;
 
-	protected List<CaseFilter> filters;
-	protected List<CaseFilter> selectedFilters;
-	protected CaseFilterContainer filterContainer;
-	protected CaseFilterData selectedFilterData;
-	protected boolean isNotKeepFilter = false;
+  protected List<CaseFilter> filters;
+  protected List<CaseFilter> selectedFilters;
+  protected CaseFilterContainer filterContainer;
+  protected CaseFilterData selectedFilterData;
+  protected boolean isNotKeepFilter = false;
 
-	public CaseLazyDataModel() {
-		this("case-widget");
-	}
+  protected List<String> allColumns = new ArrayList<>();
+  protected List<String> selectedColumns = new ArrayList<>();
+  private List<String> portalDefaultColumns = Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+  private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
-	public CaseLazyDataModel(String caseWidgetComponentId) {
-		super();
-		data = new ArrayList<>();
-		displayedCaseMap = new HashMap<>();
-		notDisplayedCaseMap = new HashMap<>();
-		selectedFilters = new ArrayList<>();
-		this.caseWidgetComponentId = caseWidgetComponentId;
-		searchCriteria = buildInitSearchCriteria();
-		queryCriteria = buildInitQueryCriteria();
-		comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getId);
-		setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
-		selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
-		serverId = SecurityServiceUtils.getServerIdFromSession();
-		autoInitForNoAppConfiguration();
-	}
+  private boolean isAutoHideColumns;
+  private boolean isDisableSelectionCheckboxes;
 
-	@Override
-	public List<RemoteCase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-			Map<String, Object> filters) {
-		if (first == 0) {
-			initializedDataModel(searchCriteria);
-			RequestContext.getCurrentInstance().execute("updateCaseCount()");
-		}
 
-		List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
-		putCasesToNotDisplayedCaseMap(foundCases);
-		List<RemoteCase> notDisplayedCases = sortCasesInNotDisplayedCaseMap();
-		List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
+  public CaseLazyDataModel() {
+    this("case-widget");
+  }
 
-		storeDisplayedCases(notDisplayedCases);
+  public CaseLazyDataModel(String caseWidgetComponentId) {
+    super();
+    data = new ArrayList<>();
+    displayedCaseMap = new HashMap<>();
+    notDisplayedCaseMap = new HashMap<>();
+    selectedFilters = new ArrayList<>();
+    this.caseWidgetComponentId = caseWidgetComponentId;
+    searchCriteria = buildInitSearchCriteria();
+    queryCriteria = buildInitQueryCriteria();
+    comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getId);
+    setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
+    selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
+    serverId = SecurityServiceUtils.getServerIdFromSession();
+    autoInitForNoAppConfiguration();
+  }
 
-		return displayedCases;
-	}
+  @Override
+  public List<RemoteCase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+      Map<String, Object> filters) {
+    if (first == 0) {
+      initializedDataModel(searchCriteria);
+      RequestContext.getCurrentInstance().execute("updateCaseCount()");
+    }
 
-	public void initFilters() throws ReflectiveOperationException {
-		if (filterContainer == null) {
-			initFilterContainer();
-			filters = filterContainer.getFilters();
-			setValuesForCaseStateFilter(queryCriteria);
-			restoreSessionAdvancedFilters();
-		}
-	}
+    List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
+    putCasesToNotDisplayedCaseMap(foundCases);
+    List<RemoteCase> notDisplayedCases = sortCasesInNotDisplayedCaseMap();
+    List<RemoteCase> displayedCases = getDisplayedCases(notDisplayedCases, pageSize);
 
-	@SuppressWarnings("unchecked")
-	public void onFilterChange(ValueChangeEvent event) {
-		List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
-		List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
-		List<CaseFilter> toggleFilters =
-				(List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
-		if (CollectionUtils.isNotEmpty(toggleFilters)) {
-			toggleFilters.get(0).resetValues();
-		}
-		resetFilterData();
-	}
-	
+    storeDisplayedCases(notDisplayedCases);
+    
+    RequestContext.getCurrentInstance().execute("caseListToolkit.responsive()");
+
+    return displayedCases;
+  }
+
+  public void initFilters() throws ReflectiveOperationException {
+    if (filterContainer == null) {
+      initColumnsConfiguration();
+      initFilterContainer();
+      filters = filterContainer.getFilters();
+      setValuesForCaseStateFilter(queryCriteria);
+      restoreSessionAdvancedFilters();
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  public void onFilterChange(ValueChangeEvent event) {
+    List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
+    List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
+    List<CaseFilter> toggleFilters =
+        (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    if (CollectionUtils.isNotEmpty(toggleFilters)) {
+      toggleFilters.get(0).resetValues();
+    }
+    resetFilterData();
+  }
+
   public void onKeywordChange() {
     resetFilterData();
   }
@@ -136,429 +150,561 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     }
   }
 
-	public void removeFilter(CaseFilter filter) {
-		filter.resetValues();
-		selectedFilters.remove(filter);
-		resetFilterData();
-	}
+  public void removeFilter(CaseFilter filter) {
+    filter.resetValues();
+    selectedFilters.remove(filter);
+    resetFilterData();
+  }
 
-	public void resetFilters() {
-		for (CaseFilter selectedFilter : selectedFilters) {
-			selectedFilter.resetValues();
-		}
-		selectedFilters = new ArrayList<>();
-		selectedFilterData = null;
-	}
+  public void resetFilters() {
+    for (CaseFilter selectedFilter : selectedFilters) {
+      selectedFilter.resetValues();
+    }
+    selectedFilters = new ArrayList<>();
+    selectedFilterData = null;
+  }
 
-	public void setSorting(String sortedField, boolean descending) {
-		queryCriteria.setSortField(sortedField);
-		queryCriteria.setSortDescending(descending);
-	}
+  public void setSorting(String sortedField, boolean descending) {
+    queryCriteria.setSortField(sortedField);
+    queryCriteria.setSortDescending(descending);
+  }
 
-	@Override
-	public void setRowIndex(int index) {
-		int idx = index;
-		if (idx >= data.size()) {
-			idx = -1;
-		}
-		this.rowIndex = idx;
-	}
+  @Override
+  public void setRowIndex(int index) {
+    int idx = index;
+    if (idx >= data.size()) {
+      idx = -1;
+    }
+    this.rowIndex = idx;
+  }
 
-	@Override
-	public RemoteCase getRowData() {
-		return data.get(rowIndex);
-	}
+  @Override
+  public RemoteCase getRowData() {
+    return data.get(rowIndex);
+  }
 
-	@Override
-	public boolean isRowAvailable() {
-		if (data == null) {
-			return false;
-		}
-		return rowIndex >= 0 && rowIndex < data.size();
-	}
+  @Override
+  public boolean isRowAvailable() {
+    if (data == null) {
+      return false;
+    }
+    return rowIndex >= 0 && rowIndex < data.size();
+  }
 
-	public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-		searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
-		if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(CaseState.DONE)) {
-			queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
-			setValuesForCaseStateFilter(queryCriteria);
-		}
-	}
+  public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
+    searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
+    if (ignoreInvolvedUser && !queryCriteria.getIncludedStates().contains(CaseState.DONE)) {
+      queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+      setValuesForCaseStateFilter(queryCriteria);
+    }
+  }
 
-	public void setTaskId(Long taskId) {
-		queryCriteria.setTaskId(taskId);
-		queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
-		setValuesForCaseStateFilter(queryCriteria);
-	}
+  public void setTaskId(Long taskId) {
+    queryCriteria.setTaskId(taskId);
+    queryCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+    setValuesForCaseStateFilter(queryCriteria);
+  }
 
-	public void setCaseId(Long caseId) {
-		queryCriteria.setCaseId(caseId);
-		queryCriteria.setIncludedStates(new ArrayList<>());
-		setValuesForCaseStateFilter(queryCriteria);
-	}
+  public void setCaseId(Long caseId) {
+    queryCriteria.setCaseId(caseId);
+    queryCriteria.setIncludedStates(new ArrayList<>());
+    setValuesForCaseStateFilter(queryCriteria);
+  }
 
-	/**
-	 * Save all filter settings to business data
-	 * 
-	 * @param filterName
-	 * @param filterType
-	 * @param filterGroupId
-	 * @return saved CaseFilterData
-	 */
-	public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
-		CaseFilterData filterData = new CaseFilterData();
-		List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
-		filterData.setFilters(filtersToSave);
-		filterData.setKeyword(queryCriteria.getKeyword());
-		filterData.setUserId(Ivy.session().getSessionUser().getId());
-		filterData.setFilterGroupId(filterGroupId);
-		filterData.setFilterName(filterName);
-		filterData.setType(filterType);
-		CaseFilterService filterService = new CaseFilterService();
-		BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
-		filterData = filterService.findById(info.getId());
-		UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
-		return filterData;
-	}
+  /**
+   * Save all filter settings to business data
+   * 
+   * @param filterName
+   * @param filterType
+   * @param filterGroupId
+   * @return saved CaseFilterData
+   */
+  public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
+    CaseFilterData filterData = new CaseFilterData();
+    List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
+    filterData.setFilters(filtersToSave);
+    filterData.setKeyword(queryCriteria.getKeyword());
+    filterData.setUserId(Ivy.session().getSessionUser().getId());
+    filterData.setFilterGroupId(filterGroupId);
+    filterData.setFilterName(filterName);
+    filterData.setType(filterType);
+    CaseFilterService filterService = new CaseFilterService();
+    BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
+    filterData = filterService.findById(info.getId());
+    UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
+    return filterData;
+  }
 
-	/**
-	 * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
-	 * 
-	 * @param caseFilterData
-	 * @throws ReflectiveOperationException
-	 */
-	public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
-		selectedFilterData = caseFilterData;
-		new CaseFilterService().applyFilter(this, caseFilterData);
-		applyCustomSettings(caseFilterData);
-	}
+  /**
+   * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
+   * 
+   * @param caseFilterData
+   * @throws ReflectiveOperationException
+   */
+  public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
+    selectedFilterData = caseFilterData;
+    new CaseFilterService().applyFilter(this, caseFilterData);
+    applyCustomSettings(caseFilterData);
+  }
 
-	/**
-	 * <p>
-	 * Initialize CaseFilterContainer with your customized CaseFilterContainer class.
-	 * </p>
-	 * <p>
-	 * <b>Example: </b> <code><pre>
-	 * filterContainer = new CustomizedCaseFilterContainer();
-	 * </pre></code>
-	 * </p>
-	 */
-	protected void initFilterContainer() {
-		filterContainer = new DefaultCaseFilterContainer();
-	}
+  /**
+   * <p>
+   * Initialize CaseFilterContainer with your customized CaseFilterContainer class.
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * filterContainer = new CustomizedCaseFilterContainer();
+   * </pre></code>
+   * </p>
+   */
+  protected void initFilterContainer() {
+    filterContainer = new DefaultCaseFilterContainer();
+  }
 
-	protected List<RemoteCase> sortCasesInNotDisplayedCaseMap() {
-		List<RemoteCase> notDisplayedCases = new ArrayList<>();
-		notDisplayedCases.addAll(notDisplayedCaseMap.values());
-		if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.comparatorString(RemoteCase::getName);
-		} else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getId);
-		} else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getStartTimestamp);
-		} else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
-		} else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.comparatorString(caseCreator());
-		} else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getState);
-		} else {
-			extendSortCasesInNotDisplayedCaseMap();
-		}
+  protected List<RemoteCase> sortCasesInNotDisplayedCaseMap() {
+    List<RemoteCase> notDisplayedCases = new ArrayList<>();
+    notDisplayedCases.addAll(notDisplayedCaseMap.values());
+    if (CaseSortField.NAME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+      comparator = RemoteCaseComparator.comparatorString(RemoteCase::getName);
+    } else if (CaseSortField.ID.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+      comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getId);
+    } else if (CaseSortField.START_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+      comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getStartTimestamp);
+    } else if (CaseSortField.END_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+      comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getEndTimestamp);
+    } else if (CaseSortField.CREATOR.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+      comparator = RemoteCaseComparator.comparatorString(caseCreator());
+    } else if (CaseSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
+      comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getState);
+    } else {
+      extendSortCasesInNotDisplayedCaseMap();
+    }
 
-		if (comparator != null && queryCriteria.isSortDescending()) {
-			comparator = comparator.reversed();
-		}
-		notDisplayedCases.sort(comparator);
-		return notDisplayedCases;
-	}
+    if (comparator != null && queryCriteria.isSortDescending()) {
+      comparator = comparator.reversed();
+    }
+    notDisplayedCases.sort(comparator);
+    return notDisplayedCases;
+  }
 
-	/**
-	 * <p>
-	 * Your customized data model needs to override this method if your customized case list has new columns/fields.
-	 * </p>
-	 * <p>
-	 * <b>Example: </b> <code><pre>
-	 * import ch.ivy.addon.portalkit.bo.RemoteCase;
-	 * 
-	 * // The value of queryCriteria.getSortField() is defined in the CaseColumnHeader Portal component when you use it to add new column headers.
-	 * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
-	 * 
-	 *   // comparatorString(...): String, comparator(...): others.
-	 *   comparator = comparatorString(RemoteCase::getCustomVarCharField5);
-	 * }
-	 * </pre></code>
-	 * </p>
-	 */
-	protected void extendSortCasesInNotDisplayedCaseMap() {
-		// Placeholder for customization
-	}
+  /**
+   * <p>
+   * Your customized data model needs to override this method if your customized case list has new columns/fields.
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * import ch.ivy.addon.portalkit.bo.RemoteCase;
+   * 
+   * // The value of queryCriteria.getSortField() is defined in the CaseColumnHeader Portal component when you use it to add new column headers.
+   * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
+   * 
+   *   // comparatorString(...): String, comparator(...): others.
+   *   comparator = comparatorString(RemoteCase::getCustomVarCharField5);
+   * }
+   * </pre></code>
+   * </p>
+   */
+  protected void extendSortCasesInNotDisplayedCaseMap() {
+    // Placeholder for customization
+  }
 
-	protected void autoInitForNoAppConfiguration() {
-		String applicationName = StringUtils.EMPTY;
-		String applicationNameFromRequest =
-				Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName)
-						.orElse(StringUtils.EMPTY);
-		if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
-			applicationName = applicationNameFromRequest;
-		}
-		if (StringUtils.isNotBlank(applicationName)) {
-			setInvolvedApplications(applicationName);
-		}
-	}
+  protected void autoInitForNoAppConfiguration() {
+    String applicationName = StringUtils.EMPTY;
+    String applicationNameFromRequest =
+        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
+    if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+      applicationName = applicationNameFromRequest;
+    }
+    if (StringUtils.isNotBlank(applicationName)) {
+      setInvolvedApplications(applicationName);
+    }
+  }
 
-	/**
-	 * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
-	 */
-	protected void buildQueryToSearchCriteria() {
-		if (queryCriteria.getCaseQuery() == null) {
-			String jsonQuery =
-					SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery")
-							.withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
-			CaseQuery customizedCaseQuery =
-					StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
-			queryCriteria.setCaseQuery(customizedCaseQuery);
-		}
-		if (filterContainer != null) {
-			if (selectedFilters.contains(filterContainer.getStateFilter())) {
-				queryCriteria.setIncludedStates(new ArrayList<>());
-			} else {
-				queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
-			}
-		}
-		CaseQuery caseQuery = buildCaseQuery();
-		extendSort(caseQuery);
-		searchCriteria.setJsonQuery(caseQuery.asJson());
-	}
+  /**
+   * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
+   */
+  protected void buildQueryToSearchCriteria() {
+    if (queryCriteria.getCaseQuery() == null) {
+      String jsonQuery = SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery")
+          .withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
+      CaseQuery customizedCaseQuery =
+          StringUtils.isNotBlank(jsonQuery) ? CaseQuery.fromJson(jsonQuery) : CaseQuery.create();
+      queryCriteria.setCaseQuery(customizedCaseQuery);
+    }
+    if (filterContainer != null) {
+      if (selectedFilters.contains(filterContainer.getStateFilter())) {
+        queryCriteria.setIncludedStates(new ArrayList<>());
+      } else {
+        queryCriteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
+      }
+    }
+    CaseQuery caseQuery = buildCaseQuery();
+    extendSort(caseQuery);
+    searchCriteria.setJsonQuery(caseQuery.asJson());
+  }
 
-	/**
-	 * <p>
-	 * If your customized case list has new columns/fields, please extend the {@code caseQuery} parameter with the sort
-	 * query for these fields and also override the "extendSortCasesInNotDisplayedCaseMap" method.
-	 * </p>
-	 * <p>
-	 * <b>Example: </b> <code><pre>
-	 * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
-	 *   if (queryCriteria.isSortDescending()) {
-	 *     caseQuery.orderBy().customVarCharField5().descending();
-	 *   } else {
-	 *     caseQuery.orderBy().customVarCharField5();
-	 *   }
-	 * }
-	 * </pre></code>
-	 * </p>
-	 * 
-	 * @param caseQuery
-	 */
-	protected void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
-		// Placeholder for customization
-	}
+  /**
+   * <p>
+   * If your customized case list has new columns/fields, please extend the {@code caseQuery} parameter with the sort
+   * query for these fields and also override the "extendSortCasesInNotDisplayedCaseMap" method.
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * if ("CustomVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
+   *   if (queryCriteria.isSortDescending()) {
+   *     caseQuery.orderBy().customVarCharField5().descending();
+   *   } else {
+   *     caseQuery.orderBy().customVarCharField5();
+   *   }
+   * }
+   * </pre></code>
+   * </p>
+   * 
+   * @param caseQuery
+   */
+  protected void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
+    // Placeholder for customization
+  }
 
-	protected CaseQueryCriteria buildInitQueryCriteria() {
-		CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
-		jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING,
-				CaseState.DONE)));
-		jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
-		jsonQueryCriteria.setSortDescending(true);
-		if (!isNotKeepFilter) {
-			jsonQueryCriteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
-		}
-		return jsonQueryCriteria;
-	}
+  protected CaseQueryCriteria buildInitQueryCriteria() {
+    CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
+    jsonQueryCriteria
+        .setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+    jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
+    jsonQueryCriteria.setSortDescending(true);
+    if (!isNotKeepFilter) {
+      jsonQueryCriteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
+    }
+    return jsonQueryCriteria;
+  }
 
-	private CaseQuery buildCaseQuery() {
-		CaseQuery caseQuery = CaseQueryService.service().createQuery(queryCriteria);
-		IFilterQuery filterQuery = caseQuery.where();
-		selectedFilters.forEach(selectedFilter -> {
-			CaseQuery subQuery = selectedFilter.buildQuery();
-			if (subQuery != null) {
-				filterQuery.and(subQuery);
-			}
-		});
-		if (!isNotKeepFilter) {
-			UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
-			UserUtils.setSessionCaseKeywordFilterAttribute(queryCriteria.getKeyword());
-			UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
-		}
-		return caseQuery;
-	}
+  private CaseQuery buildCaseQuery() {
+    CaseQuery caseQuery = CaseQueryService.service().createQuery(queryCriteria);
+    IFilterQuery filterQuery = caseQuery.where();
+    selectedFilters.forEach(selectedFilter -> {
+      CaseQuery subQuery = selectedFilter.buildQuery();
+      if (subQuery != null) {
+        filterQuery.and(subQuery);
+      }
+    });
+    if (!isNotKeepFilter) {
+      UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
+      UserUtils.setSessionCaseKeywordFilterAttribute(queryCriteria.getKeyword());
+      UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
+    }
+    return caseQuery;
+  }
 
-	private void setValuesForCaseStateFilter(CaseQueryCriteria criteria) {
-		if (filterContainer != null) {
-			filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
-			filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
-		}
-	}
+  private void setValuesForCaseStateFilter(CaseQueryCriteria criteria) {
+    if (filterContainer != null) {
+      filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
+      filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
+    }
+  }
 
-	private Function<RemoteCase, String> caseCreator() {
-		return remoteCase -> {
-			if (StringUtils.isNotEmpty(remoteCase.getCreatorFullName())) {
-				return remoteCase.getCreatorFullName();
-			}
-			return remoteCase.getCreatorUserName();
-		};
-	}
+  private Function<RemoteCase, String> caseCreator() {
+    return remoteCase -> {
+      if (StringUtils.isNotEmpty(remoteCase.getCreatorFullName())) {
+        return remoteCase.getCreatorFullName();
+      }
+      return remoteCase.getCreatorUserName();
+    };
+  }
 
-	private void storeDisplayedCases(List<RemoteCase> displayedCases) {
-		data.addAll(displayedCases);
-		for (RemoteCase oneCase : displayedCases) {
-			displayedCaseMap.put(globalCaseId(oneCase), oneCase);
-		}
-	}
+  private void storeDisplayedCases(List<RemoteCase> displayedCases) {
+    data.addAll(displayedCases);
+    for (RemoteCase oneCase : displayedCases) {
+      displayedCaseMap.put(globalCaseId(oneCase), oneCase);
+    }
+  }
 
-	private List<RemoteCase> findCases(int first, int pageSize, CaseSearchCriteria criteria) {
-		IvyComponentLogicCaller<List<RemoteCase>> findCaseCaller = new IvyComponentLogicCaller<>();
-		int startIndex = first - BUFFER_LOAD;
-		int count = pageSize + BUFFER_LOAD;
-		if (startIndex < 0) {
-			startIndex = 0;
-			count = first + pageSize;
-		}
-		return findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}", new Object[] {
-				startIndex, count, criteria, serverId});
-	}
+  private List<RemoteCase> findCases(int first, int pageSize, CaseSearchCriteria criteria) {
+    IvyComponentLogicCaller<List<RemoteCase>> findCaseCaller = new IvyComponentLogicCaller<>();
+    int startIndex = first - BUFFER_LOAD;
+    int count = pageSize + BUFFER_LOAD;
+    if (startIndex < 0) {
+      startIndex = 0;
+      count = first + pageSize;
+    }
+    return findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}",
+        new Object[] {startIndex, count, criteria, serverId});
+  }
 
-	private void initializedDataModel(CaseSearchCriteria criteria) {
-		data.clear();
-		displayedCaseMap.clear();
-		notDisplayedCaseMap.clear();
-		buildQueryToSearchCriteria();
-		setRowCount(getCaseCount(criteria));
-	}
+  private void initializedDataModel(CaseSearchCriteria criteria) {
+    data.clear();
+    displayedCaseMap.clear();
+    notDisplayedCaseMap.clear();
+    buildQueryToSearchCriteria();
+    setRowCount(getCaseCount(criteria));
+  }
 
-	private List<RemoteCase> getDisplayedCases(List<RemoteCase> notDisplayedCases, int pageSize) {
-		int displayedCaseCount = notDisplayedCases.size() > pageSize ? pageSize : notDisplayedCases.size();
-		List<RemoteCase> displayedCases = notDisplayedCases.subList(0, displayedCaseCount);
-		for (RemoteCase oneCase : displayedCases) {
-			notDisplayedCaseMap.remove(globalCaseId(oneCase));
-		}
-		return displayedCases;
-	}
+  private List<RemoteCase> getDisplayedCases(List<RemoteCase> notDisplayedCases, int pageSize) {
+    int displayedCaseCount = notDisplayedCases.size() > pageSize ? pageSize : notDisplayedCases.size();
+    List<RemoteCase> displayedCases = notDisplayedCases.subList(0, displayedCaseCount);
+    for (RemoteCase oneCase : displayedCases) {
+      notDisplayedCaseMap.remove(globalCaseId(oneCase));
+    }
+    return displayedCases;
+  }
 
-	private void putCasesToNotDisplayedCaseMap(List<RemoteCase> cases) {
-		for (RemoteCase oneCase : cases) {
-			GlobalCaseId keyOfCase = globalCaseId(oneCase);
-			if (!displayedCaseMap.containsKey(keyOfCase) && !notDisplayedCaseMap.containsKey(keyOfCase)) {
-				notDisplayedCaseMap.put(keyOfCase, oneCase);
-			}
-		}
-	}
+  private void putCasesToNotDisplayedCaseMap(List<RemoteCase> cases) {
+    for (RemoteCase oneCase : cases) {
+      GlobalCaseId keyOfCase = globalCaseId(oneCase);
+      if (!displayedCaseMap.containsKey(keyOfCase) && !notDisplayedCaseMap.containsKey(keyOfCase)) {
+        notDisplayedCaseMap.put(keyOfCase, oneCase);
+      }
+    }
+  }
 
-	private GlobalCaseId globalCaseId(RemoteCase oneCase) {
-		return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId(), oneCase.isBusinessCase());
-	}
+  private GlobalCaseId globalCaseId(RemoteCase oneCase) {
+    return new GlobalCaseId(oneCase.getServer().getId(), oneCase.getId(), oneCase.isBusinessCase());
+  }
 
-	private int getCaseCount(CaseSearchCriteria criteria) {
-		IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
-		Long caseCount =
-				countCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.countCases}", new Object[] {
-						criteria, serverId});
-		return caseCount.intValue();
-	}
+  private int getCaseCount(CaseSearchCriteria criteria) {
+    IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
+    Long caseCount = countCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.countCases}",
+        new Object[] {criteria, serverId});
+    return caseCount.intValue();
+  }
 
-	private CaseSearchCriteria buildInitSearchCriteria() {
-		CaseSearchCriteria crit = new CaseSearchCriteria();
-		crit.setInvolvedUsername(Ivy.session().getSessionUserName());
-		crit.setBusinessCase(true);
-		return crit;
-	}
+  private CaseSearchCriteria buildInitSearchCriteria() {
+    CaseSearchCriteria crit = new CaseSearchCriteria();
+    crit.setInvolvedUsername(Ivy.session().getSessionUserName());
+    crit.setBusinessCase(true);
+    return crit;
+  }
 
-	private void applyCustomSettings(CaseFilterData caseFilterData) {
-		queryCriteria.setKeyword(caseFilterData.getKeyword());
-	}
+  private void applyCustomSettings(CaseFilterData caseFilterData) {
+    queryCriteria.setKeyword(caseFilterData.getKeyword());
+  }
 
-	private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
-		if (!isNotKeepFilter) {
-			List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
-			for (CaseFilter filter : filters) {
-				for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
-					copyProperties(sessionCaseFilter, filter);
-				}
-			}
-		}
-	}
+  private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
+    if (!isNotKeepFilter) {
+      List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
+      for (CaseFilter filter : filters) {
+        for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
+          copyProperties(sessionCaseFilter, filter);
+        }
+      }
+    }
+  }
 
-	private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter) throws IllegalAccessException,
-			InvocationTargetException {
-		if (sessionCaseFilter.getClass() == filter.getClass()) {
-			BeanUtils.copyProperties(filter, sessionCaseFilter);
-			selectedFilters.add(filter);
-		}
-	}
+  private void copyProperties(CaseFilter sessionCaseFilter, CaseFilter filter)
+      throws IllegalAccessException, InvocationTargetException {
+    if (sessionCaseFilter.getClass() == filter.getClass()) {
+      BeanUtils.copyProperties(filter, sessionCaseFilter);
+      selectedFilters.add(filter);
+    }
+  }
 
-	public CaseFilterData getSelectedFilterData() {
-		return selectedFilterData;
-	}
+  public void initColumnsConfiguration() {
+    if (CollectionUtils.isEmpty(allColumns)) {
+      allColumns.addAll(getDefaultColumns());
+      initSelectedColumns();
+    }
+  }
 
-	public void setSelectedFilterData(CaseFilterData selectedFilterData) {
-		this.selectedFilterData = selectedFilterData;
-	}
+  protected void initSelectedColumns() {
+    CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
+    Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
+    Long applicationId = Ivy.request().getApplication().getId();
+    Long processModelId = Ivy.request().getProcessModel().getId();
+    if (userId != null) {
+      CaseColumnsConfiguration configData =
+          service.getConfiguration(serverId, applicationId, userId, processModelId);
+      if (configData != null) {
+        selectedColumns = configData.getSelectedColumns();
+      }
+    }
+    if (selectedColumns.isEmpty()) {
+      selectedColumns.addAll(getDefaultColumns());
+      isAutoHideColumns = true;
+    }
+    setDisableSelectionCheckboxes(isAutoHideColumns);
+  }
 
-	public boolean isNotKeepFilter() {
-		return isNotKeepFilter;
-	}
+  public void saveColumnsConfiguration() {
+    selectedColumns.addAll(portalRequiredColumns);
+    setAutoHideColumns(isDisableSelectionCheckboxes);
+    CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
+    Long applicationId = Ivy.request().getApplication().getId();
+    Long processModelId = Ivy.request().getProcessModel().getId();
+    CaseColumnsConfiguration caseColumnsConfiguration = service.getConfiguration(serverId, applicationId,
+        Ivy.session().getSessionUser().getId(), processModelId);
+    if (caseColumnsConfiguration != null) {
+      updateCaseColumnsConfiguration(caseColumnsConfiguration);
+    } else {
+      caseColumnsConfiguration = createNewCaseColumnsConfigurationData();
+    }
+    service.save(caseColumnsConfiguration);
+    initSelectedColumns();
+  }
 
-	public void setNotKeepFilter(boolean isNotKeepFilter) {
-		this.isNotKeepFilter = isNotKeepFilter;
-	}
+  private CaseColumnsConfiguration createNewCaseColumnsConfigurationData() {
+    CaseColumnsConfiguration caseColumnsConfiguration = new CaseColumnsConfiguration();
+    caseColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
+    caseColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
+    caseColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
+    caseColumnsConfiguration.setServerId(serverId);
+    updateCaseColumnsConfiguration(caseColumnsConfiguration);
+    return caseColumnsConfiguration;
+  }
 
-	public List<CaseFilter> getFilters() {
-		return filters;
-	}
+  private void updateCaseColumnsConfiguration(CaseColumnsConfiguration caseColumnsConfigurationData) {
+    caseColumnsConfigurationData.setAutoHideColumns(isAutoHideColumns);
+    if (isAutoHideColumns) {
+      caseColumnsConfigurationData.setSelectedColumns(getDefaultColumns());
+    } else {
+      caseColumnsConfigurationData.setSelectedColumns(selectedColumns);
+    }
+  }
 
-	public void setFilters(List<CaseFilter> filters) {
-		this.filters = filters;
-	}
+  
+  /**
+   * <p>
+   * Your customized data model needs to override this method if your customized case list has new columns/fields.
+   * </p>
+   * <p>
+   * <b>Example: </b> <code><pre>
+   * 
+   * return Arrays.asList("NAME", "ID" , "CREATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
+   * 
+   * </pre></code> This list is the list of sortFields in CaseColumnHeader Portal component when you use it to add new
+   * column headers also the list of checkboxes in config columns panel
+   * </p>
+   * 
+   * @return default columns
+   */
+  protected List<String> getDefaultColumns() {
+    return portalDefaultColumns;
+  }
 
-	public CaseFilterContainer getFilterContainer() {
-		return filterContainer;
-	}
+  /**
+   * <p>
+   * In case you adds new columns, these columns need cms to show in config columns panel
+   * </p>
+   * <p>
+   * You can either add new entry to default folder below in PortalStyle or override this method to create your own
+   * folder column must be the same with sortField
+   * </p>
+   * 
+   * @param column
+   * 
+   * @return column label
+   */
+  public String getColumnLabel(String column) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + column);
+  }
 
-	public void setFilterContainer(CaseFilterContainer filterContainer) {
-		this.filterContainer = filterContainer;
-	}
+  public boolean isDisableSelectionCheckboxes() {
+    return isDisableSelectionCheckboxes;
+  }
 
-	public List<CaseFilter> getSelectedFilters() {
-		return selectedFilters;
-	}
+  public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
+    this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
+  }
 
-	public void setSelectedFilters(List<CaseFilter> selectedFilters) {
-		this.selectedFilters = selectedFilters;
-	}
+  public CaseFilterData getSelectedFilterData() {
+    return selectedFilterData;
+  }
 
-	public void setServerId(Long serverId) {
-		this.serverId = serverId;
-	}
+  public void setSelectedFilterData(CaseFilterData selectedFilterData) {
+    this.selectedFilterData = selectedFilterData;
+  }
 
-	public void setInvolvedApplications(String... involvedApplications) {
-		searchCriteria.setInvolvedApplications(involvedApplications);
-	}
+  public boolean isNotKeepFilter() {
+    return isNotKeepFilter;
+  }
 
-	public void setCaseAssigneeType(CaseAssigneeType assigneeType) {
-		queryCriteria.setCaseAssigneeType(assigneeType);
-	}
+  public void setNotKeepFilter(boolean isNotKeepFilter) {
+    this.isNotKeepFilter = isNotKeepFilter;
+  }
 
-	public void setCategory(String category) {
-		queryCriteria.setCategory(category);
-	}
+  public List<CaseFilter> getFilters() {
+    return filters;
+  }
 
-	public String getSortField() {
-		return queryCriteria.getSortField();
-	}
+  public void setFilters(List<CaseFilter> filters) {
+    this.filters = filters;
+  }
 
-	public boolean isSortDescending() {
-		return queryCriteria.isSortDescending();
-	}
+  public CaseFilterContainer getFilterContainer() {
+    return filterContainer;
+  }
 
-	public CaseSearchCriteria getSearchCriteria() {
-		return searchCriteria;
-	}
+  public void setFilterContainer(CaseFilterContainer filterContainer) {
+    this.filterContainer = filterContainer;
+  }
 
-	public void setQueryCriteria(CaseQueryCriteria queryCriteria) {
-		this.queryCriteria = queryCriteria;
-	}
+  public List<CaseFilter> getSelectedFilters() {
+    return selectedFilters;
+  }
 
-	public CaseQueryCriteria getQueryCriteria() {
-		return queryCriteria;
-	}
+  public void setSelectedFilters(List<CaseFilter> selectedFilters) {
+    this.selectedFilters = selectedFilters;
+  }
+
+  public void setServerId(Long serverId) {
+    this.serverId = serverId;
+  }
+
+  public void setInvolvedApplications(String... involvedApplications) {
+    searchCriteria.setInvolvedApplications(involvedApplications);
+  }
+
+  public void setCaseAssigneeType(CaseAssigneeType assigneeType) {
+    queryCriteria.setCaseAssigneeType(assigneeType);
+  }
+
+  public void setCategory(String category) {
+    queryCriteria.setCategory(category);
+  }
+
+  public String getSortField() {
+    return queryCriteria.getSortField();
+  }
+
+  public boolean isSortDescending() {
+    return queryCriteria.isSortDescending();
+  }
+
+  public CaseSearchCriteria getSearchCriteria() {
+    return searchCriteria;
+  }
+
+  public void setQueryCriteria(CaseQueryCriteria queryCriteria) {
+    this.queryCriteria = queryCriteria;
+  }
+
+  public CaseQueryCriteria getQueryCriteria() {
+    return queryCriteria;
+  }
+
+  public List<String> getSelectedColumns() {
+    return selectedColumns;
+  }
+
+  public void setSelectedColumns(List<String> selectedColumns) {
+    this.selectedColumns = selectedColumns;
+  }
+
+  public List<String> getAllColumns() {
+    return allColumns;
+  }
+
+  public List<String> getPortalRequiredColumns() {
+    return portalRequiredColumns;
+  }
+
+  public boolean isAutoHideColumns() {
+    return isAutoHideColumns;
+  }
+
+  public void setAutoHideColumns(boolean isAutoHideColumns) {
+    this.isAutoHideColumns = isAutoHideColumns;
+  }
+  
+  public boolean isSelectedColumn(String column) {
+    return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
+  }
 }

@@ -1363,6 +1363,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .task-widget .ui-widget.ui-button.filter-add-button {
+  width: 8em;
   min-width: 10px;
   margin-top: auto;
   margin-bottom: auto;
@@ -1370,6 +1371,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 } 
 
 .case-widget-container .ui-widget.ui-button.filter-add-button {
+  width: 8em;
   min-width: 10px;
   margin-top: auto;
   margin-left: auto;
@@ -1740,6 +1742,7 @@ a.case-details-document-add-link {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  padding-bottom: 4px;
 }
 
 .case-widget-top-header .filter {
@@ -1789,7 +1792,6 @@ a.case-details-document-add-link {
   display: flex;
   align-items: flex-end;
   line-height: normal;
-  margin: 0;
   padding: 0 2px 10px 2px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
   margin-bottom: 1px;
@@ -1860,7 +1862,7 @@ a.case-details-document-add-link {
 }
 
 .case-header-data .case-header-default-cell {
-  flex: 0 0 70px;
+  flex: 0 0 80px;
   text-align: center;
 }
 
@@ -1884,7 +1886,7 @@ a.case-details-document-add-link {
 }
 
 .case-header-action-cell {
-  flex: 0 0 85px;
+  flex: 0 0 100px;
   text-align: right;
 }
 

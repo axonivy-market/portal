@@ -836,7 +836,7 @@
     padding-right: 5px;
 }
 
-.process-history-list-cell-default {
+.process-history.process-history-list.process-history-list-cell-default {
 	flex: 0 0 100px;
     text-align: center;
     padding-left: 5px;
@@ -846,7 +846,7 @@
   	text-overflow: ellipsis;
 }
 
-.process-history-list-cell-default.process-history-list-width-120,
+.process-history.process-history-list.process-history-list-cell-default.process-history-list-width-120,
 .process-history-list-header-default.process-history-list-width-120
 {
 	flex: 0 0 120px;

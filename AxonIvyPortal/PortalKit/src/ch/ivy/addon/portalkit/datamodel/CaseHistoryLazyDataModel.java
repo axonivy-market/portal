@@ -259,4 +259,12 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<RemoteCase> {
   public void setBusinessEntityId(String businessEntityId) {
     this.businessEntityId = businessEntityId;
   }
+  
+  public boolean isSelectedColumn(String column) {
+    return StringUtils.isNotEmpty(column);
+  }
+  
+  public boolean isAutoHideColumns() {
+    return false;
+  }
 }
