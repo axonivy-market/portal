@@ -37,7 +37,7 @@
             <p:column>
               <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
                 <f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
-                <p:ajax update="@([id$='filter-from']) @([id$='filter-to'])" />
+                <p:ajax global="false" update="@([id$='filter-from']) @([id$='filter-to'])" />
               </p:selectOneMenu>
             </p:column>
   
@@ -48,14 +48,14 @@
                 <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
                   pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
                   converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-                  <p:ajax />
+                  <p:ajax global="false" />
                 </p:calendar>
   
                 <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " />
                 <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
                   pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
                   converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-                  <p:ajax />
+                  <p:ajax global="false" />
                 </p:calendar>
   
               </h:panelGrid>
@@ -81,13 +81,13 @@
         <p:scrollPanel mode="native" rendered="#{not empty filter.caseCategories}" styleClass="statistic-filter-container scrollable">
           <p:selectBooleanCheckbox id="categories-select-all" styleClass="select-all-checkbox"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCategoriesSelected}" >
-            <p:ajax listener="#{statisticChartCreationBean.updateCaseCategoriesCheckboxes(filter)}" update="categories" />
+            <p:ajax global="false" listener="#{statisticChartCreationBean.updateCaseCategoriesCheckboxes(filter)}" update="categories" />
           </p:selectBooleanCheckbox>
           <p:selectManyCheckbox id="categories" disabled="#{filter.isAllCategoriesSelected}"
             value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
             <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category}"
               itemLabel="#{category == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category}" />
-            <p:ajax />
+            <p:ajax global="false" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -108,13 +108,13 @@
         <p:scrollPanel mode="native" rendered="#{not empty filter.roles}" styleClass="statistic-filter-container scrollable">
           <p:selectBooleanCheckbox id="roles-select-all" styleClass="select-all-checkbox"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllRolesSelected}" >
-            <p:ajax listener="#{statisticChartCreationBean.updateRolesCheckboxes(filter)}" update="roles" />
+            <p:ajax global="false" listener="#{statisticChartCreationBean.updateRolesCheckboxes(filter)}" update="roles" />
           </p:selectBooleanCheckbox>
           <p:selectManyCheckbox id="roles" value="#{filter.selectedRoles}" disabled="#{filter.isAllRolesSelected}"
             layout="grid" columns="1">
             <f:selectItems value="#{filter.roles}" var="role"
               itemLabel="#{role.displayName}" itemValue="#{role.memberName}" />
-            <p:ajax />
+            <p:ajax global="false" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -136,13 +136,13 @@
         <p:scrollPanel mode="native" styleClass="statistic-filter-container">
           <p:selectBooleanCheckbox id="case-states-select-all" styleClass="select-all-checkbox"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCaseStatesSelected}" >
-            <p:ajax listener="#{statisticChartCreationBean.updateCaseStatesCheckboxes(filter)}" update="case-states" />
+            <p:ajax global="false" listener="#{statisticChartCreationBean.updateCaseStatesCheckboxes(filter)}" update="case-states" />
           </p:selectBooleanCheckbox>
           <p:selectManyCheckbox id="case-states" disabled="#{filter.isAllCaseStatesSelected}"
             value="#{filter.selectedCaseStates}" layout="grid" columns="1">
             <f:selectItems value="#{filter.caseStates}" var="state"
               itemLabel="#{filter.getCaseStateName(state)}" itemValue="#{state}" />
-            <p:ajax />
+            <p:ajax global="false" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
@@ -163,13 +163,13 @@
         <p:scrollPanel mode="native" styleClass="statistic-filter-container">
           <p:selectBooleanCheckbox id="task-priorities-select-all" styleClass="select-all-checkbox"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllTaskPrioritiesSelected}" >
-            <p:ajax listener="#{statisticChartCreationBean.updateTaskPrioritiesCheckboxes(filter)}" update="task-priorities" />
+            <p:ajax global="false" listener="#{statisticChartCreationBean.updateTaskPrioritiesCheckboxes(filter)}" update="task-priorities" />
           </p:selectBooleanCheckbox>
           <p:selectManyCheckbox id="task-priorities" disabled="#{filter.isAllTaskPrioritiesSelected}"
             value="#{cc.attrs.filter.selectedTaskPriorities}" layout="grid" columns="1">
             <f:selectItems value="#{cc.attrs.filter.taskPriorities}" var="priority"
               itemLabel="#{filter.getPriorityName(priority)}" itemValue="#{priority}" />
-            <p:ajax />
+            <p:ajax global="false" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
       </p:tab>
