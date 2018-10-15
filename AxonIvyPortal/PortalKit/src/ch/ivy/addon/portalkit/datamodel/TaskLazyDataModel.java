@@ -23,7 +23,7 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
-import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
+import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -746,13 +746,12 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
     Long applicationId = Ivy.request().getApplication().getId();
-    Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
+    Long processModelId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
-      TaskColumnsConfigurationData configData =
-          service.getConfiguration(serverId, applicationId, userId, taskColumnsConfigDataId);
+      TaskColumnsConfiguration configData =
+          service.getConfiguration(serverId, applicationId, userId, processModelId);
       if (configData != null) {
         selectedColumns = configData.getSelectedColumns();
-        isAutoHideColumns = configData.isAutoHideColumns();
       }
     }
     if (selectedColumns.isEmpty()) {
@@ -803,35 +802,35 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     setAutoHideColumns(isDisableSelectionCheckboxes);
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long applicationId = Ivy.request().getApplication().getId();
-    Long taskColumnsConfigDataId = Ivy.request().getProcessModel().getId();
-    TaskColumnsConfigurationData taskColumnsConfigurationData =
+    Long processModelId = Ivy.request().getProcessModel().getId();
+    TaskColumnsConfiguration taskColumnsConfiguration =
         service.getConfiguration(serverId, applicationId, Ivy.session().getSessionUser().getId(),
-            taskColumnsConfigDataId);
-    if (taskColumnsConfigurationData != null) {
-      updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
+            processModelId);
+    if (taskColumnsConfiguration != null) {
+      updateTaskColumnsConfiguration(taskColumnsConfiguration);
     } else {
-      taskColumnsConfigurationData = createNewTaskColumnsConfigurationData();
+      taskColumnsConfiguration = createNewTaskColumnsConfigurationData();
     }
-    service.save(taskColumnsConfigurationData);
+    service.save(taskColumnsConfiguration);
     initSelectedColumns();
   }
 
-  private TaskColumnsConfigurationData createNewTaskColumnsConfigurationData() {
-    TaskColumnsConfigurationData taskColumnsConfigurationData = new TaskColumnsConfigurationData();
-    taskColumnsConfigurationData.setTaskColumnsConfigDataId(Ivy.request().getProcessModel().getId());
-    taskColumnsConfigurationData.setUserId(Ivy.session().getSessionUser().getId());
-    taskColumnsConfigurationData.setApplicationId(Ivy.request().getApplication().getId());
-    taskColumnsConfigurationData.setServerId(serverId);
-    updateTaskColumnsConfigurationData(taskColumnsConfigurationData);
-    return taskColumnsConfigurationData;
+  private TaskColumnsConfiguration createNewTaskColumnsConfigurationData() {
+  TaskColumnsConfiguration taskColumnsConfiguration = new TaskColumnsConfiguration();
+    taskColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
+    taskColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
+    taskColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
+    taskColumnsConfiguration.setServerId(serverId);
+    updateTaskColumnsConfiguration(taskColumnsConfiguration);
+    return taskColumnsConfiguration;
   }
 
-  private void updateTaskColumnsConfigurationData(TaskColumnsConfigurationData taskColumnsConfigurationData) {
-    taskColumnsConfigurationData.setAutoHideColumns(isAutoHideColumns);
+  private void updateTaskColumnsConfiguration(TaskColumnsConfiguration taskColumnsConfiguration) {
+    taskColumnsConfiguration.setAutoHideColumns(isAutoHideColumns);
     if (isAutoHideColumns) {
-      taskColumnsConfigurationData.setSelectedColumns(getDefaultColumns());
+      taskColumnsConfiguration.setSelectedColumns(getDefaultColumns());
     } else {
-      taskColumnsConfigurationData.setSelectedColumns(selectedColumns);
+      taskColumnsConfiguration.setSelectedColumns(selectedColumns);
     }
   }
 

@@ -31,6 +31,25 @@ function CaseWidget(outerPanelId) {
 }
 
 function CaseListToolKit() {
+  function hideColumnInMediumScreen($header, $cell) {
+    $header.addClass("hidden-md");
+    $cell.addClass("hidden-md");
+  }
+
+  function displayColumnInMediumScreen($header, $cell) {
+    $header.removeClass("hidden-md");
+    $cell.removeClass("hidden-md");
+  }
+
+  function hideColumnInSmallScreen($header, $cell) {
+    $header.addClass("hidden-sm");
+    $cell.addClass("hidden-sm");
+  }
+
+  function displayColumnInSmallScreen($header, $cell) {
+    $header.removeClass("hidden-sm");
+    $cell.removeClass("hidden-sm");
+  }
   
   return {
     setupHeader : function() {
@@ -42,7 +61,7 @@ function CaseListToolKit() {
       } else {
         $(caseSortMenu).show();
       }
-      $.each(caseSortMenu.children(), function(i, header) {
+      $.each(caseSortMenu.children('a'), function(i, header) {
         var cell = $(caseEntry).children().get(i);
         $(header).outerWidth($(cell).outerWidth());
       });
@@ -53,10 +72,48 @@ function CaseListToolKit() {
     },
     
     responsiveInMediumScreen : function(){
+      var $mainMenu = $('.js-left-sidebar');
+      var $secondLevelMenu = $('#second-level-menu');
+      var $creatorColumnHeader = $('.js-creator-column-header');
+      var $creatorCell = $('.js-creator-cell');
+
+      if ($mainMenu.hasClass('in') && $secondLevelMenu.hasClass('on')) {
+        hideColumnInMediumScreen($creatorColumnHeader, $creatorCell);
+      } else {
+        displayColumnInMediumScreen($creatorColumnHeader, $creatorCell);
+      }
       this.setupHeader();
     },
   
     responsiveInSmallScreen : function() {
+      var $mainMenu = $('.js-left-sidebar');
+      var $secondLevelMenu = $('#second-level-menu');
+      var $idColumnHeader = $('.js-id-column-header');
+      var $idCell = $('.js-id-cell');
+      var $creatorColumnHeader = $('.js-creator-column-header');
+      var $creatorCell = $('.js-creator-cell');
+      var $createColumnHeader = $('.js-create-column-header');
+      var $createCell = $('.js-create-cell');
+      var $expiryColumnHeader = $('.js-expiry-column-header');
+      var $expiryCell = $('.js-finish-cell');
+      
+
+      if ($mainMenu.hasClass('in') && $secondLevelMenu.hasClass('on')) {
+        hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
+        hideColumnInSmallScreen($idColumnHeader, $idCell);
+        hideColumnInSmallScreen($createColumnHeader, $createCell);
+        hideColumnInSmallScreen($expiryColumnHeader, $expiryCell);
+      } else if ($mainMenu.hasClass('in') || $secondLevelMenu.hasClass('on')) {
+        hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
+        hideColumnInSmallScreen($idColumnHeader, $idCell);
+        displayColumnInSmallScreen($createColumnHeader, $createCell);
+        displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
+      } else {
+    	hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
+        displayColumnInSmallScreen($idColumnHeader, $idCell);
+        displayColumnInSmallScreen($createColumnHeader, $createCell);
+        displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
+      }
       this.setupHeader();
       var caseWidget = new CaseWidget("main-area-panel");
       caseWidget.setUpScrollbar();

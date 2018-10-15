@@ -454,7 +454,7 @@ function CaseListMediumScreenHandler() {
   function animateCaseList($widget, properties) {
     $widget.animate(properties, animateDuration, function() {
       var caseListToolKit = CaseListToolKit();
-      caseListToolKit.responsive();
+      caseListToolKit.responsiveInMediumScreen();
     });
   }
 

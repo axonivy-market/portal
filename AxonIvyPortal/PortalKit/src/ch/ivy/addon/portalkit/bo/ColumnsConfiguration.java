@@ -2,14 +2,13 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.List;
 
-public class TaskColumnsConfigurationData {
-  
+public abstract class ColumnsConfiguration {
   private Long serverId;
   private Long applicationId;
   private Long userId;
   private List<String> selectedColumns;
   private boolean isAutoHideColumns;
-  private Long taskColumnsConfigDataId;
+  private Long processModelId;
   
   public Long getUserId() {
     return userId;
@@ -41,10 +40,10 @@ public class TaskColumnsConfigurationData {
   public void setApplicationId(Long applicationId) {
     this.applicationId = applicationId;
   }
-  public Long getTaskColumnsConfigDataId() {
-    return taskColumnsConfigDataId;
+  public Long getProcessModelId() {
+    return processModelId;
   }
-  public void setTaskColumnsConfigDataId(Long taskColumnsConfigDataId) {
-    this.taskColumnsConfigDataId = taskColumnsConfigDataId;
+  public void setProcessModelId(Long processModelId) {
+    this.processModelId = processModelId;
   }
 }
