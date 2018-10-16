@@ -1,8 +1,12 @@
 package ch.ivyteam.ivy.project.portal.examples.component.customize.cases;
 
+import java.util.Arrays;
+import java.util.List;
+
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.comparator.RemoteCaseComparator;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
@@ -45,6 +49,16 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getCustomTimestampField1);
 		}
 	}
+	
+	@Override
+	protected List<String> getDefaultColumns() {
+	  return Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "EXPIRY_TIME", "STATE", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+	}
+	
+	@Override
+  public String getColumnLabel(String column) {
+    return Ivy.cms().co("/DefaultColumns/caseList/" + column);
+  }
 
 	@Override
 	protected void initFilterContainer() {
