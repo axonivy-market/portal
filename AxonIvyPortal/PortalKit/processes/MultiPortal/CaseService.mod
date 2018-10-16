@@ -246,6 +246,8 @@ Ce0 @PushWFArc f235 '' #zField
 Ce0 @PushWFArc f237 '' #zField
 Ce0 @PushWFArc f238 '' #zField
 Ce0 @PushWFArc f220 '' #zField
+Ce0 @StartSub f226 '' #zField
+Ce0 @PushWFArc f233 '' #zField
 >Proto Ce0 Ce0 CaseService #zField
 Ce0 f24 inParamDecl '<ch.ivy.addon.portalkit.bo.RemoteCase remoteCase> param;' #txt
 Ce0 f24 inParamTable 'out.remoteCase=param.remoteCase;
@@ -3241,6 +3243,39 @@ Ce0 f238 2 4480 872 #addKink
 Ce0 f238 2 0.40962671905697445 0 0 #arcLabel
 Ce0 f220 expr out #txt
 Ce0 f220 4592 252 4593 298 #arcP
+Ce0 f226 inParamDecl '<java.lang.String jsonQuery,java.lang.String apps,java.lang.Long serverId,java.lang.String userName> param;' #txt
+Ce0 f226 inParamTable 'out.apps=param.#apps is initialized ? param.apps.split("=~=") : new List<String>();
+out.caseSearchCriteria.businessCase=true;
+out.caseSearchCriteria.ignoreInvolvedUser=false;
+out.caseSearchCriteria.involvedApplications=param.#apps is initialized ? param.apps.split("=~=") : new List<String>();
+out.caseSearchCriteria.involvedUsername=param.userName;
+out.caseSearchCriteria.jsonQuery=param.jsonQuery;
+out.server.id=param.serverId;
+out.serverId=param.serverId;
+' #txt
+Ce0 f226 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,java.util.List<ch.ivy.ws.addon.CategoryData> caseCategories> result;
+' #txt
+Ce0 f226 outParamTable 'result.errors=in.errors;
+result.caseCategories=in.caseCategories;
+' #txt
+Ce0 f226 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
+' #txt
+Ce0 f226 callSignature findCaseCategoriesByCriteria(String,String,Long,String) #txt
+Ce0 f226 type ch.ivyteam.wf.processes.CaseServiceData #txt
+Ce0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findCaseCategoriesByCriteria(String,String,Long,String)</name>
+        <nameStyle>55,5,7
+</nameStyle>
+        <desc>This is called via java API</desc>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f226 4369 76 26 26 -145 -38 #rect
+Ce0 f226 @|StartSubIcon #fIcon
+Ce0 f233 expr out #txt
+Ce0 f233 4369 90 4215 115 #arcP
 >Proto Ce0 .type ch.ivyteam.wf.processes.CaseServiceData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3518,3 +3553,5 @@ Ce0 f218 out f238 tail #connect
 Ce0 f238 head f148 in #connect
 Ce0 f224 mainOut f220 tail #connect
 Ce0 f220 head f222 mainIn #connect
+Ce0 f226 mainOut f233 tail #connect
+Ce0 f233 head f193 mainIn #connect
