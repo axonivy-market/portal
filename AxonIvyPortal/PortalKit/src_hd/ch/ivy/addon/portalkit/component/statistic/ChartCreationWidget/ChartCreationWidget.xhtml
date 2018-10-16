@@ -11,7 +11,7 @@
 
 <cc:implementation>
   <f:event listener="#{logic.initialize}" type="preRenderComponent" />
-  <f:event listener="#{statisticChartCreationBean.updateChartModels(data.statisticFilter)}" type="preRenderComponent" />
+  <f:event listener="#{statisticChartCreationBean.updateChartModels(data.statisticFilter, data.oldStatisticFilter)}" type="preRenderComponent" />
   <h:form id="chart-management-form">
   	<p:growl autoUpdate="true" globalOnly="true" showDetail="true" showSummary="true" />
     <h:panelGrid columns="2" styleClass="edit-statistic-container">
@@ -91,7 +91,7 @@
 
       <h:panelGroup layout="block" styleClass="filter-container">
         <ic:ch.ivy.addon.portalkit.component.statistic.StatisticFilters id="statistic-filter"
-          filter="#{data.statisticFilter}" updateListener="#{statisticChartCreationBean.updateChartModels(data.statisticFilter)}" />
+          filter="#{data.statisticFilter}" updateListener="#{statisticChartCreationBean.updateChartModels(data.statisticFilter, data.oldStatisticFilter)}" />
       </h:panelGroup>
     </h:panelGrid>
 

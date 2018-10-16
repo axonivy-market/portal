@@ -156,7 +156,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
 FacesContext context = FacesContext.getCurrentInstance();
 StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
-out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter);
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
 
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.CASES_BY_STATE;
@@ -187,7 +187,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
 FacesContext context = FacesContext.getCurrentInstance();
 StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
-out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter);
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
 
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.TASK_BY_EXPIRY;
@@ -240,9 +240,11 @@ Cs0 f15 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidg
 ' #txt
 Cs0 f15 actionTable 'out=in;
 ' #txt
-Cs0 f15 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+Cs0 f15 actionCode 'import org.apache.commons.lang.ObjectUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 
-in.statisticFilter = new StatisticFilter();' #txt
+in.statisticFilter = new StatisticFilter();
+in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;' #txt
 Cs0 f15 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -284,7 +286,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
 FacesContext context = FacesContext.getCurrentInstance();
 StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
-out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter);
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
 
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.TASK_BY_PRIORITY;
@@ -336,7 +338,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
 FacesContext context = FacesContext.getCurrentInstance();
 StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
-out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter);
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
 
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY;
@@ -402,7 +404,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
 FacesContext context = FacesContext.getCurrentInstance();
 StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
-out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter);
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
 
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.CASES_BY_FINISHED_TASK;
@@ -437,7 +439,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
 FacesContext context = FacesContext.getCurrentInstance();
 StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
-out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter);
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
 
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.CASES_BY_FINISHED_TIME;
