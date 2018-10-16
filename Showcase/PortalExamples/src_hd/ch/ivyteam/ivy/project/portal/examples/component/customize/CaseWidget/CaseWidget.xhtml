@@ -39,9 +39,9 @@
 
 			<!-- New field -->
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
-				componentToBeUpdated="" sortedField="customVarCharField1" sortable="true" value="Customer Name" dataModel="#{caseView.dataModel}" />
+				componentToBeUpdated="" sortedField="customVarCharField1" sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customVarcharField1')}" dataModel="#{caseView.dataModel}" />
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
-				componentToBeUpdated="" sortedField="customTimestampField1" sortable="true" value="Shipment Date" dataModel="#{caseView.dataModel}" />
+				componentToBeUpdated="" sortedField="customTimestampField1" sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customTimestampField1')}" dataModel="#{caseView.dataModel}" />
 		</ui:define>
 
 		<ui:define name="caseHeader">
@@ -60,9 +60,8 @@
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{caseView.getDataModel()}" />
 
 			<!-- New field -->
-			<h:panelGroup id="customVarCharField1-column-case-header-panel" styleClass="customized-case-header-column">
-				<h:outputText id="customVarCharField1-column-case-header-text" value="#{case.customVarCharField1}" styleClass="case-header-default-cell customized-case-header-column" />
-			</h:panelGroup>
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="customer-name-component" componentId="customVarCharField1-column-case-header-panel" column="customVarCharField1" 
+				dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" />
 			<h:panelGroup styleClass="customized-case-header-column">
 				<h:outputText value="#{case.customTimestampField1}" styleClass="case-header-end-time-cell case-header-default-cell customized-case-header-column">
 					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
