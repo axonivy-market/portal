@@ -2,14 +2,10 @@ package portal.guitest.page;
 
 import java.util.List;
 
-import javax.transaction.xa.XAException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
-
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class CaseWidgetPage extends TemplatePage {
 
@@ -75,7 +71,6 @@ public class CaseWidgetPage extends TemplatePage {
 	public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
 		List<WebElement> caseItems = findListElementsByCssSelector(CASE_ITEM_LIST_SELECTOR);
 		for (WebElement caseItem : caseItems) {
-		  System.out.println("Item names: " + caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText());
 			if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
 			  caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).click();
 				waitAjaxIndicatorDisappear();
@@ -94,7 +89,7 @@ public class CaseWidgetPage extends TemplatePage {
 	public String getCaseNameAt(int index) {
 		WebElement name =
 				findElementById(caseWidgetId + ":case-list-scroller:" + index
-						+ ":case-item:case-header-name-cell");
+						+ ":case-item:case-name-component:case-header-name-cell");
 		return name.getText();
 	}
 
@@ -103,7 +98,7 @@ public class CaseWidgetPage extends TemplatePage {
 		WebElement selectedCaseElement = findElementByCssSelector(".case-list-item-expanded");
 		WebElement selectedCaseNameElement =
 				findElementById(selectedCaseElement.getAttribute("id")
-						+ ":case-name-form:case-name-edit-inplace");
+						+ ":case-name-component:case-name-form:case-name-edit-inplace");
 		return selectedCaseNameElement.getText();
 	}
 

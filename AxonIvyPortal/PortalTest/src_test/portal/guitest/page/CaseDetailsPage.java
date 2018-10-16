@@ -187,7 +187,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public String getNameOfCaseAt(int caseIndex) {
     WebElement taskName = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_display",
+        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_display",
         caseIndex));
     waitForElementDisplayed(taskName, true);
     return taskName.getText();
@@ -195,12 +195,12 @@ public class CaseDetailsPage extends TemplatePage {
 
   public boolean isCaseNameChangeComponentPresented(int caseIndex) {
     return isElementPresent(By.id(String
-        .format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-input", caseIndex)));
+        .format("case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex)));
   }
 
   public String getDescriptionOfCaseAt(int caseIndex) {
     WebElement caseDescription = findElementById(
-        String.format("case-widget:case-list-scroller:%d:case-item:case-header:description-cell", caseIndex));
+        String.format("case-widget:case-list-scroller:%d:case-item:case-name-component:description-cell", caseIndex));
     waitForElementDisplayed(caseDescription, true);
     return caseDescription.getText();
   }
@@ -274,7 +274,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onSubmitNameInplaceEditor(int caseIndex) {
     WebElement editor = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_editor",
+        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_editor",
         caseIndex));
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
@@ -283,7 +283,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onChangeNameInput(String newCaseName, int caseIndex) {
     String caseNameInputId = String
-        .format("case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-input", caseIndex);
+        .format("case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex);
     WebElement caseNameInput = findElementById(caseNameInputId);
     waitForElementDisplayed(caseNameInput, true);
     caseNameInput.clear();
@@ -292,7 +292,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onClickNameInplace(int caseIndex) {
     String caseNameInplaceId = String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace_display",
+        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_display",
         caseIndex);
     WebElement caseNameInplace = findElementById(caseNameInplaceId);
     caseNameInplace.click();

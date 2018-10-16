@@ -95,6 +95,6 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public String getCaseName(){
-    return findElementById("case-item:case-header:case-header-name-cell").getText();
+    return findElementById("case-item:case-name-component:case-header-name-cell").getText();
   }
 }
