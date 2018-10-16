@@ -12,3 +12,5 @@ statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticCha
 statisticChartList PERSISTENT #fieldModifier
 isAllowedToCreateChart Boolean #field
 isAllowedToCreateChart PERSISTENT #fieldModifier
+oldStatisticFilter ch.ivy.addon.portalkit.statistics.StatisticFilter #field
+oldStatisticFilter PERSISTENT #fieldModifier

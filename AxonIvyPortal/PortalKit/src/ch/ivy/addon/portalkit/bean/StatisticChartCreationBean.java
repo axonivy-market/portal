@@ -43,15 +43,16 @@ public class StatisticChartCreationBean implements Serializable {
 
   public static final int CASE_CATEGORIES_TYPE = 0;
   public StatisticChartCreationBean() {
-    updateChartModels(new StatisticFilter());
+    updateChartModels(new StatisticFilter(), null);
   }
 
   /**
    * Update chart models
    * 
    * @param filter
+   * @param oldFilter 
    */
-  public void updateChartModels(StatisticFilter filter) {
+  public void updateChartModels(StatisticFilter filter, StatisticFilter oldFilter) {
     if(filter.getTimePeriodSelection() != StatisticTimePeriodSelection.CUSTOM) {
       filter.setCreatedDateFrom(null);
       filter.setCreatedDateTo(null);
@@ -62,118 +63,120 @@ public class StatisticChartCreationBean implements Serializable {
     updateElapsedTimeByCaseCategory(filter);
     updateCaseByFinishedTaskModel(filter);
     updateCaseByFinishedTimeModel(filter);
-    setOldFiltersToCurrentValues(filter);
+    if (oldFilter != null) {
+      setOldFiltersToCurrentValues(filter, oldFilter);
+    }
   }
 
-  private void setOldFiltersToCurrentValues(StatisticFilter filter) {
-    filter.setOldTimePeriodSelection(filter.getTimePeriodSelection());
+  private void setOldFiltersToCurrentValues(StatisticFilter filter, StatisticFilter oldFilter) {
+    oldFilter.setTimePeriodSelection(filter.getTimePeriodSelection());
     Date createdDateFrom = filter.getCreatedDateFrom();
     Date createdDateTo = filter.getCreatedDateTo();
-    filter.setOldCreatedDateFrom(createdDateFrom == null ? null : new Date(createdDateFrom.getTime()));
-    filter.setOldCreatedDateTo(createdDateTo == null ? null : new Date(createdDateTo.getTime()));
-    filter.setIsAllOldCaseStatesSelected(filter.getIsAllCaseStatesSelected());
-    filter.setIsAllOldCategoriesSelected(filter.getIsAllCategoriesSelected());
-    filter.setIsAllOldRolesSelected(filter.getIsAllRolesSelected());
-    filter.setIsAllOldTaskPrioritiesSelected(filter.getIsAllTaskPrioritiesSelected());
+    oldFilter.setCreatedDateFrom(createdDateFrom == null ? null : new Date(createdDateFrom.getTime()));
+    oldFilter.setCreatedDateTo(createdDateTo == null ? null : new Date(createdDateTo.getTime()));
+    oldFilter.setIsAllCaseStatesSelected(filter.getIsAllCaseStatesSelected());
+    oldFilter.setIsAllCategoriesSelected(filter.getIsAllCategoriesSelected());
+    oldFilter.setIsAllRolesSelected(filter.getIsAllRolesSelected());
+    oldFilter.setIsAllTaskPrioritiesSelected(filter.getIsAllTaskPrioritiesSelected());
     if (!filter.getIsAllCategoriesSelected()) {
-      updateOldListToNewList(filter.getOldSelectedCaseCategories(), filter.getSelectedCaseCategories());
+      updateOldListToNewList(oldFilter.getSelectedCaseCategories(), filter.getSelectedCaseCategories());
     }
     if (!filter.getIsAllRolesSelected()) {
-      updateOldListToNewList(filter.getOldSelectedRoles(), filter.getSelectedRoles());
+      updateOldListToNewList(oldFilter.getSelectedRoles(), filter.getSelectedRoles());
     }
     if (!filter.getIsAllCaseStatesSelected()) {
-      updateOldListToNewList(filter.getOldSelectedCaseStates(), filter.getSelectedCaseStates());
+      updateOldListToNewList(oldFilter.getSelectedCaseStates(), filter.getSelectedCaseStates());
     }
     if (!filter.getIsAllTaskPrioritiesSelected()) {
-      updateOldListToNewList(filter.getOldSelectedTaskPriorities(), filter.getSelectedTaskPriorities());
+      updateOldListToNewList(oldFilter.getSelectedTaskPriorities(), filter.getSelectedTaskPriorities());
     }
-    updateOldListToNewList(filter.getOldSelectedCustomVarCharFields1(), filter.getSelectedCustomVarCharFields1());
-    updateOldListToNewList(filter.getOldSelectedCustomVarCharFields2(), filter.getSelectedCustomVarCharFields2());
-    updateOldListToNewList(filter.getOldSelectedCustomVarCharFields3(), filter.getSelectedCustomVarCharFields3());
-    updateOldListToNewList(filter.getOldSelectedCustomVarCharFields4(), filter.getSelectedCustomVarCharFields4());
-    updateOldListToNewList(filter.getOldSelectedCustomVarCharFields5(), filter.getSelectedCustomVarCharFields5());
+    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields1(), filter.getSelectedCustomVarCharFields1());
+    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields2(), filter.getSelectedCustomVarCharFields2());
+    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields3(), filter.getSelectedCustomVarCharFields3());
+    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields4(), filter.getSelectedCustomVarCharFields4());
+    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields5(), filter.getSelectedCustomVarCharFields5());
   }
 
-  public boolean checkIfAnyFilterChanges(StatisticFilter filter) {
-    if (filter.getOldTimePeriodSelection() != filter.getTimePeriodSelection()) {
+  public boolean checkIfAnyFilterChanges(StatisticFilter filter, StatisticFilter oldFilter) {
+    if (oldFilter.getTimePeriodSelection() != filter.getTimePeriodSelection()) {
       return true;
     }
-    if (isDateChanged(filter.getOldCreatedDateFrom(), filter.getCreatedDateFrom())) {
+    if (isDateChanged(oldFilter.getCreatedDateFrom(), filter.getCreatedDateFrom())) {
       return true;
     }
-    if (isDateChanged(filter.getOldCreatedDateTo(), filter.getCreatedDateTo())) {
+    if (isDateChanged(oldFilter.getCreatedDateTo(), filter.getCreatedDateTo())) {
       return true;
     }
-    if (checkIfAnyCaseStateChanged(filter)) {
+    if (checkIfAnyCaseStateChanged(filter, oldFilter)) {
       return true;
     }
-    if (checkIfAnyTaskPriorityChanged(filter)) {
+    if (checkIfAnyTaskPriorityChanged(filter, oldFilter)) {
       return true;
     }
-    if (checkIfAnyCaseCategoryChanged(filter)) {
+    if (checkIfAnyCaseCategoryChanged(filter, oldFilter)) {
       return true;
     }
-    if (checkIfAnyRoleChanged(filter)) {
+    if (checkIfAnyRoleChanged(filter, oldFilter)) {
       return true;
     }
-    return checkIfAnyCustomVarcharChanged(filter);
+    return checkIfAnyCustomVarcharChanged(filter, oldFilter);
   }
 
-  private boolean checkIfAnyCaseStateChanged(StatisticFilter filter) {
+  private boolean checkIfAnyCaseStateChanged(StatisticFilter filter, StatisticFilter oldFilter) {
     //compare check box select all of case states
-    if (filter.getIsAllOldCaseStatesSelected() != filter.getIsAllCaseStatesSelected()) {
+    if (oldFilter.getIsAllCaseStatesSelected() != filter.getIsAllCaseStatesSelected()) {
       return true;
     }
     //compare other check box of case states if select all is not checked
-    return !filter.getIsAllCaseStatesSelected() && !filter.getOldSelectedCaseStates().equals(filter.getSelectedCaseStates());
+    return !filter.getIsAllCaseStatesSelected() && !oldFilter.getSelectedCaseStates().equals(filter.getSelectedCaseStates());
   }
 
-  private boolean checkIfAnyTaskPriorityChanged(StatisticFilter filter) {
+  private boolean checkIfAnyTaskPriorityChanged(StatisticFilter filter, StatisticFilter oldFilter) {
     //compare check box select all of task priorities
-    if (filter.getIsAllOldTaskPrioritiesSelected() != filter.getIsAllTaskPrioritiesSelected()) {
+    if (oldFilter.getIsAllTaskPrioritiesSelected() != filter.getIsAllTaskPrioritiesSelected()) {
       return true;
     }
     //compare other check box of task priorities if select all is not checked
-    return !filter.getIsAllTaskPrioritiesSelected() && !filter.getOldSelectedTaskPriorities().equals(filter.getSelectedTaskPriorities());
+    return !filter.getIsAllTaskPrioritiesSelected() && !oldFilter.getSelectedTaskPriorities().equals(filter.getSelectedTaskPriorities());
   }
 
-  private boolean checkIfAnyCaseCategoryChanged(StatisticFilter filter) {
+  private boolean checkIfAnyCaseCategoryChanged(StatisticFilter filter, StatisticFilter oldFilter) {
     //compare check box select all of case categories
-    if (filter.getIsAllOldCategoriesSelected() != filter.getIsAllCategoriesSelected()) {
+    if (oldFilter.getIsAllCategoriesSelected() != filter.getIsAllCategoriesSelected()) {
       return true;
     }
     //compare other check box of case categories if select all is not checked
-    return !filter.getIsAllCategoriesSelected() && !filter.getOldSelectedCaseCategories().equals(filter.getSelectedCaseCategories());
+    return !filter.getIsAllCategoriesSelected() && !oldFilter.getSelectedCaseCategories().equals(filter.getSelectedCaseCategories());
   }
 
-  private boolean checkIfAnyRoleChanged(StatisticFilter filter) {
+  private boolean checkIfAnyRoleChanged(StatisticFilter filter, StatisticFilter oldFilter) {
     //compare check box select all of roles
-    if (filter.getIsAllOldRolesSelected() != filter.getIsAllRolesSelected()) {
+    if (oldFilter.getIsAllRolesSelected() != filter.getIsAllRolesSelected()) {
       return true;
     }
     //compare other check box of roles if select all is not checked
-    return !filter.getIsAllRolesSelected() && !filter.getOldSelectedRoles().equals(filter.getSelectedRoles());
+    return !filter.getIsAllRolesSelected() && !oldFilter.getSelectedRoles().equals(filter.getSelectedRoles());
   }
 
-  private boolean checkIfAnyCustomVarcharChanged(StatisticFilter filter) {
+  private boolean checkIfAnyCustomVarcharChanged(StatisticFilter filter, StatisticFilter oldFilter) {
     //compare check boxes of custom varchar 1
-    if (!filter.getOldSelectedCustomVarCharFields1().equals(filter.getSelectedCustomVarCharFields1())) {
+    if (!oldFilter.getSelectedCustomVarCharFields1().equals(filter.getSelectedCustomVarCharFields1())) {
       return true;
     }
     //compare check boxes of custom varchar 2
-    if (!filter.getOldSelectedCustomVarCharFields2().equals(filter.getSelectedCustomVarCharFields2())) {
+    if (!oldFilter.getSelectedCustomVarCharFields2().equals(filter.getSelectedCustomVarCharFields2())) {
       return true;
     }
     //compare check boxes of custom varchar 3
-    if (!filter.getOldSelectedCustomVarCharFields3().equals(filter.getSelectedCustomVarCharFields3())) {
+    if (!oldFilter.getSelectedCustomVarCharFields3().equals(filter.getSelectedCustomVarCharFields3())) {
       return true;
     }
     //compare check boxes of custom varchar 4
-    if (!filter.getOldSelectedCustomVarCharFields4().equals(filter.getSelectedCustomVarCharFields4())) {
+    if (!oldFilter.getSelectedCustomVarCharFields4().equals(filter.getSelectedCustomVarCharFields4())) {
       return true;
     }
     //compare check boxes of custom varchar 5
-    return !filter.getOldSelectedCustomVarCharFields5().equals(filter.getSelectedCustomVarCharFields5());
+    return !oldFilter.getSelectedCustomVarCharFields5().equals(filter.getSelectedCustomVarCharFields5());
   }
 
   private boolean isDateChanged(Date oldDate, Date currentDate) {
