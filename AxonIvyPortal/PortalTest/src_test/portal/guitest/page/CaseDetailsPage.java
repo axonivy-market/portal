@@ -212,7 +212,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onSubmitDescriptionInplaceEditor(int caseIndex) {
     WebElement editor = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-desription-inplace_editor",
+        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-inplace_editor",
         caseIndex));
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
@@ -220,6 +220,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onChangeDescriptionInput(String newDescription, int caseIndex) {
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     WebElement caseDescriptionInput = findElementById(String.format(
         "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-input",
         caseIndex));
@@ -230,7 +236,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   private void onClickDescriptionInplace(int caseIndex) {
     WebElement caseDescriptionInplace = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-desription-inplace_display",
+        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-inplace_display",
         caseIndex));
     waitForElementDisplayed(caseDescriptionInplace, true);
     caseDescriptionInplace.click();
