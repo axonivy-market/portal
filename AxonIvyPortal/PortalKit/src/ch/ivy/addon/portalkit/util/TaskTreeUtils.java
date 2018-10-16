@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
+import static java.util.stream.Collectors.joining;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -131,10 +133,10 @@ public class TaskTreeUtils {
   private static List<CategoryData> findAllTaskCategories(List<String> involvedApplications, String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
     params.put("jsonQuery", jsonQuery);
-    params.put("apps", involvedApplications);
+    params.put("apps", involvedApplications != null ? involvedApplications.stream().collect(joining("=~=")) : null);
     params.put("serverId", ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession());
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("findCategories(String, String, List<String>, Long)", params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+        IvyAdapterService.startSubProcess("findCategories(String, String, String, Long)", params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     @SuppressWarnings("unchecked")
     List<CategoryData> allTaskCategories = (List<CategoryData>) response.get("categories");
     return allTaskCategories;

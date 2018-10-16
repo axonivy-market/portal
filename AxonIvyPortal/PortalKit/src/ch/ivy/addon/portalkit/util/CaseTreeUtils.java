@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
+import static java.util.stream.Collectors.joining;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -133,10 +135,10 @@ public class CaseTreeUtils {
   private static List<CategoryData> findAllCaseCategories(List<String> involvedApplications, String jsonQuery) {
     Map<String, Object> params = new HashMap<>();
     params.put("jsonQuery", jsonQuery);
-    params.put("apps", involvedApplications);
+    params.put("apps", involvedApplications != null ? involvedApplications.stream().collect(joining("=~=")) : null);
     params.put("serverId", ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession());
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("findCaseCategoriesByCriteria(String, List<String>, Long, String)", params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+        IvyAdapterService.startSubProcess("findCaseCategoriesByCriteria(String, String, Long, String)", params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     @SuppressWarnings("unchecked")
     List<CategoryData> allCaseCategories = (List<CategoryData>) response.get("caseCategories");
     return allCaseCategories;
