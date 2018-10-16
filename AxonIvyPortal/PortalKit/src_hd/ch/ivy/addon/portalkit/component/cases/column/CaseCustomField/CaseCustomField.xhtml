@@ -10,14 +10,15 @@
       
   <cc:interface componentType="IvyComponent">
     <cc:attribute name="componentId" />
+    <cc:attribute name="panelGroupId" />
     <cc:attribute name="labelValue" shortDescription="Text value to show in UI"/> 
     <cc:attribute name="dataModel" />
     <cc:attribute name="column" shortDescription="column name - the value in Customize CaseLazyDatModel.getDefaultColumns()" />
   </cc:interface>
   
   <cc:implementation>
-    <h:panelGroup id="#{cc.attrs.componentId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter customized-case-header-column" >
-      <h:outputText value="#{cc.attrs.labelValue}" />
+    <h:panelGroup id="#{cc.attrs.panelGroupId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter customized-case-header-column" >
+      <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.labelValue}" />
     </h:panelGroup>
   </cc:implementation>
 </html>

@@ -34,6 +34,6 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 				.sortCaseListByColumn("case-widget:customVarCharField1-column-case-list-header:customVarCharField1-column-case-list-header");
 		assertTrue("CustomVarcharField10"
 				.equals(caseWidgetPage
-						.getCaseListCustomCellValue("case-widget:case-list-scroller:0:case-item:customVarCharField1-column-case-header-text")));
+						.getCaseListCustomCellValue("case-widget:case-list-scroller:0:case-item:case-customer-name-component:customVarCharField1-column-case-header-text")));
 	}
 }
